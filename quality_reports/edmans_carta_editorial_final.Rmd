@@ -1,0 +1,54 @@
+---
+title: "Carta Editorial — Framework Edmans (Final Round)"
+subtitle: "Informational Power, Agenda Power, and Institutional Design"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    theme: readable
+    toc: true
+    toc_float: true
+---
+
+## Decisao: R&R Minor para IO/JOP. R&R Major para AJPS.
+
+## Scores consolidados
+
+| Dimensao | Score | Anterior | Delta |
+|---|---|---|---|
+| Contribution | **7/10** | 5/10 | **+2** |
+| Execution | **7/10** | 7/10 | 0 |
+| Exposition | **7/10** | 6.5/10 | **+0.5** |
+| **Global** | **7/10** | 6/10 | **+1** |
+
+## Trajetoria completa
+
+| Versao | Score | Problema principal |
+|---|---|---|
+| V1 (baseline) | 5/10 | "Aritmetico" — resultado segue mecanicamente |
+| V2 (theta-pie) | 5/10 | delta cancela — mesma aritmetica com notacao pesada |
+| V3 screening | 6/10 | Nao-linearidade genuina mas "g suf. grande", intro longa |
+| **V3 final** | **7/10** | Bound explicito, decomposicao, intro cortada |
+
+## Sintese editorial
+
+O paper deu um salto significativo. O screening channel resolve definitivamente o problema de cancelamento das versoes anteriores — os tres reviewers confirmam que r e beta **nao cancelam** na condicao de dominancia. O Execution review (7/10) declara: "a melhoria e real, a nao-linearidade e genuina."
+
+A Contribution (7/10) subiu 2 pontos. O reviewer de Contribution nota: "O manuscrito fez a transicao critica: de um resultado que era 'quase transparente a partir do setup' para um resultado que emerge de uma interacao genuina entre informacao, barganha e regras institucionais."
+
+A frase-contribuicao: **"BP changes not just whether bargaining occurs, but how H is treated in bargaining — this second channel is the paper's genuine and original contribution."**
+
+## O que resta (5 pontos convergentes)
+
+1. **Unicidade de mu_s** — provar que a cubica tem exatamente 1 raiz em (0,1)
+2. **Computar g-bar numericamente** para o Example 1
+3. **Off-path beliefs** — discutir rejeicao de oferta conservadora
+4. **Condensar Discussion** (~5 paginas -> ~3 paginas)
+5. **Citacoes**: adicionar Schnakenberg (2017), limpar .bib
+
+## Recomendacao estrategica
+
+**Para IO**: submissivel com minor revisions. O puzzle (WTO/consenso), o posicionamento (neoliberal vs realista), e o engagement com Steinberg sao perfeitos para IO.
+
+**Para JOP**: submissivel apos R&R minor. JOP valoriza contribuicao tecnica (screening channel, cubica, concavificacao com descontinuidade).
+
+**Para AJPS**: R&R major. Precisaria de evidencia empirica ou extensao para N geral com prova completa.

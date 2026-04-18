@@ -1,0 +1,100 @@
+---
+title: "Parecer de Contribution (Framework Edmans 2025)"
+subtitle: "Informational Power, Agenda Power, and Institutional Design — V2"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    theme: readable
+    toc: true
+    toc_float: true
+---
+
+## Score: 5/10
+
+## Resumo da contribuição alegada
+
+O manuscrito alega três contribuições:
+
+1. **Trade-off inédito entre dois tipos de poder**: Um hegemon escolhe entre "agenda power" (extrair via coalizões sob maioria, à la Baron-Ferejohn) e "informational power" (persuadir via Bayesian Persuasion sob consenso). Quando o prior p é baixo e as complementaridades g são altas, o hegemon prefere consenso — renunciando ao poder de agenda para maximizar o retorno do poder informacional.
+
+2. **Explicação para o puzzle OMC/GATT**: Por que os EUA desenharam uma instituição com consenso (que aparentemente os enfraquece) em vez de maioria (que maximizaria sua vantagem de proposer)? Porque o poder informacional é mais efetivo sob consenso, onde estados fracos têm o veto como proteção e portanto menor ceticismo.
+
+3. **Formalização e estática comparativa**: Existência de um prior de crossover p*, com estática comparativa em g (complementaridade), δ (sensibilidade do pie ao estado), c (custo de entrada) e N (número de jogadores).
+
+---
+
+## Avaliação por dimensão
+
+### 2.1 Novidade [5/10 — Moderada, com ressalvas sérias]
+
+A combinação de Bayesian Persuasion com barganha legislativa num framework de design institucional é, em princípio, nova. Não conheço um paper que faça exatamente isso. Porém, a novidade é mais **combinatória do que mecanística**. O modelo junta dois blocos bem conhecidos (BP de Kamenica-Gentzkow e redistribuição estilo BF) de forma relativamente modular: o Stage 2 é um jogo de redistribuição padrão que produz payoffs $V_W(R)$; o Stage 1 é um problema de BP padrão com threshold $\tau(R)$ derivado desses payoffs. A "interação" entre os dois é puramente mecânica — o threshold muda porque a regra de votação muda os continuation values. Não há um mecanismo genuinamente novo emergindo da combinação.
+
+Além disso, o resultado central — que o threshold de persuasão é menor sob consenso porque $V_W(C) > V_W(A)$ — é quase tautológico uma vez que se aceita o setup. Se estados fracos recebem mais sob consenso, naturalmente é mais fácil convencê-los a entrar.
+
+A comparação com Kim (2024, AJPS — "Persuasion in Veto Bargaining"), presente nas referências do projeto, levanta uma preocupação adicional. Kim já estuda persuasion em contextos de veto. O manuscrito precisa delinear com precisão o que oferece além dessa literatura existente.
+
+### 2.2 Importância [7/10 — Alta em princípio, incerta na prática]
+
+O puzzle é genuinamente importante. A pergunta "por que hegemons aceitam consenso em organizações internacionais?" é central tanto para a economia política internacional quanto para o design institucional. Steinberg (2002) oferece uma resposta influente mas informal; Maggi e Morelli (2006) formalizam uma resposta diferente (self-enforcement) mas com atores simétricos. Há um gap real na literatura.
+
+Porém, a importância depende de o modelo capturar o mecanismo certo. A questão central é: **que informação privada o hegemon de fato possui?** O paper modela θ como "qualidade do acordo" que o hegemon observa por "capacidade analítica superior". Isso é empiricamente frágil. Na OMC real, a qualidade de um acordo comercial não é informação privada de nenhum ator — há milhares de analistas, think tanks, e burocracias nacionais avaliando termos.
+
+### 2.3 Adequação ao escopo [7/10 — Adequado para IO, BJPS ou JOP; stretch para APSR/AJPS]
+
+O paper fala diretamente para audiências de *International Organization*, BJPS, e possivelmente JOP (formal theory). A combinação de modelo formal com aplicação a design de organizações internacionais encaixa perfeitamente no escopo de IO. Para APSR ou AJPS, o paper precisaria de uma contribuição mais ampla.
+
+A discussão substantiva sobre OMC/GATT e Steinberg (2002) é bem conduzida. A tensão identificada no argumento de Steinberg (se o veto é binding, agenda power informal é neutralizada; se não é, a instituição não opera por consenso genuíno) é **genuinamente perspicaz**.
+
+### 2.4 Generalizabilidade [4/10 — Limitada]
+
+- **Apenas dois pacotes**: A escolha é entre exatamente dois "institutional packages" (A e C).
+- **Informação simétrica entre estados fracos**: Todos os $W_i$ são idênticos e observam o mesmo sinal público. Isso gera o resultado "all-or-none" que simplifica drasticamente.
+- **O pie é exógeno**: θ é sorteado pela natureza. Na realidade, a "qualidade" do acordo é endógena às negociações.
+- **Single-round redistribution**: O Stage 2 é um jogo de uma rodada — simplificação extrema de Baron-Ferejohn.
+
+### 2.5 Trade-offs [5/10 — Parcial]
+
+O paper reconhece o trade-off central (agenda vs informational power). A estática comparativa em δ é apresentada como "ambígua" — um ponto de honestidade analítica.
+
+Trade-offs ausentes:
+
+- **Single-round vs. multi-round**: a escolha de single-round determina $V_W$ e portanto todo o resultado.
+- **Commitment do Sender**: BP assume que H pode se comprometer com a estrutura informacional. Hipótese forte em RI.
+- **Revelação de θ no Stage 2**: assume que θ é revelado após a entrada. Crucial e não justificado.
+
+### 2.6 Hipóteses [4/10 — Várias problemáticas]
+
+1. **θ como informação privada do hegemon**: hipótese fundacional e a mais frágil. Que tipo de informação seria (a) observável pelo hegemon, (b) não observável por ninguém mais, e (c) binária?
+2. **Single-round com status quo V(θ)/N**: conveniência analítica, não representação plausível.
+3. **Custos de entrada idênticos e exógenos**: na realidade, custos variam enormemente entre EUA e Chad.
+4. **Revelação completa de θ após entrada**: por que a vantagem informacional desapareceria após a entrada?
+
+---
+
+## Veredicto geral sobre contribution
+
+O manuscrito ataca um puzzle genuinamente importante com uma abordagem inovadora em princípio (combinar BP com barganha legislativa para explicar design institucional). A discussão da literatura, especialmente a crítica a Steinberg (2002) e a Maggi e Morelli (2006), é sofisticada.
+
+Porém, a contribuição é comprometida por:
+
+1. **A "cola" entre os blocos é mecânica, não estratégica.** BP e BF não interagem de forma profunda — BF produz um threshold, BP opera sobre esse threshold.
+2. **A hipótese fundacional (θ como info privada do hegemon) carece de microfundamentação.**
+3. **O modelo não gera predições testáveis além do que já sabemos.**
+
+Na forma atual, o paper está abaixo do threshold de top 5 (APSR, AJPS) e no limiar inferior para top field journals (IO, JOP).
+
+---
+
+## Sugestões construtivas
+
+1. **Microfundar θ** com exemplo concreto e detalhado (inteligência sobre capacidade de retaliação, probabilidade de ratificação doméstica, conhecimento técnico sobre efeitos de bem-estar).
+
+2. **Criar interação genuína entre BP e BF** — o payoff de H acima do threshold precisa ser não-linear em μ. Isso requer barganha no Stage 2 que dependa de beliefs (e.g., screening channel quando W propõe sem saber V).
+
+3. **Introduzir heterogeneidade mínima** entre estados fracos.
+
+4. **Explorar predições testáveis** — o Corolário de Erosão Informacional é a parte mais promissora.
+
+5. **Confrontar Kim (2024) diretamente** — "Persuasion in Veto Bargaining" é a referência mais próxima.
+
+6. **Considerar o Caminho multidimensional** — hegemon conhece *preferências* dos outros, não a "qualidade" do acordo — mais plausível empiricamente.

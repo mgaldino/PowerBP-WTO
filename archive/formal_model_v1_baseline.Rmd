@@ -1,0 +1,344 @@
+---
+title: "Informational Power, Agenda Power, and Institutional Design"
+subtitle: "Formal Model"
+author: "Manoel Galdino"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    number_sections: true
+    toc: true
+    keep_tex: false
+bibliography: references.bib
+link-citations: true
+header-includes:
+  - \usepackage{amsmath,amssymb,amsthm}
+  - \newtheorem{definition}{Definition}
+  - \newtheorem{lemma}{Lemma}
+  - \newtheorem{proposition}{Proposition}
+  - \newtheorem{theorem}{Theorem}
+  - \newtheorem{corollary}{Corollary}
+  - \newtheorem{remark}{Remark}
+  - \newtheorem{example}{Example}
+abstract: |
+  We study the institutional design problem of a hegemon who possesses both agenda power (the ability to propose allocations) and informational power (private knowledge about the value of agreements). The hegemon chooses between two viable institutional packages: majority rule bundled with agenda control, or consensus bundled with no agenda control. Under majority, the hegemon extracts via coalitions but faces skeptical partners. Under consensus, agenda power is neutralized but Bayesian Persuasion is more effective. We characterize the conditions under which the hegemon prefers consensus and show that informational power can substitute for agenda power when complementarities are strong and weak states are skeptical about the deal terms.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+# Introduction
+
+## The Puzzle
+
+Why would a hegemon accept consensus? In the World Trade Organization, the United States operates under consensus: every member, no matter how small, can effectively block a decision. The standard logic in political economy says this should not happen. In legislative bargaining models [@baron1989bargaining], a player with agenda power benefits from *majority* rule --- assembling minimum winning coalitions, excluding others, and capturing surplus. @kalandrakis2006proposal formalizes this: the power to propose is the fundamental source of political power. If the US has disproportionate power, it should prefer majority voting. Consensus should be the last thing a hegemon wants.
+
+And yet: the GATT/WTO has operated by consensus since its founding. The US was instrumental in designing it that way [@steinberg2002shadow; @koremenos2001rational].
+
+## Two Types of Power
+
+The resolution starts from a distinction between two types of power:
+
+**Agenda power** is the ability to propose allocations and form coalitions. Under majority rule, agenda power translates directly into distributive advantage (Baron-Ferejohn).
+
+**Informational power** is the ability to shape what others believe. A hegemon often has superior analytical capacity, intelligence, and expertise about the quality of proposed agreements. This is the domain of Bayesian Persuasion [@kamenica2011bayesian]: the informed player designs an information structure to influence the decisions of others.
+
+These two types of power interact with institutional rules in opposite ways. Under majority, agenda power gives direct distributive gains, but weaker states discount the hegemon's signals --- why trust a claim that "this agreement is good for everyone" when you know you can be exploited once inside? Under consensus, agenda power is neutralized (every member has a veto), but precisely because of this protection, weaker states are more willing to trust the hegemon's signals. The threshold for persuasion drops. Informational power becomes more effective.
+
+## Institutional Packages
+
+The choice between majority and consensus is not just about voting rules. It is about **institutional packages** that bundle a voting rule with an agenda-setting arrangement:
+
+- **Package A** (Majority + Agenda): H controls proposals, passes them by majority. Viable --- H extracts via coalitions.
+- **Package B** (Consensus + Agenda): H controls proposals under unanimity. Not viable --- with $V_W = 0$, adhesion collapses.
+- **Package C** (Consensus + No Agenda): Proposal rights rotate, everyone has veto. Viable --- protection enables participation.
+- **Package D** (Majority + No Agenda): H is excluded from coalitions (BF exclusion effect). Dominated.
+
+The real comparison is **Package A vs Package C**. This matches reality: the WTO is consensus *and* member-driven --- rotating presidency, no permanent proposer. This is not merely a norm; it is an equilibrium configuration. Under consensus, the hegemon voluntarily gives up agenda control because keeping it would destroy adhesion.
+
+The fundamental trade-off: **extraction via agenda power (Stage 2) vs extraction via informational power (Stage 1)**.
+
+# Model
+
+## Environment
+
+\begin{definition}[Institutional Design Game]
+The game $\Gamma(N, p, g, c)$ is defined by:
+
+\begin{itemize}
+\item \textbf{Players}: One hegemon $H$ and $n = N-1$ weak states $W_1, \ldots, W_n$, with $N \geq 3$.
+
+\item \textbf{State}: $\theta \in \{0, 1\}$ with prior $\Pr(\theta = 1) = p \in (0,1)$. The state captures the extractiveness of the agreement: $\theta = 1$ means the deal is genuinely fair; $\theta = 0$ means $H$ is extracting the maximum possible. $H$ observes $\theta$; weak states do not.
+
+\item \textbf{Entry cost}: Each weak state pays $c > 0$ to join the institution.
+
+\item \textbf{Complementarity}: If the institution forms (all $n$ weak states enter), $H$ receives an additional payoff $g > 0$ from broad membership, capturing coordination gains, legitimacy, and network benefits.
+\end{itemize}
+\end{definition}
+
+\begin{remark}[Exogeneity of $\theta$]
+The state $\theta$ is drawn by nature, not chosen by $H$. This is essential for the Bayesian Persuasion framework: the sender observes an exogenous state and designs how to communicate about it. The ``extractiveness'' interpretation means that $\theta$ captures the quality of the agreement environment (e.g., how much surplus the deal generates for weak states), which $H$ observes due to superior analytical capacity but cannot control. In an extension where $H$ also chooses deal terms $x_i$, the BP channel would interact with a mechanism design problem, but the qualitative results would be preserved: the threshold mechanism operates through $V_W(R)$, which depends on the institutional rule, not on the information structure.
+\end{remark}
+
+\begin{remark}[Microfoundation of $g$]
+In the baseline model, $g$ is a scalar parameter. A natural microfoundation is $g = g = \lambda n^\alpha$ with $\lambda > 0$ and $\alpha > 1$, where the convexity captures supermodular complementarities: each additional member generates more value than the previous one. Under this specification, $g$ scales with $N$, strengthening the case for consensus in larger institutions. However, the qualitative results --- including the existence of $p^*$ and the comparative statics --- hold for any $g > 0$. The microfoundation amplifies but does not create the mechanism.
+\end{remark}
+
+\begin{definition}[Institutional Packages]
+An institutional package $R \in \{A, C\}$ specifies a voting rule and an agenda structure:
+
+\begin{itemize}
+\item \textbf{Package A} (Majority + Agenda): Decisions pass with $q = \lceil (N+1)/2 \rceil$ votes. $H$ is the exclusive proposer.
+
+\item \textbf{Package C} (Consensus + No Agenda): Decisions require unanimity ($q = N$). Recognition is symmetric (each player proposes with probability $1/N$).
+\end{itemize}
+
+Two other combinations are not viable in our two-stage framework:
+\begin{itemize}
+\item \textbf{Package B} (Consensus + Agenda): $H$ proposes exclusively under unanimity. Since $H$ controls the proposal and each $W_i$ must accept or reject, $H$ offers each $W_i$ exactly $0$ (their outside option from rejection in a single round). This yields $V_W(B) = 0$, making the entry threshold $\tau(B) = c$ --- strictly higher than $\tau(C) = c - 1/N$. Package B is dominated by C (Proposition \ref{prop:packageB}).
+\item \textbf{Package D} (Majority + No Agenda): Under majority with symmetric recognition ($p_i = 1/N$), continuation values are $v_i = 1/N$ for all $i$ --- identical to Package C. $H$ gains nothing from majority without agenda power. With asymmetric recognition ($p_H > 1/N$), $H$ is excluded from others' coalitions (Proposition \ref{prop:packageD}).
+\end{itemize}
+\end{definition}
+
+## Timing
+
+The game proceeds in three stages, solved by backward induction:
+
+\begin{enumerate}
+\item[\textbf{Stage 0.}] $H$ chooses institutional package $R \in \{A, C\}$.
+
+\item[\textbf{Stage 1.}] Nature draws $\theta$. $H$ observes $\theta$ and chooses an information structure $\pi: \{0,1\} \to \Delta(S)$, generating a public signal $s \in S$. Each $W_i$ observes $s$ and chooses $a_i \in \{0, 1\}$ (enter or stay out). Let $k = \sum_{i=1}^n a_i$. The institution forms if $k = n$ (since entry is all-or-none under public signals; Proposition \ref{prop:allornone}).
+
+\item[\textbf{Stage 2.}] If the institution forms, members play a single-round redistribution game over a pie of size 1, with status quo allocation $1/N$ per member. $H$ proposes a division; the proposal passes under the rule specified by $R$.
+\end{enumerate}
+
+# Stage 2: Redistribution
+
+\begin{lemma}[Continuation Values]\label{lem:continuation}
+In the single-round redistribution game with status quo $1/N$ and $H$ as proposer:
+
+\textbf{Under Package A} (majority, $q = \lceil (N+1)/2 \rceil$):
+$$V_H(A) = 1 - \frac{q-1}{N}, \qquad V_W(A) = \frac{q-1}{N(N-1)}.$$
+
+\textbf{Under Package C} (consensus):
+$$V_H(C) = V_W(C) = \frac{1}{N}.$$
+\end{lemma}
+
+\begin{proof}
+\textbf{Package A.} $H$ needs $q-1$ allies from $n = N-1$ weak states. Each ally must receive at least their status quo payoff $1/N$ to vote yes. $H$ minimizes cost by offering exactly $1/N$ to $q-1$ states and $0$ to the remaining $N-q$ states. $H$ retains $1 - (q-1)/N$. Each weak state is included in the coalition with probability $(q-1)/(N-1)$, so $V_W(A) = \frac{q-1}{N-1} \cdot \frac{1}{N} = \frac{q-1}{N(N-1)}$.
+
+\textbf{Package C.} Under unanimity, every weak state can veto. Each demands at least $1/N$. Since $n \cdot (1/N) + 1/N = 1$, $H$ cannot improve over the status quo. Hence $V_H(C) = V_W(C) = 1/N$.
+\end{proof}
+
+\begin{lemma}[Threshold Ordering]\label{lem:threshold}
+For $N \geq 3$ and $c > 1/N$, the entry threshold satisfies $\tau(A) > \tau(C) > 0$, where $\tau(R) \equiv c - V_W(R)$.
+\end{lemma}
+
+\begin{proof}
+We need $V_W(A) < V_W(C)$. Since $V_W(C) = 1/N$ and $V_W(A) = (q-1)/(N(N-1))$:
+$$V_W(A) < V_W(C) \iff \frac{q-1}{N(N-1)} < \frac{1}{N} \iff q - 1 < N - 1 \iff q < N,$$
+which holds for any majority rule ($q < N$). Since $c > 1/N = V_W(C) > V_W(A)$, both thresholds are positive.
+\end{proof}
+
+# Stage 1: Bayesian Persuasion and Entry
+
+\begin{proposition}[All-or-None Entry]\label{prop:allornone}
+With a public signal and symmetric weak states, in any equilibrium either all $n$ weak states enter or none does.
+\end{proposition}
+
+\begin{proof}
+All weak states observe the same signal $s$ and share the same prior, cost $c$, and continuation value $V_W(R)$. Hence they form the same posterior $\mu(s) = \Pr(\theta = 1 \mid s)$ and face the same entry condition: $a_i = 1$ iff $\mu(s) \geq \tau(R)$. Since the condition is identical for all $i$, either all enter ($k = n$) or none does ($k = 0$).
+\end{proof}
+
+\begin{proposition}[Optimal Bayesian Persuasion]\label{prop:bp}
+Define $A(R) \equiv g + V_H(R)$ as $H$'s total benefit from the institution forming under package $R$. $H$'s optimal payoff under Bayesian Persuasion is:
+$$U_H^*(R) = \begin{cases}
+A(R) & \text{if } \tau(R) \leq 0 \text{ or } p \geq \tau(R) \\[4pt]
+A(R) \cdot \dfrac{p}{\tau(R)} & \text{if } 0 < p < \tau(R).
+\end{cases}$$
+
+Without BP ($H$ cannot communicate), $U_H^{noBP}(R) = A(R) \cdot \mathbf{1}\{p \geq \tau(R)\}$.
+\end{proposition}
+
+\begin{proof}
+By Proposition \ref{prop:allornone}, $H$'s problem reduces to persuading a single representative receiver with threshold $\tau(R)$. $H$'s value function as a function of the receiver's posterior $\mu$ is:
+$$v(\mu) = A(R) \cdot \mathbf{1}\{\mu \geq \tau(R)\}.$$
+
+This is a step function. By @kamenica2011bayesian, the optimal payoff equals the concavification of $v$ evaluated at the prior $p$:
+$$\text{cav } v(\mu) = \begin{cases}
+A(R) \cdot \frac{\mu}{\tau(R)} & \text{if } \mu \leq \tau(R) \\
+A(R) & \text{if } \mu > \tau(R).
+\end{cases}$$
+
+The concavification follows because the smallest concave function above $v$ connects $(0, 0)$ to $(\tau, A(R))$ linearly, then remains flat. Evaluating at $\mu = p$ gives the result.
+
+The optimal signal structure uses two signals $\{s_H, s_L\}$ with:
+$$\pi(s_H \mid \theta = 1) = 1, \qquad \pi(s_H \mid \theta = 0) = \frac{p(1 - \tau)}{\tau(1 - p)},$$
+which induces posterior $\mu(s_H) = \tau(R)$ and $\mu(s_L) = 0$.
+\end{proof}
+
+\begin{remark}
+BP is essential: when $p < \tau(R)$, $U_H^{noBP}(R) = 0$ but $U_H^*(R) = A(R) \cdot p/\tau(R) > 0$. The institution forms with positive probability only because $H$ can strategically reveal information.
+\end{remark}
+
+# Stage 0: Institutional Choice
+
+\begin{proposition}[Dominance Condition]\label{prop:dominance}
+Suppose $0 < p < \tau(C) < \tau(A)$ (both thresholds bind). Then $H$ prefers Package $C$ over Package $A$ if and only if:
+$$\frac{A(C)}{\tau(C)} > \frac{A(M)}{\tau(A)},$$
+i.e., the return to persuasion per unit of threshold is higher under consensus. Substituting:
+$$\frac{g + 1/N}{c - 1/N} > \frac{g + V_H(A)}{c - V_W(A)}.$$
+\end{proposition}
+
+\begin{proof}
+When both thresholds bind ($p < \tau(C) < \tau(A)$):
+$$U_H^*(C) = A(C) \cdot \frac{p}{\tau(C)}, \qquad U_H^*(A) = A(A) \cdot \frac{p}{\tau(A)}.$$
+Since $p > 0$, $U_H^*(C) > U_H^*(A)$ iff $A(C)/\tau(C) > A(A)/\tau(A)$.
+\end{proof}
+
+\begin{proposition}[Crossover Prior and Comparative Statics]\label{prop:compstatics}
+Define the crossover prior:
+$$p^* \equiv \frac{A(C) \cdot \tau(A)}{A(A)} = \frac{(g + 1/N)(c - V_W(A))}{g + V_H(A)}.$$
+
+For $p < p^*$, $H$ prefers Package $C$. For $p > p^*$, $H$ prefers Package $A$. Moreover:
+
+\begin{enumerate}
+\item[(a)] $\dfrac{\partial p^*}{\partial g} > 0$: Higher complementarity value favors consensus.
+
+\item[(b)] $\dfrac{\partial p^*}{\partial c} > 0$: Higher entry costs favor consensus.
+
+\item[(c)] $p^* \in \left[\dfrac{\tau(A)}{N \cdot V_H(A)},\ \tau(A)\right)$: The crossover is bounded between $\tau(A)/[N \cdot V_H(A)]$ (when $g \to 0$) and $\tau(A)$ (when $g \to \infty$).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The crossover $p^*$ solves $U_H^*(C) = U_H^*(A)$ in the region where both thresholds bind. Setting $A(C) \cdot p/\tau(C) = A(A) \cdot p/\tau(A)$ and solving yields $p^* = A(C) \cdot \tau(A)/A(A)$.
+
+\textbf{(a)} From the formula:
+$$p^* = \frac{(g + 1/N)\tau(A)}{g + V_H(A)}.$$
+Taking the derivative with respect to $g$:
+$$\frac{\partial p^*}{\partial g} = \frac{\tau(A)[V_H(A) - 1/N]}{(g + V_H(A))^2}.$$
+Since $V_H(A) > 1/N$ for $N \geq 3$ (Lemma \ref{lem:continuation}), this is strictly positive.
+
+\textbf{(b)} $\tau(A) = c - V_W(A)$. Since $A(C)$ and $A(A)$ do not depend on $c$:
+$$\frac{\partial p^*}{\partial c} = \frac{A(C)}{A(A)} > 0.$$
+
+\textbf{(c)} As $g \to 0$: $p^* \to (1/N) \cdot \tau(A) / V_H(A) = \tau(A)/(N \cdot V_H(A))$. As $g \to \infty$: $A(C)/A(A) \to 1$, so $p^* \to \tau(A)$.
+\end{proof}
+
+# Viability of Institutional Packages
+
+\begin{proposition}[Package B is Dominated by C]\label{prop:packageB}
+Under unanimity with $H$ as exclusive proposer in a single-round redistribution game with outside option $0$ (rejection yields nothing), $V_W(B) = 0$. Consequently:
+\begin{enumerate}
+\item $\tau(B) = c > \tau(C) = c - 1/N$: entry is strictly harder under B than C.
+\item For any institution worth building --- i.e., $g + 1 > c(N-1)$ --- Package C strictly dominates B: $A(C)/\tau(C) > A(B)/\tau(B)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\textbf{Part 1.} Under Package B, $H$ proposes and needs all $W_i$'s to accept (unanimity). Each $W_i$'s outside option from rejection is $0$ (single round, no continuation). So $H$ offers $x_{W_i} = 0$ to each $W_i$; they are indifferent and accept. Hence $V_W(B) = 0$ and $V_H(B) = 1$. The entry threshold is $\tau(B) = c - 0 = c > c - 1/N = \tau(C)$.
+
+\textbf{Part 2.} We need $A(C)/\tau(C) > A(B)/\tau(B)$, i.e.:
+$$\frac{g + 1/N}{c - 1/N} > \frac{g + 1}{c}.$$
+Cross-multiplying: $c(g + 1/N) > (c - 1/N)(g + 1)$. Simplifying yields $g + 1 > c(N - 1)$, which is precisely the condition that the institution is worth building: the total value of the institution ($g + 1$, the pie plus complementarity) exceeds the aggregate entry cost of the weak states ($c(N-1)$). When this fails, no institutional package is attractive --- the institution should not exist.
+
+\textbf{Intuition.} Under B, $H$ takes the entire Stage 2 pie, maximizing $A(B)$ but also maximizing skepticism ($\tau(B) = c$). Under C, $H$ shares equally ($V_H = 1/N$), lowering $A(C)$ but also lowering the threshold by $1/N$. For any institution worth its entry costs, the rate of return to persuasion ($A/\tau$) is higher under C.
+\end{proof}
+
+\begin{proposition}[Package D Does Not Benefit H]\label{prop:packageD}
+Under majority rule with symmetric recognition ($p_i = 1/N$ for all $i$) in a single-round redistribution game with status quo $1/N$, all players receive $V_i(D) = 1/N$. Therefore, $V_H(D) = V_H(C) = 1/N$, and Package D offers $H$ no advantage over C while being strictly dominated by A.
+
+Under majority with asymmetric recognition ($p_H > 1/N$ in a multi-round BF game), $H$ is \textbf{excluded} from others' coalitions (the ``exclusion effect''), yielding $v_H^{maj} < v_H^{unan}$. Majority without agenda power is strictly worse for $H$ than unanimity.
+\end{proposition}
+
+\begin{proof}
+\textbf{Symmetric case (single round, status quo $1/N$).} Any proposer under majority ($q = \lceil(N+1)/2\rceil$) includes $q-1$ others at cost $1/N$ each and keeps $1 - (q-1)/N$. With symmetric recognition, each player proposes with probability $1/N$ and is included in others' coalitions with probability $(q-1)/(N-1)$. By symmetry, the expected payoff is $1/N$ for all players. This is identical to Package C.
+
+\textbf{Asymmetric case (multi-round BF, $N = 3$).} With $p_H > 1/3$ and discount factor $\delta$, the weak states' coalitions exclude $H$ (who is expensive to include). Solving: $v_H = p_H(2-\delta)/(2-p_H\delta)$. Under unanimity: $v_H = p_H$. Since $(2-\delta)/(2-p_H\delta) < 1$ for $p_H < 1$, majority without agenda power \textit{hurts} $H$. This ``exclusion effect'' is well-documented in the BF literature [see @eraslan2019legislative].
+\end{proof}
+
+# Main Result
+
+\begin{theorem}[Institutional Trade-off]\label{thm:main}
+For $N \geq 3$, $c > 1/N$, and $g > 0$, there exists a crossover prior $p^* \in (0, \tau(A))$ such that:
+\begin{enumerate}
+\item For $p < p^*$: $H$ strictly prefers Package $C$ (consensus without agenda control).
+\item For $p > \tau(A)$: $H$ strictly prefers Package $A$ (majority with agenda control).
+\item $p^*$ is increasing in $g$ and $c$ (Proposition \ref{prop:compstatics}).
+\end{enumerate}
+
+The fundamental trade-off is: extraction via agenda power (Stage 2, Package A) versus extraction via informational power (Stage 1, Package C).
+\end{theorem}
+
+\begin{proof}
+Combine Lemmas \ref{lem:continuation}--\ref{lem:threshold} and Propositions \ref{prop:bp}--\ref{prop:compstatics}.
+
+\textbf{Part 1.} For $p < \tau(C)$, both thresholds bind. By Proposition \ref{prop:dominance}, $C$ dominates iff $A(C)/\tau(C) > A(A)/\tau(A)$. This ratio is constant in $p$. Since $A(C)/\tau(C) > A(A)/\tau(A)$ for $g$ sufficiently large (the threshold gap $\tau(A) - \tau(C)$ is fixed while $A(C)/A(A) \to 1$), $C$ dominates for all $p < \tau(C)$.
+
+For $\tau(C) \leq p < \tau(A)$: $U_H^*(C) = A(C)$ (agreement always forms under $C$) while $U_H^*(A) = A(A) \cdot p/\tau(A) < A(A)$. So $C$ dominates iff $A(C) > A(A) \cdot p/\tau(A)$, i.e., $p < A(C) \cdot \tau(A)/A(A) = p^*$.
+
+\textbf{Part 2.} For $p \geq \tau(A)$, both agreements form without BP: $U_H^*(A) = A(A) > A(C) = U_H^*(C)$ since $V_H(A) > V_H(C)$.
+
+\textbf{Part 3.} By Proposition \ref{prop:compstatics}(a)--(b).
+\end{proof}
+
+\begin{example}[Numerical illustration, $N = 3$]
+With $N = 3$, $c = 0.45$, and $g = 1$:
+\begin{itemize}
+\item $V_H(A) = 2/3$, $V_W(A) = 1/6$, $V_H(C) = V_W(C) = 1/3$
+\item $\tau(A) = 0.283$, $\tau(C) = 0.117$
+\item $A(A) = 1.667$, $A(C) = 1.333$
+\item $p^* = 1.333 \times 0.283 / 1.667 = 0.227$
+\end{itemize}
+For $p < 0.227$: the hegemon prefers consensus. For $p > 0.283$: majority dominates. Between $0.227$ and $0.283$: consensus forms the agreement without BP, majority still needs persuasion.
+\end{example}
+
+\begin{corollary}[Informational Erosion]
+If $p$ increases over time (e.g., weak states learn to evaluate deal terms), the hegemon's preference shifts from Package $C$ to Package $A$. If institutional rules are fixed at $C$ (as in the WTO), the hegemon's payoff declines and may fall below an outside option, leading to disengagement.
+\end{corollary}
+
+# Discussion: Relation to the Literature
+
+@steinberg2002shadow argues that the US and EC maintained consensus in the GATT/WTO because it generates information about weak states' preferences that is valuable for agenda-setting. He documents that US negotiators explicitly rejected weighted voting in 1990 because consensus was producing useful information (p.\ 360--365). This is an important precursor to our argument.
+
+However, the informational channel in Steinberg and in our model run in **opposite directions**:
+
+\begin{itemize}
+\item \textbf{Steinberg}: Information flows \textit{from} weak states \textit{to} the hegemon. Consensus induces preference revelation --- weak states' blocking behavior, amendments, and proposals reveal their true preferences, which the hegemon uses to craft acceptable packages. This is a \textit{screening} mechanism: the hegemon collects information.
+
+\item \textbf{This paper}: Information flows \textit{from} the hegemon \textit{to} weak states. The hegemon privately knows the quality of the agreement ($\theta$) and uses Bayesian Persuasion to strategically disclose information, shaping weak states' beliefs about whether the deal is extractive. This is a \textit{persuasion} mechanism: the hegemon deploys information.
+\end{itemize}
+
+Moreover, Steinberg's preference-revelation channel is a two-way street: if consensus induces weak states to reveal their preferences, it also gives them repeated opportunities to observe $H$'s behavior, learn about $V$, and assess extractiveness. Over time, this erodes $H$'s informational advantage --- which is precisely the erosion mechanism in our Corollary (Informational Erosion). Steinberg's channel, taken to its logical conclusion, predicts the \textit{demise} of consensus (as weak states learn enough to evaluate deals independently), but does not explain why consensus was adopted in the first place. Our model isolates the one-directional channel ($H \to$ weak states via BP) that makes consensus initially worthwhile for the hegemon.
+
+The two channels are thus complementary but play different roles: Steinberg's explains information flows within an existing institution; ours explains the institutional design choice itself. Our contribution relative to Steinberg is threefold:
+
+\begin{enumerate}
+\item \textbf{Formalization}: We provide a strategic model with precise conditions ($p^*$, comparative statics) under which the hegemon prefers consensus. Steinberg's argument is informal and functionalist.
+
+\item \textbf{The persuasion channel}: We identify a mechanism --- Bayesian Persuasion as a substitute for agenda power --- that Steinberg does not consider. Steinberg's hegemon collects information; ours deploys it.
+
+\item \textbf{The institutional design trade-off}: We show that the choice between majority and consensus is a trade-off between two modes of extraction (agenda power vs.\ informational power), with a sharp crossover condition. Steinberg shows that consensus does not neutralize power, but does not explain when or why a hegemon would \textit{prefer} it to majority --- the comparative institutional design question.
+\end{enumerate}
+
+There is a deeper tension in Steinberg's argument. His core claim is that powerful states exercise \textit{informal agenda power} under consensus --- through Green Room caucuses, draft texts, and secretariat control. But our model shows that agenda power, whether formal or informal, is neutralized by unanimity: any weak state can veto any proposal, regardless of who drafted it. If $H$ truly had informal agenda control under consensus, we would be in Package B, where $V_W \approx 0$ and adhesion collapses (Proposition \ref{prop:packageB}). Either the veto is binding --- and informal agenda power is neutralized --- or it is not --- and the institution is not truly operating by consensus.
+
+Our model resolves this tension: under Package C, $H$ extracts not through agenda power (which is neutralized by veto) but through \textit{informational} power. Bayesian Persuasion does not require agenda control --- it works through the information channel, shaping beliefs rather than controlling proposals. The ``organized hypocrisy'' that Steinberg documents is better understood not as informal agenda power surviving under consensus, but as informational power operating alongside formal equality.
+
+## Relation to Maggi and Morelli (2006)
+
+@maggi2006selfenforcing study when international organizations adopt unanimity versus majority, focusing on self-enforcement: voting rules must be incentive-compatible so that states comply with outcomes without external enforcement. Their model differs from ours in two fundamental ways.
+
+First, **states are symmetric ex ante** in Maggi and Morelli. There is no hegemon. Their puzzle is about symmetric states choosing between voting rules; our puzzle is specifically about why an *asymmetric* actor --- one with both agenda power and informational advantage --- would prefer consensus. Their framework cannot address why a hegemon that could enforce compliance (or punish free-riders) would choose consensus over majority. If the hegemon can play the role of enforcer, it could combine that enforcement capacity with majority rule and agenda control to extract more --- the standard Baron-Ferejohn logic. Maggi and Morelli's self-enforcement rationale does not explain why the enforcer itself would forgo majority.
+
+Second, **their environment is collective action, not distribution**. States choose effort levels to produce a public good, and the voting rule governs policy choices. Compliance is the central friction. In our model, the environment is fundamentally distributive: a pie is divided, and the question is how institutional rules interact with the hegemon's two types of power. The mechanism driving our result --- the trade-off between agenda power extraction (Stage 2) and informational power extraction (Stage 1) --- has no analogue in their framework, because there is no informed sender, no persuasion, and no asymmetric proposer.
+
+These differences map onto a classical divide in International Relations theory. Maggi and Morelli's framework embodies the **neoliberal institutionalist** position [in the tradition of @koremenos2001rational]: states care about absolute gains, institutions solve collective action problems, and voting rules affect efficiency and compliance. Our model embodies the **neorealist** position: states care about relative gains, institutions are arenas of distributional conflict, and voting rules determine who extracts surplus and through what mechanism.
+
+The twist is that our model generates a *superficially liberal* outcome from *deeply realist* logic: the hegemon chooses consensus --- which appears egalitarian --- not as a concession to fairness but as a strategic investment in the effectiveness of its informational power. Formal equality serves the hegemon's self-interest. The ``organized hypocrisy'' is not a failure of institutions but an equilibrium feature of hegemonic design.
+
+Our model and Maggi and Morelli's are thus complementary: theirs explains voting rules in symmetric, absolute-gains settings; ours explains voting rules in asymmetric, relative-gains settings where a hegemon trades off agenda power against informational power.
+
+# References

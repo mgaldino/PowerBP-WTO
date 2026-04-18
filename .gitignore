@@ -1,0 +1,35 @@
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# macOS
+.DS_Store
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.tex
+*.knit.md
+*.utf8.md
+
+# Compiled outputs (regenerable)
+formal_model.pdf
+substack_note.html
+
+# Lean build artifacts
+.lake/
+
+# Claude
+.claude/
+
+# Reference PDFs (copyright)
+references/*.pdf
+
+# Compiled quality reports
+quality_reports/*.html
+
+# Archive compiled outputs
+archive/*.pdf

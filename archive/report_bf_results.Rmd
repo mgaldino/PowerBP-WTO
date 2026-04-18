@@ -1,0 +1,298 @@
+---
+title: "Bayesian Persuasion com Outside Option: Resultados Numericos"
+subtitle: "Modelo BF N-Player, N=1001. Payoffs multiplicados por N (relativo ao fair share)"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    fig_width: 8
+    fig_height: 5.5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.pos = "H")
+library(tidyverse)
+```
+
+# Modelo
+
+- $N = 1001$ jogadores, 1 Sender (S) com info privada $b \in \{b_L, b_H\}$
+- $b$ = outside option de S (sempre exercivel)
+- Pie de tamanho 1, discount $\delta$, 2 periodos (periodo 2 terminal)
+- Prior: $p = \Pr(b = b_H) = 0.3$, $b_L = 0.1$ (fixos)
+- Variacao: $b_H \in [0.2, 0.9]$ e $\delta \in \{0.3, 0.5, 0.8\}$
+
+**Payoffs mostrados como $N \times E[U_i]$**: o fair share e $1/N$, entao $N \times E[U_i] = 1$ significa fair share exato.
+
+```{r model-functions}
+mu_star_terminal <- function(b_L, b_H) (b_H - b_L) / (1 - b_L)
+
+cont_R_known_unan <- function(N, b) (1 / N) * (1 - b)
+
+cont_S_known_unan <- function(N, b) 1 / N + (N - 1) * b / N
+
+cont_R_proposer_incomplete <- function(b_L, b_H, mu2) {
+  pmax((1 - mu2) * (1 - b_L), 1 - b_H)
+}
+
+cont_R_incomplete_unan <- function(N, b_L, b_H, mu2) {
+  (1 / N) * cont_R_proposer_incomplete(b_L, b_H, mu2)
+}
+
+cont_S_L_incomplete <- function(N, b_L, b_H, mu2) {
+  ms <- mu_star_terminal(b_L, b_H)
+  s_from_r <- ifelse(mu2 < ms, b_L, b_H)
+  1 / N + (N - 1) / N * s_from_r
+}
+
+solve_bf_full <- function(N, b_L, b_H, p, delta, rule) {
+  q <- if (rule == "unanimity") N - 1 else (N - 1) / 2
+  r_R <- delta * cont_R_incomplete_unan(N, b_L, b_H, p)
+  cont_s_l <- cont_S_L_incomplete(N, b_L, b_H, p)
+  cont_s_h <- cont_S_known_unan(N, b_H)
+  r_S_L <- max(b_L, delta * cont_s_l)
+  r_S_H <- max(b_H, delta * cont_s_h)
+  s_as_proposer <- 1 - q * r_R
+
+  if (rule == "unanimity") {
+    cost_R_partners <- (N - 2) * r_R
+    payoff_pool <- 1 - cost_R_partners - r_S_H
+    payoff_screen_accept <- 1 - cost_R_partners - r_S_L
+    payoff_screen_reject <- delta * cont_R_known_unan(N, b_H)
+
+    if (payoff_pool < 0) {
+      mu_star <- Inf
+    } else if (payoff_screen_accept <= payoff_pool) {
+      mu_star <- 0
+    } else if (payoff_screen_reject >= payoff_pool) {
+      mu_star <- Inf
+    } else {
+      mu_star <- (payoff_screen_accept - payoff_pool) /
+                 (payoff_screen_accept - payoff_screen_reject)
+    }
+
+    screening <- !is.finite(mu_star) || p < mu_star
+    s_r_no_bp <- if (screening) (1 - p) * r_S_L + p * r_S_H else r_S_H
+    if (is.finite(mu_star) && mu_star > 0 && p < mu_star) {
+      s_r_bp <- r_S_L + p * (r_S_H - r_S_L) / mu_star
+    } else {
+      s_r_bp <- s_r_no_bp
+    }
+    if (screening) {
+      r_prop_no_bp <- (1 - p) * payoff_screen_accept + p * payoff_screen_reject
+    } else {
+      r_prop_no_bp <- payoff_pool
+    }
+    if (is.finite(mu_star) && mu_star > 0 && p < mu_star) {
+      lam <- 1 - p / mu_star
+      r_prop_bp <- lam * payoff_screen_accept + (1 - lam) * payoff_pool
+    } else {
+      r_prop_bp <- r_prop_no_bp
+    }
+    r_total_no_bp <- (1 / N) * r_prop_no_bp + ((N - 1) / N) * r_R
+    r_total_bp <- (1 / N) * r_prop_bp + ((N - 1) / N) * r_R
+  } else {
+    payoff_exclude <- 1 - q * r_R
+    mu_star <- NA_real_
+    s_r_no_bp <- (1 - p) * b_L + p * b_H
+    s_r_bp <- s_r_no_bp
+    r_prop_no_bp <- payoff_exclude
+    r_prop_bp <- payoff_exclude
+    r_total_no_bp <- (1/N) * payoff_exclude +
+                     (1/N) * (q / (N-1)) * r_R +
+                     ((N-2)/N) * (q / (N-2)) * r_R
+    r_total_bp <- r_total_no_bp
+  }
+
+  s_no_bp <- (1 / N) * s_as_proposer + ((N - 1) / N) * s_r_no_bp
+  s_bp    <- (1 / N) * s_as_proposer + ((N - 1) / N) * s_r_bp
+
+  tibble(
+    N = N, b_L = b_L, b_H = b_H, p = p, delta = delta, rule = rule,
+    s_no_bp = s_no_bp, s_bp = s_bp,
+    r_prop_no_bp = r_prop_no_bp, r_prop_bp = r_prop_bp,
+    r_total_no_bp = r_total_no_bp, r_total_bp = r_total_bp
+  )
+}
+```
+
+```{r compute-grid}
+N_sim <- 1001
+b_L_fixed <- 0.1
+p_fixed <- 0.3
+
+grid <- expand_grid(
+  b_H = seq(0.15, 0.9, by = 0.005),
+  delta = c(0.3, 0.5, 0.8)
+) |>
+  filter(b_H > b_L_fixed)
+
+results_raw <- grid |>
+  pmap_dfr(function(b_H, delta) {
+    bind_rows(
+      solve_bf_full(N_sim, b_L_fixed, b_H, p_fixed, delta, "unanimity"),
+      solve_bf_full(N_sim, b_L_fixed, b_H, p_fixed, delta, "majority")
+    )
+  })
+
+# Multiplicar payoffs por N (normalizar pelo fair share)
+results <- results_raw |>
+  mutate(across(c(s_no_bp, s_bp, r_prop_no_bp, r_prop_bp,
+                  r_total_no_bp, r_total_bp), \(x) x * N_sim))
+
+# Formato longo
+df_plot <- results |>
+  pivot_longer(
+    cols = c(s_no_bp, s_bp, r_prop_no_bp, r_prop_bp, r_total_no_bp, r_total_bp),
+    names_to = "metric_bp", values_to = "payoff"
+  ) |>
+  mutate(
+    player = case_when(
+      str_starts(metric_bp, "s_") ~ "Sender (S)",
+      str_starts(metric_bp, "r_prop_") ~ "Proposer (R)",
+      str_starts(metric_bp, "r_total_") ~ "Receiver (R)"
+    ),
+    bp = ifelse(str_detect(metric_bp, "no_bp"), "Sem BP", "Com BP"),
+    rule_label = ifelse(rule == "unanimity", "Unanimidade", "Maioria"),
+    delta_label = paste0("delta = ", delta)
+  )
+```
+
+\newpage
+
+# Payoff do Sender ($N \times E[U_S]$)
+
+Fair share = 1. Valores acima de 1 indicam que S captura mais que sua parcela proporcional.
+
+```{r plot-sender, fig.height=5.5, fig.cap="Payoff do Sender (multiplicado por N). Fair share = 1 (pontilhado). Sob unanimidade com BP, S extrai renda informacional substancial."}
+df_sender <- df_plot |> filter(player == "Sender (S)")
+
+ggplot(df_sender, aes(x = b_H, y = payoff, color = delta_label)) +
+  geom_line(linewidth = 0.7) +
+  geom_hline(yintercept = 1, linetype = "dotted", color = "gray40", linewidth = 0.5) +
+  facet_grid(rule_label ~ bp) +
+  scale_color_brewer(palette = "Set1") +
+  coord_cartesian(ylim = c(0, NA)) +
+  labs(x = expression(b[H] ~ "(outside option alta)"),
+       y = expression(N %*% E[U[S]]),
+       color = NULL,
+       title = "Payoff do Sender (relativo ao fair share)") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "bottom",
+        strip.text = element_text(face = "bold"))
+```
+
+\newpage
+
+# Payoff do Proposer ($N \times$ payoff condicional em propor)
+
+O payoff condicional em ser reconhecido como proposer. Sob maioria, o proposer exclui S e extrai quase todo o surplus. Sob unanimidade, deve incluir S e pagar seu custo de reserva.
+
+```{r plot-proposer, fig.height=5.5, fig.cap="Payoff do Proposer (R, condicional em propor, multiplicado por N). Sob maioria o proposer fica com quase N (toda a pie). Sob unanimidade, paga r\\_S a S."}
+df_prop <- df_plot |> filter(player == "Proposer (R)")
+
+ggplot(df_prop, aes(x = b_H, y = payoff, color = delta_label)) +
+  geom_line(linewidth = 0.7) +
+  geom_hline(yintercept = 1, linetype = "dotted", color = "gray40", linewidth = 0.5) +
+  facet_grid(rule_label ~ bp) +
+  scale_color_brewer(palette = "Set1") +
+  coord_cartesian(ylim = c(0, NA)) +
+  labs(x = expression(b[H] ~ "(outside option alta)"),
+       y = expression(N %*% "Payoff Proposer"),
+       color = NULL,
+       title = "Payoff do Proposer (condicional, relativo ao fair share)") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "bottom",
+        strip.text = element_text(face = "bold"))
+```
+
+\newpage
+
+# Payoff de um Receiver ($N \times E[U_R]$)
+
+Payoff ex ante de um Receiver representativo, incorporando os roles de proposer (prob $1/N$), parceiro de S (prob $1/N$), e parceiro de outro R (prob $(N-2)/N$). Sob unanimidade, R esta sempre na coalizao. Sob maioria, R e incluido com prob $\approx 1/2$.
+
+```{r plot-receiver, fig.height=5.5, fig.cap="Payoff ex ante de um Receiver (multiplicado por N). Fair share = 1 (pontilhado). Sob maioria, R recebe menos que o fair share porque so esta na coalizao metade das vezes."}
+df_recv <- df_plot |> filter(player == "Receiver (R)")
+
+ggplot(df_recv, aes(x = b_H, y = payoff, color = delta_label)) +
+  geom_line(linewidth = 0.7) +
+  geom_hline(yintercept = 1, linetype = "dotted", color = "gray40", linewidth = 0.5) +
+  facet_grid(rule_label ~ bp) +
+  scale_color_brewer(palette = "Set1") +
+  coord_cartesian(ylim = c(0, NA)) +
+  labs(x = expression(b[H] ~ "(outside option alta)"),
+       y = expression(N %*% E[U[R]]),
+       color = NULL,
+       title = "Payoff de um Receiver (relativo ao fair share)") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "bottom",
+        strip.text = element_text(face = "bold"))
+```
+
+\newpage
+
+# Comparacao direta: S vs R
+
+```{r plot-comparison, fig.height=6, fig.cap="S (vermelho) vs R (azul) sob cada regime, delta=0.3. BP sob unanimidade amplia a distancia S-R."}
+df_comp <- results |>
+  filter(delta == 0.3) |>
+  select(b_H, rule, s_no_bp, s_bp, r_total_no_bp, r_total_bp) |>
+  pivot_longer(-c(b_H, rule), names_to = "var", values_to = "payoff") |>
+  mutate(
+    player = ifelse(str_starts(var, "s_"), "Sender", "Receiver"),
+    bp = ifelse(str_detect(var, "no_bp"), "Sem BP", "Com BP"),
+    rule_label = ifelse(rule == "unanimity", "Unanimidade", "Maioria")
+  )
+
+ggplot(df_comp, aes(x = b_H, y = payoff, color = player, linetype = player)) +
+  geom_line(linewidth = 0.7) +
+  geom_hline(yintercept = 1, linetype = "dotted", color = "gray40", linewidth = 0.5) +
+  facet_grid(rule_label ~ bp) +
+  scale_color_manual(values = c("Receiver" = "steelblue", "Sender" = "firebrick")) +
+  coord_cartesian(ylim = c(0, NA)) +
+  labs(x = expression(b[H]),
+       y = expression(N %*% E[U[i]]),
+       color = NULL, linetype = NULL,
+       title = "Sender vs Receiver (delta = 0.3, relativo ao fair share)") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "bottom",
+        strip.text = element_text(face = "bold"))
+```
+
+\newpage
+
+# BP gain do Sender
+
+```{r plot-bp-gain, fig.height=4.5, fig.cap="BP gain (multiplicado por N). Positivo sob unanimidade, zero sob maioria. Maior com delta baixo."}
+df_gain <- results |>
+  mutate(
+    bp_gain = s_bp - s_no_bp,
+    rule_label = ifelse(rule == "unanimity", "Unanimidade", "Maioria")
+  )
+
+ggplot(df_gain, aes(x = b_H, y = bp_gain, color = factor(delta))) +
+  geom_line(linewidth = 0.7) +
+  facet_wrap(~rule_label) +
+  scale_color_brewer(palette = "Set1") +
+  labs(x = expression(b[H]),
+       y = expression(N %*% "BP gain"),
+       color = "delta",
+       title = "Ganho informacional de S com Bayesian Persuasion") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "bottom",
+        strip.text = element_text(face = "bold"))
+```
+
+# Resumo
+
+Todos os payoffs multiplicados por $N$. Fair share = 1.
+
+| Resultado | Confirmado? |
+|-----------|-------------|
+| BP gain > 0 sob unanimidade | Sim, para $b_H$ no range viavel |
+| BP gain = 0 sob maioria | Sim, S excluido em todos os cenarios |
+| S prefere unanimidade com BP | Sim |
+| Curse of Knowledge (S pior sob unan sem BP que sob maioria) | Sim, para $b_H$ suficientemente alto |
+| R perde com BP sob unanimidade | Sim (redistribuicao S $\leftarrow$ R) |
+| Mecanismo mais forte com $\delta$ baixo | Sim (outside option morde mais) |

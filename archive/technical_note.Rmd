@@ -1,0 +1,503 @@
+---
+title: "The Curse of Knowledge: Information, Exclusion, and Institutional Choice in Legislative Bargaining"
+author: "Manoel Galdino"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    number_sections: true
+    toc: true
+    keep_tex: false
+header-includes:
+  - \usepackage{amsmath,amssymb,amsthm}
+  - \newtheorem{proposition}{Proposition}
+  - \newtheorem{lemma}{Lemma}
+  - \newtheorem{corollary}{Corollary}
+  - \newtheorem{definition}{Definition}
+  - \newtheorem{remark}{Remark}
+  - \newtheorem{assumption}{Assumption}
+  - \newtheorem{example}{Example}
+abstract: |
+  We introduce an informed player into Baron-Ferejohn legislative bargaining and uncover a **Curse of Knowledge**: under majority rule, information makes the informed player a more expensive coalition partner, leading to systematic exclusion and payoffs strictly below the symmetric benchmark (16% below for $N=5$). Under unanimity, the informed player cannot be excluded and recovers the benchmark exactly. Strikingly, Bayesian Persuasion has zero value under unanimity: the Sender's veto is a perfect substitute for strategic information design. The informed player prefers unanimity not to exploit information, but to escape the Curse. We extend the model to allow surplus destruction from failed ambitious proposals ($\beta > 0$): when proposals collapse, costs exceed mere delay. In this extension, BP gains positive value --- the Sender uses *full revelation* to steer proposers toward feasible deals. This secondary channel amplifies the preference for unanimity but does not drive it. Where Sender and Proposer are distinct roles, Receivers prefer majority and the Sender prefers unanimity --- reversing Alonso and Câmara (2016). The Curse of Knowledge explains why powerful countries, whose analytical capacity makes them expensive partners, choose consensus: not to exploit information, but to avoid being frozen out.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.pos = "H")
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+```
+
+# Introduction
+
+International organizations --- the WTO, the UN Security Council, NATO --- operate by consensus, yet domestic legislatures use majority rule. The puzzle is stark: *where the strong dominate, institutions appear egalitarian; where democracy prevails, institutions allow power to operate unequally.* Why do the powerful choose consensus?
+
+We introduce Bayesian Persuasion (Kamenica and Gentzkow 2011) into the Baron-Ferejohn (1989) model of legislative bargaining with uncertain pie size. One player, the Sender, knows the true size of the pie and can commit to a public signal structure before bargaining begins. Our three main results are:
+
+1. **Curse of Knowledge (majority rule).** Under majority rule with $N \geq 3$ players, the informed player is systematically excluded from coalitions because information makes them a more expensive partner. The informed player's expected payoff falls strictly below the symmetric benchmark $\mathbb{E}[\omega]/N$. With $N = 5$, the loss is 16\%. This is the paper's central result: information, conventionally an asset, becomes a liability when others can form winning coalitions without the informed player.
+
+2. **Informational neutrality (unanimity).** Under unanimity, the informed player cannot be excluded and recovers the symmetric benchmark exactly. Bayesian Persuasion has zero value: the Sender's payoff is pinned to the true state $\omega$ regardless of beliefs, so no signal structure can improve it. The Sender's veto is a perfect substitute for strategic information design.
+
+3. **Institutional preference.** The informed player strictly prefers unanimity to majority rule. For $N = 5$, the payoff under unanimity exceeds majority by 19\%. The preference is driven entirely by the Curse: the Sender escapes exclusion. We extend the model (Section 6) to allow surplus destruction from failed proposals ($\beta > 0$), where a secondary channel emerges: the Sender uses full revelation to prevent costly failures, amplifying the preference for unanimity.
+
+Conventional explanations for consensus in IOs invoke sovereignty norms or legitimacy (Koremenos, Lipson, and Snidal 2001). Steinberg (2002) observes that consensus outcomes in the GATT/WTO are asymmetrical, reflecting "power-based bargaining," but does not explain *why* the powerful choose consensus over majority rule. Our answer distinguishes two types of power --- proposal power and informational power --- and shows that the decision rule determines whether information is an asset or a liability. Powerful countries maintain large analytical bureaucracies (USTR, DG Trade) that generate informational advantages; we assume these investments are largely sunk.^[This is a maintained assumption. If analytical capacity is endogenous to the decision rule, additional considerations arise --- see the Conclusion.]
+
+| | Alonso \& Câmara (2016) | This paper |
+|---|---|---|
+| Sender is | Proposer | One of $N$ players |
+| Receivers prefer | Unanimity | **Majority** |
+| Sender prefers | Majority | **Unanimity** |
+| Mechanism | Unanimity constrains Sender | Unanimity prevents exclusion (primary) |
+| BP value | Positive (reduced by unanimity) | **Zero if $\beta=0$; positive if $\beta>0$ (secondary)** |
+
+We complement Kim, Kim, and Van Weelden (2025), who study Bayesian Persuasion in bilateral veto bargaining where the Sender *is* the Proposer. When Sender and Proposer are distinct roles, qualitatively different results emerge, including the Curse of Knowledge, which requires $N \geq 3$. Our analysis mirrors Alonso and Câmara (2016), who show that Receivers may prefer unanimity to constrain a Sender-Proposer. We show the complementary result: when Sender and Proposer are separate, *Receivers prefer majority* and the *Sender prefers unanimity* (see table above).^[Our "Curse of Knowledge" is a strategic phenomenon, distinct from the cognitive bias identified by Camerer, Loewenstein, and Weber (1989), where agents who possess information find it difficult to imagine the perspective of those who do not.]
+
+The rest of the paper proceeds as follows. Section 2 presents the model. Section 3 provides a worked example with $N = 3$. Section 4 states and proves the general results under majority rule. Section 5 analyzes unanimity and establishes the Sender's institutional preference. Section 6 establishes horizon independence. Section 7 discusses the application to international organizations. Section 8 concludes.
+
+# Model
+
+## Players and pie
+
+$N \geq 3$ players (odd) bargain over a divisible pie of uncertain size $\omega \in \{L, H\}$, where $0 < L < H$. The prior probability of $\omega = H$ is $p \in (0,1)$, common knowledge.
+
+\begin{definition}[Sender and Receivers]
+One player, the \textbf{Sender} (denoted $i_S$), knows the realized value of $\omega$. The remaining $N-1$ players are uninformed and symmetric; we call them \textbf{Receivers} and index them $j \in \{1, \ldots, N-1\}$.
+\end{definition}
+
+## Bargaining protocol
+
+The game has two periods.^[We show in Section 6 that this is without loss of generality: the two-period result extends to any finite or infinite horizon.]
+
+- **Period 1:** A proposer is recognized uniformly at random (probability $1/N$ each). The proposer makes a take-it-or-leave-it proposal to divide the pie. A coalition of size $q+1$ (proposer plus $q$ partners) must approve.
+  - Under **majority rule**: $q = (N-1)/2$.
+  - Under **unanimity**: $q = N-1$.
+- **Period 2 (if Period 1 fails):** A new proposer is recognized. Same protocol. If this proposal also fails, all players receive 0.
+
+The common discount factor is $\delta \in (0,1)$.
+
+## Proposals and feasibility
+
+\begin{definition}[Safe and aggressive proposals]
+The proposer claims a total amount $c$ and specifies a division $(x_1, \ldots, x_N)$ with $\sum x_i = c$. A proposal is \textbf{feasible} if $c \leq \omega$; infeasible proposals are automatically rejected. We call $c = L$ a \textbf{safe} proposal (feasible in both states) and $c = H$ an \textbf{aggressive} proposal (feasible only if $\omega = H$).
+\end{definition}
+
+## Bayesian Persuasion
+
+Before Period 1, the Sender commits to a public signal structure $\pi: \{L, H\} \to \Delta(\mathcal{M})$, where $\mathcal{M}$ is a finite message space. All players observe the signal realization $m$ and update beliefs to posterior $\mu(m) = \Pr(\omega = H \mid m)$. The signal must satisfy the Bayesian consistency (martingale) constraint: $\mathbb{E}[\mu(m)] = p$.
+
+## Assumptions
+
+\begin{assumption}[Commitment]
+\label{ass:commitment}
+The Sender can commit to the signal structure $\pi$ before observing $\omega$. In the context of international organizations, this is justified by institutional protocols (e.g., published methodologies for economic reports), organizational reputation, and the repeated nature of interactions.
+\end{assumption}
+
+\begin{assumption}[Public signal]
+\label{ass:public}
+The signal realization $m$ is publicly observed by all players before bargaining begins.
+\end{assumption}
+
+\begin{assumption}[Binary claims]
+\label{ass:binary}
+The proposer chooses $c \in \{L, H\}$. This is without loss of generality given $\omega \in \{L, H\}$: any $c < L$ leaves surplus on the table, any $c \in (L, H)$ is dominated by $c = L$ (same feasibility, less surplus), and $c > H$ is never feasible.
+\end{assumption}
+
+\begin{definition}[Informational power]
+We define a player's \textbf{informational power} as the equilibrium payoff gain from the ability to commit to a Bayesian Persuasion signal structure, relative to no persuasion. Formally, it is the difference $\mathbb{E}[U_{i_S} \mid \text{optimal } \pi] - \mathbb{E}[U_{i_S} \mid \pi = \emptyset]$.
+\end{definition}
+
+\begin{definition}[Symmetric benchmark]
+The \textbf{symmetric benchmark} is $\mathbb{E}[\omega]/N$: the expected per-player payoff in a standard Baron-Ferejohn game with expected pie $\mathbb{E}[\omega]$ and $N$ symmetric players.
+\end{definition}
+
+\begin{definition}[Screening proposal]
+A \textbf{screening proposal} is a safe proposal ($c = L$) in which the Sender's share is set to $x_{i_S} = \delta L/N$, designed to be accepted by the Sender only if $\omega = L$ (since $\delta L/N < \delta H/N$).
+\end{definition}
+
+## Equilibrium concept
+
+\begin{definition}[Equilibrium]
+We solve for Perfect Bayesian Equilibrium (PBE). Players' strategies specify: (i) the Sender's signal structure $\pi$; (ii) the proposer's claim $c$ and division given the signal realization; (iii) each player's acceptance decision given the proposal and their beliefs. Beliefs are updated by Bayes' rule on the equilibrium path. Off-path, we assume passive beliefs: unexpected rejections do not change the posterior.
+\end{definition}
+
+## Timing
+
+1. Sender commits to signal $\pi$.
+2. Nature draws $\omega$. Signal $m$ is realized according to $\pi(\cdot | \omega)$.
+3. All players observe $m$, update to $\mu(m)$.
+4. Period 1 bargaining: recognition, proposal, vote.
+5. If rejected, Period 2 bargaining (same protocol). If rejected again, all get 0.
+
+# A Worked Example: The Curse of Knowledge with $N = 3$
+
+Before stating general results, we illustrate the mechanism with a concrete example.
+
+\begin{example}[Three players, majority rule]
+Let $N = 3$, $L = 1$, $H = 3$, $p = 0.5$, $\delta = 0.8$. Under majority, the proposer needs $q = 1$ coalition partner.
+\end{example}
+
+**Period 2 (last period).** The proposer takes everything (continuation value is 0). Continuation values entering Period 2: the Sender gets $\omega/3$ (takes $\omega$ when recognized), each Receiver gets $\mu H / 3 = 0.5$ (goes aggressive when recognized).
+
+**Period 1: a Receiver proposes.** Suppose player $j$ (a Receiver) is recognized. Player $j$ needs one partner. Two options: include the Sender ($i_S$) or another Receiver ($k$).
+
+- **Cost of including $i_S$:** The Sender accepts if $x_{i_S} \geq \delta \omega / 3$. Since $j$ does not know $\omega$, the expected cost is $\delta \mathbb{E}[\omega] / 3 = 0.8 \times 2/3 = 0.533$.
+- **Cost of including $k$:** Receiver $k$ accepts if $x_k \geq \delta \mu H / 3$. After rejection reveals $\omega = L$, this is $\delta L / 3 = 0.267$.
+
+The Sender is more expensive (0.533 > 0.267). Since $j$ can form a majority with $k$ alone ($N - 2 = 1 \geq q = 1$), **$j$ excludes the Sender**.
+
+**When the Sender is excluded:** If $\omega = H$, the aggressive proposal succeeds and the Sender gets 0. If $\omega = L$, the proposal is infeasible, rejected, and the Sender gets $\delta L / 3 = 0.267$ in Period 2.
+
+**The Sender's expected payoff:**
+
+- When Sender proposes (prob $1/3$): separates, keeps $\omega(1 - q\delta/N) = \omega(1 - 0.8/3) = 0.733\omega$. Expected: $0.733 \times 2 = 1.467$. Contribution: $(1/3)(1.467) = 0.489$.
+- When Receiver proposes (prob $2/3$): Sender excluded. Gets 0 if $\omega = H$ (proposal accepted), $\delta L/N = 0.267$ if $\omega = L$ (rejected, continuation). Expected: $(1-p)(0.267) = 0.133$. Contribution: $(2/3)(0.133) = 0.089$.
+- **Total: $0.489 + 0.089 = 0.578$.**
+
+**The symmetric benchmark:** $\mathbb{E}[\omega]/3 = 0.667$.
+
+**The Curse:** The Sender's payoff (0.578) is 13\% below the benchmark (0.667). Information, rather than conferring advantage, makes the Sender a liability --- too expensive to include, too dispensable to matter.
+
+In plain language: knowing the true state makes the Sender demand more when in a coalition (because the Sender knows what the pie is really worth). Other players, who are cheaper because they don't know, are preferred as partners. The Sender is frozen out.
+
+# Majority Rule: General Results
+
+## Period 2 (last period)
+
+The proposer takes everything. Continuation values: $v_{i_S}(\omega) = \omega/N$ for the Sender; $v_j(\mu) = \mu H / N$ for each Receiver (under $\mu \geq L/H$, where Receivers go aggressive).
+
+## Coalition exclusion
+
+\begin{lemma}[The Sender is more expensive]
+\label{lem:expensive}
+For any posterior $\mu < 1$ and $L > 0$:
+$$\frac{\delta \mathbb{E}[\omega|\mu]}{N} > \frac{\delta \mu H}{N}$$
+since $\mathbb{E}[\omega|\mu] = \mu H + (1-\mu)L > \mu H$.
+\end{lemma}
+
+The intuition: the Sender's continuation value reflects the *true* pie size $\omega$, which averages to $\mathbb{E}[\omega]$. A Receiver's continuation value reflects only the *expected* aggressive payoff $\mu H$, which is lower because it excludes the $L$-component.
+
+\begin{lemma}[Exclusion is feasible]
+\label{lem:feasible}
+For $N \geq 3$, the proposer can form a majority coalition without the Sender: the number of available uninformed partners ($N - 2$) weakly exceeds $q = (N-1)/2$ whenever $N \geq 3$.
+\end{lemma}
+
+\begin{corollary}[Exclusion in equilibrium]
+\label{cor:exclusion}
+By Lemmas \ref{lem:expensive} and \ref{lem:feasible}, uninformed proposers always exclude the Sender from the coalition under majority rule.
+\end{corollary}
+
+## Belief updating
+
+\begin{lemma}[Full revelation in Period 1]
+\label{lem:revelation}
+In any PBE, $\omega$ is revealed to all players during Period 1:
+\begin{enumerate}
+\item If an uninformed player proposes aggressively ($c = H$) and $\omega = L$: the proposal is infeasible, revealing $\omega = L$.
+\item If the Sender proposes: the Sender separates ($c = \omega$), directly revealing $\omega$.
+\end{enumerate}
+After revelation, the Period 2 continuation is standard Baron-Ferejohn with known pie $\omega$, giving each player $\omega/N$ in expectation.
+\end{lemma}
+
+\begin{lemma}[Separation is strictly dominant]
+\label{lem:separation}
+When the Sender proposes, claiming $c = \omega$ (separation) strictly dominates claiming $c = L$ always (pooling), regardless of the posterior $\mu$ and off-path beliefs.
+\end{lemma}
+
+*Proof.* Let $\alpha = 1 - q\delta/N > 0$ (the proposer's share after paying $q$ partners).
+
+**Under separation**, the Sender proposes $c = \omega$. Partners observe $c$ and infer $\omega$. Each partner accepts if $x_j \geq \delta\omega/N$. The Sender keeps $\omega\alpha$.
+
+**Under pooling**, the Sender proposes $c = L$ always. Partners cannot infer $\omega$ from $c$; they use the posterior $\mu$. Each partner accepts if $x_j \geq \delta\mathbb{E}[\omega|\mu]/N$. The Sender keeps $L - q\delta\mathbb{E}[\omega|\mu]/N$.
+
+**State $\omega = H$:** Separation yields $H\alpha = H(1 - q\delta/N)$. Pooling yields $L - q\delta\mathbb{E}[\omega|\mu]/N \leq L < H\alpha$. Separation is strictly better.
+
+**State $\omega = L$:** Separation yields $L\alpha = L - q\delta L/N$. Pooling yields $L - q\delta\mathbb{E}[\omega|\mu]/N \leq L - q\delta L/N = L\alpha$ (since $\mathbb{E}[\omega|\mu] \geq L$). Separation is weakly better, with strict inequality whenever $\mu > 0$.
+
+**Off-path beliefs.** Under any off-path belief $\mu'$ triggered by observing $c = H$, partners' acceptance threshold is $\delta\mathbb{E}[\omega|\mu']/N \leq \delta H/N$. Since $\omega = H$ when $c = H$, feasibility is guaranteed ($H\alpha > 0$) and the Sender can buy acceptance. Under the most pessimistic off-path beliefs ($\mu' = 0$), partners demand only $\delta L/N$, making separation even cheaper. Therefore, separation is strictly dominant for $\omega = H$ regardless of off-path beliefs.
+
+Combining: separation is a (weakly) dominant strategy for each state, strictly dominant for $\omega = H$. Since the Sender observes $\omega$ before proposing, separation is the unique equilibrium strategy. $\square$
+
+## The Curse of Knowledge
+
+\begin{proposition}[Curse of Knowledge]
+\label{prop:curse}
+For $N \geq 3$, majority rule, $p > L/H$:
+$$\mathbb{E}[U_{i_S}] = \frac{1}{N}\mathbb{E}[\omega]\left(1 - \frac{q\delta}{N}\right) + \frac{N-1}{N} \cdot \frac{(1-p)\delta L}{N}$$
+and
+$$\mathbb{E}[U_{i_S}] - \frac{\mathbb{E}[\omega]}{N} = \frac{\delta(N-1)}{2N^2}\left[(1-p)L - pH\right] < 0$$
+The informed player's expected payoff is strictly below the symmetric benchmark $\mathbb{E}[\omega]/N$.
+\end{proposition}
+
+*Proof.* When $i_S$ proposes (prob $1/N$): separates, keeps $\omega(1 - q\delta/N)$. Expected: $\mathbb{E}[\omega](1 - q\delta/N)$.
+
+When $j \neq i_S$ proposes (prob $(N-1)/N$): $i_S$ is excluded (Corollary \ref{cor:exclusion}). If $\omega = H$, proposal accepted, $i_S$ gets 0. If $\omega = L$, infeasible, rejected; $i_S$ gets $\delta L/N$ from Period 2 (Lemma \ref{lem:revelation}). Expected: $(1-p)\delta L/N$.
+
+Substituting $q = (N-1)/2$ and simplifying:
+$$\mathbb{E}[U_{i_S}] - \frac{\mathbb{E}[\omega]}{N} = \frac{\delta(N-1)}{2N^2}\left[(1-p)L - pH\right]$$
+
+Since $p > L/H$ implies $pH > L > (1-p)L$, the expression is negative. $\square$
+
+In plain language: the Curse of Knowledge means that the informed player is punished for knowing too much. Coalition builders avoid the Sender because the Sender is expensive. The Sender only benefits from their information when they happen to be the proposer ($1/N$ of the time) --- the rest of the time, they are shut out.
+
+```{r curse-table}
+N_vals <- c(3, 5, 7, 9, 11, 21, 51)
+L <- 1; H <- 3; p <- 0.5; delta <- 0.8
+E_omega <- p * H + (1 - p) * L
+
+results <- tibble(
+  N = N_vals,
+  q = (N_vals - 1) / 2,
+  E_S = (1/N_vals) * E_omega * (1 - q * delta / N_vals) +
+        ((N_vals - 1) / N_vals) * (1 - p) * delta * L / N_vals,
+  Benchmark = E_omega / N_vals,
+  Pct_below = round(100 * (E_S - Benchmark) / Benchmark, 1)
+)
+
+kable(results, col.names = c("N", "q", "E[U_S]", "E[w]/N", "% below"),
+      digits = 3, caption = "Curse of Knowledge: Sender's payoff under majority rule (L=1, H=3, p=0.5, delta=0.8).") %>%
+  kable_styling(latex_options = "hold_position")
+```
+
+```{r curse-plot, fig.cap="Curse of Knowledge: the Sender's payoff gap relative to the symmetric benchmark shrinks with N but persists for all N >= 3.", fig.height=3.5, fig.width=6}
+N_seq <- seq(3, 51, by = 2)
+L <- 1; H <- 3; p <- 0.5; delta <- 0.8
+E_omega <- p * H + (1 - p) * L
+
+df_curse <- tibble(
+  N = N_seq,
+  q = (N_seq - 1) / 2,
+  E_S = (1/N_seq) * E_omega * (1 - q * delta / N_seq) +
+        ((N_seq - 1) / N_seq) * (1 - p) * delta * L / N_seq,
+  Benchmark = E_omega / N_seq,
+  Gap_pct = 100 * (E_S - Benchmark) / Benchmark
+)
+
+ggplot(df_curse, aes(x = N, y = Gap_pct)) +
+  geom_line(linewidth = 1, color = "firebrick") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  labs(x = "N (number of players)", y = "Sender's payoff gap (% below benchmark)",
+       title = "Curse of Knowledge under majority rule") +
+  theme_minimal() +
+  scale_y_continuous(labels = function(x) paste0(x, "%"))
+```
+
+# Unanimity Rule
+
+Under unanimity ($q = N-1$), every player --- including the Sender --- must approve any proposal. The Sender cannot be excluded.
+
+## Informational neutrality
+
+\begin{proposition}[Informational neutrality under unanimity]
+\label{prop:neutrality}
+Under unanimity, for any Bayesian Persuasion signal structure $\pi$:
+$$\mathbb{E}[U_{i_S}] = \frac{\mathbb{E}[\omega]}{N}$$
+The Sender's expected payoff equals the symmetric benchmark. Bayesian Persuasion has zero value.
+\end{proposition}
+
+*Proof.* **Step 1.** When the Sender proposes (prob $1/N$): separates ($c = \omega$, Lemma \ref{lem:separation}), keeps $\omega(1 - (N-1)\delta/N)$.
+
+**Step 2.** When a Receiver proposes (prob $(N-1)/N$): the Sender receives $\delta\omega/N$ regardless of the proposer's strategy. Under aggressive proposals ($c = H$): if $\omega = H$, the Sender receives $\delta H/N$; if $\omega = L$, the proposal is infeasible and the Sender receives $\delta L/N$ from Period 2. Under screening proposals ($c = L$, $x_{i_S} = \delta L/N$): if $\omega = L$, the Sender accepts and receives $\delta L/N$; if $\omega = H$, the Sender rejects, $\omega$ is revealed, and the Sender receives $\delta H/N$ from Period 2. In both cases: $\delta\omega/N$.
+
+**Step 3.** Aggregating: $\mathbb{E}[U_{i_S}] = (1/N)\mathbb{E}[\omega](1-(N-1)\delta/N) + ((N-1)/N)\delta\mathbb{E}[\omega]/N = \mathbb{E}[\omega]/N$.
+
+**Step 4.** Since $\delta\omega/N$ depends on $\omega$, not on $\mu$, no signal structure can change the expectation. $\square$
+
+In plain language: under unanimity, the Sender cannot be excluded, but neither can the Sender exploit information. The Sender's veto pins the payoff to the true state: either the Sender receives an offer calibrated to $\omega$ or rejects and recovers $\delta\omega/N$ in the next round. Delay is costly ($\delta < 1$), but the proposer's equilibrium offer exactly compensates for it. The Sender's veto is a perfect substitute for Bayesian Persuasion.
+
+## Institutional preference
+
+\begin{proposition}[Sender prefers unanimity]
+\label{prop:institutional}
+For $N \geq 3$ and $p > L/H$:
+$$\mathbb{E}[U_{i_S} \mid \text{unanimity}] - \mathbb{E}[U_{i_S} \mid \text{majority}] = \frac{\delta(N-1)}{2N^2}\left[pH - (1-p)L\right] > 0$$
+The gain equals the magnitude of the Curse of Knowledge.
+\end{proposition}
+
+*Proof.* Under unanimity: $\mathbb{E}[\omega]/N$ (Proposition \ref{prop:neutrality}). Under majority: $\mathbb{E}[\omega]/N - \delta(N-1)[pH-(1-p)L]/(2N^2)$ (Proposition \ref{prop:curse}). The difference is positive since $p > L/H$ implies $pH > (1-p)L$. $\square$
+
+In plain language: the Sender prefers unanimity to escape the Curse. Under majority, the Sender is excluded; under unanimity, exclusion is impossible. The gain is exactly the Curse avoided.
+
+```{r comparison-table}
+N_vals <- c(3, 5, 7, 11)
+L <- 1; H <- 3; p <- 0.5; delta <- 0.8
+E_omega <- p * H + (1 - p) * L
+
+comp <- tibble(
+  N = N_vals,
+  q_maj = (N_vals - 1) / 2,
+  E_S_maj = (1/N_vals) * E_omega * (1 - q_maj * delta / N_vals) +
+            ((N_vals - 1) / N_vals) * (1 - p) * delta * L / N_vals,
+  E_S_unan = E_omega / N_vals,
+  Curse_pct = round(100 * (E_S_maj - E_omega / N_vals) / (E_omega / N_vals), 1),
+  Gain_pct = round(100 * (E_S_unan - E_S_maj) / E_S_maj, 0)
+)
+
+kable(comp,
+      col.names = c("N", "q (maj)", "E[U_S] majority", "E[U_S] unanimity",
+                     "Curse (%)", "Gain unan vs maj (%)"),
+      digits = 3,
+      caption = "Sender's payoff: majority vs. unanimity (L=1, H=3, p=0.5, delta=0.8). Under unanimity, the Sender recovers the symmetric benchmark. The gain equals the Curse avoided.") %>%
+  kable_styling(latex_options = "hold_position")
+```
+
+\begin{remark}[Distributional conflict]
+Receivers prefer majority: under majority, each Receiver's payoff exceeds $\mathbb{E}[\omega]/N$ because the Sender's lost surplus is redistributed to them. Under unanimity, all players receive $\mathbb{E}[\omega]/N$. The institutional choice is conflictual.
+\end{remark}
+
+# Extension: Surplus Destruction ($\beta > 0$)
+
+The main results (Curse, neutrality, institutional preference) hold without additional assumptions. We now extend the model to show that when failed proposals carry costs beyond delay, Bayesian Persuasion gains positive value under unanimity, amplifying the Sender's preference.
+
+\begin{assumption}[Deadweight loss from infeasibility]
+\label{ass:deadweight}
+When a proposal is infeasible ($c > \omega$), a fraction $\beta \in (0,1)$ of the surplus is destroyed: the pie available in Period 2 is $(1-\beta)\omega$ instead of $\omega$. Feasible proposals rejected by vote do not trigger deadweight loss. In trade negotiations, a failed ambitious round wastes political capital and triggers protectionist backlash; in legislative bargaining, an overambitious budget creates fiscal uncertainty and shutdown damages beyond mere delay.
+\end{assumption}
+
+Under majority, $\beta$ amplifies the Curse: the excluded Sender's payoff when $\omega = L$ drops from $\delta L/N$ to $\delta(1-\beta)L/N$. Under unanimity, $\beta$ breaks the informational neutrality result by making the Sender's payoff depend on the proposer's strategy choice (aggressive vs. safe), which in turn depends on beliefs $\mu$.
+
+\begin{proposition}[BP gain under unanimity with $\beta > 0$]
+\label{prop:bp_gain}
+Under unanimity with $\beta > 0$ and $p > \mu^* \equiv L(1+\gamma)/[H + L(1+\gamma)]$ where $\gamma = \delta\beta/(N(1-\delta))$:
+$$\text{BP gain} = \frac{(N-1)(1-p)\delta\beta L}{N^2} > 0$$
+The optimal signal is full revelation: $\mu \in \{0, 1\}$.
+\end{proposition}
+
+*Proof.* **Step 1.** When the proposer goes aggressive and $\omega = L$: infeasibility destroys surplus; the Sender receives $\delta(1-\beta)L/N < \delta L/N$. When the proposer goes safe (screening): the Sender receives $\delta\omega/N$ as before. Thus the Sender's value function has two segments: $V_{\text{safe}}(\mu) = \delta\mathbb{E}[\omega|\mu]/N$ and $V_{\text{agg}}(\mu) = \mu\delta H/N + (1-\mu)\delta(1-\beta)L/N$, with $V_{\text{safe}} > V_{\text{agg}}$ for all $\mu < 1$.
+
+**Step 2.** The proposer switches from safe to aggressive at $\mu^*$, creating a downward kink in $V$. The concave closure is $\hat{V} = V_{\text{safe}}$ for all $\mu$.
+
+**Step 3.** Full revelation ($\mu \in \{0, 1\}$) achieves $\hat{V}$: the proposer goes safe when $\omega = L$ (no failure) and aggressive when $\omega = H$ (no risk). The Sender receives $\delta\omega/N$.
+
+**Step 4.** BP gain per Receiver proposal: $V_{\text{safe}}(p) - V_{\text{agg}}(p) = (1-p)\delta\beta L/N$. Total: $(N-1)(1-p)\delta\beta L/N^2$. $\square$
+
+```{r concavification-plot, fig.cap="Concavification of the Sender's value function (beta=0.3). The kink at mu* creates non-concavity; full revelation (achieving V_safe) eliminates costly failures.", fig.height=4, fig.width=6}
+N <- 5; L <- 1; H <- 3; delta <- 0.8; beta <- 0.3; p <- 0.5
+gamma_val <- delta * beta / (N * (1 - delta))
+mu_star <- L * (1 + gamma_val) / (H + L * (1 + gamma_val))
+
+mu_seq <- seq(0, 1, length.out = 200)
+V_safe <- delta * (mu_seq * H + (1 - mu_seq) * L) / N
+V_agg <- mu_seq * delta * H / N + (1 - mu_seq) * delta * (1 - beta) * L / N
+
+ggplot() +
+  geom_line(data = tibble(mu = mu_seq, V = V_safe),
+            aes(x = mu, y = V), color = "steelblue", linewidth = 1) +
+  geom_line(data = tibble(mu = mu_seq[mu_seq > mu_star], V = V_agg[mu_seq > mu_star]),
+            aes(x = mu, y = V), color = "firebrick", linewidth = 1, linetype = "dashed") +
+  geom_segment(aes(x = p, xend = p,
+                   y = p * delta * H / N + (1-p) * delta * (1-beta) * L / N,
+                   yend = delta * (p * H + (1-p) * L) / N),
+               arrow = arrow(length = unit(0.15, "cm"), ends = "both"),
+               color = "darkgreen", linewidth = 0.8) +
+  geom_vline(xintercept = mu_star, linetype = "dotted", color = "gray50") +
+  geom_vline(xintercept = p, linetype = "dotted", color = "darkgreen") +
+  annotate("text", x = mu_star + 0.02, y = max(V_safe) * 0.95, label = expression(mu*"*"),
+           color = "gray40", size = 4, hjust = 0) +
+  annotate("text", x = p + 0.02, y = min(V_agg) * 1.1, label = "p",
+           color = "darkgreen", size = 4, hjust = 0) +
+  annotate("text", x = p + 0.04, y = (delta * (p*H + (1-p)*L)/N + p*delta*H/N + (1-p)*delta*(1-beta)*L/N) / 2,
+           label = "BP gain", color = "darkgreen", size = 3.5, hjust = 0) +
+  annotate("text", x = 0.75, y = delta * (0.75*H + 0.25*L)/N + 0.008,
+           label = expression(hat(V) == V[safe]), color = "steelblue", size = 3.5) +
+  annotate("text", x = 0.75, y = 0.75*delta*H/N + 0.25*delta*(1-beta)*L/N - 0.008,
+           label = expression(V[agg]), color = "firebrick", size = 3.5) +
+  labs(x = expression(mu ~ "(posterior)"), y = expression(V(mu)),
+       title = "Concavification: why full revelation is optimal") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+In plain language: full revelation prevents the proposer from gambling on ambitious deals that fail. The Sender reveals $\omega$ not to manipulate beliefs, but to ensure the proposer takes the correct action. This is cooperative on the surface (everyone avoids deadweight loss) but redistributive in effect (the Sender captures the saved surplus).
+
+\begin{remark}[Full revelation as optimal BP]
+In standard Bayesian Persuasion, the Sender typically benefits from \textit{partial} revelation. Here, full revelation is optimal because the Sender benefits from the proposer's correct action, not from mistaken beliefs.
+\end{remark}
+
+```{r beta-sensitivity, fig.cap="Effect of beta on the Sender's payoff (N=5). Main results (Curse, institutional preference) hold at beta=0; BP gain is an amplifier.", fig.height=3.5, fig.width=6}
+beta_seq <- seq(0, 0.6, by = 0.01)
+N <- 5; L <- 1; H <- 3; p <- 0.5; delta <- 0.8
+E_omega <- p * H + (1 - p) * L
+q_maj <- (N - 1) / 2
+
+df_beta <- tibble(
+  beta = beta_seq,
+  Majority = (1/N) * E_omega * (1 - q_maj * delta / N) +
+            ((N-1)/N) * (1-p) * delta * (1-beta_seq) * L / N,
+  `Unanimity (no BP)` = (1/N) * E_omega * (1 - (N-1)*delta/N) +
+                  ((N-1)/N) * (p*delta*H/N + (1-p)*delta*(1-beta_seq)*L/N),
+  `Unanimity (BP)` = E_omega / N
+) %>%
+  pivot_longer(-beta, names_to = "Rule", values_to = "Payoff")
+
+ggplot(df_beta, aes(x = beta, y = Payoff, color = Rule, linetype = Rule)) +
+  geom_line(linewidth = 1) +
+  labs(x = expression(beta ~ "(surplus destruction)"), y = expression(E[U[S]]),
+       title = "Main results hold at beta=0; BP amplifies at beta>0") +
+  theme_minimal() +
+  scale_color_manual(values = c("firebrick", "steelblue", "darkgreen")) +
+  scale_linetype_manual(values = c("solid", "dashed", "solid")) +
+  geom_hline(yintercept = E_omega/N, linetype = "dotted", color = "gray50") +
+  annotate("text", x = 0.55, y = E_omega/N + 0.005, label = "Benchmark", color = "gray40", size = 3)
+```
+
+# Horizon Independence
+
+\begin{proposition}[Horizon independence]
+\label{prop:horizon}
+For any $T \geq 2$:
+$$\mathbb{E}[U_{i_S} \mid T \text{ periods}] = \mathbb{E}[U_{i_S} \mid T = 2]$$
+\end{proposition}
+
+*Proof.* By Lemma \ref{lem:revelation}, $\omega$ is revealed in Period 1. After revelation, the continuation (Periods $2, \ldots, T$) is standard Baron-Ferejohn with known pie $\omega$ and symmetric players, in which each player's expected payoff is $\omega/N$ regardless of $T$ (Baron and Ferejohn 1989). Therefore, the continuation value entering Period 1 is $\delta\omega/N$ for all $T \geq 2$, making the Period 1 analysis identical. $\square$
+
+In plain language: because the pie size is always revealed in the first round of bargaining --- either through the Sender's separating proposal or through the infeasibility of aggressive proposals --- the remaining rounds are "standard" bargaining with no informational asymmetry. The two-period model captures all the strategic content.
+
+\begin{remark}[Pooling is not an equilibrium]
+Under a forced pooling assumption (beliefs remain at $\mu = p$), the Sender's payoff is substantially lower (e.g., 0.076 vs. 0.336 for $N=5$). Pooling cannot be sustained: the Sender always has a profitable deviation to separating ($c = \omega$). The belief-updating version is the correct equilibrium.
+\end{remark}
+
+# Application: Consensus in International Organizations
+
+## Why consensus?
+
+Our model provides a strategic explanation for consensus in IOs. Powerful countries (the US, EU) are the primary Senders --- they monopolize analytical capacity for trade negotiations. Under majority rule, their informational advantage would be a *liability*: the Curse of Knowledge would lead to their exclusion from coalitions, transferring surplus to the uninformed majority. Under consensus, exclusion is impossible and the Sender uses information to prevent costly failures.
+
+The mechanism has two layers. First, consensus is a *shield*: it prevents the exclusion that majority rule would impose (the Curse of Knowledge). Second, consensus is a *platform*: it gives the Sender a seat at the table from which to communicate information that steers negotiations toward feasible outcomes. When ambitious trade rounds collapse (as with Doha), the costs go beyond delay --- political capital is wasted, protectionist backlash emerges, and the surplus available for future rounds shrinks. The Sender's optimal strategy is full revelation: publishing complete economic intelligence to prevent negotiators from proposing deals that cannot be implemented. This is the "organized hypocrisy" that Steinberg (2002) observes, reinterpreted as rational information design.
+
+## Testable predictions
+
+1. **Informed countries prefer consensus.** Countries with greater analytical capacity should resist reforms toward majority voting --- both to avoid exclusion and to maintain a platform for steering negotiations via information provision.
+2. **Uninformed countries prefer majority.** Developing countries should prefer majority rule, which gives them payoffs above the symmetric benchmark (they capture the Sender's Curse).
+3. **Consensus reduces failures.** Under consensus, the informed player reveals the true state, preventing ambitious deals from collapsing. Under majority, the informed player is excluded and cannot prevent failures even when the information exists. Organizations with higher failure costs ($\beta$) should exhibit stronger consensus norms.
+4. **Full transparency as strategic choice.** The model predicts that informed members publish detailed economic intelligence *not* for altruistic transparency, but because full revelation is the Sender-optimal signal. The WTO's tradition of technical reports by major economies is consistent with this prediction.
+
+# Conclusion
+
+We introduced an informed player into Baron-Ferejohn bargaining and showed that the decision rule determines whether information is an asset or a liability. Under majority, information is a curse: the informed player is excluded from coalitions, receiving strictly less than the symmetric benchmark. Under unanimity, the informed player cannot be excluded and recovers the benchmark exactly. Bayesian Persuasion has zero value in the baseline model --- the Sender's veto perfectly substitutes for strategic information design.
+
+When failed proposals destroy surplus beyond the cost of delay ($\beta > 0$), BP gains positive value: the Sender uses full revelation to prevent costly failures, amplifying the preference for unanimity. But the core institutional preference is structural, not informational: the Sender prefers unanimity to escape the Curse, not to exploit BP.
+
+This asymmetry explains institutional variation between domestic legislatures (majority rule, where the informed are penalized and proposal power dominates) and international organizations (consensus, where exclusion is impossible). Powerful countries accept consensus not to exploit information, but because majority rule would turn their most valuable asset --- analytical capacity --- into a liability.
+
+Our model assumes a single Sender with monopoly over information. A natural extension is to consider multiple informed players ($K > 1$). Whether the results generalize is an open question. One conjecture is that as more members acquire analytical capacity, each informed player's veto under consensus shifts from a coordination device (preventing costly failures) to a source of deadlock --- particularly if informed players have heterogeneous preferences over which deals to pursue. The WTO's paralysis after several members developed independent negotiating capacity (e.g., the Doha Round's collapse amid disagreement between the US, EU, China, India, and Brazil) may reflect this dynamic: a transition from a single-Sender regime where consensus enables efficient information provision to a multi-Sender regime where consensus amplifies conflicting vetoes. Formalizing this extension --- potentially building on Gentzkow and Kamenica's (2017) analysis of competing senders --- is left for future work.
+
+\newpage
+
+# References
+
+Alonso, R., and O. Câmara. 2016. "Persuading Voters." *American Economic Review* 106(11): 3590--3605.
+
+Baron, D. P., and J. A. Ferejohn. 1989. "Bargaining in Legislatures." *American Political Science Review* 83(4): 1181--1206.
+
+Camerer, C., G. Loewenstein, and M. Weber. 1989. "The Curse of Knowledge in Economic Settings: An Experimental Analysis." *Journal of Political Economy* 97(5): 1232--1254.
+
+Gentzkow, M., and E. Kamenica. 2017. "Competition in Persuasion." *Review of Economic Studies* 84(1): 300--322.
+
+Kalandrakis, T. 2006. "Proposal Rights and Political Power." *American Journal of Political Science* 50(2): 441--448.
+
+Kamenica, E., and M. Gentzkow. 2011. "Bayesian Persuasion." *American Economic Review* 101(6): 2590--2615.
+
+Kim, J. S., K. Kim, and R. Van Weelden. 2025. "Persuasion in Veto Bargaining." *American Journal of Political Science* 69(3): 1115--1127.
+
+Koremenos, B., C. Lipson, and D. Snidal. 2001. "The Rational Design of International Institutions." *International Organization* 55(4): 761--799.
+
+Steinberg, R. H. 2002. "In the Shadow of Law or Power? Consensus-Based Bargaining and Outcomes in the GATT/WTO." *International Organization* 56(2): 339--374.
