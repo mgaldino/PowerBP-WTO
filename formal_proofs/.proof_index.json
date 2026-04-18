@@ -1,0 +1,116 @@
+{
+  "paper_file": "formal_model.Rmd",
+  "last_dashboard_run": "2026-04-18T23:00:00",
+  "results": [
+    {
+      "id": "lem1_packageA",
+      "name": "Lemma 1 (Linearity under Package A)",
+      "paper_line": 163,
+      "lean_file": "FormalProofs/Prop1.lean",
+      "lean_theorem": "affine_of_proportional_to_Ve",
+      "lean_file_hash": "ef482a012f2c2a818b5b6bfb021325c8efe72671fb0d4039b838020a50233c84",
+      "status": "VERIFIED",
+      "verified_at": "2026-04-18T23:00:00",
+      "notes": "General N: any s*V_e(μ) is affine"
+    },
+    {
+      "id": "lem2_screening",
+      "name": "Lemma 2 (Screening cutoff)",
+      "paper_line": 238,
+      "lean_file": "FormalProofs/Prop1.lean",
+      "lean_theorem": "screening_cutoff_exists",
+      "lean_file_hash": "ef482a012f2c2a818b5b6bfb021325c8efe72671fb0d4039b838020a50233c84",
+      "status": "PARTIAL",
+      "verified_at": "2026-04-18T23:00:00",
+      "notes": "Existence via IVT verified; uniqueness needs monotonicity assembly"
+    },
+    {
+      "id": "lem3_jump",
+      "name": "Lemma 3 (Jump discontinuity)",
+      "paper_line": 254,
+      "lean_file": "FormalProofs/Prop1.lean",
+      "lean_theorem": "jump_positive_general",
+      "lean_file_hash": "ef482a012f2c2a818b5b6bfb021325c8efe72671fb0d4039b838020a50233c84",
+      "status": "VERIFIED",
+      "verified_at": "2026-04-18T23:00:00",
+      "notes": "General N: coeff*β*(r-1)*(1-μ_s) > 0"
+    },
+    {
+      "id": "prop1_general_N",
+      "name": "Proposition 1 (General-N screening result)",
+      "paper_line": 271,
+      "lean_file": "FormalProofs/Prop1.lean",
+      "lean_theorem": "prop1_general_N",
+      "lean_file_hash": "ef482a012f2c2a818b5b6bfb021325c8efe72671fb0d4039b838020a50233c84",
+      "status": "PARTIAL",
+      "verified_at": "2026-04-18T23:00:00",
+      "notes": "Affinity + existence + jump verified; uniqueness conditional on single-crossing"
+    },
+    {
+      "id": "prop2_allornone",
+      "name": "Proposition 2 (All-or-none entry)",
+      "paper_line": 285,
+      "lean_file": null,
+      "lean_theorem": null,
+      "lean_file_hash": null,
+      "status": "NOT_FORMALIZED",
+      "verified_at": null,
+      "notes": ""
+    },
+    {
+      "id": "lem4_entry",
+      "name": "Lemma 4 (Entry is easier under consensus)",
+      "paper_line": 313,
+      "lean_file": null,
+      "lean_theorem": null,
+      "lean_file_hash": null,
+      "status": "NOT_FORMALIZED",
+      "verified_at": null,
+      "notes": ""
+    },
+    {
+      "id": "prop3_bp",
+      "name": "Proposition 3 (Optimal persuasion)",
+      "paper_line": 350,
+      "lean_file": null,
+      "lean_theorem": null,
+      "lean_file_hash": null,
+      "status": "NOT_FORMALIZED",
+      "verified_at": null,
+      "notes": ""
+    },
+    {
+      "id": "prop4_dominance",
+      "name": "Proposition 4 (Institutional dominance)",
+      "paper_line": 374,
+      "lean_file": null,
+      "lean_theorem": null,
+      "lean_file_hash": null,
+      "status": "NOT_FORMALIZED",
+      "verified_at": null,
+      "notes": ""
+    },
+    {
+      "id": "thm1_main",
+      "name": "Theorem 1 (When informational power substitutes for agenda power)",
+      "paper_line": 387,
+      "lean_file": null,
+      "lean_theorem": null,
+      "lean_file_hash": null,
+      "status": "NOT_FORMALIZED",
+      "verified_at": null,
+      "notes": "Depends on P1-P4"
+    },
+    {
+      "id": "lem_singlecross_generalN",
+      "name": "Lemma B.1 (Single-crossing, general N)",
+      "paper_line": 525,
+      "lean_file": "FormalProofs/SingleCrossing.lean",
+      "lean_theorem": "Q_a_neg, Q_c_neg, G_deriv_num_a_neg, G_deriv_num_c_neg",
+      "lean_file_hash": "bd31bbb63e9becd8e1238ab6c1c7845d422074319c7daf2f1da529920663689c",
+      "status": "PARTIAL",
+      "verified_at": "2026-04-18T23:00:00",
+      "notes": "All polynomial sign lemmas verified; monotonicity assembly pending"
+    }
+  ]
+}

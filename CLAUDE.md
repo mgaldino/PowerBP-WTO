@@ -97,8 +97,31 @@ S sabe as preferências/reservas de cada jogador. O acordo é multidimensional (
 │   ├── formal_model_v1_baseline.Rmd   # Modelo baseline antigo (pie constante = 1)
 │   └── ...                            # Modelos abandonados (v4, Caminho A)
 ├── references/                        # PDFs de referências
-└── quality_reports/                   # Planos e relatórios de qualidade
+├── quality_reports/                   # Planos e relatórios de qualidade
+└── formal_proofs/                     # Verificação formal em Lean 4
+    ├── FormalProofs/Basic.lean         # Definições do modelo (GameParams, V_e, etc.)
+    ├── FormalProofs/Prop1.lean         # Proposição 1: screening cutoff (N=3)
+    └── FormalProofs.lean              # Import hub
 ```
+
+## Verificação Formal (Lean 4)
+
+Provas formais dos resultados estão em `formal_proofs/`.
+
+- **Verificar**: `cd formal_proofs && lake build`
+- **Adicionar módulo**: criar arquivo em `formal_proofs/FormalProofs/` e importar em `FormalProofs.lean`
+- **Atualizar Mathlib**: `cd formal_proofs && lake update && lake exe cache get`
+
+Use `/lean-proofs` para formalizar proposições e teoremas do paper.
+
+### Status atual
+
+| Resultado | Arquivo | Status |
+|-----------|---------|--------|
+| Prop 1 — Affinity (Package A) | Prop1.lean | VERIFIED |
+| Prop 1 — Screening cutoff exists | Prop1.lean | VERIFIED (IVT) |
+| Prop 1 — Screening cutoff unique | Prop1.lean | sorry (single-crossing) |
+| Prop 1 — Jump positive | Prop1.lean | VERIFIED |
 
 ## Paper Futuro: Erosão Endógena do Poder Informacional e o Fracasso de Doha
 

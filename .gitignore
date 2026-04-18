@@ -19,8 +19,11 @@
 formal_model.pdf
 substack_note.html
 
-# Lean build artifacts
-.lake/
+# Lean 4
+formal_proofs/.lake/
+formal_proofs/build/
+formal_proofs/lake-packages/
+*.olean
 
 # Claude
 .claude/
