@@ -2,66 +2,72 @@
 
 ## Projeto
 
-Paper teórico unificando **mensuração de poder informacional** (via Bayesian Persuasion no framework de Kalandrakis/Baron-Ferejohn) com **explicação de variação institucional** (por que legislaturas usam maioria + proposal power, enquanto OIs usam consenso + informational power).
+Paper teórico sobre **por que um hegemon escolheria consenso** em organizações internacionais. O mecanismo: unanimidade força W a interagir com a informação privada de H, criando screening que gera não-convexidade no payoff de H. Bayesian Persuasion explora essa não-convexidade. Sob maioria, W exclui H da coalizão → sem screening → BP ineficaz.
 
-### Resultado central: Pacotes Institucionais e Poder Informacional
-Hegemon = sender (info) + proposer (agenda). A escolha institucional não é apenas regra de votação, mas **pacotes institucionais**: {maioria + agenda control} (Pacote A) vs {consenso + sem agenda control} (Pacote C). Pacotes intermediários não são viáveis (consenso + agenda destrói adesão; maioria sem agenda → efeito de exclusão). Sob Pacote A, H extrai via coalizões mas fracos antecipam exploração → threshold de entrada alto. Sob Pacote C, H voluntariamente abre mão do agenda control (mantê-lo destruiria adesão) mas BP é mais eficaz → threshold baixo. O trade-off fundamental: **extração via agenda power (Estágio 2) vs extração via poder informacional (Estágio 1)**. H prefere consenso quando g (valor intrínseco) é alto e p (prior) é baixo.
+### Resultado central
+H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimidade ativa poder informacional (BP + screening) que substitui poder de agenda. O consenso é uma tecnologia institucional de poder, não uma concessão.
 
 ## Status
 
-- **Fase**: MODELO EM DESENVOLVIMENTO. Arquitetura de 3 estágios definida, simulação validada para N=2,3,5.
-- **Modelo v4 (pie size)**: Abandonado por linearidade fundamental.
-- **Caminho A (outside option)**: Abandonado — outside option privada é implausível.
-- **Caminho B (multidimensional)**: Não formalizado.
-- **Modelo atual (consenso como compromisso)**: 3 estágios — escolha de regra → BP + entrada → redistribuição. Stage 2 derivado (não pressuposto). Simulação confirma trade-off. Ver `modelo_consenso_compromisso.md`.
-- **Target**: formalizar proposições analíticas, estender para horizonte infinito.
+- **Fase**: MODELO v2 COMPLETO (R2 + R1 + Entry + BP derivados). Falta teorema de comparação institucional. Paper deve ser REESCRITO incorporando o modelo e resultados da nota técnica.
+- **Nota técnica**: `notes/2026-04-19_formalizacao_v2.Rmd` — contém toda a formalização, árvore do jogo, derivações, exemplos numéricos, gráficos. Esta nota é a BASE para reescrever o paper.
+- **Paper antigo**: `formal_model.Rmd` — modelo anterior com erros identificados. Será substituído.
 
-## Resultados do modelo v4 (pie size — ABANDONADO)
+## Especificação do Modelo v2
 
-O modelo v4 inteiro (incluindo todas as proposições) está abandonado por linearidade fundamental. Não há extensão β — surplus destruction foi descartado por violar KISS e não produzir persuasão genuína.
+- **N jogadores** (N genérico, nunca N=3): 1 hegemon H + N-1 weak states W
+- **Pie**: V(θ) ∈ {1, r}, r > 1. H observa θ, W's não.
+- **d_W = 0**: normalização WLOG (pie é excedente acima do piso comum dos fracos)
+- **d_H = αV(θ)**: alternativas bilaterais proporcionais ao valor da cooperação, α ∈ (0, 1/r)
+- **Proposta aleatória** (1/N) sob AMBAS as regras. Diferença é SÓ voting rule.
+- **Barganha**: 2 rounds Baron-Ferejohn
+- **Conceito de solução**: PBE
+- **Sem g** (payoff de participação removido)
+- **Sem benefício direto θ para W** (removido)
 
-## Caminho A: outside option como info privada
+### Comparação institucional
+- **Unanimidade**: W deve incluir H → screening (agressivo vs conservador) → jump em E[V_H]
+- **Maioria**: W inclui H a custo αV(θ) por convenção WLOG (indiferente entre incluir/excluir) → sem screening → V_H linear
 
-Mecanismo funciona: screening do proponente cria não-linearidade → BP gain > 0 sob unanimidade, = 0 sob maioria. Simulado para N até 1001. **Problema conceitual**: outside option privada ("S sabe seu próprio custo de no-deal, outros não") é implausível. Status quo não é privado.
+### Screening cutoff (closed form)
+μ_s = α(r-1)/(r-α). Substitui a cúbica do modelo anterior.
 
-**Detalhes**: ver `novo_caminho_outside_option.md`, `sim_titl_2player.R`, `sim_bf_nplayer.R`, `report_bf_results.Rmd`.
+### Onde o screening vive
+Screening acontece em R1, NÃO em R2 no equilíbrio. Se R2 é alcançado (θ=1 rejeita em R1), W sabe θ=1 com certeza — informação completa, sem screening. R2 é off-path threat.
 
-## Caminho B: acordo multidimensional + conhecimento de preferências
+### Resultado sem BP
+Condicional à entrada: H prefere unanimidade (overpayment de θ=0), W prefere maioria. NÃO Pareto comparável. Para priors onde entry só ocorre sob maioria: M Pareto domina. BP viabiliza unanimidade induzindo entrada + explorando screening jump.
 
-S sabe as preferências/reservas de cada jogador. O acordo é multidimensional (R^K). S identifica o conjunto factível e escolhe o acordo ótimo para si. O valor dessa informação é maior sob unanimidade (factível = interseção, difícil de achar) que sob maioria (factível = união de coalizões, fácil de achar). **Problema formal**: como simplificar sem spatial voting?
+## TODOs
 
-**Detalhes**: ver `alternativa_multidimensional.md`.
+### PRÓXIMO PASSO
+- [ ] **Reescrever formal_model.Rmd** usando a nota técnica `notes/2026-04-19_formalizacao_v2.Rmd` como base
+- [ ] **Teorema de comparação institucional** (condições sob as quais H prefere unanimidade)
+
+### IMPORTANTES
+- [ ] Condições paramétricas explícitas (β ≥ ?, α ≤ ?) para os rankings H e W
+- [ ] Derivar μ_s^{R1} em closed form (atualmente só numérico, álgebra piecewise)
+- [ ] Verificar se V_W(U) < V_W(M) é universal ou depende de parâmetros (agente encontrou inversão para β ≤ 0.5)
+- [ ] Provar analiticamente que cav v(p,U) > cav v(p,M) para um range de priors
+
+### EXTENSÕES (não para este paper)
+- [ ] Extensão 1 (discussão): H conhece espaço factível de propostas, W não
+- [ ] Extensão 2 (paper futuro): outside options heterogêneas, pie supermodular, potências médias
 
 ## Puzzle central
 
-**Por que EUA aceitam consenso na OMC?** Sob maioria+agenda, extrairiam mais via coalizões. A resposta: poder informacional (BP) substitui poder de agenda sob consenso. O consenso torna a persuasão mais eficaz ao proteger fracos de exploração futura, reduzindo o threshold de entrada.
-
-## Modelo atual: Pacotes Institucionais e Poder Informacional (V(θ)-dependent pie)
-
-**Pacotes institucionais**: a escolha não é apenas regra de votação, mas pacotes que combinam regra + agenda. Pacote A = {maioria + agenda control}. Pacote C = {consenso + sem agenda control}. Pacote B (consenso + agenda) é inviável (destrói adesão). Pacote D (maioria sem agenda) é dominado (efeito de exclusão).
-
-**Info privada**: θ ∈ {0,1} = qualidade do acordo cooperativo. H sabe θ (capacidade analítica, inteligência). Plausível e simples.
-
-**Pie θ-dependente (DEFINITIVO)**: o tamanho do pie no Estágio 2 depende do estado: V(θ) = 1 + θδ. Quando θ=1, pie = 1+δ (acordo bom amplia o bolo); quando θ=0, pie = 1 (baseline). Isso substitui o modelo baseline com pie constante = 1.
-
-**Não-linearidade**: decisão binária de entrada (threshold) — não é divisão de pie (que seria linear sob TU).
-
-**Resultados-chave com V(θ)**:
-- Threshold de entrada: τ(R) = (c/s_W(R) − 1)/δ, onde s_W(R) é o share de W no Estágio 2. τ depende de δ.
-- Condição de dominância: envolve v(τ,R)/τ — τ aparece tanto no numerador quanto no denominador.
-- ∂p*/∂δ é **ambíguo** — resultado não-trivial novo. δ alto não necessariamente favorece consenso.
-- Para δ alto, τ(A) > 1 → Pacote A se torna **inviável** (threshold ultrapassa o suporte de θ). Nesse regime, consenso domina trivialmente.
-
-**Trade-off fundamental**: extração via agenda power (Estágio 2, Pacote A) vs extração via poder informacional (Estágio 1, Pacote C). Sob consenso, H voluntariamente abre mão do agenda control porque mantê-lo destruiria a adesão dos fracos.
-
-**Arquitetura**: ver `modelo_consenso_compromisso.md` para especificação completa.
+**Por que EUA aceitam consenso na OMC?** Três camadas:
+1. Por que não agenda control (H proposer exclusivo)? → Mata entrada (V_W = 0).
+2. Por que não maioria? → W exclui H, H recebe só αV(θ). Sem screening.
+3. Por que unanimidade? → Screening + BP. H abre mão de poder formal para amplificar poder informacional.
 
 ## Referências-chave
 
 ### Barganha legislativa
-- Kalandrakis (2006, AJPS) — Proposal rights e poder político
 - Baron & Ferejohn (1989) — Modelo base
+- Kalandrakis (2006, AJPS) — Proposal rights e poder político
 - Eraslan & Evdokimov (2019) — Survey
+- Baranski & Reuben (2023) — Exclusion effect + competição por proposta (experimental)
 
 ### Bayesian Persuasion
 - Kamenica & Gentzkow (2011) — O framework
@@ -77,69 +83,42 @@ S sabe as preferências/reservas de cada jogador. O acordo é multidimensional (
 
 ```
 ├── CLAUDE.md                          # Este arquivo
-├── modelo_consenso_compromisso.md     # Arquitetura formal do modelo (companion)
-├── substack_note.Rmd / .html          # Nota para Substack (público informado)
+├── formal_model.Rmd                   # Paper formal — A SER REESCRITO com modelo v2
 ├── references.bib                     # Referências bibliográficas
-├── scripts/
-│   ├── sim_consenso_bp.R              # Simulação principal (N=2,3,5)
-│   ├── sim_titl_2player.R             # Caminho A: TITL 2-player
-│   └── sim_bf_nplayer.R               # Caminho A: BF N-player
-├── figures/                           # Figuras geradas pelos scripts
-│   ├── fig_payoff_by_N.png
-│   ├── fig_regiao_by_N.png
-│   ├── fig_crossover_by_N.png
-│   ├── fig_bp_gain_by_N.png
-│   ├── fig_exclusion_bf.png
-│   └── fig_crossover_vs_alpha.png
-├── notes/                             # Notas exploratórias e caminhos anteriores
-├── formal_model.Rmd                   # Modelo formal ATUAL (V(θ)-dependent pie)
-├── archive/
-│   ├── formal_model_v1_baseline.Rmd   # Modelo baseline antigo (pie constante = 1)
-│   └── ...                            # Modelos abandonados (v4, Caminho A)
+├── notes/
+│   ├── 2026-04-19_formalizacao_v2.Rmd # NOTA TÉCNICA PRINCIPAL — base para reescrita
+│   ├── 2026-04-19_formalizacao_v2.md  # Versão markdown
+│   ├── 2026-04-19_sessao_redesign_v2.md # Decisões de design da sessão
+│   └── 2026-04-19_reformulacao_modelo.md # Reformulação inicial (superada pela v2)
+├── scripts/                           # Simulações
+├── figures/                           # Figuras geradas
+├── archive/                           # Modelos abandonados
 ├── references/                        # PDFs de referências
-├── quality_reports/                   # Planos e relatórios de qualidade
-└── formal_proofs/                     # Verificação formal em Lean 4
-    ├── FormalProofs/Basic.lean         # Definições do modelo (GameParams, V_e, etc.)
-    ├── FormalProofs/Prop1.lean         # Proposição 1: screening cutoff (N=3)
-    └── FormalProofs.lean              # Import hub
+├── quality_reports/                   # Relatórios de qualidade
+└── formal_proofs/                     # Lean 4 (segurança interna, NÃO mencionar em reviews)
 ```
 
 ## Verificação Formal (Lean 4)
 
-Provas formais dos resultados estão em `formal_proofs/`.
+**REGRA**: Lean é ferramenta de segurança interna do PI. NÃO entra no paper, NÃO serve como base para escrita. O paper deve se sustentar sozinho.
 
-- **Verificar**: `cd formal_proofs && lake build`
-- **Adicionar módulo**: criar arquivo em `formal_proofs/FormalProofs/` e importar em `FormalProofs.lean`
-- **Atualizar Mathlib**: `cd formal_proofs && lake update && lake exe cache get`
+**Status**: Provas do modelo anterior. Precisam ser ATUALIZADAS para o modelo v2 quando o paper for reescrito.
 
-Use `/lean-proofs` para formalizar proposições e teoremas do paper.
+## Paper Futuro: Erosão Endógena do Poder Informacional
 
-### Status atual
+> **PAPER FUTURO** — não faz parte deste paper.
 
-| Resultado | Arquivo | Status |
-|-----------|---------|--------|
-| Prop 1 — Affinity (Package A) | Prop1.lean | VERIFIED |
-| Prop 1 — Screening cutoff exists | Prop1.lean | VERIFIED (IVT) |
-| Prop 1 — Screening cutoff unique | Prop1.lean | sorry (single-crossing) |
-| Prop 1 — Jump positive | Prop1.lean | VERIFIED |
+Jogo repetido dentro de instituição consensual. Fracos investem para aprender V(θ). Poder informacional de H se erode endogenamente. Explica fracasso de Doha.
 
-## Paper Futuro: Erosão Endógena do Poder Informacional e o Fracasso de Doha
+## Paper Futuro: Heterogeneidade e Potências Médias
 
-> **PAPER FUTURO** — não faz parte do modelo atual. Ideia para paper subsequente.
+> **PAPER FUTURO** — extensão com outside options heterogêneas.
 
-**Premissa**: Assume o resultado do modelo atual — H aceitou consenso (Pacote C). Modela o que acontece DEPOIS, num jogo repetido de rodadas comerciais.
-
-**Setup**: Jogo repetido dentro de uma instituição consensual. Cada rodada: natureza sorteia θ independente. H observa θ, usa BP para persuadir. Fracos recebem x_i.
-
-**Mecanismo — aprendizado endógeno**: A cada rodada, o agente representativo fraco decide se investe uma fração dos ganhos x_i para aprender o valor de V (e indiretamente, o take de H). Em equilíbrio, investem um pouco por rodada. Isso vai reduzindo a variância das crenças sobre V/H ao longo do tempo. O poder informacional de H se erode — BP fica menos eficaz. H extrai cada vez menos.
-
-**Mecanismo de colapso**: H tem custo de manter o bem público (financiar a OMC, participar). Se o custo de H é maior que dos demais, em algum momento futuro a extração via BP cai abaixo desse custo. H abandona a organização porque consenso não é mais vantajoso. **O sucesso de cada rodada cria as sementes da própria destruição da organização.**
-
-**Punchline**: Explica o fracasso de Doha. Rodadas iniciais do GATT/OMC funcionaram porque H extraía via poder informacional. Cada rodada bem-sucedida ensinou os fracos sobre V e a extração de H. Eventualmente, os fracos aprenderam o suficiente para que H não consiga extrair surplus suficiente para justificar o custo de manutenção. Doha trava não por má-fé, mas porque o mecanismo que fazia consenso funcionar (assimetria informacional) foi endogenamente erodido pelo sucesso da instituição.
-
-**Notas técnicas**: Conceito de solução: PBE no jogo repetido. Aprendizado dos fracos é atualização bayesiana com aquisição custosa de informação. Resultado-chave: existe T* finito após o qual H prefere sair. Literatura relacionada: aquisição endógena de informação (Persico 2004, Martinelli 2006), decadência institucional.
+Pré-normalização: cada país tem o_i > 0 (potências médias com o_i intermediário). Pie V(S, θ) supermodular. Como potências médias alteram a escolha institucional?
 
 ## Convenções
 
 - Notas em Markdown, modelo formal em Rmd → PDF
 - Idioma: português para notas; inglês para o paper
+- N genérico sempre (nunca especializar para N=3)
+- x ≡ (N-1)αr como atalho notacional
