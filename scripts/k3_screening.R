@@ -639,5 +639,33 @@ if (!exists("k3_screening_skip_verify")) {
     cat(sprintf("  mu=%.1f: err=%.2e %s\n", mu_val, err, ifelse(err < 1e-10, "OK", "FAIL")))
   }
 
+  # -------------------------------------------------------------------
+  # MED strategy coverage (quality review gap)
+  # -------------------------------------------------------------------
+  cat("\n--- MED Strategy Test ---\n")
+  # Find a belief where MED is optimal and verify budget identity
+  mu_med_test <- c(0.05, 0.75, 0.20)  # heavy theta=1: MED is optimal here
+  VW_R2_t <- VW_R2_k3(mu_med_test, r1, r2, alpha, N)
+  omega_t <- (N - 2) * beta * VW_R2_t
+  Ve_t <- sum(mu_med_test * c(1, r1, r2))
+  y_high_t <- beta * r2 * (1 + (N-1)*alpha) / N
+  y_med_t <- beta * (r1 + (N-1)*alpha*r2) / N
+  VH_2sub_t <- VH_R2_2type_sub(mu_med_test, r1, r2, alpha, N)
+  y_low_t <- beta * VH_2sub_t[1]
+  VW_2sub_t <- VW_R2_2type_sub(mu_med_test, r1, r2, alpha, N)
+  VW_R2_t2 <- r2 * (1 - alpha) / N
+  F_low_t  <- mu_med_test[1]*(1 - y_low_t - omega_t) + (mu_med_test[2]+mu_med_test[3])*beta*VW_2sub_t
+  F_med_t  <- mu_med_test[1]*(1 - y_med_t - omega_t) + mu_med_test[2]*(r1 - y_med_t - omega_t) + mu_med_test[3]*beta*VW_R2_t2
+  F_high_t <- Ve_t - y_high_t - omega_t
+  strat_t <- which.max(c(F_low_t, F_med_t, F_high_t))
+  cat(sprintf("  mu=(%.2f,%.2f,%.2f): F_low=%.4f, F_med=%.4f, F_high=%.4f -> strategy=%d\n",
+              mu_med_test[1], mu_med_test[2], mu_med_test[3], F_low_t, F_med_t, F_high_t, strat_t))
+  VH_med <- VH_R1_k3_unanimity(mu_med_test, r1, r2, alpha, beta, N)
+  VW_med <- VW_R1_k3_unanimity(mu_med_test, r1, r2, alpha, beta, N)
+  budget_med <- abs(VH_med + (N-1)*VW_med - Ve_t)
+  # Budget gap expected: MED has theta=2 rejection → surplus destruction from discounting
+  cat(sprintf("  VH=%.6f, VW=%.6f, Budget gap=%.4f (expected: theta=2 rejection destroys surplus)\n",
+              VH_med, VW_med, budget_med))
+
   cat("\n=== Verification complete ===\n")
 }
