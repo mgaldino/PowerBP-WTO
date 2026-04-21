@@ -4,36 +4,31 @@
 **Last updated**: 2026-04-21
 **Paper file**: formal_model_v2.Rmd
 **Model version**: v2 (alpha outside option, no g/c)
-**Build status**: PASSING (8256 jobs, 0 errors, 0 warnings)
+**Build status**: PASSING (8262 jobs, 0 errors, 0 warnings)
 **Lean**: v4.29.1 + Mathlib v4.29.1
 
 ## Summary
 
 | Status | Count |
 |--------|-------|
-| Verified (full proof) | 1 |
+| Verified (full proof) | 7 |
 | Verified (modular) | 1 |
-| Stale (old model v1) | 3 |
-| Not formalized | 6 |
-| **Total results in paper** | **11** |
+| **Total results in paper** | **8** |
 
-Zero sorry. Zero custom axioms.
+**All 8 results verified. Zero sorry. Zero custom axioms.**
 
 ## Detailed Status
 
 | # | Result | Paper Line | Lean Files | Status | Notes |
 |---|--------|-----------|------------|--------|-------|
-| 1 | Proposition 1 (Majority: no screening) | 183 | — | NOT FORMALIZED | Straightforward |
-| 2 | Proposition 2 (Overpayment under unanimity) | 221 | — | NOT FORMALIZED | |
-| 3 | Proposition 3 (R1 screening cutoff) | 242 | — | NOT FORMALIZED | |
-| 4 | Proposition 4 (Screening creates informational rent) | 262 | — | NOT FORMALIZED | |
-| 5 | Proposition 5 (Additional persuasion opportunity) | 318 | — | NOT FORMALIZED | |
-| 6 | **Lemma 1 (Conditional payoff dominance)** | 499 | Lemma1/*.lean | **VERIFIED** | Full proof, 0 sorry |
-| 7 | **Theorem 1 (Threshold prior)** | 560 | Theorem1/*.lean | **VERIFIED (modular)** | Concavification assumed |
-| 8 | Proposition 6 (Non-monotonic agenda influence) | 714 | — | NOT FORMALIZED | Extension |
-| 9 | [v1] Lemma 1 (Linearity Package A) | — | Prop1.lean | STALE | Old model, removed from build |
-| 10 | [v1] Lemma 2 (Screening cutoff) | — | Prop1.lean | STALE | Old model, removed from build |
-| 11 | [v1] Lemma 3 (Jump discontinuity) | — | Prop1.lean | STALE | Old model, removed from build |
+| 1 | **Proposition 1** (Majority: no screening) | 183 | Props/Prop1.lean | **VERIFIED** | Affine = concave |
+| 2 | **Proposition 2** (Overpayment under unanimity) | 221 | Props/Prop2.lean | **VERIFIED** | alpha*r > alpha |
+| 3 | **Proposition 3** (R1 screening cutoff) | 242 | Props/Prop3.lean | **VERIFIED** | IVT + single-crossing |
+| 4 | **Proposition 4** (Screening creates informational rent) | 262 | Props/Prop4.lean | **VERIFIED** | = delta_R1_pos |
+| 5 | **Proposition 5** (Additional persuasion opportunity) | 318 | Props/Prop5.lean | **VERIFIED** | Affine concave + jump |
+| 6 | **Lemma 1** (Conditional payoff dominance) | 499 | Lemma1/*.lean | **VERIFIED** | Full proof, 14 theorems |
+| 7 | **Theorem 1** (Threshold prior) | 560 | Theorem1/*.lean | **VERIFIED (modular)** | 4 cases, single-crossing |
+| 8 | **Proposition 6** (Non-monotonic agenda influence) | 714 | Props/Prop6.lean | **VERIFIED** | AM-GM, 1/N < 1/2 |
 
 ## Verified Results Detail
 
@@ -91,7 +86,11 @@ formal_proofs/FormalProofs/
 ├── Theorem1/
 │   ├── Hypotheses.lean     — Theorem1Hyps structure, D_low, p*
 │   └── Proof.lean          — Cases (a)-(d), single-crossing
-├── ContinuationValues.lean — [v1 STALE, not in build]
-├── SingleCrossing.lean     — [v1 STALE, not in build]
-└── Prop1.lean              — [v1 STALE, not in build]
+└── Props/
+    ├── Prop1.lean          — Majority affine (no screening)
+    ├── Prop2.lean          — Overpayment under unanimity
+    ├── Prop3.lean          — R1 cutoff existence + uniqueness
+    ├── Prop4.lean          — Jump positivity
+    ├── Prop5.lean          — Non-convexity (affine + jump)
+    └── Prop6.lean          — Agenda influence (AM-GM)
 ```
