@@ -10,22 +10,15 @@
 k3_screening_skip_verify <- TRUE
 # Resolve path to k3_screening.R relative to this script's location.
 # Works when run via Rscript, sourced interactively, or knitted from Rmd.
-if (!exists(".script_dir")) {
-  .script_dir <- tryCatch(
-    dirname(normalizePath(sys.frame(1)$ofile)),
-    error = function(e) {
-      args <- commandArgs(trailingOnly = FALSE)
-      file_arg <- grep("--file=", args, value = TRUE)
-      if (length(file_arg) > 0) {
-        dirname(normalizePath(sub("--file=", "", file_arg[1])))
-      } else {
-        # Fallback: check if scripts/ subdir exists (knit context)
-        if (dir.exists("scripts")) "scripts" else getwd()
-      }
-    }
-  )
+# Resolve path: works from Rscript, interactive source(), and knitr
+.k3_screening_path <- if (file.exists("scripts/k3_screening.R")) {
+  "scripts/k3_screening.R"
+} else if (file.exists("k3_screening.R")) {
+  "k3_screening.R"
+} else {
+  stop("Cannot find k3_screening.R — run from project root or scripts/ directory")
 }
-source(file.path(.script_dir, "k3_screening.R"))
+source(.k3_screening_path)
 
 
 # =============================================================================
@@ -169,6 +162,7 @@ param_sets <- list(
 )
 
 any_failure <- FALSE
+robustness_rows <- list()
 for (p in param_sets) {
   label <- sprintf("r1=%.1f r2=%.1f a=%.2f b=%.1f N=%d",
                    p$r1, p$r2, p$alpha, p$beta, p$N)
@@ -177,7 +171,17 @@ for (p in param_sets) {
   if (!res$all_positive) any_failure <- TRUE
   cat(sprintf("%-45s  %12.4e  %10.6f  %s\n",
               label, res$min_D, res$mean_D, status))
+  robustness_rows[[length(robustness_rows) + 1]] <- data.frame(
+    r1 = p$r1, r2 = p$r2, alpha = p$alpha, beta = p$beta, N = p$N,
+    grid = res$n, min_D = res$min_D, mean_D = res$mean_D,
+    all_positive = status, stringsAsFactors = FALSE
+  )
 }
+
+# Export table for knitr (used by Appendix D in formal_model_v2.Rmd)
+robustness_table <- do.call(rbind, robustness_rows)
+names(robustness_table) <- c("$r_1$", "$r_2$", "$\\alpha$", "$\\beta$", "$N$",
+                              "Grid", "$\\min D$", "$\\bar{D}$", "$D>0$?")
 
 cat("\n")
 
