@@ -1,65 +1,97 @@
 # Lean Verification Dashboard
 
-**Project**: The Hegemon's Choice of Consensus
-**Last updated**: 2026-04-18
-**Paper file**: formal_model.Rmd
-**Build status**: PASSING (zero sorry, zero custom axioms)
+**Project**: Informational Power: Bayesian Persuasion, Legislative Bargaining, and Institutional Design
+**Last updated**: 2026-04-21
+**Paper file**: formal_model_v2.Rmd
+**Model version**: v2 (alpha outside option, no g/c)
+**Build status**: PASSING (8256 jobs, 0 errors, 0 warnings)
+**Lean**: v4.29.1 + Mathlib v4.29.1
 
 ## Summary
 
 | Status | Count |
 |--------|-------|
-| Verified (components) | 17 |
-| Has sorry | 0 |
-| Partially formalized | 1 (Prop 1 — single-crossing monotonicity pending) |
-| Not formalized | 11 |
-| **Total results in paper** | **12** |
+| Verified (full proof) | 1 |
+| Verified (modular) | 1 |
+| Stale (old model v1) | 3 |
+| Not formalized | 6 |
+| **Total results in paper** | **11** |
+
+Zero sorry. Zero custom axioms.
 
 ## Detailed Status
 
-| # | Result | Paper Line | Lean File | Status | Notes |
-|---|--------|-----------|-----------|--------|-------|
-| L1 | Lemma 1 (Linearity, Package A) | 163 | Prop1.lean | VERIFIED | `affine_of_proportional_to_Ve` (general N) |
-| L2 | Lemma 2 (Screening cutoff) | 238 | Prop1.lean + SingleCrossing.lean | PARTIAL | Existence via IVT verified; uniqueness needs monotonicity assembly |
-| L3 | Lemma 3 (Jump discontinuity) | 254 | Prop1.lean | VERIFIED | `jump_positive_general` (general N) |
-| P1 | Proposition 1 (General-N screening) | 271 | Prop1.lean | PARTIAL | Affinity + existence + jump verified; uniqueness conditional on single-crossing hypothesis |
-| P2 | Proposition 2 (All-or-none entry) | 285 | — | NOT FORMALIZED | |
-| L4 | Lemma 4 (Entry easier under consensus) | 313 | — | NOT FORMALIZED | |
-| P3 | Proposition 3 (Optimal persuasion) | 350 | — | NOT FORMALIZED | |
-| R1 | Remark 1 (Geometric characterization) | 364 | — | NOT FORMALIZED | Qualitative, may not need formalization |
-| P4 | Proposition 4 (Dominance condition) | 374 | — | NOT FORMALIZED | |
-| T1 | Theorem 1 (Main result) | 387 | — | NOT FORMALIZED | Depends on P1-P4 |
-| R2 | Remark 2 (Decomposition) | 411 | — | NOT FORMALIZED | Qualitative |
-| B1 | Lemma B.1 (Single-crossing, general N) | 525 | SingleCrossing.lean | PARTIAL | Q_a < 0, Q_c < 0, G' numerator < 0 all verified; monotonicity assembly + piecewise Δ pending |
+| # | Result | Paper Line | Lean Files | Status | Notes |
+|---|--------|-----------|------------|--------|-------|
+| 1 | Proposition 1 (Majority: no screening) | 183 | — | NOT FORMALIZED | Straightforward |
+| 2 | Proposition 2 (Overpayment under unanimity) | 221 | — | NOT FORMALIZED | |
+| 3 | Proposition 3 (R1 screening cutoff) | 242 | — | NOT FORMALIZED | |
+| 4 | Proposition 4 (Screening creates informational rent) | 262 | — | NOT FORMALIZED | |
+| 5 | Proposition 5 (Additional persuasion opportunity) | 318 | — | NOT FORMALIZED | |
+| 6 | **Lemma 1 (Conditional payoff dominance)** | 499 | Lemma1/*.lean | **VERIFIED** | Full proof, 0 sorry |
+| 7 | **Theorem 1 (Threshold prior)** | 560 | Theorem1/*.lean | **VERIFIED (modular)** | Concavification assumed |
+| 8 | Proposition 6 (Non-monotonic agenda influence) | 714 | — | NOT FORMALIZED | Extension |
+| 9 | [v1] Lemma 1 (Linearity Package A) | — | Prop1.lean | STALE | Old model, removed from build |
+| 10 | [v1] Lemma 2 (Screening cutoff) | — | Prop1.lean | STALE | Old model, removed from build |
+| 11 | [v1] Lemma 3 (Jump discontinuity) | — | Prop1.lean | STALE | Old model, removed from build |
 
-## Verified Components (SingleCrossing.lean)
+## Verified Results Detail
 
-| Component | Theorem | Status |
-|-----------|---------|--------|
-| Branch point m_N > 0 | `m_N_pos` | VERIFIED |
-| Branch point m_N ≤ 1 | `m_N_le_one` | VERIFIED |
-| g_a quadratic < 0 on [0,1] | `g_a_neg` | VERIFIED |
-| Q_a polynomial < 0 on [0, m_N] | `Q_a_neg` | VERIFIED |
-| g_c quadratic < 0 on [0,1] | `g_c_neg` | VERIFIED |
-| Q_c polynomial < 0 on [m_N, 1) | `Q_c_neg` | VERIFIED |
-| G' numerator < 0 (aggressive) | `G_deriv_num_a_neg` | VERIFIED |
-| G' numerator < 0 (conservative) | `G_deriv_num_c_neg` | VERIFIED |
-| Δ(0) > 0 (boundary) | `boundary_at_zero_pos` | VERIFIED |
-| Δ(1) < 0 (boundary) | `boundary_at_one_neg` | VERIFIED |
-| Jump β(r-1)/N > 0 | `G_jump_pos` | VERIFIED |
+### Lemma 1 (Conditional Payoff Dominance) — VERIFIED
 
-## Next Steps
+**Statement**: For alpha < alpha*(N, beta) and every mu in (0,1], E[V_H(mu, U)] > E[V_H(mu, M)].
 
-1. **Connect G' < 0 to strict monotonicity** — use `strictAntiOn_of_deriv_neg` or direct proof
-2. **Assemble piecewise single-crossing** — combine aggressive branch + jump + conservative branch
-3. **Define concrete Δ and prove continuity** — instantiate the abstract IVT result
-4. **Close `prop1_complete`** — final theorem with no hypotheses beyond GameParams
+**Proof method**: Full algebraic proof from model parameters. No sorry, no custom axioms.
 
-## Architecture
+**Key theorems** (14 total):
+- `d_star_pos`, `alpha_star_pos` — alpha* well-defined
+- `P_minus_Q_pos` — key equivalence: alpha < alpha* iff P - Q(1-beta) > 0
+- `D_base_one_pos`, `D_base_zero_pos` — endpoint positivity (threshold nesting for mu=0)
+- `D_base_pos` — backbone positive on [0,1] via affine interpolation
+- `D_I_zero_pos`, `D_I_pos_interval` — Region I (aggressive R2) positive
+- `delta_R2_at_cutoff` — delta_R2 vanishes at mu_s_R2
+- `delta_R1_nonneg`, `delta_R1_pos` — R1 correction non-negative
+- `lemma1_conditional_payoff_dominance` — final assembly
+
+**Files**: Basic.lean, Lemma1/{Definitions, DbasePositive, Corrections, Assembly}.lean
+
+### Theorem 1 (Threshold Prior) — VERIFIED (modular)
+
+**Statement**: 4-case characterization of cav v(p, U) vs cav v(p, M) with single-crossing property.
+
+**Proof method**: Modular — concavification properties assumed via `Theorem1Hyps` structure. Logical spine of 4-case proof fully verified.
+
+**What is assumed** (Theorem1Hyps):
+- Entry thresholds tau_U, tau_M with 0 <= tau_M <= tau_U < 1
+- Slope S_U > 0
+- Step 1 link: S_U * tau_U > lambda_M * V_e(tau_U) when tau_U > 0
+
+**What is proved** (12 theorems):
+- `lambda_M_pos` — majority payoff coefficient positive
+- `D_low_slope_pos` — comparison function has positive slope
+- `p_star_pos`, `p_star_lt_tau_U`, `D_low_at_p_star` — crossing point properties
+- `case_a` — tau_U = 0: unanimity dominates (via Lemma 1)
+- `case_b` — tau_M = 0 < tau_U: unique crossing at p*
+- `case_c` — S_U > S_M: unanimity dominates
+- `case_d` — S_U <= S_M: unique crossing at p*
+- `theorem1_single_crossing` — combined single-crossing property
+
+**Files**: Theorem1/{Hypotheses, Proof}.lean
+
+## File Structure
 
 ```
-Basic.lean          → GameParams, V_e, casting helpers
-ContinuationValues.lean → Ω^a, Ω^c, φ^a, φ^c, m_N, Q_a, Q_c, G' numerators, boundaries
-SingleCrossing.lean → Q_a < 0, Q_c < 0, G' < 0, boundary conditions, jump > 0
-Prop1.lean          → Affinity, IVT existence, conditional uniqueness, jump > 0, combined Prop 1
+formal_proofs/FormalProofs/
+├── Basic.lean              — Model v2 params (GameParams with alpha)
+├── Lemma1/
+│   ├── Definitions.lean    — D_base, delta_R2, delta_R1, algebraic identities
+│   ├── DbasePositive.lean  — D_base > 0 on [0,1] (heart of Lemma 1)
+│   ├── Corrections.lean    — delta_R2(mu_s_R2) = 0, delta_R1 >= 0
+│   └── Assembly.lean       — All 3 regions -> D(mu) > 0
+├── Theorem1/
+│   ├── Hypotheses.lean     — Theorem1Hyps structure, D_low, p*
+│   └── Proof.lean          — Cases (a)-(d), single-crossing
+├── ContinuationValues.lean — [v1 STALE, not in build]
+├── SingleCrossing.lean     — [v1 STALE, not in build]
+└── Prop1.lean              — [v1 STALE, not in build]
 ```

@@ -9,9 +9,10 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 
 ## Status
 
-- **Fase**: MODELO v2 COMPLETO (R2 + R1 + Entry + BP derivados). Falta teorema de comparação institucional. Paper deve ser REESCRITO incorporando o modelo e resultados da nota técnica.
-- **Nota técnica**: `notes/2026-04-19_formalizacao_v2.Rmd` — contém toda a formalização, árvore do jogo, derivações, exemplos numéricos, gráficos. Esta nota é a BASE para reescrever o paper.
-- **Paper antigo**: `formal_model.Rmd` — modelo anterior com erros identificados. Será substituído.
+- **Fase**: PAPER PRONTO PARA CIRCULAR. Pipeline completo (94/100). Journal target: AJPS → JoP → RIO.
+- **Paper**: `formal_model_v2.Rmd` — versão completa com Lemma 1 (prova analítica D_base), Theorem 1 (4 cases, single-crossing, closed-form p*), 6 Proposições, Worked Example, Appendices A-C.
+- **Nota técnica**: `notes/2026-04-19_formalizacao_v2.Rmd` — derivações base (superseded pelo paper).
+- **Prova do Lemma 1**: `notes/2026-04-21_lemma1_complete_proof.md` — prova completa verificada.
 
 ## Especificação do Modelo v2
 
@@ -40,15 +41,18 @@ Condicional à entrada: H prefere unanimidade (overpayment de θ=0), W prefere m
 
 ## TODOs
 
-### PRÓXIMO PASSO (PRIORITÁRIO)
-- [ ] **Inserir Lemma 1 + Theorem 1 revisados no paper** (`formal_model_v2.Rmd`)
-  - Lemma 1: prova analítica completa via decomposição D_base + δ_R2 + δ_R1. Ver `notes/2026-04-21_lemma1_complete_proof.md`. Condição: α < α*(N,β). VERIFICADO numericamente.
-  - Theorem 1: threshold prior p* com 4 casos e single-crossing property. Ver `notes/2026-04-21_revised_theorem1_threshold_prior.md`. S_U fully closed form. VERIFICADO numericamente (10/10).
-  - Estratégias anteriores documentadas em `notes/2026-04-21_theorem1_proof_strategies.md`
+### PRÓXIMO PASSO
+- [ ] Submeter ao AJPS
 
-### IMPORTANTES
-- [ ] Condições paramétricas explícitas (β ≥ ?, α ≤ ?) para os rankings H e W
-- [ ] Verificar se V_W(U) < V_W(M) é universal ou depende de parâmetros (agente encontrou inversão para β ≤ 0.5)
+### CONCLUÍDO (sessão 2026-04-20/21)
+- [x] Pipeline completo: Code Review (98/100) + Devil's Advocate (85/100) + Proofread (100/100)
+- [x] Lemma 1 prova analítica (D_base + δ_R2 + δ_R1 decomposition)
+- [x] Theorem 1 reescrito (4 cases, single-crossing, closed-form p*)
+- [x] Bugs corrigidos: 3 majority functions, concavify, VW_R1_unanimity, budget identity
+- [x] Condição α < α*(N,β) adicionada ao Lemma 1 e Theorem 1
+- [x] Introdução calibrada (when/why, não universalizante)
+- [x] Literatura: Feddersen & Pesendorfer, Diermeier & Myerson, Bardhi & Guo, Kim Kim & Van Weelden, Gould
+- [x] Worked Example, BP commitment, entry cost c, GATT/WTO observable implication
 
 ### EXTENSÕES (não para este paper)
 - [ ] Extensão 1 (discussão): H conhece espaço factível de propostas, W não

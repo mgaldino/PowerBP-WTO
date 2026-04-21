@@ -1,116 +1,117 @@
 {
-  "paper_file": "formal_model.Rmd",
-  "last_dashboard_run": "2026-04-18T23:00:00",
+  "paper_file": "formal_model_v2.Rmd",
+  "last_dashboard_run": "2026-04-21T14:30:00",
+  "model_version": "v2",
   "results": [
     {
-      "id": "lem1_packageA",
-      "name": "Lemma 1 (Linearity under Package A)",
-      "paper_line": 163,
-      "lean_file": "FormalProofs/Prop1.lean",
-      "lean_theorem": "affine_of_proportional_to_Ve",
-      "lean_file_hash": "ef482a012f2c2a818b5b6bfb021325c8efe72671fb0d4039b838020a50233c84",
+      "id": "prop1_majority_no_screening",
+      "name": "Proposition 1 (Majority rule produces no screening)",
+      "paper_line": 183,
+      "lean_file": null,
+      "status": "NOT_FORMALIZED"
+    },
+    {
+      "id": "prop2_overpayment",
+      "name": "Proposition 2 (Overpayment under unanimity)",
+      "paper_line": 221,
+      "lean_file": null,
+      "status": "NOT_FORMALIZED"
+    },
+    {
+      "id": "prop3_cutoff_R1",
+      "name": "Proposition 3 (R1 screening cutoff under consensus)",
+      "paper_line": 242,
+      "lean_file": null,
+      "status": "NOT_FORMALIZED"
+    },
+    {
+      "id": "prop4_jump",
+      "name": "Proposition 4 (Screening creates an informational rent)",
+      "paper_line": 262,
+      "lean_file": null,
+      "status": "NOT_FORMALIZED"
+    },
+    {
+      "id": "prop5_nonconvexity",
+      "name": "Proposition 5 (Unanimity creates additional persuasion opportunity)",
+      "paper_line": 318,
+      "lean_file": null,
+      "status": "NOT_FORMALIZED"
+    },
+    {
+      "id": "lemma1_conditional_payoff_dominance",
+      "name": "Lemma 1 (Conditional Payoff Dominance of Unanimity)",
+      "paper_line": 499,
+      "lean_files": [
+        "FormalProofs/Basic.lean",
+        "FormalProofs/Lemma1/Definitions.lean",
+        "FormalProofs/Lemma1/DbasePositive.lean",
+        "FormalProofs/Lemma1/Corrections.lean",
+        "FormalProofs/Lemma1/Assembly.lean"
+      ],
+      "lean_theorems": [
+        "d_star_pos", "alpha_star_pos", "P_minus_Q_pos",
+        "D_base_one_pos", "D_base_zero_pos", "D_base_pos",
+        "D_I_zero_pos", "D_I_pos_interval",
+        "delta_R2_at_cutoff", "delta_R1_nonneg", "delta_R1_pos", "delta_R1_at_one",
+        "D_base_plus_delta_R1_pos", "lemma1_conditional_payoff_dominance"
+      ],
+      "lean_file_hash": "342521ad0b26296b87ec343b23aa6e6b258674d70cada1b990e56b36e37409d8",
       "status": "VERIFIED",
-      "verified_at": "2026-04-18T23:00:00",
-      "notes": "General N: any s*V_e(μ) is affine"
+      "verified_at": "2026-04-21T12:00:00",
+      "sorry_count": 0,
+      "custom_axioms": 0,
+      "notes": "Full proof from model parameters. D_base > 0 via endpoint positivity + affine interpolation."
     },
     {
-      "id": "lem2_screening",
-      "name": "Lemma 2 (Screening cutoff)",
-      "paper_line": 238,
-      "lean_file": "FormalProofs/Prop1.lean",
-      "lean_theorem": "screening_cutoff_exists",
-      "lean_file_hash": "ef482a012f2c2a818b5b6bfb021325c8efe72671fb0d4039b838020a50233c84",
-      "status": "PARTIAL",
-      "verified_at": "2026-04-18T23:00:00",
-      "notes": "Existence via IVT verified; uniqueness needs monotonicity assembly"
-    },
-    {
-      "id": "lem3_jump",
-      "name": "Lemma 3 (Jump discontinuity)",
-      "paper_line": 254,
-      "lean_file": "FormalProofs/Prop1.lean",
-      "lean_theorem": "jump_positive_general",
-      "lean_file_hash": "ef482a012f2c2a818b5b6bfb021325c8efe72671fb0d4039b838020a50233c84",
+      "id": "theorem1_threshold_prior",
+      "name": "Theorem 1 (Threshold Prior for Institutional Choice)",
+      "paper_line": 560,
+      "lean_files": [
+        "FormalProofs/Theorem1/Hypotheses.lean",
+        "FormalProofs/Theorem1/Proof.lean"
+      ],
+      "lean_theorems": [
+        "lambda_M_pos", "D_low_slope_pos",
+        "p_star_pos", "D_low_at_p_star", "p_star_lt_tau_U",
+        "D_low_neg_below", "D_low_pos_above",
+        "case_a", "case_b", "case_c", "case_d",
+        "theorem1_single_crossing"
+      ],
+      "lean_file_hash": "e035ea7974e123fa33eceb4e4d1bbbe4f2ac9357df18b202ec90eb461d969273",
       "status": "VERIFIED",
-      "verified_at": "2026-04-18T23:00:00",
-      "notes": "General N: coeff*β*(r-1)*(1-μ_s) > 0"
+      "verified_at": "2026-04-21T14:00:00",
+      "sorry_count": 0,
+      "custom_axioms": 0,
+      "notes": "Modular: concavification properties assumed via Theorem1Hyps. 4-case logical spine verified."
     },
     {
-      "id": "prop1_general_N",
-      "name": "Proposition 1 (General-N screening result)",
-      "paper_line": 271,
-      "lean_file": "FormalProofs/Prop1.lean",
-      "lean_theorem": "prop1_general_N",
-      "lean_file_hash": "ef482a012f2c2a818b5b6bfb021325c8efe72671fb0d4039b838020a50233c84",
-      "status": "PARTIAL",
-      "verified_at": "2026-04-18T23:00:00",
-      "notes": "Affinity + existence + jump verified; uniqueness conditional on single-crossing"
-    },
-    {
-      "id": "prop2_allornone",
-      "name": "Proposition 2 (All-or-none entry)",
-      "paper_line": 285,
+      "id": "prop6_extension",
+      "name": "Proposition 6 (Non-monotonic effect of agenda influence)",
+      "paper_line": 714,
       "lean_file": null,
-      "lean_theorem": null,
-      "lean_file_hash": null,
-      "status": "NOT_FORMALIZED",
-      "verified_at": null,
-      "notes": ""
+      "status": "NOT_FORMALIZED"
     },
     {
-      "id": "lem4_entry",
-      "name": "Lemma 4 (Entry is easier under consensus)",
-      "paper_line": 313,
-      "lean_file": null,
-      "lean_theorem": null,
-      "lean_file_hash": null,
-      "status": "NOT_FORMALIZED",
-      "verified_at": null,
-      "notes": ""
+      "id": "lem1_packageA_v1",
+      "name": "[v1] Lemma 1 (Linearity under Package A)",
+      "lean_files": ["FormalProofs/Prop1.lean"],
+      "status": "STALE",
+      "notes": "Old model v1. Removed from build."
     },
     {
-      "id": "prop3_bp",
-      "name": "Proposition 3 (Optimal persuasion)",
-      "paper_line": 350,
-      "lean_file": null,
-      "lean_theorem": null,
-      "lean_file_hash": null,
-      "status": "NOT_FORMALIZED",
-      "verified_at": null,
-      "notes": ""
+      "id": "lem2_screening_v1",
+      "name": "[v1] Lemma 2 (Screening cutoff)",
+      "lean_files": ["FormalProofs/Prop1.lean"],
+      "status": "STALE",
+      "notes": "Old model v1. Removed from build."
     },
     {
-      "id": "prop4_dominance",
-      "name": "Proposition 4 (Institutional dominance)",
-      "paper_line": 374,
-      "lean_file": null,
-      "lean_theorem": null,
-      "lean_file_hash": null,
-      "status": "NOT_FORMALIZED",
-      "verified_at": null,
-      "notes": ""
-    },
-    {
-      "id": "thm1_main",
-      "name": "Theorem 1 (When informational power substitutes for agenda power)",
-      "paper_line": 387,
-      "lean_file": null,
-      "lean_theorem": null,
-      "lean_file_hash": null,
-      "status": "NOT_FORMALIZED",
-      "verified_at": null,
-      "notes": "Depends on P1-P4"
-    },
-    {
-      "id": "lem_singlecross_generalN",
-      "name": "Lemma B.1 (Single-crossing, general N)",
-      "paper_line": 525,
-      "lean_file": "FormalProofs/SingleCrossing.lean",
-      "lean_theorem": "Q_a_neg, Q_c_neg, G_deriv_num_a_neg, G_deriv_num_c_neg",
-      "lean_file_hash": "bd31bbb63e9becd8e1238ab6c1c7845d422074319c7daf2f1da529920663689c",
-      "status": "PARTIAL",
-      "verified_at": "2026-04-18T23:00:00",
-      "notes": "All polynomial sign lemmas verified; monotonicity assembly pending"
+      "id": "lem3_jump_v1",
+      "name": "[v1] Lemma 3 (Jump discontinuity)",
+      "lean_files": ["FormalProofs/Prop1.lean"],
+      "status": "STALE",
+      "notes": "Old model v1. Removed from build."
     }
   ]
 }

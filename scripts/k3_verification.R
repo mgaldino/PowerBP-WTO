@@ -9,19 +9,22 @@
 # Source the K=3 functions, skipping the built-in verification block.
 k3_screening_skip_verify <- TRUE
 # Resolve path to k3_screening.R relative to this script's location.
-# Works both when run via Rscript and when sourced interactively.
-.script_dir <- tryCatch(
-  dirname(normalizePath(sys.frame(1)$ofile)),
-  error = function(e) {
-    args <- commandArgs(trailingOnly = FALSE)
-    file_arg <- grep("--file=", args, value = TRUE)
-    if (length(file_arg) > 0) {
-      dirname(normalizePath(sub("--file=", "", file_arg[1])))
-    } else {
-      getwd()
+# Works when run via Rscript, sourced interactively, or knitted from Rmd.
+if (!exists(".script_dir")) {
+  .script_dir <- tryCatch(
+    dirname(normalizePath(sys.frame(1)$ofile)),
+    error = function(e) {
+      args <- commandArgs(trailingOnly = FALSE)
+      file_arg <- grep("--file=", args, value = TRUE)
+      if (length(file_arg) > 0) {
+        dirname(normalizePath(sub("--file=", "", file_arg[1])))
+      } else {
+        # Fallback: check if scripts/ subdir exists (knit context)
+        if (dir.exists("scripts")) "scripts" else getwd()
+      }
     }
-  }
-)
+  )
+}
 source(file.path(.script_dir, "k3_screening.R"))
 
 
