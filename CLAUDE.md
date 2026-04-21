@@ -40,15 +40,15 @@ Condicional à entrada: H prefere unanimidade (overpayment de θ=0), W prefere m
 
 ## TODOs
 
-### PRÓXIMO PASSO
-- [ ] **Reescrever formal_model.Rmd** usando a nota técnica `notes/2026-04-19_formalizacao_v2.Rmd` como base
-- [ ] **Teorema de comparação institucional** (condições sob as quais H prefere unanimidade)
+### PRÓXIMO PASSO (PRIORITÁRIO)
+- [ ] **Inserir Lemma 1 + Theorem 1 revisados no paper** (`formal_model_v2.Rmd`)
+  - Lemma 1: prova analítica completa via decomposição D_base + δ_R2 + δ_R1. Ver `notes/2026-04-21_lemma1_complete_proof.md`. Condição: α < α*(N,β). VERIFICADO numericamente.
+  - Theorem 1: threshold prior p* com 4 casos e single-crossing property. Ver `notes/2026-04-21_revised_theorem1_threshold_prior.md`. S_U fully closed form. VERIFICADO numericamente (10/10).
+  - Estratégias anteriores documentadas em `notes/2026-04-21_theorem1_proof_strategies.md`
 
 ### IMPORTANTES
 - [ ] Condições paramétricas explícitas (β ≥ ?, α ≤ ?) para os rankings H e W
-- [ ] Derivar μ_s^{R1} em closed form (atualmente só numérico, álgebra piecewise)
 - [ ] Verificar se V_W(U) < V_W(M) é universal ou depende de parâmetros (agente encontrou inversão para β ≤ 0.5)
-- [ ] Provar analiticamente que cav v(p,U) > cav v(p,M) para um range de priors
 
 ### EXTENSÕES (não para este paper)
 - [ ] Extensão 1 (discussão): H conhece espaço factível de propostas, W não
