@@ -449,6 +449,29 @@ VW_R1_k3_unanimity <- function(mu, r1, r2, alpha, beta, N) {
 
 
 # =============================================================================
+# MAJORITY RULE (no screening, works for any K)
+# =============================================================================
+
+#' H's expected R1 payoff under majority K=3
+#' Key property: affine in V_e(mu) = mu[1] + mu[2]*r1 + mu[3]*r2
+VH_R1_k3_majority <- function(mu, r1, r2, alpha, beta, N) {
+  q <- floor(N/2) + 1
+  Ve <- mu[1] + mu[2] * r1 + mu[3] * r2
+  VW_R2_M <- (1 - alpha) * Ve / N
+  H_prop <- (Ve - (q - 1) * beta * VW_R2_M) / N
+  W_prop_H <- (N - 1) / N * alpha * Ve
+  H_prop + W_prop_H
+}
+
+#' W's expected R1 payoff under majority K=3
+VW_R1_k3_majority <- function(mu, r1, r2, alpha, beta, N) {
+  Ve <- mu[1] + mu[2] * r1 + mu[3] * r2
+  EVH <- VH_R1_k3_majority(mu, r1, r2, alpha, beta, N)
+  (Ve - EVH) / (N - 1)
+}
+
+
+# =============================================================================
 # VERIFICATION BLOCK
 # =============================================================================
 
@@ -581,6 +604,40 @@ if (!exists("k3_screening_skip_verify")) {
   budget_check <- abs(VH_k3 + (N-1) * VW_k3 - Ve_k3)
   cat(sprintf("Budget check |VH + (N-1)*VW - Ve| = %.2e  %s\n",
               budget_check, ifelse(budget_check < 1e-6, "(OK)", "(WARN)")))
+
+  cat("\n--- Majority Checks ---\n")
+  # Affinity check: lambda_M * Ve
+  q <- floor(N/2) + 1
+  lambda_M <- (N * (1 + (N-1)*alpha) - beta * (q-1) * (1-alpha)) / N^2
+
+  set.seed(42)
+  cat("Affinity (VH_M = lambda_M * Ve):\n")
+  for (i in 1:5) {
+    mu_test <- runif(3); mu_test <- mu_test / sum(mu_test)
+    Ve <- mu_test[1] + mu_test[2] * r1 + mu_test[3] * r2
+    evh <- VH_R1_k3_majority(mu_test, r1, r2, alpha, beta, N)
+    expected <- lambda_M * Ve
+    err <- abs(evh - expected)
+    cat(sprintf("  test %d: err=%.2e %s\n", i, err, ifelse(err < 1e-10, "OK", "FAIL")))
+  }
+
+  # K=2 reduction for majority
+  VH_R1_majority <- function(r, alpha, mu, N, beta) {
+    q <- floor(N/2) + 1; Ve <- 1 + mu * (r - 1)
+    VW_R2_M <- (1 - alpha) * Ve / N
+    H_prop <- (Ve - (q - 1) * beta * VW_R2_M) / N
+    W_prop_H <- (N - 1) / N * alpha * Ve
+    H_prop + W_prop_H
+  }
+
+  cat("K=2 reduction (majority):\n")
+  for (mu_val in c(0.2, 0.5, 0.8)) {
+    mu_k3 <- c(1 - mu_val, mu_val, 0)
+    evh_k3 <- VH_R1_k3_majority(mu_k3, 1.5, 1.5, alpha, beta, N)
+    evh_k2 <- VH_R1_majority(1.5, alpha, mu_val, N, beta)
+    err <- abs(evh_k3 - evh_k2)
+    cat(sprintf("  mu=%.1f: err=%.2e %s\n", mu_val, err, ifelse(err < 1e-10, "OK", "FAIL")))
+  }
 
   cat("\n=== Verification complete ===\n")
 }
