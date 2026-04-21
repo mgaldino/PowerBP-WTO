@@ -51,9 +51,9 @@ Existing answers do not fully resolve the puzzle. A common response claims that 
 
 This paper theorizes when and why a hegemon may prefer unanimity to majority rule in international organizations. The central claim is that consensus is not merely a constraint or procedural facade; rather, it is an institutional technology of power. Using Bayesian persuasion [@kamenica2019bayesian], I show that consensus can make informational power more politically productive than the coalition arithmetic of majority rule. While the multi-receiver persuasion literature has examined information design under unanimity [@bardhiguo2018], and @kim2025persuasion analyzes Bayesian persuasion in bilateral veto bargaining, neither offers the institutional comparison between voting rules that is central here. Thus, the key institutional choice is not between power and constraint, but between two distinct modes of exercising power.
 
-The argument rests on a widespread but insufficiently theorized asymmetry in international organizations: the unequal distribution of informational resources, expertise, and interpretive authority among states. Large powers typically possess deeper technical expertise, larger delegations, and greater ability to generate and circulate authoritative interpretations of proposed rules, whereas weaker states often face limited analytical capacity. As a result, informational power—a state's ability to access, interpret, and leverage relevant information—is a structural feature of multilateral institutions. The paper demonstrates that under unanimity, voting rules can make this asymmetry strategically decisive, in ways not present under majority rule.
+Two forms of power are central to the analysis. *Agenda power* is the ability to control proposals, shape coalitions, and determine which alternatives reach the floor---the familiar Baron-Ferejohn logic in which the capacity to exclude is the source of surplus capture. *Informational power* is the ability to shape beliefs about the value of cooperation; in international politics, large powers typically possess deeper technical expertise and greater ability to generate authoritative interpretations of proposed rules, whereas weaker states face limited analytical capacity. This paper's focus on information *design* under different voting rules complements the literature on information *aggregation*, where @feddersen1998convicting show that unanimity is the worst rule for aggregating dispersed private information. The present model reverses the direction: information is concentrated in a single actor (the hegemon), and unanimity amplifies rather than impedes its strategic value [on veto structures and bargaining power more generally, see @diermeier1999bicameralism]. Under majority rule, agenda power dominates: weak states can exclude the hegemon, so beliefs affect expected values but create no strategic discontinuity. Under unanimity, informational power dominates: every actor becomes pivotal, and the hegemon's private information creates a screening problem that generates a non-convexity in its value function.
 
-To formalize the argument, I develop a model in which a hegemon chooses between two institutional packages that differ only in the voting rule: majority and unanimity. Proposal rights are symmetric under both rules, isolating the effect of the voting rule itself. Before weaker states decide whether to enter, the hegemon privately observes the value of cooperation and can shape their beliefs about it. The central difference is that the two rules reward this informational advantage differently. Under majority rule, weak states can form coalitions without making the hegemon pivotal, eliminating the screening problem. Under unanimity, weak states must include the hegemon in every proposal and decide how much to offer without knowing the probability of acceptance. This screening generates a cutoff at which weak proposers switch from aggressive to conservative treatment of the hegemon, creating a discontinuity in the hegemon’s value function that Bayesian persuasion exploits. This creates a persuasion opportunity absent under the majority, although the majority may still be preferred when it facilitates participation under less optimistic priors.
+To formalize the argument, I develop a model in which a hegemon chooses between two institutional packages that differ only in the voting rule: majority and unanimity. Proposal rights are symmetric under both rules, isolating the effect of the voting rule itself. Before weaker states decide whether to enter, the hegemon privately observes the value of cooperation and can shape their beliefs about it. The central difference is that the two rules reward this informational advantage differently. Under majority rule, weak states can form coalitions without making the hegemon pivotal, eliminating the screening problem. Under unanimity, weak states must include the hegemon in every proposal and decide how much to offer without knowing the probability of acceptance. This screening generates a cutoff at which weak proposers switch from aggressive to conservative treatment of the hegemon, creating a discontinuity in the hegemon’s value function that Bayesian persuasion exploits. This creates a persuasion opportunity absent under majority, although majority may still be preferred when it facilitates participation under less optimistic priors.
 
 The analysis yields three main results. First, I characterize the screening cutoff under unanimity and show it has no analog under majority rule, where the hegemon’s value function is linear in beliefs (Propositions 1–4). Second, I show that this screening creates an additional non-convexity in the hegemon’s value function, providing a persuasion opportunity absent under majority (Proposition 5). Third, I establish that the institutional comparison has a single-crossing property: there is at most one prior at which the ranking between unanimity and majority changes, and I provide a closed-form expression for the threshold (Lemma 1 and Theorem 1). 
 
@@ -61,28 +61,27 @@ The substantive implication is that consensus is most valuable to a hegemon when
 
 In sum, this paper contributes to the study of international organizations in three ways. First, it offers a new mechanism explaining when and why a powerful state may rationally choose unanimity rather than just accept it. Second, it reframes institutional design as a trade-off between informational leverage under unanimity and easier participation under majority, rather than solely between power and constraint. Third, it provides a formal link between voting rules and the strategic value of private information.
 
-The rest of the paper proceeds as follows: Section 2 develops the substantive theory of informational power and consensus; Section 3 defines the institutional comparison; Section 4 presents the model; Sections 5 and 6 derive the bargaining logic under majority and unanimity voting rules; Section 7 connects bargaining to entry and persuasion; Section 8 establishes the main institutional comparison result; Section 9 discusses partial agenda influence, illustrates the mechanism with the GATT/WTO, and addresses scope conditions; Section 10 concludes.
+The rest of the paper proceeds as follows. Section 2 presents a motivating example that previews the mechanism in a simplified three-player environment. Section 3 defines the institutional comparison; Section 4 presents the general model; Sections 5 and 6 derive the bargaining logic under majority and unanimity; Section 7 connects bargaining to entry and persuasion; Section 8 establishes the main result; Section 9 discusses extensions and scope; Section 10 concludes.
 
 
-# Consensus and Informational Power in International Organizations
+# A Motivating Example {#example}
 
-Consensus is usually treated as a constraint on the powerful. The standard view holds that unanimity rules protect weaker states by giving them a veto over outcomes they find unacceptable, forcing powerful states to accommodate broader interests in order to reach agreement [@maggi2006selfenforcing; @blake2015balancing]. On this account, when powerful states accept consensus, they do so either because they value legitimacy, because they cannot credibly commit to exclude dissidents, or because the costs of formal coercion exceed the gains.
+Before turning to the general model, consider a stripped-down environment with three players to build intuition for the mechanism. There is one hegemon $H$ and two weak states $W_1, W_2$. The value of cooperation is either $V(0) = 1$ (low) or $V(1) = 2$ (high); $H$ observes the state, the weak states do not. Each weak state’s outside option is $0$; $H$’s outside option is $\alpha V(\theta)$ with $\alpha = 0.2$. A weak state is selected to make a take-it-or-leave-it offer specifying $H$’s share $y_H$; if $H$ rejects, each player receives their disagreement payoff.
 
-This paper proposes a different reading. Consensus can select the type of power that matters. Rather than simply constraining all forms of hegemonic influence, unanimity can channel influence away from coalition arithmetic and toward information. The result is not the absence of power, but its transformation.
+**Majority: exclusion eliminates screening.** Under majority rule, $W_1$ and $W_2$ can pass a proposal without $H$’s vote. The proposing weak state excludes $H$ from the coalition; $H$ captures $0.2 V(\theta)$ from its bilateral alternative regardless of what $W$ believes. The hegemon’s expected payoff is $0.2 + 0.2\mu$, where $\mu = \Pr(\theta = 1)$---linear in beliefs, with no strategic discontinuity.
 
-The distinction between the two forms of power is central to the argument.
+**Unanimity: inclusion creates screening.** Under unanimity, $H$’s vote is required. The proposing weak state must decide how much to offer $H$ without knowing $\theta$:
 
-Agenda power is the ability to control proposals, shape coalitions, and determine which alternatives reach the floor. In standard bargaining environments, agenda control under majority rule enables the proposer to buy only the votes needed for passage and keep the remainder—the familiar Baron-Ferejohn logic [@baron1989bargaining]. Under majority rule, the capacity to exclude is the source of surplus capture.
+- *Aggressive offer* ($y_H = 0.2$): type $\theta = 0$ is indifferent and accepts; type $\theta = 1$ rejects (wants $0.4$). $W$ gets $0.8$ if $\theta = 0$, gets $0$ if $\theta = 1$.
+- *Conservative offer* ($y_H = 0.4$): both types accept. $W$ gets $0.6$ if $\theta = 0$, gets $1.6$ if $\theta = 1$.
 
-Informational power is the ability to shape beliefs about the value of cooperation, the distribution of gains, and the consequences of disagreement. In international politics, powerful states often possess superior analytical capacity, better intelligence about market conditions and regulatory effects, and greater expertise about the consequences of agreements. When those informational advantages can be credibly deployed, they can be strategically used to influence weaker states’ decisions [@kamenica2011bayesian; @kamenica2019bayesian].
+$W$ prefers the aggressive offer when $0.8(1-\mu) > 0.6(1-\mu) + 1.6\mu$, which simplifies to $\mu < 1/9$. The screening cutoff $\mu^* = 1/9$ is the belief at which $W$ switches from aggressive to conservative treatment of $H$.
 
-This paper’s focus on information \emph{design} under different voting rules complements the literature on information \emph{aggregation}, where @feddersen1998convicting show that unanimity is the worst rule for aggregating dispersed private information. The present model reverses the direction: information is concentrated in a single actor (the hegemon), and unanimity amplifies rather than impedes its strategic value. On the connection between veto structures and bargaining power more generally, see @diermeier1999bicameralism. Most closely related, @kim2025persuasion studies Bayesian persuasion in bilateral veto bargaining with symmetric agents, showing how a sender exploits the veto structure to extract surplus. The present paper differs in three respects: multilateral bargaining ($N$ players), asymmetric roles (hegemon vs. weak states), and—crucially—the comparison across institutional rules, which reveals that the veto structure’s value to the sender depends on the voting rule that generates it.
+**The jump and overpayment.** Below the cutoff, $H$’s expected payoff is the same as under majority: $0.2 + 0.2\mu$. Above the cutoff, $H$’s expected payoff jumps to $0.4$---constant, independent of $\mu$. The source is overpayment: on the conservative branch, type $\theta = 0$ receives $0.4$ but would accept $0.2$. Weak states cannot avoid this cost because they must buy $H$’s vote without knowing the type. The jump at $\mu^* = 1/9$ is $0.18$, or about 16\% of expected surplus at the cutoff.
 
-These two forms of power are institutionally asymmetric. Under majority rule, what matters most is coalition arithmetic: who proposes, who is included, and who can be excluded. Informational advantages exist, but they operate on a linear payoff structure—beliefs about the state of the world affect expected surplus but do not create strategic discontinuities. Under unanimity, by contrast, every actor becomes pivotal. When a weak state must propose a division that requires the hegemon’s approval, and the weak state does not know the hegemon’s type, the proposal becomes a screening device. The weak state must choose between an aggressive offer (which risks rejection by the demanding type) and a conservative offer (which overpays the low type). That choice creates a cutoff in beliefs at which behavior changes discretely.
+**Bayesian persuasion exploits the jump.** The jump creates a non-convexity in $H$’s value function that Bayesian persuasion can exploit. Suppose the prior is $p < 1/9$. Without persuasion, $H$’s payoff under both rules is $0.2 + 0.2p$. But under unanimity, $H$ can design a public signal that pushes $W$’s posterior to $1/9$ with probability $9p$ (inducing conservative behavior and payoff $0.4$) and to $0$ with probability $1 - 9p$ (payoff $0.2$). The resulting expected payoff is $0.2 + 1.8p$, strictly exceeding the majority payoff of $0.2 + 0.2p$ for every $p > 0$. Under majority, the payoff is already linear, so concavification adds nothing. This is the central asymmetry: unanimity creates a non-convexity that makes information strategically productive; majority does not.
 
-The implication is that informational asymmetry becomes payoff-relevant in a qualitatively different way under unanimity than under majority. For the majority, information affects expected values but not the strategic structure of the bargaining interaction. Under unanimity, information determines whether weak states screen or pool, creating a non-convexity that can be exploited through persuasion.
-
-This logic applies most naturally to institutional settings in which technical expertise, analytical capacity, and knowledge of the gains from cooperation are distributed unevenly across states. In multilateral trade negotiations, for instance, evaluating the effects of tariff schedules, interpreting regulatory provisions, and anticipating distributive consequences requires sustained investment in specialized personnel. States with large permanent delegations and deeper technical capacity are better positioned both to assess the value of cooperation and to shape how others understand it. States with more limited resources must form beliefs based on less precise information. The voting rule determines whether this asymmetry translates into a structural bargaining advantage.
+**Preview.** The general model (Section \@ref(model) onwards) enriches this logic with $N$ players, random proposer, two-round Baron-Ferejohn bargaining with discounting ($\beta < 1$), and an explicit entry stage with cost $c$. The richer environment produces two screening cutoffs (one per round), a richer non-convexity structure, and an entry threshold that creates a second channel through which the voting rule matters. Theorem \ref{thm:main} shows that the pattern here---unanimity dominates at sufficiently optimistic priors, majority can dominate only through easier entry at pessimistic priors---generalizes with a single-crossing property.
 
 
 
@@ -135,7 +134,7 @@ The game has three stages.
 
 1. **Stage 0 (Institutional choice).** The hegemon chooses the voting rule $R \in \{M, U\}$.
 
-2. **Stage 1 (Information and entry).** Nature draws $\theta$. The hegemon observes $\theta$ and commits to a public signal structure $\pi: \{0,1\} \to \Delta(S)$. Weak states observe the realized signal $s \in S$, update to posterior $\mu = \Pr(\theta = 1 \mid s)$, and simultaneously decide whether to enter (paying cost $c$).
+2. **Stage 1 (Information and entry).** The hegemon commits to a public signal structure $\pi: \{0,1\} \to \Delta(S)$. Nature draws $\theta$; the hegemon observes $\theta$ and the signal realization $s \in S$ is generated according to $\pi$. Weak states observe $s$, update to posterior $\mu = \Pr(\theta = 1 \mid s)$, and simultaneously decide whether to enter (paying cost $c$).
 
 3. **Stage 2 (Bargaining).** If the institution forms, members play a two-round Baron-Ferejohn bargaining game over a pie of size $V(\theta)$:
     - **Round 1**: a proposer is selected uniformly at random (probability $1/N$). The proposer offers a division. All members vote according to rule $R$. If accepted, payoffs are realized. If rejected, the game proceeds to Round 2 with payoffs discounted by $\beta$.
@@ -151,6 +150,163 @@ The solution concept is Perfect Bayesian Equilibrium (PBE). Strategies are seque
 
 Throughout the game, the hegemon's information sets are singletons: $H$ knows $\theta$ at every decision node. Each weak state's information sets pool the two branches of $\theta$: at any decision node, $W_i$ knows the public signal realization and the history of proposals and responses, but not $\theta$. After the public signal, weak states hold posterior $\mu$ over $\theta$. This asymmetry is what generates the screening problem when a weak state proposes under unanimity.
 
+Figures \ref{fig:gametree-a} and \ref{fig:gametree-b} present the extensive form of the game: Figure~\ref{fig:gametree-a} covers institutional choice, Bayesian persuasion, and entry (Stages 0--1); Figure~\ref{fig:gametree-b} details the bargaining subgame under unanimity (Stage 2).
+
+\begin{landscape}
+
+\begin{figure}[H]
+\centering
+
+\begin{tikzpicture}[
+  grow=right,
+  level distance=4cm,
+  edge from parent/.style={draw,-{Latex[length=2.5mm]}},
+  every node/.style={font=\small},
+  player/.style={draw, circle, fill=white, inner sep=2pt, minimum size=7mm},
+  nature/.style={draw, circle, fill=yellow!15, inner sep=2pt, minimum size=7mm},
+  terminal/.style={draw, rectangle, fill=green!8, inner sep=3pt},
+  subgame/.style={draw, rectangle, fill=orange!12, inner sep=4pt, rounded corners=2pt},
+  infoset/.style={dashed, thick, gray},
+  level 1/.style={sibling distance=5.5cm},
+  level 2/.style={sibling distance=2.8cm},
+  level 3/.style={sibling distance=2.2cm}
+]
+
+\node [player, label={[font=\large]left:{Stage 0}}] (root) {$H$}
+%% ---- Majority branch ----
+child {
+  node [nature] (natM) {$N$}
+  child {
+    node [player] (wM0) {$W$}
+    child { node [subgame] {Bargaining $(M)$} edge from parent node[above] {enter} }
+    child { node [terminal] {$\alpha,\; 0$} edge from parent node[below] {not} }
+    edge from parent node[above] {$\theta{=}0$}
+  }
+  child {
+    node [player] (wM1) {$W$}
+    child { node [subgame] {Bargaining $(M)$} edge from parent node[above] {enter} }
+    child { node [terminal] {$\alpha r,\; 0$} edge from parent node[below] {not} }
+    edge from parent node[below] {$\theta{=}1$}
+  }
+  edge from parent node[below] {\large $R = M$}
+}
+%% ---- Unanimity branch ----
+child {
+  node [nature] (natU) {$N$}
+  child {
+    node [player] (wU0) {$W$}
+    child { node [subgame] {Bargaining $(U)$} edge from parent node[above] {enter} }
+    child { node [terminal] {$\alpha,\; 0$} edge from parent node[below] {not} }
+    edge from parent node[above] {$\theta{=}0$}
+  }
+  child {
+    node [player] (wU1) {$W$}
+    child { node [subgame] {Bargaining $(U)$} edge from parent node[above] {enter} }
+    child { node [terminal] {$\alpha r,\; 0$} edge from parent node[below] {not} }
+    edge from parent node[below] {$\theta{=}1$}
+  }
+  edge from parent node[above] {\large $R = U$}
+};
+
+% Information sets
+\draw [infoset] (wM0) -- node[midway, left, font=\small, text=gray] {$W$} (wM1);
+\draw [infoset] (wU0) -- node[midway, left, font=\small, text=gray] {$W$} (wU1);
+
+% BP annotation between branches
+\node[font=\normalsize\itshape, text=black, fill=white, inner sep=2pt]
+  at ($(root) + (2cm, 0cm)$) {$H$ designs $\pi$};
+
+\end{tikzpicture}
+
+\caption{\footnotesize Extensive form: Stages 0--1 (institutional choice, information design, and entry). At Stage~0, $H$ selects voting rule $R \in \{M,U\}$ and commits to a Bayesian persuasion signal $\pi$. Nature draws $\theta \in \{0,1\}$; weak states observe signal realization $s$, form posterior $\mu = \Pr(\theta{=}1 \mid s)$, and decide entry (cost $c$). Dashed lines: $W$'s information sets ($W$ does not observe $\theta$). Non-entry payoffs: $(u_H, u_W) = (\alpha V(\theta),\, 0)$.}\label{fig:gametree-a}
+\end{figure}
+
+\end{landscape}
+
+\begin{landscape}
+
+\begin{figure}[H]
+\centering
+
+\begin{tikzpicture}[
+  grow=right,
+  level distance=3.5cm,
+  edge from parent/.style={draw,-{Latex[length=2.5mm]}},
+  every node/.style={font=\small},
+  player/.style={draw, circle, fill=white, inner sep=2pt, minimum size=7mm},
+  nature/.style={draw, circle, fill=yellow!15, inner sep=2pt, minimum size=7mm},
+  terminal/.style={draw, rectangle, fill=green!8, inner sep=3pt},
+  subgame/.style={draw, rectangle, fill=orange!12, inner sep=4pt, rounded corners=2pt},
+  infoset/.style={dashed, thick, gray},
+  level 1/.style={sibling distance=6cm},
+  level 2/.style={sibling distance=3.2cm},
+  level 3/.style={sibling distance=2.4cm},
+  level 4/.style={sibling distance=2cm}
+]
+
+\node [nature, label={[font=\large]left:{R1}}] (r1) {$N$}
+%% ---- W proposes ----
+child {
+  node [player] (wp) {$W$}
+  %% Aggressive offer
+  child {
+    node [player] (hagg) {$H$}
+    child {
+      %% theta=1 rejects → R2 subgame (inline)
+      node [nature, label={[font=\small]above:{R2}}] (r2) {$N$}
+      child {
+        node [terminal] {$\alpha r,\;\; r{-}\alpha r{-}c$}
+        edge from parent node[above] {$W$ pr.}
+      }
+      child {
+        node [terminal] {$r,\;\; {-}c$}
+        edge from parent node[below] {$H$ pr.}
+      }
+      edge from parent node[above=5pt] {rej ($\theta{=}1$)}
+    }
+    child {
+      %% theta=0 accepts
+      node [terminal] {$\alpha,\;\; 1{-}\alpha{-}c$}
+      edge from parent node[below=5pt] {acc ($\theta{=}0$)}
+    }
+    edge from parent node[above] {agg.\ $(y_H{=}\alpha)$}
+  }
+  %% Conservative offer
+  child {
+    node [terminal] (cons) {$\alpha r,\;\; V(\theta){-}\alpha r{-}c$}
+    edge from parent node[below=2pt] {cons.\ $(y_H{=}\alpha r)$}
+  }
+  edge from parent node[above=3pt] {$W$ proposes $(\tfrac{N{-}1}{N})$}
+}
+%% ---- H proposes ----
+child {
+  node [player] (hp) {$H$}
+  child {
+    node [player] (wv) {$W$}
+    child {
+      node [subgame] {R2 subgame}
+      edge from parent node[above] {rej}
+    }
+    child {
+      node [terminal] {$V(\theta){-}(N{-}1)x_W,\; x_W{-}c$}
+      edge from parent node[below] {acc}
+    }
+    edge from parent node[below] {$x_W{=}\beta V_W^{R2}$}
+  }
+  edge from parent node[below=3pt] {$H$ proposes $(\tfrac{1}{N})$}
+};
+
+% Screening annotation
+\node[font=\normalsize\itshape, text=black, fill=white, inner sep=2pt]
+  at ($(wp) + (0cm, -2.8cm)$)
+  {$W$ screens: agg.\ iff $\mu \geq \mu_s$};
+
+\end{tikzpicture}
+
+\caption{\footnotesize Extensive form: Stage 2 (bargaining under unanimity, Rounds 1--2). Payoffs are $(u_H, u_W)$. A proposer is selected uniformly ($1/N$). When $W$ proposes, $W$ chooses between aggressive ($y_H = \alpha$) and conservative ($y_H = \alpha r$). Under the aggressive offer, type $\theta{=}0$ accepts (tie-breaking) and $\theta{=}1$ rejects, revealing the state and leading to R2 (payoffs discounted by $\beta$). In R2, $W$ knows $\theta{=}1$ (complete information); $W$ offers $\alpha r$, $H$ offers $0$; disagreement yields $(\alpha r, -c)$. When $H$ proposes in R1, $H$ offers $\beta V_W^{R2}$ to each $W$; $W$ accepts in equilibrium. Under majority rule, $H$'s vote is not pivotal, eliminating the screening mechanism (Proposition~\ref{prop:majority}).}\label{fig:gametree-b}
+\end{figure}
+
+\end{landscape}
 
 # Majority Rule: Linear Bargaining Without Screening {#majority}
 
@@ -158,13 +314,11 @@ Under majority rule, a proposal passes if it receives at least $q = \lfloor N/2 
 
 ## Terminal round (R2) under majority
 
-**When $H$ proposes** (prob $1/N$): $H$ needs $q-1$ votes from weak states. Since $d_W = 0$, each $W$ accepts any non-negative offer. $H$ offers $0$ to $q-1$ weak states, keeps $V(\theta)$.
+**When $H$ proposes** (prob $1/N$): $H$ needs $q-1$ votes from weak states. Since $d_W = 0$, each $W$ accepts any non-negative offer. $H$ offers $0$ to each of $q-1$ weak states and keeps $V(\theta)$.
 
-**When $W_j$ proposes** (prob $1/N$): $W_j$ is indifferent between excluding $H$ from the coalition and including $H$ at reservation value $\alpha V(\theta)$. Under exclusion, the coalition of weak states divides $(1-\alpha)V(\theta)$ (since $H$ captures $\alpha V(\theta)$ bilaterally regardless). Under inclusion, $W_j$ offers $\alpha V(\theta)$ to $H$ and the full pie is divided. Either way, $H$ receives $\alpha V(\theta)$ and $W_j$ captures the same residual. By convention (WLOG), $W$ includes $H$ at cost $\alpha V(\theta)$.
+**When $W_j$ proposes** (prob $1/N$): $W_j$ excludes $H$ from the winning coalition and assembles a majority from the other $q-1$ weak states (each offered $0$). The hegemon, excluded from the proposal, captures $\alpha V(\theta)$ from its bilateral alternative. The proposing weak state keeps $V(\theta) - \alpha V(\theta) = (1-\alpha)V(\theta)$.
 
-The indifference that sustains this convention relies on the hegemon's outside option being deterministic and immediately available: $H$ captures $\alpha V(\theta)$ whether included in the proposal or not. If executing the bilateral alternative involved frictions---delay, reputational costs, or uncertainty about bilateral partners---the equivalence would break and the convention would become a substantive modeling choice. In the present model, however, the outside option is a reduced-form parameter representing the hegemon's best alternative to multilateral cooperation, and it is natural to treat it as frictionless. Importantly, the convention does not affect the comparison between majority and unanimity: under both rules, $H$'s disagreement payoff is the same $\alpha V(\theta)$. What differs is whether $H$'s acceptance is pivotal for passage---and that is determined by the voting rule, not by the inclusion convention.
-
-Since $H$'s vote is not pivotal, there is no screening: $H$ receives the type-specific payoff $\alpha V(\theta)$ regardless of $W$'s beliefs.
+Since $H$ is excluded and captures $\alpha V(\theta)$ regardless of $W$'s beliefs, there is no screening problem: $H$'s payoff does not depend on the posterior $\mu$.
 
 The R2 continuation values are:
 \begin{align}
@@ -176,7 +330,7 @@ Both are affine in $\mu$. No screening, no jump.
 
 ## First round (R1) under majority
 
-When $H$ proposes in R1: $H$ offers $\beta V_W^{R2}(\mu, M)$ to each of $q-1$ weak states (their discounted R2 continuation). When $W$ proposes in R1: $W$ offers $\beta V_H^{R2}(\theta, M)$ to $H$---but since $H$'s vote is not pivotal, the exact offer to $H$ is irrelevant for passage. $H$ receives $\alpha V(\theta)$ from the outside option (or equivalently from a matching offer if included by convention).
+When $H$ proposes in R1: $H$ offers $\beta V_W^{R2}(\mu, M)$ to each of $q-1$ weak states (their discounted R2 continuation). When $W$ proposes in R1: $W$ excludes $H$ from the winning coalition and buys $q-1$ weak states at their discounted R2 continuation value. The hegemon, excluded, receives $\alpha V(\theta)$ from its bilateral alternative.
 
 The key point: everything remains linear in $\mu$.
 
@@ -401,7 +555,7 @@ VH_R1_majority <- function(r, alpha, mu, N, beta) {
   VW_R2_M <- (1 - alpha) * Ve / N
   # H proposes (prob 1/N): buys q-1 weak states at beta*VW_R2_M each
   H_prop <- (Ve - (q - 1) * beta * VW_R2_M) / N
-  # W proposes (prob (N-1)/N): H gets alpha*V(theta) (bilateral alternative, not pivotal)
+  # W proposes (prob (N-1)/N): W excludes H; H captures alpha*V(theta) bilaterally
   W_prop_H <- (N - 1) / N * alpha * Ve
   EVH <- H_prop + W_prop_H
   return(EVH)
@@ -765,7 +919,7 @@ Several extensions remain. First, if weaker states can invest in independent ana
 
 ## A.1 Majority: R2 and R1 {-}
 
-Under majority, weak proposers can form a winning coalition without $H$'s vote. By the WLOG inclusion convention, $W$ offers $H$ exactly $\alpha V(\theta)$ and the proposal passes regardless. $H$'s payoff is type-specific and does not depend on $W$'s beliefs.
+Under majority, weak proposers form a winning coalition from other weak states, excluding $H$. The hegemon captures $\alpha V(\theta)$ from its bilateral alternative. $H$'s payoff is type-specific and does not depend on $W$'s beliefs.
 
 R2 continuation values:
 \begin{align}
@@ -829,7 +983,7 @@ Under majority, the budget identity $E[V_H] + (N-1)V_W = V_e(\mu)$ holds exactly
 
 ## B.1 Proof of Proposition 1 (Majority produces no screening) {-}
 
-Under majority rule, $W$'s proposal passes with $q-1$ votes from other weak states. $H$'s vote is not required. Therefore $W$'s choice of what to offer $H$ has no consequence for whether the proposal passes. $W$ is indifferent between any offer; by convention, $W$ includes $H$ at $\alpha V(\theta)$. Since $H$ receives the same type-specific payoff regardless of $\mu$, there is no screening and no jump. All continuation values are affine in $V_e(\mu)$, hence affine in $\mu$. $\square$
+Under majority rule, $W$'s proposal passes with $q-1$ votes from other weak states. $H$'s vote is not required. $W$ excludes $H$ from the winning coalition; $H$ captures $\alpha V(\theta)$ from its bilateral alternative regardless of $\mu$. There is no screening and no jump. All continuation values are affine in $V_e(\mu)$, hence affine in $\mu$. $\square$
 
 ## B.2 Proof of Proposition 3 (R1 cutoff existence and uniqueness) {-}
 
