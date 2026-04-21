@@ -729,7 +729,7 @@ In practice, major trading powers exercise informal agenda influence through the
 
 The model's mechanism explains a pattern that existing accounts describe but do not fully explain: powerful states in the WTO appear to benefit from consensus despite lacking formal agenda control. The mechanism is not merely that informal practices survive consensus, but that consensus creates the strategic environment---pivotal inclusion under uncertainty---in which informational power becomes most valuable. The model does not claim that the GATT/WTO was designed for this reason, or that all aspects of WTO politics reduce to this mechanism. It shows that consensus and informational asymmetry interact in a way that can benefit powerful states, offering one explanation for why hegemonic preference for consensus is not paradoxical.
 
-The informational mechanism generates a distinctive observable implication: the hegemon's advantage from consensus should be largest in negotiations where informational asymmetry is substantial and where weak states lack independent analytical capacity. In the WTO context, this suggests that consensus should matter most in complex regulatory areas---services, intellectual property, investment---where evaluating proposals requires deep technical expertise, and least in areas where distributive consequences are transparent, such as linear tariff cuts. This prediction distinguishes the informational mechanism from legitimacy accounts (which predict consensus matters uniformly) and from self-enforcement accounts (which predict consensus matters most when enforcement is weak, regardless of information).
+The informational mechanism generates a distinctive observable implication: the hegemon's advantage from consensus should be largest in negotiations where informational asymmetry is substantial and where weak states lack independent analytical capacity. In the WTO context, this suggests that consensus should matter most in complex regulatory areas---services, intellectual property, investment---where evaluating proposals requires deep technical expertise, and least in areas where distributive consequences are transparent, such as linear tariff cuts. This prediction distinguishes the informational mechanism from legitimacy accounts (which predict consensus matters uniformly) and from self-enforcement accounts (which predict consensus matters most when enforcement is weak, regardless of information).^[The $K > 2$ extension in Appendix D provides a formal basis for this implication. As the number of relevant states increases---corresponding to negotiations that bundle multiple issue dimensions under a Single Undertaking (intellectual property, services, industrial goods, agriculture)---the parametric threshold $\alpha_3^*$ tightens: the hegemon needs a weaker outside option for unanimity to dominate. In the model, higher $K$ dilutes informational power because the screening problem becomes more complex, with correction terms that can work against $H$ (see Section D.5). This is consistent with the contrast between focused early GATT rounds (few issue dimensions, $K$ effectively small, consensus effective) and the Doha Round (many dimensions bundled via Single Undertaking, $K$ large, consensus stalled). The erosion is not merely about weaker states acquiring expertise---it is also about the dimensionality of the agenda itself.]
 
 ## Scope {#scope}
 
@@ -1045,15 +1045,31 @@ The proof is identical to the $K = 2$ case. Under majority, $W$ never needs $H$'
 
 ## D.5 Conditional Payoff Dominance {-}
 
+The proof of Lemma \ref{lem:conditional} generalizes to $K = 3$ via a backbone-plus-corrections decomposition. Define:
+\[
+A \equiv \frac{N-(N-1)\beta}{N^2}, \qquad B \equiv \frac{(N-1)\beta r_2(1+N\alpha)}{N^2}.
+\]
+In the HIGH regime (all types accept in both rounds), $H$'s expected R1 payoff under unanimity is $A \cdot V_e(\mu) + B$, which is affine in $\mu$ on $\Delta^2$. The backbone of the payoff difference is:
+\[
+D_{\text{base}}^{K3}(\mu) \equiv A \cdot V_e(\mu) + B - \lambda_M V_e(\mu) = (A - \lambda_M)V_e(\mu) + B.
+\]
+Since $(A - \lambda_M) < 0$ for typical parameters, $D_{\text{base}}^{K3}$ is minimized at the vertex $(0,0,1)$ where $V_e = r_2$. Direct computation yields:
+\[
+D_{\text{base}}^{K3}(0,0,1) = \frac{r_2[P - Q(1-\beta)]}{N^2},
+\]
+which is identical to $D_{\text{base}}(1)$ in the $K = 2$ model (with $r_2$ replacing $r$). Thus $D_{\text{base}}^{K3} > 0$ on all of $\Delta^2$ if and only if $\alpha < \alpha^*(N, \beta)$---the same condition as Lemma \ref{lem:conditional}.
+
+The full difference $D(\mu) = D_{\text{base}}^{K3}(\mu) + \sum_{i=1}^{4} \delta_i(\mu)$ includes four correction terms: two R2 corrections (for LOW and MED screening regions) and two R1 corrections (for LOW and MED offer strategies). Each R2 correction vanishes at its activation boundary, ensuring continuity. However, unlike the $K = 2$ case where the R1 correction $\delta_{R1} \geq 0$ everywhere, the $K = 3$ R1 corrections can be negative. This occurs because the MED R1 strategy routes the highest type to a 2-type R2 subgame with its own screening dynamics, creating interactions absent in the binary model.
+
 \begin{proposition}[Conditional Dominance for $K = 3$]\label{prop:k3_conditional}
-For $K = 3$ with values $(1, r_1, r_2)$, there exists a threshold $\alpha_3^*(N, \beta, r_1, r_2)$ such that for all $\alpha < \alpha_3^*$ and all $\mu \in \operatorname{int}(\Delta^2)$,
+For $K = 3$ with values $(1, r_1, r_2)$, there exists a threshold $\alpha_3^*(N, \beta, r_1, r_2) \leq \alpha^*(N, \beta)$ such that for all $\alpha < \alpha_3^*$ and all $\mu \in \operatorname{int}(\Delta^2)$,
 \[
 D(\mu) \equiv E_\theta[V_H^{R1}(\theta, \mu, U)] - E_\theta[V_H^{R1}(\theta, \mu, M)] > 0.
 \]
-The threshold $\alpha_3^*$ is characterized numerically.
+The threshold satisfies $\alpha_3^* = \alpha^*(N,\beta)$ when $r_2 - r_1 \to 0$ (degeneration to $K=2$) and $\alpha_3^* < \alpha^*(N,\beta)$ in general. Since $D$ is piecewise affine on $\Delta^2$, $\alpha_3^*$ is characterized by a finite system: $\alpha_3^* = \sup\{\alpha \in (0, 1/r_2) : \min_{v \in \mathcal{V}} D(v, \alpha) > 0\}$, where $\mathcal{V}$ is the finite set of vertices of the screening partition of $\Delta^2$.
 \end{proposition}
 
-The proof strategy mirrors Lemma \ref{lem:conditional}: the payoff difference decomposes into a backbone term that is affine in $\mu$ (and positive under the parametric restriction on $\alpha$) plus correction terms at each screening boundary that are either non-negative or vanish at their activation point. With $K = 3$, there are four correction terms (two R2 boundaries and two R1 boundaries) rather than two, but the logic is unchanged.
+The ratio $\alpha_3^*/\alpha^*$ decreases as $r_2/r_1$ increases: greater type heterogeneity tightens the parametric restriction, because the correction terms become more negative. Intuitively, more states of the world dilute $H$'s informational advantage---$W$ faces a richer inference problem at each screening boundary, and the recursive 2-type subgames (after partial rejection in R1) create cross-boundary interactions that reduce $H$'s screening rent.
 
 ```{r k3-robustness-table, echo=FALSE, message=FALSE, warning=FALSE}
 # Source the K=3 verification script and display results
@@ -1067,7 +1083,7 @@ if (exists("robustness_table")) {
 }
 ```
 
-The baseline parameterization ($r_1 = 1.5$, $r_2 = 2.5$, $\alpha = 0.3$, $\beta = 0.9$, $N = 5$) passes with $\min D = 0.031$ on a fine grid over $\Delta^2$. Failures occur at $\beta = 0.7$, consistent with the $K = 2$ model: $\alpha^*(5, 0.7) = 0.189 < 0.3$, so the parametric condition $\alpha < \alpha^*$ is violated. When the grid is re-run with $\alpha = 0.15$ (below $\alpha^*$), all parameterizations pass.
+The baseline parameterization ($r_1 = 1.5$, $r_2 = 2.5$, $\alpha = 0.3$, $\beta = 0.9$, $N = 5$) passes with $\min D = 0.031$ on a fine grid over $\Delta^2$. Failures occur at $\beta = 0.7$, consistent with the backbone analysis: $\alpha^*(5, 0.7) = 0.189 < 0.3$, so even the backbone condition is violated. When the grid is re-run with $\alpha = 0.15$ (below $\alpha_3^*$), all parameterizations pass.
 
 ## D.6 Bayesian Persuasion on the 2-Simplex {-}
 
