@@ -656,7 +656,7 @@ In practice, major trading powers exercise informal agenda influence through the
 
 The model's mechanism explains a pattern that existing accounts describe but do not fully explain: powerful states in the WTO appear to benefit from consensus despite lacking formal agenda control. The mechanism is not merely that informal practices survive consensus, but that consensus creates the strategic environment---pivotal inclusion under uncertainty---in which informational power becomes most valuable. The model does not claim that the GATT/WTO was designed for this reason, or that all aspects of WTO politics reduce to this mechanism. It shows that consensus and informational asymmetry interact in a way that can benefit powerful states, offering one explanation for why hegemonic preference for consensus is not paradoxical.
 
-The informational mechanism generates a distinctive observable implication: the hegemon's advantage from consensus should be largest in negotiations where informational asymmetry is substantial and where weak states lack independent analytical capacity. In the WTO context, this suggests that consensus should matter most in complex regulatory areas---services, intellectual property, investment---where evaluating proposals requires deep technical expertise, and least in areas where distributive consequences are transparent, such as linear tariff cuts. This prediction distinguishes the informational mechanism from legitimacy accounts (which predict consensus matters uniformly) and from self-enforcement accounts (which predict consensus matters most when enforcement is weak, regardless of information).^[The $K > 2$ extension in Appendix C provides a formal basis for this implication. As the number of relevant states increases---corresponding to negotiations that bundle multiple issue dimensions under a Single Undertaking (intellectual property, services, industrial goods, agriculture)---the parametric threshold $\alpha_3^*$ tightens: the hegemon needs a weaker outside option for unanimity to dominate. In the model, higher $K$ dilutes informational power because the screening problem becomes more complex, with correction terms that can work against $H$ (see Section C.5). This is consistent with the contrast between focused early GATT rounds (few issue dimensions, $K$ effectively small, consensus effective) and the Doha Round (many dimensions bundled via Single Undertaking, $K$ large, consensus stalled). The erosion is not merely about weaker states acquiring expertise---it is also about the dimensionality of the agenda itself.]
+The informational mechanism generates a distinctive observable implication: the hegemon's advantage from consensus should be largest in negotiations where informational asymmetry is substantial and where weak states lack independent analytical capacity. In the WTO context, this suggests that consensus should matter most in complex regulatory areas---services, intellectual property, investment---where evaluating proposals requires deep technical expertise, and least in areas where distributive consequences are transparent, such as linear tariff cuts. This prediction distinguishes the informational mechanism from legitimacy accounts (which predict consensus matters uniformly) and from self-enforcement accounts (which predict consensus matters most when enforcement is weak, regardless of information).^[Appendix C shows that with $K > 2$ types, unanimity generates $K-1$ screening boundaries while majority remains linear. More issue dimensions increase the number of screening regions but also make the screening problem harder for the hegemon, suggesting that the mechanism is strongest in focused negotiations.]
 
 **The GATT-to-WTO transition.** The model's institutional comparison offers a lens for understanding the evolution of decision-making rules in the multilateral trading system. The GATT 1947 provided for formal majority voting---simple majority for joint action, two-thirds for amendments---and voting was used regularly in the organization's early years. Beginning in the late 1950s, however, consensus gradually displaced voting as the operative decision-making norm; since 1959, virtually all GATT/WTO legislative decisions have been taken by consensus [@steinberg2002shadow, 344]. The transition coincided with the *en masse* accession of developing countries, which fundamentally changed both the size and the informational composition of the membership.
 
@@ -1013,7 +1013,7 @@ Since each case admits at most one crossing, the comparison has the single-cross
 
 # Appendix C: Robustness to $K > 2$ Types {-}
 
-This appendix extends the model to $K > 2$ types and verifies that the institutional comparison is robust. The analysis serves two purposes: it demonstrates that the screening mechanism generalizes beyond the binary state space, and it confirms numerically that unanimity dominance survives with richer type structures.
+This appendix shows that the screening mechanism and the majority-linearity result both generalize to $K > 2$ types.
 
 ## C.1 Setup {-}
 
@@ -1037,24 +1037,7 @@ The weak proposer's payoff from an offer targeting type $k$ is $\sum_{j \leq k} 
 
 For $K = 3$ with values $(1, r_1, r_2)$, the R2 screening produces three regions separated by two boundaries. The continuation values for $H$ in R2 follow the same logic as the binary case: under a low offer (targeting $\theta = 0$), types $\theta = 1$ and $\theta = 2$ are overpaid; under a medium offer (targeting $\theta = 1$), only $\theta = 2$ is overpaid; under a high offer (targeting $\theta = 2$), all types receive their outside option. The key pattern persists: low types receive strictly more than their outside option whenever $W$ targets a higher type, and the highest type $\theta = 2$ always receives $r_2(1 + (N-1)\alpha)/N$ regardless of the screening region.
 
-## C.3 R1 Screening under Unanimity {-}
-
-In R1, the proposing weak state faces a richer strategic choice. With three types, there are three possible offer strategies:
-
-1. **HIGH offer**: sets reservation at $\alpha V(\theta_2) = \alpha r_2$. All types accept. Costly but avoids delay.
-2. **MEDIUM offer**: sets reservation at $\alpha V(\theta_1) = \alpha r_1$. Types $\theta \in \{0, 1\}$ accept; type $\theta = 2$ rejects and the game proceeds to R2 with the posterior updated to $\mu_2 = 1$ (certain high type).
-3. **LOW offer**: sets reservation at $\alpha V(\theta_0) = \alpha$. Only type $\theta = 0$ accepts; types $\theta \in \{1, 2\}$ reject, creating a 2-type R2 subgame on $\{\theta_1, \theta_2\}$.
-
-The low-offer rejection is structurally important: it creates a 2-type R2 subgame on $\{\theta_1, \theta_2\}$ that is identical to the screening problem solved in the main model (with values $r_1$ and $r_2$ replacing $1$ and $r$). This recursive tractability means the $K = 3$ analysis builds directly on the $K = 2$ results rather than requiring entirely new machinery.
-
-The 2-simplex is partitioned into three R1 regions by two indifference surfaces. At each boundary, the hegemon's expected payoff $E[V_H^{R1}(\mu)]$ jumps upward:
-
-- **Jump 1** (LOW $\to$ MEDIUM boundary): type $\theta = 0$ transitions from receiving its outside option to being overpaid. The jump magnitude depends on $(1-\mu_0)$ and the gap $\alpha(r_1 - 1)$.
-- **Jump 2** (MEDIUM $\to$ HIGH boundary): both types $\theta = 0$ and $\theta = 1$ transition from partial overpayment to full overpayment. The jump magnitude depends on the combined weight of low and medium types and the gap $\alpha(r_2 - r_1)$.
-
-The cutoff surfaces are characterized by the indifference conditions of the proposing weak state and are found numerically for specific parameterizations.
-
-## C.4 Majority: No Screening {-}
+## C.3 Majority: No Screening {-}
 
 \begin{proposition}[Linearity of $H$'s Payoff under Majority for General $K$]\label{prop:k_majority_linear}
 Under majority rule with $K$ types, $E_\theta[V_H^{R1}(\theta, \mu, M)] = \lambda_M V_e(\mu)$, where $\lambda_M$ is defined as in Theorem \ref{thm:main}. No screening cutoff exists for any $K$.
@@ -1064,78 +1047,7 @@ Under majority rule with $K$ types, $E_\theta[V_H^{R1}(\theta, \mu, M)] = \lambd
 The proof is identical to the $K = 2$ case. Under majority, $W$ never needs $H$'s vote; $H$ receives $\alpha V(\theta)$ in every coalition that forms and $\alpha V(\theta)$ as its outside option. Since $H$'s payoff is $\alpha V(\theta)$ type by type, the expectation is $\alpha V_e(\mu)$ scaled by the bargaining multiplier $\lambda_M / \alpha$. The belief $\mu$ enters only through $V_e(\mu)$, so the payoff is affine in $\mu$ (and hence in $V_e$) regardless of $K$.
 \end{proof}
 
-## C.5 Conditional Payoff Dominance {-}
-
-The proof of Lemma \ref{lem:conditional} generalizes to $K = 3$ via a backbone-plus-corrections decomposition. Define:
-\[
-A \equiv \frac{N-(N-1)\beta}{N^2}, \qquad B \equiv \frac{(N-1)\beta r_2(1+N\alpha)}{N^2}.
-\]
-In the HIGH regime (all types accept in both rounds), $H$'s expected R1 payoff under unanimity is $A \cdot V_e(\mu) + B$, which is affine in $\mu$ on $\Delta^2$. The backbone of the payoff difference is:
-\[
-D_{\text{base}}^{K3}(\mu) \equiv A \cdot V_e(\mu) + B - \lambda_M V_e(\mu) = (A - \lambda_M)V_e(\mu) + B.
-\]
-Since $(A - \lambda_M) < 0$ for typical parameters, $D_{\text{base}}^{K3}$ is minimized at the vertex $(0,0,1)$ where $V_e = r_2$. Direct computation yields:
-\[
-D_{\text{base}}^{K3}(0,0,1) = \frac{r_2[P - Q(1-\beta)]}{N^2},
-\]
-which is identical to $D_{\text{base}}(1)$ in the $K = 2$ model (with $r_2$ replacing $r$). Thus $D_{\text{base}}^{K3} > 0$ on all of $\Delta^2$ if and only if $\alpha < \alpha^*(N, \beta)$---the same condition as Lemma \ref{lem:conditional}.
-
-The full difference $D(\mu) = D_{\text{base}}^{K3}(\mu) + \sum_{i=1}^{4} \delta_i(\mu)$ includes four correction terms: two R2 corrections (for LOW and MED screening regions) and two R1 corrections (for LOW and MED offer strategies). Each R2 correction vanishes at its activation boundary, ensuring continuity. However, unlike the $K = 2$ case where the R1 correction $\delta_{R1} \geq 0$ everywhere, the $K = 3$ R1 corrections can be negative. This occurs because the MED R1 strategy routes the highest type to a 2-type R2 subgame with its own screening dynamics, creating interactions absent in the binary model.
-
-\begin{proposition}[Conditional Dominance for $K = 3$]\label{prop:k3_conditional}
-For $K = 3$ with values $(1, r_1, r_2)$, there exists a threshold $\alpha_3^*(N, \beta, r_1, r_2) \leq \alpha^*(N, \beta)$ such that for all $\alpha < \alpha_3^*$ and all $\mu \in \operatorname{int}(\Delta^2)$,
-\[
-D(\mu) \equiv E_\theta[V_H^{R1}(\theta, \mu, U)] - E_\theta[V_H^{R1}(\theta, \mu, M)] > 0.
-\]
-The threshold satisfies $\alpha_3^* = \alpha^*(N,\beta)$ when $r_2 - r_1 \to 0$ (degeneration to $K=2$) and $\alpha_3^* < \alpha^*(N,\beta)$ in general. Since $D$ is piecewise affine on $\Delta^2$, $\alpha_3^*$ is characterized by a finite system: $\alpha_3^* = \sup\{\alpha \in (0, 1/r_2) : \min_{v \in \mathcal{V}} D(v, \alpha) > 0\}$, where $\mathcal{V}$ is the finite set of vertices of the screening partition of $\Delta^2$.
-\end{proposition}
-
-The ratio $\alpha_3^*/\alpha^*$ decreases as $r_2/r_1$ increases: greater type heterogeneity tightens the parametric restriction, because the correction terms become more negative. Intuitively, more states of the world dilute $H$'s informational advantage---$W$ faces a richer inference problem at each screening boundary, and the recursive 2-type subgames (after partial rejection in R1) create cross-boundary interactions that reduce $H$'s screening rent.
-
-```{r k3-robustness-table, echo=FALSE, message=FALSE, warning=FALSE}
-# Source the K=3 verification script and display results
-source("scripts/k3_verification.R", local = TRUE)
-
-if (exists("robustness_table")) {
-  knitr::kable(robustness_table,
-               caption = "Numerical verification of conditional dominance ($D(\\mu) > 0$) for $K = 3$ across parameterizations. Grid: uniform mesh on $\\Delta^2$.",
-               booktabs = TRUE,
-               digits = 4)
-}
-```
-
-The baseline parameterization ($r_1 = 1.5$, $r_2 = 2.5$, $\alpha = 0.3$, $\beta = 0.9$, $N = 5$) passes with $\min D = 0.031$ on a fine grid over $\Delta^2$. Failures occur at $\beta = 0.7$, consistent with the backbone analysis: $\alpha^*(5, 0.7) = 0.189 < 0.3$, so even the backbone condition is violated. When the grid is re-run with $\alpha = 0.15$ (below $\alpha_3^*$), all parameterizations pass.
-
-## C.6 Bayesian Persuasion on the 2-Simplex {-}
-
-With $K = 3$ types, the prior lives on the 2-simplex $\Delta^2$. The hegemon's value function under rule $R$ is
-\[
-v(\mu, R) = \begin{cases}
-0 & \text{if } V_W^{R1}(\mu, R) < c, \\
-E_\theta[V_H^{R1}(\theta, \mu, R)] & \text{if } V_W^{R1}(\mu, R) \geq c.
-\end{cases}
-\]
-The entry threshold is now a curve in $\Delta^2$ rather than a point on $[0,1]$. Under unanimity, the screening boundaries create additional non-convexities. Concavification on $\Delta^2$ is computed numerically via linear programming: for each prior $p$, the concave envelope $\operatorname{cav} v(p, R)$ is the supremum over all Bayes-plausible distributions of posteriors, obtained by solving an LP over a discretized grid of the simplex [@kamenica2011bayesian].
-
-```{r k3-heatmap, echo=FALSE, fig.cap="Institutional comparison on the 2-simplex ($K=3$, $r_1=1.5$, $r_2=2.5$, $N=5$, $\\alpha=0.3$, $\\beta=0.9$, $c=0.1$). Blue: majority dominates after Bayesian persuasion. Red: unanimity dominates. Unanimity dominates for nearly all priors; majority dominates only in a small region near the $\\theta=0$ vertex where entry costs are prohibitive under unanimity.", out.width="85%", fig.align="center"}
-knitr::include_graphics("figures/k3_heatmap_institutional.pdf")
-```
-
-```{r k3-surfaces, echo=FALSE, fig.cap="Value functions on the 2-simplex. Left: $v(\\mu, U)$ under unanimity shows discrete color bands corresponding to the three screening regions, with visible jumps at region boundaries. Right: $v(\\mu, M)$ under majority shows a smooth gradient, confirming that the payoff is affine in $E[V(\\theta)]$.", out.width="100%", fig.align="center"}
-knitr::include_graphics("figures/k3_value_surfaces.pdf")
-```
-
-Figures \@ref(fig:k3-heatmap) and \@ref(fig:k3-surfaces) confirm the qualitative pattern from the $K = 2$ analysis. Unanimity dominates for approximately 99.7% of priors in the interior of $\Delta^2$. Majority dominates only in a small region near the $\theta = 0$ vertex, where the prior assigns very high probability to the low type. In this region, entry is costly under unanimity (because $W$'s expected payoff is low when most of the probability mass is on the lowest type) and the screening mechanism provides little benefit (because there is almost no probability mass on higher types to generate overpayment). The single-crossing property from Theorem \ref{thm:main} generalizes to the 2-simplex as a curve separating the two regimes rather than a single threshold point.
-
-## C.7 Discussion {-}
-
-The $K = 3$ extension reveals a structural pattern. With $K$ types, there are $K - 1$ screening cutoffs in R2 (Proposition \ref{prop:k_general_screening}) and up to $K - 1$ cutoffs in R1, each creating an upward jump in the hegemon's value function. The non-convexity structure is strictly richer than in the binary case: more types create more screening boundaries and therefore more opportunities for Bayesian persuasion to exploit. The binary model is the minimal case that captures the mechanism, not the limit of its applicability.
-
-Under majority, the linearity result (Proposition \ref{prop:k_majority_linear}) holds for arbitrary $K$. The hegemon is never pivotal, so its payoff is always a fixed multiple of $V_e(\mu)$. No amount of type richness can create screening under majority. This asymmetry---unanimity generates $O(K)$ non-convexities while majority generates none---is the fundamental driver of the institutional comparison.
-
-The conditional dominance result (Proposition \ref{prop:k3_conditional}) and the Bayesian persuasion comparison (Figures \@ref(fig:k3-heatmap) and \@ref(fig:k3-surfaces)) both survive with $K = 3$. The parametric restriction on $\alpha$ becomes $\alpha < \alpha_3^*$, which depends on the full type structure $(r_1, r_2)$ in addition to $(N, \beta)$. For the empirically relevant range of parameters, this condition is satisfied.
-
-Full analytical treatment for $K > 3$ requires tracking $O(K^2)$ region combinations (each R1 strategy paired with each R2 continuation), and concavification on $\Delta^{K-1}$ is computationally intensive. These are practical rather than conceptual obstacles. The applied Bayesian persuasion literature almost universally works with binary states [@kamenica2011bayesian; @dworczak2019simple], and the $K = 3$ analysis demonstrates that the qualitative results generalize beyond this standard assumption: more types create more screening opportunities, majority remains linear, and unanimity continues to dominate for the vast majority of priors.
+Together, Propositions \ref{prop:k_general_screening} and \ref{prop:k_majority_linear} establish the key asymmetry for general $K$: unanimity generates $K-1$ screening boundaries (each a potential source of non-convexity), while majority remains linear regardless of $K$. The binary model is the minimal case that captures this mechanism.
 
 
 # References {-}
