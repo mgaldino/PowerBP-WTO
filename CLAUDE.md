@@ -9,9 +9,13 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 
 ## Status
 
-- **Fase**: REVISÃO DE EXPOSIÇÃO pós editorial review (7.5/10). Journal target: AJPS → JoP → RIO.
-- **Paper**: `formal_model_v2.Rmd` — versão com revisões de exposição em andamento.
-- **Editorial review**: `quality_reports/2026-04-21_review-formal-model.md` — carta editorial + 3 pareceres (Design 8/10, Técnica 7/10, Exposição 7/10).
+- **Fase**: REVISÃO PÓS-REVIEW v3. Journal target: JoP → AJPS → RIO.
+- **Paper v3** (ATIVO): `formal_model_v3.Rmd` — versão "light math" para submissão. Corpo conta a história, provas no appendix. Estilo JoP (Hirsch 2023, Hill 2022, Tyson et al. 2024).
+- **Paper v2** (ARQUIVO): `formal_model_v2.Rmd` — versão densa com provas no corpo. Preservada para referência e caso pareceristas peçam detalhes.
+- **Reviews v3**: `quality_reports/2026-04-22_edmans-review-v3.md` (7.3/10) + `quality_reports/2026-04-22_review-formal-model-v3.md` (7.7/10).
+- **Coarse review**: `coarse-output/coarse_0b50af74_coarse_review_cli_claude.md` — review externa importante, consultar antes de submeter.
+- **Resultado novo**: α* é iff (necessário E suficiente). Nota: `notes/2026-04-22_alpha_star_iff.md`. Verificado.
+- **Next steps**: `quality_reports/plans/2026-04-22_next-steps-v3.md` — 7 prioridades ordenadas.
 - **Nota técnica**: `notes/2026-04-19_formalizacao_v2.Rmd` — derivações base (superseded pelo paper).
 - **Prova do Lemma 1**: `notes/2026-04-21_lemma1_complete_proof.md` — prova completa verificada.
 
@@ -42,16 +46,29 @@ Condicional à entrada: H prefere unanimidade (overpayment de θ=0), W prefere m
 
 ## TODOs
 
-### PRÓXIMO PASSO
-- [ ] Encurtar intro (laundry list, "three contributions", condensar §2+§3)
-- [ ] Observable implication na intro
-- [ ] Reestruturar Theorem 1 (theorem + corollary + worked example)
-- [ ] Tie-breaking convention → footnote
-- [ ] Explicitar novidade vs formalização (Steinberg, Gould)
-- [ ] Considerar renomear "informational power"
-- [ ] Calibração numérica GATT/WTO (rough r, α, N)
-- [ ] Limpar .bib: 20 entradas fantasma, proteger capitalização de títulos
-- [ ] Submeter ao AJPS
+### PRÓXIMO PASSO (v3, pós-review)
+Ver plano detalhado: `quality_reports/plans/2026-04-22_next-steps-v3.md`
+- [ ] **P1**: Lemma 1 → iff (α* necessário E suficiente) + Remark μ̄
+- [ ] **P2**: Tabela numérica μ̄ no Scope (N=164, α=0.08 → μ̄=0.80)
+- [ ] **P3**: Worked example após Theorem 1 (computar p*)
+- [ ] **P4**: τ(U) closed-form no appendix
+- [ ] **P5**: Proof sketch para Prop 5 (agenda influence)
+- [ ] **P6**: Ajustes de exposição (harmonizar termos, comprimir Discussion, magnitudes no abstract)
+- [ ] **P7**: Consultar coarse review antes de submeter
+- [ ] Limpar .bib: entradas fantasma
+- [ ] Submeter ao JoP
+
+### CONCLUÍDO (sessão 2026-04-21 — v3 light math)
+- [x] v3 criado: corpo leve, provas no appendix (estilo JoP: Hirsch 2023, Hill 2022, Tyson et al. 2024)
+- [x] Majority: 2 subsections com equações → 1 parágrafo + Prop 1 + intuição
+- [x] Unanimity: mecanismo descrito por referência ao motivating example, sem repetir offers. Provas no appendix
+- [x] Entry/BP: 3 subsections → bloco corrido compacto
+- [x] Theorem 1: sem bloco de notação (λ_M, κ_M, S_U, S_M), sem prova no corpo, statement simplificado (2 cases, não 4)
+- [x] Seção 3 (Institutional Comparison) eliminada — d_W/d_H viram footnotes, design justifications vão para Scope
+- [x] Tie-breaking → footnote
+- [x] Todas as intuições reescritas em linguagem substantiva (estilo Hirsch: sem parênteses com variáveis)
+- [x] Ganho: ~5 páginas (Theorem 1 ~p.13-14 vs ~p.18-19 no v2)
+- [x] Papers de referência baixados: references/jop_examples/
 
 ### CONCLUÍDO (sessão 2026-04-21 — editorial review)
 - [x] Editorial review completo (Design 8, Técnica 7, Exposição 7 → 7.5/10, R&R minor)
@@ -152,3 +169,5 @@ Pré-normalização: cada país tem o_i > 0 (potências médias com o_i intermed
 - N genérico sempre (N=3 apenas no exemplo motivador Seção 2)
 - x ≡ (N-1)αr como atalho notacional
 - Sob maioria: W EXCLUI H (não convenção WLOG de inclusão)
+- **v3 é o paper ativo para submissão**; v2 preservado como arquivo
+- **Estilo v3**: corpo narra o mecanismo em prosa substantiva; provas e álgebra no appendix; sem proof sketches no corpo; comparative statics em linguagem do fenômeno (não parâmetros)

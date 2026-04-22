@@ -61,7 +61,7 @@ The substantive implication is that consensus is most valuable to a hegemon when
 
 In sum, this paper contributes to the study of international organizations in three ways. First, it offers a new mechanism explaining when and why a powerful state may rationally choose unanimity rather than just accept it. Second, it reframes institutional design as a trade-off between informational leverage under unanimity and easier participation under majority, rather than solely between power and constraint. Third, it provides a formal link between voting rules and the strategic value of private information.
 
-The rest of the paper proceeds as follows. Section 2 presents a motivating example that previews the mechanism in a simplified three-player environment. Section 3 defines the institutional comparison; Section 4 presents the general model; Sections 5 and 6 derive the bargaining logic under majority and unanimity; Section 7 connects bargaining to entry and persuasion; Section 8 establishes the main result; Section 9 discusses extensions and scope; Section 10 concludes.
+The rest of the paper proceeds as follows. Section 2 presents a motivating example that previews the mechanism in a simplified three-player environment. Section 3 presents the general model. Sections 4 and 5 derive the bargaining logic under majority and unanimity, showing that unanimity creates a screening cutoff and a discrete jump in the hegemon's payoff that majority eliminates. Section 6 connects bargaining to entry and persuasion. Section 7 establishes the main result. Section 8 discusses extensions, the GATT/WTO application, and scope conditions. Section 9 concludes.
 
 
 # A Motivating Example {#example}
@@ -289,109 +289,51 @@ The paper's central result (Theorem \ref{thm:main}) establishes that the institu
 
 # Majority Rule: Linear Bargaining Without Screening {#majority}
 
-Under majority rule, a proposal passes if it receives at least $q = \lfloor N/2 \rfloor + 1$ votes. The key structural feature is that weak states can form a winning coalition without including the hegemon. When $W$ proposes, $W$ need not secure $H$'s vote---$W$ can assemble a majority from the other weak states alone. This eliminates the screening problem.
-
-## Terminal round (R2) under majority
-
-**When $H$ proposes** (prob $1/N$): $H$ needs $q-1$ votes from weak states. Since $d_W = 0$, each $W$ accepts any non-negative offer. $H$ offers $0$ to each of $q-1$ weak states and keeps $V(\theta)$.
-
-**When $W_j$ proposes** (prob $1/N$): $W_j$ excludes $H$ from the winning coalition and assembles a majority from the other $q-1$ weak states (each offered $0$). The hegemon, excluded from the proposal, captures $\alpha V(\theta)$ from its bilateral alternative. The proposing weak state keeps $V(\theta) - \alpha V(\theta) = (1-\alpha)V(\theta)$.
-
-Since $H$ is excluded and captures $\alpha V(\theta)$ regardless of $W$'s beliefs, there is no screening problem: $H$'s payoff does not depend on the posterior $\mu$.
-
-The R2 continuation values are:
-\begin{align}
-V_H^{R2}(\theta, M) &= \frac{V(\theta)[1 + (N-1)\alpha]}{N}, \label{eq:VH_R2_M} \\
-V_W^{R2}(\mu, M) &= \frac{(1-\alpha)V_e(\mu)}{N}. \label{eq:VW_R2_M}
-\end{align}
-
-Both are affine in $\mu$. No screening, no jump.
-
-## First round (R1) under majority
-
-When $H$ proposes in R1: $H$ offers $\beta V_W^{R2}(\mu, M)$ to each of $q-1$ weak states (their discounted R2 continuation). When $W$ proposes in R1: $W$ excludes $H$ from the winning coalition and buys $q-1$ weak states at their discounted R2 continuation value. The hegemon, excluded, receives $\alpha V(\theta)$ from its bilateral alternative.
-
-The key point: everything remains linear in $\mu$.
+Under majority rule, a proposal passes with $q = \lfloor N/2 \rfloor + 1$ votes. The key structural feature is that weak states can form a winning coalition without including the hegemon. When a weak state proposes, it assembles a majority from the other weak states alone; the hegemon, excluded from the coalition, captures its bilateral alternative $\alpha V(\theta)$ regardless of what weak states believe about the state of the world.
 
 \begin{proposition}[Majority rule produces no screening]\label{prop:majority}
-Under majority rule with symmetric proposal rights, the hegemon's expected continuation value $E_\theta[V_H^{R1}(\theta, \mu, M)]$ is affine in posterior beliefs $\mu$. There is no screening cutoff. Weak states' behavior does not change discretely as beliefs cross any threshold.
+Under majority rule with symmetric proposal rights, the hegemon's expected continuation value $E_\theta[V_H^{R1}(\theta, \mu, M)]$ is affine in posterior beliefs $\mu$. There is no screening cutoff.
 \end{proposition}
 
 \begin{proof}
-Under majority, $W$'s proposal passes regardless of $H$'s vote. Therefore $W$ never faces a choice between offers conditional on $H$'s acceptance. The transfer to $H$ is type-specific ($\alpha V(\theta)$) regardless of beliefs $\mu$. Since all continuation values are affine functions of $V(\theta)$, and $E[V(\theta)] = V_e(\mu)$ is affine in $\mu$, the hegemon's expected payoff is affine in $\mu$.
+See Appendix B.1.
 \end{proof}
 
-The intuition is straightforward. Majority transforms bargaining into coalition arithmetic. The hegemon's private information affects the value of the agreement, but it does not create a strategic discontinuity. There is no point at which weak states must change their behavior because they cannot identify $H$'s type. Under majority, $H$'s type is irrelevant to whether proposals pass. Bayesian persuasion under majority therefore operates only through the entry channel.
+Because the hegemon's vote is never needed, weak states never face a choice between offers that depend on inferring the hegemon's type. The hegemon's private information affects the value of the agreement but creates no strategic discontinuity. Majority transforms bargaining into coalition arithmetic: the proposer buys the cheapest votes, and the hegemon is simply paid its outside option. Bayesian persuasion under majority therefore operates only through the entry channel---it can induce weak states to participate, but it cannot extract screening rents from the bargaining process itself.
 
 
 # Consensus: Screening Through Pivotal Inclusion {#consensus}
 
-Under unanimity, every proposal requires the approval of all members, including the hegemon. This changes the bargaining logic fundamentally. When a weak state proposes, it must decide how much to offer $H$ without knowing whether the pie is high or low. That decision is a screening problem.
+Under unanimity, every proposal requires the approval of all members, including the hegemon. When a weak state proposes, it must secure $H$'s vote without knowing whether the pie is high or low. As in the motivating example (Section \@ref(example)), this creates a screening problem: the proposer must choose between an aggressive offer that only the low type accepts and a conservative offer that both types accept. The conservative offer overpays the low type---the price of uncertainty.
 
-## Terminal round (R2) under unanimity
-
-**When $H$ proposes** (prob $1/N$): $H$ must satisfy all weak states. Since $d_W = 0$, $H$ offers $0$ to each $W$. All $W$'s accept (indifferent). $H$ keeps $V(\theta)$.
-
-**When $W_j$ proposes** (prob $1/N$): $W_j$ offers $0$ to other $W$'s (accepted by indifference). $W_j$ must decide what to offer $H$. By dominance, only two offers are relevant:
-
-- **Aggressive offer** ($y_H = \alpha$): satisfies type $\theta=0$ (indifferent: $\alpha = \alpha V(0)$), but rejected by type $\theta=1$ (since $\alpha < \alpha r = \alpha V(1)$).
-- **Conservative offer** ($y_H = \alpha r$): satisfies both types (type $\theta=0$ strictly prefers $\alpha r > \alpha$; type $\theta=1$ is indifferent).
-
-The screening cutoff in R2 solves $W$'s indifference between the two offers:
-\begin{equation}\label{eq:cutoff_R2}
-\mu_s^{R2} = \frac{\alpha(r-1)}{r - \alpha}.
-\end{equation}
-
-For $\mu < \mu_s^{R2}$, $W$ plays aggressive. For $\mu > \mu_s^{R2}$, $W$ plays conservative.
-
-The R2 continuation values under unanimity are:
-\begin{align}
-V_H^{R2}(\theta=1, \mu) &= \frac{r[1+(N-1)\alpha]}{N} \quad \text{(constant in $\mu$)}, \label{eq:VH1_R2_U} \\
-V_H^{R2}(\theta=0, \mu < \mu_s^{R2}) &= \frac{1 + (N-1)\alpha}{N}, \label{eq:VH0_R2_agg} \\
-V_H^{R2}(\theta=0, \mu > \mu_s^{R2}) &= \frac{1 + (N-1)\alpha r}{N} \quad \text{(overpaid)}. \label{eq:VH0_R2_con}
-\end{align}
-
-This is the source of the mechanism. Under majority, $W$ bypasses $H$, so $H$ always receives $\alpha V(\theta)$. Under unanimity, $W$ must include $H$ but cannot distinguish types. On the conservative branch ($\mu > \mu_s^{R2}$), $W$ offers $\alpha r$ to *both* types, overpaying type $\theta=0$ by $(N-1)\alpha(r-1)/N$ relative to majority. On the aggressive branch, payoffs coincide across rules; type $\theta=1$ is unaffected for all $\mu$.
-
-## First round (R1) under unanimity {#R1consensus}
-
-**When $H$ proposes in R1** (prob $1/N$): $H$ offers $\beta V_W^{R2}(\mu)$ to each $W$. Both types make the same offer (pooling). All $W$'s accept. No information is revealed.
-
-**When $W_j$ proposes in R1** (prob $1/N$): $W_j$ faces the screening problem again, now with R2 as the continuation game. The two relevant offers are:
-
-- **Conservative offer**: $y_H^{con} = \beta(r+x)/N$, the discounted R2 value of the high type. Both types accept; the game ends in R1.
-- **Aggressive offer**: $y_H^{agg} = \beta(1+x)/N$, the discounted R2 value of the low type (under the belief that will prevail after rejection). Type $\theta=0$ accepts (indifferent). Type $\theta=1$ rejects; the game moves to R2 with $W$ knowing $\theta=1$.
+This screening logic operates in both bargaining rounds. In each round, the weak proposer's indifference between aggressive and conservative offers defines a screening cutoff: a belief threshold above which the proposer switches from aggressive to conservative treatment. The cutoffs have closed-form expressions (Appendix A).
 
 \begin{proposition}[R1 screening cutoff under consensus]\label{prop:cutoff_R1}
-Under unanimity, there exists a unique $\mu_s^{R1} \in (0,1)$ such that the weak proposer prefers the aggressive offer for $\mu < \mu_s^{R1}$ and the conservative offer for $\mu > \mu_s^{R1}$.
-
-When $\mu_s^{R1} > \mu_s^{R2}$ (which holds when $\Delta_1(\mu_s^{R2}) > 0$, i.e., when $\alpha$ is small enough that the R1 cutoff lies on the conservative R2 branch), the cutoff is given by:
+Under unanimity, there exists a unique screening cutoff $\mu_s^{R1} \in (0,1)$ such that the weak proposer prefers the aggressive offer for $\mu < \mu_s^{R1}$ and the conservative offer for $\mu > \mu_s^{R1}$. In the principal regime, the cutoff is:
 \begin{equation}\label{eq:cutoff_R1}
 \mu_s^{R1} = \frac{\phi - \sqrt{\phi^2 - 4(N-2)}}{2(N-2)}, \qquad \phi \equiv \frac{rN - \beta(N-1+r)}{\beta(r-1)}.
 \end{equation}
-In this regime, the cutoff does not depend on $\alpha$.
+In this regime, the cutoff does not depend on $\alpha$. For $\beta = 1$, it simplifies to $\mu_s^{R1} = 1/(N-2)$.
 \end{proposition}
 
 \begin{proof}
-Existence follows from boundary conditions ($\Delta_1(0) > 0$, $\Delta_1(1) < 0$); uniqueness from convexity of the quadratic. The $\alpha$-independence arises from exact cancellation on the conservative R2 branch. See Appendix A.3 for the full derivation.
+See Appendix B.2.
 \end{proof}
 
-The $\alpha$-independence is substantively important: the screening mechanism does not require a strong outside option. What matters is the informational rent $(r-1)$, patience $\beta$, and coalition structure $N$. For $\beta = 1$, the cutoff simplifies to $\mu_s^{R1} = 1/(N-2)$.
-
-## The jump in the hegemon's expected payoff
+The independence of the screening cutoff from the hegemon's outside option strength is substantively important. What determines how aggressively weak states treat the hegemon is not how valuable bilateral alternatives are, but how consequential the hegemon's private information is for the value of cooperation, how patient the bargainers are, and how many states must agree.
 
 \begin{proposition}[Screening creates an informational rent]\label{prop:jump}
-Under unanimity, the hegemon's expected continuation payoff in R1 has an upward jump at $\mu_s^{R1}$. The magnitude of the jump is:
+Under unanimity, the hegemon's expected continuation payoff in R1 has an upward jump at $\mu_s^{R1}$:
 \begin{equation}\label{eq:jump_R1}
 \text{Jump} = (1 - \mu_s^{R1}) \cdot \frac{(N-1)\beta(r-1)}{N^2} > 0.
 \end{equation}
 \end{proposition}
 
 \begin{proof}
-Below $\mu_s^{R1}$, type $\theta=0$ receives $\beta(1+x)/N$ when $W$ proposes (aggressive: accepted at reservation). Above $\mu_s^{R1}$, type $\theta=0$ receives $\beta(r+x)/N$ (conservative: overpaid). The difference is $\beta(r-1)/N$, weighted by prob $(N-1)/N$ of $W$ proposing and by $(1-\mu_s^{R1})$ for the probability that $\theta=0$.
+See Appendix B.3.
 \end{proof}
 
-At the screening cutoff, weak proposers switch from treating the hegemon as the low type to hedging against the high type. The conservative offer pays the low type as if it could be the high type, creating a discrete upward shift. The jump increases with $r$ (greater type asymmetry) and $\beta$ (more credible continuation threat), decreases with $\mu_s^{R1}$ (larger conservative region), and is hump-shaped in $N$ (the per-player component $(N-1)/N^2$ peaks at intermediate values).
+At the screening cutoff, weak proposers switch from treating the hegemon as the low type to hedging against the possibility of the high type. The conservative offer pays the low type as if it could be the high type, creating a discrete upward shift in the hegemon's expected payoff. The screening rent is largest when the hegemon's private information is most consequential for the value of cooperation (large $r$), when bargaining is patient enough to make the continuation threat credible (large $\beta$), and in moderately-sized organizations---large enough that the hegemon's vote matters, but not so large that the cost of unanimous agreement dilutes the per-member advantage ($(N-1)/N^2$ peaks at intermediate $N$).
 
 \begin{figure}[H]
 \centering
@@ -461,44 +403,25 @@ At the screening cutoff, weak proposers switch from treating the hegemon as the 
 \end{figure}
 
 \begin{example}[Screening jump: concrete magnitudes]\label{ex:magnitudes}
-Let $N=5$, $r=1.5$, $\alpha=0.3$, $\beta=0.9$. The R1 screening cutoff is $\mu_s^{R1} \approx 0.197$. At beliefs just below the cutoff, weak proposers play aggressively and the hegemon's expected continuation payoff is $E[V_H^{R1}] \approx 0.544$ (computed from equations \eqref{eq:VH1_R2_U}--\eqref{eq:VH0_R2_con} and the R1 expressions in Section \@ref(R1consensus)). At beliefs just above it, weak proposers switch to conservative offers and the payoff jumps to $E[V_H^{R1}] \approx 0.602$---a discrete increase of $0.058$, or about $5.3\%$ of expected surplus $V_e(\mu)$. Under majority rule at the same belief, $E[V_H^{R1}] \approx 0.428$, with no jump at any belief. The screening mechanism thus gives the hegemon $27\%$ more than majority on the aggressive branch and $41\%$ more on the conservative branch, with the discrete gap between the two branches providing the non-convexity that Bayesian persuasion exploits.
+Let $N=5$, $r=1.5$, $\alpha=0.3$, $\beta=0.9$. The R1 screening cutoff is $\mu_s^{R1} \approx 0.197$. At beliefs just below the cutoff, weak proposers play aggressively and the hegemon's expected payoff is $E[V_H^{R1}] \approx 0.544$. Just above the cutoff, the payoff jumps to $\approx 0.602$---an increase of about $5.3\%$ of expected surplus. Under majority at the same belief, $E[V_H^{R1}] \approx 0.428$, with no jump anywhere. The screening mechanism gives the hegemon $27\%$ more than majority on the aggressive branch and $41\%$ more on the conservative branch. The discrete gap between branches is the non-convexity that Bayesian persuasion exploits.
 \end{example}
 
 
 # Entry and Bayesian Persuasion {#entry_bp}
 
-## Entry decisions
+A weak state enters the institution if its expected bargaining payoff exceeds the entry cost $c > 0$.\footnote{The entry cost $c$ may represent fixed costs of negotiating accession, per-round costs of preparing delegations, or political costs of committing to multilateral disciplines. In established organizations, $c$ is best interpreted as the cost of \emph{substantive engagement}: allocating scarce diplomatic and analytical resources to a particular negotiating round.} Because unanimity gives the hegemon a higher payoff conditional on participation (as established in Section \@ref(comparison)), it leaves less surplus for weak states, making entry harder: $\tau(U) \geq \tau(M)$.
 
-A weak state enters if its expected bargaining payoff exceeds the entry cost $c > 0$:\footnote{The entry cost $c$ admits several interpretations: fixed costs of negotiating accession (as with WTO accession), per-round costs of preparing delegations, or political costs of committing to multilateral disciplines. In established organizations, $c$ is best interpreted as the cost of \emph{substantive engagement}: allocating scarce diplomatic and analytical resources to a particular negotiating round.}
-\[
-V_W^{R1}(\mu, R) \geq c.
-\]
-
-The entry threshold $\tau(R)$ is the posterior at which $W$ is indifferent. Under majority, $V_W^{R1}$ is affine in $\mu$, so $\tau(M)$ has a simple closed form. Under unanimity, $V_W^{R1}$ is piecewise affine (reflecting the screening regimes), so $\tau(U)$ depends on which branch the indifference point falls on (see Appendix A for closed-form expressions on each branch).
-
-## Value functions
-
-The hegemon's reduced-form value function maps posteriors to expected payoffs:
-\[
-v(\mu, R) = \begin{cases}
-0 & \text{if } V_W^{R1}(\mu, R) < c \\
-E_\theta[V_H^{R1}(\theta, \mu, R)] & \text{if } V_W^{R1}(\mu, R) \geq c
-\end{cases}
-\]
-
-Under majority, $v(\mu, M)$ is zero below $\tau(M)$ and affine above it---a single non-convexity at the entry threshold. Under unanimity, $v(\mu, U)$ has an additional non-convexity: the screening jump at $\mu_s^{R1}$.
+The hegemon's reduced-form value function is $v(\mu, R) = E_\theta[V_H^{R1}(\theta, \mu, R)]$ when weak states enter and zero otherwise. Under majority, this function is affine above the entry threshold---a single non-convexity. Under unanimity, the screening jump at $\mu_s^{R1}$ creates an additional non-convexity.
 
 \begin{proposition}[Unanimity creates an additional persuasion opportunity]\label{prop:nonconvexity}
-The value function $v(\mu, U)$ has a screening non-convexity at $\mu_s^{R1}$ that is absent in $v(\mu, M)$. For posteriors near the screening cutoff, Bayesian persuasion under unanimity generates strictly higher payoffs than under majority (holding entry conditions constant).
+The value function $v(\mu, U)$ has a screening non-convexity at $\mu_s^{R1}$ that is absent in $v(\mu, M)$.
 \end{proposition}
 
 \begin{proof}
-Under majority, $v(\mu, M)$ is affine above $\tau(M)$ (Proposition \ref{prop:majority}), hence already concave; concavification adds nothing beyond the entry threshold. Under unanimity, the jump at $\mu_s^{R1}$ (Proposition \ref{prop:jump}) breaks concavity on $[\tau(U), 1]$, so the concave envelope lies strictly above $v(\mu, U)$ near $\mu_s^{R1}$.
+See Appendix B.4.
 \end{proof}
 
-## Optimal persuasion
-
-By the standard result [@kamenica2011bayesian], the hegemon's optimal payoff under rule $R$ is $\Pi_H^*(R) = \operatorname{cav} v(p, R)$. Under majority, the concavification exploits only the entry threshold. Under unanimity, it can exploit both entry and screening---inducing posteriors that straddle $\mu_s^{R1}$, placing mass on both sides of the jump. This dual exploitation is the paper's distinctive contribution. Figure \@ref(fig:bp-illustration) illustrates both value functions and their concavifications.
+By the standard Bayesian persuasion result [@kamenica2011bayesian], the hegemon's optimal payoff under rule $R$ is $\Pi_H^*(R) = \operatorname{cav} v(p, R)$---the concavification of the value function evaluated at the prior. Under majority, concavification exploits only the entry threshold: the hegemon can induce participation but cannot extract screening rents. Under unanimity, concavification can exploit both entry and screening, inducing posteriors that straddle $\mu_s^{R1}$ and place mass on both sides of the jump. This dual exploitation is the paper's distinctive contribution. Figure \@ref(fig:bp-illustration) illustrates both value functions and their concavifications.
 
 ```{r bp_illustration, echo=FALSE, fig.width=10, fig.height=4.5, fig.cap="Value functions and concavification under majority (red) and unanimity (blue). Dashed lines show concave envelopes. Left panel (a): baseline parameters ($N=5$, $r=1.5$, $\\alpha=0.3$, $\\beta=0.9$, $c=0.1$) where the screening jump under unanimity creates a large concavification gain. Right panel (b): parameters near the boundary of the unanimity-preferred region ($N=5$, $r=1.2$, $\\alpha=0.3$, $\\beta=0.7$, $c=0.1$) where the mechanism is weaker and the concavification gains are smaller."}
 
@@ -577,79 +500,36 @@ E_\theta[V_H^{R1}(\theta, \mu, U)] > E_\theta[V_H^{R1}(\theta, \mu, M)].
 \]
 \end{lemma}
 
-\begin{proof}[Proof sketch]
-The payoff difference $D(\mu) \equiv E[V_H^{R1}(\mu, U)] - E[V_H^{R1}(\mu, M)]$ decomposes into an affine backbone $D_{\text{base}}(\mu)$ that is positive at both endpoints under $\alpha < \alpha^*$, plus two correction terms: $\delta_{R2}$, which accounts for R2 screening and vanishes exactly at $\mu_s^{R2}$ (ensuring continuity), and $\delta_{R1} \geq 0$, which accounts for R1 overpayment and only adds positivity. Since $D_{\text{base}} > 0$ on $[0,1]$ and the corrections preserve this, $D(\mu) > 0$ for all $\mu \in (0,1]$. See Appendix B.5 for the full derivation.
+\begin{proof}
+See Appendix B.5.
 \end{proof}
 
-Lemma \ref{lem:conditional} shows that, when the hegemon's outside option is not too strong ($\alpha < \alpha^*$), unanimity gives the hegemon a strictly higher continuation payoff than majority conditional on the institution forming. The proof works by decomposing the payoff difference into a backbone term $D_{\text{base}}$ that is affine and universally positive under the condition on $\alpha$, plus two corrections that either vanish at their activation point ($\delta_{R2}$) or are non-negative everywhere ($\delta_{R1}$). The backbone captures two forces: when the hegemon proposes, unanimity reduces the weak states' continuation values, allowing cheaper agreement; when a weak state proposes, unanimity makes the hegemon pivotal, forcing compensation above the bare outside option. The threshold $\alpha^*$ decreases with $N$: as the organization grows, unanimity requires buying more votes, and the cost can offset the pivotal-inclusion advantage unless $\alpha$ is sufficiently small. For the empirically relevant parameter range, majority therefore never dominates through conditional bargaining payoffs. Any advantage of majority must arise exclusively through the entry margin.
+The lemma says that, conditional on the institution forming, the hegemon always does better under unanimity---provided its bilateral alternatives are not too strong. The intuition has two parts. When the hegemon proposes, unanimity depresses weak states' continuation values (because rejection leads to a game where the hegemon is pivotal), allowing the hegemon to buy agreement more cheaply. When a weak state proposes, unanimity forces the proposer to secure the hegemon's vote, generating the screening rent identified in Proposition \ref{prop:jump}. Both forces favor the hegemon. The condition $\alpha < \alpha^*$ ensures that the cost of buying unanimous agreement does not offset these advantages. As the organization grows, the threshold tightens: in larger organizations, unanimity is advantageous only when the hegemon's bilateral alternatives are modest relative to multilateral cooperation.
 
-## The comparison without persuasion
+An immediate corollary is that entry is always harder under unanimity ($\tau(U) \geq \tau(M)$): because the hegemon captures more surplus, less is available for weak states. Without persuasion, the institutional comparison is therefore ambiguous: unanimity dominates when the institution forms under both rules, but majority dominates when only it can induce entry.
 
-Without Bayesian persuasion (i.e., with no signal), weak states enter only if $V_W^{R1}(p, R) \geq c$. Under majority, the budget identity gives $V_W^{R1}(\mu, M) = [V_e(\mu) - E[V_H^{R1}(\mu, M)]]/(N-1)$. Under unanimity, the budget identity holds exactly on the conservative R1 branch and with inequality $E[V_H] + (N-1)V_W \leq V_e(\mu)$ on the aggressive branch (due to surplus destruction from discounting when $\theta=1$ rejects). This means $V_W^{R1}(\mu, U) \leq [V_e(\mu) - E[V_H^{R1}(\mu, U)]]/(N-1)$. Since Lemma \ref{lem:conditional} establishes $E[V_H^{R1}(\mu, U)] > E[V_H^{R1}(\mu, M)]$, it follows a fortiori that $V_W^{R1}(\mu, M) > V_W^{R1}(\mu, U)$ for $\mu < 1$. To see this: $V_W^{R1}(\mu, U) \leq [V_e(\mu) - E[V_H^{R1}(\mu, U)]]/(N-1) < [V_e(\mu) - E[V_H^{R1}(\mu, M)]]/(N-1) = V_W^{R1}(\mu, M)$, where the first inequality uses the budget identity under unanimity and the second uses Lemma \ref{lem:conditional}. So entry is always easier under majority: $\tau(U) \geq \tau(M)$.
+## The main result
 
-Without persuasion:
-
-- If entry occurs under both rules ($p \geq \tau(U)$), unanimity dominates by Lemma \ref{lem:conditional}.
-- If entry occurs only under majority ($\tau(M) \leq p < \tau(U)$), majority trivially dominates.
-
-## The comparison with persuasion
-
-With Bayesian persuasion, the hegemon's payoff under each rule is $\operatorname{cav} v(p, R)$. The institutional choice reduces to comparing these concavified values.
-
-To state the theorem, define the majority payoff coefficient
-\[
-\lambda_M \equiv \frac{N[1+(N-1)\alpha]-\beta(q-1)(1-\alpha)}{N^2},
-\]
-so that $v(\mu, M) = \lambda_M V_e(\mu)$ whenever entry occurs. Let
-\[
-\kappa_M \equiv \frac{(1-\alpha)\bigl[N(N-1)+\beta(q-1)\bigr]}{N^2(N-1)}, \qquad \tau(M)=\max\left\{0,\;\frac{c/\kappa_M-1}{r-1}\right\}.
-\]
-Under unanimity, let $\tau(U)$ denote the entry threshold and define
-\[
-S_U \equiv \max_{\mu \geq \tau(U)} \frac{v(\mu, U)}{\mu}.
-\]
-If $\tau(M) > 0$, let $S_M \equiv v(\tau(M), M)/\tau(M)$.
+With Bayesian persuasion, the hegemon's payoff under each rule is $\Pi_H^*(R) = \operatorname{cav} v(p, R)$. The institutional choice reduces to comparing these concavified values.
 
 \begin{theorem}[Threshold prior for institutional choice]\label{thm:main}
-Suppose $\alpha < \alpha^*(N, \beta)$. The comparison between $\operatorname{cav} v(p, U)$ and $\operatorname{cav} v(p, M)$ has the following structure.
+Suppose $\alpha < \alpha^*(N, \beta)$. The institutional comparison has the \emph{single-crossing property}: there exists at most one prior $p^*$ at which the ranking between unanimity and majority changes. Specifically:
 \begin{itemize}
-\item[\textbf{(a)}] If $\tau(U) = 0$, then unanimity strictly dominates for every $p \in (0,1)$.
-\item[\textbf{(b)}] If $\tau(M) = 0 < \tau(U)$, there exists a unique threshold
-\[
-p^* = \frac{\lambda_M}{S_U - \lambda_M(r-1)} \in (0, \tau(U))
-\]
-such that majority dominates for $p < p^*$ and unanimity dominates for $p > p^*$.
-\item[\textbf{(c)}] If $0 < \tau(M) \leq \tau(U)$ and $S_U > S_M$, then unanimity strictly dominates for every $p \in (0,1)$.
-\item[\textbf{(d)}] If $0 < \tau(M) \leq \tau(U)$ and $S_U \leq S_M$, there exists a unique threshold
-\[
-p^* = \frac{\lambda_M}{S_U - \lambda_M(r-1)} \in [\tau(M), \tau(U)]
-\]
-such that majority weakly dominates for $p < p^*$ and unanimity strictly dominates for $p > p^*$.
+\item[\textbf{(a)}] When entry costs are low enough that the institution forms under unanimity at all priors, unanimity strictly dominates for every $p \in (0,1)$.
+\item[\textbf{(b)}] When entry occurs under majority but not unanimity at low priors, there exists a unique threshold $p^*$ such that majority dominates for $p < p^*$ and unanimity dominates for $p > p^*$.
 \end{itemize}
-In particular, the institutional comparison has the \emph{single-crossing property}: there is at most one prior at which the ranking changes.
+The threshold $p^*$ has a closed-form expression (Appendix B.6). In all cases, unanimity dominates at sufficiently optimistic priors, and any advantage of majority arises exclusively through the entry margin.
 \end{theorem}
 
 \begin{proof}
-\textit{Step 1: High priors ($p \geq \tau(U)$).} Entry occurs under both rules. By Lemma \ref{lem:conditional}, $v(p, U) > v(p, M)$. Under majority, $v(\mu, M)$ is affine above $\tau(M)$, hence already concave, so $\operatorname{cav} v(p, M) = v(p, M)$. Therefore $\operatorname{cav} v(p, U) \geq v(p, U) > v(p, M) = \operatorname{cav} v(p, M)$. This proves part (a) when $\tau(U) = 0$.
-
-\textit{Step 2: Concavification below $\tau(U)$.} Assume $\tau(U) > 0$. Since $v(\mu, U) = 0$ for $\mu < \tau(U)$ and $v(0, U) = 0$, the concavification on $[0, \mu_U^*]$ (where $\mu_U^*$ achieves $S_U$) is the line $\operatorname{cav} v(p, U) = S_U \cdot p$. Under majority: if $\tau(M) = 0$, then $\operatorname{cav} v(p, M) = \lambda_M V_e(p)$; if $\tau(M) > 0$, then $\operatorname{cav} v(p, M) = S_M \cdot p$ for $p < \tau(M)$ and $\operatorname{cav} v(p, M) = \lambda_M V_e(p)$ for $p \geq \tau(M)$.
-
-\textit{Step 3: Case $\tau(M) = 0 < \tau(U)$.} For $p \in (0, \tau(U))$, $D(p) = S_U \cdot p - \lambda_M V_e(p) = [S_U - \lambda_M(r-1)]p - \lambda_M$, which is linear. $D(0) = -\lambda_M < 0$; by Step 1, $D(\tau(U)) > 0$. So $D$ has a unique zero $p^* = \lambda_M/[S_U - \lambda_M(r-1)] \in (0, \tau(U))$. (The denominator $S_U - \lambda_M(r-1)$ is necessarily positive because $D(p)$ is linear with $D(0) < 0$ and $D(\tau(U)) > 0$, so the slope must be positive.) This proves (b).
-
-\textit{Step 4: Case $0 < \tau(M) \leq \tau(U)$, $S_U > S_M$.} For $p < \tau(M)$: $\operatorname{cav} v(p, U) = S_U p > S_M p = \operatorname{cav} v(p, M)$. For $p \in [\tau(M), \tau(U))$: $D(p) = [S_U - \lambda_M(r-1)]p - \lambda_M$ is linear with $D(\tau(M)) = (S_U - S_M)\tau(M) > 0$ and $D(\tau(U)) > 0$ by Step 1. For $p \geq \tau(U)$: Step 1 applies. This proves (c).
-
-\textit{Step 5: Case $0 < \tau(M) \leq \tau(U)$, $S_U \leq S_M$.} For $p < \tau(M)$: $\operatorname{cav} v(p, U) = S_U p \leq S_M p$. For $p \in [\tau(M), \tau(U))$: $D(\tau(M)) \leq 0$ and $D(\tau(U)) > 0$, so $D$ crosses zero once at $p^* \in [\tau(M), \tau(U)]$. For $p \geq \tau(U)$: Step 1 applies. This proves (d).
-
-Since each case admits at most one crossing, the comparison has the single-crossing property.
+See Appendix B.6.
 \end{proof}
 
-\begin{remark}[Interpretation]\label{rem:threshold}
-The theorem provides a closed-form threshold $p^*$ that separates priors at which majority dominates from those at which unanimity dominates. The threshold exists only when entry is harder under unanimity ($\tau(U) > 0$). When it exists, majority dominates at low priors (where entry is the binding constraint) and unanimity dominates at high priors (where the screening advantage takes effect). The single-crossing property means that there is no regime in which the ranking oscillates.
-\end{remark}
+The theorem resolves the institutional choice puzzle. Majority's only advantage is that it makes participation cheaper for weak states, because the hegemon captures less surplus. But this advantage is relevant only when the prior is pessimistic enough that entry is the binding constraint. At optimistic priors---where the value of cooperation is likely high and the institution would form under either rule---unanimity strictly dominates because the screening mechanism gives the hegemon an informational rent that majority cannot replicate.
 
-\begin{remark}[Consensus is most valuable when informational power substitutes for agenda power]\label{cor:substitution}
-In cases (a) and (c), unanimity dominates globally. Case (c) requires $S_U > S_M$, which is more likely when: (i) $r$ is large (greater informational asymmetry), (ii) $\beta$ is large (more patient bargaining), and (iii) $N$ is moderate. The advantage of unanimity increases when the screening jump is large relative to the linear gain under majority.
-\end{remark}
+The single-crossing property means there is no oscillation: the ranking switches at most once. Consensus is not sometimes better and sometimes worse depending on delicate parameter configurations; it is better whenever the institution is viable.
+
+Consensus is most valuable when the hegemon's private information is most consequential for the value of cooperation, when bargaining is patient, and in moderately-sized organizations. The advantage of unanimity increases when the screening rent is large relative to the linear payoff under majority---that is, when informational power is a potent substitute for agenda power.
 
 ## Numerical characterization
 
@@ -753,7 +633,7 @@ legend("topleft", c("H prefers U", "H prefers M"),
        fill = c("steelblue3", "firebrick3"), cex = 0.7, bg = "white")
 ```
 
-Figure \@ref(fig:parameter-regions) shows that the hegemon prefers unanimity across a broad range of parameters when the prior is low ($p = 0.05$). In these regions, cases (a) or (c) of Theorem \ref{thm:main} apply: unanimity dominates globally. The unanimity-dominance region is larger for higher $r$ (greater informational asymmetry) and higher $\beta$ (more patient bargaining). In the red regions, case (b) or (d) applies and the threshold prior $p^*$ lies above $0.05$, so majority dominates at this particular prior but unanimity dominates at higher priors.
+Figure \@ref(fig:parameter-regions) shows that the hegemon prefers unanimity across a broad range of parameters when the prior is low ($p = 0.05$). In the blue regions, unanimity dominates globally---case (a) of Theorem \ref{thm:main}. The unanimity-dominance region is larger when the hegemon's private information is more consequential (higher $r$) and when bargaining is more patient (higher $\beta$). In the red regions, case (b) applies: the threshold $p^*$ lies above $0.05$, so majority dominates at this pessimistic prior, but unanimity would dominate at higher priors.
 
 
 # Discussion {#discussion}
@@ -784,6 +664,12 @@ The model's mechanism explains a pattern that existing accounts describe but do 
 
 The informational mechanism generates a distinctive observable implication: the hegemon's advantage from consensus should be largest in negotiations where informational asymmetry is substantial and where weak states lack independent analytical capacity. In the WTO context, this suggests that consensus should matter most in complex regulatory areas---services, intellectual property, investment---where evaluating proposals requires deep technical expertise, and least in areas where distributive consequences are transparent, such as linear tariff cuts. This prediction distinguishes the informational mechanism from legitimacy accounts (which predict consensus matters uniformly) and from self-enforcement accounts (which predict consensus matters most when enforcement is weak, regardless of information).^[The $K > 2$ extension in Appendix D provides a formal basis for this implication. As the number of relevant states increases---corresponding to negotiations that bundle multiple issue dimensions under a Single Undertaking (intellectual property, services, industrial goods, agriculture)---the parametric threshold $\alpha_3^*$ tightens: the hegemon needs a weaker outside option for unanimity to dominate. In the model, higher $K$ dilutes informational power because the screening problem becomes more complex, with correction terms that can work against $H$ (see Section D.5). This is consistent with the contrast between focused early GATT rounds (few issue dimensions, $K$ effectively small, consensus effective) and the Doha Round (many dimensions bundled via Single Undertaking, $K$ large, consensus stalled). The erosion is not merely about weaker states acquiring expertise---it is also about the dimensionality of the agenda itself.]
 
+**The GATT-to-WTO transition.** The model's institutional comparison offers a lens for understanding the evolution of decision-making rules in the multilateral trading system. The GATT 1947 provided for formal majority voting---simple majority for joint action, two-thirds for amendments---and voting was used regularly in the organization's early years. Beginning in the late 1950s, however, consensus gradually displaced voting as the operative decision-making norm; since 1959, virtually all GATT/WTO legislative decisions have been taken by consensus [@steinberg2002shadow, 344]. The transition coincided with the *en masse* accession of developing countries, which fundamentally changed both the size and the informational composition of the membership.
+
+The model suggests a structural interpretation. In the early GATT, membership was small and relatively homogeneous---predominantly industrialized economies with similar analytical capacities. In such an environment, informational asymmetry between the hegemon and other members was modest, and the primary challenge was inducing participation in a new and untested institution. These are precisely the conditions under which Theorem \ref{thm:main} predicts majority dominance: when forming the institution is the binding constraint (low prior, high effective entry cost), the easier participation conditions under majority outweigh the screening advantages of unanimity. As the membership expanded and diversified, two shifts occurred simultaneously: the organization became more viable (lowering the effective entry barrier), and the informational gap between the hegemon and newer members widened (increasing $r$). Both shifts move the institutional comparison toward unanimity. The consensus norm that emerged was not merely a concession to the principle of sovereign equality---it was a rational adaptation to an environment in which informational power had become the hegemon's most valuable asset.
+
+More broadly, the model predicts that the transition from majority to consensus should be most pronounced in *new regimes*---institutional settings where the benefits of cooperation are genuinely uncertain and where participants lack prior experience to assess the value of proposed agreements. When a new international organization operates within an already-established regime (with known templates, precedents, and track records), the effective uncertainty about the value of cooperation is low regardless of the formal novelty of the institution. It is the novelty of the *regime*, not the organization, that generates the high entry costs and informational asymmetries under which majority initially dominates. The early GATT exemplifies this: multilateral trade liberalization was an untested project with no historical precedent, and the informational demands of evaluating tariff schedules, anticipating distributive consequences, and assessing long-term welfare effects were substantial. These conditions made majority rule the natural starting point and consensus the natural destination.
+
 ## Scope {#scope}
 
 **Why symmetric proposal rights?** Under either voting rule, if the hegemon were the exclusive proposer and weak states had no outside option from bargaining ($d_W = 0$), weak states' expected bargaining payoff would be zero. No weak state would pay an entry cost $c > 0$, and the institution would never form. Monopoly proposal power is self-defeating when participation is voluntary. The relevant institutional choice is therefore between voting rules, holding proposal rights symmetric. Other forms of agenda influence---such as greater recognition probability---are discussed in Section \@ref(extension).
@@ -792,7 +678,7 @@ The informational mechanism generates a distinctive observable implication: the 
 
 **When consensus favors the hegemon.** The mechanism requires that: (i) informational asymmetry is relevant ($H$ knows $\theta$, $W$ does not); (ii) the hegemon has a valuable outside option ($\alpha > 0$); (iii) entry is costly and belief-dependent; (iv) the voting rule makes $H$ pivotal.
 
-The model assumes the hegemon can commit to an information structure before observing $\theta$. This is a strong assumption that warrants discussion. Three considerations support its plausibility in the IO context. First, \emph{reputation}: in repeated interactions, a hegemon that deviates from an announced disclosure policy suffers credibility costs in future negotiations, which can sustain commitment in equilibrium. Second, \emph{institutional transparency rules}: organizations like the WTO have formal provisions for notifications, trade policy reviews, and dispute settlement that constrain and channel information disclosure, serving as partial commitment devices. Third, \emph{upper bound interpretation}: the Bayesian persuasion payoff represents the maximum value of the hegemon's informational advantage. Even if full commitment is unavailable, the qualitative institutional comparison---unanimity creates screening opportunities that majority does not---may survive under weaker information structures, such as evidence games or verifiable disclosure [@crawford1982strategic].
+The model assumes the hegemon can commit to an information structure before observing $\theta$. This is a strong assumption that warrants discussion. Three considerations support its plausibility in the IO context. First, \emph{reputation}: in repeated interactions, a hegemon that deviates from an announced disclosure policy suffers credibility costs in future negotiations, which can sustain commitment in equilibrium. Second, \emph{institutional transparency rules}: organizations like the WTO have formal provisions for notifications, trade policy reviews, and dispute settlement that constrain and channel information disclosure, serving as partial commitment devices. Third, \emph{upper bound interpretation}: the Bayesian persuasion payoff represents the maximum value of the hegemon's informational advantage. Even if full commitment is unavailable, the qualitative institutional comparison---unanimity creates screening opportunities that majority does not---may survive under weaker information structures, such as evidence games [@glazer2004study] or verifiable disclosure [@milgrom1981good].
 
 **When majority dominates.** By Lemma \ref{lem:conditional}, for $\alpha < \alpha^*(N, \beta)$, majority can never dominate through a higher conditional-on-entry payoff. Any advantage must come through the entry margin: $\tau(U) > \tau(M)$. This is more likely when entry costs are high (creating a large gap where the institution forms only under majority), when $\alpha$ approaches $\alpha^*$ (weakening the conditional dominance), or when information is approximately public. For $\alpha \geq \alpha^*$, majority can also dominate through conditional bargaining payoffs near $\mu = 1$, because unanimity's cost of buying $N-1$ votes outweighs the screening advantage.
 
@@ -861,22 +747,22 @@ Several extensions remain. First, if weaker states can invest in independent ana
 \toprule
 Symbol & Meaning & Defined in \\
 \midrule
-$N$ & Number of players ($1$ hegemon $+ N-1$ weak states) & Def.\ 2 \\
-$\theta \in \{0,1\}$ & State of the world & Def.\ 2 \\
-$p$ & Prior $\Pr(\theta=1)$ & Def.\ 2 \\
+$N$ & Number of players ($1$ hegemon $+ N-1$ weak states) & Def.\ 1 \\
+$\theta \in \{0,1\}$ & State of the world & Def.\ 1 \\
+$p$ & Prior $\Pr(\theta=1)$ & Def.\ 1 \\
 $\mu$ & Posterior belief $\Pr(\theta=1 \mid s)$ & Sec.\ 4 \\
-$V(\theta)$ & Value of cooperation: $V(0)=1$, $V(1)=r$ & Def.\ 2 \\
-$r > 1$ & High-type value & Def.\ 2 \\
-$\alpha \in (0, 1/r)$ & Outside-option share: $d_H = \alpha V(\theta)$ & Def.\ 2 \\
-$\beta \in (0,1)$ & Common discount factor & Def.\ 2 \\
-$c > 0$ & Entry cost per weak state & Def.\ 2 \\
+$V(\theta)$ & Value of cooperation: $V(0)=1$, $V(1)=r$ & Def.\ 1 \\
+$r > 1$ & High-type value & Def.\ 1 \\
+$\alpha \in (0, 1/r)$ & Outside-option share: $d_H = \alpha V(\theta)$ & Def.\ 1 \\
+$\beta \in (0,1)$ & Common discount factor & Def.\ 1 \\
+$c > 0$ & Entry cost per weak state & Def.\ 1 \\
 $V_e(\mu)$ & Expected cooperation value $1 + \mu(r-1)$ & Sec.\ 4 \\
 $x$ & Shorthand $(N-1)\alpha r$ & Sec.\ 4 \\
 $q$ & Majority quota $\lfloor N/2 \rfloor + 1$ & Sec.\ 5 \\
 $R \in \{M, U\}$ & Voting rule (majority / unanimity) & Def.\ 1 \\
-$\mu_s^{R2}$ & R2 screening cutoff & Eq.\ (2) \\
-$\mu_s^{R1}$ & R1 screening cutoff & Eq.\ (3) \\
-$\phi$ & Auxiliary for R1 cutoff: $[rN - \beta(N\!-\!1\!+\!r)]/[\beta(r\!-\!1)]$ & Prop.\ 3 \\
+$\mu_s^{R2}$ & R2 screening cutoff & App.\ A.2 \\
+$\mu_s^{R1}$ & R1 screening cutoff & Prop.\ 2 \\
+$\phi$ & Auxiliary for R1 cutoff: $[rN - \beta(N\!-\!1\!+\!r)]/[\beta(r\!-\!1)]$ & Prop.\ 2 \\
 $\tau(R)$ & Entry threshold under rule $R$ & Sec.\ 7 \\
 $v(\mu, R)$ & Hegemon's reduced-form value function & Sec.\ 7 \\
 $\alpha^*$ & Threshold for conditional dominance (Lemma 1) & Lemma 1 \\
@@ -911,7 +797,12 @@ When $H$ proposes: offers $0$ to all $W$'s, keeps $V(\theta)$.
 
 When $W$ proposes: the screening subgame has cutoff $\mu_s^{R2} = \alpha(r-1)/(r-\alpha)$. Below it, $W$ plays aggressive ($y_H = \alpha$); above, conservative ($y_H = \alpha r$).
 
-Continuation values are given in equations \eqref{eq:VH1_R2_U}--\eqref{eq:VH0_R2_con}.
+The hegemon's R2 continuation values under unanimity are:
+\begin{align}
+V_H^{R2}(\theta=1, \mu) &= \frac{r[1+(N-1)\alpha]}{N} \quad \text{(constant in $\mu$)}, \label{eq:VH1_R2_U} \\
+V_H^{R2}(\theta=0, \mu < \mu_s^{R2}) &= \frac{1 + (N-1)\alpha}{N}, \label{eq:VH0_R2_agg} \\
+V_H^{R2}(\theta=0, \mu > \mu_s^{R2}) &= \frac{1 + (N-1)\alpha r}{N} \quad \text{(overpaid)}. \label{eq:VH0_R2_con}
+\end{align}
 
 Weak states' R2 continuation values under unanimity:
 \begin{align}
@@ -961,15 +852,15 @@ Under majority, the budget identity $E[V_H] + (N-1)V_W = V_e(\mu)$ holds exactly
 
 Under majority rule, $W$'s proposal passes with $q-1$ votes from other weak states. $H$'s vote is not required. $W$ excludes $H$ from the winning coalition; $H$ captures $\alpha V(\theta)$ from its bilateral alternative regardless of $\mu$. There is no screening and no jump. All continuation values are affine in $V_e(\mu)$, hence affine in $\mu$. $\square$
 
-## B.2 Proof of Proposition 3 (R1 cutoff existence and uniqueness) {-}
+## B.2 Proof of Proposition 2 (R1 cutoff existence and uniqueness) {-}
 
 See Appendix A.3 for the derivation. Existence: $\Delta_1(0) = \beta(r-1)/N > 0$ and $\Delta_1(1) = r(\beta-1) < 0$; by continuity, a root exists. Uniqueness: on the relevant branch, $\Delta_1$ is a convex quadratic with exactly one root in $(0,1)$ (the set where $\Delta_1 \leq 0$ is an interval by convexity; since $\Delta_1(\mu_s^{R2}) > 0$ and $\Delta_1(1) < 0$, the first root is unique). $\square$
 
-## B.3 Proof of Proposition 4 (Jump) {-}
+## B.3 Proof of Proposition 3 (Jump) {-}
 
 Direct computation from the difference in H's R1 payoff between the conservative and aggressive branches. See Appendix A.4. $\square$
 
-## B.4 Proof of Proposition 5 (Additional non-convexity) {-}
+## B.4 Proof of Proposition 4 (Additional non-convexity) {-}
 
 Under majority, $v(\mu, M)$ is affine for $\mu \geq \tau(M)$, hence concave---the concave envelope coincides with $v$ above the threshold. Under unanimity, the jump at $\mu_s^{R1}$ means $v(\mu, U)$ is not concave on $[\tau(U), 1]$: $\lim_{\mu \uparrow \mu_s^{R1}} v(\mu, U) < \lim_{\mu \downarrow \mu_s^{R1}} v(\mu, U)$. The concave envelope must therefore lie strictly above $v(\mu, U)$ in a neighborhood of $\mu_s^{R1}$. Since $v(\mu, U)$ is affine on each branch (the expected payoff is linear in $\mu$ conditional on the weak proposer's strategy), the upward jump is the sole source of non-concavity. $\square$
 
@@ -1015,7 +906,19 @@ Combining all regions: $D(\mu) > 0$ for every $\mu \in (0,1)$. At $\mu = 1$: $D(
 
 ## B.6 Proof of Theorem 1 (Threshold prior) {-}
 
-The proof appears in the body of Section \@ref(comparison). It proceeds in five steps. Step 1 shows that unanimity dominates for all priors above $\tau(U)$ (by Lemma \ref{lem:conditional}). Step 2 derives the concavification formulas below $\tau(U)$ for both rules. Steps 3--5 analyze the three cases depending on whether $\tau(M) = 0$ or $\tau(M) > 0$ and whether $S_U > S_M$ or $S_U \leq S_M$, establishing the single-crossing property in each case. $\square$
+To state the proof, define the majority payoff coefficient $\lambda_M \equiv [N[1+(N-1)\alpha]-\beta(q-1)(1-\alpha)]/N^2$, so that $v(\mu, M) = \lambda_M V_e(\mu)$ whenever entry occurs. Let $\kappa_M \equiv (1-\alpha)[N(N-1)+\beta(q-1)]/(N^2(N-1))$ and $\tau(M)=\max\{0,\;(c/\kappa_M-1)/(r-1)\}$. Under unanimity, let $\tau(U)$ denote the entry threshold and define $S_U \equiv \max_{\mu \geq \tau(U)} v(\mu, U)/\mu$. If $\tau(M) > 0$, let $S_M \equiv v(\tau(M), M)/\tau(M)$.
+
+*Step 1: High priors ($p \geq \tau(U)$).* Entry occurs under both rules. By Lemma \ref{lem:conditional}, $v(p, U) > v(p, M)$. Under majority, $v(\mu, M)$ is affine above $\tau(M)$, hence already concave, so $\operatorname{cav} v(p, M) = v(p, M)$. Therefore $\operatorname{cav} v(p, U) \geq v(p, U) > v(p, M) = \operatorname{cav} v(p, M)$. This proves part (a) when $\tau(U) = 0$.
+
+*Step 2: Concavification below $\tau(U)$.* Assume $\tau(U) > 0$. Since $v(\mu, U) = 0$ for $\mu < \tau(U)$ and $v(0, U) = 0$, the concavification on $[0, \mu_U^*]$ (where $\mu_U^*$ achieves $S_U$) is $\operatorname{cav} v(p, U) = S_U \cdot p$. Under majority: if $\tau(M) = 0$, then $\operatorname{cav} v(p, M) = \lambda_M V_e(p)$; if $\tau(M) > 0$, then $\operatorname{cav} v(p, M) = S_M \cdot p$ for $p < \tau(M)$ and $\lambda_M V_e(p)$ for $p \geq \tau(M)$.
+
+*Step 3: Case $\tau(M) = 0 < \tau(U)$.* For $p \in (0, \tau(U))$, $D(p) = S_U \cdot p - \lambda_M V_e(p) = [S_U - \lambda_M(r-1)]p - \lambda_M$, which is linear. $D(0) = -\lambda_M < 0$; by Step 1, $D(\tau(U)) > 0$. So $D$ has a unique zero $p^* = \lambda_M/[S_U - \lambda_M(r-1)] \in (0, \tau(U))$.
+
+*Step 4: Case $0 < \tau(M) \leq \tau(U)$, $S_U > S_M$.* For $p < \tau(M)$: $\operatorname{cav} v(p, U) = S_U p > S_M p = \operatorname{cav} v(p, M)$. For $p \in [\tau(M), \tau(U))$: $D(\tau(M)) = (S_U - S_M)\tau(M) > 0$ and $D(\tau(U)) > 0$ by Step 1. Unanimity dominates globally.
+
+*Step 5: Case $0 < \tau(M) \leq \tau(U)$, $S_U \leq S_M$.* For $p < \tau(M)$: $\operatorname{cav} v(p, U) \leq \operatorname{cav} v(p, M)$. For $p \in [\tau(M), \tau(U))$: $D(\tau(M)) \leq 0$ and $D(\tau(U)) > 0$, so $D$ crosses zero once at $p^* \in [\tau(M), \tau(U)]$.
+
+Since each case admits at most one crossing, the comparison has the single-crossing property. $\square$
 
 
 # Appendix C: Partial Agenda Influence {-}
