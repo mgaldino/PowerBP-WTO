@@ -55,13 +55,13 @@ Two forms of power are central to the analysis. *Agenda power* is the ability to
 
 To formalize the argument, I develop a model in which a hegemon chooses between two institutional packages that differ only in the voting rule: majority and unanimity. Proposal rights are symmetric under both rules, isolating the effect of the voting rule itself. Before weaker states decide whether to enter, the hegemon privately observes the value of cooperation and can shape their beliefs about it. The central difference is that the two rules reward this informational advantage differently. Under majority rule, weak states can form coalitions without making the hegemon pivotal, eliminating the screening problem. Under unanimity, weak states must include the hegemon in every proposal and decide how much to offer without knowing the probability of acceptance. This screening generates a cutoff at which weak proposers switch from aggressive to conservative treatment of the hegemon, creating a discontinuity in the hegemon’s value function that Bayesian persuasion exploits. This creates a persuasion opportunity absent under majority, although majority may still be preferred when it facilitates participation under less optimistic priors.
 
-The analysis yields three main results. First, I characterize the screening cutoff under unanimity and show it has no analog under majority rule, where the hegemon’s value function is linear in beliefs (Propositions 1–4). Second, I show that this screening creates an additional non-convexity in the hegemon’s value function, providing a persuasion opportunity absent under majority (Proposition 5). Third, I establish that the institutional comparison has a single-crossing property: there is at most one prior at which the ranking between unanimity and majority changes, and I provide a closed-form expression for the threshold (Lemma 1 and Theorem 1). 
+The analysis yields three main results. First, I characterize the screening cutoff under unanimity and show it has no analog under majority rule, where the hegemon’s value function is linear in beliefs (Propositions 1--3). Second, I show that this screening creates an additional non-convexity in the hegemon’s value function, providing a persuasion opportunity absent under majority (Proposition 4). Third, I establish that the institutional comparison has a single-crossing property: there is at most one prior at which the ranking between unanimity and majority changes, and I provide a closed-form expression for the threshold (Lemma 1 and Theorem 1).
 
 The substantive implication is that consensus is most valuable to a hegemon when the prospects of multilateral cooperation are promising enough that weaker states are willing to come to the table. Under those conditions, unanimity amplifies the hegemon’s informational advantage: weaker states must include it in every deal without knowing what cooperation is truly worth, and the hegemon can shape their beliefs to exploit that uncertainty. When cooperation looks too uncertain for weaker states to participate at all, majority rule can be preferred—not because it gives the hegemon better bargaining terms, but because it lowers the bar for participation. These two forces produce a clean trade-off with a unique tipping point: above it, the hegemon prefers consensus; below it, it may prefer majority. The ranking never oscillates—the institutional comparison is not incomplete but conditional in a sharp and tractable way. Moreover, the boundary is robust: when the hegemon's bilateral alternatives exceed the threshold, unanimity loses its conditional advantage only near certainty about the magnitude of the gains from cooperation—precisely where private information is close to irrelevant. Under identifiable informational conditions, consensus becomes an institutional form through which hegemonic power is exercised, not a constraint upon it.
 
 In sum, this paper contributes to the study of international organizations in three ways. First, it offers a new mechanism explaining when and why a powerful state may rationally choose unanimity rather than just accept it. Second, it reframes institutional design as a trade-off between informational leverage under unanimity and easier participation under majority, rather than solely between power and constraint. Third, it provides a formal link between voting rules and the strategic value of private information.
 
-The rest of the paper proceeds as follows. Section 2 presents a motivating example that previews the mechanism in a simplified three-player environment. Section 3 presents the general model. Sections 4 and 5 derive the bargaining logic under majority and unanimity, showing that unanimity creates a screening cutoff and a discrete jump in the hegemon's payoff that majority eliminates. Section 6 connects bargaining to entry and persuasion. Section 7 establishes the main result. Section 8 discusses extensions, the GATT/WTO application, and scope conditions. Section 9 concludes.
+The rest of the paper proceeds as follows. Section 2 presents a motivating example that previews the mechanism in a simplified three-player environment. Section 3 presents the general model. Sections 4 and 5 derive the bargaining logic under majority and unanimity, showing that unanimity creates a screening cutoff and a discrete jump in the hegemon's payoff that majority eliminates. Section 6 connects bargaining to entry and persuasion. Section 7 establishes the main result. Section 8 discusses the GATT/WTO application and scope conditions. Section 9 concludes.
 
 
 # A Motivating Example {#example}
@@ -646,31 +646,17 @@ Figure \@ref(fig:parameter-regions) shows that the hegemon prefers unanimity acr
 
 # Discussion {#discussion}
 
-## Partial Agenda Influence and Informal Power {#extension}
-
-The baseline model uses symmetric proposal rights ($\rho_H = 1/N$) to isolate the effect of the voting rule. A natural objection is that powerful states exercise informal agenda influence---through control over drafting, chairing of meetings, or greater diplomatic salience---so the symmetric baseline is unrealistic. Appendix C extends the model to allow $H$ to be recognized with probability $\rho_H > 1/N$, while each $W$ is recognized with probability $\rho_W = (1-\rho_H)/(N-1)$.
-
-The extension reveals that consensus and informal agenda influence are not substitutes---they interact non-monotonically. Under majority, the value function remains linear in beliefs regardless of $\rho_H$: no screening, no jump. Under unanimity, the screening cutoff $\mu_s^{R2}$ is unchanged, but the jump magnitude becomes $(1-\mu_s^{R2})(1-\rho_H)\alpha(r-1)$, decreasing in $\rho_H$. In R1, three effects operate simultaneously: a frequency effect ($W$ proposes less often, reducing screening opportunities), a gap effect ($H$'s higher continuation value widens the spread between aggressive and conservative offers), and a cutoff effect (the screening threshold rises). The net R1 jump scales with $\rho_H(1-\rho_H)$ holding the cutoff fixed, producing a hump-shaped relationship.
-
-\begin{proposition}[Non-monotonic effect of agenda influence]\label{prop:extension}
-Under unanimity, the R1 screening jump as a function of recognition probability $\rho_H$ is:
-\[
-J(\rho_H) = (1-\mu_s^{R1}(\rho_H))(1-\rho_H)\rho_H\beta(r-1).
-\]
-Holding $\mu_s^{R1}$ fixed, $J$ is maximized at $\rho_H = 1/2$. In the full model, $\mu_s^{R1}$ increases with $\rho_H$, shifting the peak below $1/2$. Symmetric proposal rights ($\rho_H = 1/N$) can therefore be understood as participation-preserving restraint rather than as absence of hegemonic influence.
-\end{proposition}
-
 ## Illustration: The GATT/WTO {#gatt_wto}
 
 The GATT/WTO illustrates the interaction between consensus and informal agenda influence. Since 1947, the multilateral trading system has operated predominantly by consensus, even though formal voting provisions exist [@steinberg2002shadow]. The United States and other major trading powers were central to the system's creation and could plausibly have imposed majority rule.
 
 The model's informational asymmetry assumption finds support in the trade context. Evaluating the effects of tariff schedules, anticipating distributive consequences, and assessing long-term implications of rule changes require sustained investment in analytical infrastructure. Major trading powers maintain large permanent delegations with deep sectoral expertise; many developing country delegations operate with far smaller teams, particularly during complex technical phases of negotiations. This capacity asymmetry means that weaker states often face genuine uncertainty about the value of proposed agreements.
 
-In practice, major trading powers exercise informal agenda influence through the Green Room process, control over drafting, and technical expertise. The partial agenda influence extension provides the framework for interpreting this: moderate informal influence can amplify the screening channel---it increases the stakes when $W$ does get to propose---while monopoly agenda control would eliminate participation, destroying the institution. The persistence of consensus is consistent with the coexistence of informal influence and formal equality.
+In practice, major trading powers exercise informal agenda influence through the Green Room process, control over drafting, and technical expertise. The model's baseline uses symmetric proposal rights to isolate the voting-rule comparison, but the qualitative mechanism---screening under unanimity, no screening under majority---does not depend on equal recognition probabilities. Monopoly agenda control would eliminate participation (as argued in Section \@ref(scope)), so the relevant question is whether moderate informal influence coexists with the screening channel. The persistence of consensus is consistent with the coexistence of informal influence and formal equality.
 
 The model's mechanism explains a pattern that existing accounts describe but do not fully explain: powerful states in the WTO appear to benefit from consensus despite lacking formal agenda control. The mechanism is not merely that informal practices survive consensus, but that consensus creates the strategic environment---pivotal inclusion under uncertainty---in which informational power becomes most valuable. The model does not claim that the GATT/WTO was designed for this reason, or that all aspects of WTO politics reduce to this mechanism. It shows that consensus and informational asymmetry interact in a way that can benefit powerful states, offering one explanation for why hegemonic preference for consensus is not paradoxical.
 
-The informational mechanism generates a distinctive observable implication: the hegemon's advantage from consensus should be largest in negotiations where informational asymmetry is substantial and where weak states lack independent analytical capacity. In the WTO context, this suggests that consensus should matter most in complex regulatory areas---services, intellectual property, investment---where evaluating proposals requires deep technical expertise, and least in areas where distributive consequences are transparent, such as linear tariff cuts. This prediction distinguishes the informational mechanism from legitimacy accounts (which predict consensus matters uniformly) and from self-enforcement accounts (which predict consensus matters most when enforcement is weak, regardless of information).^[The $K > 2$ extension in Appendix D provides a formal basis for this implication. As the number of relevant states increases---corresponding to negotiations that bundle multiple issue dimensions under a Single Undertaking (intellectual property, services, industrial goods, agriculture)---the parametric threshold $\alpha_3^*$ tightens: the hegemon needs a weaker outside option for unanimity to dominate. In the model, higher $K$ dilutes informational power because the screening problem becomes more complex, with correction terms that can work against $H$ (see Section D.5). This is consistent with the contrast between focused early GATT rounds (few issue dimensions, $K$ effectively small, consensus effective) and the Doha Round (many dimensions bundled via Single Undertaking, $K$ large, consensus stalled). The erosion is not merely about weaker states acquiring expertise---it is also about the dimensionality of the agenda itself.]
+The informational mechanism generates a distinctive observable implication: the hegemon's advantage from consensus should be largest in negotiations where informational asymmetry is substantial and where weak states lack independent analytical capacity. In the WTO context, this suggests that consensus should matter most in complex regulatory areas---services, intellectual property, investment---where evaluating proposals requires deep technical expertise, and least in areas where distributive consequences are transparent, such as linear tariff cuts. This prediction distinguishes the informational mechanism from legitimacy accounts (which predict consensus matters uniformly) and from self-enforcement accounts (which predict consensus matters most when enforcement is weak, regardless of information).^[The $K > 2$ extension in Appendix C provides a formal basis for this implication. As the number of relevant states increases---corresponding to negotiations that bundle multiple issue dimensions under a Single Undertaking (intellectual property, services, industrial goods, agriculture)---the parametric threshold $\alpha_3^*$ tightens: the hegemon needs a weaker outside option for unanimity to dominate. In the model, higher $K$ dilutes informational power because the screening problem becomes more complex, with correction terms that can work against $H$ (see Section C.5). This is consistent with the contrast between focused early GATT rounds (few issue dimensions, $K$ effectively small, consensus effective) and the Doha Round (many dimensions bundled via Single Undertaking, $K$ large, consensus stalled). The erosion is not merely about weaker states acquiring expertise---it is also about the dimensionality of the agenda itself.]
 
 **The GATT-to-WTO transition.** The model's institutional comparison offers a lens for understanding the evolution of decision-making rules in the multilateral trading system. The GATT 1947 provided for formal majority voting---simple majority for joint action, two-thirds for amendments---and voting was used regularly in the organization's early years. Beginning in the late 1950s, however, consensus gradually displaced voting as the operative decision-making norm; since 1959, virtually all GATT/WTO legislative decisions have been taken by consensus [@steinberg2002shadow, 344]. The transition coincided with the *en masse* accession of developing countries, which fundamentally changed both the size and the informational composition of the membership.
 
@@ -680,7 +666,7 @@ More broadly, the model predicts that the transition from majority to consensus 
 
 ## Scope {#scope}
 
-**Why symmetric proposal rights?** Under either voting rule, if the hegemon were the exclusive proposer and weak states had no outside option from bargaining ($d_W = 0$), weak states' expected bargaining payoff would be zero. No weak state would pay an entry cost $c > 0$, and the institution would never form. Monopoly proposal power is self-defeating when participation is voluntary. The relevant institutional choice is therefore between voting rules, holding proposal rights symmetric. Other forms of agenda influence---such as greater recognition probability---are discussed in Section \@ref(extension).
+**Why symmetric proposal rights?** Under either voting rule, if the hegemon were the exclusive proposer and weak states had no outside option from bargaining ($d_W = 0$), weak states' expected bargaining payoff would be zero. No weak state would pay an entry cost $c > 0$, and the institution would never form. Monopoly proposal power is self-defeating when participation is voluntary. The relevant institutional choice is therefore between voting rules, holding proposal rights symmetric.
 
 **Why not compare consensus with hegemonic agenda control?** Because agenda control combined with any participation constraint eliminates the institution itself. The puzzle is not why a hegemon does not impose dictatorship, but why it would choose a rule that makes its own approval necessary when majority would allow others to bypass it.
 
@@ -862,11 +848,6 @@ $C_{\text{buy}}, C_{\text{out}}$ & Vote-buying cost, outside-option cost (proof)
 $\lambda_M$ & Majority payoff coefficient & Thm.\ 1 \\
 $S_U, S_M$ & Max-slope of value function under $U$, $M$ & Thm.\ 1 \\
 $p^*$ & Threshold prior for institutional comparison & Thm.\ 1 \\
-\midrule
-\multicolumn{3}{l}{\textit{Appendix C extension (partial agenda influence)}} \\
-$\rho_H, \rho_W$ & Recognition probabilities for $H$, $W$ & App.\ C \\
-$\psi$ & Proposal-weighted share $\rho_H + (1-\rho_H)\alpha$ & App.\ C \\
-$\Phi_M$ & Majority coefficient with agenda bias & App.\ C \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1030,117 +1011,15 @@ To state the proof, define the majority payoff coefficient $\lambda_M \equiv [N[
 Since each case admits at most one crossing, the comparison has the single-crossing property. $\square$
 
 
-# Appendix C: Partial Agenda Influence {-}
-
-This appendix derives the extension of Section \@ref(extension), in which the hegemon is recognized with probability $\rho_H > 1/N$ and each weak state with probability $\rho_W = (1-\rho_H)/(N-1)$. All other primitives are as in the baseline model.
-
-## C.1 R2 under unanimity with bias {-}
-
-The screening subgame when $W$ proposes is unchanged: $W$ chooses aggressive ($y_H = \alpha$) or conservative ($y_H = \alpha r$). The cutoff does not depend on recognition probabilities:
-\[
-\mu_s^{R2} = \frac{\alpha(r-1)}{r-\alpha}.
-\]
-
-R2 continuation values under unanimity with bias:
-\begin{align}
-V_H^{R2}(\theta=1, \mu, U) &= r[\rho_H + (1-\rho_H)\alpha] \equiv r\psi, \\
-V_H^{R2}(\theta=0, \mu < \mu_s^{R2}, U) &= \rho_H + (1-\rho_H)\alpha = \psi, \\
-V_H^{R2}(\theta=0, \mu > \mu_s^{R2}, U) &= \rho_H + (1-\rho_H)\alpha r,
-\end{align}
-where $\psi \equiv \rho_H + (1-\rho_H)\alpha$.
-
-For weak states:
-\begin{align}
-V_W^{R2}(\mu < \mu_s^{R2}, U) &= \rho_W(1-\mu)(1-\alpha), \\
-V_W^{R2}(\mu > \mu_s^{R2}, U) &= \rho_W(V_e(\mu) - \alpha r).
-\end{align}
-
-The jump in $E_\theta[V_H^{R2}]$ at the cutoff:
-\[
-\text{Jump}^{R2} = (1-\mu_s^{R2})(1-\rho_H)\alpha(r-1).
-\]
-This is monotonically decreasing in $\rho_H$: the more $H$ proposes, the less often $W$ faces the screening problem.
-
-## C.2 R2 under majority with bias {-}
-
-No screening. The continuation values are:
-\begin{align}
-V_H^{R2}(\theta, M) &= V(\theta)\psi, \\
-V_W^{R2}(\mu, M) &= \rho_W(1-\alpha)V_e(\mu).
-\end{align}
-Both are affine in $\mu$. No jump.
-
-## C.3 R1 under unanimity with bias {-}
-
-When $H$ proposes (prob $\rho_H$): offers $\beta V_W^{R2}(\mu)$ to each $W$, keeps $V(\theta) - (N-1)\beta V_W^{R2}(\mu)$. Pooling (no information revealed).
-
-When $W$ proposes (prob $\rho_W$ each): $W$ faces the screening problem with offers:
-\begin{align}
-y_H^{con} &= \beta r\psi, \\
-y_H^{agg} &= \beta[\rho_H + (1-\rho_H)\alpha r].
-\end{align}
-
-The gap between offers is:
-\[
-y_H^{con} - y_H^{agg} = \beta \rho_H(r-1).
-\]
-This grows with $\rho_H$: the marginal cost of pooling in R1 increases with proposal bias.
-
-The R1 jump in $E_\theta[V_H^{R1}]$ at the cutoff $\mu_s^{R1}$:
-\[
-\text{Jump}^{R1}(\rho_H) = (1-\mu_s^{R1})(1-\rho_H)\rho_H\beta(r-1).
-\]
-
-For $\rho_H = 1/N$ (baseline): $(1-1/N)(1/N) = (N-1)/N^2$, recovering the baseline formula.
-
-## C.4 Majority with bias: R1 {-}
-
-Under majority with bias, $H$'s R1 payoff is:
-\[
-E_\theta[V_H^{R1}(\mu, M)] = V_e(\mu) \cdot \Phi_M,
-\]
-where
-\[
-\Phi_M \equiv \psi - \rho_H(q-1)\beta \rho_W(1-\alpha) = [\rho_H + (1-\rho_H)\alpha] - \frac{\rho_H(q-1)\beta(1-\rho_H)(1-\alpha)}{N-1}.
-\]
-This is affine in $\mu$. No screening, no jump.
-
-For weak states, the coalition coefficient $\kappa \equiv (q-2+\rho_H)/(N-1)$ captures the probability that a non-proposing $W$ is included in the winning coalition:
-\[
-V_W^{R1}(\mu, M) = \rho_W(1-\alpha)V_e(\mu)\left[1 + \frac{\beta \rho_H(q-1)}{N-1}\right].
-\]
-
-## C.5 Non-monotonic effects of proposal bias {-}
-
-The R1 jump under unanimity is $\text{Jump}^{R1}(\rho_H) = (1-\mu_s^{R1}(\rho_H))(1-\rho_H)\rho_H\beta(r-1)$.
-
-Three effects operate:
-
-1. **Frequency effect** ($(1-\rho_H)$): $W$ proposes less often $\Rightarrow$ screening occurs less frequently $\Rightarrow$ reduces jump.
-2. **Gap effect** ($\rho_H$): $H$'s R2 continuation is larger when $H$ proposes more $\Rightarrow$ gap between conservative and aggressive offers is larger $\Rightarrow$ jump per event is larger.
-3. **Cutoff effect** ($\mu_s^{R1} \uparrow$): cutoff rises $\Rightarrow$ $(1-\mu_s^{R1})$ falls $\Rightarrow$ reduces jump.
-
-Holding the cutoff fixed, the local jump scales with $\rho_H(1-\rho_H)$, which is maximized at $\rho_H = 1/2$. In the full model, because $\mu_s^{R1}$ itself rises with $\rho_H$, the total jump is not exactly quadratic. In numerical examples, the total jump remains hump-shaped, with the peak shifted left of $1/2$.
-
-## C.6 Entry thresholds under bias {-}
-
-Under majority, the entry threshold has a closed form:
-\[
-\tau(M, \rho_H) = \frac{c/\left\{\rho_W(1-\alpha)\left[1+\frac{\beta \rho_H(q-1)}{N-1}\right]\right\} - 1}{r-1}.
-\]
-
-Under unanimity, $\tau(U, \rho_H)$ is characterized numerically. Both thresholds increase with $\rho_H$, but $\tau(U)$ increases faster because $W$'s payoff under unanimity is doubly penalized: $W$ proposes less often *and* must pay a higher reservation to $H$ (which grows with $\rho_H$).
-
-
-# Appendix D: Robustness to $K > 2$ Types {-}
+# Appendix C: Robustness to $K > 2$ Types {-}
 
 This appendix extends the model to $K > 2$ types and verifies that the institutional comparison is robust. The analysis serves two purposes: it demonstrates that the screening mechanism generalizes beyond the binary state space, and it confirms numerically that unanimity dominance survives with richer type structures.
 
-## D.1 Setup {-}
+## C.1 Setup {-}
 
 The model is identical to Section 4 except that $\theta \in \{0, 1, 2\}$ with $V(0) = 1$, $V(1) = r_1$, $V(2) = r_2$, where $1 < r_1 < r_2$. The prior is $p = (p_0, p_1, p_2) \in \Delta^2$, the 2-simplex. The expected value of cooperation is $V_e(\mu) = \sum_k \mu_k V(\theta_k)$. All other primitives---$N$ players, discount factor $\beta$, random proposer, outside option $d_H = \alpha V(\theta)$---are unchanged. The constraint on the outside option becomes $\alpha \in (0, 1/r_2)$, ensuring that $d_H < V(\theta)$ for all types.
 
-## D.2 R2 Screening under Unanimity {-}
+## C.2 R2 Screening under Unanimity {-}
 
 With $K$ types, the R2 screening problem has a natural generalization. When $W$ makes an offer in R2, it targets a particular type by setting the reservation value equal to $\alpha V(\theta_k)$ for some $k$. All types $\theta_j$ with $j \leq k$ accept (since $\alpha V(\theta_j) \leq \alpha V(\theta_k)$), and all types $\theta_j$ with $j > k$ reject. The optimal target balances the probability of acceptance against the cost of overpaying low types.
 
@@ -1158,7 +1037,7 @@ The weak proposer's payoff from an offer targeting type $k$ is $\sum_{j \leq k} 
 
 For $K = 3$ with values $(1, r_1, r_2)$, the R2 screening produces three regions separated by two boundaries. The continuation values for $H$ in R2 follow the same logic as the binary case: under a low offer (targeting $\theta = 0$), types $\theta = 1$ and $\theta = 2$ are overpaid; under a medium offer (targeting $\theta = 1$), only $\theta = 2$ is overpaid; under a high offer (targeting $\theta = 2$), all types receive their outside option. The key pattern persists: low types receive strictly more than their outside option whenever $W$ targets a higher type, and the highest type $\theta = 2$ always receives $r_2(1 + (N-1)\alpha)/N$ regardless of the screening region.
 
-## D.3 R1 Screening under Unanimity {-}
+## C.3 R1 Screening under Unanimity {-}
 
 In R1, the proposing weak state faces a richer strategic choice. With three types, there are three possible offer strategies:
 
@@ -1175,7 +1054,7 @@ The 2-simplex is partitioned into three R1 regions by two indifference surfaces.
 
 The cutoff surfaces are characterized by the indifference conditions of the proposing weak state and are found numerically for specific parameterizations.
 
-## D.4 Majority: No Screening {-}
+## C.4 Majority: No Screening {-}
 
 \begin{proposition}[Linearity of $H$'s Payoff under Majority for General $K$]\label{prop:k_majority_linear}
 Under majority rule with $K$ types, $E_\theta[V_H^{R1}(\theta, \mu, M)] = \lambda_M V_e(\mu)$, where $\lambda_M$ is defined as in Theorem \ref{thm:main}. No screening cutoff exists for any $K$.
@@ -1185,7 +1064,7 @@ Under majority rule with $K$ types, $E_\theta[V_H^{R1}(\theta, \mu, M)] = \lambd
 The proof is identical to the $K = 2$ case. Under majority, $W$ never needs $H$'s vote; $H$ receives $\alpha V(\theta)$ in every coalition that forms and $\alpha V(\theta)$ as its outside option. Since $H$'s payoff is $\alpha V(\theta)$ type by type, the expectation is $\alpha V_e(\mu)$ scaled by the bargaining multiplier $\lambda_M / \alpha$. The belief $\mu$ enters only through $V_e(\mu)$, so the payoff is affine in $\mu$ (and hence in $V_e$) regardless of $K$.
 \end{proof}
 
-## D.5 Conditional Payoff Dominance {-}
+## C.5 Conditional Payoff Dominance {-}
 
 The proof of Lemma \ref{lem:conditional} generalizes to $K = 3$ via a backbone-plus-corrections decomposition. Define:
 \[
@@ -1227,7 +1106,7 @@ if (exists("robustness_table")) {
 
 The baseline parameterization ($r_1 = 1.5$, $r_2 = 2.5$, $\alpha = 0.3$, $\beta = 0.9$, $N = 5$) passes with $\min D = 0.031$ on a fine grid over $\Delta^2$. Failures occur at $\beta = 0.7$, consistent with the backbone analysis: $\alpha^*(5, 0.7) = 0.189 < 0.3$, so even the backbone condition is violated. When the grid is re-run with $\alpha = 0.15$ (below $\alpha_3^*$), all parameterizations pass.
 
-## D.6 Bayesian Persuasion on the 2-Simplex {-}
+## C.6 Bayesian Persuasion on the 2-Simplex {-}
 
 With $K = 3$ types, the prior lives on the 2-simplex $\Delta^2$. The hegemon's value function under rule $R$ is
 \[
@@ -1248,7 +1127,7 @@ knitr::include_graphics("figures/k3_value_surfaces.pdf")
 
 Figures \@ref(fig:k3-heatmap) and \@ref(fig:k3-surfaces) confirm the qualitative pattern from the $K = 2$ analysis. Unanimity dominates for approximately 99.7% of priors in the interior of $\Delta^2$. Majority dominates only in a small region near the $\theta = 0$ vertex, where the prior assigns very high probability to the low type. In this region, entry is costly under unanimity (because $W$'s expected payoff is low when most of the probability mass is on the lowest type) and the screening mechanism provides little benefit (because there is almost no probability mass on higher types to generate overpayment). The single-crossing property from Theorem \ref{thm:main} generalizes to the 2-simplex as a curve separating the two regimes rather than a single threshold point.
 
-## D.7 Discussion {-}
+## C.7 Discussion {-}
 
 The $K = 3$ extension reveals a structural pattern. With $K$ types, there are $K - 1$ screening cutoffs in R2 (Proposition \ref{prop:k_general_screening}) and up to $K - 1$ cutoffs in R1, each creating an upward jump in the hegemon's value function. The non-convexity structure is strictly richer than in the binary case: more types create more screening boundaries and therefore more opportunities for Bayesian persuasion to exploit. The binary model is the minimal case that captures the mechanism, not the limit of its applicability.
 
