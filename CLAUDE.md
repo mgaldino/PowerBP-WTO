@@ -48,15 +48,23 @@ Condicional à entrada: H prefere unanimidade (overpayment de θ=0), W prefere m
 
 ### PRÓXIMO PASSO (v3, pós-review)
 Ver plano detalhado: `quality_reports/plans/2026-04-22_next-steps-v3.md`
-- [ ] **P1**: Lemma 1 → iff (α* necessário E suficiente) + Remark μ̄
-- [ ] **P2**: Tabela numérica μ̄ no Scope (N=164, α=0.08 → μ̄=0.80)
-- [ ] **P3**: Worked example após Theorem 1 (computar p*)
-- [ ] **P4**: τ(U) closed-form no appendix
-- [ ] **P5**: Proof sketch para Prop 5 (agenda influence)
-- [ ] **P6**: Ajustes de exposição (harmonizar termos, comprimir Discussion, magnitudes no abstract)
-- [ ] **P7**: Consultar coarse review antes de submeter
-- [ ] Limpar .bib: entradas fantasma
+- [x] **P1**: Lemma 1 → iff (α* necessário E suficiente) — statement, prova, 7 locais atualizados
+- [x] **P2**: Remark μ̄ após Lemma 1 (Remark 2, rem:mu_bar) — feito por agente paralelo
+- [x] **P3**: ~~Tabela numérica μ̄ no Scope~~ — dispensado, substituído pelo heatmap (α,μ) com 4 painéis (Fig. heatmap-alpha-mu)
+- [x] **P4**: τ(U) closed-form no Appendix A.7 — derivação, review (PASS), correções, inserção feitos. Lean não necessário (inversão algébrica, não resultado novo).
+- [x] **P5**: ~~Proof sketch para Prop 5~~ — dispensado, Prop 5 removida (não acrescentava, só falava do jump, não do payoff total de H)
+- [ ] **P6**: Worked example após Theorem 1 (computar p*)
+- [ ] **P7**: Ajustes de exposição (harmonizar termos, comprimir Discussion, magnitudes no abstract)
+- [ ] Consultar coarse review antes de submeter
+- [x] Limpar .bib: 21 entradas fantasma removidas, 19 citadas mantidas
 - [ ] Submeter ao JoP
+
+### CONCLUÍDO (sessão 2026-04-22 — Lemma 1 iff + limpeza bib + entry scaling)
+- [x] .bib limpo: 40 → 19 entradas (21 fantasma removidas, 0 órfãs)
+- [x] Lemma 1 → bicondicional (iff): statement, prova (Step 4 Necessity), parágrafo interpretativo, Scope, figure caption, notation table — 7 edits
+- [x] Remark μ̄ (rem:mu_bar) inserido por agente paralelo: D(μ) = D(1) + (1-μ)Γ, μ̄ closed-form
+- [x] τ(U) derivado analytically: regime conservador affine (verificado a machine precision), regime agressivo quadrático. Nota: `notes/2026-04-22_tau_U_closed_form.md`. Review: `notes/2026-04-22_tau_U_review.md` (PASS WITH CORRECTIONS). Correções aplicadas (entry set desconectado documentado).
+- [x] Issue N-grande identificado e resolvido: V_W ~ O(1/N), entry requer c ~ 1/N. Footnote adicionado: c = c̃/N, N·V_W ~ O(1), cutoffs são scale-invariant.
 
 ### CONCLUÍDO (sessão 2026-04-21 — v3 light math)
 - [x] v3 criado: corpo leve, provas no appendix (estilo JoP: Hirsch 2023, Hill 2022, Tyson et al. 2024)
