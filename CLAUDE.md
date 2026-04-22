@@ -9,8 +9,9 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 
 ## Status
 
-- **Fase**: PAPER PRONTO PARA CIRCULAR. Pipeline completo (94/100). Journal target: AJPS → JoP → RIO.
-- **Paper**: `formal_model_v2.Rmd` — versão completa com Lemma 1 (prova analítica D_base), Theorem 1 (4 cases, single-crossing, closed-form p*), 6 Proposições, Worked Example, Appendices A-C.
+- **Fase**: REVISÃO DE EXPOSIÇÃO pós editorial review (7.5/10). Journal target: AJPS → JoP → RIO.
+- **Paper**: `formal_model_v2.Rmd` — versão com revisões de exposição em andamento.
+- **Editorial review**: `quality_reports/2026-04-21_review-formal-model.md` — carta editorial + 3 pareceres (Design 8/10, Técnica 7/10, Exposição 7/10).
 - **Nota técnica**: `notes/2026-04-19_formalizacao_v2.Rmd` — derivações base (superseded pelo paper).
 - **Prova do Lemma 1**: `notes/2026-04-21_lemma1_complete_proof.md` — prova completa verificada.
 
@@ -28,7 +29,7 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 
 ### Comparação institucional
 - **Unanimidade**: W deve incluir H → screening (agressivo vs conservador) → jump em E[V_H]
-- **Maioria**: W inclui H a custo αV(θ) por convenção WLOG (indiferente entre incluir/excluir) → sem screening → V_H linear
+- **Maioria**: W exclui H da coalizão, H captura αV(θ) bilateralmente → sem screening → V_H linear
 
 ### Screening cutoff (closed form)
 μ_s = α(r-1)/(r-α). Substitui a cúbica do modelo anterior.
@@ -42,7 +43,31 @@ Condicional à entrada: H prefere unanimidade (overpayment de θ=0), W prefere m
 ## TODOs
 
 ### PRÓXIMO PASSO
+- [ ] Encurtar intro (laundry list, "three contributions", condensar §2+§3)
+- [ ] Observable implication na intro
+- [ ] Reestruturar Theorem 1 (theorem + corollary + worked example)
+- [ ] Tie-breaking convention → footnote
+- [ ] Explicitar novidade vs formalização (Steinberg, Gould)
+- [ ] Considerar renomear "informational power"
+- [ ] Calibração numérica GATT/WTO (rough r, α, N)
+- [ ] Limpar .bib: 20 entradas fantasma, proteger capitalização de títulos
 - [ ] Submeter ao AJPS
+
+### CONCLUÍDO (sessão 2026-04-21 — editorial review)
+- [x] Editorial review completo (Design 8, Técnica 7, Exposição 7 → 7.5/10, R&R minor)
+- [x] Seção 2 verbal → exemplo motivador N=3 (V(0)=1, V(1)=2, α=0.2, cutoff 1/9)
+- [x] Convenção inclusão WLOG → exclusão explícita sob maioria (nenhuma equação mudou)
+- [x] Prova Lemma 1: corpo → proof sketch 3 frases, prova completa em App B.5
+- [x] Notação: φ conflito resolvido (App C → ψ), p_H → ρ_H, tabela de notação em App A
+- [x] P,Q → C_buy, C_out (nomes mnemônicos na prova Lemma 1)
+- [x] Proposition 2 (Overpayment) demovida a Remark
+- [x] Definition 1 (Packages) absorvida na Definition 2 (Game) — "one model"
+- [x] Frases iniciando com símbolo corrigidas (3 ocorrências)
+- [x] Código R extraído para scripts/model_functions.R (source() no Rmd)
+- [x] Game tree TikZ: 2 figuras (Stages 0-1 + bargaining unanimidade)
+- [x] Screening schematic TikZ: jump anotado, branches agressivo/conservador, BP gains
+- [x] Figura α*(N,β) vs N (10-150) + interpretação PTAs/Bhagwati na Scope
+- [x] Bug fix: anotação screening invertida no game tree
 
 ### CONCLUÍDO (sessão 2026-04-20/21)
 - [x] Pipeline completo: Code Review (98/100) + Devil's Advocate (85/100) + Proofread (100/100)
@@ -124,5 +149,6 @@ Pré-normalização: cada país tem o_i > 0 (potências médias com o_i intermed
 
 - Notas em Markdown, modelo formal em Rmd → PDF
 - Idioma: português para notas; inglês para o paper
-- N genérico sempre (nunca especializar para N=3)
+- N genérico sempre (N=3 apenas no exemplo motivador Seção 2)
 - x ≡ (N-1)αr como atalho notacional
+- Sob maioria: W EXCLUI H (não convenção WLOG de inclusão)

@@ -75,7 +75,7 @@ Before turning to the general model, consider a stripped-down environment with t
 - *Aggressive offer* ($y_H = 0.2$): type $\theta = 0$ is indifferent and accepts; type $\theta = 1$ rejects (wants $0.4$). $W$ gets $0.8$ if $\theta = 0$, gets $0$ if $\theta = 1$.
 - *Conservative offer* ($y_H = 0.4$): both types accept. $W$ gets $0.6$ if $\theta = 0$, gets $1.6$ if $\theta = 1$.
 
-$W$ prefers the aggressive offer when $0.8(1-\mu) > 0.6(1-\mu) + 1.6\mu$, which simplifies to $\mu < 1/9$. The screening cutoff $\mu^* = 1/9$ is the belief at which $W$ switches from aggressive to conservative treatment of $H$.
+The weak state prefers the aggressive offer when $0.8(1-\mu) > 0.6(1-\mu) + 1.6\mu$, which simplifies to $\mu < 1/9$. The screening cutoff $\mu^* = 1/9$ is the belief at which $W$ switches from aggressive to conservative treatment of $H$.
 
 **The jump and overpayment.** Below the cutoff, $H$’s expected payoff is the same as under majority: $0.2 + 0.2\mu$. Above the cutoff, $H$’s expected payoff jumps to $0.4$---constant, independent of $\mu$. The source is overpayment: on the conservative branch, type $\theta = 0$ receives $0.4$ but would accept $0.2$. Weak states cannot avoid this cost because they must buy $H$’s vote without knowing the type. The jump at $\mu^* = 1/9$ is $0.18$, or about 16\% of expected surplus at the cutoff.
 
@@ -89,14 +89,12 @@ $W$ prefers the aggressive offer when $0.8(1-\mu) > 0.6(1-\mu) + 1.6\mu$, which 
 
 The relevant comparison is between two institutional packages that differ only in the voting rule. Both packages have symmetric proposal rights: in each bargaining round, a proposer is selected uniformly at random, with each player recognized with probability $1/N$. This ensures that the comparison isolates the effect of the voting rule, holding proposal rights constant.
 
-\begin{definition}[Institutional Packages]\label{def:packages}
-The analysis compares two institutional packages:
+The two institutional packages are:\footnote{The model analyzes formal unanimity (every member has a veto). In practice, ``consensus'' at the WTO refers to the norm of not calling a formal vote, which is distinct from a formal unanimity requirement. The model's results apply most directly to settings where each member has an effective veto over outcomes, whether de jure or de facto.}
 \begin{itemize}
 \item \textbf{Package $M$ (Majority rule)}: decisions pass with strict majority support.
-\item \textbf{Package $U$ (Unanimity/Consensus)}: decisions require unanimous support.\footnote{The model analyzes formal unanimity (every member has a veto). In practice, ``consensus'' at the WTO refers to the norm of not calling a formal vote, which is distinct from a formal unanimity requirement. The model's results apply most directly to settings where each member has an effective veto over outcomes, whether de jure or de facto.}
+\item \textbf{Package $U$ (Unanimity/Consensus)}: decisions require unanimous support.
 \end{itemize}
 Both packages have symmetric proposal rights (random proposer with probability $1/N$). The packages differ \emph{only} in the voting rule.
-\end{definition}
 
 Two features of this comparison require justification.
 
@@ -123,6 +121,7 @@ The game $\Gamma(N, p, r, \alpha, \beta, c)$ has the following primitives.
 \item Disagreement payoffs: each $W$ receives $0$; $H$ receives $\alpha V(\theta)$, with $\alpha \in (0, 1/r)$.
 \item The common discount factor is $\beta \in (0,1)$.
 \item Each weak state that joins the institution pays an entry cost $c > 0$.
+\item The voting rule is $R \in \{M, U\}$: under majority ($M$), decisions pass with $q = \lfloor N/2 \rfloor + 1$ votes; under unanimity ($U$), decisions require all $N$ votes. Both rules have symmetric proposal rights (each player recognized with probability $1/N$).
 \end{itemize}
 \end{definition}
 
@@ -240,7 +239,7 @@ child {
   infoset/.style={dashed, thick, gray},
   level 1/.style={sibling distance=6cm},
   level 2/.style={sibling distance=3.2cm},
-  level 3/.style={sibling distance=2.4cm},
+  level 3/.style={sibling distance=3.2cm},
   level 4/.style={sibling distance=2cm}
 ]
 
@@ -262,12 +261,12 @@ child {
         node [terminal] {$r,\;\; {-}c$}
         edge from parent node[below] {$H$ pr.}
       }
-      edge from parent node[above=5pt] {rej ($\theta{=}1$)}
+      edge from parent node[above=5pt, pos=0.6] {rej ($\theta{=}1$)}
     }
     child {
       %% theta=0 accepts
       node [terminal] {$\alpha,\;\; 1{-}\alpha{-}c$}
-      edge from parent node[below=5pt] {acc ($\theta{=}0$)}
+      edge from parent node[below=5pt, pos=0.6] {acc ($\theta{=}0$)}
     }
     edge from parent node[above] {agg.\ $(y_H{=}\alpha)$}
   }
@@ -299,7 +298,7 @@ child {
 % Screening annotation
 \node[font=\normalsize\itshape, text=black, fill=white, inner sep=2pt]
   at ($(wp) + (0cm, -2.8cm)$)
-  {$W$ screens: agg.\ iff $\mu \geq \mu_s$};
+  {$W$ screens: agg.\ iff $\mu < \mu_s$};
 
 \end{tikzpicture}
 
@@ -372,13 +371,13 @@ V_H^{R2}(\theta=0, \mu < \mu_s^{R2}) &= \frac{1 + (N-1)\alpha}{N}, \label{eq:VH0
 V_H^{R2}(\theta=0, \mu > \mu_s^{R2}) &= \frac{1 + (N-1)\alpha r}{N} \quad \text{(overpaid)}. \label{eq:VH0_R2_con}
 \end{align}
 
-\begin{proposition}[Overpayment under unanimity]\label{prop:overpayment}
+\begin{remark}[Overpayment under unanimity]\label{rem:overpayment}
 Under unanimity on the conservative branch ($\mu > \mu_s^{R2}$), type $\theta=0$ receives strictly more than under majority:
 \[
 \frac{1+(N-1)\alpha r}{N} > \frac{1+(N-1)\alpha}{N}.
 \]
 This overpayment arises because $W$ cannot tailor the offer to the realized type. On the aggressive branch, payoffs are identical across rules. Type $\theta=1$ receives the same under both rules for all $\mu$.
-\end{proposition}
+\end{remark}
 
 This is the source of the mechanism. Under majority, $W$ bypasses $H$, so $H$ always receives the type-specific payoff $\alpha V(\theta)$. Under unanimity, $W$ must include $H$ but cannot distinguish types. On the conservative branch, $W$ offers $\alpha r$ to *both* types, overpaying type $\theta=0$ by $(N-1)\alpha(r-1)/N$ relative to majority.
 
@@ -430,6 +429,73 @@ The intuition: at the screening cutoff, weak proposers switch from treating the 
 - $\beta$ is large (more patient players make the continuation threat more credible),
 - $\mu_s^{R1}$ is small (larger probability mass on the conservative region),
 - $N$ is moderate (the per-player jump is $(N-1)/N^2$, maximized at intermediate $N$).
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=8cm, y=10cm,
+  >=Stealth,
+  every node/.style={font=\small}]
+
+% Axes
+\draw[->, thick] (-0.05,0) -- (1.08,0) node[right] {$\mu$};
+\draw[->, thick] (0,-0.02) -- (0,0.78) node[above] {$E[V_H^{R1}(\mu)]$};
+
+% Tick marks on x-axis
+\draw (0,-0.01) -- (0,0.01) node[below=3pt] {$0$};
+\draw (1,-0.01) -- (1,0.01) node[below=3pt] {$1$};
+
+% Screening cutoff vertical dashed line
+\draw[dashed, gray] (0.197,0) -- (0.197,0.68);
+\node[below=3pt] at (0.197,0) {$\mu_s^{R1}$};
+
+% --- Majority (red, linear) ---
+% From (0, 0.38) to (1, 0.52): affine, no jump
+\draw[red, thick] (0,0.38) -- (1,0.52);
+\node[red, right] at (1.01,0.52) {\footnotesize Majority (linear)};
+
+% --- Unanimity (blue, piecewise with jump) ---
+% Aggressive branch: from (0, 0.44) to (mu_s, 0.544)
+% Conservative branch: from (mu_s, 0.602) to (1, 0.72)
+
+% Aggressive branch
+\draw[blue, thick] (0,0.44) -- (0.197,0.544);
+% Open circle at right endpoint (left limit)
+\draw[blue, thick, fill=white] (0.197,0.544) circle (1.5pt);
+
+% Conservative branch
+\draw[blue, thick] (0.197,0.602) -- (1,0.72);
+% Closed circle at left endpoint (right limit)
+\draw[blue, thick, fill=blue] (0.197,0.602) circle (1.5pt);
+
+% --- Jump annotation ---
+\draw[<->, thick, blue!70!black] (0.22,0.544) -- (0.22,0.602);
+\node[right, blue!70!black, font=\footnotesize] at (0.23,0.573) {Screening rent};
+
+% --- Branch labels ---
+\node[blue, above, rotate=28, font=\footnotesize] at (0.08,0.48) {Aggressive};
+\node[blue, above, rotate=8, font=\footnotesize] at (0.62,0.67) {Conservative};
+
+% --- Concavification shading ---
+% The concave envelope connects aggressive start to conservative end,
+% passing above the jump. Show the region between envelope and value function.
+% Envelope: line from (0, 0.44) to the conservative branch tangent point.
+% For schematic clarity, draw envelope as dashed line from (0,0.44) to ~(0.42, 0.635)
+% which is tangent to conservative branch, then follows conservative branch.
+\draw[dashed, blue!50!black, thin] (0,0.44) -- (0.42,0.635);
+
+% Shade the region between the dashed envelope and the actual value function
+\fill[blue!10, opacity=0.5]
+  (0,0.44) -- (0.197,0.544) -- (0.197,0.602) -- (0.42,0.635) -- cycle;
+% Redraw the dashed line on top
+\draw[dashed, blue!50!black, thin] (0,0.44) -- (0.42,0.635);
+
+% BP gains annotation
+\node[blue!50!black, font=\scriptsize, align=center] at (0.12,0.56) {BP\\gains};
+
+\end{tikzpicture}
+\caption{Schematic of the hegemon's expected R1 payoff as a function of posterior belief $\mu$, based on Example~\ref{ex:magnitudes} parameters ($N=5$, $r=1.5$, $\alpha=0.3$, $\beta=0.9$). Under majority (red), the payoff is linear in $\mu$ with no discontinuity. Under unanimity (blue), the payoff has two branches separated by an upward jump at the screening cutoff $\mu_s^{R1} \approx 0.197$: to the left, weak proposers play aggressively; to the right, they switch to conservative offers that overpay the low type. The shaded region shows where the concave envelope (dashed) lies above the value function, creating gains from Bayesian persuasion.}
+\label{fig:screening-schematic}
+\end{figure}
 
 \begin{example}[Screening jump: concrete magnitudes]\label{ex:magnitudes}
 Let $N=5$, $r=1.5$, $\alpha=0.3$, $\beta=0.9$. The R1 screening cutoff is $\mu_s^{R1} \approx 0.197$. At beliefs just below the cutoff, weak proposers play aggressively and the hegemon's expected continuation payoff is $E[V_H^{R1}] \approx 0.544$ (computed from equations \eqref{eq:VH1_R2_U}--\eqref{eq:VH0_R2_con} and the R1 expressions in Section \@ref(R1consensus)). At beliefs just above it, weak proposers switch to conservative offers and the payoff jumps to $E[V_H^{R1}] \approx 0.602$---a discrete increase of $0.058$, or about $5.3\%$ of expected surplus $V_e(\mu)$. Under majority rule at the same belief, $E[V_H^{R1}] \approx 0.428$, with no jump at any belief. The screening mechanism thus gives the hegemon $27\%$ more than majority on the aggressive branch and $41\%$ more on the conservative branch, with the discrete gap between the two branches providing the non-convexity that Bayesian persuasion exploits.
@@ -490,103 +556,7 @@ Under unanimity, the concavification can exploit both entry and screening. The o
 
 ```{r bp_illustration, echo=FALSE, fig.width=10, fig.height=4.5, fig.cap="Value functions and concavification under majority (red) and unanimity (blue). Dashed lines show concave envelopes. Left panel (a): baseline parameters ($N=5$, $r=1.5$, $\\alpha=0.3$, $\\beta=0.9$, $c=0.1$) where the screening jump under unanimity creates a large concavification gain. Right panel (b): parameters near the boundary of the unanimity-preferred region ($N=5$, $r=1.2$, $\\alpha=0.3$, $\\beta=0.7$, $c=0.1$) where the mechanism is weaker and the concavification gains are smaller."}
 
-# Functions from the technical note
-VW_R1_unanimity <- function(r, alpha, mu, N, beta) {
-  x <- (N - 1) * alpha * r
-  mu_s_R2 <- alpha * (r - 1) / (r - alpha)
-  Ve <- 1 + mu * (r - 1)
-  if (mu < mu_s_R2) {
-    VW_R2 <- (1 - mu) * (1 - alpha) / N
-  } else {
-    VW_R2 <- (Ve - alpha * r) / N
-  }
-  omega <- (N - 2) * beta * VW_R2
-  F1_con <- Ve - beta * (r + x) / N - omega
-  F1_agg <- (1 - mu) * (1 - beta * (1 + x) / N - omega) + mu * beta * r * (1 - alpha) / N
-  F_proposer <- max(F1_agg, F1_con)
-  if (F1_agg > F1_con) {
-    # Aggressive: theta=1 rejects, R2 with mu=1
-    VW_R2_1 <- r * (1 - alpha) / N
-    nonprop <- beta * VW_R2 / N + (N - 2) / N * ((1 - mu) * beta * VW_R2 + mu * beta * VW_R2_1)
-  } else {
-    # Conservative: all deals pass
-    nonprop <- (N - 1) / N * beta * VW_R2
-  }
-  VW_R1 <- F_proposer / N + nonprop
-  return(VW_R1)
-}
-
-VW_R1_majority <- function(r, alpha, mu, N, beta) {
-  Ve <- 1 + mu * (r - 1)
-  # Budget identity: total surplus = Ve, so VW = (Ve - EVH) / (N-1)
-  EVH <- VH_R1_majority(r, alpha, mu, N, beta)
-  VW_R1_M <- (Ve - EVH) / (N - 1)
-  return(VW_R1_M)
-}
-
-VH_R1_unanimity <- function(r, alpha, mu, N, beta) {
-  x <- (N - 1) * alpha * r
-  mu_s_R2 <- alpha * (r - 1) / (r - alpha)
-  Ve <- 1 + mu * (r - 1)
-  if (mu < mu_s_R2) {
-    VW_R2 <- (1 - mu) * (1 - alpha) / N
-  } else {
-    VW_R2 <- (Ve - alpha * r) / N
-  }
-  omega <- (N - 2) * beta * VW_R2
-  F1_con <- Ve - beta * (r + x) / N - omega
-  F1_agg <- (1 - mu) * (1 - beta * (1 + x) / N - omega) + mu * beta * r * (1 - alpha) / N
-  H_prop_0 <- (1 - (N - 1) * beta * VW_R2) / N
-  H_prop_1 <- (r - (N - 1) * beta * VW_R2) / N
-  if (F1_agg > F1_con) {
-    VH_0 <- H_prop_0 + (N - 1) * beta * (1 + x) / (N^2)
-    VH_1 <- H_prop_1 + (N - 1) * beta * (r + x) / (N^2)
-  } else {
-    VH_0 <- H_prop_0 + (N - 1) * beta * (r + x) / (N^2)
-    VH_1 <- H_prop_1 + (N - 1) * beta * (r + x) / (N^2)
-  }
-  EVH <- mu * VH_1 + (1 - mu) * VH_0
-  return(EVH)
-}
-
-VH_R1_majority <- function(r, alpha, mu, N, beta) {
-  q <- floor(N/2) + 1
-  Ve <- 1 + mu * (r - 1)
-  VW_R2_M <- (1 - alpha) * Ve / N
-  # H proposes (prob 1/N): buys q-1 weak states at beta*VW_R2_M each
-  H_prop <- (Ve - (q - 1) * beta * VW_R2_M) / N
-  # W proposes (prob (N-1)/N): W excludes H; H captures alpha*V(theta) bilaterally
-  W_prop_H <- (N - 1) / N * alpha * Ve
-  EVH <- H_prop + W_prop_H
-  return(EVH)
-}
-
-# Upper concave envelope via left-to-right sweep
-concavify <- function(mus, vals) {
-  n <- length(mus)
-  cav_vals <- numeric(n)
-  cav_vals[1] <- vals[1]
-  i <- 1
-  while (i < n) {
-    best_j <- i + 1
-    best_slope <- (vals[i+1] - cav_vals[i]) / (mus[i+1] - mus[i])
-    for (j in (i+2):n) {
-      if (j > n) break
-      slope <- (vals[j] - cav_vals[i]) / (mus[j] - mus[i])
-      if (slope > best_slope) {
-        best_slope <- slope
-        best_j <- j
-      }
-    }
-    for (k in (i+1):best_j) {
-      t <- (mus[k] - mus[i]) / (mus[best_j] - mus[i])
-      cav_vals[k] <- cav_vals[i] + t * (vals[best_j] - cav_vals[i])
-    }
-    i <- best_j
-  }
-  cav_vals <- pmax(cav_vals, vals)
-  return(cav_vals)
-}
+source("scripts/model_functions.R", local = TRUE)
 
 # Helper to plot one panel
 plot_panel <- function(r_val, alpha_val, N_val, beta_val, c_val, title) {
@@ -661,25 +631,8 @@ E_\theta[V_H^{R1}(\theta, \mu, U)] > E_\theta[V_H^{R1}(\theta, \mu, M)].
 \]
 \end{lemma}
 
-\begin{proof}
-Let $P \equiv \beta(q-1)(1-\alpha)$, $Q \equiv N(N-1)\alpha$, and $x = (N-1)\alpha r$. Under majority, $E[V_H^{R1}(\mu, M)] = \lambda_M V_e(\mu)$. Define the backbone:
-\[
-D_{\text{base}}(\mu) \equiv \frac{(P-Q)V_e(\mu) + Q\beta r}{N^2},
-\]
-and two correction terms:
-\[
-\delta_{R2}(\mu) \equiv \frac{(N-1)\beta[\mu(r-\alpha)-\alpha(r-1)]}{N^2}, \qquad \delta_{R1}(\mu) \equiv \frac{(N-1)\beta(r-1)(1-\mu)}{N^2}.
-\]
-Direct computation (Appendix B.5) shows that the difference $D(\mu) \equiv E[V_H^{R1}(\mu, U)] - \lambda_M V_e(\mu)$ decomposes as:
-\[
-D(\mu) = D_{\text{base}}(\mu) + \mathbf{1}\{\mu < \mu_s^{R2}\}\cdot\delta_{R2}(\mu) + \mathbf{1}\{\text{R1 conservative}\}\cdot\delta_{R1}(\mu).
-\]
-
-The corrections have two key properties: $\delta_{R2}(\mu_s^{R2}) = 0$ exactly (ensuring continuity at the R2 cutoff), and $\delta_{R1}(\mu) \geq 0$ for all $\mu \leq 1$ (the R1 conservative correction only adds positivity).
-
-\textit{Step 1: $D_{\text{base}} > 0$ on $[0,1]$.} $D_{\text{base}}$ is affine. At $\mu = 1$: $D_{\text{base}}(1) = r[P - Q(1-\beta)]/N^2$. Setting $P - Q(1-\beta) = 0$ yields $\alpha = \alpha^*$; since $\alpha < \alpha^*$, $D_{\text{base}}(1) > 0$. At $\mu = 0$: $D_{\text{base}}(0) = (P-Q+Q\beta r)/N^2$. One shows (Appendix B.5) that $D_{\text{base}}(0) > D_I(0) > 0$ under $\alpha < \alpha^*$, where $D_I(0)$ is the full difference at zero (which involves a threshold $\bar\alpha_0 > \alpha^*$). Affine with positive endpoints: $D_{\text{base}}(\mu) > 0$ for all $\mu \in [0,1]$.
-
-\textit{Step 2: Assembly.} On Region II (conservative R2, aggressive R1: $\mu \in (\mu_s^{R2}, \mu_s^{R1})$): $D = D_{\text{base}} > 0$. On Region I (aggressive R2: $\mu < \mu_s^{R2}$): $D = D_{\text{base}} + \delta_{R2}$, affine between $D_I(0) > 0$ and $D_{\text{base}}(\mu_s^{R2}) > 0$. On Region III (conservative R1: $\mu > \mu_s^{R1}$): $D = D_{\text{base}} + \delta_{R1} \geq D_{\text{base}} > 0$. At the R1 cutoff, the jump $\delta_{R1}(\mu_s^{R1}) > 0$ ensures $D$ increases discretely.
+\begin{proof}[Proof sketch]
+The payoff difference $D(\mu) \equiv E[V_H^{R1}(\mu, U)] - E[V_H^{R1}(\mu, M)]$ decomposes into an affine backbone $D_{\text{base}}(\mu)$ that is positive at both endpoints under $\alpha < \alpha^*$, plus two correction terms: $\delta_{R2}$, which accounts for R2 screening and vanishes exactly at $\mu_s^{R2}$ (ensuring continuity), and $\delta_{R1} \geq 0$, which accounts for R1 overpayment and only adds positivity. Since $D_{\text{base}} > 0$ on $[0,1]$ and the corrections preserve this, $D(\mu) > 0$ for all $\mu \in (0,1]$. See Appendix B.5 for the full derivation.
 \end{proof}
 
 Lemma \ref{lem:conditional} shows that, when the hegemon's outside option is not too strong ($\alpha < \alpha^*$), unanimity gives the hegemon a strictly higher continuation payoff than majority conditional on the institution forming. The proof works by decomposing the payoff difference into a backbone term $D_{\text{base}}$ that is affine and universally positive under the condition on $\alpha$, plus two corrections that either vanish at their activation point ($\delta_{R2}$) or are non-negative everywhere ($\delta_{R1}$). The backbone captures two forces: when the hegemon proposes, unanimity reduces the weak states' continuation values, allowing cheaper agreement; when a weak state proposes, unanimity makes the hegemon pivotal, forcing compensation above the bare outside option. The threshold $\alpha^*$ decreases with $N$: as the organization grows, unanimity requires buying more votes, and the cost can offset the pivotal-inclusion advantage unless $\alpha$ is sufficiently small. For the empirically relevant parameter range, majority therefore never dominates through conditional bargaining payoffs. Any advantage of majority must arise exclusively through the entry margin.
@@ -861,16 +814,16 @@ Figure \@ref(fig:parameter-regions) shows that the hegemon prefers unanimity acr
 
 ## Partial Agenda Influence and Informal Power {#extension}
 
-The baseline model uses symmetric proposal rights ($p_H = 1/N$) to isolate the effect of the voting rule. A natural objection is that powerful states exercise informal agenda influence---through control over drafting, chairing of meetings, or greater diplomatic salience---so the symmetric baseline is unrealistic. Appendix C extends the model to allow $H$ to be recognized with probability $p_H > 1/N$, while each $W$ is recognized with probability $p_W = (1-p_H)/(N-1)$.
+The baseline model uses symmetric proposal rights ($\rho_H = 1/N$) to isolate the effect of the voting rule. A natural objection is that powerful states exercise informal agenda influence---through control over drafting, chairing of meetings, or greater diplomatic salience---so the symmetric baseline is unrealistic. Appendix C extends the model to allow $H$ to be recognized with probability $\rho_H > 1/N$, while each $W$ is recognized with probability $\rho_W = (1-\rho_H)/(N-1)$.
 
-The extension reveals that consensus and informal agenda influence are not substitutes---they interact non-monotonically. Under majority, the value function remains linear in beliefs regardless of $p_H$: no screening, no jump. Under unanimity, the screening cutoff $\mu_s^{R2}$ is unchanged, but the jump magnitude becomes $(1-\mu_s^{R2})(1-p_H)\alpha(r-1)$, decreasing in $p_H$. In R1, three effects operate simultaneously: a frequency effect ($W$ proposes less often, reducing screening opportunities), a gap effect ($H$'s higher continuation value widens the spread between aggressive and conservative offers), and a cutoff effect (the screening threshold rises). The net R1 jump scales with $p_H(1-p_H)$ holding the cutoff fixed, producing a hump-shaped relationship.
+The extension reveals that consensus and informal agenda influence are not substitutes---they interact non-monotonically. Under majority, the value function remains linear in beliefs regardless of $\rho_H$: no screening, no jump. Under unanimity, the screening cutoff $\mu_s^{R2}$ is unchanged, but the jump magnitude becomes $(1-\mu_s^{R2})(1-\rho_H)\alpha(r-1)$, decreasing in $\rho_H$. In R1, three effects operate simultaneously: a frequency effect ($W$ proposes less often, reducing screening opportunities), a gap effect ($H$'s higher continuation value widens the spread between aggressive and conservative offers), and a cutoff effect (the screening threshold rises). The net R1 jump scales with $\rho_H(1-\rho_H)$ holding the cutoff fixed, producing a hump-shaped relationship.
 
 \begin{proposition}[Non-monotonic effect of agenda influence]\label{prop:extension}
-Under unanimity, the R1 screening jump as a function of recognition probability $p_H$ is:
+Under unanimity, the R1 screening jump as a function of recognition probability $\rho_H$ is:
 \[
-J(p_H) = (1-\mu_s^{R1}(p_H))(1-p_H)p_H\beta(r-1).
+J(\rho_H) = (1-\mu_s^{R1}(\rho_H))(1-\rho_H)\rho_H\beta(r-1).
 \]
-Holding $\mu_s^{R1}$ fixed, $J$ is maximized at $p_H = 1/2$. In the full model, $\mu_s^{R1}$ increases with $p_H$, shifting the peak below $1/2$. Symmetric proposal rights ($p_H = 1/N$) can therefore be understood as participation-preserving restraint rather than as absence of hegemonic influence.
+Holding $\mu_s^{R1}$ fixed, $J$ is maximized at $\rho_H = 1/2$. In the full model, $\mu_s^{R1}$ increases with $\rho_H$, shifting the peak below $1/2$. Symmetric proposal rights ($\rho_H = 1/N$) can therefore be understood as participation-preserving restraint rather than as absence of hegemonic influence.
 \end{proposition}
 
 ## Illustration: The GATT/WTO {#gatt_wto}
@@ -893,7 +846,40 @@ The model assumes the hegemon can commit to an information structure before obse
 
 **When majority dominates.** By Lemma \ref{lem:conditional}, for $\alpha < \alpha^*(N, \beta)$, majority can never dominate through a higher conditional-on-entry payoff. Any advantage must come through the entry margin: $\tau(U) > \tau(M)$. This is more likely when entry costs are high (creating a large gap where the institution forms only under majority), when $\alpha$ approaches $\alpha^*$ (weakening the conditional dominance), or when information is approximately public. For $\alpha \geq \alpha^*$, majority can also dominate through conditional bargaining payoffs near $\mu = 1$, because unanimity's cost of buying $N-1$ votes outweighs the screening advantage.
 
-For representative values with $\beta = 0.9$: $\alpha^* \approx 0.60$ ($N=3$), $0.47$ ($N=5$), $0.39$ ($N=7$), $0.33$ ($N=9$). The threshold decreases with $N$ because unanimity requires buying $N-1$ votes, while majority requires only $q-1$. For large organizations ($N > 20$), $\alpha^*$ becomes small, and the conditional dominance result applies only when the hegemon's bilateral alternative is modest relative to multilateral cooperation. This does not eliminate the mechanism: even when Lemma \ref{lem:conditional} fails globally, the screening jump at $\mu_s^{R1}$ persists, and Bayesian persuasion can still exploit it at low priors. The condition restricts when unanimity dominates \emph{everywhere}, not when it dominates \emph{somewhere}.
+Figure \@ref(fig:alpha-star) plots $\alpha^*(N, \beta)$ as a function of organization size for three levels of patience. The threshold decreases with $N$ because unanimity requires buying $N-1$ votes, while majority requires only $q-1$. For large organizations ($N > 50$), $\alpha^*$ becomes small: the conditional dominance result applies only when the hegemon's bilateral alternative is modest relative to multilateral cooperation. This does not eliminate the mechanism: even when Lemma \ref{lem:conditional} fails globally, the screening jump at $\mu_s^{R1}$ persists, and Bayesian persuasion can still exploit it at low priors. The condition restricts when unanimity dominates \emph{everywhere}, not when it dominates \emph{somewhere}.
+
+The decreasing relationship between $\alpha^*$ and $N$ has a substantive implication. A hegemon whose bilateral alternatives are moderate relative to multilateral cooperation---$\alpha$ well below $\alpha^*$---benefits from consensus. But as bilateral alternatives strengthen, the screening mechanism no longer compensates for the cost of buying unanimous agreement. The proliferation of preferential trade agreements can be understood, in the model's terms, as an increase in $\alpha$: bilateral and regional deals strengthen the hegemon's outside option relative to multilateral cooperation [@bhagwati2008termites]. As $\alpha$ rises past $\alpha^*$, the hegemon's institutional preference shifts away from consensus---not because multilateral cooperation is less valuable, but because the hegemon can capture a larger share of that value bilaterally. This is consistent with the observation that hegemonic support for consensus-based institutions tends to weaken precisely when bilateral alternatives become more attractive.
+
+```{r alpha-star-plot, echo=FALSE, fig.width=7, fig.height=4.5, fig.cap="Threshold $\\alpha^*(N, \\beta)$ for conditional payoff dominance (Lemma 1) as a function of organization size $N$, for three discount factors. Below each curve, unanimity gives the hegemon a strictly higher continuation payoff than majority for all beliefs. The threshold decreases with $N$: in larger organizations, unanimity's vote-buying cost grows relative to the screening advantage, so the mechanism requires a weaker bilateral alternative."}
+
+alpha_star <- function(N, beta) {
+  q <- floor(N / 2) + 1
+  num <- beta * (q - 1)
+  den <- N * (N - 1) - beta * (N^2 - N - q + 1)
+  if (den <= 0) return(NA)
+  return(num / den)
+}
+
+Ns <- seq(10, 150, by = 10)
+betas <- c(0.7, 0.8, 0.9)
+cols <- c("gray50", "steelblue3", "firebrick3")
+
+par(mar = c(4, 4.5, 1, 1))
+plot(NULL, xlim = c(10, 150), ylim = c(0, 0.35),
+     xlab = "Organization size (N)", ylab = expression(alpha^"*"),
+     las = 1, xaxt = "n")
+axis(1, at = seq(10, 150, by = 20))
+abline(h = seq(0, 0.35, by = 0.05), col = "gray90", lty = 1)
+
+for (i in seq_along(betas)) {
+  vals <- sapply(Ns, function(n) alpha_star(n, betas[i]))
+  lines(Ns, vals, col = cols[i], lwd = 2.5, type = "b", pch = 16, cex = 0.6)
+}
+
+legend("topright",
+       legend = as.expression(lapply(betas, function(b) bquote(beta == .(b)))),
+       col = cols, lwd = 2.5, pch = 16, pt.cex = 0.6, cex = 0.85, bg = "white")
+```
 
 For $\alpha \geq \alpha^*$, the conditional payoff ranking is ambiguous: unanimity can dominate at low $\mu$ (where the screening advantage is strong) while majority dominates near $\mu = 1$ (where the vote-buying cost is decisive). In this regime, the institutional comparison depends on the prior $p$ and cannot be resolved by a single lemma. The paper's main results are stated for $\alpha < \alpha^*$, which ensures a clean separation between the conditional and entry channels.
 
@@ -917,6 +903,46 @@ Several extensions remain. First, if weaker states can invest in independent ana
 
 # Appendix A: Bargaining Derivations {-}
 
+## Notation summary {-}
+
+\begin{table}[H]
+\centering\small
+\begin{tabular}{lll}
+\toprule
+Symbol & Meaning & Defined in \\
+\midrule
+$N$ & Number of players ($1$ hegemon $+ N-1$ weak states) & Def.\ 2 \\
+$\theta \in \{0,1\}$ & State of the world & Def.\ 2 \\
+$p$ & Prior $\Pr(\theta=1)$ & Def.\ 2 \\
+$\mu$ & Posterior belief $\Pr(\theta=1 \mid s)$ & Sec.\ 4 \\
+$V(\theta)$ & Value of cooperation: $V(0)=1$, $V(1)=r$ & Def.\ 2 \\
+$r > 1$ & High-type value & Def.\ 2 \\
+$\alpha \in (0, 1/r)$ & Outside-option share: $d_H = \alpha V(\theta)$ & Def.\ 2 \\
+$\beta \in (0,1)$ & Common discount factor & Def.\ 2 \\
+$c > 0$ & Entry cost per weak state & Def.\ 2 \\
+$V_e(\mu)$ & Expected cooperation value $1 + \mu(r-1)$ & Sec.\ 4 \\
+$x$ & Shorthand $(N-1)\alpha r$ & Sec.\ 4 \\
+$q$ & Majority quota $\lfloor N/2 \rfloor + 1$ & Sec.\ 5 \\
+$R \in \{M, U\}$ & Voting rule (majority / unanimity) & Def.\ 1 \\
+$\mu_s^{R2}$ & R2 screening cutoff & Eq.\ (2) \\
+$\mu_s^{R1}$ & R1 screening cutoff & Eq.\ (3) \\
+$\phi$ & Auxiliary for R1 cutoff: $[rN - \beta(N\!-\!1\!+\!r)]/[\beta(r\!-\!1)]$ & Prop.\ 3 \\
+$\tau(R)$ & Entry threshold under rule $R$ & Sec.\ 7 \\
+$v(\mu, R)$ & Hegemon's reduced-form value function & Sec.\ 7 \\
+$\alpha^*$ & Threshold for conditional dominance (Lemma 1) & Lemma 1 \\
+$C_{\text{buy}}, C_{\text{out}}$ & Vote-buying cost, outside-option cost (proof) & App.\ B.5 \\
+$\lambda_M$ & Majority payoff coefficient & Thm.\ 1 \\
+$S_U, S_M$ & Max-slope of value function under $U$, $M$ & Thm.\ 1 \\
+$p^*$ & Threshold prior for institutional comparison & Thm.\ 1 \\
+\midrule
+\multicolumn{3}{l}{\textit{Appendix C extension (partial agenda influence)}} \\
+$\rho_H, \rho_W$ & Recognition probabilities for $H$, $W$ & App.\ C \\
+$\psi$ & Proposal-weighted share $\rho_H + (1-\rho_H)\alpha$ & App.\ C \\
+$\Phi_M$ & Majority coefficient with agenda bias & App.\ C \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 ## A.1 Majority: R2 and R1 {-}
 
 Under majority, weak proposers form a winning coalition from other weak states, excluding $H$. The hegemon captures $\alpha V(\theta)$ from its bilateral alternative. $H$'s payoff is type-specific and does not depend on $W$'s beliefs.
@@ -937,7 +963,7 @@ When $W$ proposes: the screening subgame has cutoff $\mu_s^{R2} = \alpha(r-1)/(r
 
 Continuation values are given in equations \eqref{eq:VH1_R2_U}--\eqref{eq:VH0_R2_con}.
 
-$V_W^{R2}$ under unanimity:
+Weak states' R2 continuation values under unanimity:
 \begin{align}
 V_W^{R2}(\mu < \mu_s^{R2}) &= \frac{(1-\mu)(1-\alpha)}{N} \\
 V_W^{R2}(\mu > \mu_s^{R2}) &= \frac{V_e(\mu) - \alpha r}{N}
@@ -999,11 +1025,11 @@ Under majority, $v(\mu, M)$ is affine for $\mu \geq \tau(M)$, hence concave---th
 
 ## B.5 Proof of Lemma 1 (Conditional payoff dominance) {-}
 
-Let $P \equiv \beta(q-1)(1-\alpha)$, $Q \equiv N(N-1)\alpha$, $x = (N-1)\alpha r$. Under majority, $E[V_H^{R1}(\mu, M)] = \lambda_M V_e(\mu)$ where $\lambda_M = [N(1+(N-1)\alpha) - P]/N^2$.
+Let $C_{\text{buy}} \equiv \beta(q-1)(1-\alpha)$ (the vote-buying cost under majority) and $C_{\text{out}} \equiv N(N-1)\alpha$ (the aggregate outside-option cost). Under majority, $E[V_H^{R1}(\mu, M)] = \lambda_M V_e(\mu)$ where $\lambda_M = [N(1+(N-1)\alpha) - C_{\text{buy}}]/N^2$.
 
 **Step 1: Decomposition.** Define:
 \begin{align}
-D_{\text{base}}(\mu) &\equiv \frac{(P-Q)V_e(\mu) + Q\beta r}{N^2}, \\
+D_{\text{base}}(\mu) &\equiv \frac{(C_{\text{buy}}-C_{\text{out}})V_e(\mu) + C_{\text{out}}\beta r}{N^2}, \\
 \delta_{R2}(\mu) &\equiv \frac{(N-1)\beta[\mu(r-\alpha)-\alpha(r-1)]}{N^2}, \\
 \delta_{R1}(\mu) &\equiv \frac{(N-1)\beta(r-1)(1-\mu)}{N^2}.
 \end{align}
@@ -1016,11 +1042,11 @@ $$D(\mu) = D_{\text{base}}(\mu) + \mathbf{1}\{\mu < \mu_s^{R2}\}\cdot\delta_{R2}
 **Step 2: $D_{\text{base}} > 0$ on $[0,1]$.** $D_{\text{base}}$ is affine, so it suffices to check two endpoints.
 
 *At $\mu = 1$:*
-$$D_{\text{base}}(1) = \frac{r[P - Q(1-\beta)]}{N^2} = \frac{r[\beta(q-1)(1-\alpha) - N(N-1)\alpha(1-\beta)]}{N^2}.$$
-Setting $P - Q(1-\beta) = 0$ and solving for $\alpha$ yields $\alpha = \alpha^*(N, \beta)$. Since $\alpha < \alpha^*$, $D_{\text{base}}(1) > 0$.
+$$D_{\text{base}}(1) = \frac{r[C_{\text{buy}} - C_{\text{out}}(1-\beta)]}{N^2} = \frac{r[\beta(q-1)(1-\alpha) - N(N-1)\alpha(1-\beta)]}{N^2}.$$
+Setting $C_{\text{buy}} - C_{\text{out}}(1-\beta) = 0$ and solving for $\alpha$ yields $\alpha = \alpha^*(N, \beta)$. Since $\alpha < \alpha^*$, $D_{\text{base}}(1) > 0$.
 
 *At $\mu = 0$:*
-$$D_{\text{base}}(0) = \frac{P - Q + Q\beta r}{N^2} = \frac{P + Q(\beta r - 1)}{N^2}.$$
+$$D_{\text{base}}(0) = \frac{C_{\text{buy}} - C_{\text{out}} + C_{\text{out}}\beta r}{N^2} = \frac{C_{\text{buy}} + C_{\text{out}}(\beta r - 1)}{N^2}.$$
 Since $D_I(0) = D_{\text{base}}(0) + \delta_{R2}(0) = D_{\text{base}}(0) - (N-1)\beta\alpha(r-1)/N^2$, we have $D_{\text{base}}(0) = D_I(0) + (N-1)\beta\alpha(r-1)/N^2 > D_I(0)$. To show $D_I(0) > 0$: write $D_I(0) = [\beta(q-1) - \alpha d_0]/N^2$ where $d_0 = N(N-1) - \beta((N-1)^2 r + N - q)$. If $d_0 \leq 0$, then $D_I(0) \geq \beta(q-1)/N^2 > 0$. If $d_0 > 0$, the threshold $\bar\alpha_0 = \beta(q-1)/d_0$ satisfies $\bar\alpha_0 > \alpha^*$ because $d_0 < d_* \equiv N(N-1) - \beta(N^2 - N - q + 1)$ (since $d_* - d_0 = \beta(N-1)^2(r-1) > 0$). Hence $\alpha < \alpha^* < \bar\alpha_0$ implies $D_I(0) > 0$, and therefore $D_{\text{base}}(0) > 0$.
 
 *Conclusion:* $D_{\text{base}}$ is affine with positive values at both endpoints, hence $D_{\text{base}}(\mu) > 0$ for all $\mu \in [0,1]$.
@@ -1035,7 +1061,7 @@ Since $D_I(0) = D_{\text{base}}(0) + \delta_{R2}(0) = D_{\text{base}}(0) - (N-1)
 
 *Jump at $\mu_s^{R1}$:* the R1 correction $\delta_{R1}$ activates, adding $(N-1)\beta(r-1)(1-\mu_s^{R1})/N^2 > 0$. The left limit is positive (Region II) and the right limit is strictly larger.
 
-Combining all regions: $D(\mu) > 0$ for every $\mu \in (0,1)$. At $\mu = 1$: $D(1) = D_{\text{base}}(1) = r[P - Q(1-\beta)]/N^2 > 0$ (Step 2), so the strict inequality extends to the closed interval $(0,1]$. $\square$
+Combining all regions: $D(\mu) > 0$ for every $\mu \in (0,1)$. At $\mu = 1$: $D(1) = D_{\text{base}}(1) = r[C_{\text{buy}} - C_{\text{out}}(1-\beta)]/N^2 > 0$ (Step 2), so the strict inequality extends to the closed interval $(0,1]$. $\square$
 
 ## B.6 Proof of Theorem 1 (Threshold prior) {-}
 
@@ -1044,7 +1070,7 @@ The proof appears in the body of Section \@ref(comparison). It proceeds in five 
 
 # Appendix C: Partial Agenda Influence {-}
 
-This appendix derives the extension of Section \@ref(extension), in which the hegemon is recognized with probability $p_H > 1/N$ and each weak state with probability $p_W = (1-p_H)/(N-1)$. All other primitives are as in the baseline model.
+This appendix derives the extension of Section \@ref(extension), in which the hegemon is recognized with probability $\rho_H > 1/N$ and each weak state with probability $\rho_W = (1-\rho_H)/(N-1)$. All other primitives are as in the baseline model.
 
 ## C.1 R2 under unanimity with bias {-}
 
@@ -1055,55 +1081,55 @@ The screening subgame when $W$ proposes is unchanged: $W$ chooses aggressive ($y
 
 R2 continuation values under unanimity with bias:
 \begin{align}
-V_H^{R2}(\theta=1, \mu, U) &= r[p_H + (1-p_H)\alpha] \equiv r\phi, \\
-V_H^{R2}(\theta=0, \mu < \mu_s^{R2}, U) &= p_H + (1-p_H)\alpha = \phi, \\
-V_H^{R2}(\theta=0, \mu > \mu_s^{R2}, U) &= p_H + (1-p_H)\alpha r,
+V_H^{R2}(\theta=1, \mu, U) &= r[\rho_H + (1-\rho_H)\alpha] \equiv r\psi, \\
+V_H^{R2}(\theta=0, \mu < \mu_s^{R2}, U) &= \rho_H + (1-\rho_H)\alpha = \psi, \\
+V_H^{R2}(\theta=0, \mu > \mu_s^{R2}, U) &= \rho_H + (1-\rho_H)\alpha r,
 \end{align}
-where $\phi \equiv p_H + (1-p_H)\alpha$.
+where $\psi \equiv \rho_H + (1-\rho_H)\alpha$.
 
 For weak states:
 \begin{align}
-V_W^{R2}(\mu < \mu_s^{R2}, U) &= p_W(1-\mu)(1-\alpha), \\
-V_W^{R2}(\mu > \mu_s^{R2}, U) &= p_W(V_e(\mu) - \alpha r).
+V_W^{R2}(\mu < \mu_s^{R2}, U) &= \rho_W(1-\mu)(1-\alpha), \\
+V_W^{R2}(\mu > \mu_s^{R2}, U) &= \rho_W(V_e(\mu) - \alpha r).
 \end{align}
 
 The jump in $E_\theta[V_H^{R2}]$ at the cutoff:
 \[
-\text{Jump}^{R2} = (1-\mu_s^{R2})(1-p_H)\alpha(r-1).
+\text{Jump}^{R2} = (1-\mu_s^{R2})(1-\rho_H)\alpha(r-1).
 \]
-This is monotonically decreasing in $p_H$: the more $H$ proposes, the less often $W$ faces the screening problem.
+This is monotonically decreasing in $\rho_H$: the more $H$ proposes, the less often $W$ faces the screening problem.
 
 ## C.2 R2 under majority with bias {-}
 
 No screening. The continuation values are:
 \begin{align}
-V_H^{R2}(\theta, M) &= V(\theta)\phi, \\
-V_W^{R2}(\mu, M) &= p_W(1-\alpha)V_e(\mu).
+V_H^{R2}(\theta, M) &= V(\theta)\psi, \\
+V_W^{R2}(\mu, M) &= \rho_W(1-\alpha)V_e(\mu).
 \end{align}
 Both are affine in $\mu$. No jump.
 
 ## C.3 R1 under unanimity with bias {-}
 
-When $H$ proposes (prob $p_H$): offers $\beta V_W^{R2}(\mu)$ to each $W$, keeps $V(\theta) - (N-1)\beta V_W^{R2}(\mu)$. Pooling (no information revealed).
+When $H$ proposes (prob $\rho_H$): offers $\beta V_W^{R2}(\mu)$ to each $W$, keeps $V(\theta) - (N-1)\beta V_W^{R2}(\mu)$. Pooling (no information revealed).
 
-When $W$ proposes (prob $p_W$ each): $W$ faces the screening problem with offers:
+When $W$ proposes (prob $\rho_W$ each): $W$ faces the screening problem with offers:
 \begin{align}
-y_H^{con} &= \beta r\phi, \\
-y_H^{agg} &= \beta[p_H + (1-p_H)\alpha r].
+y_H^{con} &= \beta r\psi, \\
+y_H^{agg} &= \beta[\rho_H + (1-\rho_H)\alpha r].
 \end{align}
 
 The gap between offers is:
 \[
-y_H^{con} - y_H^{agg} = \beta p_H(r-1).
+y_H^{con} - y_H^{agg} = \beta \rho_H(r-1).
 \]
-This grows with $p_H$: the marginal cost of pooling in R1 increases with proposal bias.
+This grows with $\rho_H$: the marginal cost of pooling in R1 increases with proposal bias.
 
 The R1 jump in $E_\theta[V_H^{R1}]$ at the cutoff $\mu_s^{R1}$:
 \[
-\text{Jump}^{R1}(p_H) = (1-\mu_s^{R1})(1-p_H)p_H\beta(r-1).
+\text{Jump}^{R1}(\rho_H) = (1-\mu_s^{R1})(1-\rho_H)\rho_H\beta(r-1).
 \]
 
-For $p_H = 1/N$ (baseline): $(1-1/N)(1/N) = (N-1)/N^2$, recovering the baseline formula.
+For $\rho_H = 1/N$ (baseline): $(1-1/N)(1/N) = (N-1)/N^2$, recovering the baseline formula.
 
 ## C.4 Majority with bias: R1 {-}
 
@@ -1113,35 +1139,35 @@ E_\theta[V_H^{R1}(\mu, M)] = V_e(\mu) \cdot \Phi_M,
 \]
 where
 \[
-\Phi_M \equiv \phi - p_H(q-1)\beta p_W(1-\alpha) = [p_H + (1-p_H)\alpha] - \frac{p_H(q-1)\beta(1-p_H)(1-\alpha)}{N-1}.
+\Phi_M \equiv \psi - \rho_H(q-1)\beta \rho_W(1-\alpha) = [\rho_H + (1-\rho_H)\alpha] - \frac{\rho_H(q-1)\beta(1-\rho_H)(1-\alpha)}{N-1}.
 \]
 This is affine in $\mu$. No screening, no jump.
 
-For weak states, the coalition coefficient $\kappa \equiv (q-2+p_H)/(N-1)$ captures the probability that a non-proposing $W$ is included in the winning coalition:
+For weak states, the coalition coefficient $\kappa \equiv (q-2+\rho_H)/(N-1)$ captures the probability that a non-proposing $W$ is included in the winning coalition:
 \[
-V_W^{R1}(\mu, M) = p_W(1-\alpha)V_e(\mu)\left[1 + \frac{\beta p_H(q-1)}{N-1}\right].
+V_W^{R1}(\mu, M) = \rho_W(1-\alpha)V_e(\mu)\left[1 + \frac{\beta \rho_H(q-1)}{N-1}\right].
 \]
 
 ## C.5 Non-monotonic effects of proposal bias {-}
 
-The R1 jump under unanimity is $\text{Jump}^{R1}(p_H) = (1-\mu_s^{R1}(p_H))(1-p_H)p_H\beta(r-1)$.
+The R1 jump under unanimity is $\text{Jump}^{R1}(\rho_H) = (1-\mu_s^{R1}(\rho_H))(1-\rho_H)\rho_H\beta(r-1)$.
 
 Three effects operate:
 
-1. **Frequency effect** ($(1-p_H)$): $W$ proposes less often $\Rightarrow$ screening occurs less frequently $\Rightarrow$ reduces jump.
-2. **Gap effect** ($p_H$): $H$'s R2 continuation is larger when $H$ proposes more $\Rightarrow$ gap between conservative and aggressive offers is larger $\Rightarrow$ jump per event is larger.
+1. **Frequency effect** ($(1-\rho_H)$): $W$ proposes less often $\Rightarrow$ screening occurs less frequently $\Rightarrow$ reduces jump.
+2. **Gap effect** ($\rho_H$): $H$'s R2 continuation is larger when $H$ proposes more $\Rightarrow$ gap between conservative and aggressive offers is larger $\Rightarrow$ jump per event is larger.
 3. **Cutoff effect** ($\mu_s^{R1} \uparrow$): cutoff rises $\Rightarrow$ $(1-\mu_s^{R1})$ falls $\Rightarrow$ reduces jump.
 
-Holding the cutoff fixed, the local jump scales with $p_H(1-p_H)$, which is maximized at $p_H = 1/2$. In the full model, because $\mu_s^{R1}$ itself rises with $p_H$, the total jump is not exactly quadratic. In numerical examples, the total jump remains hump-shaped, with the peak shifted left of $1/2$.
+Holding the cutoff fixed, the local jump scales with $\rho_H(1-\rho_H)$, which is maximized at $\rho_H = 1/2$. In the full model, because $\mu_s^{R1}$ itself rises with $\rho_H$, the total jump is not exactly quadratic. In numerical examples, the total jump remains hump-shaped, with the peak shifted left of $1/2$.
 
 ## C.6 Entry thresholds under bias {-}
 
 Under majority, the entry threshold has a closed form:
 \[
-\tau(M, p_H) = \frac{c/\left\{p_W(1-\alpha)\left[1+\frac{\beta p_H(q-1)}{N-1}\right]\right\} - 1}{r-1}.
+\tau(M, \rho_H) = \frac{c/\left\{\rho_W(1-\alpha)\left[1+\frac{\beta \rho_H(q-1)}{N-1}\right]\right\} - 1}{r-1}.
 \]
 
-Under unanimity, $\tau(U, p_H)$ is characterized numerically. Both thresholds increase with $p_H$, but $\tau(U)$ increases faster because $W$'s payoff under unanimity is doubly penalized: $W$ proposes less often *and* must pay a higher reservation to $H$ (which grows with $p_H$).
+Under unanimity, $\tau(U, \rho_H)$ is characterized numerically. Both thresholds increase with $\rho_H$, but $\tau(U)$ increases faster because $W$'s payoff under unanimity is doubly penalized: $W$ proposes less often *and* must pay a higher reservation to $H$ (which grows with $\rho_H$).
 
 
 # Appendix D: Robustness to $K > 2$ Types {-}
@@ -1165,7 +1191,7 @@ These $K-1$ conditions define hyperplanes that partition the simplex $\Delta^{K-
 \end{proposition}
 
 \begin{proof}[Proof sketch]
-$W$'s payoff from an offer targeting type $k$ is $\sum_{j \leq k} \mu_j [V(\theta_j) - \alpha V(\theta_k)]$. Equating the payoffs from targeting type $k$ and type $k+1$ yields the indifference condition. The ratio simplifies because the incremental gain from including type $k+1$ (at cost $\alpha V(\theta_{k+1})$) must equal the incremental cost of overpaying all types $j \leq k$ (the additional payment $\alpha[V(\theta_{k+1}) - V(\theta_k)]$ per accepting type). For $K=2$, this reduces to $\mu_s^{R2} = \alpha(r-1)/(r-\alpha)$, recovering the main model.
+The weak proposer's payoff from an offer targeting type $k$ is $\sum_{j \leq k} \mu_j [V(\theta_j) - \alpha V(\theta_k)]$. Equating the payoffs from targeting type $k$ and type $k+1$ yields the indifference condition. The ratio simplifies because the incremental gain from including type $k+1$ (at cost $\alpha V(\theta_{k+1})$) must equal the incremental cost of overpaying all types $j \leq k$ (the additional payment $\alpha[V(\theta_{k+1}) - V(\theta_k)]$ per accepting type). For $K=2$, this reduces to $\mu_s^{R2} = \alpha(r-1)/(r-\alpha)$, recovering the main model.
 \end{proof}
 
 For $K = 3$ with values $(1, r_1, r_2)$, the R2 screening produces three regions separated by two boundaries. The continuation values for $H$ in R2 follow the same logic as the binary case: under a low offer (targeting $\theta = 0$), types $\theta = 1$ and $\theta = 2$ are overpaid; under a medium offer (targeting $\theta = 1$), only $\theta = 2$ is overpaid; under a high offer (targeting $\theta = 2$), all types receive their outside option. The key pattern persists: low types receive strictly more than their outside option whenever $W$ targets a higher type, and the highest type $\theta = 2$ always receives $r_2(1 + (N-1)\alpha)/N$ regardless of the screening region.
