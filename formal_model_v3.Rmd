@@ -976,7 +976,7 @@ Combining all branches: $D(\mu) > 0$ for every $\mu \in (0,1]$. This establishes
 
 **Step 4: Necessity.** At $\mu = 1$, both corrections vanish ($\delta_{R1}(1) = 0$ and $\mu = 1 > \mu_s^{R2}$), so $D(1) = D_{\text{base}}(1) = r[C_{\text{buy}} - C_{\text{out}}(1-\beta)]/N^2$. Since $\alpha^*$ is the root of $C_{\text{buy}} - C_{\text{out}}(1-\beta) = 0$, $\alpha \geq \alpha^*$ implies $D(1) \leq 0$, and the strict inequality fails. $\square$
 
-## B.6 Proof of Theorem 1 (Dominance of unanimity above $\tau(U)$) {-}
+## B.6 Proof of Theorem 1 (Dominance of unanimity) {-}
 
 Fix $p \geq \tau(U)$, so entry occurs under unanimity. Since $\tau(U) \geq \tau(M)$, entry also occurs under majority. By Lemma \ref{lem:conditional}, $v(p, U) > v(p, M)$. Under majority, $v(\mu, M)$ is affine above $\tau(M)$, hence already concave, so $\operatorname{cav} v(p, M) = v(p, M)$. Therefore $\Pi_H^*(U, p) = \operatorname{cav} v(p, U) \geq v(p, U) > v(p, M) = \operatorname{cav} v(p, M) = \Pi_H^*(M, p)$. $\square$
 
