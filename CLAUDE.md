@@ -166,22 +166,7 @@ Jogo repetido dentro de instituição consensual. Fracos investem para aprender 
 
 ## Paper Futuro: Heterogeneidade e Potências Médias
 
-> **PAPER FUTURO** — extensão com outside options heterogêneas, V endógeno, discriminação estatística.
-
-### Nota técnica principal
-`notes/2026-04-22_heterogeneidade_V_endogeno.md` — modelo com α_i privado, V(S) endógeno, screening, BP, discriminação estatística sob maioria. Derivações com tipos binários, worked examples.
-
-### Decisões de design (2026-04-22)
-- **V(S) = M·(1 - e^{-λA(S)})** com A(S) = Σ α_i^γ, γ ∈ (1,2). Exponencial saturante.
-- Power function V = C·A^σ testada e **descartada**: sem saturação, exclusão sob maioria não emerge (H sempre contribui positivamente). Documentado no worked example da nota.
-- Mecanismo de exclusão requer que contribuição marginal de H vá a zero para coalizões grandes (saturação).
-- Cada jogador tem α_i privado (contribuição + outside option). H tem α_H maior.
-- Screening: W proposer faz offer a H → cutoff μ_s → jump → BP tem valor positivo.
-- Discriminação estatística: sob maioria, W exclui H (adverse selection custosa). Sob unanimidade, forced inclusion ativa BP.
-- Inspiração: modelos de discriminação no mercado de trabalho (Phelps 1972, Arrow 1973).
-
-### Plano antigo (descartado)
-`quality_reports/plans/2026-04-18_heterogeneous-W-plan.md` — usava modelo v1 com entry costs c_L/c_H e complementarity g(k). Pode ter erros matemáticos. Superseded pela nota de 2026-04-22.
+> **PROJETO SEPARADO** — movido para `/Users/manoelgaldino/Documents/DCP/Papers/heterogeneous-informational-power/`. Abrir sessão lá para trabalho neste paper.
 
 ## Convenções
 

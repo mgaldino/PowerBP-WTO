@@ -538,33 +538,21 @@ The theorem holds regardless of whether $E_U$ is connected or disconnected, beca
 If $E_U = (0, 1]$---entry costs are low enough that the institution forms under unanimity at all beliefs---then $\Pi_H^*(U, p) > \Pi_H^*(M, p)$ for every $p \in (0, 1]$.
 \end{corollary}
 
-When $E_U \neq (0,1]$, the comparison at beliefs outside the unanimity entry set depends on how persuasion shifts posteriors into $E_U$. If entry under unanimity occurs on a connected upper interval, the comparison admits a sharp characterization.
-
-\begin{assumption}[Monotone entry under unanimity]\label{ass:monotone_entry}
-The entry set under unanimity is an upper interval: $E_U = \{\mu : V_W^{R1}(\mu, U) \geq c\} = [\tau(U), 1]$.
-\end{assumption}
-
-The assumption holds whenever $c > \max_{\mu \leq \mu_s^{R1}} V_W^{R1}(\mu, \textit{agg})$, i.e., entry does not occur in the aggressive screening regime. For intermediate entry costs, $V_W^{R1}$ can have a downward jump at $\mu_s^{R1}$ that disconnects the entry set (see Appendix A.7). The assumption is satisfied in the empirically relevant range where $c$ is above the aggressive-regime maximum.
+When $E_U \neq (0,1]$, the comparison at beliefs outside the unanimity entry set depends on how persuasion shifts posteriors into $E_U$. The entry set $E_U$ may be disconnected: $V_W^{R1}$ can have a downward jump at $\mu_s^{R1}$ (the mirror of $V_H$'s upward jump) that creates a gap around the screening cutoff (Appendix A.7). The following result holds regardless of whether $E_U$ is connected.
 
 \begin{theorem}[Single-crossing institutional comparison]\label{thm:crossing}
-Suppose $\alpha < \alpha^*(N, \beta)$, Assumption \ref{ass:monotone_entry} holds, and $\tau(U) > 0$. Let $S_U \equiv \max_{\mu \in [\tau(U),1]} v(\mu, U)/\mu$ denote the persuasion slope under unanimity (defined in Appendix B.7). The institutional comparison has the \emph{single-crossing property}: unanimity dominates at all sufficiently high priors, and the ranking changes at most once. Specifically:
-\begin{itemize}
-\item[\textbf{(a)}] If $\tau(M) = 0$, there exists a unique threshold $p^* = \lambda_M/[S_U - \lambda_M(r-1)] \in (0, \tau(U))$ such that majority dominates for $p < p^*$ and unanimity dominates for $p > p^*$.
-\item[\textbf{(b)}] If $\tau(M) > 0$, let $S_M \equiv v(\tau(M), M)/\tau(M)$.
-  \begin{itemize}
-  \item If $S_U > S_M$, unanimity strictly dominates for every $p \in (0, 1]$.
-  \item If $S_U = S_M$, unanimity weakly dominates for every $p \in (0, 1]$: the two rules tie for $p \leq \tau(M)$ and unanimity strictly dominates for $p > \tau(M)$.
-  \item If $S_U < S_M$, there exists a unique threshold $p^* \in (\tau(M), \tau(U))$ such that majority dominates for $p < p^*$ and unanimity dominates for $p > p^*$.
-  \end{itemize}
-\end{itemize}
-In all cases, any advantage of majority arises exclusively through the entry margin.
+Suppose $\alpha < \alpha^*(N, \beta)$. The set of priors for which unanimity strictly dominates majority,
+\[
+\{p \in (0,1] : \Pi_H^*(U, p) > \Pi_H^*(M, p)\},
+\]
+is an upper interval. That is, there exists $p^* \in [0,1]$ such that majority weakly dominates for $p < p^*$ and unanimity strictly dominates for $p > p^*$. Any advantage of majority arises exclusively through the entry margin. This result does not require $E_U$ to be connected.
 \end{theorem}
 
 \begin{proof}
-See Appendix B.7.
+See Appendix B.8. The proof uses a supporting lemma (Appendix B.7) showing that $V_W^{R1}(1, U)$ is the global maximum of $V_W^{R1}(\mu, U)$, which ensures $1 \in E_U$ whenever $E_U \neq \emptyset$.
 \end{proof}
 
-Theorem \ref{thm:crossing} distinguishes two regimes. When the screening advantage of unanimity is large enough that persuasion generates a steeper payoff slope than majority ($S_U > S_M$, or $\tau(M) = 0$ does not apply), unanimity dominates globally: the informational mechanism overcomes majority's entry advantage even at pessimistic priors. When the entry advantage of majority is stronger ($S_U < S_M$, or $\tau(M) = 0$), the ranking switches exactly once at $p^*$: majority dominates below the threshold, where entry is the binding constraint, and unanimity dominates above it. In all cases, the ranking never oscillates, and majority's only possible advantage operates through the entry margin, never through a higher conditional payoff.
+Theorem \ref{thm:crossing} says that the institutional ranking never oscillates. At sufficiently high priors, unanimity dominates because the screening mechanism gives the hegemon a conditional payoff advantage. At pessimistic priors, majority can dominate---but only through the entry margin, never through a higher conditional payoff. The transition occurs at most once. The result holds regardless of whether the unanimity entry set $E_U$ is connected or disconnected.
 
 ## Numerical characterization
 
@@ -1022,29 +1010,39 @@ where the last equality uses $p \in E_M$. Hence $\operatorname{cav} v(p, M) = v(
 
 Therefore $\Pi_H^*(U, p) = \operatorname{cav} v(p, U) \geq v(p, U) > v(p, M) = \operatorname{cav} v(p, M) = \Pi_H^*(M, p)$. $\square$
 
-## B.7 Proof of Theorem 2 (Single-crossing institutional comparison) {-}
+## B.7 Lemma: Global maximum of $V_W^{R1}$ under unanimity {-}
 
-\textit{Maintained assumption.} The entry set under unanimity is an upper interval: $E_U = [\tau(U), 1]$ (Assumption \ref{ass:monotone_entry}), with $\tau(U) > 0$.
+\begin{lemma}[Global maximum of weak-state payoff]\label{lem:VW_max}
+$V_W^{R1}(\mu, U) \leq V_W^{R1}(1, U) = r(1-\beta\alpha)/N$ for every $\mu \in (0,1]$, with equality only at $\mu = 1$. Hence if $E_U \neq \emptyset$, then $1 \in E_U$.
+\end{lemma}
 
-Define the majority payoff coefficient $\lambda_M \equiv [N[1+(N-1)\alpha]-\beta(q-1)(1-\alpha)]/N^2$, so that $v(\mu, M) = \lambda_M V_e(\mu)$ whenever entry occurs. Let $\kappa_M \equiv (1-\alpha)[N(N-1)+\beta(q-1)]/(N^2(N-1))$ and $\tau(M)=\max\{0,\;(c/\kappa_M-1)/(r-1)\}$.
+\begin{proof}
+Let $\bar V_W = V_W^{R1}(1, U) = r(1-\beta\alpha)/N$. At any $\mu$, the R1 unanimity problem has two possible offer types (conservative and aggressive), each evaluated using either the low or high R2 continuation branch. We show $\bar V_W - V_W \geq 0$ for each of the four payoff candidates.
 
-**Step 1: Concavification below entry thresholds.**
+*Conservative R1, high R2* ($\mu \geq \mu_s^{R2}$): $V_W^{CH}(\mu) = [(N+\beta)V_e(\mu) - \beta r(1+N\alpha)]/N^2$, so $\bar V_W - V_W^{CH}(\mu) = (N+\beta)(r-1)(1-\mu)/N^2 \geq 0$, with equality only at $\mu = 1$.
 
-*Under unanimity.* Let $S_U \equiv \max_{\mu \in [\tau(U),1]} v(\mu, U)/\mu$ and let $\mu_U^*$ be a maximizer. The maximum exists because $[\tau(U), 1]$ is compact and $v(\cdot, U)$ is piecewise continuous. For any posterior $\mu$, $v(\mu, U) \leq S_U \mu$, with equality at $\mu_U^*$. Hence no Bayes-plausible experiment with prior $p$ can yield more than $S_U p$. For $p < \tau(U)$, this bound is attained by placing probability $p/\mu_U^*$ on $\mu_U^*$ and the remaining probability on $0$. Therefore $\operatorname{cav} v(p, U) = S_U \cdot p$ for every $p < \tau(U)$.
+*Aggressive R1, high R2* ($\mu \geq \mu_s^{R2}$): After substituting $W_2^H(\mu) = [V_e(\mu)-\alpha r]/N$ and simplifying, $\bar V_W - V_W^{AH}(\mu) = [(1-\mu)(r-1) + \mu r(1-\beta)]/N > 0$ for all $\mu \in [0,1]$.
 
-*Under majority with $\tau(M) = 0$.* Entry occurs at all beliefs, so $v(\mu, M) = \lambda_M V_e(\mu)$ for all $\mu$. By Appendix B.6, $\operatorname{cav} v(p, M) = v(p, M) = \lambda_M V_e(p)$.
+*Conservative R1, low R2* ($\mu < \mu_s^{R2}$): Using $W_2^L(\mu) = (1-\mu)(1-\alpha)/N$, $\bar V_W - V_W^{CL}(\mu)$ is affine in $\mu$. At $\mu = 0$: $(r-1)(N-\alpha\beta+\beta)/N^2 > 0$. At $\mu = \mu_s^{R2}$: $r(r-1)(1-\alpha)(N+\beta)/[N^2(r-\alpha)] > 0$. Affine with positive endpoints implies $\bar V_W - V_W^{CL} > 0$ on $[0, \mu_s^{R2}]$.
 
-*Under majority with $\tau(M) > 0$.* Let $S_M \equiv v(\tau(M), M)/\tau(M) = \lambda_M V_e(\tau(M))/\tau(M)$. For $p < \tau(M)$, the same argument as for unanimity gives $\operatorname{cav} v(p, M) = S_M \cdot p$. For $p \geq \tau(M)$, $\operatorname{cav} v(p, M) = v(p, M) = \lambda_M V_e(p)$ by Appendix B.6.
+*Aggressive R1, low R2* ($\mu < \mu_s^{R2}$): Similarly, $\bar V_W - V_W^{AL}(\mu)$ is affine. At $\mu = 0$: $(r-1)(N-\alpha\beta)/N^2 > 0$. At $\mu = \mu_s^{R2}$: $r(r-1)(1-\alpha\beta)/[N(r-\alpha)] > 0$. Hence $\bar V_W - V_W^{AL} > 0$ on $[0, \mu_s^{R2}]$.
 
-**Step 2: Case $\tau(M) = 0 < \tau(U)$.** For $p \in (0, \tau(U))$, $D(p) \equiv \operatorname{cav} v(p, U) - \operatorname{cav} v(p, M) = S_U \cdot p - \lambda_M V_e(p) = [S_U - \lambda_M(r-1)]p - \lambda_M$, which is affine. $D(0) = -\lambda_M < 0$; by Theorem \ref{thm:dominance}, $D(\tau(U)) > 0$. Since $D$ is affine with opposite-sign endpoints, it has a unique zero $p^* = \lambda_M/[S_U - \lambda_M(r-1)] \in (0, \tau(U))$.
+Since every payoff candidate is strictly below $\bar V_W$ for $\mu < 1$, and the equilibrium payoff selects one of these candidates, $V_W^{R1}(\mu, U) < \bar V_W$ for all $\mu < 1$. The corollary follows: if $V_W^{R1}(\mu', U) \geq c$ for some $\mu'$, then $V_W^{R1}(1, U) \geq V_W^{R1}(\mu', U) \geq c$, so $1 \in E_U$. $\square$
+\end{proof}
 
-**Step 3: Case $0 < \tau(M) \leq \tau(U)$, $S_U > S_M$.** For $p < \tau(M)$: $\operatorname{cav} v(p, U) = S_U p > S_M p = \operatorname{cav} v(p, M)$. For $p \in [\tau(M), \tau(U))$: $\operatorname{cav} v(p, U) = S_U \cdot p$ and $\operatorname{cav} v(p, M) = \lambda_M V_e(p)$, so $D(p)$ is affine on this interval. At the endpoints, $D(\tau(M)) = (S_U - S_M)\tau(M) > 0$ and $D(\tau(U)) > 0$ by Theorem \ref{thm:dominance}. Because $D$ is affine and positive at both endpoints, $D > 0$ throughout $[\tau(M), \tau(U))$. For $p \geq \tau(U)$: Theorem \ref{thm:dominance}. Unanimity strictly dominates globally.
+## B.8 Proof of Theorem 2 (Single-crossing institutional comparison) {-}
 
-**Step 4: Case $0 < \tau(M) \leq \tau(U)$, $S_U = S_M$.** For $p < \tau(M)$: $\operatorname{cav} v(p, U) = S_U p = S_M p = \operatorname{cav} v(p, M)$ (tie). For $p \in [\tau(M), \tau(U))$: $D(p)$ is affine with $D(\tau(M)) = (S_U - S_M)\tau(M) = 0$ and $D(\tau(U)) > 0$. Since $D$ is affine with nonnegative slope, $D(p) > 0$ for $p > \tau(M)$. For $p \geq \tau(U)$: Theorem \ref{thm:dominance}. Unanimity weakly dominates everywhere, strictly for $p > \tau(M)$.
+Let $m(p) = \operatorname{cav} v(p, M)$ and $u(p) = \operatorname{cav} v(p, U)$. Define $a = \inf E_U$.
 
-**Step 5: Case $0 < \tau(M) \leq \tau(U)$, $S_U < S_M$.** For $p < \tau(M)$: $\operatorname{cav} v(p, U) = S_U p < S_M p = \operatorname{cav} v(p, M)$ (majority dominates). For $p \in [\tau(M), \tau(U))$: $\operatorname{cav} v(p, U) = S_U \cdot p$ and $\operatorname{cav} v(p, M) = \lambda_M V_e(p)$, so $D(p)$ is affine. $D(\tau(M)) = (S_U - S_M)\tau(M) < 0$ and $D(\tau(U)) > 0$ by Theorem \ref{thm:dominance}. Since $D$ is affine with opposite-sign endpoints, it crosses zero exactly once at some $p^* \in (\tau(M), \tau(U))$. For $p \geq \tau(U)$: Theorem \ref{thm:dominance}.
+**Preliminary: structure of $m(p)$.** Since $E_M = [\tau(M), 1]$ and $V_H^{R1}(\mu, M) = \lambda_M V_e(\mu)$ is affine, the concavified majority payoff is $m(p) = S_M \cdot p$ for $p \leq \tau(M)$ and $m(p) = \lambda_M V_e(p)$ for $p \geq \tau(M)$, where $S_M = \lambda_M V_e(\tau(M))/\tau(M)$. The ratio $m(p)/p$ is weakly decreasing on $(0, 1]$: it is constant on $(0, \tau(M)]$ and decreasing above $\tau(M)$ (affine function with positive intercept divided by $p$).
 
-Since each case admits at most one crossing, the comparison has the single-crossing property. $\square$
+**Part 1: $p \geq a$.** Since $E_U \subseteq E_M$, we have $a \geq \tau(M)$. If $p \in E_U$, then $u(p) \geq v(p, U) > v(p, M) = m(p)$ by conditional dominance (Lemma \ref{lem:conditional}) and $p \geq \tau(M)$. If $p \notin E_U$ but $p \geq a$, then $p$ lies in a gap $(b, d)$ of $E_U$ with $b, d \in E_U$ (the gap is bounded above because $1 \in E_U$ by Lemma \ref{lem:VW_max}). Since $u(b) > m(b)$ and $u(d) > m(d)$ by the previous argument, and since $u$ is concave, $u(p)$ lies weakly above the chord connecting $(b, u(b))$ and $(d, u(d))$. Since $m$ is affine on $[b,d] \subseteq [\tau(M), 1]$ and the chord is strictly above $m$ at both endpoints, the chord is strictly above $m$ throughout $(b, d)$. Hence $u(p) > m(p)$ for all $p \geq a$.
+
+**Part 2: $p < a$.** On $[0, a)$, $v(p, U) = 0$. The concave envelope of a function that is zero on $[0, a)$ and nonnegative on $[a, 1]$ is linear from the origin to its first exposed point: there exists $x \geq a$ such that $u(p) = [u(x)/x] \cdot p$ for all $p \in [0, x]$.\footnote{Since $u(0) = 0$ and $v = 0$ on $[0, a)$, no point in $(0, a)$ can be an exposed kink of the upper hull. The first kink occurs at some $x \geq a$, and $u$ is affine on $[0, x]$ with $u(0) = 0$.} In particular, $u(p) = S_U \cdot p$ on $[0, a]$ for some slope $S_U \geq 0$.
+
+For $p < a$, $\Delta(p) = u(p) - m(p) = p[S_U - m(p)/p]$. Since $p > 0$, the sign of $\Delta(p)$ equals the sign of $S_U - m(p)/p$. Since $m(p)/p$ is weakly decreasing, $S_U - m(p)/p$ is weakly increasing in $p$. Hence $\{p \in (0, a) : \Delta(p) > 0\}$ is an upper interval in $(0, a)$.
+
+**Combining.** Since $\Delta(p) > 0$ for all $p \geq a$ (Part 1) and $\{p \in (0, a) : \Delta(p) > 0\}$ is an upper interval (Part 2), the set $\{p \in (0, 1] : \Delta(p) > 0\}$ is an upper interval in $(0, 1]$. $\square$
 
 
 # Appendix C: Robustness to $K > 2$ Types {-}
