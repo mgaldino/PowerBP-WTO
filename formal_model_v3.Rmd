@@ -62,7 +62,7 @@ The rest of the paper proceeds as follows. Section 2 presents a motivating examp
 
 # A Motivating Example {#example}
 
-Before turning to the general model, consider a stripped-down environment with three players to build intuition for the mechanism. There is one hegemon $H$ and two weak states $W_1, W_2$. The value of cooperation is either $V(0) = 1$ (low) or $V(1) = 2$ (high); $H$ observes the state, the weak states do not. Each weak state’s outside option is $0$; $H$’s outside option is $\alpha V(\theta)$ with $\alpha = 0.2$. A weak state is selected to make a take-it-or-leave-it offer specifying $H$’s share $y_H$; if $H$ rejects, each player receives their disagreement payoff.
+Before turning to the general model, consider a simplified special case with three players and one bargaining round to build intuition for the mechanism. The general model (Section \@ref(model)) extends this to $N$ players, two rounds of Baron-Ferejohn bargaining, and entry costs. There is one hegemon $H$ and two weak states $W_1, W_2$. The value of cooperation is either $V(0) = 1$ (low) or $V(1) = 2$ (high); $H$ observes the state, the weak states do not. Each weak state’s outside option is $0$; $H$’s outside option is $\alpha V(\theta)$ with $\alpha = 0.2$. A weak state is selected to make a take-it-or-leave-it offer specifying $H$’s share $y_H$; if $H$ rejects, each player receives their disagreement payoff.
 
 **Majority: exclusion eliminates screening.** Under majority rule, $W_1$ and $W_2$ can pass a proposal without $H$’s vote. The proposing weak state excludes $H$ from the coalition; $H$ captures $0.2 V(\theta)$ from its bilateral alternative regardless of what $W$ believes. The hegemon’s expected payoff is $0.2 + 0.2\mu$, where $\mu = \Pr(\theta = 1)$---linear in beliefs, with no strategic discontinuity.
 
@@ -73,7 +73,7 @@ Before turning to the general model, consider a stripped-down environment with t
 
 The weak state prefers the aggressive offer when $0.8(1-\mu) > 0.6(1-\mu) + 1.6\mu$, which simplifies to $\mu < 1/9$. The screening cutoff $\mu^* = 1/9$ is the belief at which $W$ switches from aggressive to conservative treatment of $H$.
 
-**The jump and overpayment.** Below the cutoff, $H$’s expected payoff is the same as under majority: $0.2 + 0.2\mu$. Above the cutoff, $H$’s expected payoff jumps to $0.4$---constant, independent of $\mu$. The source is overpayment: on the conservative branch, type $\theta = 0$ receives $0.4$ but would accept $0.2$. Weak states cannot avoid this cost because they must buy $H$’s vote without knowing the type. The jump at $\mu^* = 1/9$ is $0.18$, or about 16\% of expected surplus at the cutoff.
+**The jump and overpayment.** Below the cutoff, $H$’s expected payoff is the same as under majority: $0.2 + 0.2\mu$. Above the cutoff, $H$’s expected payoff jumps to $0.4$---constant, independent of $\mu$. The source is overpayment: on the conservative branch, type $\theta = 0$ receives $0.4$ but would accept $0.2$. Weak states cannot avoid this cost because they must buy $H$’s vote without knowing the type. The jump at $\mu^* = 1/9$ is $8/45 \approx 0.18$, or about 16\% of expected surplus at the cutoff.
 
 **Bayesian persuasion exploits the jump.** The jump creates a non-convexity in $H$’s value function that Bayesian persuasion can exploit. Suppose the prior is $p < 1/9$. Without persuasion, $H$’s payoff under both rules is $0.2 + 0.2p$. But under unanimity, $H$ can design a public signal that pushes $W$’s posterior to $1/9$ with probability $9p$ (inducing conservative behavior and payoff $0.4$) and to $0$ with probability $1 - 9p$ (payoff $0.2$). The resulting expected payoff is $0.2 + 1.8p$, strictly exceeding the majority payoff of $0.2 + 0.2p$ for every $p > 0$. Under majority, the payoff is already linear, so concavification adds nothing. This is the central asymmetry: unanimity creates a non-convexity that makes information strategically productive; majority does not.
 
@@ -95,7 +95,7 @@ The game $\Gamma(N, p, r, \alpha, \beta, c)$ has the following primitives.
 \item Disagreement payoffs: each $W$ receives $0$;\footnote{The normalization $d_W = 0$ is without loss of generality: it requires only that weak states' outside options are symmetric and strictly lower than the hegemon's. The pie $V(\theta)$ is then interpreted as the surplus above weak states' common outside option.} $H$ receives $\alpha V(\theta)$, with $\alpha \in (0, 1/r)$.\footnote{The proportional form $d_H = \alpha V(\theta)$ captures bilateral alternatives that scale with the value of multilateral cooperation---the same factors that make multilateral cooperation valuable also improve the hegemon's outside option. The restriction $\alpha < 1/r$ ensures bilateral alternatives are strictly dominated by multilateral cooperation for all states of the world.}
 \item The common discount factor is $\beta \in (0,1)$.
 \item Each weak state that joins the institution pays an entry cost $c > 0$.
-\item The voting rule is $R \in \{M, U\}$: under majority ($M$), decisions pass with $q = \lfloor N/2 \rfloor + 1$ votes; under unanimity ($U$), decisions require all $N$ votes.\footnote{The model analyzes formal unanimity (every member has a veto). In practice, ``consensus'' at the WTO refers to the norm of not calling a formal vote, which is distinct from a formal unanimity requirement. The results apply most directly to settings where each member has an effective veto, whether de jure or de facto.} Both rules have symmetric proposal rights (each player recognized with probability $1/N$).
+\item The voting rule is $R \in \{M, U\}$: under majority ($M$), decisions pass with $q = \lfloor N/2 \rfloor + 1$ votes; under unanimity ($U$), decisions require all $N$ votes.\footnote{In our game, each player's action is binary: accept or reject. There is no abstention or silence option. The institutional distinction between consensus---where silence is treated as tacit approval---and formal unanimity---where explicit approval is required---therefore does not arise: with binary actions $\{\text{accept}, \text{reject}\}$, the two rules are equivalent. We use the terms interchangeably. In practice, ``consensus'' at the WTO refers to the norm of not calling a formal vote, which approximates unanimity when any member can block by objecting.} Both rules have symmetric proposal rights (each player recognized with probability $1/N$).
 \end{itemize}
 \end{definition}
 
@@ -107,7 +107,7 @@ The game has three stages.
 
 1. **Stage 0 (Institutional choice).** The hegemon chooses the voting rule $R \in \{M, U\}$.
 
-2. **Stage 1 (Information and entry).** The hegemon commits to a public signal structure $\pi: \{0,1\} \to \Delta(S)$. Nature draws $\theta$; the hegemon observes $\theta$ and the signal realization $s \in S$ is generated according to $\pi$. Weak states observe $s$, update to posterior $\mu = \Pr(\theta = 1 \mid s)$, and simultaneously decide whether to enter (paying cost $c$).
+2. **Stage 1 (Information and entry).** The hegemon commits to a public signal structure $\pi: \{0,1\} \to \Delta(S)$. Nature draws $\theta$; the hegemon observes $\theta$ and the signal realization $s \in S$ is generated according to $\pi$. Weak states observe $s$, update to posterior $\mu = \Pr(\theta = 1 \mid s)$, and simultaneously decide whether to enter (paying cost $c$). Since weak states are symmetric and observe the same public signal, we focus on symmetric entry: all $N-1$ weak states enter if and only if the expected equilibrium payoff $V_W^{R1}(\mu, R) \geq c$. When this participation constraint is violated, the institution does not form and each player receives their disagreement payoff.
 
 3. **Stage 2 (Bargaining).** If the institution forms, members play a two-round Baron-Ferejohn bargaining game over a pie of size $V(\theta)$:
     - **Round 1**: a proposer is selected uniformly at random (probability $1/N$). The proposer offers a division. All members vote according to rule $R$. If accepted, payoffs are realized. If rejected, the game proceeds to Round 2 with payoffs discounted by $\beta$.
@@ -274,7 +274,7 @@ child {
 
 \end{tikzpicture}
 
-\caption{\footnotesize Extensive form: Stage 2 (bargaining under unanimity, Rounds 1--2). Payoffs are $(u_H, u_W)$. A proposer is selected uniformly ($1/N$). When $W$ proposes, $W$ chooses between aggressive ($y_H = \alpha$) and conservative ($y_H = \alpha r$). Under the aggressive offer, type $\theta{=}0$ accepts (tie-breaking) and $\theta{=}1$ rejects, revealing the state and leading to R2 (payoffs discounted by $\beta$). In R2, $W$ knows $\theta{=}1$ (complete information); $W$ offers $\alpha r$, $H$ offers $0$; disagreement yields $(\alpha r, -c)$. When $H$ proposes in R1, $H$ offers $\beta V_W^{R2}$ to each $W$; $W$ accepts in equilibrium. Under majority rule, $H$'s vote is not pivotal, eliminating the screening mechanism (Proposition~\ref{prop:majority}).}\label{fig:gametree-b}
+\caption{\footnotesize Extensive form: Stage 2 (bargaining under unanimity, Rounds 1--2). Payoffs are $(u_H, u_W)$. A proposer is selected uniformly ($1/N$). When $W$ proposes, $W$ chooses between an aggressive offer that only $\theta{=}0$ accepts and a conservative offer that both types accept. Under the aggressive offer, $\theta{=}1$ rejects, revealing the state and leading to R2 (payoffs discounted by $\beta$). In R2, $W$ knows $\theta{=}1$ (complete information); $W$ offers $\alpha r$, $H$ offers $0$; disagreement yields $(\alpha r, -c)$. When $H$ proposes in R1, $H$ offers $\beta V_W^{R2}$ to each $W$; $W$ accepts in equilibrium. Offer labels and terminal payoffs show R2 values (where $H$'s reservation is $\alpha V(\theta)$) for readability; exact R1 offer levels are $\beta V_H^{R2}(\theta{=}0, \mu'{=}1)$ (aggressive) and $\beta V_H^{R2}(\theta{=}1)$ (conservative), derived in Appendix~A.3. Under majority rule, $H$'s vote is not pivotal, eliminating the screening mechanism (Proposition~\ref{prop:majority}).}\label{fig:gametree-b}
 \end{figure}
 
 \end{landscape}
@@ -302,21 +302,25 @@ Because the hegemon's vote is never needed, weak states never face a choice betw
 
 Under unanimity, every proposal requires the approval of all members, including the hegemon. When a weak state proposes, it must secure $H$'s vote without knowing whether the pie is high or low. As in the motivating example (Section \@ref(example)), this creates a screening problem: the proposer must choose between an aggressive offer that only the low type accepts and a conservative offer that both types accept. The conservative offer overpays the low type---the price of uncertainty.
 
-This screening logic operates in both bargaining rounds. In each round, the weak proposer's indifference between aggressive and conservative offers defines a screening cutoff: a belief threshold above which the proposer switches from aggressive to conservative treatment. The cutoffs have closed-form expressions (Appendix A).
+This screening logic operates in both bargaining rounds. In each round, the weak proposer's indifference between aggressive and conservative offers defines a screening cutoff: a belief threshold above which the proposer switches from aggressive to conservative treatment. The R2 cutoff has a closed form in all cases; the R1 cutoff has a closed form when the hegemon's outside option is moderate (Appendix A).
 
 \begin{proposition}[R1 screening cutoff under consensus]\label{prop:cutoff_R1}
-Under unanimity, there exists a unique screening cutoff $\mu_s^{R1} \in (0,1)$ such that the weak proposer prefers the aggressive offer for $\mu < \mu_s^{R1}$ and the conservative offer for $\mu > \mu_s^{R1}$. In the principal regime, the cutoff is:
+Under unanimity, there exists a unique screening cutoff $\mu_s^{R1} \in (0,1)$ such that the weak proposer prefers the aggressive offer for $\mu < \mu_s^{R1}$ and the conservative offer for $\mu > \mu_s^{R1}$. When $\alpha < \bar\alpha(r, \beta, N)$, the cutoff takes the closed form:
 \begin{equation}\label{eq:cutoff_R1}
-\mu_s^{R1} = \frac{\phi - \sqrt{\phi^2 - 4(N-2)}}{2(N-2)}, \qquad \phi \equiv \frac{rN - \beta(N-1+r)}{\beta(r-1)}.
+\mu_s^{R1} = \frac{\phi - \sqrt{\phi^2 - 4(N-2)}}{2(N-2)}, \qquad \phi \equiv \frac{rN - \beta(N-1+r)}{\beta(r-1)},
 \end{equation}
-In this regime, the cutoff does not depend on $\alpha$. For $\beta = 1$, it simplifies to $\mu_s^{R1} = 1/(N-2)$.
+and is independent of $\alpha$. The regime threshold is
+\begin{equation}\label{eq:alpha_bar}
+\bar\alpha(r, \beta, N) \equiv \frac{\mu_s^{R1} \cdot r}{r - 1 + \mu_s^{R1}},
+\end{equation}
+where $\mu_s^{R1}$ is evaluated from \eqref{eq:cutoff_R1}. For $\beta = 1$, the cutoff simplifies to $\mu_s^{R1} = 1/(N-2)$.\footnote{When $\alpha \geq \bar\alpha$, the R1 cutoff falls on the low R2 branch and depends on $\alpha$ (Appendix~A.5). The cutoff remains unique and the screening jump remains positive. The proof of Lemma~\ref{lem:conditional} (Appendix~B.5) covers both regimes explicitly: the payoff decomposition is additive in the R1 and R2 corrections regardless of the relative ordering of $\mu_s^{R1}$ and $\mu_s^{R2}$, and the endpoint argument establishes $D(\mu) > 0$ on all branches. Theorems~\ref{thm:dominance}--\ref{thm:crossing} then follow from Lemma~\ref{lem:conditional} without further dependence on the regime.}
 \end{proposition}
 
 \begin{proof}
 See Appendix B.2.
 \end{proof}
 
-The independence of the screening cutoff from the hegemon's outside option strength is substantively important. What determines how aggressively weak states treat the hegemon is not how valuable bilateral alternatives are, but how consequential the hegemon's private information is for the value of cooperation, how patient the bargainers are, and how many states must agree.
+The independence of the screening cutoff from the hegemon's outside option strength---which holds when $\alpha < \bar\alpha$---is substantively important. What determines how aggressively weak states treat the hegemon is not how valuable bilateral alternatives are, but how consequential the hegemon's private information is for the value of cooperation, how patient the bargainers are, and how many states must agree.
 
 \begin{proposition}[Screening creates an informational rent]\label{prop:jump}
 Under unanimity, the hegemon's expected continuation payoff in R1 has an upward jump at $\mu_s^{R1}$:
@@ -679,7 +683,7 @@ In practice, major trading powers exercise informal agenda influence through the
 
 The model's mechanism explains a pattern that existing accounts describe but do not fully explain: powerful states in the WTO appear to benefit from consensus despite lacking formal agenda control. The mechanism is not merely that informal practices survive consensus, but that consensus creates the strategic environment---pivotal inclusion under uncertainty---in which informational power becomes most valuable. The model does not claim that the GATT/WTO was designed for this reason, or that all aspects of WTO politics reduce to this mechanism. It shows that consensus and informational asymmetry interact in a way that can benefit powerful states, offering one explanation for why hegemonic preference for consensus is not paradoxical.
 
-The informational mechanism generates a distinctive observable implication: the hegemon's advantage from consensus should be largest in negotiations where informational asymmetry is substantial and where weak states lack independent analytical capacity. In the WTO context, this suggests that consensus should matter most in complex regulatory areas---services, intellectual property, investment---where evaluating proposals requires deep technical expertise, and least in areas where distributive consequences are transparent, such as linear tariff cuts. This prediction distinguishes the informational mechanism from legitimacy accounts (which predict consensus matters uniformly) and from self-enforcement accounts (which predict consensus matters most when enforcement is weak, regardless of information).^[Appendix C shows that with $K > 2$ types, unanimity generates $K-1$ screening boundaries while majority remains linear. More issue dimensions increase the number of screening regions but also make the screening problem harder for the hegemon, suggesting that the mechanism is strongest in focused negotiations.]
+The informational mechanism generates several observable implications that distinguish it from alternative accounts of consensus. First, the hegemon's advantage from consensus should be largest in negotiations where informational asymmetry is most consequential for the value of cooperation. In the WTO, this suggests that consensus should matter most in complex regulatory areas---services, intellectual property, investment rules---where evaluating proposals requires deep technical expertise, and least in areas where distributive consequences are transparent, such as linear tariff cuts. Second, the mechanism predicts that the hegemon's preference for consensus should weaken as its bilateral alternatives improve. The proliferation of preferential trade agreements strengthens the hegemon's outside option, narrowing the screening advantage that makes unanimity valuable. Third, consensus should emerge in mature regimes with established cooperation value, not in new or untested institutional settings: when the primary challenge is inducing participation, the easier entry conditions under majority outweigh the screening advantages of unanimity. Fourth, the screening advantage is amplified by bargaining patience, suggesting that consensus should be most valuable in negotiations with long time horizons where the continuation value of future rounds disciplines current offers. Finally, these predictions generate cross-issue variation within the same organization---a pattern that legitimacy accounts (which predict consensus matters uniformly) and self-enforcement accounts (which predict consensus matters most when enforcement is weak, regardless of information) do not.^[Appendix C shows that with $K > 2$ types, unanimity generates $K-1$ screening boundaries while majority remains linear. More issue dimensions increase the number of screening regions but also make the screening problem harder for the hegemon, suggesting that the mechanism is strongest in focused negotiations.]
 
 **The GATT-to-WTO transition.** The model's institutional comparison offers a lens for understanding the evolution of decision-making rules in the multilateral trading system. The GATT 1947 provided for formal majority voting---simple majority for joint action, two-thirds for amendments---and voting was used regularly in the organization's early years. Beginning in the late 1950s, however, consensus gradually displaced voting as the operative decision-making norm; since 1959, virtually all GATT/WTO legislative decisions have been taken by consensus [@steinberg2002shadow, 344]. The transition coincided with the *en masse* accession of developing countries, which fundamentally changed both the size and the informational composition of the membership.
 
@@ -835,6 +839,7 @@ $\mu_s^{R1}$ & R1 screening cutoff & Prop.\ 2 \\
 $\phi$ & Auxiliary for R1 cutoff: $[rN - \beta(N\!-\!1\!+\!r)]/[\beta(r\!-\!1)]$ & Prop.\ 2 \\
 $\tau(R)$ & Entry threshold under rule $R$ & Sec.\ 7 \\
 $v(\mu, R)$ & Hegemon's reduced-form value function & Sec.\ 7 \\
+$\bar\alpha$ & Regime threshold for $\alpha$-independent R1 cutoff & Prop.\ 2 \\
 $\alpha^*$ & Iff threshold for conditional dominance (Lemma 1) & Lemma 1 \\
 $C_{\text{buy}}, C_{\text{out}}$ & Vote-buying cost, outside-option cost (proof) & App.\ B.5 \\
 $\lambda_M$ & Majority payoff coefficient & Thm.\ 2 \\
@@ -904,7 +909,13 @@ At the R1 cutoff, type $\theta=0$ receives $\beta(1+x)/N$ (aggressive) vs $\beta
 
 ## A.5 Case selection {-}
 
-The R1 cutoff is on the high branch (Case 2, $\alpha$-independent) when $\Delta_1(\mu_s^{R2}) > 0$. This is equivalent to $\alpha < \bar\alpha(r, \beta, N)$, which holds throughout the empirically relevant parameter range.
+The R1 screening cutoff lies on the high R2 branch ($\mu_s^{R1} > \mu_s^{R2}$, $\alpha$-independent) when $\Delta_1(\mu_s^{R2}) > 0$. On the high branch, $\Delta_1$ is a convex quadratic with $\Delta_1(0) > 0$ and $\Delta_1(1) = rN(\beta - 1) < 0$, so $\Delta_1(\mu) > 0$ for all $\mu < \mu_s^{R1}$. Hence $\Delta_1(\mu_s^{R2}) > 0$ if and only if $\mu_s^{R2} < \mu_s^{R1}$. Substituting $\mu_s^{R2} = \alpha(r-1)/(r-\alpha)$ into $\mu_s^{R2} < \mu_s^{R1}$ and solving for $\alpha$:
+\[
+\frac{\alpha(r-1)}{r - \alpha} < \mu_s^{R1} \quad \Longleftrightarrow \quad \alpha < \frac{\mu_s^{R1} \cdot r}{r - 1 + \mu_s^{R1}} = \bar\alpha(r, \beta, N),
+\]
+which defines the threshold in equation \eqref{eq:alpha_bar}.
+
+When $\alpha \geq \bar\alpha$, the R1 cutoff falls on the low R2 branch, where $V_W^{R2}(\mu) = (1-\mu)(1-\alpha)/N$ and $\Delta_1$ depends on $\alpha$ through $\omega(\mu)$. The cutoff still exists and is unique: $\Delta_1(0) = \beta(r-1)/N > 0$ and $\Delta_1(\mu_s^{R2}) \leq 0$ hold regardless of branch, so a root exists by the intermediate value theorem; since $\Delta_1$ is quadratic on $(0, \mu_s^{R2})$ (at most two roots) with opposite-sign endpoints, there is exactly one root. On the high branch, $\Delta_1 \leq 0$, so no additional roots exist. The jump at $\mu_s^{R1}$ remains positive. The proof of Lemma~\ref{lem:conditional} (Appendix~B.5) covers both regimes explicitly: the payoff decomposition $D = D_{\text{base}} + \mathbf{1}\{\mu < \mu_s^{R2}\}\cdot\delta_{R2} + \mathbf{1}\{\mu > \mu_s^{R1}\}\cdot\delta_{R1}$ is additive regardless of the relative ordering of $\mu_s^{R1}$ and $\mu_s^{R2}$, and the endpoint argument establishes $D(\mu) > 0$ on all branches in both cases.
 
 ## A.6 Budget checks {-}
 
@@ -914,7 +925,7 @@ Under majority, the budget identity $E[V_H] + (N-1)V_W = V_e(\mu)$ holds exactly
 
 Under majority, $V_W^{R1}(\mu, M) = \kappa_M V_e(\mu)$ where $\kappa_M = (1-\alpha)[N(N-1)+\beta(q-1)]/(N^2(N-1))$. The entry threshold is $\tau(M) = \max\{0,\; (c/\kappa_M - 1)/(r-1)\}$.
 
-Under unanimity, $V_W^{R1}$ is piecewise. On the conservative R1 branch ($\mu > \mu_s^{R1}$, which also implies $\mu > \mu_s^{R2}$ in the principal case):
+Under unanimity, $V_W^{R1}$ is piecewise. On the conservative R1 branch ($\mu > \mu_s^{R1}$, which also implies $\mu > \mu_s^{R2}$ when $\alpha < \bar\alpha$):
 $$V_W^{R1}(\mu, U) = \frac{(N+\beta)\,V_e(\mu) - \beta r(1+N\alpha)}{N^2}.$$
 This is affine in $\mu$. Setting $V_W^{R1} = c$ and solving:
 \begin{equation}\label{eq:tau_U_con}
@@ -934,7 +945,11 @@ Under majority rule, $W$'s proposal passes with $q-1$ votes from other weak stat
 
 ## B.2 Proof of Proposition 2 (R1 cutoff existence and uniqueness) {-}
 
-See Appendix A.3 for the derivation. Existence: $\Delta_1(0) = \beta(r-1)/N > 0$ and $\Delta_1(1) = r(\beta-1) < 0$; by continuity, a root exists. Uniqueness: on the relevant branch, $\Delta_1$ is a convex quadratic with exactly one root in $(0,1)$ (the set where $\Delta_1 \leq 0$ is an interval by convexity; since $\Delta_1(\mu_s^{R2}) > 0$ and $\Delta_1(1) < 0$, the first root is unique). $\square$
+See Appendix A.3 for the derivation. *Existence:* $\Delta_1(0) = \beta(r-1)/N > 0$ and $\Delta_1(1) = rN(\beta-1) < 0$; by continuity, a root exists in $(0,1)$.
+
+*Uniqueness and closed form under $\alpha < \bar\alpha$:* When $\alpha < \bar\alpha(r, \beta, N)$, the root lies on the high R2 branch ($\mu > \mu_s^{R2}$), where $\Delta_1$ is a convex quadratic in $\mu$ with coefficients independent of $\alpha$ (Appendix A.3). Since $\Delta_1(\mu_s^{R2}) > 0$ (Appendix A.5) and $\Delta_1(1) < 0$, there is exactly one root in $(\mu_s^{R2}, 1)$, given by equation \eqref{eq:cutoff_R1}. Below $\mu_s^{R2}$, $\Delta_1$ is positive (since $\Delta_1(0) > 0$ and $\Delta_1(\mu_s^{R2}) > 0$ with $\Delta_1$ quadratic on this interval), so no additional roots exist.
+
+*Uniqueness under $\alpha \geq \bar\alpha$:* The root falls on the low R2 branch, where $\Delta_1$ is a quadratic in $\mu$ that depends on $\alpha$. On this branch, $\Delta_1(0) > 0$ and $\Delta_1(\mu_s^{R2}) \leq 0$ (since $\mu_s^{R2} \geq \mu_s^{R1}$ on the high branch implies $\Delta_1^{\text{high}}(\mu_s^{R2}) \leq 0$, and continuity gives $\Delta_1(\mu_s^{R2}) \leq 0$). Since $\Delta_1$ is quadratic on $(0, \mu_s^{R2})$, it has at most two roots; combined with $\Delta_1(0) > 0$ and $\Delta_1(\mu_s^{R2}) \leq 0$, there is exactly one root in $(0, \mu_s^{R2}]$. On the high branch, $\Delta_1 \leq 0$ for $\mu \in [\mu_s^{R2}, 1]$, so no additional roots exist there. $\square$
 
 ## B.3 Proof of Proposition 3 (Jump) {-}
 
@@ -959,8 +974,9 @@ D_{\text{base}}(\mu) &\equiv \frac{(C_{\text{buy}}-C_{\text{out}})V_e(\mu) + C_{
 
 The difference $D(\mu) \equiv E[V_H^{R1}(\mu, U)] - \lambda_M V_e(\mu)$ decomposes as:
 $$D(\mu) = D_{\text{base}}(\mu) + \mathbf{1}\{\mu < \mu_s^{R2}\}\cdot\delta_{R2}(\mu) + \mathbf{1}\{\mu > \mu_s^{R1}\}\cdot\delta_{R1}(\mu).$$
+This decomposition holds regardless of the relative ordering of $\mu_s^{R1}$ and $\mu_s^{R2}$. The two corrections are additive because they affect independent components of $H$'s payoff: $\delta_{R2}$ captures the change in $V_W^{R2}(\mu)$ (which enters through $H$'s proposal offer), while $\delta_{R1}$ captures the change in the R1 offer $H$ receives when $W$ proposes (which depends on the R1 regime but not on $V_W^{R2}$).
 
-On the middle branch (conservative R2, aggressive R1), $D = D_{\text{base}}$ by construction. The R2 correction vanishes at the screening cutoff: $\delta_{R2}(\mu_s^{R2}) = 0$, ensuring continuity. The R1 correction satisfies $\delta_{R1}(\mu) \geq 0$ for all $\mu \leq 1$, with equality only at $\mu = 1$.
+$D_{\text{base}}$ is the difference under aggressive R1 and conservative R2. The R2 correction vanishes at the screening cutoff: $\delta_{R2}(\mu_s^{R2}) = 0$, ensuring continuity at $\mu_s^{R2}$. The R1 correction satisfies $\delta_{R1}(\mu) \geq 0$ for all $\mu \leq 1$, with equality only at $\mu = 1$.
 
 **Step 2: $D_{\text{base}} > 0$ on $[0,1]$.** Since $D_{\text{base}}$ is affine, it suffices to check two endpoints.
 
@@ -980,9 +996,15 @@ Setting $C_{\text{buy}} - C_{\text{out}}(1-\beta) = 0$ and solving for $\alpha$ 
 
 *High-belief branch* ($\mu > \mu_s^{R1}$): $D = D_{\text{base}} + \delta_{R1} \geq D_{\text{base}} > 0$, since $\delta_{R1} \geq 0$.
 
-If instead $\mu_s^{R1} < \mu_s^{R2}$, one intermediate region carries both corrections; since $D_{\text{base}} + \delta_{R2} + \delta_{R1}$ remains affine on each subinterval and the corrections vanish or are nonnegative at the branch boundaries, the same endpoint argument establishes positivity.
+**Alternative case** ($\mu_s^{R1} < \mu_s^{R2}$). The decomposition $D = D_{\text{base}} + \mathbf{1}\{\mu < \mu_s^{R2}\}\cdot\delta_{R2} + \mathbf{1}\{\mu > \mu_s^{R1}\}\cdot\delta_{R1}$ remains valid because $\delta_{R2}$ and $\delta_{R1}$ affect independent components of the payoff: $\delta_{R2}$ operates through the R2 continuation value $V_W^{R2}(\mu)$ in the hegemon's proposal, while $\delta_{R1}$ operates through which R1 offer $H$ receives when $W$ proposes. Neither depends on the other. The partition of $(0,1]$ now has three branches:
 
-Combining all branches: $D(\mu) > 0$ for every $\mu \in (0,1]$. This establishes sufficiency.
+*Low-belief branch* ($\mu < \mu_s^{R1}$): aggressive R1, aggressive R2. $D = D_I(\mu) = D_{\text{base}}(\mu) + \delta_{R2}(\mu)$, which is affine. At $\mu = 0$, $D_I(0) > 0$ (Step 2). At $\mu = \mu_s^{R1}$, $D_I$ is continuous from the left and $D_I(\mu_s^{R1}) > 0$ because $D_I$ is affine with $D_I(0) > 0$ and $D_I(\mu_s^{R2}) = D_{\text{base}}(\mu_s^{R2}) > 0$ (Step 2), and $\mu_s^{R1} < \mu_s^{R2}$.
+
+*Middle branch* ($\mu_s^{R1} \leq \mu < \mu_s^{R2}$): conservative R1, aggressive R2. Both corrections are active: $D = D_{\text{base}} + \delta_{R2} + \delta_{R1}$. This is affine. At $\mu_s^{R1}$, $D$ jumps up by $\delta_{R1}(\mu_s^{R1}) > 0$ relative to the low branch, so $D(\mu_s^{R1}) = D_I(\mu_s^{R1}) + \delta_{R1}(\mu_s^{R1}) > D_I(\mu_s^{R1}) > 0$. At $\mu_s^{R2}$, $\delta_{R2}(\mu_s^{R2}) = 0$, so $D(\mu_s^{R2}) = D_{\text{base}}(\mu_s^{R2}) + \delta_{R1}(\mu_s^{R2}) \geq D_{\text{base}}(\mu_s^{R2}) > 0$. Affine with positive values at both endpoints implies $D > 0$ throughout.
+
+*High-belief branch* ($\mu \geq \mu_s^{R2}$): conservative R1, conservative R2. $D = D_{\text{base}} + \delta_{R1} \geq D_{\text{base}} > 0$, since $\delta_{R1} \geq 0$.
+
+Combining all branches in either case: $D(\mu) > 0$ for every $\mu \in (0,1]$. This establishes sufficiency.
 
 **Step 4: Necessity.** At $\mu = 1$, both corrections vanish ($\delta_{R1}(1) = 0$ and $\mu = 1 > \mu_s^{R2}$), so $D(1) = D_{\text{base}}(1) = r[C_{\text{buy}} - C_{\text{out}}(1-\beta)]/N^2$. Since $\alpha^*$ is the root of $C_{\text{buy}} - C_{\text{out}}(1-\beta) = 0$, $\alpha \geq \alpha^*$ implies $D(1) \leq 0$, and the strict inequality fails. $\square$
 
