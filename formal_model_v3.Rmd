@@ -514,7 +514,7 @@ An immediate corollary is that entry is always harder under unanimity ($E_U \sub
 
 ## The main result
 
-With Bayesian persuasion, the hegemon's payoff under each rule is $\Pi_H^*(R, p) = \operatorname{cav} v(p, R)$. The institutional choice reduces to comparing these concavified values. Let $E_U \equiv \{\mu \in (0,1] : V_W^{R1}(\mu, U) \geq c\}$ denote the set of beliefs at which weak states enter under unanimity. The central result is that unanimity dominates majority at every such belief.
+With Bayesian persuasion, the hegemon's payoff under each rule is $\Pi_H^*(R, p) = \operatorname{cav} v(p, R)$. The institutional choice reduces to comparing these concavified values. Let $E_U \equiv \{\mu \in (0,1] : V_W^{R1}(\mu, U) \geq c\}$ denote the set of beliefs at which weak states enter under unanimity. The central result is pointwise: at every belief at which unanimity can induce entry, the hegemon strictly prefers unanimity to majority.
 
 \begin{theorem}[Dominance of unanimity]\label{thm:dominance}
 Suppose $\alpha < \alpha^*(N, \beta)$. For every prior $p \in E_U$,
@@ -528,10 +528,10 @@ That is, whenever entry is feasible under unanimity, the hegemon strictly prefer
 See Appendix B.6.
 \end{proof}
 
-The theorem holds regardless of whether $E_U$ is connected or disconnected, and regardless of the shape of the concavification. The screening mechanism (Proposition \ref{prop:jump}) gives the hegemon a higher conditional payoff, and majority's linearity means that concavification cannot close the gap. The only channel through which majority can dominate is the entry margin: priors so pessimistic that only majority can induce participation.
+The theorem holds regardless of whether $E_U$ is connected or disconnected, because it applies pointwise to every prior at which unanimity entry occurs. The screening mechanism (Proposition \ref{prop:jump}) gives the hegemon a higher conditional payoff, and majority's linearity means that concavification cannot close the gap. The only channel through which majority can dominate is the entry margin: priors at which only majority can induce participation.
 
 \begin{corollary}[Global dominance when entry is everywhere feasible]\label{cor:global}
-If $E_U = (0, 1]$---entry costs are low enough that the institution forms under unanimity at all beliefs---then $\Pi_H^*(U, p) > \Pi_H^*(M, p)$ for every $p \in (0, 1)$.
+If $E_U = (0, 1]$---entry costs are low enough that the institution forms under unanimity at all beliefs---then $\Pi_H^*(U, p) > \Pi_H^*(M, p)$ for every $p \in (0, 1]$.
 \end{corollary}
 
 When $E_U \neq (0,1]$, the comparison at beliefs outside the unanimity entry set depends on how persuasion shifts posteriors into $E_U$. If entry under unanimity occurs on a connected upper interval, the comparison admits a sharp characterization.
@@ -980,7 +980,13 @@ Combining all branches: $D(\mu) > 0$ for every $\mu \in (0,1]$. This establishes
 
 Fix $p \in E_U$, so $V_W^{R1}(p, U) \geq c$. We first show that entry also occurs under majority. Under majority, the budget identity holds exactly: $E[V_H(\mu, M)] + (N-1)V_W(\mu, M) = V_e(\mu)$. Under unanimity, surplus destruction from discounting on the aggressive branch yields $E[V_H(\mu, U)] + (N-1)V_W(\mu, U) \leq V_e(\mu)$. Since Lemma \ref{lem:conditional} gives $E[V_H(\mu, U)] > E[V_H(\mu, M)]$, it follows that $V_W(\mu, U) < V_W(\mu, M)$ for every $\mu \in (0,1]$. Hence $V_W^{R1}(p, M) > V_W^{R1}(p, U) \geq c$, so entry occurs under majority at $p$. In particular, $E_U \subseteq E_M$.
 
-By Lemma \ref{lem:conditional}, $v(p, U) > v(p, M)$. It remains to show that persuasion cannot improve the majority payoff at $p$. Although $v(\cdot, M)$ is not globally concave because of the entry jump at $\tau(M)$, its concavification coincides with the primitive payoff for all priors above the entry threshold. Splits entirely above $\tau(M)$ do not change expected payoff because $v(\cdot, M)$ is affine on that region. Splits assigning positive mass below $\tau(M)$ strictly reduce payoff because $v = 0$ below the threshold. Hence $\operatorname{cav} v(p, M) = v(p, M)$ for every $p \geq \tau(M)$.
+By Lemma \ref{lem:conditional}, $v(p, U) > v(p, M)$. It remains to show that persuasion cannot improve the majority payoff at $p$. Under majority, whenever entry occurs, $v(\mu, M) = \lambda_M[1 + (r-1)\mu]$, and whenever entry does not occur, $v(\mu, M) = 0$. Since majority entry is monotone, $E_M = [\tau(M), 1]$.
+
+Consider any Bayes-plausible experiment inducing posteriors $(\pi_s, \mu_s)$ with $\sum_s \pi_s \mu_s = p$. Let $A = \{s : \mu_s \in E_M\}$ be the set of signals after which entry occurs under majority. Then
+$$\sum_s \pi_s v(\mu_s, M) = \sum_{s \in A} \pi_s \lambda_M[1 + (r-1)\mu_s] = \lambda_M \sum_{s \in A} \pi_s + \lambda_M(r-1) \sum_{s \in A} \pi_s \mu_s.$$
+Since $\sum_{s \in A} \pi_s \leq 1$ and $\sum_{s \in A} \pi_s \mu_s \leq \sum_s \pi_s \mu_s = p$, we obtain
+$$\sum_s \pi_s v(\mu_s, M) \leq \lambda_M + \lambda_M(r-1)p = \lambda_M[1 + (r-1)p] = v(p, M),$$
+where the last equality uses $p \in E_M$. Hence $\operatorname{cav} v(p, M) = v(p, M)$ for every $p \in E_M$.
 
 Therefore $\Pi_H^*(U, p) = \operatorname{cav} v(p, U) \geq v(p, U) > v(p, M) = \operatorname{cav} v(p, M) = \Pi_H^*(M, p)$. $\square$
 
