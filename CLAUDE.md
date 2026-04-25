@@ -44,6 +44,27 @@ Screening acontece em R1, NÃO em R2 no equilíbrio. Se R2 é alcançado (θ=1 r
 ### Resultado sem BP
 Condicional à entrada: H prefere unanimidade (overpayment de θ=0), W prefere maioria. NÃO Pareto comparável. Para priors onde entry só ocorre sob maioria: M Pareto domina. BP viabiliza unanimidade induzindo entrada + explorando screening jump.
 
+## Fixes pós-parecer (2026-04-25)
+
+Auditoria completa: `quality_reports/2026-04-25_auditoria_parecer_v3.md`
+
+| # | Fix | Severidade | Dificuldade | Locais afetados | Seção |
+|---|-----|-----------|-------------|-----------------|-------|
+| 1 | ~~**Redefinir v(μ,R) como ganho líquido**~~ | ALTA | MÉDIA | l.414, tabela notação l.833 | ✅ FEITO |
+| 2 | ~~**Corrigir fórmula de BP**: Π\* = αV_e(p) + cav v(p,R)~~ | ALTA | BAIXA | l.521, l.424 | ✅ FEITO |
+| 3 | ~~**λ_M → (λ_M − α) nas provas de Thm 1 e Thm 2**~~ | ALTA | BAIXA | B.6, B.8 | ✅ FEITO |
+| 4 | ~~**Código R: subtrair αV_e no entry set**~~ | MÉDIA | BAIXA | l.436, l.441, l.580, l.590 | ✅ FEITO |
+| 4b | **Verificação pós-normalização (agente fresh)**: re-auditar provas de Thm 1 (B.6) e Thm 2 (B.8) com v redefinido como ganho líquido | ALTA | MÉDIA | B.6, B.8 inteiros | PENDENTE |
+| 5 | ~~**Captions das figuras R**: "Value functions" → "Net gain functions"~~ | MÉDIA | BAIXA | fig.cap l.426 | ✅ FEITO |
+| 6 | ~~**Concavidade de Δ₁ no ramo LOW**~~ | MÉDIA | BAIXA | B.2 l.938 | ✅ FEITO |
+| 7 | ~~**Derivação algébrica da decomposição D(μ)**: novo B.5a~~ | MÉDIA | MÉDIA | Novo appendix B.5a | ✅ FEITO (A+) |
+| 8 | ~~**Footnote: escolha unilateral de R**~~ | — | — | — | RETIRADO (KISS: todas as simplificações são do mesmo tipo) |
+| 9 | ~~**E_U é fechado**~~ | BAIXA | BAIXA | B.8 l.1041 | ✅ FEITO |
+| 10 | ~~**Prop 7 (K>2): rebaixar label**~~ | BAIXA | BAIXA | App C l.1062, l.1070 | ✅ FEITO |
+| 11 | ~~**Documentar model_functions.R**~~ | BAIXA | BAIXA | scripts/model_functions.R | ✅ FEITO |
+| 12 | **GATT/WTO: comprimir** (opcional) | MÍNIMA | BAIXA | l.676-680 | PENDENTE (opcional) |
+| 13 | ~~**Motivating example: nota de coerência**~~ | — | — | — | RETIRADO (example sem entry cost é pedagógico por design) |
+
 ## TODOs
 
 ### PRÓXIMO PASSO (v3, pós-review)

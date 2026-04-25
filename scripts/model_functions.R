@@ -1,5 +1,32 @@
-# Model functions for formal_model_v2.Rmd
+# Model functions for formal_model_v3.Rmd
 # Bargaining payoffs under unanimity and majority, plus concavification
+#
+# All payoff functions return ABSOLUTE expected payoffs (not net gains).
+# The net-gain transformation v(mu,R) = VH_R1(mu,R) - alpha*Ve(mu) is
+# applied in the Rmd when constructing the value function for concavification.
+#
+# Functions:
+#   VW_R1_unanimity(r, alpha, mu, N, beta) -> scalar
+#     Weak state's expected R1 payoff under unanimity.
+#
+#   VW_R1_majority(r, alpha, mu, N, beta) -> scalar
+#     Weak state's expected R1 payoff under majority.
+#
+#   VH_R1_unanimity(r, alpha, mu, N, beta) -> scalar
+#     Hegemon's expected R1 payoff under unanimity (E[V_H^{R1}(theta, mu, U)]).
+#
+#   VH_R1_majority(r, alpha, mu, N, beta) -> scalar
+#     Hegemon's expected R1 payoff under majority (= lambda_M * Ve(mu)).
+#
+#   concavify(mus, vals) -> numeric vector
+#     Upper concave envelope of (mus, vals) via left-to-right sweep.
+#
+# Parameters:
+#   r     > 1    High-type cooperation value: V(1) = r, V(0) = 1
+#   alpha (0,1/r) Outside-option share: d_H = alpha * V(theta)
+#   mu    [0,1]  Posterior belief Pr(theta = 1)
+#   N     >= 3   Number of players (1 hegemon + N-1 weak states)
+#   beta  (0,1)  Common discount factor
 
 VW_R1_unanimity <- function(r, alpha, mu, N, beta) {
   x <- (N - 1) * alpha * r
