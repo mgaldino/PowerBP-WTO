@@ -543,14 +543,23 @@ The entry set under unanimity is an upper interval: $E_U = \{\mu : V_W^{R1}(\mu,
 The assumption holds whenever $c > \max_{\mu \leq \mu_s^{R1}} V_W^{R1}(\mu, \textit{agg})$, i.e., entry does not occur in the aggressive screening regime. For intermediate entry costs, $V_W^{R1}$ can have a downward jump at $\mu_s^{R1}$ that disconnects the entry set (see Appendix A.7). The assumption is satisfied in the empirically relevant range where $c$ is above the aggressive-regime maximum.
 
 \begin{theorem}[Single-crossing institutional comparison]\label{thm:crossing}
-Suppose $\alpha < \alpha^*(N, \beta)$ and Assumption \ref{ass:monotone_entry} holds. If $\tau(U) > \tau(M)$, the institutional comparison has the \emph{single-crossing property}: there exists a unique threshold $p^*$ such that majority dominates for $p < p^*$ and unanimity dominates for $p > p^*$. The threshold has a closed-form expression (Appendix B.7). Any advantage of majority arises exclusively through the entry margin.
+Suppose $\alpha < \alpha^*(N, \beta)$ and Assumption \ref{ass:monotone_entry} holds. The institutional comparison has the \emph{single-crossing property}: unanimity dominates at all sufficiently high priors, and the ranking changes at most once. Specifically, let $S_U$ and $S_M$ denote the persuasion slopes under unanimity and majority (defined in Appendix B.7).
+\begin{itemize}
+\item[\textbf{(a)}] If $S_U \geq S_M$, unanimity dominates for every $p \in (0,1]$.
+\item[\textbf{(b)}] If $S_U < S_M$, there exists a unique threshold
+\[
+p^* = \frac{\lambda_M}{S_U - \lambda_M(r-1)} \in (0, \tau(U))
+\]
+such that majority dominates for $p < p^*$ and unanimity dominates for $p > p^*$.
+\end{itemize}
+In both cases, any advantage of majority arises exclusively through the entry margin.
 \end{theorem}
 
 \begin{proof}
 See Appendix B.7.
 \end{proof}
 
-Theorem \ref{thm:crossing} resolves the institutional choice puzzle when entry is the binding constraint. Majority's only advantage is that it makes participation cheaper for weak states, because the hegemon captures less surplus. But this advantage is relevant only when the prior is pessimistic enough that entry is binding. The single-crossing property means there is no oscillation: the ranking switches at most once. Consensus is not sometimes better and sometimes worse depending on delicate parameter configurations; it is better whenever the institution is viable.
+Theorem \ref{thm:crossing} distinguishes two regimes. When the screening advantage of unanimity is large enough that persuasion under unanimity generates a steeper payoff slope than majority ($S_U \geq S_M$), unanimity dominates globally: the informational mechanism is powerful enough to overcome majority's entry advantage even at the most pessimistic priors. When the entry advantage of majority is relatively stronger ($S_U < S_M$), the ranking switches exactly once at $p^*$: majority dominates below the threshold, where entry is the binding constraint, and unanimity dominates above it. In both cases, the ranking never oscillates---consensus is not sometimes better and sometimes worse depending on delicate parameter configurations. And in both cases, majority's only possible advantage operates through the entry margin, never through a higher conditional payoff.
 
 ## Numerical characterization
 
