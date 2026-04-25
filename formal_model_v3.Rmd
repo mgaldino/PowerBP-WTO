@@ -543,23 +543,24 @@ The entry set under unanimity is an upper interval: $E_U = \{\mu : V_W^{R1}(\mu,
 The assumption holds whenever $c > \max_{\mu \leq \mu_s^{R1}} V_W^{R1}(\mu, \textit{agg})$, i.e., entry does not occur in the aggressive screening regime. For intermediate entry costs, $V_W^{R1}$ can have a downward jump at $\mu_s^{R1}$ that disconnects the entry set (see Appendix A.7). The assumption is satisfied in the empirically relevant range where $c$ is above the aggressive-regime maximum.
 
 \begin{theorem}[Single-crossing institutional comparison]\label{thm:crossing}
-Suppose $\alpha < \alpha^*(N, \beta)$ and Assumption \ref{ass:monotone_entry} holds. The institutional comparison has the \emph{single-crossing property}: unanimity dominates at all sufficiently high priors, and the ranking changes at most once. Specifically, let $S_U$ and $S_M$ denote the persuasion slopes under unanimity and majority (defined in Appendix B.7).
+Suppose $\alpha < \alpha^*(N, \beta)$, Assumption \ref{ass:monotone_entry} holds, and $\tau(U) > 0$. Let $S_U \equiv \max_{\mu \in [\tau(U),1]} v(\mu, U)/\mu$ denote the persuasion slope under unanimity (defined in Appendix B.7). The institutional comparison has the \emph{single-crossing property}: unanimity dominates at all sufficiently high priors, and the ranking changes at most once. Specifically:
 \begin{itemize}
-\item[\textbf{(a)}] If $S_U \geq S_M$, unanimity dominates for every $p \in (0,1]$.
-\item[\textbf{(b)}] If $S_U < S_M$, there exists a unique threshold
-\[
-p^* = \frac{\lambda_M}{S_U - \lambda_M(r-1)} \in (0, \tau(U))
-\]
-such that majority dominates for $p < p^*$ and unanimity dominates for $p > p^*$.
+\item[\textbf{(a)}] If $\tau(M) = 0$, there exists a unique threshold $p^* = \lambda_M/[S_U - \lambda_M(r-1)] \in (0, \tau(U))$ such that majority dominates for $p < p^*$ and unanimity dominates for $p > p^*$.
+\item[\textbf{(b)}] If $\tau(M) > 0$, let $S_M \equiv v(\tau(M), M)/\tau(M)$.
+  \begin{itemize}
+  \item If $S_U > S_M$, unanimity strictly dominates for every $p \in (0, 1]$.
+  \item If $S_U = S_M$, unanimity weakly dominates for every $p \in (0, 1]$: the two rules tie for $p \leq \tau(M)$ and unanimity strictly dominates for $p > \tau(M)$.
+  \item If $S_U < S_M$, there exists a unique threshold $p^* \in (\tau(M), \tau(U))$ such that majority dominates for $p < p^*$ and unanimity dominates for $p > p^*$.
+  \end{itemize}
 \end{itemize}
-In both cases, any advantage of majority arises exclusively through the entry margin.
+In all cases, any advantage of majority arises exclusively through the entry margin.
 \end{theorem}
 
 \begin{proof}
 See Appendix B.7.
 \end{proof}
 
-Theorem \ref{thm:crossing} distinguishes two regimes. When the screening advantage of unanimity is large enough that persuasion under unanimity generates a steeper payoff slope than majority ($S_U \geq S_M$), unanimity dominates globally: the informational mechanism is powerful enough to overcome majority's entry advantage even at the most pessimistic priors. When the entry advantage of majority is relatively stronger ($S_U < S_M$), the ranking switches exactly once at $p^*$: majority dominates below the threshold, where entry is the binding constraint, and unanimity dominates above it. In both cases, the ranking never oscillates---consensus is not sometimes better and sometimes worse depending on delicate parameter configurations. And in both cases, majority's only possible advantage operates through the entry margin, never through a higher conditional payoff.
+Theorem \ref{thm:crossing} distinguishes two regimes. When the screening advantage of unanimity is large enough that persuasion generates a steeper payoff slope than majority ($S_U > S_M$, or $\tau(M) = 0$ does not apply), unanimity dominates globally: the informational mechanism overcomes majority's entry advantage even at pessimistic priors. When the entry advantage of majority is stronger ($S_U < S_M$, or $\tau(M) = 0$), the ranking switches exactly once at $p^*$: majority dominates below the threshold, where entry is the binding constraint, and unanimity dominates above it. In all cases, the ranking never oscillates, and majority's only possible advantage operates through the entry margin, never through a higher conditional payoff.
 
 ## Numerical characterization
 
@@ -1001,17 +1002,25 @@ Therefore $\Pi_H^*(U, p) = \operatorname{cav} v(p, U) \geq v(p, U) > v(p, M) = \
 
 ## B.7 Proof of Theorem 2 (Single-crossing institutional comparison) {-}
 
-\textit{Maintained assumption.} The entry set under unanimity is an upper interval: $E_U = [\tau(U), 1]$ (Assumption \ref{ass:monotone_entry}). This holds whenever the entry cost $c$ exceeds $\max_{\mu \leq \mu_s^{R1}} V_W^{R1}(\mu, \text{agg})$, so that entry does not occur in the aggressive regime (see Appendix A.7).
+\textit{Maintained assumption.} The entry set under unanimity is an upper interval: $E_U = [\tau(U), 1]$ (Assumption \ref{ass:monotone_entry}), with $\tau(U) > 0$.
 
-Define the majority payoff coefficient $\lambda_M \equiv [N[1+(N-1)\alpha]-\beta(q-1)(1-\alpha)]/N^2$, so that $v(\mu, M) = \lambda_M V_e(\mu)$ whenever entry occurs. Let $\kappa_M \equiv (1-\alpha)[N(N-1)+\beta(q-1)]/(N^2(N-1))$ and $\tau(M)=\max\{0,\;(c/\kappa_M-1)/(r-1)\}$. Under unanimity, define $S_U \equiv \max_{\mu \geq \tau(U)} v(\mu, U)/\mu$. If $\tau(M) > 0$, let $S_M \equiv v(\tau(M), M)/\tau(M)$.
+Define the majority payoff coefficient $\lambda_M \equiv [N[1+(N-1)\alpha]-\beta(q-1)(1-\alpha)]/N^2$, so that $v(\mu, M) = \lambda_M V_e(\mu)$ whenever entry occurs. Let $\kappa_M \equiv (1-\alpha)[N(N-1)+\beta(q-1)]/(N^2(N-1))$ and $\tau(M)=\max\{0,\;(c/\kappa_M-1)/(r-1)\}$.
 
-*Step 1: Concavification below $\tau(U)$.* Since $v(\mu, U) = 0$ for $\mu < \tau(U)$ and $v(0, U) = 0$, the concavification on $[0, \mu_U^*]$ (where $\mu_U^*$ achieves $S_U$) is $\operatorname{cav} v(p, U) = S_U \cdot p$. Under majority: if $\tau(M) = 0$, then $\operatorname{cav} v(p, M) = \lambda_M V_e(p)$; if $\tau(M) > 0$, then $\operatorname{cav} v(p, M) = S_M \cdot p$ for $p < \tau(M)$ and $\lambda_M V_e(p)$ for $p \geq \tau(M)$.
+**Step 1: Concavification below entry thresholds.**
 
-*Step 2: Case $\tau(M) = 0 < \tau(U)$.* For $p \in (0, \tau(U))$, $D(p) = S_U \cdot p - \lambda_M V_e(p) = [S_U - \lambda_M(r-1)]p - \lambda_M$, which is linear. $D(0) = -\lambda_M < 0$; by Theorem \ref{thm:dominance}, $D(\tau(U)) > 0$. So $D$ has a unique zero $p^* = \lambda_M/[S_U - \lambda_M(r-1)] \in (0, \tau(U))$.
+*Under unanimity.* Let $S_U \equiv \max_{\mu \in [\tau(U),1]} v(\mu, U)/\mu$ and let $\mu_U^*$ be a maximizer. The maximum exists because $[\tau(U), 1]$ is compact and $v(\cdot, U)$ is piecewise continuous. For any posterior $\mu$, $v(\mu, U) \leq S_U \mu$, with equality at $\mu_U^*$. Hence no Bayes-plausible experiment with prior $p$ can yield more than $S_U p$. For $p < \tau(U)$, this bound is attained by placing probability $p/\mu_U^*$ on $\mu_U^*$ and the remaining probability on $0$. Therefore $\operatorname{cav} v(p, U) = S_U \cdot p$ for every $p < \tau(U)$.
 
-*Step 3: Case $0 < \tau(M) \leq \tau(U)$, $S_U > S_M$.* For $p < \tau(M)$: $\operatorname{cav} v(p, U) = S_U p > S_M p = \operatorname{cav} v(p, M)$. For $p \in [\tau(M), \tau(U))$: $D(\tau(M)) = (S_U - S_M)\tau(M) > 0$ and $D(\tau(U)) > 0$ by Theorem \ref{thm:dominance}. Unanimity dominates globally.
+*Under majority with $\tau(M) = 0$.* Entry occurs at all beliefs, so $v(\mu, M) = \lambda_M V_e(\mu)$ for all $\mu$. By Appendix B.6, $\operatorname{cav} v(p, M) = v(p, M) = \lambda_M V_e(p)$.
 
-*Step 4: Case $0 < \tau(M) \leq \tau(U)$, $S_U \leq S_M$.* For $p < \tau(M)$: $\operatorname{cav} v(p, U) \leq \operatorname{cav} v(p, M)$. For $p \in [\tau(M), \tau(U))$: $\operatorname{cav} v(p, U) = S_U \cdot p$ and $\operatorname{cav} v(p, M) = \lambda_M[1 + (r-1)p]$, so $D(p)$ is affine on this interval. Since $D(\tau(M)) \leq 0$ and $D(\tau(U)) > 0$, $D$ crosses zero exactly once at some $p^* \in [\tau(M), \tau(U)]$.
+*Under majority with $\tau(M) > 0$.* Let $S_M \equiv v(\tau(M), M)/\tau(M) = \lambda_M V_e(\tau(M))/\tau(M)$. For $p < \tau(M)$, the same argument as for unanimity gives $\operatorname{cav} v(p, M) = S_M \cdot p$. For $p \geq \tau(M)$, $\operatorname{cav} v(p, M) = v(p, M) = \lambda_M V_e(p)$ by Appendix B.6.
+
+**Step 2: Case $\tau(M) = 0 < \tau(U)$.** For $p \in (0, \tau(U))$, $D(p) \equiv \operatorname{cav} v(p, U) - \operatorname{cav} v(p, M) = S_U \cdot p - \lambda_M V_e(p) = [S_U - \lambda_M(r-1)]p - \lambda_M$, which is affine. $D(0) = -\lambda_M < 0$; by Theorem \ref{thm:dominance}, $D(\tau(U)) > 0$. Since $D$ is affine with opposite-sign endpoints, it has a unique zero $p^* = \lambda_M/[S_U - \lambda_M(r-1)] \in (0, \tau(U))$.
+
+**Step 3: Case $0 < \tau(M) \leq \tau(U)$, $S_U > S_M$.** For $p < \tau(M)$: $\operatorname{cav} v(p, U) = S_U p > S_M p = \operatorname{cav} v(p, M)$. For $p \in [\tau(M), \tau(U))$: $\operatorname{cav} v(p, U) = S_U \cdot p$ and $\operatorname{cav} v(p, M) = \lambda_M V_e(p)$, so $D(p)$ is affine on this interval. At the endpoints, $D(\tau(M)) = (S_U - S_M)\tau(M) > 0$ and $D(\tau(U)) > 0$ by Theorem \ref{thm:dominance}. Because $D$ is affine and positive at both endpoints, $D > 0$ throughout $[\tau(M), \tau(U))$. For $p \geq \tau(U)$: Theorem \ref{thm:dominance}. Unanimity strictly dominates globally.
+
+**Step 4: Case $0 < \tau(M) \leq \tau(U)$, $S_U = S_M$.** For $p < \tau(M)$: $\operatorname{cav} v(p, U) = S_U p = S_M p = \operatorname{cav} v(p, M)$ (tie). For $p \in [\tau(M), \tau(U))$: $D(p)$ is affine with $D(\tau(M)) = (S_U - S_M)\tau(M) = 0$ and $D(\tau(U)) > 0$. Since $D$ is affine with nonnegative slope, $D(p) > 0$ for $p > \tau(M)$. For $p \geq \tau(U)$: Theorem \ref{thm:dominance}. Unanimity weakly dominates everywhere, strictly for $p > \tau(M)$.
+
+**Step 5: Case $0 < \tau(M) \leq \tau(U)$, $S_U < S_M$.** For $p < \tau(M)$: $\operatorname{cav} v(p, U) = S_U p < S_M p = \operatorname{cav} v(p, M)$ (majority dominates). For $p \in [\tau(M), \tau(U))$: $\operatorname{cav} v(p, U) = S_U \cdot p$ and $\operatorname{cav} v(p, M) = \lambda_M V_e(p)$, so $D(p)$ is affine. $D(\tau(M)) = (S_U - S_M)\tau(M) < 0$ and $D(\tau(U)) > 0$ by Theorem \ref{thm:dominance}. Since $D$ is affine with opposite-sign endpoints, it crosses zero exactly once at some $p^* \in (\tau(M), \tau(U))$. For $p \geq \tau(U)$: Theorem \ref{thm:dominance}.
 
 Since each case admits at most one crossing, the comparison has the single-crossing property. $\square$
 
