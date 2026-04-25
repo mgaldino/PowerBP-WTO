@@ -185,6 +185,7 @@ Jogo repetido dentro de instituição consensual. Fracos investem para aprender 
 
 ## Convenções
 
+- **REGRA CRÍTICA — Pareceres completos**: Ao rodar QUALQUER skill de review (coarse-review, edmans-review, review-formal-model, review-paper, devils-advocate, proofread, game-theory-audit, etc.), o output COMPLETO do parecer DEVE ser salvo em `quality_reports/YYYY-MM-DD_nome-do-review.md` ANTES de resumir para o usuário. Incluir todo o conteúdo: scores, comentários detalhados, sugestões, status de cada item. NUNCA truncar. NUNCA salvar apenas resumo. Pareceres que ficam só na memória da sessão são PERDIDOS ao encerrar.
 - Notas em Markdown, modelo formal em Rmd → PDF
 - Idioma: português para notas; inglês para o paper
 - N genérico sempre (N=3 apenas no exemplo motivador Seção 2)
@@ -192,3 +193,4 @@ Jogo repetido dentro de instituição consensual. Fracos investem para aprender 
 - Sob maioria: W EXCLUI H (não convenção WLOG de inclusão)
 - **v3 é o paper ativo para submissão**; v2 preservado como arquivo
 - **Estilo v3**: corpo narra o mecanismo em prosa substantiva; provas e álgebra no appendix; sem proof sketches no corpo; comparative statics em linguagem do fenômeno (não parâmetros)
+- **Paper é documento atemporal**: Escrever como se o leitor visse o paper pela primeira vez. NUNCA referenciar versões anteriores, mudanças feitas durante revisão, ou estado prévio do manuscrito. Nada de "now", "previously", "we have removed", "in the revised version". Descrever o resultado como se sempre tivesse sido assim.

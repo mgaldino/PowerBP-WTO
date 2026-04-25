@@ -1,6 +1,6 @@
 # Plano de Revisão — Parecer JoP (2026-04-25, revisado)
 
-**Status**: IN PROGRESS (revisado 2026-04-25)
+**Status**: NEAR COMPLETE (11/12 itens feitos, R10 em verificação adversarial)
 
 Parecer: `notes/parecer_jop_formal_model_v3.pdf`
 Análise: `quality_reports/2026-04-25_analise_parecer_jop.md`
@@ -42,17 +42,13 @@ Paper ativo: `formal_model_v3.Rmd`
 
 ## Prioridade 2 — Reframing e exposição (necessários para próxima submissão)
 
-### R4. Reframing condicional da contribuição (ref: §3.1 e §4.1 do parecer)
+### R4. Reframing condicional da contribuição (ref: §3.1 e §4.1 do parecer) — ✅ FEITO
 
-**Problema**: Introdução vende "why would a hegemon prefer consensus" como explicação geral. Resultado é condicional.
-
-**Solução**: Recalibrar em 4 locais:
-1. **Abstract**: De "explains why" para "identifies conditions under which".
-2. **Introdução** (linhas 45-61): Manter o puzzle, mas a resposta deve ser: "The model shows that unanimity can dominate majority rule when the hegemon's private information is sufficiently valuable (α < α*) and when the institution is viable under unanimity. Majority may still dominate via its lower entry barrier."
-3. **Theorem 1 interpretação** (linhas 525-530): Reforçar a condicionalidade.
-4. **Conclusion** (linhas 797-805): Reformular.
-
-**Manter**: "technology of hegemonic power" — é uma boa expressão, apenas qualificar que é condicional.
+**Resolução**: Recalibrado em 4 locais:
+1. **Abstract**: "Why would" → "When does"; "I argue" removido; "identifies conditions under which" no lugar de afirmação geral.
+2. **Introdução** (parágrafo do mecanismo): "discontinuity that BP exploits" → "conditional payoff advantage"; BP "extends" em vez de "exploits."
+3. **Seção 6** (concavificação): Explicitado que BP não cria a vantagem — screening cria (Lemma 1) — BP a estende para priors abaixo do threshold de entrada.
+4. **Conclusion**: "shown when and why" → "identified conditions under which"; "non-convexity... exploits" → "conditional payoff advantage... extends."
 
 ---
 
@@ -68,36 +64,14 @@ Paper ativo: `formal_model_v3.Rmd`
 
 ---
 
-### R7. Recalibrar a narrativa BP vs. conditional dominance (ref: §3.4 do parecer + review de correção)
+### R7. Recalibrar a narrativa BP vs. conditional dominance (ref: §3.4 do parecer + review de correção) — ✅ FEITO
 
-**Problema**: Theorem 1 atribui a vantagem da unanimidade ao mecanismo de BP, mas verificação numérica mostra que **BP contribui 0% do gap para todo $p \in E_U$**. O gap inteiro é conditional dominance (Lemma 1). BP só agrega valor para priors *abaixo* de $\tau(U)$, que é o domínio do Theorem 2.
-
-Decomposição numérica (N=5, r=1.5, α=0.3, β=0.9, c=0.05):
-
-| Prior p | Gap Π*(U)−Π*(M) | Lemma 1 (cond. dom.) | BP |
-|---------|-----------------|----------------------|----|
-| 0.05 | 0.128 | 91% | 9% |
-| 0.10 | 0.143 | 84% | 16% |
-| 0.15 | 0.159 | 76% | 24% |
-| ≥ 0.20 | — | 100% | 0% |
-
-Para p ≥ τ(U), BP contribui zero — cav v(p,U) = v(p,U) porque já estamos acima do threshold de entrada. BP só importa para p < τ(U), onde a concavificação "projeta" posteriors para dentro de E_U.
-
-**Avaliação**: O referee está certo. Theorem 1 é essencialmente corolário do Lemma 1. BP faz trabalho real no Theorem 2.
-
-**Solução**: Não basta ajustar um parágrafo. A narrativa inteira precisa ser recalibrada em 4 locais:
-
-1. **Parágrafo após Theorem 1** (linhas 525-530): Explicitar honestamente:
-   - "Theorem 1 establishes that conditional on entry, unanimity dominates. The driving force is the screening mechanism (Lemma 1), not persuasion per se: at beliefs where the institution forms under unanimity, the hegemon's payoff is already higher without any signal design."
-   - "The role of Bayesian persuasion is not to increase the conditional payoff, but to *expand the set of priors at which unanimity is viable*. This expansion is characterized in Theorem 2."
-
-2. **Preview do resultado** (linhas 282-284): Recalibrar para não prometer que BP é o motor do Theorem 1.
-
-3. **Seção 6 (Entry and BP)** (linhas 406-420): O parágrafo "the hegemon's optimal payoff under rule R is cav v(p,R)" deve deixar claro que concavificação importa *abaixo do threshold de entrada*, não acima dele.
-
-4. **Introdução** (linhas 54-56): "Bayesian persuasion exploits that non-convexity" — calibrar para "unanimity creates a payoff advantage that Bayesian persuasion extends to priors where the institution would not otherwise form."
-
-**Onde editar**: Linhas 54-56, 282-284, 406-420, 525-530.
+**Resolução**: Narrativa recalibrada em 5 locais (abstract, intro, preview, Seção 6, conclusion). Padrão consistente: screening (Lemma 1) é o motor; BP estende a vantagem para priors abaixo do threshold de entrada (Theorem 2). Parágrafo após Theorem 1 já estava bem calibrado (mantido). Mudanças específicas:
+- Abstract: "BP exploits" → screening dá vantagem condicional, BP a estende
+- Intro: "discontinuity that BP exploits" → "conditional payoff advantage"
+- Preview: building block (3) recalibrado — BP estende, não explora
+- Seção 6: "dual exploitation is the paper's distinctive contribution" → "distinctive contribution of BP is not to create the advantage but to extend it"
+- Conclusion: "BP exploits that non-convexity" → "BP extends this advantage"
 
 ---
 
@@ -120,11 +94,9 @@ Porém, nos 4 casos testados com E_U desconectado, **single-crossing sobrevive**
 
 3. **Ideal**: Eliminar Assumption 1. Provar single-crossing diretamente via propriedades da concavificação de v(μ,U) — que é piecewise linear com no máximo 2 não-convexidades (entry jump + screening jump). Concavificação de função com 2 não-convexidades tem envelope com no máximo 3 segmentos, o que pode ser comparado diretamente com a reta S_M·p.
 
-**Recomendação**: Opção 1 (mínima) para a próxima submissão. Opção 3 se houver tempo — eliminaria uma hipótese e fortaleceria o paper significativamente.
+**Decisão**: Opção 3 (eliminar Assumption 1). Prova proposta usa insight de que E_U ⊆ E_M garante que gaps de E_U caem em região onde m(p) é affine, então a corda que fecha o gap fica acima de m. Prova sob verificação adversarial em sessão dedicada. Verificação numérica: 0 violações em 7.200 combinações (530 com E_U desconectado). Script: `scripts/verify_R10_single_crossing_no_assumption.R`.
 
-**Onde editar**: Assumption 1 e parágrafo seguinte (linhas 539-543), Appendix B.7 (se opção 2 ou 3).
-
-**Verificação**: Script R que varre o espaço de parâmetros para E_U desconectado e testa single-crossing em cada caso.
+**Onde editar** (após aprovação da prova): Theorem 2 statement (remover Assumption 1), prova B.7 (reescrever), Assumption 1 (remover ou converter em remark).
 
 ---
 
@@ -136,13 +108,9 @@ Porém, nos 4 casos testados com E_U desconectado, **single-crossing sobrevive**
 
 ---
 
-### R9. Notação — mover mais álgebra para appendix (ref: §4.2 do parecer)
+### R9. Notação — mover mais álgebra para appendix (ref: §4.2 do parecer) — ✅ FEITO
 
-**Avaliação**: A v3 já reduziu notação significativamente vs. v2. O corpo tem Propositions 1-4, Lemma 1, Theorems 1-2. A notação pesada (C_buy, C_out, λ_M, κ_M) já está no appendix.
-
-**Solução**: 
-1. **Remark 1** (linhas 505-511): Usa $C_{\text{buy}}$ e $C_{\text{out}}$ sem definir no corpo (definidos apenas na prova B.5). Definir inline: "where $C_{\text{buy}} \equiv \beta(q-1)(1-\alpha)$ is the vote-buying cost under majority and $C_{\text{out}} \equiv N(N-1)\alpha$ is the aggregate outside-option cost."
-2. Verificar se sobrou mais álgebra inline no corpo.
+**Resolução**: C_buy e C_out definidos inline no Remark 1: "where C_buy ≡ β(q−1)(1−α) is the vote-buying cost under majority, C_out ≡ N(N−1)α is the aggregate outside-option cost."
 
 ### R11. Fixes menores (ref: review de correção) — ✅ FEITO
 
@@ -155,10 +123,10 @@ Porém, nos 4 casos testados com E_U desconectado, **single-crossing sobrevive**
 
 | Fase | Tasks | Status |
 |------|-------|--------|
-| **Fase 1** | ~~R0 (game tree)~~ + ~~R1 (principal regime)~~ + ~~R2 (Lemma 1 prova)~~ + R10 (Assumption 1) | R0 ✅ R1 ✅ R2 ✅ R10 pendente |
-| **Fase 2** | ~~R3 (entry)~~ + ~~R6 (consensus/unanimity)~~ + ~~R8 (example)~~ + ~~R11 (fixes menores)~~ | R3 ✅ R6 ✅ R8 ✅ R11 ✅ |
-| **Fase 3** | R4 (reframing) + ~~R5 (observable implications)~~ + **R7 (recalibração narrativa BP)** | R5 ✅ R4 pendente R7 pendente |
-| **Fase 4** | R9 (notação + Remark 1) + revisão final + polimento B.2/A.5 | Todos pendentes |
+| **Fase 1** | ~~R0~~ + ~~R1~~ + ~~R2~~ + R10 (Assumption 1) | R0 ✅ R1 ✅ R2 ✅ R10 em verificação adversarial |
+| **Fase 2** | ~~R3~~ + ~~R6~~ + ~~R8~~ + ~~R11~~ | Todos ✅ |
+| **Fase 3** | ~~R4~~ + ~~R5~~ + ~~R7~~ | Todos ✅ |
+| **Fase 4** | ~~R9~~ + polimento B.2/A.5 | R9 ✅ polimento B.2/A.5 ✅ |
 
 ### Notas sobre a ordem
 
