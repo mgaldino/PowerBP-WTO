@@ -510,31 +510,31 @@ D(\mu) = \underbrace{D(1)}_{\text{without info}} + (1 - \mu) \cdot \underbrace{\
 where $D(1) = r[C_{\text{buy}} - C_{\text{out}}(1-\beta)]/N^2 \leq 0$ is the payoff comparison when the hegemon's type is known, and $\Gamma = (r-1)[C_{\text{out}} - C_{\text{buy}} + (N-1)\beta]/N^2 > 0$ is the marginal value of uncertainty for unanimity. The belief threshold above which majority dominates is $\bar\mu = 1 - |D(1)|/\Gamma$. Numerically, $\bar\mu$ is remarkably stable: for $N = 164$ and $\beta = 0.9$, increasing $\alpha$ from $0.05$ to $0.49$ (an 18-fold increase beyond $\alpha^*$) only lowers $\bar\mu$ from $0.87$ to $0.71$ when $r = 1.5$. The mechanism fails only near certainty about the magnitude of the gains from cooperation---precisely where private information has least value (Figure \@ref(fig:heatmap-alpha-mu) in Section \@ref(scope) maps the full $(\alpha, \mu)$ frontier).
 \end{remark}
 
-An immediate corollary is that entry is always harder under unanimity ($\tau(U) \geq \tau(M)$): because the hegemon captures more surplus, less is available for weak states. Without persuasion, the institutional comparison is therefore ambiguous: unanimity dominates when the institution forms under both rules, but majority dominates when only it can induce entry.
+An immediate corollary is that entry is always harder under unanimity ($E_U \subseteq E_M$): because the hegemon captures more surplus (Lemma \ref{lem:conditional}), less is available for weak states, so $V_W(\mu, U) < V_W(\mu, M)$ for every $\mu \in (0,1]$ (Appendix B.6). Without persuasion, the institutional comparison is therefore ambiguous: unanimity dominates when the institution forms under both rules, but majority dominates when only it can induce entry.
 
 ## The main result
 
-With Bayesian persuasion, the hegemon's payoff under each rule is $\Pi_H^*(R, p) = \operatorname{cav} v(p, R)$. The institutional choice reduces to comparing these concavified values. The central result is that unanimity dominates majority for every prior at which the institution would form under unanimity.
+With Bayesian persuasion, the hegemon's payoff under each rule is $\Pi_H^*(R, p) = \operatorname{cav} v(p, R)$. The institutional choice reduces to comparing these concavified values. Let $E_U \equiv \{\mu \in (0,1] : V_W^{R1}(\mu, U) \geq c\}$ denote the set of beliefs at which weak states enter under unanimity. The central result is that unanimity dominates majority at every such belief.
 
 \begin{theorem}[Dominance of unanimity]\label{thm:dominance}
-Suppose $\alpha < \alpha^*(N, \beta)$. For every prior $p \geq \tau(U)$,
+Suppose $\alpha < \alpha^*(N, \beta)$. For every prior $p \in E_U$,
 \[
 \Pi_H^*(U, p) > \Pi_H^*(M, p).
 \]
-That is, whenever the institution can form under unanimity, the hegemon strictly prefers it.
+That is, whenever entry is feasible under unanimity, the hegemon strictly prefers it.
 \end{theorem}
 
 \begin{proof}
-Entry occurs under both rules since $\tau(U) \geq \tau(M)$. By Lemma \ref{lem:conditional}, $v(p, U) > v(p, M)$. Under majority, $v(\cdot, M)$ is affine above $\tau(M)$ and hence already concave, so $\operatorname{cav} v(p, M) = v(p, M)$. Therefore $\Pi_H^*(U, p) = \operatorname{cav} v(p, U) \geq v(p, U) > v(p, M) = \Pi_H^*(M, p)$.
+See Appendix B.6.
 \end{proof}
 
-The theorem holds regardless of whether the entry set under unanimity is connected or disconnected, and regardless of the shape of the concavification. The screening mechanism (Proposition \ref{prop:jump}) gives the hegemon a higher conditional payoff, and majority's linearity means that concavification cannot close the gap. The only channel through which majority can dominate is the entry margin: priors so pessimistic that only majority can induce participation.
+The theorem holds regardless of whether $E_U$ is connected or disconnected, and regardless of the shape of the concavification. The screening mechanism (Proposition \ref{prop:jump}) gives the hegemon a higher conditional payoff, and majority's linearity means that concavification cannot close the gap. The only channel through which majority can dominate is the entry margin: priors so pessimistic that only majority can induce participation.
 
-\begin{corollary}[Global dominance when entry is costless]\label{cor:global}
-If $\tau(U) = 0$---entry costs are low enough that the institution forms under unanimity at all priors---then $\Pi_H^*(U, p) > \Pi_H^*(M, p)$ for every $p \in (0, 1)$.
+\begin{corollary}[Global dominance when entry is everywhere feasible]\label{cor:global}
+If $E_U = (0, 1]$---entry costs are low enough that the institution forms under unanimity at all beliefs---then $\Pi_H^*(U, p) > \Pi_H^*(M, p)$ for every $p \in (0, 1)$.
 \end{corollary}
 
-When $\tau(U) > 0$, the comparison below the unanimity entry threshold depends on the shape of the entry set. If entry under unanimity occurs on a connected upper interval, the comparison admits a sharp characterization.
+When $E_U \neq (0,1]$, the comparison at beliefs outside the unanimity entry set depends on how persuasion shifts posteriors into $E_U$. If entry under unanimity occurs on a connected upper interval, the comparison admits a sharp characterization.
 
 \begin{assumption}[Monotone entry under unanimity]\label{ass:monotone_entry}
 The entry set under unanimity is an upper interval: $E_U = \{\mu : V_W^{R1}(\mu, U) \geq c\} = [\tau(U), 1]$.
@@ -978,7 +978,11 @@ Combining all branches: $D(\mu) > 0$ for every $\mu \in (0,1]$. This establishes
 
 ## B.6 Proof of Theorem 1 (Dominance of unanimity) {-}
 
-Fix $p \geq \tau(U)$, so entry occurs under unanimity. Since $\tau(U) \geq \tau(M)$, entry also occurs under majority. By Lemma \ref{lem:conditional}, $v(p, U) > v(p, M)$. Under majority, $v(\mu, M)$ is affine above $\tau(M)$, hence already concave, so $\operatorname{cav} v(p, M) = v(p, M)$. Therefore $\Pi_H^*(U, p) = \operatorname{cav} v(p, U) \geq v(p, U) > v(p, M) = \operatorname{cav} v(p, M) = \Pi_H^*(M, p)$. $\square$
+Fix $p \in E_U$, so $V_W^{R1}(p, U) \geq c$. We first show that entry also occurs under majority. Under majority, the budget identity holds exactly: $E[V_H(\mu, M)] + (N-1)V_W(\mu, M) = V_e(\mu)$. Under unanimity, surplus destruction from discounting on the aggressive branch yields $E[V_H(\mu, U)] + (N-1)V_W(\mu, U) \leq V_e(\mu)$. Since Lemma \ref{lem:conditional} gives $E[V_H(\mu, U)] > E[V_H(\mu, M)]$, it follows that $V_W(\mu, U) < V_W(\mu, M)$ for every $\mu \in (0,1]$. Hence $V_W^{R1}(p, M) > V_W^{R1}(p, U) \geq c$, so entry occurs under majority at $p$. In particular, $E_U \subseteq E_M$.
+
+By Lemma \ref{lem:conditional}, $v(p, U) > v(p, M)$. It remains to show that persuasion cannot improve the majority payoff at $p$. Although $v(\cdot, M)$ is not globally concave because of the entry jump at $\tau(M)$, its concavification coincides with the primitive payoff for all priors above the entry threshold. Splits entirely above $\tau(M)$ do not change expected payoff because $v(\cdot, M)$ is affine on that region. Splits assigning positive mass below $\tau(M)$ strictly reduce payoff because $v = 0$ below the threshold. Hence $\operatorname{cav} v(p, M) = v(p, M)$ for every $p \geq \tau(M)$.
+
+Therefore $\Pi_H^*(U, p) = \operatorname{cav} v(p, U) \geq v(p, U) > v(p, M) = \operatorname{cav} v(p, M) = \Pi_H^*(M, p)$. $\square$
 
 ## B.7 Proof of Theorem 2 (Single-crossing institutional comparison) {-}
 
