@@ -427,7 +427,7 @@ See Appendix B.4.
 
 By the standard Bayesian persuasion result [@kamenica2011bayesian], the hegemon's optimal payoff under rule $R$ is $\Pi_H^*(R, p) = \alpha V_e(p) + \operatorname{cav} v(p, R)$: the outside option plus the concavified net gain from the institution. Since $\alpha V_e(p)$ is affine and common to both rules, the institutional comparison reduces to comparing $\operatorname{cav} v(p, U)$ versus $\operatorname{cav} v(p, M)$. Under majority, concavification operates only through the entry threshold: the hegemon can induce participation but cannot extract screening rents, because the conditional payoff is already linear. Under unanimity, concavification can additionally exploit the screening jump, inducing posteriors that straddle $\mu_s^{R1}$ and place mass on both sides of the discontinuity. The distinctive contribution of Bayesian persuasion under unanimity is not to create the conditional payoff advantage---that comes from screening (Lemma \ref{lem:conditional})---but to extend it to priors below the entry threshold, where the institution would not otherwise form. Figure \@ref(fig:bp-illustration) illustrates both net-gain functions and their concavifications.
 
-```{r bp_illustration, echo=FALSE, fig.width=10, fig.height=4.5, fig.cap="Net-gain functions $v(\\mu, R)$ and their concavifications under majority (red) and unanimity (blue). The net gain is the hegemon's expected bargaining payoff minus the bilateral outside option $\\alpha V_e(\\mu)$; it equals zero when the institution does not form. Dashed lines show concave envelopes. Left panel (a): baseline parameters ($N=5$, $r=1.5$, $\\alpha=0.3$, $\\beta=0.9$, $c=0.1$) where the screening jump under unanimity creates a large concavification gain. Right panel (b): parameters near the boundary of the unanimity-preferred region ($N=5$, $r=1.2$, $\\alpha=0.3$, $\\beta=0.7$, $c=0.1$) where the mechanism is weaker and the concavification gains are smaller."}
+```{r bp-illustration, echo=FALSE, fig.width=10, fig.height=4.5, fig.cap="Net-gain functions $v(\\mu, R)$ and their concavifications under majority (red) and unanimity (blue). The net gain is the hegemon's expected bargaining payoff minus the bilateral outside option $\\alpha V_e(\\mu)$; it equals zero when the institution does not form. Dashed lines show concave envelopes. Left panel (a): baseline parameters ($N=5$, $r=1.5$, $\\alpha=0.3$, $\\beta=0.9$, $c=0.1$) where the screening jump under unanimity creates a large concavification gain. Right panel (b): parameters near the boundary of the unanimity-preferred region ($N=5$, $r=1.2$, $\\alpha=0.3$, $\\beta=0.7$, $c=0.1$) where the mechanism is weaker and the concavification gains are smaller."}
 
 source("scripts/model_functions.R", local = TRUE)
 
@@ -562,7 +562,7 @@ Theorem \ref{thm:crossing} says that the institutional ranking never oscillates.
 
 ## Numerical characterization
 
-```{r parameter_regions, echo=FALSE, fig.width=8, fig.height=4, fig.cap="Parameter regions where the hegemon prefers unanimity (blue) vs majority (red) at prior $p = 0.05$, restricted to $\\alpha < \\alpha^*(N, \\beta)$ (the domain where Lemma 1 applies). Left: $r$ vs $\\alpha$ plane with $\\beta=0.9$, $N=5$, $c=0.1$. Right: $\\beta$ vs $r$ plane with $\\alpha=0.3$, $N=5$, $c=0.1$."}
+```{r parameter-regions, echo=FALSE, fig.width=8, fig.height=4, fig.cap="Parameter regions where the hegemon prefers unanimity (blue) vs majority (red) at prior $p = 0.05$, restricted to $\\alpha < \\alpha^*(N, \\beta)$ (the domain where Lemma 1 applies). Left: $r$ vs $\\alpha$ plane with $\\beta=0.9$, $N=5$, $c=0.1$. Right: $\\beta$ vs $r$ plane with $\\alpha=0.3$, $N=5$, $c=0.1$."}
 
 compute_preference <- function(r, alpha, N, beta, c, p) {
   # Value under unanimity
@@ -1167,7 +1167,7 @@ Under majority rule with $K$ types, $E_\theta[V_H^{R1}(\theta, \mu, M)] = \lambd
 The proof is identical to the $K = 2$ case. Under majority, $W$ never needs $H$'s vote; $H$ receives $\alpha V(\theta)$ in every coalition that forms and $\alpha V(\theta)$ as its outside option. Since $H$'s payoff is $\alpha V(\theta)$ type by type, the expectation is $\alpha V_e(\mu)$ scaled by the bargaining multiplier $\lambda_M / \alpha$. The belief $\mu$ enters only through $V_e(\mu)$, so the payoff is affine in $\mu$ (and hence in $V_e$) regardless of $K$.
 \end{proof}
 
-Together, Propositions \ref{prop:k_general_screening} and \ref{prop:k_majority_linear} establish the key asymmetry for general $K$: unanimity generates $K-1$ screening boundaries (each a potential source of non-convexity), while majority remains linear regardless of $K$. The binary model is the minimal case that captures this mechanism.
+Together, the screening claim above and Proposition \ref{prop:k_majority_linear} establish the key asymmetry for general $K$: unanimity generates $K-1$ screening boundaries (each a potential source of non-convexity), while majority remains linear regardless of $K$. The binary model is the minimal case that captures this mechanism.
 
 
 # References {-}
