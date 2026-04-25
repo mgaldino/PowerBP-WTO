@@ -1002,7 +1002,7 @@ Define the majority payoff coefficient $\lambda_M \equiv [N[1+(N-1)\alpha]-\beta
 
 *Step 3: Case $0 < \tau(M) \leq \tau(U)$, $S_U > S_M$.* For $p < \tau(M)$: $\operatorname{cav} v(p, U) = S_U p > S_M p = \operatorname{cav} v(p, M)$. For $p \in [\tau(M), \tau(U))$: $D(\tau(M)) = (S_U - S_M)\tau(M) > 0$ and $D(\tau(U)) > 0$ by Theorem \ref{thm:dominance}. Unanimity dominates globally.
 
-*Step 4: Case $0 < \tau(M) \leq \tau(U)$, $S_U \leq S_M$.* For $p < \tau(M)$: $\operatorname{cav} v(p, U) \leq \operatorname{cav} v(p, M)$. For $p \in [\tau(M), \tau(U))$: $D(\tau(M)) \leq 0$ and $D(\tau(U)) > 0$, so $D$ crosses zero once at $p^* \in [\tau(M), \tau(U)]$.
+*Step 4: Case $0 < \tau(M) \leq \tau(U)$, $S_U \leq S_M$.* For $p < \tau(M)$: $\operatorname{cav} v(p, U) \leq \operatorname{cav} v(p, M)$. For $p \in [\tau(M), \tau(U))$: $\operatorname{cav} v(p, U) = S_U \cdot p$ and $\operatorname{cav} v(p, M) = \lambda_M[1 + (r-1)p]$, so $D(p)$ is affine on this interval. Since $D(\tau(M)) \leq 0$ and $D(\tau(U)) > 0$, $D$ crosses zero exactly once at some $p^* \in [\tau(M), \tau(U)]$.
 
 Since each case admits at most one crossing, the comparison has the single-crossing property. $\square$
 
