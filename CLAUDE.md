@@ -68,38 +68,48 @@ Auditoria completa: `quality_reports/2026-04-25_auditoria_parecer_v3.md`
 
 ## TODOs
 
-### PRÓXIMO PASSO (v3, pós-review)
+### PRÓXIMO PASSO (v4, pós-review)
 Ver plano detalhado: `quality_reports/plans/2026-04-22_next-steps-v3.md`
 - [x] **P1**: Lemma 1 → iff (α* necessário E suficiente) — statement, prova, 7 locais atualizados
 - [x] **P2**: Remark μ̄ após Lemma 1 (Remark 2, rem:mu_bar) — feito por agente paralelo
 - [x] **P3**: ~~Tabela numérica μ̄ no Scope~~ — dispensado, substituído pelo heatmap (α,μ) com 4 painéis (Fig. heatmap-alpha-mu)
-- [x] **P4**: τ(U) closed-form no Appendix A.7 — derivação, review (PASS), correções, inserção feitos. Lean não necessário (inversão algébrica, não resultado novo).
-- [x] **P5**: ~~Proof sketch para Prop 5~~ — dispensado, Prop 5 removida (não acrescentava, só falava do jump, não do payoff total de H)
-- [ ] **P6**: Worked example após Theorem 1 (computar p*)
-- [ ] **P7**: Ajustes de exposição (harmonizar termos, comprimir Discussion, magnitudes no abstract)
+- [x] **P4**: τ(U) closed-form no Appendix A.7 — derivação, review (PASS), correções, inserção feitos.
+- [x] **P5**: ~~Proof sketch para Prop 5~~ — dispensado, Prop 5 removida
+- [x] **P6**: Worked example após Theorem 1 (Example 2, p* ≈ 0.24). FEITO.
+- [x] **P7**: Ajustes de exposição — parcialmente feito na sessão 2026-04-26 (proofread, bold headers, subsections, restatements). Discussion (F7) pendente.
 - [ ] Consultar coarse review antes de submeter
 - [x] Limpar .bib: 21 entradas fantasma removidas, 19 citadas mantidas
 - [ ] Submeter ao JoP
 
 ### Fixes pós-review 2026-04-26 (review-formal-model 7.7/10)
-Review completo: `quality_reports/2026-04-26_review-formal-model.md`
+Review completo: `quality_reports/2026-04-26_review-formal-model.md`. Feitos: F1-F6, F8, F10, 4b (ver "CONCLUÍDO sessão 2026-04-26" abaixo). Pendentes: F7, F9, F11, F12 (ver "PENDÊNCIAS RESTANTES" abaixo).
 
-**Críticas externas pertinentes (priorizadas):**
-- [x] **F1 (ALTA)**: Microfundar entrada dos weak states — symmetric entry equilibrium, all-or-nothing, H participa automaticamente, N = tamanho da instituição proposta. FEITO (sessão 2026-04-26).
-- [x] **F2 (MÉDIA)**: Nota consenso=unanimidade movida para início do motivating example (Sec 2). FEITO (sessão 2026-04-26).
-- [x] **F3 (ALTA)**: α* traduzido substantivamente perto do Lemma 1: α mede outside option, α* cai com N (0.47→0.03), exigente para WTO. FEITO (sessão 2026-04-26).
-
-**Sugestões do parecer formal (priorizadas):**
-- [x] **F4**: ~~Comprimir introdução~~ — dispensado: intro já tem ~1.5pp com 7 parágrafos compactos. Page break adicionado entre abstract e intro. FEITO (sessão 2026-04-26).
-- [x] **F5**: Definições formais: Definition 2 para v(μ,R); α* definido separadamente antes do Lemma 1. FEITO (sessão 2026-04-26).
-- [x] **F6**: Aumentar linguagem natural nos appendix B.5/B.5a (~35% → ~55%). Implementado + revisado (A+). FEITO (sessão 2026-04-26).
+### PENDÊNCIAS RESTANTES (v4)
 - [ ] **F7**: Reorganizar e comprimir Discussion (Sec 8): separar GATT/WTO, scope, alternativas; cortar ~30%
-- [x] **F8**: Justificar 2 rounds: homologia com BF, robustez além de ultimatum, continuation game. Parágrafo após Def 1. FEITO (sessão 2026-04-26).
 - [ ] **F9**: Completar tabela de notação no App A (phi, omega, lambda_M, kappa_M)
-- [x] **F10**: Eliminar restatements redundantes de "majority is linear" (4→1 definitiva + refs). FEITO (sessão 2026-04-26).
-- [x] **4b**: Re-auditar provas Thm 1 (B.6) e Thm 2 (B.8) pós-normalização v(μ,R). PASS — ambas corretas, net-gain consistente, 3 concerns cosméticos em B.8. FEITO (sessão 2026-04-26).
-- [ ] **F11**: Quadro-resumo de auditabilidade na prova do Lemma 1: tabela/lemma auxiliar com fórmulas exatas de D_base(μ), δ_R1(μ), δ_R2(μ), domínios de ativação, e valores nos endpoints relevantes. Objetivo: tornar a prova auto-contida para referee sem precisar reconstruir de B.5a.
-- [ ] **F12**: Reescrever Appendix C (K>2 tipos): apresentar modestamente como extensão heurística, não como prova plena de robustez. A Claim não é provada formalmente; a Prop para majority é trivial. Reescrita pode ser maior — calibrar o tom e escopo.
+- [ ] **F11**: Quadro-resumo de auditabilidade na prova do Lemma 1 (tabela com D_base, δ_R1, δ_R2, domínios, endpoints)
+- [ ] **F12**: Reescrever Appendix C (K>2) como extensão heurística (reescrita maior, calibrar tom)
+- [ ] Consultar coarse review antes de submeter
+- [ ] Submeter ao JoP
+
+### CONCLUÍDO (sessão 2026-04-26 — editorial revision v4)
+- [x] Review-formal-model completo (Design 8, Técnica 7.5, Exposição 7.5 → 7.7/10, R&R minor)
+- [x] Proofread: 16 correções (typo "relative do", App C overpayment invertido, 5 cross-refs, voz, dash, footnotes) → 98/100
+- [x] F1: Microfundar entrada (symmetric equilibrium, all-or-nothing, N = tamanho da instituição)
+- [x] F2: Consenso=unanimidade movido para motivating example
+- [x] F3: α* traduzido substantivamente antes do Lemma 1 (α*≈0.47 N=5, ≈0.03 N=164)
+- [x] F4: Intro já compacta (~1.5pp); page break abstract→intro adicionado
+- [x] F5: Definition 2 para v(μ,R); α* definido separadamente antes do Lemma 1
+- [x] F6: Linguagem natural em B.5/B.5a (~35%→~55-60%), revisado A+
+- [x] F8: Justificativa 2 rounds BF (homologia, robustez, off-path beliefs, α-independência)
+- [x] F10: Restatements "majority is linear" reduzidos (4→1+refs)
+- [x] 4b: Auditoria provas Thm 1/Thm 2 pós-normalização — PASS + 3 cosméticos corrigidos
+- [x] Motivating example reescrito (style guide): bold headers removidos, prosa corrida, Preview com p*
+- [x] Section 3 subsections removidas (Environment, Timing, Solution concept, Information structure) — bloco narrativo JoP
+- [x] Preview 3.1 removido (redundante com Preview da Sec 2)
+- [x] "Region III" → "conservative branch (μ > μ_s^{R1})"
+- [x] Cross-ref quebrada no Remark 1 corrigida (\@ref → \ref dentro de LaTeX environment)
+- [x] Interpretação substantiva de α* movida para antes do Lemma 1
 
 ### CONCLUÍDO (sessão 2026-04-22 — Lemma 1 iff + limpeza bib + entry scaling)
 - [x] .bib limpo: 40 → 19 entradas (21 fantasma removidas, 0 órfãs)
