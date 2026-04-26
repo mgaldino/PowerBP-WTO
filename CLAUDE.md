@@ -9,10 +9,11 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 
 ## Status
 
-- **Fase**: REVISÃO PÓS-REVIEW v3. Journal target: JoP → AJPS → RIO.
-- **Paper v3** (ATIVO): `formal_model_v3.Rmd` — versão "light math" para submissão. Corpo conta a história, provas no appendix. Estilo JoP (Hirsch 2023, Hill 2022, Tyson et al. 2024).
+- **Fase**: REVISÃO PÓS-REVIEW v4. Journal target: JoP → AJPS → RIO.
+- **Paper v4** (ATIVO): `formal_model_v4.Rmd` — versão "light math" pós-proofread+fixes. Corpo conta a história, provas no appendix. Estilo JoP (Hirsch 2023, Hill 2022, Tyson et al. 2024).
+- **Paper v3** (ARQUIVO): `formal_model_v3.Rmd` — cópia idêntica a v4 (editada na sessão 2026-04-26).
 - **Paper v2** (ARQUIVO): `formal_model_v2.Rmd` — versão densa com provas no corpo. Preservada para referência e caso pareceristas peçam detalhes.
-- **Reviews v3**: `quality_reports/2026-04-22_edmans-review-v3.md` (7.3/10) + `quality_reports/2026-04-22_review-formal-model-v3.md` (7.7/10).
+- **Reviews v3**: `quality_reports/2026-04-22_edmans-review-v3.md` (7.3/10) + `quality_reports/2026-04-22_review-formal-model-v3.md` (7.7/10) + `quality_reports/2026-04-26_review-formal-model.md` (7.7/10, R&R minor — Design 8, Técnica 7.5, Exposição 7.5).
 - **Coarse review**: `coarse-output/coarse_0b50af74_coarse_review_cli_claude.md` — review externa importante, consultar antes de submeter.
 - **Resultado novo**: α* é iff (necessário E suficiente). Nota: `notes/2026-04-22_alpha_star_iff.md`. Verificado.
 - **Next steps**: `quality_reports/plans/2026-04-22_next-steps-v3.md` — 7 prioridades ordenadas.
@@ -79,6 +80,26 @@ Ver plano detalhado: `quality_reports/plans/2026-04-22_next-steps-v3.md`
 - [ ] Consultar coarse review antes de submeter
 - [x] Limpar .bib: 21 entradas fantasma removidas, 19 citadas mantidas
 - [ ] Submeter ao JoP
+
+### Fixes pós-review 2026-04-26 (review-formal-model 7.7/10)
+Review completo: `quality_reports/2026-04-26_review-formal-model.md`
+
+**Críticas externas pertinentes (priorizadas):**
+- [x] **F1 (ALTA)**: Microfundar entrada dos weak states — symmetric entry equilibrium, all-or-nothing, H participa automaticamente, N = tamanho da instituição proposta. FEITO (sessão 2026-04-26).
+- [x] **F2 (MÉDIA)**: Nota consenso=unanimidade movida para início do motivating example (Sec 2). FEITO (sessão 2026-04-26).
+- [x] **F3 (ALTA)**: α* traduzido substantivamente perto do Lemma 1: α mede outside option, α* cai com N (0.47→0.03), exigente para WTO. FEITO (sessão 2026-04-26).
+
+**Sugestões do parecer formal (priorizadas):**
+- [x] **F4**: ~~Comprimir introdução~~ — dispensado: intro já tem ~1.5pp com 7 parágrafos compactos. Page break adicionado entre abstract e intro. FEITO (sessão 2026-04-26).
+- [x] **F5**: Definições formais: Definition 2 para v(μ,R); α* definido separadamente antes do Lemma 1. FEITO (sessão 2026-04-26).
+- [x] **F6**: Aumentar linguagem natural nos appendix B.5/B.5a (~35% → ~55%). Implementado + revisado (A+). FEITO (sessão 2026-04-26).
+- [ ] **F7**: Reorganizar e comprimir Discussion (Sec 8): separar GATT/WTO, scope, alternativas; cortar ~30%
+- [x] **F8**: Justificar 2 rounds: homologia com BF, robustez além de ultimatum, continuation game. Parágrafo após Def 1. FEITO (sessão 2026-04-26).
+- [ ] **F9**: Completar tabela de notação no App A (phi, omega, lambda_M, kappa_M)
+- [x] **F10**: Eliminar restatements redundantes de "majority is linear" (4→1 definitiva + refs). FEITO (sessão 2026-04-26).
+- [x] **4b**: Re-auditar provas Thm 1 (B.6) e Thm 2 (B.8) pós-normalização v(μ,R). PASS — ambas corretas, net-gain consistente, 3 concerns cosméticos em B.8. FEITO (sessão 2026-04-26).
+- [ ] **F11**: Quadro-resumo de auditabilidade na prova do Lemma 1: tabela/lemma auxiliar com fórmulas exatas de D_base(μ), δ_R1(μ), δ_R2(μ), domínios de ativação, e valores nos endpoints relevantes. Objetivo: tornar a prova auto-contida para referee sem precisar reconstruir de B.5a.
+- [ ] **F12**: Reescrever Appendix C (K>2 tipos): apresentar modestamente como extensão heurística, não como prova plena de robustez. A Claim não é provada formalmente; a Prop para majority é trivial. Reescrita pode ser maior — calibrar o tom e escopo.
 
 ### CONCLUÍDO (sessão 2026-04-22 — Lemma 1 iff + limpeza bib + entry scaling)
 - [x] .bib limpo: 40 → 19 entradas (21 fantasma removidas, 0 órfãs)
@@ -197,6 +218,6 @@ Jogo repetido dentro de instituição consensual. Fracos investem para aprender 
 - N genérico sempre (N=3 apenas no exemplo motivador Seção 2)
 - x ≡ (N-1)αr como atalho notacional
 - Sob maioria: W EXCLUI H (não convenção WLOG de inclusão)
-- **v3 é o paper ativo para submissão**; v2 preservado como arquivo
+- **v4 é o paper ativo para submissão**; v3 é cópia idêntica (editada em 2026-04-26); v2 preservado como arquivo
 - **Estilo v3**: corpo narra o mecanismo em prosa substantiva; provas e álgebra no appendix; sem proof sketches no corpo; comparative statics em linguagem do fenômeno (não parâmetros)
 - **Paper é documento atemporal**: Escrever como se o leitor visse o paper pela primeira vez. NUNCA referenciar versões anteriores, mudanças feitas durante revisão, ou estado prévio do manuscrito. Nada de "now", "previously", "we have removed", "in the revised version". Descrever o resultado como se sempre tivesse sido assim.
