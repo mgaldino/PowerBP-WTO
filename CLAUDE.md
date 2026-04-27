@@ -15,6 +15,7 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 - **Paper v3** (ARQUIVO): `formal_model_v3.Rmd` — versão anterior a v4. v4 divergiu significativamente (proofread, editorial revision, fixes F1-F12, reescrita motivating example, etc.).
 - **Paper v2** (ARQUIVO): `formal_model_v2.Rmd` — versão densa com provas no corpo. Preservada para referência e caso pareceristas peçam detalhes.
 - **Reviews v3**: `quality_reports/2026-04-22_edmans-review-v3.md` (7.3/10) + `quality_reports/2026-04-22_review-formal-model-v3.md` (7.7/10) + `quality_reports/2026-04-26_review-formal-model.md` (7.7/10, R&R minor — Design 8, Técnica 7.5, Exposição 7.5).
+- **Edmans Review v5**: `quality_reports/2026-04-27_edmans-review-v5.md` (7.0/10, R&R — Contribution 6.5, Execution 7.5, Exposition 7.5). Bottleneck: contribuição (α* pequeno para N grande, K=2 favorável). RESOLVIDO parcialmente com extensão contínua.
 - **Coarse review**: `coarse-output/coarse_0b50af74_coarse_review_cli_claude.md` — review externa importante, consultar antes de submeter.
 - **Resultado novo**: α* é iff (necessário E suficiente). Nota: `notes/2026-04-22_alpha_star_iff.md`. Verificado.
 - **Next steps**: `quality_reports/plans/2026-04-22_next-steps-v3.md` — 7 prioridades ordenadas.
@@ -95,8 +96,8 @@ Review completo: `quality_reports/2026-04-26_review-formal-model.md`. Feitos: F1
 
 #### Coarse review pendências (gap analysis: `quality_reports/2026-04-26_coarse-review-gap-analysis.md`)
 **ALTA severidade**
-- [x] **CR1**: Tipo discreto — argumento de bunching + ref. Dworczak-Martini na Conclusão. Extensão contínua anotada como paper futuro.
-- [x] **CR2**: K>2 assessment honesto — Limitations ¶ em App C + Conclusão qualificada ("may shrink with K", "most favorable case")
+- [x] **CR1**: Tipo discreto — RESOLVIDO: extensão contínua (App C.4) mostra screening rent > 0 para qualquer F; Uniform dá α*_cont ≥ α*_{K=2}. Binário é caso conservador, não favorável.
+- [x] **CR2**: K>2 assessment — ATUALIZADO: Limitations reescrito + seção C.4 (continuous types) + Conclusão atualizada ("most conservative case")
 - [x] **CR3**: BP commitment — ELIMINADO (BP removido do corpo no v5)
 
 **MÉDIA severidade**
@@ -108,14 +109,29 @@ Review completo: `quality_reports/2026-04-26_review-formal-model.md`. Feitos: F1
 
 **BAIXA severidade**
 - [x] **CR9**: Threshold sempre existe — RESOLVIDO (Proposition via sets, sem p*, E_U=(0,1] é caso particular)
-- [ ] **CR10**: K>2 na conclusão — não distingue provado (K=2) de conjectura (K geral)
-- [ ] **CR11**: Footnote vs. main text — efeitos opostos de complexidade (consensus matters em áreas complexas vs. α_K* aperta). Precisa 1-2 frases reconciliando.
+- [x] **CR10**: K>2 na conclusão — RESOLVIDO: Conclusão agora distingue resultado qualitativo (geral) de quantitativo (Uniform), com "most conservative case"
+- [x] **CR11**: Footnote atualizada — menciona C.4, screening rent geral, α*_cont ≥ α* para Uniform
 - [x] **CR12**: (N-1)/N² corrigido — "monotonically decreasing in N for N≥2" (verificado: derivada (2-N)/N³ < 0)
 - [x] **CR13**: Figure antiga (p=0.05) — RESOLVIDO (substituída pelo institutional map (p,c))
 - [x] **CR14**: Doha — "explains" → "provides an alternative account of a pattern not fully explained to date"
 
+#### Pré-submissão
+- [ ] Adicionar data fixa e keywords no YAML do v5 (se não tiver)
+
 #### Submissão
 - [ ] Submeter ao JoP
+
+### CONCLUÍDO (sessão 2026-04-27 — Edmans review v5 + extensão contínua + predição discriminante)
+- [x] Edmans Review v5 completo (Contribution 6.5, Execution 7.5, Exposition 7.5 → 7.0/10, R&R)
+- [x] Predição discriminante inserida na Discussion: seleção (consenso × stakes distributivos transparentes) + discriminação contra legitimidade/self-binding/informal power + ref. Gould (2022)
+- [x] Prova: screening rent > 0 para tipos contínuos (qualquer F com suporte completo em [1,r])
+- [x] Derivação: D e α*_cont closed-form para F=Uniform. Resultado: α*_cont ≥ α*_{K=2} (verificado em 1008 combinações)
+- [x] Appendix C atualizado: seção C.4 (continuous types) + Limitations reescrito
+- [x] Conclusão atualizada: "most conservative case" (invertido de "most favorable")
+- [x] Footnote Discussion atualizada: ref. C.4, Uniform result
+- [x] CR1, CR2, CR10, CR11 resolvidos
+- [x] Verificação matemática (2 rounds → A) + verificação numérica (ALL PASS)
+- [x] Pendência registrada: keywords + data no YAML
 
 ### CONCLUÍDO (sessão 2026-04-26 — editorial revision v4)
 - [x] Review-formal-model completo (Design 8, Técnica 7.5, Exposição 7.5 → 7.7/10, R&R minor)
@@ -262,3 +278,4 @@ Extensão a tipos contínuos (θ ~ F em [0,r]). Screening de W com tipos contín
 - **v5 é o paper ativo para submissão**; v4 preservado intacto (pré-Opção B); v3 é versão anterior a v4 (v4 divergiu bastante); v2 preservado como arquivo
 - **Estilo v3**: corpo narra o mecanismo em prosa substantiva; provas e álgebra no appendix; sem proof sketches no corpo; comparative statics em linguagem do fenômeno (não parâmetros)
 - **Paper é documento atemporal**: Escrever como se o leitor visse o paper pela primeira vez. NUNCA referenciar versões anteriores, mudanças feitas durante revisão, ou estado prévio do manuscrito. Nada de "now", "previously", "we have removed", "in the revised version". Descrever o resultado como se sempre tivesse sido assim.
+- **Citações em ambientes LaTeX**: Dentro de `\begin{...}...\end{...}` (remark, theorem, etc.), pandoc pode não processar `@key`. Usar `[@key]` mesmo assim (funciona na maioria dos casos com bookdown). Exemplo: Kamenica & Gentzkow (2011) é citado inline no Remark de info design como `[@kamenica2011bayesian]`.
