@@ -97,22 +97,22 @@ Review completo: `quality_reports/2026-04-26_review-formal-model.md`. Feitos: F1
 **ALTA severidade**
 - [x] **CR1**: Tipo discreto — argumento de bunching + ref. Dworczak-Martini na Conclusão. Extensão contínua anotada como paper futuro.
 - [x] **CR2**: K>2 assessment honesto — Limitations ¶ em App C + Conclusão qualificada ("may shrink with K", "most favorable case")
-- [ ] **CR3**: BP commitment — mesmas 3 defesas (reputação, transparência, upper bound). Sem análise de cheap talk ou verifiable disclosure.
+- [x] **CR3**: BP commitment — ELIMINADO (BP removido do corpo no v5)
 
 **MÉDIA severidade**
-- [ ] **CR4**: Comparative statics de p* (∂p*/∂α, ∂p*/∂r etc.) — só 1 exemplo numérico, sem predições que distingam a teoria
+- [x] **CR4**: Comparative statics — resolvido: 4 comp statics (r, β, α, c) verbalizados no ¶ da Figura 4 + grids em notas
 - [ ] **CR5**: Diferenciação Bardhi-Guo / Kim-Kim-Van Weelden — 1 frase, review pede 2-3 ¶
-- [ ] **CR6**: T>2 rounds — justificativa qualitativa apenas, sem análise de como jump varia com T
-- [ ] **CR7**: Payoff de W sob BP ótimo de H — não computado, sem discussão de sustentabilidade
-- [ ] **CR8**: Decomposição entry vs. screening — "dual exploitation" permanece qualitativa
+- [ ] **CR6**: T>2 rounds — PÓS-SUBMISSÃO (KISS; enfrentar se parecerista demandar)
+- [x] **CR7**: Payoff de W sob unanimidade — resolvido: ¶ sobre perspectiva de W (V_W(U)<V_W(M), H escolhe regra, symmetric entry, ironia do veto)
+- [x] **CR8**: Decomposição entry vs. screening — ELIMINADO (BP removido, não há mais "dual exploitation")
 
 **BAIXA severidade**
-- [ ] **CR9**: Conclusão afirma threshold sempre existe — ignorar caso E_U = (0,1] (dominância global)
+- [x] **CR9**: Threshold sempre existe — RESOLVIDO (Proposition via sets, sem p*, E_U=(0,1] é caso particular)
 - [ ] **CR10**: K>2 na conclusão — não distingue provado (K=2) de conjectura (K geral)
-- [ ] **CR11**: Footnote vs. main text — efeitos opostos de complexidade (consensus matters em áreas complexas vs. α_K* aperta)
-- [ ] **CR12**: (N-1)/N² descrito como "peaks at intermediate N" — é monotonicamente decrescente
-- [ ] **CR13**: Figure 5 em p=0.05 sem justificativa de benchmark (parcialmente mitigado pelo heatmap)
-- [ ] **CR14**: Doha — linguagem melhorou ("consistent with") mas não adota formulação sugerida
+- [ ] **CR11**: Footnote vs. main text — efeitos opostos de complexidade (consensus matters em áreas complexas vs. α_K* aperta). Precisa 1-2 frases reconciliando.
+- [x] **CR12**: (N-1)/N² corrigido — "monotonically decreasing in N for N≥2" (verificado: derivada (2-N)/N³ < 0)
+- [x] **CR13**: Figure antiga (p=0.05) — RESOLVIDO (substituída pelo institutional map (p,c))
+- [x] **CR14**: Doha — "explains" → "provides an alternative account of a pattern not fully explained to date"
 
 #### Submissão
 - [ ] Submeter ao JoP
