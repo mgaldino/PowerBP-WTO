@@ -1,0 +1,232 @@
+---
+title: "Comparação de figuras candidatas — v5 (sem BP)"
+date: "2026-04-27"
+output:
+  bookdown::pdf_document2:
+    toc: false
+    latex_engine: xelatex
+    number_sections: false
+header-includes:
+  - \usepackage{float}
+  - \usepackage{caption}
+  - \captionsetup{font=small, labelfont=bf}
+fontsize: 11pt
+geometry: margin=2cm
+mainfont: Times New Roman
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.pos = "H")
+source("../scripts/model_functions.R")
+```
+
+# Objetivo
+
+Com a remoção de Bayesian Persuasion do corpo do paper, a antiga Figura 4 (heatmap de regiões de preferência a $p = 0.05$, baseado em concavificação) não funciona mais. Precisamos de figura(s) que comuniquem a Proposition (Institutional classification): $U \succ M$ iff $p \in E_U$; $M \succ U$ iff $p \in E_M \setminus E_U$; $U \sim M$ iff $p \notin E_M$.
+
+Abaixo estão quatro candidatas. Todas usam os parâmetros do Example ($N=5$, $r=1.5$, $\alpha=0.3$, $\beta=0.9$).
+
+\newpage
+
+# Candidata 1: Heatmap de $\tau(U)$ (design atual no v5)
+
+```{r fig-heatmap, fig.width=9, fig.height=4.5, fig.cap="Unanimity entry threshold $\\tau(U)$ across parameters. Lower values (blue) mean unanimity is viable for a wider range of priors; higher values (red) mean the set of priors at which unanimity can sustain entry is narrower, expanding majority's scope advantage. White: $\\alpha \\geq 1/r$ (outside the model domain). Dashed line: $\\alpha^*$, below which Theorem 1 guarantees conditional dominance at every belief. Left: $r$ vs $\\alpha$ plane ($\\beta=0.9$, $N=5$, $c=0.1$). Right: $\\beta$ vs $r$ plane ($\\alpha=0.3$, $N=5$, $c=0.1$)."}
+
+compute_tau <- function(r, alpha, N, beta, c, rule = "U") {
+  vw_fn <- if (rule == "U") VW_R1_unanimity else VW_R1_majority
+  lo <- 0.001; hi <- 1
+  vw_hi <- tryCatch(vw_fn(r, alpha, hi, N, beta), error = function(e) NA)
+  if (is.na(vw_hi) || vw_hi < c) return(NA)
+  vw_lo <- tryCatch(vw_fn(r, alpha, lo, N, beta), error = function(e) NA)
+  if (is.na(vw_lo)) return(NA)
+  if (vw_lo >= c) return(lo)
+  for (iter in 1:50) {
+    mid <- (lo + hi) / 2
+    vw_mid <- tryCatch(vw_fn(r, alpha, mid, N, beta), error = function(e) NA)
+    if (is.na(vw_mid)) { hi <- mid; next }
+    if (vw_mid >= c) hi <- mid else lo <- mid
+  }
+  return((lo + hi) / 2)
+}
+
+alpha_star_fn <- function(N, beta) {
+  q <- floor(N/2) + 1
+  beta * (q - 1) / (N * (N - 1) - beta * (N^2 - N - q + 1))
+}
+
+N <- 5; beta_val <- 0.9; c_val <- 0.1
+a_star_val <- alpha_star_fn(N, beta_val)
+
+rs <- seq(1.1, 3, by = 0.05)
+alphas <- seq(0.01, 0.48, by = 0.01)
+
+par(mfrow = c(1, 2), mar = c(4, 4, 2.5, 1))
+
+mat1 <- matrix(NA, length(rs), length(alphas))
+for (i in seq_along(rs))
+  for (j in seq_along(alphas))
+    if (alphas[j] < 1/rs[i])
+      mat1[i, j] <- tryCatch(compute_tau(rs[i], alphas[j], N, beta_val, c_val, "U"),
+                              error = function(e) NA)
+
+image(rs, alphas, mat1,
+      col = colorRampPalette(c("steelblue4", "steelblue2", "lightyellow",
+                                "firebrick2", "firebrick4"))(100),
+      xlab = "r (type gap)", ylab = expression(alpha),
+      main = expression(paste(beta, "=0.9, N=5, c=0.1")), las = 1)
+curve(1/x, from = 1.1, to = 3, add = TRUE, lty = 2, lwd = 1.5)
+abline(h = a_star_val, lty = 3, lwd = 1.5, col = "gray40")
+legend("topright",
+       c(expression(alpha == 1/r ~ " (model boundary)"),
+         expression(alpha^"*" ~ " (Thm 1 threshold)")),
+       lty = c(2, 3), lwd = 1.5, col = c("black", "gray40"),
+       cex = 0.55, bg = "white")
+mtext("White = outside model domain", side = 1, line = -1, adj = 0.98, cex = 0.5, col = "gray40")
+
+betas <- seq(0.5, 0.99, by = 0.01)
+mat2 <- matrix(NA, length(betas), length(rs))
+for (i in seq_along(betas))
+  for (j in seq_along(rs))
+    if (0.3 < 1/rs[j])
+      mat2[i, j] <- tryCatch(compute_tau(rs[j], 0.3, N, betas[i], c_val, "U"),
+                              error = function(e) NA)
+
+image(betas, rs, mat2,
+      col = colorRampPalette(c("steelblue4", "steelblue2", "lightyellow",
+                                "firebrick2", "firebrick4"))(100),
+      xlab = expression(beta), ylab = "r",
+      main = expression(paste(alpha, "=0.3, N=5, c=0.1")), las = 1)
+legend("topleft",
+       c(expression(paste("Blue: low ", tau(U))),
+         expression(paste("Red: high ", tau(U)))),
+       fill = c("steelblue4", "firebrick4"), cex = 0.5, bg = "white")
+```
+
+**O que mostra:** comparative statics de $\tau(U)$ em duas dimensões de parâmetros. Azul = unanimidade viável para muitos priors; vermelho = unanimidade viável apenas para priors altos. Problema: vermelho abaixo de $\alpha^*$ não significa que maioria é melhor — significa que unanimidade é ótima mas tem escopo estreito. A cor pode enganar.
+
+\newpage
+
+# Candidata 2: Curvas $V_W$ sob cada regra
+
+```{r fig-vw-curves, fig.width=7, fig.height=5, fig.cap="Weak-state expected payoff under majority ($V_W^{R1}(p, M)$, orange) and unanimity ($V_W^{R1}(p, U)$, blue) as a function of the prior. Because unanimity gives the hegemon a higher conditional payoff (Theorem 1), weak states receive less, so $V_W(p, U) < V_W(p, M)$ at every interior belief. Any horizontal entry cost $c$ defines the entry sets: $E_R = \\{p : V_W(p, R) \\geq c\\}$. Since the unanimity curve is everywhere below the majority curve, $E_U \\subseteq E_M$: majority can sustain entry at every prior where unanimity can, and at some where unanimity cannot. Dashed horizontal lines illustrate four entry cost levels. Parameters: $N=5$, $r=1.5$, $\\alpha=0.3$, $\\beta=0.9$."}
+
+ps <- seq(0.001, 0.999, by = 0.002)
+vw_U <- sapply(ps, function(p) VW_R1_unanimity(1.5, 0.3, p, 5, 0.9))
+vw_M <- sapply(ps, function(p) VW_R1_majority(1.5, 0.3, p, 5, 0.9))
+
+par(mar = c(4.5, 4.5, 1, 1))
+plot(ps, vw_M, type = "l", col = "#E6550D", lwd = 2.5,
+     xlab = expression(paste("Prior belief  ", p)),
+     ylab = expression(V[W]^{R1}(p, R)),
+     ylim = range(c(vw_U, vw_M), na.rm = TRUE), las = 1)
+lines(ps, vw_U, col = "#3182BD", lwd = 2.5)
+
+# Shade the gap
+polygon(c(ps, rev(ps)), c(vw_M, rev(vw_U)),
+        col = adjustcolor("orange", alpha.f = 0.1), border = NA)
+
+# Entry cost lines
+c_vals <- c(0.05, 0.10, 0.14, 0.20)
+c_cols <- c("gray70", "gray55", "gray40", "gray25")
+for (k in seq_along(c_vals)) {
+  abline(h = c_vals[k], lty = 3, col = c_cols[k], lwd = 1)
+  text(0.02, c_vals[k] + 0.004, bquote(c == .(c_vals[k])),
+       cex = 0.65, col = c_cols[k], adj = 0)
+}
+
+# Curve labels
+text(0.75, vw_M[375] + 0.008, expression(V[W](p, M)), col = "#E6550D", cex = 0.85, font = 2)
+text(0.75, vw_U[375] - 0.008, expression(V[W](p, U)), col = "#3182BD", cex = 0.85, font = 2)
+
+# Gap annotation
+mid_idx <- 250
+arrows(0.5, vw_U[mid_idx] + 0.002, 0.5, vw_M[mid_idx] - 0.002,
+       length = 0.05, code = 3, lwd = 1.2, col = "gray30")
+text(0.56, mean(c(vw_U[mid_idx], vw_M[mid_idx])),
+     "Entry gap", cex = 0.6, col = "gray30", adj = 0)
+
+legend("topleft",
+       c("Majority", "Unanimity", "Entry cost c"),
+       col = c("#E6550D", "#3182BD", "gray40"),
+       lwd = c(2.5, 2.5, 1), lty = c(1, 1, 3),
+       cex = 0.7, bg = "white")
+```
+
+**O que mostra:** o mecanismo de entry diretamente. O gap entre as curvas é a consequência de Theorem 1 + budget identity: unanimidade dá mais a H, logo sobra menos para W. As linhas horizontais $c$ definem $E_U$ e $E_M$ sem fixar nenhum $c$ específico — o leitor vê que para qualquer $c$, $E_U \subseteq E_M$. Esta figura "normaliza $c$ fora" das equações: $c$ vira um parâmetro visual, não um valor fixo.
+
+\newpage
+
+# Candidata 3: Barras de classificação 1D
+
+```{r fig-bars, fig.width=7, fig.height=3.5, fig.cap="Institutional classification across prior beliefs for varying entry costs ($N=5$, $r=1.5$, $\\alpha=0.3$, $\\beta=0.9$). Blue: unanimity dominates ($p \\in E_U$). Orange: majority dominates through wider entry ($p \\in E_M \\setminus E_U$). Gray: neither rule sustains entry ($p \\notin E_M$). As entry costs rise, the unanimity entry threshold $\\tau(U)$ increases, expanding majority's scope advantage. But this advantage is entirely through the entry channel: conditional on participation, unanimity strictly dominates at every belief (Theorem 1). Percentages show the fraction of the prior space in each regime."}
+
+costs <- c(0.05, 0.10, 0.14, 0.20)
+col_U    <- "#3182BDCC"
+col_M    <- "#E6550DCC"
+col_none <- "gray85"
+
+par(mar = c(4, 5, 1, 1))
+plot(NULL, xlim = c(0, 1), ylim = c(0.5, length(costs) + 0.5),
+     xlab = expression(paste("Prior belief  ", p)),
+     ylab = "", yaxt = "n")
+
+for (i in seq_along(costs)) {
+  cc <- costs[i]
+  tau_m <- compute_tau(1.5, 0.3, 5, 0.9, cc, "M")
+  tau_u <- compute_tau(1.5, 0.3, 5, 0.9, cc, "U")
+  if (is.na(tau_m)) tau_m <- 1
+  if (is.na(tau_u)) tau_u <- 1
+
+  rect(0, i - 0.3, tau_m, i + 0.3, col = col_none, border = NA)
+  if (tau_u > tau_m)
+    rect(tau_m, i - 0.3, tau_u, i + 0.3, col = col_M, border = NA)
+  if (tau_u < 1)
+    rect(tau_u, i - 0.3, 1, i + 0.3, col = col_U, border = NA)
+
+  rect(0, i - 0.3, 1, i + 0.3, col = NA, border = "black", lwd = 0.5)
+
+  if (tau_m > 0.01 & tau_m < 0.99) {
+    segments(tau_m, i - 0.35, tau_m, i + 0.35, lwd = 1.5)
+    text(tau_m, i + 0.42, expression(tau(M)), cex = 0.5)
+  }
+  if (tau_u > 0.01 & tau_u < 0.99) {
+    segments(tau_u, i - 0.35, tau_u, i + 0.35, lwd = 1.5)
+    text(tau_u, i + 0.42, expression(tau(U)), cex = 0.5)
+  }
+
+  pct_U <- round((1 - tau_u) * 100)
+  pct_M <- round((tau_u - tau_m) * 100)
+  if (pct_U > 8) text((tau_u + 1)/2, i, paste0(pct_U, "%"),
+                       cex = 0.6, col = "white", font = 2)
+  if (pct_M > 8) text((tau_m + tau_u)/2, i, paste0(pct_M, "%"),
+                       cex = 0.6, col = "white", font = 2)
+
+  axis(2, at = i, labels = bquote(c == .(cc)), las = 1, tick = FALSE)
+}
+
+legend("bottomright",
+       legend = c(expression(p %in% E[U] ~ ": U dominates (Thm 1)"),
+                  expression(p %in% E[M] ~ "\\" ~ E[U] ~ ": M dominates (entry)"),
+                  expression(p %notin% E[M] ~ ": neither forms")),
+       fill = c(col_U, col_M, col_none),
+       border = "black", cex = 0.55, bg = "white")
+```
+
+**O que mostra:** a Proposition visualizada diretamente. Cada barra é o espaço de priors $[0,1]$ particionado nos 3 regimes, para um valor de $c$. Correspondência 1:1 com o resultado formal. Mostra como $c$ controla o escopo de cada regime.
+
+\newpage
+
+# Candidata 4: Curvas $V_W$ + barras (combinação)
+
+Usar Candidata 2 como Figura 4a (setup: mostra o mecanismo) e Candidata 3 como Figura 4b (payoff: mostra a classificação). A Candidata 2 explica *por que* $E_U \subseteq E_M$; a Candidata 3 mostra *o que* isso implica.
+
+A Candidata 1 (heatmap de $\tau(U)$) poderia ser mantida se quisermos mostrar comparative statics em $(r, \alpha, \beta)$, mas corre risco de confundir o leitor.
+
+# Resumo
+
+| Candidata | Mostra | Leitura rápida | Risco de confusão | Comparative statics |
+|-----------|--------|----------------|--------------------|---------------------|
+| 1 (heatmap $\tau(U)$) | Escopo de U em $(r,\alpha)$ e $(\beta,r)$ | Média | **Alto** (vermelho $\neq$ M melhor) | $(r, \alpha, \beta)$ |
+| 2 (curvas $V_W$) | Mecanismo de entry gap | **Alta** | Baixo | Implícito via $c$ |
+| 3 (barras 1D) | Classificação institucional | **Alta** | **Nenhum** | $c$ |
+| 4 (2 + 3) | Mecanismo + classificação | Alta | Nenhum | $c$ |

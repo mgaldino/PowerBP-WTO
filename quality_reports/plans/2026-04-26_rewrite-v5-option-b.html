@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Plano: Reescrita v5 — Opção B Modificada (v2)</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Plano: Reescrita v5 — Opção B Modificada (v2)</h1>
+</header>
+<h1
+id="plano-reescrita-v5-opção-b-modificada-screening-central-bp-remark">Plano:
+Reescrita v5 — Opção B Modificada (Screening Central, BP → Remark)</h1>
+<p><strong>Status</strong>: APPROVED <strong>Data</strong>:
+2026-04-26</p>
+<h2 id="objetivo">Objetivo</h2>
+<p>Reescrever <code>formal_model_v5.Rmd</code> removendo Bayesian
+Persuasion como co-protagonista. Screening passa a ser o
+<strong>único</strong> mecanismo central. BP é demovido a um Remark
+apontando que unanimidade é “hospitable to information design.” O v4
+permanece intacto.</p>
+<h2 id="princípio-guia">Princípio guia</h2>
+<p>A estrutura mais simples que conta a história do screening, com BP em
+um único Remark. Tudo que depende de concavificação ou commitment sai do
+corpo.</p>
+<hr />
+<h2 id="decisões-de-design">Decisões de design</h2>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 42%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Questão</th>
+<th>Decisão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Hierarquia de resultados</strong></td>
+<td><strong>Lemma 1 → Theorem 1</strong> (promovido). Conditional payoff
+dominance é o resultado central: α &lt; α* ⟺ V_H(U,μ) &gt; V_H(M,μ) ∀μ ∈
+(0,1]. Bicondicional, sharp, sem hipótese de entry.</td>
+</tr>
+<tr>
+<td>1b</td>
+<td><strong>Antigo Theorem 1 (dominance on E_U)</strong></td>
+<td>Vira <strong>Corollary</strong> do novo Theorem 1. “Since E_U ⊆ E_M,
+Theorem 1 applies pointwise on E_U.” Justificativa de E_U ⊆ E_M: “Since
+weak states’ aggregate payoff is weakly lower under unanimity whenever
+the hegemon’s payoff is higher, the unanimity entry constraint is harder
+to satisfy; hence E_U ⊆ E_M.” (Ou referir a um Lemma separado se
+preferir.)</td>
+</tr>
+<tr>
+<td>1c</td>
+<td><strong>Antigo Corollary 1 (global dominance)</strong></td>
+<td>Absorvido: caso particular da Proposition (E_U = (0,1]). Mencionado
+no ¶ interpretativo após a Proposition.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Antigo Theorem 2 (single-crossing)</strong></td>
+<td><strong>Deletado como Theorem.</strong> Substituído por
+<strong>Proposition (Institutional classification)</strong>: U ≻ M iff p
+∈ E_U; M ≻ U iff p ∈ E_M  E_U; M ~ U iff p ∉ E_M. Formulação via sets,
+sem threshold p*, sem assumir connectedness de E_U. Frase de fechamento:
+“majority’s only advantage is that it can support institutional entry at
+priors for which unanimity cannot.”</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>O que acontece com p*?</strong></td>
+<td>Conceito eliminado. Substituído pela comparação E_U vs E_M. Se E_U
+for upper interval em parâmetros concretos, pode-se mencionar τ(U) no
+Example, mas não no statement formal.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>O que acontece com Section 6?</strong></td>
+<td>Renomeia para “Entry and Institutional Viability.” Mantém Definition
+(net gain), entry thresholds, insere Remark BP. Deleta Prop 4 e chunk
+R.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>R code chunks?</strong></td>
+<td><code>bp-illustration</code>: DELETE.
+<code>parameter-regions</code>: SIMPLIFY (comparação direta sem
+concavificação).</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Model Stage 1?</strong></td>
+<td>Remove signal design. Game: Stage 0 (choose R) → Stage 1 (entry com
+prior p) → Stage 2 (bargaining).</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Game tree figures?</strong></td>
+<td>Remove nó TikZ “H designs π”, atualizar caption.</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Prova do Corollary (antigo Thm 1)?</strong></td>
+<td>Curta mas explícita. (1) Fix p ∈ E_U, logo V_W(p,U) ≥ c. (2) Weak
+states’ aggregate payoff é weakly lower sob U quando H’s payoff é higher
+(Theorem 1 + surplus accounting), logo V_W(p,M) &gt; V_W(p,U) ≥ c ⇒ p ∈
+E_M. (3) Theorem 1 ⇒ V_H(U,p) &gt; V_H(M,p). ~6–8 linhas.</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Prova da Proposition (antigo Thm 2)?</strong></td>
+<td>3 cases exaustivos via E_U ⊆ E_M (do Corollary). (i) p ∈ E_U:
+Corollary dá U ≻ M. (ii) p ∈ E_M  E_U: U não forma (V_H(U,p) = αV_e(p));
+M forma (V_H(M,p) &gt; αV_e(p) pois entry é IR). M ≻ U. (iii) p ∉ E_M:
+nenhuma forma, V_H = αV_e(p) sob ambas. M ~ U. ~8–10 linhas.</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Appendix C (K&gt;2)?</strong></td>
+<td>Mantém resultado estrutural, remove framing BP.</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>Example 2</strong></td>
+<td>Reescrito sem BP. Mostra E_U e E_M para parâmetros concretos.
+Verificar se E_U é conectado. Sem p* = 0.12.</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>BP commitment ¶ (Scope)?</strong></td>
+<td>DELETE inteiro.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="implementação-por-fases">Implementação por fases</h2>
+<h3 id="fase-0-preparação">FASE 0: Preparação</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 22%" />
+<col style="width: 33%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr>
+<th>Step</th>
+<th>Ação</th>
+<th>Arquivo</th>
+<th>Tipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.1</td>
+<td>Backup v5 →
+<code>archive/formal_model_v5_pre_optionB.Rmd</code></td>
+<td>v5</td>
+<td>Copy</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fase-1-modelo-e-setup-seções-13">FASE 1: Modelo e Setup (Seções
+1–3)</h3>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 22%" />
+<col style="width: 38%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr>
+<th>Step</th>
+<th>Local</th>
+<th>O que muda</th>
+<th>Tipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td><strong>Título</strong> (l.2)</td>
+<td>Manter. “Informational Power” descreve screening, não só BP.</td>
+<td>Sem mudança</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td><strong>Abstract</strong> (l.35–36)</td>
+<td>Remover “shaping what weaker states learn.” Substituir por frase
+sobre screening + entry trade-off: “This screening advantage means that,
+once cooperation is promising enough for weaker states to participate
+under unanimity, the hegemon strictly prefers it. Below that threshold,
+majority can dominate—but only because it makes participation easier,
+not because it gives better terms.”</td>
+<td>Rewrite 2 frases</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td><strong>Intro</strong> (l.55)</td>
+<td>“Using Bayesian persuasion <span class="citation"
+data-cites="kamenica2019bayesian">[@kamenica2019bayesian]</span>, I
+show…” → “I show…” Remover citações <span class="citation"
+data-cites="bardhiguo2018">@bardhiguo2018</span> e <span
+class="citation"
+data-cites="kim2025persuasion">@kim2025persuasion</span> (mover para
+Remark).</td>
+<td>Rewrite</td>
+</tr>
+<tr>
+<td>1.3b</td>
+<td><strong>Intro</strong> (l.57)</td>
+<td>“Bayesian persuasion extends this conditional advantage…” → “The
+institutional comparison reduces to a single threshold: once the prior
+is high enough for weaker states to participate under unanimity, the
+hegemon strictly prefers it.”</td>
+<td>Rewrite 1 frase</td>
+</tr>
+<tr>
+<td>1.3c</td>
+<td><strong>Intro</strong> (l.61)</td>
+<td>Road map: “connects bargaining to entry and persuasion” → “connects
+bargaining to entry.”</td>
+<td>Edit 1 palavra</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td><strong>Motivating Example</strong> (l.78–79)</td>
+<td>DELETE parágrafo inteiro sobre BP concavificação (“The jump creates
+a non-convexity…majority does not.”). Substituir por: “The screening
+jump gives the hegemon a strictly higher conditional payoff under
+unanimity than under majority for every belief above the cutoff. The
+general model shows this holds across the entire belief space (Lemma
+1).”</td>
+<td>Delete ¶ + add 2 frases</td>
+</tr>
+<tr>
+<td>1.4b</td>
+<td><strong>Motivating Example</strong> (l.80)</td>
+<td>Atualizar forward refs para Theorems restated. “Theorem 1 shows that
+whenever entry is feasible under unanimity, the hegemon strictly prefers
+it. Theorem 2 establishes that the transition occurs at the unanimity
+entry threshold.”</td>
+<td>Rewrite forward refs</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td><strong>Model Stage 1</strong> (l.102–107)</td>
+<td>Remover signal design (“commits to public signal structure π…”).
+Substituir por: “Nature draws θ; the hegemon observes θ. Weak states
+hold prior belief p and simultaneously decide whether to enter (paying
+cost c).” Remover texto sobre π, s, update. Simplificar entry
+condition.</td>
+<td>Rewrite ¶</td>
+</tr>
+<tr>
+<td>1.6</td>
+<td><strong>Model justification</strong> (l.100)</td>
+<td>“…create a richer non-convexity that Bayesian persuasion can
+exploit” → “…create a richer conditional payoff advantage for the
+hegemon.”</td>
+<td>Edit 1 frase</td>
+</tr>
+<tr>
+<td>1.7</td>
+<td><strong>Game tree Fig 1</strong> (l.~178–184)</td>
+<td>Remover nó TikZ “H designs π”. Atualizar caption: remover “Bayesian
+persuasion” e “signal π.”</td>
+<td>Delete TikZ node + edit caption</td>
+</tr>
+<tr>
+<td>1.8</td>
+<td><strong>L.116</strong></td>
+<td>“covers institutional choice, Bayesian persuasion, and entry” →
+“covers institutional choice and entry”</td>
+<td>Edit</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fase-2-seções-45-majority-unanimity">FASE 2: Seções 4–5
+(Majority + Unanimity)</h3>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 22%" />
+<col style="width: 38%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr>
+<th>Step</th>
+<th>Local</th>
+<th>O que muda</th>
+<th>Tipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.1</td>
+<td><strong>Sec 4</strong> (~l.286)</td>
+<td>Remover: “Bayesian persuasion under majority therefore operates only
+through the entry channel…” Substituir por frase sobre ausência de
+screening.</td>
+<td>Edit 1 frase</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td><strong>Sec 5 Screening schematic</strong> (l.371–386)</td>
+<td>Remover shading TikZ de concavificação, linha dashed de envelope,
+anotação “BP gains”. Atualizar caption.</td>
+<td>Delete TikZ + edit caption</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td><strong>Example 1</strong> (~l.393)</td>
+<td>“the non-convexity that Bayesian persuasion exploits” → “the
+screening rent that drives the hegemon’s preference for unanimity.”</td>
+<td>Edit 1 frase</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fase-3-seção-6-entry-rewrite-major">FASE 3: Seção 6 — Entry
+(REWRITE MAJOR)</h3>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 22%" />
+<col style="width: 38%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr>
+<th>Step</th>
+<th>Local</th>
+<th>O que muda</th>
+<th>Tipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.1</td>
+<td><strong>Header</strong> (l.398)</td>
+<td>“Entry and Bayesian Persuasion” → “Entry and Institutional
+Viability”. <code>{#entry_bp}</code> → <code>{#entry}</code>.</td>
+<td>Rename</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td><strong>Opening ¶</strong> (l.398–402)</td>
+<td>Manter. Já limpo (entry cost, τ(U) ≥ τ(M)).</td>
+<td>Sem mudança</td>
+</tr>
+<tr>
+<td>3.3</td>
+<td><strong>Definition 4</strong> (l.404–409)</td>
+<td>Manter net gain function v(μ,R). Útil sem BP.</td>
+<td>Sem mudança</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td><strong>L.411</strong></td>
+<td>“a single non-convexity. Under unanimity, the screening jump…creates
+an additional non-convexity.” → “Under unanimity, the screening jump at
+μ_s^R1 creates a discontinuity that gives the hegemon a higher net gain
+at every belief where entry occurs (Lemma 1).”</td>
+<td>Rewrite 1 frase</td>
+</tr>
+<tr>
+<td>3.5</td>
+<td><strong>Proposition 4</strong> (l.413–419)</td>
+<td>DELETE Prop 4 + proof ref. Inserir Remark aprovado (Information
+design).</td>
+<td>Delete + Insert</td>
+</tr>
+<tr>
+<td>3.6</td>
+<td><strong>BP explanation ¶</strong> (l.421–422)</td>
+<td>DELETE inteiro (“By the standard Bayesian persuasion result…”). ~15
+linhas.</td>
+<td>Delete</td>
+</tr>
+<tr>
+<td>3.7</td>
+<td><strong>R chunk <code>bp-illustration</code></strong>
+(l.423–480)</td>
+<td>DELETE inteiro. ~58 linhas.</td>
+<td>Delete</td>
+</tr>
+<tr>
+<td>3.8</td>
+<td><strong>App B.4</strong> (l.955–957)</td>
+<td>DELETE prova da Prop 4 (não existe mais).</td>
+<td>Delete</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fase-4-seção-7-institutional-choice-rewrite-major">FASE 4: Seção
+7 — Institutional Choice (REWRITE MAJOR)</h3>
+<p>Nova hierarquia de resultados: - <strong>Theorem 1</strong> = antigo
+Lemma 1 (promovido). Conditional payoff dominance. -
+<strong>Corollary</strong> = antigo Theorem 1 (demovido). Dominance on
+E_U + E_U ⊆ E_M. - <strong>Proposition</strong> (nova) = antigo Theorem
+2 (substituído). Classificação institucional via sets.</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 22%" />
+<col style="width: 38%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr>
+<th>Step</th>
+<th>Local</th>
+<th>O que muda</th>
+<th>Tipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.1</td>
+<td><strong>L.485</strong></td>
+<td>Manter.</td>
+<td>Sem mudança</td>
+</tr>
+<tr>
+<td>4.2</td>
+<td><strong>Subsec “Conditional payoff comparison”</strong>
+(l.487–520)</td>
+<td><strong>Promover Lemma 1 a Theorem 1.</strong>
+<code>\begin{lemma}</code> → <code>\begin{theorem}</code>. Label
+<code>lem:conditional</code> → <code>thm:conditional</code>. Título:
+“Conditional payoff dominance of unanimity.” Statement inalterado
+(bicondicional). ¶ interpretativo (l.508–510) mantido.</td>
+<td>Promote + relabel</td>
+</tr>
+<tr>
+<td>4.2b</td>
+<td><strong>L.489</strong></td>
+<td>“Before turning to the full institutional comparison with
+persuasion” → “Before turning to the full institutional
+comparison.”</td>
+<td>Edit</td>
+</tr>
+<tr>
+<td>4.2c</td>
+<td><strong>L.520</strong></td>
+<td>“Without persuasion, the institutional comparison is therefore
+ambiguous…” → “The institutional comparison is therefore determined by
+the entry margin: unanimity dominates when the institution forms, but
+majority can dominate when only it can induce entry.”</td>
+<td>Rewrite</td>
+</tr>
+<tr>
+<td>4.3</td>
+<td><strong>Subsec “The main result”</strong> (l.522–566)</td>
+<td>Reescrever subsection inteira. Remover introductory ¶ sobre
+BP/concavificação (l.524).</td>
+<td>Rewrite</td>
+</tr>
+<tr>
+<td>4.4</td>
+<td><strong>Antigo Theorem 1</strong> (l.526–536) →
+<strong>Corollary</strong></td>
+<td>Demover a Corollary do novo Theorem 1. Statement: “Suppose α &lt;
+α*. For every p ∈ E_U, V_H(U,p) &gt; V_H(M,p). Moreover, E_U ⊆ E_M.”
+Justificativa de E_U ⊆ E_M: “Since weak states’ aggregate payoff is
+weakly lower under unanimity whenever the hegemon’s payoff is higher,
+the unanimity entry constraint is harder to satisfy; hence E_U ⊆ E_M.”
+Proof ref → App B.6.</td>
+<td>Rewrite</td>
+</tr>
+<tr>
+<td>4.5</td>
+<td><strong>Antigo Corollary 1</strong> (l.540–542)</td>
+<td>DELETE como resultado separado. Absorvido no ¶ interpretativo da
+Proposition: “When entry costs are low enough that E_U = (0,1],
+unanimity dominates at every prior.”</td>
+<td>Delete + absorb</td>
+</tr>
+<tr>
+<td>4.6</td>
+<td><strong>L.544</strong> (disconnected E_U ¶)</td>
+<td>DELETE. Não é mais relevante — a Proposition não assume
+connectedness.</td>
+<td>Delete</td>
+</tr>
+<tr>
+<td>4.7</td>
+<td><strong>Antigo Theorem 2</strong> (l.546–556) → <strong>Proposition
+(Institutional classification)</strong></td>
+<td>Substituir inteiro. Statement: “Under the conditions of Theorem 1,
+the hegemon’s preferred rule is characterized as follows: U ≻ M iff p ∈
+E_U; M ≻ U iff p ∈ E_M  E_U; U ~ M iff p ∉ E_M. Since E_U ⊆ E_M,
+majority’s only advantage is that it can support institutional entry at
+priors for which unanimity cannot.” Proof ref → App (antigo B.8).</td>
+<td>Rewrite</td>
+</tr>
+<tr>
+<td>4.8</td>
+<td><strong>¶ interpretativo</strong> (após Proposition)</td>
+<td>2–3 frases para JoP audience: “When the prior is such that weak
+states find it individually rational to enter under unanimity, the
+hegemon strictly prefers it. When only majority can sustain entry,
+majority dominates—not through better bargaining terms, but through
+wider institutional viability. When neither rule can induce entry, the
+voting rule is irrelevant.” + caso especial E_U=(0,1] (absorve antigo
+Corollary 1).</td>
+<td>New content</td>
+</tr>
+<tr>
+<td>4.9</td>
+<td><strong>Example 2</strong> (l.560–566)</td>
+<td>Reescrever sem BP. Mostrar E_U e E_M para parâmetros concretos (N=5,
+r=1.5, α=0.3, β=0.9, c=0.14). Verificar se E_U é conectado. Sem p*=0.12.
+Ilustrar os 3 cases da Proposition.</td>
+<td>Rewrite</td>
+</tr>
+<tr>
+<td>4.10</td>
+<td><strong>R chunk <code>parameter-regions</code></strong>
+(l.570–670)</td>
+<td>Simplificar <code>compute_preference</code>: comparação direta V_H
+sem concavificação. Lógica: se p ∈ E_U → comparar V_H; se p ∈ E_M  E_U →
+M vence; se p ∉ E_M → empate. Atualizar caption.</td>
+<td>Rewrite R code</td>
+</tr>
+<tr>
+<td>4.11</td>
+<td><strong>L.672</strong> (interpretation)</td>
+<td>Reescrever sem “concavification gains.” Usar linguagem de E_U vs
+E_M.</td>
+<td>Edit</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fase-5-discussion-e-conclusion">FASE 5: Discussion e
+Conclusion</h3>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 22%" />
+<col style="width: 38%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr>
+<th>Step</th>
+<th>Local</th>
+<th>O que muda</th>
+<th>Tipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5.1</td>
+<td><strong>Discussion GATT</strong> (l.689)</td>
+<td>Atualizar refs implícitas a p* → E_U/E_M.</td>
+<td>Minor edit</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td><strong>Scope: BP commitment ¶</strong> (l.699)</td>
+<td>DELETE inteiro (~8 linhas).</td>
+<td>Delete</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td><strong>Scope</strong> (l.703)</td>
+<td>“Bayesian persuasion can still exploit it at low priors” →
+“unanimity can still dominate at beliefs where the screening rent
+outweighs the vote-buying cost.”</td>
+<td>Edit 1 frase</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td><strong>Conclusion</strong> (l.795)</td>
+<td>“Bayesian persuasion extends this advantage to priors where the
+institution would not otherwise form.” → “The institutional comparison
+has a clean structure: unanimity dominates wherever it can sustain
+entry, and majority’s only advantage is wider institutional
+viability.”</td>
+<td>Edit 1 frase</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td><strong>Conclusion K&gt;2</strong> (l.799)</td>
+<td>Remover framing Dworczak-Martini/info design. Substituir por: “The
+qualitative mechanism—unanimity creates screening, screening creates a
+conditional payoff advantage—extends naturally to richer type
+spaces.”</td>
+<td>Rewrite</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fase-6-appendices">FASE 6: Appendices</h3>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 22%" />
+<col style="width: 38%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr>
+<th>Step</th>
+<th>Local</th>
+<th>O que muda</th>
+<th>Tipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6.1</td>
+<td><strong>Notation table</strong> (l.810–847)</td>
+<td>Remover S_U, S_M (slopes de concavificação). Remover p* (não existe
+mais). Atualizar Lemma 1 → Theorem 1 na coluna “Defined in.”</td>
+<td>Edit rows</td>
+</tr>
+<tr>
+<td>6.2</td>
+<td><strong>App B.4</strong> (l.955–957)</td>
+<td>DELETE prova Prop 4 (já coberto em 3.8).</td>
+<td>Delete</td>
+</tr>
+<tr>
+<td>6.3</td>
+<td><strong>App B.5</strong> (prova do antigo Lemma 1, agora Theorem
+1)</td>
+<td>Manter intacto. Apenas atualizar header: “Proof of Theorem 1” (era
+“Proof of Lemma 1”).</td>
+<td>Rename header</td>
+</tr>
+<tr>
+<td>6.4</td>
+<td><strong>App B.6</strong> (l.1108–1120) → <strong>Proof of
+Corollary</strong></td>
+<td>Reescrever. (1) Fix p ∈ E_U, logo V_W(p,U) ≥ c. (2) Since weak
+states’ aggregate payoff is weakly lower under U when H’s payoff is
+higher (Theorem 1 + surplus accounting), V_W(p,M) &gt; V_W(p,U) ≥ c ⇒ p
+∈ E_M. (3) Theorem 1 ⇒ V_H(U,p) &gt; V_H(M,p). ~6–8 linhas.</td>
+<td>Rewrite</td>
+</tr>
+<tr>
+<td>6.5</td>
+<td><strong>App B.7</strong> (l.1122–1142)</td>
+<td>Manter intacto. Puro screening.</td>
+<td>Sem mudança</td>
+</tr>
+<tr>
+<td>6.6</td>
+<td><strong>App B.8</strong> (l.1144–1156) → <strong>Proof of
+Proposition</strong></td>
+<td>Reescrever como 3 cases exaustivos. (i) p ∈ E_U: Corollary dá
+V_H(U,p) &gt; V_H(M,p). U ≻ M. (ii) p ∈ E_M  E_U: U não forma, V_H(U,p)
+= αV_e(p); M forma, V_H(M,p) &gt; αV_e(p) pois entry é IR. M ≻ U. (iii)
+p ∉ E_M: nenhuma forma, V_H = αV_e(p) sob ambas. U ~ M. Exhaustivo
+porque E_U ⊆ E_M (Corollary). ~8–10 linhas.</td>
+<td>Rewrite</td>
+</tr>
+<tr>
+<td>6.7</td>
+<td><strong>App C</strong> (l.1159–1194)</td>
+<td>Remover framing BP. “potential source of non-convexity” →
+“conditional payoff advantage.” Limitations: “for persuasion to
+overturn” → “for unanimity to conditionally dominate.”</td>
+<td>Edit 2 frases</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fase-7-cross-cutting">FASE 7: Cross-cutting</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Step</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7.1</td>
+<td><strong>Bibliografia</strong>: Manter <span class="citation"
+data-cites="kamenica2011bayesian">@kamenica2011bayesian</span> no
+Remark. Remover <span class="citation"
+data-cites="bardhiguo2018">@bardhiguo2018</span> e <span
+class="citation"
+data-cites="kim2025persuasion">@kim2025persuasion</span> da intro (mover
+para Remark se desejado).</td>
+</tr>
+<tr>
+<td>7.2</td>
+<td><strong>Global search</strong>: <code>persuasion</code> → só no
+Remark. <code>cav</code>/<code>operatorname{cav}</code> → zero.
+<code>Π_H^*</code> → <code>V_H</code>. <code>signal structure</code> →
+zero. <code>lem:conditional</code> → <code>thm:conditional</code> (Lemma
+promovido).</td>
+</tr>
+<tr>
+<td>7.3</td>
+<td><strong>Renumeração</strong>: Prop 4 deletada, Lemma 1 → Theorem 1,
+Theorem 1 → Corollary, Theorem 2 → Proposition. Buscar:
+<code>\ref{prop:nonconvexity}</code>,
+<code>\ref{fig:bp-illustration}</code>,
+<code>\ref{thm:dominance}</code>, <code>\ref{thm:crossing}</code>,
+<code>\ref{cor:global}</code> → atualizar ou remover todas as refs.
+Buscar “Lemma 1” / “Lemma~\ref” em texto corrido → atualizar para
+“Theorem 1”.</td>
+</tr>
+<tr>
+<td>7.4</td>
+<td><strong><code>model_functions.R</code></strong>: Sem mudança.
+<code>concavify()</code> permanece no script (não é mais chamada pelo
+Rmd).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fase-8-verificação">FASE 8: Verificação</h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8.1</td>
+<td>Compilar: <code>rmarkdown::render("formal_model_v5.Rmd")</code></td>
+</tr>
+<tr>
+<td>8.2</td>
+<td>Cross-ref audit: buscar <code>\ref{}</code> quebrados</td>
+</tr>
+<tr>
+<td>8.3</td>
+<td>Narrative consistency: leitura front-to-back. BP só no Remark.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ordem-de-execução">Ordem de execução</h2>
+<pre><code>FASE 0 (backup)
+    ↓
+FASE 2 (Secs 4–5, edits simples)  ←  independente de Fase 1
+    ↓
+FASE 1 (Intro, Model)
+    ↓
+FASE 3 (Sec 6 — rewrite major)
+    ↓
+FASE 4 (Sec 7 — rewrite major, depende de Fase 3 para Remark)
+    ↓
+FASE 6 (Appendices — depende de Fase 4 para novos theorems)
+    ↓
+FASE 5 (Discussion/Conclusion — depende de Fase 4 para refs)
+    ↓
+FASE 7 (Cross-cutting — depende de todas as fases)
+    ↓
+FASE 8 (Verificação)</code></pre>
+<h2 id="riscos">Riscos</h2>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr>
+<th>Risco</th>
+<th>Mitigação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Proposition parece “simples demais” a referee</td>
+<td>É uma classificação exaustiva, não um resultado trivial. Formulação
+via sets é mais geral que threshold. Comparar com classification
+propositions em Dixit/Baron.</td>
+</tr>
+<tr>
+<td>E_U desconectado</td>
+<td>Formulação via E_U (não τ(U)) é imune. Verificar numericamente se
+E_U é conectado nos parâmetros do Example 2 — se for, mencionar; se não,
+ilustra por que a formulação por sets é necessária.</td>
+</tr>
+<tr>
+<td>Paper fica mais curto (~80–100 linhas a menos)</td>
+<td>Tighter is better para JoP. Remark adiciona ~8 linhas.</td>
+</tr>
+<tr>
+<td>Contribuição mais estreita (só screening, não info design)</td>
+<td>Remark preserva ponte para BP literature. Screening puro é mais
+defensável.</td>
+</tr>
+<tr>
+<td>Example 2 menos dramático</td>
+<td>A história honesta é mais limpa. +25% advantage at p=0.50 ainda é
+substancial. Mostra E_U e E_M concretamente.</td>
+</tr>
+<tr>
+<td>Muitas refs cruzadas mudam (Lemma→Thm, Thm→Cor/Prop)</td>
+<td>Global search obrigatório na Fase 7. Compilação na Fase 8 pega refs
+quebradas.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="verificação">Verificação</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" />Paper compila sem erros</label></li>
+<li><label><input type="checkbox" />BP aparece SOMENTE no
+Remark</label></li>
+<li><label><input type="checkbox" />Nenhum <code>\ref{}</code>
+quebrado</label></li>
+<li><label><input type="checkbox" /><code>cav</code>,
+<code>concav</code>, <code>Π_H^*</code> ausentes do corpo</label></li>
+<li><label><input type="checkbox" />Theorem 2 usa E_U (não τ(U)) na
+formulação; 3 cases exaustivos</label></li>
+<li><label><input type="checkbox" />E_U desconectado tratado
+corretamente (gaps caem em case ii)</label></li>
+<li><label><input type="checkbox" />Prova B.6 explicita entry inclusion
+(p ∈ E_U ⇒ p ∈ E_M) via budget identity</label></li>
+<li><label><input type="checkbox" />Prova B.8 cobre os 3 cases
+exaustivamente</label></li>
+<li><label><input type="checkbox" />Narrative flows: screening → Lemma 1
+→ Thm 1 → Thm 2</label></li>
+</ul>
+</body>
+</html>

@@ -259,6 +259,6 @@ Extensão a tipos contínuos (θ ~ F em [0,r]). Screening de W com tipos contín
 - N genérico sempre (N=3 apenas no exemplo motivador Seção 2)
 - x ≡ (N-1)αr como atalho notacional
 - Sob maioria: W EXCLUI H (não convenção WLOG de inclusão)
-- **v5 é o paper ativo para submissão**; v4 preservado intacto (pré-Opção B); v3 cópia de v4; v2 preservado como arquivo
+- **v5 é o paper ativo para submissão**; v4 preservado intacto (pré-Opção B); v3 é versão anterior a v4 (v4 divergiu bastante); v2 preservado como arquivo
 - **Estilo v3**: corpo narra o mecanismo em prosa substantiva; provas e álgebra no appendix; sem proof sketches no corpo; comparative statics em linguagem do fenômeno (não parâmetros)
 - **Paper é documento atemporal**: Escrever como se o leitor visse o paper pela primeira vez. NUNCA referenciar versões anteriores, mudanças feitas durante revisão, ou estado prévio do manuscrito. Nada de "now", "previously", "we have removed", "in the revised version". Descrever o resultado como se sempre tivesse sido assim.

@@ -1,0 +1,137 @@
+---
+title: "Institutional map grid — varying alpha"
+output: pdf_document
+geometry: margin=0.8in
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+source("../scripts/model_functions.R")
+
+classify_regime <- function(p, c, r, alpha, N, beta) {
+  vw_u <- tryCatch(VW_R1_unanimity(r, alpha, p, N, beta), error = function(e) NA)
+  vw_m <- tryCatch(VW_R1_majority(r, alpha, p, N, beta), error = function(e) NA)
+  if (is.na(vw_u) | is.na(vw_m)) return(NA)
+  if (vw_u >= c) return(2)
+  else if (vw_m >= c) return(1)
+  else return(0)
+}
+
+compute_tau_bnd <- function(r, alpha, N, beta, c, rule = "U") {
+  vw_fn <- if (rule == "U") VW_R1_unanimity else VW_R1_majority
+  lo <- 0.001; hi <- 1
+  vw_hi <- tryCatch(vw_fn(r, alpha, hi, N, beta), error = function(e) NA)
+  if (is.na(vw_hi) || vw_hi < c) return(NA)
+  vw_lo <- tryCatch(vw_fn(r, alpha, lo, N, beta), error = function(e) NA)
+  if (is.na(vw_lo)) return(NA)
+  if (vw_lo >= c) return(lo)
+  for (iter in 1:50) {
+    mid <- (lo + hi) / 2
+    vw_mid <- tryCatch(vw_fn(r, alpha, mid, N, beta), error = function(e) NA)
+    if (is.na(vw_mid)) { hi <- mid; next }
+    if (vw_mid >= c) hi <- mid else lo <- mid
+  }
+  return((lo + hi) / 2)
+}
+
+plot_inst_map <- function(r, alpha, N, beta, c_max) {
+  ps <- seq(0.005, 0.995, by = 0.01)
+  cs <- seq(0.001, c_max, length.out = 80)
+  mat <- matrix(NA, length(ps), length(cs))
+  for (i in seq_along(ps))
+    for (j in seq_along(cs))
+      mat[i, j] <- classify_regime(ps[i], cs[j], r, alpha, N, beta)
+  cols <- c("gray85", "#E6550DCC", "#3182BDCC")
+  image(ps, cs, mat, col = cols, breaks = c(-0.5, 0.5, 1.5, 2.5),
+        xlab = "", ylab = "",
+        main = bquote(N == .(N) ~ ", " ~ r == .(r)), cex.main = 0.8, las = 1)
+  cs_fine <- seq(0.001, c_max, length.out = 80)
+  tau_U_c <- sapply(cs_fine, function(cc) compute_tau_bnd(r, alpha, N, beta, cc, "U"))
+  tau_M_c <- sapply(cs_fine, function(cc) compute_tau_bnd(r, alpha, N, beta, cc, "M"))
+  v <- !is.na(tau_U_c); if (any(v)) lines(tau_U_c[v], cs_fine[v], lwd = 1.5)
+  v <- !is.na(tau_M_c); if (any(v)) lines(tau_M_c[v], cs_fine[v], lwd = 1.5, lty = 3)
+  phi <- (r*N - beta*(N-1+r)) / (beta*(r-1))
+  disc <- phi^2 - 4*(N-2)
+  if (disc > 0) {
+    mu_s <- (phi - sqrt(disc)) / (2*(N-2))
+    if (mu_s > 0 & mu_s < 1) abline(v = mu_s, lty = 2, lwd = 1, col = "black")
+  }
+}
+
+Ns <- c(20, 50, 100, 150)
+rs <- c(1.1, 1.3, 1.5, 1.8, 2.0)
+```
+
+## Alpha = 0.1
+
+```{r grid01, fig.width=12, fig.height=9}
+alpha_val <- 0.1
+par(mfrow = c(length(Ns), length(rs)),
+    mar = c(2, 2, 2, 0.5), oma = c(2, 3, 1, 0))
+for (i in seq_along(Ns))
+  for (j in seq_along(rs)) {
+    if (alpha_val >= 1/rs[j]) { plot.new(); next }
+    plot_inst_map(rs[j], alpha_val, Ns[i], 0.9, c_max = 0.1)
+    if (j == 1) mtext(bquote(N == .(Ns[i])), side = 2, line = 2, cex = 0.6)
+  }
+mtext("Prior p", side = 1, outer = TRUE, line = 0.5)
+mtext("Entry cost c", side = 2, outer = TRUE, line = 1.5)
+mtext(bquote(alpha == 0.1 ~ ", " ~ beta == 0.9), side = 3, outer = TRUE, line = -0.5, cex = 0.8)
+```
+
+\newpage
+
+## Alpha = 0.2
+
+```{r grid02, fig.width=12, fig.height=9}
+alpha_val <- 0.2
+par(mfrow = c(length(Ns), length(rs)),
+    mar = c(2, 2, 2, 0.5), oma = c(2, 3, 1, 0))
+for (i in seq_along(Ns))
+  for (j in seq_along(rs)) {
+    if (alpha_val >= 1/rs[j]) { plot.new(); next }
+    plot_inst_map(rs[j], alpha_val, Ns[i], 0.9, c_max = 0.1)
+    if (j == 1) mtext(bquote(N == .(Ns[i])), side = 2, line = 2, cex = 0.6)
+  }
+mtext("Prior p", side = 1, outer = TRUE, line = 0.5)
+mtext("Entry cost c", side = 2, outer = TRUE, line = 1.5)
+mtext(bquote(alpha == 0.2 ~ ", " ~ beta == 0.9), side = 3, outer = TRUE, line = -0.5, cex = 0.8)
+```
+
+\newpage
+
+## Alpha = 0.3
+
+```{r grid03, fig.width=12, fig.height=9}
+alpha_val <- 0.3
+par(mfrow = c(length(Ns), length(rs)),
+    mar = c(2, 2, 2, 0.5), oma = c(2, 3, 1, 0))
+for (i in seq_along(Ns))
+  for (j in seq_along(rs)) {
+    if (alpha_val >= 1/rs[j]) { plot.new(); next }
+    plot_inst_map(rs[j], alpha_val, Ns[i], 0.9, c_max = 0.1)
+    if (j == 1) mtext(bquote(N == .(Ns[i])), side = 2, line = 2, cex = 0.6)
+  }
+mtext("Prior p", side = 1, outer = TRUE, line = 0.5)
+mtext("Entry cost c", side = 2, outer = TRUE, line = 1.5)
+mtext(bquote(alpha == 0.3 ~ ", " ~ beta == 0.9), side = 3, outer = TRUE, line = -0.5, cex = 0.8)
+```
+
+\newpage
+
+## Alpha = 0.4
+
+```{r grid04, fig.width=12, fig.height=9}
+alpha_val <- 0.4
+par(mfrow = c(length(Ns), length(rs)),
+    mar = c(2, 2, 2, 0.5), oma = c(2, 3, 1, 0))
+for (i in seq_along(Ns))
+  for (j in seq_along(rs)) {
+    if (alpha_val >= 1/rs[j]) { plot.new(); next }
+    plot_inst_map(rs[j], alpha_val, Ns[i], 0.9, c_max = 0.1)
+    if (j == 1) mtext(bquote(N == .(Ns[i])), side = 2, line = 2, cex = 0.6)
+  }
+mtext("Prior p", side = 1, outer = TRUE, line = 0.5)
+mtext("Entry cost c", side = 2, outer = TRUE, line = 1.5)
+mtext(bquote(alpha == 0.4 ~ ", " ~ beta == 0.9), side = 3, outer = TRUE, line = -0.5, cex = 0.8)
+```

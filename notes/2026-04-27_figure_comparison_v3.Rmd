@@ -1,0 +1,315 @@
+---
+title: "Figuras candidatas v3 — Institutional Map e alternativas"
+date: "2026-04-27"
+output:
+  bookdown::pdf_document2:
+    toc: false
+    latex_engine: xelatex
+    number_sections: false
+header-includes:
+  - \usepackage{float}
+  - \usepackage{caption}
+  - \captionsetup{font=small, labelfont=bf}
+fontsize: 11pt
+geometry: margin=2cm
+mainfont: Times New Roman
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.pos = "H")
+source("../scripts/model_functions.R")
+
+# Shared helper: compute tau(R) via binary search
+compute_tau <- function(r, alpha, N, beta, c, rule = "U") {
+  vw_fn <- if (rule == "U") VW_R1_unanimity else VW_R1_majority
+  lo <- 0.001; hi <- 1
+  vw_hi <- tryCatch(vw_fn(r, alpha, hi, N, beta), error = function(e) NA)
+  if (is.na(vw_hi) || vw_hi < c) return(NA)
+  vw_lo <- tryCatch(vw_fn(r, alpha, lo, N, beta), error = function(e) NA)
+  if (is.na(vw_lo)) return(NA)
+  if (vw_lo >= c) return(lo)
+  for (iter in 1:50) {
+    mid <- (lo + hi) / 2
+    vw_mid <- tryCatch(vw_fn(r, alpha, mid, N, beta), error = function(e) NA)
+    if (is.na(vw_mid)) { hi <- mid; next }
+    if (vw_mid >= c) hi <- mid else lo <- mid
+  }
+  return((lo + hi) / 2)
+}
+
+# Classify a (p, c) point into regime
+classify_regime <- function(p, c, r, alpha, N, beta) {
+  vw_u <- tryCatch(VW_R1_unanimity(r, alpha, p, N, beta), error = function(e) NA)
+  vw_m <- tryCatch(VW_R1_majority(r, alpha, p, N, beta), error = function(e) NA)
+  if (is.na(vw_u) | is.na(vw_m)) return(NA)
+  if (vw_u >= c) return(2)       # p in E_U: U dominates
+  else if (vw_m >= c) return(1)  # p in E_M \ E_U: M dominates (entry)
+  else return(0)                 # p not in E_M: neither
+}
+```
+
+# Objetivo
+
+Quatro novas candidatas para a Figura 4 do v5, todas mostrando diretamente a Proposition (classificacao institucional). Parametros do Example: $N=5$, $r=1.5$, $\alpha=0.3$, $\beta=0.9$.
+
+\newpage
+
+# Candidata 5: Institutional map em $(p, c)$
+
+```{r fig-inst-map, fig.width=7, fig.height=5.5, fig.cap="Institutional classification in the $(p, c)$ plane ($N=5$, $r=1.5$, $\\alpha=0.3$, $\\beta=0.9$). Blue: unanimity dominates ($p \\in E_U$). Orange: majority dominates through wider entry ($p \\in E_M \\setminus E_U$). Gray: neither rule sustains entry ($p \\notin E_M$). The boundary between the blue and orange regions traces the unanimity entry threshold $\\tau(U)$; the boundary between the orange and gray regions traces $\\tau(M)$. Since $E_U \\subseteq E_M$, the unanimity-dominance region is always nested inside the majority-entry region. Conditional on entry, unanimity strictly dominates at every belief (Theorem 1)."}
+
+ps <- seq(0.005, 0.995, by = 0.005)
+cs <- seq(0.005, 0.25, by = 0.002)
+
+mat <- matrix(NA, length(ps), length(cs))
+for (i in seq_along(ps))
+  for (j in seq_along(cs))
+    mat[i, j] <- classify_regime(ps[i], cs[j], 1.5, 0.3, 5, 0.9)
+
+par(mar = c(4.5, 4.5, 1.5, 1))
+
+# Custom colors: 0=gray, 1=orange, 2=blue
+cols <- c("gray85", "#E6550DCC", "#3182BDCC")
+image(ps, cs, mat, col = cols, breaks = c(-0.5, 0.5, 1.5, 2.5),
+      xlab = expression(paste("Prior belief  ", p)),
+      ylab = expression(paste("Entry cost  ", c)),
+      las = 1)
+
+# Trace boundaries: tau(U)(c) and tau(M)(c)
+cs_fine <- seq(0.005, 0.25, by = 0.002)
+tau_U_curve <- sapply(cs_fine, function(cc) compute_tau(1.5, 0.3, 5, 0.9, cc, "U"))
+tau_M_curve <- sapply(cs_fine, function(cc) compute_tau(1.5, 0.3, 5, 0.9, cc, "M"))
+
+valid_U <- !is.na(tau_U_curve)
+valid_M <- !is.na(tau_M_curve)
+lines(tau_U_curve[valid_U], cs_fine[valid_U], lwd = 2, col = "black")
+lines(tau_M_curve[valid_M], cs_fine[valid_M], lwd = 2, col = "black", lty = 2)
+
+# Labels inside regions
+text(0.8, 0.05, "U dominates", col = "white", font = 2, cex = 0.85)
+text(0.25, 0.15, "M dominates\n(entry only)", col = "white", font = 2, cex = 0.75)
+text(0.08, 0.22, "Neither\nforms", col = "gray40", font = 2, cex = 0.7)
+
+# Boundary labels
+text(0.6, 0.17, expression(tau(U)(c)), cex = 0.65, pos = 4)
+text(0.05, 0.10, expression(tau(M)(c)), cex = 0.65, pos = 4)
+
+legend("topright",
+       legend = c(expression(p %in% E[U] ~ ": U dominates"),
+                  expression(p %in% E[M] ~ "\\" ~ E[U] ~ ": M (entry)"),
+                  expression(p %notin% E[M] ~ ": neither")),
+       fill = c("#3182BDCC", "#E6550DCC", "gray85"),
+       border = "black", cex = 0.6, bg = "white")
+```
+
+**O que mostra:** a Proposition como geometria no plano $(p, c)$. A regiao azul (unanimidade) esta sempre aninhada dentro da laranja+azul (maioria). A "fatia" laranja entre as fronteiras e o scope advantage da maioria. Nao fixa $c$ arbitrariamente --- mostra todos os $c$ de uma vez.
+
+\newpage
+
+# Candidata 6: Two-panel institutional mechanism
+
+```{r fig-two-panel, fig.width=9, fig.height=4.5, fig.cap="Panel (a): Weak-state payoffs under majority ($V_W^{R1}(p, M)$, orange) and unanimity ($V_W^{R1}(p, U)$, blue). The gap between the curves reflects the screening rent captured by the hegemon under unanimity (Theorem 1). A single entry cost $c = 0.14$ (dashed) defines the entry thresholds $\\tau(M)$ and $\\tau(U)$. Panel (b): Institutional classification in the $(p, c)$ plane. Blue: unanimity dominates ($p \\in E_U$). Orange: majority dominates through wider entry ($p \\in E_M \\setminus E_U$). Gray: neither rule sustains entry. Parameters: $N=5$, $r=1.5$, $\\alpha=0.3$, $\\beta=0.9$."}
+
+par(mfrow = c(1, 2), mar = c(4.5, 4.5, 2, 1))
+
+# ── Panel A: V_W curves ──
+ps <- seq(0.001, 0.999, by = 0.002)
+vw_U <- sapply(ps, function(p) VW_R1_unanimity(1.5, 0.3, p, 5, 0.9))
+vw_M <- sapply(ps, function(p) VW_R1_majority(1.5, 0.3, p, 5, 0.9))
+
+plot(ps, vw_M, type = "l", col = "#E6550D", lwd = 2.5,
+     xlab = expression(paste("Prior  ", p)),
+     ylab = expression(V[W]^{R1}(p, R)),
+     ylim = range(c(vw_U, vw_M), na.rm = TRUE), las = 1,
+     main = "(a) Payoff mechanism")
+lines(ps, vw_U, col = "#3182BD", lwd = 2.5)
+
+polygon(c(ps, rev(ps)), c(vw_M, rev(vw_U)),
+        col = adjustcolor("orange", alpha.f = 0.08), border = NA)
+
+# Single c line
+c_ex <- 0.14
+abline(h = c_ex, lty = 2, col = "gray30", lwd = 1.5)
+text(0.02, c_ex + 0.005, bquote(c == .(c_ex)), cex = 0.65, col = "gray30", adj = 0)
+
+# Mark thresholds
+tau_m <- compute_tau(1.5, 0.3, 5, 0.9, c_ex, "M")
+tau_u <- compute_tau(1.5, 0.3, 5, 0.9, c_ex, "U")
+if (!is.na(tau_m) && tau_m > 0.01) {
+  segments(tau_m, 0, tau_m, c_ex, lty = 3, col = "#E6550D")
+  text(tau_m, -0.005, expression(tau(M)), col = "#E6550D", cex = 0.6)
+}
+if (!is.na(tau_u)) {
+  segments(tau_u, 0, tau_u, c_ex, lty = 3, col = "#3182BD")
+  text(tau_u, -0.005, expression(tau(U)), col = "#3182BD", cex = 0.6)
+}
+
+text(0.8, vw_M[400] + 0.006, expression(V[W](p, M)), col = "#E6550D", cex = 0.75, font = 2)
+text(0.8, vw_U[400] - 0.006, expression(V[W](p, U)), col = "#3182BD", cex = 0.75, font = 2)
+
+# ── Panel B: (p, c) map ──
+ps2 <- seq(0.005, 0.995, by = 0.005)
+cs2 <- seq(0.005, 0.25, by = 0.002)
+
+mat2 <- matrix(NA, length(ps2), length(cs2))
+for (i in seq_along(ps2))
+  for (j in seq_along(cs2))
+    mat2[i, j] <- classify_regime(ps2[i], cs2[j], 1.5, 0.3, 5, 0.9)
+
+cols <- c("gray85", "#E6550DCC", "#3182BDCC")
+image(ps2, cs2, mat2, col = cols, breaks = c(-0.5, 0.5, 1.5, 2.5),
+      xlab = expression(paste("Prior  ", p)),
+      ylab = expression(paste("Entry cost  ", c)),
+      main = "(b) Institutional classification", las = 1)
+
+cs_fine <- seq(0.005, 0.25, by = 0.002)
+tau_U_c <- sapply(cs_fine, function(cc) compute_tau(1.5, 0.3, 5, 0.9, cc, "U"))
+tau_M_c <- sapply(cs_fine, function(cc) compute_tau(1.5, 0.3, 5, 0.9, cc, "M"))
+valid_U <- !is.na(tau_U_c)
+valid_M <- !is.na(tau_M_c)
+lines(tau_U_c[valid_U], cs_fine[valid_U], lwd = 2, col = "black")
+lines(tau_M_c[valid_M], cs_fine[valid_M], lwd = 2, col = "black", lty = 2)
+
+# c = 0.14 reference line connecting to panel A
+abline(h = c_ex, lty = 2, col = "gray30", lwd = 1)
+
+text(0.8, 0.04, "U dom.", col = "white", font = 2, cex = 0.7)
+text(0.2, 0.17, "M (entry)", col = "white", font = 2, cex = 0.65)
+text(0.06, 0.23, "Neither", col = "gray40", font = 2, cex = 0.6)
+```
+
+**O que mostra:** Panel A explica *por que* $E_U \subseteq E_M$ (payoff curves + uma unica linha $c$). Panel B mostra a classificacao completa no plano $(p, c)$. A linha $c = 0.14$ conecta os dois paineis: no Panel A e a horizontal que define os thresholds; no Panel B e o corte que gera uma "barra" equivalente a Candidata 3.
+
+\newpage
+
+# Candidata 7: Scope advantage (areas empilhadas)
+
+```{r fig-scope, fig.width=7, fig.height=5, fig.cap="Share of the prior space in each institutional regime as a function of entry cost $c$ ($N=5$, $r=1.5$, $\\alpha=0.3$, $\\beta=0.9$). Blue: fraction of priors where unanimity dominates ($|E_U|$). Orange: fraction where majority dominates through wider entry ($|E_M \\setminus E_U|$). Gray: fraction where neither rule sustains entry ($|[0,1] \\setminus E_M|$). As $c$ increases, majority's scope advantage grows, but this advantage is entirely through the entry channel: conditional on participation, unanimity strictly dominates at every belief (Theorem 1)."}
+
+cs_range <- seq(0.005, 0.25, by = 0.002)
+
+share_U <- numeric(length(cs_range))
+share_M_only <- numeric(length(cs_range))
+share_none <- numeric(length(cs_range))
+
+for (k in seq_along(cs_range)) {
+  cc <- cs_range[k]
+  tau_u <- compute_tau(1.5, 0.3, 5, 0.9, cc, "U")
+  tau_m <- compute_tau(1.5, 0.3, 5, 0.9, cc, "M")
+  if (is.na(tau_u)) tau_u <- 1
+  if (is.na(tau_m)) tau_m <- 1
+  share_U[k] <- max(0, 1 - tau_u)
+  share_M_only[k] <- max(0, tau_u - tau_m)
+  share_none[k] <- max(0, tau_m)
+}
+
+par(mar = c(4.5, 4.5, 1.5, 1))
+plot(NULL, xlim = range(cs_range), ylim = c(0, 1),
+     xlab = expression(paste("Entry cost  ", c)),
+     ylab = "Share of prior space [0, 1]",
+     las = 1)
+
+# Stacked areas (bottom to top: blue, orange, gray)
+# Blue at bottom
+polygon(c(cs_range, rev(cs_range)),
+        c(rep(0, length(cs_range)), rev(share_U)),
+        col = "#3182BDCC", border = NA)
+# Orange in middle
+polygon(c(cs_range, rev(cs_range)),
+        c(share_U, rev(share_U + share_M_only)),
+        col = "#E6550DCC", border = NA)
+# Gray on top
+polygon(c(cs_range, rev(cs_range)),
+        c(share_U + share_M_only, rev(rep(1, length(cs_range)))),
+        col = "gray85", border = NA)
+
+# Lines at boundaries
+lines(cs_range, share_U, lwd = 1.5, col = "black")
+lines(cs_range, share_U + share_M_only, lwd = 1.5, col = "black", lty = 2)
+
+# Labels
+text(0.05, 0.6, "U dominates", col = "white", font = 2, cex = 0.85)
+text(0.15, 0.55, "M dominates\n(entry only)", col = "white", font = 2, cex = 0.75)
+text(0.22, 0.85, "Neither forms", col = "gray40", font = 2, cex = 0.75)
+
+# Reference c = 0.14
+abline(v = 0.14, lty = 3, col = "gray30")
+text(0.145, 0.95, "c = 0.14", cex = 0.55, adj = 0, col = "gray30")
+```
+
+**O que mostra:** comparative statics em $c$ mostrando diretamente o tamanho de cada regime. A area azul (U dominates) encolhe com $c$; a laranja (M entry advantage) cresce. A soma e sempre 1. Preserva a Proposition e permite comparative statics. Nota: assume $E_U$ e $E_M$ sao intervalos (conectados) para calcular $|E_U| = 1 - \tau(U)$.
+
+\newpage
+
+# Candidata 8: Scope advantage em $\alpha$ (areas empilhadas)
+
+```{r fig-scope-alpha, fig.width=7, fig.height=5, fig.cap="Share of the prior space in each institutional regime as a function of the hegemon's outside-option strength $\\alpha$ ($N=5$, $r=1.5$, $\\beta=0.9$, $c=0.1$). Blue: fraction of priors where unanimity dominates ($|E_U|$). Orange: fraction where majority dominates through wider entry ($|E_M \\setminus E_U|$). Gray: fraction where neither rule sustains entry. Dashed vertical line: $\\alpha^*$, below which Theorem 1 guarantees conditional dominance at every belief. As $\\alpha$ increases, both entry sets shrink, but unanimity shrinks faster because stronger outside options raise the cost of buying unanimous agreement."}
+
+alpha_star_fn <- function(N, beta) {
+  q <- floor(N/2) + 1
+  beta * (q - 1) / (N * (N - 1) - beta * (N^2 - N - q + 1))
+}
+
+alphas_range <- seq(0.01, 0.6, by = 0.005)
+a_star <- alpha_star_fn(5, 0.9)
+
+share_U_a <- numeric(length(alphas_range))
+share_M_only_a <- numeric(length(alphas_range))
+share_none_a <- numeric(length(alphas_range))
+
+for (k in seq_along(alphas_range)) {
+  aa <- alphas_range[k]
+  if (aa >= 1/1.5) {
+    share_U_a[k] <- 0; share_M_only_a[k] <- 0; share_none_a[k] <- 1
+    next
+  }
+  tau_u <- compute_tau(1.5, aa, 5, 0.9, 0.1, "U")
+  tau_m <- compute_tau(1.5, aa, 5, 0.9, 0.1, "M")
+  if (is.na(tau_u)) tau_u <- 1
+  if (is.na(tau_m)) tau_m <- 1
+  share_U_a[k] <- max(0, 1 - tau_u)
+  share_M_only_a[k] <- max(0, tau_u - tau_m)
+  share_none_a[k] <- max(0, tau_m)
+}
+
+par(mar = c(4.5, 4.5, 1.5, 1))
+plot(NULL, xlim = range(alphas_range), ylim = c(0, 1),
+     xlab = expression(alpha),
+     ylab = "Share of prior space [0, 1]",
+     las = 1)
+
+polygon(c(alphas_range, rev(alphas_range)),
+        c(rep(0, length(alphas_range)), rev(share_U_a)),
+        col = "#3182BDCC", border = NA)
+polygon(c(alphas_range, rev(alphas_range)),
+        c(share_U_a, rev(share_U_a + share_M_only_a)),
+        col = "#E6550DCC", border = NA)
+polygon(c(alphas_range, rev(alphas_range)),
+        c(share_U_a + share_M_only_a, rev(rep(1, length(alphas_range)))),
+        col = "gray85", border = NA)
+
+lines(alphas_range, share_U_a, lwd = 1.5, col = "black")
+lines(alphas_range, share_U_a + share_M_only_a, lwd = 1.5, col = "black", lty = 2)
+
+abline(v = a_star, lty = 3, col = "gray30", lwd = 1.5)
+text(a_star + 0.01, 0.95, expression(alpha^"*"), cex = 0.7, col = "gray30", adj = 0)
+
+text(0.1, 0.6, "U dominates", col = "white", font = 2, cex = 0.85)
+text(0.35, 0.3, "M (entry)", col = "white", font = 2, cex = 0.75)
+text(0.55, 0.85, "Neither", col = "gray40", font = 2, cex = 0.75)
+```
+
+**O que mostra:** o mesmo conceito de areas empilhadas, mas variando $\alpha$ em vez de $c$. Mostra que $\alpha^*$ nao e uma fronteira dramatica: a area azul ja vinha encolhendo gradualmente, e continua a encolher apos $\alpha^*$. O scope advantage da maioria cresce com $\alpha$ porque outside options mais fortes tornam a unanimidade mais cara.
+
+\newpage
+
+# Resumo comparativo
+
+| Candidata | Tipo | Mostra | Comparative statics | Risco |
+|-----------|------|--------|---------------------|-------|
+| 5: Map $(p,c)$ | Heatmap 2D | Classificacao completa | Em $c$ (continuo) | Nenhum |
+| 6: Two-panel | V_W + Map | Mecanismo + classificacao | Em $c$ (continuo) | Mais complexo |
+| 7: Scope vs $c$ | Areas empilhadas | Tamanho dos regimes | Em $c$ | Assume $E_U$ conectado |
+| 8: Scope vs $\alpha$ | Areas empilhadas | Tamanho dos regimes | Em $\alpha$ | Assume $E_U$ conectado |
+
+**Recomendacao:** Candidata 5 (Map $(p,c)$) como Figura 4 principal, ou Candidata 6 (two-panel) se quiser explicar o mecanismo na mesma figura.
