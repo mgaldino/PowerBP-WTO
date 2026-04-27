@@ -38,17 +38,23 @@ library(tidyverse)
 
 # Introduction
 
-Why do some international organizations operate by consensus even when powerful states were central to their design? This is a puzzle because the international arena is precisely where material asymmetries should matter most. If institutional rules reflect power, then powerful states should prefer arrangements that allow them to translate asymmetry into distributive advantage. In bargaining environments, that logic points to majority rule with agenda control: the powerful actor can assemble winning coalitions, exclude the rest, and retain the residual surplus [@baron1989bargaining; @kalandrakis2006proposal; @eraslan2019legislative]. Consensus appears to do the opposite. By giving every participant a veto and denying formal agenda control, it seems to force powerful states to relinquish the very instruments that should matter most to them [@keohane1984after]. Yet some of the most consequential international organizations, most notably the GATT/WTO, have been built around precisely this arrangement [@steinberg2002shadow; @koremenos2001rational].
+Why do most international organizations operate by consensus even when powerful states are behind their creation? This is a puzzle because the international arena is precisely where material asymmetries should matter most. If institutional rules reflect power, then powerful states should prefer arrangements that allow them to translate asymmetry into distributive advantage. In bargaining environments, that logic points to majority rule with agenda control: the powerful actor can assemble winning coalitions, exclude the rest, and retain the residual surplus [@baron1989bargaining; @kalandrakis2006proposal; @eraslan2019legislative]. Consensus appears to do the opposite. By giving every participant a veto and denying formal agenda control, it seems to force powerful states to relinquish the very instruments that should matter most to them [@keohane1984after]. Yet some of the most consequential international organizations, like the GATT/WTO, have been built around precisely this arrangement [@steinberg2002shadow; @koremenos2001rational].
 
-Existing answers do not fully resolve the puzzle. A common response is that powerful states retain influence through informal agenda power even under consensus. But this response is conceptually unsatisfactory. If agenda power is informal, it is unclear why weaker states could not also exercise it; and if unanimity makes all participants veto players, then informal influence is not the same thing as the proposal power that standard bargaining models identify as the core source of distributive advantage. More broadly, existing accounts tend to treat consensus either as a constraint on powerful states or as a surface rule behind which conventional forms of power continue to operate. What they do not explain is why a powerful state would prefer consensus to majority rule in the first place.
+Existing answers do not fully resolve the puzzle. A common response is that powerful states retain influence through informal agenda power even under consensus. But this response is conceptually unsatisfactory. Under unanimity, all participants are veto players, so agenda influence no longer has the same distributive meaning that proposal power has in standard bargaining models. It may still matter, but it cannot generate exclusion and residual capture in the same way as majority rule with agenda control. More broadly, existing accounts tend to treat consensus either as a constraint on powerful states or as a surface rule behind which conventional forms of power continue to operate. What they do not explain is why a hegemon would build a multilateral order based primarily on consensus in the first place.
 
-This paper offers a different answer. I argue that consensus can be instrumentally chosen by a hegemon because it enhances the value of informational power. The key distinction is between two forms of power that interact differently with institutional rules. Agenda power is the ability to control proposals and coalition formation. Informational power is the ability to shape others' beliefs about the value of cooperation. Majority rule with agenda control maximizes the first. Consensus with symmetric proposal rights neutralizes it. But consensus also creates a bargaining environment in which weaker states, when they control proposals, must decide how to treat the hegemon under uncertainty about the gains from cooperation. In that environment, superior information can become a source of distributive advantage. Consensus therefore need not be understood only as a limit on hegemonic power. Under some conditions, it is the institutional form that makes informational power most productive.
+This paper develops a new theory of why a hegemon may prefer consensus in international organizations. Its central claim is that consensus is not merely a constraint on hegemonic power, nor simply a procedural facade behind which ordinary bargaining power persists. Consensus is an institutional technology of power. Drawing on Bayesian Persuasion [@kamenica2019bayesian], I show that consensus can make informational power more politically productive than agenda control. As a result, the relevant institutional choice is not between power and constraint, but between coalition arithmetic under majority rule and persuasion under consensus.
 
-To show this, I develop a formal model in which a hegemon chooses between two institutional packages: majority rule with agenda control and consensus with symmetric proposal rights. The hegemon privately observes the value of cooperation and can commit to an information structure before weaker states decide whether to enter the institution. If the institution forms, members bargain over the surplus. Under majority rule, the hegemon extracts through proposals, and continuation values are affine in beliefs. Under consensus, weaker states face a screening problem when they propose under uncertainty: they must choose between an aggressive offer that screens the hegemon's type and a conservative offer that accommodates both types. This generates a cutoff at which their bargaining behavior changes discretely. That switch creates an upward jump in the hegemon's expected payoff, which Bayesian Persuasion can exploit. The comparison is therefore not simply between stronger and weaker bargaining positions. It is between two institutional technologies of power: coalition arithmetic under majority and persuasion under consensus.
+
+The argument rests on an asymmetry that is empirically pervasive in international organizations but under-theorized. The capacity to evaluate agreements, anticipate their distributive consequences, and frame their likely effects is distributed unevenly across states. Large powers typically possess deeper technical expertise, larger delegations, and greater ability to generate and circulate authoritative interpretations of proposed rules. Weaker states often operate with far more limited analytical capacity. This makes informational power a structural feature of multilateral institutions. What the paper shows is that institutional rules can make this asymmetry strategically decisive.
+
+
+To formalize the argument, I develop a model in which a hegemon chooses between two institutional packages: majority rule with agenda control and consensus with symmetric proposal rights. Before weaker states decide whether to enter, the hegemon privately observes the value of cooperation and can shape their beliefs about it. The central difference is that the two institutions reward this informational advantage differently. Under majority rule, the hegemon's gains come mainly from proposal control and coalition building. Under consensus, by contrast, weaker states must decide how to bargain with the hegemon under uncertainty, which makes their behavior more sensitive to beliefs. As a result, consensus can increase the political value of informational power relative to agenda control.
 
 The analysis yields three main results. First, consensus lowers the entry threshold for weaker states because unanimity protects them against exclusion in the bargaining stage. This makes persuasion more effective at inducing participation. Second, consensus generates a screening cutoff that has no analogue under majority rule. As beliefs cross that cutoff, weaker states switch to more favorable treatment of the hegemon, creating a discontinuity in the hegemon's value function. Third, these two effects can overturn the standard distributive logic of institutional design: for a range of priors, the hegemon strictly prefers consensus to majority rule, despite obtaining a smaller share of the surplus conditional on agreement. The broader implication is that consensus should not be treated as an anomaly for distributive theories of international institutions. It may instead be one of the institutional forms through which power is exercised.
 
-The paper contributes to the study of international organizations in three ways. First, it offers a new solution to the consensus puzzle by showing why a powerful state may rationally choose unanimity rather than merely tolerate it. Second, it reframes institutional design as a trade-off between agenda power and informational power, rather than as a choice between power and constraint. Third, it provides a formal mechanism linking institutional rules to the strategic value of information. In doing so, the paper also suggests a dynamic implication: the value of consensus to a hegemon should depend on the distribution of informational capabilities across states. As weaker states acquire the ability to generate and interpret technical information for themselves, the institutional returns to hegemonic informational advantage may decline. The rest of the paper proceeds as follows. The next two sections defines the institutional framework and present the model. I then derive the bargaining logic under each package, characterize entry and persuasion, and show when the hegemon prefers consensus. A final section discusses the implications for how we understand power and institutional design in international organizations.
+The paper contributes to the study of international organizations in three ways. First, it offers a new solution to the consensus puzzle by showing why a powerful state may rationally choose unanimity rather than merely tolerate it. Second, it reframes institutional design as a trade-off between agenda power and informational power, rather than as a choice between power and constraint. Third, it provides a formal mechanism linking institutional rules to the strategic value of information. 
+
+The rest of the paper proceeds as follows. The next two sections define the institutional framework and present the model. I then derive the bargaining logic under each package, characterize entry and persuasion, and show when the hegemon prefers consensus. A final section discusses the implications for how we understand power and institutional design in international organizations.
 
 
 # Power, Institutions, and the Relevant Comparison
@@ -73,7 +79,7 @@ The relevant comparison is not between isolated voting rules, but between instit
 Two other combinations are not central to the analysis.
 
 - *Package B (Consensus + Agenda).* In the two-round bargaining environment with disagreement payoff $d=V(\theta)/N$, unanimity combined with hegemonic proposal control makes weak states' expected bargaining payoff too low to justify entry at moderate priors. The result is demonstrated for the baseline parameterization; it does not rely on a general impossibility argument.
-- *Package D (Majority + No Agenda).* This combination is dominated because majority without hegemonic agenda control either reproduces equal continuation values or exposes the hegemon to exclusion from others' coalitions.
+- *Package D (Majority + No Agenda).* Without hegemonic agenda control, majority rule exposes the hegemon to exclusion from others' coalitions---the standard Baron-Ferejohn exclusion effect. This makes Package D unattractive for the hegemon relative to both A and C.
 
 The institutional choice problem is therefore whether a hegemon prefers Package A or Package C.
 
@@ -90,7 +96,7 @@ The game $\Gamma(N,p,g,c,r,\beta)$ has the following primitives.
 \item The state determines the size of the redistributive pie: $V(0)=1$ and $V(1)=r>1$.
 \item The hegemon observes $\theta$; the weak states do not.
 \item The common discount factor is $\beta \in (0,1)$.
-\item Each weak state pays an entry cost $c>0$ to join the institution.
+\item Each weak state that joins the institution pays an entry cost $c>0$. A weak state that does not enter pays no cost and receives a payoff of $0$.
 \item If a weak state enters, it obtains a direct benefit $\theta$ from the agreement in addition to its bargaining payoff.
 \item If the institution forms, the hegemon receives an additional payoff $g>0$ from broad participation.
 \end{itemize}
@@ -128,6 +134,8 @@ The game has three stages.
 The game is solved by backward induction.
 
 ## Bargaining structure and solution concept
+
+\textbf{Information sets.} The game tree branches at Nature's move ($\theta \in \{0,1\}$). Throughout the game, the hegemon's information sets are singletons: $H$ knows $\theta$ at every decision node. Each weak state's information sets pool the two branches of $\theta$: at any decision node, $W_i$ knows the public signal realization and the history of proposals and responses, but not $\theta$. After the public signal, weak states hold posterior $\mu$ over $\theta$. This asymmetry is what generates the screening problem when a weak state proposes under consensus: the weak proposer must make an offer to $H$ without knowing $H$'s type-dependent reservation value.
 
 If bargaining reaches the terminal round and no proposal is accepted, each player receives disagreement payoff
 \[
@@ -243,8 +251,10 @@ For $r>1$ and $\beta \in (0,1)$, there exists a unique $\mu_s \in (0,1)$ such th
 For $\mu<\mu_s$, the weak proposer chooses the aggressive offer. For $\mu>\mu_s$, it chooses the conservative offer.
 \end{lemma}
 
-\begin{proof}[Proof sketch]
-For $N=3$, the difference $\Delta_1(\mu)$ is continuous, positive at $\mu=0$, and negative at $\mu=1$. The cubic characterization together with the sign argument reported in the Appendix implies that the crossing is unique. The economic logic is single-crossing: as beliefs rise, the probability that the hegemon is the high type rises, making accommodation relatively more attractive.
+\begin{proof}
+\textbf{Existence.} Let $f(\mu)$ denote the left-hand side of \eqref{eq:cubic}. At $\mu=0$: $f(0)=5\beta(r-1)>0$. At $\mu=1$: $f(1)=\beta(r-1)+2\beta(r-1)+\beta(8+r)-9r+5\beta(r-1)=9r(\beta-1)<0$. By continuity, at least one root exists in $(0,1)$.
+
+\textbf{Uniqueness.} The coefficients of $f(\mu)=a_3\mu^3+a_2\mu^2+a_1\mu+a_0$ have signs: $a_3=\beta(r-1)>0$, $a_2=2\beta(r-1)>0$, $a_0=5\beta(r-1)>0$. For $a_1=\beta(8+r)-9r$: when $r>1$ and $\beta<1$, $a_1=8\beta-r(9-\beta)<0$ for $r>8\beta/(9-\beta)$, which holds throughout the parameter range (e.g., for $\beta=0.7$, the bound is $r>0.675$). The sign pattern is thus $(+,+,-,+)$, with exactly two sign changes. By Descartes' rule of signs, $f$ has either two or zero positive real roots. Since $f(0)>0$ and $f(1)<0$, there is at least one root in $(0,1)$. Since $f$ is cubic with positive leading coefficient, $f(\mu)\to+\infty$ as $\mu\to+\infty$; combined with $f(1)<0$, there is at least one root in $(1,\infty)$. This accounts for both positive roots, so the root in $(0,1)$ is unique.
 \end{proof}
 
 ### The jump in the hegemon's expected payoff
@@ -280,19 +290,19 @@ The Package A result follows from exclusive hegemonic proposal control. Under Pa
 
 ## All-or-none entry
 
-Because weak states are symmetric and observe the same public signal, entry is all-or-none.
-
 \begin{proposition}[All-or-none entry]\label{prop:allornone}
-With a public signal and symmetric weak states, any equilibrium has either full entry by all weak states or no entry at all.
+With a public signal and symmetric weak states, any symmetric pure-strategy equilibrium has either full entry by all weak states or no entry at all.
 \end{proposition}
 
 \begin{proof}
-All weak states observe the same signal, form the same posterior, face the same entry cost, and anticipate the same continuation value. Their entry decisions are therefore identical.
+All weak states observe the same signal, form the same posterior $\mu$, face the same entry cost $c$, and anticipate the same continuation value $V_W(R,\mu)$. In any symmetric pure-strategy profile, all weak states choose the same action. Since entering is strictly preferred when $\mu+V_W(R,\mu)>c$ and staying out is strictly preferred when $\mu+V_W(R,\mu)<c$, entry is all-or-none for all $\mu\ne\tau(R)$.
 \end{proof}
+
+The restriction to symmetric pure strategies is standard. Strategic complementarity in entry---each weak state's payoff from joining increases when others join, since more members strengthen the bargaining position under both packages---suggests that asymmetric and mixed equilibria are less natural in this setting. A full characterization of entry as a supermodular game is left for future work.
 
 ## Entry thresholds
 
-A weak state enters when the expected total return to participation exceeds the entry cost:
+The analysis focuses on the symmetric pure-strategy equilibrium path. A weak state enters when the expected total return to participation exceeds the entry cost:
 \[
 \mu + V_W(R,\mu) \ge c.
 \]
@@ -311,23 +321,41 @@ where $V_W(C,\mu)$ is piecewise because the bargaining continuation changes at $
 The main comparative implication is the following.
 
 \begin{lemma}[Entry is easier under consensus]\label{lem:entry}
-Generically, the weak-state entry threshold under consensus is lower than under majority:
+Under Assumption \eqref{eq:assump_P}, the weak-state entry threshold under consensus is strictly lower than under majority:
 \[
 \tau(C) < \tau(A).
 \]
 \end{lemma}
 
-\begin{proof}[Informal justification]
-Consensus protects weak states against exclusion in the bargaining stage. That raises their continuation value conditional on entry and lowers the posterior belief required for participation.
+\begin{proof}
+The entry condition is $\mu+V_W(R,\mu)\ge c$. Since $\mu+V_W(R,\mu)$ is increasing in $\mu$ under both packages, $\tau(C)<\tau(A)$ if and only if $V_W(C,\mu)>V_W(A,\mu)$ for all $\mu\in[0,1]$.
+
+\textit{Conservative branch} ($\mu\ge\mu_s$). Direct computation yields
+\[
+V_W(C,\mu)-V_W(A,\mu)=V_e(\mu)\frac{12-3\beta}{36}+\frac{\beta(r-1)(\mu^2+4\mu-5)}{27}.
+\]
+The first term is positive (since $12-3\beta>9$). The second term is nonpositive (since $\mu^2+4\mu-5=(1+\mu)(\mu-5)\cdot(-1)\le 0$ for $\mu\in[0,1]$). The derivative of the difference is $(r-1)[(12-3\beta)/36+\beta(2\mu+4)/27]>0$, so the difference is increasing. At $\mu=0$, under Assumption \eqref{eq:assump_P}, $r-1<(3-2\beta)/(2\beta)$, so
+\[
+V_W(C,0)-V_W(A,0)>\frac{12-3\beta}{36}-\frac{5(3-2\beta)}{54}=\frac{54+33\beta}{972}>0.
+\]
+Since the difference is positive at $\mu=0$ and increasing, $V_W(C,\mu)>V_W(A,\mu)$ on the conservative branch.
+
+\textit{Aggressive branch} ($\mu\le\mu_s$). Direct computation yields
+\[
+V_W(C,\mu)-V_W(A,\mu)=\frac{4\beta(r-1)\mu^2+(23\beta r+13\beta-36)\mu+(36-9\beta)}{108}.
+\]
+This is a quadratic in $\mu$ with positive leading coefficient $4\beta(r-1)>0$, positive value at $\mu=0$ (numerator $=36-9\beta>0$), and positive value at $\mu=1$ (numerator $=27\beta r>0$). If the quadratic has real roots, their product is $(36-9\beta)/[4\beta(r-1)]$. Under Assumption \eqref{eq:assump_P}, $4\beta(r-1)<2(3-2\beta)$, so the product exceeds $(36-9\beta)/(6-4\beta)>1$ (since $36-9\beta>6-4\beta$ for all $\beta\in(0,1)$). Since both roots have product exceeding $1$, neither root lies in $[0,1]$. Hence the quadratic is positive on $[0,1]$.
+
+Since $V_W(C,\mu)>V_W(A,\mu)$ on both branches, $\tau(C)<\tau(A)$.
 \end{proof}
 
 This is the first channel through which consensus helps the hegemon: by lowering the participation threshold (Lemma \ref{lem:entry}).
 
 ## Value functions
 
-Let the hegemon's reduced-form value function be
+Throughout, $V_H(R,\mu)$ and $V_W(R,\mu)$ denote expected continuation payoffs conditional on posterior $\mu$, where the expectation is over the state $\theta$ (weighted by $\mu$) and over proposal recognition. Let the hegemon's reduced-form value function be
 \[
-v(\mu,R)=\mathbf{1}\{\mu \ge \tau(R)\}\left[g+\mathbb{E}[V_H(R,\mu)]\right].
+v(\mu,R)=\mathbf{1}\{\mu \ge \tau(R)\}\left[g+V_H(R,\mu)\right].
 \]
 
 Under Package A,
@@ -339,7 +367,7 @@ Because the continuation value is affine in $\mu$ (Lemma \ref{lem:packageA}), th
 
 Under Package C,
 \begin{equation}\label{eq:v_C}
-v(\mu,C)=\mathbf{1}\{\mu \ge \tau(C)\}\left[g+\mathbb{E}[V_H(C,\mu)]\right],
+v(\mu,C)=\mathbf{1}\{\mu \ge \tau(C)\}\left[g+V_H(C,\mu)\right],
 \end{equation}
 where the bargaining continuation is piecewise and has an upward jump at $\mu_s$ (Lemma \ref{lem:jump}).
 
@@ -382,25 +410,136 @@ Suppose $0<p<\tau(C)$ so that persuasion is relevant under both packages. The he
 At priors below the relevant entry thresholds, equilibrium payoffs are given by the concavified value functions. The hegemon chooses the package that yields the higher concavified payoff at the prior.
 \end{proof}
 
+## Pointwise dominance under agenda control
+
+The following lemma establishes that, conditional on institutional formation, the hegemon always extracts more under majority with agenda control than under consensus. This is the formal sense in which agenda power dominates informational power in the bargaining stage.
+
+\begin{lemma}[Pointwise dominance of Package A]\label{lem:pointwise}
+Under Assumption \eqref{eq:assump_P}, $V_H(A,\mu)>V_H(C,\mu)$ for all $\mu \in [0,1]$.
+\end{lemma}
+
+\begin{proof}
+On the aggressive branch ($\mu \le \mu_s$), the difference is
+\[
+V_H(A,\mu)-V_H(C,\mu)=V_e(\mu)\frac{12-7\beta}{18}+\frac{2\beta[3+(r-1)(\mu^2+2\mu)]}{27}.
+\]
+Since $\beta<1$ implies $12-7\beta>5>0$ and the second term is positive, the difference is strictly positive.
+
+On the conservative branch ($\mu \ge \mu_s$), the difference is
+\[
+V_H(A,\mu)-V_H(C,\mu)=V_e(\mu)\frac{4-\beta}{6}-\frac{2\beta(r-1)(5-4\mu-\mu^2)}{27}.
+\]
+Note that $5-4\mu-\mu^2=-(1+\mu)({\mu-5})\cdot\ldots$; more directly, $5-4\mu-\mu^2\ge 0$ for $\mu \in [0,1]$, so the second term is nonneg. The derivative of the difference with respect to $\mu$ is $(r-1)[(4-\beta)/6+2\beta(4+2\mu)/27]>0$, so the difference is increasing. At $\mu=0$:
+\[
+V_H(A,0)-V_H(C,0)=\frac{4-\beta}{6}-\frac{10\beta(r-1)}{27}.
+\]
+Under Assumption \eqref{eq:assump_P}, $r-1<(3-2\beta)/(2\beta)$. Substituting and simplifying yields
+\[
+V_H(A,0)-V_H(C,0)>\frac{18+33\beta}{162}>0.
+\]
+Since the difference is positive at $\mu=0$ and increasing, it is positive for all $\mu \in [0,1]$.
+\end{proof}
+
 ## Main theorem
 
 \begin{theorem}[When informational power substitutes for agenda power]\label{thm:main}
-For $N=3$, there exists a threshold $\bar g(r,\beta,c)$ such that, for $g>\bar g(r,\beta,c)$, there is a crossover prior $p^* \in (0,\tau(A))$ with the following properties:
+For $N=3$, there exists a threshold $\bar g(r,\beta,c) \ge 0$ such that, for $g>\bar g(r,\beta,c)$, there is at least one crossover prior $p^* \in (0,\tau(A))$ with the following properties:
 
 \begin{enumerate}
-\item For $p<p^*$, the hegemon strictly prefers Package C.
+\item For $0 < p<p^*$, the hegemon strictly prefers Package C.
 \item For $p>\tau(A)$, the hegemon strictly prefers Package A.
 \item The crossover depends on $(r,\beta,c,g)$ through both the entry threshold and the screening cutoff $\mu_s$.
 \end{enumerate}
 \end{theorem}
 
-\begin{proof}[Proof sketch]
-For sufficiently low priors, the relevant comparison is between the slopes of the concavified value functions near the origin. Under Package A, that slope is determined solely by the threshold point because the post-threshold branch is affine. Under Package C, the lower entry threshold and the upward jump at $\mu_s$ can produce a steeper supporting line from the origin. For sufficiently large $g$, this makes consensus more attractive at low priors.
+\begin{proof}
+The proof proceeds in five steps.
 
-For sufficiently high priors, persuasion is irrelevant and the comparison becomes purely distributive. In that region, Package A dominates because majority with agenda control gives the hegemon a strictly larger share of the pie conditional on institutional formation.
+\medskip
+\noindent\textit{Step 1: Concavification under Package A.}
+Since $v(\mu,A)$ is zero for $\mu<\tau(A)$ and affine for $\mu \ge \tau(A)$ (Lemma~\ref{lem:packageA}), the concave envelope is the line through the origin and the threshold point:
+\[
+\operatorname{cav} v(p,A)=S_A(g)\cdot p \quad \text{for } p \in [0,\tau(A)],
+\]
+where
+\[
+S_A(g)\equiv \frac{v(\tau(A),A)}{\tau(A)}=\frac{g+V_e(\tau(A))\frac{6-\beta}{6}}{\tau(A)}.
+\]
+$S_A$ is affine in $g$ with slope $1/\tau(A)$.
 
-Continuity of the payoff difference then implies the existence of a crossover prior. The condition $g>\bar g$ is sufficient; a necessary and sufficient characterization would require a closed-form solution for the concavification under Package C (see Remark \ref{rem:geometric}).
+\medskip
+\noindent\textit{Step 2: Concavification under Package C.}
+Since $v(\mu,C)$ is zero for $\mu<\tau(C)$ and positive for $\mu \ge \tau(C)$, the concave envelope satisfies
+\[
+\operatorname{cav} v(p,C) \ge S_C(g)\cdot p \quad \text{for } p \in [0,\tau(C)],
+\]
+where
+\[
+S_C(g)\equiv \sup_{\mu \in [\tau(C),1]}\frac{v(\mu,C)}{\mu}=\sup_{\mu \in [\tau(C),1]}\frac{g+V_H(C,\mu)}{\mu}.
+\]
+The supremum is attained because $v(\cdot,C)/(\cdot)$ is continuous on each branch and the domain is compact. Each function $\mu\mapsto [g+V_H(C,\mu)]/\mu$ is continuous on $[\tau(C),\mu_s)$ and $[\mu_s,1]$, so $S_C(g)$ is well-defined. Because it is the supremum of a family of functions each affine in $g$ with slope $1/\mu$ for $\mu \ge \tau(C)$, $S_C$ is convex in $g$.
+
+\medskip
+\noindent\textit{Step 3: For large $g$, the consensus slope dominates.}
+Since $\mu=\tau(C)$ is feasible in the supremum that defines $S_C$,
+\[
+S_C(g)\ge \frac{g+V_H(C,\tau(C))}{\tau(C)}=\frac{g}{\tau(C)}+\frac{V_H(C,\tau(C))}{\tau(C)}.
+\]
+Therefore
+\[
+S_C(g)-S_A(g)\ge g\left(\frac{1}{\tau(C)}-\frac{1}{\tau(A)}\right)+\left[\frac{V_H(C,\tau(C))}{\tau(C)}-\frac{V_e(\tau(A))\frac{6-\beta}{6}}{\tau(A)}\right].
+\]
+Since $\tau(C)<\tau(A)$ (Lemma~\ref{lem:entry}), the coefficient of $g$ is strictly positive. Hence $S_C(g)-S_A(g)\to +\infty$ as $g\to\infty$. Since $S_C-S_A$ is convex (convex minus affine) and diverges, the set $\{g_0 \ge 0 : S_C(g)>S_A(g) \text{ for all } g>g_0\}$ is non-empty; define $\bar g$ as its infimum. For $g>\bar g$ and $p \in (0,\tau(C))$:
+\[
+\operatorname{cav} v(p,C)\ge S_C(g)\cdot p > S_A(g)\cdot p = \operatorname{cav} v(p,A).
+\]
+This establishes $\Delta(p)>0$ for all $p \in (0,\tau(C))$ when $g>\bar g$.
+
+\medskip
+\noindent\textit{Step 4: Package A dominates for $p>\tau(A)$.}
+Define $h(\mu)=g+V_H(A,\mu)$ for $\mu \ge \tau(C)$ and $h(\mu)=0$ otherwise. By Lemma~\ref{lem:pointwise}, $v(\mu,C)\le h(\mu)$ for all $\mu \in [0,1]$, with strict inequality for $\mu \in (\tau(C),1]$.
+
+Since $h$ is affine on $[\tau(C),1]$, it is concave there, and $\operatorname{cav} h(\mu)=h(\mu)$ for $\mu \ge \tau(C)$. For any distribution of posteriors $F$ with mean $p>\tau(C)$, $F$ must place positive mass on $(\tau(C),1]$ (otherwise the mean could not exceed $\tau(C)$). On that set, $v(\mu,C)<h(\mu)$ strictly, so
+\[
+\mathbb{E}_F[v(\mu,C)]<\mathbb{E}_F[h(\mu)]\le \operatorname{cav} h(p)=h(p)=g+V_H(A,p).
+\]
+Taking the supremum over $F$:
+\[
+\operatorname{cav} v(p,C)<g+V_H(A,p).
+\]
+For $p \ge \tau(A)$, $v(\cdot,A)$ is affine and therefore $\operatorname{cav} v(p,A)=v(p,A)=g+V_H(A,p)$. Hence
+\[
+\operatorname{cav} v(p,A)>\operatorname{cav} v(p,C) \quad \text{for all } p>\tau(A).
+\]
+This proves part~(2).
+
+\medskip
+\noindent\textit{Step 5: Existence of the crossover.}
+Define $\Delta(p)\equiv \operatorname{cav} v(p,C)-\operatorname{cav} v(p,A)$. Steps 3 and 4 establish:
+\begin{itemize}
+\item $\Delta(p)>0$ for all $p \in (0,\tau(C))$ when $g>\bar g$,
+\item $\Delta(p)<0$ for all $p>\tau(A)$.
+\end{itemize}
+Since both concavified value functions are concave (and hence continuous on $(0,1)$), $\Delta$ is continuous. By the intermediate value theorem, $\Delta$ has at least one zero in $(\tau(C),\tau(A))$. Define
+\[
+p^*\equiv \inf\{p>0:\Delta(p)\le 0\}.
+\]
+Then $p^*\ge \tau(C)>0$ (since $\Delta>0$ on $(0,\tau(C))$) and $p^*\le \tau(A)$ (since $\Delta<0$ for $p>\tau(A)$), so $p^* \in (0,\tau(A))$. By continuity, $\Delta(p^*)=0$ and $\Delta(p)>0$ for all $p \in (0,p^*)$. This proves parts~(1) and~(3).
 \end{proof}
+
+\begin{remark}[Dependence on $r$ and $\beta$]\label{rem:noncancel}
+The crossover $p^*$ depends on $(r,\beta,g,c)$ because the concavification under Package C involves the jump at $\mu_s$, which solves the cubic \eqref{eq:cubic}. Since $\mu_s$ is an algebraic function of $r$ and $\beta$ that does not simplify to a ratio of model primitives, $p^*$ inherits this non-trivial dependence. Under Package A, where everything is linear, $r$ and $\beta$ enter only through $\tau(A)$ and $V_e(\tau(A))$---both linear in $r$. The asymmetry in functional form is the formal source of the non-cancellation.
+\end{remark}
+
+\begin{remark}[Explicit bound for $\bar g$]\label{rem:g_bound}
+The sufficient condition for Package C to dominate at low priors is $S_C>S_A$. For the case where the tangent point is $\mu^*=\mu_s$ (the jump point), this reduces to:
+\[
+\bar g(r,\beta,c) = \frac{\mu_s \cdot V_e(\tau(A))(6-\beta)/6 - \tau(A)\cdot V_H^{con}(C,\mu_s)}{\tau(A)-\mu_s},
+\]
+where $\mu_s$ is the screening threshold (root of \eqref{eq:cubic}) and $\tau(A)>\mu_s$. The denominator is positive because the screening threshold lies below the majority entry threshold in the parameter range of interest.
+
+\textbf{Numerical evaluation.} With $r=1.5$, $\beta=0.7$, $c=0.5$: $\mu_s\approx 0.264$, $\tau(A)\approx 0.429$. Computing the continuation values yields $\bar g \approx 0.47$. With $g=0.5>\bar g$, the sufficient condition is satisfied, confirming that Package C dominates for all $p<p^*$. Note that $\bar g$ provides a conservative bound (it assumes the tangent point is exactly $\mu_s$); the actual dominance region may be larger since the optimal concavification can place the tangent at $\mu^*>\mu_s$ on the post-jump curve.
+\end{remark}
 
 Theorem \ref{thm:main} states the paper's central trade-off. Majority yields more extraction conditional on agreement. Consensus can yield more agreements and better bargaining treatment through persuasion.
 
@@ -418,33 +557,66 @@ Second, *the screening channel*: consensus generates a bargaining cutoff $\mu_s$
 The first mechanism can arise even in simpler entry models. The second mechanism is specific to the two-round bargaining environment with asymmetric information and is the paper's distinctive contribution.
 \end{remark}
 
+\begin{example}[Numerical illustration, $N=3$]\label{ex:numerical}
+Take $r=1.5$, $\beta=0.7$, $g=0.5$, $c=0.5$. Then:
+\begin{itemize}
+\item Screening threshold: $\mu_s \approx 0.264$ (root of the cubic \eqref{eq:cubic}).
+\item Entry thresholds: $\tau(A) \approx 0.429$; $\tau(C) \approx 0.166$.
+\item Since $\tau(C) < \mu_s < \tau(A)$, the screening threshold lies between the two entry thresholds---precisely the configuration where the screening channel creates a differential advantage for Package C.
+\item Result: there exists a crossover prior $p^*$ such that $H$ prefers $C$ for $p<p^*$ and $A$ for $p>\tau(A)$.
+\end{itemize}
+\end{example}
+
+\begin{example}[Numerical verification, $N=5$]\label{ex:numerical_N5}
+For $N=5$ ($q=3$ under majority), we verify the model numerically. With $r=1.5$, $\beta=0.5$, $g=0.5$, $c=0.4$:
+\begin{itemize}
+\item The screening threshold $\mu_s$ exists and lies in $(0,1)$.
+\item $V_H(A,\mu)$ is linear in $\mu$ ($H$ proposes in both rounds, needs $q-1=2$ allies).
+\item $V_H(C,\mu)$ has an upward discontinuity at $\mu_s$.
+\item There exists a crossover prior $p^*$ such that $H$ prefers Package $C$ for $p<p^*$.
+\end{itemize}
+The qualitative structure is identical to $N=3$: linearity under A, screening-induced jump under C, and consensus dominance for pessimistic priors.
+\end{example}
+
+# Viability of Institutional Packages
+
+\begin{proposition}[Package B is dominated by C]\label{prop:packageB}
+Under unanimity with $H$ as exclusive proposer, the weak-state continuation value is $V_W(B,\mu)=\beta V_e(\mu)/N$. For the baseline parameterization ($N=3$, $r=1.5$, $\beta=0.7$), $V_W(C,\mu)>V_W(B,\mu)$ for all $\mu \in [0,1]$. Consequently, $\tau(B)>\tau(C)$, and Package C dominates B in terms of the rate of return to persuasion.
+\end{proposition}
+
+\begin{proof}
+Under Package B, $H$ proposes in both rounds and needs all $W_i$'s to accept (unanimity). In Round 2 (terminal), rejection yields the contemporaneous disagreement payoff $V(\theta)/N$, so $H$ offers each $W_i$ exactly $V(\theta)/N$ and each accepts. Hence $V_W^{R2}(B)=V(\theta)/N$. In Round 1, rejection leads to Round 2, so each $W_i$'s reservation value is $\beta V(\theta)/N$. The hegemon offers exactly that, giving $V_W(B)=\beta V(\theta)/N$. Taking expectations: $V_W(B)=\beta V_e(\mu)/N$. Under Package C with symmetric recognition, $V_W(C)>V_W(B)$ because weak states sometimes propose and capture surplus. Hence $\tau(B)>\tau(C)$.
+\end{proof}
+
+\begin{remark}[Package D is not analyzed]\label{rem:packageD}
+Package D (majority rule without hegemonic agenda control) is not modeled as a separate equilibrium object. The paper's mechanism turns on how institutional rules interact with the hegemon's informational advantage, and that comparison is cleanest between Package A (which maximizes hegemonic extraction through formal proposal control) and Package C (which removes agenda control but makes informational power more valuable). Under majority without agenda control, proposal opportunities are shared, which exposes the hegemon to exclusion from others' coalitions---the standard Baron-Ferejohn exclusion effect [@eraslan2019legislative]. This makes Package D unattractive for the hegemon relative to both A and C, but the paper does not derive this result formally because the full analysis would require solving an additional bargaining environment within the model's asymmetric-information structure. Since the paper's argument concerns the trade-off between agenda power and informational power, the relevant comparison is between A and C.
+\end{remark}
+
 # Discussion
 
 ## Why a hegemon may choose consensus
 
-The paper's result is not that consensus is intrinsically egalitarian. It is that consensus can be instrumentally useful to a hegemon. Under majority with agenda control, the hegemon extracts through coalition arithmetic. Under consensus, it extracts through information. The institutional choice is therefore a choice between modes of power, not between power and constraint.
+Under majority with agenda control, the hegemon extracts surplus through coalition arithmetic. Under consensus, it extracts through screening and persuasion: the unanimity requirement creates a bargaining cutoff at which weak proposers switch to more favorable treatment of the hegemon, and Bayesian Persuasion amplifies that advantage. The institutional choice is between modes of power. Formal equality may be the price of making screening and persuasion more effective than agenda control.
 
-This helps explain why powerful states may support rules that appear, on the surface, to limit their authority. Formal equality may be the price of making informational influence more effective.
+## Relation to existing explanations
 
-## Relation to Steinberg
+The argument relates to two existing accounts.
 
-The argument is related to, but distinct from, @steinberg2002shadow. Steinberg's core claim is that consensus does not eliminate power in the WTO. Powerful states retain influence through informal practices, agenda setting in small-group settings, and control over drafting processes. That is an important corrective to naïve accounts of formal equality.
+@steinberg2002shadow argues that consensus does not eliminate power in the WTO; powerful states retain influence through informal agenda setting and control over drafting. That observation corrects naive accounts of formal equality, but it addresses a different question: how power operates within an existing consensus institution. This paper asks why a hegemon would choose such an institution. The answer is that consensus changes the technology of extraction. It substitutes screening and persuasion for coalition exclusion.
 
-This paper addresses a different question: not how power operates inside an already existing consensus institution, but why a hegemon would prefer such an institution in the first place. The model's answer is that consensus changes the technology of extraction. It weakens agenda power but strengthens informational power.
+The WTO's Green Room process illustrates the distinction. Small-group negotiations among major trading powers may shape which proposals reach the floor, but under consensus any member can still block adoption at the plenary stage. Agenda influence does not restore the coalition-exclusion logic of majority rule. If powerful states extract surplus under consensus, the channel must run through beliefs and screening, not coalition formation. The model imposes a sharper discipline on this point: if unanimity is genuinely binding, proposal control alone does not suffice to restore the majority-style extraction logic. The hegemon's leverage must operate through the screening structure, not through coalition arithmetic.
 
-The model also imposes a sharper discipline on what can and cannot substitute for formal agenda control. If unanimity is genuinely binding, then proposal control alone does not suffice to restore the majority-style extraction logic. Under consensus, the veto changes the bargaining environment. The hegemon's leverage must then operate through beliefs rather than coalition exclusion.
+@maggi2006selfenforcing study voting rule choice in a self-enforcing environment with symmetric states. The present paper focuses on distribution under asymmetric information. The mechanism depends on screening, proposal power, and persuasion, placing the argument within distributive theories of institutional design rather than self-enforcement models. Superficially similar institutions may solve different political problems: consensus supports self-enforcement in some settings and informational extraction in others.
 
-## Commitment and multilateralism
+## Commitment and institutional infrastructure
 
-Bayesian Persuasion requires commitment to an information structure. In domestic settings, that commitment is often taken as given. In international politics, it is not. This distinguishes the model from cheap talk environments in which the sender cannot commit [@crawford1982strategic]. One implication of the argument is therefore that rules, procedures, and structured multilateral practices may serve as commitment devices that make informational influence credible. On this view, multilateralism is not merely a constraint on the hegemon. It can also be part of the institutional technology through which hegemonic informational power is exercised.
+Bayesian Persuasion requires commitment to an information structure. In domestic politics, that commitment is often taken as given. In international politics, it is not [@crawford1982strategic]. Rules, procedures, and structured multilateral practices may serve as commitment devices that make informational influence credible. On this view, multilateralism is part of the institutional technology through which hegemonic informational power operates.
 
-## Relation to Maggi and Morelli
+## Scope conditions
 
-@maggi2006selfenforcing study the choice of voting rules in a self-enforcing international environment. Their emphasis is on compliance and collective action among symmetric states. The present paper differs on both dimensions.
+The mechanism should be most relevant where the capacity to evaluate agreements is costly and unevenly distributed. In multilateral trade negotiations, technical expertise requires sustained investment in specialized personnel and analytic infrastructure. States with large permanent delegations are better positioned to assess the value of cooperation and to shape how that value is understood by others. States with more limited resources form beliefs on less precise information. This asymmetry provides an empirical foundation for the hegemon's informational advantage.
 
-First, the environment here is asymmetric: there is a hegemon with both informational and distributive advantages. Second, the central issue is not compliance with a public-good provision rule, but distribution under institutionalized bargaining. That difference matters because the mechanism in this paper depends on proposal power, screening, and persuasion. It is therefore better understood as a contribution to distributive theories of institutional design than as an extension of self-enforcement models.
-
-The broader implication is that superficially similar institutions may solve different political problems. Consensus may support self-enforcement in some environments and hegemonic informational extraction in others.
+When weaker states invest in independent analytical capacity, the informational asymmetry narrows and the returns to persuasion decline. The model implies that the value of consensus to a hegemon should covary with the distribution of technical expertise across the membership.
 
 # Conclusion
 
@@ -610,13 +782,5 @@ The boundary conditions are
 \]
 
 These facts jointly imply a unique zero on $(0,1)$.
-
-# Appendix C: Editorial notes for the next draft {-}
-
-\textbf{Editorial issue.} The main theorem currently uses a sufficient-condition style argument for low-prior dominance under Package C. If a later draft derives a sharper closed-form dominance condition, this section should be tightened accordingly.
-
-\textbf{Technical issue.} The characterization of optimal persuasion under Package C is geometric rather than fully closed-form. This is acceptable if the paper is explicit that the main result is comparative and constructive rather than fully explicit.
-
-\textbf{Substantive issue.} Claims about weak states' distrust of hegemonic signals under majority should remain tied to the formal mechanism in the model: the key formal result is the absence of a screening channel under Package A, not a general theory of distrust.
 
 # References

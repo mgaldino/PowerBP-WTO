@@ -9,9 +9,10 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 
 ## Status
 
-- **Fase**: REVISÃO PÓS-REVIEW v4. Journal target: JoP → AJPS → RIO.
-- **Paper v4** (ATIVO): `formal_model_v4.Rmd` — versão "light math" pós-proofread+fixes. Corpo conta a história, provas no appendix. Estilo JoP (Hirsch 2023, Hill 2022, Tyson et al. 2024).
-- **Paper v3** (ARQUIVO): `formal_model_v3.Rmd` — cópia idêntica a v4 (editada na sessão 2026-04-26).
+- **Fase**: ATIVO — implementando Opção B modificada (screening central, BP → Remark). Journal target: JoP → AJPS → RIO.
+- **Paper v5** (ATIVO): `formal_model_v5.Rmd` — reescrita sem BP como co-protagonista. Screening é mecanismo central. Baseado em v4.
+- **Paper v4** (ARQUIVO): `formal_model_v4.Rmd` — versão "light math" pós-proofread+fixes, com BP como co-protagonista. Preservada intacta.
+- **Paper v3** (ARQUIVO): `formal_model_v3.Rmd` — versão anterior a v4. v4 divergiu significativamente (proofread, editorial revision, fixes F1-F12, reescrita motivating example, etc.).
 - **Paper v2** (ARQUIVO): `formal_model_v2.Rmd` — versão densa com provas no corpo. Preservada para referência e caso pareceristas peçam detalhes.
 - **Reviews v3**: `quality_reports/2026-04-22_edmans-review-v3.md` (7.3/10) + `quality_reports/2026-04-22_review-formal-model-v3.md` (7.7/10) + `quality_reports/2026-04-26_review-formal-model.md` (7.7/10, R&R minor — Design 8, Técnica 7.5, Exposição 7.5).
 - **Coarse review**: `coarse-output/coarse_0b50af74_coarse_review_cli_claude.md` — review externa importante, consultar antes de submeter.
@@ -55,7 +56,7 @@ Auditoria completa: `quality_reports/2026-04-25_auditoria_parecer_v3.md`
 | 2 | ~~**Corrigir fórmula de BP**: Π\* = αV_e(p) + cav v(p,R)~~ | ALTA | BAIXA | l.521, l.424 | ✅ FEITO |
 | 3 | ~~**λ_M → (λ_M − α) nas provas de Thm 1 e Thm 2**~~ | ALTA | BAIXA | B.6, B.8 | ✅ FEITO |
 | 4 | ~~**Código R: subtrair αV_e no entry set**~~ | MÉDIA | BAIXA | l.436, l.441, l.580, l.590 | ✅ FEITO |
-| 4b | **Verificação pós-normalização (agente fresh)**: re-auditar provas de Thm 1 (B.6) e Thm 2 (B.8) com v redefinido como ganho líquido | ALTA | MÉDIA | B.6, B.8 inteiros | PENDENTE |
+| 4b | ~~**Verificação pós-normalização (agente fresh)**: re-auditar provas de Thm 1 (B.6) e Thm 2 (B.8) com v redefinido como ganho líquido~~ | ALTA | MÉDIA | B.6, B.8 inteiros | ✅ FEITO |
 | 5 | ~~**Captions das figuras R**: "Value functions" → "Net gain functions"~~ | MÉDIA | BAIXA | fig.cap l.426 | ✅ FEITO |
 | 6 | ~~**Concavidade de Δ₁ no ramo LOW**~~ | MÉDIA | BAIXA | B.2 l.938 | ✅ FEITO |
 | 7 | ~~**Derivação algébrica da decomposição D(μ)**: novo B.5a~~ | MÉDIA | MÉDIA | Novo appendix B.5a | ✅ FEITO (A+) |
@@ -63,7 +64,7 @@ Auditoria completa: `quality_reports/2026-04-25_auditoria_parecer_v3.md`
 | 9 | ~~**E_U é fechado**~~ | BAIXA | BAIXA | B.8 l.1041 | ✅ FEITO |
 | 10 | ~~**Prop 7 (K>2): rebaixar label**~~ | BAIXA | BAIXA | App C l.1062, l.1070 | ✅ FEITO |
 | 11 | ~~**Documentar model_functions.R**~~ | BAIXA | BAIXA | scripts/model_functions.R | ✅ FEITO |
-| 12 | **GATT/WTO: comprimir** (opcional) | MÍNIMA | BAIXA | l.676-680 | PENDENTE (opcional) |
+| 12 | **GATT/WTO: comprimir** | MÍNIMA | BAIXA | l.676-680 | PENDENTE |
 | 13 | ~~**Motivating example: nota de coerência**~~ | — | — | — | RETIRADO (example sem entry cost é pedagógico por design) |
 
 ## TODOs
@@ -85,11 +86,35 @@ Ver plano detalhado: `quality_reports/plans/2026-04-22_next-steps-v3.md`
 Review completo: `quality_reports/2026-04-26_review-formal-model.md`. Feitos: F1-F6, F8, F10, 4b (ver "CONCLUÍDO sessão 2026-04-26" abaixo). Pendentes: F7, F9, F11, F12 (ver "PENDÊNCIAS RESTANTES" abaixo).
 
 ### PENDÊNCIAS RESTANTES (v4)
-- [ ] **F7**: Reorganizar e comprimir Discussion (Sec 8): separar GATT/WTO, scope, alternativas; cortar ~30%
-- [ ] **F9**: Completar tabela de notação no App A (phi, omega, lambda_M, kappa_M)
-- [ ] **F11**: Quadro-resumo de auditabilidade na prova do Lemma 1 (tabela com D_base, δ_R1, δ_R2, domínios, endpoints)
-- [ ] **F12**: Reescrever Appendix C (K>2) como extensão heurística (reescrita maior, calibrar tom)
-- [ ] Consultar coarse review antes de submeter
+
+#### Review-formal-model pendências
+- [x] **F7**: Discussion v4 comprimida: alt explanations fundido com observable implications, erosão cortada, PTAs e biconditional redundantes cortados
+- [x] **F9**: Completar tabela de notação no App A — adicionados ω(μ), κ_M, D(μ), Γ, μ̄ (5 símbolos)
+- [x] **F11**: Road map em prosa na prova do Lemma 1 (domínios, sinais, endpoints de D_base, δ_R1, δ_R2)
+- [x] **F12**: Appendix C reescrito como "Extension" (não "Robustness"), com Limitations paragraph honesto sobre α_K*→0
+
+#### Coarse review pendências (gap analysis: `quality_reports/2026-04-26_coarse-review-gap-analysis.md`)
+**ALTA severidade**
+- [x] **CR1**: Tipo discreto — argumento de bunching + ref. Dworczak-Martini na Conclusão. Extensão contínua anotada como paper futuro.
+- [x] **CR2**: K>2 assessment honesto — Limitations ¶ em App C + Conclusão qualificada ("may shrink with K", "most favorable case")
+- [ ] **CR3**: BP commitment — mesmas 3 defesas (reputação, transparência, upper bound). Sem análise de cheap talk ou verifiable disclosure.
+
+**MÉDIA severidade**
+- [ ] **CR4**: Comparative statics de p* (∂p*/∂α, ∂p*/∂r etc.) — só 1 exemplo numérico, sem predições que distingam a teoria
+- [ ] **CR5**: Diferenciação Bardhi-Guo / Kim-Kim-Van Weelden — 1 frase, review pede 2-3 ¶
+- [ ] **CR6**: T>2 rounds — justificativa qualitativa apenas, sem análise de como jump varia com T
+- [ ] **CR7**: Payoff de W sob BP ótimo de H — não computado, sem discussão de sustentabilidade
+- [ ] **CR8**: Decomposição entry vs. screening — "dual exploitation" permanece qualitativa
+
+**BAIXA severidade**
+- [ ] **CR9**: Conclusão afirma threshold sempre existe — ignorar caso E_U = (0,1] (dominância global)
+- [ ] **CR10**: K>2 na conclusão — não distingue provado (K=2) de conjectura (K geral)
+- [ ] **CR11**: Footnote vs. main text — efeitos opostos de complexidade (consensus matters em áreas complexas vs. α_K* aperta)
+- [ ] **CR12**: (N-1)/N² descrito como "peaks at intermediate N" — é monotonicamente decrescente
+- [ ] **CR13**: Figure 5 em p=0.05 sem justificativa de benchmark (parcialmente mitigado pelo heatmap)
+- [ ] **CR14**: Doha — linguagem melhorou ("consistent with") mas não adota formulação sugerida
+
+#### Submissão
 - [ ] Submeter ao JoP
 
 ### CONCLUÍDO (sessão 2026-04-26 — editorial revision v4)
@@ -216,6 +241,12 @@ Review completo: `quality_reports/2026-04-26_review-formal-model.md`. Feitos: F1
 
 Jogo repetido dentro de instituição consensual. Fracos investem para aprender V(θ). Poder informacional de H se erode endogenamente. Explica fracasso de Doha.
 
+## Paper Futuro: Tipos Contínuos e Bunching
+
+> **PAPER FUTURO** — não faz parte deste paper. Caminho delineado caso parecerista do JoP exija.
+
+Extensão a tipos contínuos (θ ~ F em [0,r]). Screening de W com tipos contínuos gera bunching (regiões de tipos recebendo a mesma oferta). Transições entre regiões produzem kinks em V_H(μ) que BP pode explorar. Desafio técnico: com tipos contínuos, V_H depende da distribuição posterior inteira, não apenas da média — a hipótese de Dworczak & Martini (2019, JPE) de que payoff depende só da média posterior **não vale** diretamente. Alternativas: (a) encontrar condições sob as quais a média é suficiente, (b) usar frameworks mais gerais (Kolotilin et al. 2022, Arieli et al. 2023 "Bi-Pooling"). Refs: Dworczak & Martini 2019 JPE; Arieli, Babichenko, Smorodinsky & Yamashita 2023 TE; Kolotilin, Mylovanov & Zapechelnyuk 2022 TE; Dworczak & Kolotilin 2024 TE.
+
 ## Paper Futuro: Heterogeneidade e Potências Médias
 
 > **PROJETO SEPARADO** — movido para `/Users/manoelgaldino/Documents/DCP/Papers/heterogeneous-informational-power/`. Abrir sessão lá para trabalho neste paper.
@@ -228,6 +259,6 @@ Jogo repetido dentro de instituição consensual. Fracos investem para aprender 
 - N genérico sempre (N=3 apenas no exemplo motivador Seção 2)
 - x ≡ (N-1)αr como atalho notacional
 - Sob maioria: W EXCLUI H (não convenção WLOG de inclusão)
-- **v4 é o paper ativo para submissão**; v3 é cópia idêntica (editada em 2026-04-26); v2 preservado como arquivo
+- **v5 é o paper ativo para submissão**; v4 preservado intacto (pré-Opção B); v3 cópia de v4; v2 preservado como arquivo
 - **Estilo v3**: corpo narra o mecanismo em prosa substantiva; provas e álgebra no appendix; sem proof sketches no corpo; comparative statics em linguagem do fenômeno (não parâmetros)
 - **Paper é documento atemporal**: Escrever como se o leitor visse o paper pela primeira vez. NUNCA referenciar versões anteriores, mudanças feitas durante revisão, ou estado prévio do manuscrito. Nada de "now", "previously", "we have removed", "in the revised version". Descrever o resultado como se sempre tivesse sido assim.
