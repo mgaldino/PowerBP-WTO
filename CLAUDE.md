@@ -41,10 +41,21 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 
 ## PENDÊNCIAS RIO (v5, pré-submissão)
 
-Fontes: `quality_reports/parecer_AJPS_formal_model_v5.md` + `quality_reports/proof_roadmap_inserts_RIO.md`.
+Fontes: `quality_reports/parecer_AJPS_formal_model_v5.md` + `quality_reports/proof_roadmap_inserts_RIO.md` + `quality_reports/2026-04-27_comparison_hirsch_shotts.md`.
 
-#### Única pendência aberta
-- [ ] **RIO-4b**: Revisar frase sobre GATT/WTO na Discussion ("consensus persists in trade, where evaluating agreement value requires deep technical expertise") — autor vai revisar manualmente.
+#### Blockers de exposição (comparação com Hirsch & Shotts AJPS 2025)
+- [ ] **B1**: Zero evidência empírica — adicionar 1 figura descritiva (distribuição de voting rules por tipo de OI, Gould 2022 ou equivalente)
+- [ ] **B2**: Mapping modelo→realidade vago — 1 ¶ explícito: H = EUA/UE, θ = incerteza sobre welfare gains, α = valor de PTAs, W = developing countries
+- [ ] **B3**: Exemplos numéricos inventados sem ancoragem — calibrar com dados reais ou ser honesto e não fingir calibração
+
+#### Pendências de exposição (alta prioridade, não blockers)
+- [ ] **B4**: Exposição formalista demais para RIO — cortar game tree Stage 0-1; mover footnotes da Definition para Scope; intuição verbal ANTES de resultados
+- [ ] **B5**: Intro sem preview de resultados counterintuitivos — adicionar 2-3 frases
+- [ ] **B6**: Sem roadmap na intro — adicionar 3 linhas
+- [ ] **B7**: Conclusão sem implicações para policy — trazer implicações para design de OIs
+
+#### Pendência anterior
+- [ ] **RIO-4b**: Revisar frase sobre GATT/WTO na Discussion — autor vai revisar manualmente.
 
 #### Submissão
 - [ ] Submeter ao RIO
