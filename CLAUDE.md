@@ -72,6 +72,16 @@ Fontes: `quality_reports/parecer_AJPS_formal_model_v5.md` + `quality_reports/pro
 2. Por que não maioria? → W exclui H, H recebe só αV(θ). Sem screening.
 3. Por que unanimidade? → Screening. H abre mão de poder formal para amplificar poder informacional.
 
+## Compilação
+
+O paper usa `bookdown::pdf_document2` (definido no YAML). Para compilar corretamente:
+
+```r
+rmarkdown::render("formal_model_v5.Rmd")
+```
+
+**NÃO** usar `output_format = "pdf_document"` — isso ignora o YAML e quebra cross-references de figuras (`\@ref(fig:...)`) gerando warnings de "undefined references". Deixar sem argumento para usar o formato do YAML.
+
 ## Referências-chave
 
 ### Barganha legislativa
