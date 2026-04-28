@@ -1,212 +1,76 @@
-# Informational Power: Bayesian Persuasion, Legislative Bargaining, and Institutional Design
+# Informational Power and Institutional Design: When a Hegemon May Choose Consensus
 
 ## Projeto
 
-Paper teórico sobre **por que um hegemon escolheria consenso** em organizações internacionais. O mecanismo: unanimidade força W a interagir com a informação privada de H, criando screening que gera não-convexidade no payoff de H. Bayesian Persuasion explora essa não-convexidade. Sob maioria, W exclui H da coalizão → sem screening → BP ineficaz.
+Paper teórico sobre **por que um hegemon escolheria consenso** em organizações internacionais. O mecanismo: unanimidade força W a incluir H sob incerteza, criando screening que gera renda informacional. Sob maioria, W exclui H da coalizão → sem screening → payoff linear. Screening é o mecanismo central; Bayesian Persuasion aparece apenas como Remark.
 
 ### Resultado central
-H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimidade ativa poder informacional (BP + screening) que substitui poder de agenda. O consenso é uma tecnologia institucional de poder, não uma concessão.
+H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimidade ativa poder informacional (screening sob pivotalidade) que substitui poder de agenda. O consenso é uma tecnologia institucional de poder, não uma concessão.
 
 ## Status
 
-- **Fase**: ATIVO — implementando Opção B modificada (screening central, BP → Remark). Journal target: JoP → AJPS → RIO.
-- **Paper v5** (ATIVO): `formal_model_v5.Rmd` — reescrita sem BP como co-protagonista. Screening é mecanismo central. Baseado em v4.
-- **Paper v4** (ARQUIVO): `formal_model_v4.Rmd` — versão "light math" pós-proofread+fixes, com BP como co-protagonista. Preservada intacta.
-- **Paper v3** (ARQUIVO): `formal_model_v3.Rmd` — versão anterior a v4. v4 divergiu significativamente (proofread, editorial revision, fixes F1-F12, reescrita motivating example, etc.).
-- **Paper v2** (ARQUIVO): `formal_model_v2.Rmd` — versão densa com provas no corpo. Preservada para referência e caso pareceristas peçam detalhes.
-- **Reviews v3**: `quality_reports/2026-04-22_edmans-review-v3.md` (7.3/10) + `quality_reports/2026-04-22_review-formal-model-v3.md` (7.7/10) + `quality_reports/2026-04-26_review-formal-model.md` (7.7/10, R&R minor — Design 8, Técnica 7.5, Exposição 7.5).
-- **Edmans Review v5**: `quality_reports/2026-04-27_edmans-review-v5.md` (7.0/10, R&R — Contribution 6.5, Execution 7.5, Exposition 7.5). Bottleneck: contribuição (α* pequeno para N grande, K=2 favorável). RESOLVIDO parcialmente com extensão contínua.
-- **Coarse review**: `coarse-output/coarse_0b50af74_coarse_review_cli_claude.md` — review externa importante, consultar antes de submeter.
-- **Resultado novo**: α* é iff (necessário E suficiente). Nota: `notes/2026-04-22_alpha_star_iff.md`. Verificado.
-- **Next steps**: `quality_reports/plans/2026-04-22_next-steps-v3.md` — 7 prioridades ordenadas.
-- **Nota técnica**: `notes/2026-04-19_formalizacao_v2.Rmd` — derivações base (superseded pelo paper).
-- **Prova do Lemma 1**: `notes/2026-04-21_lemma1_complete_proof.md` — prova completa verificada.
+- **Fase**: ATIVO — preparando submissão. Journal target: **RIO** (Review of International Organizations).
+- **Paper v5** (ATIVO): `formal_model_v5.Rmd` — screening central, BP → Remark. Seção Related Literature adicionada. Provas rigorosas no appendix.
+- **Paper v4** (ARQUIVO): `formal_model_v4.Rmd` — versão com BP como co-protagonista. Preservada intacta.
+- **Paper v2** (ARQUIVO): `formal_model_v2.Rmd` — versão densa com provas no corpo.
 
-## Especificação do Modelo v2
+### Reviews de referência
+- **Parecer simulado AJPS**: `quality_reports/parecer_AJPS_formal_model_v5.md` — Reject (resubmit). Base para pendências RIO.
+- **Edmans Review v5 round 2**: `quality_reports/2026-04-27_edmans-review-v5-round2.md` (7.5/10, R&R minor — Contribution 7.0, Execution 8.0, Exposition 7.5).
+- **Coarse review**: `coarse-output/coarse_0b50af74_coarse_review_cli_claude.md` — review externa.
+
+## Especificação do Modelo
 
 - **N jogadores** (N genérico, nunca N=3): 1 hegemon H + N-1 weak states W
 - **Pie**: V(θ) ∈ {1, r}, r > 1. H observa θ, W's não.
-- **d_W = 0**: normalização WLOG (pie é excedente acima do piso comum dos fracos)
-- **d_H = αV(θ)**: alternativas bilaterais proporcionais ao valor da cooperação, α ∈ (0, 1/r)
+- **d_W = 0** (normalização WLOG), **d_H = αV(θ)**, α ∈ (0, 1/r)
 - **Proposta aleatória** (1/N) sob AMBAS as regras. Diferença é SÓ voting rule.
-- **Barganha**: 2 rounds Baron-Ferejohn
+- **Barganha**: 2 rounds Baron-Ferejohn, discount β
 - **Conceito de solução**: PBE
-- **Sem g** (payoff de participação removido)
-- **Sem benefício direto θ para W** (removido)
 
 ### Comparação institucional
 - **Unanimidade**: W deve incluir H → screening (agressivo vs conservador) → jump em E[V_H]
-- **Maioria**: W exclui H da coalizão, H captura αV(θ) bilateralmente → sem screening → V_H linear
+- **Maioria**: W exclui H da coalizão, H captura αV(θ) bilateralmente → sem screening → V_H = λ_M · V_e(μ), afim
 
-### Screening cutoff (closed form)
-μ_s = α(r-1)/(r-α). Substitui a cúbica do modelo anterior.
+### Resultados-chave
+- **Screening cutoff**: μ_s = α(r-1)/(r-α)
+- **Theorem 1**: α < α*(N,β) iff unanimidade domina condicionalmente em todo μ ∈ (0,1]
+- **Corollary**: F_U ⊆ F_M (unanimidade entry set contido no de maioria)
+- **Proposition 4**: Classificação institucional — U domina em F_U, M domina em F_M \ F_U, indiferença fora de F_M
+- **Remark weighted**: Screening depende de inclusão estratégica, não pivotalidade formal
 
-### Onde o screening vive
-Screening acontece em R1, NÃO em R2 no equilíbrio. Se R2 é alcançado (θ=1 rejeita em R1), W sabe θ=1 com certeza — informação completa, sem screening. R2 é off-path threat.
+## PENDÊNCIAS RIO (v5, pré-submissão)
 
-### Resultado sem BP
-Condicional à entrada: H prefere unanimidade (overpayment de θ=0), W prefere maioria. NÃO Pareto comparável. Para priors onde entry só ocorre sob maioria: M Pareto domina. BP viabiliza unanimidade induzindo entrada + explorando screening jump.
+Fontes: `quality_reports/parecer_AJPS_formal_model_v5.md` + `quality_reports/proof_roadmap_inserts_RIO.md`.
 
-## Fixes pós-parecer (2026-04-25)
-
-Auditoria completa: `quality_reports/2026-04-25_auditoria_parecer_v3.md`
-
-| # | Fix | Severidade | Dificuldade | Locais afetados | Seção |
-|---|-----|-----------|-------------|-----------------|-------|
-| 1 | ~~**Redefinir v(μ,R) como ganho líquido**~~ | ALTA | MÉDIA | l.414, tabela notação l.833 | ✅ FEITO |
-| 2 | ~~**Corrigir fórmula de BP**: Π\* = αV_e(p) + cav v(p,R)~~ | ALTA | BAIXA | l.521, l.424 | ✅ FEITO |
-| 3 | ~~**λ_M → (λ_M − α) nas provas de Thm 1 e Thm 2**~~ | ALTA | BAIXA | B.6, B.8 | ✅ FEITO |
-| 4 | ~~**Código R: subtrair αV_e no entry set**~~ | MÉDIA | BAIXA | l.436, l.441, l.580, l.590 | ✅ FEITO |
-| 4b | ~~**Verificação pós-normalização (agente fresh)**: re-auditar provas de Thm 1 (B.6) e Thm 2 (B.8) com v redefinido como ganho líquido~~ | ALTA | MÉDIA | B.6, B.8 inteiros | ✅ FEITO |
-| 5 | ~~**Captions das figuras R**: "Value functions" → "Net gain functions"~~ | MÉDIA | BAIXA | fig.cap l.426 | ✅ FEITO |
-| 6 | ~~**Concavidade de Δ₁ no ramo LOW**~~ | MÉDIA | BAIXA | B.2 l.938 | ✅ FEITO |
-| 7 | ~~**Derivação algébrica da decomposição D(μ)**: novo B.5a~~ | MÉDIA | MÉDIA | Novo appendix B.5a | ✅ FEITO (A+) |
-| 8 | ~~**Footnote: escolha unilateral de R**~~ | — | — | — | RETIRADO (KISS: todas as simplificações são do mesmo tipo) |
-| 9 | ~~**E_U é fechado**~~ | BAIXA | BAIXA | B.8 l.1041 | ✅ FEITO |
-| 10 | ~~**Prop 7 (K>2): rebaixar label**~~ | BAIXA | BAIXA | App C l.1062, l.1070 | ✅ FEITO |
-| 11 | ~~**Documentar model_functions.R**~~ | BAIXA | BAIXA | scripts/model_functions.R | ✅ FEITO |
-| 12 | **GATT/WTO: comprimir** | MÍNIMA | BAIXA | l.676-680 | PENDENTE |
-| 13 | ~~**Motivating example: nota de coerência**~~ | — | — | — | RETIRADO (example sem entry cost é pedagógico por design) |
-
-## TODOs
-
-### PRÓXIMO PASSO (v4, pós-review)
-Ver plano detalhado: `quality_reports/plans/2026-04-22_next-steps-v3.md`
-- [x] **P1**: Lemma 1 → iff (α* necessário E suficiente) — statement, prova, 7 locais atualizados
-- [x] **P2**: Remark μ̄ após Lemma 1 (Remark 2, rem:mu_bar) — feito por agente paralelo
-- [x] **P3**: ~~Tabela numérica μ̄ no Scope~~ — dispensado, substituído pelo heatmap (α,μ) com 4 painéis (Fig. heatmap-alpha-mu)
-- [x] **P4**: τ(U) closed-form no Appendix A.7 — derivação, review (PASS), correções, inserção feitos.
-- [x] **P5**: ~~Proof sketch para Prop 5~~ — dispensado, Prop 5 removida
-- [x] **P6**: Worked example após Theorem 1 (Example 2, p* ≈ 0.24). FEITO.
-- [x] **P7**: Ajustes de exposição — parcialmente feito na sessão 2026-04-26 (proofread, bold headers, subsections, restatements). Discussion (F7) pendente.
-- [ ] Consultar coarse review antes de submeter
-- [x] Limpar .bib: 21 entradas fantasma removidas, 19 citadas mantidas
-- [ ] Submeter ao JoP
-
-### Fixes pós-review 2026-04-26 (review-formal-model 7.7/10)
-Review completo: `quality_reports/2026-04-26_review-formal-model.md`. Feitos: F1-F6, F8, F10, 4b (ver "CONCLUÍDO sessão 2026-04-26" abaixo). Pendentes: F7, F9, F11, F12 (ver "PENDÊNCIAS RESTANTES" abaixo).
-
-### PENDÊNCIAS RESTANTES (v4)
-
-#### Review-formal-model pendências
-- [x] **F7**: Discussion v4 comprimida: alt explanations fundido com observable implications, erosão cortada, PTAs e biconditional redundantes cortados
-- [x] **F9**: Completar tabela de notação no App A — adicionados ω(μ), κ_M, D(μ), Γ, μ̄ (5 símbolos)
-- [x] **F11**: Road map em prosa na prova do Lemma 1 (domínios, sinais, endpoints de D_base, δ_R1, δ_R2)
-- [x] **F12**: Appendix C reescrito como "Extension" (não "Robustness"), com Limitations paragraph honesto sobre α_K*→0
-
-#### Coarse review pendências (gap analysis: `quality_reports/2026-04-26_coarse-review-gap-analysis.md`)
-**ALTA severidade**
-- [x] **CR1**: Tipo discreto — RESOLVIDO: extensão contínua (App C.4) mostra screening rent > 0 para qualquer F; Uniform dá α*_cont ≥ α*_{K=2}. Binário é caso conservador, não favorável.
-- [x] **CR2**: K>2 assessment — ATUALIZADO: Limitations reescrito + seção C.4 (continuous types) + Conclusão atualizada ("most conservative case")
-- [x] **CR3**: BP commitment — ELIMINADO (BP removido do corpo no v5)
-
-**MÉDIA severidade**
-- [x] **CR4**: Comparative statics — resolvido: 4 comp statics (r, β, α, c) verbalizados no ¶ da Figura 4 + grids em notas
-- [ ] **CR5**: Diferenciação Bardhi-Guo / Kim-Kim-Van Weelden — 1 frase, review pede 2-3 ¶
-- [ ] **CR6**: T>2 rounds — PÓS-SUBMISSÃO (KISS; enfrentar se parecerista demandar)
-- [x] **CR7**: Payoff de W sob unanimidade — resolvido: ¶ sobre perspectiva de W (V_W(U)<V_W(M), H escolhe regra, symmetric entry, ironia do veto)
-- [x] **CR8**: Decomposição entry vs. screening — ELIMINADO (BP removido, não há mais "dual exploitation")
-
-**BAIXA severidade**
-- [x] **CR9**: Threshold sempre existe — RESOLVIDO (Proposition via sets, sem p*, E_U=(0,1] é caso particular)
-- [x] **CR10**: K>2 na conclusão — RESOLVIDO: Conclusão agora distingue resultado qualitativo (geral) de quantitativo (Uniform), com "most conservative case"
-- [x] **CR11**: Footnote atualizada — menciona C.4, screening rent geral, α*_cont ≥ α* para Uniform
-- [x] **CR12**: (N-1)/N² corrigido — "monotonically decreasing in N for N≥2" (verificado: derivada (2-N)/N³ < 0)
-- [x] **CR13**: Figure antiga (p=0.05) — RESOLVIDO (substituída pelo institutional map (p,c))
-- [x] **CR14**: Doha — "explains" → "provides an alternative account of a pattern not fully explained to date"
-
-#### Pré-submissão
-- [ ] Adicionar data fixa e keywords no YAML do v5 (se não tiver)
+#### Única pendência aberta
+- [ ] **RIO-4b**: Revisar frase sobre GATT/WTO na Discussion ("consensus persists in trade, where evaluating agreement value requires deep technical expertise") — autor vai revisar manualmente.
 
 #### Submissão
-- [ ] Submeter ao JoP
+- [ ] Submeter ao RIO
 
-### CONCLUÍDO (sessão 2026-04-27 — Edmans review v5 + extensão contínua + predição discriminante)
-- [x] Edmans Review v5 completo (Contribution 6.5, Execution 7.5, Exposition 7.5 → 7.0/10, R&R)
-- [x] Predição discriminante inserida na Discussion: seleção (consenso × stakes distributivos transparentes) + discriminação contra legitimidade/self-binding/informal power + ref. Gould (2022)
-- [x] Prova: screening rent > 0 para tipos contínuos (qualquer F com suporte completo em [1,r])
-- [x] Derivação: D e α*_cont closed-form para F=Uniform. Resultado: α*_cont ≥ α*_{K=2} (verificado em 1008 combinações)
-- [x] Appendix C atualizado: seção C.4 (continuous types) + Limitations reescrito
-- [x] Conclusão atualizada: "most conservative case" (invertido de "most favorable")
-- [x] Footnote Discussion atualizada: ref. C.4, Uniform result
-- [x] CR1, CR2, CR10, CR11 resolvidos
-- [x] Verificação matemática (2 rounds → A) + verificação numérica (ALL PASS)
-- [x] Pendência registrada: keywords + data no YAML
-
-### CONCLUÍDO (sessão 2026-04-26 — editorial revision v4)
-- [x] Review-formal-model completo (Design 8, Técnica 7.5, Exposição 7.5 → 7.7/10, R&R minor)
-- [x] Proofread: 16 correções (typo "relative do", App C overpayment invertido, 5 cross-refs, voz, dash, footnotes) → 98/100
-- [x] F1: Microfundar entrada (symmetric equilibrium, all-or-nothing, N = tamanho da instituição)
-- [x] F2: Consenso=unanimidade movido para motivating example
-- [x] F3: α* traduzido substantivamente antes do Lemma 1 (α*≈0.47 N=5, ≈0.03 N=164)
-- [x] F4: Intro já compacta (~1.5pp); page break abstract→intro adicionado
-- [x] F5: Definition 2 para v(μ,R); α* definido separadamente antes do Lemma 1
-- [x] F6: Linguagem natural em B.5/B.5a (~35%→~55-60%), revisado A+
-- [x] F8: Justificativa 2 rounds BF (homologia, robustez, off-path beliefs, α-independência)
-- [x] F10: Restatements "majority is linear" reduzidos (4→1+refs)
-- [x] 4b: Auditoria provas Thm 1/Thm 2 pós-normalização — PASS + 3 cosméticos corrigidos
-- [x] Motivating example reescrito (style guide): bold headers removidos, prosa corrida, Preview com p*
-- [x] Section 3 subsections removidas (Environment, Timing, Solution concept, Information structure) — bloco narrativo JoP
-- [x] Preview 3.1 removido (redundante com Preview da Sec 2)
-- [x] "Region III" → "conservative branch (μ > μ_s^{R1})"
-- [x] Cross-ref quebrada no Remark 1 corrigida (\@ref → \ref dentro de LaTeX environment)
-- [x] Interpretação substantiva de α* movida para antes do Lemma 1
-
-### CONCLUÍDO (sessão 2026-04-22 — Lemma 1 iff + limpeza bib + entry scaling)
-- [x] .bib limpo: 40 → 19 entradas (21 fantasma removidas, 0 órfãs)
-- [x] Lemma 1 → bicondicional (iff): statement, prova (Step 4 Necessity), parágrafo interpretativo, Scope, figure caption, notation table — 7 edits
-- [x] Remark μ̄ (rem:mu_bar) inserido por agente paralelo: D(μ) = D(1) + (1-μ)Γ, μ̄ closed-form
-- [x] τ(U) derivado analytically: regime conservador affine (verificado a machine precision), regime agressivo quadrático. Nota: `notes/2026-04-22_tau_U_closed_form.md`. Review: `notes/2026-04-22_tau_U_review.md` (PASS WITH CORRECTIONS). Correções aplicadas (entry set desconectado documentado).
-- [x] Issue N-grande identificado e resolvido: V_W ~ O(1/N), entry requer c ~ 1/N. Footnote adicionado: c = c̃/N, N·V_W ~ O(1), cutoffs são scale-invariant.
-
-### CONCLUÍDO (sessão 2026-04-21 — v3 light math)
-- [x] v3 criado: corpo leve, provas no appendix (estilo JoP: Hirsch 2023, Hill 2022, Tyson et al. 2024)
-- [x] Majority: 2 subsections com equações → 1 parágrafo + Prop 1 + intuição
-- [x] Unanimity: mecanismo descrito por referência ao motivating example, sem repetir offers. Provas no appendix
-- [x] Entry/BP: 3 subsections → bloco corrido compacto
-- [x] Theorem 1: sem bloco de notação (λ_M, κ_M, S_U, S_M), sem prova no corpo, statement simplificado (2 cases, não 4)
-- [x] Seção 3 (Institutional Comparison) eliminada — d_W/d_H viram footnotes, design justifications vão para Scope
-- [x] Tie-breaking → footnote
-- [x] Todas as intuições reescritas em linguagem substantiva (estilo Hirsch: sem parênteses com variáveis)
-- [x] Ganho: ~5 páginas (Theorem 1 ~p.13-14 vs ~p.18-19 no v2)
-- [x] Papers de referência baixados: references/jop_examples/
-
-### CONCLUÍDO (sessão 2026-04-21 — editorial review)
-- [x] Editorial review completo (Design 8, Técnica 7, Exposição 7 → 7.5/10, R&R minor)
-- [x] Seção 2 verbal → exemplo motivador N=3 (V(0)=1, V(1)=2, α=0.2, cutoff 1/9)
-- [x] Convenção inclusão WLOG → exclusão explícita sob maioria (nenhuma equação mudou)
-- [x] Prova Lemma 1: corpo → proof sketch 3 frases, prova completa em App B.5
-- [x] Notação: φ conflito resolvido (App C → ψ), p_H → ρ_H, tabela de notação em App A
-- [x] P,Q → C_buy, C_out (nomes mnemônicos na prova Lemma 1)
-- [x] Proposition 2 (Overpayment) demovida a Remark
-- [x] Definition 1 (Packages) absorvida na Definition 2 (Game) — "one model"
-- [x] Frases iniciando com símbolo corrigidas (3 ocorrências)
-- [x] Código R extraído para scripts/model_functions.R (source() no Rmd)
-- [x] Game tree TikZ: 2 figuras (Stages 0-1 + bargaining unanimidade)
-- [x] Screening schematic TikZ: jump anotado, branches agressivo/conservador, BP gains
-- [x] Figura α*(N,β) vs N (10-150) + interpretação PTAs/Bhagwati na Scope
-- [x] Bug fix: anotação screening invertida no game tree
-
-### CONCLUÍDO (sessão 2026-04-20/21)
-- [x] Pipeline completo: Code Review (98/100) + Devil's Advocate (85/100) + Proofread (100/100)
-- [x] Lemma 1 prova analítica (D_base + δ_R2 + δ_R1 decomposition)
-- [x] Theorem 1 reescrito (4 cases, single-crossing, closed-form p*)
-- [x] Bugs corrigidos: 3 majority functions, concavify, VW_R1_unanimity, budget identity
-- [x] Condição α < α*(N,β) adicionada ao Lemma 1 e Theorem 1
-- [x] Introdução calibrada (when/why, não universalizante)
-- [x] Literatura: Feddersen & Pesendorfer, Diermeier & Myerson, Bardhi & Guo, Kim Kim & Van Weelden, Gould
-- [x] Worked Example, BP commitment, entry cost c, GATT/WTO observable implication
-
-### EXTENSÕES (não para este paper)
-- [ ] Extensão 1 (discussão): H conhece espaço factível de propostas, W não
-- [ ] Extensão 2 (paper futuro): outside options heterogêneas, pie supermodular, potências médias
+#### Itens concluídos (sessão 2026-04-27b)
+- [x] RIO-1: ¶ "What exactly is being compared?" no Scope
+- [x] RIO-2: "Why all-or-nothing entry?" expandido (founding moments vs. rolling accession)
+- [x] RIO-3: Seção Related Literature (4 ¶: consensus em OIs, legislative bargaining, information & voting, predição discriminante)
+- [x] RIO-4: Mecanismo concorrente financial orgs (2 frases Discussion)
+- [x] RIO-5: Proof roadmap pós-Theorem 1
+- [x] RIO-6: Proof roadmap pós-Corollary (F_U ⊆ F_M)
+- [x] RIO-7: B.1 Prop 1 — derivação completa em 6 steps (review: PASS)
+- [x] RIO-8: B.8 Prop 4 caso (ii) — inferência corrigida: λ_M > α (review: PASS)
+- [x] RIO-9: Claims já calibrados
+- [x] RIO-10: Conclusão — separar robustez mecanismo vs. dominância
+- [x] NC-1/2/3: Tabela de notação corrigida (μ, λ_M, E_R→F_R)
+- [x] Remark supermajority + weighted voting inserido
+- [x] Intro comprimida, Discussion comprimida
+- [x] Bardhi-Guo e Kim-Kim-Van Weelden adicionados ao .bib e diferenciados na lit review
 
 ## Puzzle central
 
 **Por que EUA aceitam consenso na OMC?** Três camadas:
 1. Por que não agenda control (H proposer exclusivo)? → Mata entrada (V_W = 0).
 2. Por que não maioria? → W exclui H, H recebe só αV(θ). Sem screening.
-3. Por que unanimidade? → Screening + BP. H abre mão de poder formal para amplificar poder informacional.
+3. Por que unanimidade? → Screening. H abre mão de poder formal para amplificar poder informacional.
 
 ## Referências-chave
 
@@ -214,68 +78,52 @@ Review completo: `quality_reports/2026-04-26_review-formal-model.md`. Feitos: F1
 - Baron & Ferejohn (1989) — Modelo base
 - Kalandrakis (2006, AJPS) — Proposal rights e poder político
 - Eraslan & Evdokimov (2019) — Survey
-- Baranski & Reuben (2023) — Exclusion effect + competição por proposta (experimental)
 
-### Bayesian Persuasion
-- Kamenica & Gentzkow (2011) — O framework
-- Alonso & Câmara (2016) — Persuading voters
-- Schnakenberg (2015, 2017) — BP em política
+### Information and voting
+- Bardhi & Guo (2018, AER) — Information design sob unanimidade (sem barganha)
+- Kim, Kim & Van Weelden (2025, AJPS) — Persuasion in veto bargaining (bilateral, sem institutional choice)
+- Kamenica & Gentzkow (2011, AER) — Bayesian Persuasion framework
 
 ### Design institucional
 - Koremenos, Lipson & Snidal (2001) — Rational design of IOs
 - Steinberg (2002) — Consensus at WTO
-- Maggi & Morelli (2006) — Self-enforcing voting in IOs
+- Gould (2022) — Cross-section of consensus rules
 
 ## Estrutura do Repositório
 
 ```
 ├── CLAUDE.md                          # Este arquivo
-├── formal_model.Rmd                   # Paper formal — A SER REESCRITO com modelo v2
+├── formal_model_v5.Rmd               # Paper ativo (v5, screening central)
+├── formal_model_v4.Rmd               # Arquivo (v4, BP co-protagonista)
+├── formal_model_v2.Rmd               # Arquivo (v2, provas no corpo)
 ├── references.bib                     # Referências bibliográficas
-├── notes/
-│   ├── 2026-04-19_formalizacao_v2.Rmd # NOTA TÉCNICA PRINCIPAL — base para reescrita
-│   ├── 2026-04-19_formalizacao_v2.md  # Versão markdown
-│   ├── 2026-04-19_sessao_redesign_v2.md # Decisões de design da sessão
-│   └── 2026-04-19_reformulacao_modelo.md # Reformulação inicial (superada pela v2)
-├── scripts/                           # Simulações
+├── scripts/model_functions.R          # Funções R do modelo
+├── notes/                             # Notas de trabalho
 ├── figures/                           # Figuras geradas
 ├── archive/                           # Modelos abandonados
 ├── references/                        # PDFs de referências
-├── quality_reports/                   # Relatórios de qualidade
-└── formal_proofs/                     # Lean 4 (segurança interna, NÃO mencionar em reviews)
+├── quality_reports/                   # Relatórios de qualidade e planos
+└── formal_proofs/                     # Lean 4 (segurança interna)
 ```
 
 ## Verificação Formal (Lean 4)
 
-**REGRA**: Lean é ferramenta de segurança interna do PI. NÃO entra no paper, NÃO serve como base para escrita. O paper deve se sustentar sozinho.
+**REGRA**: Lean é ferramenta de segurança interna do PI. NÃO entra no paper, NÃO serve como base para escrita.
 
-**Status**: Provas do modelo anterior. Precisam ser ATUALIZADAS para o modelo v2 quando o paper for reescrito.
+**Status**: Provas do modelo anterior. Precisam ser atualizadas para v5.
 
-## Paper Futuro: Erosão Endógena do Poder Informacional
+## Papers Futuros
 
-> **PAPER FUTURO** — não faz parte deste paper.
-
-Jogo repetido dentro de instituição consensual. Fracos investem para aprender V(θ). Poder informacional de H se erode endogenamente. Explica fracasso de Doha.
-
-## Paper Futuro: Tipos Contínuos e Bunching
-
-> **PAPER FUTURO** — não faz parte deste paper. Caminho delineado caso parecerista do JoP exija.
-
-Extensão a tipos contínuos (θ ~ F em [0,r]). Screening de W com tipos contínuos gera bunching (regiões de tipos recebendo a mesma oferta). Transições entre regiões produzem kinks em V_H(μ) que BP pode explorar. Desafio técnico: com tipos contínuos, V_H depende da distribuição posterior inteira, não apenas da média — a hipótese de Dworczak & Martini (2019, JPE) de que payoff depende só da média posterior **não vale** diretamente. Alternativas: (a) encontrar condições sob as quais a média é suficiente, (b) usar frameworks mais gerais (Kolotilin et al. 2022, Arieli et al. 2023 "Bi-Pooling"). Refs: Dworczak & Martini 2019 JPE; Arieli, Babichenko, Smorodinsky & Yamashita 2023 TE; Kolotilin, Mylovanov & Zapechelnyuk 2022 TE; Dworczak & Kolotilin 2024 TE.
-
-## Paper Futuro: Heterogeneidade e Potências Médias
-
-> **PROJETO SEPARADO** — movido para `/Users/manoelgaldino/Documents/DCP/Papers/heterogeneous-informational-power/`. Abrir sessão lá para trabalho neste paper.
+- **Erosão endógena**: Jogo repetido, fracos investem para aprender V(θ). Projeto separado.
+- **Heterogeneidade**: Outside options heterogêneas, potências médias. Movido para `/Users/manoelgaldino/Documents/DCP/Papers/heterogeneous-informational-power/`.
 
 ## Convenções
 
-- **REGRA CRÍTICA — Pareceres completos**: Ao rodar QUALQUER skill de review (coarse-review, edmans-review, review-formal-model, review-paper, devils-advocate, proofread, game-theory-audit, etc.), o output COMPLETO do parecer DEVE ser salvo em `quality_reports/YYYY-MM-DD_nome-do-review.md` ANTES de resumir para o usuário. Incluir todo o conteúdo: scores, comentários detalhados, sugestões, status de cada item. NUNCA truncar. NUNCA salvar apenas resumo. Pareceres que ficam só na memória da sessão são PERDIDOS ao encerrar.
+- **REGRA CRÍTICA — Pareceres completos**: Ao rodar QUALQUER skill de review, o output COMPLETO DEVE ser salvo em `quality_reports/YYYY-MM-DD_nome-do-review.md`. NUNCA truncar. NUNCA salvar apenas resumo.
+- **v5 é o paper ativo para submissão**; v4 preservado intacto; v2 preservado como arquivo
+- **Paper é documento atemporal**: NUNCA referenciar versões anteriores ou mudanças. Escrever como se o leitor visse pela primeira vez.
 - Notas em Markdown, modelo formal em Rmd → PDF
 - Idioma: português para notas; inglês para o paper
 - N genérico sempre (N=3 apenas no exemplo motivador Seção 2)
-- x ≡ (N-1)αr como atalho notacional
 - Sob maioria: W EXCLUI H (não convenção WLOG de inclusão)
-- **v5 é o paper ativo para submissão**; v4 preservado intacto (pré-Opção B); v3 é versão anterior a v4 (v4 divergiu bastante); v2 preservado como arquivo
-- **Estilo v3**: corpo narra o mecanismo em prosa substantiva; provas e álgebra no appendix; sem proof sketches no corpo; comparative statics em linguagem do fenômeno (não parâmetros)
-- **Paper é documento atemporal**: Escrever como se o leitor visse o paper pela primeira vez. NUNCA referenciar versões anteriores, mudanças feitas durante revisão, ou estado prévio do manuscrito. Nada de "now", "previously", "we have removed", "in the revised version". Descrever o resultado como se sempre tivesse sido assim.
-- **Citações em ambientes LaTeX**: Dentro de `\begin{...}...\end{...}` (remark, theorem, etc.), pandoc pode não processar `@key`. Usar `[@key]` mesmo assim (funciona na maioria dos casos com bookdown). Exemplo: Kamenica & Gentzkow (2011) é citado inline no Remark de info design como `[@kamenica2011bayesian]`.
+- **Citações em ambientes LaTeX**: Dentro de `\begin{...}...\end{...}`, usar `[@key]` (bookdown resolve).
