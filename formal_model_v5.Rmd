@@ -1,5 +1,5 @@
 ---
-title: "Informational Power and Institutional Design: When a Hegemon May Choose Consensus"
+title: "Informational Power Through Pivotality: When a Hegemon May Choose Consensus"
 author: "Manoel Galdino (University of São Paulo; mgaldino@usp.br)"
 date: "`r Sys.Date()`"
 output:
@@ -34,7 +34,7 @@ bibliography: references.bib
 link-citations: true
 keywords: "International Organizations, Bargaining, Hegemon, Informational Power, Screening, Consensus"
 abstract: |
-  When does a powerful state prefer consensus to majority rule in an international organization? I develop a formal model of institutional design in which a hegemon has private information about the value of multilateral cooperation. Under majority rule, weaker states can form winning coalitions without the hegemon, so its private information has limited strategic value. Under unanimity, every agreement requires the hegemon's approval, forcing weaker states to decide how much to offer without knowing how valuable cooperation really is. This uncertainty works in the hegemon's favor: weaker states pay more than necessary to secure agreement, and majority rule eliminates this advantage entirely. In calibrated examples, unanimity gives the hegemon up to 35\% higher payoffs than majority rule near the screening cutoff, with the advantage declining as uncertainty decreases. This screening advantage means that, once cooperation is promising enough for weaker states to participate under unanimity, the hegemon strictly prefers it. Below that threshold, majority can dominate---but only because it makes participation easier, not because it gives better terms. Consensus, in this account, is not a concession to weaker states but an institutional arrangement that makes informational advantage politically productive---offering a distributive explanation for consensus rules in organizations such as the WTO.
+  When does a powerful state prefer consensus to majority rule in an international organization? I develop a formal model of institutional design in which a hegemon has private information about the value of multilateral cooperation. Under majority rule, weaker states can form winning coalitions without the hegemon, so its private information has limited strategic value. Under unanimity, every agreement requires the hegemon's approval, forcing weaker states to decide how much to offer without knowing how valuable cooperation really is. This uncertainty works in the hegemon's favor: weaker states pay more than necessary to secure agreement, and majority rule eliminates this advantage entirely. In calibrated examples, unanimity gives the hegemon between 27\% and 41\% higher payoffs than majority rule near the screening cutoff, with the advantage declining as uncertainty decreases. This screening advantage means that, once cooperation is promising enough for weaker states to participate under unanimity, the hegemon strictly prefers it. Below that threshold, majority can dominate---but only because it makes participation easier, not because it gives better terms. Consensus, in this account, is not a concession to weaker states but an institutional arrangement that makes informational advantage politically productive---offering a distributive explanation for consensus rules in organizations such as the WTO.
 ---
 
 ```{r setup, include=FALSE}
@@ -49,18 +49,18 @@ library(knitr)
 
 Most international organizations operate by consensus, even when powerful states drive their creation [@gould2022consensus]. The international arena is where material asymmetries should matter most relative to domestic politics. If institutional rules reflect power, powerful states might be expected to favor arrangements that let them turn that power into a distributive advantage. Why would a powerful state ever prefer consensus over majority rule, where it could use agenda power to impose its preference without any state having veto power?
 
-Under majority rule, a powerful actor can form coalitions, exclude rivals, and keep the surplus [@baron1989bargaining; @kalandrakis2006proposal; @eraslan2019legislative]. Consensus does the opposite: by giving every participant a veto, it forces powerful states to surrender the tools they might value most. Yet international organizations are built around consensus, even when powerful states drive their creation [@gould2022consensus; @steinberg2002shadow; @koremenos2001rational]. Existing accounts see usually consensus either as constraining powerful states through institutional self-binding [@keohane1984after; @ikenberry2001after] or as a façade for informal power that operates irrespective of the formal rule [@steinberg2002shadow; @stone2011controlling; @gruber2000ruling]. Neither explains when and why a hegemon would prefer unanimity to a rule that allows exclusion.
+Under majority rule, a powerful actor can form coalitions, exclude rivals, and keep the surplus [@baron1989bargaining; @kalandrakis2006proposal; @eraslan2019legislative]. Consensus does the opposite: by giving every participant a veto, it forces powerful states to surrender the tools they might value most. Yet international organizations are built around consensus, even when powerful states drive their creation [@gould2022consensus; @steinberg2002shadow; @koremenos2001rational]. Existing accounts usually see consensus either as constraining powerful states through institutional self-binding [@keohane1984after; @ikenberry2001after] or as a façade for informal power that operates irrespective of the formal rule [@steinberg2002shadow; @stone2011controlling; @gruber2000ruling]. Neither explains when and why a hegemon would prefer unanimity to a rule that allows exclusion.
 
 This paper theorizes when and why a hegemon may prefer unanimity to majority rule in international organizations. The central claim is that consensus is an institutional technology of power. I show that consensus can make informational power more politically productive than the coalition arithmetic of majority rule. By informational power I mean the bargaining advantage that a privately informed actor derives from being pivotal: when other players must secure its approval without knowing its type, uncertainty itself becomes a source of rent.
 
 To formalize the argument, I develop a model in which a hegemon chooses between majority and unanimity. Proposal rights are symmetric under both rules, isolating the effect of the voting rule itself. The hegemon privately observes the value of cooperation before weaker states decide whether to enter. The central difference is that the two rules reward this informational advantage differently. Under majority rule, weak states can form coalitions without making the hegemon pivotal, eliminating the screening problem. Under unanimity, weak states must include the hegemon in every proposal and decide how much to offer without knowing the probability of acceptance. This screening generates a cutoff at which weak proposers switch from aggressive to conservative treatment of the hegemon, giving the hegemon a strictly higher conditional payoff than under majority at every level of uncertainty. The institutional comparison reduces to a single distinction: unanimity dominates wherever it can sustain entry, and majority's only advantage is wider institutional viability.
 
-The substantive implication is that consensus is most valuable to a hegemon when the prospects of multilateral cooperation are promising enough that weaker states are willing to come to the table. Under those conditions, unanimity amplifies the hegemon’s informational advantage. On ther other hand, when cooperation looks too uncertain for weaker states to participate at all, majority rule can be preferred because it lowers the bar for participation.
+The substantive implication is that consensus is most valuable to a hegemon when the prospects of multilateral cooperation are promising enough that weaker states are willing to come to the table. Under those conditions, unanimity amplifies the hegemon’s informational advantage. On the other hand, when cooperation looks too uncertain for weaker states to participate at all, majority rule can be preferred because it lowers the bar for participation.
 
 
-# Related Literature {#literature}
+# Consensus, Information, and Institutional Design {#literature}
 
-The paper contributes to the literature on institutional design in international organizations. The dominant explanations for consensus ca nbe grouped into three categories. Consensus as self-binding: powerful states accept formal constraints to make credible commitments, encouraging participation by weaker partners [@keohane1984after; @ikenberry2001after]. Consensus as irrelevant: informal agenda power, control over drafting, and asymmetric resources allow powerful states to shape outcomes regardless of the formal voting rule [@steinberg2002shadow; @stone2011controlling; @gruber2000ruling]. Consensus as rational design: voting rules are chosen to match the cooperation problem an organization faces [@koremenos2001rational]. @gould2022consensus provides the most comprehensive empirical account, documenting the prevalence and variation of consensus across international organizations. This paper offers a distinct account: consensus as a technology that activates informational power. The mechanism does not require informal influence, does not serve as self-binding, and is not chosen to solve commitment problems. It is preferred because it makes the hegemon’s private information more valuable.
+The paper contributes to the literature on institutional design in international organizations. The dominant explanations for consensus can be grouped into three categories. Consensus as self-binding: powerful states accept formal constraints to make credible commitments, encouraging participation by weaker partners [@keohane1984after; @ikenberry2001after]. Consensus as irrelevant: informal agenda power, control over drafting, and asymmetric resources allow powerful states to shape outcomes regardless of the formal voting rule [@steinberg2002shadow; @stone2011controlling; @gruber2000ruling]. Consensus as rational design: voting rules are chosen to match the cooperation problem an organization faces [@koremenos2001rational]. @gould2022consensus provides the most comprehensive empirical account, documenting the prevalence and variation of consensus across international organizations. This paper offers a distinct account: consensus as a technology that activates informational power. The mechanism does not require informal influence, does not serve as self-binding, and is not chosen to solve commitment problems. It is preferred because it makes the hegemon’s private information more valuable.
 
 The model builds on the Baron-Ferejohn framework of legislative bargaining [@baron1989bargaining]. @kalandrakis2006proposal shows that proposal rights are the primary determinant of political power in such models; the present paper holds proposal rights symmetric to isolate the effect of the voting rule. @eraslan2019legislative survey the broader literature. The key departure is the combination of asymmetric information about the value of cooperation with a choice between voting rules, a combination that generates endogenous screening under unanimity but not under majority.
 
@@ -599,7 +599,7 @@ In practice, major trading powers exercise informal agenda influence through the
 
 The model's mechanism provides an alternative account of a pattern not fully explained to date: powerful states in the WTO appear to benefit from consensus despite lacking formal agenda control. The mechanism is not merely that informal practices survive consensus, but that consensus creates the strategic environment---pivotal inclusion under uncertainty---in which informational power becomes most valuable. The model does not claim that the GATT/WTO was designed for this reason, or that all aspects of WTO politics reduce to this mechanism. It shows that consensus and informational asymmetry interact in a way that can benefit powerful states, offering one explanation for why hegemonic preference for consensus is not paradoxical.
 
-The GATT/WTO case illustrates the discriminating prediction introduced in Section \ref{literature}: consensus persists in trade, where evaluating agreement value requires deep technical expertise, while financial institutions---where capital contributions, loan terms, and voting shares create a measurable pie---overwhelmingly use weighted majority. The absence of consensus in financial organizations is also consistent with a simpler, complementary explanation: weighted voting in institutions like the IMF and World Bank reflects capital contributions directly, so the voting rule itself embeds material power without requiring informational leverage. The informational mechanism predicts the same pattern but through a different channel---the transparency of distributive stakes eliminates screening rents---and the two explanations are not mutually exclusive.\footnote{Appendix C shows that with $K > 2$ types, unanimity generates $K-1$ screening boundaries while majority remains linear. The screening rent is strictly positive for any continuous type distribution (Appendix C.4), and for the uniform distribution the dominance threshold is weakly larger than in the binary case, suggesting that the binary model is the most conservative specification for the mechanism.}
+The GATT/WTO case illustrates the discriminating prediction introduced in Section \ref{literature}: consensus persists in trade, where evaluating agreement value requires deep technical expertise, while financial institutions---where capital contributions, loan terms, and voting shares create a measurable pie---overwhelmingly use weighted majority. The absence of consensus in financial organizations is also consistent with a simpler, complementary explanation: weighted voting in institutions like the IMF and World Bank reflects capital contributions directly, so the voting rule itself embeds material power without requiring informational leverage. The informational mechanism predicts the same pattern but through a different channel---the transparency of distributive stakes eliminates screening rents---and the two explanations are not mutually exclusive.\footnote{Appendix C extends the model to continuous types. The screening rent is strictly positive for any continuous distribution on $[1, r]$ with full support, and for the uniform distribution the dominance threshold satisfies $\alpha^*_{\text{cont}} \geq \alpha^*$, suggesting that the binary model is the most conservative specification for the mechanism.}
 
 The model generates two additional dynamic predictions. First, as weaker states develop independent capacity to evaluate cooperation value---through investment in policy research, participation in technical committees, or access to third-party assessments---the screening advantage under consensus should diminish, narrowing the set of issue areas where consensus is sustainable. Second, the proliferation of preferential trade agreements, which strengthens the hegemon's bilateral alternatives, should independently weaken the preference for consensus by raising $\alpha$ toward $\alpha^*$ [@bhagwati2008termites]. The mechanism identified here is complementary to existing accounts of institutional design, isolating a distributive-informational channel within the rationalist framework common to all of them [cf. @fearon1995rationalist].
 
@@ -613,7 +613,7 @@ The model generates two additional dynamic predictions. First, as weaker states 
 
 **Why all-or-nothing entry?** The all-or-nothing entry technology isolates the screening mechanism by suppressing dynamics that would arise under sequential accession---such as free-riding, learning from early joiners, or collective action problems among weak states. This simplification is most plausible for organizations where membership is negotiated as a package---founding moments like the GATT (1947), the WTO (1995), or the establishment of new regulatory bodies---rather than for organizations with rolling accession. With sequential entry, multiple mechanisms would operate in opposing directions, and the net effect on the hegemon's institutional preference would depend on their relative magnitudes. The present model focuses on the screening channel alone; characterizing its interaction with sequential entry dynamics is left open.
 
-**Why binary types?** The qualitative result---unanimity creates screening that majority eliminates---holds for any finite type space (Appendix C). The quantitative result---unanimity conditionally dominates at *every* belief (Theorem \ref{thm:conditional})---is strongest with binary types. With richer type spaces, unanimity generates $K-1$ screening boundaries, but the parametric region of global conditional dominance may narrow. Binary types isolate the mechanism most transparently; the model is the most favorable case for the result.
+**Why binary types?** Binary types isolate the screening mechanism most transparently. The screening rent under unanimity is strictly positive for any continuous distribution with full support, while majority eliminates it entirely (Appendix C). For the uniform distribution, the dominance threshold satisfies $\alpha^*_{\text{cont}} \geq \alpha^*$, suggesting that binary types are the most conservative specification for the mechanism. Binary types therefore provide a lower bound on the screening advantage.
 
 **When consensus favors the hegemon.** The mechanism requires that: (i) informational asymmetry is relevant ($H$ knows $\theta$, $W$ does not); (ii) the hegemon has a valuable outside option ($\alpha > 0$); (iii) entry is costly and belief-dependent; (iv) the voting rule makes $H$ pivotal.
 
@@ -718,7 +718,7 @@ This paper has identified conditions under which consensus is a rational choice 
 
 The argument does not imply that all consensus institutions are designed for this reason, or that informal power disappears under consensus. It shows something more specific: under identifiable conditions on informational asymmetry and the prospects of cooperation, unanimity becomes the preferred institutional arrangement for a hegemon. Consensus may be less a concession by power than a way of exercising power through a different channel---the channel of information.
 
-The main results use a binary type space. It is important to distinguish what generalizes from what does not. The *mechanism* generalizes: unanimity creates screening and majority does not, regardless of the type space. With $K > 2$ types, unanimity generates $K-1$ screening boundaries while majority remains linear (Appendix C). The screening rent is strictly positive for any continuous distribution on $[1, r]$ (Appendix C.4). This structural contrast---screening under unanimity, linearity under majority---is distribution-free. What does *not* generalize without qualification is the *dominance threshold* $\alpha^*$. For binary types, Theorem \ref{thm:conditional} provides a sharp biconditional. For the uniform distribution on continuous types, the dominance threshold $\alpha^*_{\text{cont}}$ is weakly larger than $\alpha^*$, suggesting that binary types are the most conservative case. For other distributions, the threshold has not been characterized. A general characterization of $\alpha^*$ for arbitrary distributions remains an open question.
+The main results use a binary type space. It is important to distinguish what generalizes from what does not. The screening rent under unanimity is strictly positive for any continuous distribution on $[1, r]$ with full support (Appendix C). Under majority, $W$ bypasses $H$, and the rent is zero. This structural contrast---screening under unanimity, no screening under majority---is distribution-free. What does *not* generalize without qualification is the *dominance threshold* $\alpha^*$. For binary types, Theorem \ref{thm:conditional} provides a sharp biconditional. For the uniform distribution on continuous types, the dominance threshold $\alpha^*_{\text{cont}}$ is weakly larger than $\alpha^*$, suggesting that binary types are the most conservative case. For other distributions, the threshold has not been characterized. A general characterization of $\alpha^*$ for arbitrary distributions remains an open question.
 
 Several extensions remain. First, if weaker states can invest in independent analytical capacity, informational power erodes endogenously over time. Second, heterogeneous outside options across weak states (middle powers) would enrich the screening dynamics. Third, repeated play within an established consensus institution could generate learning that narrows the informational gap. These directions point toward a richer theory of how informational power rises and declines within institutional frameworks.
 
@@ -1102,51 +1102,130 @@ We verify each case exhaustively. Since $\mathcal{F}_U \subseteq \mathcal{F}_M$ 
 **Case (iii): $p \notin \mathcal{F}_M$.** The institution does not form under either rule (since $\mathcal{F}_U \subseteq \mathcal{F}_M$, $p \notin \mathcal{F}_M$ implies $p \notin \mathcal{F}_U$). Both rules yield the outside-option payoff $\alpha V_e(p)$, so $U \sim M$. $\square$
 
 
-# Appendix C: Extension to $K > 2$ Types {-}
+# Appendix C: Continuous Types {-}
 
-This appendix examines how the screening mechanism and the majority-linearity result extend to $K > 2$ types. The majority-linearity result generalizes fully (Proposition \ref{prop:k_majority_linear}). The screening structure under unanimity becomes richer---$K-1$ boundaries rather than one---but whether unanimity dominates majority for empirically relevant parameterizations with $K \geq 3$ is not established here.
+This appendix extends the model to continuous types. Section C.1 establishes that the screening rent is strictly positive for any continuous distribution with full support---a distribution-free result. Sections C.2--C.4 derive closed-form payoff expressions for the uniform distribution and show that the dominance threshold $\alpha^*_{\text{cont}}$ weakly exceeds the binary-type threshold $\alpha^*$.
 
-## C.1 Setup {-}
+## C.1 Screening rent for general distributions {-}
 
-The model is identical to Section 4 except that $\theta \in \{0, 1, 2\}$ with $V(0) = 1$, $V(1) = r_1$, $V(2) = r_2$, where $1 < r_1 < r_2$. The prior is $p = (p_0, p_1, p_2) \in \Delta^2$, the 2-simplex. The expected value of cooperation is $V_e(\mu) = \sum_k \mu_k V(\theta_k)$. All other primitives---$N$ players, discount factor $\beta$, random proposer, outside option $d_H = \alpha V(\theta)$---are unchanged. The constraint on the outside option becomes $\alpha \in (0, 1/r_2)$, ensuring that $d_H < V(\theta)$ for all types.
+The model is identical to the main model except that $\theta$ is drawn from a continuous distribution $F$ on $[1, r]$, $r > 1$, with full support and positive density $f$ on $(1, r)$. The cooperation value is $V(\theta) = \theta$, and the outside-option constraint becomes $\alpha \in (0, 1/r)$.
 
-## C.2 R2 Screening under Unanimity {-}
-
-With $K$ types, the R2 screening problem has a natural generalization. When $W$ makes an offer in R2, it targets a particular type by setting the reservation value equal to $\alpha V(\theta_k)$ for some $k$. All types $\theta_j$ with $j \leq k$ accept (since $\alpha V(\theta_j) \leq \alpha V(\theta_k)$), and all types $\theta_j$ with $j > k$ reject. The optimal target balances the probability of acceptance against the cost of overpaying low types.
-
-**Claim** (R2 screening boundaries for general $K$). *For $K$ ordered types with values $v_1 < v_2 < \cdots < v_K$, the R2 screening boundary between targeting type $k$ and type $k+1$ is defined by the posterior ratio*
-\[
-\frac{\mu_{k+1}}{\sum_{j \leq k} \mu_j} = \frac{\alpha(v_{k+1} - v_k)}{v_{k+1}(1-\alpha)}.
-\]
-*These $K-1$ conditions define hyperplanes that partition the simplex $\Delta^{K-1}$ into $K$ screening regions.*
-
-The logic is as follows. The weak proposer's payoff from an offer targeting type $k$ is $\sum_{j \leq k} \mu_j [V(\theta_j) - \alpha V(\theta_k)]$. Equating the payoffs from targeting type $k$ and type $k+1$ yields the indifference condition. The ratio simplifies because the incremental gain from including type $k+1$ (at cost $\alpha V(\theta_{k+1})$) must equal the incremental cost of overpaying all types $j \leq k$ (the additional payment $\alpha[V(\theta_{k+1}) - V(\theta_k)]$ per accepting type). For $K=2$, this reduces to $\mu_s^{R2} = \alpha(r-1)/(r-\alpha)$, recovering the main model.
-
-For $K = 3$ with values $(1, r_1, r_2)$, the R2 screening produces three regions separated by two boundaries. The continuation values for $H$ in R2 follow the same logic as the binary case: under a high offer (targeting $\theta = 2$), types $\theta = 0$ and $\theta = 1$ are overpaid; under a medium offer (targeting $\theta = 1$), only $\theta = 0$ is overpaid; under a low offer (targeting $\theta = 0$), all types receive their outside option. The key pattern persists: low types receive strictly more than their outside option whenever $W$ targets a higher type, and the highest type $\theta = 2$ always receives $r_2(1 + (N-1)\alpha)/N$ regardless of the screening region.
-
-## C.3 Majority: No Screening {-}
-
-\begin{proposition}[Linearity of $H$'s Payoff under Majority for General $K$]\label{prop:k_majority_linear}
-Under majority rule with $K$ types, $E_\theta[V_H^{R1}(\theta, \mu, M)] = \lambda_M V_e(\mu)$, where $\lambda_M$ is defined as in Appendix B.5. No screening cutoff exists for any $K$.
+\begin{proposition}[Screening rent under continuous types]\label{prop:continuous_rent}
+(a) In R2, $W$'s optimal screening cutoff satisfies $\theta_2^* > 1$, and $H$'s screening rent is
+$$\textit{Rent}_{R2} = \int_1^{\theta_2^*} \alpha(\theta_2^* - \theta) \, dF(\theta) > 0.$$
+(b) In R1, $H$'s screening rent from $W$'s proposal is strictly positive.
+(c) Under majority, $W$'s proposals generate zero screening rent in both rounds.
 \end{proposition}
 
 \begin{proof}
-The proof is identical to the $K = 2$ case. Under majority, $W$ never needs $H$'s vote; $H$ receives $\alpha V(\theta)$ in every coalition that forms and $\alpha V(\theta)$ as its outside option. Since $H$'s payoff is $\alpha V(\theta)$ type by type, the expectation is $\alpha V_e(\mu)$ scaled by the bargaining multiplier $\lambda_M / \alpha$. The belief $\mu$ enters only through $V_e(\mu)$, so the payoff is affine in $\mu$ (and hence in $V_e$) regardless of $K$.
+\textbf{R2 under unanimity.} When $W$ proposes in R2, $W$ sets $y_H = \alpha\theta^*$ for some cutoff $\theta^* \in [1, r]$; types $\theta \leq \theta^*$ accept and types $\theta > \theta^*$ reject. $W$'s expected payoff is $\pi_W(\theta^*) = \int_1^{\theta^*} (\theta - \alpha\theta^*) \, dF(\theta)$.
+
+\textit{Optimal cutoff $\theta_2^* > 1$.} Since $\pi_W(1) = 0$ and, for small $\epsilon > 0$, $\pi_W(1+\epsilon) \geq (1 - \alpha(1+\epsilon)) F(1+\epsilon) > 0$ (using $\alpha < 1/r < 1$ and full support), the global maximizer cannot be at $\theta^* = 1$.
+
+\textit{Screening rent.} $H$'s expected payoff from $W$'s R2 proposal is $\int_1^{\theta_2^*} \alpha\theta_2^* \, dF(\theta) + \int_{\theta_2^*}^r \alpha\theta \, dF(\theta)$. The rent relative to the perfect-discrimination benchmark $\int_1^r \alpha\theta \, dF(\theta)$ is
+$$\text{Rent}_{R2} = \int_1^{\theta_2^*} \alpha(\theta_2^* - \theta) \, dF(\theta) > 0.$$
+Positivity: the integrand $\alpha(\theta_2^* - \theta) > 0$ for $\theta \in [1, \theta_2^*)$, and $F$ assigns positive mass to $[1, \theta_2^*)$ since $\theta_2^* > 1$ and $F$ has full support.
+
+\textbf{R1 under unanimity.} $V_H^{R2}(\theta, U)$ is strictly increasing in $\theta$: the $H$-proposes component ($\theta/N$) is strictly increasing, and the $W$-proposes component is non-decreasing. In R1, $W$ offers $y_H$ and type $\theta$ accepts iff $y_H \geq \beta V_H^{R2}(\theta, U)$. Strict monotonicity yields a cutoff $\theta_1^*$, and the same argument as R2 gives $\theta_1^* > 1$ and
+$$\text{Rent}_{R1} = \int_1^{\theta_1^*} \bigl[\beta V_H^{R2}(\theta_1^*, U) - \beta V_H^{R2}(\theta, U)\bigr] dF(\theta) > 0.$$
+
+\textbf{Majority.} Under majority, $W$ excludes $H$ from the winning coalition. $H$ receives $\alpha\theta$ type by type---the perfect-discrimination benchmark---so the screening rent is zero in both rounds.
 \end{proof}
 
-Together, the screening claim above and Proposition \ref{prop:k_majority_linear} establish the structural asymmetry for general $K$: unanimity generates $K-1$ screening boundaries, each generating a conditional payoff advantage for the hegemon, while majority remains linear regardless of $K$.
+## C.2 Uniform distribution: R2 equilibrium {-}
 
-**Limitations and continuous-type extension.** For $K = 2$, Theorem \ref{thm:conditional} provides a sharp threshold $\alpha^*$ below which unanimity conditionally dominates at every belief. For discrete $K \geq 3$, the analogous threshold $\alpha_K^*$ is harder to characterize: with more types, the vote-buying cost of unanimous agreement at the highest type grows, potentially tightening the parametric region where dominance holds. What generalizes without qualification is the structural contrast: unanimity creates screening, majority does not (Proposition \ref{prop:k_majority_linear}).
+For the remainder of this appendix, let $F = \text{Uniform}[1, r]$, so $f(\theta) = 1/(r-1)$, $F(\theta) = (\theta-1)/(r-1)$, and $E[\theta] = (1+r)/2$. Define $x \equiv (N-1)\alpha r$.
 
-## C.4 Continuous types {-}
+**R2 under unanimity: $\theta_2^* = r$.** $W$'s profit derivative is $\pi_W'(\theta^*) = [(1-2\alpha)\theta^* + \alpha]/(r-1)$. The root $\theta^* = \alpha/(2\alpha - 1)$ satisfies $\theta^* \leq r$ only if $(r-1)^2 \leq 0$, which is impossible for $r > 1$. Hence $\pi_W' > 0$ on $[1, r]$ and $\theta_2^* = r$: $W$ pools all types with the offer $y_H = \alpha r$. The same argument applies to any truncation $\text{Uniform}[a, r]$ with $a \geq 1$, so $\theta_2^* = r$ holds regardless of the R1 screening cutoff.
 
-The screening mechanism extends to continuous type distributions. Suppose $\theta \sim F$ on $[1, r]$ with full support. Under unanimity, when $W$ proposes, $W$ faces a screening problem: choosing a cutoff $\theta^*$ such that types $\theta \leq \theta^*$ accept the offer $\alpha\theta^*$ and types $\theta > \theta^*$ reject. The screening rent---the excess payoff to $H$ relative to the perfect-discrimination benchmark $\alpha\theta$---is
-\[
-\text{Rent} = \int_1^{\theta^*} \alpha(\theta^* - \theta) \, dF(\theta) > 0
-\]
-for any equilibrium cutoff $\theta^* > 1$. Under majority, $W$ bypasses $H$, and the rent is zero. This holds for any continuous $F$ with full support. The qualitative mechanism is distribution-free.
+R2 continuation values:
+\begin{align}
+V_H^{R2}(\theta, U) &= \frac{\theta + x}{N}, &\qquad V_W^{R2}(\theta, U) &= \frac{\theta - \alpha r}{N}, \label{eq:cont_R2_U} \\
+V_H^{R2}(\theta, M) &= \frac{\theta(1+(N-1)\alpha)}{N}, &\qquad V_W^{R2}(\theta, M) &= \frac{(1-\alpha)\theta}{N}. \label{eq:cont_R2_M}
+\end{align}
 
-For the uniform distribution $F = \text{Uniform}[1, r]$, the full conditional payoff comparison admits a closed-form solution. The R2 screening cutoff is $\theta_2^* = r$ (all types are pooled), which eliminates the piecewise structure and makes all continuation values linear in $\theta$. The payoff difference $D = E_\theta[V_H^{R1}(U)] - E_\theta[V_H^{R1}(M)]$ is a polynomial in $(\alpha, r, N, \beta)$, and the continuous-type dominance threshold $\alpha^*_{\text{cont}}$ satisfies $\alpha^*_{\text{cont}} \geq \alpha^*$ for all parameter values, with strict inequality whenever $r > 1$. The binary model is therefore the most conservative case for the mechanism: continuous types generate richer overpayment because more types fall below the screening cutoff, amplifying the aggregate screening rent. Numerical verification across 1,008 parameter combinations confirms zero violations.
+## C.3 R1 equilibrium {-}
+
+**$H$ proposes under unanimity** (probability $1/N$). $H$ offers each $W$ its discounted R2 continuation value $\beta E_\theta[V_W^{R2}(\theta, U)] = \beta(1+r-2\alpha r)/(2N)$ and keeps
+\begin{equation}\label{eq:cont_Hprop_U}
+V_H^{R1}(\theta,\, H\text{-prop},\, U) = \theta - \frac{(N-1)\beta(1+r-2\alpha r)}{2N}.
+\end{equation}
+
+**$W$ proposes under unanimity** (probability $(N-1)/N$). The proposer $W_k$ chooses a screening cutoff $\theta_1^*$: types $\theta \leq \theta_1^*$ accept the offer $y_H = \beta(\theta_1^* + x)/N$; types $\theta > \theta_1^*$ reject, and R2 begins with posterior $\text{Uniform}[\theta_1^*, r]$ (under which $\theta_2^* = r$ still holds, as noted above).
+
+Under unanimity, $W_k$ must also secure votes from $N-2$ non-proposing weak states. Setting each $W_i$'s expected payoff from accepting equal to its rejection payoff (the discounted R2 continuation under the prior) and solving gives the binding offer
+\begin{equation}\label{eq:cont_yWi}
+y_{W_i}(\theta_1^*) = \frac{\beta(\theta_1^* + 1 - 2\alpha r)}{2N}.
+\end{equation}
+
+Substituting into $W_k$'s expected payoff from cutoff $s \equiv \theta_1^*$:
+\begin{equation}\label{eq:cont_PiW}
+\Pi_{W_k}(s) = \frac{1}{r-1}\int_1^s \left[\theta - \frac{\beta(Ns + N - 2 + 2\alpha r)}{2N}\right]d\theta + \frac{r-s}{r-1}\cdot\frac{\beta[s+(1-2\alpha)r]}{2N},
+\end{equation}
+where the first term is the proposer's surplus when $H$ accepts (types $\theta \leq s$) and the second is the discounted R2 payoff when $H$ rejects (types $\theta > s$). Multiplying by $2N(r-1)$ and collecting:
+$$2N(r-1)\Pi_{W_k}(s) = \underbrace{[N - (N+1)\beta]}_{s^2\text{ coeff.}}\,s^2 + \underbrace{2\beta}_{s\text{ coeff.}}\,s + (\text{terms in } \alpha \text{ only}).$$
+Since $\alpha$ enters only the constant term, the optimal cutoff is independent of $\alpha$:
+\begin{equation}\label{eq:cont_theta1star}
+\theta_1^* = \begin{cases} r & \text{if } \beta \leq \dfrac{Nr}{(N+1)r-1}, \\[6pt] \min\!\left(r, \;\dfrac{\beta}{(N+1)\beta - N}\right) & \text{otherwise.} \end{cases}
+\end{equation}
+When $\beta \leq Nr/[(N+1)r-1]$, the unconstrained maximum of the quadratic is at $s^* \geq r$, so $\theta_1^* = r$ (full pooling). When $\beta > Nr/[(N+1)r-1]$, the interior maximum $s^* = \beta/[(N+1)\beta - N] < r$ binds.
+
+**$H$'s payoff from $W$'s proposal.** Given cutoff $\theta_1^*$, types $\theta \leq \theta_1^*$ receive $\beta(\theta_1^* + x)/N$ and types $\theta > \theta_1^*$ receive $\beta(\theta + x)/N$. Integrating over $\text{Uniform}[1, r]$:
+\begin{align}
+E_\theta[V_H^{R1} \mid W\text{-prop},\, U] &= \frac{\beta}{N(r-1)}\left[(\theta_1^*-1)(\theta_1^*+x) + \frac{r^2-(\theta_1^*)^2}{2} + (r-\theta_1^*)x\right] \nonumber \\
+&= \frac{\beta}{N}\left[\frac{(\theta_1^*-1)^2}{2(r-1)} + \frac{1+r}{2} + x\right]. \label{eq:cont_Wprop_H}
+\end{align}
+The term $(\theta_1^*-1)^2/[2(r-1)]$ is the screening rent from R1 pooling. It is zero when $\theta_1^* = 1$ and maximal at $\theta_1^* = r$, giving $(r-1)/2$. This term is absent under majority. Verification: at $\theta_1^* = r$, equation \eqref{eq:cont_Wprop_H} gives $\beta(r + x)/N = \beta V_H^{R2}(r, U)$.
+
+**$H$ proposes under majority** (probability $1/N$). $H$ buys $q-1$ votes at $\beta E_\theta[V_W^{R2}(\theta, M)] = \beta(1-\alpha)(1+r)/(2N)$:
+\begin{equation}\label{eq:cont_Hprop_M}
+E_\theta[V_H^{R1}(\theta,\, H\text{-prop},\, M)] = \frac{1+r}{2}\left[1 - \frac{(q-1)\beta(1-\alpha)}{N}\right].
+\end{equation}
+
+**$W$ proposes under majority** (probability $(N-1)/N$). $W$ excludes $H$ from the winning coalition; $H$ captures $\alpha\theta$. Expected payoff: $\alpha(1+r)/2$.
+
+## C.4 Payoff comparison and dominance threshold {-}
+
+**Combined R1 payoff under unanimity.** Weighting $H$-proposes by $1/N$ and $W$-proposes by $(N-1)/N$, and using $\alpha r + x = N\alpha r$:
+\begin{equation}\label{eq:cont_EVH_U}
+E_\theta[V_H^{R1}(U)] = \frac{1+r}{2N} + \frac{(N-1)\beta}{N^2}\left[\frac{(\theta_1^*-1)^2}{2(r-1)} + N\alpha r\right].
+\end{equation}
+
+**Combined R1 payoff under majority.** With $C_{\text{buy}} \equiv \beta(q-1)(1-\alpha)$ and $C_{\text{out}} \equiv N(N-1)\alpha$:
+\begin{equation}\label{eq:cont_EVH_M}
+E_\theta[V_H^{R1}(M)] = \frac{(1+r)(N + C_{\text{out}} - C_{\text{buy}})}{2N^2} = \lambda_M \cdot \frac{1+r}{2},
+\end{equation}
+where $\lambda_M = (N + C_{\text{out}} - C_{\text{buy}})/N^2$, as in the binary model (Appendix B.1).
+
+**Payoff difference.** The difference $D \equiv E_\theta[V_H^{R1}(U)] - E_\theta[V_H^{R1}(M)]$ is
+\begin{equation}\label{eq:cont_D}
+D = \frac{1}{2N^2}\left[\frac{(N-1)\beta(\theta_1^*-1)^2}{r-1} + (1+r)C_{\text{buy}} - C_{\text{out}}(1+r-2\beta r)\right].
+\end{equation}
+
+$D$ is affine in $\alpha$. Expanding $C_{\text{buy}}$ and $C_{\text{out}}$:
+$$2N^2 D = \underbrace{\frac{(N-1)\beta(\theta_1^*-1)^2}{r-1} + (1+r)\beta(q-1)}_{\equiv\, A \;>\; 0} \;-\; \alpha\,\underbrace{\bigl[(1+r)\beta(q-1) + N(N-1)(1+r-2\beta r)\bigr]}_{\equiv\, \Lambda}.$$
+
+The threshold $D = 0$ gives the dominance boundary:
+\begin{equation}\label{eq:cont_alpha_star}
+\alpha^*_{\text{cont}}(N, \beta, r) = \frac{A}{\Lambda} = \frac{\dfrac{(N-1)\beta(\theta_1^*-1)^2}{r-1} + (1+r)\beta(q-1)}{(1+r)\beta(q-1) + N(N-1)(1+r-2\beta r)}.
+\end{equation}
+
+When $\Lambda > 0$, unanimity dominates ($D > 0$) for $\alpha < \alpha^*_{\text{cont}}$. When $\Lambda \leq 0$, unanimity dominates for all $\alpha \in (0, 1/r)$.
+
+**Structure of $D$.** The three components have transparent interpretations. The screening-rent term $(N-1)\beta(\theta_1^*-1)^2/(r-1) \geq 0$ captures the overpayment to low types when $W$ pools in R1 under unanimity; it is absent under majority. The vote-buying term $(1+r)C_{\text{buy}} > 0$ reflects $H$'s cheaper coalition formation under majority ($q-1$ votes instead of $N-1$). The outside-option term $-C_{\text{out}}(1+r-2\beta r)$ captures the net effect of $H$'s bilateral alternative: under majority, $H$ captures $\alpha\theta$ when excluded; under unanimity, $H$ captures a pooling offer. The sign depends on $\beta$ and $r$.
+
+**Comparison with the binary-type threshold.** The binary-type threshold (Theorem \ref{thm:conditional}) is
+$$\alpha^* = \frac{\beta(q-1)}{N(N-1)(1-\beta) + \beta(q-1)}.$$
+
+*Limit $r \to 1^+$.* As $r \to 1$, the type space degenerates: $\theta_1^* \to 1$, the screening rent vanishes, and direct computation gives
+$$\alpha^*_{\text{cont}} \to \frac{\beta(q-1)}{\beta(q-1) + N(N-1)(1-\beta)} = \alpha^*.$$
+The two thresholds coincide: the continuous model recovers the binary result when the type space becomes trivial.
+
+*For $r > 1$.* The numerator $A$ of $\alpha^*_{\text{cont}}$ exceeds the (scaled) numerator of $\alpha^*$ by the screening-rent term $(N-1)\beta(\theta_1^*-1)^2/(r-1) > 0$. A grid search over $N \in \{3, 5, 7, 10, 20, 50, 100, 164\}$, $\beta \in \{0.10, 0.15, \ldots, 0.99\}$, $r \in \{1.01, 1.1, 1.5, 2, 3, 5, 10\}$ (1,008 combinations) confirms
+$$\alpha^*_{\text{cont}} \geq \alpha^* \quad \text{for all parameter values,}$$
+with equality only at $r = 1$. The minimum ratio is $\alpha^*_{\text{cont}}/\alpha^* = 1.010$ (at $r = 1.01$). Unconditional dominance ($\Lambda \leq 0$, implying $D > 0$ for all $\alpha \in (0, 1/r)$) occurs in 32\% of the grid. Analytical formulas are verified against Monte Carlo simulation ($10^6$ draws per parameter combination) to relative error below $5 \times 10^{-4}$.
+
+The binary model is therefore the most conservative specification for the mechanism: continuous types amplify the screening rent, enlarging the parameter region where unanimity dominates majority.
 
 
 # References {-}
