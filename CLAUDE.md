@@ -39,23 +39,61 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 - **Proposition 4**: Classificação institucional — U domina em F_U, M domina em F_M \ F_U, indiferença fora de F_M
 - **Remark weighted**: Screening depende de inclusão estratégica, não pivotalidade formal
 
-## PENDÊNCIAS RIO (v5, pré-submissão)
+## PENDÊNCIAS RIO — Comparação com Hirsch & Shotts (AJPS 2025)
 
-Fontes: `quality_reports/parecer_AJPS_formal_model_v5.md` + `quality_reports/proof_roadmap_inserts_RIO.md` + `quality_reports/2026-04-27_comparison_hirsch_shotts.md`.
+Fonte: `quality_reports/2026-04-27_comparison_hirsch_shotts.md`
 
-#### Blockers de exposição (comparação com Hirsch & Shotts AJPS 2025)
-- [ ] **B1**: Zero evidência empírica — adicionar 1 figura descritiva (distribuição de voting rules por tipo de OI, Gould 2022 ou equivalente)
-- [ ] **B2**: Mapping modelo→realidade vago — 1 ¶ explícito: H = EUA/UE, θ = incerteza sobre welfare gains, α = valor de PTAs, W = developing countries
-- [ ] **B3**: Exemplos numéricos inventados sem ancoragem — calibrar com dados reais ou ser honesto e não fingir calibração
+### 1. Introdução
 
-#### Pendências de exposição (alta prioridade, não blockers)
-- [ ] **B4**: Exposição formalista demais para RIO — cortar game tree Stage 0-1; mover footnotes da Definition para Scope; intuição verbal ANTES de resultados
-- [ ] **B5**: Intro sem preview de resultados counterintuitivos — adicionar 2-3 frases
-- [ ] **B6**: Sem roadmap na intro — adicionar 3 linhas
-- [ ] **B7**: Conclusão sem implicações para policy — trazer implicações para design de OIs
+| Aspecto | Diagnóstico original | Status |
+|---------|---------------------|--------|
+| Hook (fato estilizado concreto) | H&S superior (filibuster vs puzzle abstrato WTO) | **FEITO** — OPEC case study ancora na realidade |
+| Preview de resultados counterintuitivos | H&S muito superior | **FEITO** |
+| Apelo ao leitor não-técnico | H&S superior (WashPost, ACA) | **FEITO** — OPEC como exemplo tangível |
+| Roadmap | Ausente | **FEITO** |
 
-#### Pendência anterior
-- [ ] **RIO-4b**: Revisar frase sobre GATT/WTO na Discussion — autor vai revisar manualmente.
+### 2. Discussão da Literatura
+
+| Aspecto | Diagnóstico original | Status |
+|---------|---------------------|--------|
+| Título substantivo | Corrigido (2026-04-27) | **FEITO** |
+| Integração com o argumento (vs. catalográfica) | H&S superior | **FEITO** (2026-04-29) — "but" clauses, Koremenos reposicionado |
+| Predição discriminante | Galdino superior | **FEITO** — adicionada distinção com Koremenos V3 |
+| Posicionamento papers próximos | Adequado | **FEITO** — Koremenos conflicting predictions, Kim no corpo, Bardhi footnote |
+
+### 3. Apresentação do Modelo
+
+| Aspecto | Diagnóstico original | Status |
+|---------|---------------------|--------|
+| Concisão (~3pp vs H&S ~1pp) | Galdino 3x mais longo | **PARCIAL** — footnotes migradas; game tree Stage 0-1 ainda presente |
+| Footnotes na Definition 1 | 4 footnotes pesadas | **FEITO** (2026-04-29) — fn2 migrada para Scope, fn4 simplificada |
+| Game trees (2 landscape pages) | Stage 0-1 trivial, Stage 2 tem valor | **PENDENTE** — cortar Stage 0-1 ou mover para appendix |
+| Intuição verbal ANTES de resultados | H&S superior | **FEITO** — Motivating Example precede resultados formais |
+| Provas no corpo vs. appendix | Indeciso | **FEITO** — proof sketches no corpo, provas completas no appendix |
+
+### 4. Aplicações e Exemplos
+
+| Aspecto | Diagnóstico original | Status |
+|---------|---------------------|--------|
+| Mapping modelo→realidade | H&S muito superior | **FEITO** — OPEC: Saudi=H, spare capacity=θ, production share=α |
+| Evidência empírica | Zero | **FEITO** — OPEC case study com dados reais |
+| Exemplos numéricos calibrados | Inventados, hand-waving | **FEITO** — OPEC calibrado; motivating example honestamente "illustrative" |
+| Confrontar predições com padrões observados | H&S muito superior | **FEITO** — OPEC 1985-86 price war confronta predições |
+| Figuras conectadas à realidade | Mundo abstrato | **FEITO** — OPEC illustration conecta |
+
+### 5. Conclusão
+
+| Aspecto | Diagnóstico original | Status |
+|---------|---------------------|--------|
+| Implicações de policy | Ausentes | **FEITO** — OPEC reform (auditorias independentes), erosão endógena |
+| Limites | Galdino superior em honestidade técnica | **FEITO** |
+| Extensões | Adequadas | **FEITO** |
+
+### Pendência remanescente
+- [ ] Game tree Stage 0-1 — cortar ou mover para appendix
+
+### Submissão
+- [ ] Submeter ao RIO
 
 #### Submissão
 - [ ] Submeter ao RIO
@@ -75,6 +113,18 @@ Fontes: `quality_reports/parecer_AJPS_formal_model_v5.md` + `quality_reports/pro
 - [x] Remark supermajority + weighted voting inserido
 - [x] Intro comprimida, Discussion comprimida
 - [x] Bardhi-Guo e Kim-Kim-Van Weelden adicionados ao .bib e diferenciados na lit review
+
+#### Itens concluídos (sessão 2026-04-29 — readability + Hirsch integration)
+- [x] Lit Review reescrita: 2 categorias (self-binding, informal power) + Koremenos movido para closely related
+- [x] Koremenos posicionado como conflicting predictions (V2 vs V3), resolvido via risk neutrality + screening
+- [x] Bardhi & Guo movido para footnote; Kim et al. no corpo
+- [x] Predição discriminante: distinção Koremenos V3 (risk aversion) vs. nosso mecanismo (informational power)
+- [x] "argue" → "imply" para informal power accounts
+- [x] Passivas eliminadas (~25) em Lit Review, Scope, e passagens α*/dominância
+- [x] Em dashes reduzidos (~10) em Lit Review e Scope
+- [x] Definition 1: risk neutrality adicionado; footnote 2 migrada para Scope; footnote 4 simplificada
+- [x] Scope: novo ¶ "Why proportional outside options?"; "What is being compared" e "Why all-or-nothing" reescritos
+- [x] Passagens α*/dominância: below/above framing; "remarkably" → "nearly"; frases simplificadas
 
 ## Puzzle central
 
@@ -131,7 +181,44 @@ rmarkdown::render("formal_model_v5.Rmd")
 
 **REGRA**: Lean é ferramenta de segurança interna do PI. NÃO entra no paper, NÃO serve como base para escrita.
 
-**Status**: Provas do modelo anterior. Precisam ser atualizadas para v5.
+**Status** (2026-04-29): Formalização v5 criada em `FormalProofs/V5/` (7 arquivos, build passando, 0 sorry).
+
+### O que o Lean verifica
+
+- **Theorem 1** (conditional dominance iff): ÁLGEBRA COMPLETA — 19 teoremas encadeados
+- **Prop 1** (majority affine + λ_M > α): ÁLGEBRA COMPLETA
+- **Prop 3** (screening jump): ÁLGEBRA COMPLETA
+- **Prop 2** (R1 cutoff): LÓGICA ABSTRATA — IVT correto, boundary values assumidos
+- **Corollary** (F_U ⊆ F_M): LÓGICA ABSTRATA — budget identities assumidas
+- **Prop 4** (classificação): LÓGICA ABSTRATA — herda gaps do Corollary
+- **LemmaVWMax** (V_W global max): PARCIAL — 1/4 candidatos verificados
+
+### O que o Lean NÃO verifica (e por quê)
+
+- **Backward induction / PBE**: Nenhum proof assistant formalizou barganha legislativa. Estimativa: 2-4 meses. Fora do escopo.
+- **LP / otimização de offers**: Mathlib não tem LP. Desnecessário (otimalidade trivial neste modelo).
+- **Concavificação / BP**: Relegada a Remark no v5. Baixa prioridade.
+
+### Próximos passos Lean
+
+Roadmap detalhado em `quality_reports/2026-04-29_lean_v5_roadmap.md`. Resumo:
+
+1. **Definir payoffs de equilíbrio + verificar budget identities** (~100 linhas, fecha Corollary + Prop 4)
+2. **Verificar 3 candidatos restantes do LemmaVWMax** (~200 linhas, fecha gap de maior risco)
+3. **Derivar boundary values de Δ₁** (~80 linhas, fecha Prop 2)
+
+### Relatórios de referência
+
+- Fidelidade: `quality_reports/2026-04-29_lean_fidelity_v5.md`
+- Roadmap: `quality_reports/2026-04-29_lean_v5_roadmap.md`
+- Game theory em Lean: `quality_reports/2026-04-29_lean4-game-theory-landscape.md`
+
+### Skills disponíveis
+
+- `/lean-proofs` — orquestrador: extrai do paper, monta scaffold, invoca tactic loop. **Gera Relatório de Fidelidade obrigatório** (classifica cada teorema como ÁLGEBRA COMPLETA / LÓGICA ABSTRATA / PARCIAL).
+- `/lean-tactic` — loop iterativo: aplica tática por vez, lê goal state, interpreta, repete.
+- `/lean-dashboard` — status de verificação.
+- `/lean-setup` — configurar ambiente.
 
 ## Papers Futuros
 
