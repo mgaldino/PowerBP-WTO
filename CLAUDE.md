@@ -9,8 +9,8 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 
 ## Status
 
-- **Fase**: ATIVO — preparando submissão. Journal target: **RIO** (Review of International Organizations).
-- **Paper v5** (ATIVO): `formal_model_v5.Rmd` — screening central, BP → Remark. Seção Related Literature adicionada. Provas rigorosas no appendix.
+- **Fase**: pós-parecer técnico das provas; revisão interna do appendix em andamento. A versão submetida ao RIO deve ser tratada como superada para fins de prova formal.
+- **Paper v5** (ATIVO): `formal_model_v5.Rmd` — screening central, BP → Remark. O appendix foi corrigido em 2026-05-10 para majority outside option externa e strict BF feasibility. O corpo principal ainda precisa ser revisado depois.
 - **Paper v4** (ARQUIVO): `formal_model_v4.Rmd` — versão com BP como co-protagonista. Preservada intacta.
 - **Paper v2** (ARQUIVO): `formal_model_v2.Rmd` — versão densa com provas no corpo.
 
@@ -32,12 +32,38 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 - **Unanimidade**: W deve incluir H → screening (agressivo vs conservador) → jump em E[V_H]
 - **Maioria**: W exclui H da coalizão, H captura αV(θ) bilateralmente → sem screening → V_H = λ_M · V_e(μ), afim
 
-### Resultados-chave
-- **Screening cutoff**: μ_s = α(r-1)/(r-α)
-- **Theorem 1**: α < α*(N,β) iff unanimidade domina condicionalmente em todo μ ∈ (0,1]
-- **Corollary**: F_U ⊆ F_M (unanimidade entry set contido no de maioria)
-- **Proposition 4**: Classificação institucional — U domina em F_U, M domina em F_M \ F_U, indiferença fora de F_M
-- **Remark weighted**: Screening depende de inclusão estratégica, não pivotalidade formal
+### Resultados-chave — status após correção das provas
+
+**Verificados no appendix corrigido (2026-05-10):**
+- Maioria não gera screening quando H's outside option é externa ao pie.
+- Coeficientes corrigidos: `lambda_M^E = {N[1+(N-1)alpha] - beta(q-1)}/N^2`; `kappa_M^E = [N(N-1)+beta(q-1)]/[N^2(N-1)]`.
+- R2 de unanimidade: `mu_s^R2 = alpha(r-1)/(r-alpha)`.
+- R1 quando W propõe sob unanimidade: escolha restrita por factibilidade entre `A(mu)` agressivo, `C(mu)` conservador e `R(mu)` rejeição deliberada.
+- Calibração OPEC (`N=13`, `r=1.5`, `alpha=.19`, `beta=.9`): regime W-proposer `A-C-A`, com cortes `0.031188` e `0.301717`; lower bound de unanimidade domina majority corrigida em todo `mu in [0,1]`.
+
+**Pendentes; não tratar como provados:**
+- Theorem 1 geral de dominância condicional.
+- Corollary `F_U subset F_M`.
+- Proposition 4 de classificação institucional.
+- Máximo global do payoff dos fracos sob unanimidade.
+- Appendix C de tipos contínuos.
+- PBE completo do ramo em que H propõe fora da região de pooling.
+
+**Remark weighted**: Screening depende de inclusão estratégica, não pivotalidade formal.
+
+### Correção crítica das provas (2026-05-10)
+
+O parecerista estava correto: o appendix antigo calculava payoffs de maioria como se a outside option de H fosse paga pela coalizão majoritária. Isso é errado no modelo. Sob maioria, W exclui H; H recebe `alpha V(theta)` externamente; o pie institucional disponível aos fracos não é reduzido por `(1-alpha)`.
+
+Inequality importante:
+
+```text
+lambda_M^E > alpha  iff  alpha < 1 - beta(q-1)/N
+```
+
+Essa condição não segue automaticamente de `alpha < 1/r`.
+
+Sob strict BF, W não pode propor mais do que cabe no estado baixo quando a proposta pode passar nesse estado. Por isso o antigo cutoff único de R1 é supersedido por `max{A,C,R}`. Na calibração, isso gera `A-C-A`: agressivo em crenças baixas, conservador em crenças intermediárias, agressivo novamente em crenças altas porque a oferta conservadora deixa de ser factível.
 
 ## PENDÊNCIAS RIO — Comparação com Hirsch & Shotts (AJPS 2025)
 
@@ -65,11 +91,11 @@ Fonte: `quality_reports/2026-04-27_comparison_hirsch_shotts.md`
 
 | Aspecto | Diagnóstico original | Status |
 |---------|---------------------|--------|
-| Concisão (~3pp vs H&S ~1pp) | Galdino 3x mais longo | **PARCIAL** — footnotes migradas; game tree Stage 0-1 ainda presente |
+| Concisão (~3pp vs H&S ~1pp) | Galdino 3x mais longo | **PENDENTE** — footnotes migradas, mas modelo ainda longo demais |
 | Footnotes na Definition 1 | 4 footnotes pesadas | **FEITO** (2026-04-29) — fn2 migrada para Scope, fn4 simplificada |
 | Game trees (2 landscape pages) | Stage 0-1 trivial, Stage 2 tem valor | **PENDENTE** — cortar Stage 0-1 ou mover para appendix |
-| Intuição verbal ANTES de resultados | H&S superior | **FEITO** — Motivating Example precede resultados formais |
-| Provas no corpo vs. appendix | Indeciso | **FEITO** — proof sketches no corpo, provas completas no appendix |
+| Intuição verbal ANTES de resultados | H&S superior | **PARCIAL** — Motivating Example existe, mas falta intuição antes de cada proposição no corpo |
+| Provas no corpo vs. appendix | Indeciso | **FEITO** — padrão Hirsch: sem proof sketches no corpo, roadmap migrado para B.5 |
 
 ### 4. Aplicações e Exemplos
 
@@ -78,53 +104,38 @@ Fonte: `quality_reports/2026-04-27_comparison_hirsch_shotts.md`
 | Mapping modelo→realidade | H&S muito superior | **FEITO** — OPEC: Saudi=H, spare capacity=θ, production share=α |
 | Evidência empírica | Zero | **FEITO** — OPEC case study com dados reais |
 | Exemplos numéricos calibrados | Inventados, hand-waving | **FEITO** — OPEC calibrado; motivating example honestamente "illustrative" |
-| Confrontar predições com padrões observados | H&S muito superior | **FEITO** — OPEC 1985-86 price war confronta predições |
-| Figuras conectadas à realidade | Mundo abstrato | **FEITO** — OPEC illustration conecta |
+| Confrontar predições com padrões observados | H&S muito superior | **FEITO** — OPEC 1985-86 price war, Angola/UAE exits confrontam Prop 4 |
+| Figuras conectadas à realidade | Mundo abstrato | **PARCIAL** — calibradas para OPEC, mas sem dados empíricos reais (cf. H&S Figure 6) |
 
 ### 5. Conclusão
 
 | Aspecto | Diagnóstico original | Status |
 |---------|---------------------|--------|
-| Implicações de policy | Ausentes | **FEITO** — OPEC reform (auditorias independentes), erosão endógena |
+| Implicações de policy | Ausentes | **PENDENTE** |
 | Limites | Galdino superior em honestidade técnica | **FEITO** |
 | Extensões | Adequadas | **FEITO** |
 
-### Pendência remanescente
-- [ ] Game tree Stage 0-1 — cortar ou mover para appendix
+### Pendências remanescentes (pré-submissão RIO)
 
-### Submissão
-- [ ] Submeter ao RIO
+**Exposição (padrão Hirsch & Shotts)**
+- [ ] Concisão do modelo — ~3pp, reduzir. Candidatos: parágrafo justificando 2 rounds (l.112), descrição dos 3 stages
+- [ ] Game tree Stage 0-1 — cortar ou mover para appendix (trivial, ocupa 1 página landscape)
+- [ ] Intuição verbal ANTES de cada proposição no corpo — Motivating Example existe, mas Props 1-3 no corpo não têm setup intuitivo antes do enunciado formal
+- [x] Provas sem sketch no corpo — padrão Hirsch: roadmap pós-Thm 1 migrado para B.5 (2026-04-29)
+- [ ] Figuras conectadas à realidade — calibradas para OPEC, mas sem dados empíricos reais (cf. H&S Figure 6 com Nominate scores)
+- [ ] Implicações de policy na conclusão — OPEC reform e erosão estão na Discussion, não migram para Conclusion
 
-#### Submissão
-- [ ] Submeter ao RIO
+**Arquivos de submissão (`RIO submission files/`)**
+- [x] Corrigir 13 cross-refs quebradas no appendix — resolvido via `\usepackage{xr}` + `\externaldocument{01_manuscript}` (2026-04-30)
+- [x] Remover frase "The decomposition is derived in Appendix B.5a." — removida do Rmd e do .tex (2026-04-30)
+- [x] TikZ inline → `\includegraphics` — figuras standalone em `figures/fig{1,2}_*.tex`, script copia PDFs (2026-04-30)
+- [x] Bib duplicada no appendix — removida; appendix sem seção References (2026-04-30)
+- [x] Recompilar ambos os .tex — compilado 2x, 0 undefined refs (2026-04-30)
+- [x] Submeter ao RIO — submetido 2026-04-30
+- [x] Preprint no SocArXiv — upload 2026-04-30, aguardando moderação
 
-#### Itens concluídos (sessão 2026-04-27b)
-- [x] RIO-1: ¶ "What exactly is being compared?" no Scope
-- [x] RIO-2: "Why all-or-nothing entry?" expandido (founding moments vs. rolling accession)
-- [x] RIO-3: Seção Related Literature (4 ¶: consensus em OIs, legislative bargaining, information & voting, predição discriminante)
-- [x] RIO-4: Mecanismo concorrente financial orgs (2 frases Discussion)
-- [x] RIO-5: Proof roadmap pós-Theorem 1
-- [x] RIO-6: Proof roadmap pós-Corollary (F_U ⊆ F_M)
-- [x] RIO-7: B.1 Prop 1 — derivação completa em 6 steps (review: PASS)
-- [x] RIO-8: B.8 Prop 4 caso (ii) — inferência corrigida: λ_M > α (review: PASS)
-- [x] RIO-9: Claims já calibrados
-- [x] RIO-10: Conclusão — separar robustez mecanismo vs. dominância
-- [x] NC-1/2/3: Tabela de notação corrigida (μ, λ_M, E_R→F_R)
-- [x] Remark supermajority + weighted voting inserido
-- [x] Intro comprimida, Discussion comprimida
-- [x] Bardhi-Guo e Kim-Kim-Van Weelden adicionados ao .bib e diferenciados na lit review
-
-#### Itens concluídos (sessão 2026-04-29 — readability + Hirsch integration)
-- [x] Lit Review reescrita: 2 categorias (self-binding, informal power) + Koremenos movido para closely related
-- [x] Koremenos posicionado como conflicting predictions (V2 vs V3), resolvido via risk neutrality + screening
-- [x] Bardhi & Guo movido para footnote; Kim et al. no corpo
-- [x] Predição discriminante: distinção Koremenos V3 (risk aversion) vs. nosso mecanismo (informational power)
-- [x] "argue" → "imply" para informal power accounts
-- [x] Passivas eliminadas (~25) em Lit Review, Scope, e passagens α*/dominância
-- [x] Em dashes reduzidos (~10) em Lit Review e Scope
-- [x] Definition 1: risk neutrality adicionado; footnote 2 migrada para Scope; footnote 4 simplificada
-- [x] Scope: novo ¶ "Why proportional outside options?"; "What is being compared" e "Why all-or-nothing" reescritos
-- [x] Passagens α*/dominância: below/above framing; "remarkably" → "nearly"; frases simplificadas
+#### Histórico de itens concluídos
+Sessões 2026-04-27b e 2026-04-29: RIO-1 a RIO-10 (Scope, Lit Review, provas B.1/B.8, calibração, Conclusão), notação corrigida, Remark weighted voting, readability (passivas, em dashes, footnotes), Hirsch integration (Koremenos, Bardhi, Kim, predição discriminante). Sessão 2026-04-30: cross-refs appendix, TikZ→includegraphics, bib duplicada, recompilação final, submissão RIO + preprint SocArXiv. Detalhes em `git log`.
 
 ## Puzzle central
 
@@ -163,7 +174,8 @@ rmarkdown::render("formal_model_v5.Rmd")
 ## Estrutura do Repositório
 
 ```
-├── CLAUDE.md                          # Este arquivo
+├── AGENTS.md                          # Memória operacional para Codex (fonte principal atual)
+├── CLAUDE.md                          # Memória legada para Claude; manter sincronizada com AGENTS.md
 ├── formal_model_v5.Rmd               # Paper ativo (v5, screening central)
 ├── formal_model_v4.Rmd               # Arquivo (v4, BP co-protagonista)
 ├── formal_model_v2.Rmd               # Arquivo (v2, provas no corpo)
@@ -181,9 +193,9 @@ rmarkdown::render("formal_model_v5.Rmd")
 
 **REGRA**: Lean é ferramenta de segurança interna do PI. NÃO entra no paper, NÃO serve como base para escrita.
 
-**Status** (2026-04-29): Formalização v5 criada em `FormalProofs/V5/` (7 arquivos, build passando, 0 sorry).
+**Status** (2026-05-10): As provas Lean existentes verificam a arquitetura anterior e devem ser tratadas como segurança interna legada. Elas precisam ser atualizadas antes de qualquer uso substantivo, porque a correção de majority outside option externa e strict BF feasibility invalidou partes centrais da prova antiga.
 
-### O que o Lean verifica
+### O que o Lean verificava antes da correção de 2026-05-10
 
 - **Theorem 1** (conditional dominance iff): ÁLGEBRA COMPLETA — 19 teoremas encadeados
 - **Prop 1** (majority affine + λ_M > α): ÁLGEBRA COMPLETA
@@ -192,6 +204,8 @@ rmarkdown::render("formal_model_v5.Rmd")
 - **Corollary** (F_U ⊆ F_M): LÓGICA ABSTRATA — budget identities assumidas
 - **Prop 4** (classificação): LÓGICA ABSTRATA — herda gaps do Corollary
 - **LemmaVWMax** (V_W global max): PARCIAL — 1/4 candidatos verificados
+
+**Não usar esse status como evidência atual.** A nova arquitetura precisa formalizar `lambda_M^E`, `kappa_M^E`, o regime `A/C/R`, a factibilidade BF e o lower bound do ramo H-proposer.
 
 ### O que o Lean NÃO verifica (e por quê)
 
@@ -227,8 +241,10 @@ Roadmap detalhado em `quality_reports/2026-04-29_lean_v5_roadmap.md`. Resumo:
 
 ## Convenções
 
+- **AGENTS.md é a fonte operacional principal para Codex**. Atualizar `AGENTS.md` e `CLAUDE.md` quando o status das provas mudar.
+- **Não confiar no corpo principal para status das provas** até a próxima rodada de revisão textual; o appendix corrigido é a referência atual.
 - **REGRA CRÍTICA — Pareceres completos**: Ao rodar QUALQUER skill de review, o output COMPLETO DEVE ser salvo em `quality_reports/YYYY-MM-DD_nome-do-review.md`. NUNCA truncar. NUNCA salvar apenas resumo.
-- **v5 é o paper ativo para submissão**; v4 preservado intacto; v2 preservado como arquivo
+- **v5 é o paper ativo para revisão e eventual nova submissão**; v4 preservado intacto; v2 preservado como arquivo
 - **Paper é documento atemporal**: NUNCA referenciar versões anteriores ou mudanças. Escrever como se o leitor visse pela primeira vez.
 - Notas em Markdown, modelo formal em Rmd → PDF
 - Idioma: português para notas; inglês para o paper
