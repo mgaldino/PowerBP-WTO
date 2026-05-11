@@ -9,8 +9,13 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 
 ## Status
 
-- **Fase**: pós-parecer técnico das provas; revisão interna do appendix em andamento. A versão submetida ao RIO deve ser tratada como superada para fins de prova formal.
-- **Paper v5** (ATIVO): `formal_model_v5.Rmd` — screening central, BP → Remark. O appendix foi corrigido em 2026-05-10 para majority outside option externa e strict BF feasibility. O corpo principal ainda precisa ser revisado depois.
+- **Fase**: redesign do modelo após correção técnica das provas. A versão submetida ao RIO deve ser tratada como superada para fins de prova formal.
+- **Paper v5** (ATIVO): `formal_model_v5.Rmd` — screening central, BP → Remark. O appendix foi corrigido em 2026-05-10 para majority outside option externa, strict BF feasibility, condições suficientes de dominância, nesting calibrado e classificação calibrada. O corpo principal ainda precisa ser revisado depois.
+- **Decisão de redesign**: a próxima versão do modelo principal deve separar três fontes de poder: outside option, veto/pivotality e proposal power. Agenda power entra por uma recognition probability `pi_H`. O baseline principal usa `pi_H = 0`, isto é, weak states / coalizões não-hegemônicas propõem e `H` é veto player informado. Isso isola informational power through pivotality de agenda power.
+- **Reset arquitetural (2026-05-11)**: abandonar o ramo de factibilidade state-contingent como mecanismo principal. A arquitetura ativa agora usa pacotes institucionais relativos, sempre factíveis, com `U_H(y, theta)=y+b_H(theta)`. O screening vem de thresholds relativos privados: `y_theta^*(mu')=beta C_H(theta,mu')-b_H(theta)` e `y_1^*>y_0^*`.
+- **Arquivo histórico**: a derivação feasibility/C-B-R foi preservada na tag `redesign-feasibility-branch-2026-05-11`. É história diagnóstica, não arquitetura atual.
+- **Atualização de disciplina de protocolo (2026-05-10)**: o pacote baseline `pi_H=0` foi rebaixado de verificado para parcialmente pendente porque o ramo de "no-information delay" em R1 não estava microfundado como primitivo do jogo extensivo. Não impor pooling, delay, rejeição, crenças off-path, ordem de votação, espaço contratual ou protocolo de continuação dentro de uma prova. Se uma prova precisar disso, marcar `pending protocol decision`, explicar consequências substantivas e obter aprovação explícita antes de prosseguir.
+- **Regra de freeze do paper**: não mexer em `formal_model_v5.Rmd` enquanto a nova arquitetura formal não estiver provada e limpa. Trabalhar primeiro em `model_redesign/power_architecture_derivations.Rmd`; depois transportar para o paper.
 - **Paper v4** (ARQUIVO): `formal_model_v4.Rmd` — versão com BP como co-protagonista. Preservada intacta.
 - **Paper v2** (ARQUIVO): `formal_model_v2.Rmd` — versão densa com provas no corpo.
 
@@ -24,7 +29,9 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 - **N jogadores** (N genérico, nunca N=3): 1 hegemon H + N-1 weak states W
 - **Pie**: V(θ) ∈ {1, r}, r > 1. H observa θ, W's não.
 - **d_W = 0** (normalização WLOG), **d_H = αV(θ)**, α ∈ (0, 1/r)
-- **Proposta aleatória** (1/N) sob AMBAS as regras. Diferença é SÓ voting rule.
+- **Arquitetura antiga**: proposta aleatória (1/N) sob ambas as regras. Essa arquitetura gerou um ramo `H`-proposer sob unanimidade com payoff selection-dependent fora de accepted pooling.
+- **Arquitetura nova recomendada**: introduzir `pi_H` como probabilidade de reconhecimento de `H`. No baseline, `pi_H = 0`, então o proposer é sorteado apenas entre os `N-1` weak states. `H` não é agenda setter no modelo principal; é veto player informado sob unanimidade. Os casos `pi_H = 1/N` e `pi_H > 1/N` entram como extensões/robustez.
+- **Arquitetura ativa após 2026-05-11**: propostas são pacotes institucionais relativos, não transferências fixas. Use `y` como concessão institucional a `H` e `b_H(theta)` como benefício direto do acordo para `H`. A participação de `H` é `y+b_H(theta) >= beta C_H(theta,mu')`.
 - **Barganha**: 2 rounds Baron-Ferejohn, discount β
 - **Conceito de solução**: PBE
 
@@ -40,14 +47,34 @@ H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimi
 - R2 de unanimidade: `mu_s^R2 = alpha(r-1)/(r-alpha)`.
 - R1 quando W propõe sob unanimidade: escolha restrita por factibilidade entre `A(mu)` agressivo, `C(mu)` conservador e `R(mu)` rejeição deliberada.
 - Calibração OPEC (`N=13`, `r=1.5`, `alpha=.19`, `beta=.9`): regime W-proposer `A-C-A`, com cortes `0.031188` e `0.301717`; lower bound de unanimidade domina majority corrigida em todo `mu in [0,1]`.
+- Teorema de condições suficientes: com `m=N-1`, `A0=1+m alpha`, `A1=1+m alpha r`, a dominância condicional por lower bound vale se:
+
+```text
+max{
+  N A0 / [A0 + m A1 + q - 1],
+  N m alpha / [q - 1 + N m alpha]
+}
+< beta <
+N / [N + m alpha(r - 1)]
+```
+
+Na calibração OPEC: `max{0.6842105, 0.8316498} < 0.9 < 0.9193777`.
+- Nesting calibrado: para os parâmetros OPEC, `V_W^R1(mu,M) > V_W^R1(mu,U)` para todo `mu in [0,1]` usando upper bound selection-free para os fracos sob unanimidade; logo `F_U subset F_M` para qualquer custo `c`.
+- Classificação institucional calibrada: verificada para OPEC porque dominância condicional, nesting e `lambda_M^E > alpha` passam.
 
 **Pendentes; não tratar como provados:**
-- Theorem 1 geral de dominância condicional.
-- Corollary `F_U subset F_M`.
-- Proposition 4 de classificação institucional.
-- Máximo global do payoff dos fracos sob unanimidade.
-- Appendix C de tipos contínuos.
-- PBE completo do ramo em que H propõe fora da região de pooling.
+- Recriar Appendix A/B sob agenda R1 dos weak states e pacotes institucionais relativos.
+- Fazer a recriação no workspace separado `model_redesign/power_architecture_derivations.Rmd`, não diretamente no paper.
+- Especificar `pi_H` como primitivo de proposal power e resolver primeiro o baseline `pi_H = 0`.
+- Decidir protocolo de R2: benchmark limpo com `pi_H = 0` também, ou robustez com BF padrão/`pi_H > 0` depois da rejeição.
+- Formalizar custo de `y` para weak states e payoff residual do proposer.
+- Derivar R2 unanimity com `U_H(y,theta)=y+b_H(theta)` e thresholds `y_theta^*(mu')`.
+- Derivar R1 unanimity como pooling/high-threshold package, low-only package ou continuation. Não usar branch `B` por factibilidade.
+- Recalcular majority e unanimity payoffs sob a nova agenda e nova arquitetura relative-package.
+- Provar dominância condicional, entry/nesting e classificação sob o protocolo redesenhado.
+- Rederivar R1 unanimity sem assumir atraso sem informação; qualquer pooling/delay precisa ser equilibrium incentive-compatible sob o protocolo declarado.
+- Reescrever corpo principal, figuras e claims gerais antigos. O corpo ainda não deve ser usado como status de prova.
+- Reauditar Appendix C somente depois de estabilizar o modelo binário redesenhado.
 
 **Remark weighted**: Screening depende de inclusão estratégica, não pivotalidade formal.
 
@@ -64,6 +91,96 @@ lambda_M^E > alpha  iff  alpha < 1 - beta(q-1)/N
 Essa condição não segue automaticamente de `alpha < 1/r`.
 
 Sob strict BF, W não pode propor mais do que cabe no estado baixo quando a proposta pode passar nesse estado. Por isso o antigo cutoff único de R1 é supersedido por `max{A,C,R}`. Na calibração, isso gera `A-C-A`: agressivo em crenças baixas, conservador em crenças intermediárias, agressivo novamente em crenças altas porque a oferta conservadora deixa de ser factível.
+
+### Atualização de prova: condições suficientes e nesting calibrado (2026-05-10)
+
+Relatório de referência: `quality_reports/2026-05-10_sufficient_conditions_and_nesting.md`.
+
+Scripts reprodutíveis:
+
+```r
+Rscript --vanilla scripts/verify_sufficient_conditions_lower_bound.R
+Rscript --vanilla scripts/verify_calibrated_nesting_upper_bound.R
+```
+
+O primeiro script verifica a janela suficiente para dominância condicional e os endpoint gaps. O segundo verifica, para a calibração OPEC, que o upper bound dos payoffs dos fracos sob unanimidade fica abaixo do payoff dos fracos sob maioria em todos os ramos relevantes. Esses resultados sustentam uma arquitetura segura calibrada/paramétrica, mas não resolvem a classificação geral.
+
+### Redesign: arquitetura de poder e `pi_H` (2026-05-10)
+
+Relatórios de referência:
+
+- `quality_reports/h_proposer_response_complete.md`
+- `quality_reports/2026-05-10_model_redesign_weak_proposer_agenda.md`
+- `quality_reports/2026-05-10_power_architecture_piH.md`
+- `model_redesign/power_architecture_derivations.Rmd`
+
+Conclusão: o ramo em que `H` propõe em R1 sob unanimidade é um jogo de signaling. Fora de accepted pooling, não há payoff único; PBEs mistos/semi-pooling dependem de tie-breaking e crenças off-path. Isso é ruído para a contribuição do paper.
+
+Decisão: separar três fontes de poder:
+
+1. **Outside-option power**: `H` tem `d_H = alpha V(theta)`.
+2. **Veto/pivotality power**: sob unanimidade, `H` precisa aceitar.
+3. **Proposal power**: `H` é reconhecido com probabilidade `pi_H`.
+
+O baseline do modelo principal usa `pi_H = 0`. Em R1, weak states / coalizões não-hegemônicas fazem propostas; `H` é pivotal e informado. A justificativa substantiva é forte:
+
+```text
+Unanimity can favor a powerful privately informed actor not because it gives him more agenda power, but because it transforms his veto/acceptance behavior into an informational constraint on weaker states.
+```
+
+Para OPEC, a Arábia Saudita deve ser interpretada como ator pivotal informado, não agenda setter formal. O proposer representa os demais membros, o processo de conferência, comitês de quotas ou coalizões tentando montar um acordo viável.
+
+Casos de extensão:
+
+```text
+pi_H = 1/N  : BF neutro/canônico, com H-proposer signaling branch.
+pi_H > 1/N  : agenda power hegemônico.
+```
+
+Esses casos devem ser tratados com lower bounds, upper bounds selection-free e simulações calibradas quando não houver payoff function única.
+
+### Reset: pacotes institucionais relativos (2026-05-11)
+
+Relatórios / arquivos de referência:
+
+- `model_redesign/power_architecture_derivations.Rmd` — documento limpo ativo.
+- `quality_reports/2026-05-11_relative_package_reimplementation.md`.
+- tag `redesign-feasibility-branch-2026-05-11` — arquivo histórico da tentativa C-B-R/feasibility.
+
+Decisão: não usar mais a feasibility branch como mecanismo central. O problema
+protocolo ficou dependente de quando a factibilidade é checada, se no-consent
+revela o estado e se o tipo baixo de `H` consegue bloquear antes da checagem.
+
+Nova arquitetura:
+
+```text
+U_H(y, theta) = y + b_H(theta)
+y_theta^*(mu') = beta C_H(theta, mu') - b_H(theta)
+screening: y_1^*(mu') > y_0^*(mu')
+```
+
+Interpretação OPEC: `y` é quota/share/flexibilidade/exceção/enforcement
+favorável à Arábia Saudita; `b_H(theta)` é o benefício direto do acordo para a
+Arábia Saudita; o tipo privado altera o threshold relativo de participação.
+
+Próximo alvo formal: definir o custo de `y` para a coalizão fraca e derivar R2
+unanimity no documento limpo. Criar scripts novos `scripts/verify_relative_package_*.R`.
+
+### Workspace formal separado
+
+A nova arquitetura deve ser desenvolvida fora do manuscrito. O documento de trabalho é:
+
+```text
+model_redesign/power_architecture_derivations.Rmd
+```
+
+Motivo: o erro anterior veio em parte de manter fórmulas de uma arquitetura antiga no corpo/apêndice enquanto a interpretação do outside option mudava. A regra agora é provar, auditar e compilar o documento separado antes de transportar qualquer theorem statement, fórmula ou figura para `formal_model_v5.Rmd`.
+
+### Prompt recomendado para próxima sessão
+
+```text
+Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, model_redesign/power_architecture_derivations.Rmd e quality_reports/2026-05-11_relative_package_reimplementation.md. Não mexa em formal_model_v5.Rmd. A arquitetura feasibility/C-B-R foi arquivada na tag redesign-feasibility-branch-2026-05-11 e não deve ser usada como prova atual. O baseline novo usa pi_H=0 e propostas como pacotes institucionais relativos, sempre factíveis, com U_H(y,theta)=y+b_H(theta). O screening vem de thresholds y_theta^*(mu')=beta C_H(theta,mu')-b_H(theta), com y_1^*>y_0^*. Comece formalizando o custo de y para weak states e derivando R2 unanimity no documento limpo model_redesign/power_architecture_derivations.Rmd. Crie scripts novos sob scripts/verify_relative_package_*.R; não edite formal_model_v5.Rmd nem reaproveite branch labels C-B-R/B sem rederivação.
+```
 
 ## PENDÊNCIAS RIO — Comparação com Hirsch & Shotts (AJPS 2025)
 
@@ -205,7 +322,7 @@ rmarkdown::render("formal_model_v5.Rmd")
 - **Prop 4** (classificação): LÓGICA ABSTRATA — herda gaps do Corollary
 - **LemmaVWMax** (V_W global max): PARCIAL — 1/4 candidatos verificados
 
-**Não usar esse status como evidência atual.** A nova arquitetura precisa formalizar `lambda_M^E`, `kappa_M^E`, o regime `A/C/R`, a factibilidade BF e o lower bound do ramo H-proposer.
+**Não usar esse status como evidência atual.** A nova arquitetura precisa formalizar os payoffs sob agenda R1 dos weak states, o regime `A/C/R`, a factibilidade BF e os novos resultados de dominância/nesting/classificação. O antigo lower bound do ramo H-proposer deixa de ser central se `H` não propõe em R1.
 
 ### O que o Lean NÃO verifica (e por quê)
 
