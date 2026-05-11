@@ -11,7 +11,7 @@
 
 <meta name="author" content="Working formal appendix" />
 
-<meta name="date" content="2026-05-10" />
+<meta name="date" content="2026-05-11" />
 
 <title>Power Architecture Derivations</title>
 
@@ -1567,1694 +1567,240 @@ border-radius: 0px;
 
 
 <h1 class="title toc-ignore">Power Architecture Derivations</h1>
-<h3 class="subtitle">Outside Options, Veto Power, and Proposal Power</h3>
+<h3 class="subtitle">Relative Institutional Packages and Type-Dependent Participation</h3>
 <h4 class="author">Working formal appendix</h4>
-<h4 class="date">2026-05-10</h4>
+<h4 class="date">2026-05-11</h4>
 
 </div>
 
 
 <div id="status" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Status</h1>
-<p>This is a working derivation document, not the paper. The active manuscript
-<code>formal_model_v5.Rmd</code> should remain frozen until the results here are fully
-rederived and audited.</p>
-<p><strong>Protocol audit update (2026-05-10).</strong> The previously consolidated
-``pooling-or-delay’’ R1 baseline is no longer treated as verified. Its
-no-information delay branch used a continuation history that was not yet stated
-as a primitive of the extensive-form game. Pooling, delay, rejection histories,
-and off-path beliefs may not be imposed. They must be derived as
-incentive-compatible behavior under the stated protocol, or the protocol change
-must be explicitly approved before any proof uses it.</p>
-<p><strong>Feasibility audit update (2026-05-10).</strong> The C-or-R R1 characterization is
-superseded. A weak proposer may make an offer that is infeasible in the low
-state but feasible in the high state. This high-state-only branch generates
-separation through BF feasibility rather than through H’s preference
-constraints. The R1 problem is therefore C-B-R: accepted pooling, high-state-only
-agreement, or rejection/continuation.</p>
-<p><strong>Architecture reset (2026-05-11).</strong> Attempts to close the high-state-only
-feasibility branch exposed unresolved protocol dependence: the result depends
-on when feasibility is checked, whether no-consent histories reveal the state,
-and whether the low type of <span class="math inline">\(H\)</span> can block before implementation. The new
-working decision is to abandon feasibility-based separation as the main
-architecture. Proposals should instead be modeled as relative institutional
-packages or shares that are feasible in every realized state. Screening should
-come from type-dependent relative participation constraints for <span class="math inline">\(H\)</span>, not from
-offers that fit only one realized pie. The old C-B-R derivations remain useful
-as diagnostic history, but they should not be transported to the paper.</p>
-<p>The purpose of this document is to rebuild the formal architecture from
-primitives after the correction that the hegemon’s majority outside option is
-external to the institutional pie.</p>
-<div id="how-to-use-this-document" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> How to use this document</h2>
-<p>This document is the work surface for the new formal section. It should contain
-the exact derivations before anything is moved back into the manuscript.</p>
-<p>Use it in this order:</p>
-<ol style="list-style-type: decimal">
-<li>State the primitives and timing.</li>
-<li>Derive the baseline with <span class="math inline">\(\pi_H=0\)</span>.</li>
-<li>Run the outside-option stress test <span class="math inline">\(\alpha=0\)</span> or <span class="math inline">\(d_H=d_W\)</span>.</li>
-<li>Prove conditional dominance and entry/nesting, if true.</li>
-<li>Add extensions for <span class="math inline">\(\pi_H=1/N\)</span> and <span class="math inline">\(\pi_H&gt;1/N\)</span> using bounds or
-simulations when the H-proposer branch has no unique payoff function.</li>
-</ol>
-<p>Do not use old formulas unless they are rederived under the current
-architecture. In particular, any majority payoff must keep <span class="math inline">\(H\)</span>’s outside
-option external to the institutional pie.</p>
-</div>
-<div id="manuscript-freeze-rule" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Manuscript freeze rule</h2>
-<p>Do not edit <code>formal_model_v5.Rmd</code> while this document has pending core results.
-The paper should receive only results that satisfy four checks:</p>
-<ol style="list-style-type: decimal">
-<li>the result is derived from the primitives stated here;</li>
-<li>the result has a clear status in the proof ledger;</li>
-<li>numerical/calibrated claims are reproduced by an R script;</li>
-<li>no theorem statement depends on the old random-H-proposer architecture unless
-it is explicitly labeled as an extension.</li>
-</ol>
-<p>Additional protocol-discipline rule: a proof may not introduce a new strategic
-option, voting history, tie-breaking convention, information structure, contract
-space, or continuation protocol as if it were already in the model. If a proof
-needs such an object, the result must be labeled <code>pending protocol decision</code>
-until the user approves the primitive and the result is rederived.</p>
-</div>
-<div id="immediate-writing-target" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Immediate writing target</h2>
-<p>The next section to write is the baseline majority derivation under
-<span class="math inline">\(\pi_H=0\)</span>. It should answer:</p>
-<ol style="list-style-type: decimal">
-<li>What does <span class="math inline">\(H\)</span> receive under majority when weak states control the agenda?</li>
-<li>Does the result remain affine in <span class="math inline">\(\mu\)</span>?</li>
-<li>What is the weak-state payoff and entry condition?</li>
-<li>Which old majority formulas survive, and which disappear because <span class="math inline">\(H\)</span> is no
-longer recognized as proposer?</li>
-</ol>
-</div>
-<div id="equilibrium-standard" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Equilibrium standard</h2>
-<p>The solution concept is Perfect Bayesian Equilibrium. Every formal result in
-this document should specify whether it characterizes:</p>
-<ol style="list-style-type: decimal">
-<li>a unique strategy profile;</li>
-<li>a unique payoff vector despite multiple strategies at ties;</li>
-<li>a payoff correspondence; or</li>
-<li>a selected equilibrium under an explicit tie-breaking/refinement convention.</li>
-</ol>
-<p>For each proposed equilibrium, the proof must verify:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Strategies:</strong> proposer offers, voting/acceptance rules, entry decisions, and
-institutional choice.</li>
-<li><strong>Beliefs:</strong> weak-state beliefs about <span class="math inline">\(\theta\)</span> after acceptance/rejection
-histories, including off-path histories when needed.</li>
-<li><strong>Sequential rationality:</strong> no player wants to deviate at any information set.</li>
-<li><strong>Bayesian consistency:</strong> beliefs are updated by Bayes’ rule on path.</li>
-<li><strong>Feasibility:</strong> accepted proposals fit inside the realized pie in the state
-in which they pass.</li>
-<li><strong>Equilibrium status:</strong> existence, uniqueness, multiplicity, or payoff
-uniqueness.</li>
-</ol>
-<p>At screening cutoffs, pure strategies may not be unique because proposers are
-indifferent between two offers. The target should be payoff uniqueness, or else
-an explicit tie-breaking convention. If a branch yields a payoff correspondence,
-it should not be used as the main theorem without selection-free bounds.</p>
-</div>
-<div id="comparative-statics-requirements" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> Comparative statics requirements</h2>
-<p>For every theorem, proposition, lemma, or corollary, the write-up should include
-the nine presentation items used by the formal-model-presentation checklist:</p>
-<ol style="list-style-type: decimal">
-<li>closed-form boundary;</li>
-<li>comparative statics for every parameter appearing in the condition;</li>
-<li>phase or region diagram for key two-dimensional parameter spaces;</li>
-<li>parametric window showing the result holds on an open set;</li>
-<li>margin table at the OPEC/baseline calibration;</li>
-<li>verbal intuition before the formal statement;</li>
-<li>worked numerical example;</li>
-<li>mapping from model objects to the OPEC case;</li>
-<li>proof location.</li>
-</ol>
-<p>The minimum comparative statics set for the baseline is:</p>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(N\)</span>: number of states.</li>
-<li><span class="math inline">\(q=\lfloor N/2\rfloor+1\)</span>: majority quota.</li>
-<li><span class="math inline">\(r\)</span>: high-state surplus.</li>
-<li><span class="math inline">\(\alpha\)</span>: strength of <span class="math inline">\(H\)</span>’s outside option.</li>
-<li><span class="math inline">\(\beta\)</span>: discount factor.</li>
-<li><span class="math inline">\(\mu\)</span>: belief that the high state obtains.</li>
-<li><span class="math inline">\(c\)</span>: weak-state entry cost.</li>
-<li><span class="math inline">\(\pi_H\)</span>: recognition probability, for extensions only.</li>
-</ol>
-<p>The baseline proof should derive how the relevant thresholds and payoff gaps
-move with <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(r\)</span>, <span class="math inline">\(\beta\)</span>, <span class="math inline">\(N\)</span>, and <span class="math inline">\(c\)</span>. The extension should
-then analyze how increasing <span class="math inline">\(\pi_H\)</span> changes the bounds or calibrated payoff
-regions.</p>
+<p>This is the clean working surface for the reimplemented model architecture.
+The prior feasibility-branch derivation has been archived in git tag
+<code>redesign-feasibility-branch-2026-05-11</code>. Do not import theorem statements,
+notation, or branch labels from that archived architecture without rederiving
+them here.</p>
+<p>The active manuscript <code>formal_model_v5.Rmd</code> remains frozen. New formal work
+should be developed in this file first, checked by scripts, independently
+verified, and only then transported to the paper.</p>
+<div id="architecture-decision" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Architecture Decision</h2>
+<p>The main baseline no longer uses fixed transfers that may fit one realized pie
+but not another. Proposals are relative institutional packages: quota rules,
+production shares, cut obligations, enforcement provisions, exceptions, and
+flexibility terms. These packages are feasible in every state.</p>
+<p>Screening comes from <code>H</code>’s type-dependent participation threshold:</p>
+<p><span class="math display">\[
+U_H(y,\theta)=y+b_H(\theta),
+\]</span></p>
+<p>where <span class="math inline">\(y\)</span> is the concession offered by weak states and <span class="math inline">\(b_H(\theta)\)</span> is the
+direct benefit that <code>H</code> obtains from being inside the agreement. <code>H</code> accepts if
+the package payoff exceeds its continuation value.</p>
 </div>
 </div>
 <div id="qa" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Q&amp;A</h1>
 <p><strong>What is the substantive puzzle?</strong><br />
-Why would a powerful hegemon choose unanimity or consensus when that rule appears
-to constrain its formal power?</p>
+Why would a powerful hegemon choose unanimity or consensus when that rule
+appears to constrain its formal power?</p>
 <p><strong>What mechanism should the model isolate?</strong><br />
-Unanimity may favor the hegemon because it combines veto power with private
-information about the value of the hegemon’s outside option. Weak proposers must
-buy the hegemon’s approval without observing its type.</p>
-<p><strong>Which sources of power must be separated?</strong></p>
-<ol style="list-style-type: decimal">
-<li>Outside-option power: the hegemon has an external option
-<span class="math inline">\(d_H(\theta)=\alpha V(\theta)\)</span>.</li>
-<li>Veto or pivotality power: under unanimity, every agreement must be accepted
-by the hegemon.</li>
-<li>Proposal power: the hegemon may control the agenda with recognition
-probability <span class="math inline">\(\pi_H\)</span>.</li>
-</ol>
-<p><strong>What is the clean baseline?</strong><br />
-Set <span class="math inline">\(\pi_H=0\)</span>. Weak states make proposals; the hegemon remains a privately
-informed veto player. This asks whether unanimity can favor the hegemon even
-when the hegemon has no formal agenda power.</p>
+Unanimity can make an informed hegemon pivotal. Weak states must offer a package
+that satisfies <code>H</code>’s participation constraint, but they do not observe how
+favorable the package must be for <code>H</code> to prefer agreement to its outside option.</p>
+<p><strong>What is the key modeling reset?</strong><br />
+The proposal is a relative institutional package, not an absolute transfer. It
+is always feasible. The private-information problem is about <code>H</code>’s type-specific
+acceptance threshold.</p>
+<p><strong>What is the OPEC interpretation?</strong><br />
+Members bargain over quotas, cuts, shares, monitoring, exceptions, and
+flexibility. They can observe the proposed package, but they do not know Saudi
+Arabia’s true participation threshold because Saudi Arabia privately knows its
+spare capacity, opportunity cost, and outside option.</p>
 </div>
 <div id="primitives" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Primitives</h1>
-<p>There are <span class="math inline">\(N\geq 3\)</span> states: one hegemon <span class="math inline">\(H\)</span> and <span class="math inline">\(m=N-1\)</span> weak states.
-Let <span class="math inline">\(q=\lfloor N/2\rfloor+1\)</span> be the majority quota.</p>
-<p>Nature draws a state <span class="math inline">\(\theta\in\{0,1\}\)</span>. The institutional pie is</p>
+<p>There are <span class="math inline">\(N\geq3\)</span> states: one hegemon <span class="math inline">\(H\)</span> and <span class="math inline">\(m=N-1\)</span> weak states.
+Nature draws</p>
 <p><span class="math display">\[
-V(0)=1,\qquad V(1)=r,\qquad r&gt;1.
+\theta\in\{0,1\}.
 \]</span></p>
-<p>The hegemon observes <span class="math inline">\(\theta\)</span>. Weak states share prior belief
-<span class="math inline">\(\mu=\Pr(\theta=1)\)</span>. Let</p>
+<p>The hegemon observes <span class="math inline">\(\theta\)</span>. Weak states share prior belief</p>
+<p><span class="math display">\[
+\mu=\Pr(\theta=1).
+\]</span></p>
+<p>The institutional value is</p>
+<p><span class="math display">\[
+V(0)=1,\qquad V(1)=r,\qquad r&gt;1,
+\]</span></p>
+<p>and</p>
 <p><span class="math display">\[
 V_e(\mu)=1+\mu(r-1).
 \]</span></p>
-<p>Weak states’ outside option is normalized to zero. The hegemon’s external
-outside option is</p>
-<p><span class="math display">\[
-d_H(\theta)=\alpha V(\theta), \qquad 0\leq \alpha &lt; 1/r.
-\]</span></p>
 <p>The discount factor is <span class="math inline">\(\beta\in(0,1]\)</span>.</p>
-<p>Agenda power is represented by a recognition probability</p>
+<p>Agenda power is represented by</p>
 <p><span class="math display">\[
-\pi_H\in[0,1], \qquad \pi_W=1-\pi_H.
+\pi_H\in[0,1].
 \]</span></p>
-<p>The weak states are symmetric among themselves. Hence each weak state is
-recognized with unconditional probability</p>
+<p>The baseline sets</p>
 <p><span class="math display">\[
-\Pr(W_i\text{ recognized})=\frac{1-\pi_H}{N-1}.
+\pi_H=0,
 \]</span></p>
-<p>Equivalently, conditional on the event that some weak state is recognized, each
-weak state is selected with probability <span class="math inline">\(1/(N-1)\)</span>. In the baseline
-<span class="math inline">\(\pi_H=0\)</span>, this conditional and unconditional probability coincide:
-<span class="math inline">\(\Pr(W_i\text{ recognized})=1/(N-1)\)</span>. In the neutral BF case
-<span class="math inline">\(\pi_H=1/N\)</span>, each player has unconditional recognition probability <span class="math inline">\(1/N\)</span>.
-When <span class="math inline">\(\pi_H&gt;1/N\)</span>, each weak state’s unconditional recognition probability is
-below <span class="math inline">\(1/N\)</span>, although weak states remain symmetric conditional on weak-state
-recognition.</p>
+<p>so only weak states are recognized as proposers. This isolates informational
+power through pivotality from proposal power.</p>
 </div>
-<div id="architecture" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Architecture</h1>
-<p>The model family has three cases.</p>
-<p><strong>Case 1: screening baseline.</strong></p>
-<p><span class="math display">\[
-\pi_H=0.
-\]</span></p>
-<p>Only weak states are recognized. This is the main formal baseline.</p>
-<p><strong>Case 2: neutral BF recognition.</strong></p>
-<p><span class="math display">\[
-\pi_H=1/N.
-\]</span></p>
-<p>This restores canonical symmetric recognition. Because <span class="math inline">\(H\)</span> is informed, the
-H-proposer branch is a signaling problem and may produce payoff
-correspondences rather than a unique payoff function.</p>
-<p><strong>Case 3: hegemonic agenda power.</strong></p>
-<p><span class="math display">\[
-\pi_H&gt;1/N.
-\]</span></p>
-<p>This adds proposal power to outside-option and veto power. It should be treated
-as an extension after the baseline is solved.</p>
-</div>
-<div id="baseline-timing-pi_h0" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Baseline Timing: <span class="math inline">\(\pi_H=0\)</span></h1>
-<p>Working convention for the first proof pass: <span class="math inline">\(\pi_H=0\)</span> in both bargaining
-rounds. This fully removes the informed-proposer signaling branch from the
-baseline.</p>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(H\)</span> chooses an institutional rule <span class="math inline">\(R\in\{M,U\}\)</span>.</li>
-<li>Nature draws <span class="math inline">\(\theta\)</span>. <span class="math inline">\(H\)</span> observes <span class="math inline">\(\theta\)</span>; weak states observe only
-<span class="math inline">\(\mu\)</span>.</li>
-<li>Weak states decide whether to enter collectively.</li>
-<li>Round 1 proposer is drawn uniformly from the weak states.</li>
-<li>Under majority, the weak proposer may exclude <span class="math inline">\(H\)</span> and form a winning
-coalition of weak states.</li>
-<li>Under unanimity, the weak proposer must obtain <span class="math inline">\(H\)</span>’s approval and faces a
-screening problem.</li>
-<li>If the proposal is rejected, the game proceeds to Round 2, with recognition
-again restricted to weak states under the baseline convention.</li>
-</ol>
-</div>
-<div id="objects-to-derive" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Objects To Derive</h1>
-<p>The baseline proof must derive the following objects from primitives.</p>
-<div id="majority" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Majority</h2>
-<p>Under majority, weak states can exclude <span class="math inline">\(H\)</span>. The hegemon receives its external
-outside option <span class="math inline">\(d_H(\theta)\)</span>; this outside option is not paid from the
-institutional pie.</p>
-<p><strong>Result M1: majority pass-branch payoffs under weak-state agenda
-(<code>verified: independent PASS without reservations</code>).</strong><br />
-Under <span class="math inline">\(\pi_H=0\)</span>, majority generates no screening payoff. On the Round-1
-low-state feasibility region</p>
-<p><span class="math display">\[
-\mathcal{P}_{M}^{F}
-=
-\left\{
-\mu\in[0,1]:
-\frac{\beta(q-1)V_e(\mu)}{m}\leq 1
-\right\},
-\]</span></p>
-<p>weak states can pass a majority proposal in Round 1. If weak states enter and
-<span class="math inline">\(\mu\in\mathcal{P}_{M}^{F}\)</span>, <span class="math inline">\(H\)</span>’s type-contingent payoff in either
-bargaining round is</p>
-<p><span class="math display">\[
-V_{H}^{M}(\theta)=\alpha V(\theta).
-\]</span></p>
-<p>Before <span class="math inline">\(\theta\)</span> is realized, this gives</p>
-<p><span class="math display">\[
-V_{H}^{M}(\mu)=\alpha V_e(\mu)
-  = \alpha\{1+\mu(r-1)\}.
-\]</span></p>
-<p>Each weak state’s expected payoff under majority is</p>
-<p><span class="math display">\[
-V_{W}^{M}(\mu)=\frac{V_e(\mu)}{m}
-  = \frac{1+\mu(r-1)}{N-1}.
-\]</span></p>
-<p>Thus the weak-state entry condition on the feasible Round-1 pass branch is</p>
-<p><span class="math display">\[
-c \leq \frac{V_e(\mu)}{m}.
-\]</span></p>
-<p>Equivalently, the Round-1 pass-branch majority formation set is</p>
-<p><span class="math display">\[
-F_M^{pass}
-=
-\mathcal{P}_M^F
-\cap
-\left\{
-\mu\in[0,1]:
-c\leq \frac{V_e(\mu)}{m}
-\right\}.
-\]</span></p>
-<p>When (M-F) holds for every <span class="math inline">\(\mu\in[0,1]\)</span>, this simplifies to</p>
-<p><span class="math display">\[
-F_M^{pass} =
-\begin{cases}
-[0,1], &amp; c\leq 1/m,\\
-\left[\dfrac{mc-1}{r-1},1\right], &amp; 1/m&lt;c\leq r/m,\\
-\varnothing, &amp; c&gt;r/m.
-\end{cases}
-\]</span></p>
-<p>This simplification applies to the OPEC calibration below. If
-<span class="math inline">\(\mu\notin\mathcal{P}_M^F\)</span>, the Round-1 majority pass branch is infeasible;
-the delayed/rejected-proposal branch remains to be derived before making a
-global majority-payoff statement outside <span class="math inline">\(\mathcal{P}_M^F\)</span>.</p>
-<p><strong>Derivation.</strong><br />
-In Round 2, a recognized weak proposer forms a minimum winning coalition of
-weak states. Because weak states have zero outside option and the terminal-round
-acceptance convention gives acceptance at indifference, the proposer can assign
-zero to the <span class="math inline">\(q-1\)</span> weak coalition partners and keep the institutional pie.
-Since recognition is uniform over the <span class="math inline">\(m=N-1\)</span> weak states,</p>
-<p><span class="math display">\[
-V_{W,2}^{M}(\mu)=\frac{V_e(\mu)}{m}.
-\]</span></p>
-<p>The hegemon is excluded from the majority coalition and receives the external
-outside option,</p>
-<p><span class="math display">\[
-V_{H,2}^{M}(\theta)=d_H(\theta)=\alpha V(\theta).
-\]</span></p>
-<p>In Round 1, a weak voter asked to support the proposal can guarantee
-<span class="math inline">\(\beta V_{W,2}^{M}(\mu)=\beta V_e(\mu)/m\)</span> by rejecting and waiting for Round
-2. The weak proposer therefore offers each of <span class="math inline">\(q-1\)</span> coalition partners the
-fixed transfer</p>
-<p><span class="math display">\[
-\frac{\beta V_e(\mu)}{m}.
-\]</span></p>
-<p>The total promised transfer is</p>
-<p><span class="math display">\[
-\frac{\beta(q-1)V_e(\mu)}{m}.
-\]</span></p>
-<p>Thus strict low-state feasibility requires</p>
-<p><span class="math display">\[
-\frac{\beta(q-1)V_e(\mu)}{m}\leq 1.
-\tag{M-F}
-\]</span></p>
-<p>When (M-F) holds, the proposal is feasible in both states. The proposer keeps
-expected payoff</p>
-<p><span class="math display">\[
-\left(1-\frac{\beta(q-1)}{m}\right)V_e(\mu).
-\]</span></p>
-<p>Under symmetric random recognition and symmetric selection of coalition
-partners, a weak state’s ex ante Round-1 payoff is</p>
-<p><span class="math display">\[
-\begin{aligned}
-V_{W,1}^{M}(\mu)
-&amp;=
-\frac{1}{m}
-\left(1-\frac{\beta(q-1)}{m}\right)V_e(\mu)
-+\frac{m-1}{m}\frac{q-1}{m-1}\frac{\beta V_e(\mu)}{m}\\
-&amp;=\frac{V_e(\mu)}{m}.
-\end{aligned}
-\]</span></p>
-<p>Because the majority proposal passes in Round 1, <span class="math inline">\(H\)</span>’s Round-1 payoff is again
-<span class="math inline">\(\alpha V(\theta)\)</span>, and its ex ante payoff is <span class="math inline">\(\alpha V_e(\mu)\)</span>.</p>
-<p><strong>Comparative statics.</strong><br />
-The majority payoff to <span class="math inline">\(H\)</span> is affine in <span class="math inline">\(\mu\)</span>, increasing in <span class="math inline">\(\alpha\)</span>, and
-increasing in <span class="math inline">\(r\)</span> whenever <span class="math inline">\(\mu&gt;0\)</span>:</p>
-<p><span class="math display">\[
-\frac{\partial V_H^M}{\partial \mu}=\alpha(r-1),\qquad
-\frac{\partial V_H^M}{\partial \alpha}=V_e(\mu),\qquad
-\frac{\partial V_H^M}{\partial r}=\alpha\mu.
-\]</span></p>
-<p>It does not depend on <span class="math inline">\(N\)</span>, <span class="math inline">\(q\)</span>, or <span class="math inline">\(\beta\)</span> once <span class="math inline">\(H\)</span>’s proposal
-probability is set to zero. The weak-state payoff is increasing in <span class="math inline">\(\mu\)</span> and
-<span class="math inline">\(r\)</span>, decreasing in <span class="math inline">\(m=N-1\)</span>, and independent of <span class="math inline">\(\alpha\)</span>:</p>
-<p><span class="math display">\[
-\frac{\partial V_W^M}{\partial \mu}=\frac{r-1}{m},\qquad
-\frac{\partial V_W^M}{\partial r}=\frac{\mu}{m}.
-\]</span></p>
-<p>The quota <span class="math inline">\(q\)</span> and discount factor <span class="math inline">\(\beta\)</span> affect the division between the
-weak proposer and weak coalition partners and determine the low-state
-feasibility region <span class="math inline">\(\mathcal{P}_M^F\)</span>, but they wash out of the ex ante
-symmetric weak-state payoff wherever the Round-1 majority proposal is feasible.</p>
-<p>For the OPEC calibration <span class="math inline">\(N=13\)</span>, <span class="math inline">\(r=1.5\)</span>, and <span class="math inline">\(\beta=0.9\)</span>, the worst-case
-low-state transfer requirement is</p>
-<p><span class="math display">\[
-\frac{\beta(q-1)r}{m}=0.675&lt;1.
-\]</span></p>
-<p>Hence (M-F) holds for every <span class="math inline">\(\mu\in[0,1]\)</span> in the baseline calibration.</p>
-<p><strong>Relation to the old majority formulas.</strong><br />
-The corrected accounting principle survives: <span class="math inline">\(H\)</span>’s outside option is external
-to the institutional pie. The old random-proposer coefficients
-<span class="math inline">\(\lambda_M^E\)</span> and <span class="math inline">\(\kappa_M^E\)</span> do not survive in the baseline because they
-included the branch in which <span class="math inline">\(H\)</span> is recognized as proposer. Under
-<span class="math inline">\(\pi_H=0\)</span>, the majority benchmark is simply</p>
-<p><span class="math display">\[
-\lambda_{M,0}^E=\alpha,\qquad \kappa_{M,0}^E=\frac{1}{N-1}.
-\]</span></p>
-<p>The reproducible numerical check for the OPEC calibration is in
-<code>scripts/verify_baseline_majority_piH0.R</code>.</p>
-<p>Independent verification on 2026-05-10 returned PASS without reservations for
-the pass-branch statement above, including the intersection
-<span class="math inline">\(F_M^{pass}=\mathcal{P}_M^F\cap\{\mu:c\leq V_e(\mu)/m\}\)</span> and the caveat that
-the delayed branch outside <span class="math inline">\(\mathcal{P}_M^F\)</span> is not yet derived.</p>
-</div>
-<div id="unanimity" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Unanimity</h2>
-<p>Under unanimity, a weak proposer must make an offer acceptable to <span class="math inline">\(H\)</span>, whose
-type is private. The proposer chooses among:</p>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(A(\mu)\)</span>: aggressive offer accepted by the low type and rejected by the
-high type.</li>
-<li><span class="math inline">\(C(\mu)\)</span>: conservative offer accepted by both types.</li>
-<li><span class="math inline">\(R(\mu)\)</span>: deliberate rejection and continuation.</li>
-</ol>
-<p>All offers must satisfy strict BF feasibility in the realized state in which
-they pass.</p>
-<p><strong>Result U2: Round-2 unanimity values under weak-state agenda
-(<code>verified: independent PASS without reservations</code>).</strong><br />
-In the terminal round, a recognized weak proposer must secure unanimity. The
-non-proposing weak states have zero continuation value, so the screening choice
-concerns only the transfer to <span class="math inline">\(H\)</span>.</p>
-<p>An aggressive offer pays <span class="math inline">\(H\)</span>’s low-state outside option <span class="math inline">\(\alpha\)</span>. It is
-accepted by the low type and rejected by the high type, giving the weak proposer</p>
-<p><span class="math display">\[
-G_A(\mu)=(1-\mu)(1-\alpha).
-\]</span></p>
-<p>A conservative offer pays <span class="math inline">\(H\)</span>’s high-state outside option <span class="math inline">\(\alpha r\)</span>. It is
-accepted by both types and gives the weak proposer</p>
-<p><span class="math display">\[
-G_C(\mu)=V_e(\mu)-\alpha r.
-\]</span></p>
-<p>Both offers are feasible in the states in which they pass because
-<span class="math inline">\(\alpha r&lt;1\)</span>. Therefore the representative weak-state Round-2 continuation
-value is</p>
-<p><span class="math display">\[
-W_2^U(\mu)
-=
-\frac{1}{m}
-\max\{(1-\mu)(1-\alpha),\,V_e(\mu)-\alpha r\}.
-\]</span></p>
-<p>The Round-2 screening cutoff is unchanged by the weak-state-agenda protocol:</p>
-<p><span class="math display">\[
-\mu_2^*
-=
-\frac{\alpha(r-1)}{r-\alpha}.
-\]</span></p>
-<p>For <span class="math inline">\(\mu&lt;\mu_2^*\)</span>, the aggressive offer is strictly optimal. For
-<span class="math inline">\(\mu&gt;\mu_2^*\)</span>, the conservative offer is strictly optimal. At
-<span class="math inline">\(\mu=\mu_2^*\)</span>, the weak proposer is indifferent; <span class="math inline">\(W_2^U\)</span> is unique but the
-low-type <span class="math inline">\(H\)</span> payoff depends on the tie-breaking convention.</p>
-<p>The high type receives <span class="math inline">\(\alpha r\)</span> in either branch: under the aggressive
-branch it rejects and obtains its outside option, while under the conservative
-branch it accepts an offer equal to its outside option. The low type receives</p>
-<p><span class="math display">\[
-H_{2,0}^U(\mu)=
-\begin{cases}
-\alpha, &amp; \mu&lt;\mu_2^*,\\
-\alpha r, &amp; \mu&gt;\mu_2^*,
-\end{cases}
-\]</span></p>
-<p>with a payoff correspondence <span class="math inline">\(\{\alpha,\alpha r\}\)</span> at the cutoff unless a
-tie-breaking rule is imposed. The high-type value is</p>
-<p><span class="math display">\[
-H_{2,1}^U(\mu)=\alpha r.
-\]</span></p>
-<p>For the OPEC calibration <span class="math inline">\(N=13\)</span>, <span class="math inline">\(r=1.5\)</span>, and <span class="math inline">\(\alpha=0.19\)</span>,</p>
-<p><span class="math display">\[
-\mu_2^*=0.072519.
-\]</span></p>
-<p>The reproducible numerical check is in
-<code>scripts/verify_baseline_unanimity_R2_piH0.R</code>.</p>
-<p>Independent verification on 2026-05-10 returned PASS without reservations for
-the cutoff, payoffs, denominator <span class="math inline">\(m=N-1\)</span>, feasibility, and tie caveat.</p>
-<p><strong>R1 architecture warning (<code>verified: independent PASS without reservations</code>).</strong><br />
-The weak-state-agenda convention in both rounds changes the old R1
-aggressive branch. Suppose an R1 weak proposer tries to make an offer accepted
-by the low type and rejected by the high type. If the high type rejects on path,
-Bayes’ rule gives posterior <span class="math inline">\(\mu&#39;=1\)</span> in Round 2. Under Result U2, both the low
-and high types then receive <span class="math inline">\(\alpha r\)</span> in Round 2: the high type receives its
-outside option, and the low type is pooled into the conservative high-posterior
-offer. Therefore both types have the same rejection continuation,
-<span class="math inline">\(\beta\alpha r\)</span>, after a high-posterior rejection history.</p>
-<p>Hence a strict low-accepted/high-rejected R1 offer does not exist under the
-baseline tie-breaking convention in which indifferent players accept. The
-aggressive branch can be represented only as a knife-edge selected equilibrium
-in which the high type rejects while indifferent at <span class="math inline">\(h_A=\beta\alpha r\)</span>. This
-is not payoff-distinct for <span class="math inline">\(H\)</span>, but it can affect weak-state payoffs and
-therefore entry. The next proof pass must decide whether to:</p>
-<ol style="list-style-type: decimal">
-<li>keep <span class="math inline">\(\pi_H=0\)</span> in both rounds and replace the old strict <span class="math inline">\(A/C/R\)</span>
-characterization with a pooling-or-delay characterization; or</li>
-<li>change the R2 continuation protocol, which may restore strict type-dependent
-continuation values but reintroduces agenda-power branches.</li>
-</ol>
-<p>Independent verification on 2026-05-10 returned PASS without reservations for
-this warning for interior beliefs <span class="math inline">\(\mu\in(0,1)\)</span>. The endpoint cases
-<span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\mu=1\)</span> are degenerate and do not change the warning.</p>
-<p><strong>Result U1: Round-1 unanimity with high-state-only feasibility branch
-(<code>verified: independent PASS without reservations after correction</code>).</strong><br />
-Feasibility audit on 2026-05-10 identified a missing candidate: a weak proposer
-may offer transfers that exceed the low-state pie but fit inside the high-state
-pie. Such a branch is accepted only in the high state by feasibility, not
-because the low type prefers rejection. Under realized-state BF feasibility,
-this branch is admissible. The earlier C-or-R characterization is therefore
-incomplete unless the model imposes a stronger robust-feasibility primitive
-requiring every proposal to fit all states still possible to weak states.</p>
-<p>This pass uses the voting protocol in the game tree: a weak proposer makes an
-offer, players vote accept/reject, a rejected R1 proposal leads to R2, and
-public responses update beliefs. The rejected-proposal branch below is not a new
-delay action. It is implemented by a proposal that fails for a type-independent
-reason, so the history carries no information about <span class="math inline">\(H\)</span>’s type.</p>
-<p>Given the warning above, the R1 weak proposer cannot use a strict
-low-accepted/high-rejected accepted agreement under the baseline tie-breaking
-convention. The payoff-relevant candidates are:</p>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(P(\mu)\)</span>: an accepted pooling proposal that both types of <span class="math inline">\(H\)</span> accept;</li>
-<li><span class="math inline">\(B(\mu)\)</span>: a high-state-only proposal that is infeasible in the low state
-and feasible in the high state; or</li>
-<li><span class="math inline">\(R(\mu)\)</span>: a rejected proposal that sends the game to R2 without revealing
-<span class="math inline">\(H\)</span>’s type.</li>
-</ol>
-<p>Let</p>
-<p><span class="math display">\[
-g(\mu)=\max\{(1-\mu)(1-\alpha),\,V_e(\mu)-\alpha r\},
-\qquad
-W_2^U(\mu)=\frac{g(\mu)}{m}.
-\]</span></p>
-<p>An accepted pooling proposal must give <span class="math inline">\(H\)</span> at least its discounted high-type
-R2 value,</p>
-<p><span class="math display">\[
-h_P=\beta\alpha r.
-\]</span></p>
-<p>It must also give each non-proposing weak state its discounted R2 continuation,</p>
-<p><span class="math display">\[
-y_P(\mu)=\beta W_2^U(\mu)=\frac{\beta g(\mu)}{m}.
-\]</span></p>
-<p>Therefore the accepted pooling proposal is feasible in the low state iff</p>
-<p><span class="math display">\[
-\beta\alpha r+\frac{(m-1)\beta g(\mu)}{m}\leq 1.
-\tag{U1-F}
-\]</span></p>
-<p>When (U1-F) holds, the proposer’s pooling payoff is</p>
-<p><span class="math display">\[
-P(\mu)=V_e(\mu)-\beta\alpha r-\frac{(m-1)\beta g(\mu)}{m}.
-\]</span></p>
-<p>Now consider a strict separating offer <span class="math inline">\(A\)</span> that the low type accepts and the
-high type rejects. If the high type rejects on path, Bayes’ rule gives posterior
-one in R2. Under <span class="math inline">\(\pi_H=0\)</span> in R2, posterior one induces the conservative
-terminal offer <span class="math inline">\(\alpha r\)</span>. Hence both the low type and the high type would
-receive <span class="math inline">\(\alpha r\)</span> after a high-posterior R2 rejection history. The R1
-incentive constraints for a separating offer <span class="math inline">\(h_A\)</span> are therefore</p>
-<p><span class="math display">\[
-\text{low accepts:}\quad h_A\geq \beta\alpha r,
-\qquad
-\text{high rejects strictly:}\quad h_A&lt;\beta\alpha r.
-\]</span></p>
-<p>These inequalities are incompatible. At <span class="math inline">\(h_A=\beta\alpha r\)</span>, both types are
-indifferent, and the maintained tie-breaking convention makes both types accept.
-Thus the candidate separating branch collapses into pooling. There is no open
-belief region with a strict pure-strategy low-accepted/high-rejected R1
-agreement under this protocol.</p>
-<p>Now consider the high-state-only branch <span class="math inline">\(B\)</span>. Let <span class="math inline">\(k=m-1\)</span> be the number of
-non-proposing weak voters, and let</p>
-<p><span class="math display">\[
-T=h+ky
-\]</span></p>
-<p>be the total transfer promised to non-proponents, where <span class="math inline">\(h\)</span> is the transfer
-to <span class="math inline">\(H\)</span> and <span class="math inline">\(y\)</span> is the transfer to each non-proposing weak voter. A proposal
-with</p>
-<p><span class="math display">\[
-1&lt;T\leq r
-\tag{B-F}
-\]</span></p>
-<p>cannot be implemented in the low state, where the pie is <span class="math inline">\(1\)</span>, but can be
-implemented in the high state, where the pie is <span class="math inline">\(r\)</span>. The low-state failure is
-then a feasibility failure, not a low-type rejection.</p>
-<p>In the high state, <span class="math inline">\(H\)</span>’s rejection value is its discounted R2 outside-option
-value, so the minimum transfer that induces high-type acceptance is</p>
-<p><span class="math display">\[
-h_B=\beta\alpha r.
-\]</span></p>
-<p>A non-proposing weak voter is uninformed. If she accepts the high-state-only
-proposal, she receives <span class="math inline">\(y\)</span> in the high state and, in the low state, the
-proposal fails mechanically by feasibility and the continuation is R2 with
-posterior zero. If she rejects, her rejection does not itself reveal
-<span class="math inline">\(\theta\)</span>, so her continuation is R2 at the current belief <span class="math inline">\(\mu\)</span>. Therefore,
-for <span class="math inline">\(\mu&gt;0\)</span>, her incentive constraint is</p>
-<p><span class="math display">\[
-\mu y+(1-\mu)\beta W_2^U(0)\geq \beta W_2^U(\mu).
-\]</span></p>
-<p>The minimum transfer is</p>
-<p><span class="math display">\[
-y_B(\mu)
-=
-\frac{\beta W_2^U(\mu)-(1-\mu)\beta W_2^U(0)}{\mu}
-=
-\frac{\beta\{g(\mu)-(1-\mu)(1-\alpha)\}}{m\mu}.
-\tag{B-y}
-\]</span></p>
-<p>The minimum total promised to non-proponents is therefore</p>
-<p><span class="math display">\[
-T_B(\mu)=h_B+ky_B(\mu)
-=
-\beta\alpha r
-+
-(m-1)
-\frac{\beta\{g(\mu)-(1-\mu)(1-\alpha)\}}{m\mu}.
-\tag{B-T}
-\]</span></p>
-<p>If <span class="math inline">\(1&lt;T_B(\mu)\leq r\)</span>, the high-state branch has an exact minimum and the
-proposer’s payoff is</p>
-<p><span class="math display">\[
-B(\mu)
-=
-\mu\{r-T_B(\mu)\}
-+
-(1-\mu)\frac{\beta(1-\alpha)}{m}.
-\tag{B}
-\]</span></p>
-<p>If <span class="math inline">\(T_B(\mu)\leq1\)</span>, the branch remains feasible for any <span class="math inline">\(T\in(1,r]\)</span>, but
-the best payoff is a supremum rather than a maximum because strict low-state
-infeasibility requires <span class="math inline">\(T&gt;1\)</span>. In that case the pure-strategy existence issue
-must be handled explicitly, for example by a discrete transfer grid or by
-replacing strict infeasibility with a closed protocol. In the OPEC calibration,
-the B branch is chosen only where <span class="math inline">\(T_B(\mu)&gt;1\)</span>.</p>
-<p>Protocol note. This derivation treats low-state infeasibility as a mechanical
-failure of the proposal, so no type-dependent <span class="math inline">\(H\)</span>-rejection history is
-generated in the low state. If the final extensive form instead lets <span class="math inline">\(H\)</span> cast
-an individually observed vote on an infeasible proposal before the feasibility
-failure, then the off-path belief after an unexpected <span class="math inline">\(H\)</span> rejection must be
-stated explicitly before the B branch can be promoted to a selection-free
-theorem.</p>
-<p>On the <span class="math inline">\(B\)</span> branch, <span class="math inline">\(H\)</span>’s expected payoff is</p>
-<p><span class="math display">\[
-V_{H,1}^{U,B}(\mu)
-=(1-\mu)\beta\alpha+\mu\beta\alpha r
-=\beta\alpha V_e(\mu),
-\tag{B-H}
-\]</span></p>
-<p>and a representative weak state’s payoff is</p>
-<p><span class="math display">\[
-V_{W,1}^{U,B}(\mu)
-=
-\frac{(1-\mu)\beta(1-\alpha)+\mu(r-\beta\alpha r)}{m}.
-\tag{B-W}
-\]</span></p>
-<p>The rejected-proposal branch is endogenous. For the main case <span class="math inline">\(\alpha&gt;0\)</span>, the
-weak proposer can offer <span class="math inline">\(h_R=0\)</span> to <span class="math inline">\(H\)</span>. Both types of <span class="math inline">\(H\)</span> strictly reject:
-the low type can obtain at least <span class="math inline">\(\beta\alpha\)</span> by rejecting and the high type
-can obtain <span class="math inline">\(\beta\alpha r\)</span>. Because both types reject, the public rejection
-history is type-independent and Bayes’ rule leaves the posterior at <span class="math inline">\(\mu\)</span>.
-This gives the proposer the discounted representative weak-state R2 continuation</p>
-<p><span class="math display">\[
-R(\mu)=\beta W_2^U(\mu)=\frac{\beta g(\mu)}{m}.
-\]</span></p>
-<p>The outside-option-neutral stress test <span class="math inline">\(\alpha=0\)</span> is a boundary case: H
-cannot be made to reject strictly by a nonnegative offer under the maintained
-acceptance tie-breaking rule. The strict-rejection implementation of <span class="math inline">\(R\)</span>
-therefore uses <span class="math inline">\(\alpha&gt;0\)</span>; the <span class="math inline">\(\alpha=0\)</span> case must be handled separately as
-a limit or with an explicitly specified weak-voter rejection selection.</p>
-<p>Therefore the pure-strategy R1 weak-proposer payoff is</p>
-<p><span class="math display">\[
-W_{1,prop}^{U}(\mu)
-=
-\max\left\{
-P(\mu)\text{ if (U1-F) holds},\,
-B(\mu)\text{ if (B-F) holds},\,
-R(\mu)
-\right\}.
-\]</span></p>
-<p>Thus accepted pooling is chosen only when (U1-F) holds and</p>
-<p><span class="math display">\[
-V_e(\mu)-\beta\alpha r\geq \beta g(\mu).
-\tag{U1-P}
-\]</span></p>
-<p>It must also dominate the high-state-only branch <span class="math inline">\(B\)</span>. Otherwise, the proposer
-chooses between <span class="math inline">\(B\)</span> and <span class="math inline">\(R\)</span>. At payoff ties, the proposer is indifferent;
-the representative weak-state payoff can remain unique while <span class="math inline">\(H\)</span>’s payoff may
-depend on which branch is selected.</p>
-<p>If accepted pooling occurs, a representative weak state’s R1 payoff is</p>
-<p><span class="math display">\[
-V_{W,1}^{U,P}(\mu)=\frac{V_e(\mu)-\beta\alpha r}{m},
-\]</span></p>
-<p>and <span class="math inline">\(H\)</span>’s expected R1 payoff is</p>
-<p><span class="math display">\[
-V_{H,1}^{U,P}(\mu)=\beta\alpha r.
-\]</span></p>
-<p>Relative to <span class="math inline">\(H\)</span>’s expected outside option <span class="math inline">\(\alpha V_e(\mu)\)</span>, the pooling
-rent is</p>
-<p><span class="math display">\[
-\Delta_H^{P}(\mu)
-=
-\beta\alpha r-\alpha V_e(\mu)
-=
-\alpha\{\beta r-1-\mu(r-1)\}.
-\]</span></p>
-<p>This rent is positive iff</p>
-<p><span class="math display">\[
-\mu&lt;\frac{\beta r-1}{r-1},
-\]</span></p>
-<p>provided <span class="math inline">\(\beta r&gt;1\)</span>. Substantively, the rent comes from the low type being
-paid as if it might be the high type. The high type itself does not receive more
-than its undiscounted outside option when <span class="math inline">\(\beta\leq 1\)</span>; it accepts because
-waiting is discounted.</p>
-<p>If the proposer induces rejection without information, <span class="math inline">\(H\)</span>’s expected payoff
-is the discounted R2 value:</p>
-<p><span class="math display">\[
-V_{H,1}^{U,R}(\mu)
-=
-\begin{cases}
-\beta\alpha V_e(\mu), &amp; \mu&lt;\mu_2^*,\\
-\beta\alpha r, &amp; \mu&gt;\mu_2^*,
-\end{cases}
-\]</span></p>
-<p>with the same R2 tie caveat at <span class="math inline">\(\mu=\mu_2^*\)</span>.</p>
-<p>For the OPEC calibration <span class="math inline">\(N=13\)</span>, <span class="math inline">\(r=1.5\)</span>, <span class="math inline">\(\alpha=0.19\)</span>, and
-<span class="math inline">\(\beta=0.9\)</span>, the high-state-only branch has an exact minimum when</p>
-<p><span class="math display">\[
-\mu&gt;0.232404.
-\]</span></p>
-<p>At the accepted-pooling feasibility boundary, <span class="math inline">\(T_B(\mu)=1.126805\)</span>; at
-<span class="math inline">\(\mu=1\)</span>, <span class="math inline">\(T_B(\mu)=1.258875\)</span>. Thus the B branch is exact wherever it is
-chosen in the OPEC calibration. Condition (U1-P) holds for every
-<span class="math inline">\(\mu\in[0,1]\)</span>. The accepted pooling proposal is feasible for</p>
-<p><span class="math display">\[
-\mu\leq 0.372424.
-\]</span></p>
-<p>The pooling rent cutoff is</p>
-<p><span class="math display">\[
-\frac{\beta r-1}{r-1}=0.700000.
-\]</span></p>
-<p>On the feasible pooling region, <span class="math inline">\(P\)</span> strictly dominates both <span class="math inline">\(B\)</span> and <span class="math inline">\(R\)</span>.
-Once pooling becomes infeasible, <span class="math inline">\(B\)</span> strictly dominates <span class="math inline">\(R\)</span>. Hence the OPEC
-R1 regimes are</p>
-<p><span class="math display">\[
-P \quad\text{for}\quad \mu\leq0.372424,
-\qquad
-B \quad\text{for}\quad \mu&gt;0.372424.
-\]</span></p>
-<p>In the pooling region, <span class="math inline">\(H\)</span>’s ex ante payoff is strictly above its expected
-outside option. At the pooling feasibility boundary, the rent is approximately
-<span class="math inline">\(0.031120\)</span>. On the high-state-only branch, however,
-<span class="math inline">\(V_{H,1}^{U,B}(\mu)=\beta\alpha V_e(\mu)&lt;\alpha V_e(\mu)\)</span> for
-<span class="math inline">\(\alpha&gt;0\)</span> and <span class="math inline">\(\beta&lt;1\)</span>. Thus <span class="math inline">\(H\)</span>’s conditional comparison changes
-discontinuously when the proposer switches from accepted pooling to
-high-state-only agreement.</p>
-<p>The reproducible numerical check is in
-<code>scripts/verify_unanimity_R1_C_B_R_piH0.R</code>.</p>
-<p>Independent verification on 2026-05-10 first returned FAIL because the initial
-<span class="math inline">\(B\)</span> derivation treated weak-voter rejection as revealing the high state. After
-correcting the weak-voter IC so that <span class="math inline">\(y_B(\mu)\)</span> depends on the current belief,
-the verifier returned PASS without reservations. The boundary case <span class="math inline">\(\alpha=0\)</span>
-also remains outside the strict-rejection implementation of <span class="math inline">\(R\)</span> and must be
-handled separately.</p>
-<p>Remaining pending derivations:</p>
-<ol style="list-style-type: decimal">
-<li>Independent rederivation of the <span class="math inline">\(\alpha=0\)</span> boundary case under C-B-R.</li>
-</ol>
-</div>
-</div>
-<div id="protocol-closure-feasibility-and-the-b-branch" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Protocol Closure: Feasibility and the B Branch</h1>
-<p>Status: pending protocol decision after independent verification reservations
-on 2026-05-11.</p>
-<p>Re-verification note. Independent verification identified two protocol
-problems that must be resolved before the <span class="math inline">\(B\)</span> branch can be promoted to a
-verified result.</p>
-<p>First, if the implementation check is run even after a voter rejects, then the
-rejection history itself reveals whether <span class="math inline">\(1&lt;T\leq r\)</span> fits the realized pie.
-The weak-voter rejection payoff would then be state-contingent, not
-<span class="math inline">\(\beta W_2^U(\mu)\)</span>.</p>
-<p>Second, if consent is checked before implementation and <span class="math inline">\(H\)</span> is one of the
-required pre-check voters, the low type of <span class="math inline">\(H\)</span> has its own consent constraint.
-That constraint generally fails in the calibrated <span class="math inline">\(B\)</span> region because low
-<span class="math inline">\(H\)</span> would rather withhold consent and continue at the generic no-consent
-belief than consent to a proposal that will fail mechanically and reveal
-posterior zero.</p>
-<p>Thus the text below records the candidate mechanical-feasibility closure, but
-the final protocol remains pending. The next proof pass must choose explicitly
-between at least two protocols: (i) only non-proposing weak voters consent
-before the implementation check and <span class="math inline">\(H\)</span> is asked to accept only after the
-check reports executability; or (ii) <span class="math inline">\(H\)</span> consents before implementation, in
-which case the <span class="math inline">\(B\)</span> branch needs a low-type <span class="math inline">\(H\)</span> consent IC and the current
-calibrated high-<span class="math inline">\(\mu\)</span> <span class="math inline">\(B\)</span> region is not verified.</p>
-<p>This section closes the protocol interpretation behind the high-state-only
-branch <span class="math inline">\(B\)</span> in Result U1. It does not add a behavioral refinement. It states
-which public event is generated when a proposal cannot fit inside the realized
-pie.</p>
-<div id="primitive-objects" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> Primitive Objects</h2>
-<p>The primitive BF feasibility requirement is realized-state feasibility:
-implemented allocations must fit inside the realized institutional pie
-<span class="math inline">\(V(\theta)\)</span>. A proposal specifies transfers to non-proponents. In the
-unanimity branch, write</p>
-<p><span class="math display">\[
-T=h+ky,
-\]</span></p>
-<p>where <span class="math inline">\(h\)</span> is the promised transfer to <span class="math inline">\(H\)</span>, <span class="math inline">\(y\)</span> is the transfer promised to
-each non-proposing weak voter, and <span class="math inline">\(k=m-1\)</span>. The proposal is executable in
-state <span class="math inline">\(\theta\)</span> only if <span class="math inline">\(T\leq V(\theta)\)</span>. Because <span class="math inline">\(V(0)=1\)</span> and
-<span class="math inline">\(V(1)=r&gt;1\)</span>, any proposal satisfying</p>
-<p><span class="math display">\[
-1&lt;T\leq r
-\tag{PC-F}
-\]</span></p>
-<p>fits the high-state pie and does not fit the low-state pie.</p>
-<p>To make this primitive operational, the baseline protocol includes a
-nonstrategic implementation check. This is not a player and it has no discretion
-or private objective. After a proposal is submitted for passage, the
-implementation check determines whether the promised total <span class="math inline">\(T\)</span> can be executed
-against the realized pie <span class="math inline">\(V(\theta)\)</span>. It publicly reports only one of two
-events:</p>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(F\)</span>: feasibility failure, meaning <span class="math inline">\(T&gt;V(\theta)\)</span>;</li>
-<li><span class="math inline">\(E\)</span>: executable proposal, meaning <span class="math inline">\(T\leq V(\theta)\)</span>.</li>
-</ol>
-<p>No strategic actor can misreport this check.</p>
-</div>
-<div id="protocol-interpretation" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> Protocol Interpretation</h2>
-<p>Mechanical feasibility failure means that a proposal that does not fit the
-realized pie fails mechanically at the implementation check. The public history
-records this event as a feasibility failure, not as an individual vote or
-rejection by <span class="math inline">\(H\)</span>.</p>
-<p>Under this protocol, a proposal satisfying (PC-F) can pass in the high state and
-fail in the low state without generating any off-path belief about <span class="math inline">\(H\)</span>’s vote.
-In the low state, if all required voters consent, the proposal is not executable
-and the public history is “feasibility failure”; since <span class="math inline">\(1&lt;T\leq r\)</span>, this
-public event implies posterior zero by Bayes’ rule. The failed R1 proposal
-consumes the first bargaining round: there is no revision, no resubmission, and
-no redraw of an R1 proposer. The game moves to Round 2 with posterior
-<span class="math inline">\(\mu&#39;=0\)</span> and with the same baseline recognition rule <span class="math inline">\(\pi_H=0\)</span>. In the high
-state, if all required voters consent, the proposal is executable and the
-agreement passes.</p>
-<p>The consent and implementation timing is therefore:</p>
-<ol style="list-style-type: decimal">
-<li>a weak proposer announces <span class="math inline">\(T=h+ky\)</span>;</li>
-<li>required voters choose whether to consent;</li>
-<li>if any required voter withholds consent, no feasibility check is run, the R1
-proposal fails by consent, and the game proceeds to R2 after a generic
-no-consent history;</li>
-<li>if all required voters consent, the nonstrategic implementation check
-determines whether <span class="math inline">\(T\leq V(\theta)\)</span>;</li>
-<li>if <span class="math inline">\(T&gt;V(\theta)\)</span>, the only public event is <span class="math inline">\(F\)</span>, the R1 proposal fails,
-and the game proceeds to R2;</li>
-<li>if <span class="math inline">\(T\leq V(\theta)\)</span>, the agreement is implemented.</li>
-</ol>
-<p>On the equilibrium <span class="math inline">\(B\)</span> path, event <span class="math inline">\(F\)</span> occurs only in the low state and
-implemented agreement occurs only in the high state. Individual votes are not
-separately reported on the <span class="math inline">\(F\)</span> history.</p>
-<p>For the off-path generic no-consent history, no feasibility check is run and no
-individual <span class="math inline">\(H\)</span> vote is reported. The continuation belief is <span class="math inline">\(\mu\)</span>. This
-belief is supported by a standard sequence of state-independent weak-voter
-trembles: if generic no-consent is generated by weak voters with probabilities
-that do not depend on <span class="math inline">\(\theta\)</span>, Bayes’ rule leaves the posterior unchanged.
-This no-learning belief is used only for the deviation payoff in the weak-voter
-IC. It is distinct from the on-path feasibility-failure history <span class="math inline">\(F\)</span>, where
-posterior zero follows directly from <span class="math inline">\(1&lt;T\leq r\)</span>.</p>
-<p>This is a protocol closure, not an equilibrium result. The equilibrium result
-uses this public feasibility event together with the acceptance constraints
-below.</p>
-</div>
-<div id="equilibrium-implication-for-branch-b" class="section level2" number="7.3">
-<h2><span class="header-section-number">7.3</span> Equilibrium Implication for Branch <span class="math inline">\(B\)</span></h2>
-<p>Consider an R1 weak proposer under <span class="math inline">\(\pi_H=0\)</span>, with <span class="math inline">\(\mu\in(0,1]\)</span>. On the
-high-state-only branch <span class="math inline">\(B\)</span>, low-state failure is mechanical and sends the
-game to R2 with posterior zero. High-state agreement passes if the feasible
-proposal is accepted by <span class="math inline">\(H\)</span> and by the non-proposing weak voters.</p>
-<p>The high type of <span class="math inline">\(H\)</span> accepts when</p>
-<p><span class="math display">\[
-h\geq \beta\alpha r.
-\]</span></p>
-<p>With the maintained acceptance tie-breaking convention at indifference, the
-minimum transfer is</p>
-<p><span class="math display">\[
-h_B=\beta\alpha r.
-\tag{PC-H}
-\]</span></p>
-<p>A non-proposing weak voter is uninformed when voting on the proposal. If she
-accepts and all other required voters consent, she receives <span class="math inline">\(y\)</span> in the high
-state and, in the low state, receives the discounted R2 payoff following public
-feasibility failure and posterior zero. If she withholds consent, no
-feasibility check is run, no state-revealing public event occurs, and the
-continuation is R2 at the current belief <span class="math inline">\(\mu\)</span>. Hence her acceptance
-constraint is</p>
-<p><span class="math display">\[
-\mu y+(1-\mu)\beta W_2^U(0)\geq \beta W_2^U(\mu).
-\tag{PC-W}
-\]</span></p>
-<p>For <span class="math inline">\(\mu&gt;0\)</span>, the minimum weak-voter transfer is therefore</p>
-<p><span class="math display">\[
-y_B(\mu)
-=
-\frac{\beta W_2^U(\mu)-(1-\mu)\beta W_2^U(0)}{\mu}
-=
-\frac{\beta\{g(\mu)-(1-\mu)(1-\alpha)\}}{m\mu}.
-\tag{PC-y}
-\]</span></p>
-<p>The minimum promised total is</p>
-<p><span class="math display">\[
-T_B(\mu)
-=
-\beta\alpha r
-+
-(m-1)
-\frac{\beta\{g(\mu)-(1-\mu)(1-\alpha)\}}{m\mu}.
-\tag{PC-T}
-\]</span></p>
-<p>When</p>
-<p><span class="math display">\[
-1&lt;T_B(\mu)\leq r,
-\tag{PC-BF}
-\]</span></p>
-<p>the <span class="math inline">\(B\)</span> branch has an exact minimum and the proposer payoff is</p>
-<p><span class="math display">\[
-B(\mu)
-=
-\mu\{r-T_B(\mu)\}
-+
-(1-\mu)\beta W_2^U(0)
-=
-\mu\{r-T_B(\mu)\}
-+
-(1-\mu)\frac{\beta(1-\alpha)}{m}.
-\tag{PC-B}
-\]</span></p>
-<p>If <span class="math inline">\(T_B(\mu)\leq1\)</span>, strict low-state infeasibility requires raising the total
-promise above one. The branch then has a supremum rather than an exact maximum
-unless the model adds a discrete transfer grid, a weak inequality protocol for
-failure at the boundary, or another explicit existence convention. The OPEC
-calibration uses <span class="math inline">\(B\)</span> only where <span class="math inline">\(T_B(\mu)&gt;1\)</span>.</p>
-</div>
-<div id="sequential-rationality-check" class="section level2" number="7.4">
-<h2><span class="header-section-number">7.4</span> Sequential Rationality Check</h2>
-<p>The branch <span class="math inline">\(B\)</span> is sequentially rational only on the parameter and belief
-region where all three conditions hold.</p>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(H\)</span>’s high type accepts the high-state feasible proposal because
-<span class="math inline">\(h_B=\beta\alpha r\)</span>, with acceptance selected at indifference. No low-type
-<span class="math inline">\(H\)</span> rejection is observed on path in the low state, because the public
-event is mechanical feasibility failure.</li>
-<li>Each non-proposing weak voter accepts when (PC-W) holds. The transfer
-<span class="math inline">\(y_B(\mu)\)</span> is the minimum transfer that satisfies this uninformed
-acceptance constraint.</li>
-<li>The weak proposer chooses <span class="math inline">\(B\)</span> only when (PC-BF) holds and <span class="math inline">\(B(\mu)\)</span>
-weakly dominates the accepted-pooling branch <span class="math inline">\(P(\mu)\)</span> and the
-no-information rejection branch <span class="math inline">\(R(\mu)\)</span>. At proposer payoff ties, the
-payoff correspondence must be reported unless an explicit tie-break is
-stated.</li>
-</ol>
-</div>
-<div id="protocol-caveat" class="section level2" number="7.5">
-<h2><span class="header-section-number">7.5</span> Protocol Caveat</h2>
-<p>The analysis above is not valid under either of two alternative protocols. First,
-if a feasibility check is run even after a voter withholds consent, the
-no-consent history becomes state-revealing for high-state-only offers and the
-weak-voter IC must be rederived. Second, if the protocol publicly records an
-individual <span class="math inline">\(H\)</span> vote before or independently of the feasibility check, then the
-low-state history may contain a type-dependent voting event, and the analysis
-requires explicit off-path beliefs and a new sequential-rationality check. Those
-alternative protocols should not be used without a separate modeling decision
-and a new verification pass.</p>
-<p>The reproducible numerical check remains
-<code>scripts/verify_unanimity_R1_C_B_R_piH0.R</code>. A protocol-specific audit report is
-recorded in
-<code>quality_reports/2026-05-11_protocol_closure_feasibility_B_branch.md</code>.
-The first independent verification on 2026-05-11 returned PASS without
-reservations. Two subsequent independent verifications returned reservations on
-the timing of feasibility checking, rejection, and <span class="math inline">\(H\)</span>’s pre-check consent.
-The <span class="math inline">\(B\)</span>-branch protocol is therefore pending a modeling decision before it can
-be verified without reservations.</p>
-</div>
-</div>
-<div id="architecture-reset-relative-institutional-packages" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Architecture Reset: Relative Institutional Packages</h1>
-<p>Status: adopted for reimplementation; derivations pending.</p>
-<p>The protocol problem above suggests a cleaner modeling route. The main
-baseline should not rely on a proposal that is physically feasible in one state
-and infeasible in another. Instead, a proposal should be an institutional
-package that is well-defined in every realized state. Screening then comes from
-the fact that the same package gives <span class="math inline">\(H\)</span> different relative participation
-payoffs depending on <span class="math inline">\(H\)</span>’s private state.</p>
-<div id="core-decision" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> Core Decision</h2>
-<p>Replace fixed transfers <span class="math inline">\(T=h+ky\)</span> with a package</p>
+<div id="relative-package" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Relative Package</h1>
+<p>A proposal is a package</p>
 <p><span class="math display">\[
 x\in X.
 \]</span></p>
-<p>The package may encode a quota rule, production share, cut obligation,
-enforcement provision, flexibility clause, or institutional allocation. It is
-not a fixed monetary transfer that must fit inside a realized pie. A package is
-feasible if <span class="math inline">\(x\in X\)</span>, and feasibility does not depend on whether
-<span class="math inline">\(\theta=0\)</span> or <span class="math inline">\(\theta=1\)</span>.</p>
-<p>A useful reduced-form representation is a one-dimensional concession index</p>
+<p>For the first reimplementation, use a scalar concession index</p>
 <p><span class="math display">\[
 y\in[0,\bar y],
 \]</span></p>
 <p>where a higher <span class="math inline">\(y\)</span> is more favorable to <span class="math inline">\(H\)</span> and less favorable to the weak
-coalition. The extensive-form bargaining problem is then about which relative
-package <span class="math inline">\(y\)</span> is proposed, not about whether a promised absolute payment fits
-inside the realized pie.</p>
-<p>If the package is represented as shares, the primitive object is a vector
-<span class="math display">\[
-s=(s_H,s_{W_1},\ldots,s_{W_k})
-\quad\text{with}\quad
-\sum_i s_i\leq1.
-\]</span></p>
-<p>In state <span class="math inline">\(\theta\)</span>, implemented payoffs are proportional to the realized
-institutional value:</p>
-<p><span class="math display">\[
-u_i(s,\theta)=s_i V(\theta),
-\]</span></p>
-<p>possibly plus or minus type-dependent institutional costs. The share vector is
-feasible in every state whenever the shares sum to at most one.</p>
-</div>
-<div id="minimal-payoff-representation" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Minimal Payoff Representation</h2>
-<p>Use the following minimal representation for the first reimplementation:</p>
+coalition. The package is feasible if <span class="math inline">\(y\in[0,\bar y]\)</span>. Feasibility does not
+depend on <span class="math inline">\(\theta\)</span>.</p>
+<p>Substantively, <span class="math inline">\(y\)</span> may represent a larger production share for <code>H</code>, a weaker
+cut obligation, more flexibility, better enforcement against other members, or
+more favorable treatment under changing market conditions.</p>
+<div id="h-payoff" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> H Payoff</h2>
+<p>The minimal payoff representation is</p>
 <p><span class="math display">\[
 U_H(y,\theta)=y+b_H(\theta).
-\tag{RP-H}
+\tag{H-payoff}
 \]</span></p>
-<p>Here <span class="math inline">\(y\)</span> is the concession that the weak coalition grants to <span class="math inline">\(H\)</span> through the
-institutional package. It is not a fixed transfer that must fit inside the pie.
-It can be interpreted as a more favorable quota, more flexibility, weaker cut
-obligation, or better enforcement against other members.</p>
-<p>The term <span class="math inline">\(b_H(\theta)\)</span> is the direct benefit that <span class="math inline">\(H\)</span> receives from the
-agreement itself, apart from the concession <span class="math inline">\(y\)</span>. It may capture cartel
-coordination, price stability, reputational value, predictability, or the value
-of having other members constrained by the agreement. This component is not
-chosen by the weak proposer once the package class is fixed; it is a
-state-dependent payoff consequence of being inside the agreement.</p>
-<p>Let <span class="math inline">\(o_H(\theta)\)</span> denote <span class="math inline">\(H\)</span>’s outside option. In a one-shot participation
-problem, <span class="math inline">\(H\)</span> accepts package <span class="math inline">\(y\)</span> in state <span class="math inline">\(\theta\)</span> iff</p>
+<p>The term <span class="math inline">\(b_H(\theta)\)</span> is the direct benefit <code>H</code> obtains from the agreement
+itself, apart from the concession <span class="math inline">\(y\)</span>. It may capture cartel coordination,
+price stability, predictability, reputation, or the value of constraining other
+members.</p>
+<p>Let</p>
 <p><span class="math display">\[
-y+b_H(\theta)\geq o_H(\theta).
-\tag{RP-PC}
+C_H(\theta,\mu&#39;)
 \]</span></p>
-<p>Thus the type-<span class="math inline">\(\theta\)</span> acceptance threshold is</p>
+<p>be <code>H</code>’s continuation value after rejection, given the posterior <span class="math inline">\(\mu&#39;\)</span>. <code>H</code>
+accepts package <span class="math inline">\(y\)</span> in state <span class="math inline">\(\theta\)</span> iff</p>
 <p><span class="math display">\[
-y_\theta^*=o_H(\theta)-b_H(\theta).
-\tag{RP-threshold-static}
+y+b_H(\theta)\geq \beta C_H(\theta,\mu&#39;).
+\tag{H-PC}
 \]</span></p>
-<p>In the dynamic bargaining model, replace the outside option with the discounted
-continuation value:</p>
-<p><span class="math display">\[
-y+b_H(\theta)\geq \beta C_H(\theta,\mu&#39;),
-\]</span></p>
-<p>so</p>
+<p>Define the type-specific acceptance threshold</p>
 <p><span class="math display">\[
 y_\theta^*(\mu&#39;)
 =
 \beta C_H(\theta,\mu&#39;)-b_H(\theta).
-\tag{RP-threshold-dynamic}
+\tag{threshold}
 \]</span></p>
-<p>The screening condition is a condition on net participation thresholds:</p>
+<p>The screening condition is</p>
 <p><span class="math display">\[
 y_1^*(\mu&#39;)&gt;y_0^*(\mu&#39;).
-\tag{RP-S-y}
+\tag{screening}
 \]</span></p>
-<p>In the one-shot notation, this is</p>
+<p>Equivalently, in a one-shot participation version with outside option
+<span class="math inline">\(o_H(\theta)\)</span>,</p>
+<p><span class="math display">\[
+y_\theta^*=o_H(\theta)-b_H(\theta),
+\]</span></p>
+<p>so screening requires</p>
 <p><span class="math display">\[
 o_H(1)-b_H(1)&gt;o_H(0)-b_H(0).
-\tag{RP-net}
 \]</span></p>
-<p>Substantively, the high type requires a larger concession because its outside
-option net of the direct benefit of agreement is higher. This allows the model
-to say exactly what the paper needs: weak states do not know how much they must
-concede to make <span class="math inline">\(H\)</span> prefer the agreement to its alternative.</p>
-<p>The special case <span class="math inline">\(b_H(\theta)=\lambda V(\theta)\)</span> is admissible but should not
-be imposed unless useful. In that case</p>
-<p><span class="math display">\[
-y_\theta^*=o_H(\theta)-\lambda V(\theta),
-\]</span></p>
-<p>so screening exists only if the outside option rises more, in net terms, than
-the direct benefit of agreement. If <span class="math inline">\(o_H(\theta)\)</span> and <span class="math inline">\(b_H(\theta)\)</span> move
-proportionally, the threshold may not differ by type and the screening mechanism
-can disappear. The general <span class="math inline">\(b_H(\theta)\)</span> formulation is therefore the safer
-primitive.</p>
+<p>The high type requires a larger concession because its outside option net of
+the direct benefit of agreement is higher.</p>
 </div>
-<div id="screening-primitive" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Screening Primitive</h2>
-<p>The central object is <span class="math inline">\(H\)</span>’s type-dependent participation constraint. Let</p>
-<p><span class="math display">\[
-U_H(y,\theta)
-\]</span></p>
-<p>be <span class="math inline">\(H\)</span>’s payoff from accepting package <span class="math inline">\(y\)</span> in state <span class="math inline">\(\theta\)</span>, and let</p>
-<p><span class="math display">\[
-C_H(\theta,\mu&#39;)
-\]</span></p>
-<p>be <span class="math inline">\(H\)</span>’s continuation value after rejection, given the posterior <span class="math inline">\(\mu&#39;\)</span>
-that follows the relevant history. The participation constraint is</p>
-<p><span class="math display">\[
-U_H(y,\theta)\geq \beta C_H(\theta,\mu&#39;).
-\]</span></p>
-<p>The model must impose, as an explicit primitive or derived property, that the
-relative concession needed to satisfy <span class="math inline">\(H\)</span>’s participation constraint differs
-by type. Define the type-<span class="math inline">\(\theta\)</span> threshold</p>
-<p><span class="math display">\[
-y_\theta^*
-=
-\inf\{y\in[0,\bar y]:U_H(y,\theta)\geq \beta C_H(\theta,\mu&#39;)\}.
-\]</span></p>
-<p>The intended screening environment requires</p>
-<p><span class="math display">\[
-y_1^*&gt;y_0^*.
-\tag{RP-S}
-\]</span></p>
-<p>Condition (RP-S) is the replacement for feasibility-based separation. Weak
-states do not know whether <span class="math inline">\(H\)</span> requires the low relative concession
-<span class="math inline">\(y_0^*\)</span> or the high relative concession <span class="math inline">\(y_1^*\)</span>. The information problem is
-therefore:</p>
-<p><span class="math display">\[
-\text{weak proposers do not know how favorable the package must be for \(H\)
-to prefer agreement to its outside option.}
-\]</span></p>
-<p>This is not an assumption to hide inside a proof. The reimplemented model must
-state why (RP-S) follows from the primitives, or else take it as a transparent
-reduced-form primitive and interpret it substantively.</p>
+<div id="weak-state-payoffs" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Weak-State Payoffs</h2>
+<p>The next derivation must specify how <span class="math inline">\(y\)</span> reduces the payoff available to weak
+states. The intended normalization is one-for-one in reduced form: increasing
+the concession to <code>H</code> by one unit reduces the surplus available to the weak
+coalition by one unit.</p>
+<p>If a weak proposer needs a coalition of weak voters to accept, each
+non-proposing weak voter receives its continuation value. The proposer keeps the
+residual. This preserves the Baron-Ferejohn logic without using
+state-contingent feasibility failure.</p>
+<p>This object is still pending formalization.</p>
 </div>
-<div id="equilibrium-branches-under-the-reset" class="section level2" number="8.4">
-<h2><span class="header-section-number">8.4</span> Equilibrium Branches Under the Reset</h2>
-<p>The R1 unanimity problem should be rederived from three candidate branches.</p>
+</div>
+<div id="baseline-timing-pi_h0" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Baseline Timing: <span class="math inline">\(\pi_H=0\)</span></h1>
+<p>The first proof pass keeps <span class="math inline">\(\pi_H=0\)</span> in both rounds.</p>
 <ol style="list-style-type: decimal">
-<li><strong>Pooling/high-threshold package.</strong> The weak proposer offers
-<span class="math inline">\(y=y_1^*\)</span>. Both types of <span class="math inline">\(H\)</span> accept. The low type receives an
-informational rent because <span class="math inline">\(y_1^*&gt;y_0^*\)</span>.</li>
-<li><strong>Low-only package.</strong> The weak proposer offers <span class="math inline">\(y=y_0^*\)</span>. The low type of
-<span class="math inline">\(H\)</span> accepts and the high type rejects. The rejection history is informative
-and the R2 posterior must be updated by Bayes’ rule.</li>
-<li><strong>No-agreement/continuation package.</strong> The proposer offers a package that is
-rejected by both types or chooses a stated continuation branch, if the
-extensive form includes one.</li>
+<li>Nature draws <span class="math inline">\(\theta\)</span>; <code>H</code> observes <span class="math inline">\(\theta\)</span>, weak states observe only
+<span class="math inline">\(\mu\)</span>.</li>
+<li>A weak state is recognized as proposer.</li>
+<li>The proposer offers a relative institutional package <span class="math inline">\(y\)</span>.</li>
+<li>Under unanimity, <code>H</code> must accept the package for agreement to form.</li>
+<li>Weak voters receive continuation-value offers required for coalition
+approval.</li>
+<li>If agreement fails, the game proceeds to the next bargaining round with
+beliefs updated by Bayes’ rule on path.</li>
 </ol>
-<p>There is no high-state-only feasibility branch <span class="math inline">\(B\)</span> in this architecture.
-Every proposed package is feasible. Separation, when it exists, is generated by
-different participation thresholds, not by mechanical failure of the package.</p>
+<p>No branch in this baseline relies on a package being feasible in one state and
+infeasible in another.</p>
 </div>
-<div id="opec-interpretation" class="section level2" number="8.5">
-<h2><span class="header-section-number">8.5</span> OPEC Interpretation</h2>
-<p>This reset fits the OPEC application better than fixed transfers. OPEC members
-do not bargain over a dollar transfer that must fit inside an uncertain pie.
-They bargain over quota rules, production shares, cuts, monitoring, exceptions,
-and flexibility. Members may not know the future oil price, Saudi spare
-capacity, or Saudi Arabia’s true outside option, but they can understand the
-relative institutional package being proposed.</p>
-<p>In this interpretation, <span class="math inline">\(H\)</span> is Saudi Arabia and <span class="math inline">\(y\)</span> measures how favorable
-the agreement is to Saudi Arabia: a larger production share, weaker cut
-obligation, more flexibility, better enforcement against others, or more
-favorable treatment when market conditions change. Saudi Arabia’s private state
-affects how costly a given package is relative to acting outside the agreement.
-When its outside option or opportunity cost is high, it requires a more
-favorable package to participate:</p>
-<p><span class="math display">\[
-y_{\text{high}}^*&gt;y_{\text{low}}^*.
-\]</span></p>
-<p>The formal screening claim becomes: weak states know the proposed quota package,
-but they do not know Saudi Arabia’s relative participation threshold.</p>
-</div>
-<div id="reimplementation-consequences" class="section level2" number="8.6">
-<h2><span class="header-section-number">8.6</span> Reimplementation Consequences</h2>
-<p>The next proof pass should do the following.</p>
+<div id="objects-to-derive" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Objects To Derive</h1>
+<div id="r2-unanimity" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> R2 Unanimity</h2>
+<p>Derive the terminal-round weak-proposer problem under unanimity. Candidate
+packages:</p>
 <ol style="list-style-type: decimal">
-<li>Replace the old fixed-transfer object <span class="math inline">\(T=h+k\tilde y\)</span> and the
-<span class="math inline">\(B\)</span>-branch feasibility object with a package
-<span class="math inline">\(y\in[0,\bar y]\)</span> or a share vector <span class="math inline">\(s\)</span>.</li>
-<li>Specify <span class="math inline">\(U_H(y,\theta)=y+b_H(\theta)\)</span>, weak-state payoffs, and
-<span class="math inline">\(C_H(\theta,\mu&#39;)\)</span>.</li>
-<li>Prove or explicitly assume <span class="math inline">\(y_1^*&gt;y_0^*\)</span>, equivalently
-<span class="math inline">\(\beta C_H(1,\mu&#39;)-b_H(1)&gt;\beta C_H(0,\mu&#39;)-b_H(0)\)</span> for the relevant
-continuation posterior.</li>
-<li>Recompute R2 unanimity under the relative-package protocol.</li>
-<li>Recompute R1 unanimity as pooling, low-only, or continuation.</li>
-<li>Recompute majority under <span class="math inline">\(\pi_H=0\)</span>, keeping <span class="math inline">\(H\)</span>’s outside option external
-to the institutional pie.</li>
-<li>Rebuild entry/nesting and conditional institutional comparison.</li>
-<li>Rewrite scripts under new names rather than modifying the old C-B-R scripts
-in place.</li>
+<li><strong>Pooling package:</strong> offer <span class="math inline">\(y_1^*\)</span>, both types of <code>H</code> accept.</li>
+<li><strong>Low-only package:</strong> offer <span class="math inline">\(y_0^*\)</span>, low <code>H</code> accepts and high <code>H</code> rejects.</li>
+<li><strong>No-agreement package:</strong> induce rejection by both types if this is
+payoff-relevant under the stated protocol.</li>
 </ol>
-<p>The old C-B-R formulas are now historical diagnostics. They should not be used
-as theorem statements for the reimplemented model.</p>
-<p><strong>Result E1: weak-state entry and nesting under <code>pi_H=0</code>
-(<code>verified: independent PASS without reservations after correction</code>).</strong><br />
-Under the C-B-R characterization, the representative weak state’s R1 unanimity
-payoff is branch-dependent:</p>
+<p>The derivation must produce:</p>
 <p><span class="math display">\[
-V_W^{U,P}(\mu)=\frac{V_e(\mu)-\beta\alpha r}{m},
+W_2^U(\mu),\qquad C_H(0,\mu),\qquad C_H(1,\mu).
 \]</span></p>
-<p><span class="math display">\[
-V_W^{U,B}(\mu)
-=
-\frac{(1-\mu)\beta(1-\alpha)+\mu(r-\beta\alpha r)}{m},
-\]</span></p>
-<p>and</p>
-<p><span class="math display">\[
-V_W^{U,R}(\mu)=\frac{\beta g(\mu)}{m}.
-\]</span></p>
-<p>The equilibrium <span class="math inline">\(V_W^U(\mu)\)</span> is the value associated with the branch that the
-weak proposer chooses in Result U1, and the unanimity formation set is</p>
-<p><span class="math display">\[
-F_U=\{\mu\in[0,1]:V_W^U(\mu)\geq c\}.
-\]</span></p>
-<p>On the majority pass branch, the verified weak-state payoff is</p>
-<p><span class="math display">\[
-V_W^M(\mu)=\frac{V_e(\mu)}{m}.
-\]</span></p>
-<p>Every unanimity branch is weakly below majority. On accepted pooling,</p>
-<p><span class="math display">\[
-V_W^M(\mu)-V_W^{U,P}(\mu)
-=
-\frac{\beta\alpha r}{m}\geq0.
-\]</span></p>
-<p>On high-state-only agreement,</p>
-<p><span class="math display">\[
-V_W^M(\mu)-V_W^{U,B}(\mu)
-=
-\frac{(1-\mu)(1-\beta+\beta\alpha)+\mu\beta\alpha r}{m}
-\geq0.
-\tag{E1-B}
-\]</span></p>
-<p>On rejection,</p>
-<p><span class="math display">\[
-V_W^M(\mu)-V_W^{U,R}(\mu)
-=
-\frac{V_e(\mu)-\beta g(\mu)}{m}\geq0,
-\]</span></p>
-<p>because <span class="math inline">\(g(\mu)\leq V_e(\mu)\)</span> and <span class="math inline">\(\beta\leq1\)</span>. Hence, on
-<span class="math inline">\(\mathcal{P}_M^F\)</span>,</p>
-<p><span class="math display">\[
-V_W^U(\mu)\leq V_W^M(\mu),
-\]</span></p>
-<p>and therefore</p>
-<p><span class="math display">\[
-F_U\cap\mathcal{P}_M^F\subseteq F_M^{pass}.
-\]</span></p>
-<p>If (M-F) holds for every <span class="math inline">\(\mu\in[0,1]\)</span>, as in the OPEC calibration, then</p>
-<p><span class="math display">\[
-F_U\subseteq F_M^{pass}
-\]</span></p>
-<p>for every entry cost <span class="math inline">\(c\)</span>. In the OPEC calibration, the minimum gap
-<span class="math inline">\(V_W^M(\mu)-V_W^U(\mu)\)</span> remains</p>
-<p><span class="math display">\[
-0.021375.
-\]</span></p>
-<p>The reproducible numerical check is in
-<code>scripts/verify_unanimity_R1_C_B_R_piH0.R</code>.</p>
-<p><strong>Result C1: conditional hegemon comparison under <code>pi_H=0</code>
-(<code>verified: independent PASS without reservations after correction</code>).</strong><br />
-Compare <span class="math inline">\(H\)</span>’s unanimity payoff to the verified majority pass-branch payoff,</p>
-<p><span class="math display">\[
-V_H^M(\mu)=\alpha V_e(\mu).
-\]</span></p>
-<p>On accepted pooling,</p>
-<p><span class="math display">\[
-V_H^{U,P}(\mu)=\beta\alpha r,
-\]</span></p>
-<p>so the conditional gap is</p>
-<p><span class="math display">\[
-D_H^P(\mu)
-=
-\beta\alpha r-\alpha V_e(\mu)
-=
-\alpha\{\beta r-1-\mu(r-1)\}.
-\tag{C1-P}
-\]</span></p>
-<p>If <span class="math inline">\(\alpha&gt;0\)</span>, this gap is positive iff</p>
-<p><span class="math display">\[
-\mu&lt;\mu_H^*
-\equiv
-\frac{\beta r-1}{r-1},
-\]</span></p>
-<p>provided <span class="math inline">\(\beta r&gt;1\)</span>.</p>
-<p>On high-state-only agreement,</p>
-<p><span class="math display">\[
-V_H^{U,B}(\mu)=\beta\alpha V_e(\mu),
-\]</span></p>
-<p>so</p>
-<p><span class="math display">\[
-D_H^B(\mu)
-=
-\beta\alpha V_e(\mu)-\alpha V_e(\mu)
-=
--(1-\beta)\alpha V_e(\mu)&lt;0
-\tag{C1-B}
-\]</span></p>
-<p>for <span class="math inline">\(\alpha&gt;0\)</span> and <span class="math inline">\(\beta&lt;1\)</span>. This branch is unfavorable to <span class="math inline">\(H\)</span> relative
-to majority because the low state produces only delayed continuation payoff and
-the high state pays only the discounted high outside option.</p>
-<p>On a no-information rejection branch, the same logic applies in the aggressive
-R2 region:</p>
-<p><span class="math display">\[
-\beta\alpha V_e(\mu)-\alpha V_e(\mu)
-=
--(1-\beta)\alpha V_e(\mu)\leq0,
-\]</span></p>
-<p>with the conservative R2 case giving <span class="math inline">\(\beta\alpha r-\alpha V_e(\mu)\)</span>.</p>
-<p>For the OPEC calibration, Result U1 gives</p>
-<p><span class="math display">\[
-P \quad\text{for}\quad \mu\leq0.372424,
-\qquad
-B \quad\text{for}\quad \mu&gt;0.372424.
-\]</span></p>
-<p>The old pooling rent cutoff is <span class="math inline">\(\mu_H^*=0.7\)</span>, but it is no longer the
-equilibrium institutional cutoff because the game switches to <span class="math inline">\(B\)</span> before
-<span class="math inline">\(\mu=0.7\)</span>. Since <span class="math inline">\(0.372424&lt;0.7\)</span>, <span class="math inline">\(H\)</span> strictly prefers unanimity on the
-accepted-pooling region and strictly prefers majority on the high-state-only
-region:</p>
-<p><span class="math display">\[
-V_H^U(\mu)=
-\begin{cases}
-0.256500, &amp; \mu\leq0.372424,\\
-0.171+0.0855\mu, &amp; \mu&gt;0.372424.
-\end{cases}
-\]</span></p>
-<p>The reproducible numerical check is in
-<code>scripts/verify_unanimity_R1_C_B_R_piH0.R</code>.</p>
-<p><strong>Result I1: institutional classification on the verified majority-pass domain
-(<code>verified: independent PASS without reservations after correction</code>).</strong><br />
-Let</p>
-<p><span class="math display">\[
-D_H(\mu)=V_H^U(\mu)-V_H^M(\mu)
-\]</span></p>
-<p>denote the conditional dominance gap, evaluated on the equilibrium unanimity
-branch and on the verified majority pass branch. Since entry is collective, the
-relevant formation sets are</p>
-<p><span class="math display">\[
-F_U=\{\mu:V_W^U(\mu)\geq c\},
-\qquad
-F_M^{pass}
-=
-\mathcal{P}_M^F\cap\{\mu:V_W^M(\mu)\geq c\}.
-\]</span></p>
-<p>On the verified majority-pass domain, the institutional classification is:</p>
+</div>
+<div id="r1-unanimity" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> R1 Unanimity</h2>
+<p>Using the R2 continuation values, derive the Round-1 weak-proposer problem under
+unanimity. Candidate branches:</p>
 <ol style="list-style-type: decimal">
-<li>If <span class="math inline">\(\mu\in F_U\cap F_M^{pass}\)</span> and <span class="math inline">\(D_H(\mu)&gt;0\)</span>, <span class="math inline">\(H\)</span> strictly prefers
-unanimity.</li>
-<li>If <span class="math inline">\(\mu\in F_U\cap F_M^{pass}\)</span> and <span class="math inline">\(D_H(\mu)&lt;0\)</span>, <span class="math inline">\(H\)</span> strictly prefers
-majority.</li>
-<li>If <span class="math inline">\(\mu\in F_U\cap F_M^{pass}\)</span> and <span class="math inline">\(D_H(\mu)=0\)</span>, <span class="math inline">\(H\)</span> is indifferent.</li>
-<li>If <span class="math inline">\(\mu\in F_M^{pass}\setminus F_U\)</span>, majority forms and unanimity does not.
-In the baseline payoff accounting, <span class="math inline">\(H\)</span>’s payoff under majority is its
-expected outside option <span class="math inline">\(\alpha V_e(\mu)\)</span>, which is also what <span class="math inline">\(H\)</span>
-receives if unanimity does not form. Hence <span class="math inline">\(H\)</span> is payoff-indifferent
-between majority formation and unanimity non-formation unless an explicit
-institution-formation tie-break is added.</li>
-<li>If neither institution forms within the verified domain, <span class="math inline">\(H\)</span> receives the
-outside option and is indifferent.</li>
+<li>pooling/high-threshold package;</li>
+<li>low-only package;</li>
+<li>no-information rejection or continuation, if implementable under the stated
+protocol.</li>
 </ol>
-<p>This is not yet a global classification outside <span class="math inline">\(\mathcal{P}_M^F\)</span>. The
-majority delay branch outside the verified pass-feasibility region has not been
-derived. A global statement is justified only when (M-F) holds for every
-<span class="math inline">\(\mu\in[0,1]\)</span>.</p>
-<p>For the OPEC calibration, (M-F) holds globally, so the majority-pass domain is
-the whole unit interval. Result E1 gives
-<span class="math inline">\(F_U\subseteq F_M^{pass}\)</span>. Result C1 gives the calibrated comparison:</p>
-<p><span class="math display">\[
-\begin{array}{ll}
-\mu\in F_U,\ \mu\leq0.372424
-&amp;\Rightarrow \text{\(H\) strictly chooses unanimity},\\[4pt]
-\mu\in F_U,\ \mu&gt;0.372424
-&amp;\Rightarrow \text{\(H\) strictly chooses majority},\\[4pt]
-\mu\in F_M^{pass}\setminus F_U
-&amp;\Rightarrow \text{\(H\) is payoff-indifferent absent a formation tie-break}.
-\end{array}
-\]</span></p>
-<p>The reproducible numerical check is in
-<code>scripts/verify_unanimity_R1_C_B_R_piH0.R</code>.</p>
+<p>The proof must verify sequential rationality and Bayesian consistency.</p>
 </div>
+<div id="majority" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Majority</h2>
+<p>Recompute majority under <span class="math inline">\(\pi_H=0\)</span>. The expected baseline is that majority
+generates no screening when weak states can exclude <code>H</code> and <code>H</code> receives its
+outside option externally. This must be rederived in the new notation.</p>
 </div>
-<div id="stress-test-no-hegemonic-outside-option-advantage" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> Stress Test: No Hegemonic Outside-Option Advantage</h1>
-<p>The current model normalizes weak outside options to zero. Under that
-normalization, the limiting case in which <span class="math inline">\(H\)</span> has no stronger outside option is</p>
-<p><span class="math display">\[
-\alpha=0.
-\]</span></p>
-<p>If the model is later rewritten with a common positive outside option, the same
-test should be written as <span class="math inline">\(d_H=d_W\)</span> before normalization.</p>
-<p>Question to answer:</p>
-<p><span class="math display">\[
-\text{Does veto power plus private information generate screening rents when }
-d_H=d_W?
-\]</span></p>
-<p><strong>Result S1: no rent when <span class="math inline">\(\alpha=0\)</span>
-(<code>verified: independent PASS without reservations</code>).</strong><br />
-Under the current normalization, setting <span class="math inline">\(\alpha=0\)</span> removes the
-type-dependent outside option:</p>
-<p><span class="math display">\[
-d_H(0)=d_H(1)=0.
-\]</span></p>
-<p>In Round 2 under unanimity,</p>
-<p><span class="math display">\[
-G_C(\mu)=V_e(\mu).
-\]</span></p>
-<p>The weak proposer can offer zero to <span class="math inline">\(H\)</span>, both types accept under the
-tie-breaking convention, and all institutional surplus goes to weak states. The
-would-be aggressive/separating branch collapses into this pooling branch: when
-<span class="math inline">\(\alpha=0\)</span>, both types are indifferent at a zero offer, so the high type does
-not reject under the model’s tie-breaking convention. If one writes the
-counterfactual high-rejection payoff as <span class="math inline">\(G_A(\mu)=1-\mu\)</span>, then</p>
-<p><span class="math display">\[
-G_C(\mu)-G_A(\mu)=V_e(\mu)-(1-\mu)=\mu r\geq 0.
-\]</span></p>
-<p>Thus zero-offer pooling weakly dominates the counterfactual separating payoff
-anyway. The terminal values are therefore</p>
-<p><span class="math display">\[
-W_2^U(\mu)=\frac{V_e(\mu)}{m},\qquad H_2^U(\theta,\mu)=0.
-\]</span></p>
-<p>In Round 1, the pooling transfer to <span class="math inline">\(H\)</span> is also zero:</p>
-<p><span class="math display">\[
-h_P=\beta\alpha r=0.
-\]</span></p>
-<p>The proposer pays each non-proposing weak state</p>
-<p><span class="math display">\[
-y_P(\mu)=\frac{\beta V_e(\mu)}{m}.
-\]</span></p>
-<p>The R1 pooling proposal is feasible in the low state iff</p>
-<p><span class="math display">\[
-\frac{(m-1)\beta V_e(\mu)}{m}\leq 1.
-\tag{S1-F}
-\]</span></p>
-<p>When (S1-F) holds, the accepted pooling payoff to <span class="math inline">\(H\)</span> is</p>
-<p><span class="math display">\[
-V_{H,1}^{U,P}(\theta,\mu)=0,
-\]</span></p>
-<p>which equals <span class="math inline">\(H\)</span>’s outside option. If (S1-F) fails or the proposer delays, the
-continuation payoff to <span class="math inline">\(H\)</span> is also zero. Therefore the informational rent is
-identically zero:</p>
-<p><span class="math display">\[
-\Delta_H(\theta,\mu)=V_H^U(\theta,\mu)-d_H(\theta)=0.
-\]</span></p>
-<p>Thus, in this baseline, pivotality and private information alone do not generate
-a positive rent when <span class="math inline">\(H\)</span>’s outside option is no stronger than weak states’
-outside option. The rent in Result U1 comes from the interaction between
-pivotality and a type-dependent outside option.</p>
-<p>The reproducible numerical check is in
-<code>scripts/verify_baseline_stress_alpha0_piH0.R</code>.</p>
-<p>Independent verification on 2026-05-10 first returned a tie-breaking
-reservation about the counterfactual aggressive branch. After correction, a
-second independent verification returned PASS without reservations.</p>
-</div>
-<div id="historical-baseline-results-c-b-r-status-before-relative-package-reset" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Historical Baseline Results: C-B-R Status Before Relative-Package Reset</h1>
-<p>This section records the historical status of the <span class="math inline">\(\pi_H=0\)</span> benchmark before
-the relative-package architecture reset. After the feasibility audit, the
-majority pass branch and the unanimity R2 continuation remained verified under
-the old transfer architecture. The R1 unanimity characterization then included
-the high-state-only feasibility branch generated by offers that fit the
-high-state pie but not the low-state pie. Entry, dominance, and classification
-results were rederived under the C-B-R characterization and independently
-verified with PASS without reservations after correction.</p>
-<p>The 2026-05-11 architecture reset supersedes these C-B-R results for the next
-paper version. They are retained as diagnostic history only. The new baseline
-must be reimplemented with relative institutional packages and type-dependent
-participation thresholds.</p>
-<p>The earlier architecture-wide adversarial audit returned PASS without
-reservations on 2026-05-10, but that status is superseded by the later protocol
-discipline correction in
-<code>quality_reports/2026-05-10_protocol_discipline_status_correction.md</code>.</p>
-<p>The baseline is intentionally unfavorable to <span class="math inline">\(H\)</span>: weak states control the
-agenda in both bargaining rounds. Any payoff advantage for <span class="math inline">\(H\)</span> therefore comes
-from pivotality under unanimity and from the type-dependent outside option, not
-from proposal power.</p>
-<div id="theorem-1-baseline-equilibrium-architecture" class="section level2" number="10.1">
-<h2><span class="header-section-number">10.1</span> Theorem 1: Baseline Equilibrium Architecture</h2>
-<p>Under <span class="math inline">\(\pi_H=0\)</span> in both rounds, the currently verified pieces are as follows.</p>
+<div id="entry-and-institutional-choice" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Entry and Institutional Choice</h2>
+<p>After R2, R1, and majority are rederived, rebuild:</p>
 <ol style="list-style-type: decimal">
-<li><p>Under majority, on the pass-feasible branch
-<span class="math display">\[
-\mathcal{P}_M^F
-=
-\left\{\mu:\frac{\beta(q-1)V_e(\mu)}{m}\leq 1\right\},
-\]</span>
-weak proposers exclude <span class="math inline">\(H\)</span>. The verified payoffs are
-<span class="math display">\[
-V_H^M(\mu)=\alpha V_e(\mu),
-\qquad
-V_W^M(\mu)=\frac{V_e(\mu)}{m}.
-\]</span></p></li>
-<li><p>Under unanimity in Round 2,
-<span class="math display">\[
-W_2^U(\mu)
-=
-\frac{1}{m}
-\max\{(1-\mu)(1-\alpha),V_e(\mu)-\alpha r\},
-\]</span>
-with cutoff
-<span class="math display">\[
-\mu_2^*=\frac{\alpha(r-1)}{r-\alpha}.
-\]</span></p></li>
-<li><p>Under unanimity in Round 1, a strict low-accepted/high-rejected branch is not
-available under the maintained tie-breaking convention. Realized-state BF
-feasibility adds a high-state-only branch <span class="math inline">\(B\)</span>, so the weak proposer solves:
-<span class="math display">\[
-W_{1,prop}^{U}(\mu)
-=
-\max\left\{
-P(\mu)\text{ if (U1-F) holds},\,
-B(\mu)\text{ if (B-F) holds},\,
-R(\mu)
-\right\},
-\]</span>
-where
-<span class="math display">\[
-P(\mu)=V_e(\mu)-\beta\alpha r-\frac{(m-1)\beta g(\mu)}{m},
-\]</span>
-<span class="math display">\[
-B(\mu)
-=
-\mu\{r-T_B(\mu)\}
-+(1-\mu)\frac{\beta(1-\alpha)}{m},
-\]</span>
-when <span class="math inline">\(1&lt;T_B(\mu)\leq r\)</span>, and
-<span class="math display">\[
-R(\mu)=\frac{\beta g(\mu)}{m}.
-\]</span>
-Accepted pooling is chosen when it is feasible and dominates both <span class="math inline">\(B\)</span> and
-<span class="math inline">\(R\)</span>.</p></li>
-</ol>
-<p>The R branch is implemented by a type-independent rejected proposal: for
-<span class="math inline">\(\alpha&gt;0\)</span>, an offer <span class="math inline">\(h_R=0\)</span> to <span class="math inline">\(H\)</span> is strictly rejected by both H types,
-so the posterior remains <span class="math inline">\(\mu\)</span>. The B branch is implemented by a proposal
-with total promised transfers <span class="math inline">\(T\)</span> satisfying <span class="math inline">\(1&lt;T\leq r\)</span>, so agreement can
-execute only in the high state.</p>
-</div>
-<div id="proposition-1-hegemonic-rent-in-the-baseline" class="section level2" number="10.2">
-<h2><span class="header-section-number">10.2</span> Proposition 1: Hegemonic Rent in the Baseline</h2>
-<p>Status: branch-specific under C-B-R; independent PASS without reservations
-after correction.</p>
-<p>When R1 accepted pooling occurs under unanimity, <span class="math inline">\(H\)</span>’s payoff is</p>
-<p><span class="math display">\[
-V_H^{U,P}(\mu)=\beta\alpha r.
-\]</span></p>
-<p>Relative to the expected outside option <span class="math inline">\(\alpha V_e(\mu)\)</span>, the rent is</p>
-<p><span class="math display">\[
-\Delta_H^P(\mu)
-=
-\alpha\{\beta r-1-\mu(r-1)\}.
-\]</span></p>
-<p>Thus, for <span class="math inline">\(\alpha&gt;0\)</span> and <span class="math inline">\(\beta r&gt;1\)</span>, pooling gives positive rent exactly
-when</p>
-<p><span class="math display">\[
-\mu&lt;\frac{\beta r-1}{r-1}.
-\]</span></p>
-<p>The stress test <span class="math inline">\(\alpha=0\)</span> yields no rent:</p>
-<p><span class="math display">\[
-\Delta_H(\theta,\mu)=0.
-\]</span></p>
-<p>Hence pivotality and private information alone do not generate positive rent in
-this baseline. The positive rent comes from the interaction between pivotality
-and a type-dependent outside option. On the high-state-only branch, however,</p>
-<p><span class="math display">\[
-V_H^{U,B}(\mu)=\beta\alpha V_e(\mu),
-\]</span></p>
-<p>so the rent relative to the expected outside option is</p>
-<p><span class="math display">\[
-\Delta_H^B(\mu)=-(1-\beta)\alpha V_e(\mu)&lt;0
-\]</span></p>
-<p>for <span class="math inline">\(\alpha&gt;0\)</span> and <span class="math inline">\(\beta&lt;1\)</span>.</p>
-</div>
-<div id="proposition-2-entry-and-nesting" class="section level2" number="10.3">
-<h2><span class="header-section-number">10.3</span> Proposition 2: Entry and Nesting</h2>
-<p>Status: rederived under C-B-R; independent PASS without reservations after
-correction.</p>
-<p>Let</p>
-<p><span class="math display">\[
-F_U=\{\mu:V_W^U(\mu)\geq c\},
-\qquad
-F_M^{pass}
-=
-\mathcal{P}_M^F\cap\{\mu:V_W^M(\mu)\geq c\}.
-\]</span></p>
-<p>On the verified majority-pass branch,</p>
-<p><span class="math display">\[
-V_W^U(\mu)\leq V_W^M(\mu).
-\]</span></p>
-<p>Therefore</p>
-<p><span class="math display">\[
-F_U\cap\mathcal{P}_M^F\subseteq F_M^{pass}.
-\]</span></p>
-<p>For the OPEC calibration, (M-F) holds globally, so</p>
-<p><span class="math display">\[
-F_U\subseteq F_M^{pass}
-\]</span></p>
-<p>for every entry cost <span class="math inline">\(c\)</span>. The minimum calibrated gap
-<span class="math inline">\(V_W^M(\mu)-V_W^U(\mu)\)</span> is <span class="math inline">\(0.021375\)</span>.</p>
-</div>
-<div id="proposition-3-conditional-institutional-preference" class="section level2" number="10.4">
-<h2><span class="header-section-number">10.4</span> Proposition 3: Conditional Institutional Preference</h2>
-<p>Status: rederived under C-B-R; independent PASS without reservations after
-correction.</p>
-<p>Conditional on both institutions forming and on the verified majority-pass
-branch, <span class="math inline">\(H\)</span>’s comparison is governed by</p>
-<p><span class="math display">\[
-D_H(\mu)=V_H^U(\mu)-V_H^M(\mu).
-\]</span></p>
-<p>For the OPEC calibration,</p>
-<p><span class="math display">\[
-V_H^U(\mu)=
-\begin{cases}
-0.256500, &amp; \mu\leq0.372424,\\
-0.171+0.0855\mu, &amp; \mu&gt;0.372424,
-\end{cases}
-\]</span></p>
-<p>while</p>
-<p><span class="math display">\[
-V_H^M(\mu)=0.19(1+0.5\mu).
-\]</span></p>
-<p>Therefore</p>
-<p><span class="math display">\[
-D_H(\mu)&gt;0 \iff \mu\leq0.372424.
-\]</span></p>
-<p>In the OPEC calibration, conditional on both institutions forming, <span class="math inline">\(H\)</span>
-strictly prefers unanimity on the accepted-pooling region and strictly prefers
-majority on the high-state-only region.</p>
-</div>
-<div id="corollary-institutional-classification" class="section level2" number="10.5">
-<h2><span class="header-section-number">10.5</span> Corollary: Institutional Classification</h2>
-<p>Status: rederived under C-B-R; independent PASS without reservations after
-correction.</p>
-<p>The conditional classification applies on the majority-pass domain. For the
-OPEC calibration, because (M-F) holds globally, it applies on the full unit
-interval:</p>
-<p><span class="math display">\[
-\begin{array}{ll}
-\mu\in F_U,\ \mu\leq0.372424
-&amp;\Rightarrow \text{\(H\) strictly chooses unanimity},\\[4pt]
-\mu\in F_U,\ \mu&gt;0.372424
-&amp;\Rightarrow \text{\(H\) strictly chooses majority},\\[4pt]
-\mu\in F_M^{pass}\setminus F_U
-&amp;\Rightarrow \text{\(H\) is payoff-indifferent absent a formation tie-break}.
-\end{array}
-\]</span></p>
-<p>This classification does not say that unanimity dominates majority everywhere.
-It says that, in the
-most unfavorable agenda baseline for <span class="math inline">\(H\)</span>, unanimity can still generate a
-positive informational rent, but only on the parameter/belief region where the
-pooling branch is feasible and pays more than <span class="math inline">\(H\)</span>’s expected outside option.</p>
-</div>
-<div id="verification-record" class="section level2" number="10.6">
-<h2><span class="header-section-number">10.6</span> Verification Record</h2>
-<p>The verified baseline relies on the following reproducibility and audit files:</p>
-<ul>
-<li><code>scripts/verify_baseline_majority_piH0.R</code>;</li>
-<li><code>scripts/verify_baseline_unanimity_R2_piH0.R</code>;</li>
-<li><code>scripts/verify_unanimity_R1_C_or_R_piH0.R</code>;</li>
-<li><code>scripts/verify_unanimity_R1_C_B_R_piH0.R</code>;</li>
-<li><code>scripts/verify_baseline_stress_alpha0_piH0.R</code>;</li>
-<li><code>scripts/verify_entry_nesting_C_or_R_piH0.R</code>;</li>
-<li><code>scripts/verify_conditional_dominance_C_or_R_piH0.R</code>;</li>
-<li><code>scripts/verify_institutional_classification_C_or_R_piH0.R</code>;</li>
-<li><code>quality_reports/2026-05-10_baseline_piH0_independent_verification.md</code>;</li>
-<li><code>quality_reports/2026-05-10_unanimity_R1_piH0_pooling_delay_verification.md</code>;</li>
-<li><code>quality_reports/2026-05-10_alpha0_piH0_stress_verification.md</code>;</li>
-<li><code>quality_reports/2026-05-10_entry_nesting_piH0_verification.md</code>;</li>
-<li><code>quality_reports/2026-05-10_conditional_dominance_piH0_verification.md</code>;</li>
-<li><code>quality_reports/2026-05-10_institutional_classification_piH0_verification.md</code>;</li>
-<li><code>quality_reports/2026-05-10_final_architecture_audit_piH0.md</code>;</li>
-<li><code>quality_reports/2026-05-10_unanimity_R1_C_B_R_piH0_derivation.md</code>;</li>
-<li><code>quality_reports/2026-05-10_unanimity_R1_C_B_R_piH0_verification.md</code>.</li>
-</ul>
-</div>
-</div>
-<div id="remaining-work" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Remaining Work</h1>
-<p>The target theorem architecture is:</p>
-<ol style="list-style-type: decimal">
-<li>Majority pass-branch payoff under <span class="math inline">\(\pi_H=0\)</span> is affine in <span class="math inline">\(\mu\)</span> and
-contains no screening on <span class="math inline">\(\mathcal{P}_M^F\)</span>; the OPEC calibration satisfies
-this feasibility condition globally.</li>
-<li>Unanimity payoff under <span class="math inline">\(\pi_H=0\)</span> contains a screening term generated by
-<span class="math inline">\(H\)</span>’s acceptance constraints.</li>
-<li>Conditional dominance: for a stated parameter region, <span class="math inline">\(H\)</span>’s expected payoff
-under unanimity exceeds its payoff under majority.</li>
-<li>Entry/nesting: characterize when weak-state entry under unanimity implies
-weak-state entry under majority.</li>
-<li>Institutional classification: combine conditional dominance and entry to
-classify when <span class="math inline">\(H\)</span> chooses unanimity.</li>
+<li>weak-state entry and nesting;</li>
+<li>conditional institutional comparison for <code>H</code>;</li>
+<li>calibrated OPEC classification.</li>
 </ol>
 </div>
-<div id="extension-plan-pi_h0" class="section level1" number="12">
-<h1><span class="header-section-number">12</span> Extension Plan: <span class="math inline">\(\pi_H&gt;0\)</span></h1>
-<p>After the baseline is proved, analyze agenda power separately.</p>
-<p>For <span class="math inline">\(\pi_H=1/N\)</span>, use the canonical BF recognition probability. The
-H-proposer branch is an informed-proposer signaling subgame, so the extension
-should use selection-free bounds and calibrated sufficient conditions unless a
-unique equilibrium selection is explicitly imposed.</p>
-<p>For <span class="math inline">\(\pi_H&gt;1/N\)</span>, interpret the increase in <span class="math inline">\(\pi_H\)</span> as hegemonic agenda
-power. This extension should not be used to establish the main screening
-mechanism.</p>
 </div>
-<div id="proof-ledger" class="section level1" number="13">
-<h1><span class="header-section-number">13</span> Proof Ledger</h1>
+<div id="reproducibility-plan" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Reproducibility Plan</h1>
+<p>Create new scripts rather than modifying the archived C-B-R scripts in place.
+Planned scripts:</p>
+<ol style="list-style-type: decimal">
+<li><code>scripts/verify_relative_package_R2_piH0.R</code></li>
+<li><code>scripts/verify_relative_package_R1_piH0.R</code></li>
+<li><code>scripts/verify_relative_package_majority_piH0.R</code></li>
+<li><code>scripts/verify_relative_package_entry_nesting_piH0.R</code></li>
+<li><code>scripts/verify_relative_package_classification_piH0.R</code></li>
+</ol>
+<p>Each result should be independently verified before being promoted in the proof
+ledger.</p>
+</div>
+<div id="proof-ledger" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Proof Ledger</h1>
 <table>
 <colgroup>
 <col width="33%" />
@@ -3270,84 +1816,59 @@ mechanism.</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>pi_H</code> architecture</td>
-<td>Adopted</td>
-<td>Separates proposal power from outside-option and veto power.</td>
+<td>Archived feasibility-branch derivation</td>
+<td>Archived</td>
+<td>Preserved in tag <code>redesign-feasibility-branch-2026-05-11</code>; do not use as current architecture.</td>
 </tr>
 <tr class="even">
-<td>Baseline <code>pi_H=0</code></td>
-<td>Adopted</td>
-<td>Main formal baseline for exact derivation.</td>
-</tr>
-<tr class="odd">
 <td>Relative-package architecture</td>
-<td>Adopted for reimplementation</td>
-<td>Proposals are quota/share/institutional packages feasible in every state. Screening comes from type-dependent relative participation thresholds <span class="math inline">\(y_1^*&gt;y_0^*\)</span>, not from state-contingent feasibility failure.</td>
+<td>Adopted</td>
+<td>Packages are feasible in every state; screening comes from type-dependent participation thresholds.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Minimal H payoff primitive</td>
-<td>Adopted for reimplementation</td>
-<td>Use <span class="math inline">\(U_H(y,\theta)=y+b_H(\theta)\)</span>, with <span class="math inline">\(y\)</span> the concession offered by weak states, <span class="math inline">\(b_H(\theta)\)</span> the direct agreement benefit, and acceptance threshold <span class="math inline">\(y_\theta^*(\mu&#39;)=\beta C_H(\theta,\mu&#39;)-b_H(\theta)\)</span>.</td>
-</tr>
-<tr class="odd">
-<td>R2 recognition protocol</td>
-<td>Working convention</td>
-<td>Use <code>pi_H=0</code> in both rounds for the first pass.</td>
+<td>Adopted</td>
+<td><span class="math inline">\(U_H(y,\theta)=y+b_H(\theta)\)</span>.</td>
 </tr>
 <tr class="even">
-<td>Majority payoff under <code>pi_H=0</code></td>
-<td>Verified: independent PASS</td>
-<td>On <span class="math inline">\(\mathcal{P}_M^F\)</span>, <span class="math inline">\(V_H^M=\alpha V_e(\mu)\)</span>, <span class="math inline">\(V_W^M=V_e(\mu)/(N-1)\)</span>, and <span class="math inline">\(F_M^{pass}=\mathcal{P}_M^F\cap\{\mu:c\leq V_e(\mu)/m\}\)</span>. OPEC calibration satisfies (M-F) for all <span class="math inline">\(\mu\)</span>. Delay branch outside <span class="math inline">\(\mathcal{P}_M^F\)</span> is not yet derived.</td>
+<td>Screening condition</td>
+<td>Adopted as target primitive</td>
+<td>Need <span class="math inline">\(y_1^*(\mu&#39;)&gt;y_0^*(\mu&#39;)\)</span>, equivalently <span class="math inline">\(\beta C_H(1,\mu&#39;)-b_H(1)&gt;\beta C_H(0,\mu&#39;)-b_H(0)\)</span>.</td>
 </tr>
 <tr class="odd">
-<td>Unanimity R2 under <code>pi_H=0</code></td>
-<td>Verified: independent PASS</td>
-<td><span class="math inline">\(W_2^U(\mu)=m^{-1}\max\{(1-\mu)(1-\alpha),V_e(\mu)-\alpha r\}\)</span>; cutoff unchanged at <span class="math inline">\(\mu_2^*=\alpha(r-1)/(r-\alpha)\)</span>.</td>
+<td>Weak-state cost of concession</td>
+<td>Pending formalization</td>
+<td>Intended reduced-form normalization: <span class="math inline">\(y\)</span> is costly one-for-one to the weak coalition.</td>
 </tr>
 <tr class="even">
-<td>Unanimity R1 low-accepted/high-rejected branch</td>
-<td>Verified warning</td>
-<td>With <span class="math inline">\(\pi_H=0\)</span> in R2, the strict low-accepted/high-rejected aggressive branch collapses to a tie at <span class="math inline">\(h_A=\beta\alpha r\)</span>.</td>
+<td>R2 unanimity under relative packages</td>
+<td>Pending</td>
+<td>First derivation target.</td>
 </tr>
 <tr class="odd">
-<td>Unanimity R1 C-B-R</td>
-<td>Superseded by architecture reset</td>
-<td>Algebra was verified after correction under the old transfer architecture, but the required protocol closure for high-state-only feasibility is unresolved. Do not transport this result to the paper.</td>
+<td>R1 unanimity under relative packages</td>
+<td>Pending</td>
+<td>Derive only after R2 is closed.</td>
 </tr>
 <tr class="even">
-<td>Protocol closure: mechanical feasibility for <span class="math inline">\(B\)</span></td>
-<td>Superseded / not main path</td>
-<td>Independent verifiers identified unresolved timing issues. If feasibility is checked after rejection, no-consent can reveal the state; if <span class="math inline">\(H\)</span> consents before implementation, low <span class="math inline">\(H\)</span>’s consent IC generally fails in the calibrated <span class="math inline">\(B\)</span> region. The redesign abandons feasibility-based <span class="math inline">\(B\)</span> as the main architecture.</td>
+<td>Majority under relative packages</td>
+<td>Pending</td>
+<td>Must keep <code>H</code>’s outside option external to the institutional pie.</td>
 </tr>
 <tr class="odd">
-<td>Stress test <code>alpha=0</code></td>
-<td>Partly pending</td>
-<td>The R2 and accepted-pooling algebra remains useful, but strict type-independent rejection by H cannot implement <span class="math inline">\(R\)</span> when <span class="math inline">\(\alpha=0\)</span> under acceptance in indifference.</td>
-</tr>
-<tr class="even">
-<td>Conditional comparison</td>
-<td>Superseded pending rederivation</td>
-<td>Old comparison was branch-specific under C-B-R. It must be rederived under relative institutional packages.</td>
-</tr>
-<tr class="odd">
-<td>Institutional classification</td>
-<td>Superseded pending rederivation</td>
-<td>Old classification used C-B-R OPEC regimes. It must be rebuilt after the relative-package equilibrium is derived.</td>
-</tr>
-<tr class="even">
 <td>Entry/nesting</td>
-<td>Superseded pending rederivation</td>
-<td>Old nesting used C, B, and R weak-state payoffs. It must be rebuilt under relative-package payoffs.</td>
-</tr>
-<tr class="odd">
-<td><code>pi_H=1/N</code> extension</td>
 <td>Pending</td>
-<td>Use bounds/simulations if payoff is selection-dependent.</td>
+<td>Rebuild after R1 and majority.</td>
 </tr>
 <tr class="even">
-<td><code>pi_H&gt;1/N</code> extension</td>
+<td>Institutional classification</td>
 <td>Pending</td>
-<td>Treat as agenda-power extension.</td>
+<td>Rebuild after entry and conditional comparison.</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\pi_H&gt;0\)</span> extensions</td>
+<td>Pending</td>
+<td>Treat agenda power separately after the baseline is verified.</td>
 </tr>
 </tbody>
 </table>
