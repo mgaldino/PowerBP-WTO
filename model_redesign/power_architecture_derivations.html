@@ -1618,8 +1618,26 @@ flexibility. They can observe the proposed package, but they do not know Saudi
 Arabia’s true participation threshold because Saudi Arabia privately knows its
 spare capacity, opportunity cost, and outside option.</p>
 </div>
-<div id="primitives" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Primitives</h1>
+<div id="follow-up-qa-for-this-proof-pass" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Follow-up Q&amp;A for This Proof Pass</h1>
+<p><strong>Does the clean baseline use weak-state recognition in both rounds?</strong>
+Yes. For this proof pass, <span class="math inline">\(\pi_H=0\)</span> in both rounds. <code>H</code> is pivotal under
+unanimity but is not a formal agenda setter.</p>
+<p><strong>What happens after terminal Round-2 rejection?</strong>
+The game ends. <code>H</code> receives an external disagreement payoff
+<span class="math inline">\(d_H(\theta)\)</span>, and weak states receive their normalized disagreement payoff
+zero.</p>
+<p><strong>Is <span class="math inline">\(y\)</span> a fixed transfer from the institutional pie?</strong>
+No. <span class="math inline">\(y\)</span> is a relative institutional concession. It is always feasible as a
+package, but it reduces the residual payoff available to the weak coalition
+one-for-one.</p>
+<p><strong>What is being checked here?</strong>
+This pass resets the primitives for a fixed-pie relative-package model. All
+previous Round-2 formulas are treated as superseded until they are rederived
+from these primitives.</p>
+</div>
+<div id="primitives" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Primitives</h1>
 <p>There are <span class="math inline">\(N\geq3\)</span> states: one hegemon <span class="math inline">\(H\)</span> and <span class="math inline">\(m=N-1\)</span> weak states.
 Nature draws</p>
 <p><span class="math display">\[
@@ -1629,14 +1647,13 @@ Nature draws</p>
 <p><span class="math display">\[
 \mu=\Pr(\theta=1).
 \]</span></p>
-<p>The institutional value is</p>
+<p>The institutional surplus available to the weak coalition is fixed and known.
+Normalize it to</p>
 <p><span class="math display">\[
-V(0)=1,\qquad V(1)=r,\qquad r&gt;1,
+B=1.
 \]</span></p>
-<p>and</p>
-<p><span class="math display">\[
-V_e(\mu)=1+\mu(r-1).
-\]</span></p>
+<p>The private state <span class="math inline">\(\theta\)</span> affects <code>H</code>’s participation threshold, not the size
+of the weak coalition’s pie.</p>
 <p>The discount factor is <span class="math inline">\(\beta\in(0,1]\)</span>.</p>
 <p>Agenda power is represented by</p>
 <p><span class="math display">\[
@@ -1649,8 +1666,8 @@ V_e(\mu)=1+\mu(r-1).
 <p>so only weak states are recognized as proposers. This isolates informational
 power through pivotality from proposal power.</p>
 </div>
-<div id="relative-package" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Relative Package</h1>
+<div id="relative-package" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Relative Package</h1>
 <p>A proposal is a package</p>
 <p><span class="math display">\[
 x\in X.
@@ -1662,11 +1679,15 @@ y\in[0,\bar y],
 <p>where a higher <span class="math inline">\(y\)</span> is more favorable to <span class="math inline">\(H\)</span> and less favorable to the weak
 coalition. The package is feasible if <span class="math inline">\(y\in[0,\bar y]\)</span>. Feasibility does not
 depend on <span class="math inline">\(\theta\)</span>.</p>
+<p>The fixed-pie baseline restricts</p>
+<p><span class="math display">\[
+0\leq \bar y\leq 1.
+\]</span></p>
 <p>Substantively, <span class="math inline">\(y\)</span> may represent a larger production share for <code>H</code>, a weaker
 cut obligation, more flexibility, better enforcement against other members, or
 more favorable treatment under changing market conditions.</p>
-<div id="h-payoff" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> H Payoff</h2>
+<div id="h-payoff" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> H Payoff</h2>
 <p>The minimal payoff representation is</p>
 <p><span class="math display">\[
 U_H(y,\theta)=y+b_H(\theta).
@@ -1710,21 +1731,42 @@ o_H(1)-b_H(1)&gt;o_H(0)-b_H(0).
 <p>The high type requires a larger concession because its outside option net of
 the direct benefit of agreement is higher.</p>
 </div>
-<div id="weak-state-payoffs" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Weak-State Payoffs</h2>
-<p>The next derivation must specify how <span class="math inline">\(y\)</span> reduces the payoff available to weak
-states. The intended normalization is one-for-one in reduced form: increasing
-the concession to <code>H</code> by one unit reduces the surplus available to the weak
-coalition by one unit.</p>
-<p>If a weak proposer needs a coalition of weak voters to accept, each
-non-proposing weak voter receives its continuation value. The proposer keeps the
-residual. This preserves the Baron-Ferejohn logic without using
-state-contingent feasibility failure.</p>
-<p>This object is still pending formalization.</p>
+<div id="weak-state-payoffs" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Weak-State Payoffs</h2>
+<p>We now specify how <span class="math inline">\(y\)</span> reduces the payoff available to weak states. The
+normalization is one-for-one in reduced form: increasing the concession to <code>H</code>
+by one unit reduces the surplus available to the weak coalition by one unit.</p>
+<p>The maintained reduced-form payoff primitive is:</p>
+<p><span class="math display">\[
+\text{weak coalition surplus after accepted package }y
+=1-y.
+\tag{W-cost}
+\]</span></p>
+<p>Thus <span class="math inline">\(y\)</span> is costly one-for-one to the weak coalition. This is not a
+state-contingent feasibility constraint. The package <span class="math inline">\(y\in[0,\bar y]\)</span> is
+available in every state; if a package leaves a low residual for weak states,
+that is a payoff consequence, not physical infeasibility.</p>
+<p>When weak state <span class="math inline">\(i\)</span> is recognized and needs weak voters to approve, each
+non-proposing weak voter <span class="math inline">\(j\neq i\)</span> receives its continuation value
+<span class="math inline">\(c_W\)</span>. The recognized weak proposer keeps the residual:</p>
+<p><span class="math display">\[
+u_i(y,\theta;c_W)
+=
+1-y-(m-1)c_W,
+\qquad
+u_j(y,\theta;c_W)=c_W.
+\tag{W-residual}
+\]</span></p>
+<p>In terminal Round 2, weak states’ disagreement payoff is normalized to zero, so
+<span class="math inline">\(c_W=0\)</span>. Hence the recognized weak proposer’s terminal payoff from an
+accepted package is <span class="math inline">\(1-y\)</span>. A representative weak state’s ex ante Round-2
+value is the recognized-proposer value divided by <span class="math inline">\(m\)</span>, because each weak state
+is recognized with probability <span class="math inline">\(1/m\)</span> when <span class="math inline">\(\pi_H=0\)</span>.</p>
+<p><strong>Status: adopted primitive for the current relative-package proof pass.</strong></p>
 </div>
 </div>
-<div id="baseline-timing-pi_h0" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Baseline Timing: <span class="math inline">\(\pi_H=0\)</span></h1>
+<div id="baseline-timing-pi_h0" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Baseline Timing: <span class="math inline">\(\pi_H=0\)</span></h1>
 <p>The first proof pass keeps <span class="math inline">\(\pi_H=0\)</span> in both rounds.</p>
 <ol style="list-style-type: decimal">
 <li>Nature draws <span class="math inline">\(\theta\)</span>; <code>H</code> observes <span class="math inline">\(\theta\)</span>, weak states observe only
@@ -1737,46 +1779,762 @@ approval.</li>
 <li>If agreement fails, the game proceeds to the next bargaining round with
 beliefs updated by Bayes’ rule on path.</li>
 </ol>
+<p>Voting follows the standard Baron–Ferejohn convention at pivotal acceptance
+constraints: a player whose vote would make agreement pass and who is
+indifferent between accepting the agreement and receiving its continuation or
+outside option accepts the agreement. Thus <code>H</code> accepts at its participation
+threshold when it is pivotal, and weak voters accept offers equal to their
+continuation values when their vote is pivotal. Non-pivotal tie-breaking is
+specified explicitly in each voting assessment.</p>
+<p>If a weak proposer is indifferent between two payoff-maximizing proposals, the
+baseline assumes that it selects the proposal that minimizes <code>H</code>’s expected
+payoff under the current belief. This tie-breaking rule is conservative with
+respect to the paper’s main claim that private information allows the hegemon to
+extract informational rents. A later appendix should compare the baseline with
+the opposite efficient-agreement tie-breaking rule.</p>
 <p>No branch in this baseline relies on a package being feasible in one state and
 infeasible in another.</p>
 </div>
-<div id="objects-to-derive" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Objects To Derive</h1>
-<div id="r2-unanimity" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> R2 Unanimity</h2>
-<p>Derive the terminal-round weak-proposer problem under unanimity. Candidate
-packages:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Pooling package:</strong> offer <span class="math inline">\(y_1^*\)</span>, both types of <code>H</code> accept.</li>
-<li><strong>Low-only package:</strong> offer <span class="math inline">\(y_0^*\)</span>, low <code>H</code> accepts and high <code>H</code> rejects.</li>
-<li><strong>No-agreement package:</strong> induce rejection by both types if this is
-payoff-relevant under the stated protocol.</li>
-</ol>
-<p>The derivation must produce:</p>
+<div id="objects-to-derive" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Objects To Derive</h1>
+<div id="r2-unanimity" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> R2 Unanimity</h2>
+<p>Status: fixed-pie derivation.</p>
+<p>This subsection derives terminal Round 2 from the fixed-pie primitives above.
+Let</p>
 <p><span class="math display">\[
-W_2^U(\mu),\qquad C_H(0,\mu),\qquad C_H(1,\mu).
+d_\theta=d_H(\theta),\qquad b_\theta=b_H(\theta).
+\]</span></p>
+<p>In terminal Round 2, rejection ends the game. <code>H</code> accepts package <span class="math inline">\(y\)</span> in state
+<span class="math inline">\(\theta\)</span> iff</p>
+<p><span class="math display">\[
+y+b_\theta\geq d_\theta.
+\]</span></p>
+<p>Define the terminal participation threshold</p>
+<p><span class="math display">\[
+\tau_\theta=d_\theta-b_\theta.
+\]</span></p>
+<p>The fixed-pie screening domain is</p>
+<p><span class="math display">\[
+0\leq \tau_0&lt;\tau_1\leq \bar y\leq1.
+\]</span></p>
+<p>The proposer never benefits from choosing a package strictly inside an
+acceptance region, because weak surplus is <span class="math inline">\(1-y\)</span>. Therefore the only accepted
+packages that can be optimal are:</p>
+<ol style="list-style-type: decimal">
+<li>low-only: <span class="math inline">\(y=\tau_0\)</span>, accepted by low <code>H</code> and rejected by high <code>H</code>;</li>
+<li>pooling: <span class="math inline">\(y=\tau_1\)</span>, accepted by both types.</li>
+</ol>
+<p>The recognized weak proposer’s payoff from low-only is</p>
+<p><span class="math display">\[
+L_2(\mu)=(1-\mu)(1-\tau_0).
+\]</span></p>
+<p>The recognized weak proposer’s payoff from pooling is</p>
+<p><span class="math display">\[
+P_2(\mu)=1-\tau_1.
+\]</span></p>
+<p>The weak proposer chooses low-only iff</p>
+<p><span class="math display">\[
+(1-\mu)(1-\tau_0)\geq1-\tau_1.
+\]</span></p>
+<p>Solving this inequality gives the derived cutoff</p>
+<p><span class="math display">\[
+\mu_2^*=\frac{\tau_1-\tau_0}{1-\tau_0}.
+\]</span></p>
+<p>This is not a primitive. It is the belief at which the weak proposer is
+indifferent between the two accepted packages. Because
+<span class="math inline">\(0\leq\tau_0&lt;\tau_1\leq1\)</span>, <span class="math inline">\(\mu_2^*\in(0,1]\)</span>, with an interior cutoff when
+<span class="math inline">\(\tau_1&lt;1\)</span>.</p>
+<p>Under the conservative proposer tie-breaking rule, the equilibrium Round-2
+proposal is</p>
+<p><span class="math display">\[
+y_2^*(\mu)=
+\begin{cases}
+\tau_0, &amp; \mu\leq\mu_2^*,\\
+\tau_1, &amp; \mu&gt;\mu_2^*.
+\end{cases}
+\]</span></p>
+<p>Thus the recognized weak proposer’s Round-2 value is</p>
+<p><span class="math display">\[
+P_{2,prop}^U(\mu)=
+\begin{cases}
+(1-\mu)(1-\tau_0), &amp; \mu\leq\mu_2^*,\\
+1-\tau_1, &amp; \mu&gt;\mu_2^*.
+\end{cases}
+\]</span></p>
+<p>The representative weak state’s Round-2 continuation value is</p>
+<p><span class="math display">\[
+W_2^U(\mu)=\frac{P_{2,prop}^U(\mu)}{m}.
+\]</span></p>
+<p>The high type’s Round-2 continuation value is</p>
+<p><span class="math display">\[
+C_{H,2}^U(1,\mu)=d_1
+\]</span></p>
+<p>for all <span class="math inline">\(\mu\)</span>: it either rejects the low-only offer and receives <span class="math inline">\(d_1\)</span>, or
+accepts the pooling offer at its threshold and receives <span class="math inline">\(d_1\)</span>. The low type’s
+Round-2 continuation value is</p>
+<p><span class="math display">\[
+C_{H,2}^U(0,\mu)=
+\begin{cases}
+d_0, &amp; \mu\leq\mu_2^*,\\
+d_0+\tau_1-\tau_0, &amp; \mu&gt;\mu_2^*.
+\end{cases}
+\]</span></p>
+<p>Status: proved for terminal Round 2 under the fixed-pie primitives, the
+normalized threshold domain, the Baron–Ferejohn weak-acceptance convention, and
+the conservative proposer tie-breaking rule. The derivation is checked in
+<code>scripts/verify_relative_package_R2_piH0.R</code>.</p>
+</div>
+<div id="voting-protocol-for-r1-comparisons" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Voting Protocol for R1 Comparisons</h2>
+<p>Use the same simultaneous public voting protocol under unanimity and majority.
+After a proposal is made, the proposer is counted as voting yes. All other
+states vote simultaneously. Individual votes are publicly revealed after the
+ballot closes. Equivalently, voting is a secret ballot with each player’s vote
+opened and recorded at the end.</p>
+<p>A proposal passes if the number of yes votes meets the institutional quota:</p>
+<p><span class="math display">\[
+Q_U=N
+\]</span></p>
+<p>under unanimity and</p>
+<p><span class="math display">\[
+Q_M=q=\lfloor N/2\rfloor+1
+\]</span></p>
+<p>under majority. Players accept in indifference.</p>
+<p>The public history after the ballot includes the proposal, the full vote vector,
+and the outcome. If the game continues, beliefs are updated from that public
+history.</p>
+<p>The informational distinction comes from pivotality, not from whether a ballot
+is recorded. Under unanimity, <code>H</code> is pivotal because every state must vote yes.
+Under majority, a weak proposer may be able to assemble <span class="math inline">\(q\)</span> weak-state yes
+votes without <code>H</code>; <code>H</code> may still cast a public no vote, but that vote is not
+pivotal on the no-screening majority path.</p>
+<p>Therefore the majority comparison is not built by suppressing <code>H</code>’s vote. It is
+built by showing when a weak proposer has no reason to buy <code>H</code>’s acceptance.
+This is not automatic. Under majority, buying <code>H</code>’s yes vote can replace one
+weak voter’s yes vote. The no-screening majority benchmark therefore requires a
+condition under which <code>H</code> is not a cheaper coalition partner than a weak voter.</p>
+<p>Status: protocol convention adopted for the next R1 and majority derivations.
+The detailed assessment is recorded in
+<code>quality_reports/2026-05-11_common_voting_protocol_unanimity_majority.md</code>.</p>
+</div>
+<div id="r1-unanimity" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> R1 Unanimity</h2>
+<p>Status: proved for the candidate pure-strategy equilibria below under the
+fixed-pie relative-package primitives, simultaneous public voting, and the
+stated off-path beliefs. The algebra and candidate comparisons are checked in
+<code>scripts/verify_relative_package_R1_piH0.R</code>.</p>
+<div id="r1-primitives" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> R1 primitives</h3>
+<p>Round 1 uses the same players and type space as Round 2. There are <span class="math inline">\(m=N-1\)</span>
+weak states and one privately informed hegemon <code>H</code>. Nature draws
+<span class="math inline">\(\theta\in\{0,1\}\)</span>, <code>H</code> observes <span class="math inline">\(\theta\)</span>, and weak states share the prior
+<span class="math inline">\(\mu=\Pr(\theta=1)\)</span>.</p>
+<p>The baseline recognition protocol sets <span class="math inline">\(\pi_H=0\)</span>. A weak state <span class="math inline">\(i\)</span> is
+recognized as proposer. The identity of the proposer is public. The proposer is
+counted as voting yes.</p>
+<p>A Round-1 proposal is</p>
+<p><span class="math display">\[
+s=(y,z_{-i}),
+\]</span></p>
+<p>where <span class="math inline">\(y\in[0,\bar y]\)</span> is the relative institutional concession to <code>H</code>, and
+<span class="math inline">\(z_j\geq0\)</span> is the payoff promised to each non-proposing weak voter
+<span class="math inline">\(j\neq i\)</span>. The proposal is feasible iff</p>
+<p><span class="math display">\[
+y+\sum_{j\neq i}z_j\leq1.
+\tag{R1-feasibility}
+\]</span></p>
+<p>This is a fixed weak-surplus constraint, not a state-contingent pie constraint.
+The package <span class="math inline">\(y\)</span> is available in every state.</p>
+<p>After the proposal, <code>H</code> and all non-proposing weak states vote simultaneously.
+The proposal passes under unanimity iff every state votes yes. If it passes,</p>
+<p><span class="math display">\[
+u_H=y+b_\theta,\qquad
+u_j=z_j,\qquad
+u_i=1-y-\sum_{j\neq i}z_j.
+\]</span></p>
+<p>If it fails, the game proceeds to terminal Round 2. The public history is the
+proposal and the full vote vector. Let <span class="math inline">\(\nu\)</span> denote the posterior probability
+of <span class="math inline">\(\theta=1\)</span> after that public history. Weak states receive
+<span class="math inline">\(\beta W_2^U(\nu)\)</span>, and type <span class="math inline">\(\theta\)</span> of <code>H</code> receives
+<span class="math inline">\(\beta C_{H,2}^U(\theta,\nu)\)</span>.</p>
+<p>From the R2 derivation, define the recognized weak proposer’s terminal value</p>
+<p><span class="math display">\[
+p_2(\nu)=
+\max\{(1-\nu)(1-\tau_0),1-\tau_1\},
+\]</span></p>
+<p>with the conservative low-only tie-breaking rule at equality. Then</p>
+<p><span class="math display">\[
+W_2^U(\nu)=\frac{p_2(\nu)}{m},
+\qquad
+c(\nu)=\beta W_2^U(\nu)
+\tag{weak-cont}
+\]</span></p>
+<p>is the Round-1 public continuation value of a weak state after a failed
+proposal with posterior <span class="math inline">\(\nu\)</span>. Let</p>
+<p><span class="math display">\[
+D_0(\nu)=C_{H,2}^U(0,\nu)
+=
+\begin{cases}
+d_0, &amp; \nu\leq\mu_2^*,\\
+d_0+\tau_1-\tau_0, &amp; \nu&gt;\mu_2^*,
+\end{cases}
+\qquad
+D_1(\nu)=C_{H,2}^U(1,\nu)=d_1.
+\tag{H-R2-values}
+\]</span></p>
+<p>Thus <code>H</code>’s Round-1 rejection payoff after posterior <span class="math inline">\(\nu\)</span> is
+<span class="math inline">\(\beta D_\theta(\nu)\)</span>. Define the high type’s Round-1 threshold and the low
+type’s high-posterior threshold:</p>
+<p><span class="math display">\[
+a_1=\beta d_1-b_1,
+\qquad
+a_0^1=\beta D_0(1)-b_0.
+\tag{R1-thresholds}
+\]</span></p>
+<p>The weak R1 threshold-order domain for the current screening characterization
+is</p>
+<p><span class="math display">\[
+0\leq a_0^1\leq a_1\leq\bar y\leq1.
+\tag{R1-threshold-order-domain}
+\]</span></p>
+<p>Strict low-only separation requires <span class="math inline">\(a_0^1&lt;a_1\)</span>. If <span class="math inline">\(a_0^1=a_1\)</span>, low-only
+separation is blocked but pooling at <span class="math inline">\(a_1\)</span> remains admissible. If
+<span class="math inline">\(a_0^1&gt;a_1\)</span>, the high-threshold pooling proposal below is not admissible under
+the stated posterior after an off-path <code>H</code> no vote; that reversed-order case is
+outside the current screening characterization and remains blocked for this
+proof pass.</p>
+</div>
+<div id="exhaustion-of-pure-threshold-candidates" class="section level3" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Exhaustion of pure threshold candidates</h3>
+<p>For any fixed posterior <span class="math inline">\(\nu\)</span>, <code>H</code> accepts a package <span class="math inline">\(y\)</span> iff</p>
+<p><span class="math display">\[
+y+b_\theta\geq\beta D_\theta(\nu).
+\]</span></p>
+<p>Under the R1 separation domain, the high type’s threshold is above the low
+type’s relevant threshold. Therefore a pure threshold proposal can induce only
+three acceptance sets for <code>H</code>:</p>
+<ol style="list-style-type: decimal">
+<li>both types accept;</li>
+<li>only the low type accepts;</li>
+<li>neither type’s acceptance is needed because the proposal is deliberately
+rejected and the game continues.</li>
+</ol>
+<p>A high-only accepted proposal is impossible in this scalar package order: if a
+package is high enough for the high type, it is also high enough for the low
+type under the stated domain. Within each accepted region, any package strictly
+above the relevant threshold is dominated for the weak proposer by lowering
+<span class="math inline">\(y\)</span>. Any weak-voter offer strictly above the relevant continuation value is
+also dominated. Hence the only payoff-relevant pure threshold candidates with
+accepted agreements are pooling and low-only. Deliberate failure gives the
+continuation candidate. The informative-failure lemma below rules out a
+profitable fourth candidate in which the proposer uses a rejected ballot only to
+extract information before Round 2.</p>
+</div>
+<div id="candidate-p-pooling-at-the-high-threshold" class="section level3" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> Candidate P: pooling at the high threshold</h3>
+<p>The pooling proposal is</p>
+<p><span class="math display">\[
+y_P=a_1,\qquad z_j=c(\mu)\quad\text{for all }j\neq i.
+\tag{P-proposal}
+\]</span></p>
+<p>It is physically feasible at belief <span class="math inline">\(\mu\)</span> iff</p>
+<p><span class="math display">\[
+a_1+(m-1)c(\mu)\leq1.
+\tag{P-feas}
+\]</span></p>
+<p>It is an admissible pooling voting assessment iff (P-feas) holds and
+<span class="math inline">\(a_1\geq a_0^1\)</span>.</p>
+<p>The proposed strategy profile is: both types of <code>H</code> vote yes; every
+non-proposing weak state votes yes.</p>
+<p>Posterior beliefs after public vote vectors are:</p>
+<p><span class="math display">\[
+\nu_P(v)=
+\begin{cases}
+\mu, &amp; H\text{ votes yes},\\
+1, &amp; H\text{ votes no}.
+\end{cases}
+\tag{P-beliefs}
+\]</span></p>
+<p>The all-yes vector is on path and the proposal passes. Vectors with <code>H</code> voting
+yes and at least one weak no vote are off path but preserve the prior because
+<code>H</code>’s prescribed yes vote is pooling. Vectors with <code>H</code> voting no are off path;
+the belief assigns probability one to the high type.</p>
+<p>Weak voters’ constraint is</p>
+<p><span class="math display">\[
+z_j\geq c(\mu).
+\tag{P-W}
+\]</span></p>
+<p>If a weak voter votes yes, the proposal passes and it receives <span class="math inline">\(z_j\)</span>. If it
+unilaterally votes no while all others follow the proposed strategy, the
+proposal fails, <code>H</code>’s yes vote is uninformative, the posterior is <span class="math inline">\(\mu\)</span>, and
+the voter receives <span class="math inline">\(c(\mu)\)</span>. With <span class="math inline">\(z_j=c(\mu)\)</span>, weak voters accept in
+indifference.</p>
+<p><code>H</code>’s constraints are</p>
+<p><span class="math display">\[
+a_1+b_1=\beta d_1=\beta D_1(1),
+\tag{P-H1}
+\]</span></p>
+<p>so the high type accepts by the weak-acceptance convention, and</p>
+<p><span class="math display">\[
+a_1+b_0\geq\beta D_0(1),
+\qquad\text{equivalently}\qquad a_1\geq a_0^1,
+\tag{P-H0}
+\]</span></p>
+<p>so the low type also accepts. The latter is implied by the R1 separation
+domain.</p>
+<p>The recognized weak proposer’s pooling payoff is</p>
+<p><span class="math display">\[
+\Pi_P^U(\mu)=1-a_1-(m-1)c(\mu).
+\tag{P-payoff}
+\]</span></p>
+<p><strong>Voting-continuation proof.</strong> Given the beliefs in (P-beliefs), each weak voter is indifferent
+between yes and no at <span class="math inline">\(z_j=c(\mu)\)</span> and therefore votes yes by the
+weak-acceptance convention. The high type of <code>H</code> is indifferent between
+acceptance and rejection at <span class="math inline">\(y=a_1\)</span> and votes yes by the same convention. The
+low type weakly prefers acceptance because <span class="math inline">\(a_1\geq a_0^1\)</span>. The proposer pays
+the minimum concession and minimum weak-voter offers consistent with these
+constraints, so no lower-cost pooling proposal exists. Beliefs on the all-yes
+path are Bayesian; off-path beliefs are explicitly specified. Therefore the
+pooling proposal is an admissible voting-continuation assessment whenever
+(P-feas) holds and <span class="math inline">\(a_1\geq a_0^1\)</span>. It is a full R1 PBE only when the
+proposer-optimality condition stated below also selects pooling.</p>
+</div>
+<div id="candidate-l-low-only-acceptance" class="section level3" number="7.3.4">
+<h3><span class="header-section-number">7.3.4</span> Candidate L: low-only acceptance</h3>
+<p>The low-only proposal is</p>
+<p><span class="math display">\[
+y_L=a_0^1,\qquad z_j=c(0)\quad\text{for all }j\neq i.
+\tag{L-proposal}
+\]</span></p>
+<p>It is feasible iff</p>
+<p><span class="math display">\[
+a_0^1+(m-1)c(0)\leq1,
+\tag{L-feas}
+\]</span></p>
+<p>and it requires the strict separation condition <span class="math inline">\(a_0^1&lt;a_1\)</span>. The proposed
+strategy profile is: low <code>H</code> votes yes, high <code>H</code> votes no, and every
+non-proposing weak state votes yes.</p>
+<p>Posterior beliefs after public vote vectors are:</p>
+<p><span class="math display">\[
+\nu_L(v)=
+\begin{cases}
+0, &amp; H\text{ votes yes},\\
+1, &amp; H\text{ votes no}.
+\end{cases}
+\tag{L-beliefs}
+\]</span></p>
+<p>Thus the all-yes vector passes and reveals the low type. The vector in which
+<code>H</code> votes no and all weak states vote yes is on path in the high state, fails,
+and reveals the high type. Off-path vectors inherit the same rule: histories
+with <code>H</code> yes have posterior zero, and histories with <code>H</code> no have posterior one.</p>
+<p>Weak voters’ constraint is</p>
+<p><span class="math display">\[
+z_j\geq c(0).
+\tag{L-W}
+\]</span></p>
+<p>To see this, compare a weak voter’s yes and no payoffs given the proposed
+strategy profile. If the voter votes yes, it receives <span class="math inline">\(z_j\)</span> in the low state
+and continuation <span class="math inline">\(c(1)\)</span> in the high state, because high <code>H</code> rejects. If the
+voter votes no, the proposal fails in both states; the posterior is zero after
+low <code>H</code>’s yes vote and one after high <code>H</code>’s no vote. Hence the voter votes yes
+iff</p>
+<p><span class="math display">\[
+(1-\mu)z_j+\mu c(1)
+\geq
+(1-\mu)c(0)+\mu c(1),
+\]</span></p>
+<p>which reduces to <span class="math inline">\(z_j\geq c(0)\)</span> when <span class="math inline">\(\mu&lt;1\)</span>. At <span class="math inline">\(\mu=1\)</span>, weak voters are
+not payoff-pivotal for the on-path high-state rejection and accept weakly under
+the same offer convention.</p>
+<p><code>H</code>’s constraints are</p>
+<p><span class="math display">\[
+a_0^1+b_0=\beta D_0(1),
+\tag{L-H0}
+\]</span></p>
+<p>so the low type accepts by the weak-acceptance convention, and</p>
+<p><span class="math display">\[
+a_0^1+b_1&lt;\beta d_1,
+\qquad\text{equivalently}\qquad a_0^1&lt;a_1,
+\tag{L-H1}
+\]</span></p>
+<p>so the high type strictly rejects.</p>
+<p>The recognized weak proposer’s low-only payoff is</p>
+<p><span class="math display">\[
+\Pi_L^U(\mu)
+=
+(1-\mu)\{1-a_0^1-(m-1)c(0)\}
++\mu c(1).
+\tag{L-payoff}
+\]</span></p>
+<p>The second term is the proposer’s continuation payoff after high <code>H</code> rejects
+and the public vote vector reveals posterior one.</p>
+<p><strong>Voting-continuation proof.</strong> Given (L-beliefs), each weak voter is exactly compensated for the
+continuation it can induce in the low state and is unaffected in the high state,
+so voting yes is sequentially rational. Low <code>H</code> is indifferent between
+acceptance and mimicking high rejection at posterior one and votes yes by the
+weak-acceptance convention. High <code>H</code> strictly prefers rejection because
+<span class="math inline">\(a_0^1&lt;a_1\)</span>. The posterior after <code>H</code>’s on-path no vote is one by Bayes, and
+the posterior after <code>H</code>’s on-path yes vote is zero by Bayes. Off-path beliefs
+are explicitly stated in (L-beliefs). The proposer uses the minimum concession
+and weak-voter offers consistent with low-only acceptance. Therefore the
+low-only proposal is an admissible voting-continuation assessment whenever
+(L-feas) and <span class="math inline">\(a_0^1&lt;a_1\)</span> hold. It is a full R1 PBE only when the
+proposer-optimality condition stated below also selects low-only.</p>
+</div>
+<div id="candidate-r-no-information-rejectioncontinuation" class="section level3" number="7.3.5">
+<h3><span class="header-section-number">7.3.5</span> Candidate R: no-information rejection/continuation</h3>
+<p>The continuation proposal designates one non-proposing weak state <span class="math inline">\(r\)</span> as a
+strict rejecter and sets</p>
+<p><span class="math display">\[
+y_R=a_1,\qquad z_j=0\quad\text{for all }j\neq i.
+\tag{R-proposal}
+\]</span></p>
+<p>It is feasible when <span class="math inline">\(a_1\leq\bar y\leq1\)</span>. It is admissible as a strict
+rejection assessment at beliefs with <span class="math inline">\(c(\mu)&gt;0\)</span>. The proposed voting strategy
+is: both types of <code>H</code> vote yes, the designated weak state <span class="math inline">\(r\)</span> votes no, and
+all other non-proposing weak states vote yes. The proposal fails under
+unanimity because one weak state votes no.</p>
+<p>The posterior after every failed vote vector following this proposal is</p>
+<p><span class="math display">\[
+\nu_R(v)=\mu.
+\tag{R-beliefs}
+\]</span></p>
+<p>On path, <code>H</code>’s yes vote is pooling and weak votes carry no private information,
+so this posterior is Bayesian. Off path, the same belief rule keeps unilateral
+vote deviations from changing continuation beliefs.</p>
+<p>The designated weak state <span class="math inline">\(r\)</span> strictly prefers no when <span class="math inline">\(c(\mu)&gt;0\)</span>. If it
+votes no, the proposal fails and it receives <span class="math inline">\(c(\mu)\)</span>. If it unilaterally
+votes yes while all others follow the proposed strategy, the proposal passes
+and it receives <span class="math inline">\(z_r=0\)</span>. All other non-proposing weak states are non-pivotal
+because <span class="math inline">\(r\)</span> votes no; they vote yes by the non-pivotal tie-breaking rule.</p>
+<p><code>H</code> is not outcome-pivotal because <span class="math inline">\(r\)</span> rejects. Under (R-beliefs), a
+unilateral <code>H</code> deviation from yes to no does not change the posterior, so both
+types of <code>H</code> are sequentially rational in voting yes. The choice <span class="math inline">\(y_R=a_1\)</span>
+also means that if the weak rejection were removed, the high type would be at
+its acceptance threshold and the low type would weakly accept.</p>
+<p>The recognized weak proposer’s continuation payoff is</p>
+<p><span class="math display">\[
+\Pi_R^U(\mu)=c(\mu).
+\tag{R-payoff}
+\]</span></p>
+<p><strong>Voting-continuation proof.</strong> The on-path rejected vote vector preserves the
+prior by Bayes. The designated weak rejecter strictly prefers no when
+<span class="math inline">\(c(\mu)&gt;0\)</span>. The other weak voters’ yes votes are sequentially rational because
+their unilateral votes do not affect the outcome. <code>H</code>’s yes vote is
+sequentially rational because <code>H</code> is not outcome-pivotal and the stated off-path
+beliefs make vote deviations payoff-irrelevant. The proposal therefore
+implements no-information continuation as an admissible voting-continuation
+assessment whenever <span class="math inline">\(a_1\leq\bar y\)</span> and <span class="math inline">\(c(\mu)&gt;0\)</span>. It is a full R1 PBE
+only when the proposer-optimality condition stated below also selects
+rejection. This candidate is not a uniqueness claim about the voting subgame
+after a deliberately unacceptable proposal.</p>
+</div>
+<div id="lemma-informative-rejected-ballots-do-not-add-a-profitable-candidate" class="section level3" number="7.3.6">
+<h3><span class="header-section-number">7.3.6</span> Lemma: informative rejected ballots do not add a profitable candidate</h3>
+<p>An informative rejected ballot would try to make the proposal fail in both
+states while inducing different <code>H</code> votes, so that the public vote vector
+changes the posterior before Round 2. Such a ballot cannot strictly improve on
+the no-information continuation candidate under the maintained domain.</p>
+<p>To see this, suppose a rejected ballot separates <code>H</code>’s types. Since weak voters
+do not observe <span class="math inline">\(\theta\)</span>, only <code>H</code>’s vote can carry type information. In any
+separating rejected ballot, one <code>H</code> action must induce posterior zero and the
+other must induce posterior one. The low type’s continuation payoff from
+revealing the low posterior is</p>
+<p><span class="math display">\[
+\beta D_0(0)=\beta d_0.
+\]</span></p>
+<p>The low type’s payoff from mimicking the high-posterior vote is</p>
+<p><span class="math display">\[
+\beta D_0(1)\geq\beta D_0(0),
+\]</span></p>
+<p>with strict inequality whenever <span class="math inline">\(\tau_1&lt;1\)</span>. Therefore the low type does not
+strictly prefer to reveal itself in a rejected ballot; when the inequality is
+strict, separation is not incentive-compatible. When <span class="math inline">\(\tau_1=1\)</span>, the
+inequality is an equality and the Round-2 weak-proposer value is linear:</p>
+<p><span class="math display">\[
+p_2(\nu)=(1-\nu)(1-\tau_0)
+\quad\text{for all }\nu\in[0,1].
+\]</span></p>
+<p>Thus even if an informative rejected ballot is sustained by indifference at the
+boundary, it gives the weak proposer</p>
+<p><span class="math display">\[
+(1-\mu)c(0)+\mu c(1)=c(\mu),
+\]</span></p>
+<p>exactly the no-information continuation payoff. Pooling rejected ballots also
+preserve the prior and give <span class="math inline">\(c(\mu)\)</span>. Hence rejected ballots add no candidate
+payoff above <span class="math inline">\(\Pi_R^U(\mu)\)</span>.</p>
+<p>Status: proved under the fixed-pie R2 continuation values and simultaneous
+public vote records.</p>
+</div>
+<div id="selected-pure-threshold-pbe-selection" class="section level3" number="7.3.7">
+<h3><span class="header-section-number">7.3.7</span> Selected pure-threshold PBE selection</h3>
+<p>The preceding subsections establish the voting-continuation assessment for each
+candidate. A full R1 PBE also requires proposer optimality.</p>
+<p>For each <span class="math inline">\(\mu\)</span>, define the admissible candidate set</p>
+<p><span class="math display">\[
+\mathcal K(\mu)\subseteq\{P,L,R\}
+\]</span></p>
+<p>as follows: <span class="math inline">\(P\in\mathcal K(\mu)\)</span> iff (P-feas) and <span class="math inline">\(a_1\geq a_0^1\)</span> hold;
+<span class="math inline">\(L\in\mathcal K(\mu)\)</span> iff (L-feas) and <span class="math inline">\(a_0^1&lt;a_1\)</span> hold; and
+<span class="math inline">\(R\in\mathcal K(\mu)\)</span> iff <span class="math inline">\(a_1\leq\bar y\)</span> and <span class="math inline">\(c(\mu)&gt;0\)</span>. Inadmissible
+candidates receive payoff <span class="math inline">\(-\infty\)</span>. Let</p>
+<p><span class="math display">\[
+\bar\Pi^U(\mu)
+=
+\max_{k\in\mathcal K(\mu)}\Pi_k^U(\mu).
+\tag{R1-max}
+\]</span></p>
+<p>The proposer-optimal candidates are</p>
+<p><span class="math display">\[
+\mathcal A(\mu)=
+\{k\in\mathcal K(\mu):\Pi_k^U(\mu)=\bar\Pi^U(\mu)\}.
+\tag{R1-argmax}
+\]</span></p>
+<p>If <span class="math inline">\(\mathcal A(\mu)\)</span> contains more than one candidate, the maintained
+tie-breaking rule selects the candidate that minimizes <code>H</code>’s expected payoff
+under the prior <span class="math inline">\(\mu\)</span>. These expected <code>H</code> payoffs are</p>
+<p><span class="math display">\[
+H_P(\mu)=(1-\mu)(a_1+b_0)+\mu(a_1+b_1),
+\]</span></p>
+<p><span class="math display">\[
+H_L(\mu)=(1-\mu)(a_0^1+b_0)+\mu\beta d_1,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+H_R(\mu)=(1-\mu)\beta D_0(\mu)+\mu\beta d_1.
+\]</span></p>
+<p>Thus the baseline selected candidate is</p>
+<p><span class="math display">\[
+k^*(\mu)\in
+\arg\min_{k\in\mathcal A(\mu)} H_k(\mu).
+\tag{R1-tie-break}
+\]</span></p>
+<p>For any selected <span class="math inline">\(k^*(\mu)\)</span>, the strategy profile is the corresponding
+candidate proposal and voting strategy above, with the stated posterior map
+after the public vote vector. The candidate proof gives responder sequential
+rationality and Bayesian consistency. The argmax condition gives proposer
+optimality. The informative-failure lemma rules out rejected-ballot deviations
+that would use public voting only to generate a better posterior. Therefore the
+selected assessment is a full R1 PBE within the pure threshold class generated
+by the fixed-pie scalar package order.</p>
+</div>
+<div id="selected-pure-threshold-pbe-value-under-r1-unanimity" class="section level3" number="7.3.8">
+<h3><span class="header-section-number">7.3.8</span> Selected pure-threshold PBE value under R1 unanimity</h3>
+<p>For each prior <span class="math inline">\(\mu\)</span>, define invalid candidate values as <span class="math inline">\(-\infty\)</span>. The
+recognized weak proposer’s selected pure-threshold R1 unanimity PBE value is</p>
+<p><span class="math display">\[
+P_{1,prop}^U(\mu)
+=
+\bar\Pi^U(\mu),
+\tag{R1-U-value}
+\]</span></p>
+<p>where admissibility is defined in <span class="math inline">\(\mathcal K(\mu)\)</span> above. The
+representative weak state’s ex ante Round-1 unanimity value is</p>
+<p><span class="math display">\[
+W_1^U(\mu)=\frac{P_{1,prop}^U(\mu)}{m},
+\]</span></p>
+<p>because each weak state is recognized with probability <span class="math inline">\(1/m\)</span> under
+<span class="math inline">\(\pi_H=0\)</span>.</p>
+<p>The important correction relative to any informal low-only intuition is that
+the low type’s R1 acceptance threshold is not <span class="math inline">\(\beta d_0-b_0\)</span>. In a
+separating low-only proposal, a low type that rejects mimics the high type in
+the public vote record and receives the high-posterior R2 continuation value.
+The correct low-only concession is therefore <span class="math inline">\(a_0^1=\beta D_0(1)-b_0\)</span>. If
+this reaches <span class="math inline">\(a_1\)</span>, low-only separation is blocked.</p>
+<p>Status ledger for R1 unanimity:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>R1 primitives</td>
+<td>Proved</td>
+<td>Players, types, proposer identity, proposal space, voting rule, payoffs, and continuation values are explicit.</td>
+</tr>
+<tr class="even">
+<td>Candidate exhaustion</td>
+<td>Proved within pure threshold class</td>
+<td>Accepted proposals reduce to pooling or low-only; informative rejected ballots do not improve on no-information continuation.</td>
+</tr>
+<tr class="odd">
+<td>Pooling candidate</td>
+<td>Proved and checked</td>
+<td>Admissible voting-continuation assessment under (P-feas) and <span class="math inline">\(a_1\geq a_0^1\)</span>; full PBE when selected by the argmax/tie-break rule.</td>
+</tr>
+<tr class="even">
+<td>Low-only candidate</td>
+<td>Proved and checked</td>
+<td>Admissible voting-continuation assessment under (L-feas) and strict <span class="math inline">\(a_0^1&lt;a_1\)</span>; blocked when <span class="math inline">\(a_0^1\geq a_1\)</span>; full PBE when selected.</td>
+</tr>
+<tr class="odd">
+<td>Rejection/continuation candidate</td>
+<td>Proved and checked</td>
+<td>Admissible no-information continuation assessment when <span class="math inline">\(a_1\leq\bar y\)</span> and <span class="math inline">\(c(\mu)&gt;0\)</span>; full PBE when selected.</td>
+</tr>
+<tr class="even">
+<td>Selected pure-threshold PBE selection</td>
+<td>Proved and checked</td>
+<td>Selected candidates maximize the proposer payoff among admissible candidates; ties minimize <code>H</code>’s expected payoff.</td>
+</tr>
+<tr class="odd">
+<td>Global uniqueness of all R1 equilibria</td>
+<td>Pending</td>
+<td>The result characterizes the selected pure-threshold PBE value, not every weak voting equilibrium after arbitrary off-path proposals. Mixed or semi-pooling rejected ballots remain outside the current claim.</td>
+</tr>
+<tr class="even">
+<td>Numerical and algebraic verification</td>
+<td>Checked</td>
+<td>See <code>scripts/verify_relative_package_R1_piH0.R</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="majority" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Majority</h2>
+<p>Let</p>
+<p><span class="math display">\[
+q=\lfloor N/2\rfloor+1,
+\qquad
+k=q-1.
+\]</span></p>
+<p>The recognized weak proposer is counted as voting yes, so under majority it
+needs <span class="math inline">\(k\)</span> additional yes votes.</p>
+<div id="r2-majority" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> R2 majority</h3>
+<p>In terminal Round 2, weak voters’ outside payoff is zero. The proposer can set
+<span class="math inline">\(y=0\)</span>, offer zero to <span class="math inline">\(k\)</span> weak voters, and pass the proposal without <code>H</code>.
+Any <span class="math inline">\(y&gt;0\)</span> is costly to the weak coalition and is not needed for passage. Thus
+the recognized weak proposer’s terminal majority value is</p>
+<p><span class="math display">\[
+P_{2,prop}^M=1.
+\]</span></p>
+<p>The representative weak state’s terminal majority value is</p>
+<p><span class="math display">\[
+W_2^M=\frac{1}{m}.
+\]</span></p>
+<p>If excluded under majority, <code>H</code> receives its external payoff <span class="math inline">\(d_\theta\)</span>,
+outside the weak coalition’s institutional surplus:</p>
+<p><span class="math display">\[
+C_{H,2}^M(\theta)=d_\theta.
 \]</span></p>
 </div>
-<div id="r1-unanimity" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> R1 Unanimity</h2>
-<p>Using the R2 continuation values, derive the Round-1 weak-proposer problem under
-unanimity. Candidate branches:</p>
-<ol style="list-style-type: decimal">
-<li>pooling/high-threshold package;</li>
-<li>low-only package;</li>
-<li>no-information rejection or continuation, if implementable under the stated
-protocol.</li>
-</ol>
-<p>The proof must verify sequential rationality and Bayesian consistency.</p>
+<div id="r1-majority" class="section level3" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> R1 majority</h3>
+<p>The public continuation value of a weak voter after R1 rejection is</p>
+<p><span class="math display">\[
+c_M=\beta W_2^M=\frac{\beta}{m}.
+\]</span></p>
+<p>A no-<code>H</code> majority proposal sets <span class="math inline">\(y=0\)</span>, offers <span class="math inline">\(c_M\)</span> to <span class="math inline">\(k\)</span> weak voters,
+and offers zero to all other states. It is accepted by the selected weak voters
+by the Baron–Ferejohn weak-acceptance convention. The recognized weak
+proposer’s payoff is</p>
+<p><span class="math display">\[
+P_{1,noH}^M=1-kc_M
+=1-\frac{(q-1)\beta}{m}.
+\]</span></p>
+<p>Now check whether the proposer can do better by buying <code>H</code>’s vote and one fewer
+weak vote. Any majority package that includes <code>H</code> and still buys <span class="math inline">\(k\)</span> weak
+votes is weakly dominated by dropping the concession to <code>H</code>, since <code>H</code>’s vote is
+not needed for passage. Any <code>H</code>-including package that sets <span class="math inline">\(y\)</span> strictly
+inside an acceptance region is dominated by lowering <span class="math inline">\(y\)</span> to the relevant
+threshold. Thus the only potentially profitable <code>H</code>-including alternatives are
+pooling at the high threshold and low-only at the low threshold, each with
+<span class="math inline">\(k-1\)</span> weak voters.</p>
+<p>If <code>H</code> is made pivotal in an R1 majority coalition, its type-specific threshold
+is</p>
+<p><span class="math display">\[
+a_\theta^M=\beta C_{H,2}^M(\theta)-b_H(\theta)
+=\beta d_\theta-b_H(\theta).
+\]</span></p>
+<p>Assume the R1 majority threshold domain</p>
+<p><span class="math display">\[
+0\leq a_0^M&lt;a_1^M\leq\bar y.
+\]</span></p>
+<p>A pooling <code>H</code>-including majority proposal costs <span class="math inline">\(a_1^M+(k-1)c_M\)</span>. It is not
+better than the no-<code>H</code> proposal iff</p>
+<p><span class="math display">\[
+a_1^M\geq c_M.
+\]</span></p>
+<p>A low-only <code>H</code>-including majority proposal costs <span class="math inline">\(a_0^M+(k-1)c_M\)</span> when
+<span class="math inline">\(\theta=0\)</span>, but fails and yields continuation value <span class="math inline">\(c_M\)</span> to the proposer
+when <span class="math inline">\(\theta=1\)</span>. Its expected payoff is</p>
+<p><span class="math display">\[
+P_{1,LH}^M(\mu)
+=
+(1-\mu)\{1-a_0^M-(k-1)c_M\}+\mu c_M.
+\]</span></p>
+<p>Relative to the no-<code>H</code> proposal,</p>
+<p><span class="math display">\[
+P_{1,LH}^M(\mu)-P_{1,noH}^M
+=
+c_M-a_0^M+\mu(a_0^M+kc_M-1).
+\tag{majority-low-H-gap}
+\]</span></p>
+<p>Since <span class="math inline">\(q=k+1\leq m\)</span> for <span class="math inline">\(N\geq3\)</span>, and <span class="math inline">\(\beta\leq1\)</span>,</p>
+<p><span class="math display">\[
+(k+1)c_M=\frac{q\beta}{m}\leq1.
+\tag{quota-bound}
+\]</span></p>
+<p>Therefore, if</p>
+<p><span class="math display">\[
+a_0^M\geq c_M.
+\tag{no-cheap-H}
+\]</span></p>
+<p>then <span class="math inline">\(P_{1,LH}^M(0)-P_{1,noH}^M\leq0\)</span> and
+<span class="math inline">\(P_{1,LH}^M(1)-P_{1,noH}^M=(k+1)c_M-1\leq0\)</span>. The gap is linear in <span class="math inline">\(\mu\)</span>,
+so the low-only <code>H</code>-including proposal is weakly dominated by the no-<code>H</code>
+proposal for every <span class="math inline">\(\mu\in[0,1]\)</span>.</p>
+<p>Because <span class="math inline">\(a_1^M&gt;a_0^M\)</span>, condition (no-cheap-H) also implies
+<span class="math inline">\(a_1^M\geq c_M\)</span>, so pooling purchases of <code>H</code>’s vote are not profitable.
+Under this condition, the R1 majority equilibrium path has <span class="math inline">\(y=0\)</span>, a
+weak-state winning coalition, and no screening of <code>H</code>.</p>
+<p>The condition is also necessary for uniform no-screening. If
+<span class="math inline">\(a_0^M&lt;c_M\)</span>, then at <span class="math inline">\(\mu=0\)</span></p>
+<p><span class="math display">\[
+P_{1,LH}^M(0)-P_{1,noH}^M=c_M-a_0^M&gt;0.
+\]</span></p>
+<p>By continuity, a low-only <code>H</code>-including proposal strictly beats the no-<code>H</code>
+proposal for sufficiently low beliefs that <code>H</code> is high. In that region,
+majority itself has a screening motive: the weak proposer buys low <code>H</code> as a
+cheap substitute for one weak voter and lets the proposal fail when <code>H</code> is high.
+The cutoff for this majority-screening region is</p>
+<p><span class="math display">\[
+\mu_M^H
+=
+\frac{c_M-a_0^M}{1-a_0^M-kc_M}
+\]</span></p>
+<p>whenever <span class="math inline">\(a_0^M&lt;c_M\)</span>. The quota bound above implies
+<span class="math inline">\(\mu_M^H\in(0,1]\)</span>.</p>
+<p>Thus condition (no-cheap-H) is not a verbal regularity condition. It is
+necessary and sufficient for the no-<code>H</code> majority proposal to weakly dominate
+<code>H</code>-including majority proposals for all beliefs.</p>
+<p>The recognized weak proposer’s R1 majority value is therefore</p>
+<p><span class="math display">\[
+P_{1,prop}^M=1-\frac{(q-1)\beta}{m},
+\]</span></p>
+<p>and the symmetric ex ante representative weak-state value is</p>
+<p><span class="math display">\[
+W_1^M=\frac{1}{m}.
+\]</span></p>
+<p>Status: derived under the simultaneous public voting protocol and the
+no-cheap-<code>H</code> condition. The derivation is checked in
+<code>scripts/verify_relative_package_majority_piH0.R</code>.</p>
 </div>
-<div id="majority" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Majority</h2>
-<p>Recompute majority under <span class="math inline">\(\pi_H=0\)</span>. The expected baseline is that majority
-generates no screening when weak states can exclude <code>H</code> and <code>H</code> receives its
-outside option externally. This must be rederived in the new notation.</p>
 </div>
-<div id="entry-and-institutional-choice" class="section level2" number="6.4">
-<h2><span class="header-section-number">6.4</span> Entry and Institutional Choice</h2>
+<div id="entry-and-institutional-choice" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Entry and Institutional Choice</h2>
 <p>After R2, R1, and majority are rederived, rebuild:</p>
 <ol style="list-style-type: decimal">
 <li>weak-state entry and nesting;</li>
@@ -1785,12 +2543,12 @@ outside option externally. This must be rederived in the new notation.</p>
 </ol>
 </div>
 </div>
-<div id="reproducibility-plan" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Reproducibility Plan</h1>
+<div id="reproducibility-plan" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Reproducibility Plan</h1>
 <p>Create new scripts rather than modifying the archived C-B-R scripts in place.
-Planned scripts:</p>
+Current and planned scripts:</p>
 <ol style="list-style-type: decimal">
-<li><code>scripts/verify_relative_package_R2_piH0.R</code></li>
+<li><code>scripts/verify_relative_package_R2_piH0.R</code> (created and run for fixed-pie R2)</li>
 <li><code>scripts/verify_relative_package_R1_piH0.R</code></li>
 <li><code>scripts/verify_relative_package_majority_piH0.R</code></li>
 <li><code>scripts/verify_relative_package_entry_nesting_piH0.R</code></li>
@@ -1799,8 +2557,8 @@ Planned scripts:</p>
 <p>Each result should be independently verified before being promoted in the proof
 ledger.</p>
 </div>
-<div id="proof-ledger" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Proof Ledger</h1>
+<div id="proof-ledger" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Proof Ledger</h1>
 <table>
 <colgroup>
 <col width="33%" />
@@ -1831,41 +2589,46 @@ ledger.</p>
 <td><span class="math inline">\(U_H(y,\theta)=y+b_H(\theta)\)</span>.</td>
 </tr>
 <tr class="even">
+<td>Simultaneous public voting protocol</td>
+<td>Adopted for next derivations</td>
+<td>The proposer is counted as voting yes; all other states vote simultaneously; individual votes are publicly revealed after the ballot; unanimity uses quota <span class="math inline">\(N\)</span>, majority uses quota <span class="math inline">\(q=\lfloor N/2\rfloor+1\)</span>.</td>
+</tr>
+<tr class="odd">
 <td>Screening condition</td>
 <td>Adopted as target primitive</td>
 <td>Need <span class="math inline">\(y_1^*(\mu&#39;)&gt;y_0^*(\mu&#39;)\)</span>, equivalently <span class="math inline">\(\beta C_H(1,\mu&#39;)-b_H(1)&gt;\beta C_H(0,\mu&#39;)-b_H(0)\)</span>.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Weak-state cost of concession</td>
-<td>Pending formalization</td>
-<td>Intended reduced-form normalization: <span class="math inline">\(y\)</span> is costly one-for-one to the weak coalition.</td>
+<td>Adopted for fixed-pie reset</td>
+<td><span class="math inline">\(y\)</span> is costly one-for-one to the weak coalition; accepted weak surplus is <span class="math inline">\(1-y\)</span>; weak proposer keeps residual after weak voters receive continuation values.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>R2 unanimity under relative packages</td>
-<td>Pending</td>
-<td>First derivation target.</td>
-</tr>
-<tr class="odd">
-<td>R1 unanimity under relative packages</td>
-<td>Pending</td>
-<td>Derive only after R2 is closed.</td>
+<td>Proved under fixed-pie baseline; checked numerically</td>
+<td>Weak proposer chooses low-only for <span class="math inline">\(\mu\leq\mu_2^*\)</span> and pooling for <span class="math inline">\(\mu&gt;\mu_2^*\)</span>, where <span class="math inline">\(\mu_2^*=(\tau_1-\tau_0)/(1-\tau_0)\)</span>.</td>
 </tr>
 <tr class="even">
-<td>Majority under relative packages</td>
-<td>Pending</td>
-<td>Must keep <code>H</code>’s outside option external to the institutional pie.</td>
+<td>R1 unanimity under relative packages</td>
+<td>Proved selected pure-threshold PBE value; checked numerically</td>
+<td>Pooling, low-only, and rejection/continuation are derived from simultaneous public voting; full PBE selection requires proposer argmax and the H-payoff tie-break. Low-only is blocked when <span class="math inline">\(a_0^1\geq a_1\)</span>. Checked in <code>scripts/verify_relative_package_R1_piH0.R</code>.</td>
 </tr>
 <tr class="odd">
+<td>Majority under relative packages</td>
+<td>Derived and checked numerically</td>
+<td>No screening under <span class="math inline">\(\pi_H=0\)</span> requires the no-cheap-<code>H</code> condition <span class="math inline">\(a_0^M\geq\beta/m\)</span>; otherwise <code>H</code> may be a cheap majority coalition partner.</td>
+</tr>
+<tr class="even">
 <td>Entry/nesting</td>
 <td>Pending</td>
 <td>Rebuild after R1 and majority.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Institutional classification</td>
 <td>Pending</td>
 <td>Rebuild after entry and conditional comparison.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><span class="math inline">\(\pi_H&gt;0\)</span> extensions</td>
 <td>Pending</td>
 <td>Treat agenda power separately after the baseline is verified.</td>
