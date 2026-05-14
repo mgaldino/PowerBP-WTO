@@ -1112,32 +1112,153 @@ U_{LB}(1)-M(1)=0.021621.
 \]
 All are positive. Hence the lower bound on unanimity exceeds the corrected majority payoff for every $\mu\in[0,1]$ in this calibration. This is a calibrated/parametric result, not a general theorem.
 
-## B.5 Pending: general conditional dominance theorem {-}
+## B.5 Sufficient condition for conditional dominance {-}
 
-\paragraph{Status.} Pending. The old proof of Theorem~\ref{thm:conditional} used two objects that are no longer valid globally under strict BF:
+\paragraph{Status.} Verified as a sufficient-conditions result. The old sharp global theorem remains superseded, but the following condition is enough to establish conditional payoff dominance using only the corrected majority payoff, strict BF feasibility, and the selection-free H-proposer lower bound.
 
-1. the old majority coefficient with the factor $(1-\alpha)$ in weak-state continuation values;
-2. the old single-cutoff R1 unanimity formula.
+Let $m\equiv N-1$ and define:
+\[
+A_0=1+m\alpha,\qquad A_1=1+m\alpha r,\qquad
+\lambda_M^E=\frac{NA_0-\beta(q-1)}{N^2}.
+\]
+Suppose:
+\begin{equation}\label{eq:suff_beta_window}
+\max\left\{
+\frac{NA_0}{A_0+mA_1+q-1},
+\frac{Nm\alpha}{q-1+Nm\alpha}
+\right\}
+<\beta<
+\frac{N}{N+m\alpha(r-1)}.
+\end{equation}
+Then the lower bound on the hegemon's R1 payoff under unanimity exceeds the corrected majority payoff for every $\mu\in[0,1]$:
+\[
+\underline U_H(\mu)> \lambda_M^E V_e(\mu).
+\]
 
-The general theorem must be rederived either as a set of sufficient conditions based on the corrected piecewise regimes, or as a theorem based on the selection-free lower bound in Appendix B.3. Until that derivation is completed, Theorem~\ref{thm:conditional} should not be treated as proven in its current global form.
+\paragraph{Proof.} The upper bound in \eqref{eq:suff_beta_window} is equivalent to:
+\[
+h_A+m y_A<1,
+\]
+where $h_A=\beta A_1/N$ and $y_A=\beta(1-\alpha)/N$. Hence the aggressive weak-proposer offer is feasible, since its actual feasibility requirement is $h_A+(N-2)y_A\le 1$.
 
-## B.6 Pending: formation-set nesting {-}
+The same condition implies that aggressive play weakly dominates deliberate rejection for the weak proposer. For $\mu\le\mu_s^{R2}$:
+\[
+A(\mu)-R(\mu)
+=(1-\mu)(1-h_A-my_A)+\mu r y_A>0.
+\]
+For $\mu\ge\mu_s^{R2}$, $A(\mu)-R(\mu)$ is affine, is positive at $\mu_s^{R2}$, and equals zero at $\mu=1$. Thus deliberate rejection is not strictly optimal except at the terminal tie, where it gives $H$ the same payoff as aggressive play.
 
-\paragraph{Status.} Pending. The old proof of $\mathcal F_U\subseteq\mathcal F_M$ used a budget-balance identity under majority. With external outside options, majority payoffs include $H$'s outside-option payoff even when $H$ is excluded, so that budget-balance step is invalid. The corrected proof must compare weak-state payoffs directly, using the corrected $\kappa_M^E$ and the rederived unanimity weak-state payoff.
+If the conservative offer is chosen, $H$ receives $h_C=\beta rA_0/N$, which is weakly above its aggressive-branch expected payoff:
+\[
+H_A^W(\mu)=(1-\mu)h_A+\mu h_C
+=\frac{\beta[A_1+\mu(r-1)]}{N},
+\]
+because $h_C-h_A=\beta(r-1)/N>0$. Therefore every optimal weak-proposer branch gives $H$ at least $H_A^W(\mu)$.
+
+Combining this weak-proposer lower bound with the H-proposer lower bound from Appendix B.3 gives:
+\[
+\underline U_H(\mu)
+=\frac{1}{N}L_H(\mu)
++\frac{m}{N}\frac{\beta[A_1+\mu(r-1)]}{N}.
+\]
+The difference
+\[
+D(\mu)\equiv \underline U_H(\mu)-\lambda_M^E V_e(\mu)
+\]
+is affine in $\mu$. At the endpoints:
+\[
+D(0)=
+\frac{\beta(A_0+mA_1+q-1)-NA_0}{N^2},
+\]
+and
+\[
+D(1)=
+\frac{r[\beta(q-1)-Nm\alpha(1-\beta)]}{N^2}.
+\]
+The two lower bounds in \eqref{eq:suff_beta_window} are exactly the conditions $D(0)>0$ and $D(1)>0$. Since $D$ is affine, $D(\mu)>0$ for every $\mu\in[0,1]$. $\square$
+
+For the calibration $N=13$, $r=1.5$, $\alpha=0.19$, $\beta=0.9$, $q=7$:
+\[
+\max\{0.6842105,\ 0.8316498\}<0.9<0.9193777.
+\]
+Thus the sufficient condition holds. The endpoint gaps are $D(0)=0.079574$ and $D(1)=0.021621$.
+
+## B.6 Calibrated formation-set nesting {-}
+
+\paragraph{Status.} Verified for the calibration $N=13$, $r=1.5$, $\alpha=0.19$, $\beta=0.9$. A general proof of $\mathcal F_U\subseteq\mathcal F_M$ remains pending because the H-proposer payoff correspondence outside the accepted-pooling region has not been fully characterized.
+
+The corrected majority payoff for a representative weak state is:
+\[
+V_W^{R1}(\mu,M)=\kappa_M^E V_e(\mu),
+\qquad
+\kappa_M^E
+=\frac{N(N-1)+\beta(q-1)}{N^2(N-1)}.
+\]
+To bound weak-state payoffs under unanimity without selecting an H-proposer equilibrium, use the H lower bound $L_H(\mu)$ from Appendix B.3. Conditional on $H$ proposing, the representative weak-state payoff is bounded above by:
+\[
+\overline V_W^{Hprop}(\mu)=\frac{V_e(\mu)-L_H(\mu)}{N-1}.
+\]
+Conditional on a weak state proposing, define the aggregate weak-state payoff under branch $b\in\{A,C,R\}$ as:
+\[
+\Omega_A(\mu)=(1-\mu)(1-h_A)+\mu(N-1)\beta W_2(1),
+\]
+\[
+\Omega_C(\mu)=V_e(\mu)-h_C,
+\]
+\[
+\Omega_R(\mu)=(N-1)\beta W_2(\mu).
+\]
+Therefore:
+\[
+\overline V_W^{U}(\mu;b)=
+\frac{V_e(\mu)-L_H(\mu)}{N(N-1)}
++\frac{\Omega_b(\mu)}{N}
+\]
+is a selection-free upper bound on the representative weak-state payoff under unanimity for branch $b$.
+
+For the calibration, $\kappa_M^E=0.0795858$. The verified weak-proposer regimes are $A$ on $[0,0.031188]$, $C$ on $[0.031188,0.301717]$, and $A$ on $[0.301717,1]$, with $A$ and $R$ tied at $\mu=1$. On the relevant branch intervals, the smallest gaps
+\[
+V_W^{R1}(\mu,M)-\overline V_W^U(\mu;b)
+\]
+are:
+\[
+\begin{array}{ll}
+A\text{ on }[0,0.031188]: & 0.021247,\\
+C\text{ on }[0.031188,0.301717]: & 0.023854,\\
+A\text{ on }[0.301717,1]: & 0.025476,\\
+R\text{ tie/check}: & 0.022868.
+\end{array}
+\]
+All are strictly positive. Hence, for this calibration:
+\[
+V_W^{R1}(\mu,M)>V_W^{R1}(\mu,U)
+\quad\text{for every }\mu\in[0,1],
+\]
+and therefore $\mathcal F_U\subseteq\mathcal F_M$ for every entry cost $c$.
 
 ## B.7 Pending: global maximum of weak-state payoff under unanimity {-}
 
 \paragraph{Status.} Pending. The old lemma used the old aggressive and conservative R1 payoff branches and the old H-proposer formula. It must be rechecked using the corrected weak-proposer regime $A/C/R$ and the H-proposer branch or a valid bound for weak-state payoffs.
 
-## B.8 Pending: institutional classification {-}
+## B.8 Calibrated institutional classification {-}
 
-\paragraph{Status.} Pending. The old classification requires three ingredients that are not yet all proven under the corrected model:
+\paragraph{Status.} Verified for the calibration $N=13$, $r=1.5$, $\alpha=0.19$, $\beta=0.9$. The general institutional classification remains pending.
 
-1. conditional dominance of unanimity on the relevant formation set;
-2. $\mathcal F_U\subseteq\mathcal F_M$;
-3. $\lambda_M^E>\alpha$ for the case in which majority forms and unanimity does not.
+For the calibration, Appendix B.4 establishes conditional dominance of unanimity over majority for $H$ using the selection-free lower bound. Appendix B.6 establishes $\mathcal F_U\subseteq\mathcal F_M$. Finally,
+\[
+\lambda_M^E=0.220355>0.19=\alpha,
+\]
+equivalently:
+\[
+\alpha<1-\frac{\beta(q-1)}{N}.
+\]
+Therefore, for any entry cost $c$, the calibrated institutional comparison is:
 
-The third condition is equivalent to $\alpha<1-\beta(q-1)/N$ and must be stated explicitly if that case is retained.
+1. If $\mu\in\mathcal F_U$, both institutions form and $U\succ M$ for $H$.
+2. If $\mu\in\mathcal F_M\setminus\mathcal F_U$, only majority forms and $M\succ U$ for $H$.
+3. If $\mu\notin\mathcal F_M$, neither institution forms and $U\sim M$.
+
+This calibrated classification should not be generalized without either a general proof of formation-set nesting or an explicit condition that rules out the case in which unanimity forms but majority does not.
 
 ```{=latex}
 \iffalse
