@@ -322,6 +322,10 @@ Do not force `output_format = "pdf_document"` unless explicitly debugging, becau
 - Start from the appendix proof status, not from the main-text theorem statements.
 - Do not do "minimal correction" on formal proofs. Rederive from primitives.
 - Do not add ad hoc assumptions to rescue old results.
+- Do not remove a branch, case, result, or equilibrium path by adding an ad hoc
+  protocol restriction or assumption. If a branch is substantively undesirable,
+  either prove it is not an equilibrium under the stated game, keep it and
+  interpret it honestly, or explicitly mark the issue as unresolved.
 - Do not introduce a strategic option, voting history, tie-breaking convention, information structure, contract space, or continuation protocol inside a proof unless it is already a stated primitive. If a derivation requires one, stop, label the result `pending protocol decision`, explain the substantive consequence, and ask the user before proceeding.
 - No pooling, delay, rejection path, or off-path belief can be imposed. It must be shown to be incentive-compatible under the stated extensive-form game.
 - Keep majority outside options external to the pie.
@@ -333,6 +337,8 @@ Do not force `output_format = "pdf_document"` unless explicitly debugging, becau
 - Lean is internal only; do not cite Lean in the paper.
 - Paper language is English; notes and project documentation can be Portuguese.
 - Use R for reproducible reports/figures unless another language is clearly better.
+- In chat explanations, avoid raw LaTeX that may not render. Prefer plain-text
+  equations such as `a1 = beta*d1 - b1` and step-by-step arithmetic.
 
 ## Next Session Context
 
