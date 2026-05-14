@@ -2439,14 +2439,25 @@ C_{H,2}^M(\theta)=d_\theta.
 <p><span class="math display">\[
 c_M=\beta W_2^M=\frac{\beta}{m}.
 \]</span></p>
-<p>A no-<code>H</code> majority proposal sets <span class="math inline">\(y=0\)</span>, offers <span class="math inline">\(c_M\)</span> to <span class="math inline">\(k\)</span> weak voters,
-and offers zero to all other states. It is accepted by the selected weak voters
-by the Baron–Ferejohn weak-acceptance convention. The recognized weak
-proposer’s payoff is</p>
+<p>A no-<code>H</code> majority proposal excludes <code>H</code> from the agreement, sets <span class="math inline">\(y=0\)</span>,
+offers <span class="math inline">\(c_M\)</span> to <span class="math inline">\(k\)</span> weak voters, and offers zero to all other states. <code>H</code>
+may still cast a public vote, but its vote is not pivotal and does not bring
+<code>H</code> inside the agreement or give it the agreement benefit <span class="math inline">\(b_\theta\)</span>. The
+proposal is accepted by the selected weak voters by the Baron–Ferejohn
+weak-acceptance convention. The recognized weak proposer’s payoff is</p>
 <p><span class="math display">\[
 P_{1,noH}^M=1-kc_M
 =1-\frac{(q-1)\beta}{m}.
 \]</span></p>
+<p>Deliberate majority rejection gives the proposer <span class="math inline">\(c_M\)</span>. The accepted no-<code>H</code>
+proposal weakly dominates rejection because</p>
+<p><span class="math display">\[
+P_{1,noH}^M-c_M
+=1-(k+1)c_M
+=1-\frac{q\beta}{m}
+\geq0,
+\]</span></p>
+<p>using <span class="math inline">\(q\leq m\)</span> for <span class="math inline">\(N\geq3\)</span> and <span class="math inline">\(\beta\leq1\)</span>.</p>
 <p>Now check whether the proposer can do better by buying <code>H</code>’s vote and one fewer
 weak vote. Any majority package that includes <code>H</code> and still buys <span class="math inline">\(k\)</span> weak
 votes is weakly dominated by dropping the concession to <code>H</code>, since <code>H</code>’s vote is
@@ -2669,19 +2680,102 @@ V_H^U(\mu)=H_{k^*(\mu)}(\mu),
 \Delta_H(\mu)=V_H^U(\mu)-V_H^M(\mu).
 \tag{H-gap}
 \]</span></p>
-<p>For a fixed entry cost <span class="math inline">\(\chi\)</span>, the institutional comparison is:</p>
-<ol style="list-style-type: decimal">
-<li>if <span class="math inline">\(\mu\notin F_M(\chi)\)</span>, weak states do not enter under either rule;</li>
-<li>if <span class="math inline">\(\mu\in F_M(\chi)\setminus F_U(\chi)\)</span>, only majority forms;</li>
-<li>if <span class="math inline">\(\mu\in F_U(\chi)\)</span>, both rules are feasible for weak-state entry and
-<code>H</code> prefers unanimity iff <span class="math inline">\(\Delta_H(\mu)\geq0\)</span>.</li>
-</ol>
+<p><strong>Proposition: conditional institutional comparison for <code>H</code>.</strong> Under the
+fixed-pie relative-package threshold domain, the selected pure-threshold R1
+unanimity characterization, and the no-cheap-<code>H</code> majority condition, the
+hegemon’s institutional ranking on the set where both rules form is completely
+determined by <span class="math inline">\(\Delta_H(\mu)\)</span>:</p>
+<p><span class="math display">\[
+\begin{array}{lll}
+\Delta_H(\mu)&gt;0 &amp;\Longleftrightarrow&amp; \text{H strictly prefers unanimity},\\
+\Delta_H(\mu)=0 &amp;\Longleftrightarrow&amp; \text{H is indifferent},\\
+\Delta_H(\mu)&lt;0 &amp;\Longleftrightarrow&amp; \text{H strictly prefers majority}.
+\end{array}
+\tag{H-ranking}
+\]</span></p>
 <p>This is a conditional comparison, not a global dominance theorem. The sign of
 <span class="math inline">\(\Delta_H(\mu)\)</span> depends on the selected unanimity candidate and on the
 primitive outside payoffs.</p>
 </div>
-<div id="calibrated-checks" class="section level3" number="7.5.4">
-<h3><span class="header-section-number">7.5.4</span> Calibrated checks</h3>
+<div id="complete-institutional-classification" class="section level3" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span> Complete institutional classification</h3>
+<p>The entry convention is weak: weak states form an institution under rule <span class="math inline">\(R\)</span>
+when <span class="math inline">\(V_W^R(\mu)\geq\chi\)</span>. Equality is therefore a formation tie, not a
+failure to form. The hegemon’s institutional tie is kept separate: if
+<span class="math inline">\(\Delta_H(\mu)=0\)</span>, the classification records indifference rather than
+imposing an institutional tie-breaker.</p>
+<p>For any fixed entry cost <span class="math inline">\(\chi\geq0\)</span>, define the following five sets:</p>
+<p><span class="math display">\[
+\mathcal C_0(\chi)
+=
+[0,1]\setminus F_M(\chi),
+\tag{class-none}
+\]</span></p>
+<p><span class="math display">\[
+\mathcal C_M(\chi)
+=
+F_M(\chi)\setminus F_U(\chi),
+\tag{class-majority-only}
+\]</span></p>
+<p><span class="math display">\[
+\mathcal C_U^H(\chi)
+=
+F_U(\chi)\cap\{\mu:\Delta_H(\mu)&gt;0\},
+\tag{class-both-H-U}
+\]</span></p>
+<p><span class="math display">\[
+\mathcal C_T^H(\chi)
+=
+F_U(\chi)\cap\{\mu:\Delta_H(\mu)=0\},
+\tag{class-both-H-tie}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\mathcal C_M^H(\chi)
+=
+F_U(\chi)\cap\{\mu:\Delta_H(\mu)&lt;0\}.
+\tag{class-both-H-M}
+\]</span></p>
+<p><strong>Corollary: complete selected-equilibrium institutional classification under
+<span class="math inline">\(\pi_H=0\)</span>.</strong> Under the selected pure-threshold PBE and tie-breaking
+convention used in the R1 unanimity theorem, and under the conditions of the
+weak-state nesting proposition, the five sets above form a mutually exclusive
+and exhaustive partition of <span class="math inline">\([0,1]\)</span>. Their substantive meaning is:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\mathcal C_0(\chi)\)</span>: no rule forms;</li>
+<li><span class="math inline">\(\mathcal C_M(\chi)\)</span>: only majority forms;</li>
+<li><span class="math inline">\(\mathcal C_U^H(\chi)\)</span>: both rules form, and <code>H</code> strictly prefers
+unanimity;</li>
+<li><span class="math inline">\(\mathcal C_T^H(\chi)\)</span>: both rules form, and <code>H</code> is indifferent;</li>
+<li><span class="math inline">\(\mathcal C_M^H(\chi)\)</span>: both rules form, and <code>H</code> strictly prefers
+majority.</li>
+</ol>
+<p>There is no sixth “only unanimity forms” case in the no-screening majority
+domain because <span class="math inline">\(F_U(\chi)\subseteq F_M(\chi)\)</span> for every <span class="math inline">\(\chi\)</span>. Since</p>
+<p><span class="math display">\[
+F_M(\chi)=
+\begin{cases}
+[0,1], &amp; \chi\leq 1/m,\\
+\varnothing, &amp; \chi&gt;1/m,
+\end{cases}
+\]</span></p>
+<p>the no-formation case is simply all beliefs when <span class="math inline">\(\chi&gt;1/m\)</span>, and empty when
+<span class="math inline">\(\chi\leq1/m\)</span>. At <span class="math inline">\(\chi=1/m\)</span>, majority forms by the weak entry convention.
+At beliefs where <span class="math inline">\(V_W^U(\mu)=\chi\)</span>, unanimity also forms by the same
+convention. These entry ties are distinct from hegemon indifference at
+<span class="math inline">\(\Delta_H(\mu)=0\)</span>.</p>
+<p><strong>Proof.</strong> The definitions split <span class="math inline">\([0,1]\)</span> first by whether majority forms,
+then by whether unanimity also forms, and finally by the sign of
+<span class="math inline">\(\Delta_H(\mu)\)</span> on the both-form set. The sets are therefore disjoint and
+cover <span class="math inline">\([0,1]\)</span>. Weak-state nesting rules out <span class="math inline">\(F_U(\chi)\setminus F_M(\chi)\)</span>,
+so no only-unanimity category can occur.</p>
+<p>The classification is checked in
+<code>scripts/verify_relative_package_classification_piH0.R</code>, including formation
+ties, hegemon indifference ties, the no-cheap-<code>H</code> boundary, <span class="math inline">\(\tau_1=\bar y\)</span>,
+and <span class="math inline">\(\beta=1\)</span>.</p>
+</div>
+<div id="calibrated-classification" class="section level3" number="7.5.5">
+<h3><span class="header-section-number">7.5.5</span> Calibrated classification</h3>
 <p>For the working calibration</p>
 <p><span class="math display">\[
 N=13,\quad \beta=0.9,\quad d_0=0.19,\quad d_1=0.285,\quad b_0=b_1=0,
@@ -2707,37 +2801,129 @@ V_W^M(\mu)=\frac{1}{12}=0.0833333.
 \]</span></p>
 <p>so <code>H</code> weakly prefers unanimity for <span class="math inline">\(\mu\leq0.7\)</span> and majority for higher
 beliefs.</p>
+<p>The calibrated institutional classification is therefore:</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+0\leq\chi\leq0.0619583:
+&amp;
+\begin{cases}
+\text{both form and H strictly prefers unanimity}, &amp; \mu&lt;0.7,\\
+\text{both form and H is indifferent}, &amp; \mu=0.7,\\
+\text{both form and H strictly prefers majority}, &amp; \mu&gt;0.7;
+\end{cases}\\[1.2em]
+0.0619583&lt;\chi\leq0.0833333:
+&amp; \text{only majority forms for every }\mu;\\[0.4em]
+\chi&gt;0.0833333:
+&amp; \text{no rule forms for every }\mu.
+\end{array}
+\tag{calibrated-classification}
+\]</span></p>
+<p>At the lower boundary <span class="math inline">\(\chi=0.0619583\)</span>, unanimity forms because weak states
+are indifferent between forming and not forming. At <span class="math inline">\(\chi=1/12\)</span>, majority
+forms by equality, but unanimity does not form in this calibration because
+<span class="math inline">\(V_W^U&lt;1/12\)</span>.</p>
 <p>A strict low-only-available diagnostic with <span class="math inline">\(b_0=0.03\)</span> also satisfies
 no-cheap-<code>H</code>. In that case the selected unanimity path is rejection for
 <span class="math inline">\(\mu\in[0,0.0164]\)</span> on the numerical grid and pooling thereafter. The maximum
 unanimity weak entry payoff is <span class="math inline">\(0.063\)</span>, the majority payoff remains
 <span class="math inline">\(0.0833333\)</span>, and the minimum nesting gap is <span class="math inline">\(0.0203333\)</span>. In that diagnostic
 <code>H</code> prefers majority at very low beliefs, unanimity at intermediate beliefs,
-and majority again at high beliefs.</p>
+and majority again at high beliefs. This is a diagnostic robustness case, not
+the main calibration.</p>
 </div>
-<div id="result-status" class="section level3" number="7.5.5">
-<h3><span class="header-section-number">7.5.5</span> Result status</h3>
-<p>General result: weak-state payoff dominance and
-<span class="math inline">\(F_U(\chi)\subseteq F_M(\chi)\)</span> are proved within the selected pure-threshold
-R1 unanimity characterization and the no-cheap-<code>H</code> majority domain.</p>
-<p>Sufficient result: the same nesting conclusion follows from the primitive
-conditions <span class="math inline">\(0\leq\tau_0&lt;\tau_1\leq\bar y\leq1\)</span>,
+<div id="paper-ready-theorem-architecture" class="section level3" number="7.5.6">
+<h3><span class="header-section-number">7.5.6</span> Paper-ready theorem architecture</h3>
+<p>The following architecture is ready to transport to the paper after external
+audit. Main-text statements should give intuition and compact results; proofs
+should remain in the appendix.</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Result</th>
+<th>Type</th>
+<th>Claim</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Terminal unanimity</td>
+<td>Proposition/Theorem</td>
+<td>Under <span class="math inline">\(0\leq\tau_0&lt;\tau_1\leq\bar y\leq1\)</span>, Round 2 selects low-only for <span class="math inline">\(\mu\leq\mu_2^*\)</span> and pooling for <span class="math inline">\(\mu&gt;\mu_2^*\)</span>, with <span class="math inline">\(\mu_2^*=(\tau_1-\tau_0)/(1-\tau_0)\)</span>.</td>
+<td>Proved; checked in <code>scripts/verify_relative_package_R2_piH0.R</code>.</td>
+</tr>
+<tr class="even">
+<td>R1 selected pure-threshold unanimity</td>
+<td>Theorem</td>
+<td>Under the R1 threshold-order domain, admissible selected pure-threshold candidates are pooling, low-only, and no-information rejection; the selected PBE maximizes the proposer payoff and uses the H-payoff-minimizing tie-break.</td>
+<td>Proved within selected pure-threshold class; checked in <code>scripts/verify_relative_package_R1_piH0.R</code>.</td>
+</tr>
+<tr class="odd">
+<td>Majority no-screening</td>
+<td>Proposition</td>
+<td>Under <span class="math inline">\(0\leq a_0^M&lt;a_1^M\leq\bar y\)</span>, majority has a uniform no-<code>H</code>, no-screening equilibrium path iff <span class="math inline">\(a_0^M\geq\beta/m\)</span>. If <span class="math inline">\(a_0^M&lt;\beta/m\)</span>, majority can screen <code>H</code> as a cheap coalition partner at low beliefs.</td>
+<td>Proved; checked in <code>scripts/verify_relative_package_majority_piH0.R</code>.</td>
+</tr>
+<tr class="even">
+<td>Weak-state entry/nesting</td>
+<td>Proposition</td>
+<td>In the no-cheap-<code>H</code> majority domain, <span class="math inline">\(V_W^U(\mu)\leq V_W^M(\mu)=1/m\)</span> for every <span class="math inline">\(\mu\)</span>, so <span class="math inline">\(F_U(\chi)\subseteq F_M(\chi)\)</span> for every <span class="math inline">\(\chi\)</span>.</td>
+<td>Proved; checked in <code>scripts/verify_relative_package_entry_nesting_piH0.R</code>.</td>
+</tr>
+<tr class="odd">
+<td>Conditional H comparison</td>
+<td>Proposition</td>
+<td>On <span class="math inline">\(F_U(\chi)\)</span>, <code>H</code> ranks unanimity versus majority by the sign of <span class="math inline">\(\Delta_H(\mu)\)</span>.</td>
+<td>Proved; checked in entry/nesting and classification scripts.</td>
+</tr>
+<tr class="even">
+<td>Institutional classification</td>
+<td>Corollary</td>
+<td>Under the selected pure-threshold PBE and stated tie-breaking convention, the five categories <span class="math inline">\(\mathcal C_0,\mathcal C_M,\mathcal C_U^H,\mathcal C_T^H,\mathcal C_M^H\)</span> partition all beliefs and handle entry and H-preference ties explicitly.</td>
+<td>Proved; checked in <code>scripts/verify_relative_package_classification_piH0.R</code>.</td>
+</tr>
+<tr class="odd">
+<td>Working calibration</td>
+<td>Corollary</td>
+<td>For <span class="math inline">\(N=13,\beta=0.9,d_0=0.19,d_1=0.285,b_0=b_1=0\)</span>, classification is given by (calibrated-classification).</td>
+<td>Calibrated and checked.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="result-status" class="section level3" number="7.5.7">
+<h3><span class="header-section-number">7.5.7</span> Result status</h3>
+<p>General results: terminal R2 unanimity, the R1 selected pure-threshold
+unanimity value, the majority no-screening iff condition, weak-state nesting,
+conditional H comparison, and the complete institutional classification are
+proved under the fixed-pie relative-package <span class="math inline">\(\pi_H=0\)</span> primitives and stated
+protocol.</p>
+<p>Sufficient results: the primitive conditions
+<span class="math inline">\(0\leq\tau_0&lt;\tau_1\leq\bar y\leq1\)</span>,
 <span class="math inline">\(0\leq a_0^1\leq a_1\leq\bar y\)</span>, <span class="math inline">\(\beta\leq1\)</span>, and
-<span class="math inline">\(a_0^M\geq\beta/m\)</span>.</p>
-<p>Calibrated result: the OPEC-style working calibration above satisfies the
-conditions and has a uniform weak-state nesting gap of <span class="math inline">\(0.021375\)</span>.</p>
-<p>Conjectures and pending work: global uniqueness outside the selected
-pure-threshold class remains pending; the <span class="math inline">\(\pi_H&gt;0\)</span> agenda-power extension
-remains pending; if <span class="math inline">\(a_0^M&lt;\beta/m\)</span>, majority itself can screen <code>H</code> as a cheap
-coalition partner, so that case is outside the no-screening majority benchmark
-and should be treated separately.</p>
+<span class="math inline">\(a_0^M\geq\beta/m\)</span> are sufficient for the no-screening majority benchmark,
+weak-state nesting, and the five-way institutional classification.</p>
+<p>Calibrated results: the OPEC-style working calibration satisfies the sufficient
+conditions, has a uniform weak-state nesting gap of <span class="math inline">\(0.021375\)</span>, and yields a
+single hegemon-preference cutoff at <span class="math inline">\(\mu=0.7\)</span> when unanimity forms.</p>
+<p>Pending results: global uniqueness outside the selected pure-threshold class
+remains pending; the <span class="math inline">\(\pi_H&gt;0\)</span> agenda-power extension remains pending; the
+case <span class="math inline">\(a_0^M&lt;\beta/m\)</span> belongs to a separate majority-screening extension; and
+alternative proposer tie-breaking rules should be documented before the final
+paper rewrite.</p>
 </div>
 </div>
 </div>
 <div id="reproducibility-plan" class="section level1" number="8">
 <h1><span class="header-section-number">8</span> Reproducibility Plan</h1>
-<p>Create new scripts rather than modifying the archived C-B-R scripts in place.
-Current and planned scripts:</p>
+<p>Create new scripts rather than modifying archived proof scripts in place.
+Current scripts:</p>
 <ol style="list-style-type: decimal">
 <li><code>scripts/verify_relative_package_R2_piH0.R</code> (created and run for fixed-pie R2)</li>
 <li><code>scripts/verify_relative_package_R1_piH0.R</code></li>
@@ -2821,8 +3007,8 @@ ledger.</p>
 </tr>
 <tr class="even">
 <td>Institutional classification</td>
-<td>Pending</td>
-<td>Full paper classification still requires choosing the entry-cost/application convention and deciding how to present cases in which <span class="math inline">\(F_M\setminus F_U\)</span> is nonempty.</td>
+<td>Proved and checked</td>
+<td>Five-way classification covers no formation, majority only, both with H preferring unanimity, both with H indifferent, and both with H preferring majority. Entry ties and H-preference ties are explicit. Checked in <code>scripts/verify_relative_package_classification_piH0.R</code>.</td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(\pi_H&gt;0\)</span> extensions</td>
