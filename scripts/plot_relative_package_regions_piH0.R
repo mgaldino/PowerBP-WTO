@@ -89,7 +89,9 @@ palette_regions <- c(
   "Both: H prefers M" = "#D55E00",
   "Both: tie" = "#000000",
   "Only M forms" = "#999999",
-  "No formation" = "#F0E442"
+  "No formation" = "#F0E442",
+  "No-Cheap-H holds" = "#0072B2",
+  "H can be cheaper" = "#D55E00"
 )
 
 theme_paper <- function() {
@@ -123,6 +125,39 @@ stopifnot(
   abs(a1 - a0_1) <= tol,
   all(baseline_pi_p + tol >= baseline_pi_r)
 )
+
+no_cheap_grid <- expand.grid(
+  o0 = seq(0, 0.5, length.out = 501),
+  t0 = seq(0, 0.5, length.out = 501)
+)
+no_cheap_grid$margin <- no_cheap_grid$t0 -
+  (1 - pars$beta) * no_cheap_grid$o0 -
+  pars$beta / pars$m
+no_cheap_grid$region <- ifelse(
+  no_cheap_grid$margin >= -tol,
+  "No-Cheap-H holds",
+  "H can be cheaper"
+)
+no_cheap_boundary <- data.frame(o0 = seq(0, 0.5, length.out = 501))
+no_cheap_boundary$t0 <- pars$beta / pars$m +
+  (1 - pars$beta) * no_cheap_boundary$o0
+
+no_cheap_plot <- ggplot(no_cheap_grid, aes(x = o0, y = t0, fill = region)) +
+  geom_raster() +
+  geom_line(data = no_cheap_boundary, aes(x = o0, y = t0),
+            inherit.aes = FALSE, linewidth = 0.65, color = "white") +
+  annotate("point", x = pars$o0, y = pars$t0, size = 2.2, shape = 21, fill = "white") +
+  annotate("label", x = 0.35, y = 0.20, label = "No-Cheap-H", size = 3.5, fill = "white") +
+  annotate("label", x = 0.31, y = 0.055, label = "H can be\ncheap", size = 3.5, fill = "white") +
+  scale_fill_manual(values = palette_regions[c("No-Cheap-H holds", "H can be cheaper")], guide = "none") +
+  scale_x_continuous(name = expression("Low-type outside payoff, " * o[0])) +
+  scale_y_continuous(name = expression("Low terminal threshold, " * t[0])) +
+  labs(
+    title = "No-Cheap-H scope condition",
+    subtitle = expression("Boundary: " * t[0] - (1-beta) * o[0] == beta / m)
+  ) +
+  coord_cartesian(xlim = c(0, 0.5), ylim = c(0, 0.5), expand = FALSE) +
+  theme_paper()
 
 terminal_grid <- expand.grid(
   mu = mu_grid,
@@ -341,6 +376,7 @@ delta_plot <- ggplot(delta_data, aes(x = mu, y = Delta_H)) +
   theme_paper()
 
 outputs <- c(
+  save_plot(no_cheap_plot, "relative_package_no_cheap_H_region_piH0", width = 6.2, height = 4.2),
   save_plot(terminal_plot, "relative_package_terminal_regions_piH0"),
   save_plot(r1_plot, "relative_package_R1_candidate_regions_piH0"),
   save_plot(classification_plot, "relative_package_classification_piH0"),
@@ -353,11 +389,21 @@ summary_table <- data.frame(
     "R1_display_gap",
     "baseline_a1",
     "baseline_a0_1",
+    "no_cheap_H_margin",
     "weak_entry_unanimity",
     "weak_entry_majority",
     "H_indifference_mu"
   ),
-  value = c(mu2_star, r1_gap, a1, a0_1, w_u_entry, w_m_entry, mu_h_indiff)
+  value = c(
+    mu2_star,
+    r1_gap,
+    a1,
+    a0_1,
+    pars$t0 - (1 - pars$beta) * pars$o0 - pars$beta / pars$m,
+    w_u_entry,
+    w_m_entry,
+    mu_h_indiff
+  )
 )
 summary_path <- file.path(fig_dir, "relative_package_region_summary_piH0.csv")
 write.csv(summary_table, summary_path, row.names = FALSE)

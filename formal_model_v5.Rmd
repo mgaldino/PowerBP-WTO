@@ -62,7 +62,7 @@ The argument contributes to three literatures. First, it speaks to rational-desi
 
 Second, the paper qualifies self-binding and informal-power accounts. Self-binding theories explain why powerful states may accept constraints to make cooperation credible [@keohane1984after; @ikenberry2001after]. Informal-power accounts show how powerful states can dominate outcomes even under formally egalitarian rules [@steinberg2002shadow; @stone2011controlling; @gruber2000ruling]. The mechanism here is distinct from both. The hegemon does not need to be trusted as a self-bound leader, and it does not need to control drafting or side payments. It benefits because unanimity makes its privately known participation threshold pivotal.
 
-Third, the model builds on bargaining theories in which proposal rights and voting rules shape distributive outcomes [@baron1989bargaining; @kalandrakis2006proposal; @eraslan2019legislative]. The departure is the weak-state agenda baseline. By setting \(\pi_H=0\), the model removes formal proposal power from the hegemon and asks whether pivotality alone can create informational rents. The answer is yes, but only in the classified regions where the screening rent exceeds the majority benchmark. This also connects the paper to work on information and veto bargaining [@bardhi2018modes; @kim2025persuasion], while shifting attention from persuasion by an information designer to institutional rules that determine whether private thresholds matter.
+Third, the model builds on bargaining theories in which proposal rights and voting rules shape distributive outcomes [@baron1989bargaining; @kalandrakis2006proposal; @eraslan2019legislative]. The departure is the weak-state agenda baseline. By setting \(\pi_H=0\), the model removes formal proposal power from the hegemon and asks whether pivotality alone can create informational rents. The answer is yes, but only in the classified regions where the screening rent exceeds the majority benchmark. This also connects the paper to work on information and veto bargaining [@bardhi2018modes; @kim2025persuasion], while shifting attention from persuasion by an information designer to institutional rules that determine whether private thresholds matter. The delay branch is secondary but not ad hoc: bargaining with incomplete information can make waiting strategically rational [@cramton1984bargaining; @admati1987strategic]. Here, the institutional point is sharper: unanimity creates the private-threshold problem by making \(H\)'s approval pivotal.
 
 # A Motivating Example {#example}
 
@@ -114,7 +114,7 @@ Weak states decide collectively whether to enter. Entry is all-or-nothing and co
 \end{definition}
 
 \begin{definition}[Weak-vote-passive assessment]\label{def:passive}
-The baseline uses a pure-strategy assessment with the following belief discipline. First, unilateral deviations by weak voters do not update beliefs about \(\theta\), because weak states do not observe \(H\)'s type. Second, when \(H\)'s prescribed vote separates types, the posterior is pinned down by \(H\)'s vote. Third, when both types of \(H\) are prescribed to vote yes and \(H\) instead votes no, the posterior after failure is \(\nu=1\). Fourth, when both types of \(H\) are prescribed to vote no and \(H\) instead votes yes, the posterior after failure is \(\nu=0\). Fifth, as an exception for proposals designed to fail by a designated weak voter's rejection, \(H\)'s nonpivotal vote is not used as a signal: the posterior remains the prior \(\mu\) after any vote by \(H\).
+The baseline uses a pure-strategy assessment with the following belief discipline. First, unilateral deviations by weak voters do not update beliefs about \(\theta\), because weak states do not observe \(H\)'s type. Second, when \(H\)'s prescribed vote separates types, the posterior is pinned down by \(H\)'s vote. Third, when both types of \(H\) are prescribed to vote yes and \(H\) instead votes no, the posterior after failure is \(\nu=1\). Fourth, when both types of \(H\) are prescribed to vote no and \(H\) instead votes yes, the posterior after failure is \(\nu=0\). Fifth, when a proposal fails because the public allocation vector gives at least one weak voter less than its continuation value, \(H\)'s nonpivotal vote is not used as a signal: the posterior remains the prior \(\mu\) after any vote by \(H\).
 
 Players approve when their vote is pivotal and approval weakly beats rejection. If a weak proposer is indifferent among payoff-maximizing proposals, the baseline selects the proposal that minimizes \(H\)'s expected payoff at the current belief. This tie-break operates only among candidates already admissible under the assessment; it does not resolve multiplicity created by unrestricted off-path beliefs.
 \end{definition}
@@ -215,6 +215,10 @@ A higher low-type terminal threshold \(t_0\) makes \(H\) less attractive as a ch
 \frac{\partial\mathcal M_{NC}}{\partial\beta}=o_0-\frac{1}{m}.
 \]
 Greater patience therefore helps No-Cheap-H when the low type's external payoff exceeds the representative weak payoff, and hurts it otherwise.
+
+```{r fig-no-cheap-h, fig.cap="No-Cheap-H region in the low-type threshold and outside-payoff plane. The blue region is the domain in which majority can pass without making \\(H\\) pivotal; below the boundary, the low-threshold hegemon can be cheaper than a weak voter. Generated by \\texttt{scripts/plot\\_relative\\_package\\_regions\\_piH0.R}.", out.width='80%'}
+knitr::include_graphics("figures/relative_package_no_cheap_H_region_piH0.pdf")
+```
 
 This benchmark is deliberately favorable to weak states. Majority without \(H\) preserves the entire weak coalition surplus, normalized to one. A natural extension would let a majority agreement without \(H\) generate only \(\rho<1\) units of weak surplus, yielding \(V_W^M=\rho/m\). The baseline keeps \(\rho=1\) to isolate the informational consequence of making \(H\)'s approval nonpivotal.
 
@@ -319,7 +323,7 @@ provided \(a_1+(m-1)c(\mu)\leq1\).
 \]
 provided \(a_0^1+(m-1)c(0)\leq1\) and \(a_0^1<a_1\).
 
-**No-information rejection \(R\).** The proposer offers \(y=0\), assigns zero to every weak state, and designates one weak voter to reject. The proposal is designed to fail because the designated weak voter rejects. All other weak voters and both types of \(H\) are prescribed to vote yes; if \(H\) unexpectedly changes its vote, the ballot still fails by the weak rejection and the assessment keeps posterior \(\mu\). The proposer payoff is
+**No-information rejection \(R\).** The proposer offers \(y=0\) and assigns zero to non-proposing weak voters. This is an ordinary proposal vector, not an extra delay message: the public \(x_i\)'s make clear that at least one weak voter receives less than its continuation value. Those weak voters are prescribed to reject, so the proposal fails by weak-state rejection. If \(H\) unexpectedly changes its vote, the ballot still fails by weak rejection and the assessment keeps posterior \(\mu\). The proposer payoff is
 \[
 \Pi_R^U(\mu)=c(\mu).
 \tag{12}
@@ -379,6 +383,39 @@ Figure \ref{fig:fig-r1-regions} plots the geometry of the maximum operator in Pr
 ```{r fig-r1-regions, fig.cap="Round-1 candidate regions under unanimity. The display slice fixes \\(a_1-a_0^1=0.04\\) to show the geometry of pooling, low-only acceptance, and no-information rejection. Generated by \\texttt{scripts/plot\\_relative\\_package\\_regions\\_piH0.R}.", out.width='95%'}
 knitr::include_graphics("figures/relative_package_R1_candidate_regions_piH0.pdf")
 ```
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  node distance=1.1cm and 1.5cm,
+  box/.style={draw, rounded corners=1pt, align=center, inner sep=5pt, minimum width=2.7cm},
+  smallbox/.style={draw, rounded corners=1pt, align=center, inner sep=4pt, minimum width=2.5cm},
+  arrow/.style={-{Latex[length=2.2mm]}, thick}
+]
+\node[box] (rule) {Institutional rule};
+\node[box, below left=of rule] (majority) {Majority\\\(H\) not pivotal};
+\node[box, below right=of rule] (unanimity) {Unanimity\\\(H\) pivotal};
+\node[smallbox, below=of majority] (m_path) {No-\(H\) path\\if No-Cheap-H};
+\node[smallbox, below left=of unanimity] (pool) {\(P\): insure\\agreement};
+\node[smallbox, below=of unanimity] (low) {\(L\): test\\low threshold};
+\node[smallbox, below right=of unanimity] (reject) {\(R\): wait\\without information};
+\node[smallbox, below=of m_path] (m_payoff) {\(V_W^M=1/m\)\\\(V_H^M=(1-\mu)o_0+\mu o_1\)};
+\node[smallbox, below=of low] (u_payoff) {Select \(\max\{\Pi_P,\Pi_L,\Pi_R\}\)\\then compare \(\Delta_H(\mu)\)};
+
+\draw[arrow] (rule) -- (majority);
+\draw[arrow] (rule) -- (unanimity);
+\draw[arrow] (majority) -- (m_path);
+\draw[arrow] (m_path) -- (m_payoff);
+\draw[arrow] (unanimity) -- (pool);
+\draw[arrow] (unanimity) -- (low);
+\draw[arrow] (unanimity) -- (reject);
+\draw[arrow] (pool) |- (u_payoff);
+\draw[arrow] (low) -- (u_payoff);
+\draw[arrow] (reject) |- (u_payoff);
+\end{tikzpicture}
+\caption{Result-oriented comparison of the baseline. Majority removes the hegemon's pivotality only under No-Cheap-H. Unanimity forces the weak proposer to choose among pooling, low-only acceptance, and no-information rejection under the maintained weak-vote-passive assessment.}
+\label{fig:result-logic}
+\end{figure}
 
 \begin{remark}[Delay is endogenous]\label{rem:delay}
 The rejection candidate \(R\) is not imposed by assumption. It is a feasible candidate under the specified weak-vote-passive assessment when continuation is more valuable to the weak proposer than currently available accepted packages. Thus delay can arise from incentives, but it is not required for the calibrated result below. See Appendix A.3, Step 4.
@@ -613,6 +650,54 @@ Entry cost per weak state \(\chi\) & Institutional outcome \\
 knitr::include_graphics("figures/relative_package_classification_piH0.pdf")
 ```
 
+The equality \(a_0^1=a_1\) in the working calibration should not be hidden. It is a boundary case for strict low-only separation. Table \ref{tab:robustness-windows} therefore reports one-way perturbation windows, not an open neighborhood around the calibration. The "core classification" window keeps the maintained threshold domains, No-Cheap-H, entry nesting, and an interior zero of \(\Delta_H(\mu)\). The "pooling-only" window is narrower: it records when the selected R1 candidate remains pooling for every belief. Degenerate pooling-only rows mean that the all-belief pooling selection is a calibrated boundary feature, not the robust object.
+
+```{r robustness-windows}
+robustness_windows <- read.csv("tables/relative_package_robustness_windows_piH0.csv")
+robustness_windows_fmt <- data.frame(
+  Parameter = robustness_windows$parameter,
+  Baseline = sprintf("%.3f", robustness_windows$baseline),
+  `Core classification window` = sprintf(
+    "[%.3f, %.3f]",
+    robustness_windows$core_min,
+    robustness_windows$core_max
+  ),
+  `Pooling-only window` = sprintf(
+    "[%.3f, %.3f]",
+    robustness_windows$pooling_all_min,
+    robustness_windows$pooling_all_max
+  ),
+  check.names = FALSE
+)
+knitr::kable(
+  robustness_windows_fmt,
+  booktabs = TRUE,
+  caption = "One-way perturbation windows from the working calibration. The row \\(gap\\) varies \\(t_1-t_0\\) by holding \\(t_0=0.19\\) fixed and setting \\(t_1=t_0+gap\\). Generated by \\texttt{scripts/verify\\_relative\\_package\\_robustness\\_piH0.R}."
+)
+```
+
+Table \ref{tab:classification-sweeps} gives representative parameter perturbations. These checks are local diagnostics, not a proof of an open robustness neighborhood around the exact calibration. They show that entry can remain nested and the payoff gap can retain an interior crossing after substantively meaningful one-way perturbations. The selected R1 path can change, however, so the paper should not sell "pooling for all beliefs" as the robust object. The robust object is the institutional classification under the stated assessment and stated parameter domain.
+
+```{r classification-sweeps}
+classification_sweeps <- read.csv("tables/relative_package_classification_sweeps_piH0.csv")
+classification_sweeps_fmt <- data.frame(
+  Case = classification_sweeps$case,
+  `beta` = sprintf("%.2f", classification_sweeps$beta),
+  `t1` = sprintf("%.3f", classification_sweeps$t1),
+  `o1` = sprintf("%.3f", classification_sweeps$o1),
+  `R1 candidates` = classification_sweeps$selected_candidates,
+  `max V_W^U` = sprintf("%.6f", classification_sweeps$W_U_max),
+  `min M-U gap` = sprintf("%.6f", classification_sweeps$min_entry_gap),
+  `Delta_H=0` = sprintf("%.3f", classification_sweeps$mu_H),
+  check.names = FALSE
+)
+knitr::kable(
+  classification_sweeps_fmt,
+  booktabs = TRUE,
+  caption = "Representative robustness checks for the calibrated classification. All rows satisfy the maintained domains, No-Cheap-H, entry nesting, and an interior \\(\\Delta_H=0\\) crossing. Generated by \\texttt{scripts/verify\\_relative\\_package\\_robustness\\_piH0.R}."
+)
+```
+
 # Discussion {#discussion}
 
 ## Illustration: OPEC and Saudi pivotality {#opec}
@@ -647,6 +732,24 @@ The model's point is not that Saudi Arabia writes every OPEC package. The point 
 The working calibration should be read in this spirit. The parameters \(t_0=0.19\) and \(t_1=0.285\) are not direct estimates of Saudi payoffs. They describe a threshold gap large enough to make pivotal approval informationally valuable, while retaining a fixed weak surplus and no formal proposal advantage for \(H\). Under this calibration, unanimity forms only when \(\chi\leq0.0619583\), majority forms up to \(\chi=0.0833333\), and when both form the pivotal actor prefers unanimity for \(\mu<0.7\). The classification therefore replaces a simple "consensus always helps the hegemon" claim with a more precise prediction: consensus helps the hegemon only where the pivotality-screening rent exceeds the payoff from being excluded under majority.
 
 The three Round-1 candidates also have direct institutional interpretations. Pooling \(P\) is a broad accommodation package: smaller producers offer enough quota flexibility, enforcement relief, or burden-shifting to secure Saudi approval in either state. Low-only \(L\) is a tougher package that a low-threshold Saudi type accepts but a high-threshold type rejects, thereby making the failed ballot informative. No-information rejection \(R\) is a postponed or failed package that does not reveal Saudi's state because the proposal is designed to fail by a weak member's rejection. In all three cases, Saudi Arabia is pivotal under consensus but is not the formal agenda setter in the baseline.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{0.26\textwidth}p{0.62\textwidth}}
+\toprule
+Formal category & OPEC-style interpretation \\
+\midrule
+\(\mathcal C_0(\chi)\): no rule forms & Participation or compliance costs are high enough that neither consensus nor majority institutions are worth forming for the non-hegemonic coalition. \\
+\(\mathcal C_M(\chi)\): only majority forms & Consensus is too costly because Saudi approval must be bought, but a non-Saudi coalition could still sustain a majority-style arrangement. \\
+\(\mathcal C_U^H(\chi)\): both form, \(H\) prefers unanimity & Both institutions are viable, and consensus gives Saudi Arabia a pivotality rent large enough to beat its payoff when excluded under majority. \\
+\(\mathcal C_T^H(\chi)\): both form, tie & Both institutions are viable, and the pivotality rent exactly offsets the majority outside payoff. \\
+\(\mathcal C_M^H(\chi)\): both form, \(H\) prefers majority & Both institutions are viable, but beliefs make the private-threshold rent too small to compensate Saudi Arabia for the majority benchmark. \\
+\bottomrule
+\end{tabular}
+\caption{Substantive reading of the five institutional categories in the OPEC illustration.}
+\label{tab:opec-classification}
+\end{table}
 
 ## Scope {#scope}
 
@@ -740,7 +843,7 @@ which is equivalent to \(x\geq c(0)\). Thus the minimal weak-voter allocation is
 \]
 
 \textit{Step 4: Rejection assessment.}
-For \(R\), the proposer sets \(y=0\), assigns zero to every weak state, names a designated weak voter \(W_j\), and prescribes that \(W_j\) vote no. This proposal is feasible because \(y+\sum_i x_i=0\). All other weak voters and both types of \(H\) are prescribed to vote yes. Given \(W_j\)'s rejection, their votes are nonpivotal: either vote leaves the ballot failed, and Definition \ref{def:passive} keeps posterior \(\mu\). Thus they receive the same continuation payoff after either vote. If \(W_j\) follows the prescription, it receives the continuation value \(c(\mu)\). If \(W_j\) deviates to yes while the other voters follow their prescriptions, the proposal passes and \(W_j\) receives zero. Thus the designated weak rejecter has no profitable deviation. The proposer payoff is \(c(\mu)=\Pi_R^U(\mu)\).
+For \(R\), the proposer sets \(y=0\) and assigns zero to non-proposing weak voters. This proposal is feasible because \(y+\sum_i x_i=0\). It also requires no communication outside the proposal space: the indexed allocation vector itself gives each non-proposing weak voter less than its continuation value. Non-proposing weak voters are prescribed to vote no. Given that at least one weak voter rejects, all other votes are nonpivotal: either vote leaves the ballot failed, and Definition \ref{def:passive} keeps posterior \(\mu\). Thus each non-proposing weak voter receives the continuation value \(c(\mu)\) after following the prescription. If more than one non-proposing weak voter rejects, a unilateral deviation to yes still leaves the ballot failed; if there is only one non-proposing weak voter, a unilateral deviation to yes makes the proposal pass but gives that voter zero rather than \(c(\mu)\). The proposer payoff is \(c(\mu)=\Pi_R^U(\mu)\).
 
 \textit{Step 5: Informative rejected ballots.}
 An informative rejected ballot would require \(H\)'s vote to separate types while the proposal fails. Under High-Posterior Pooling, the low type's discounted continuation from inducing posterior one is
@@ -810,6 +913,83 @@ If \(\pi_H>0\), agenda power becomes a separate channel. The present baseline se
 
 Continuous type spaces are also left for future work. The binary model is used to make the pivotality-screening mechanism and the institutional classification transparent under a fully checked fixed-pie protocol.
 
+## B.4 Comparative statics and robustness {-}
+
+The main text reports the most important comparative statics locally. This appendix collects the remaining ones in compact form.
+
+For majority, the No-Cheap-H margin is
+\[
+\mathcal M_{NC}=t_0-(1-\beta)o_0-\frac{\beta}{m}.
+\]
+Thus \(t_0\) raises the margin one-for-one, \(o_0\) lowers it by \(1-\beta\), and the effect of patience is \(o_0-1/m\). The majority quota \(q\) matters for feasibility of the no-\(H\) path, but the no-screening boundary itself is driven by the comparison between the low type's dynamic threshold and the price of a weak voter.
+
+For terminal unanimity,
+\[
+\mu_2^*=\frac{t_1-t_0}{1-t_0},
+\]
+so a larger high-type threshold raises the cutoff and makes low-only bargaining optimal over more beliefs. A larger low-type threshold lowers the cutoff when \(t_1<1\), because the incremental cost of pooling shrinks.
+
+For Round 1, the key dynamic-order slack is
+\[
+a_1-a_0^1
+=(1-\beta)\{t_1-t_0+o_0-o_1\}.
+\tag{B2}
+\]
+Strict low-only separation requires this slack to be positive. The working calibration sets \(o_1-o_0=t_1-t_0\), so it lies exactly on the boundary. Perturbations that make \(o_1-o_0<t_1-t_0\) create a strict low-only interval; perturbations in the opposite direction violate the maintained threshold order and require a different case analysis.
+
+The R1 selection boundaries are the pairwise candidate inequalities in Proposition \ref{prop:r1}. Their directional effects are intuitive but piecewise. Increasing \(a_1\) makes pooling less attractive. Decreasing \(a_0^1\) makes low-only more attractive when the candidate is admissible. Increasing \(\beta\) raises weak voters' continuation values \(c(\nu)\), so accepted R1 packages become more expensive and rejection can become selected. Increasing \(m\) lowers each weak voter's continuation value but increases the number of weak voters who must be compensated under unanimity.
+
+Table \ref{tab:r1-diagnostic-examples} records three diagnostic cases: the working calibration, a nonboundary case with a low-only region, and a delay case. The examples are not alternative calibrations. They show that all three candidates in Proposition \ref{prop:r1} are live under the stated protocol.
+
+```{r r1-diagnostic-examples}
+r1_examples <- read.csv("tables/relative_package_r1_examples_piH0.csv")
+r1_examples_fmt <- data.frame(
+  Example = r1_examples$example,
+  `beta` = sprintf("%.2f", r1_examples$beta),
+  `t0` = sprintf("%.3f", r1_examples$t0),
+  `t1` = sprintf("%.3f", r1_examples$t1),
+  `o0` = sprintf("%.3f", r1_examples$o0),
+  `o1` = sprintf("%.3f", r1_examples$o1),
+  `a0^1` = sprintf("%.3f", r1_examples$a0_1),
+  `a1` = sprintf("%.3f", r1_examples$a1),
+  Candidate = r1_examples$candidate,
+  `mu range` = sprintf("[%.3f, %.3f]", r1_examples$mu_min, r1_examples$mu_max),
+  check.names = FALSE
+)
+knitr::kable(
+  r1_examples_fmt,
+  booktabs = TRUE,
+  caption = "Diagnostic Round-1 candidate regions under the weak-vote-passive assessment. Generated by \\texttt{scripts/verify\\_relative\\_package\\_robustness\\_piH0.R}."
+)
+```
+
+## B.5 Delay example {-}
+
+The no-information rejection candidate can be selected without changing beliefs. Set
+\[
+N=13,\quad \beta=0.9,\quad t_0=o_0=0.10,\quad t_1=o_1=0.50.
+\]
+At \(\mu=0.01\), terminal bargaining is very attractive to a future recognized weak proposer because the high type is unlikely, but Round-1 unanimity requires compensating both \(H\) and all non-proposing weak voters. The pooling package is infeasible, strict low-only separation is blocked by \(a_0^1=a_1=0.45\), and the proposer selects no-information rejection.
+
+```{r delay-example}
+delay_example <- read.csv("tables/relative_package_delay_example_piH0.csv")
+delay_example_fmt <- data.frame(
+  `mu` = sprintf("%.3f", delay_example$mu),
+  `a0^1` = sprintf("%.3f", delay_example$a0_1),
+  `a1` = sprintf("%.3f", delay_example$a1),
+  `Pi_P` = ifelse(is.finite(delay_example$Pi_P), sprintf("%.6f", delay_example$Pi_P), "infeasible"),
+  `Pi_L` = ifelse(is.finite(delay_example$Pi_L), sprintf("%.6f", delay_example$Pi_L), "blocked"),
+  `Pi_R` = sprintf("%.6f", delay_example$Pi_R),
+  Selected = delay_example$selected,
+  check.names = FALSE
+)
+knitr::kable(
+  delay_example_fmt,
+  booktabs = TRUE,
+  caption = "A non-calibrated delay example. The example demonstrates that no-information rejection can be selected by backward induction; it is not used for the OPEC calibration. Generated by \\texttt{scripts/verify\\_relative\\_package\\_robustness\\_piH0.R}."
+)
+```
+
 # Appendix C: Notation and Reproducibility {-}
 
 ## C.1 Notation {-}
@@ -867,20 +1047,21 @@ The formal results transported here are checked by separate R scripts:
 \begin{table}[H]
 \centering
 \scriptsize
-\begin{tabular}{p{0.42\textwidth}p{0.48\textwidth}}
+\begin{tabular}{p{0.34\textwidth}p{0.26\textwidth}p{0.30\textwidth}}
 \toprule
-Script & Object checked \\
+Script & Tables / figures & Object checked \\
 \midrule
-\texttt{verify\_relative\_package\_R2\_piH0.R} & Terminal unanimity and \(\mu_2^*\) \\
-\texttt{verify\_relative\_package\_R1\_piH0.R} & R1 candidates, ICs, and tie-break selection \\
-\texttt{verify\_relative\_package\_majority\_piH0.R} & Majority no-screening iff \(a_0^M\geq\beta/m\) \\
-\texttt{verify\_relative\_package\_entry\_nesting\_piH0.R} & Weak-state nesting and \(\Delta_H(\mu)\) \\
-\texttt{verify\_relative\_package\_classification\_piH0.R} & Five-way classification and calibration \\
-\texttt{verify\_relative\_package\_margins\_piH0.R} & Calibration margin tables \\
-\texttt{plot\_relative\_package\_regions\_piH0.R} & Figures \ref{fig:fig-terminal-regions}--\ref{fig:fig-classification} and region summary CSV \\
+\texttt{verify\_relative\_package\_R2\_piH0.R} & Lemma \ref{lem:r2}; Figure \ref{fig:fig-terminal-regions} inputs & Terminal unanimity and \(\mu_2^*\) \\
+\texttt{verify\_relative\_package\_R1\_piH0.R} & Proposition \ref{prop:r1}; Table \ref{tab:r1-diagnostic-examples} checks & R1 candidates, ICs, and tie-break selection \\
+\texttt{verify\_relative\_package\_majority\_piH0.R} & Proposition \ref{prop:majority}; Table \ref{tab:margins-domain} & Majority no-screening iff \(a_0^M\geq\beta/m\) \\
+\texttt{verify\_relative\_package\_entry\_nesting\_piH0.R} & Proposition \ref{prop:nesting}; Table \ref{tab:margins-entry} & Weak-state nesting and \(\Delta_H(\mu)\) \\
+\texttt{verify\_relative\_package\_classification\_piH0.R} & Corollary \ref{cor:classification}; Table \ref{tab:calibration} & Five-way classification and calibration \\
+\texttt{verify\_relative\_package\_margins\_piH0.R} & Tables \ref{tab:margins-domain}--\ref{tab:margins-hgap} & Calibration margin tables \\
+\texttt{plot\_relative\_package\_regions\_piH0.R} & Figures \ref{fig:fig-no-cheap-h}, \ref{fig:fig-terminal-regions}, \ref{fig:fig-r1-regions}, \ref{fig:fig-deltah}, and \ref{fig:fig-classification} & Region figures and region summary CSV \\
+\texttt{verify\_relative\_package\_robustness\_piH0.R} & Tables \ref{tab:robustness-windows}, \ref{tab:classification-sweeps}, \ref{tab:r1-diagnostic-examples}, \ref{tab:delay-example} & One-way perturbation windows, classification sweeps, nonboundary R1 examples, and delay example \\
 \bottomrule
 \end{tabular}
-\caption{Reproducibility ledger for the fixed-pie relative-package \(\pi_H=0\) baseline. All scripts are stored in \texttt{scripts/}.}
+\caption{Reproducibility ledger for the fixed-pie relative-package \(\pi_H=0\) baseline. All scripts are stored in \texttt{scripts/}; generated table CSVs are stored in \texttt{tables/}, while the region-summary CSV is stored with the generated figures in \texttt{figures/}.}
 \label{tab:ledger}
 \end{table}
 
