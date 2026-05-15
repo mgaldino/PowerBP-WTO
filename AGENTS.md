@@ -9,6 +9,8 @@ Formal theory paper on why a hegemon may choose consensus/unanimity in internati
 - **Phase**: model redesign after post-referee proof repair.
 - **Active paper**: `formal_model_v5.Rmd`.
 - **Compiled PDF**: `formal_model_v5.pdf`.
+- **Current manuscript baseline (2026-05-15)**: `formal_model_v5.Rmd` now carries the fixed-pie relative-package `pi_H=0` baseline in the manuscript. The R1 result is stated under a **weak-vote-passive assessment**: weak-state vote deviations are not treated as signals about `H`'s type because weak states do not observe `theta`. Do not describe this assessment as a refinement, D1, intuitive criterion, sequential-equilibrium restriction, or characterization of all PBEs. It is a maintained interpretation of the public voting protocol. The R1 statement should say the selected outcome is payoff-equivalent to one of `P`, `L`, `R`; it is a selection result under the baseline voting assessment, not uniqueness over unrestricted PBEs. The tie-break among weak-proposer payoff ties minimizes `H`'s expected payoff.
+- **Review protocol**: the agent that implements must not be the agent that reviews. Any validation/review/audit must be done by independent agents that do not edit files. This applies to formal claims, R scripts, figures, visual quality, and final integration.
 - **Most recent proof pass**: 2026-05-10, focused only on appendix proofs. The latest pass added a sufficient-conditions dominance result, calibrated formation-set nesting, and calibrated institutional classification.
 - **Redesign decision**: after analyzing the H-proposer signaling subgame, the next version should explicitly separate three sources of power: outside-option power, veto/pivotality power, and proposal power. The main baseline sets `pi_H = 0`, so the R1 agenda is controlled by weak states / non-hegemonic bargaining coalitions. Agenda power is then reintroduced separately through the recognition probability `pi_H`.
 - **Architecture reset (2026-05-11)**: abandon state-contingent feasibility as the main screening mechanism. The active redesign now models proposals as relative institutional packages that are feasible in every state. Screening comes from `H`'s type-dependent participation threshold:
@@ -330,6 +332,9 @@ Do not force `output_format = "pdf_document"` unless explicitly debugging, becau
 - No pooling, delay, rejection path, or off-path belief can be imposed. It must be shown to be incentive-compatible under the stated extensive-form game.
 - Keep majority outside options external to the pie.
 - Under the redesign, keep voting sequential and public. Use `pi_H = 0` in the main baseline so `H` is not an R1 proposer; treat `pi_H > 0` as an extension or robustness exercise.
+- Use the term **weak-vote-passive assessment** for the baseline belief assessment. Do not call it a refinement. The defense is informational: weak states do not observe `theta`, so their unilateral vote deviations do not directly signal `H`'s type; `H`'s own separating vote can update beliefs; on-path beliefs follow Bayes' rule.
+- State R1 as payoff-equivalence to `P`, `L`, or `R` under the maintained assessment, not as a uniqueness or all-PBE characterization.
+- Maintain implementer/reviewer separation: implementation agents edit; review agents do not edit.
 - Entry by weak states is collective/all-or-nothing.
 - Main body revision comes later, after proof architecture is settled.
 - Do not edit `formal_model_v5.Rmd` for the redesign until the standalone derivation document has been verified.
