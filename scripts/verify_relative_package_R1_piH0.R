@@ -27,6 +27,7 @@ compute_relative_package_R1_piH0 <- function(N, beta, d0, d1, b0, b1,
   }
 
   mu2_star <- (tau1 - tau0) / (1 - tau0)
+  high_posterior_pooling <- mu2_star < 1 - tol
 
   low_r2_selected <- function(mu) mu <= mu2_star + tol
   p2_low <- function(mu) (1 - mu) * (1 - tau0)
@@ -53,7 +54,7 @@ compute_relative_package_R1_piH0 <- function(N, beta, d0, d1, b0, b1,
     a0_high_posterior + (m - 1) * c0 <= 1 + tol &&
     a0_high_posterior + tol < a1
 
-  rejection_feasible <- (a1 >= -tol && a1 <= ybar + tol) & (c_mu > tol)
+  rejection_feasible <- rep(TRUE, length(mu_grid))
 
   pooling_raw <- 1 - a1 - (m - 1) * c_mu
   low_only_raw <- (1 - mu_grid) *
@@ -135,6 +136,7 @@ compute_relative_package_R1_piH0 <- function(N, beta, d0, d1, b0, b1,
   checks <- list(
     threshold_domain = threshold_domain,
     mu2_star_in_unit_interval = mu2_star > -tol && mu2_star <= 1 + tol,
+    high_posterior_pooling = high_posterior_pooling,
     R1_high_threshold_domain = a1 >= -tol && a1 <= ybar + tol,
     R1_strict_low_only_available = low_only_feasible,
     pooling_available_somewhere = any(pooling_feasible),
@@ -251,6 +253,7 @@ assert_check <- function(objects, tol = 1e-9) {
   required <- c(
     "threshold_domain",
     "mu2_star_in_unit_interval",
+    "high_posterior_pooling",
     "R1_high_threshold_domain",
     "rejection_available_somewhere",
     "R2_value_identity",
@@ -316,12 +319,12 @@ cases <- list(
     b1 = 0,
     ybar = 1
   ),
-  tau1_equals_ybar_boundary = list(
+  beta_one_boundary = list(
     N = 5,
-    beta = 0.8,
-    d0 = 0.2,
-    d1 = 1,
-    b0 = 0.1,
+    beta = 1,
+    d0 = 0.3,
+    d1 = 0.5,
+    b0 = 0,
     b1 = 0,
     ybar = 1
   )

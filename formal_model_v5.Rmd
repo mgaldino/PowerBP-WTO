@@ -32,7 +32,7 @@ bibliography: references.bib
 link-citations: true
 keywords: "International Organizations, Bargaining, Hegemon, Informational Power, Screening, Consensus"
 abstract: |
-  Why would a powerful state choose consensus when majority rule seems to offer more control? I develop a formal model in which consensus can benefit a hegemon without giving it agenda power. The baseline sets the hegemon's recognition probability to zero: weak states make proposals, while the hegemon is privately informed about its participation threshold. Proposals are fixed-pie relative institutional packages, such as quota shares or flexibility provisions, that are always feasible but costly to the weak coalition. Under majority rule, weak states can avoid screening when the hegemon is not a cheaper coalition partner than a weak voter. Under unanimity, the hegemon is pivotal, so weak proposers must choose between a low-threshold package, a pooling package, and delay. I characterize the passive-belief pure-strategy PBE of this baseline and derive a complete institutional classification. Unanimity need not globally dominate majority. Rather, weak-state entry under unanimity is nested in entry under majority, and when both rules form the hegemon's ranking is determined by the sign of its payoff gap. In a working OPEC-style calibration, unanimity forms for entry costs up to 0.0619583, majority up to 0.0833333, and the hegemon prefers unanimity for beliefs below 0.7 when both rules form. Consensus can therefore be a technology of informational power through pivotality, not merely a constraint on power.
+  Why would a powerful state choose consensus when majority rule seems to offer more control? I develop a formal model in which consensus can benefit a hegemon without giving it agenda power. The baseline sets the hegemon's recognition probability to zero: weak states make proposals, while the hegemon is privately informed about its participation threshold. Proposals are fixed-pie institutional packages and weak-state allocations, such as quota shares or flexibility provisions, that are always feasible but costly to the weak coalition. Under majority rule, weak states can avoid screening when the hegemon is not a cheaper coalition partner than a weak voter. Under unanimity, the hegemon is pivotal, so weak proposers must choose between a pooling package, a low-threshold package, and delay. Under a specified passive-belief assessment, the selected Round-1 outcome lies in this candidate set. Unanimity need not globally dominate majority. Rather, weak-state entry under unanimity is nested in entry under majority, and when both rules form the hegemon's ranking is determined by the sign of its payoff gap. In a working OPEC-style calibration, unanimity forms for entry costs up to 0.0619583, majority up to 0.0833333, and the hegemon prefers unanimity for beliefs below 0.7 when both rules form. Consensus can therefore be a technology of informational power through pivotality, not merely a constraint on power.
 ---
 
 ```{r setup, include=FALSE}
@@ -49,9 +49,9 @@ This paper offers a different answer. Consensus can favor a powerful privately i
 
 The key design choice in the model is to separate three sources of power that are often bundled together: outside payoffs, pivotality, and proposal power. The baseline deliberately sets the hegemon's recognition probability to zero, \(\pi_H=0\). Only weak states are recognized as proposers in the bargaining rounds. The hegemon is powerful because it is privately informed and pivotal under unanimity, not because it controls the agenda. Proposals are relative institutional packages, such as quota shares, production flexibility, monitoring provisions, or enforcement burdens. They are always feasible; their cost is that they reduce the residual surplus available to weak states.
 
-The model produces four results. First, majority rule is a no-screening benchmark only under a substantive condition: the low-threshold hegemon must not be cheaper to buy than a weak voter. Formally, \(a_0^M\geq\beta/m\). If this condition fails, majority can also screen the hegemon by using it as a cheap coalition partner. Second, under unanimity, terminal bargaining has a threshold form: weak proposers choose a low-threshold package at low beliefs and a pooling package at higher beliefs. Third, in Round 1, a passive-belief pure-strategy PBE selects among three candidates: pooling, low-only acceptance, and no-information rejection. The result is explicitly scoped to passive beliefs after weak-state vote deviations; it is not a characterization of every standard PBE under arbitrary off-path beliefs. Fourth, because majority preserves the weak coalition's full surplus when the no-screening condition holds, weak-state entry under unanimity is nested in entry under majority.
+The model produces four results. First, majority rule is a no-screening benchmark only under a substantive condition: the low-threshold hegemon must not be cheaper to buy than a weak voter. In primitives, \(t_0-(1-\beta)o_0\geq\beta/m\). If this condition fails, majority can also screen the hegemon by using it as a cheap coalition partner. Second, under unanimity, terminal bargaining has a threshold form: weak proposers choose a low-threshold package at low beliefs and a pooling package at higher beliefs. Third, in Round 1, under a complete passive-belief assessment, the selected outcome lies in a three-candidate set: pooling, low-only acceptance, and no-information rejection. The result is explicitly scoped to the stated assessment; it is not a characterization under arbitrary off-path beliefs. Fourth, because majority preserves the weak coalition's full surplus when the no-screening condition holds, weak-state entry under unanimity is nested in entry under majority.
 
-The institutional comparison is therefore a classification, not a global dominance theorem. If neither rule forms, the hegemon is indifferent. If only majority forms, majority is better. If both rules form, the hegemon's ranking is determined by the sign of \(\Delta_H(\mu)\), the payoff gap between unanimity and majority. In the working OPEC-style calibration, unanimity forms only when the entry cost per weak state satisfies \(\chi\leq0.0619583\), while majority forms up to \(\chi=0.0833333\). Conditional on both rules forming, the hegemon prefers unanimity for \(\mu<0.7\), is indifferent at \(\mu=0.7\), and prefers majority for higher beliefs.
+The institutional comparison is therefore a classification, not an unconditional ranking of rules. If neither rule forms, the hegemon is indifferent. If only majority forms, majority is better. If both rules form, the hegemon's ranking is determined by the sign of \(\Delta_H(\mu)\), the payoff gap between unanimity and majority. In the working OPEC-style calibration, unanimity forms only when the entry cost per weak state satisfies \(\chi\leq0.0619583\), while majority forms up to \(\chi=0.0833333\). Conditional on both rules forming, the hegemon prefers unanimity for \(\mu<0.7\), is indifferent at \(\mu=0.7\), and prefers majority for higher beliefs.
 
 The substantive implication is that consensus can be an instrument of power even when it withholds formal agenda control from the hegemon. Its value is greatest when weak states need the hegemon's participation but cannot observe the terms that make participation worthwhile. This mechanism is especially relevant in organizations such as OPEC, where members bargain over relative institutional terms and where the pivotal producer's outside opportunities, spare capacity, and costs of restraint are hard for others to verify.
 
@@ -78,23 +78,47 @@ The informational rent is simple. When the pooling package is used, the low type
 # The Model {#model}
 
 \begin{definition}[Fixed-pie relative-package institutional design game]\label{def:game}
-There are \(N\geq3\) states: one hegemon \(H\) and \(m=N-1\) weak states \(W_1,\ldots,W_m\). Nature draws \(\theta\in\{0,1\}\). The hegemon observes \(\theta\); weak states share prior \(\mu=\Pr(\theta=1)\). The weak coalition's institutional surplus is fixed and normalized to one. A proposal is a relative institutional package \(y\in[0,\bar y]\), where \(0\leq\bar y\leq1\). A higher \(y\) is more favorable to \(H\) and reduces the residual payoff available to weak states one-for-one.
+There are \(N\geq3\) states: one hegemon \(H\) and \(m=N-1\) weak states \(W_1,\ldots,W_m\). Nature draws \(\theta\in\{0,1\}\). The hegemon observes \(\theta\); weak states share prior \(\mu=\Pr(\theta=1)\). The weak coalition's institutional surplus is fixed and normalized to one.
 
-The hegemon's participation threshold is \(t_\theta\). Type \(\theta\) accepts a package \(y\) if and only if \(y\geq t_\theta\). The maintained screening domain is
+In each bargaining round, a recognized weak proposer \(W_p\) chooses a proposal
+\[
+(y,x_1,\ldots,x_m)
+\]
+with
+\[
+y\in[0,\bar y],\qquad x_i\geq0,\qquad y+\sum_{i=1}^m x_i\leq1.
+\]
+The component \(y\) is a relative institutional package favoring \(H\). A higher \(y\) is more favorable to \(H\) and reduces the residual payoff available to weak states one-for-one. If the proposal passes, weak state \(W_i\) receives \(x_i\), and any slack \(1-y-\sum_i x_i\) is assigned to the weak proposer. Thus the proposer can keep the residual and can discriminate payments among weak voters. The objects \(c_M\), \(c(\mu)\), and \(c(0)\) below are the minimum weak-voter allocations needed to make the relevant weak voters willing to approve.
+
+The hegemon's terminal net participation threshold is \(t_\theta\). If type \(\theta\) accepts package \(y\), its current payoff is
+\[
+u_H^\theta(\text{accept }y)=o_\theta+y-t_\theta,
+\]
+where \(o_\theta\) is the payoff type \(\theta\) receives when no agreement includes \(H\). In a terminal round, this is equivalent to accepting iff \(y\geq t_\theta\). In Round 1, acceptance is dynamic: if rejection induces posterior \(\nu\), type \(\theta\) compares current acceptance with \(\beta C_\theta(\nu)\), its discounted continuation payoff. Hence the Round-1 acceptance threshold is
+\[
+a_\theta(\nu)=t_\theta-o_\theta+\beta C_\theta(\nu).
+\tag{Dynamic Acceptance}
+\]
+The maintained terminal Threshold Order is
 \[
 0\leq t_0<t_1\leq\bar y\leq1.
-\tag{D1}
+\tag{Threshold Order}
 \]
-For payoff comparisons, let \(o_\theta\) denote the payoff of type \(\theta\) when no agreement includes \(H\). If type \(\theta\) accepts package \(y\), its payoff is normalized as \(o_\theta+y-t_\theta\), so acceptance at the threshold gives \(o_\theta\).
 
 There are two bargaining rounds and a common discount factor \(\beta\in(0,1]\). The baseline recognition protocol sets \(\pi_H=0\) in both rounds: only weak states are recognized as proposers, each with probability \(1/m\). Under unanimity, all \(N\) states must vote yes. Under majority, a proposal passes with \(q=\lfloor N/2\rfloor+1\) yes votes. The proposer is counted as voting yes; all other states vote simultaneously; the full vote vector is public after the ballot.
 
-Weak states decide collectively whether to enter. Entry is all-or-nothing and costs \(\chi\) per weak state. The institution forms under rule \(R\in\{U,M\}\) if the representative weak-state payoff under that rule is at least \(\chi\).
+Under majority, if more than one minimum-cost weak coalition can pass the proposal, the recognized proposer selects the required weak voters symmetrically among the non-proposing weak states. Recognition is uniform and weak states are ex ante symmetric. Thus ex post payments can differ across weak states, but the representative ex ante weak-state payoff equals total weak payoff divided by \(m\).
+
+Weak states decide collectively whether to enter. Entry is all-or-nothing and costs \(\chi\) per weak state. The institution forms under rule \(R\in\{U,M\}\) if the representative ex ante weak-state payoff under that rule is at least \(\chi\). Because recognition and coalition selection are symmetric, this is equivalent to requiring each weak state's expected individual payoff to be at least \(\chi\).
 \end{definition}
 
-The solution concept is a passive-belief pure-strategy PBE. The refinement disciplines beliefs after deviations by weak voters: because weak states do not observe \(\theta\), a unilateral weak-vote deviation does not by itself change beliefs about \(H\)'s type. When \(H\)'s prescribed vote separates types, the posterior is pinned down by \(H\)'s vote. When \(H\)'s prescribed vote pools types, weak-vote deviations preserve the prior. Players accept when pivotal and indifferent. If a weak proposer is indifferent among payoff-maximizing proposals, the baseline selects the proposal that minimizes \(H\)'s expected payoff at the current belief. This tie-break is deliberately least favorable to the informational-rent claim.
+\begin{definition}[Passive-belief assessment]\label{def:passive}
+The baseline uses a pure-strategy assessment with the following belief discipline. First, unilateral deviations by weak voters do not update beliefs about \(\theta\), because weak states do not observe \(H\)'s type. Second, when \(H\)'s prescribed vote separates types, the posterior is pinned down by \(H\)'s vote. Third, when both types of \(H\) are prescribed to vote yes and \(H\) instead votes no, the posterior after failure is \(\nu=1\). Fourth, when both types of \(H\) are prescribed to vote no and \(H\) instead votes yes, the posterior after failure is \(\nu=0\). Fifth, as an exception for proposals designed to fail by a designated weak voter's rejection, \(H\)'s nonpivotal vote is not used as a signal: the posterior remains the prior \(\mu\) after any vote by \(H\).
 
-This is not a claim about all PBEs under unrestricted off-path beliefs. Standard PBE leaves beliefs after some off-path histories underdetermined; the passive-belief restriction is a maintained assessment of how public voting should interpret deviations by uninformed weak states [@kreps1982sequential; @fudenberg1991game; @cho1987signaling].
+Players approve when their vote is pivotal and approval weakly beats rejection. If a weak proposer is indifferent among payoff-maximizing proposals, the baseline selects the proposal that minimizes \(H\)'s expected payoff at the current belief. This tie-break operates only among candidates already admissible under the assessment; it does not resolve multiplicity created by unrestricted off-path beliefs.
+\end{definition}
+
+The passive-belief assessment is a maintained refinement, not a claim about unrestricted PBE. Standard PBE leaves beliefs after some off-path histories underdetermined; the paper's formal results characterize the selected outcome under Definition \ref{def:passive} [@kreps1982sequential; @fudenberg1991game; @cho1987signaling].
 
 \begin{figure}[H]
 \centering
@@ -149,25 +173,39 @@ V_W^M(\mu)=\frac{1}{m}.
 
 Majority does not automatically eliminate screening. If buying the low-threshold hegemon is cheaper than buying a weak voter, a weak proposer may include \(H\) as a substitute coalition partner. Let \(a_0^M\) and \(a_1^M\) be the Round-1 majority thresholds of the low and high types if \(H\) is made pivotal in a majority coalition, with
 \[
+a_\theta^M=t_\theta-o_\theta+\beta o_\theta
+=t_\theta-(1-\beta)o_\theta.
+\tag{Majority Dynamic Threshold}
+\]
+The maintained Majority Threshold Order is
+\[
 0\leq a_0^M<a_1^M\leq\bar y.
-\tag{D2}
+\tag{Majority Threshold Order}
 \]
 
 \begin{proposition}[Majority no-screening benchmark]\label{prop:majority}
-Under (D2), the no-\(H\) majority path weakly dominates all \(H\)-including majority proposals for every belief if and only if
+Under the Majority Threshold Order, the no-\(H\) majority path weakly dominates all \(H\)-including majority proposals for every belief if and only if
 \[
 a_0^M\geq\frac{\beta}{m}.
-\tag{NC}
+\tag{No-Cheap-H}
 \]
-When (NC) holds, majority produces no screening of \(H\): weak states pass a proposal without making \(H\) pivotal, \(V_W^M(\mu)=1/m\), and \(H\)'s payoff is
+Equivalently, in primitives,
+\[
+t_0-(1-\beta)o_0\geq\frac{\beta}{m}.
+\tag{No-Cheap-H primitives}
+\]
+When No-Cheap-H holds, majority produces no screening of \(H\): weak states pass a proposal without making \(H\) pivotal, \(V_W^M(\mu)=1/m\), and \(H\)'s payoff is
 \[
 V_H^M(\mu)=(1-\mu)o_0+\mu o_1.
 \tag{2}
 \]
 If \(a_0^M<\beta/m\), majority may also screen \(H\) by buying the low type as a cheap coalition partner at sufficiently low beliefs.
 \end{proposition}
+Proof in Appendix A.1.
 
-The no-cheap-\(H\) condition is the key scope condition for the paper's majority benchmark. Majority switches off pivotality-based informational power only when weak states do not want to substitute \(H\)'s low-threshold approval for a weak voter's approval.
+No-Cheap-H is the key scope condition for the paper's majority benchmark. Majority switches off pivotality-based informational power only when weak states do not want to substitute \(H\)'s low-threshold approval for a weak voter's approval.
+
+This benchmark is deliberately favorable to weak states. Majority without \(H\) preserves the entire weak coalition surplus, normalized to one. A natural extension would let a majority agreement without \(H\) generate only \(\rho<1\) units of weak surplus, yielding \(V_W^M=\rho/m\). The baseline keeps \(\rho=1\) to isolate the informational consequence of making \(H\)'s approval nonpivotal.
 
 # Unanimity: Pivotality and Passive Beliefs {#consensus}
 
@@ -183,7 +221,7 @@ p_2(\mu)=\max\{(1-\mu)(1-t_0),\,1-t_1\}
 be the recognized weak proposer's terminal value, with the low-threshold package selected at equality.
 
 \begin{lemma}[Terminal unanimity threshold]\label{lem:r2}
-Under (D1), the Round-2 unanimity proposal is \(y=t_0\) for
+Under the Threshold Order, the Round-2 unanimity proposal is \(y=t_0\) for
 \[
 \mu\leq\mu_2^*\equiv\frac{t_1-t_0}{1-t_0},
 \tag{4}
@@ -194,6 +232,7 @@ W_2^U(\mu)=\frac{p_2(\mu)}{m}.
 \tag{5}
 \]
 \end{lemma}
+Proof in Appendix A.2.
 
 Let \(C_0(\nu)\) and \(C_1(\nu)\) denote \(H\)'s Round-2 continuation payoffs after posterior \(\nu\). From Lemma \ref{lem:r2},
 \[
@@ -215,19 +254,36 @@ Let
 c(\nu)=\beta W_2^U(\nu)=\frac{\beta p_2(\nu)}{m}
 \tag{7}
 \]
-be a weak voter's continuation value after a failed Round-1 proposal that induces posterior \(\nu\). Let \(a_1\) be the high type's Round-1 acceptance threshold under the high-posterior continuation, and let \(a_0^1\) be the low type's Round-1 threshold when rejection is interpreted as the high posterior. The Round-1 threshold-order domain is
+be a weak voter's continuation value after a failed Round-1 proposal that induces posterior \(\nu\). The Round-1 result is stated on the high-posterior pooling domain
+\[
+\mu_2^*<1,
+\qquad\text{equivalently}\qquad t_1<1,
+\tag{High-Posterior Pooling}
+\]
+so posterior \(\nu=1\) strictly induces terminal pooling at \(t_1\) and \(C_0(1)=o_0+t_1-t_0\). The dynamic acceptance formula then gives the relevant Round-1 unanimity thresholds:
+\[
+a_1=t_1-o_1+\beta C_1(1)=t_1-(1-\beta)o_1,
+\tag{8}
+\]
+and, when a low type's rejection is interpreted as the high posterior and therefore induces terminal pooling,
+\[
+a_0^1=t_0-o_0+\beta C_0(1)
+=t_0-o_0+\beta(o_0+t_1-t_0).
+\tag{9}
+\]
+The R1 Dynamic Threshold Order is
 \[
 0\leq a_0^1\leq a_1\leq\bar y\leq1.
-\tag{D3}
+\tag{R1 Dynamic Threshold Order}
 \]
-Strict low-only separation requires \(a_0^1<a_1\).
+Strict low-only separation requires \(a_0^1<a_1\). The inequality \(a_0^1\leq a_1\) is a substantive single-crossing restriction, not a bookkeeping detail. It requires the low type's value from rejecting into a high-posterior continuation not to overturn the terminal threshold order.
 
-There are three payoff-relevant candidate outcomes under the passive-belief pure-strategy assessment.
+Under the passive-belief assessment, the weak proposer faces exactly three payoff-relevant candidates: insure agreement, test the low threshold, or wait.
 
 **Pooling \(P\).** The proposer offers \(y=a_1\) and pays each non-proposing weak voter \(c(\mu)\). Both types of \(H\) accept. The proposer payoff is
 \[
 \Pi_P^U(\mu)=1-a_1-(m-1)c(\mu),
-\tag{8}
+\tag{10}
 \]
 provided \(a_1+(m-1)c(\mu)\leq1\).
 
@@ -235,130 +291,148 @@ provided \(a_1+(m-1)c(\mu)\leq1\).
 \[
 \Pi_L^U(\mu)
 =(1-\mu)\{1-a_0^1-(m-1)c(0)\}+\mu c(1),
-\tag{9}
+\tag{11}
 \]
 provided \(a_0^1+(m-1)c(0)\leq1\) and \(a_0^1<a_1\).
 
-**No-information rejection \(R\).** The proposal is designed to fail because one weak voter rejects. Since \(H\)'s prescribed vote pools types and weak voters have no private information about \(\theta\), beliefs remain \(\mu\). The proposer payoff is
+**No-information rejection \(R\).** The proposer offers \(y=0\), assigns zero to every weak state, and designates one weak voter to reject. The proposal is designed to fail because the designated weak voter rejects. All other weak voters and both types of \(H\) are prescribed to vote yes; if \(H\) unexpectedly changes its vote, the ballot still fails by the weak rejection and the assessment keeps posterior \(\mu\). The proposer payoff is
 \[
 \Pi_R^U(\mu)=c(\mu).
-\tag{10}
+\tag{12}
+\]
+This candidate is always feasible because it uses no positive allocation from the fixed pie.
+
+Let \(\mathcal K(\mu)\subseteq\{P,L,R\}\) collect candidates satisfying their feasibility and separation conditions:
+\[
+P\in\mathcal K(\mu)\iff a_1+(m-1)c(\mu)\leq1,
+\]
+\[
+L\in\mathcal K(\mu)\iff a_0^1+(m-1)c(0)\leq1
+\quad\text{and}\quad a_0^1<a_1,
+\]
+and
+\[
+R\in\mathcal K(\mu)\quad\text{always}.
 \]
 
-\begin{theorem}[R1 passive-belief pure-strategy unanimity outcome]\label{thm:r1}
-Under (D1), (D3), simultaneous public voting, weak acceptance at pivotal constraints, passive beliefs after weak-state vote deviations, and the H-payoff-minimizing tie-break among weak-proposer payoff ties, the selected Round-1 unanimity outcome is one of \(P\), \(L\), or \(R\). Let \(\mathcal K(\mu)\subseteq\{P,L,R\}\) be the set of admissible candidates at belief \(\mu\). The selected weak-proposer value is
+\begin{proposition}[R1 outcome under the passive-belief assessment]\label{prop:r1}
+Under the Threshold Order, High-Posterior Pooling, the R1 Dynamic Threshold Order, simultaneous public voting, the passive-belief assessment in Definition \ref{def:passive}, weak approval at pivotal constraints, and the H-payoff-minimizing tie-break among weak-proposer payoff ties, the selected Round-1 unanimity candidate lies in \(\{P,L,R\}\). The selected weak-proposer value is
 \[
 \bar\Pi^U(\mu)=\max_{K\in\mathcal K(\mu)}\Pi_K^U(\mu).
-\tag{11}
+\tag{13}
 \]
-The selected candidate implements a passive-belief pure-strategy PBE under the stated assessment. The theorem does not characterize all standard PBEs under arbitrary off-path beliefs.
-\end{theorem}
+This is a candidate-comparison result under the maintained passive-belief selection rule. It does not construct a full strategy profile after every arbitrary off-path proposal and does not characterize unrestricted PBEs.
+\end{proposition}
+Proof in Appendix A.3.
 
 \begin{remark}[Delay is endogenous]\label{rem:delay}
-The rejection candidate \(R\) is not imposed by assumption. It is a feasible equilibrium candidate when continuation is more valuable to the weak proposer than currently available accepted packages. Thus delay can arise from incentives, but it is not required for the calibrated result below.
+The rejection candidate \(R\) is not imposed by assumption. It is a feasible candidate under the specified passive assessment when continuation is more valuable to the weak proposer than currently available accepted packages. Thus delay can arise from incentives, but it is not required for the calibrated result below.
 \end{remark}
 
 # Entry, Nesting, and Institutional Choice {#entry}
 
-Entry by weak states is collective. The entry payoff must therefore count the total weak payoff generated by the selected path, not only the residual held by the recognized proposer. If \(k^*(\mu)\in\{P,L,R\}\) is the selected unanimity candidate from Theorem \ref{thm:r1}, define total weak payoff under each candidate as
+Entry by weak states is collective. The entry payoff must therefore count the total weak payoff generated by the selected path, not only the residual held by the recognized proposer. If \(k^*(\mu)\in\{P,L,R\}\) is the selected unanimity candidate from Proposition \ref{prop:r1}, define total weak payoff under each candidate as
 \[
 S_P^U(\mu)=1-a_1,
-\tag{12}
+\tag{14}
 \]
 \[
 S_L^U(\mu)=(1-\mu)(1-a_0^1)+\mu\beta p_2(1),
-\tag{13}
+\tag{15}
 \]
 and
 \[
 S_R^U(\mu)=\beta p_2(\mu).
-\tag{14}
+\tag{16}
 \]
 The representative weak-state entry payoff under unanimity is
 \[
 V_W^U(\mu)=\frac{S_{k^*(\mu)}^U(\mu)}{m}.
-\tag{15}
+\tag{17}
 \]
 For an entry cost \(\chi\geq0\), define
 \[
 F_R(\chi)=\{\mu\in[0,1]:V_W^R(\mu)\geq\chi\},
 \qquad R\in\{U,M\}.
-\tag{16}
+\tag{18}
 \]
 
 \begin{proposition}[Weak-state entry nesting]\label{prop:nesting}
-Under the threshold domains above and the no-cheap-\(H\) condition (NC),
+Under the threshold domains above, High-Posterior Pooling, and the No-Cheap-H condition,
 \[
 V_W^U(\mu)\leq V_W^M(\mu)=\frac{1}{m}
 \quad\text{for every }\mu\in[0,1].
-\tag{17}
+\tag{19}
 \]
 Consequently,
 \[
 F_U(\chi)\subseteq F_M(\chi)
 \quad\text{for every }\chi\geq0.
-\tag{18}
+\tag{20}
 \]
 \end{proposition}
+Proof in Appendix A.4.
 
-Nesting means that majority can form whenever unanimity can form, but not conversely. This is a weak-state participation result; it does not imply that \(H\) always prefers majority.
+Nesting means that majority can form whenever unanimity can form, but not conversely. Under the fixed-pie benchmark this result is close to accounting: majority lets the weak coalition keep the full unit surplus, while unanimity either gives part of the surplus to \(H\) or delays agreement. The substantive comparison is therefore not nesting itself, but the trade-off between weaker entry incentives and the hegemon's payoff gap \(\Delta_H(\mu)\).
 
 The hegemon's unanimity payoff under the selected candidate is
 \[
 V_H^U(\mu)=H_{k^*(\mu)}(\mu),
-\tag{19}
+\tag{21}
 \]
 where
 \[
 H_P(\mu)=(1-\mu)(o_0+a_1-t_0)+\mu(o_1+a_1-t_1),
-\tag{20}
+\tag{22}
 \]
 \[
 H_L(\mu)=(1-\mu)(o_0+a_0^1-t_0)+\mu\beta C_1(1),
-\tag{21}
+\tag{23}
 \]
 and
 \[
 H_R(\mu)=(1-\mu)\beta C_0(\mu)+\mu\beta C_1(\mu).
-\tag{22}
+\tag{24}
 \]
 Define the hegemon's institutional payoff gap as
 \[
 \Delta_H(\mu)=V_H^U(\mu)-V_H^M(\mu).
-\tag{23}
+\tag{25}
 \]
 
 \begin{proposition}[Conditional comparison for the hegemon]\label{prop:h-comparison}
 On beliefs where both institutions form, \(H\)'s ranking is determined by the sign of \(\Delta_H(\mu)\). It strictly prefers unanimity iff \(\Delta_H(\mu)>0\), is indifferent iff \(\Delta_H(\mu)=0\), and strictly prefers majority iff \(\Delta_H(\mu)<0\).
 \end{proposition}
+Proof in Appendix A.5.
 
-\begin{corollary}[Complete institutional classification]\label{cor:classification}
+\begin{corollary}[Institutional classification under the baseline assessment]\label{cor:classification}
 Under the conditions of Proposition \ref{prop:nesting}, the following five sets form a mutually exclusive and exhaustive partition of \([0,1]\):
 \[
 \mathcal C_0(\chi)=[0,1]\setminus F_M(\chi),
-\tag{24}
-\]
-\[
-\mathcal C_M(\chi)=F_M(\chi)\setminus F_U(\chi),
-\tag{25}
-\]
-\[
-\mathcal C_U^H(\chi)=F_U(\chi)\cap\{\mu:\Delta_H(\mu)>0\},
 \tag{26}
 \]
 \[
-\mathcal C_T^H(\chi)=F_U(\chi)\cap\{\mu:\Delta_H(\mu)=0\},
+\mathcal C_M(\chi)=F_M(\chi)\setminus F_U(\chi),
 \tag{27}
+\]
+\[
+\mathcal C_U^H(\chi)=F_U(\chi)\cap\{\mu:\Delta_H(\mu)>0\},
+\tag{28}
+\]
+\[
+\mathcal C_T^H(\chi)=F_U(\chi)\cap\{\mu:\Delta_H(\mu)=0\},
+\tag{29}
 \]
 and
 \[
 \mathcal C_M^H(\chi)=F_U(\chi)\cap\{\mu:\Delta_H(\mu)<0\}.
-\tag{28}
+\tag{30}
 \]
 They correspond, respectively, to no institution forming; only majority forming; both forming with \(H\) preferring unanimity; both forming with \(H\) indifferent; and both forming with \(H\) preferring majority.
 \end{corollary}
+Proof in Appendix A.5.
 
-The classification is deliberately weaker than a global dominance theorem. Unanimity can benefit the hegemon through pivotality-based screening, but majority can be better when the screening rent is smaller than the value of exclusion under the majority benchmark.
+The classification is deliberately weaker than an unconditional ranking theorem. Unanimity can benefit the hegemon through pivotality-based screening, but majority can be better when the screening rent is smaller than the value of exclusion under the majority benchmark.
 
 # Working Calibration {#calibration}
 
@@ -369,7 +443,7 @@ Set \(N=13\), \(m=12\), \(\beta=0.9\), \(\bar y=1\), \(t_0=0.19\), and \(t_1=0.2
 a_1=0.2565,\qquad
 a_0^1=0.2565,
 \]
-so the selected Round-1 unanimity candidate is pooling for all beliefs. Majority satisfies the no-cheap-\(H\) condition because
+so High-Posterior Pooling holds and the calibration lies on the R1 Dynamic Threshold Order boundary \(a_0^1=a_1\). Strict low-only separation is therefore blocked in the calibration, and the selected Round-1 unanimity candidate is pooling for all beliefs. Majority satisfies No-Cheap-H because
 \[
 a_0^M=0.171>\frac{\beta}{m}=0.075.
 \]
@@ -382,10 +456,77 @@ V_W^M(\mu)=\frac{1}{12}=0.0833333.
 The hegemon's payoff gap is
 \[
 \Delta_H(\mu)=0.0665-0.095\mu.
-\tag{29}
+\tag{31}
 \]
 Thus, when both rules form, \(H\) prefers unanimity for \(\mu<0.7\), is indifferent at \(\mu=0.7\), and prefers majority for \(\mu>0.7\).
 \end{example}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llll}
+\toprule
+Condition & Value & Boundary & Margin \\
+\midrule
+No-Cheap-H & \(a_0^M=0.171\) & \(\beta/m=0.075\) & \(0.096\) \\
+\(t_0\geq0\) & \(0.190\) & \(0\) & \(0.190\) \\
+\(t_1\geq t_0\) & \(0.285\) & \(0.190\) & \(0.095\) \\
+\(\bar y\geq t_1\) & \(1.000\) & \(0.285\) & \(0.715\) \\
+\(1\geq\bar y\) & \(1.000\) & \(1.000\) & \(0.000\) \\
+\bottomrule
+\end{tabular}
+\caption{Calibration margins for No-Cheap-H and the terminal Threshold Order. The zero slack in the last row is the normalization \(\bar y=1\).}
+\label{tab:margins-domain}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llll}
+\toprule
+R1 comparison & Value & Boundary or rival & Margin/status \\
+\midrule
+\(P\) feasibility at max \(c(\mu)\) & \(0.924750\) & \(1\) & \(0.075250\) \\
+\(R\) feasibility & \(0.000000\) & \(1\) & \(1.000000\) \\
+\(a_1-a_0^1\) & \(0.000\) & \(>0\) for strict \(L\) & Boundary; strict \(L\) blocked \\
+\(\Pi_P^U(0)-\Pi_R^U(0)\) & \(0.075250-0.060750\) & \(0\) & \(0.014500\) \\
+\(\Pi_P^U(\mu_2^*)-\Pi_R^U(\mu_2^*)\) & \(0.153625-0.053625\) & \(0\) & \(0.100000\) \\
+\(\Pi_P^U(0.5)-\Pi_R^U(0.5)\) & \(0.153625-0.053625\) & \(0\) & \(0.100000\) \\
+\(\Pi_P^U(1)-\Pi_R^U(1)\) & \(0.153625-0.053625\) & \(0\) & \(0.100000\) \\
+\bottomrule
+\end{tabular}
+\caption{Round-1 calibration margins under the passive-belief assessment. The equality \(a_0^1=a_1\) places the low-only candidate on the strict-separation boundary, while pooling beats no-information rejection at the displayed beliefs.}
+\label{tab:margins-r1}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+\toprule
+Object & Value & Interpretation \\
+\midrule
+\(V_W^M\) & \(0.083333\) & Representative weak payoff under majority \\
+\(V_W^U\) & \(0.061958\) & Representative weak payoff under selected unanimity path \\
+\(V_W^M-V_W^U\) & \(0.021375\) & Entry/nesting gap \\
+\bottomrule
+\end{tabular}
+\caption{Entry and nesting margin in the working calibration.}
+\label{tab:margins-entry}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ll}
+\toprule
+Belief \(\mu\) & \(\Delta_H(\mu)=V_H^U(\mu)-V_H^M(\mu)\) \\
+\midrule
+\(0\) & \(0.066500\) \\
+\(0.5\) & \(0.019000\) \\
+\(0.7\) & \(0.000000\) \\
+\(1\) & \(-0.028500\) \\
+\bottomrule
+\end{tabular}
+\caption{Hegemon payoff-gap margins in the working calibration. Positive values favor unanimity; negative values favor majority.}
+\label{tab:margins-hgap}
+\end{table}
 
 \begin{table}[H]
 \centering
@@ -408,6 +549,25 @@ Entry cost per weak state \(\chi\) & Institutional outcome \\
 
 OPEC is a useful illustration because the institutional package is naturally relative. Members bargain over quota shares, production ceilings, monitoring, flexibility, exceptions, and burden sharing. These are not cash transfers that must fit a different realized pie in each state. They are institutional terms that shift the residual benefits of cooperation across members. A larger quota share or a weaker cut obligation for Saudi Arabia is a higher \(y\): it is better for the pivotal producer and costlier for the rest of the coalition.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{ll}
+\toprule
+Model object & OPEC interpretation \\
+\midrule
+\(H\) & Saudi Arabia as privately informed pivotal producer \\
+Weak states & Other OPEC members or non-hegemonic bargaining coalition \\
+\(y\) & Quota, flexibility, exception, monitoring, or enforcement package favoring Saudi Arabia \\
+\(t_\theta\) & Saudi net participation threshold for accepting restraint terms \\
+\(\mu\) & Belief that Saudi Arabia is in the high-threshold state \\
+\(\chi\) & Formation, participation, compliance, or coordination cost for weak members \\
+\(\pi_H=0\) & Baseline with no formal Saudi proposal recognition \\
+\bottomrule
+\end{tabular}
+\caption{Mapping between the formal baseline and the OPEC illustration.}
+\label{tab:opec-map}
+\end{table}
+
 In this interpretation, Saudi Arabia is the privately informed pivotal participant, not the formal agenda setter in the baseline model. The relevant private information concerns its net participation threshold: how attractive an OPEC package must be relative to unilateral production, spare-capacity deployment, price-war threats, and the domestic and fiscal costs of restraint. Other members observe the proposed quota package, but they do not directly observe the threshold at which Saudi Arabia is willing to keep restraining production. That is the screening problem.
 
 The historical record fits the informational premise. Saudi Arabia has long been treated as the central swing producer in oil-market accounts, with unusually large low-cost capacity and a distinctive ability to discipline cartel outcomes [@alhajji2000dominant; @nakov2013saudi; @fattouh2013opec]. The 1985--86 price collapse illustrates why other members cared about Saudi participation: a breakdown in restraint could produce severe collective losses [@griffin1994oil; @yergin1990prize]. At the same time, the exact cost and credibility of Saudi alternatives were hard for other members to verify. Analyses of Saudi reserves and spare capacity emphasize persistent uncertainty about the true usable capacity behind official claims [@simmons2005twilight; @fattouh2013opec].
@@ -420,7 +580,7 @@ The working calibration should be read in this spirit. The parameters \(t_0=0.19
 
 The baseline intentionally stacks agenda power against the hegemon by setting \(\pi_H=0\). This is not a claim that powerful states never influence agendas in real organizations. It is a modeling discipline. If unanimity can benefit a privately informed hegemon even when only weak states are recognized to make proposals, then the mechanism is not reducible to agenda control.
 
-The no-cheap-\(H\) condition is equally important. Majority removes screening only when a weak proposer prefers buying weak-state votes to buying the low-threshold hegemon as a cheap coalition partner. When \(a_0^M<\beta/m\), majority may also create screening. That extension is substantively plausible in small committees or settings where the pivotal powerful actor is very cheap to satisfy in one state. It is not part of the baseline because the paper's main contrast is the case in which majority lets weak states bypass the private threshold altogether.
+No-Cheap-H is equally important. Majority removes screening only when a weak proposer prefers buying weak-state votes to buying the low-threshold hegemon as a cheap coalition partner. When \(a_0^M<\beta/m\), majority may also create screening. That extension is substantively plausible in small committees or settings where the pivotal powerful actor is very cheap to satisfy in one state. It is not part of the baseline because the paper's main contrast is the case in which majority lets weak states bypass the private threshold altogether.
 
 The passive-belief restriction is also a scope condition. It is natural here because weak states have no private information about \(H\)'s type. Their unexpected votes should not be interpreted as signals about information they do not possess. But this is a maintained equilibrium assessment, not a theorem about every unrestricted PBE. A different belief discipline could support additional off-path behavior, especially after histories that the baseline treats as uninformative. The paper's formal claim is therefore a clean institutional classification under a stated voting and belief protocol.
 
@@ -443,7 +603,7 @@ The broader implication is that formal equality and asymmetric power can coexist
 ## A.1 Majority no-screening {-}
 
 \textit{Proof of Proposition \ref{prop:majority}.}
-The no-\(H\) proposal in Round 1 pays \(c_M=\beta/m\) to \(k=q-1\) weak voters and keeps \(1-kc_M\) for the proposer. Since \(q\leq m\) for \(N\geq3\) and \(\beta\leq1\),
+In terminal majority bargaining, a weak proposer can pass without \(H\), set \(y=0\), pay zero to the required weak voters, and keep the unit surplus. Hence \(W_2^M=1/m\), and a non-proposing weak voter's Round-1 continuation value is \(c_M=\beta/m\). In Round 1, the no-\(H\) proposal sets \(y=0\), pays \(c_M\) to \(k=q-1\) weak voters, pays zero to all other weak states, and keeps \(1-kc_M\) for the proposer. Since \(q\leq m\) for \(N\geq3\) and \(\beta\leq1\),
 \[
 1-kc_M-c_M=1-\frac{q\beta}{m}\geq0,
 \]
@@ -469,7 +629,7 @@ whenever \(a_0^M<c_M\). This proves the iff statement and the extension claim. \
 ## A.2 Terminal unanimity {-}
 
 \textit{Proof of Lemma \ref{lem:r2}.}
-In terminal Round 2, a package below \(t_0\) is rejected by both types and gives weak states zero. A package in \([t_0,t_1)\) is accepted only by the low type; within this region, \(y=t_0\) maximizes weak surplus. A package at least \(t_1\) is accepted by both types; within this region, \(y=t_1\) maximizes weak surplus. Thus the weak proposer compares
+In terminal Round 2, a package below \(t_0\) is rejected by both types and gives weak states zero. A package in \([t_0,t_1)\) is accepted only by the low type; within this region, \(y=t_0\) maximizes weak surplus because any higher \(y\) reduces the fixed weak surplus one-for-one. A package at least \(t_1\) is accepted by both types; within this region, \(y=t_1\) maximizes weak surplus. Terminal weak voters have zero continuation value, so the proposer need not allocate positive \(x_i\)'s to them. Thus the weak proposer compares
 \[
 L_2(\mu)=(1-\mu)(1-t_0)
 \]
@@ -485,20 +645,48 @@ which is equivalent to \(\mu\leq(t_1-t_0)/(1-t_0)\). Dividing the selected propo
 
 ## A.3 R1 passive-belief unanimity {-}
 
-\textit{Proof of Theorem \ref{thm:r1}.}
-Fix a belief \(\mu\). Under passive beliefs, weak-vote deviations do not convey information about \(\theta\). If \(H\)'s vote pools types, posteriors after unilateral weak-vote deviations remain the prior. If \(H\)'s vote separates types, posteriors are determined by \(H\)'s vote.
+\textit{Proof of Proposition \ref{prop:r1}.}
+Fix a belief \(\mu\) and the passive-belief assessment in Definition \ref{def:passive}.
 
-For accepted proposals, the threshold order rules out high-only acceptance. If \(y\) is high enough for the high type under the relevant continuation, it is also high enough for the low type. Any accepted package strictly above the relevant threshold is dominated for the weak proposer by lowering \(y\). Any weak-voter payment strictly above the relevant continuation value is also dominated. Therefore the only payoff-relevant accepted candidates are pooling \(P\) and low-only \(L\).
+\textit{Step 1: Candidate exhaustion.}
+Consider accepted Round-1 unanimity proposals. Under the R1 Dynamic Threshold Order, if a package is high enough for the high type under the relevant continuation, it is also high enough for the low type. Thus high-only acceptance is ruled out. Any accepted package strictly above the relevant dynamic threshold is weakly dominated for the proposer by lowering \(y\), and any weak-voter allocation strictly above the relevant continuation value is weakly dominated by lowering that allocation. Therefore the only payoff-relevant accepted candidates are pooling \(P\) and low-only \(L\). Rejected proposals either preserve the prior, in which case they are payoff-equivalent to \(R\), or try to reveal information through \(H\)'s vote. Step 5 rules out the latter as a payoff-improving fourth candidate.
 
-For \(P\), both types of \(H\) vote yes. A weak voter who deviates to no causes failure but, because \(H\)'s yes vote is pooling, the posterior remains \(\mu\). Payment \(c(\mu)\) is therefore sufficient and necessary. The high type accepts at \(a_1\); the low type accepts because \(a_1\geq a_0^1\). This gives (8).
+\textit{Step 2: Pooling assessment.}
+For \(P\), the proposal sets \(y=a_1\), pays every non-proposing weak voter \(c(\mu)\), and assigns the residual to the proposer. Both types of \(H\) vote yes. The high type is indifferent at \(a_1=t_1-o_1+\beta C_1(1)\). The low type accepts because \(a_1\geq a_0^1\). A non-proposing weak voter who votes yes receives \(c(\mu)\); if it deviates to no and causes failure, \(H\)'s yes vote pools types and the posterior remains \(\mu\), so the deviation payoff is also \(c(\mu)\). Hence weak voters are willing to approve. The proposer payoff is
+\[
+1-a_1-(m-1)c(\mu)=\Pi_P^U(\mu).
+\]
 
-For \(L\), the low type votes yes and the high type votes no. A weak voter who deviates in the low state induces posterior zero; in the high state the proposal fails because of \(H\)'s no vote and induces posterior one. Payment \(c(0)\) makes the weak voter willing to approve in the low state. The low type accepts at \(a_0^1\), while the high type rejects when \(a_0^1<a_1\). This gives (9).
+\textit{Step 3: Low-only assessment.}
+For \(L\), the proposal sets \(y=a_0^1\), pays every non-proposing weak voter \(c(0)\), and assigns the residual to the proposer. The low type votes yes at its dynamic threshold. The high type votes no when \(a_0^1<a_1\), inducing posterior one. A non-proposing weak voter's approval incentive in the low state is
+\[
+(1-\mu)x+\mu c(1)\geq(1-\mu)c(0)+\mu c(1),
+\]
+which is equivalent to \(x\geq c(0)\). Thus the minimal weak-voter allocation is \(x=c(0)\). The proposer receives the accepted residual in the low state and the continuation value \(c(1)\) in the high state, giving
+\[
+(1-\mu)\{1-a_0^1-(m-1)c(0)\}+\mu c(1)=\Pi_L^U(\mu).
+\]
 
-For \(R\), at least one weak voter is designated to reject. The proposal fails, \(H\)'s vote pools types, and the posterior remains \(\mu\). The proposer receives \(c(\mu)\), giving (10).
+\textit{Step 4: Rejection assessment.}
+For \(R\), the proposer sets \(y=0\), assigns zero to every weak state, names a designated weak voter \(W_j\), and prescribes that \(W_j\) vote no. This proposal is feasible because \(y+\sum_i x_i=0\). All other weak voters and both types of \(H\) are prescribed to vote yes. Given \(W_j\)'s rejection, their votes are nonpivotal: either vote leaves the ballot failed, and Definition \ref{def:passive} keeps posterior \(\mu\). Thus they receive the same continuation payoff after either vote. If \(W_j\) follows the prescription, it receives the continuation value \(c(\mu)\). If \(W_j\) deviates to yes while the other voters follow their prescriptions, the proposal passes and \(W_j\) receives zero. Thus the designated weak rejecter has no profitable deviation. The proposer payoff is \(c(\mu)=\Pi_R^U(\mu)\).
 
-It remains to show that rejected ballots do not add a fourth payoff-improving candidate. Any informative rejected ballot must use \(H\)'s vote to separate types. The low type's payoff from revealing the low posterior is no larger than its payoff from mimicking the high-posterior rejected vote, because the high posterior weakly increases the low type's Round-2 continuation value. If this inequality is strict, rejected-ballot separation is not incentive compatible. If it binds, the induced weak continuation payoff is payoff-equivalent to \(c(\mu)\). Pooling rejected ballots also give \(c(\mu)\). Thus no rejected ballot yields a proposer payoff above \(R\).
+\textit{Step 5: Informative rejected ballots.}
+An informative rejected ballot would require \(H\)'s vote to separate types while the proposal fails. Under High-Posterior Pooling, the low type's discounted continuation from inducing posterior one is
+\[
+\beta C_0(1)=\beta(o_0+t_1-t_0),
+\]
+whereas revealing the low posterior gives
+\[
+\beta C_0(0)=\beta o_0.
+\]
+Since \(t_1>t_0\) and \(\beta>0\),
+\[
+\beta C_0(1)> \beta C_0(0),
+\]
+so the low type strictly prefers mimicking the high-posterior rejected vote to revealing the low posterior. Separating rejected ballots are therefore not incentive compatible for the low type. Pooling rejected ballots preserve the prior and are payoff-equivalent to \(R\). On the excluded boundary \(\mu_2^*=1\), this comparison can bind; the paper does not use that boundary for the R1 candidate-comparison result.
 
-The candidate set \(\mathcal K(\mu)\) contains exactly the feasible candidates among \(P,L,R\). The weak proposer chooses a payoff maximizer, with ties broken against \(H\)'s expected payoff. The candidate assessments give sequential rationality for responders and Bayesian consistency on path; passive beliefs discipline the off-path weak-vote histories. Therefore the selected candidate implements a passive-belief pure-strategy PBE under the stated assessment. \(\square\)
+\textit{Step 6: Proposer optimality and tie-break.}
+The admissible set \(\mathcal K(\mu)\) contains the feasible candidates among \(P,L,R\). By Steps 1--5, no other accepted or rejected ballot yields a higher weak-proposer payoff under the stated passive-belief candidate comparison. The weak proposer selects a payoff maximizer in \(\mathcal K(\mu)\), and ties are broken by minimizing \(H\)'s expected payoff. Thus the selected candidate lies in \(\{P,L,R\}\) under the maintained passive-belief selection rule. \(\square\)
 
 ## A.4 Entry nesting {-}
 
@@ -511,7 +699,7 @@ because \(a_0^1\geq0\), \(p_2(1)\leq1\), and \(\beta\leq1\). Under rejection,
 \[
 S_R^U(\mu)=\beta p_2(\mu)\leq1.
 \]
-The selected unanimity candidate is one of these three. Hence \(S_{k^*(\mu)}^U(\mu)\leq1\) and \(V_W^U(\mu)\leq1/m\). Proposition \ref{prop:majority} gives \(V_W^M(\mu)=1/m\) under (NC). Therefore \(F_U(\chi)\subseteq F_M(\chi)\) for every \(\chi\). \(\square\)
+The selected unanimity candidate is one of these three. Hence \(S_{k^*(\mu)}^U(\mu)\leq1\) and \(V_W^U(\mu)\leq1/m\). Proposition \ref{prop:majority} gives \(V_W^M(\mu)=1/m\) under No-Cheap-H. Therefore \(F_U(\chi)\subseteq F_M(\chi)\) for every \(\chi\). \(\square\)
 
 ## A.5 Conditional comparison and classification {-}
 
@@ -525,9 +713,9 @@ The five sets split the belief space first by whether majority forms, then by wh
 
 ## B.1 Passive beliefs {-}
 
-The passive-belief refinement has three components. First, deviations by weak voters do not update beliefs about \(H\)'s type because weak states are uninformed about \(\theta\). Second, when \(H\)'s prescribed vote is type-dependent, the public vote of \(H\) determines the posterior. Third, pivotal voters accept when indifferent. These restrictions are part of the solution concept used in the baseline and are not presented as implications of unrestricted PBE.
+The passive-belief refinement is the assessment stated in Definition \ref{def:passive}. Its role is limited. It specifies how public ballots update beliefs when weak voters deviate, when \(H\)'s vote separates types, when \(H\) deviates from a pooling yes or pooling no prescription, and when \(H\)'s vote changes in a proposal already designed to fail by weak rejection. These restrictions are part of the maintained solution concept used in the baseline and are not presented as implications of unrestricted PBE.
 
-The role of the refinement is limited. It does not select a favorable branch for \(H\); tie-breaking among weak-proposer payoff ties minimizes \(H\)'s expected payoff. It only prevents off-path histories in which an uninformed weak voter's unexpected vote is treated as a signal about a type that the voter does not know.
+The tie-break against \(H\) does not select beliefs and does not resolve off-path multiplicity. It only selects among weak-proposer payoff-maximizing candidates after the passive assessment has already determined which candidates are admissible.
 
 ## B.2 Threshold microfoundation {-}
 
@@ -550,7 +738,44 @@ If \(\pi_H>0\), agenda power becomes a separate channel. The present baseline se
 
 Continuous type spaces are also left for future work. The binary model is used to make the pivotality-screening mechanism and the institutional classification transparent under a fully checked fixed-pie protocol.
 
-# Appendix C: Reproducibility Ledger {-}
+# Appendix C: Notation and Reproducibility {-}
+
+## C.1 Notation {-}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{0.13\textwidth}p{0.15\textwidth}p{0.42\textwidth}p{0.20\textwidth}}
+\toprule
+Symbol & Type & Meaning & First use / Used in \\
+\midrule
+\(N\) & Primitive & Total number of states & Definition \ref{def:game} \\
+\(m=N-1\) & Derived primitive & Number of weak states & Definition \ref{def:game} \\
+\(q\) & Rule parameter & Majority quota, \(q=\lfloor N/2\rfloor+1\) & Majority benchmark \\
+\(k=q-1\) & Derived rule parameter & Additional yes votes a weak proposer needs under majority & Majority benchmark \\
+\(\theta\) & Type & Hegemon type, low \(0\) or high \(1\) & Definition \ref{def:game} \\
+\(\mu\) & Belief & Prior probability that \(\theta=1\) & Definition \ref{def:game} \\
+\(y\) & Choice variable & Relative institutional package favoring \(H\) & Definition \ref{def:game} \\
+\(t_\theta\) & Primitive threshold & Terminal net participation threshold of type \(\theta\) & Definition \ref{def:game} \\
+\(\bar y\) & Primitive bound & Maximum admissible package & Definition \ref{def:game} \\
+\(\beta\) & Primitive & Common discount factor & Definition \ref{def:game} \\
+\(\pi_H\) & Recognition parameter & Recognition probability of \(H\); baseline sets \(\pi_H=0\) & Definition \ref{def:game} \\
+\(\chi\) & Entry cost & Cost per weak state of institutional entry & Entry section \\
+\(o_\theta\) & Primitive payoff & External payoff of type \(\theta\) when no agreement includes \(H\) & Definition \ref{def:game} \\
+\(a_0^M,a_1^M\) & Derived thresholds & Round-1 majority thresholds if \(H\) is made pivotal & Proposition \ref{prop:majority} \\
+\(a_0^1,a_1\) & Derived thresholds & Round-1 unanimity thresholds under high-posterior continuation & Proposition \ref{prop:r1} \\
+\(p_2(\mu)\) & Derived value & Terminal weak-proposer value under unanimity & Lemma \ref{lem:r2} \\
+\(c(\nu)\) & Derived value & Weak voter's discounted continuation value after failed R1 ballot & Proposition \ref{prop:r1} \\
+\(P,L,R\) & Candidate outcomes & Pooling, low-only, and no-information rejection candidates & Proposition \ref{prop:r1} \\
+\(F_U,F_M\) & Entry sets & Beliefs for which unanimity or majority forms at cost \(\chi\) & Proposition \ref{prop:nesting} \\
+\(\Delta_H\) & Payoff gap & \(H\)'s unanimity payoff minus majority payoff & Proposition \ref{prop:h-comparison} \\
+\bottomrule
+\end{tabular}
+\caption{Notation reference for the fixed-pie relative-package \(\pi_H=0\) baseline.}
+\label{tab:notation}
+\end{table}
+
+## C.2 Reproducibility ledger {-}
 
 The formal results transported here are checked by separate R scripts:
 
@@ -565,6 +790,7 @@ Script & Object checked \\
 \texttt{scripts/verify\_relative\_package\_majority\_piH0.R} & Majority no-screening iff \(a_0^M\geq\beta/m\) \\
 \texttt{scripts/verify\_relative\_package\_entry\_nesting\_piH0.R} & Weak-state nesting and \(\Delta_H(\mu)\) \\
 \texttt{scripts/verify\_relative\_package\_classification\_piH0.R} & Five-way classification and calibration \\
+\texttt{scripts/verify\_relative\_package\_margins\_piH0.R} & Calibration margin tables \\
 \bottomrule
 \end{tabular}
 \caption{Reproducibility ledger for the fixed-pie relative-package \(\pi_H=0\) baseline.}

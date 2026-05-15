@@ -31,6 +31,7 @@ compute_relative_package_classification_piH0 <- function(N, beta, d0, d1, b0, b1
   }
 
   mu2_star <- (tau1 - tau0) / (1 - tau0)
+  high_posterior_pooling <- mu2_star < 1 - tol
 
   low_r2_selected <- function(mu) mu <= mu2_star + tol
   p2_low <- function(mu) (1 - mu) * (1 - tau0)
@@ -59,7 +60,7 @@ compute_relative_package_classification_piH0 <- function(N, beta, d0, d1, b0, b1
     a0_high_posterior + (m - 1) * c0 <= 1 + tol &&
     a0_high_posterior + tol < a1
 
-  rejection_feasible <- (a1 >= -tol && a1 <= ybar + tol) & (c_mu > tol)
+  rejection_feasible <- rep(TRUE, length(mu_grid))
 
   pooling_prop_raw <- 1 - a1 - (m - 1) * c_mu
   low_only_prop_raw <- (1 - mu_grid) *
@@ -261,6 +262,7 @@ compute_relative_package_classification_piH0 <- function(N, beta, d0, d1, b0, b1
   checks <- list(
     threshold_domain = threshold_domain,
     mu2_star_in_unit_interval = mu2_star > -tol && mu2_star <= 1 + tol,
+    high_posterior_pooling = high_posterior_pooling,
     R1_high_threshold_domain = a1 >= -tol && a1 <= ybar + tol,
     R1_threshold_order_domain = R1_threshold_order_domain,
     selected_candidate_argmax = selected_argmax_error <= tol,
@@ -385,6 +387,7 @@ assert_check <- function(objects, tol = 1e-9) {
   required <- c(
     "threshold_domain",
     "mu2_star_in_unit_interval",
+    "high_posterior_pooling",
     "R1_high_threshold_domain",
     "R1_threshold_order_domain",
     "selected_candidate_argmax",
@@ -537,15 +540,6 @@ cases <- list(
     b1 = 0,
     ybar = 1
   ),
-  tau1_equals_ybar_boundary = list(
-    N = 5,
-    beta = 0.8,
-    d0 = 0.3,
-    d1 = 1,
-    b0 = 0,
-    b1 = 0,
-    ybar = 1
-  ),
   beta_one_boundary = list(
     N = 5,
     beta = 1,
@@ -564,7 +558,6 @@ invisible(run_case(
 ))
 invisible(run_case("strict_low_only_available", cases$strict_low_only_available))
 invisible(run_case("no_cheap_H_boundary", cases$no_cheap_H_boundary))
-invisible(run_case("tau1_equals_ybar_boundary", cases$tau1_equals_ybar_boundary))
 invisible(run_case("beta_one_boundary", cases$beta_one_boundary))
 
 cat("\nAll fixed-pie relative-package institutional classification checks passed.\n")
