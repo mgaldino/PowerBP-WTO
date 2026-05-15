@@ -2,16 +2,17 @@
 
 ## Project
 
-Formal theory paper on why a hegemon may choose consensus/unanimity in international organizations. The mechanism is informational power through pivotality: under unanimity, weak states must bargain with a privately informed hegemon and therefore face a screening problem; under majority, weak states can exclude the hegemon, so the hegemon's private information does not generate screening rents.
+Formal theory paper on when consensus/unanimity can benefit a hegemon in international organizations. The mechanism is informational power through pivotality: under unanimity, weak states must bargain with a privately informed hegemon and therefore face a screening problem; under majority, weak states can exclude the hegemon, so the hegemon's private information does not generate screening rents.
 
 ## Current Status
 
-- **Phase**: model redesign after post-referee proof repair.
+- **Phase**: manuscript integration after post-referee proof repair.
 - **Active paper**: `formal_model_v5.Rmd`.
 - **Compiled PDF**: `formal_model_v5.pdf`.
-- **Current manuscript baseline (2026-05-15)**: `formal_model_v5.Rmd` now carries the fixed-pie relative-package `pi_H=0` baseline in the manuscript. The R1 result is stated under a **weak-vote-passive assessment**: weak-state vote deviations are not treated as signals about `H`'s type because weak states do not observe `theta`. Do not describe this assessment as a refinement, D1, intuitive criterion, sequential-equilibrium restriction, or characterization of all PBEs. It is a maintained interpretation of the public voting protocol. The R1 statement should say the selected outcome is payoff-equivalent to one of `P`, `L`, `R`; it is a selection result under the baseline voting assessment, not uniqueness over unrestricted PBEs. The tie-break among weak-proposer payoff ties minimizes `H`'s expected payoff.
+- **Current manuscript baseline (2026-05-15)**: `formal_model_v5.Rmd` carries the fixed-pie relative-package `pi_H=0` baseline in the manuscript. The paper now frames the result as a conditional institutional comparison: consensus can benefit a hegemon through pivotality-based screening, but the model does **not** contain an endogenous rule-choice/signaling stage. The R1 result is stated under a **weak-vote-passive assessment**: weak-state vote deviations are not treated as signals about `H`'s type because weak states do not observe `theta`. Do not describe this assessment as a refinement, D1, intuitive criterion, sequential-equilibrium restriction, or characterization of all PBEs. It is a maintained interpretation of the public voting protocol. The R1 statement should say the selected PBE outcome is payoff-equivalent to one of `P`, `L`, `R`; it is a selection result under the baseline voting assessment, not uniqueness over unrestricted PBEs. The tie-break among weak-proposer payoff ties minimizes `H`'s expected payoff.
+- **Most recent manuscript pass**: 2026-05-15. Implemented AJPS/referee-driven exposition fixes in `formal_model_v5.Rmd`: conditional comparison language, No-Cheap-H as a natural hegemonic scope condition, numerical illustration language rather than empirical calibration, `a_0(1)` notation, and a formal rejected-history reduction lemma for R1. Two independent review agents rated the final R1 rejected-history proof **A+** and recommended no further patches. The PDF was recompiled successfully.
 - **Review protocol**: the agent that implements must not be the agent that reviews. Any validation/review/audit must be done by independent agents that do not edit files. This applies to formal claims, R scripts, figures, visual quality, and final integration.
-- **Most recent proof pass**: 2026-05-10, focused only on appendix proofs. The latest pass added a sufficient-conditions dominance result, calibrated formation-set nesting, and calibrated institutional classification.
+- **Most recent proof pass before manuscript integration**: 2026-05-10, focused on appendix proofs. That pass added a sufficient-conditions dominance result, calibrated formation-set nesting, and calibrated institutional classification for the previous corrected BF branch; treat it as diagnostic history unless rederived under the fixed-pie relative-package baseline.
 - **Redesign decision**: after analyzing the H-proposer signaling subgame, the next version should explicitly separate three sources of power: outside-option power, veto/pivotality power, and proposal power. The main baseline sets `pi_H = 0`, so the R1 agenda is controlled by weak states / non-hegemonic bargaining coalitions. Agenda power is then reintroduced separately through the recognition probability `pi_H`.
 - **Architecture reset (2026-05-11)**: abandon state-contingent feasibility as the main screening mechanism. The active redesign now models proposals as relative institutional packages that are feasible in every state. Screening comes from `H`'s type-dependent participation threshold:
 
@@ -22,9 +23,7 @@ screening requires y_1^*(mu') > y_0^*(mu')
 ```
 
 - **Archived feasibility branch**: the old feasibility/C-B-R derivation is preserved in git tag `redesign-feasibility-branch-2026-05-11`. It is diagnostic history only. Do not import theorem statements or branch labels from that tag without rederiving them under the new relative-package architecture.
-- **Main-text warning**: the body still contains old theorem statements and exposition that rely on superseded proofs. Do not revise the body until the proof architecture is fully settled.
-- **Appendix warning**: Appendix A/B now records what is verified for the old random-proposer BF architecture and what is pending. It should be treated as input to the redesign, not as final architecture. Hidden LaTeX blocks retain superseded derivations in source only; they should not be cited as established results.
-- **Manuscript freeze**: do not edit `formal_model_v5.Rmd` while the redesigned proof architecture is unsettled. All new formal work should happen first in `model_redesign/power_architecture_derivations.Rmd`, then be transported to the paper only after proofs, checks, and exposition are clean.
+- **Manuscript status warning**: `formal_model_v5.Rmd` has been updated to the fixed-pie relative-package baseline, but it still needs a full independent read for global coherence before submission or sharing as final. Do not reintroduce old feasibility/C-B-R branch labels or old random-proposer theorem language.
 
 ## Redesign Decision: Separate Sources of Power
 
@@ -266,32 +265,25 @@ R tie/check                : 0.022868
 
 ## Pending Proof Work
 
-Do not present these as proven until rederived:
+Do not present these as completed until checked in the active manuscript:
 
-- Rebuild Appendix A/B under weak-state R1 agenda and relative institutional packages.
-- Work in `model_redesign/power_architecture_derivations.Rmd`, not in the active manuscript.
-- State the recognition protocol using `pi_H`, with `pi_H = 0` as the baseline.
-- Decide whether R2 inherits the same recognition protocol or whether the baseline is weak-proposer-only in both rounds.
-- Formalize the weak-state cost of `y` and the residual payoff for the weak proposer.
-- Derive R2 unanimity under `U_H(y,theta)=y+b_H(theta)` and thresholds `y_theta^*(mu')`.
-- Derive R1 unanimity as pooling/high-threshold package, low-only package, or continuation. Do not use high-state-only feasibility branch `B`.
-- Recompute majority payoffs under the new agenda and relative-package protocol.
-- Prove conditional dominance under the redesigned relative-package protocol.
-- Reprove entry/nesting and institutional classification under the redesigned relative-package protocol.
-- Recompute or remove figures that depend on the old H-proposer/random-proposer architecture.
-- Rework the OPEC case study so Saudi Arabia is pivotal and privately informed, not the formal R1 agenda setter.
-- Reaudit Appendix C only after the redesigned binary model is settled.
-- Main-body rewrite, figures, and theorem statements. The body still reflects superseded proof architecture and should not be trusted for proof status.
+- Run a full independent review of `formal_model_v5.Rmd` after the 2026-05-15 integration pass. The R1 rejected-history lemma has A+ independent review, but the whole paper still needs a coherence pass.
+- Check that every theorem statement, figure caption, and table caption uses the fixed-pie relative-package `pi_H=0` language and does not import feasibility/C-B-R branch labels.
+- Reaudit Appendix C only after the binary fixed-pie model is treated as stable.
+- Decide whether to add a separate appendix extension for endogenous rule choice/signaling. The main paper currently holds rule choice fixed to isolate screening; a future extension may illustrate how rule-choice signaling can reduce, leave unchanged, or amplify screening.
+- Treat `pi_H>0` and H-proposer agenda power as extensions using lower bounds, selection-free bounds, or simulations. Do not fold them into the main theorem without rederivation.
+- Keep No-Cheap-H as a natural hegemonic scope condition. The complementary case `a_0^M < beta/m` is mathematically possible but peripheral for hegemon/weak-state applications; if used, mark it as an extension.
 
 The current safe theorem architecture is:
 
-1. for the old random-proposer BF model: sufficient-conditions and calibrated results only;
-2. for the next paper version: a weak-state-agenda, relative-package model that should restore exact payoffs without solving the H-proposer signaling branch.
+1. for the active paper: a weak-state-agenda, fixed-pie relative-package `pi_H=0` model with selected R1 outcomes under the weak-vote-passive assessment;
+2. for the old random-proposer BF model: historical sufficient-conditions and calibrated results only, useful as diagnostic history but not as the current manuscript architecture.
 
 ## Files
 
 - `formal_model_v5.Rmd`: active paper. Appendix contains the current corrected proof status.
 - `formal_model_v5.pdf`: compiled output.
+- `quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md`: scope and implementation notes for the AJPS/referee-driven revision pass, including weak-vote-passive language, rejected histories, No-Cheap-H, rule-choice framing, numerical illustration, and tie-break handling.
 - `model_redesign/power_architecture_derivations.Rmd`: standalone working document for the new proof architecture. Use this as the main work surface until the formal results are clean.
 - `model_redesign/README.md`: guardrails for the redesign workspace.
 - `quality_reports/notas_reescrita_provas_formulas.md`: detailed external/referee-style proof concerns; input to the correction, not final proof status.
@@ -321,7 +313,7 @@ Do not force `output_format = "pdf_document"` unless explicitly debugging, becau
 
 ## Operating Rules for Future Sessions
 
-- Start from the appendix proof status, not from the main-text theorem statements.
+- Start from `formal_model_v5.Rmd` after the 2026-05-15 integration pass, but verify any formal claim against the appendix proof status before changing theorem language.
 - Do not do "minimal correction" on formal proofs. Rederive from primitives.
 - Do not add ad hoc assumptions to rescue old results.
 - Do not remove a branch, case, result, or equilibrium path by adding an ad hoc
@@ -334,10 +326,11 @@ Do not force `output_format = "pdf_document"` unless explicitly debugging, becau
 - Under the redesign, keep voting sequential and public. Use `pi_H = 0` in the main baseline so `H` is not an R1 proposer; treat `pi_H > 0` as an extension or robustness exercise.
 - Use the term **weak-vote-passive assessment** for the baseline belief assessment. Do not call it a refinement. The defense is informational: weak states do not observe `theta`, so their unilateral vote deviations do not directly signal `H`'s type; `H`'s own separating vote can update beliefs; on-path beliefs follow Bayes' rule.
 - State R1 as payoff-equivalence to `P`, `L`, or `R` under the maintained assessment, not as a uniqueness or all-PBE characterization.
+- For R1 rejected histories, use the rejected-history reduction lemma. It classifies proposer-relevant rejected outcomes: designed weak-caused failures reduce to `R`; the high-type rejection branch belongs to `L`; low-type rejection/high-type acceptance is ruled out by threshold order; weak-voter deviations in `P` and `L` are handled by approval ICs.
 - Maintain implementer/reviewer separation: implementation agents edit; review agents do not edit.
 - Entry by weak states is collective/all-or-nothing.
-- Main body revision comes later, after proof architecture is settled.
-- Do not edit `formal_model_v5.Rmd` for the redesign until the standalone derivation document has been verified.
+- The main body has been revised to the fixed-pie `pi_H=0` baseline, but still needs a full independent coherence review before final submission.
+- Do not edit `formal_model_v5.Rmd` to add new theorem architecture unless the result has first been derived and checked separately.
 - If using agents, separate derivation agents from verification agents and iterate until a verification pass has no reservations.
 - Lean is internal only; do not cite Lean in the paper.
 - Paper language is English; notes and project documentation can be Portuguese.
@@ -350,5 +343,5 @@ Do not force `output_format = "pdf_document"` unless explicitly debugging, becau
 Recommended opening prompt for a fresh session:
 
 ```text
-Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, model_redesign/power_architecture_derivations.Rmd e quality_reports/2026-05-11_relative_package_reimplementation.md. Não mexa em formal_model_v5.Rmd. A arquitetura antiga de feasibility/C-B-R foi arquivada na tag redesign-feasibility-branch-2026-05-11 e não deve ser usada como prova atual. O baseline novo usa pi_H=0 e propostas como pacotes institucionais relativos, sempre factíveis, com U_H(y,theta)=y+b_H(theta). O screening vem de thresholds y_theta^*(mu')=beta C_H(theta,mu')-b_H(theta), com y_1^*>y_0^*. Comece formalizando o custo de y para weak states e derivando R2 unanimity no documento limpo model_redesign/power_architecture_derivations.Rmd. Crie scripts novos sob scripts/verify_relative_package_*.R; não edite formal_model_v5.Rmd nem reaproveite branch labels C-B-R/B sem rederivação.
+Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, formal_model_v5.Rmd e quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md. O manuscrito ativo já usa o baseline fixed-pie relative-package com pi_H=0, weak-state agenda e weak-vote-passive assessment. Não use linguagem de rule-choice endógeno; trate o resultado como comparação institucional condicional. A Proposição R1 deve ficar como selected PBE outcome payoff-equivalent to P/L/R, não como caracterização de todos os PBEs. A prova de rejected histories tem lema A+ revisado por dois agentes; preserve a distinção entre proposer-relevant rejected outcomes, weak-voter deviations handled by ICs, designed weak-caused failures, e H-caused failures. Próximo passo recomendado: fazer uma revisão independente de coerência global do paper e checar captions/figuras/tabelas antes de nova circulação.
 ```

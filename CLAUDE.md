@@ -1,23 +1,24 @@
-# Informational Power and Institutional Design: When a Hegemon May Choose Consensus
+# Informational Power Through Pivotality
 
 ## Projeto
 
-Paper teórico sobre **por que um hegemon escolheria consenso** em organizações internacionais. O mecanismo: unanimidade força W a incluir H sob incerteza, criando screening que gera renda informacional. Sob maioria, W exclui H da coalizão → sem screening → payoff linear. Screening é o mecanismo central; Bayesian Persuasion aparece apenas como Remark.
+Paper teórico sobre **quando consenso pode beneficiar um hegemon** em organizações internacionais. O mecanismo: unanimidade força W a incluir H sob incerteza, criando screening que gera renda informacional. Sob maioria, W exclui H da coalizão → sem screening → payoff linear. Screening é o mecanismo central; Bayesian Persuasion aparece apenas como Remark.
 
 ### Resultado central
-H prefere unanimidade não apesar das restrições, mas por causa delas. Unanimidade ativa poder informacional (screening sob pivotalidade) que substitui poder de agenda. O consenso é uma tecnologia institucional de poder, não uma concessão.
+Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas. Unanimidade ativa poder informacional (screening sob pivotalidade) sem precisar dar poder formal de agenda a H. O consenso pode funcionar como tecnologia institucional de poder, não apenas como concessão.
 
 ## Status
 
-- **Fase**: redesign do modelo após correção técnica das provas. A versão submetida ao RIO deve ser tratada como superada para fins de prova formal.
-- **Paper v5** (ATIVO): `formal_model_v5.Rmd` — screening central, BP → Remark. O appendix foi corrigido em 2026-05-10 para majority outside option externa, strict BF feasibility, condições suficientes de dominância, nesting calibrado e classificação calibrada. O corpo principal ainda precisa ser revisado depois.
-- **Atualização do baseline v5 (2026-05-15)**: o manuscrito agora usa a arquitetura fixed-pie relative-package com `pi_H=0` no corpo. A avaliação de crenças deve ser chamada **weak-vote-passive assessment**, não refinement. A defesa é informacional: weak states não observam `theta`, então desvios unilaterais de voto dos fracos não sinalizam diretamente o tipo de `H`; votos separadores de `H` podem atualizar crenças; crenças on-path seguem Bayes. O resultado R1 deve ser formulado como payoff-equivalente a `P`, `L` ou `R` sob a avaliação mantida, não como unicidade nem caracterização de todos os PBEs.
+- **Fase**: integração do manuscrito após correção técnica das provas.
+- **Paper v5** (ATIVO): `formal_model_v5.Rmd` — baseline fixed-pie relative-package com `pi_H=0`, weak-state agenda e weak-vote-passive assessment. `formal_model_v5.pdf` recompilado em 2026-05-15.
+- **Atualização do baseline v5 (2026-05-15)**: o manuscrito agora usa a arquitetura fixed-pie relative-package com `pi_H=0` no corpo. A avaliação de crenças deve ser chamada **weak-vote-passive assessment**, não refinement. A defesa é informacional: weak states não observam `theta`, então desvios unilaterais de voto dos fracos não sinalizam diretamente o tipo de `H`; votos separadores de `H` podem atualizar crenças; crenças on-path seguem Bayes. O resultado R1 deve ser formulado como selected PBE outcome payoff-equivalente a `P`, `L` ou `R` sob a avaliação mantida, não como unicidade nem caracterização de todos os PBEs.
+- **Revisão AJPS/referee-driven (2026-05-15)**: `formal_model_v5.Rmd` foi reescrito para evitar linguagem de rule-choice endógeno, tratar No-Cheap-H como condição de escopo natural para hegemonia, substituir "calibration" por "working numerical illustration", corrigir `a_0(1)` e adicionar o lema de rejected-history reduction. Dois revisores independentes deram **A+** para a prova R1 rejeitada final e recomendaram parar de mexer nessa parte.
 - **Protocolo de revisão**: quem implementa não revisa; quem revisa não implementa. Revisões formais, validação de scripts R, auditoria visual e integração final devem ser feitas por agentes independentes sem edição de arquivos.
 - **Decisão de redesign**: a próxima versão do modelo principal deve separar três fontes de poder: outside option, veto/pivotality e proposal power. Agenda power entra por uma recognition probability `pi_H`. O baseline principal usa `pi_H = 0`, isto é, weak states / coalizões não-hegemônicas propõem e `H` é veto player informado. Isso isola informational power through pivotality de agenda power.
 - **Reset arquitetural (2026-05-11)**: abandonar o ramo de factibilidade state-contingent como mecanismo principal. A arquitetura ativa agora usa pacotes institucionais relativos, sempre factíveis, com `U_H(y, theta)=y+b_H(theta)`. O screening vem de thresholds relativos privados: `y_theta^*(mu')=beta C_H(theta,mu')-b_H(theta)` e `y_1^*>y_0^*`.
 - **Arquivo histórico**: a derivação feasibility/C-B-R foi preservada na tag `redesign-feasibility-branch-2026-05-11`. É história diagnóstica, não arquitetura atual.
-- **Atualização de disciplina de protocolo (2026-05-10)**: o pacote baseline `pi_H=0` foi rebaixado de verificado para parcialmente pendente porque o ramo de "no-information delay" em R1 não estava microfundado como primitivo do jogo extensivo. Não impor pooling, delay, rejeição, crenças off-path, ordem de votação, espaço contratual ou protocolo de continuação dentro de uma prova. Se uma prova precisar disso, marcar `pending protocol decision`, explicar consequências substantivas e obter aprovação explícita antes de prosseguir.
-- **Regra de freeze do paper**: não mexer em `formal_model_v5.Rmd` enquanto a nova arquitetura formal não estiver provada e limpa. Trabalhar primeiro em `model_redesign/power_architecture_derivations.Rmd`; depois transportar para o paper.
+- **Disciplina de protocolo**: não impor pooling, delay, rejeição, crenças off-path, ordem de votação, espaço contratual ou protocolo de continuação dentro de uma prova. Se uma prova precisar de novo protocolo, marcar `pending protocol decision`, explicar consequências substantivas e obter aprovação explícita antes de prosseguir.
+- **Status do paper**: `formal_model_v5.Rmd` já recebeu o baseline fixed-pie `pi_H=0`, mas ainda precisa de uma revisão independente de coerência global antes de nova circulação/submissão. Não reintroduzir branch labels antigos `A/C/R`, `C-B-R` ou linguagem random-proposer/H-proposer no corpo.
 - **Paper v4** (ARQUIVO): `formal_model_v4.Rmd` — versão com BP como co-protagonista. Preservada intacta.
 - **Paper v2** (ARQUIVO): `formal_model_v2.Rmd` — versão densa com provas no corpo.
 
@@ -64,19 +65,13 @@ Na calibração OPEC: `max{0.6842105, 0.8316498} < 0.9 < 0.9193777`.
 - Nesting calibrado: para os parâmetros OPEC, `V_W^R1(mu,M) > V_W^R1(mu,U)` para todo `mu in [0,1]` usando upper bound selection-free para os fracos sob unanimidade; logo `F_U subset F_M` para qualquer custo `c`.
 - Classificação institucional calibrada: verificada para OPEC porque dominância condicional, nesting e `lambda_M^E > alpha` passam.
 
-**Pendentes; não tratar como provados:**
-- Recriar Appendix A/B sob agenda R1 dos weak states e pacotes institucionais relativos.
-- Fazer a recriação no workspace separado `model_redesign/power_architecture_derivations.Rmd`, não diretamente no paper.
-- Especificar `pi_H` como primitivo de proposal power e resolver primeiro o baseline `pi_H = 0`.
-- Decidir protocolo de R2: benchmark limpo com `pi_H = 0` também, ou robustez com BF padrão/`pi_H > 0` depois da rejeição.
-- Formalizar custo de `y` para weak states e payoff residual do proposer.
-- Derivar R2 unanimity com `U_H(y,theta)=y+b_H(theta)` e thresholds `y_theta^*(mu')`.
-- Derivar R1 unanimity como pooling/high-threshold package, low-only package ou continuation. Não usar branch `B` por factibilidade.
-- Recalcular majority e unanimity payoffs sob a nova agenda e nova arquitetura relative-package.
-- Provar dominância condicional, entry/nesting e classificação sob o protocolo redesenhado.
-- Rederivar R1 unanimity sem assumir atraso sem informação; qualquer pooling/delay precisa ser equilibrium incentive-compatible sob o protocolo declarado.
-- Reescrever corpo principal, figuras e claims gerais antigos. O corpo ainda não deve ser usado como status de prova.
+**Pendentes; não tratar como fechados:**
+- Revisão independente de coerência global de `formal_model_v5.Rmd` depois da integração de 2026-05-15. A prova de rejected histories em R1 recebeu A+, mas o paper inteiro ainda precisa de leitura final.
+- Checar captions, figuras e tabelas para garantir que tudo usa a arquitetura fixed-pie relative-package `pi_H=0` e não importa linguagem antiga de feasibility/C-B-R ou random proposer.
 - Reauditar Appendix C somente depois de estabilizar o modelo binário redesenhado.
+- Decidir se haverá extensão separada para rule-choice/signaling. O modelo principal segura rule choice fixo para isolar screening; eventual extensão pode mostrar que signaling reduz, preserva ou amplifica screening.
+- Tratar `pi_H > 0` e H-proposer agenda power apenas como extensões com lower bounds, upper bounds selection-free ou simulações, não como parte do teorema principal sem rederivação.
+- Manter No-Cheap-H como condição de escopo natural do ambiente hegemônico. O caso `a_0^M < beta/m` é possível, mas periférico para hegemon/weak states e deve ser marcado como extensão.
 
 **Remark weighted**: Screening depende de inclusão estratégica, não pivotalidade formal.
 
@@ -181,7 +176,7 @@ Motivo: o erro anterior veio em parte de manter fórmulas de uma arquitetura ant
 ### Prompt recomendado para próxima sessão
 
 ```text
-Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, model_redesign/power_architecture_derivations.Rmd e quality_reports/2026-05-11_relative_package_reimplementation.md. Não mexa em formal_model_v5.Rmd. A arquitetura feasibility/C-B-R foi arquivada na tag redesign-feasibility-branch-2026-05-11 e não deve ser usada como prova atual. O baseline novo usa pi_H=0 e propostas como pacotes institucionais relativos, sempre factíveis, com U_H(y,theta)=y+b_H(theta). O screening vem de thresholds y_theta^*(mu')=beta C_H(theta,mu')-b_H(theta), com y_1^*>y_0^*. Comece formalizando o custo de y para weak states e derivando R2 unanimity no documento limpo model_redesign/power_architecture_derivations.Rmd. Crie scripts novos sob scripts/verify_relative_package_*.R; não edite formal_model_v5.Rmd nem reaproveite branch labels C-B-R/B sem rederivação.
+Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, formal_model_v5.Rmd e quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md. O manuscrito ativo já usa o baseline fixed-pie relative-package com pi_H=0, weak-state agenda e weak-vote-passive assessment. Não use linguagem de rule-choice endógeno; trate o resultado como comparação institucional condicional. A Proposição R1 deve ficar como selected PBE outcome payoff-equivalent to P/L/R, não como caracterização de todos os PBEs. A prova de rejected histories tem lema A+ revisado por dois agentes; preserve a distinção entre proposer-relevant rejected outcomes, weak-voter deviations handled by ICs, designed weak-caused failures, e H-caused failures. Próximo passo recomendado: revisão independente de coerência global do paper e checagem de captions/figuras/tabelas antes de nova circulação.
 ```
 
 ## PENDÊNCIAS RIO — Comparação com Hirsch & Shotts (AJPS 2025)
