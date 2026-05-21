@@ -54,31 +54,31 @@ compute_relative_package_R1_piH0 <- function(N, beta, d0, d1, b0, b1,
     a0_high_posterior + (m - 1) * c0 <= 1 + tol &&
     a0_high_posterior + tol < a1
 
-  rejection_feasible <- rep(TRUE, length(mu_grid))
+  delay_feasible <- rep(TRUE, length(mu_grid))
 
   pooling_raw <- 1 - a1 - (m - 1) * c_mu
   low_only_raw <- (1 - mu_grid) *
     (1 - a0_high_posterior - (m - 1) * c0) + mu_grid * c1
-  rejection_raw <- c_mu
+  delay_raw <- c_mu
 
   pooling_value <- ifelse(pooling_feasible, pooling_raw, -Inf)
   low_only_value <- if (low_only_feasible) low_only_raw else rep(-Inf, length(mu_grid))
-  rejection_value <- ifelse(rejection_feasible, rejection_raw, -Inf)
+  delay_value <- ifelse(delay_feasible, delay_raw, -Inf)
 
   H_pooling <- (1 - mu_grid) * (a1 + b0) + mu_grid * (a1 + b1)
   H_low_only <- (1 - mu_grid) * (a0_high_posterior + b0) + mu_grid * beta * d1
-  H_rejection <- (1 - mu_grid) * beta * D0(mu_grid) + mu_grid * beta * d1
+  H_delay <- (1 - mu_grid) * beta * D0(mu_grid) + mu_grid * beta * d1
 
-  best_value <- pmax(pooling_value, low_only_value, rejection_value)
+  best_value <- pmax(pooling_value, low_only_value, delay_value)
   select_candidate <- function(values, H_values) {
     best <- max(values)
     argmax <- which(values >= best - tol)
     argmax[which.min(H_values[argmax])]
   }
 
-  candidate_names <- c("pooling", "low_only", "rejection")
-  value_matrix <- cbind(pooling_value, low_only_value, rejection_value)
-  H_matrix <- cbind(H_pooling, H_low_only, H_rejection)
+  candidate_names <- c("pooling", "low_only", "delay")
+  value_matrix <- cbind(pooling_value, low_only_value, delay_value)
+  H_matrix <- cbind(H_pooling, H_low_only, H_delay)
   selected_index <- vapply(
     seq_len(nrow(value_matrix)),
     function(i) select_candidate(value_matrix[i, ], H_matrix[i, ]),
@@ -88,7 +88,7 @@ compute_relative_package_R1_piH0 <- function(N, beta, d0, d1, b0, b1,
   selected_H_payoff <- H_matrix[cbind(seq_len(nrow(H_matrix)), selected_index)]
 
   r2_identity_error <- max(abs(p2(mu_grid) - pmax(p2_low(mu_grid), p2_pool(mu_grid))))
-  selected_identity_error <- max(abs(best_value - pmax(pooling_value, low_only_value, rejection_value)))
+  selected_identity_error <- max(abs(best_value - pmax(pooling_value, low_only_value, delay_value)))
 
   pooling_H_high_error <- abs((a1 + b1) - beta * D1(1))
   pooling_H_low_slack <- (a1 + b0) - beta * D0(1)
@@ -99,7 +99,7 @@ compute_relative_package_R1_piH0 <- function(N, beta, d0, d1, b0, b1,
   low_weak_yes <- (1 - mu_grid) * c0 + mu_grid * c1
   low_weak_no <- (1 - mu_grid) * cW(0) + mu_grid * cW(1)
   low_weak_ic_error <- max(abs(low_weak_yes - low_weak_no))
-  rejection_identity_error <- max(abs(rejection_raw - c_mu))
+  delay_identity_error <- max(abs(delay_raw - c_mu))
   informative_rejection_gain <- (1 - mu_grid) * c0 + mu_grid * c1 - c_mu
 
   selected_value <- value_matrix[cbind(seq_len(nrow(value_matrix)), selected_index)]
@@ -119,15 +119,15 @@ compute_relative_package_R1_piH0 <- function(N, beta, d0, d1, b0, b1,
     c_mu = c_mu,
     pooling_raw = pooling_raw,
     low_only_raw = low_only_raw,
-    rejection_raw = rejection_raw,
+    delay_raw = delay_raw,
     pooling_value = pooling_value,
     low_only_value = low_only_value,
-    rejection_value = rejection_value,
+    delay_value = delay_value,
     best_value = best_value,
     W1_unanimity = best_value / m,
     H_pooling = H_pooling,
     H_low_only = H_low_only,
-    H_rejection = H_rejection,
+    H_delay = H_delay,
     selected_H_payoff = selected_H_payoff,
     informative_rejection_gain = informative_rejection_gain,
     selected_candidate = selected
@@ -140,7 +140,7 @@ compute_relative_package_R1_piH0 <- function(N, beta, d0, d1, b0, b1,
     R1_high_threshold_domain = a1 >= -tol && a1 <= ybar + tol,
     R1_strict_low_only_available = low_only_feasible,
     pooling_available_somewhere = any(pooling_feasible),
-    rejection_available_somewhere = any(rejection_feasible),
+    delay_available_somewhere = any(delay_feasible),
     R2_value_identity = r2_identity_error <= tol,
     selected_value_identity = selected_identity_error <= tol,
     selected_candidate_argmax = selected_argmax_error <= tol,
@@ -151,7 +151,7 @@ compute_relative_package_R1_piH0 <- function(N, beta, d0, d1, b0, b1,
     low_only_H_high_rejection = if (low_only_feasible) low_H_high_reject_slack > tol else TRUE,
     pooling_weak_voter_constraint = pooling_weak_ic_error <= tol,
     low_only_weak_voter_constraint = low_weak_ic_error <= tol,
-    rejection_payoff_identity = rejection_identity_error <= tol,
+    delay_payoff_identity = delay_identity_error <= tol,
     informative_rejection_no_strict_gain_when_IC = all(
       informative_rejection_gain <= tol | abs(D0(1) - D0(0)) > tol
     ),
@@ -176,7 +176,7 @@ compute_relative_package_R1_piH0 <- function(N, beta, d0, d1, b0, b1,
     a0_high_posterior = a0_high_posterior,
     pooling_feasible_grid = pooling_feasible,
     low_only_feasible = low_only_feasible,
-    rejection_feasible = rejection_feasible,
+    delay_feasible = delay_feasible,
     pooling_H_low_slack = pooling_H_low_slack,
     low_H_high_reject_slack = low_H_high_reject_slack,
     max_informative_rejection_gain = max(informative_rejection_gain),
@@ -255,7 +255,7 @@ assert_check <- function(objects, tol = 1e-9) {
     "mu2_star_in_unit_interval",
     "high_posterior_pooling",
     "R1_high_threshold_domain",
-    "rejection_available_somewhere",
+    "delay_available_somewhere",
     "R2_value_identity",
     "selected_value_identity",
     "selected_candidate_argmax",
@@ -266,7 +266,7 @@ assert_check <- function(objects, tol = 1e-9) {
     "low_only_H_high_rejection",
     "pooling_weak_voter_constraint",
     "low_only_weak_voter_constraint",
-    "rejection_payoff_identity",
+    "delay_payoff_identity",
     "informative_rejection_no_strict_gain_when_IC",
     "finite_selected_values"
   )

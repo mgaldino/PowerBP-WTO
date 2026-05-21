@@ -75,33 +75,33 @@ compute_case <- function(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285,
   c0 <- c_u(0)
   c1 <- c_u(1)
   a1 <- t1 - (1 - beta) * o1
-  a0_1 <- t0 - o0 + beta * (o0 + t1 - t0)
+  a0_post1 <- t0 - o0 + beta * (o0 + t1 - t0)
   a0_M <- t0 - (1 - beta) * o0
   a1_M <- t1 - (1 - beta) * o1
 
-  r1_order <- a0_1 >= -tol && a0_1 <= a1 + tol && a1 <= ybar + tol
+  r1_order <- a0_post1 >= -tol && a0_post1 <= a1 + tol && a1 <= ybar + tol
   majority_order <- a0_M >= -tol && a0_M < a1_M + tol && a1_M <= ybar + tol
   no_cheap_H <- a0_M + tol >= beta / m
 
   pooling_feasible <- r1_order && (a1 + (m - 1) * max(c_mu) <= 1 + tol)
-  low_feasible <- a0_1 >= -tol && a0_1 <= ybar + tol &&
-    a0_1 + (m - 1) * c0 <= 1 + tol && a0_1 + tol < a1
+  low_feasible <- a0_post1 >= -tol && a0_post1 <= ybar + tol &&
+    a0_post1 + (m - 1) * c0 <= 1 + tol && a0_post1 + tol < a1
 
   pi_P <- if (pooling_feasible) 1 - a1 - (m - 1) * c_mu else rep(-Inf, length(mu_grid))
   pi_L <- if (low_feasible) {
-    (1 - mu_grid) * (1 - a0_1 - (m - 1) * c0) + mu_grid * c1
+    (1 - mu_grid) * (1 - a0_post1 - (m - 1) * c0) + mu_grid * c1
   } else {
     rep(-Inf, length(mu_grid))
   }
-  pi_R <- c_mu
+  pi_D <- c_mu
 
   H_P <- (1 - mu_grid) * (o0 + a1 - t0) + mu_grid * (o1 + a1 - t1)
-  H_L <- (1 - mu_grid) * (o0 + a0_1 - t0) + mu_grid * beta * C1(1)
-  H_R <- (1 - mu_grid) * beta * C0(mu_grid) + mu_grid * beta * C1(mu_grid)
+  H_L <- (1 - mu_grid) * (o0 + a0_post1 - t0) + mu_grid * beta * C1(1)
+  H_D <- (1 - mu_grid) * beta * C0(mu_grid) + mu_grid * beta * C1(mu_grid)
 
-  value_matrix <- cbind(pi_P, pi_L, pi_R)
-  H_matrix <- cbind(H_P, H_L, H_R)
-  names <- c("pooling", "low_only", "rejection")
+  value_matrix <- cbind(pi_P, pi_L, pi_D)
+  H_matrix <- cbind(H_P, H_L, H_D)
+  names <- c("pooling", "low_only", "delay")
   selected_index <- vapply(
     seq_len(nrow(value_matrix)),
     function(i) {
@@ -115,9 +115,9 @@ compute_case <- function(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285,
   selected_H <- H_matrix[cbind(seq_len(nrow(H_matrix)), selected_index)]
 
   S_P <- rep(1 - a1, length(mu_grid))
-  S_L <- (1 - mu_grid) * (1 - a0_1) + mu_grid * beta * p2(1)
-  S_R <- beta * p2(mu_grid)
-  S_matrix <- cbind(S_P, S_L, S_R)
+  S_L <- (1 - mu_grid) * (1 - a0_post1) + mu_grid * beta * p2(1)
+  S_D <- beta * p2(mu_grid)
+  S_matrix <- cbind(S_P, S_L, S_D)
   selected_weak_total <- S_matrix[cbind(seq_len(nrow(S_matrix)), selected_index)]
   W_U <- selected_weak_total / m
   W_M <- 1 / m
@@ -143,7 +143,7 @@ compute_case <- function(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285,
     valid = TRUE,
     N = N, m = m, q = q, k = k, beta = beta, t0 = t0, t1 = t1,
     o0 = o0, o1 = o1, ybar = ybar, mu2 = mu2,
-    a0_1 = a0_1, a1 = a1, a0_M = a0_M, a1_M = a1_M,
+    a0_post1 = a0_post1, a1 = a1, a0_M = a0_M, a1_M = a1_M,
     c0 = c0, c1 = c1, W_U_min = min(W_U), W_U_max = max(W_U),
     W_M = W_M, min_entry_gap = min(W_M - W_U),
     Delta_min = min(Delta_H), Delta_max = max(Delta_H),
@@ -154,14 +154,14 @@ compute_case <- function(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285,
     core_conditions = core_conditions,
     pooling_all_mu = all(selected == "pooling"),
     low_only_some_mu = any(selected == "low_only"),
-    rejection_some_mu = any(selected == "rejection"),
+    delay_some_mu = any(selected == "delay"),
     selected = selected,
     mu_grid = mu_grid,
     values = data.frame(
       mu = mu_grid,
       pi_P = pi_P,
       pi_L = pi_L,
-      pi_R = pi_R,
+      pi_D = pi_D,
       selected = selected,
       W_U = W_U,
       W_M = W_M,
@@ -190,7 +190,7 @@ one_way_window <- function(parameter, values) {
       core_conditions = isTRUE(obj$core_conditions),
       pooling_all_mu = isTRUE(obj$pooling_all_mu),
       low_only_some_mu = isTRUE(obj$low_only_some_mu),
-      rejection_some_mu = isTRUE(obj$rejection_some_mu),
+      delay_some_mu = isTRUE(obj$delay_some_mu),
       mu_H = if (isTRUE(obj$valid)) obj$mu_H else NA_real_,
       min_entry_gap = if (isTRUE(obj$valid)) obj$min_entry_gap else NA_real_,
       stringsAsFactors = FALSE
@@ -253,7 +253,7 @@ classification_sweeps <- do.call(
       t1 = p$t1,
       o0 = p$o0,
       o1 = p$o1,
-      a0_1 = obj$a0_1,
+      a0_post1 = obj$a0_post1,
       a1 = obj$a1,
       W_U_max = obj$W_U_max,
       W_M = obj$W_M,
@@ -268,8 +268,114 @@ classification_sweeps <- do.call(
 sweeps_path <- file.path(tables_dir, "relative_package_classification_sweeps_piH0.csv")
 write.csv(classification_sweeps, sweeps_path, row.names = FALSE)
 
+open_neighborhood_center <- list(
+  N = 13,
+  beta = 0.9,
+  t0 = 0.19,
+  t1 = 0.285,
+  o0 = 0.19,
+  o1 = 0.265,
+  ybar = 1
+)
+open_neighborhood_radius <- list(
+  beta = 0.0005,
+  t0 = 0.0005,
+  t1 = 0.0005,
+  o0 = 0.0005,
+  o1 = 0.0005
+)
+
+neighborhood_grid <- expand.grid(
+  beta_delta = c(-1, 0, 1) * open_neighborhood_radius$beta,
+  t0_delta = c(-1, 0, 1) * open_neighborhood_radius$t0,
+  t1_delta = c(-1, 0, 1) * open_neighborhood_radius$t1,
+  o0_delta = c(-1, 0, 1) * open_neighborhood_radius$o0,
+  o1_delta = c(-1, 0, 1) * open_neighborhood_radius$o1
+)
+
+open_neighborhood_checks <- do.call(
+  rbind,
+  lapply(seq_len(nrow(neighborhood_grid)), function(i) {
+    deltas <- neighborhood_grid[i, ]
+    pars <- open_neighborhood_center
+    pars$beta <- pars$beta + deltas$beta_delta
+    pars$t0 <- pars$t0 + deltas$t0_delta
+    pars$t1 <- pars$t1 + deltas$t1_delta
+    pars$o0 <- pars$o0 + deltas$o0_delta
+    pars$o1 <- pars$o1 + deltas$o1_delta
+    obj <- do.call(compute_case, pars)
+    data.frame(
+      beta = pars$beta,
+      t0 = pars$t0,
+      t1 = pars$t1,
+      o0 = pars$o0,
+      o1 = pars$o1,
+      valid = isTRUE(obj$valid),
+      core_conditions = isTRUE(obj$core_conditions),
+      low_only_some_mu = isTRUE(obj$low_only_some_mu),
+      pooling_some_mu = if (isTRUE(obj$valid)) any(obj$selected == "pooling") else FALSE,
+      min_entry_gap = if (isTRUE(obj$valid)) obj$min_entry_gap else NA_real_,
+      mu_H = if (isTRUE(obj$valid)) obj$mu_H else NA_real_,
+      selected_candidates = if (isTRUE(obj$valid)) {
+        paste(unique(obj$selected), collapse = ";")
+      } else {
+        NA_character_
+      },
+      stringsAsFactors = FALSE
+    )
+  })
+)
+
+open_neighborhood_pass <- with(
+  open_neighborhood_checks,
+  all(valid) &&
+    all(core_conditions) &&
+    all(low_only_some_mu) &&
+    all(pooling_some_mu) &&
+    all(min_entry_gap > tol)
+)
+stopifnot(open_neighborhood_pass)
+
+open_neighborhood_path <- file.path(tables_dir, "relative_package_open_neighborhood_piH0.csv")
+write.csv(open_neighborhood_checks, open_neighborhood_path, row.names = FALSE)
+
+local_case <- do.call(
+  compute_case,
+  c(open_neighborhood_center, list(mu_grid = sort(unique(c(seq(0, 1, length.out = 5001), 0.01)))))
+)
+low_row <- local_case$values[which.min(abs(local_case$values$mu - 0)), ]
+pool_row <- local_case$values[which.min(abs(local_case$values$mu - 0.01)), ]
+local_continuity_margins <- data.frame(
+  threshold_order_slack = local_case$a1 - local_case$a0_post1,
+  no_cheap_H_slack = local_case$a0_M - local_case$beta / local_case$m,
+  min_entry_gap = local_case$min_entry_gap,
+  H_gap_positive_margin = local_case$Delta_max,
+  H_gap_negative_margin = -local_case$Delta_min,
+  low_point_mu = low_row$mu,
+  low_L_minus_P = low_row$pi_L - low_row$pi_P,
+  low_L_minus_D = low_row$pi_L - low_row$pi_D,
+  pool_point_mu = pool_row$mu,
+  pool_P_minus_L = pool_row$pi_P - pool_row$pi_L,
+  pool_P_minus_D = pool_row$pi_P - pool_row$pi_D
+)
+strict_margin_names <- c(
+  "threshold_order_slack",
+  "no_cheap_H_slack",
+  "min_entry_gap",
+  "H_gap_positive_margin",
+  "H_gap_negative_margin",
+  "low_L_minus_P",
+  "low_L_minus_D",
+  "pool_P_minus_L",
+  "pool_P_minus_D"
+)
+stopifnot(all(local_continuity_margins[strict_margin_names] > tol))
+
+local_margins_path <- file.path(tables_dir, "relative_package_local_continuity_margins_piH0.csv")
+write.csv(local_continuity_margins, local_margins_path, row.names = FALSE)
+
 example_params <- list(
-  calibration = list(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285, o0 = 0.19, o1 = 0.285),
+  baseline_boundary = list(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285, o0 = 0.19, o1 = 0.285),
   low_only_example = list(N = 13, beta = 0.6, t0 = 0.02, t1 = 0.27, o0 = 0.25, o1 = 0.27),
   delay_example = list(N = 13, beta = 0.9, t0 = 0.10, t1 = 0.50, o0 = 0.10, o1 = 0.50)
 )
@@ -287,7 +393,7 @@ example_rows <- do.call(
       t1 = obj$t1,
       o0 = obj$o0,
       o1 = obj$o1,
-      a0_1 = obj$a0_1,
+      a0_post1 = obj$a0_post1,
       a1 = obj$a1,
       candidate = runs$candidate,
       mu_min = runs$mu_min,
@@ -310,11 +416,11 @@ delay_details <- data.frame(
   t1 = delay_case$t1,
   o0 = delay_case$o0,
   o1 = delay_case$o1,
-  a0_1 = delay_case$a0_1,
+  a0_post1 = delay_case$a0_post1,
   a1 = delay_case$a1,
   Pi_P = delay_row_mu$pi_P,
   Pi_L = delay_row_mu$pi_L,
-  Pi_R = delay_row_mu$pi_R,
+  Pi_D = delay_row_mu$pi_D,
   selected = delay_row_mu$selected,
   stringsAsFactors = FALSE
 )
@@ -324,6 +430,24 @@ write.csv(delay_details, delay_path, row.names = FALSE)
 
 cat("Robustness windows:\n")
 print(windows, row.names = FALSE, digits = 8)
+cat("\nOpen-neighborhood check around interior low-only example:\n")
+cat(sprintf(
+  "center: beta=%.4f, t0=%.4f, t1=%.4f, o0=%.4f, o1=%.4f; radius=%.4f for beta,t0,t1,o0,o1\n",
+  open_neighborhood_center$beta,
+  open_neighborhood_center$t0,
+  open_neighborhood_center$t1,
+  open_neighborhood_center$o0,
+  open_neighborhood_center$o1,
+  open_neighborhood_radius$beta
+))
+cat(sprintf(
+  "grid points=%d, all pass=%s, min entry gap=%.12f\n",
+  nrow(open_neighborhood_checks),
+  open_neighborhood_pass,
+  min(open_neighborhood_checks$min_entry_gap)
+))
+cat("\nLocal strict margins for continuity argument:\n")
+print(local_continuity_margins, row.names = FALSE, digits = 8)
 cat("\nClassification sweeps:\n")
 print(classification_sweeps, row.names = FALSE, digits = 8)
 cat("\nR1 examples:\n")
@@ -331,4 +455,12 @@ print(example_rows, row.names = FALSE, digits = 8)
 cat("\nDelay details at mu=0.01:\n")
 print(delay_details, row.names = FALSE, digits = 8)
 cat("\nWrote:\n")
-cat(window_path, "\n", sweeps_path, "\n", examples_path, "\n", delay_path, "\n", sep = "")
+cat(
+  window_path, "\n",
+  sweeps_path, "\n",
+  open_neighborhood_path, "\n",
+  local_margins_path, "\n",
+  examples_path, "\n",
+  delay_path, "\n",
+  sep = ""
+)

@@ -60,12 +60,12 @@ compute_relative_package_classification_piH0 <- function(N, beta, d0, d1, b0, b1
     a0_high_posterior + (m - 1) * c0 <= 1 + tol &&
     a0_high_posterior + tol < a1
 
-  rejection_feasible <- rep(TRUE, length(mu_grid))
+  delay_feasible <- rep(TRUE, length(mu_grid))
 
   pooling_prop_raw <- 1 - a1 - (m - 1) * c_mu
   low_only_prop_raw <- (1 - mu_grid) *
     (1 - a0_high_posterior - (m - 1) * c0) + mu_grid * c1
-  rejection_prop_raw <- c_mu
+  delay_prop_raw <- c_mu
 
   pooling_prop_value <- ifelse(pooling_feasible, pooling_prop_raw, -Inf)
   low_only_prop_value <- if (low_only_feasible) {
@@ -73,16 +73,16 @@ compute_relative_package_classification_piH0 <- function(N, beta, d0, d1, b0, b1
   } else {
     rep(-Inf, length(mu_grid))
   }
-  rejection_prop_value <- ifelse(rejection_feasible, rejection_prop_raw, -Inf)
+  delay_prop_value <- ifelse(delay_feasible, delay_prop_raw, -Inf)
 
   H_pooling <- (1 - mu_grid) * (a1 + b0) + mu_grid * (a1 + b1)
   H_low_only <- (1 - mu_grid) * (a0_high_posterior + b0) + mu_grid * beta * d1
-  H_rejection <- (1 - mu_grid) * beta * D0(mu_grid) + mu_grid * beta * d1
+  H_delay <- (1 - mu_grid) * beta * D0(mu_grid) + mu_grid * beta * d1
 
-  prop_value_matrix <- cbind(pooling_prop_value, low_only_prop_value, rejection_prop_value)
-  H_matrix <- cbind(H_pooling, H_low_only, H_rejection)
-  candidate_names <- c("pooling", "low_only", "rejection")
-  best_prop_value <- pmax(pooling_prop_value, low_only_prop_value, rejection_prop_value)
+  prop_value_matrix <- cbind(pooling_prop_value, low_only_prop_value, delay_prop_value)
+  H_matrix <- cbind(H_pooling, H_low_only, H_delay)
+  candidate_names <- c("pooling", "low_only", "delay")
+  best_prop_value <- pmax(pooling_prop_value, low_only_prop_value, delay_prop_value)
 
   select_candidate <- function(values, H_values) {
     best <- max(values)
@@ -102,8 +102,8 @@ compute_relative_package_classification_piH0 <- function(N, beta, d0, d1, b0, b1
   weak_total_pooling <- rep(1 - a1, length(mu_grid))
   weak_total_low_only <- (1 - mu_grid) * (1 - a0_high_posterior) +
     mu_grid * beta * p2(1)
-  weak_total_rejection <- beta * p2(mu_grid)
-  weak_total_matrix <- cbind(weak_total_pooling, weak_total_low_only, weak_total_rejection)
+  weak_total_delay <- beta * p2(mu_grid)
+  weak_total_matrix <- cbind(weak_total_pooling, weak_total_low_only, weak_total_delay)
   selected_weak_total_U <- weak_total_matrix[cbind(seq_len(nrow(weak_total_matrix)), selected_index)]
   W1_U_entry <- selected_weak_total_U / m
 
@@ -244,7 +244,7 @@ compute_relative_package_classification_piH0 <- function(N, beta, d0, d1, b0, b1
 
   selected_argmax_error <- max(abs(
     selected_prop_value -
-      pmax(pooling_prop_value, low_only_prop_value, rejection_prop_value)
+      pmax(pooling_prop_value, low_only_prop_value, delay_prop_value)
   ))
   weak_dominance_error <- max(W1_U_entry - W1_M_entry)
 
