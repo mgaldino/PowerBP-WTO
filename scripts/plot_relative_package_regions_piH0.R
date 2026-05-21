@@ -84,7 +84,7 @@ palette_regions <- c(
   "Pooling package" = "#E69F00",
   "Pooling P" = "#0072B2",
   "Low-only L" = "#009E73",
-  "Rejection R" = "#D55E00",
+  "Delay D" = "#D55E00",
   "Both: H prefers U" = "#0072B2",
   "Both: H prefers M" = "#D55E00",
   "Both: tie" = "#000000",
@@ -114,6 +114,11 @@ save_plot <- function(plot, stem, width = 6.8, height = 4.4) {
   ggsave(pdf_path, plot = plot, width = width, height = height, units = "in")
   ggsave(png_path, plot = plot, width = width, height = height, units = "in", dpi = 320, bg = "white")
   invisible(c(pdf = pdf_path, png = png_path))
+}
+
+axis_num <- function(x) {
+  out <- formatC(round(x, 2), format = "f", digits = 2)
+  sub("\\.?0+$", "", out)
 }
 
 mu_grid <- seq(0, 1, length.out = 501)
@@ -150,8 +155,8 @@ no_cheap_plot <- ggplot(no_cheap_grid, aes(x = o0, y = t0, fill = region)) +
   annotate("label", x = 0.35, y = 0.20, label = "No-Cheap-H", size = 3.5, fill = "white") +
   annotate("label", x = 0.31, y = 0.055, label = "H can be\ncheap", size = 3.5, fill = "white") +
   scale_fill_manual(values = palette_regions[c("No-Cheap-H holds", "H can be cheaper")], guide = "none") +
-  scale_x_continuous(name = expression("Low-type outside payoff, " * o[0])) +
-  scale_y_continuous(name = expression("Low terminal threshold, " * t[0])) +
+  scale_x_continuous(name = expression("Low-type outside payoff, " * o[0]), labels = axis_num) +
+  scale_y_continuous(name = expression("Low terminal threshold, " * t[0]), labels = axis_num) +
   labs(
     title = "No-Cheap-H scope condition",
     subtitle = expression("Boundary: " * t[0] - (1-beta) * o[0] == beta / m)
@@ -179,11 +184,11 @@ terminal_plot <- ggplot(terminal_grid, aes(x = mu, y = t1, fill = region)) +
   geom_line(data = terminal_boundary, aes(x = mu, y = t1), inherit.aes = FALSE, linewidth = 0.6) +
   annotate("point", x = mu2_star, y = pars$t1, size = 2.1, shape = 21, fill = "white") +
   scale_fill_manual(values = palette_regions[c("Low-only package", "Pooling package")]) +
-  scale_x_continuous(name = expression("Belief that " * H * " is high-threshold, " * mu)) +
-  scale_y_continuous(name = expression("High terminal threshold, " * t[1])) +
+  scale_x_continuous(name = expression("Belief that " * H * " is high-threshold, " * mu), labels = axis_num) +
+  scale_y_continuous(name = expression("High terminal threshold, " * t[1]), labels = axis_num) +
   labs(
     title = "Terminal unanimity regions",
-    subtitle = expression("Boundary: " * mu[2]^"*" * "=(t"[1] * "-t"[0] * ")/(1-t"[0] * "); point marks the working calibration")
+    subtitle = expression("Boundary: " * mu[2]^"*" * "=(t"[1] * "-t"[0] * ")/(1-t"[0] * "); point marks the working illustration")
   ) +
   coord_cartesian(xlim = c(0, 1), ylim = range(terminal_grid$t1), expand = FALSE) +
   theme_paper()
@@ -223,7 +228,7 @@ r1_grid$H_r <- (1 - r1_grid$mu) * pars$beta * r1_C0(r1_grid$mu) +
 
 r1_values <- cbind(r1_grid$pi_p, r1_grid$pi_l, r1_grid$pi_r)
 r1_H_values <- cbind(r1_grid$H_p, r1_grid$H_l, r1_grid$H_r)
-r1_names <- c("Pooling P", "Low-only L", "Rejection R")
+r1_names <- c("Pooling P", "Low-only L", "Delay D")
 r1_selected_index <- vapply(
   seq_len(nrow(r1_values)),
   function(i) {
@@ -235,14 +240,14 @@ r1_selected_index <- vapply(
 )
 r1_grid$selected <- r1_names[r1_selected_index]
 
-stopifnot(all(c("Pooling P", "Low-only L", "Rejection R") %in% unique(r1_grid$selected)))
+stopifnot(all(c("Pooling P", "Low-only L", "Delay D") %in% unique(r1_grid$selected)))
 
 r1_boundary_mu <- r1_mu_grid[r1_mu_grid < 0.999]
 r1_boundary_c <- c_u(r1_boundary_mu)
 boundary_pr <- data.frame(
   mu = r1_boundary_mu,
   a1 = 1 - pars$m * r1_boundary_c,
-  boundary = "P=R"
+  boundary = "P=D"
 )
 boundary_pr <- boundary_pr[
   boundary_pr$a1 + (pars$m - 1) * c_u(boundary_pr$mu) <= 1 + tol,
@@ -252,7 +257,7 @@ boundary_lr <- data.frame(
   mu = r1_boundary_mu,
   a1 = 1 + r1_gap - (pars$m - 1) * c_u(0) -
     (r1_boundary_c - r1_boundary_mu * c_u(1)) / (1 - r1_boundary_mu),
-  boundary = "L=R"
+  boundary = "L=D"
 )
 boundary_lr$a0_1 <- boundary_lr$a1 - r1_gap
 boundary_lr <- boundary_lr[
@@ -298,10 +303,10 @@ r1_plot <- ggplot(r1_grid, aes(x = mu, y = a1, fill = selected)) +
             inherit.aes = FALSE, color = "white", linewidth = 0.45) +
   annotate("label", x = 0.045, y = 0.27, label = "L", size = 4.2, fill = "white") +
   annotate("label", x = 0.62, y = 0.285, label = "P", size = 4.2, fill = "white") +
-  annotate("label", x = 0.56, y = 0.43, label = "R", size = 4.2, fill = "white") +
-  scale_fill_manual(values = palette_regions[c("Pooling P", "Low-only L", "Rejection R")]) +
-  scale_x_continuous(name = expression("Belief that " * H * " is high-threshold, " * mu)) +
-  scale_y_continuous(name = expression("Pooling dynamic threshold, " * a[1])) +
+  annotate("label", x = 0.56, y = 0.43, label = "D", size = 4.2, fill = "white") +
+  scale_fill_manual(values = palette_regions[c("Pooling P", "Low-only L", "Delay D")]) +
+  scale_x_continuous(name = expression("Belief that " * H * " is high-threshold, " * mu), labels = axis_num) +
+  scale_y_continuous(name = expression("Pooling dynamic threshold, " * a[1]), labels = axis_num) +
   labs(
     title = "Round-1 candidate regions under unanimity",
     subtitle = expression("Display slice with strict dynamic gap " * a[1] - a[0]^1 == 0.04)
@@ -350,9 +355,10 @@ classification_plot <- ggplot(classification_grid, aes(x = mu, y = chi, fill = c
   annotate("label", x = 0.50, y = 0.092, label = "No formation", size = 3.4, fill = "white") +
   scale_x_continuous(
     name = expression("Belief that " * H * " is high-threshold, " * mu),
-    breaks = c(0, 0.25, 0.5, 0.75, 1)
+    breaks = c(0, 0.25, 0.5, 0.75, 1),
+    labels = axis_num
   ) +
-  scale_y_continuous(name = expression("Entry cost per weak state, " * chi)) +
+  scale_y_continuous(name = expression("Entry cost per weak state, " * chi), labels = axis_num) +
   labs(
     title = "Entry and institutional classification",
     subtitle = expression("Horizontal lines: " * V[W]^U * " and " * V[W]^M * "; dashed line: " * Delta[H](mu)==0)
@@ -367,11 +373,11 @@ delta_plot <- ggplot(delta_data, aes(x = mu, y = Delta_H)) +
   geom_vline(xintercept = mu_h_indiff, linewidth = 0.45, linetype = "dashed", color = "grey35") +
   geom_line(color = "#0072B2", linewidth = 0.9) +
   geom_point(data = data.frame(mu = mu_h_indiff, Delta_H = 0), size = 2, color = "#D55E00") +
-  scale_x_continuous(name = expression("Belief that " * H * " is high-threshold, " * mu)) +
-  scale_y_continuous(name = expression(Delta[H](mu))) +
+  scale_x_continuous(name = expression("Belief that " * H * " is high-threshold, " * mu), labels = axis_num) +
+  scale_y_continuous(name = expression(Delta[H](mu)), labels = axis_num) +
   labs(
     title = "Conditional payoff gap for the hegemon",
-    subtitle = expression(Delta[H](mu) == 0.0665 - 0.095 * mu)
+    subtitle = "Approximate fit: Delta_H(mu) = 0.067 - 0.095 mu"
   ) +
   theme_paper()
 

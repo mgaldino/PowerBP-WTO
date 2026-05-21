@@ -45,6 +45,37 @@ candidate_runs <- function(selected, mu_grid) {
   )
 }
 
+format_mu_list <- function(x, digits = 6) {
+  x <- x[is.finite(x)]
+  if (length(x) == 0) {
+    return("none")
+  }
+  paste(formatC(round(x, digits), format = "f", digits = digits), collapse = ";")
+}
+
+find_delta_roots <- function(values, tol = 1e-10) {
+  roots <- numeric(0)
+  exact <- which(abs(values$Delta_H) <= tol)
+  if (length(exact) > 0) {
+    roots <- c(roots, values$mu[exact])
+  }
+  if (nrow(values) >= 2) {
+    for (i in seq_len(nrow(values) - 1)) {
+      same_branch <- identical(values$selected[i], values$selected[i + 1])
+      left <- values$Delta_H[i]
+      right <- values$Delta_H[i + 1]
+      if (same_branch && is.finite(left) && is.finite(right) && left * right < 0) {
+        roots <- c(
+          roots,
+          approx(c(left, right), values$mu[c(i, i + 1)], xout = 0)$y
+        )
+      }
+    }
+  }
+  roots <- sort(unique(round(roots, 10)))
+  roots[roots >= -tol & roots <= 1 + tol]
+}
+
 compute_case <- function(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285,
                          o0 = t0, o1 = t1, ybar = 1,
                          mu_grid = seq(0, 1, length.out = 5001)) {
@@ -81,13 +112,13 @@ compute_case <- function(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285,
 
   r1_order <- a0_post1 >= -tol && a0_post1 <= a1 + tol && a1 <= ybar + tol
   majority_order <- a0_M >= -tol && a0_M < a1_M + tol && a1_M <= ybar + tol
-  no_cheap_H <- a0_M + tol >= beta / m
+  no_cheap_H <- a0_M - beta / m > tol
 
-  pooling_feasible <- r1_order && (a1 + (m - 1) * max(c_mu) <= 1 + tol)
+  pooling_feasible <- r1_order & (a1 + (m - 1) * c_mu <= 1 + tol)
   low_feasible <- a0_post1 >= -tol && a0_post1 <= ybar + tol &&
     a0_post1 + (m - 1) * c0 <= 1 + tol && a0_post1 + tol < a1
 
-  pi_P <- if (pooling_feasible) 1 - a1 - (m - 1) * c_mu else rep(-Inf, length(mu_grid))
+  pi_P <- ifelse(pooling_feasible, 1 - a1 - (m - 1) * c_mu, -Inf)
   pi_L <- if (low_feasible) {
     (1 - mu_grid) * (1 - a0_post1 - (m - 1) * c0) + mu_grid * c1
   } else {
@@ -123,17 +154,21 @@ compute_case <- function(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285,
   W_M <- 1 / m
   H_M <- (1 - mu_grid) * o0 + mu_grid * o1
   Delta_H <- selected_H - H_M
-
-  root_mu <- NA_real_
-  if (min(Delta_H) <= tol && max(Delta_H) >= -tol) {
-    sign_change <- which(diff(sign(Delta_H)) != 0)
-    if (length(sign_change) > 0) {
-      j <- sign_change[1]
-      root_mu <- approx(Delta_H[c(j, j + 1)], mu_grid[c(j, j + 1)], xout = 0)$y
-    } else if (any(abs(Delta_H) <= tol)) {
-      root_mu <- mu_grid[which.min(abs(Delta_H))]
-    }
-  }
+  values <- data.frame(
+    mu = mu_grid,
+    pi_P = pi_P,
+    pi_L = pi_L,
+    pi_D = pi_D,
+    selected = selected,
+    W_U = W_U,
+    W_M = W_M,
+    Delta_H = Delta_H,
+    stringsAsFactors = FALSE
+  )
+  delta_roots <- find_delta_roots(values, tol)
+  root_mu <- if (length(delta_roots) > 0) delta_roots[1] else NA_real_
+  runs <- candidate_runs(selected, mu_grid)
+  candidate_switches <- if (nrow(runs) > 1) runs$mu_min[-1] else numeric(0)
 
   core_conditions <- valid_threshold && high_posterior_pooling && r1_order &&
     majority_order && no_cheap_H && max(W_U - W_M) <= tol &&
@@ -155,19 +190,11 @@ compute_case <- function(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285,
     pooling_all_mu = all(selected == "pooling"),
     low_only_some_mu = any(selected == "low_only"),
     delay_some_mu = any(selected == "delay"),
+    candidate_switches = candidate_switches,
+    delta_roots = delta_roots,
     selected = selected,
     mu_grid = mu_grid,
-    values = data.frame(
-      mu = mu_grid,
-      pi_P = pi_P,
-      pi_L = pi_L,
-      pi_D = pi_D,
-      selected = selected,
-      W_U = W_U,
-      W_M = W_M,
-      Delta_H = Delta_H,
-      stringsAsFactors = FALSE
-    )
+    values = values
   )
 }
 
@@ -233,6 +260,8 @@ windows <- do.call(
 window_path <- file.path(tables_dir, "relative_package_robustness_windows_piH0.csv")
 write.csv(windows, window_path, row.names = FALSE)
 
+fine_mu_grid <- seq(0, 1, length.out = 100001)
+
 sweep_cases <- list(
   list(label = "baseline", beta = 0.9, t0 = 0.19, t1 = 0.285, o0 = 0.19, o1 = 0.285),
   list(label = "lower_beta", beta = 0.8, t0 = 0.19, t1 = 0.285, o0 = 0.19, o1 = 0.285),
@@ -244,7 +273,10 @@ sweep_cases <- list(
 classification_sweeps <- do.call(
   rbind,
   lapply(sweep_cases, function(p) {
-    obj <- compute_case(N = 13, beta = p$beta, t0 = p$t0, t1 = p$t1, o0 = p$o0, o1 = p$o1)
+    obj <- compute_case(
+      N = 13, beta = p$beta, t0 = p$t0, t1 = p$t1,
+      o0 = p$o0, o1 = p$o1, mu_grid = fine_mu_grid
+    )
     stopifnot(obj$valid, obj$core_conditions)
     data.frame(
       case = p$label,
@@ -259,6 +291,8 @@ classification_sweeps <- do.call(
       W_M = obj$W_M,
       min_entry_gap = obj$min_entry_gap,
       mu_H = obj$mu_H,
+      Delta_H_roots = format_mu_list(obj$delta_roots),
+      candidate_switches = format_mu_list(obj$candidate_switches),
       selected_candidates = paste(unique(obj$selected), collapse = ";"),
       stringsAsFactors = FALSE
     )
@@ -383,7 +417,7 @@ example_params <- list(
 example_rows <- do.call(
   rbind,
   lapply(names(example_params), function(label) {
-    obj <- do.call(compute_case, example_params[[label]])
+    obj <- do.call(compute_case, c(example_params[[label]], list(mu_grid = fine_mu_grid)))
     stopifnot(obj$valid)
     runs <- candidate_runs(obj$selected, obj$mu_grid)
     data.frame(
@@ -407,7 +441,10 @@ example_rows <- do.call(
 examples_path <- file.path(tables_dir, "relative_package_r1_examples_piH0.csv")
 write.csv(example_rows, examples_path, row.names = FALSE)
 
-delay_case <- compute_case(N = 13, beta = 0.9, t0 = 0.10, t1 = 0.50, o0 = 0.10, o1 = 0.50)
+delay_case <- compute_case(
+  N = 13, beta = 0.9, t0 = 0.10, t1 = 0.50,
+  o0 = 0.10, o1 = 0.50, mu_grid = fine_mu_grid
+)
 delay_row_mu <- delay_case$values[which.min(abs(delay_case$values$mu - 0.01)), ]
 delay_details <- data.frame(
   mu = delay_row_mu$mu,

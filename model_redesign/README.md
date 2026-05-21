@@ -16,6 +16,9 @@ Current architecture:
 
 - proposals are relative institutional packages, not fixed transfers;
 - packages are feasible in every state;
+- the weak coalition's institutional surplus is fixed and normalized to 1 in
+  the baseline; the private state affects `H`'s participation threshold, not the
+  size of the weak coalition pie;
 - baseline recognition is `pi_H = 0`;
 - minimal H payoff primitive is `U_H(y, theta) = y + b_H(theta)`;
 - acceptance threshold is `y_theta^*(mu') = beta C_H(theta, mu') - b_H(theta)`;

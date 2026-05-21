@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 
-# Reproduces the calibration margin tables reported in formal_model_v5.Rmd
-# for the fixed-pie relative-package pi_H = 0 baseline.
+# Reproduces baseline-boundary margin tables for the fixed-pie
+# relative-package pi_H = 0 numerical illustration.
 
 compute_margins <- function(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285,
                             o0 = t0, o1 = t1, ybar = 1, tol = 1e-10) {
@@ -16,14 +16,14 @@ compute_margins <- function(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285,
   a0_M <- t0 - (1 - beta) * o0
   a1_M <- t1 - (1 - beta) * o1
   a1 <- t1 - (1 - beta) * o1
-  a0_1 <- t0 - o0 + beta * (o0 + t1 - t0)
+  a0_post1 <- t0 - o0 + beta * (o0 + t1 - t0)
 
   pi_P <- function(mu) 1 - a1 - (m - 1) * c_u(mu)
   pi_R <- function(mu) c_u(mu)
   delta_H <- function(mu) a1 - ((1 - mu) * o0 + mu * o1)
 
   no_cheap_H <- data.frame(
-    condition = "No-Cheap-H",
+    condition = "Strict No-Cheap-H",
     value = a0_M,
     boundary = beta / m,
     margin = a0_M - beta / m
@@ -64,7 +64,7 @@ compute_margins <- function(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285,
 
   checks <- list(
     no_cheap_H_margin = abs(no_cheap_H$margin - 0.096) <= tol,
-    dynamic_threshold_boundary = abs(a1 - a0_1) <= tol,
+    dynamic_threshold_boundary = abs(a1 - a0_post1) <= tol,
     high_posterior_pooling = mu2_star < 1 - tol,
     r1_candidate_feasibility = all(r1_feasibility$margin >= -tol),
     pooling_beats_rejection_all_reported = all(r1_margins$pooling_minus_rejection >= -tol),
@@ -84,7 +84,7 @@ compute_margins <- function(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285,
     mu2_star = mu2_star,
     a0_M = a0_M,
     a1_M = a1_M,
-    a0_1 = a0_1,
+    a0_post1 = a0_post1,
     a1 = a1,
     no_cheap_H = no_cheap_H,
     threshold_domain = threshold_domain,
@@ -97,14 +97,14 @@ compute_margins <- function(N = 13, beta = 0.9, t0 = 0.19, t1 = 0.285,
 }
 
 print_margins <- function(x) {
-  cat("Relative-package pi_H = 0 calibration margins\n")
+  cat("Relative-package pi_H = 0 baseline-boundary margins\n")
   cat(sprintf(
     "N=%d, m=%d, beta=%.6f, t0=%.6f, t1=%.6f, ybar=%.6f\n",
     x$N, x$m, x$beta, x$t0, x$t1, x$ybar
   ))
   cat(sprintf(
-    "mu2_star=%.12f, a0_M=%.6f, a1_M=%.6f, a0_1=%.6f, a1=%.6f\n\n",
-    x$mu2_star, x$a0_M, x$a1_M, x$a0_1, x$a1
+    "mu2_star=%.12f, a0_M=%.6f, a1_M=%.6f, a0_post1=%.6f, a1=%.6f\n\n",
+    x$mu2_star, x$a0_M, x$a1_M, x$a0_post1, x$a1
   ))
 
   cat("No-Cheap-H margin:\n")

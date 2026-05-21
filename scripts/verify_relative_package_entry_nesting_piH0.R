@@ -123,7 +123,8 @@ compute_relative_package_entry_nesting_piH0 <- function(N, beta, d0, d1, b0, b1,
   pooling_H_value_M <- 1 - a1_M - (k - 1) * c_M
   low_only_H_value_M <- (1 - mu_grid) * (1 - a0_M - (k - 1) * c_M) +
     mu_grid * c_M
-  no_cheap_H <- a0_M + tol >= c_M
+  weak_no_cheap_H <- a0_M + tol >= c_M
+  strict_no_cheap_H <- a0_M - c_M > tol
   quota_bound <- (k + 1) * c_M <= 1 + tol
   majority_threshold_domain <- a0_M >= -tol && a0_M < a1_M &&
     a1_M <= ybar + tol
@@ -191,7 +192,8 @@ compute_relative_package_entry_nesting_piH0 <- function(N, beta, d0, d1, b0, b1,
     weak_majority_exists_without_H = k <= m - 1,
     majority_threshold_domain = majority_threshold_domain,
     quota_bound = quota_bound,
-    no_cheap_H_condition = no_cheap_H,
+    weak_no_cheap_H_condition = weak_no_cheap_H,
+    strict_no_cheap_H_condition = strict_no_cheap_H,
     no_H_majority_weak_value = abs(W1_M_entry - 1 / m) <= tol,
     weak_payoff_M_weakly_dominates_U_grid = weak_dominance_error <= tol,
     majority_entry_set_formula_grid = all(majority_set_formula_by_cost),
@@ -326,7 +328,7 @@ assert_check <- function(objects, require_no_cheap_H = TRUE, tol = 1e-9) {
   )
 
   if (require_no_cheap_H) {
-    required <- c(required, "no_cheap_H_condition")
+    required <- c(required, "strict_no_cheap_H_condition")
   }
 
   failed <- required[!unlist(objects$checks[required])]
@@ -401,6 +403,23 @@ cases <- list(
   )
 )
 
-invisible(Map(run_case, names(cases), cases))
+case_requires_strict_no_cheap_H <- c(
+  calibration_equal_threshold = TRUE,
+  strict_low_only_available = TRUE,
+  no_cheap_H_boundary = FALSE,
+  beta_one_boundary = TRUE
+)
+
+invisible(Map(
+  function(label, params) {
+    run_case(
+      label,
+      params,
+      require_no_cheap_H = case_requires_strict_no_cheap_H[[label]]
+    )
+  },
+  names(cases),
+  cases
+))
 
 cat("\nAll fixed-pie relative-package entry/nesting checks passed.\n")

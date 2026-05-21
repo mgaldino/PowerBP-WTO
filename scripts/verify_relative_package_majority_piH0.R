@@ -34,13 +34,15 @@ compute_relative_package_majority_piH0 <- function(N, beta, d0, d1, b0, b1,
   low_only_gap_formula <- c_M - a0_M + mu_grid * (a0_M + k * c_M - 1)
   low_only_gap_identity_error <- max(abs(low_only_gap - low_only_gap_formula))
   quota_bound <- (k + 1) * c_M <= 1 + tol
-  no_cheap_H <- a0_M + tol >= c_M
-  no_H_uniformly_optimal_theorem <- no_cheap_H
+  weak_no_cheap_H <- a0_M + tol >= c_M
+  strict_no_cheap_H <- a0_M - c_M > tol
+  no_H_uniformly_optimal_theorem <- strict_no_cheap_H
   majority_H_screening_cutoff <- if (a0_M < c_M - tol) {
     (c_M - a0_M) / (1 - a0_M - k * c_M)
   } else {
     NA_real_
   }
+  cheap_H_branch <- a0_M < c_M - tol
 
   values <- data.frame(
     mu = mu_grid,
@@ -57,6 +59,24 @@ compute_relative_package_majority_piH0 <- function(N, beta, d0, d1, b0, b1,
 
   max_H_including_advantage <- max(values$best_H_including_value - values$no_H_value)
   no_H_uniformly_optimal_grid <- all(values$selected_package == "no_H")
+  low_only_screening_region <- low_only_gap > tol
+  low_only_screening_cutoff_check <- if (cheap_H_branch) {
+    is.finite(majority_H_screening_cutoff) &&
+      majority_H_screening_cutoff > 0 &&
+      majority_H_screening_cutoff <= 1 + tol &&
+      low_only_gap[which.min(mu_grid)] > tol &&
+      low_only_gap[which.max(mu_grid)] <= tol &&
+      any(low_only_screening_region)
+  } else {
+    is.na(majority_H_screening_cutoff) &&
+      !any(low_only_screening_region) &&
+      max(low_only_H_value - no_H_value) <= tol
+  }
+  no_H_or_screening_branch_verified <- if (cheap_H_branch) {
+    !no_H_uniformly_optimal_grid && max_H_including_advantage > tol
+  } else {
+    no_H_uniformly_optimal_grid && max_H_including_advantage <= tol
+  }
 
   checks <- list(
     majority_quota_valid = q >= 2 && q <= N,
@@ -65,14 +85,15 @@ compute_relative_package_majority_piH0 <- function(N, beta, d0, d1, b0, b1,
     R1_threshold_domain = a0_M >= -tol && a0_M < a1_M && a1_M <= ybar + tol,
     quota_bound = quota_bound,
     low_only_gap_identity = low_only_gap_identity_error <= tol,
-    no_cheap_H_condition = no_cheap_H,
+    weak_no_cheap_H_condition = weak_no_cheap_H,
+    strict_no_cheap_H_condition = strict_no_cheap_H,
     no_H_uniform_iff_no_cheap_H = identical(
       no_H_uniformly_optimal_grid,
       no_H_uniformly_optimal_theorem
     ),
     pooling_H_not_cheaper = pooling_gap <= tol,
-    low_only_H_not_profitable = max(low_only_H_value - no_H_value) <= tol,
-    no_H_selected_all_mu = no_H_uniformly_optimal_grid
+    low_only_screening_cutoff = low_only_screening_cutoff_check,
+    no_H_or_screening_branch_verified = no_H_or_screening_branch_verified
   )
 
   list(
@@ -96,13 +117,18 @@ compute_relative_package_majority_piH0 <- function(N, beta, d0, d1, b0, b1,
     low_only_gap_identity_error = low_only_gap_identity_error,
     majority_H_screening_cutoff = majority_H_screening_cutoff,
     max_H_including_advantage = max_H_including_advantage,
+    cheap_H_branch = cheap_H_branch,
     W1_M = 1 / m,
     checks = checks,
     values = values
   )
 }
 
-print_check <- function(objects, rows) {
+print_check <- function(objects, rows, label = NULL) {
+  if (!is.null(label)) {
+    cat("\n============================================================\n")
+    cat(sprintf("Case: %s\n", label))
+  }
   cat("Fixed-pie relative-package majority check under pi_H = 0\n")
   cat(sprintf(
     "N=%d, m=%d, q=%d, k=%d, beta=%.12f\n",
@@ -121,7 +147,7 @@ print_check <- function(objects, rows) {
     objects$pooling_gap, objects$low_only_gap_identity_error
   ))
   if (is.na(objects$majority_H_screening_cutoff)) {
-    cat("majority H-screening cutoff: none because a0_M >= c_M\n")
+    cat("majority H-screening cutoff: none because a0_M > c_M in the selected benchmark\n")
   } else {
     cat(sprintf(
       "majority H-screening cutoff if a0_M < c_M: %.12f\n",
@@ -145,11 +171,10 @@ assert_check <- function(objects, tol = 1e-9) {
     "R1_threshold_domain",
     "quota_bound",
     "low_only_gap_identity",
-    "no_cheap_H_condition",
     "no_H_uniform_iff_no_cheap_H",
     "pooling_H_not_cheaper",
-    "low_only_H_not_profitable",
-    "no_H_selected_all_mu"
+    "low_only_screening_cutoff",
+    "no_H_or_screening_branch_verified"
   )
 
   failed <- required[!unlist(objects$checks[required])]
@@ -157,37 +182,54 @@ assert_check <- function(objects, tol = 1e-9) {
     stop(sprintf("Majority verification failed: %s", paste(failed, collapse = ", ")))
   }
 
-  if (objects$max_H_including_advantage > tol) {
+  if (!objects$cheap_H_branch && objects$max_H_including_advantage > tol) {
     stop("An H-including majority package beats the no-H package.")
   }
 
   invisible(TRUE)
 }
 
-params <- list(
-  N = 13,
-  beta = 0.9,
-  d0 = 0.19,
-  d1 = 0.285,
-  b0 = 0,
-  b1 = 0,
-  ybar = 1
+cases <- list(
+  baseline_no_cheap_H = list(
+    N = 13,
+    beta = 0.9,
+    d0 = 0.19,
+    d1 = 0.285,
+    b0 = 0,
+    b1 = 0,
+    ybar = 1
+  ),
+  cheap_H_screening_branch = list(
+    N = 13,
+    beta = 0.9,
+    d0 = 0.05,
+    d1 = 0.285,
+    b0 = 0,
+    b1 = 0,
+    ybar = 1
+  )
 )
 
 mu_grid <- sort(unique(c(seq(0, 1, length.out = 1001), 0, 0.5, 1)))
 
-objects <- do.call(
-  compute_relative_package_majority_piH0,
-  c(params, list(mu_grid = mu_grid))
-)
+for (case_name in names(cases)) {
+  objects <- do.call(
+    compute_relative_package_majority_piH0,
+    c(cases[[case_name]], list(mu_grid = mu_grid))
+  )
 
-rows <- c(
-  1,
-  which.min(abs(objects$values$mu - 0.5)),
-  nrow(objects$values)
-)
+  row_targets <- c(0, 0.5, 1)
+  if (!is.na(objects$majority_H_screening_cutoff)) {
+    row_targets <- sort(unique(c(row_targets, objects$majority_H_screening_cutoff)))
+  }
+  rows <- unique(vapply(
+    row_targets,
+    function(x) which.min(abs(objects$values$mu - x)),
+    integer(1)
+  ))
 
-print_check(objects, rows)
-assert_check(objects)
+  print_check(objects, rows, label = case_name)
+  assert_check(objects)
+}
 
 cat("\nAll fixed-pie relative-package majority checks passed.\n")
