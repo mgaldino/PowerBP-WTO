@@ -298,6 +298,7 @@ The current safe theorem architecture is:
 - git tag `redesign-feasibility-branch-2026-05-11`: archived feasibility-branch derivation before the reset. Diagnostic history only.
 - `scripts/verify_sufficient_conditions_lower_bound.R`: reproduces the sufficient-conditions beta window and endpoint gaps.
 - `scripts/verify_calibrated_nesting_upper_bound.R`: reproduces the calibrated formation-set nesting checks.
+- `scripts/run_coarse_review.py`: safe wrapper for `coarse-review`; validates the OpenRouter key from macOS Keychain before running and prevents stale `OPENROUTER_API_KEY` values inherited by Codex sessions.
 - `CLAUDE.md`: legacy project memory for Claude; keep broadly synced with this file.
 - `formal_proofs/`: Lean files. Treat as internal safety infrastructure only.
 
@@ -310,6 +311,16 @@ rmarkdown::render("formal_model_v5.Rmd")
 ```
 
 Do not force `output_format = "pdf_document"` unless explicitly debugging, because that bypasses the YAML/bookdown cross-reference setup.
+
+## Coarse Review
+
+When asked to run `coarse-review`, do **not** call `uvx ... coarse-review` directly. Use the safe wrapper:
+
+```bash
+python3 scripts/run_coarse_review.py formal_model_v5.pdf
+```
+
+The wrapper validates `OPENROUTER_API_KEY` against the OpenRouter `/api/v1/key` endpoint before launch, prefers the macOS Keychain value over any inherited environment variable, pre-extracts PDF text with `pdftotext` when available, and passes the validated key explicitly to the `coarse-review` subprocess. This prevents the recurring failure mode where a Codex session inherits an old/stale `OPENROUTER_API_KEY` even though the renewed key in the shell/Keychain is valid. If the user asks why or seems likely to run the old command manually, tell them to use the wrapper because direct `coarse-review` can silently pick up a stale environment key.
 
 ## Operating Rules for Future Sessions
 
