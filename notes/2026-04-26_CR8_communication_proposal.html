@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>CR8 — Communication Proposal</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">CR8 — Communication Proposal</h1>
+</header>
+<h1
+id="cr8-communication-of-screening-vs.-bp-evaluation-and-proposal">CR8:
+Communication of Screening vs. BP — Evaluation and Proposal</h1>
+<p><strong>Date</strong>: 2026-04-26<br />
+<strong>Reviewer</strong>: Claude Opus 4.6 (senior academic editor,
+political science methodologist)<br />
+<strong>Files reviewed</strong>: - <code>formal_model_v4.Rmd</code>
+(lines 393–421, 497–566, 675–710, 793–801) -
+<code>notes/2026-04-26_CR8_decomposition_v2.md</code> (decomposition
+analysis + verification) -
+<code>notes/2026-04-26_bp_amplification_figure.md</code> (proposed
+heatmap)</p>
+<hr />
+<h2 id="evaluation-of-the-current-paper">1. Evaluation of the Current
+Paper</h2>
+<h3 id="what-the-paper-currently-communicates">1.1 What the paper
+currently communicates</h3>
+<p>The paper makes three key claims about how screening and BP
+relate:</p>
+<ol type="1">
+<li><p><strong>Line 421 (key paragraph after Prop 3)</strong>: “The
+distinctive contribution of Bayesian persuasion under unanimity is not
+to create the conditional payoff advantage—that comes from screening
+(Lemma 1)—but to amplify it by exploiting this non-convexity and to
+extend it to priors below the entry threshold, where the institution
+would not otherwise form.”</p></li>
+<li><p><strong>Line 538 (after Theorem 1)</strong>: “The screening
+mechanism gives the hegemon a higher conditional payoff, and majority’s
+linearity means that concavification cannot close the gap. The only
+channel through which majority can dominate is the entry
+margin.”</p></li>
+<li><p><strong>Line 558 (after Theorem 2)</strong>: “At sufficiently
+high priors, unanimity dominates because the screening mechanism gives
+the hegemon a conditional payoff advantage. At pessimistic priors,
+majority can dominate—but only through the entry margin, never through a
+higher conditional payoff.”</p></li>
+<li><p><strong>Conclusion (line 795)</strong>: “Unanimity forces weak
+states to include the hegemon under uncertainty, creating a screening
+cutoff that gives the hegemon a conditional payoff advantage at every
+level of uncertainty. Bayesian persuasion extends this advantage to
+priors where the institution would not otherwise form.”</p></li>
+</ol>
+<h3 id="what-is-well-communicated">1.2 What is well communicated</h3>
+<ul>
+<li>The paper correctly identifies that screening creates the
+conditional payoff advantage and BP extends it. The sentence at line 421
+is the clearest statement of this.</li>
+<li>The “only through the entry margin” framing (lines 538, 558) is
+precise and memorable.</li>
+<li>The conclusion (line 795) neatly separates the two roles: screening
+creates, BP extends.</li>
+<li>Example 1 (motivating example, lines 63–80) gives clear intuition
+for the screening jump and how BP exploits the resulting
+non-convexity.</li>
+</ul>
+<h3 id="what-is-missing-or-unclear">1.3 What is missing or unclear</h3>
+<p><strong>Problem 1: No explicit decomposition.</strong> The paper
+describes BP’s role qualitatively (“amplify,” “extend”) but never
+decomposes the unanimity advantage into screening and BP components
+quantitatively. A reader who wants to understand <em>how much</em> of
+the advantage comes from screening vs. BP has no answer. This is a
+significant gap because: - The decomposition identity
+<code>cav v(p,U) - cav v(p,M) = D(p) + [cav v(p,U) - v(p,U)]</code> is a
+tautology that requires no new machinery, yet it cleanly separates the
+two forces. - In Example 2 (the paper’s main worked example), BP
+amplification is <em>zero</em> on the entry set. The entire advantage
+for p in E_U is pure screening. This is a striking fact that the paper
+never states.</p>
+<p><strong>Problem 2: The “amplification” framing is potentially
+misleading in Example 2.</strong> The paragraph at line 421 says BP
+“amplifies” the screening advantage by “exploiting this non-convexity.”
+But in Example 2 (the paper’s own worked example), the screening jump
+lies <em>below</em> the unanimity entry threshold (mu_s^R1 approx 0.197
+&lt; tau(U) approx 0.33). The net-gain function v(mu, U) is affine on
+E_U, so BP amplification is identically zero there. The paper never
+tells the reader this. A reader who follows from line 421 to Example 2
+could reasonably believe that the screening non-convexity at mu_s^R1 is
+being exploited by BP in the example — but it is not. BP operates in
+Example 2 only through the entry channel (extending the screening
+advantage to priors below tau(U)), not through the amplification
+channel.</p>
+<p><strong>Problem 3: No distinction between the two roles of
+BP.</strong> The paper currently treats BP as a single force. But BP
+does two conceptually distinct things:</p>
+<ul>
+<li><p><strong>BP amplification</strong> (within E_U): exploits the
+screening non-convexity at mu_s^R1 to raise payoffs at beliefs where
+entry already occurs. This requires mu_s^R1 to fall inside E_U, which
+depends on entry costs. When c is low, mu_s^R1 &gt; tau(U) and
+amplification is positive. When c is high (as in Example 2), mu_s^R1
+&lt; tau(U) and amplification is zero on E_U.</p></li>
+<li><p><strong>BP extension</strong> (below E_U): induces entry at
+beliefs where the institution would not otherwise form under unanimity,
+by designing signals that push posteriors into E_U. This operates
+regardless of whether mu_s^R1 is inside E_U.</p></li>
+</ul>
+<p>The paragraph at line 421 mentions both roles (“amplify” and
+“extend”) in a single sentence but does not distinguish when each is
+operative.</p>
+<p><strong>Problem 4: The role of entry costs is
+underdeveloped.</strong> The paper says tau(U) &gt;= tau(M) and
+discusses the entry margin extensively, but never connects entry costs
+to the <em>composition</em> of the unanimity advantage. A reader does
+not learn that: - Low c: both amplification and extension channels are
+active. - High c: the screening jump falls outside E_U; only the
+extension channel operates; the entire advantage within E_U is pure
+screening. - Very high c: entry fails entirely under unanimity and
+majority dominates everywhere.</p>
+<p>This comparative static on c is clean and substantively important: it
+shows that BP’s contribution is not uniform but depends on institutional
+participation costs.</p>
+<p><strong>Problem 5: Non-monotonicity in r is absent.</strong> The
+verification notes document that higher r increases the screening jump
+magnitude but also raises tau(U) via the outside option alpha*r,
+potentially pushing the jump outside E_U. This “double-edged sword”
+comparative static is absent from the paper. It belongs naturally in the
+Scope section or in the paragraph following Theorem 2.</p>
+<h3 id="grade-of-current-communication">1.4 Grade of current
+communication</h3>
+<p><strong>Grade: B+</strong></p>
+<p>The paper correctly identifies screening as the source of the
+conditional advantage and BP as an extender/amplifier. The qualitative
+framing is right. But: - The reader cannot distinguish when BP
+amplification is zero vs. positive. - Example 2 illustrates an instance
+where BP amplification is zero on E_U, but the paper never says so,
+leaving a gap between the “amplification” framing of line 421 and the
+actual mechanism at work. - No quantitative decomposition is provided,
+even though it is trivial. - The role of entry costs in determining the
+composition of the advantage is not discussed.</p>
+<p>A careful reader who works through Example 2 with the formulas would
+discover that v(mu, U) is affine on E_U and conclude that
+“amplification” means something different from what line 421 suggests.
+This is not wrong—but it risks confusion, which is a B-level issue.</p>
+<hr />
+<h2 id="proposed-text">2. Proposed Text</h2>
+<h3 id="strategy">2.1 Strategy</h3>
+<p>I propose three interventions:</p>
+<ol type="1">
+<li><p><strong>A new Remark after Example 2</strong> (around line 566):
+a formal decomposition remark that separates screening from BP
+amplification and notes when each is operative. This is the main
+addition.</p></li>
+<li><p><strong>A one-sentence addition to Example 2</strong> (around
+line 563): noting that BP amplification is zero on E_U for this example,
+so the entire advantage there is pure screening.</p></li>
+<li><p><strong>A short paragraph in Scope</strong> (around line 701):
+the non-monotonicity in r and the role of entry costs in determining the
+composition of the advantage.</p></li>
+</ol>
+<p>No changes to line 421 are needed — the “amplify…and extend” framing
+is correct, and the Remark will disambiguate.</p>
+<h3 id="addition-to-example-2">2.2 Addition to Example 2</h3>
+<p>Insert at the end of the current second paragraph of Example 2 (after
+“Lemma 1”), before the third paragraph beginning “The transition is
+sharp”:</p>
+<blockquote>
+<p>In this example, the screening cutoff <span
+class="math inline">\(\mu_s^{R1} \approx 0.20\)</span> lies below the
+unanimity entry threshold <span class="math inline">\(\tau(U) \approx
+0.33\)</span>. The net-gain function <span
+class="math inline">\(v(\cdot, U)\)</span> is therefore affine on the
+entry set, and Bayesian persuasion adds nothing to the hegemon’s payoff
+at beliefs where the institution forms: the entire advantage within
+<span class="math inline">\(E_U\)</span> is the screening payoff
+difference <span class="math inline">\(D(\mu)\)</span> from Lemma~<span
+class="math inline">\(\ref{lem:conditional}\)</span>. Bayesian
+persuasion contributes only through the entry channel, inducing
+participation under unanimity at priors below <span
+class="math inline">\(\tau(U)\)</span>. The screening structure is the
+source of the gain; persuasion is the delivery mechanism that carries it
+to lower priors.</p>
+</blockquote>
+<h3 id="new-remark-after-example-2">2.3 New Remark after Example 2</h3>
+<p>Insert after the closing <code>\end{example}</code> of Example 2
+(after line 566), before “## Numerical characterization”:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode latex"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">remark</span>}[Decomposition of the unanimity advantage]<span class="kw">\label</span>{<span class="ex">rem:decomposition</span>}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>For any prior <span class="ss">$p$</span> at which entry occurs under both rules (<span class="ss">$p </span><span class="sc">\in</span><span class="ss"> E_U$</span>), the unanimity advantage decomposes as</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ss">\[</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="sc">\operatorname</span><span class="ss">{cav} v(p, U) - </span><span class="sc">\operatorname</span><span class="ss">{cav} v(p, M) = </span><span class="sc">\underbrace</span><span class="ss">{v(p, U) - v(p, M)}_{</span><span class="sc">\text</span>{screening advantage }<span class="ss"> D(p)} + </span><span class="sc">\underbrace</span><span class="ss">{</span><span class="sc">\operatorname</span><span class="ss">{cav} v(p, U) - v(p, U)}_{</span><span class="sc">\text</span>{BP amplification}<span class="ss">}.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">\]</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>The first term is the conditional payoff difference from Lemma~<span class="kw">\ref</span>{<span class="ex">lem:conditional</span>}: the hegemon earns more under unanimity at every belief, even without any information design. The second term is the additional gain from optimal persuasion, which is non-negative by construction.</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>The relative weight of the two components depends on whether the screening cutoff <span class="ss">$</span><span class="sc">\mu</span><span class="ss">_s^{R1}$</span> lies inside the entry set <span class="ss">$E_U$</span>. When entry costs are high enough that <span class="ss">$</span><span class="sc">\tau</span><span class="ss">(U) &gt; </span><span class="sc">\mu</span><span class="ss">_s^{R1}$</span>, the function <span class="ss">$v(</span><span class="sc">\cdot</span><span class="ss">, U)$</span> is affine on <span class="ss">$E_U$</span> (the entire entry set lies on the conservative branch), so the BP amplification term is zero: the full advantage is the screening payoff difference <span class="ss">$D(p)$</span>. This is the case in Example~<span class="kw">\ref</span>{<span class="ex">ex:p_star</span>}. When entry costs are low enough that <span class="ss">$</span><span class="sc">\tau</span><span class="ss">(U) &lt; </span><span class="sc">\mu</span><span class="ss">_s^{R1}$</span>, the screening jump at <span class="ss">$</span><span class="sc">\mu</span><span class="ss">_s^{R1}$</span> falls inside the entry set, creating a non-convexity that persuasion exploits: the BP amplification term is strictly positive near the jump.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>For priors below <span class="ss">$</span><span class="sc">\tau</span><span class="ss">(U)$</span>, entry does not occur without persuasion under unanimity. The hegemon uses information design to induce participation by splitting the prior into posteriors at which entry occurs and posteriors at which it does not. In this region, the screening structure generates the gain---it is what makes the posteriors inside <span class="ss">$E_U$</span> valuable---and Bayesian persuasion delivers it by making entry feasible at priors where it otherwise would not be.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">remark</span>}</span></code></pre></div>
+<h3 id="addition-to-scope-section">2.4 Addition to Scope section</h3>
+<p>Insert after the paragraph ending “…clean separation between the
+conditional and entry channels” (after line 705), before the paragraph
+beginning “Figure @ref(fig:heatmap-alpha-mu)”:</p>
+<blockquote>
+<p><strong>Composition of the unanimity advantage.</strong> The
+decomposition in Remark~<span
+class="math inline">\(\ref{rem:decomposition}\)</span> highlights that
+entry costs determine not only whether unanimity dominates, but
+<em>how</em>. When entry costs are low, the screening jump at <span
+class="math inline">\(\mu_s^{R1}\)</span> falls inside the entry set,
+and persuasion amplifies the screening advantage by exploiting the
+resulting non-convexity in <span class="math inline">\(v(\cdot,
+U)\)</span>. When entry costs are high, the screening jump lies below
+the entry threshold, and persuasion operates only through the entry
+channel. The value of cooperation plays a dual role: higher <span
+class="math inline">\(r\)</span> increases the magnitude of the
+screening jump (more separates the types), but also raises the hegemon’s
+outside option <span class="math inline">\(\alpha r\)</span>, making
+entry harder under unanimity. This can push the screening jump below the
+entry threshold, eliminating the amplification channel even as the
+screening advantage itself grows. The interplay between participation
+costs and screening value generates rich comparative statics within the
+unanimity-dominant region identified by Theorem~<span
+class="math inline">\(\ref{thm:crossing}\)</span>.</p>
+</blockquote>
+<hr />
+<h2 id="figure-recommendation">3. Figure Recommendation</h2>
+<h3
+id="evaluation-of-the-proposed-3-panel-heatmap-r-vs.-beta-varying-c">3.1
+Evaluation of the proposed 3-panel heatmap (r vs. beta, varying c)</h3>
+<p><strong>Against inclusion in the paper:</strong></p>
+<ol type="1">
+<li><p><strong>Too technical for JoP body.</strong> The heatmap requires
+the reader to understand mu_s^R1 vs. tau(U), the concept of “BP
+amplification” as a separable quantity, and the interaction between r,
+beta, and c. This is specialist material.</p></li>
+<li><p><strong>Marginal insight over existing figures.</strong> The
+paper already has: (a) Figure 1 (game tree), (b) Figure 2 (screening
+schematic with jump), (c) Figure 3 (net-gain functions and
+concavifications), (d) Figure 4 (parameter regions), (e) Figure 5
+(heatmap alpha vs. mu). The 3-panel heatmap would be Figure 6. For a JoP
+paper, this is already figure-heavy, and the new figure’s main message —
+“entry costs determine whether BP amplification is positive” — can be
+communicated in prose.</p></li>
+<li><p><strong>The non-monotonicity in r is better communicated
+verbally.</strong> A sentence in Scope (“higher r increases the
+screening jump but also raises the entry threshold”) is more accessible
+than a color map.</p></li>
+</ol>
+<p><strong>If any figure is warranted:</strong></p>
+<p>A single-panel line plot would be cleaner and more targeted: -
+x-axis: entry cost c (from 0 to the level where unanimity becomes
+unviable) - y-axis: share of unanimity advantage attributable to BP
+amplification (= [cav v(p,U) - v(p,U)] / [cav v(p,U) - cav v(p,M)]) at a
+fixed prior p in E_U - Fixed parameters: N=5, r=1.5, alpha=0.3, beta=0.9
+- The plot would show a curve that starts at some positive share (when c
+is low and the jump is inside E_U) and drops to zero at the c where
+tau(U) = mu_s^R1, then stays at zero.</p>
+<p>However, even this figure may be redundant given the prose in the
+Remark and Scope addition. The key message is cleanly stated verbally:
+“When entry costs are high enough that the screening jump falls below
+the entry threshold, BP amplification is zero on E_U.”</p>
+<p><strong>Recommendation:</strong> Do not include the 3-panel heatmap.
+Do not include any new figure. The Remark and Scope paragraph are
+sufficient. If the referee asks for a quantitative illustration, the
+line plot described above can be added in revision.</p>
+<hr />
+<h2 id="grade-of-the-proposal">4. Grade of the Proposal</h2>
+<h3 id="self-assessment">Self-assessment</h3>
+<p>The proposed text:</p>
+<ol type="1">
+<li><p><strong>Decomposes the advantage explicitly</strong> (Remark): a
+tautological identity that is easy to verify and carries no new
+assumptions. Grade: A+.</p></li>
+<li><p><strong>Distinguishes when BP amplification is zero
+vs. positive</strong>: the condition (tau(U) &gt; mu_s^R1 vs. tau(U)
+&lt; mu_s^R1) is stated clearly, linked to entry costs, and illustrated
+by Example 2. Grade: A+.</p></li>
+<li><p><strong>Explains BP’s role below tau(U)</strong>: “the screening
+structure generates the gain; persuasion delivers it.” This is the right
+framing — it respects the primacy of screening as the source of the
+advantage. Grade: A+.</p></li>
+<li><p><strong>Non-monotonicity in r</strong>: communicated in a single
+sentence in Scope, connected to the “dual role” of r (type separation
+vs. outside option). Grade: A.</p></li>
+<li><p><strong>JoP style compliance</strong>: the Remark has one
+equation (the decomposition identity) and the rest is prose. The Scope
+paragraph has no equations. The addition to Example 2 has no equations.
+Grade: A+.</p></li>
+<li><p><strong>No words “visible” or “invisible”</strong>: confirmed —
+replaced with “lies inside/below the entry set.” Grade: A+.</p></li>
+</ol>
+<h3 id="potential-weaknesses">Potential weaknesses</h3>
+<ul>
+<li>The Remark introduces the notation D(p) for the screening advantage,
+which is already used in the paper (line 508 and Remark 1). Consistent.
+No issue.</li>
+<li>The Remark references E_U, which is defined in Theorem 1 (line 524).
+The Remark follows Theorem 2, so the reader has encountered E_U. No
+issue.</li>
+<li>The Remark does not provide numerical values for the decomposition
+at specific beliefs. This is deliberate: Example 2 already gives
+percentages (29% at p=0.30, 25% at p=0.50), and the addition to Example
+2 notes that the entire advantage on E_U is screening. Adding numbers to
+the Remark would be redundant.</li>
+<li>The Scope paragraph mentions “higher r increases the magnitude of
+the screening jump” without proof. This is a comparative static that
+follows from the definition of mu_s^R1 (the aggressive/conservative
+cutoff), but a reader might want a reference. Adding “(Proposition 2)”
+after “screening jump” would suffice.</li>
+</ul>
+<h3 id="final-grade-of-proposal">Final grade of proposal</h3>
+<p><strong>Grade: A</strong></p>
+<p>The proposal achieves A+ on decomposition clarity, BP vs. screening
+distinction, and style. It falls short of A+ on one dimension: it does
+not give a worked numerical example of the case where BP amplification
+<em>is</em> positive (contrasting with Example 2 where it is zero). A
+brief mention — e.g., “With lower entry costs (c = 0.05), the screening
+jump enters the entry set and BP amplification accounts for
+approximately 15% of the advantage at the screening cutoff” — would
+complete the picture. However, this would require running the R code to
+get the exact number, which should be verified computationally before
+inclusion.</p>
+<h3 id="recommendation-for-achieving-a">Recommendation for achieving
+A+</h3>
+<p>Add one sentence to the Scope paragraph:</p>
+<blockquote>
+<p>For instance, reducing entry costs in Example~<span
+class="math inline">\(\ref{ex:p_star}\)</span> from <span
+class="math inline">\(c = 0.14\)</span> to <span class="math inline">\(c
+= 0.05\)</span> pulls the entry threshold below <span
+class="math inline">\(\mu_s^{R1}\)</span>, bringing the screening jump
+inside the entry set and activating the amplification channel.</p>
+</blockquote>
+<p>This requires no new computation (it follows from the verification
+report: at c=0.05, tau(U) &lt; 0 &lt; mu_s^R1 = 0.197) and gives the
+reader a concrete anchor for the low-c case.</p>
+<hr />
+<h2 id="summary-of-recommended-changes">5. Summary of Recommended
+Changes</h2>
+<table>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 28%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr>
+<th>Location</th>
+<th>Change</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Example 2 (line 563, after “Lemma 1”)</td>
+<td>Insert 4 sentences noting BP amplification = 0 on E_U</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td>After Example 2 (line 566)</td>
+<td>Insert Remark on decomposition</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td>Scope (after line 705)</td>
+<td>Insert paragraph on entry costs, r non-monotonicity</td>
+<td>MEDIUM</td>
+</tr>
+<tr>
+<td>Scope (new paragraph)</td>
+<td>Add one-sentence low-c illustration</td>
+<td>LOW (achieves A+)</td>
+</tr>
+<tr>
+<td>No new figure</td>
+<td>3-panel heatmap not recommended</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="note-on-p-value">Note on p* value</h3>
+<p>The decomposition analysis (CR8_decomposition_v2.md, Section 7)
+identified that p* = 0.24 was incorrect in a prior version of Example 2.
+The current paper text (line 563) already reads “p* approx 0.12,” so
+this has been corrected. The 29% advantage at p=0.30 and 25% at p=0.50
+are consistent with the corrected value (verified analytically in the
+decomposition report, Section 7).</p>
+</body>
+</html>

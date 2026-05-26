@@ -1,0 +1,148 @@
+---
+title: "Institutional map $(p, c)$ — variando $N$ e $r$"
+date: "2026-04-27"
+output:
+  bookdown::pdf_document2:
+    toc: false
+    latex_engine: xelatex
+    number_sections: false
+header-includes:
+  - \usepackage{float}
+  - \usepackage{caption}
+  - \captionsetup{font=small, labelfont=bf}
+  - \usepackage{pdflscape}
+fontsize: 10pt
+geometry: margin=1.5cm
+mainfont: Times New Roman
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.pos = "H")
+source("../scripts/model_functions.R")
+
+classify_regime <- function(p, c, r, alpha, N, beta) {
+  vw_u <- tryCatch(VW_R1_unanimity(r, alpha, p, N, beta), error = function(e) NA)
+  vw_m <- tryCatch(VW_R1_majority(r, alpha, p, N, beta), error = function(e) NA)
+  if (is.na(vw_u) | is.na(vw_m)) return(NA)
+  if (vw_u >= c) return(2)
+  else if (vw_m >= c) return(1)
+  else return(0)
+}
+
+compute_tau_bnd <- function(r, alpha, N, beta, c, rule = "U") {
+  vw_fn <- if (rule == "U") VW_R1_unanimity else VW_R1_majority
+  lo <- 0.001; hi <- 1
+  vw_hi <- tryCatch(vw_fn(r, alpha, hi, N, beta), error = function(e) NA)
+  if (is.na(vw_hi) || vw_hi < c) return(NA)
+  vw_lo <- tryCatch(vw_fn(r, alpha, lo, N, beta), error = function(e) NA)
+  if (is.na(vw_lo)) return(NA)
+  if (vw_lo >= c) return(lo)
+  for (iter in 1:50) {
+    mid <- (lo + hi) / 2
+    vw_mid <- tryCatch(vw_fn(r, alpha, mid, N, beta), error = function(e) NA)
+    if (is.na(vw_mid)) { hi <- mid; next }
+    if (vw_mid >= c) hi <- mid else lo <- mid
+  }
+  return((lo + hi) / 2)
+}
+
+plot_inst_map <- function(r, alpha, N, beta, c_max = NULL, main_title = NULL) {
+  # Auto-scale c_max based on max VW
+  if (is.null(c_max)) {
+    vw_max <- tryCatch(VW_R1_majority(r, alpha, 1, N, beta), error = function(e) 0.1)
+    c_max <- min(vw_max * 1.3, 0.3)
+  }
+
+  ps <- seq(0.005, 0.995, by = 0.008)
+  cs <- seq(0.001, c_max, length.out = 120)
+
+  mat <- matrix(NA, length(ps), length(cs))
+  for (i in seq_along(ps))
+    for (j in seq_along(cs))
+      mat[i, j] <- classify_regime(ps[i], cs[j], r, alpha, N, beta)
+
+  cols <- c("gray85", "#E6550DCC", "#3182BDCC")
+
+  if (is.null(main_title))
+    main_title <- bquote(N == .(N) ~ ", " ~ r == .(r))
+
+  image(ps, cs, mat, col = cols, breaks = c(-0.5, 0.5, 1.5, 2.5),
+        xlab = "", ylab = "",
+        main = main_title, cex.main = 0.9, las = 1)
+
+  # Boundary curves
+  cs_fine <- seq(0.001, c_max, length.out = 100)
+  tau_U_c <- sapply(cs_fine, function(cc) compute_tau_bnd(r, alpha, N, beta, cc, "U"))
+  tau_M_c <- sapply(cs_fine, function(cc) compute_tau_bnd(r, alpha, N, beta, cc, "M"))
+  valid_U <- !is.na(tau_U_c)
+  valid_M <- !is.na(tau_M_c)
+  if (any(valid_U)) lines(tau_U_c[valid_U], cs_fine[valid_U], lwd = 1.5, col = "black")
+  if (any(valid_M)) lines(tau_M_c[valid_M], cs_fine[valid_M], lwd = 1.5, col = "black", lty = 3)
+
+  # Screening cutoff
+  phi <- (r*N - beta*(N-1+r)) / (beta*(r-1))
+  disc <- phi^2 - 4*(N-2)
+  if (disc > 0) {
+    mu_s_R1 <- (phi - sqrt(disc)) / (2*(N-2))
+    if (mu_s_R1 > 0 & mu_s_R1 < 1)
+      abline(v = mu_s_R1, lty = 2, lwd = 1, col = "black")
+  }
+}
+```
+
+# Institutional map $(p, c)$ — grid $N \times r$
+
+Todos os paineis usam $\alpha = 0.3$, $\beta = 0.9$. Azul: $p \in E_U$ (U domina). Laranja: $p \in E_M \setminus E_U$ (M domina via entry). Cinza: $p \notin E_M$ (nenhuma forma). Linha solida: $\tau_U(c)$. Linha pontilhada: $\tau_M(c)$. Linha tracejada vertical: $\mu_s^{R1}$.
+
+\begin{landscape}
+
+```{r grid-N-r, fig.width=14, fig.height=10, fig.cap="Institutional classification in the (p, c) plane for varying N (rows) and r (columns). All panels use alpha = 0.3, beta = 0.9. Blue: unanimity dominates. Orange: majority dominates via entry. Gray: neither forms. Solid: unanimity boundary. Dotted: majority boundary. Dashed vertical: screening cutoff."}
+
+Ns <- c(20, 50, 100, 150)
+rs <- c(1.1, 1.3, 1.5, 1.8, 2.0)
+
+par(mfrow = c(length(Ns), length(rs)),
+    mar = c(2.5, 2.5, 2, 0.5),
+    oma = c(3, 3, 0.5, 0.5))
+
+for (i in seq_along(Ns)) {
+  for (j in seq_along(rs)) {
+    N_val <- Ns[i]
+    r_val <- rs[j]
+    alpha_val <- 0.3
+
+    # Skip if alpha >= 1/r
+    if (alpha_val >= 1/r_val) {
+      plot.new()
+      next
+    }
+
+    # Auto c_max based on VW_M(1)
+    vw_max <- tryCatch(VW_R1_majority(r_val, alpha_val, 1, N_val, 0.9),
+                        error = function(e) 0.01)
+    c_max <- max(vw_max * 1.2, 0.005)
+
+    plot_inst_map(r_val, alpha_val, N_val, 0.9, c_max = c_max)
+
+    # Row label (N) on left margin
+    if (j == 1) mtext(bquote(N == .(N_val)), side = 2, line = 2.5, cex = 0.6)
+    # Column label (r) on top
+    if (i == 1) mtext(bquote(r == .(r_val)), side = 3, line = 0.3, cex = 0.6)
+  }
+}
+
+mtext(expression(paste("Prior belief  ", italic(p))), side = 1, outer = TRUE, line = 1.5, cex = 0.8)
+mtext(expression(paste("Entry cost  ", italic(c))), side = 2, outer = TRUE, line = 1.5, cex = 0.8)
+```
+
+\end{landscape}
+
+# Observacoes
+
+1. **Escala de $c$ varia com $N$**: $V_W \sim O(1/N)$, entao para $N = 150$ o range de $c$ viavel e muito menor que para $N = 20$. Cada painel tem $c_{\max}$ adaptado.
+
+2. **A regiao azul encolhe com $N$**: unanimidade fica mais cara (mais votos para comprar), entao $E_U$ encolhe. Consistente com $\alpha^*$ decrescente em $N$.
+
+3. **A regiao azul cresce com $r$**: mais dispersao de tipos = mais screening rent = unanimidade viavel em mais priors. Mas a fatia laranja tambem cresce (gap entre $\tau_U$ e $\tau_M$ aumenta).
+
+4. **Desconexao de $E_U$**: visivel em varios paineis ao redor de $\mu_s^{R1}$ (linha tracejada vertical). Mais pronunciada para $r$ e $N$ intermediarios.

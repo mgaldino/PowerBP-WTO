@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Formalização v2</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Formalização v2</h1>
+</header>
+<h1 id="formalização-do-modelo-v2">Formalização do Modelo v2</h1>
+<h2 id="environment">1. Environment</h2>
+<p><strong>Definition (Institutional Design Game).</strong> The game
+<span class="math inline">\(\Gamma(N, p, r, \alpha, \beta, c)\)</span>
+has the following primitives.</p>
+<ul>
+<li>There are <span class="math inline">\(N \geq 3\)</span> players: one
+hegemon <span class="math inline">\(H\)</span> and <span
+class="math inline">\(n = N-1\)</span> weak states <span
+class="math inline">\(W_1, \dots, W_n\)</span>.</li>
+<li>Nature draws <span class="math inline">\(\theta \in \{0,
+1\}\)</span> with prior <span class="math inline">\(\Pr(\theta = 1) = p
+\in (0,1)\)</span>.</li>
+<li>The state determines the value of multilateral cooperation: <span
+class="math inline">\(V(0) = 1\)</span> and <span
+class="math inline">\(V(1) = r &gt; 1\)</span>.</li>
+<li>The hegemon observes <span class="math inline">\(\theta\)</span>;
+the weak states do not.</li>
+<li>If bargaining fails (disagreement):
+<ul>
+<li>Each weak state receives <span
+class="math inline">\(0\)</span>.</li>
+<li>The hegemon receives <span class="math inline">\(\alpha
+V(\theta)\)</span>, where <span class="math inline">\(\alpha \in (0,
+1/r)\)</span>, representing bilateral alternatives proportional to the
+value of cooperation.</li>
+</ul></li>
+<li>The common discount factor is <span class="math inline">\(\beta \in
+(0,1)\)</span>.</li>
+<li>Each weak state pays an entry cost <span class="math inline">\(c
+&gt; 0\)</span> to join the institution.</li>
+</ul>
+<p>Let <span class="math inline">\(V_e(\mu) \equiv 1 + \mu(r-1)\)</span>
+denote the expected value of cooperation at posterior belief <span
+class="math inline">\(\mu\)</span>.</p>
+<p><strong>Remark (Normalization).</strong> The assumption <span
+class="math inline">\(d_W = 0\)</span> is without loss of generality. It
+requires only that (i) weak states’ outside options are strictly lower
+than the hegemon’s, and (ii) outside options are symmetric across weak
+states. Given these conditions, we redefine the pie as the surplus above
+the weak states’ common outside option, which normalizes their
+disagreement payoff to zero.</p>
+<p><strong>Remark (Bilateral alternatives).</strong> The hegemon’s
+disagreement payoff <span class="math inline">\(\alpha
+V(\theta)\)</span> captures bilateral alternatives that are proportional
+to the value of multilateral cooperation. The same factors that make
+multilateral cooperation valuable (favorable trade environment,
+complementary economies) also improve bilateral alternatives. The
+parameter <span class="math inline">\(\alpha &lt; 1/r\)</span> ensures
+that bilateral alternatives are strictly dominated by multilateral
+cooperation for all <span class="math inline">\(\theta\)</span>.</p>
+<h2 id="institutional-packages">2. Institutional Packages</h2>
+<p><strong>Definition (Institutional Packages).</strong> The analysis
+compares two institutional packages that differ only in the voting rule.
+Both packages have symmetric proposal rights (random proposer with
+probability <span class="math inline">\(1/N\)</span> each).</p>
+<ul>
+<li><strong>Package M (Majority)</strong>: decisions pass with strict
+majority support (<span class="math inline">\(q = \lfloor N/2 \rfloor +
+1\)</span> votes).</li>
+<li><strong>Package U (Unanimity/Consensus)</strong>: decisions require
+unanimous support (<span class="math inline">\(q = N\)</span>
+votes).</li>
+</ul>
+<p><strong>Remark (Why not agenda control?).</strong> By agenda control
+we mean here monopoly over proposal rights (exclusive proposer). Under
+either voting rule, if the hegemon were the exclusive proposer and <span
+class="math inline">\(d_W = 0\)</span>, weak states’ expected bargaining
+payoff would be zero. No weak state would pay the entry cost <span
+class="math inline">\(c &gt; 0\)</span>, and the institution would never
+form. Monopoly proposal power is therefore self-defeating. The relevant
+institutional choice is between voting rules, holding proposal rights
+symmetric. Other forms of agenda influence — such as shaping the set of
+feasible proposals — are discussed in the extension.</p>
+<h2 id="timing">3. Timing</h2>
+<p>The game has three stages.</p>
+<ol type="1">
+<li><p><strong>Stage 0 (Institutional choice).</strong> The hegemon
+chooses the voting rule <span class="math inline">\(R \in \{M,
+U\}\)</span>.</p></li>
+<li><p><strong>Stage 1 (Information and entry).</strong> Nature draws
+<span class="math inline">\(\theta\)</span>. The hegemon observes <span
+class="math inline">\(\theta\)</span> and commits to a public signal
+structure <span class="math inline">\(\pi: \{0,1\} \to
+\Delta(S)\)</span>. Weak states observe the realized signal <span
+class="math inline">\(s \in S\)</span>, update to posterior <span
+class="math inline">\(\mu = \Pr(\theta = 1 \mid s)\)</span>, and
+simultaneously decide whether to enter (paying cost <span
+class="math inline">\(c\)</span>).</p></li>
+<li><p><strong>Stage 2 (Bargaining).</strong> If at least <span
+class="math inline">\(q\)</span> players (including <span
+class="math inline">\(H\)</span>) are available, members play a
+two-round Baron-Ferejohn bargaining game over a pie of size <span
+class="math inline">\(V(\theta)\)</span>:</p>
+<ul>
+<li><strong>Round 1</strong>: a proposer is selected uniformly at random
+(probability <span class="math inline">\(1/N\)</span>). The proposer
+offers a division. All members vote according to rule <span
+class="math inline">\(R\)</span>. If accepted, the pie is divided as
+proposed. If rejected, the game proceeds to Round 2.</li>
+<li><strong>Round 2 (terminal)</strong>: a new proposer is selected
+uniformly at random. The proposer offers a division. All members vote.
+If accepted, the pie is divided. If rejected, each player receives their
+disagreement payoff (<span class="math inline">\(0\)</span> for each
+<span class="math inline">\(W\)</span>, <span
+class="math inline">\(\alpha V(\theta)\)</span> for <span
+class="math inline">\(H\)</span>).</li>
+</ul></li>
+</ol>
+<h2 id="solution-concept">4. Solution Concept</h2>
+<p>The solution concept is Perfect Bayesian Equilibrium (PBE).
+Strategies are sequentially rational given beliefs, and beliefs are
+updated by Bayes’ rule on the equilibrium path. Off-path beliefs satisfy
+sequential rationality.</p>
+<h2 id="árvore-do-jogo-descrição-para-tikz">5. Árvore do Jogo (descrição
+para TikZ)</h2>
+<pre><code>Stage 0: H chooses R ∈ {M, U}
+│
+├── R = M (Majority)
+│   └── Stage 1: Nature draws θ → H observes → Signal → W&#39;s form μ → Enter/Not
+│       ├── Not Enter: (0, 0, ..., 0)
+│       └── Enter: Stage 2 Bargaining (majority rule)
+│           └── Round 1: proposer drawn (1/N)
+│               ├── H proposes: buys q-1 cheapest W votes, excludes rest
+│               └── W proposes: excludes H (cheaper coalition), includes q-1 W&#39;s
+│                   ├── Accept: divide V(θ), H gets αV(θ) (excluded)
+│                   └── Reject → Round 2 (terminal, same structure)
+│                       └── Reject → disagreement: H gets αV(θ), W&#39;s get 0
+│
+└── R = U (Unanimity)
+    └── Stage 1: same as above
+        ├── Not Enter: (0, 0, ..., 0)
+        └── Enter: Stage 2 Bargaining (unanimity)
+            └── Round 1: proposer drawn (1/N)
+                ├── H proposes: offers 0 to all W&#39;s, keeps V(θ)
+                └── W proposes: MUST include H (unanimity)
+                    ├── Aggressive offer (y_H = α): θ=0 accepts, θ=1 rejects
+                    └── Conservative offer (y_H = αr): both accept
+                        └── Reject → Round 2 (terminal, same screening)
+                            └── Reject → disagreement: H gets αV(θ), W&#39;s get 0</code></pre>
+<h2 id="análise-de-equilíbrio-a-desenvolver">6. Análise de Equilíbrio (a
+desenvolver)</h2>
+<h3 id="terminal-round-r2-sob-unanimidade">6.1 Terminal Round (R2) sob
+Unanimidade</h3>
+<p><strong>Quando H propõe</strong> (prob 1/N): oferece 0 a cada W (d_W
+= 0), todos aceitam. H fica com V(θ).</p>
+<p><strong>Quando W_j propõe</strong> (prob 1/N): oferece 0 aos outros
+W’s. Enfrenta screening problem para H:</p>
+<ul>
+<li><strong>Oferta agressiva</strong>: <span class="math inline">\(y_H =
+\alpha\)</span> (= <span class="math inline">\(\alpha V(0)\)</span>).
+Tipo θ=0 aceita (<span class="math inline">\(\alpha \geq
+\alpha\)</span>). Tipo θ=1 rejeita (<span class="math inline">\(\alpha
+&lt; \alpha r\)</span>), recebe <span class="math inline">\(\alpha V(1)
+= \alpha r\)</span>.</li>
+<li><strong>Oferta conservadora</strong>: <span
+class="math inline">\(y_H = \alpha r\)</span> (= <span
+class="math inline">\(\alpha V(1)\)</span>). Ambos aceitam.</li>
+</ul>
+<p>Payoff esperado de W como proposer: - Agressivo: <span
+class="math inline">\((1-\mu)(V(0) - \alpha) =
+(1-\mu)(1-\alpha)\)</span> - Conservador: <span
+class="math inline">\((1-\mu)(V(0) - \alpha r) + \mu(V(1) - \alpha r) =
+(1-\mu)(1-\alpha r) + \mu r(1-\alpha) = V_e(\mu) - \alpha r\)</span></p>
+<p><strong>Screening cutoff</strong>: W prefere agressivo quando <span
+class="math inline">\((1-\mu)(1-\alpha) &gt; V_e(\mu) - \alpha
+r\)</span>:</p>
+<p><span class="math display">\[\mu_s = \frac{\alpha(r-1)}{r -
+\alpha}\]</span></p>
+<p>Closed form. W joga agressivo se <span class="math inline">\(\mu &lt;
+\mu_s\)</span>, conservador se <span class="math inline">\(\mu &gt;
+\mu_s\)</span>.</p>
+<p><strong>Continuation values R2:</strong></p>
+<p><span class="math inline">\(V_W^{R2}(\mu)\)</span>: - <span
+class="math inline">\(\mu &lt; \mu_s\)</span>: <span
+class="math inline">\((1-\mu)(1-\alpha)/N\)</span> - <span
+class="math inline">\(\mu &gt; \mu_s\)</span>: <span
+class="math inline">\([V_e(\mu) - \alpha r]/N\)</span> - Contínuo em
+<span class="math inline">\(\mu_s\)</span> [verificar].</p>
+<p><span class="math inline">\(V_H^{R2}(\theta, \mu)\)</span>: - <span
+class="math inline">\(\theta = 1\)</span>: <span
+class="math inline">\(V(1)[1 + (N-1)\alpha]/N =
+r[1+(N-1)\alpha]/N\)</span> (constante em <span
+class="math inline">\(\mu\)</span>) - <span class="math inline">\(\theta
+= 0, \mu &lt; \mu_s\)</span>: <span class="math inline">\([1 +
+(N-1)\alpha]/N\)</span> - <span class="math inline">\(\theta = 0, \mu
+&gt; \mu_s\)</span>: <span class="math inline">\([1 + (N-1)\alpha
+r]/N\)</span> (overpaid)</p>
+<p><strong>Jump em <span class="math inline">\(E[V_H^{R2}(\mu)]\)</span>
+no cutoff <span class="math inline">\(\mu_s\)</span>:</strong> <span
+class="math display">\[\text{Jump} = \frac{(N-1)\alpha(r-1)(1-\mu_s)}{N}
+&gt; 0\]</span></p>
+<h3 id="terminal-round-r2-sob-maioria">6.2 Terminal Round (R2) sob
+Maioria</h3>
+<p><strong>Quando H propõe</strong> (prob 1/N): compra <span
+class="math inline">\(q-1\)</span> votos (oferece 0 a cada, d_W = 0).
+Fica com V(θ).</p>
+<p><strong>Quando W propõe</strong> ((N-1)/N): exclui H (mais caro),
+forma coalizão com <span class="math inline">\(q-1\)</span> outros W’s
+(oferece 0). Fica com <span class="math inline">\(V(\theta)\)</span>. H
+recebe <span class="math inline">\(\alpha V(\theta)\)</span>
+(alternativa bilateral, excluído do acordo).</p>
+<p><span class="math inline">\(V_H^{R2}(\theta, \text{maioria}) =
+V(\theta)[1 + (N-1)\alpha]/N\)</span> — <strong>linear em <span
+class="math inline">\(\mu\)</span>, sem screening</strong>.</p>
+<p><span class="math inline">\(V_W^{R2}(\mu, \text{maioria}) =
+V_e(\mu)/N\)</span> [verificar: apenas quando é proposer, prob 1/N, gets
+V(θ)].</p>
+<h3 id="round-1-r1-a-derivar">6.3 Round 1 (R1) — a derivar</h3>
+<p><strong>Sob unanimidade</strong>: screening funciona em R1 porque
+V(θ) cria gap estrutural <span class="math inline">\((r-1)/N\)</span>
+entre tipos quando H propõe. θ=0 não consegue replicar payoff de θ=1
+blefando.</p>
+<p>IC constraints em R1: - θ=0 aceitar: <span class="math inline">\(y_H
+\geq \beta[1+(N-1)\alpha r]/N\)</span> - θ=1 rejeitar: <span
+class="math inline">\(y_H &lt; \beta \cdot r[1+(N-1)\alpha]/N\)</span> -
+Gap: <span class="math inline">\(\beta(r-1)/N &gt; 0\)</span> ✓</p>
+<p><strong>Sob maioria</strong>: sem screening (W exclui H). Linear.</p>
+<h3 id="entry-a-derivar">6.4 Entry — a derivar</h3>
+<h3 id="bayesian-persuasion-a-derivar">6.5 Bayesian Persuasion — a
+derivar</h3>
+<h3 id="comparação-institucional-a-derivar">6.6 Comparação Institucional
+— a derivar</h3>
+<h2 id="pontos-abertos">7. Pontos abertos</h2>
+<ol type="1">
+<li><p><strong>Direção de entrada sem direct benefit</strong>: sob
+unanimidade (branch agressivo), V_W é decrescente em μ — entrada mais
+fácil a μ baixo. Sob maioria, V_W é crescente — entrada mais fácil a μ
+alto. Direções opostas. Derivar consequências para BP.</p></li>
+<li><p><strong>Feasibility de ofertas absolutas</strong>: W propõe
+montantes sem saber V(θ). Oferta conservadora y_H = αr: feasível quando
+θ=0 (αr &lt; 1 pois α &lt; 1/r)? Sim: αr &lt; r × 1/r = 1. ✓</p></li>
+<li><p><strong>V_W sob maioria</strong>: quando W propõe e exclui H, W
+fica com V(θ) mas não sabe V(θ). Como modelar? W propõe montantes e
+recebe o residual V(θ) - ofertas. O residual depende de θ (risco para
+W).</p></li>
+<li><p><strong>Continuidade de V_W^{R2} em μ_s</strong>: verificar
+algebricamente.</p></li>
+<li><p><strong>Condição para H preferir unanimidade</strong>: quando
+screening channel + extração superior supera desvantagem de
+entrada?</p></li>
+</ol>
+</body>
+</html>

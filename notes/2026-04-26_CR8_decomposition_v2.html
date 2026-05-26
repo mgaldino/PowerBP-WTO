@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>CR8 — Decomposition Screening + BP</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">CR8 — Decomposition Screening + BP</h1>
+</header>
+<h1 id="cr8-decomposition-of-unanimity-advantage-v2">CR8: Decomposition
+of Unanimity Advantage — v2</h1>
+<p><strong>Date</strong>: 2026-04-26 <strong>Status</strong>: DRAFT v2 —
+corrects all errors from v1</p>
+<h2 id="key-insight-from-v1-review">Key insight from v1 review</h2>
+<p>The v1 decomposition (entry channel vs. screening channel) failed
+because: 1. τ(M) = 0 for Example 2, making S_M undefined 2. μ_s^R1 &lt;
+τ(U) for Example 2, so the screening jump is invisible in v(μ, U) 3. The
+counterfactual v_flat conflated the entry jump with screening</p>
+<h2 id="better-decomposition-screening-bp-amplification">Better
+decomposition: screening + BP amplification</h2>
+<p>The paper’s “dual exploitation” is screening + BP. The natural
+decomposition follows this structure.</p>
+<h3 id="setup">Setup</h3>
+<p>For any prior p, the total advantage of unanimity is:</p>
+<p><span class="math display">\[\Pi^*_H(U,p) - \Pi^*_H(M,p) =
+\operatorname{cav} v(p, U) - \operatorname{cav} v(p, M)\]</span></p>
+<p>Under majority, v(μ, M) = (λ_M - α) V_e(μ) is affine on E_M. BP
+cannot improve an affine function:</p>
+<p><span class="math display">\[\operatorname{cav} v(p, M) =
+\begin{cases} v(p, M) &amp; \text{if } p \in E_M \\ S_M \cdot p &amp;
+\text{if } p &lt; \tau(M) \text{ and } \tau(M) &gt; 0
+\end{cases}\]</span></p>
+<p>When τ(M) = 0 (as in Example 2), cav v(p, M) = v(p, M) for all p. BP
+is useless under majority.</p>
+<h3 id="decomposition-for-p-e_u-entry-under-both-rules">Decomposition
+for p ∈ E_U (entry under both rules)</h3>
+<p>Since E_U ⊆ E_M (Theorem 1 proof), entry occurs under both rules.
+Write:</p>
+<p><span class="math display">\[\operatorname{cav} v(p, U) - v(p, M) =
+\underbrace{[v(p, U) - v(p, M)]}_{\text{screening advantage } D(p)} +
+\underbrace{[\operatorname{cav} v(p, U) - v(p, U)]}_{\text{BP
+amplification}}\]</span></p>
+<p><strong>Screening advantage</strong> D(p): The conditional payoff
+difference from Lemma 1. Positive for all μ ∈ (0,1] when α &lt; α*. This
+advantage exists even without BP — it is the direct gain from the
+screening structure under unanimity. Closed form: D(μ) = D_base(μ) +
+corrections (Appendix B.5).</p>
+<p><strong>BP amplification</strong>: The additional gain from optimal
+information design. Non-negative by definition of concavification.
+Equals zero whenever v(·, U) is concave at p. Strictly positive only
+when BP can exploit a non-convexity in v(·, U) within E_U.</p>
+<h3 id="when-is-bp-amplification-zero-on-e_u">When is BP amplification
+zero on E_U?</h3>
+<p>When the screening jump at μ_s^R1 lies below τ(U) — i.e., when μ_s^R1
+&lt; τ(U) — the function v(μ, U) is affine on the entry set E_U (it’s
+entirely on the conservative branch). In this case, v(·, U) is already
+concave on E_U, and:</p>
+<p><span class="math display">\[\operatorname{cav} v(p, U) = v(p, U)
+\quad \text{for } p \in E_U\]</span></p>
+<p>The BP amplification is exactly zero. The ENTIRE advantage on E_U is
+the screening advantage D(p).</p>
+<p>This is precisely the case in Example 2: μ_s^R1 ≈ 0.197 &lt; τ(U) ≈
+0.33.</p>
+<h3 id="when-is-bp-amplification-positive-on-e_u">When is BP
+amplification positive on E_U?</h3>
+<p>When μ_s^R1 ∈ (τ(U), 1) — i.e., when the screening jump is visible in
+the entry set — v(μ, U) has a non-convexity at μ_s^R1 that BP can
+exploit. The concavification creates a pooling region around the jump,
+and the BP amplification is strictly positive for priors in the pooling
+region.</p>
+<h3 id="decomposition-for-p-τu-entry-requires-bp">Decomposition for p
+&lt; τ(U) (entry requires BP)</h3>
+<p>Here v(p, U) = 0 and the entire unanimity payoff comes from BP:</p>
+<p><span class="math display">\[\operatorname{cav} v(p, U) -
+\operatorname{cav} v(p, M) = \operatorname{cav} v(p, U) -
+\operatorname{cav} v(p, M)\]</span></p>
+<p>The screening advantage D(p) is not directly applicable (entry
+doesn’t occur at p without BP). But BP under unanimity works by creating
+a Bayes-plausible split: mass at μ = 0 (no entry) and mass at some μ* ∈
+E_U (entry, where D(μ*) &gt; 0). The hegemon’s gain from this split:</p>
+<p><span class="math display">\[\operatorname{cav} v(p, U) =
+\frac{p}{\mu^*} \cdot v(\mu^*, U)\]</span></p>
+<p>where μ* is the tangent point (optimally chosen). The gain exists
+because v(μ<em>, U) &gt; 0 and the ratio v(μ</em>)/μ* is large — driven
+by the entry jump at τ(U) and, when visible, the screening jump at
+μ_s^R1.</p>
+<p>Under majority (if τ(M) = 0): cav v(p, M) = v(p, M) = (λ_M - α)
+V_e(p) &gt; 0. Majority doesn’t need BP because entry always occurs.</p>
+<p>So the advantage at low priors is:</p>
+<p><span class="math display">\[\Delta(p) = \frac{p}{\mu^*} v(\mu^*, U)
+- (\lambda_M - \alpha) V_e(p)\]</span></p>
+<p>The first term reflects the “BP under unanimity” payoff; the second
+is the “majority without BP” payoff.</p>
+<h2 id="numerical-illustration-example-2">Numerical illustration:
+Example 2</h2>
+<p>Parameters: N=5, r=1.5, α=0.3, β=0.9, c=0.14.</p>
+<p>Key values (from verification report): - μ_s^R1 ≈ 0.197, μ_s^R2 ≈
+0.125 - τ(U) ≈ 0.33, τ(M) = 0 - v(τ(U), U) ≈ 0.256 - v(1, U) ≈ 0.174,
+v(1, M) ≈ 0.134 - D(1) ≈ 0.040 - S_U = v(τ(U))/τ(U) ≈ 0.774 - λ_M - α ≈
+0.090</p>
+<p><strong>For p ∈ E_U</strong> (p ≥ 0.33): - BP amplification = 0
+(μ_s^R1 &lt; τ(U), so v is affine on E_U) - Total advantage = D(p) (pure
+screening) - At p = 0.50: D(0.50) = v(0.50, U) - v(0.50, M) [to be
+computed numerically] - At p = 1: D(1) ≈ 0.040</p>
+<p><strong>For p &lt; τ(U)</strong> (p &lt; 0.33): - cav v(p, U) = S_U ·
+p ≈ 0.774p - cav v(p, M) = v(p, M) = 0.090(1 + 0.5p) = 0.090 + 0.045p -
+Δ(p) = 0.774p - 0.090 - 0.045p = 0.729p - 0.090 - Δ(p) &gt; 0 iff p &gt;
+0.090/0.729 ≈ 0.123 - NOTE: paper claims p* ≈ 0.24. Discrepancy needs
+numerical verification with R code.</p>
+<p><strong>Interpretation</strong>: For Example 2, the advantage on E_U
+is 100% screening (D(p)). For low priors, BP under unanimity exploits
+the entry jump at τ(U), creating value by inducing entry at beliefs
+where the screening advantage kicks in. The screening structure is the
+ultimate source of the gain; BP is the delivery mechanism.</p>
+<h2 id="proposed-remark-for-the-paper">Proposed Remark for the
+paper</h2>
+
+<h2 id="items-to-verify">Items to verify</h2>
+<ol type="1">
+<li>Compute D(p) numerically for Example 2 at p = 0.4, 0.5, 0.7, 1.0 to
+include in the Remark</li>
+<li>Verify p* ≈ 0.24 vs. analytical p* ≈ 0.123 — resolve
+discrepancy</li>
+<li>Find parameters where μ_s^R1 &gt; τ(U) to illustrate the BP
+amplification &gt; 0 case</li>
+<li>Confirm that D(p) from Lemma 1 matches v(p,U) - v(p,M) computed from
+model_functions.R</li>
+</ol>
+<hr />
+<h1 id="verification-report-2026-04-26">Verification Report
+(2026-04-26)</h1>
+<p><strong>Reviewer</strong>: Claude Opus 4.6 (rigorous mathematical
+verification) <strong>Script</strong>:
+<code>scripts/verify_decomposition_v2.R</code> (saved; needs Bash
+permission to run) <strong>Method</strong>: Hand computation tracing
+model_functions.R exactly, supplemented by analytical derivation of
+closed-form expressions for v(μ, R) on each branch.</p>
+<h2 id="derived-quantities-example-2-n5-r1.5-α0.3-β0.9-c0.14">1. Derived
+quantities (Example 2: N=5, r=1.5, α=0.3, β=0.9, c=0.14)</h2>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 28%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q (majority threshold)</td>
+<td>3</td>
+<td>floor(5/2)+1</td>
+</tr>
+<tr>
+<td>x = (N-1)αr</td>
+<td>1.8</td>
+<td></td>
+</tr>
+<tr>
+<td>μ_s^R2</td>
+<td>0.125</td>
+<td>α(r-1)/(r-α)</td>
+</tr>
+<tr>
+<td>φ</td>
+<td>5.6667</td>
+<td>[rN - β(N-1+r)] / [β(r-1)]</td>
+</tr>
+<tr>
+<td>μ_s^R1</td>
+<td><strong>0.1970</strong></td>
+<td>(φ - sqrt(φ²-12))/6</td>
+</tr>
+<tr>
+<td>α*</td>
+<td>0.4737</td>
+<td>β(q-1)/[N(N-1)-β(N²-N-q+1)]</td>
+</tr>
+<tr>
+<td>α &lt; α*?</td>
+<td>YES</td>
+<td>0.3 &lt; 0.4737</td>
+</tr>
+<tr>
+<td>C_buy</td>
+<td>1.26</td>
+<td>β(q-1)(1-α)</td>
+</tr>
+<tr>
+<td>C_out</td>
+<td>6.0</td>
+<td>N(N-1)α</td>
+</tr>
+<tr>
+<td>λ_M</td>
+<td>0.3896</td>
+<td>[N(1+(N-1)α)-C_buy]/N²</td>
+</tr>
+<tr>
+<td>λ_M - α</td>
+<td><strong>0.0896</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>κ_M</td>
+<td>0.1526</td>
+<td>(1-α)[N(N-1)+β(q-1)]/(N²(N-1))</td>
+</tr>
+<tr>
+<td>τ(M)</td>
+<td><strong>0</strong></td>
+<td>max(0, (c/κ_M - 1)/(r-1)) = max(0, -0.165)</td>
+</tr>
+<tr>
+<td>τ(U)</td>
+<td><strong>0.3305</strong></td>
+<td>from conservative branch formula: [cN² - (N+β-βr(1+Nα))] /
+[(N+β)(r-1)]</td>
+</tr>
+<tr>
+<td>μ_s^R1 &lt; τ(U)?</td>
+<td><strong>YES</strong></td>
+<td>0.197 &lt; 0.331</td>
+</tr>
+</tbody>
+</table>
+<h2 id="analytical-closed-forms-for-vμ-r-on-e_u">2. Analytical closed
+forms for v(μ, R) on E_U</h2>
+<p>Since μ_s^R1 = 0.197 &lt; τ(U) = 0.331, the entry set E_U lies
+entirely on the conservative R1 branch (and above μ_s^R2). On this
+branch:</p>
+<p><strong>v(μ, U) = 0.296 − 0.122μ</strong> (affine, decreasing)</p>
+<p>Derivation (conservative branch, μ &gt; μ_s^R2 so VW_R2 = (Ve −
+αr)/N):</p>
+<p>EVH_con = Ve/N − (N−1)β(Ve − αr)/N² + (N−1)β(r+x)/N² = Ve/N +
+(N−1)β[αr + r + x − Ve]/N² = 0.2·Ve + 0.144·[3.75 − Ve] = 0.056·Ve +
+0.54</p>
+<p>v_con(μ) = EVH_con − α·Ve = −0.244·Ve + 0.54 = −0.244·(1 + 0.5μ) +
+0.54 = <strong>0.296 − 0.122μ</strong></p>
+<p>Check: v(1) = 0.174. ✓ Check: v(0.3305) = 0.2557. ✓</p>
+<p><strong>v(μ, M) = (λ_M − α)·Ve(μ) = 0.0896·(1 + 0.5μ)</strong></p>
+<p>Check: v(1, M) = 0.1344. D(1) = 0.174 − 0.1344 = 0.0396. ✓</p>
+<h2 id="payoffs-at-selected-beliefs">3. Payoffs at selected beliefs</h2>
+<table>
+<thead>
+<tr>
+<th>μ</th>
+<th>v(μ,U)</th>
+<th>v(μ,M)</th>
+<th>D(μ)</th>
+<th>VH_U</th>
+<th>VH_M</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.33</td>
+<td>0.256</td>
+<td>0.104</td>
+<td>0.152</td>
+<td>0.605</td>
+<td>0.454</td>
+</tr>
+<tr>
+<td>0.40</td>
+<td>0.247</td>
+<td>0.108</td>
+<td>0.139</td>
+<td>0.607</td>
+<td>0.468</td>
+</tr>
+<tr>
+<td>0.50</td>
+<td>0.235</td>
+<td>0.112</td>
+<td>0.123</td>
+<td>0.610</td>
+<td>0.487</td>
+</tr>
+<tr>
+<td>0.70</td>
+<td>0.211</td>
+<td>0.121</td>
+<td>0.090</td>
+<td>0.616</td>
+<td>0.526</td>
+</tr>
+<tr>
+<td>1.00</td>
+<td>0.174</td>
+<td>0.134</td>
+<td>0.040</td>
+<td>0.624</td>
+<td>0.584</td>
+</tr>
+</tbody>
+</table>
+<p>Note: D(μ) <strong>decreases</strong> with μ on E_U. This is
+expected: at higher beliefs, screening rents are smaller (less
+asymmetric information). D(μ) = (0.296 − 0.0896) − (0.122 + 0.0448)μ =
+0.2064 − 0.1668μ.</p>
+<h2 id="concavification-and-s_u">4. Concavification and S_U</h2>
+<p>Since v(μ, U) is affine-decreasing on E_U = [τ(U), 1], and v = 0
+below τ(U): - The concavification from μ = 0 is a line from (0, 0) to
+the steepest tangent point. - For an affine-decreasing function v(μ) = a
++ bμ (b &lt; 0) on [τ, 1] with v = 0 below τ: - v(μ)/μ = a/μ + b is
+strictly decreasing, so the max is at μ = τ.</p>
+<p><strong>S_U = v(τ(U)) / τ(U) = 0.2557 / 0.3305 = 0.7737</strong></p>
+<p>For μ &lt; τ(U): cav v(μ, U) = S_U · μ ≈ 0.7737μ For μ ≥ τ(U): cav
+v(μ, U) = v(μ, U) (since v is concave = affine on E_U)</p>
+<h2 id="bp-amplification-on-e_u-example-2">5. BP amplification on E_U
+(Example 2)</h2>
+<p>For p ∈ E_U = [0.331, 1]: - cav v(p, U) = v(p, U) (affine, already
+concave) - BP amplification = cav v(p, U) − v(p, U) = <strong>0</strong>
+for all p ∈ E_U</p>
+<p>The proposal’s claim is <strong>CORRECT</strong>: when μ_s^R1 &lt;
+τ(U), BP amplification is zero on E_U and the entire advantage is
+D(p).</p>
+<h2 id="decomposition-identity-check">6. Decomposition identity
+check</h2>
+<p>For p ∈ E_U: cav v(p, U) − cav v(p, M) = [v(p, U) − v(p, M)] + [cav
+v(p, U) − v(p, U)] = D(p) + 0 = D(p)</p>
+<table>
+<thead>
+<tr>
+<th>p</th>
+<th>LHS = D(p)+BP</th>
+<th>D(p)</th>
+<th>BP amp</th>
+<th>Identity holds?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.40</td>
+<td>0.139</td>
+<td>0.139</td>
+<td>0</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>0.50</td>
+<td>0.123</td>
+<td>0.123</td>
+<td>0</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>0.70</td>
+<td>0.090</td>
+<td>0.090</td>
+<td>0</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>1.00</td>
+<td>0.040</td>
+<td>0.040</td>
+<td>0</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<h2 id="resolution-of-the-p-discrepancy-critical-finding">7. Resolution
+of the p* discrepancy — CRITICAL FINDING</h2>
+<p><strong>The paper claims p* ≈ 0.24. The correct value is p* ≈
+0.123.</strong></p>
+<h3 id="derivation">Derivation</h3>
+<p>For p &lt; τ(U): - cav v(p, U) = S_U · p = 0.7737 · p - cav v(p, M) =
+v(p, M) = (λ_M − α) · Ve(p) = 0.0896 · (1 + 0.5p)</p>
+<p>(Note: τ(M) = 0, so cav v(p, M) = v(p, M) for all p.)</p>
+<p>Setting cav v(p, U) = cav v(p, M): 0.7737p = 0.0896 + 0.0448p 0.7289p
+= 0.0896 <strong>p* = 0.0896 / 0.7289 = 0.1229</strong></p>
+<h3 id="why-the-paper-says-0.24">Why the paper says 0.24</h3>
+<p>The value 0.24 in Example 2 (formal_model_v4.Rmd, line 563) appears
+to be a numerical error. Possible sources: 1. An older model
+specification (with participation benefit g, or different VH formula).
+2. A coding bug in a prior computation session that was not caught. 3.
+Confusion between p* and τ(U) (τ(U) ≈ 0.33 is not 0.24 either, so this
+is unlikely).</p>
+<p>The analytical derivation is unambiguous: with the current model
+functions and Example 2 parameters, p* = 0.123 ± 0.001.</p>
+<h3 id="implications">Implications</h3>
+<p>The paper text at line 563 should be corrected: - “The threshold is
+<span class="math inline">\(p^* \approx 0.24\)</span>” → “The threshold
+is <span class="math inline">\(p^* \approx 0.12\)</span>” - “Below it,
+majority dominates” → logic unchanged, just different threshold - “at
+<span class="math inline">\(p = 0.30\)</span>, the hegemon’s payoff
+under unanimity exceeds majority by <span
+class="math inline">\(22\%\)</span>” — need to recompute - “at <span
+class="math inline">\(p = 0.50\)</span>, by <span
+class="math inline">\(25\%\)</span>” — this is still approximately
+correct since p=0.50 ∈ E_U</p>
+<p>Let me verify the percentage claims: - At p = 0.30: p &gt; p* but p
+&lt; τ(U). cav v(U) = 0.7737·0.30 = 0.2321. v(M) = 0.0896·1.15 = 0.1030.
+Π_H<em>(U) = αVe + 0.2321 = 0.345 + 0.2321 = 0.577. Π_H</em>(M) = αVe +
+0.1030 = 0.345 + 0.1030 = 0.448. Advantage: 0.577/0.448 − 1 = 28.8%. -
+At p = 0.50: v(U) = 0.235, v(M) = 0.112. Π_H<em>(U) = 0.375 + 0.235 =
+0.610. Π_H</em>(M) = 0.375 + 0.112 = 0.487. Advantage: 0.610/0.487 − 1 =
+25.3%. ✓ (paper says 25%)</p>
+<p>The percentage at p=0.30 should be updated to ~29%, and the overall
+narrative that “above p*, unanimity dominates” still holds — just with a
+lower threshold.</p>
+<h2 id="parameters-where-bp-amplification-0">8. Parameters where BP
+amplification &gt; 0</h2>
+<p><strong>Found: N=5, r=1.5, α=0.3, β=0.9, c=0.05</strong></p>
+<p>Key values: - μ_s^R1 = 0.197 (unchanged — independent of c) - τ(U) ≈
+0 (conservative branch: formula gives negative threshold) - τ(M) = 0</p>
+<p>Since τ(U) &lt; μ_s^R1, the jump is visible inside E_U.</p>
+<h3 id="vμ-u-structure-with-c-0.05">v(μ, U) structure with c = 0.05</h3>
+<p>v(μ, U) has three segments:</p>
+<table>
+<thead>
+<tr>
+<th>Branch</th>
+<th>μ range</th>
+<th>Formula</th>
+<th>Slope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aggressive, low R2</td>
+<td>(0, 0.125)</td>
+<td>0.2024 + 0.1228μ</td>
+<td>+0.123</td>
+</tr>
+<tr>
+<td>Aggressive, high R2</td>
+<td>(0.125, 0.197)</td>
+<td>0.224 − 0.050μ</td>
+<td>−0.050</td>
+</tr>
+<tr>
+<td>Conservative</td>
+<td>(0.197, 1)</td>
+<td>0.296 − 0.122μ</td>
+<td>−0.122</td>
+</tr>
+</tbody>
+</table>
+<p>The upward jump at μ_s^R1: v_con(0.197) − v_agg(0.197) = 0.272 −
+0.214 = <strong>0.058</strong>.</p>
+<h3 id="concavification-with-c-0.05">Concavification with c = 0.05</h3>
+<p>From (0.001, 0.2025), the concavify algorithm finds the steepest
+slope is toward the start of the conservative branch at μ ≈ 0.198: -
+slope ≈ (0.272 − 0.2025)/0.197 = 0.354</p>
+<p>The concave envelope: - For μ ∈ [0.001, 0.198]: cav v = 0.2025 +
+0.354·(μ − 0.001) (line to conservative branch) - For μ ∈ [0.198, 1.0]:
+cav v = v_con(μ) = 0.296 − 0.122μ</p>
+<h3 id="bp-amplification">BP amplification</h3>
+<p>At μ = 0.10: - v(0.10) = 0.2024 + 0.1228·0.10 = 0.215 - cav v(0.10) =
+0.2025 + 0.354·0.099 = 0.237 - <strong>BP amplification =
+0.022</strong></p>
+<p>At μ = 0.15 (just above μ_s^R2, on the declining part of aggressive
+branch): - v(0.15) = 0.224 − 0.05·0.15 = 0.2165 - cav v(0.15) = 0.2025 +
+0.354·0.149 = 0.255 - <strong>BP amplification = 0.039</strong></p>
+<p>At μ = 0.197 (just below jump): - v_agg(0.197) = 0.214 - cav v(0.197)
+= 0.2025 + 0.354·0.196 = 0.272 - <strong>BP amplification =
+0.058</strong> (= full jump magnitude)</p>
+<p>On E_U with c = 0.05, BP amplification is positive in the range [0,
+μ_s^R1] where the concave envelope lies above the aggressive branch.</p>
+<h2 id="check-of-the-remark-text">9. Check of the Remark text</h2>
+<p>The proposed Remark (lines 103–111 of the proposal) is
+<strong>mathematically correct</strong> with one important
+qualification:</p>
+<ol type="1">
+<li><p><strong>Identity</strong>: “cav v(p,U) − cav v(p,M) = D(p) + [cav
+v(p,U) − v(p,U)]” — CORRECT. This is a tautology (add and subtract
+v(p,U)).</p></li>
+<li><p><strong>D(p) &gt; 0 from Lemma 1</strong>: CORRECT. D(p) = v(p,U)
+− v(p,M) &gt; 0 for all p ∈ E_U when α &lt; α*.</p></li>
+<li><p><strong>BP amplification ≥ 0</strong>: CORRECT. By definition of
+concavification.</p></li>
+<li><p><strong>“When μ_s^R1 &lt; τ(U), v(·,U) is affine on
+E_U”</strong>: <strong>CORRECT with qualification</strong>. It is affine
+because E_U lies entirely on the conservative branch. However, the
+Remark says “affine on the entry set E_U” — this is precisely correct
+only if E_U is connected (an interval). With the jump in VW, E_U could
+theoretically be disconnected. But when μ_s^R1 &lt; τ(U), the entry set
+starts above the jump, so E_U ⊆ [τ(U), 1] is a single interval on the
+conservative branch. Correct.</p></li>
+<li><p><strong>“When μ_s^R1 ∈ (τ(U), 1), the screening jump creates an
+additional non-convexity”</strong>: CORRECT. Verified with c = 0.05
+above.</p></li>
+<li><p><strong>“For priors below τ(U), […] screening structure is the
+source of the gain; BP is the delivery mechanism”</strong>: CORRECT. The
+concavification slope S_U = v(τ(U))/τ(U) is driven by the level of v at
+the entry point, which reflects the screening advantage. BP acts as a
+delivery mechanism by splitting the prior into posteriors at 0 (no
+entry) and μ* ∈ E_U (entry where screening operates).</p></li>
+</ol>
+<p><strong>No incorrect claims found in the Remark.</strong></p>
+<h2 id="additional-findings">10. Additional findings</h2>
+<h3 id="numerical-values-from-the-proposal-line-7884">Numerical values
+from the proposal (line 78–84)</h3>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Proposal value</th>
+<th>Verified value</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>μ_s^R1 ≈ 0.197</td>
+<td>0.197</td>
+<td>0.1970</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>μ_s^R2 ≈ 0.125</td>
+<td>0.125</td>
+<td>0.125</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>τ(U) ≈ 0.33</td>
+<td>0.33</td>
+<td>0.3305</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>τ(M) = 0</td>
+<td>0</td>
+<td>0</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>v(τ(U), U) ≈ 0.256</td>
+<td>0.256</td>
+<td>0.2557</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>v(1, U) ≈ 0.174</td>
+<td>0.174</td>
+<td>0.174</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>v(1, M) ≈ 0.134</td>
+<td>0.134</td>
+<td>0.1344</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>D(1) ≈ 0.040</td>
+<td>0.040</td>
+<td>0.0396</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>S_U ≈ 0.774</td>
+<td>0.774</td>
+<td>0.7737</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>λ_M − α ≈ 0.090</td>
+<td>0.090</td>
+<td>0.0896</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<h3 id="proposal-line-9497-crossing-computation">Proposal line 94–97
+(crossing computation)</h3>
+<p>The proposal itself computes p* ≈ 0.123 (line 96) but then flags the
+discrepancy with the paper’s p* ≈ 0.24 (line 97). The proposal’s own p*
+= 0.123 is <strong>correct</strong>. The paper’s p* = 0.24 is
+<strong>wrong</strong>.</p>
+<h2 id="summary-and-grade">Summary and grade</h2>
+<h3 id="what-is-correct">What is correct</h3>
+<ol type="1">
+<li>The decomposition identity cav v(p,U) − cav v(p,M) = D(p) + BP_amp
+is correct.</li>
+<li>When μ_s^R1 &lt; τ(U) (Example 2), BP amplification = 0 on E_U and
+the full advantage is D(p). ✓</li>
+<li>When μ_s^R1 &gt; τ(U) (e.g., c = 0.05), BP amplification &gt; 0 on a
+pooling region. ✓</li>
+<li>The Remark text is mathematically correct. ✓</li>
+<li>All numerical values in the proposal (except p*) are correct. ✓</li>
+</ol>
+<h3 id="what-needs-fixing">What needs fixing</h3>
+<ol type="1">
+<li><p><strong>p* = 0.123, not 0.24.</strong> The paper
+(formal_model_v4.Rmd, lines 561–565) must be corrected. This is a HIGH
+severity error since the Example anchors the reader’s intuition for the
+main theorem.</p></li>
+<li><p><strong>Percentages at p = 0.30 need rechecking.</strong> With p*
+≈ 0.12, p = 0.30 is well above the crossing, and the unanimity advantage
+at p=0.30 is ~29% (not 22% as the paper claims). The paper’s 22% was
+presumably computed consistently with the wrong p* = 0.24 model
+version.</p></li>
+<li><p><strong>The description at p &lt; τ(U) in the proposal (lines
+93–97) implicitly assumes cav v(p,M) = (λ_M − α)Ve(p) for all
+p.</strong> This is correct when τ(M) = 0 (as in Example 2), but should
+be stated explicitly as a condition.</p></li>
+</ol>
+<h3 id="recommended-actions">Recommended actions</h3>
+<ul>
+<li>Fix p* in Example 2 of the paper: p* ≈ 0.12 (or compute to greater
+precision via R code)</li>
+<li>Recompute the advantage percentages at p = 0.30 and p = 0.50</li>
+<li>Run the R verification script
+(<code>scripts/verify_decomposition_v2.R</code>) to machine precision —
+it has been written and saved but not executed due to Bash permission
+restriction</li>
+<li>The Remark text is ready to insert into the paper after fixing the
+numerical example</li>
+</ul>
+<h3 id="grade-a-">Grade: <strong>A-</strong></h3>
+<p>The decomposition logic and Remark text are correct (would be A+).
+The grade is reduced to A- because: - The p* = 0.24 claim in the paper
+is incorrect and the proposal flagged this but did not resolve it (the
+resolution is now clear: p* = 0.123). - The R script was written but
+could not be executed to machine precision. The hand computations above
+are precise to 3-4 significant figures, which is sufficient for
+verification but not publication-quality.</p>
+<p>Once the R script is run and p* is confirmed computationally, and the
+paper text is corrected, the grade elevates to A+.</p>
+</body>
+</html>

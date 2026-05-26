@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Propostas Contribution Boost (v3)</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Propostas Contribution Boost (v3)</h1>
+</header>
+<h1
+id="propostas-para-fortalecer-contribution-edmans-review-7.0---7.5">Propostas
+para fortalecer Contribution (Edmans review 7.0 -&gt; 7.5+)</h1>
+<p><strong>Data</strong>: 2026-04-25 <strong>Status</strong>: DRAFT v3 —
+aguardando aprovacao</p>
+<p>O bottleneck e Importancia (Adequada, nao Forte). A Novidade ja e
+Forte. Tres propostas abaixo.</p>
+<hr />
+<h2 id="proposta-1-worked-example-numerico-pos-theorem-2-p6">Proposta 1:
+Worked Example numerico pos-Theorem 2 (P6)</h2>
+<h3 id="objetivo">Objetivo</h3>
+<p>Mostrar p* em acao: computar o threshold, mostrar magnitudes dos dois
+lados, e ilustrar como o single-crossing funciona numericamente.
+Parametros estilizados, sem pretender calibrar a um episodio
+historico.</p>
+<h3 id="por-que-nao-calibrar-ao-gatt-1947">Por que NAO calibrar ao GATT
+1947</h3>
+<p>A criacao do GATT nao se encaixa no modelo porque: (i) os parceiros
+principais eram europeus, nao “weak states” com gap informacional
+severo; (ii) a motivacao dos EUA era geopolitica (conter socialismo,
+reconstruir Europa), nao distributiva; (iii) nao se tratava de BP para
+extrair excedente. A aplicacao historica melhor e a WTO contemporanea
+com PVDs — mas essa aplicacao ja esta na Discussion. O Example deve
+focar na mecanica, nao na historia.</p>
+<h3 id="parametros">Parametros</h3>
+<p>Usar os mesmos parametros do Example 1 (ja familiar ao leitor): -
+N=5, r=1.5, alpha=0.3, beta=0.9 - Adicionar c=0.14 (entry cost)</p>
+<p>Esses parametros geram: - alpha* = 0.474 (alpha &lt; alpha*, Lemma 1
+vale) - mu_s^R1 = 0.197 (screening cutoff) - tau(M) ~ 0 (entry ocorre em
+quase todo mu sob maioria) - tau(U) = 0.331 (entry so ocorre para mu
+&gt; 0.33 sob unanimidade) - <strong>p* = 0.238</strong> (threshold do
+Theorem 2)</p>
+<h3 id="numeros-chave-para-o-example">Numeros-chave para o Example</h3>
+<table>
+<thead>
+<tr>
+<th>Prior p</th>
+<th>Pi_H*(U)</th>
+<th>Pi_H*(M)</th>
+<th>Melhor regra</th>
+<th>Magnitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.10</td>
+<td>0.18</td>
+<td>0.41</td>
+<td>M</td>
+<td>M da 125% mais</td>
+</tr>
+<tr>
+<td>0.20</td>
+<td>0.37</td>
+<td>0.43</td>
+<td>M</td>
+<td>M da 17% mais</td>
+</tr>
+<tr>
+<td><strong>0.238</strong></td>
+<td>—</td>
+<td>—</td>
+<td><strong>crossing</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>0.30</td>
+<td>0.55</td>
+<td>0.45</td>
+<td>U</td>
+<td>U da 22% mais</td>
+</tr>
+<tr>
+<td>0.50</td>
+<td>0.61</td>
+<td>0.49</td>
+<td>U</td>
+<td>U da 25% mais</td>
+</tr>
+</tbody>
+</table>
+<p><strong>A historia que os numeros contam:</strong> - Abaixo de
+p*=0.238: maioria domina porque a instituicao nao se forma sob
+unanimidade (c alto demais para os fracos suportarem dado o surplus
+menor). Maioria ganha pelo canal de entry, nao por payoff condicional. -
+Acima de p*=0.238: unanimidade domina. O screening da ao hegemon 17-25%
+mais que maioria. BP amplifica: em p=0.30, a concavificacao de U gera
+Pi=0.55, bem acima do valor raw. - A transicao ocorre <strong>uma unica
+vez</strong> (single-crossing), como o Theorem 2 garante.</p>
+<h3 id="texto-proposto-para-o-paper">Texto proposto para o paper</h3>
+<p>Inserir como <strong>Example 2</strong> apos o paragrafo
+interpretativo do Theorem 2 (linha 559), antes de “Numerical
+characterization”:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode latex"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">example</span>}[Computing <span class="ss">$p^*$</span>: the full institutional comparison]<span class="kw">\label</span>{<span class="ex">ex:p_star</span>}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Continuing with the parameters from Example~<span class="kw">\ref</span>{<span class="ex">ex:magnitudes</span>}</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="ss">$N=5$</span>, <span class="ss">$r=1.5$</span>, <span class="ss">$</span><span class="sc">\alpha</span><span class="ss">=0.3$</span>, <span class="ss">$</span><span class="sc">\beta</span><span class="ss">=0.9$</span>), suppose entry costs</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$c = 0.14$</span>. Under majority, the institution forms at essentially all</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>beliefs (<span class="ss">$</span><span class="sc">\tau</span><span class="ss">(M) </span><span class="sc">\approx</span><span class="ss"> 0$</span>). Under unanimity, the screening</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>mechanism reduces weak states&#39; surplus, so the institution forms only</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>for <span class="ss">$</span><span class="sc">\mu</span><span class="ss"> &gt; </span><span class="sc">\tau</span><span class="ss">(U) </span><span class="sc">\approx</span><span class="ss"> 0.33$</span>. Bayesian persuasion partially</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>closes this entry gap: the hegemon designs signals that push</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>posteriors above <span class="ss">$</span><span class="sc">\tau</span><span class="ss">(U)$</span>, inducing participation under unanimity at</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>priors below <span class="ss">$0.33$</span>.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>The threshold is <span class="ss">$p^* </span><span class="sc">\approx</span><span class="ss"> 0.24$</span>. Below it, majority dominates</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>because only it can induce entry---unanimity&#39;s concavified payoff</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>cannot overcome the participation disadvantage. Above it, unanimity</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>strictly dominates: at <span class="ss">$p = 0.30$</span>, the hegemon&#39;s payoff under</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>unanimity exceeds majority by <span class="ss">$22</span><span class="sc">\%</span><span class="ss">$</span>; at <span class="ss">$p = 0.50$</span>, by <span class="ss">$25</span><span class="sc">\%</span><span class="ss">$</span>.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>The advantage of majority at pessimistic priors is entirely through</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>the entry channel: conditional on participation, unanimity always</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>gives the hegemon more (Lemma~<span class="kw">\ref</span>{<span class="ex">lem:conditional</span>}).</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>The transition is sharp and monotone, as Theorem~<span class="kw">\ref</span>{<span class="ex">thm:crossing</span>}</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>guarantees. The set of priors favoring unanimity is the upper</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>interval <span class="ss">$(0.24, 1]$</span>: once the prospects of cooperation are</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>promising enough that unanimity can induce entry (directly or through</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>persuasion), the screening advantage is decisive.</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">example</span>}</span></code></pre></div>
+<h3 id="o-que-muda-na-discussion">O que muda na Discussion</h3>
+<p>O paragrafo “GATT-to-WTO transition” (linhas 680-684) fica como esta
+— mapeamento qualitativo, sem calibracao numerica. O Example 2 faz o
+trabalho numerico de forma estilizada, e a Discussion conecta
+qualitativamente os comparative statics (alpha sobe → consenso perde
+valor; assimetria informacional cresce → consenso ganha valor) ao caso
+historico.</p>
+<hr />
+<h2 id="proposta-2-observable-implications-estilo-jop">Proposta 2:
+Observable implications — estilo JoP</h2>
+<h3 id="diagnostico-apos-leitura-de-hirsch-2023-e-hill-2022">Diagnostico
+(apos leitura de Hirsch 2023 e Hill 2022)</h3>
+<p>Estilo JoP: predictions em prosa (nao bullets/tabelas), organizadas
+por topico, com italicos e contraste explicito com teorias
+alternativas.</p>
+<h3 id="proposta-minima">Proposta (minima)</h3>
+<p>Quebrar o paragrafo denso (linhas 674-678) em 2-3 paragrafos
+tematicos: - Par. 1: <em>Onde</em> o mecanismo e mais forte
+(complexidade regulatoria) e <em>quando</em> enfraquece (PTAs).
+Contraste com legitimidade. - Par. 2: <em>Timing</em> (regimes maduros
+vs. novos) e <em>paciencia</em>. Contraste com self-enforcement. - Par.
+3: Variacao cross-issue como prediction distintiva.</p>
+<p>Nao mudar formato — continuar em prosa. Usar italicos para sinalizar
+predictions.</p>
+<hr />
+<h2 id="proposta-3-remark-de-welfare">Proposta 3: Remark de Welfare</h2>
+<h3 id="o-resultado-ja-derivado-no-appendix-a.6">O resultado (ja
+derivado no Appendix A.6)</h3>
+<ul>
+<li>Maioria: surplus total = V_e(mu) (sem destruicao)</li>
+<li>Unanimidade, agressivo: surplus total = V_e(mu) -
+(N-1)<em>mu</em>r*(1-beta)/N (destruicao por delay)</li>
+</ul>
+<h3 id="texto-proposto">Texto proposto</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode latex"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">remark</span>}[Welfare]<span class="kw">\label</span>{<span class="ex">rem:welfare</span>}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Unanimity is not a Pareto improvement over majority. Under majority,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>total surplus equals <span class="ss">$V_e(</span><span class="sc">\mu</span><span class="ss">)$</span>: the budget identity holds exactly</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(Appendix~A.6). Under unanimity, total surplus is weakly lower:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>when the weak proposer plays aggressively, type <span class="ss">$</span><span class="sc">\theta</span><span class="ss">=1$</span> rejects</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>in R1 and delay destroys a fraction <span class="ss">$</span><span class="sc">\mu</span><span class="ss">(N-1)r(1-</span><span class="sc">\beta</span><span class="ss">)/N$</span> of</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>expected surplus. Since the hegemon captures more</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>(Lemma~<span class="kw">\ref</span>{<span class="ex">lem:conditional</span>}) while weak states receive less</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>(Appendix~B.6), unanimity redistributes from weak states to the</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>hegemon while also reducing total surplus. The hegemon&#39;s preference</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>for unanimity is distributive, not efficiency-enhancing.</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">remark</span>}</span></code></pre></div>
+<p>Inserir apos linha 559 (pos-Theorem 2), antes do Example 2.</p>
+<hr />
+<h2 id="resumo">Resumo</h2>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 25%" />
+<col style="width: 30%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Proposta</th>
+<th>O que faz</th>
+<th>Onde insere</th>
+<th>Esforco</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1: Example 2 (p*)</td>
+<td>Mostra single-crossing com numeros</td>
+<td>Pos-Theorem 2, antes de Numerical</td>
+<td>Medio</td>
+</tr>
+<tr>
+<td>P3: Remark welfare</td>
+<td>Muda framing normativo</td>
+<td>Pos-Theorem 2</td>
+<td>Baixo</td>
+</tr>
+<tr>
+<td>P2: Observable implications</td>
+<td>Quebra paragrafo denso, italicos</td>
+<td>Discussion, linhas 674-678</td>
+<td>Baixo</td>
+</tr>
+</tbody>
+</table>
+<p>Ordem de insercao no texto: Remark welfare → Example 2 → Numerical
+characterization.</p>
+</body>
+</html>

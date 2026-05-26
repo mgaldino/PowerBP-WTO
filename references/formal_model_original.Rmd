@@ -1,0 +1,693 @@
+---
+title: "Informational Power, Agenda Power, and Institutional Design"
+author: "Manoel Galdino (University of São Paulo; mgaldino@usp.br)"
+date: "`r Sys.Date()`"
+output:
+  bookdown::pdf_document2:
+    number_sections: TRUE
+    toc: FALSE
+    latex_engine: xelatex
+header-includes:
+  - \usepackage{setspace}\doublespacing
+  - \setstretch{1.5}
+  - \usepackage{parskip}
+  - \setlength{\parskip}{6pt}
+  - \setlength{\parindent}{0pt}
+  - \usepackage{float}
+  - \usepackage{amsmath,amssymb,amsthm}
+  - \newtheorem{definition}{Definition}
+  - \newtheorem{lemma}{Lemma}
+  - \newtheorem{proposition}{Proposition}
+  - \newtheorem{theorem}{Theorem}
+  - \newtheorem{corollary}{Corollary}
+  - \newtheorem{remark}{Remark}
+  - \newtheorem{example}{Example}
+fontsize: 12pt
+geometry: margin=2.5cm
+mainfont: Times New Roman
+bibliography: references.bib
+link-citations: true
+abstract: |
+  We study the institutional design problem of a hegemon who possesses both agenda power (the ability to propose allocations) and informational power (private knowledge about the value of agreements). The hegemon chooses between two viable institutional packages: majority rule bundled with agenda control, or consensus bundled with no agenda control. We model the redistribution stage as a two-round Baron-Ferejohn bargaining game in which the hegemon's private information about the state creates a screening channel: under consensus, weak states screen the hegemon's type through their bargaining offers, generating a discontinuity in payoffs at a screening threshold that Bayesian Persuasion can exploit. Under majority, the hegemon's agenda power renders everything linear and the screening channel is absent. We characterize the conditions under which the hegemon prefers consensus and show that informational power can substitute for agenda power --- with the dominance condition depending non-trivially on the pie ratio and discount factor through the screening threshold, parameters that cancel under majority.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+# Introduction
+
+## The Puzzle
+
+Why do international organizations operate by consensus? The international arena is where raw power matters most --- where great powers have the capacity to coerce, exclude, and dictate terms. The standard logic of political economy says powerful actors should exploit this. In legislative bargaining, a player with agenda power benefits from *majority* rule: assembling minimum winning coalitions, excluding the rest, and capturing surplus [@baron1989bargaining]. @kalandrakis2006proposal shows that the power to propose is the fundamental source of political power. A hegemon --- a state with disproportionate resources, analytical capacity, and diplomatic leverage --- should prefer majority voting with agenda control. Consensus, which gives every participant a veto, should be the last institution a hegemon would design.
+
+And yet, this is precisely what happens. The GATT/WTO has operated by consensus since its founding; the US was instrumental in designing it that way [@steinberg2002shadow]. Across a range of international organizations --- from WIPO to the WTO to the UN Security Council on procedural matters --- consensus is the norm, not the exception [@koremenos2001rational]. Powerful states appear to be giving up power. From a realist perspective, a benevolent hegemon that abstains from using its power differential to extract surplus is a theoretical anomaly --- yet this is precisely what the hegemonic stability tradition assumes [@keohane1984after]. The hegemon creates the liberal international order and bears the cost of providing public goods, but there is no mechanism for extracting surplus from the arrangement. Why would a rational hegemon do this? Why not provide the public good *in a way that also extracts surplus*?
+
+## Two Types of Power
+
+The puzzle dissolves once we recognize that "power" is not monolithic. There are (at least) two distinct types, and they interact with institutional rules in *opposite* ways.
+
+*Agenda power* is the ability to propose allocations and form coalitions. Under majority rule, agenda power translates directly into distributive advantage: the proposer assembles a minimum winning coalition, pays off the cheapest partners, and keeps the rest. This is the Baron-Ferejohn mechanism. Agenda power is maximally effective under majority and neutralized under consensus (where every member can veto any proposal).
+
+*Informational power* is the ability to shape what others believe about the value of cooperation. A hegemon typically possesses superior analytical capacity --- more economists, better intelligence, deeper expertise about the quality of proposed agreements. This is the domain of Bayesian Persuasion [@kamenica2011bayesian]: the informed player designs an information structure (reports, analyses, forecasts) to influence the decisions of others. Bayesian Persuasion has been applied to voting contexts by @alonso2016persuading; we extend it to institutional design.
+
+The critical insight: these two types of power respond to institutional rules in opposite directions. Under majority, agenda power thrives, but informational power is blunted --- weak states discount the hegemon's signals because they know they can be exploited once inside a majority coalition. Why trust a claim that "this trade deal is good for everyone" when you know you might be excluded from the winning coalition? Under consensus, agenda power is neutralized (every member has a veto), but precisely *because* of this protection, weak states are more receptive to the hegemon's signals. The veto lowers the cost of trust. The threshold for persuasion drops. Informational power becomes more effective.
+
+## Institutional Packages
+
+The choice between majority and consensus is not just about voting rules. It is about *institutional packages* that bundle a voting rule with an agenda-setting arrangement:
+
+- *Package A* (Majority + Agenda): $H$ controls proposals, passes them by majority. Viable --- $H$ extracts via minimum winning coalitions.
+- *Package B* (Consensus + Agenda): $H$ controls proposals under unanimity. Not viable --- $H$ offers each weak state zero (their outside option), so $V_W = 0$ and adhesion collapses.
+- *Package C* (Consensus + No Agenda): Proposal rights rotate, everyone has a veto. Viable --- veto protection enables participation.
+- *Package D* (Majority + No Agenda): $H$ has no proposal power and is excluded from others' coalitions (the Baron-Ferejohn exclusion effect). Dominated.
+
+The real comparison is Package A vs Package C. This matches reality: the WTO operates by consensus *and* is member-driven --- rotating chairs, no permanent proposer. This is not merely a diplomatic norm; it is an equilibrium configuration. Under consensus, the hegemon voluntarily gives up agenda control because keeping it would destroy weak states' willingness to participate.
+
+## The Result
+
+The model yields a five-step argument, where each step overturns the intuition of the one before it.
+
+**(a) Consensus lowers the entry barrier.** Under consensus, every weak state has a veto, which protects it against exploitation in the redistribution stage. Weak states receive an equal share of the pie under consensus but a strictly smaller share under majority. For $N = 3$, a weak state gets $1/3$ of the pie under consensus but only $1/6$ under majority. Consequently, the posterior belief $\mu$ required for a weak state to enter the institution is lower under consensus: $\tau(C) < \tau(A)$. This seems obvious --- veto protection encourages participation.
+
+**(b) But this comes at a direct cost to $H$.** Under consensus, $H$ receives only $1/N$ of the pie --- the same as everyone else. Under majority with agenda control, $H$ keeps $1 - (q-1)/N$, which for $N = 3$ equals $2/3$. The hegemon's per-agreement surplus is *cut in half*. Why would $H$ accept this?
+
+**(c) Because $H$ uses Bayesian Persuasion to extract surplus even under consensus.** When the prior $p$ is below the entry threshold $\tau(R)$, the institution does not form without persuasion. $H$ designs a signal structure that induces a posterior of exactly $\tau(R)$ with probability $p/\tau(R)$ and a posterior of $0$ otherwise. The key is the *rate of return to persuasion* --- the ratio of $H$'s payoff at the margin to the entry threshold. Under consensus, this ratio is higher because the screening channel creates a jump discontinuity that steepens the concavification (see Section 3). Intuitively, consensus trades *margin* for *volume*: $H$ gets a smaller slice per agreement but persuades at a lower threshold, so agreements form more often. For $N = 3$ with $c = 0.35$, $r = 1.5$, $\beta = 0.7$, and $g = 0.5$, the hegemon prefers consensus whenever $p < p^*$ --- that is, whenever there is meaningful uncertainty about the quality of cooperation.
+
+**(d) But if $H$ gains from consensus, are weak states being duped?** No. Weak states are *also* strictly better off under consensus ($V_W(C) > V_W(A)$ for all $\mu$). Both the hegemon and the weak states prefer consensus --- though for different reasons. The arrangement is incentive-compatible: no actor has a unilateral incentive to switch to majority.
+
+**(e) Where does the extra surplus come from?** Not from redistribution --- it is not the case that one side gains at the other's expense. The extra surplus comes from agreements that *would not exist* under majority. When $p < \tau(A)$, the institution never forms under Package A (even with optimal persuasion, if $\tau(A) > 1$, no signal can induce entry). Under Package C, the lower threshold $\tau(C)$ means the same prior $p$ is sufficient --- or at least closer to sufficient --- for the institution to form. Consensus expands the set of feasible agreements. Both $H$ and the weak states share the gains from agreements that majority rule would have destroyed. This is not redistribution but *value creation through institutional design*: a Pareto improvement enabled by the choice of voting rule.
+
+## Positioning
+
+This paper contributes to the literature on the design of international institutions, but departs from the dominant frameworks in a specific way.
+
+The neoliberal institutionalist tradition [@keohane1984after; @koremenos2001rational] explains institutional design as a response to coordination and collective action problems among broadly symmetric states. Institutions reduce transaction costs, facilitate monitoring, and enable cooperation that would otherwise fail. @maggi2006selfenforcing extend this logic to voting rules, showing that unanimity can be self-enforcing when external compliance mechanisms are absent. Our model differs fundamentally: the actors are *asymmetric* (a hegemon versus weak states), the environment is *distributive* (a pie is divided, not a public good provided), and the mechanism is *strategic information design*, not coordination failure. The puzzle is not "how do symmetric states cooperate?" but "why does an asymmetric actor accept an institution that appears to constrain its power?"
+
+@steinberg2002shadow provides the most direct empirical predecessor. He documents that the US maintained consensus at the GATT/WTO because it could exercise informal power --- through Green Room caucuses, draft texts, and secretariat influence --- within the consensus framework. Our model formalizes a complementary but distinct channel. Steinberg describes power *within* consensus but does not explain the institutional *choice*: why a hegemon would *prefer* consensus over majority in the first place. His account takes the institution as given; ours endogenizes it.
+
+The contribution of this paper is to show that consensus can *create* value, not merely divide it. By lowering the entry threshold, consensus enables agreements that majority rule would destroy. The gains from these new agreements are distributed in a way that is incentive-compatible for both the hegemon (who extracts via informational power) and the weak states (who are protected by the veto). The institutional design problem is not a zero-sum choice between the powerful and the weak, but a positive-sum problem in which the voting rule determines both the size and the division of the cooperative surplus.
+
+Our model thus offers a synthesis of the neoliberal and realist positions: institutions reflect power *and* produce mutual gains --- not despite power, but *because* of it. The hegemon designs the institution to maximize its own surplus, and consensus is the instrument that makes this extraction most efficient. The outcome looks liberal --- consensus, equal formal standing, Pareto improvement --- but the mechanism is realist.
+
+# Model
+
+## Environment
+
+\begin{definition}[Institutional Design Game]\label{def:game}
+The game $\Gamma(N, p, g, c, r, \beta)$ is defined by:
+
+\begin{itemize}
+\item \textbf{Players}: One hegemon $H$ and $n = N-1$ weak states $W_1, \ldots, W_n$. We specialize to $N = 3$ throughout (so $n = 2$).
+
+\item \textbf{State and pie size}: $\theta \in \{0, 1\}$ with prior $\Pr(\theta = 1) = p \in (0,1)$. The state determines the size of the redistributive pie: $V(0) = 1$ (baseline surplus) and $V(1) = r > 1$ (high surplus). Let $V_e(\mu) \equiv 1 + \mu(r - 1)$ denote the expected pie at posterior $\mu$. $H$ observes $\theta$; weak states do not.
+
+\item \textbf{Discount factor}: $\beta \in (0, 1)$, common to all players.
+
+\item \textbf{Entry cost}: Each weak state pays $c > 0$ to join the institution.
+
+\item \textbf{Direct benefit from the agreement}: Each weak state $W_i$ that enters receives a direct benefit $\theta$ from the agreement (capturing the agreement's quality for $W_i$), in addition to its share of the redistributive pie $V(\theta)$ from Stage 2. Thus $W_i$'s total expected payoff from entering is $\mathbb{E}[\theta \mid s] + V_W(R, \mu) - c = \mu + V_W(R, \mu) - c$, where $\mu = \Pr(\theta = 1 \mid s)$ is the posterior after observing signal $s$.
+
+\item \textbf{Complementarity}: If the institution forms, $H$ receives an additional payoff $g > 0$ from broad membership.
+\end{itemize}
+\end{definition}
+
+\begin{remark}[Exogeneity of $\theta$]
+The state $\theta$ is drawn by nature, not chosen by $H$. This is essential for the Bayesian Persuasion framework: the sender observes an exogenous state and designs how to communicate about it. The ``extractiveness'' interpretation means that $\theta$ captures the quality of the agreement environment (e.g., how much surplus the deal generates for weak states), which $H$ observes due to superior analytical capacity but cannot control. In an extension where $H$ also chooses deal terms $x_i$, the BP channel would interact with a mechanism design problem, but the qualitative results would be preserved: the threshold mechanism operates through $V_W(R)$, which depends on the institutional rule, not on the information structure.
+\end{remark}
+
+\begin{remark}[Microfoundation of $g$]
+In the baseline model, $g$ is a scalar parameter. A natural microfoundation is $g = \lambda n^\alpha$ with $\lambda > 0$ and $\alpha > 1$, where the convexity captures supermodular complementarities: each additional member generates more value than the previous one. Under this specification, $g$ scales with $N$, strengthening the case for consensus in larger institutions. However, the qualitative results --- including the existence of $p^*$ and the comparative statics --- hold for any $g > 0$. The microfoundation amplifies but does not create the mechanism.
+\end{remark}
+
+\begin{definition}[Institutional Packages]\label{def:packages}
+An institutional package $R \in \{A, C\}$ specifies a voting rule and an agenda structure:
+
+\begin{itemize}
+\item \textbf{Package A} (Majority + Agenda): Decisions pass with $q = 2$ votes (majority for $N = 3$). $H$ is the exclusive proposer in both rounds.
+
+\item \textbf{Package C} (Consensus + No Agenda): Decisions require unanimity ($q = N = 3$). Recognition is symmetric: each player proposes with probability $1/3$.
+\end{itemize}
+
+Two other combinations are not viable:
+\begin{itemize}
+\item \textbf{Package B} (Consensus + Agenda): $H$ proposes exclusively under unanimity. In a two-round game with disagreement payoff $d = V(\theta)/N$, $H$ offers each $W_i$ their discounted disagreement value $\beta V(\theta)/N$. In the limit $\beta \to 0$ (or in a single-round special case), $V_W(B) \to 0$, making the entry threshold prohibitively high. Package B is dominated by C (Proposition \ref{prop:packageB}).
+\item \textbf{Package D} (Majority + No Agenda): Under majority with symmetric recognition ($p_i = 1/N$), continuation values are $v_i = 1/N$ for all $i$ --- identical to Package C. $H$ gains nothing from majority without agenda power. With asymmetric recognition ($p_H > 1/N$), $H$ is excluded from others' coalitions (Proposition \ref{prop:packageD}).
+\end{itemize}
+\end{definition}
+
+## Timing
+
+The game proceeds in three stages, solved by backward induction:
+
+\begin{enumerate}
+\item[\textbf{Stage 0.}] $H$ chooses institutional package $R \in \{A, C\}$.
+
+\item[\textbf{Stage 1.}] Nature draws $\theta$. $H$ observes $\theta$ and chooses an information structure $\pi: \{0,1\} \to \Delta(S)$, generating a public signal $s \in S$. Each $W_i$ observes $s$, forms posterior $\mu = \Pr(\theta = 1 \mid s)$, and chooses $a_i \in \{0, 1\}$ (enter or stay out). The institution forms if all weak states enter (Proposition \ref{prop:allornone}).
+
+\item[\textbf{Stage 2.}] If the institution forms, members play a \textbf{two-round Baron-Ferejohn bargaining game} over a pie of size $V(\theta)$:
+\begin{itemize}
+\item \textbf{Round 1}: A proposer is recognized (under A: always $H$; under C: each player with probability $1/3$). The proposer makes an offer. If accepted under the voting rule, the game ends. If rejected, proceed to Round 2 with payoffs discounted by $\beta$.
+\item \textbf{Round 2 (terminal)}: A new proposer is recognized (same rule). The proposer makes an offer. If rejected, each player receives the \textbf{disagreement payoff} $d = V(\theta)/N$.
+\end{itemize}
+Crucially, $\theta$ is \textit{not} revealed at the start of Stage 2. $H$ retains private information about $\theta$ throughout bargaining. Weak states bargain under their posterior belief $\mu$ from Stage 1.
+\end{enumerate}
+
+\textbf{Parameter restriction.} We focus on the parameter range
+\begin{equation}\label{eq:assump_P}
+r < \frac{N}{(N-1)\beta} = \frac{3}{2\beta},
+\end{equation}
+where pooling is feasible when $H$ proposes under Package C: $H$ can afford to make the same offer to both weak states regardless of $\theta$. For $\beta = 0.9$, this requires $r < 1.667$; for $\beta = 0.5$, $r < 3$. Outside this range, $H$'s proposal becomes a signaling game (separating or semi-separating equilibria), which we leave to future work.
+
+\begin{definition}[Solution Concept]
+The equilibrium concept is \textbf{Perfect Bayesian Equilibrium} (PBE): each player's strategy is sequentially rational given beliefs, and beliefs are updated via Bayes' rule on the equilibrium path. Off-path beliefs (e.g., after an unexpected rejection under Package C) are unrestricted.
+\end{definition}
+
+# Stage 2: Two-Round Baron-Ferejohn
+
+We solve the two-round bargaining game by backward induction, starting from the terminal round. Throughout this section, $N = 3$ and $q = 2$ under Package A.
+
+## Round 2 (Terminal Round)
+
+### Package A: $H$ proposes, majority
+
+$H$ needs one $W$'s vote. Each $W_i$'s reservation value (from disagreement) is $\mathbb{E}[V(\theta)/3 \mid \mu] = V_e(\mu)/3$, since $W_i$ does not know $\theta$. $H$ offers $V_e(\mu)/3$ to one $W$ (chosen at random) and $0$ to the other.
+
+\textbf{Payoffs (Round 2 dollars):}
+\begin{align}
+V_H^{R2}(A, \theta, \mu) &= V(\theta) - V_e(\mu)/3, \label{eq:VH_R2_A} \\
+V_{W_i}^{R2}(A, \mu) &= V_e(\mu)/6 \quad \text{(ex ante over random coalition inclusion).} \label{eq:VW_R2_A}
+\end{align}
+
+### Package C: Random recognition, unanimity
+
+Under unanimity, the proposer must get \textit{all} other players to accept.
+
+\textbf{When $H$ is recognized} (prob $1/3$): $H$ must make both $W$'s accept. Each $W$'s reservation from disagreement is $V_e(\mu)/3$. $H$ offers $V_e(\mu)/3$ to each $W$ and keeps $V(\theta) - 2V_e(\mu)/3$.
+
+Profitability: $H$ proposes iff $V(\theta) - 2V_e(\mu)/3 \geq V(\theta)/3$, i.e., $V(\theta) \geq V_e(\mu)$. When $\theta = 1$: $r \geq V_e(\mu)$ always (since $V_e(\mu) \leq r$). When $\theta = 0$: $1 \geq V_e(\mu)$ only at $\mu = 0$; for any $\mu > 0$, $H$ lets the proposal fail. So $W_i$'s expected payoff when $H$ proposes is:
+$$h_W(\mu) = \mu \cdot V_e(\mu)/3 + (1 - \mu) \cdot 1/3 = \frac{1 + \mu^2(r-1)}{3}.$$
+
+\textbf{When $W_j$ is recognized} (prob $2/3$ total): $W_j$ must get both $W_k$ and $H$ to accept. $W_k$'s reservation is $V_e(\mu)/3$. The effective pie for $W_j$ and $H$ is $R(\theta, \mu) = V(\theta) - V_e(\mu)/3$. $H$'s reservation is $V(\theta)/3$ (since $H$ knows $\theta$): this equals $r/3$ when $\theta = 1$ and $1/3$ when $\theta = 0$.
+
+$W_j$ faces a \textbf{screening problem} --- choose offer $y_H$ to $H$:
+
+\begin{itemize}
+\item \textbf{Aggressive offer}: $y_H = 1/3$. Accepted only by $\theta = 0$ type. If $\theta = 0$ (prob $1 - \mu$): $W_j$ keeps $(1 - V_e(\mu)/3 - 1/3) = (2 - V_e(\mu))/3$. If $\theta = 1$ (prob $\mu$): $H$ rejects, everyone gets disagreement $V(\theta)/3 = r/3$.
+
+\item \textbf{Conservative offer}: $y_H = r/3$. Accepted by both types. $W_j$ keeps $R(\theta, \mu) - r/3$.
+\end{itemize}
+
+$W_j$'s expected payoff under the aggressive offer:
+\begin{equation}\label{eq:F_agg_R2}
+F^{agg}(\mu) = (1 - \mu)\frac{1 - \mu(r-1)}{3} + \mu \cdot \frac{r}{3} = \frac{1 + \mu^2(r-1)}{3}.
+\end{equation}
+
+$W_j$'s expected payoff under the conservative offer:
+\begin{equation}\label{eq:F_con_R2}
+F^{con}(\mu) = \frac{2V_e(\mu) - r}{3}.
+\end{equation}
+
+The difference is:
+$$F^{agg}(\mu) - F^{con}(\mu) = \frac{(r-1)(1 - \mu)^2}{3} \geq 0.$$
+Since this is nonnegative for all $\mu \in [0, 1]$ with strict inequality for $\mu < 1$, \textbf{the aggressive offer is always (weakly) preferred in Round 2 for $N = 3$}. With only one other $W$ besides the proposer, the cost of the conservative strategy is large relative to the benefit.
+
+Define the Round 2 continuation values:
+\begin{equation}\label{eq:Omega}
+\Omega(\mu) \equiv V_W^{R2}(C, \mu) = \frac{3 + (r-1)(\mu^2 + 2\mu)}{9},
+\end{equation}
+\begin{equation}\label{eq:Psi}
+\Psi(\mu) \equiv V_H^{R2}(C, \theta = 1, \mu) = \frac{5r - 2 - 2\mu(r-1)}{9}.
+\end{equation}
+
+Verification: at $\mu = 0$, $\Omega(0) = 1/3 = V(0)/3$; at $\mu = 1$, $\Omega(1) = r/3 = V(1)/3$. Both correct.
+
+Note that $\Omega$ is \textbf{convex} in $\mu$ ($\Omega''(\mu) = 2(r-1)/9 > 0$). The non-linearity from Round 2 alone cannot help the Sender under concavification. The key non-linearity must come from Round 1.
+
+## Round 1
+
+### Package A: $H$ proposes, majority
+
+$W_i$'s reservation from rejection (going to Round 2) is $\beta \cdot V_W^{R2}(A, \mu) = \beta \cdot V_e(\mu)/6$. Since $H$ proposes in both rounds, rejection reveals nothing about $\theta$: beliefs remain at $\mu$.
+
+$H$ offers $\beta V_e(\mu)/6$ to one $W$. The proposal passes.
+
+\begin{lemma}[Package A Continuation Values]\label{lem:packageA}
+Under Package A with $N = 3$:
+\begin{align}
+V_H(A, \mu) &= V_e(\mu) \cdot \frac{6 - \beta}{6}, \label{eq:VH_A} \\
+V_W(A, \mu) &= \frac{\beta \cdot V_e(\mu)}{12}. \label{eq:VW_A}
+\end{align}
+Both are \textbf{linear} in $\mu$.
+\end{lemma}
+
+\begin{proof}
+$H$'s payoff conditional on $\theta$: $V_H(A, \theta, \mu) = V(\theta) - \beta V_e(\mu)/6$. Taking expectation over $\theta$ at posterior $\mu$: $V_H(A, \mu) = V_e(\mu) - \beta V_e(\mu)/6 = V_e(\mu)(6 - \beta)/6$. Each $W_i$ is included with probability $1/2$, getting $\beta V_e(\mu)/6$ when included and $0$ otherwise: $V_W(A, \mu) = \beta V_e(\mu)/12$.
+\end{proof}
+
+### Package C: Random recognition, unanimity
+
+\textbf{When $H$ is recognized} (prob $1/3$): Under Assumption P, $H$ pools --- making the same offer to both $W$'s regardless of $\theta$. Each $W$'s reservation from rejection is $\beta \cdot \Omega(\mu)$ (the discounted Round 2 continuation). $H$ offers $\beta \cdot \Omega(\mu)$ to each $W$, keeping $V(\theta) - 2\beta\Omega(\mu)$. Since $H$ pools, rejection reveals nothing ($\mu' = \mu$).
+
+Pooling feasibility (binding for $\theta = 0$): $1 \geq 2\beta\Omega(\mu)$. At $\mu = 1$: $1 \geq 2\beta r/3$, i.e., $r \leq 3/(2\beta)$. This is Assumption P.
+
+\textbf{When $W_j$ proposes} (prob $2/3$ total): $W_j$ offers $\beta\Omega(\mu)$ to the other $W_k$ (their reservation). The remaining effective pie is $R(\theta, \mu) = V(\theta) - \beta\Omega(\mu)$. $H$'s reservation from rejection depends on $\theta$:
+\begin{itemize}
+\item $\theta = 1$: $\beta \cdot \Psi(\mu)$, where $\Psi(\mu)$ is $H$'s Round 2 continuation value when $\theta = 1$.
+\item $\theta = 0$: $\beta/3$, since $V_H^{R2}(C, 0, \mu) = 1/3$ (under $\theta = 0$, $H$ always gets $1/3$ in Round 2).
+\end{itemize}
+
+$W_j$ chooses the offer to $H$:
+
+\textbf{Conservative offer}: $y_H = \beta\Psi(\mu)$. Accepted by both types (since $\Psi(\mu) \geq 1/3$ always). Expected payoff:
+\begin{equation}\label{eq:F1_con}
+F_1^{con}(\mu) = V_e(\mu) - \beta[\Omega(\mu) + \Psi(\mu)].
+\end{equation}
+
+\textbf{Aggressive offer}: $y_H = \beta/3$. Accepted only by $\theta = 0$. If $\theta = 1$ ($H$ rejects), the game moves to Round 2 with updated beliefs $\mu' = 1$ ($H$'s rejection reveals $\theta = 1$). Expected payoff:
+\begin{equation}\label{eq:F1_agg}
+F_1^{agg}(\mu) = (1 - \mu)\left[1 - \beta\Omega(\mu) - \frac{\beta}{3}\right] + \mu \cdot \frac{\beta r}{3}.
+\end{equation}
+
+Using $\Omega(\mu) + \Psi(\mu) = [1 + 5r + (r-1)\mu^2]/9$, the \textbf{screening threshold} $\mu_s$ is defined as the root of $\Delta_1(\mu) \equiv F_1^{agg}(\mu) - F_1^{con}(\mu) = 0$. After algebra, this yields:
+
+\begin{equation}\label{eq:cubic}
+\beta(r-1)\mu^3 + 2\beta(r-1)\mu^2 + [\beta(8+r) - 9r]\mu + 5\beta(r-1) = 0.
+\end{equation}
+
+\begin{lemma}[Screening Threshold]\label{lem:screening}
+For any $r > 1$ and $\beta \in (0,1)$, there exists a unique $\mu_s \in (0, 1)$ solving \eqref{eq:cubic}. For $\mu < \mu_s$, $W_j$ plays aggressive (low offer to $H$). For $\mu > \mu_s$, $W_j$ plays conservative (high offer to $H$).
+\end{lemma}
+
+\begin{proof}
+\textbf{Existence.} Let $f(\mu)$ denote the left-hand side of \eqref{eq:cubic}. At $\mu = 0$: $f(0) = 5\beta(r-1) > 0$. At $\mu = 1$: $f(1) = \beta(r-1) + 2\beta(r-1) + \beta(8+r) - 9r + 5\beta(r-1) = 9r(\beta - 1) < 0$. By continuity, at least one root exists in $(0,1)$.
+
+\textbf{Uniqueness.} The coefficients of $f(\mu) = a_3\mu^3 + a_2\mu^2 + a_1\mu + a_0$ have signs: $a_3 = \beta(r-1) > 0$, $a_2 = 2\beta(r-1) > 0$, $a_0 = 5\beta(r-1) > 0$. For the coefficient $a_1 = \beta(8+r) - 9r$: when $r > 1$ and $\beta < 1$, we have $a_1 = 8\beta - r(9 - \beta) < 0$ for $r > 8\beta/(9 - \beta)$, which holds throughout the parameter range of interest (e.g., for $\beta = 0.7$, the bound is $r > 0.675$). The sign pattern of coefficients is thus $(+, +, -, +)$, with exactly two sign changes. By Descartes' rule of signs, $f$ has either two or zero positive real roots. Since $f(0) > 0$ and $f(1) < 0$, there is at least one root in $(0,1)$. Since $f$ is a cubic with positive leading coefficient, $f(\mu) \to +\infty$ as $\mu \to +\infty$; combined with $f(1) < 0$, there is at least one root in $(1, \infty)$. This accounts for both positive roots guaranteed by Descartes' rule, so the root in $(0,1)$ is unique.
+\end{proof}
+
+![Screening threshold $\mu_s$ as a function of the pie ratio $r$ for several values of $\beta$.](figures/fig_v3_screening_threshold.png)
+
+The screening threshold $\mu_s$ depends on both $r$ and $\beta$ through the cubic \eqref{eq:cubic} --- it is not a simple function of $N$ alone. This dependence is the source of the genuine interaction between Bayesian Persuasion and bargaining.
+
+\begin{remark}[Comparative statics of $\mu_s$]
+Higher $\beta$ (more patience) raises $\mu_s$: patient weak states have a higher Round 2 continuation value, making the aggressive offer more attractive over a wider range of beliefs. Higher $r$ (larger pie differential) also raises $\mu_s$: the stakes of screening are larger, so the aggressive gamble is worth taking for a wider range of $\mu$. This is verified numerically: for $\beta = 0.7$, $\mu_s(r = 1.2) \approx 0.157$ and $\mu_s(r = 2.0) \approx 0.364$ (see simulation code). Both effects expand the region where BP can exploit the jump discontinuity.
+\end{remark}
+
+\begin{lemma}[Single-crossing in Round 1, general $N$]\label{lem:singlecross_generalN}
+Fix $N \ge 3$, $r > 1$, and $\beta \in (0,1)$. Under Package $C$ (unanimity with symmetric recognition), the weak proposer's gain from choosing the aggressive offer rather than the conservative offer in Round 1,
+$$\Delta_{2,N}(\mu) \equiv F_{2,N}^{agg}(\mu) - F_{2,N}^{con}(\mu),$$
+has a unique zero $\mu_s \in (0,1)$. The weak proposer chooses the aggressive offer for $\mu < \mu_s$ and the conservative offer for $\mu > \mu_s$.
+\end{lemma}
+
+\begin{proof}
+The political logic is as follows. The indifference condition $\Delta_{2,N}(\mu) = 0$ can be reparametrized via the \emph{offer gap} $D_N(\mu) = \beta[\Psi_N(\mu) - 1/N]$, which measures the extra transfer needed to include the high type. The indifference condition becomes $D_N(\mu) = \mu \cdot G_N(\mu)$, where $G_N(\mu) = r - \beta(N-2)\Omega_N(\mu) - \beta(1+r)/N$ captures the net benefit of accommodation. Crucially, $\Psi_N$ cancels from $G_N$: the comparison depends only on $\Omega_N$ (the weak player's Round 2 continuation value).
+
+The left side $D_N(\mu) = \beta[\Psi_N(\mu) - 1/N]$ is strictly decreasing, since $\Psi_N'(\mu) = -(N-1)(r-1)/N^2 < 0$ (H's bargaining position weakens as beliefs rise, because H's own proposal becomes less profitable when weak states demand more). The right side $\mu \cdot G_N(\mu)$ is increasing at $\mu = 0$ (starting from $0$) and captures the growing probability of facing the high type. Since a strictly decreasing function and an increasing-from-zero function cross at most once, and the boundary conditions $\Delta_{2,N}(0) > 0$ and $\Delta_{2,N}(1) < 0$ guarantee at least one crossing, uniqueness follows.
+
+\textit{Case $N = 3$.} The result is exact: $\Delta_{2,3}$ reduces to the cubic \eqref{eq:cubic}, whose derivative $\Delta_{2,3}'(\mu)$ is a quadratic with vertex at $\mu = -2/3 < 0$ and maximum on $[0,1]$ at $\mu = 1$ equal to $\beta(8r+1) - 9r < 0$ for all $\beta < 1$ and $r > 1$. Hence $\Delta_{2,3}$ is strictly decreasing, confirming uniqueness of $\mu_s$ by Descartes' rule of signs.
+
+\textit{General $N$.} For $N \ge 4$, the terminal-round screening threshold $m_N = 1/(N-2)$ introduces a piecewise structure in the continuation values. The proof proceeds by analyzing the normalized difference $G_{2,N}(\mu) \equiv \Delta_{2,N}(\mu)/(1-\mu)$ on each branch, showing $G_{2,N}' < 0$ on both the aggressive ($\mu < m_N$) and conservative ($\mu > m_N$) branches, with a downward jump of $\beta(r-1)/N > 0$ at $m_N$. This implies $G_{2,N}$ is globally strictly decreasing, and hence $\Delta_{2,N}$ has the single-crossing property. Full algebraic details --- including the explicit continuation values $\Omega^a_{1,N}$, $\Omega^c_{1,N}$, the polynomials $Q_a$ and $Q_c$ whose signs determine $G'$, and verification of all boundary conditions --- are in Appendix A.
+\end{proof}
+
+\begin{proposition}[General $N$]\label{prop:general_N}
+Fix $N \ge 3$, $r > 1$, $\beta \in (0,1)$. Under Package $A$, let $q \in \{2, \dots, N-1\}$ be the majority threshold and suppose $H$ is the exclusive proposer in both rounds. Under Package $C$, suppose unanimity ($q = N$), symmetric recognition, and the parameter restriction \eqref{eq:assump_P} ensuring pooling when $H$ proposes in Round 1. Then:
+
+\begin{enumerate}
+\item Under Package $A$, $V_H(A, \mu)$ is affine in $\mu$.
+\item Under Package $C$, there exists a unique screening cutoff $\mu_s \in (0,1)$ such that the weak proposer screens below $\mu_s$ and pools above $\mu_s$ (Lemma \ref{lem:singlecross_generalN}).
+\item $\mathbb{E}[V_H(C, \mu)]$ has an upward jump at $\mu_s$.
+\item Consequently, if $\tau(C) < \mu_s$, then for priors $p$ sufficiently close to $0$ and for $g > \bar{g}(r, \beta, c)$,
+$$\operatorname{cav} v(p, C) > \operatorname{cav} v(p, A).$$
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+We prove each part in turn.
+
+\textbf{(1) Affinity under Package $A$.}
+Under Package $A$, $H$ is the exclusive proposer in both rounds. Hence no uninformed weak player ever makes a take-it-or-leave-it offer to $H$, so the screening problem that generates non-linearity under Package $C$ is absent. Let $V_e(\mu) \equiv \mu r + (1-\mu) = 1 + \mu(r-1)$. In any round, each weak state's acceptance condition is pinned down by its continuation value, which is affine in $V_e(\mu)$ and therefore affine in $\mu$. Since $H$ buys exactly $q-1$ votes at those reservation values and keeps the residual, backward induction implies $V_H(A, \mu)$ is affine in $\mu$.
+
+\medskip
+\textbf{(2) Unique screening cutoff.}
+Immediate from Lemma \ref{lem:singlecross_generalN}. The single-crossing property holds for all $N \ge 3$, $r > 1$, $\beta \in (0,1)$ without additional parameter restrictions.
+
+\medskip
+\textbf{(3) Upward jump in $\mathbb{E}[V_H(C, \mu)]$.}
+The expected payoff of $H$ under Package $C$ is a weighted average over recognition events. The only source of discontinuity at $\mu_s$ is the weak-recognition event (probability $(N-1)/N$), because under the pooling condition the branch where $H$ is recognized varies continuously with $\mu$. At $\mu_s$, the weak proposer switches from aggressive to conservative, paying $H$ strictly more (conservative offer $\beta \Psi_N(\mu_s) > \beta/N =$ aggressive offer). Hence $\mathbb{E}[V_H(C, \mu)]$ jumps upward by $(N-1)/N \cdot \beta[\Psi_N(\mu_s) - 1/N] > 0$.
+
+\medskip
+\textbf{(4) Concavification dominance.}
+Under Package $A$, $v(\mu, A)$ is zero below $\tau(A)$ and affine above, so its concavification has slope $S_A = v(\tau(A), A)/\tau(A)$. Under Package $C$ with $\tau(C) < \mu_s$, the upward jump at $\mu_s$ lifts the post-jump branch above the pre-jump branch. The concave envelope connects the origin to a point on the post-jump curve with slope $S_C > S_A$ for $g > \bar{g}(r, \beta, c)$. Hence $\operatorname{cav} v(p, C) = S_C p > S_A p = \operatorname{cav} v(p, A)$ for $p$ near $0$.
+\end{proof}
+
+\begin{lemma}[Linearity under Package A]\label{lem:linear_A}
+$V_H(A, \mu)$ and $V_W(A, \mu)$ are both linear in $\mu$.
+\end{lemma}
+
+\begin{proof}
+Immediate from \eqref{eq:VH_A}--\eqref{eq:VW_A} and $V_e(\mu) = 1 + \mu(r-1)$.
+\end{proof}
+
+\begin{lemma}[Jump Discontinuity under Package C]\label{lem:jump}
+$\mathbb{E}[V_H(C, \mu)]$ has an \textbf{upward jump} at $\mu_s$ of magnitude:
+\begin{equation}\label{eq:jump}
+\text{Jump} = \frac{10\beta(r-1)(1-\mu_s)}{27} > 0.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+When $W_j$ proposes, $H$'s expected payoff differs across regimes. Under aggressive play ($\mu < \mu_s$): $W_j$ offers $\beta/3$; if $\theta = 0$ ($H$ accepts), $H$ gets $\beta/3$; if $\theta = 1$ ($H$ rejects), $H$ gets $\beta r/3$ in Round 2 at $\mu' = 1$. So $\mathbb{E}[w_H] = \beta V_e(\mu)/3$.
+
+Under conservative play ($\mu > \mu_s$): $W_j$ offers $\beta\Psi(\mu)$. $H$ gets $\beta\Psi(\mu)$.
+
+The right limit exceeds the left limit at $\mu_s$ by:
+$$\beta\Psi(\mu_s) - \beta V_e(\mu_s)/3 = \beta\left[\frac{5r - 2 - 2\mu_s(r-1)}{9} - \frac{1 + \mu_s(r-1)}{3}\right] = \frac{5\beta(r-1)(1-\mu_s)}{9}.$$
+
+Since $W$ proposes with probability $2/3$, the jump in $\mathbb{E}[V_H(C, \mu)]$ is $(2/3) \cdot 5\beta(r-1)(1-\mu_s)/9 = 10\beta(r-1)(1-\mu_s)/27$.
+\end{proof}
+
+The expected payoffs under Package C take two forms:
+
+\textbf{Aggressive regime} ($\mu < \mu_s$):
+\begin{equation}\label{eq:VH_C_agg}
+\mathbb{E}[V_H(C, \mu)] = V_e(\mu)\frac{3 + 2\beta}{9} - \frac{2\beta\Omega(\mu)}{3}.
+\end{equation}
+
+\textbf{Conservative regime} ($\mu > \mu_s$):
+\begin{equation}\label{eq:VH_C_con}
+\mathbb{E}[V_H(C, \mu)] = \frac{V_e(\mu)}{3} - \frac{2\beta\Omega(\mu)}{3} + \frac{2\beta\Psi(\mu)}{3}.
+\end{equation}
+
+Both expressions are smooth (quadratic) on their respective domains, with the upward discontinuity at $\mu_s$. The value function $V_W(C, \mu)$ is similarly piecewise with a potential discontinuity at $\mu_s$.
+
+# Stage 1: Bayesian Persuasion and Entry
+
+\begin{proposition}[All-or-None Entry]\label{prop:allornone}
+With a public signal and symmetric weak states, in any equilibrium either all $n$ weak states enter or none does.
+\end{proposition}
+
+\begin{proof}
+All weak states observe the same signal $s$ and share the same prior, cost $c$, and continuation value $V_W(R)$. Hence they form the same posterior $\mu(s) = \Pr(\theta = 1 \mid s)$ and face the same entry condition: $a_i = 1$ iff $\mu(s) \geq \tau(R)$. Since the condition is identical for all $i$, either all enter ($k = n$) or none does ($k = 0$).
+\end{proof}
+
+## Entry Thresholds
+
+Weak state $W_i$ enters if and only if the total expected payoff from joining the institution exceeds the entry cost $c$. As described in Definition \ref{def:game}, $W_i$ receives two payoffs from entering: (i) a direct benefit $\mathbb{E}[\theta \mid s] = \mu$ from the agreement itself (capturing its quality), and (ii) a bargaining payoff $V_W(R, \mu)$ from Stage 2 (capturing $W_i$'s share of the redistributive pie). The entry condition is therefore $\mu + V_W(R, \mu) \geq c$. Under Package A:
+$$\mu + V_W(A, \mu) \geq c \iff \mu + \frac{\beta V_e(\mu)}{12} \geq c.$$
+
+Since $V_W(A, \mu)$ is linear in $\mu$, this yields a closed-form threshold:
+\begin{equation}\label{eq:tau_A}
+\tau(A) = \frac{12c - \beta}{12 + \beta(r-1)}.
+\end{equation}
+
+Under Package C, the entry condition is $\mu + V_W(C, \mu) \geq c$. Since $V_W(C, \mu)$ is piecewise (with different expressions for $\mu < \mu_s$ and $\mu > \mu_s$), the threshold $\tau(C)$ is defined as the root of a piecewise equation. Generically, $\tau(C) < \tau(A)$: entry is easier under consensus.
+
+## BP Value Functions
+
+$H$'s value function as a function of the posterior $\mu$ is:
+$$v(\mu, R) = \mathbf{1}\{\mu \geq \tau(R)\} \cdot \left[g + \mathbb{E}[V_H(R, \mu)]\right].$$
+
+\textbf{Under Package A:}
+\begin{equation}\label{eq:v_A}
+v(\mu, A) = \mathbf{1}\{\mu \geq \tau(A)\} \cdot \left[g + V_e(\mu)\frac{6 - \beta}{6}\right].
+\end{equation}
+This is a step function at $\tau(A)$ multiplied by a linear function --- the standard Bayesian Persuasion setup with a concavification that connects the origin to the step via a straight line.
+
+\textbf{Under Package C:}
+\begin{equation}\label{eq:v_C}
+v(\mu, C) = \mathbf{1}\{\mu \geq \tau(C)\} \cdot \left[g + \mathbb{E}[V_H(C, \mu)]\right],
+\end{equation}
+where $\mathbb{E}[V_H(C, \mu)]$ is given by \eqref{eq:VH_C_agg} for $\mu < \mu_s$ and by \eqref{eq:VH_C_con} for $\mu > \mu_s$, with an upward jump at $\mu_s$.
+
+![Value functions $v(\mu, A)$ and $v(\mu, C)$ for $N = 3$.](figures/fig_v3_value_functions.png)
+
+\begin{proposition}[Optimal Bayesian Persuasion]\label{prop:bp}
+$H$'s optimal payoff under BP:
+
+\textbf{Under Package A} (standard concavification):
+\begin{equation}\label{eq:UH_A}
+U_H^*(A) = \begin{cases}
+g + V_e(p)(6 - \beta)/6 & \text{if } p \geq \tau(A), \\[6pt]
+\dfrac{p}{\tau(A)} \cdot \left[g + V_e(\tau(A))\dfrac{6-\beta}{6}\right] & \text{if } p < \tau(A).
+\end{cases}
+\end{equation}
+
+\textbf{Under Package C}: If $\tau(C) < \mu_s$ (the interesting case), the value function has zero below $\tau(C)$, then rises in the aggressive regime, then \textbf{jumps up} at $\mu_s$, then continues in the conservative regime. The concave closure connects the origin to a point on the post-jump curve, ``bridging'' the gap created by the discontinuity. The optimal signal places mass on $\{0, \mu^*\}$ where $\mu^* \geq \mu_s$ is on the post-jump curve.
+\end{proposition}
+
+\begin{proof}
+\textbf{Package A.} By Lemma \ref{lem:linear_A}, $v(\mu, A)$ is zero for $\mu < \tau(A)$ and linear for $\mu \geq \tau(A)$. The concave closure is the line from $(0,0)$ through $(\tau(A), v(\tau(A), A))$, then follows $v$ itself. This yields the standard formula.
+
+\textbf{Package C.} The concave closure of a function with an upward jump is well-defined: the smallest concave function above $v$ must ``fill in'' the jump. If $\tau(C) < \mu_s$, then $v(\mu, C)$ is zero, then rises (aggressive regime), then jumps at $\mu_s$. The concavification draws a line from the origin tangent to the post-jump value function. The tangent point $\mu^*$ determines the optimal posterior induced by BP. Since $v$ is quadratic (not linear) on each piece, the tangent point and the resulting payoff depend on the curvature --- which involves $\mu_s$ through the cubic \eqref{eq:cubic}.
+\end{proof}
+
+![Concavification of $v(\mu, C)$ showing the bridging of the discontinuity at $\mu_s$.](figures/fig_v3_concavification.png)
+
+Under Package A, everything is linear, so the concavification is a standard ratio $v(\tau(A), A)/\tau(A)$. Under Package C, the jump at $\mu_s$ creates genuine non-linearity. The dominance condition involves $\mu_s$ --- which depends on $r$ and $\beta$ through the cubic \eqref{eq:cubic} --- in a way that has no counterpart under Package A. The parameters $r$ and $\beta$ do not cancel in the institutional comparison.
+
+\begin{remark}
+The screening channel operates as follows. Under Package C, $H$'s private information creates a wedge: when weak states propose, they must decide whether to make a low (aggressive) offer that screens out the $\theta = 1$ type, or a high (conservative) offer that both types accept. Bayesian Persuasion not only induces entry (the threshold effect, present in the single-round baseline) but also shifts the weak states' bargaining behavior from aggressive to conservative, \textbf{directly benefiting $H$ through a higher offer}. This second channel --- persuasion changes how $H$ is treated in bargaining, not just whether bargaining occurs --- is absent under Package A, where $H$ controls the proposal.
+\end{remark}
+
+# Stage 0: Institutional Choice
+
+\begin{proposition}[Dominance Condition]\label{prop:dominance}
+Suppose $0 < p < \tau(C)$ (both thresholds bind). Then $H$ prefers Package $C$ over Package $A$ if and only if the concavified payoff under $C$ exceeds that under $A$ at the prior $p$:
+$$\text{cav}\, v(p, C) > \frac{v(\tau(A), A)}{\tau(A)} \cdot p.$$
+
+Under Package A, the right-hand side simplifies to $[g + V_e(\tau(A))(6 - \beta)/6] \cdot p/\tau(A)$. Under Package C, the left-hand side involves the post-jump value at or above $\mu_s$, where $\mu_s$ is the root of the cubic \eqref{eq:cubic}. The condition depends non-trivially on $r$ and $\beta$.
+\end{proposition}
+
+\begin{proof}
+When both thresholds bind ($p < \tau(C) < \tau(A)$), $U_H^*(R) = \text{cav}\, v(p, R)$ for each package. Under A, the concavification is the standard ratio (Proposition \ref{prop:bp}). Under C, it involves the bridging construction across the jump discontinuity. The comparison inherits the non-linearity from $\mu_s$.
+\end{proof}
+
+![Comparison of $U_H^*(A)$ and $U_H^*(C)$ as functions of the prior $p$.](figures/fig_v3_payoff_comparison.png)
+
+\begin{theorem}[Main Result]\label{thm:main}
+For $N = 3$, there exists a threshold $\bar{g}(r, \beta, c)$ such that for $g > \bar{g}$, there exists a crossover prior $p^* \in (0, \tau(A))$ such that:
+\begin{enumerate}
+\item For $p < p^*$: $H$ strictly prefers Package $C$ (consensus without agenda control).
+\item For $p > \tau(A)$: $H$ strictly prefers Package $A$ (majority with agenda control).
+\item $p^*$ depends on $(r, \beta, g, c)$ through the screening threshold $\mu_s$.
+\end{enumerate}
+
+The fundamental trade-off: \textbf{agenda power extraction} (Stage 2, Package A) versus \textbf{informational power extraction} (Stage 1, Package C).
+
+The screening channel: under Package C, Bayesian Persuasion not only induces entry but also shifts weak states' bargaining behavior from aggressive to conservative at the threshold $\mu_s$, benefiting $H$. This channel is absent under Package A.
+\end{theorem}
+
+\begin{proof}
+We show existence of $p^*$ by establishing that $U_H^*(C) > U_H^*(A)$ for $p$ near $0$ and $U_H^*(A) > U_H^*(C)$ for $p$ near $\tau(A)$; the crossover follows by continuity.
+
+\textbf{Part 1 ($C$ dominates for small $p$).} For $p < \tau(C)$, both thresholds bind. Under Package $A$, the concavification is the standard line: $U_H^*(A) = [g + V_e(\tau(A))(6-\beta)/6] \cdot p/\tau(A)$, which is linear in $p$ with slope $S_A \equiv [g + V_e(\tau(A))(6-\beta)/6]/\tau(A)$.
+
+Under Package $C$, the value function $v(\mu, C)$ has an upward jump at $\mu_s$ (Lemma \ref{lem:jump}). When $\tau(C) < \mu_s$, the concave closure connects $(0, 0)$ to a point on the post-jump curve. Let $\mu^* \geq \mu_s$ be the tangent point. The slope of the concavification at $p = 0$ is $S_C = v(\mu^*, C)/\mu^*$. Since $v(\mu^*, C) \geq v(\mu_s^+, C) > v(\mu_s^-, C)$ (by the jump), and the jump magnitude is $10\beta(r-1)(1-\mu_s)/27 > 0$, we have $S_C > v(\mu_s^-, C)/\mu_s$. For $g$ sufficiently large, $S_C > S_A$: the ``free lift'' from the screening channel gives Package $C$ a steeper concavification than Package $A$. Hence $U_H^*(C) > U_H^*(A)$ for all $p$ sufficiently small.
+
+\textbf{Part 2 ($A$ dominates for large $p$).} For $p \geq \tau(A)$, both institutions form without BP. $H$'s payoff is $g + V_H(A, p) = g + V_e(p)(6-\beta)/6$ under $A$ and $g + \mathbb{E}[V_H(C, p)]$ under $C$. Since $V_H(A, p) > \mathbb{E}[V_H(C, p)]$ (agenda power extracts more per agreement), $A$ dominates.
+
+\textbf{Part 3 (existence of $p^*$).} Define $\Delta(p) \equiv U_H^*(C) - U_H^*(A)$, which is continuous in $p$. By Part 1, $\Delta(p) > 0$ for $p$ near $0$ (under the sufficient condition). By Part 2, $\Delta(\tau(A)) < 0$ (since at $p = \tau(A)$, $A$ just starts forming without BP while $C$ has been forming for a while but with lower per-agreement payoff). By the Intermediate Value Theorem, there exists $p^* \in (0, \tau(A))$ with $\Delta(p^*) = 0$.
+
+\textbf{Part 4 (dependence on $r$ and $\beta$).} The crossover $p^*$ depends on $(r, \beta, g, c)$ because the concavification under $C$ involves the jump at $\mu_s$, which solves the cubic \eqref{eq:cubic}. Since $\mu_s$ is an algebraic function of $r$ and $\beta$ that does not simplify to a ratio of model primitives, $p^*$ inherits this non-trivial dependence. Under Package $A$, where everything is linear, $r$ and $\beta$ enter only through $\tau(A)$ and $V_e(\tau(A))$ --- both linear in $r$. The asymmetry in functional form between the two packages is the formal source of the non-cancellation.
+\end{proof}
+
+\begin{remark}[Explicit bound for $g$]\label{rem:g_bound}
+The sufficient condition for Package C to dominate at low priors is $S_C > S_A$, i.e., the concavification slope under C exceeds that under A. For the case where the tangent point is $\mu^* = \mu_s$ (the jump point), this reduces to:
+$$g > \bar{g}(r, \beta, c) \equiv \frac{\mu_s \cdot V_e(\tau(A))(6-\beta)/6 - \tau(A) \cdot \mathbb{E}[V_H^{con}(C, \mu_s)]}{\tau(A) - \mu_s},$$
+where $\mu_s$ is the screening threshold (root of \eqref{eq:cubic}) and $\tau(A) > \mu_s$ is the entry threshold under Package A. The denominator is positive because the screening threshold lies below the majority entry threshold in the parameter range of interest.
+
+\textbf{Numerical evaluation for Example \ref{ex:numerical}.} With $r = 1.5$, $\beta = 0.7$, $c = 0.5$: $\mu_s \approx 0.264$, $\tau(A) \approx 0.429$. From \eqref{eq:VH_A}, $V_e(\tau(A)) = 1 + 0.429 \times 0.5 = 1.2145$. From \eqref{eq:VH_C_con}, $\mathbb{E}[V_H^{con}(C, \mu_s)] = V_e(\mu_s)/3 - 2\beta\Omega(\mu_s)/3 + 2\beta\Psi(\mu_s)/3$. Computing term by term: $V_e(0.264) = 1.132$; $\Omega(0.264) = [3 + 0.5(0.264^2 + 2 \times 0.264)]/9 \approx 0.3665$; $\Psi(0.264) = [5 \times 1.5 - 2 - 2 \times 0.264 \times 0.5]/9 \approx 0.5818$. So $\mathbb{E}[V_H^{con}(C, \mu_s)] \approx 0.3773 - 0.1710 + 0.2715 = 0.4778$. The numerator is $0.264 \times 1.2145 \times (6 - 0.7)/6 - 0.429 \times 0.4778 \approx 0.2832 - 0.2050 = 0.0782$, and the denominator is $0.429 - 0.264 = 0.165$, yielding $\bar{g} \approx 0.474$.
+
+For the numerical example ($r = 1.5$, $\beta = 0.7$, $c = 0.5$): $\bar{g} \approx 0.469$. With $g = 0.5 > \bar{g}$, the sufficient condition is satisfied, confirming that Package C dominates for all $p < p^*$. Note that $\bar{g}$ provides a conservative analytical bound (it assumes the tangent point is exactly $\mu_s$); the actual dominance region may be larger since the optimal concavification can place the tangent at $\mu^* > \mu_s$ on the post-jump quadratic curve.
+\end{remark}
+
+\begin{remark}[Decomposition: threshold effect vs screening channel]\label{rem:decomposition}
+The advantage of Package C over A arises from two distinct sources:
+
+\textbf{Channel 1 (Threshold effect)}: $\tau(C) < \tau(A)$ because weak states are better protected under consensus. This lowers the entry barrier, making BP more effective. This channel is present even without the 2-round bargaining structure (it operates in the single-round baseline).
+
+\textbf{Channel 2 (Screening channel)}: The jump discontinuity at $\mu_s$ under Package C creates a ``free lift'' in the concavification that has no counterpart under Package A. This channel requires the 2-round structure with asymmetric information and is the novel contribution of this paper.
+
+To isolate Channel 2, consider a counterfactual where entry thresholds are equalized ($\tau(C) = \tau(A)$, achieved by adjusting $c$ separately for each package). In this counterfactual, Channel 1 is shut down. The screening channel still generates a steeper concavification under C (because the jump persists), so C can dominate A even when the threshold advantage is removed. Conversely, if we shut down the screening channel (by setting $\beta \to 0$, collapsing to single-round), the jump disappears and the model reduces to the single-round baseline, where the dominance condition is ``arithmetic'' --- $r$ and $\beta$ cancel and the result depends only on shares and $g$.
+
+The screening channel is thus the mechanism that makes the institutional comparison genuinely non-trivial.
+\end{remark}
+
+\begin{example}[Numerical illustration, $N = 3$]\label{ex:numerical}
+Take $r = 1.5$, $\beta = 0.7$, $g = 0.5$, $c = 0.5$. Then:
+\begin{itemize}
+\item Screening threshold: $\mu_s \approx 0.264$ (root of the cubic \eqref{eq:cubic}).
+\item Entry thresholds: $\tau(A) = (12 \cdot 0.5 - 0.7)/(12 + 0.7 \cdot 0.5) = 5.3/12.35 \approx 0.429$; $\tau(C) \approx 0.166$.
+\item Since $\tau(C) < \mu_s < \tau(A)$, the screening threshold lies between the two entry thresholds --- precisely the configuration where the screening channel creates a differential advantage for Package C.
+\item The concavification under $C$ bridges the jump at $\mu_s$, capturing the discontinuity. Under $A$, the standard linear concavification applies.
+\item Result: there exists a crossover prior $p^*$ such that $H$ prefers $C$ for $p < p^*$ and $A$ for $p > \tau(A)$.
+\end{itemize}
+\end{example}
+
+\begin{example}[Numerical verification, $N = 5$]\label{ex:numerical_N5}
+For $N = 5$ ($q = 3$ under majority), we verify the model numerically. With $r = 1.5$, $\beta = 0.5$, $g = 0.5$, $c = 0.4$:
+\begin{itemize}
+\item The screening threshold $\mu_s$ exists and lies in $(0, 1)$.
+\item $V_H(A, \mu)$ is linear in $\mu$ ($H$ proposes in both rounds, needs $q - 1 = 2$ allies).
+\item $V_H(C, \mu)$ has an upward discontinuity at $\mu_s$.
+\item There exists a crossover prior $p^*$ such that $H$ prefers Package $C$ for $p < p^*$.
+\end{itemize}
+The qualitative structure is identical to $N = 3$: linearity under A, screening-induced jump under C, and consensus dominance for pessimistic priors. Full numerical results are available in the simulation code.
+\end{example}
+
+\begin{corollary}[Comparative Statics in $p$]\label{cor:erosion}
+As $p$ increases (holding other parameters fixed), $H$'s preference shifts from Package $C$ toward Package $A$. For $p < p^*$, $H$ prefers $C$; for $p > \tau(A)$, $H$ prefers $A$. If an institution was designed under Package $C$ when $p$ was low, and $p$ subsequently increases (e.g., because weak states develop independent analytical capacity), the hegemon's payoff under $C$ declines relative to what it could obtain under $A$. This provides a rationalist account of institutional stagnation: the WTO's Doha Round stalled not because of bad faith, but because the informational conditions that made consensus advantageous eroded over time.
+\end{corollary}
+
+![Dominance region in $(r, \beta)$ space.](figures/fig_v3_dominance_region.png)
+
+# Viability of Institutional Packages
+
+\begin{proposition}[Package B is Dominated by C]\label{prop:packageB}
+Under unanimity with $H$ as exclusive proposer, $H$ offers each $W_i$ their discounted disagreement value $\beta V(\theta)/N$. In the limit $\beta \to 0$ (or in a single-round special case), $V_W(B) \to 0$. More generally, $V_W(B) = \beta V_e(\mu)/N < V_W(C)$ for all $\mu$. Consequently:
+\begin{enumerate}
+\item Entry is strictly harder under B than C: $\tau(B) > \tau(C)$.
+\item For any institution worth building --- i.e., $g + 1 > c(N-1)$ --- Package C strictly dominates B in terms of the rate of return to persuasion.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\textbf{Part 1.} Under Package B, $H$ proposes and needs all $W_i$'s to accept (unanimity). Each $W_i$'s outside option from rejection leads to Round 2, where $H$ again proposes. In the terminal round, rejection yields disagreement $V(\theta)/N$. So $H$ offers $\beta V(\theta)/N$ in Round 2 and $\beta^2 V(\theta)/N$ in Round 1. In either case, $V_W(B) \leq \beta V_e(\mu)/N$. As $\beta \to 0$, $V_W(B) \to 0$, making the entry threshold $\tau(B) \to c$. Under Package C with symmetric recognition, $V_W(C) > V_W(B)$ because $W$'s sometimes propose and capture surplus. Hence $\tau(B) > \tau(C)$.
+
+\textbf{Part 2.} When the institution is worth building ($g + 1 > c(N-1)$), the higher payoff and lower threshold under C yield a strictly higher rate of return to persuasion.
+
+\textbf{Intuition.} Under B, $H$ takes nearly the entire Stage 2 pie, maximizing its per-agreement payoff but also maximizing weak states' skepticism. Under C, $H$ shares surplus, lowering its per-agreement payoff but also lowering the entry barrier. For any institution worth its entry costs, the trade-off favors C.
+\end{proof}
+
+\begin{proposition}[Package D Does Not Benefit H]\label{prop:packageD}
+Under majority rule with symmetric recognition ($p_i = 1/N$ for all $i$) in a two-round BF game with disagreement payoff $V(\theta)/N$, all players receive $V_i(D) = V(\theta)/N$ by symmetry. Therefore, $V_H(D) = V_H(C) = V(\theta)/N$, and Package D offers $H$ no advantage over C while being strictly dominated by A.
+
+Under majority with asymmetric recognition ($p_H > 1/N$), $H$ is \textbf{excluded} from others' coalitions (the ``exclusion effect''), yielding $v_H^{maj} < v_H^{unan}$. Majority without agenda power is strictly worse for $H$ than unanimity.
+\end{proposition}
+
+\begin{proof}
+\textbf{Symmetric case.} Any proposer under majority ($q = 2$ for $N = 3$) includes one other player at cost equal to their disagreement value and keeps the rest. With symmetric recognition, each player proposes with probability $1/3$ and is included in others' coalitions with probability $1/2$. By symmetry, the expected payoff is $V(\theta)/3$ for all players. This is identical to Package C.
+
+\textbf{Asymmetric case (multi-round BF, $N = 3$).} With $p_H > 1/3$ and discount factor $\beta$, the weak states' coalitions exclude $H$ (who is expensive to include). Solving: $v_H = p_H(2-\beta)/(2-p_H\beta)$. Under unanimity: $v_H = p_H$. Since $(2-\beta)/(2-p_H\beta) < 1$ for $p_H < 1$, majority without agenda power \textit{hurts} $H$. This ``exclusion effect'' is well-documented in the BF literature [see @eraslan2019legislative].
+\end{proof}
+
+# Discussion: Relation to the Literature
+
+@steinberg2002shadow argues that the US and EC maintained consensus in the GATT/WTO because it generates information about weak states' preferences that is valuable for agenda-setting. He documents that US negotiators explicitly rejected weighted voting in 1990 because consensus was producing useful information (p.\ 360--365). This is an important precursor to our argument.
+
+However, the informational channel in Steinberg and in our model run in *opposite directions*:
+
+\begin{itemize}
+\item \textbf{Steinberg}: Information flows \textit{from} weak states \textit{to} the hegemon. Consensus induces preference revelation --- weak states' blocking behavior, amendments, and proposals reveal their true preferences, which the hegemon uses to craft acceptable packages. This is a \textit{screening} mechanism: the hegemon collects information.
+
+\item \textbf{This paper}: Information flows \textit{from} the hegemon \textit{to} weak states. The hegemon privately knows the quality of the agreement ($\theta$) and uses Bayesian Persuasion to strategically disclose information, shaping weak states' beliefs about whether the deal is extractive. This is a \textit{persuasion} mechanism: the hegemon deploys information.
+\end{itemize}
+
+Moreover, Steinberg's preference-revelation channel is a two-way street: if consensus induces weak states to reveal their preferences, it also gives them repeated opportunities to observe $H$'s behavior, learn about $V$, and assess extractiveness. Over time, this erodes $H$'s informational advantage --- which is precisely the mechanism in our Corollary (Comparative Statics in $p$). Steinberg's channel, taken to its logical conclusion, predicts the \textit{demise} of consensus (as weak states learn enough to evaluate deals independently), but does not explain why consensus was adopted in the first place. Our model isolates the one-directional channel ($H \to$ weak states via BP) that makes consensus initially worthwhile for the hegemon.
+
+The two channels are thus complementary but play different roles: Steinberg's explains information flows within an existing institution; ours explains the institutional design choice itself. Our contribution relative to Steinberg is threefold:
+
+\begin{enumerate}
+\item \textbf{Formalization}: We provide a strategic model with precise conditions ($p^*$, comparative statics) under which the hegemon prefers consensus. Steinberg's argument is informal and functionalist.
+
+\item \textbf{The persuasion channel}: We identify a mechanism --- Bayesian Persuasion as a substitute for agenda power --- that Steinberg does not consider. Steinberg's hegemon collects information; ours deploys it.
+
+\item \textbf{The institutional design trade-off}: We show that the choice between majority and consensus is a trade-off between two modes of extraction (agenda power vs.\ informational power), with a sharp crossover condition. Steinberg shows that consensus does not neutralize power, but does not explain when or why a hegemon would \textit{prefer} it to majority --- the comparative institutional design question.
+\end{enumerate}
+
+There is a deeper tension in Steinberg's argument. His core claim is that powerful states exercise \textit{informal agenda power} under consensus --- through Green Room caucuses, draft texts, and secretariat control. But our model shows that agenda power, whether formal or informal, is neutralized by unanimity: any weak state can veto any proposal, regardless of who drafted it. If $H$ truly had informal agenda control under consensus, we would be in Package B, where $V_W \approx 0$ and adhesion collapses (Proposition \ref{prop:packageB}). Either the veto is binding --- and informal agenda power is neutralized --- or it is not --- and the institution is not truly operating by consensus.
+
+Our model resolves this tension: under Package C, $H$ extracts not through agenda power (which is neutralized by veto) but through \textit{informational} power. Bayesian Persuasion does not require agenda control --- it works through the information channel, shaping beliefs rather than controlling proposals. The ``organized hypocrisy'' that Steinberg documents is better understood not as informal agenda power surviving under consensus, but as informational power operating alongside formal equality.
+
+## Commitment and Multilateralism
+
+A deeper connection emerges from the commitment assumption that underlies Bayesian Persuasion. BP requires that the sender *commit* to an information structure before the state is realized --- otherwise, communication reduces to cheap talk [@crawford1982strategic], which is far less effective [@kamenica2011bayesian]. In the international arena, where anarchy prevails and there is no external enforcer, what provides this commitment? The answer is the rules-based multilateral order itself. Institutional procedures --- reporting requirements, transparency mechanisms, review processes, structured negotiations --- create a framework in which the hegemon's signals are credible because they are embedded in verifiable institutional practices. The hegemon does not merely operate *within* the liberal order; it *builds* the liberal order precisely because rules are the technology that enables informational extraction. Multilateralism is not a constraint on the hegemon --- it is the hegemon's commitment device for information design. Without it, BP collapses to cheap talk, and the hegemon loses its most efficient channel of extraction.
+
+## Relation to Maggi and Morelli (2006)
+
+@maggi2006selfenforcing study when international organizations adopt unanimity versus majority, focusing on self-enforcement: voting rules must be incentive-compatible so that states comply with outcomes without external enforcement. Their model differs from ours in two fundamental ways.
+
+First, states are symmetric ex ante in Maggi and Morelli. There is no hegemon. Their puzzle is about symmetric states choosing between voting rules; our puzzle is specifically about why an *asymmetric* actor --- one with both agenda power and informational advantage --- would prefer consensus. Their framework cannot address why a hegemon that could enforce compliance (or punish free-riders) would choose consensus over majority. If the hegemon can play the role of enforcer, it could combine that enforcement capacity with majority rule and agenda control to extract more --- the standard Baron-Ferejohn logic. Maggi and Morelli's self-enforcement rationale does not explain why the enforcer itself would forgo majority.
+
+Second, their environment is collective action, not distribution. States choose effort levels to produce a public good, and the voting rule governs policy choices. Compliance is the central friction. In our model, the environment is fundamentally distributive: a pie is divided, and the question is how institutional rules interact with the hegemon's two types of power. The mechanism driving our result --- the trade-off between agenda power extraction (Stage 2) and informational power extraction (Stage 1) --- has no analogue in their framework, because there is no informed sender, no persuasion, and no asymmetric proposer.
+
+These differences map onto a classical divide in International Relations theory. Maggi and Morelli's framework embodies the neoliberal institutionalist position [in the tradition of @koremenos2001rational]: states care about absolute gains, institutions solve collective action problems, and voting rules affect efficiency and compliance. Our model embodies the neorealist position: states care about relative gains, institutions are arenas of distributional conflict, and voting rules determine who extracts surplus and through what mechanism.
+
+The twist is that our model generates a *superficially liberal* outcome from *deeply realist* logic: the hegemon chooses consensus --- which appears egalitarian --- not as a concession to fairness but as a strategic investment in the effectiveness of its informational power. Formal equality serves the hegemon's self-interest. The ``organized hypocrisy'' is not a failure of institutions but an equilibrium feature of hegemonic design.
+
+Our model and Maggi and Morelli's are thus complementary: theirs explains voting rules in symmetric, absolute-gains settings; ours explains voting rules in asymmetric, relative-gains settings where a hegemon trades off agenda power against informational power.
+
+Our model also relates to the broader literature on information and legislative organization. @gilligan1987 show that informational advantages shape committee structure in legislatures --- a domestic analogue of our international argument. @drezner2007 documents how hegemonic power operates through international regulatory regimes, providing empirical context for the mechanisms we formalize.
+
+# Appendix A: Single-Crossing Proof --- Algebraic Details {-}
+
+This appendix provides the complete algebraic derivations for the proof of Lemma \ref{lem:singlecross_generalN} (single-crossing in Round 1, general $N$).
+
+**Terminal-round continuation values.**
+
+The weak player's terminal continuation value is piecewise quadratic:
+
+*Aggressive branch* ($\mu < m_N$):
+$$\Omega^a_{1,N}(\mu) = \frac{N + (r-1)\mu(\mu + N - 1)}{N^2}$$
+
+*Conservative branch* ($\mu > m_N$):
+$$\Omega^c_{1,N}(\mu) = \frac{N + 1 - r + (r-1)(\mu^2 + N\mu)}{N^2}$$
+
+Both satisfy $\Omega_{1,N}(0) = 1/N$ and $\Omega_{1,N}(1) = r/N$, with $\Omega''(\mu) = 2(r-1)/N^2 > 0$ (convex). At the branch point $m_N = 1/(N-2)$, there is a discontinuity: $\Omega^a(m_N) - \Omega^c(m_N) = (r-1)(N-3)/[N^2(N-2)] > 0$ for $N \ge 4$.
+
+The low type's terminal continuation ($\theta = 0$):
+
+*Aggressive branch:* $\phi^a_{1,N} = 1/N$ (constant).
+
+*Conservative branch:* $\phi^c_{1,N} = [1 + (N-1)r]/N^2$ (constant).
+
+**Derivative of $G_{2,N}$ on each branch.**
+
+Define $G_{2,N}(\mu) \equiv \Delta_{2,N}(\mu)/(1-\mu)$. The derivative satisfies:
+$$G'_{2,N}(\mu) = \frac{\Delta'_{2,N}(\mu)(1-\mu) + \Delta_{2,N}(\mu)}{(1-\mu)^2}$$
+
+*Aggressive branch ($\mu < m_N$).*
+
+$$G'_{2,N}(\mu) = \frac{(1-\beta)[-N^2 + (r-1)Q_a(\mu)] - (r-1)(N-2)(N+2\mu)(1-\mu)^2}{N^2(1-\mu)^2}$$
+
+where $Q_a(\mu) = -2N - 2(N-2)(N-1)\mu + (N-2)(N-4)\mu^2 + 2(N-2)\mu^3$.
+
+*Properties of $Q_a$:*
+
+- $Q_a(0) = -2N < 0$.
+- $Q_a'(\mu) = 2(N-2)(\mu-1)(N+3\mu-1) < 0$ for $\mu < 1$ and $N \ge 3$.
+- Since $Q_a(0) < 0$ and $Q_a$ is decreasing, $Q_a(\mu) < 0$ for all $\mu \ge 0$.
+
+Both terms in the numerator are negative: $(1-\beta)[-N^2 + (r-1)Q_a] < 0$ (since $Q_a < 0$) and $-(r-1)(N-2)(N+2\mu)(1-\mu)^2 < 0$. Hence $G'_{2,N}(\mu) < 0$.
+
+*Conservative branch ($\mu > m_N$).*
+
+$$G'_{2,N}(\mu) = \frac{(1-\beta)[-N^2 + (r-1)Q_c(\mu)] - (r-1)(N-2)(N+2\mu+1)(1-\mu)^2}{N^2(1-\mu)^2}$$
+
+where $Q_c(\mu) = -(N+2) - 2N(N-2)\mu + (N-2)(N-3)\mu^2 + 2(N-2)\mu^3$.
+
+*Properties of $Q_c$:*
+
+- $Q_c(m_N) = N(-3N^2+11N-9)/(N-2)^2 < 0$ for $N \ge 3$ (since $-3N^2+11N-9 < 0$ for $N \ge 3$, as both roots of this quadratic are below 3).
+- $Q_c'(\mu) = 2(N-2)(N+3\mu)(\mu-1) < 0$ for $\mu < 1$.
+- Since $Q_c(m_N) < 0$ and $Q_c$ is decreasing, $Q_c(\mu) < 0$ for all $\mu \ge m_N$.
+
+Both terms in the numerator are negative (same reasoning). Hence $G'_{2,N}(\mu) < 0$.
+
+*Branch point ($\mu = m_N$, $N \ge 4$).*
+
+$$G_{2,N}^a(m_N) - G_{2,N}^c(m_N) = \frac{\beta(r-1)}{N} > 0$$
+
+*Derivation:* $N^2(\Delta^a - \Delta^c)(m_N) = \beta(r-1)N(N-3)/(N-2)$. Dividing by $(1-m_N) = (N-3)/(N-2)$ and $N^2$ yields $\beta(r-1)/N$.
+
+Since $G$ is strictly decreasing on each branch and jumps downward at $m_N$, $G$ is globally strictly decreasing on $(0,1)$.
+
+**Boundary conditions.**
+
+- $\Delta_{2,N}(0) = \beta(r-1)(2N-1)/N^2 > 0$
+- $\Delta_{2,N}(1) = r(\beta-1) < 0$
+
+By the Intermediate Value Theorem and global strict decrease of $G$ (hence single-crossing of $\Delta$), there is a unique zero $\mu_s \in (0,1)$. $\square$
+
+# References

@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>2026-04-22_heterogeneidade_V_endogeno</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1
+id="nota-técnica-extensão-com-heterogeneidade-v-endógeno-e-discriminação-estatística">Nota
+Técnica: Extensão com Heterogeneidade, V Endógeno e Discriminação
+Estatística</h1>
+<p><strong>Data</strong>: 2026-04-22<br />
+<strong>Status</strong>: DRAFT — não formalizado, derivações
+parciais<br />
+<strong>Relação com o paper</strong>: extensão futura (paper 2). Não
+entra no v3.</p>
+<hr />
+<h2 id="motivação">1. Motivação</h2>
+<p>No modelo v3, todos os W’s são idênticos e o pie V(θ) ∈ {1, r} é
+exógeno. Isso tem duas limitações:</p>
+<ol type="1">
+<li><p><strong>V não depende de quem está na mesa.</strong> O Protocolo
+de Kyoto com os EUA vale diferente de Kyoto sem os EUA. A contribuição
+de cada membro à cooperação varia.</p></li>
+<li><p><strong>Outside options são homogêneas entre W’s.</strong> Na
+prática, Brasil e Chad ocupam posições muito diferentes — em capacidade
+analítica, em contribuição ao acordo, em outside options
+bilaterais.</p></li>
+</ol>
+<p>Esta extensão resolve ambas: cada jogador <span
+class="math inline">\(i\)</span> tem tipo <span
+class="math inline">\(\alpha_i\)</span> (contribuição + outside option),
+<span class="math inline">\(\alpha_i\)</span> é informação privada de
+<span class="math inline">\(i\)</span>, e o pie <span
+class="math inline">\(V(S)\)</span> depende endogenamente da composição
+<span class="math inline">\(S\)</span> da coalizão via uma função
+S-shaped que captura massa crítica e saturação.</p>
+<p>O mecanismo central se reinterpreta via <strong>discriminação
+estatística</strong>: sob maioria, o proposer exclui H porque H é um
+“candidato de grupo incerto” — produtividade alta mas adverse selection
+custosa. Sob unanimidade, a inclusão forçada de H obriga o proposer a
+interagir com a informação privada de H, ativando o canal de BP.</p>
+<hr />
+<h2 id="modelo">2. Modelo</h2>
+<h3 id="jogadores-e-tipos">2.1 Jogadores e Tipos</h3>
+<ul>
+<li><span class="math inline">\(N\)</span> jogadores: 1 hegemon <span
+class="math inline">\(H\)</span> + <span
+class="math inline">\((N-1)\)</span> weak states <span
+class="math inline">\(W_1, \ldots, W_{N-1}\)</span>.</li>
+<li>Cada jogador <span class="math inline">\(i\)</span> tem tipo <span
+class="math inline">\(\alpha_i \in [\underline{\alpha}_i,
+\overline{\alpha}_i]\)</span>, informação privada.</li>
+<li><strong>Identidade observável</strong>: todos sabem quem é H e quem
+é W (como empregador vê grupo do candidato).</li>
+<li><strong>Distribuições por grupo</strong>:
+<ul>
+<li><span class="math inline">\(\alpha_H \sim F_H\)</span> com <span
+class="math inline">\(E[\alpha_H] = \mu_H\)</span> (alto), <span
+class="math inline">\(\text{Var}(\alpha_H) = \sigma_H^2\)</span></li>
+<li><span class="math inline">\(\alpha_{W_j} \sim F_W\)</span> com <span
+class="math inline">\(E[\alpha_W] = \mu_W\)</span> (baixo), <span
+class="math inline">\(\text{Var}(\alpha_W) = \sigma_W^2\)</span></li>
+</ul></li>
+<li><strong>Assimetria informacional de H</strong>: H tem prior mais
+tight sobre <span class="math inline">\(\alpha_{W_j}\)</span>’s
+(vantagem USTR/inteligência). W’s usam o prior público <span
+class="math inline">\(F_H\)</span> para <span
+class="math inline">\(\alpha_H\)</span>.</li>
+<li><strong>Dual role de <span
+class="math inline">\(\alpha_i\)</span></strong>: tipo do jogador
+determina tanto sua contribuição ao pie quanto sua outside option.</li>
+</ul>
+<h3 id="pie-endógeno">2.2 Pie Endógeno</h3>
+<p><span class="math display">\[V(S) = \frac{M}{1 +
+e^{-\lambda\left(\sum_{i \in S} \alpha_i^\gamma -
+\kappa\right)}}\]</span></p>
+<p>onde: - <span class="math inline">\(M &gt; 0\)</span>: valor máximo
+da cooperação (saturação) - <span class="math inline">\(\lambda &gt;
+0\)</span>: inclinação da transição (quão abrupta é a massa crítica) -
+<span class="math inline">\(\kappa &gt; 0\)</span>: massa crítica (ponto
+de inflexão) - <span class="math inline">\(\gamma \in (1, 2)\)</span>:
+expoente de contribuição individual</p>
+<p><strong>Propriedades-chave:</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Propriedade</th>
+<th>Mecanismo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Massa crítica</td>
+<td><span class="math inline">\(V \approx 0\)</span> quando <span
+class="math inline">\(\sum \alpha_i^\gamma \ll \kappa\)</span></td>
+</tr>
+<tr>
+<td>Saturação</td>
+<td><span class="math inline">\(V \to M\)</span> quando <span
+class="math inline">\(\sum \alpha_i^\gamma \gg \kappa\)</span></td>
+</tr>
+<tr>
+<td>Grandes <span class="math inline">\(\alpha_i\)</span> contribuem
+mais que proporcionalmente</td>
+<td><span class="math inline">\(\gamma &gt; 1\)</span>: US (<span
+class="math inline">\(\alpha = 0.25\)</span>) contribui <span
+class="math inline">\(0.25^\gamma &gt; 5 \times 0.05^\gamma\)</span>
+para <span class="math inline">\(\gamma &gt; 1\)</span></td>
+</tr>
+<tr>
+<td>Supermodularidade local</td>
+<td><span class="math inline">\(\partial^2 V / \partial(\text{add }
+i)\partial(\text{add } j) &gt; 0\)</span> na região convexa (<span
+class="math inline">\(A &lt; \kappa\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notação</strong>: definimos <span class="math inline">\(A(S)
+\equiv \sum_{i \in S} \alpha_i^\gamma\)</span> como o <strong>agregado
+de contribuição</strong> da coalizão <span
+class="math inline">\(S\)</span>, e <span
+class="math inline">\(\sigma(A) \equiv M/(1 + e^{-\lambda(A -
+\kappa)})\)</span> a função logística, de modo que <span
+class="math inline">\(V(S) = \sigma(A(S))\)</span>.</p>
+<h3 id="outside-options">2.3 Outside Options</h3>
+<p><span class="math display">\[d_i = \alpha_i\]</span></p>
+<p>O tipo <span class="math inline">\(\alpha_i\)</span> desempenha papel
+duplo: contribuição ao pie e outside option bilateral. Um país que
+contribui mais à cooperação multilateral também tem melhores
+alternativas fora dela (é maior, mais capaz, mais conectado).</p>
+<h3 id="timing">2.4 Timing</h3>
+<ol type="1">
+<li><strong>Desenho institucional</strong>: regra de votação <span
+class="math inline">\(R \in \{U, M\}\)</span> fixada exogenamente.</li>
+<li><strong>BP</strong>: H observa <span
+class="math inline">\(\alpha_H\)</span>, commita sinal público <span
+class="math inline">\(\pi(s|\alpha_H)\)</span>.</li>
+<li><strong>Realização</strong>: <span
+class="math inline">\(\alpha_i\)</span> realizados para cada <span
+class="math inline">\(i\)</span>, sinal <span class="math inline">\(s
+\sim \pi(\cdot|\alpha_H)\)</span> gerado.</li>
+<li><strong>Barganha (BF)</strong>: proposer sorteado (prob <span
+class="math inline">\(1/N\)</span> cada), propõe divisão de <span
+class="math inline">\(V(S)\)</span>. Votação sob regra <span
+class="math inline">\(R\)</span>. Se rejeitado, round 2 ou outside
+options.</li>
+</ol>
+<h3 id="conceito-de-solução">2.5 Conceito de Solução</h3>
+<p>PBE do jogo de barganha, dado o sinal ótimo de H (Bayesian Persuasion
+com commitment, KG 2011).</p>
+<hr />
+<h2 id="tipos-binários-ws-simétricos-benchmark-tratável">3. Tipos
+Binários, W’s Simétricos (Benchmark Tratável)</h2>
+<p><strong>Simplificação</strong>: <span class="math inline">\(\alpha_H
+\in \{\alpha_L, \alpha_h\}\)</span> com <span
+class="math inline">\(\alpha_h &gt; \alpha_L &gt; 0\)</span>, prior
+<span class="math inline">\(p = \Pr(\alpha_H = \alpha_h)\)</span>. W’s
+com <span class="math inline">\(\alpha_W\)</span> conhecido
+(determinístico, simétrico).</p>
+<p><strong>Notação</strong>: - <span class="math inline">\(\Delta\alpha
+\equiv \alpha_h - \alpha_L\)</span> (spread de tipos de H) - <span
+class="math inline">\(A_W \equiv (N-1)\alpha_W^\gamma\)</span>
+(contribuição agregada dos W’s, conhecida) - <span
+class="math inline">\(V_L \equiv \sigma(\alpha_L^\gamma + A_W) = M/(1 +
+e^{-\lambda(\alpha_L^\gamma + A_W - \kappa)})\)</span> (pie com H tipo
+baixo) - <span class="math inline">\(V_H \equiv \sigma(\alpha_h^\gamma +
+A_W)\)</span> (pie com H tipo alto) - <span
+class="math inline">\(V_{\setminus H} \equiv \sigma(A_W)\)</span> (pie
+sem H)</p>
+<p>Note que <span class="math inline">\(V_H &gt; V_L &gt; V_{\setminus
+H}\)</span> (H sempre contribui, e mais quando tipo alto).</p>
+<h3 id="screening-sob-unanimidade">3.1 Screening sob Unanimidade</h3>
+<p>Quando W propõe (prob <span class="math inline">\((N-1)/N\)</span>)
+sob unanimidade, deve incluir H. O proposer W oferece <span
+class="math inline">\(x_H\)</span> a H e <span
+class="math inline">\(\alpha_W\)</span> a cada outro W (mínimo para
+aceitação).</p>
+<p><strong>Duas estratégias</strong>:</p>
+<p><strong>(a) Conservadora</strong> (offer <span
+class="math inline">\(x_H = \alpha_h\)</span>): sempre aceita por ambos
+tipos de H.</p>
+<p>Payoff esperado do proposer W: <span
+class="math display">\[\Pi^{cons}(\mu) = E_\mu[V] - \alpha_h -
+(N-2)\alpha_W\]</span> <span class="math display">\[= (1-\mu)V_L + \mu
+V_H - \alpha_h - (N-2)\alpha_W\]</span></p>
+<p><strong>(b) Agressiva</strong> (offer <span class="math inline">\(x_H
+= \alpha_L\)</span>): aceita apenas por H tipo <span
+class="math inline">\(\alpha_L\)</span>. H tipo <span
+class="math inline">\(\alpha_h\)</span> rejeita <span
+class="math inline">\(\to\)</span> instituição não forma sob unanimidade
+<span class="math inline">\(\to\)</span> todos recebem outside
+options.</p>
+<p>Payoff esperado do proposer W: <span
+class="math display">\[\Pi^{agr}(\mu) = (1-\mu)\left[V_L - \alpha_L -
+(N-2)\alpha_W\right] + \mu \cdot \alpha_W\]</span></p>
+<h3 id="cutoff-de-screening">3.2 Cutoff de Screening</h3>
+<p>W prefere agressiva iff <span class="math inline">\(\Pi^{agr}(\mu)
+&gt; \Pi^{cons}(\mu)\)</span>:</p>
+<p><span class="math display">\[(1-\mu)(V_L - \alpha_L - (N-2)\alpha_W)
++ \mu\alpha_W &gt; (1-\mu)V_L + \mu V_H - \alpha_h -
+(N-2)\alpha_W\]</span></p>
+<p>Simplificando (todos os <span class="math inline">\(V_L\)</span> e
+<span class="math inline">\((N-2)\alpha_W\)</span> cancelam à esquerda e
+direita):</p>
+<p><span class="math display">\[(1-\mu)(\alpha_h - \alpha_L) &gt;
+\mu(V_H - \alpha_h - (N-1)\alpha_W)\]</span></p>
+<p>Definindo o <strong>surplus líquido</strong> de cooperação com H tipo
+alto: <span class="math display">\[\Pi \equiv V_H - \alpha_h -
+(N-1)\alpha_W\]</span></p>
+<p>(surplus do pie com H alto, menos todas as outside options)</p>
+<p>O cutoff de screening é:</p>
+<p><span class="math display">\[\boxed{\mu_s =
+\frac{\Delta\alpha}{\Delta\alpha + \Pi} = \frac{\alpha_h -
+\alpha_L}{\alpha_h - \alpha_L + V_H - \alpha_h -
+(N-1)\alpha_W}}\]</span></p>
+<p><strong>Condição de existência</strong>: <span
+class="math inline">\(\mu_s \in (0,1)\)</span> requer <span
+class="math inline">\(\Pi &gt; 0\)</span>, i.e., <span
+class="math inline">\(V_H &gt; \alpha_h + (N-1)\alpha_W\)</span>. O pie
+com H alto deve exceder a soma de todas as outside options. Isso exige
+que a coalizão completa esteja <strong>acima da massa crítica</strong>:
+<span class="math inline">\(\alpha_h^\gamma + A_W &gt; \kappa\)</span>
+(pelo menos parcialmente).</p>
+<p><strong>Interpretação</strong>: <span
+class="math inline">\(\mu_s\)</span> cresce com <span
+class="math inline">\(\Delta\alpha\)</span> (mais heterogeneidade de H
+<span class="math inline">\(\to\)</span> screening mais frequente) e
+decresce com <span class="math inline">\(\Pi\)</span> (mais surplus
+<span class="math inline">\(\to\)</span> conservadora mais
+atrativa).</p>
+<h3 id="value-function-de-h">3.3 Value Function de H</h3>
+<p>H conhece <span class="math inline">\(\alpha_H\)</span> e projeta
+sinal <span class="math inline">\(\pi(s|\alpha_H)\)</span> antes do
+jogo. A <em>value function</em> de KG é <span
+class="math inline">\(v(\mu)\)</span>: payoff esperado de H (média sobre
+tipos, ponderada por <span class="math inline">\(\mu\)</span>) dado que
+o receiver (W proposer) tem crença <span
+class="math inline">\(\mu\)</span>.</p>
+<p><strong>Quando W propõe e <span class="math inline">\(\mu &lt;
+\mu_s\)</span> (offer agressiva <span
+class="math inline">\(\alpha_L\)</span>):</strong> - H tipo <span
+class="math inline">\(\alpha_L\)</span>: aceita, recebe <span
+class="math inline">\(\alpha_L\)</span> - H tipo <span
+class="math inline">\(\alpha_h\)</span>: rejeita, recebe <span
+class="math inline">\(\alpha_h\)</span> - <span
+class="math inline">\(v(\mu) = (1-\mu)\alpha_L + \mu\alpha_h = \alpha_L
++ \mu\Delta\alpha\)</span></p>
+<p><strong>Quando W propõe e <span class="math inline">\(\mu \geq
+\mu_s\)</span> (offer conservadora <span
+class="math inline">\(\alpha_h\)</span>):</strong> - Ambos tipos
+aceitam, recebem <span class="math inline">\(\alpha_h\)</span> - <span
+class="math inline">\(v(\mu) = \alpha_h\)</span></p>
+<p><strong>Resultado</strong>:</p>
+<p><span class="math display">\[v(\mu) = \begin{cases} \alpha_L +
+\mu\Delta\alpha &amp; \text{se } \mu &lt; \mu_s \\ \alpha_h &amp;
+\text{se } \mu \geq \mu_s \end{cases}\]</span></p>
+<p><strong>Jump em <span class="math inline">\(\mu_s\)</span></strong>:
+<span class="math display">\[v(\mu_s^-) = \alpha_L + \mu_s \Delta\alpha
+&lt; \alpha_h = v(\mu_s)\]</span> <span
+class="math display">\[\text{Jump} = \Delta\alpha(1 - \mu_s) =
+\frac{\Delta\alpha \cdot \Pi}{\Delta\alpha + \Pi} &gt; 0\]</span></p>
+<p>A value function é não-côncava <span
+class="math inline">\(\to\)</span> BP tem valor positivo.</p>
+<h3 id="concavificação-e-sinal-ótimo">3.4 Concavificação e Sinal
+Ótimo</h3>
+<p><strong>Para <span class="math inline">\(p &lt;
+\mu_s\)</span></strong> (prior abaixo do cutoff — a região onde BP é
+ativo):</p>
+<p>A concavificação de <span class="math inline">\(v(\mu)\)</span> é a
+reta de <span class="math inline">\((0, \alpha_L)\)</span> a <span
+class="math inline">\((\mu_s, \alpha_h)\)</span>:</p>
+<p><span class="math display">\[\text{cav } v(\mu) = \alpha_L +
+\frac{\mu}{\mu_s}\Delta\alpha \quad \text{para } \mu \in [0,
+\mu_s]\]</span></p>
+<p><strong>Verificação</strong>: a reta tem inclinação <span
+class="math inline">\(\Delta\alpha/\mu_s &gt; \Delta\alpha\)</span>
+(inclinação de <span class="math inline">\(v\)</span> no regime linear),
+portanto está acima de <span class="math inline">\(v\)</span> em todo
+<span class="math inline">\([0, \mu_s)\)</span>.</p>
+<p><strong>Sinal ótimo</strong> (binário): - <span
+class="math inline">\(s_H\)</span>: gera posterior <span
+class="math inline">\(\mu = \mu_s\)</span> com probabilidade <span
+class="math inline">\(p/\mu_s\)</span> - <span
+class="math inline">\(s_L\)</span>: gera posterior <span
+class="math inline">\(\mu = 0\)</span> com probabilidade <span
+class="math inline">\(1 - p/\mu_s\)</span> - Bayes-plausível: <span
+class="math inline">\((p/\mu_s) \cdot \mu_s + (1 - p/\mu_s) \cdot 0 =
+p\)</span> ✓</p>
+<p><strong>Para <span class="math inline">\(p \geq
+\mu_s\)</span></strong>: W já faz offer conservadora sem BP. <span
+class="math inline">\(v(p) = \alpha_h = \text{cav } v(p)\)</span>. BP
+não agrega valor.</p>
+<h3 id="ganho-do-bp-sob-unanimidade">3.5 Ganho do BP sob
+Unanimidade</h3>
+<p>Para <span class="math inline">\(p &lt; \mu_s\)</span>:</p>
+<p><span class="math display">\[\text{BP gain} = \text{cav } v(p) - v(p)
+= \frac{p}{\mu_s}\Delta\alpha - p\Delta\alpha =
+p\Delta\alpha\left(\frac{1}{\mu_s} - 1\right) = p\Delta\alpha \cdot
+\frac{\Pi}{\Delta\alpha}\]</span></p>
+<p><span class="math display">\[\boxed{\text{BP gain} = p \cdot \Pi = p
+\cdot \left[V_H - \alpha_h - (N-1)\alpha_W\right]}\]</span></p>
+<p>O ganho é proporcional a: - <strong><span
+class="math inline">\(p\)</span></strong>: probabilidade de H ser tipo
+alto (mais prováveis ambos tipos <span
+class="math inline">\(\to\)</span> mais oportunidade de pooling) -
+<strong><span class="math inline">\(\Pi\)</span></strong>: surplus
+líquido de cooperação com H alto (mais surplus <span
+class="math inline">\(\to\)</span> mais renda informacional)</p>
+<p>E <span class="math inline">\(\Pi\)</span> depende de <span
+class="math inline">\(V_H\)</span>, que depende de <span
+class="math inline">\(\sigma(\alpha_h^\gamma + A_W)\)</span> — a
+<strong>posição na S-curve</strong>. Se <span
+class="math inline">\(\alpha_h^\gamma + A_W \gg \kappa\)</span>: <span
+class="math inline">\(V_H \approx M\)</span>, <span
+class="math inline">\(\Pi\)</span> é máximo. Se <span
+class="math inline">\(\alpha_h^\gamma + A_W \approx \kappa\)</span>:
+<span class="math inline">\(V_H\)</span> está na região sensível. Se
+<span class="math inline">\(\alpha_h^\gamma + A_W \ll \kappa\)</span>:
+<span class="math inline">\(V_H \approx 0\)</span>, <span
+class="math inline">\(\Pi &lt; 0\)</span>, BP não opera.</p>
+<hr />
+<h2 id="maioria-exclusão-por-discriminação-estatística">4. Maioria:
+Exclusão por Discriminação Estatística</h2>
+<h3 id="problema-de-seleção-de-coalizão">4.1 Problema de Seleção de
+Coalizão</h3>
+<p>Sob maioria (<span class="math inline">\(q = \lceil N/2
+\rceil\)</span>), o proposer W precisa de <span
+class="math inline">\(q-1\)</span> votos dos <span
+class="math inline">\(N-1\)</span> restantes. Pode escolher:</p>
+<p><strong>(a) Incluir H</strong>: coalizão <span
+class="math inline">\(\{W_{\text{prop}}, H, (q-2) \text{
+W&#39;s}\}\)</span>. Enfrenta screening sobre <span
+class="math inline">\(\alpha_H\)</span>.</p>
+<p><strong>(b) Excluir H</strong>: coalizão <span
+class="math inline">\(\{W_{\text{prop}}, (q-1) \text{
+W&#39;s}\}\)</span>. Sem adverse selection (W’s têm <span
+class="math inline">\(\alpha_W\)</span> conhecido).</p>
+<h3 id="payoff-de-exclusão">4.2 Payoff de Exclusão</h3>
+<p><span class="math display">\[\Pi^{excl} = V_{\setminus H}^{q} -
+(q-1)\alpha_W\]</span></p>
+<p>onde <span class="math inline">\(V_{\setminus H}^{q} \equiv \sigma(q
+\cdot \alpha_W^\gamma)\)</span> é o pie da coalizão de <span
+class="math inline">\(q\)</span> W’s (proposer + <span
+class="math inline">\(q-1\)</span> outros).</p>
+<p>Sem incerteza, sem screening, sem adverse selection.</p>
+<h3 id="payoff-de-inclusão-com-screening">4.3 Payoff de Inclusão (com
+screening)</h3>
+<p>Se W inclui H e usa offer agressiva (<span class="math inline">\(\mu
+&lt; \mu_s\)</span>):</p>
+<p><span class="math display">\[\Pi^{incl}(\mu) = (1-\mu)\left[V_L^{q} -
+\alpha_L - (q-2)\alpha_W\right] + \mu\left[V_{\setminus H}^{q} -
+(q-1)\alpha_W\right]\]</span></p>
+<p>onde <span class="math inline">\(V_L^{q} = \sigma(\alpha_L^\gamma +
+(q-1)\alpha_W^\gamma)\)</span> é o pie quando H (tipo baixo) é incluído
+numa coalizão de <span class="math inline">\(q\)</span> membros.</p>
+<p><strong>Diferença crucial com unanimidade</strong>: se H rejeita a
+offer sob maioria, o proposer <strong>ainda forma uma coalizão</strong>
+com W’s. Sob unanimidade, rejeição de H impede a formação da
+instituição.</p>
+<p>Se W inclui H e usa offer conservadora (<span
+class="math inline">\(\mu \geq \mu_s^M\)</span>):</p>
+<p><span class="math display">\[\Pi^{cons,M}(\mu) = E_\mu[V^q(\alpha_H)]
+- \alpha_h - (q-2)\alpha_W\]</span></p>
+<h3 id="condição-de-exclusão">4.4 Condição de Exclusão</h3>
+<p>W exclui H iff <span class="math inline">\(\Pi^{excl} &gt;
+\max\{\Pi^{incl}(\mu), \Pi^{cons,M}(\mu)\}\)</span>.</p>
+<p>Para a offer agressiva, exclusão domina iff:</p>
+<p><span class="math display">\[V_{\setminus H}^{q} - (q-1)\alpha_W &gt;
+(1-\mu)\left[V_L^{q} - \alpha_L - (q-2)\alpha_W\right] +
+\mu\left[V_{\setminus H}^{q} - (q-1)\alpha_W\right]\]</span></p>
+<p><span class="math display">\[(1-\mu)\left[V_{\setminus H}^{q} -
+(q-1)\alpha_W\right] &gt; (1-\mu)\left[V_L^{q} - \alpha_L -
+(q-2)\alpha_W\right]\]</span></p>
+<p><span class="math display">\[V_{\setminus H}^{q} - (q-1)\alpha_W &gt;
+V_L^{q} - \alpha_L - (q-2)\alpha_W\]</span></p>
+<p><span class="math display">\[\boxed{V_{\setminus H}^{q} - V_L^{q}
+&gt; \alpha_W - \alpha_L}\]</span></p>
+<p><strong>Interpretação</strong>: W exclui H iff o <strong>custo
+marginal</strong> de incluir H (que contribui <span
+class="math inline">\(\alpha_L^\gamma\)</span> ao pie mas custa pelo
+menos <span class="math inline">\(\alpha_L\)</span>) excede o benefício
+marginal para V. Como <span class="math inline">\(\alpha_L &gt;
+\alpha_W\)</span> (H tem outside option maior que W mesmo quando tipo
+baixo), o lado direito é negativo. Então a condição é: <span
+class="math inline">\(V_{\setminus H}^q &gt; V_L^q - (\alpha_L -
+\alpha_W)\)</span>.</p>
+<p>Isso pode ocorrer quando: 1. A coalizão de W’s já está <strong>acima
+da massa crítica</strong> (<span class="math inline">\(q\alpha_W^\gamma
+&gt; \kappa\)</span>) — adicionar H mal muda V (saturação) 2. O custo de
+screening de H (<span class="math inline">\(\alpha_h -
+\alpha_L\)</span>) é alto — offer conservadora é cara 3. H tipo baixo
+contribui pouco mais que um W extra (<span
+class="math inline">\(\alpha_L^\gamma \approx
+\alpha_W^\gamma\)</span>)</p>
+<h3 id="bp-sob-maioria">4.5 BP sob Maioria</h3>
+<p>Se W exclui H: H recebe <span class="math inline">\(\alpha_H\)</span>
+(outside option). Não há interação com sinal <span
+class="math inline">\(\to\)</span> <strong>BP não opera</strong>.</p>
+<p>Se W inclui H (parâmetros onde inclusão é ótima): o mecanismo de
+screening funciona similarmente a unanimidade, mas com coalizão menor.
+BP opera parcialmente.</p>
+<p><strong>Caso central</strong> (exclusão sob maioria): sob maioria,
+<span class="math inline">\(\Pi^{excl} &gt; \Pi^{incl}\)</span> quando
+os parâmetros favorecem discriminação estatística. H é excluído, BP
+neutralizado.</p>
+<hr />
+<h2 id="comparação-institucional">5. Comparação Institucional</h2>
+<h3 id="payoff-de-h-sob-cada-regra">5.1 Payoff de H sob cada regra</h3>
+<p><strong>Unanimidade com BP</strong> (<span class="math inline">\(p
+&lt; \mu_s\)</span>):</p>
+<p><span class="math display">\[U_H^U(p) =
+\frac{1}{N}\left[E[V_{\text{full}}(\alpha_H)] - (N-1)\alpha_W\right] +
+\frac{N-1}{N}\left[\alpha_L +
+\frac{p}{\mu_s}\Delta\alpha\right]\]</span></p>
+<p>O primeiro termo: quando H propõe (prob <span
+class="math inline">\(1/N\)</span>), oferece <span
+class="math inline">\(\alpha_W\)</span> a cada W, retém o surplus. O
+segundo: quando W propõe, H recebe o valor concavificado.</p>
+<p><strong>Maioria com exclusão</strong>:</p>
+<p><span class="math display">\[U_H^M(p) =
+\frac{1}{N}\left[E[V^q(\alpha_H)] - (q-1)\alpha_W\right] + \frac{N-1}{N}
+\cdot E[\alpha_H]\]</span></p>
+<p>Quando H propõe (prob <span class="math inline">\(1/N\)</span>):
+forma coalizão ótima, paga <span class="math inline">\((q-1)\)</span>
+W’s. Quando W propõe (<span
+class="math inline">\(\frac{N-1}{N}\)</span>): H excluído, recebe
+outside option <span class="math inline">\(\alpha_H\)</span>.</p>
+<h3 id="quando-h-prefere-unanimidade">5.2 Quando H Prefere
+Unanimidade</h3>
+<p>H prefere unanimidade iff <span class="math inline">\(U_H^U(p) &gt;
+U_H^M(p)\)</span>. Isso requer que o <strong>BP gain</strong> no round
+de W-proposes compense:</p>
+<ol type="1">
+<li>Pie maior sob unanimidade (<span
+class="math inline">\(V_{\text{full}} &gt; V^q\)</span>) mas dividido
+por mais jogadores (<span class="math inline">\(N\)</span> vs. <span
+class="math inline">\(q\)</span>)</li>
+<li>H-as-proposer: paga mais W’s sob unanimidade (<span
+class="math inline">\((N-1)\)</span> vs. <span
+class="math inline">\((q-1)\)</span>)</li>
+<li>BP gain: <span class="math inline">\(\frac{p}{\mu_s}\Delta\alpha -
+E[\alpha_H] &gt; 0\)</span> requer…</li>
+</ol>
+<p>Para <span class="math inline">\(\frac{p}{\mu_s}\Delta\alpha &gt;
+E[\alpha_H] = (1-p)\alpha_L + p\alpha_h\)</span>:</p>
+<p><span class="math display">\[\frac{p}{\mu_s}\Delta\alpha &gt;
+\alpha_L + p\Delta\alpha\]</span></p>
+<p><span class="math display">\[p\Delta\alpha\left(\frac{1}{\mu_s} -
+1\right) &gt; \alpha_L\]</span></p>
+<p><span class="math display">\[p \cdot \Pi &gt; \alpha_L\]</span></p>
+<p>Ou seja, o ganho do BP deve exceder a outside option do tipo baixo.
+Isso ocorre quando: - <span class="math inline">\(\Pi\)</span> é grande
+(surplus de cooperação alto — estamos acima da massa crítica) - <span
+class="math inline">\(p\)</span> é grande o suficiente (probabilidade
+razoável de tipo alto) - <span class="math inline">\(\alpha_L\)</span> é
+pequeno (outside option do tipo baixo é modesta)</p>
+<h3 id="papel-da-s-shape">5.3 Papel da S-Shape</h3>
+<p>A forma S de <span class="math inline">\(V(S)\)</span> cria três
+<strong>regimes</strong> qualitativamente diferentes:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Regime</th>
+<th>Condição</th>
+<th>Efeito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Abaixo de <span
+class="math inline">\(\kappa\)</span></strong></td>
+<td><span class="math inline">\(\alpha_h^\gamma + A_W &lt;
+\kappa\)</span></td>
+<td><span class="math inline">\(V_H \approx 0\)</span>, <span
+class="math inline">\(\Pi &lt; 0\)</span>: cooperação não é viável nem
+com H alto. Nenhuma regra funciona.</td>
+</tr>
+<tr>
+<td><strong>Próximo de <span
+class="math inline">\(\kappa\)</span></strong></td>
+<td><span class="math inline">\(\alpha_h^\gamma + A_W \approx
+\kappa\)</span></td>
+<td>H é <strong>pivotal</strong>: sua contribuição empurra V para cima
+na parte íngreme. <span class="math inline">\(\Pi &gt; 0\)</span> mas
+sensível a <span class="math inline">\(\alpha_H\)</span>. Screening mais
+custoso, BP mais valioso.</td>
+</tr>
+<tr>
+<td><strong>Acima de <span
+class="math inline">\(\kappa\)</span></strong></td>
+<td><span class="math inline">\(A_W &gt; \kappa\)</span> (W’s
+bastam)</td>
+<td><span class="math inline">\(V_{\setminus H}\)</span> já é alto.
+Contribuição marginal de H é pequena (saturação). Exclusão sob maioria é
+indolor. BP tem pouco valor.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>O regime interessante é próximo de <span
+class="math inline">\(\kappa\)</span></strong>: H é pivotal, sua
+informação privada importa maximamente, e a escolha institucional é mais
+consequente.</p>
+<p><strong>Conexão com Kyoto</strong>: se <span
+class="math inline">\(\kappa\)</span> corresponde a ~60% das emissões
+globais, e os EUA emitem ~25%: sem EUA (<span
+class="math inline">\(A_W\)</span> &lt; <span
+class="math inline">\(\kappa\)</span>), o acordo tem pouco valor. Com
+EUA (<span class="math inline">\(\alpha_H^\gamma + A_W &gt;
+\kappa\)</span>), o acordo cruza a massa crítica. H é pivotal.</p>
+<hr />
+<h2 id="estática-comparativa">6. Estática Comparativa</h2>
+<h3 id="efeito-de-gamma-expoente-de-contribuição">6.1 Efeito de <span
+class="math inline">\(\gamma\)</span> (expoente de contribuição)</h3>
+<p><span class="math inline">\(\gamma \in (1,2)\)</span> governa quão
+desproporcionalmente grandes jogadores contribuem.</p>
+<ul>
+<li><span class="math inline">\(\gamma \to 1\)</span>: contribuição
+proporcional a <span class="math inline">\(\alpha_i\)</span>. US (<span
+class="math inline">\(\alpha = 0.25\)</span>) = 5 países com <span
+class="math inline">\(\alpha = 0.05\)</span>. Menos vantagem de ter
+H.</li>
+<li><span class="math inline">\(\gamma \to 2\)</span>: US contribui
+<span class="math inline">\(0.25^2 = 0.0625\)</span> vs. <span
+class="math inline">\(5 \times 0.05^2 = 0.0125\)</span>. US vale 5x
+mais. H é mais pivotal.</li>
+</ul>
+<p><strong>Efeito sobre <span
+class="math inline">\(\mu_s\)</span></strong>: <span
+class="math inline">\(\gamma\)</span> maior <span
+class="math inline">\(\to\)</span> <span
+class="math inline">\(V_H\)</span> maior (H contribui mais ao pie) <span
+class="math inline">\(\to\)</span> <span
+class="math inline">\(\Pi\)</span> maior <span
+class="math inline">\(\to\)</span> <span
+class="math inline">\(\mu_s\)</span> menor <span
+class="math inline">\(\to\)</span> screening menos frequente <span
+class="math inline">\(\to\)</span> BP gain = <span
+class="math inline">\(p\Pi\)</span> maior (por <span
+class="math inline">\(\Pi\)</span>, não por <span
+class="math inline">\(\mu_s\)</span>).</p>
+<p><strong>Efeito sobre comparação institucional</strong>: <span
+class="math inline">\(\gamma\)</span> maior <span
+class="math inline">\(\to\)</span> H mais pivotal <span
+class="math inline">\(\to\)</span> unanimidade mais valiosa (porque
+captura contribuição de H via forced inclusion + BP).</p>
+<h3 id="efeito-de-kappa-massa-crítica">6.2 Efeito de <span
+class="math inline">\(\kappa\)</span> (massa crítica)</h3>
+<ul>
+<li><span class="math inline">\(\kappa\)</span> baixo: cooperação é
+fácil, <span class="math inline">\(V\)</span> alto mesmo sem H <span
+class="math inline">\(\to\)</span> exclusão sob maioria é indolor <span
+class="math inline">\(\to\)</span> H prefere unanimidade menos.</li>
+<li><span class="math inline">\(\kappa\)</span> alto: cooperação requer
+massa crítica alta. Sem H, coalizão de W’s não atinge <span
+class="math inline">\(\kappa\)</span> <span
+class="math inline">\(\to\)</span> <span
+class="math inline">\(V_{\setminus H}\)</span> baixo <span
+class="math inline">\(\to\)</span> exclusão sob maioria é custosa <span
+class="math inline">\(\to\)</span> H pode preferir unanimidade? Mas se
+<span class="math inline">\(\Pi &lt; 0\)</span> (nem com H atinge),
+nenhuma regra funciona.</li>
+<li><strong>Sweet spot</strong>: <span
+class="math inline">\(\kappa\)</span> tal que <span
+class="math inline">\(A_W &lt; \kappa &lt; \alpha_h^\gamma +
+A_W\)</span>. H é pivotal. Máximo valor do BP e máxima diferença
+institucional.</li>
+</ul>
+<h3 id="efeito-de-n">6.3 Efeito de <span
+class="math inline">\(N\)</span></h3>
+<p><span class="math inline">\(N\)</span> entra indiretamente via <span
+class="math inline">\(A_W = (N-1)\alpha_W^\gamma\)</span>: - <span
+class="math inline">\(N\)</span> grande: <span
+class="math inline">\(A_W\)</span> cresce <span
+class="math inline">\(\to\)</span> coalizão de W’s pode atingir <span
+class="math inline">\(\kappa\)</span> sem H <span
+class="math inline">\(\to\)</span> H menos pivotal <span
+class="math inline">\(\to\)</span> exclusão mais provável <span
+class="math inline">\(\to\)</span> BP menos valioso. - <span
+class="math inline">\(N\)</span> pequeno: <span
+class="math inline">\(A_W\)</span> baixo <span
+class="math inline">\(\to\)</span> H é pivotal <span
+class="math inline">\(\to\)</span> BP valioso.</p>
+<p>Mas <span class="math inline">\(N\)</span> também entra na regra de
+maioria (<span class="math inline">\(q = \lceil N/2 \rceil\)</span>):
+<span class="math inline">\(q\)</span> grande <span
+class="math inline">\(\to\)</span> coalizão de maioria precisa de mais
+W’s <span class="math inline">\(\to\)</span> pode eventualmente precisar
+de H <span class="math inline">\(\to\)</span> menos exclusão.</p>
+<p><strong>Predição</strong>: relação não-monótona entre <span
+class="math inline">\(N\)</span> e preferência de H por unanimidade.
+Para <span class="math inline">\(N\)</span> intermediário (onde H é
+pivotal), unanimidade é mais valiosa.</p>
+<h3 id="efeito-de-sigma_h2-variância-do-tipo-de-h">6.4 Efeito de <span
+class="math inline">\(\sigma_H^2\)</span> (variância do tipo de H)</h3>
+<p>No caso binário, <span class="math inline">\(\sigma_H^2 =
+p(1-p)(\Delta\alpha)^2\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\Delta\alpha\)</span> grande (mais
+spread) <span class="math inline">\(\to\)</span> <span
+class="math inline">\(\mu_s\)</span> maior (screening mais frequente)
+<span class="math inline">\(\to\)</span> mais oportunidade para BP <span
+class="math inline">\(\to\)</span> BP gain = <span
+class="math inline">\(p\Pi\)</span> (não depende de <span
+class="math inline">\(\Delta\alpha\)</span>!).</li>
+</ul>
+<p>Espera — <strong>BP gain = <span class="math inline">\(p \cdot
+\Pi\)</span> não depende de <span
+class="math inline">\(\Delta\alpha\)</span>!</strong> Isso é
+surpreendente. O ganho depende do surplus <span
+class="math inline">\(\Pi\)</span> e do prior <span
+class="math inline">\(p\)</span>, mas não do spread de tipos.</p>
+<p>Porém, <span class="math inline">\(\mu_s\)</span> depende de <span
+class="math inline">\(\Delta\alpha\)</span>: mais spread <span
+class="math inline">\(\to\)</span> <span
+class="math inline">\(\mu_s\)</span> maior <span
+class="math inline">\(\to\)</span> o regime de BP (<span
+class="math inline">\(p &lt; \mu_s\)</span>) é mais amplo. Então <span
+class="math inline">\(\Delta\alpha\)</span> não afeta o TAMANHO do gain,
+mas afeta a REGIÃO onde BP opera.</p>
+<p><strong>Intuição</strong>: H extrai exatamente o surplus <span
+class="math inline">\(\Pi\)</span> do tipo alto, com probabilidade <span
+class="math inline">\(p\)</span>. Isso não depende de quão diferente o
+tipo baixo é — o pooling no sinal ajusta as probabilidades para
+compensar.</p>
+<hr />
+<h2 id="worked-example">7. Worked Example</h2>
+<h3 id="parâmetros">Parâmetros</h3>
+<p><span class="math inline">\(N = 5\)</span>, <span
+class="math inline">\(\alpha_L = 0.15\)</span>, <span
+class="math inline">\(\alpha_h = 0.30\)</span>, <span
+class="math inline">\(\alpha_W = 0.05\)</span>, <span
+class="math inline">\(\gamma = 1.5\)</span>, <span
+class="math inline">\(\kappa = 0.4\)</span>, <span
+class="math inline">\(\lambda = 10\)</span>, <span
+class="math inline">\(M = 2\)</span>, <span class="math inline">\(p =
+0.3\)</span>.</p>
+<h3 id="contribuições">Contribuições</h3>
+<p><span class="math display">\[\alpha_L^\gamma = 0.15^{1.5} =
+0.0581\]</span> <span class="math display">\[\alpha_h^\gamma =
+0.30^{1.5} = 0.1643\]</span> <span
+class="math display">\[\alpha_W^\gamma = 0.05^{1.5} = 0.01118\]</span>
+<span class="math display">\[A_W = 4 \times 0.01118 =
+0.04472\]</span></p>
+<h3 id="pies">Pies</h3>
+<p><span class="math display">\[A_{\text{full},L} = 0.0581 + 0.04472 =
+0.1028 \quad \Rightarrow V_L = \frac{2}{1 + e^{-10(0.1028 - 0.4)}} =
+\frac{2}{1 + e^{2.972}} = \frac{2}{1 + 19.53} = 0.0974\]</span></p>
+<p><span class="math display">\[A_{\text{full},H} = 0.1643 + 0.04472 =
+0.2090 \quad \Rightarrow V_H = \frac{2}{1 + e^{-10(0.2090 - 0.4)}} =
+\frac{2}{1 + e^{1.910}} = \frac{2}{1 + 6.753} = 0.2580\]</span></p>
+<p><span class="math display">\[A_{\setminus H} = 0.04472 \quad
+\Rightarrow V_{\setminus H} = \frac{2}{1 + e^{-10(0.04472 - 0.4)}} =
+\frac{2}{1 + e^{3.553}} = \frac{2}{1 + 34.93} = 0.0557\]</span></p>
+<p><strong>Observação</strong>: com esses parâmetros, estamos bem abaixo
+da massa crítica (<span class="math inline">\(\kappa = 0.4\)</span>). Os
+V’s são pequenos. H faz diferença (<span class="math inline">\(V_H =
+0.258\)</span> vs. <span class="math inline">\(V_{\setminus H} =
+0.056\)</span>), mas a cooperação não é muito lucrativa.</p>
+<h3 id="reajuste-kappa-0.15-massa-crítica-mais-baixa">Reajuste: <span
+class="math inline">\(\kappa = 0.15\)</span> (massa crítica mais
+baixa)</h3>
+<p><span class="math display">\[V_L = \frac{2}{1 + e^{-10(0.1028 -
+0.15)}} = \frac{2}{1 + e^{0.472}} = \frac{2}{1 + 1.603} =
+0.768\]</span></p>
+<p><span class="math display">\[V_H = \frac{2}{1 + e^{-10(0.2090 -
+0.15)}} = \frac{2}{1 + e^{-0.590}} = \frac{2}{1 + 0.554} =
+1.287\]</span></p>
+<p><span class="math display">\[V_{\setminus H} = \frac{2}{1 +
+e^{-10(0.04472 - 0.15)}} = \frac{2}{1 + e^{1.053}} = \frac{2}{1 + 2.866}
+= 0.518\]</span></p>
+<p>Agora estamos próximo da massa crítica. H tipo alto empurra acima de
+<span class="math inline">\(\kappa\)</span>.</p>
+<h3 id="screening-cutoff">Screening Cutoff</h3>
+<p><span class="math display">\[\Pi = V_H - \alpha_h - (N-1)\alpha_W =
+1.287 - 0.30 - 4(0.05) = 1.287 - 0.50 = 0.787\]</span></p>
+<p><span class="math display">\[\Delta\alpha = 0.30 - 0.15 =
+0.15\]</span></p>
+<p><span class="math display">\[\mu_s = \frac{0.15}{0.15 + 0.787} =
+\frac{0.15}{0.937} = 0.160\]</span></p>
+<p>Prior <span class="math inline">\(p = 0.3 &gt; \mu_s = 0.16\)</span>:
+W já faz offer conservadora sem BP. <strong>BP não é necessário</strong>
+neste exemplo.</p>
+<h3 id="reajuste-p-0.10-prior-mais-baixo">Reajuste: <span
+class="math inline">\(p = 0.10\)</span> (prior mais baixo)</h3>
+<p><span class="math inline">\(p = 0.10 &lt; \mu_s = 0.16\)</span>: BP é
+ativo.</p>
+<p><strong>Value function sem BP</strong>: <span
+class="math inline">\(v(0.10) = 0.15 + 0.10 \times 0.15 =
+0.165\)</span></p>
+<p><strong>Value function com BP</strong>: <span
+class="math inline">\(\text{cav } v(0.10) = 0.15 + \frac{0.10}{0.16}
+\times 0.15 = 0.15 + 0.09375 = 0.244\)</span></p>
+<p><strong>BP gain (W-proposes round)</strong>: <span
+class="math inline">\(0.244 - 0.165 = 0.079\)</span></p>
+<p>Ou diretamente: <span class="math inline">\(p \cdot \Pi = 0.10 \times
+0.787 = 0.0787\)</span> ✓</p>
+<h3 id="comparação-com-maioria">Comparação com Maioria</h3>
+<p>Sob maioria (<span class="math inline">\(q = 3\)</span> para <span
+class="math inline">\(N = 5\)</span>), W pode excluir H.</p>
+<p><span class="math inline">\(V_{\setminus H}^{q=3} = \sigma(3 \times
+0.01118) = \sigma(0.03354) = \frac{2}{1+e^{-10(0.03354-0.15)}} =
+\frac{2}{1+e^{1.165}} = \frac{2}{1+3.206} = 0.476\)</span></p>
+<p>Payoff de exclusão: <span class="math inline">\(V_{\setminus H}^{q=3}
+- (q-1)\alpha_W = 0.476 - 2(0.05) = 0.376\)</span></p>
+<p>Payoff de inclusão (aggressive, <span class="math inline">\(\mu =
+0.10\)</span>): <span class="math inline">\((1-0.10)[V_L^{q=3} - 0.15 -
+1(0.05)] + 0.10 \times 0.376\)</span></p>
+<p><span class="math inline">\(V_L^{q=3} = \sigma(\alpha_L^\gamma +
+2\alpha_W^\gamma) = \sigma(0.0581 + 2 \times 0.01118) =
+\sigma(0.08046)\)</span> <span class="math inline">\(=
+\frac{2}{1+e^{-10(0.08046-0.15)}} = \frac{2}{1+e^{0.695}} =
+\frac{2}{1+2.004} = 0.665\)</span></p>
+<p><span class="math inline">\(= 0.90 \times [0.665 - 0.15 - 0.05] +
+0.10 \times 0.376 = 0.90 \times 0.465 + 0.0376 = 0.419 + 0.038 =
+0.456\)</span></p>
+<p><span class="math inline">\(\Pi^{incl} = 0.456 &gt; \Pi^{excl} =
+0.376\)</span>: <strong>inclusão domina</strong>.</p>
+<p>Neste exemplo, H é suficientemente valioso para que W inclua H mesmo
+sob maioria. Precisamos de parâmetros onde a exclusão ocorra.</p>
+<h3 id="reajuste-alpha_h-0.50-alpha_l-0.10-mais-spread">Reajuste: <span
+class="math inline">\(\alpha_h = 0.50\)</span>, <span
+class="math inline">\(\alpha_L = 0.10\)</span> (mais spread)</h3>
+<p><span class="math display">\[\Delta\alpha = 0.40, \quad
+\alpha_h^\gamma = 0.50^{1.5} = 0.354, \quad \alpha_L^\gamma = 0.10^{1.5}
+= 0.0316\]</span></p>
+<p><span class="math display">\[V_H = \sigma(0.354 + 0.04472) =
+\sigma(0.399) = \frac{2}{1+e^{-10(0.399-0.15)}} = \frac{2}{1+e^{-2.49}}
+= \frac{2}{1+0.0832} = 1.847\]</span></p>
+<p><span class="math display">\[V_L^{q=3} = \sigma(0.0316 + 0.02236) =
+\sigma(0.054) = \frac{2}{1+e^{-10(0.054-0.15)}} = \frac{2}{1+e^{0.96}} =
+\frac{2}{1+2.612} = 0.554\]</span></p>
+<p>Payoff inclusão conservadora sob maioria: <span
+class="math inline">\(E_\mu[V^q] - \alpha_h - (q-2)\alpha_W = [0.9
+\times 0.554 + 0.1 \times 1.847] - 0.50 - 0.05\)</span> <span
+class="math inline">\(= [0.499 + 0.185] - 0.55 = 0.683 - 0.55 =
+0.133\)</span></p>
+<p>Payoff exclusão: <span class="math inline">\(0.476 - 0.10 =
+0.376\)</span></p>
+<p><span class="math inline">\(\Pi^{excl} = 0.376 &gt; \Pi^{incl,cons} =
+0.133\)</span>: <strong>exclusão domina!</strong></p>
+<p>H é caro (outside option <span class="math inline">\(\alpha_h =
+0.50\)</span>), e com spread grande (<span
+class="math inline">\(\Delta\alpha = 0.40\)</span>), o screening é muito
+custoso. W prefere formar coalizão sem H.</p>
+<h3 id="payoff-de-h-neste-cenário">Payoff de H neste cenário</h3>
+<p><strong>Sob unanimidade com BP</strong> (<span
+class="math inline">\(p = 0.10, \mu_s = ?\)</span>):</p>
+<p><span class="math inline">\(\Pi = V_H^{full} - \alpha_h -
+(N-1)\alpha_W = 1.847 - 0.50 - 0.20 = 1.147\)</span> <span
+class="math inline">\(\mu_s = 0.40/(0.40 + 1.147) = 0.40/1.547 =
+0.259\)</span></p>
+<p><span class="math inline">\(p = 0.10 &lt; \mu_s = 0.259\)</span>: BP
+ativo.</p>
+<p>BP gain (W-proposes) = <span class="math inline">\(p\Pi = 0.10 \times
+1.147 = 0.1147\)</span></p>
+<p><span class="math inline">\(v^{BP}(0.10) = 0.10 + \frac{0.10}{0.259}
+\times 0.40 = 0.10 + 0.1544 = 0.2544\)</span></p>
+<p><span class="math inline">\(U_H^U = \frac{1}{5}[E[V^{full}] - 4
+\times 0.05] + \frac{4}{5} \times 0.2544\)</span></p>
+<p><span class="math inline">\(E[V^{full}] = 0.9 \times V_L^{full} + 0.1
+\times V_H^{full}\)</span></p>
+<p><span class="math inline">\(V_L^{full} = \sigma(0.0316 + 0.04472) =
+\sigma(0.0763) = \frac{2}{1+e^{-10(0.0763-0.15)}} =
+\frac{2}{1+e^{0.737}} = \frac{2}{3.089} = 0.647\)</span></p>
+<p><span class="math inline">\(E[V^{full}] = 0.9 \times 0.647 + 0.1
+\times 1.847 = 0.582 + 0.185 = 0.767\)</span></p>
+<p><span class="math inline">\(U_H^U = 0.2 \times [0.767 - 0.20] + 0.8
+\times 0.2544 = 0.2 \times 0.567 + 0.2035 = 0.1134 + 0.2035 =
+0.317\)</span></p>
+<p><strong>Sob maioria (H excluído quando W propõe)</strong>:</p>
+<p><span class="math inline">\(U_H^M = \frac{1}{5}[E[V^q(\alpha_H)] - 2
+\times 0.05] + \frac{4}{5} \times E[\alpha_H]\)</span></p>
+<p>Quando H propõe sob maioria, forma coalizão ótima (incluindo si mesmo
++ 2 W’s):</p>
+<p><span class="math inline">\(V^q(0.10) = \sigma(0.0316 + 0.02236) =
+0.554\)</span> <span class="math inline">\(V^q(0.50) = \sigma(0.354 +
+0.02236) = \sigma(0.376) = \frac{2}{1+e^{-10(0.376-0.15)}} =
+\frac{2}{1+e^{-2.26}} = \frac{2}{1.104} = 1.812\)</span></p>
+<p><span class="math inline">\(E[V^q] = 0.9 \times 0.554 + 0.1 \times
+1.812 = 0.499 + 0.181 = 0.680\)</span></p>
+<p><span class="math inline">\(E[\alpha_H] = 0.9 \times 0.10 + 0.1
+\times 0.50 = 0.14\)</span></p>
+<p><span class="math inline">\(U_H^M = 0.2 \times [0.680 - 0.10] + 0.8
+\times 0.14 = 0.2 \times 0.580 + 0.112 = 0.116 + 0.112 =
+0.228\)</span></p>
+<h3 id="resultado">Resultado</h3>
+<p><span class="math display">\[U_H^U = 0.317 &gt; U_H^M =
+0.228\]</span></p>
+<p><strong>H prefere unanimidade.</strong> O BP gain (<span
+class="math inline">\(0.115\)</span> extra via screening exploitation)
+mais que compensa o custo de pagar mais W’s e o pie maior sob
+unanimidade.</p>
+<hr />
+<h2 id="extensões-sketches">8. Extensões (Sketches)</h2>
+<h3 id="ws-com-tipos-privados">8.1 W’s com Tipos Privados</h3>
+<p>Se <span class="math inline">\(\alpha_{W_j} \sim F_W\)</span> é
+privado: - <strong>Sob unanimidade</strong>: proposer enfrenta screening
+de TODOS os jogadores simultaneamente. Problema mais complexo mas
+estruturalmente similar — cada jogador tem cutoff individual. -
+<strong>Sob maioria</strong>: proposer seleciona coalizão. Com W’s de
+tipo incerto, proposer enfrenta adverse selection leve (cada W tem
+variância <span class="math inline">\(\sigma_W^2\)</span>). Mas como
+<span class="math inline">\(\alpha_W\)</span> é pequeno e <span
+class="math inline">\(\sigma_W^2\)</span> é (presumivelmente) baixa, o
+custo de screening de W’s é pequeno comparado ao de H. -
+<strong>Discriminação por grupo</strong>: proposer “discrimina” entre
+grupo H (alta contribuição, alta incerteza relativa) e grupo W (baixa
+contribuição, baixa incerteza). A exclusão de H é discriminação
+estatística baseada na identidade de grupo, mesmo que individual H
+pudesse ser valioso.</p>
+<p><strong>Analogia trabalhista</strong>: empregador com vagas limitadas
+(<span class="math inline">\(q-1\)</span> posições) seleciona entre
+candidatos de dois grupos. Grupo H: alta produtividade média, mas também
+alto custo (salário de reserva). Grupo W: produtividade menor, custo
+menor, mais previsível. Empregador racionalmente discrimina contra
+H.</p>
+<h3 id="tipos-contínuos">8.2 Tipos Contínuos</h3>
+<p>Se <span class="math inline">\(\alpha_H \sim F_H\)</span> contínuo em
+<span class="math inline">\([\underline{\alpha},
+\overline{\alpha}]\)</span>:</p>
+<p>O screening do proposer não é mais binário (agressivo
+vs. conservador). W propõe um <strong>mecanismo</strong>: offer <span
+class="math inline">\(x_H\)</span> tal que maximiza payoff dado <span
+class="math inline">\(F_H(\cdot|\mu)\)</span>.</p>
+<p>Com tipos contínuos e risk-neutrality, o proposer resolve um
+<strong>optimal auction/screening problem</strong>: <span
+class="math display">\[\max_{x_H(\cdot)} \int [V(\alpha_H) -
+x_H(\alpha_H) - C_{-H}] dF_H(\alpha_H | \mu)\]</span> sujeito a IC e
+IR.</p>
+<p>Pelo lema de Myerson (1981), o payoff do proposer depende da
+<strong>virtual outside option</strong>: <span
+class="math display">\[\phi(\alpha_H) = \alpha_H + \frac{F_H(\alpha_H |
+\mu)}{f_H(\alpha_H | \mu)}\]</span></p>
+<p>O payoff de H depende de <span class="math inline">\(V(\alpha_H) -
+\phi(\alpha_H)\)</span>. Se <span
+class="math inline">\(V(\alpha_H)\)</span> é convexa em <span
+class="math inline">\(\alpha_H\)</span> (pelo <span
+class="math inline">\(\gamma &gt; 1\)</span> e a S-shape), e <span
+class="math inline">\(\phi\)</span> é linear-ish, pode haver regiões de
+não-concavidade que BP explora.</p>
+<p><strong>Conjectura</strong>: com tipos contínuos, o BP não explora um
+único jump mas sim a curvatura de <span
+class="math inline">\(V(\alpha_H)\)</span> na região próxima de <span
+class="math inline">\(\kappa\)</span>. O valor do BP é proporcional à
+“convexidade local” de <span class="math inline">\(V\)</span> — máximo
+quando <span class="math inline">\(\alpha_H^\gamma + A_W \approx
+\kappa\)</span>.</p>
+<h3 id="h-com-prior-mais-tight-sobre-ws">8.3 H com Prior mais Tight
+sobre W’s</h3>
+<p>H tem informação superior sobre <span
+class="math inline">\(\alpha_{W_j}\)</span>: prior <span
+class="math inline">\(\tilde{F}_W^H\)</span> com <span
+class="math inline">\(\text{Var}_H(\alpha_W) &lt;
+\text{Var}(\alpha_W)\)</span>.</p>
+<p><strong>Efeito 1 (H-as-proposer)</strong>: H faz offers mais precisas
+a W’s <span class="math inline">\(\to\)</span> menos surplus deixado na
+mesa <span class="math inline">\(\to\)</span> H extrai mais quando
+propõe. Isso beneficia H sob AMBAS as regras, mas mais sob unanimidade
+(onde H precisa incluir todos os <span
+class="math inline">\(N-1\)</span> W’s e a precisão por W compõe).</p>
+<p><strong>Efeito 2 (signal design)</strong>: H pode incorporar
+conhecimento sobre W’s no design do sinal. Se H sabe que certos W’s são
+“fortes” (alto <span class="math inline">\(\alpha_W\)</span>), pode
+ajustar a estratégia de BP. Mas no KG framework com sinal público, o
+design ótimo depende apenas da value function <span
+class="math inline">\(v(\mu)\)</span>, que é determinada pela best
+response de W — não pelo conhecimento de H sobre W’s.</p>
+<p><strong>Efeito 3 (exclusão sob maioria)</strong>: se W’s soubessem
+que H tem informação superior, W’s teriam incentivo adicional para
+excluir H (H é “perigoso” como negociador). Isso reforça a discriminação
+sob maioria.</p>
+<hr />
+<h2 id="conexão-com-o-modelo-corrente-v3">9. Conexão com o Modelo
+Corrente (v3)</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Dimensão</th>
+<th>Modelo v3</th>
+<th>Extensão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tipos</strong></td>
+<td>θ ∈ {0,1} exógeno, H observa</td>
+<td>α_i privado de cada jogador</td>
+</tr>
+<tr>
+<td><strong>Pie</strong></td>
+<td>V(θ) ∈ {1, r} exógeno</td>
+<td>V(S) = σ(∑ α_i^γ) endógeno</td>
+</tr>
+<tr>
+<td><strong>Outside option</strong></td>
+<td>d_H = αV(θ), d_W = 0</td>
+<td>d_i = α_i (simétrico na forma, assimétrico nos valores)</td>
+</tr>
+<tr>
+<td><strong>Fonte de não-concavidade</strong></td>
+<td>Screening cutoff μ_s no offer de W</td>
+<td>Mesmo mecanismo (screening sobre α_H)</td>
+</tr>
+<tr>
+<td><strong>Mecanismo de exclusão</strong></td>
+<td>W exclui H sob maioria (oferece mais a outros W’s)</td>
+<td>W exclui H sob maioria (discriminação estatística)</td>
+</tr>
+<tr>
+<td><strong>BP gain</strong></td>
+<td><span class="math inline">\(p \cdot [V_H \cdot s_U -
+(terms)]\)</span></td>
+<td><span class="math inline">\(p \cdot \Pi = p[V_H - \alpha_h -
+(N-1)\alpha_W]\)</span></td>
+</tr>
+<tr>
+<td><strong>Papel de V</strong></td>
+<td>Multiplicador fixo</td>
+<td>Endógeno, S-shaped: H é pivotal quando <span class="math inline">\(A
+\approx \kappa\)</span></td>
+</tr>
+<tr>
+<td><strong>Heterogeneidade</strong></td>
+<td>Ausente</td>
+<td>Central: γ, distribuições de α, tiers de jogadores</td>
+</tr>
+<tr>
+<td><strong>Conexão substantiva</strong></td>
+<td>Por que EUA aceitam consenso?</td>
+<td>Por que EUA são pivotais E preferem consenso?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Preservação do mecanismo</strong>: a extensão preserva o
+mecanismo central do v3 (screening → non-concavity → BP → unanimidade
+ativa poder informacional). A inovação é tornar V endógeno e a exclusão
+microfundada via discriminação estatística.</p>
+<p><strong>Novidade principal</strong>: no v3, a exclusão é “mecânica”
+(W monta coalizão mínima e H é caro). Na extensão, a exclusão é
+<strong>discriminação racional baseada em identidade de grupo</strong> —
+mesmo que H individual pudesse ser benéfico, o grupo “H” tem adverse
+selection custosa, e W racionalmente evita esse grupo.</p>
+<hr />
+<h2 id="questões-abertas">10. Questões Abertas</h2>
+<ol type="1">
+<li><p><strong>Tipos contínuos</strong>: a concavificação funciona com
+<span class="math inline">\(v(\mu)\)</span> suave (não step function)?
+Sim, se V tem curvatura suficiente (S-shape). Mas precisa de derivação
+formal.</p></li>
+<li><p><strong>Equilíbrio completo de BF com 2 rounds</strong>: o modelo
+simplificado (TITL / 1 round) dá a intuição, mas o BF com 2 rounds cria
+continuation values que afetam os cutoffs. Derivar para tipos
+privados.</p></li>
+<li><p><strong>Endogeneidade de <span
+class="math inline">\(\kappa\)</span></strong>: a massa crítica pode
+depender do contexto institucional. Se a regra de votação afeta <span
+class="math inline">\(\kappa\)</span> (e.g., unanimidade reduz o
+threshold efetivo porque dá mais legitimidade), isso reforça ou
+enfraquece o resultado?</p></li>
+<li><p><strong>Multiple equilibria</strong>: com tipos privados, o BF
+pode ter múltiplos equilíbrios. Qual seleção?</p></li>
+<li><p><strong>Commitment do BP</strong>: H precisa comprometer-se ao
+sinal antes de aprender <span class="math inline">\(\alpha_H\)</span>?
+Ou depois? Se depois (cheap talk), o resultado é diferente — apenas H
+tipo baixo quer sinalizar alto, e separação pode ser sustentável.
+Commitment é mais limpo.</p></li>
+<li><p><strong>Comparação com tipos contínuos</strong>: com <span
+class="math inline">\(\alpha_H\)</span> contínuo, o “jump” no screening
+desaparece? Ou a S-shape de V cria non-concavity endógena no virtual
+surplus?</p></li>
+<li><p><strong>Heterogeneidade entre W’s (tiers)</strong>: se há “middle
+powers” com <span class="math inline">\(\alpha_M\)</span> intermediário
+e privado, isso cria uma escada de screening sob unanimidade? O BP de H
+interage com o screening de M’s?</p></li>
+<li><p><strong>Welfare</strong>: unanimidade é Pareto superior? Ou H
+ganha e W’s perdem? No v3, o resultado é que não é Pareto comparável
+incondicionalmente. Na extensão, o pie endógeno pode criar Pareto
+improvement se a inclusão de H via unanimidade eleva V
+suficientemente.</p></li>
+<li><p><strong>Forma funcional</strong>: logística vs. probit vs. Hill —
+os resultados qualitativos dependem da escolha? Provavelmente não (todas
+são S-shaped), mas as closed forms podem diferir.</p></li>
+<li><p><strong>Verificação empírica</strong>: dados sobre composição de
+coalizões em IOs, participação em acordos ambientais/comerciais, e como
+países pivotais (EUA, China) afetam o valor do acordo.</p></li>
+</ol>
+<hr />
+<h2 id="referências-chave-para-a-extensão">11. Referências-chave para a
+Extensão</h2>
+<h3 id="discriminação-estatística">Discriminação estatística</h3>
+<ul>
+<li>Phelps (1972) — Statistical theory of racism and sexism</li>
+<li>Arrow (1973) — Discrimination in labor markets</li>
+<li>Coate &amp; Loury (1993) — Self-fulfilling prophecies of
+discrimination</li>
+<li>Cornell &amp; Welch (1996) — Culture, information and screening
+discrimination</li>
+</ul>
+<h3 id="bayesian-persuasion-com-tipos-privados">Bayesian Persuasion com
+tipos privados</h3>
+<ul>
+<li>Kolotilin (2018) — Optimal information disclosure</li>
+<li>Kolotilin, Mylovanov, Zapechelnyuk &amp; Li (2017) — Persuasion of a
+privately informed receiver</li>
+<li>Guo &amp; Shmaya (2019) — The interval structure of optimal
+disclosure</li>
+</ul>
+<h3 id="barganha-com-informação-incompleta">Barganha com informação
+incompleta</h3>
+<ul>
+<li>Myerson (1981) — Optimal auction design (virtual types)</li>
+<li>Cramton (1992) — Strategic delay in bargaining with two-sided
+uncertainty</li>
+<li>Fudenberg &amp; Tirole (1983) — Sequential bargaining with
+incomplete information</li>
+</ul>
+<h3 id="supermodularidade-e-complementaridades">Supermodularidade e
+complementaridades</h3>
+<ul>
+<li>Topkis (1998) — Supermodularity and complementarity</li>
+<li>Milgrom &amp; Roberts (1990) — Rationalizability, learning, and
+equilibrium in supermodular games</li>
+</ul>
+<h3 id="cooperação-internacional-com-heterogeneidade">Cooperação
+internacional com heterogeneidade</h3>
+<ul>
+<li>Barrett (1994) — Self-enforcing international environmental
+agreements</li>
+<li>Maggi &amp; Morelli (2006) — Self-enforcing voting in international
+organizations</li>
+<li>Finus &amp; Rundshagen (2006) — Participation in international
+environmental agreements</li>
+</ul>
+</body>
+</html>

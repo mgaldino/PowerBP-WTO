@@ -1,0 +1,74 @@
+# Informational Power Through Pivotality
+
+**Date**: 05/23/2026
+**Domain**: social_sciences/political_science/international_relations
+**Taxonomy**: academic/working_paper
+**Filter**: Active comments
+
+---
+
+## Overall Feedback
+
+Here are some overall reactions to the document.
+
+**Outline**
+
+The paper has a real idea at its core: unanimity can create informational rents for a privately informed hegemon even when agenda power is shut down. The main problems are not lack of clarity about the baseline, but that the strongest results remain more conditional and benchmark-specific than the headline presentation suggests. The pressure points are the dependence of the Round-1 result on a maintained assessment, the narrowness of the majority benchmark, the accounting-heavy nature of the entry comparison, and the fact that the main illustration lands on a boundary case rather than displaying the full screening mechanism.
+
+The manuscript asks a good question and builds a disciplined formal environment to separate informational pivotality from formal proposal power. It also does a better job than many papers in this area of stating domain conditions, marking what is assessment-dependent, and avoiding broad uniqueness claims it has not proved. Still, the contribution is narrower than the current framing implies, and the paper needs a stronger demonstration that its institutional comparison is not mainly a product of the selected assessment and benchmark accounting.
+
+**Round-1 selection is doing too much of the substantive work**
+
+Definition 2, Proposition 2, and Appendix A.3 do not just clean up off-path behavior; they determine which rejected histories matter and therefore which unanimity outcomes are available in Round 1. The weak-vote-passive assessment, together with the H-payoff-minimizing tie-break, is what collapses the game to the P/L/D menu and feeds the downstream institutional classification in Proposition 3, Proposition 4, and Corollary 1. The paper is candid about this in Section 4 and Table 2, but the abstract, introduction, and Figures 5-7 still read as if the main comparison is a property of the model rather than of a selected assessment. That matters because the paper's main selling point is a mechanism about unanimity and private information, not an example sustained by one belief discipline over public histories. A stronger revision should either prove that the main comparison survives on a clearly defined class of assessments or relabel the R1 and institutional results much more sharply as assessment-conditional benchmark results. At minimum, the paper should work through one alternative public-history belief discipline and show exactly what changes in the candidate set, the selected path, and Delta_H(mu).
+
+**The majority benchmark is narrower than the framing suggests**
+
+Section 5 presents majority as the no-screening benchmark only under Strict No-Cheap-H, a0^M > beta/m, and Appendix B.3 openly concedes that majority can also screen the hegemon when the low type is a cheap coalition partner. Once that is admitted, the paper is no longer comparing a screening institution to a non-screening institution in general; it is comparing unanimity to a restricted majority domain in which screening has been ruled out by assumption. The introduction mentions this condition, but the substantive discussion still leans on majority as the clean counterfactual that removes the informational problem. This matters because the contrast between rules is the paper's organizing claim. If majority can also generate screening on a nontrivial domain, then the paper needs to say much more clearly whether its contribution is a conditional hegemonic benchmark or a broader theory of institutional comparison. The revision should either characterize the cheap-H majority branch more fully or narrow the framing throughout Sections 1, 5, and 9 so that the reader never mistakes the result for a general unanimity-versus-majority theorem.
+
+**Entry nesting is close to an accounting identity**
+
+Proposition 3 and Appendix A.4 show F_U(chi) is a subset of F_M(chi) because majority leaves the entire unit surplus with the weak coalition, while unanimity either transfers part of that surplus to H or delays agreement. The proof is clean, but it is clean precisely because the result follows from the fixed-pie collective-entry accounting almost immediately once Proposition 1 fixes the majority benchmark at 1/m. That makes the most global institutional comparison in Section 7 feel less like a bargaining result and more like a benchmark consequence of how surplus is normalized across rules. Readers may then wonder whether the interesting part of the paper is the screening mechanism or simply the fact that majority is defined to preserve the full weak surplus. This matters for publishability because the entry classification occupies a large share of the paper's payoff claims. A better revision would keep Proposition 3 as a benchmark but add an explicit decomposition or extension, such as a reduced-surplus majority case or another coalition-cost protocol, so the paper can show which conclusions are really driven by informational pivotality and which are driven by bookkeeping.
+
+**The main illustration does not show the full mechanism the paper emphasizes**
+
+Example 1 in Section 8 lies exactly on the boundary a0(1) = a1, so strict low-only separation is blocked and the selected unanimity path is pooling for all beliefs. Yet Sections 1, 6, and 9 repeatedly present the core unanimity logic as a live choice among pooling, low-only testing, and delay. The only place where low-only actually appears is in non-calibrated diagnostics such as Table 3 and Table 14, which are helpful but detached from the OPEC-style illustration that carries the paper's substantive intuition. That mismatch matters because the reader's main worked example does not display the mechanism the manuscript spends most of its time developing. A theory paper can live with a boundary case, but it should not make that boundary case the flagship illustration if the central mechanism is a switch across candidate regions. The revision should replace or supplement Example 1 with a main-text parameterization in which P and L both arise on nonempty belief regions and the hegemon's payoff gap can be tracked across those switches.
+
+**The benchmark weak-state environment is more special than the framing admits**
+
+The baseline sets pi_H = 0, assumes collective all-or-nothing weak-state entry, imposes ex ante symmetry across weak states, and lets the proposer compensate just enough weak voters while treating representative weak payoffs as total weak payoffs divided by m (Sections 4 and 7). Those are legitimate simplifying choices, but together they make the weak side behave almost like a unitary coalition except where public voting is needed to create informative histories. In that environment, many of the hardest coalition questions on the weak side are turned off by design, which helps isolate the mechanism but also narrows the external meaning of the results. This matters because the paper wants to speak to international organizations, where weak members often differ in outside options, coalition value, and willingness to absorb delay. The concern is not realism for its own sake; it is that the institutional conclusions may depend on the unusually frictionless weak-state benchmark as much as on hegemonic private information. The paper should narrow its scope claims in the abstract and conclusion and, if possible, add one simple extension showing whether the main comparison survives weak-state heterogeneity or non-collective entry.
+
+**The paper still lacks a broad map of where the result has bite**
+
+Section 8 gives one-way perturbation windows and a few diagnostic cases, but the manuscript itself says these are not open-neighborhood robustness results. For a paper whose contribution is a conditional institutional comparison, that is not yet enough. The reader still does not get a broad characterization of where unanimity helps H once No-Cheap-H, the dynamic threshold order, and the selected R1 assessment are all imposed together. At present, the numerical section shows existence and local movement, not the size or structure of the parameter region in which the mechanism meaningfully operates. This matters because top-field theory papers usually need to show that the main effect is not confined to a tuned example and a few directional checks. The revision should add either stronger analytical sufficient conditions for the sign of Delta_H(mu) or a systematic parameter sweep that maps where pooling-only, low-only plus pooling, and delay plus pooling arise, and where unanimity actually beats majority for the hegemon.
+
+**No null benchmark without private information**
+
+The paper's headline is an informational mechanism, but it never solves the model when the information channel is shut off. Without that null case, the reader cannot tell how much of the unanimity advantage comes from hidden thresholds and how much comes from the fixed-pie package plus the maintained voting protocol. A natural benchmark is t0=t1=t and o0=o1=o, or equivalently the degenerate priors mu=0 and mu=1, in the full two-round pi_H=0 game. The manuscript should compute Proposition 2 and Delta_H(mu) there and show exactly what collapses: low-only should merge with pooling, the relevant cutoffs should simplify, and the unanimity-majority gap should either vanish or reduce to a noninformational term. That one calculation would anchor the claim that the paper adds something beyond standard complete-information veto bargaining.
+
+**No fully solved interior special case**
+
+The paper has a toy motivating example and several diagnostics, but it never walks through the full two-round model in a tractable interior case from start to finish. Example 1 is numerical and sits on a boundary, while Tables 3 and 14 give grid outcomes rather than a clean worked solution. For a theory paper of this type, one compact parametric case should be solved end to end so readers can see proposal choice, continuation values, entry, and the hegemon's payoff gap in one place. The natural candidate is an N=3 Baron-Ferejohn-style case with q=2 and parameters chosen so a0(1)<a1 and both L and P occur on nonempty belief intervals. Compute mu_2^*, the P-versus-L switch, chi_U, chi_M, and the zero of Delta_H in closed form, then use that case as the main illustration rather than leaving the full mechanism scattered across appendices and diagnostic tables.
+
+**Main payoff comparison lacks comparative statics**
+
+Section B.4 gives local derivatives for feasibility conditions, but the paper never derives how the main object in the title, Delta_H(mu), moves with the primitives. That leaves the reader knowing when the comparison is admissible, not when unanimity should be especially attractive to the hegemon. The omission matters because the OPEC discussion leans on political intuition about uncertainty, patience, and outside options, yet the manuscript does not translate those forces into signed results for the institutional payoff gap. A stronger version would write Delta_H^P(mu), Delta_H^L(mu), and Delta_H^D(mu) explicitly and derive at least one tractable set of signs, for example on the slice o_theta=t_theta or in the N=3 case. Readers need to see whether a wider threshold gap t1-t0, a higher beta, or a larger m expands the region where consensus helps H, rather than having to infer that from one-way perturbation tables. That is the missing step between an existence example and a usable theory of when informational power matters.
+
+**No formal bridge to closest models**
+
+Section 2 positions the paper against Piazolo and Vanberg and against Glynia, Thum, and Xefteris, but the comparison stays verbal. Because those papers are the nearest formal benchmarks, the reader needs one limiting case that shows what this manuscript adds and what it simply inherits. The motivating three-state example points in that direction, but it is not used to recover the one-shot environment or to separate the role of continuation values from the role of private thresholds. The clean way to do it is to set beta=0, or suppress the continuation value of Round 2, and solve the pi_H=0 game as a one-shot bargaining problem with the same thresholds. Then state plainly which results survive unchanged and which require the second round, endogenous delay, and collective entry. Without that bridge, the two-round machinery risks looking heavier than necessary, and the novelty relative to the recent unanimity-versus-majority papers remains less sharp than it should be.
+
+**Recommendation**: major revision. The paper has an interesting mechanism and a much cleaner architecture than many formal-theory submissions, especially in how it separates agenda power from informational pivotality and marks what is assessment-dependent. But the current draft still relies too heavily on a selected belief discipline, a restricted majority benchmark, and a boundary-case illustration, so it does not yet show that the headline institutional comparison has enough general bite for a top venue.
+
+**Key revision targets**:
+
+1. Recast the Round-1 and downstream institutional results as genuinely assessment-conditional unless the paper can prove robustness to a broader class of public-history belief assessments; include at least one alternative assessment and show what changes in the P/L/D selection and in Delta_H(mu).
+2. Either characterize the cheap-H majority branch beyond the local diagnostic in Proposition 1 and Appendix B.3 or narrow the framing throughout the paper so that majority is presented as a no-screening benchmark only on the No-Cheap-H domain.
+3. Replace or supplement the current main numerical illustration with a main-text worked example in which low-only and pooling both arise under unanimity, rather than relying on the boundary case a0(1) = a1 as the flagship illustration.
+4. Separate mechanism from accounting by extending the entry comparison in Proposition 3 to a reduced-surplus majority benchmark or another explicit coalition-cost variant, and report which entry and classification claims survive.
+5. Add a broader analytical or computational map of the parameter regions where unanimity benefits the hegemon, including where delay and low-only branches are selected, so the reader can see the size of the relevant domain rather than only one illustrative vector and local one-way perturbations.
+
+**Status**: [Pending]
+
+---
+
+## Detailed Comments (0)

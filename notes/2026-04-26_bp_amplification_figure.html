@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BP Amplification</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">BP Amplification</h1>
+</header>
+<h1 id="bp-amplification-comparative-statics-em-r-e-β">BP Amplification:
+Comparative Statics em r e β</h1>
+<p><strong>Parâmetros fixos</strong>: N=5, α=0.3, c=0.05 (baixo, para
+que o screening jump seja visível em E_U)</p>
+<h2 id="figura">Figura</h2>
+<figure>
+<img src="bp_amplification_r_beta.png" alt="BP amplification heatmap" />
+<figcaption aria-hidden="true">BP amplification heatmap</figcaption>
+</figure>
+<h2 id="leitura">Leitura</h2>
+<ul>
+<li><strong>Eixo x</strong>: r (dispersão de payoffs entre tipos). Maior
+r → mais a ganhar com screening.</li>
+<li><strong>Eixo y</strong>: β (fator de desconto). Maior β → R2 threat
+mais crível → screening mais efetivo.</li>
+<li><strong>Cor</strong>: max BP amplification = max_μ [cav v(μ, U) -
+v(μ, U)]. Azul escuro = BP contribui mais.</li>
+<li><strong>Linha vermelha</strong>: fronteira onde BP amplification se
+torna positiva. Abaixo/esquerda: BP amp = 0 (screening jump invisível ou
+inexistente).</li>
+<li><strong>Contornos cinza</strong>: curvas de nível.</li>
+</ul>
+<h2 id="padrões">Padrões</h2>
+<ol type="1">
+<li><strong>BP cresce monotonicamente com r e β</strong> — quanto maior
+a dispersão de payoffs e a paciência, maior o jump de screening e mais
+BP pode amplificar.</li>
+<li><strong>BP máximo = 0.456</strong> em r=3.0, β=0.99 (canto superior
+direito).</li>
+<li><strong>A fronteira vermelha</strong> mostra que para r baixo ou β
+baixo, o screening jump existe mas é pequeno demais para que a
+envoltória côncava se descole da função-valor.</li>
+<li>Para r ≈ 1.1 (quase sem dispersão), BP amp ≈ 0 independente de β —
+sem dispersão, não há screening.</li>
+</ol>
+</body>
+</html>

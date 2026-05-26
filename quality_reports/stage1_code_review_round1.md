@@ -1,165 +1,194 @@
-# Code Review: formal_model_v2.Rmd (R chunks)
-
-**Date**: 2026-04-20
-**Reviewer**: Claude Opus 4.6 (automated)
-**File**: `/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/formal_model_v2.Rmd`
-**Chunks reviewed**: 3 (`setup`, `bp_illustration`, `parameter_regions`)
-
----
+# Stage 1: Code Review — formal_model_v5.Rmd (Round 1)
+Date: 2026-04-27
 
 ## Summary
 
-The file contains three R code chunks implementing the game-theoretic model's numerical computations and two publication figures. The core functions (`VW_R1_unanimity`, `VH_R1_unanimity`, `VW_R1_majority`, `VH_R1_majority`) are ported from the technical note (`notes/2026-04-19_formalizacao_v2.Rmd`) and match it line-for-line. The formulas match the paper's LaTeX equations. However, the concavification algorithm has a structural flaw (includes lower-hull points from `chull`), and the majority-rule R1 H-proposer formula uses a coalition size of (N-1) instead of (q-1), which is a modeling question that merits explicit justification. No syntax errors; the script will run.
+The R code supporting `formal_model_v5.Rmd` consists of a sourced library (`scripts/model_functions.R`, 127 lines, 5 functions) and two inline figure chunks (parameter-regions and heatmap-alpha-mu). All core functions correctly implement the model's formulas as verified algebraically and numerically. No critical or domain bugs found. The code executes without errors and produces results consistent with the paper's claims. Five minor code quality issues identified.
 
----
+## Files Reviewed
 
-## Issues Found (by severity)
+- `scripts/model_functions.R` (127 lines, 5 functions)
+- `formal_model_v5.Rmd` setup chunk (lines 39–42)
+- `formal_model_v5.Rmd` parameter-regions chunk (lines 484–561)
+- `formal_model_v5.Rmd` heatmap-alpha-mu chunk (lines 598–678)
 
-### Critical
+## Code Chunks Inventory
 
-**(C1) Concavification algorithm is structurally incorrect [-30]**
-File: `formal_model_v2.Rmd`, lines 409-421.
+| Chunk | Lines | Purpose | Generates |
+|-------|-------|---------|-----------|
+| `setup` | 39–42 | Package loading, knitr options | — |
+| `parameter-regions` | 484–561 | Institutional classification (p, c) heatmap + boundary curves | Figure 4 |
+| `heatmap-alpha-mu` | 598–678 | Conditional payoff dominance in (α, μ) plane, 2x2 panel | Figure 5 |
 
-The `concavify()` function uses R's `chull()` to compute the convex hull of the 2D point cloud `(mu, v)`, then sorts by x and interpolates. The problem: `chull()` returns the *full* convex hull (both upper and lower boundary), not just the upper concave envelope. When the value function has a range of zeros (i.e., mu < entry threshold), the lower hull includes zero-valued boundary points. Interpolating through these produces a concave envelope that goes through (tau, 0) instead of the tangent line from the origin to the curve. The `pmax(cav_vals, vals)` at line 419 is a bandaid: it ensures cav >= v but does not restore concavity.
+## Score Calculation
 
-**Severity assessment for this paper**: For the specific parameters used in Figure 1 (r=1.5, alpha=0.3, N=5, beta=0.9, c=0.1), entry occurs at virtually all mu (VW_R1 > c = 0.1 everywhere), so the zero range is negligible and the output is empirically correct (verified: zero convexity violations, cav >= v). The bug would produce **wrong results** for parameter combinations where there is a substantial no-entry region, such as higher c or higher alpha. Since the figure is generated only for the single parameter set where the bug is dormant, I downgrade this from -30 to **-10** (latent bug, correct output for displayed parameters, but the algorithm would fail silently for other parameter values).
+```
+Starting Score: 100
+- Unnecessary tidyverse dependency (Minor):                        -2
+- Code duplication VW/VH unanimity shared preamble (Minor):        -1
+- Inconsistent source() call (local=TRUE vs global) (Minor):       -1
+- No comments on methodological decisions in figure code (Minor):  -1
+```
 
-### Major
+**Score final: 95/100 → APROVADO**
 
-**(M1) Majority R1 H-proposer coalition size: (N-1) vs (q-1) [-0, flagged]**
-File: lines 385-386, 349-351.
+## Detailed Findings
 
-Under majority rule, when H proposes in R1, H needs only q-1 = floor(N/2) votes, not (N-1). The code uses `(N-1)*beta*VW_R2_M` as the total offer to weak states. Under the standard Baron-Ferejohn model with majority, H should offer to q-1 cheapest coalition members, keeping V(theta) - (q-1)*beta*VW_R2_M.
+### Critical Issues
 
-**However**: the technical note uses the identical formula, and the budget identity E[VH] + (N-1)*VW = Ve holds (verified in Appendix A.6). This appears to be a deliberate modeling choice where H offers beta*VW_R2 to *all* W (not just q-1), which is equivalent to assuming that the proposer distributes continuation values to everyone. This is internally consistent and defensible as a convention (effectively, it means H does not exploit the exclusion power under majority for this particular computation). Since it matches the paper's formal equations and the technical note, I flag it rather than deduct. **No deduction, but recommend adding a comment explaining this convention in the code.**
+None.
 
-**(M2) No parameter validation in functions [-0, flagged]**
+### Major Issues
 
-The functions do not check that alpha < 1/r, r > 1, beta in (0,1), or N >= 3. Invalid parameters could produce NaN or misleading results silently. The `compute_preference` function in chunk 3 checks `alpha < 1/r` before calling, which partially mitigates this. **Flagged, no deduction** since the top-level calls use valid parameters.
+None. Specifically:
+- No syntax errors; script runs cleanly.
+- No domain bugs; all formulas match the paper's LaTeX equations.
+- No hardcoded absolute paths.
+- No randomization used, so no `set.seed()` needed.
+- Packages loaded at top of the document.
+- No broken cross-references (verified: `\@ref(fig:parameter-regions)` and `\@ref(fig:heatmap-alpha-mu)` resolve correctly via bookdown chunk labels).
+- Notation is consistent between code and paper.
 
-**(M3) Discriminant in mu_s_R1 not guarded against negative values [-0, flagged]**
-File: line 439.
+### Minor Issues
 
-`mu_s_R1 <- (phi_val - sqrt(phi_val^2 - 4*(N_val-2))) / (2*(N_val-2))` would produce NaN if `phi_val^2 < 4*(N_val-2)`. For the displayed parameters (phi=5.667, 4*(N-2)=12), the discriminant is 20.1 > 0. But for different parameters (e.g., large N, beta close to 1), this could fail. **No deduction** for the displayed parameters, but the `parameter_regions` chunk does not compute mu_s_R1, so only the single-figure chunk is affected.
+#### 1. Unnecessary tidyverse dependency (-2)
 
-### Minor
+`library(tidyverse)` is loaded in the setup chunk (line 40) but no tidyverse functions are used anywhere in the Rmd. All plotting is base R; `knitr::kable` is the only non-base function used elsewhere. Loading tidyverse adds ~2 seconds of compilation time and creates a potential version fragility. This is scored as -2 (mixed pipe operators rubric equivalent: unnecessary heavy dependency).
 
-**(m1) Duplicated code across functions [-1]**
+**Recommendation**: Remove `library(tidyverse)` or replace with only the needed packages (none in this case).
 
-`VW_R1_unanimity` and `VH_R1_unanimity` share the first ~10 lines computing `x`, `mu_s_R2`, `Ve`, `VW_R2`, `omega`, `F1_con`, `F1_agg`. This should be factored into a helper function to avoid maintenance divergence. Same for `VW_R1_majority` / `VH_R1_majority`.
+#### 2. Code duplication between VW_R1_unanimity and VH_R1_unanimity (-1)
 
-**(m2) Insufficient comments on methodological decisions [-1]**
+Both functions share identical logic for computing `x`, `mu_s_R2`, `Ve`, `VW_R2`, `omega`, `F1_con`, and `F1_agg` (lines 31–43 in model_functions.R repeated at lines 64–75). This creates maintenance risk if one is updated without the other.
 
-The concavification algorithm has no comment explaining why `chull` is used, what its limitations are, or why `pmax` is applied. The `VH_R1_unanimity` function does not annotate which branch (aggressive vs conservative) corresponds to the paper's propositions. A reader encountering the code cannot easily map it to the paper's formal results.
+**Recommendation**: Extract shared preamble into a helper function (e.g., `unanimity_regime(r, alpha, mu, N, beta)` returning a list).
 
-**(m3) Non-descriptive variable names [-2]**
+#### 3. Inconsistent source() call (-1)
 
-- `v_U` / `v_M`: could be `value_unanimity` / `value_majority`
-- `cav_U` / `cav_M`: could be `concave_env_unanimity` / `concave_env_majority`
-- `mat1` / `mat2`: could be `preference_r_alpha` / `preference_beta_r`
-- `h` (convex hull indices) shadows potential use
+The parameter-regions chunk uses `source("scripts/model_functions.R", local = TRUE)` (line 486), while the heatmap-alpha-mu chunk uses `source("scripts/model_functions.R")` without `local = TRUE` (line 600). Both work because the functions are defined at the top level regardless, but the inconsistency suggests copy-paste without harmonization.
 
-**(m4) `compute_preference` grid resolution may miss thin features [-0, flagged]**
+**Recommendation**: Use `local = TRUE` in both for hygiene (avoids polluting the global environment during knitting).
 
-`mus_grid <- seq(0.01, 0.99, by = 0.005)` has 197 points. The slope `v/mu` can change sharply near entry thresholds and screening cutoffs. A finer grid (by = 0.001) would improve accuracy at minimal computational cost. The outer loops (20 r-values x 23 alpha-values = 460 iterations, each evaluating 197 points) are already slow; finer grid would increase computation by 5x. **Flagged, no deduction.**
+#### 4. Insufficient comments on methodological decisions (-1)
 
----
+The figure code contains no comments explaining:
+- Why `n_grid = 150` was chosen for the heatmap resolution (line 631)
+- Why `tol = 1e-6` is the convergence tolerance for bisection in `find_mu_bar` (line 614)
+- Why `by = 0.005` / `by = 0.002` grid spacings were chosen in parameter-regions (lines 500–501)
 
-## Formula Verification
+These are reasonable defaults but documenting the rationale (publication resolution, numerical precision requirements) improves reproducibility.
 
-### VW_R1_unanimity (lines 329-344) vs Paper Equations
+**Recommendation**: Add 1-line comments for grid resolution and tolerance choices.
 
-| Component | Paper equation | Code | Match? |
-|-----------|---------------|------|--------|
-| x | (N-1)*alpha*r | `(N-1)*alpha*r` | YES |
-| mu_s_R2 | alpha(r-1)/(r-alpha) (Eq. 5) | `alpha*(r-1)/(r-alpha)` | YES |
-| VW_R2 (aggressive) | (1-mu)(1-alpha)/N (App. A.2) | `(1-mu)*(1-alpha)/N` | YES |
-| VW_R2 (conservative) | (Ve-alpha*r)/N (App. A.2) | `(Ve-alpha*r)/N` | YES |
-| omega | (N-2)*beta*VW_R2 (App. A.3) | `(N-2)*beta*VW_R2` | YES |
-| F1_con | Ve - beta(r+x)/N - omega (Eq. A.3) | `Ve - beta*(r+x)/N - omega` | YES |
-| F1_agg | (1-mu)[1-beta(1+x)/N-omega] + mu*beta*r(1-alpha)/N (Eq. A.4) | matches | YES |
-| VW_R1 | F_proposer/N + (N-1)*beta*VW_R2/N | matches | YES |
+## Verification Performed
 
-### VH_R1_unanimity (lines 355-378) vs Paper Equations
+### Formula Verification (model_functions.R)
 
-| Component | Paper equation | Code | Match? |
-|-----------|---------------|------|--------|
-| H_prop_0 | [V(0)-(N-1)*beta*VW_R2]/N | `(1-(N-1)*beta*VW_R2)/N` | YES |
-| H_prop_1 | [V(1)-(N-1)*beta*VW_R2]/N | `(r-(N-1)*beta*VW_R2)/N` | YES |
-| VH_0 (aggressive) | H_prop_0 + (N-1)*beta*(1+x)/N^2 | matches | YES |
-| VH_1 (aggressive) | H_prop_1 + (N-1)*beta*(r+x)/N^2 | matches | YES |
-| VH_0 (conservative) | H_prop_0 + (N-1)*beta*(r+x)/N^2 | matches | YES |
-| VH_1 (conservative) | H_prop_1 + (N-1)*beta*(r+x)/N^2 | matches | YES |
+| Component | Paper Reference | Code | Match |
+|-----------|----------------|------|-------|
+| x = (N-1)αr | Sec. 3 notation | `(N-1)*alpha*r` | YES |
+| μ_s^R2 = α(r-1)/(r-α) | App. A.2 | `alpha*(r-1)/(r-alpha)` | YES |
+| V_W^R2 (aggressive) = (1-μ)(1-α)/N | App. A.2 | `(1-mu)*(1-alpha)/N` | YES |
+| V_W^R2 (conservative) = (V_e-αr)/N | App. A.2 | `(Ve-alpha*r)/N` | YES |
+| ω = (N-2)βV_W^R2 | App. A.3 | `(N-2)*beta*VW_R2` | YES |
+| F1_con = V_e - β(r+x)/N - ω | App. A.3 | `Ve - beta*(r+x)/N - omega` | YES |
+| F1_agg (full expression) | App. A.3 | matches paper | YES |
+| H_prop_0 = [1-(N-1)βV_W^R2]/N | Derivation from B.5a | `(1-(N-1)*beta*VW_R2)/N` | YES |
+| H_prop_1 = [r-(N-1)βV_W^R2]/N | Derivation from B.5a | `(r-(N-1)*beta*VW_R2)/N` | YES |
+| VH_0 (aggressive) | B.5a Eq. (eq:R1offer_agg) | `H_prop_0 + (N-1)*beta*(1+x)/N^2` | YES |
+| VH_1 (aggressive) | B.5a Eq. (eq:R1offer_con_type1) | `H_prop_1 + (N-1)*beta*(r+x)/N^2` | YES |
+| VH_0 (conservative) | B.5a | `H_prop_0 + (N-1)*beta*(r+x)/N^2` | YES |
+| VH_1 (conservative) | B.5a | `H_prop_1 + (N-1)*beta*(r+x)/N^2` | YES |
+| λ_M (majority coefficient) | B.5, Thm. 1 | Algebraically verified ✓ | YES |
+| α* formula | Eq. (eq:alpha_star) | `beta*(q-1)/(N*(N-1)-beta*(N^2-N-q+1))` | YES |
+| μ_s^R1 formula | Eq. (eq:cutoff_R1), Prop. 2 | `(phi-sqrt(disc))/(2*(N-2))` | YES |
+| φ definition | Eq. (eq:cutoff_R1), Prop. 2 | `(r*N-beta*(N-1+r))/(beta*(r-1))` | YES |
+| VH_R1_majority total | B.5 | H_prop + W_prop = λ_M·V_e(μ) ✓ | YES |
+| VW_R1_majority = (V_e - EVH)/(N-1) | Budget identity | Correct ✓ | YES |
 
-### VH_R1_majority (lines 380-391) vs Paper/Tech Note
+### λ_M Algebraic Verification
 
-| Component | Tech note (line 1299-1302) | Code | Match? |
-|-----------|---------------------------|------|--------|
-| VH_R2_0 | (1+(N-1)*alpha)/N | `(1+(N-1)*alpha)/N` | YES |
-| VH_R2_1 | r*(1+(N-1)*alpha)/N | `(r*(1+(N-1)*alpha))/N` | YES |
-| VH1_0 | H_prop_0 + (N-1)/N*beta*VH_R2_0 | matches | YES |
-| VH1_1 | H_prop_1 + (N-1)/N*beta*VH_R2_1 | matches | YES |
+Expanding `VH_R1_majority`:
+```
+EVH = (Ve - (q-1)*beta*(1-alpha)*Ve/N) / N + (N-1)/N * alpha * Ve
+     = Ve * [N - beta*(q-1)*(1-alpha)/N + N(N-1)*alpha] / N²
+     = Ve * [N(1+(N-1)α) - β(q-1)(1-α)] / N²
+     = λ_M * Ve  ✓
+```
 
-### VW_R1_majority (lines 346-353) vs Paper
+### Budget Identity Verification (Numerical)
 
-| Component | Paper | Code | Match? |
-|-----------|-------|------|--------|
-| VW_R2_M | (1-alpha)*Ve/N (Eq. 2) | `(1-alpha)*Ve/N` | YES |
-| F_proposer_M | (1-alpha)*Ve - omega_M | matches | YES |
-| VW_R1_M | F_proposer_M/N + (N-1)*beta*VW_R2_M/N | matches | YES |
+Tested at N=5, r=1.5, α=0.3, β=0.9:
+- **Majority (μ=0.5)**: EVH + (N-1)·VW = 1.250 = V_e(0.5). Exact. ✓
+- **Unanimity conservative (μ=0.5)**: EVH + (N-1)·VW = 1.250 = V_e(0.5). Exact. ✓
+- **Unanimity aggressive (μ=0.1)**: EVH + (N-1)·VW = 1.038 ≤ V_e(0.1) = 1.050. Surplus destruction = 0.012 = (N-1)μr(1-β)/N. Correct. ✓
 
-### mu_s_R1 formula (line 438-439) vs Proposition 3 (Eq. 7)
+### Conditional Dominance D(μ) > 0 Check
 
-Paper: $\mu_s^{R1} = (\phi - \sqrt{\phi^2 - 4(N-2)}) / (2(N-2))$, $\phi = (rN - \beta(N-1+r)) / (\beta(r-1))$
+With N=5, r=1.5, α=0.3, β=0.9, α < α*(5,0.9) = 0.474:
+- Grid of 100 beliefs μ ∈ [0.01, 1.00]: min(D) = 0.0396, max(D) = 0.173.
+- **All D > 0**: TRUE. Theorem 1 numerically confirmed. ✓
 
-Code: `phi_val <- (r_val * N_val - beta_val * (N_val - 1 + r_val)) / (beta_val * (r_val - 1))`
-`mu_s_R1 <- (phi_val - sqrt(phi_val^2 - 4*(N_val-2))) / (2*(N_val-2))`
+### Worked Example Verification (Example ex:magnitudes)
 
-**Match: YES**
+Paper claims (N=5, r=1.5, α=0.3, β=0.9):
+- μ_s^R1 ≈ 0.197: Code gives 0.1970. ✓
+- VH just below cutoff ≈ 0.544: Code gives 0.5436. ✓
+- VH just above cutoff ≈ 0.602: Code gives 0.6015. ✓
+- Jump ≈ 5.3% of expected surplus: Code gives 5.8/1.098 ≈ 5.3%. ✓
+- VH majority at cutoff ≈ 0.428: Code gives 0.4280. ✓
+- "27% more on aggressive branch": (0.544-0.428)/0.428 = 27.1%. ✓
+- "41% more on conservative branch": (0.602-0.428)/0.428 = 40.6%. ✓
 
-### Budget identity check
+### Concavify Algorithm Verification
 
-Under unanimity (conservative): E[VH] + (N-1)*VW = Ve. Verified algebraically in Appendix A.6 of the paper.
-Under majority: E[VH] + (N-1)*VW = Ve. Verified algebraically in Appendix A.6.
+- Linear input: returns input unchanged (diff < 1e-15). ✓
+- Concave input: returns input unchanged. ✓
+- V-shaped input: envelope ≥ original values everywhere. ✓
+- 2-point edge case: correct (no crash from loop boundary). ✓
+- Algorithm: left-to-right steepest-slope sweep with `pmax` correction. Standard and correct.
+- Note: the `for (j in (i+2):n)` loop generates a decreasing sequence when `i = n-1`, but the `if (j > n) break` guard prevents out-of-bounds access. Functionally correct but inelegant.
 
-The code's formulas are consistent with these identities.
+### Edge Case Testing
 
-### Edge case analysis
+- μ = 0: VH_R1_unanimity returns valid value (0.5024). No NaN/Inf. ✓
+- μ = 1: VH_R1_unanimity returns valid value (0.624). No NaN/Inf. ✓
+- μ = 0.001: Valid. ✓
+- β = 0.01 (extreme impatience): Valid. ✓
+- N = 3 (minimum): Valid. ✓
+- N = 200 (large organization): Valid. ✓
+- r = 10, α = 0.05: Valid. ✓
+- α near 1/r boundary (α = 0.65 with r = 1.5): Valid. ✓
 
-| Edge case | Risk | Assessment |
-|-----------|------|------------|
-| mu = 0 | Division by zero in v/mu slopes | Avoided: `mus_grid` starts at 0.01 |
-| mu = 1 | VW_R2 could be 0 or negative | VW_R2(1) = (Ve(1)-alpha*r)/N = (r-alpha*r)/N = r(1-alpha)/N > 0. OK |
-| alpha = 0 | mu_s_R2 = 0, degeneracy | Not tested, but code handles via `if (mu < mu_s_R2)` correctly |
-| alpha -> 1/r | mu_s_R2 -> 1, VW_R2 -> (Ve-1)/N | Near boundary, but no NaN |
-| beta = 1 | phi_val simplifies | No issue |
-| N = 3 | N-2 = 1, discriminant = phi^2 - 4 | Could be negative for small phi, but not checked |
+### Cross-Reference Verification
 
----
+- `\@ref(fig:parameter-regions)`: resolves to chunk `parameter-regions`. ✓
+- `\@ref(fig:heatmap-alpha-mu)`: resolves to chunk `heatmap-alpha-mu`. ✓
+- `\@ref(example)`, `\@ref(model)`, `\@ref(majority)`, `\@ref(consensus)`, `\@ref(entry)`, `\@ref(comparison)`, `\@ref(discussion)`, `\@ref(scope)`: all correspond to section headers with matching `{#label}` attributes. ✓
+- LaTeX theorem references (`\ref{thm:conditional}`, `\ref{prop:classification}`, `\ref{cor:dominance}`, `\ref{rem:mu_bar}`, etc.): all correspond to `\label{}` in LaTeX environments. ✓
 
-## Score
+### Figure Quality Assessment
 
-| Issue | Severity | Deduction |
-|-------|----------|-----------|
-| C1: Concavification algorithm flaw (latent, correct for displayed params) | Critical (downgraded) | -10 |
-| m1: Duplicated code | Minor | -1 |
-| m2: Insufficient comments | Minor | -1 |
-| m3: Non-descriptive variable names | Minor | -2 |
+- **parameter-regions**: Publication-quality base R plot. Axis labels use `expression()` for math. Color scheme (blue/orange/gray) is colorblind-friendly. Legend present. Boundary curves traced. Screening cutoff annotated. Region labels positioned inside regions. ✓
+- **heatmap-alpha-mu**: 2×2 panel layout with `par(mfrow = c(2,2))`. Each panel shows clear blue/red regions with α* dashed line and μ̄(α) curve. Legend in each panel. Title identifies parameters. Grid resolution 150×150 is adequate for publication. ✓
 
-**Total deductions: -14**
+### Non-Proposer Payoff Logic in VW_R1_unanimity
 
-## Final Score: 86/100
+Verified the probability decomposition:
+- Focal W proposes: prob 1/N → gets F_proposer/N
+- H proposes: prob 1/N → non-proposer W gets beta*VW_R2
+- Other W proposes: prob (N-2)/N → depends on regime (aggressive: theta-dependent; conservative: beta*VW_R2)
 
-**Verdict**: COMMIT (score >= 80). The R code runs, produces correct output for the displayed parameters, and all formulas match the paper's mathematical expressions. The concavification algorithm has a latent defect that would surface for different parameter values -- this should be fixed before the paper is circulated. The code would benefit from refactoring (helper functions, better names, comments) but is functional as-is.
+Sum of probabilities: 1/N + 1/N + (N-2)/N = 1. ✓
+Conservative case: nonprop = (1/N + (N-2)/N) * beta*VW_R2 = (N-1)/N * beta*VW_R2. Matches code. ✓
+Aggressive case: accounts for theta=1 rejection leading to R2 with mu=1. Matches code. ✓
 
-### Recommendations (priority order)
+## Recommendations
 
-1. **Fix concavification**: Replace the `chull`-based algorithm with a proper upper-hull computation. Filter hull points to retain only those on the upper boundary (y-values above the line connecting the leftmost and rightmost hull points). Alternatively, use a purpose-built concavification algorithm (e.g., walking the support points from left to right, maintaining a decreasing-slope stack).
+1. Remove `library(tidyverse)` from the setup chunk — no tidyverse functions are used.
+2. Harmonize `source()` calls to both use `local = TRUE`.
+3. Consider extracting the shared preamble of `VW_R1_unanimity`/`VH_R1_unanimity` into a helper function to reduce maintenance risk.
+4. Add brief comments explaining grid resolution and tolerance choices in figure code.
+5. The `concavify()` function header comment references "formal_model_v3.Rmd" — update to "formal_model_v5.Rmd" for consistency.
 
-2. **Guard against NaN**: Add `if (phi_val^2 < 4*(N_val-2)) stop("Discriminant negative")` before computing `mu_s_R1`.
-
-3. **Factor shared code**: Extract the shared computation (x, mu_s_R2, Ve, VW_R2, omega, F1_con, F1_agg) into a helper that returns a list, called by both `VW_R1_unanimity` and `VH_R1_unanimity`.
-
-4. **Add comments**: Annotate which paper proposition each function implements. Mark aggressive/conservative branches. Explain the concavification approach.
-
-5. **Add parameter validation**: Check alpha < 1/r, r > 1, N >= 3 at the top of each function.
+None of these affect correctness or compilation. The code is ready for publication.
