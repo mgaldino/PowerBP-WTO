@@ -1,96 +1,49 @@
 # Lean Verification Dashboard
 
-**Project**: Informational Power: Bayesian Persuasion, Legislative Bargaining, and Institutional Design
-**Last updated**: 2026-04-21
-**Paper file**: formal_model_v2.Rmd
-**Model version**: v2 (alpha outside option, no g/c)
-**Build status**: PASSING (8262 jobs, 0 errors, 0 warnings)
-**Lean**: v4.29.1 + Mathlib v4.29.1
+**Project**: Informational Power: Bayesian Persuasion, Legislative Bargaining, and Institutional Design  
+**Last updated**: 2026-05-10  
+**Status**: STALE_REQUIRES_RECLASSIFICATION  
+**Reason**: The previous dashboard used generic `VERIFIED` labels. The 2026-05-10 post-mortem showed that this is unsafe because some Lean proofs formalized old formulas or conditional logic rather than the current paper's economic claims.
 
-## Summary
+## Current Summary
 
 | Status | Count |
-|--------|-------|
-| Verified (full proof) | 7 |
-| Verified (modular) | 1 |
-| **Total results in paper** | **8** |
+|--------|------:|
+| END_TO_END_VERIFIED | 0 |
+| ALGEBRA_VERIFIED_FROM_FORMULAS | 0 |
+| CONDITIONAL_VERIFIED | 0 |
+| PARTIAL | 0 |
+| STALE | 8 |
+| FAILED | 0 |
+| NOT_FORMALIZED | 0 |
+| **Total previously listed results** | **8** |
 
-**All 8 results verified. Zero sorry. Zero custom axioms.**
+No previous `VERIFIED` claim should be cited until the result is reclassified under the new pipeline.
+Three old v1 entries remain in `.proof_index.json` under `archived_results`; they are not part of the active dashboard counts.
 
-## Detailed Status
+## Required Reclassification
 
-| # | Result | Paper Line | Lean Files | Status | Notes |
-|---|--------|-----------|------------|--------|-------|
-| 1 | **Proposition 1** (Majority: no screening) | 183 | Props/Prop1.lean | **VERIFIED** | Affine = concave |
-| 2 | **Proposition 2** (Overpayment under unanimity) | 221 | Props/Prop2.lean | **VERIFIED** | alpha*r > alpha |
-| 3 | **Proposition 3** (R1 screening cutoff) | 242 | Props/Prop3.lean | **VERIFIED** | IVT + single-crossing |
-| 4 | **Proposition 4** (Screening creates informational rent) | 262 | Props/Prop4.lean | **VERIFIED** | = delta_R1_pos |
-| 5 | **Proposition 5** (Additional persuasion opportunity) | 318 | Props/Prop5.lean | **VERIFIED** | Affine concave + jump |
-| 6 | **Lemma 1** (Conditional payoff dominance) | 499 | Lemma1/*.lean | **VERIFIED** | Full proof, 14 theorems |
-| 7 | **Theorem 1** (Threshold prior) | 560 | Theorem1/*.lean | **VERIFIED (modular)** | 4 cases, single-crossing |
-| 8 | **Proposition 6** (Non-monotonic agenda influence) | 714 | Props/Prop6.lean | **VERIFIED** | AM-GM, 1/N < 1/2 |
+| # | Result | Previous Lean files | Current status | Required before upgrade |
+|---|--------|---------------------|----------------|-------------------------|
+| 1 | Proposition 1 (Majority: no screening) | `Props/Prop1.lean`, `V5/Prop1.lean` | STALE | Recheck majority formulas under external outside option; derive exclusion and weak-state continuation values. |
+| 2 | Proposition 2 (Overpayment under unanimity) | `Props/Prop2.lean`, `V5/Prop2.lean` | STALE | Recheck branch conditions and current statement. |
+| 3 | Proposition 3 (R1 screening cutoff) | `Props/Prop3.lean`, `V5/Prop3.lean` | STALE | Recheck branch-dependent cutoff and tie-breaking/limits. |
+| 4 | Proposition 4 (Screening rent / institutional classification) | `Props/Prop4.lean`, `V5/Prop4.lean`, `V5/Corollary.lean` | STALE | Reprove formation-set nesting and `lambda_M_ext > alpha` condition; no generic budget identity. |
+| 5 | Proposition 5 (Persuasion/non-convexity) | `Props/Prop5.lean` | STALE | Recheck value function statement against current paper. |
+| 6 | Lemma/Theorem conditional payoff dominance | `Lemma1/*.lean`, `V5/Theorem1.lean` | STALE | Replace old `P = beta(q-1)(1-alpha)` and old `alpha_star`; prove corrected external-option threshold. |
+| 7 | Theorem 1 (Threshold prior / institutional choice) | `Theorem1/*.lean` | STALE | Reclassify conditional hypotheses and concavification assumptions; adversarial pass required. |
+| 8 | Proposition 6 (Agenda influence) | `Props/Prop6.lean` | STALE | Recheck statement and dependencies against current paper. |
 
-## Verified Results Detail
+## New Gates
 
-### Lemma 1 (Conditional Payoff Dominance) — VERIFIED
+Each result must record:
 
-**Statement**: For alpha < alpha*(N, beta) and every mu in (0,1], E[V_H(mu, U)] > E[V_H(mu, M)].
+- `paper_statement_hash`
+- `paper_definitions_hash`
+- `lean_file_hash`
+- qualified status: `END_TO_END_VERIFIED`, `ALGEBRA_VERIFIED_FROM_FORMULAS`, `CONDITIONAL_VERIFIED`, `PARTIAL`, `STALE`, `FAILED`, or `NOT_FORMALIZED`
+- unverified assumptions, if any
+- numeric audit script/status when applicable
+- adversarial report path/status
 
-**Proof method**: Full algebraic proof from model parameters. No sorry, no custom axioms.
-
-**Key theorems** (14 total):
-- `d_star_pos`, `alpha_star_pos` — alpha* well-defined
-- `P_minus_Q_pos` — key equivalence: alpha < alpha* iff P - Q(1-beta) > 0
-- `D_base_one_pos`, `D_base_zero_pos` — endpoint positivity (threshold nesting for mu=0)
-- `D_base_pos` — backbone positive on [0,1] via affine interpolation
-- `D_I_zero_pos`, `D_I_pos_interval` — Region I (aggressive R2) positive
-- `delta_R2_at_cutoff` — delta_R2 vanishes at mu_s_R2
-- `delta_R1_nonneg`, `delta_R1_pos` — R1 correction non-negative
-- `lemma1_conditional_payoff_dominance` — final assembly
-
-**Files**: Basic.lean, Lemma1/{Definitions, DbasePositive, Corrections, Assembly}.lean
-
-### Theorem 1 (Threshold Prior) — VERIFIED (modular)
-
-**Statement**: 4-case characterization of cav v(p, U) vs cav v(p, M) with single-crossing property.
-
-**Proof method**: Modular — concavification properties assumed via `Theorem1Hyps` structure. Logical spine of 4-case proof fully verified.
-
-**What is assumed** (Theorem1Hyps):
-- Entry thresholds tau_U, tau_M with 0 <= tau_M <= tau_U < 1
-- Slope S_U > 0
-- Step 1 link: S_U * tau_U > lambda_M * V_e(tau_U) when tau_U > 0
-
-**What is proved** (12 theorems):
-- `lambda_M_pos` — majority payoff coefficient positive
-- `D_low_slope_pos` — comparison function has positive slope
-- `p_star_pos`, `p_star_lt_tau_U`, `D_low_at_p_star` — crossing point properties
-- `case_a` — tau_U = 0: unanimity dominates (via Lemma 1)
-- `case_b` — tau_M = 0 < tau_U: unique crossing at p*
-- `case_c` — S_U > S_M: unanimity dominates
-- `case_d` — S_U <= S_M: unique crossing at p*
-- `theorem1_single_crossing` — combined single-crossing property
-
-**Files**: Theorem1/{Hypotheses, Proof}.lean
-
-## File Structure
-
-```
-formal_proofs/FormalProofs/
-├── Basic.lean              — Model v2 params (GameParams with alpha)
-├── Lemma1/
-│   ├── Definitions.lean    — D_base, delta_R2, delta_R1, algebraic identities
-│   ├── DbasePositive.lean  — D_base > 0 on [0,1] (heart of Lemma 1)
-│   ├── Corrections.lean    — delta_R2(mu_s_R2) = 0, delta_R1 >= 0
-│   └── Assembly.lean       — All 3 regions -> D(mu) > 0
-├── Theorem1/
-│   ├── Hypotheses.lean     — Theorem1Hyps structure, D_low, p*
-│   └── Proof.lean          — Cases (a)-(d), single-crossing
-└── Props/
-    ├── Prop1.lean          — Majority affine (no screening)
-    ├── Prop2.lean          — Overpayment under unanimity
-    ├── Prop3.lean          — R1 cutoff existence + uniqueness
-    ├── Prop4.lean          — Jump positivity
-    ├── Prop5.lean          — Non-convexity (affine + jump)
-    └── Prop6.lean          — Agenda influence (AM-GM)
-```
+No verified-like status is valid without `PASS_SEM_RESSALVAS` from a Lean adversarial review.

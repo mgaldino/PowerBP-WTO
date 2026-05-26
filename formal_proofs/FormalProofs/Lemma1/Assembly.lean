@@ -13,6 +13,7 @@
 
 import FormalProofs.Lemma1.DbasePositive
 import FormalProofs.Lemma1.Corrections
+import FormalProofs.Lemma1.Necessity
 
 noncomputable section
 
@@ -127,5 +128,37 @@ theorem lemma1_conditional_payoff_dominance (p : GameParams)
   exact ⟨D_base_pos p hα μ hμ0' hμ1,
          D_I_pos_interval p hα μ hμ0' hμ1,
          D_base_plus_delta_R1_pos p hα μ hμ0' hμ1⟩
+
+-- ===========================================================================
+-- Iff version: α < α* is necessary AND sufficient
+-- ===========================================================================
+
+/-- **Lemma 1 (Iff version — Conditional Payoff Dominance)**
+
+    α < α*(N, β) if and only if, for every μ ∈ (0, 1],
+    unanimity strictly dominates majority in all three regions.
+
+    (⟹) Sufficiency: proved above via backbone + corrections.
+    (⟸) Necessity (contrapositive): if α ≥ α*, then at μ = 1
+         the Region III difference D_base(1) + δ_R1(1) = D_base(1) ≤ 0,
+         so strict dominance fails.
+
+    Source: notes/2026-04-22_alpha_star_iff.md -/
+theorem lemma1_iff (p : GameParams) :
+    p.α < alpha_star p ↔
+    (∀ μ : ℝ, 0 < μ → μ ≤ 1 →
+      D_base p μ > 0 ∧ D_I p μ > 0 ∧ (D_base p μ + delta_R1 p μ > 0)) := by
+  constructor
+  · -- Sufficiency: α < α* ⟹ all regions positive
+    intro hα μ hμ0 hμ1
+    exact lemma1_conditional_payoff_dominance p hα μ hμ0 hμ1
+  · -- Necessity (contrapositive): ¬(α < α*) ⟹ ¬(∀ μ, ...)
+    intro hall
+    by_contra h_not_lt
+    push Not at h_not_lt
+    -- h_not_lt : α ≥ α*
+    obtain ⟨μ, hμ_pos, hμ_le, hD_nonpos⟩ := lemma1_necessity p h_not_lt
+    have ⟨_, _, h3⟩ := hall μ hμ_pos hμ_le
+    linarith
 
 end

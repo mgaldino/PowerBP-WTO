@@ -1,117 +1,272 @@
 {
+  "index_status": "STALE_REQUIRES_RECLASSIFICATION",
+  "stale_reason": "Predates 2026-05-10 Lean pipeline update; generic VERIFIED statuses are no longer valid without paper_definitions_hash, qualified status, numeric audit, and PASS_SEM_RESSALVAS adversarial review.",
+  "allowed_statuses": [
+    "END_TO_END_VERIFIED",
+    "ALGEBRA_VERIFIED_FROM_FORMULAS",
+    "CONDITIONAL_VERIFIED",
+    "PARTIAL",
+    "STALE",
+    "FAILED",
+    "NOT_FORMALIZED"
+  ],
   "paper_file": "formal_model_v2.Rmd",
-  "last_dashboard_run": "2026-04-21T14:30:00",
-  "model_version": "v2",
+  "last_dashboard_run": "2026-05-10T00:00:00",
+  "model_version": "requires_reclassification",
   "results": [
     {
       "id": "prop1_majority_no_screening",
       "name": "Proposition 1 (Majority rule produces no screening)",
       "paper_line": 183,
-      "lean_file": null,
-      "status": "NOT_FORMALIZED"
+      "paper_statement_hash": null,
+      "paper_definitions_hash": null,
+      "lean_files": [
+        "FormalProofs/Props/Prop1.lean",
+        "FormalProofs/V5/Prop1.lean"
+      ],
+      "lean_theorems": null,
+      "lean_file_hash": null,
+      "status": "STALE",
+      "status_reason": "Needs reclassification under external outside option and adversarial gate.",
+      "unverified_assumptions": [],
+      "numeric_audit_script": null,
+      "numeric_audit_status": null,
+      "adversarial_review": null,
+      "adversarial_status": null,
+      "verified_at": null,
+      "notes": "Recheck majority formulas under external outside option; derive exclusion and weak-state continuation values."
     },
     {
       "id": "prop2_overpayment",
       "name": "Proposition 2 (Overpayment under unanimity)",
       "paper_line": 221,
-      "lean_file": null,
-      "status": "NOT_FORMALIZED"
+      "paper_statement_hash": null,
+      "paper_definitions_hash": null,
+      "lean_files": [
+        "FormalProofs/Props/Prop2.lean",
+        "FormalProofs/V5/Prop2.lean"
+      ],
+      "lean_theorems": null,
+      "lean_file_hash": null,
+      "status": "STALE",
+      "status_reason": "Needs reclassification under current paper statement and adversarial gate.",
+      "unverified_assumptions": [],
+      "numeric_audit_script": null,
+      "numeric_audit_status": null,
+      "adversarial_review": null,
+      "adversarial_status": null,
+      "verified_at": null,
+      "notes": "Recheck branch conditions and current statement."
     },
     {
       "id": "prop3_cutoff_R1",
       "name": "Proposition 3 (R1 screening cutoff under consensus)",
       "paper_line": 242,
-      "lean_file": null,
-      "status": "NOT_FORMALIZED"
+      "paper_statement_hash": null,
+      "paper_definitions_hash": null,
+      "lean_files": [
+        "FormalProofs/Props/Prop3.lean",
+        "FormalProofs/V5/Prop3.lean"
+      ],
+      "lean_theorems": null,
+      "lean_file_hash": null,
+      "status": "STALE",
+      "status_reason": "Needs reclassification under branch-dependent cutoff and adversarial gate.",
+      "unverified_assumptions": [],
+      "numeric_audit_script": null,
+      "numeric_audit_status": null,
+      "adversarial_review": null,
+      "adversarial_status": null,
+      "verified_at": null,
+      "notes": "Recheck branch-dependent cutoff and tie-breaking/limits."
     },
     {
-      "id": "prop4_jump",
-      "name": "Proposition 4 (Screening creates an informational rent)",
+      "id": "prop4_institutional_classification",
+      "name": "Proposition 4 (Screening rent / institutional classification)",
       "paper_line": 262,
-      "lean_file": null,
-      "status": "NOT_FORMALIZED"
+      "paper_statement_hash": null,
+      "paper_definitions_hash": null,
+      "lean_files": [
+        "FormalProofs/Props/Prop4.lean",
+        "FormalProofs/V5/Prop4.lean",
+        "FormalProofs/V5/Corollary.lean"
+      ],
+      "lean_theorems": null,
+      "lean_file_hash": null,
+      "status": "STALE",
+      "status_reason": "Old proof used generic budget identity and abstract nesting assumptions.",
+      "unverified_assumptions": [
+        "h_budget_M",
+        "h_budget_U",
+        "h_nesting",
+        "h_VHM_dom"
+      ],
+      "numeric_audit_script": null,
+      "numeric_audit_status": null,
+      "adversarial_review": null,
+      "adversarial_status": null,
+      "verified_at": null,
+      "notes": "Reprove formation-set nesting and lambda_M_ext > alpha condition; no generic budget identity."
     },
     {
       "id": "prop5_nonconvexity",
       "name": "Proposition 5 (Unanimity creates additional persuasion opportunity)",
       "paper_line": 318,
-      "lean_file": null,
-      "status": "NOT_FORMALIZED"
+      "paper_statement_hash": null,
+      "paper_definitions_hash": null,
+      "lean_files": [
+        "FormalProofs/Props/Prop5.lean"
+      ],
+      "lean_theorems": null,
+      "lean_file_hash": null,
+      "status": "STALE",
+      "status_reason": "Needs reclassification against current value-function statement.",
+      "unverified_assumptions": [],
+      "numeric_audit_script": null,
+      "numeric_audit_status": null,
+      "adversarial_review": null,
+      "adversarial_status": null,
+      "verified_at": null,
+      "notes": "Recheck value function statement against current paper."
     },
     {
       "id": "lemma1_conditional_payoff_dominance",
-      "name": "Lemma 1 (Conditional Payoff Dominance of Unanimity)",
+      "name": "Lemma/Theorem conditional payoff dominance",
       "paper_line": 499,
+      "paper_statement_hash": null,
+      "paper_definitions_hash": null,
       "lean_files": [
         "FormalProofs/Basic.lean",
         "FormalProofs/Lemma1/Definitions.lean",
         "FormalProofs/Lemma1/DbasePositive.lean",
         "FormalProofs/Lemma1/Corrections.lean",
-        "FormalProofs/Lemma1/Assembly.lean"
+        "FormalProofs/Lemma1/Necessity.lean",
+        "FormalProofs/Lemma1/Assembly.lean",
+        "FormalProofs/V5/Theorem1.lean"
       ],
       "lean_theorems": [
-        "d_star_pos", "alpha_star_pos", "P_minus_Q_pos",
-        "D_base_one_pos", "D_base_zero_pos", "D_base_pos",
-        "D_I_zero_pos", "D_I_pos_interval",
-        "delta_R2_at_cutoff", "delta_R1_nonneg", "delta_R1_pos", "delta_R1_at_one",
-        "D_base_plus_delta_R1_pos", "lemma1_conditional_payoff_dominance"
+        "d_star_pos",
+        "alpha_star_pos",
+        "P_minus_Q_pos",
+        "D_base_one_pos",
+        "D_base_zero_pos",
+        "D_base_pos",
+        "D_I_zero_pos",
+        "D_I_pos_interval",
+        "delta_R2_at_cutoff",
+        "delta_R1_nonneg",
+        "delta_R1_pos",
+        "delta_R1_at_one",
+        "D_base_plus_delta_R1_pos",
+        "lemma1_conditional_payoff_dominance",
+        "P_minus_Q_nonpos",
+        "D_base_one_nonpos",
+        "D_region_III_at_one_nonpos",
+        "lemma1_necessity",
+        "lemma1_iff"
       ],
-      "lean_file_hash": "342521ad0b26296b87ec343b23aa6e6b258674d70cada1b990e56b36e37409d8",
-      "status": "VERIFIED",
-      "verified_at": "2026-04-21T12:00:00",
+      "lean_file_hash": "bd541ac21be2956e3be09f827d92fe838a99b21823e799b816f69c4a38a533a7",
+      "status": "STALE",
+      "status_reason": "Old majority coefficient uses P = beta(q-1)(1-alpha); corrected external-option threshold not formalized here.",
+      "unverified_assumptions": [],
+      "numeric_audit_script": null,
+      "numeric_audit_status": null,
+      "adversarial_review": null,
+      "adversarial_status": null,
+      "verified_at": "2026-04-22T18:00:00",
       "sorry_count": 0,
       "custom_axioms": 0,
-      "notes": "Full proof from model parameters. D_base > 0 via endpoint positivity + affine interpolation."
+      "notes": "Replace old P and old alpha_star; prove corrected external-option threshold."
     },
     {
       "id": "theorem1_threshold_prior",
-      "name": "Theorem 1 (Threshold Prior for Institutional Choice)",
+      "name": "Theorem 1 (Threshold prior / institutional choice)",
       "paper_line": 560,
+      "paper_statement_hash": null,
+      "paper_definitions_hash": null,
       "lean_files": [
         "FormalProofs/Theorem1/Hypotheses.lean",
         "FormalProofs/Theorem1/Proof.lean"
       ],
       "lean_theorems": [
-        "lambda_M_pos", "D_low_slope_pos",
-        "p_star_pos", "D_low_at_p_star", "p_star_lt_tau_U",
-        "D_low_neg_below", "D_low_pos_above",
-        "case_a", "case_b", "case_c", "case_d",
+        "lambda_M_pos",
+        "D_low_slope_pos",
+        "p_star_pos",
+        "D_low_at_p_star",
+        "p_star_lt_tau_U",
+        "D_low_neg_below",
+        "D_low_pos_above",
+        "case_a",
+        "case_b",
+        "case_c",
+        "case_d",
         "theorem1_single_crossing"
       ],
       "lean_file_hash": "e035ea7974e123fa33eceb4e4d1bbbe4f2ac9357df18b202ec90eb461d969273",
-      "status": "VERIFIED",
+      "status": "STALE",
+      "status_reason": "Modular proof assumes Theorem1Hyps and must be reclassified under qualified status.",
+      "unverified_assumptions": [
+        "Theorem1Hyps",
+        "h_step1"
+      ],
+      "numeric_audit_script": null,
+      "numeric_audit_status": null,
+      "adversarial_review": null,
+      "adversarial_status": null,
       "verified_at": "2026-04-21T14:00:00",
       "sorry_count": 0,
       "custom_axioms": 0,
-      "notes": "Modular: concavification properties assumed via Theorem1Hyps. 4-case logical spine verified."
+      "notes": "Reclassify conditional hypotheses and concavification assumptions; adversarial pass required."
     },
     {
       "id": "prop6_extension",
       "name": "Proposition 6 (Non-monotonic effect of agenda influence)",
       "paper_line": 714,
-      "lean_file": null,
-      "status": "NOT_FORMALIZED"
-    },
+      "paper_statement_hash": null,
+      "paper_definitions_hash": null,
+      "lean_files": [
+        "FormalProofs/Props/Prop6.lean"
+      ],
+      "lean_theorems": null,
+      "lean_file_hash": null,
+      "status": "STALE",
+      "status_reason": "Needs reclassification under current paper statement and adversarial gate.",
+      "unverified_assumptions": [],
+      "numeric_audit_script": null,
+      "numeric_audit_status": null,
+      "adversarial_review": null,
+      "adversarial_status": null,
+      "verified_at": null,
+      "notes": "Recheck statement and dependencies against current paper."
+    }
+  ],
+  "archived_results": [
     {
       "id": "lem1_packageA_v1",
       "name": "[v1] Lemma 1 (Linearity under Package A)",
-      "lean_files": ["FormalProofs/Prop1.lean"],
+      "lean_files": [
+        "FormalProofs/Prop1.lean"
+      ],
       "status": "STALE",
-      "notes": "Old model v1. Removed from build."
+      "notes": "Old model v1. Removed from active dashboard counts."
     },
     {
       "id": "lem2_screening_v1",
       "name": "[v1] Lemma 2 (Screening cutoff)",
-      "lean_files": ["FormalProofs/Prop1.lean"],
+      "lean_files": [
+        "FormalProofs/Prop1.lean"
+      ],
       "status": "STALE",
-      "notes": "Old model v1. Removed from build."
+      "notes": "Old model v1. Removed from active dashboard counts."
     },
     {
       "id": "lem3_jump_v1",
       "name": "[v1] Lemma 3 (Jump discontinuity)",
-      "lean_files": ["FormalProofs/Prop1.lean"],
+      "lean_files": [
+        "FormalProofs/Prop1.lean"
+      ],
       "status": "STALE",
-      "notes": "Old model v1. Removed from build."
+      "notes": "Old model v1. Removed from active dashboard counts."
     }
   ]
 }
