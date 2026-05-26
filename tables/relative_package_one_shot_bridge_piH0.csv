@@ -1,0 +1,4 @@
+"candidate","selected_beliefs","weak_proposer_value","Delta_H","interpretation"
+"low_only","mu <= (t1 - t0) / (1 - t0)","(1 - mu)(1 - t0)","0","Testing survives without Round 2."
+"pooling","mu > (t1 - t0) / (1 - t0)","1 - t1","(1 - mu)(t1 - t0)","Pooling survives and gives the low type an informational rent."
+"rejection","never strictly selected when t1 < 1; boundary tie possible at t1 = 1, mu = 1","0","0","Endogenous no-information delay requires valued continuation."

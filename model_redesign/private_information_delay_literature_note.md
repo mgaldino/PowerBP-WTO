@@ -137,6 +137,23 @@ Em linguagem de paper:
 > the bargaining environment by removing that threshold from the set of
 > implementation constraints.
 
+## Status para transporte ao paper
+
+O resultado de delay não deve entrar como exemplo calibrado. Ele não é o
+propósito central do paper e não deve deslocar a arquitetura institucional.
+
+Classificação recomendada:
+
+- Se o resultado for diretamente implicado pela caracterização de R1
+  unanimity, apresentar como corolário curto.
+- Se exigir uma condição paramétrica substantiva própria, apresentar como
+  proposição auxiliar.
+- Se for útil apenas para interpretar a região de rejeição/continuação,
+  apresentar como remark após a proposição de R1.
+
+A formulação mais conservadora é um remark. A formulação mais forte, caso a
+prova fique limpa e geral, é um corolário da proposição de R1 unanimity.
+
 ## Cuidados
 
 - Não dizer que o modelo "explica guerra" sem construir uma extensão com
@@ -147,30 +164,103 @@ Em linguagem de paper:
 - Não apagar o ramo de delay por desconforto substantivo. Se o ramo existe no
   jogo, ele deve ser caracterizado; se não existe, deve ser refutado por
   incentivos, não por protocolo.
-- Antes de transportar citações ao manuscrito, conferir dados bibliográficos,
-  páginas e formulações exatas.
 
-## Fontes consultadas
+## Referências verificadas
 
-- Fearon, James D. 1995. "Rationalist Explanations for War." International
-  Organization. https://pages.ucsd.edu/~bslantchev/courses/pdf/fearon-io1995v49n3.pdf
-- Brito, Dagobert L., and Michael D. Intriligator. 1985. "Conflict, War, and
-  Redistribution." American Political Science Review.
-  https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D81000D454A1DAA94E15EC7BC172DFD7/S0003055400237246a.pdf/conflict_war_and_redistribution.pdf
+Metadados checados em 2026-05-14. Antes de migrar ao manuscrito, converter
+para BibTeX e conferir consistência com o estilo final do periódico.
+
+### Núcleo de RI: guerra, crise e informação privada
+
 - Banks, Jeffrey S. 1990. "Equilibrium Behavior in Crisis Bargaining Games."
-  American Journal of Political Science.
-  https://authors.library.caltech.edu/records/dhzm3-9jy18
+  American Journal of Political Science 34(3): 599-614.
+  https://doi.org/10.2307/2111390
+- Brito, Dagobert L., and Michael D. Intriligator. 1985. "Conflict, War, and
+  Redistribution." American Political Science Review 79(4): 943-957.
+  https://doi.org/10.2307/1956242
+- Fearon, James D. 1995. "Rationalist Explanations for War." International
+  Organization 49(3): 379-414.
+  https://doi.org/10.1017/S0020818300033324
+- Filson, Darren, and Suzanne Werner. 2002. "A Bargaining Model of War and
+  Peace: Anticipating the Onset, Duration, and Outcome of War." American
+  Journal of Political Science 46(4): 819-837.
+  https://doi.org/10.2307/3088436
 - Leventoglu, Bahar, and Ahmer Tarar. 2008. "Does Private Information Lead to
-  Delay or War in Crisis Bargaining?" International Studies Quarterly.
-  https://academic.oup.com/isq/article/52/3/533/1872544
-- Cramton, Peter C. 1984. "Bargaining with Incomplete Information: An Infinite
-  Horizon Model with Two-Sided Uncertainty." Review of Economic Studies.
-  https://academic.oup.com/restud/article-pdf/51/4/579/4356068/51-4-579.pdf
-- Grossman, Sanford J., and Motty Perry. 1986. "Perfect Sequential Equilibrium."
-  NBER Technical Working Paper. https://www.nber.org/papers/t0056
+  Delay or War in Crisis Bargaining?" International Studies Quarterly 52(3):
+  533-553. https://doi.org/10.1111/j.1468-2478.2007.00514.x
+- Powell, Robert. 2004. "Bargaining and Learning While Fighting." American
+  Journal of Political Science 48(2): 344-361.
+  https://doi.org/10.1111/j.0092-5853.2004.00074.x
+- Sartori, Anne E. 2002. "The Might of the Pen: A Reputational Theory of
+  Communication in International Disputes." International Organization 56(1):
+  121-149. https://doi.org/10.1162/002081802753485151
+- Schultz, Kenneth A. 1998. "Domestic Opposition and Signaling in
+  International Crises." American Political Science Review 92(4): 829-844.
+  https://doi.org/10.2307/2586306
+- Slantchev, Branislav L. 2003. "The Principle of Convergence in Wartime
+  Negotiations." American Political Science Review 97(4): 621-632.
+  https://doi.org/10.1017/S0003055403000911
+
+### Núcleo de bargaining com informação incompleta
+
 - Admati, Anat R., and Motty Perry. 1987. "Strategic Delay in Bargaining."
-  Review of Economic Studies.
-  https://www.econbiz.de/Record/strategic-delay-in-bargaining-admati-anat/10001040819
+  Review of Economic Studies 54(3): 345-364.
+  https://doi.org/10.2307/2297563
+- Cramton, Peter C. 1984. "Bargaining with Incomplete Information: An
+  Infinite-Horizon Model with Two-Sided Uncertainty." Review of Economic
+  Studies 51(4): 579-593. https://doi.org/10.2307/2297780
+- Cramton, Peter C. 1992. "Strategic Delay in Bargaining with Two-Sided
+  Uncertainty." Review of Economic Studies 59(1): 205-225.
+  https://doi.org/10.2307/2297934
+- Cramton, Peter C., and Joseph S. Tracy. 1992. "Strikes and Holdouts in Wage
+  Bargaining: Theory and Data." American Economic Review 82(1): 100-121.
+- Fudenberg, Drew, David K. Levine, and Jean Tirole. 1985. "Infinite-Horizon
+  Models of Bargaining with One-Sided Incomplete Information." In
+  Game-Theoretic Models of Bargaining, edited by Alvin E. Roth, 73-98.
+  Cambridge: Cambridge University Press.
+  https://doi.org/10.1017/CBO9780511528309.006
+- Fudenberg, Drew, David K. Levine, and Jean Tirole. 1987. "Incomplete
+  Information Bargaining with Outside Opportunities." Quarterly Journal of
+  Economics 102(1): 37-50. https://doi.org/10.2307/1884679
+- Fudenberg, Drew, and Jean Tirole. 1983. "Sequential Bargaining with
+  Incomplete Information." Review of Economic Studies 50(2): 221-247.
+  https://doi.org/10.2307/2297414
+- Grossman, Sanford J., and Motty Perry. 1986a. "Perfect Sequential
+  Equilibrium." Journal of Economic Theory 39(1): 97-119.
+  https://doi.org/10.1016/0022-0531(86)90022-0
+- Grossman, Sanford J., and Motty Perry. 1986b. "Sequential Bargaining under
+  Asymmetric Information." Journal of Economic Theory 39(1): 120-154.
+  https://doi.org/10.1016/0022-0531(86)90023-2
+- Myerson, Roger B., and Mark A. Satterthwaite. 1983. "Efficient Mechanisms
+  for Bilateral Trading." Journal of Economic Theory 29(2): 265-281.
+  https://doi.org/10.1016/0022-0531(83)90048-0
+- Rubinstein, Ariel. 1985. "A Bargaining Model with Incomplete Information
+  about Time Preferences." Econometrica 53(5): 1151-1172.
+  https://doi.org/10.2307/1911016
+- Sobel, Joel, and Ichiro Takahashi. 1983. "A Multistage Model of Bargaining."
+  Review of Economic Studies 50(3): 411-426.
+  https://doi.org/10.2307/2297673
+- Spier, Kathryn E. 1992. "The Dynamics of Pretrial Negotiation." Review of
+  Economic Studies 59(1): 93-108. https://doi.org/10.2307/2297927
+
+### Adjacent literature on unanimity, vetoes, and persuasion
+
+- Bardhi, Arjada, and Yingni Guo. 2018. "Modes of Persuasion Toward
+  Unanimous Consent." Theoretical Economics 13(3): 1111-1149.
+  https://doi.org/10.3982/TE2834
+- Kim, Jenny S., Kyungmin Kim, and Richard Van Weelden. 2025. "Persuasion in
+  Veto Bargaining." American Journal of Political Science 69(3): 1115-1127.
+  https://doi.org/10.1111/ajps.12914
+
+### Correções bibliográficas registradas
+
+- O DOI correto de Leventoglu and Tarar (2008) é
+  `10.1111/j.1468-2478.2007.00514.x`.
+- Grossman and Perry (1986) deve ser citado pela versão publicada no Journal
+  of Economic Theory, não pelo NBER Technical Working Paper.
+- Para o argumento de delay, Grossman and Perry (1986b), "Sequential
+  Bargaining under Asymmetric Information", é substantivamente mais próximo
+  do que Grossman and Perry (1986a), "Perfect Sequential Equilibrium".
 
 ## Output do agente de lit review
 
