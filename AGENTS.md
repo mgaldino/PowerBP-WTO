@@ -7,14 +7,14 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 ## Current Status
 
 - **Phase**: manuscript integration after post-referee proof repair.
-- **Active paper**: `formal_model_v5.Rmd`.
-- **Compiled PDF**: `formal_model_v5.pdf`.
-- **Current manuscript baseline (2026-05-15)**: `formal_model_v5.Rmd` carries the fixed-pie relative-package `pi_H=0` baseline in the manuscript. The paper now frames the result as a conditional institutional comparison: consensus can benefit a hegemon through pivotality-based screening, but the model does **not** contain an endogenous rule-choice/signaling stage. The R1 result is stated under a **weak-vote-passive assessment**: weak-state vote deviations are not treated as signals about `H`'s type because weak states do not observe `theta`. Do not describe this assessment as a refinement, D1, intuitive criterion, sequential-equilibrium restriction, or characterization of all PBEs. It is a maintained interpretation of the public voting protocol. The R1 statement should say the selected PBE outcome is payoff-equivalent to one of `P`, `L`, `R`; it is a selection result under the baseline voting assessment, not uniqueness over unrestricted PBEs. The tie-break among weak-proposer payoff ties minimizes `H`'s expected payoff.
+- **Target paper for the next manuscript pass**: `formal_model_v6.Rmd`.
+- **Target compiled PDF**: `formal_model_v6.pdf`.
+- **Previous manuscript baseline (2026-05-15, v5)**: `formal_model_v5.Rmd` carries the fixed-pie relative-package `pi_H=0` baseline and remains the reference history for the post-referee proof repair. The next clean-baseline reset should be derived in `model_redesign/power_architecture_derivations.Rmd` first, then transported into `formal_model_v6.Rmd`, not v5. The v5 paper frames the result as a conditional institutional comparison: consensus can benefit a hegemon through pivotality-based screening, but the model does **not** contain an endogenous rule-choice/signaling stage. The R1 result is stated under a **weak-vote-passive assessment**: weak-state vote deviations are not treated as signals about `H`'s type because weak states do not observe `theta`. Do not describe this assessment as a refinement, D1, intuitive criterion, sequential-equilibrium restriction, or characterization of all PBEs. It is a maintained interpretation of the public voting protocol. The R1 statement should say the selected PBE outcome is payoff-equivalent to one of `P`, `L`, `R`; it is a selection result under the baseline voting assessment, not uniqueness over unrestricted PBEs. The tie-break among weak-proposer payoff ties minimizes `H`'s expected payoff.
 - **Most recent manuscript pass**: 2026-05-15. Implemented AJPS/referee-driven exposition fixes in `formal_model_v5.Rmd`: conditional comparison language, No-Cheap-H as a natural hegemonic scope condition, numerical illustration language rather than empirical calibration, `a_0(1)` notation, and a formal rejected-history reduction lemma for R1. Two independent review agents rated the final R1 rejected-history proof **A+** and recommended no further patches. The PDF was recompiled successfully.
 - **Review protocol**: the agent that implements must not be the agent that reviews. Any validation/review/audit must be done by independent agents that do not edit files. This applies to formal claims, R scripts, figures, visual quality, and final integration.
 - **Most recent proof pass before manuscript integration**: 2026-05-10, focused on appendix proofs. That pass added a sufficient-conditions dominance result, calibrated formation-set nesting, and calibrated institutional classification for the previous corrected BF branch; treat it as diagnostic history unless rederived under the fixed-pie relative-package baseline.
 - **Redesign decision**: after analyzing the H-proposer signaling subgame, the next version should explicitly separate three sources of power: outside-option power, veto/pivotality power, and proposal power. The main baseline sets `pi_H = 0`, so the R1 agenda is controlled by weak states / non-hegemonic bargaining coalitions. Agenda power is then reintroduced separately through the recognition probability `pi_H`.
-- **Architecture reset (2026-05-11)**: abandon state-contingent feasibility as the main screening mechanism. The active redesign now models proposals as relative institutional packages that are feasible in every state. Screening comes from `H`'s type-dependent participation threshold:
+- **Architecture reset (2026-05-11, now extension material for the next proof pass)**: abandon state-contingent feasibility as the main screening mechanism. That reset modeled proposals as relative institutional packages that are feasible in every state and used a delayed-continuation threshold:
 
 ```text
 U_H(y, theta) = y + b_H(theta)
@@ -22,8 +22,15 @@ y_theta^*(mu') = beta C_H(theta, mu') - b_H(theta)
 screening requires y_1^*(mu') > y_0^*(mu')
 ```
 
+**2026-05-25 priority update**: do not use this delayed-continuation formula
+as the next baseline. The next proof pass should first derive the clean
+benchmark with `b_theta = 0` and immediate R1 opt-out for `H`: if type `theta`
+rejects in Round 1, no agreement includes `H` and it receives `o_theta`
+without discount. Treat `beta C_H(theta, mu')` and
+`max{o_theta, beta C_H(theta, mu')}` rejection payoffs as extensions.
+
 - **Archived feasibility branch**: the old feasibility/C-B-R derivation is preserved in git tag `redesign-feasibility-branch-2026-05-11`. It is diagnostic history only. Do not import theorem statements or branch labels from that tag without rederiving them under the new relative-package architecture.
-- **Manuscript status warning**: `formal_model_v5.Rmd` has been updated to the fixed-pie relative-package baseline, but it still needs a full independent read for global coherence before submission or sharing as final. Do not reintroduce old feasibility/C-B-R branch labels or old random-proposer theorem language.
+- **Manuscript status warning**: `formal_model_v6.Rmd` is the correct target for the next manuscript pass. `formal_model_v5.Rmd` has been updated to the fixed-pie relative-package baseline and remains a reference history file, but do not use it as the target for the clean-baseline reset. Do not reintroduce old feasibility/C-B-R branch labels or old random-proposer theorem language.
 
 ## Redesign Decision: Separate Sources of Power
 
@@ -69,7 +76,7 @@ cut obligation, exception, monitoring/enforcement advantage, or related
 institutional term. It is not a fixed transfer that may fail to fit the realized
 pie.
 
-The minimal `H` payoff primitive is:
+The 2026-05-11 delayed-continuation primitive was:
 
 ```text
 U_H(y, theta) = y + b_H(theta)
@@ -88,7 +95,19 @@ and the threshold is:
 y_theta^*(mu') = beta C_H(theta, mu') - b_H(theta)
 ```
 
-The screening primitive/target condition is:
+For the next proof pass, this is an extension/microfoundation, not the clean
+baseline. The clean baseline instead sets `b_theta=0` and gives `H` an
+immediate R1 opt-out payoff `o_theta` after rejection. The clean threshold is
+therefore:
+
+```text
+y_theta^* = o_theta
+```
+
+so the clean screening target is `o_1 > o_0`. Do not derive the next baseline
+from `y + b_H(theta) >= beta C_H(theta, mu')`.
+
+The delayed-continuation extension's target condition is:
 
 ```text
 y_1^*(mu') > y_0^*(mu')
@@ -107,7 +126,7 @@ receive their continuation values; the weak proposer keeps the residual.
 
 ## Separate Formal Workspace
 
-The redesign should not be developed inside `formal_model_v5.Rmd`. The old proof problem arose partly because formulas from an earlier architecture remained in the manuscript after the interpretation of outside options changed.
+The redesign should not be developed directly inside `formal_model_v6.Rmd`. The old proof problem arose partly because formulas from an earlier architecture remained in the manuscript after the interpretation of outside options changed.
 
 Use this workflow instead:
 
@@ -115,7 +134,7 @@ Use this workflow instead:
 2. Keep computational checks in separate R scripts under `scripts/`.
 3. Mark each result as proved, checked numerically, conjecture, pending, or rejected.
 4. Compile and audit the standalone derivation document.
-5. Only after the formal architecture is stable, transport results into `formal_model_v5.Rmd`.
+5. Only after the formal architecture is stable, transport results into `formal_model_v6.Rmd`.
 
 ## Critical Correction From Referee
 
@@ -267,7 +286,16 @@ R tie/check                : 0.022868
 
 Do not present these as completed until checked in the active manuscript:
 
-- Run a full independent review of `formal_model_v5.Rmd` after the 2026-05-15 integration pass. The R1 rejected-history lemma has A+ independent review, but the whole paper still needs a coherence pass.
+- **Priority 1 for the next proof pass (2026-05-25 clean-baseline reset)**:
+  re-center the main architecture on the clean benchmark documented in
+  `quality_reports/2026-05-25_clean_baseline_priority.md`. Set `b_theta = 0`
+  in the baseline, make R1 rejection by `H` an immediate opt-out that gives
+  type `theta` payoff `o_theta` without discount, and move both the delayed-continuation
+  interpretation and the decomposition `t_theta = d_theta - b_theta` to
+  extensions/microfoundations. Do not edit `formal_model_v6.Rmd` for this reset
+  until the clean benchmark has been rederived and checked in
+  `model_redesign/power_architecture_derivations.Rmd`.
+- Run a full independent review of the target `formal_model_v6.Rmd` after the clean-baseline reset is migrated. The v5 R1 rejected-history lemma has A+ independent review, but the target manuscript still needs its own coherence pass after changes.
 - Check that every theorem statement, figure caption, and table caption uses the fixed-pie relative-package `pi_H=0` language and does not import feasibility/C-B-R branch labels.
 - Reaudit Appendix C only after the binary fixed-pie model is treated as stable.
 - Decide whether to add a separate appendix extension for endogenous rule choice/signaling. The main paper currently holds rule choice fixed to isolate screening; a future extension may illustrate how rule-choice signaling can reduce, leave unchanged, or amplify screening.
@@ -281,9 +309,12 @@ The current safe theorem architecture is:
 
 ## Files
 
-- `formal_model_v5.Rmd`: active paper. Appendix contains the current corrected proof status.
-- `formal_model_v5.pdf`: compiled output.
+- `formal_model_v6.Rmd`: target manuscript for the next pass. It should receive the clean-baseline reset only after separate derivation and review in `model_redesign/`.
+- `formal_model_v6.pdf`: current compiled target manuscript PDF, if present.
+- `formal_model_v5.Rmd`: previous manuscript baseline/reference history. Appendix contains the corrected v5 proof status.
+- `formal_model_v5.pdf`: compiled v5 reference output.
 - `quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md`: scope and implementation notes for the AJPS/referee-driven revision pass, including weak-vote-passive language, rejected histories, No-Cheap-H, rule-choice framing, numerical illustration, and tie-break handling.
+- `quality_reports/2026-05-25_clean_baseline_priority.md`: priority-1 note for the next proof pass. It records the clean-baseline reset (`b_theta = 0`, immediate R1 opt-out payoff `o_theta` for `H` after rejection), moves delayed continuation and `t_theta = d_theta - b_theta` to extensions, and specifies the required independent review protocol.
 - `model_redesign/power_architecture_derivations.Rmd`: standalone working document for the new proof architecture. Use this as the main work surface until the formal results are clean.
 - `model_redesign/README.md`: guardrails for the redesign workspace.
 - `quality_reports/notas_reescrita_provas_formulas.md`: detailed external/referee-style proof concerns; input to the correction, not final proof status.
@@ -304,10 +335,10 @@ The current safe theorem architecture is:
 
 ## Compilation
 
-Use the YAML-defined bookdown format:
+For the target manuscript, use the YAML-defined bookdown format:
 
 ```r
-rmarkdown::render("formal_model_v5.Rmd")
+rmarkdown::render("formal_model_v6.Rmd")
 ```
 
 Do not force `output_format = "pdf_document"` unless explicitly debugging, because that bypasses the YAML/bookdown cross-reference setup.
@@ -317,14 +348,16 @@ Do not force `output_format = "pdf_document"` unless explicitly debugging, becau
 When asked to run `coarse-review`, do **not** call `uvx ... coarse-review` directly. Use the safe wrapper:
 
 ```bash
-python3 scripts/run_coarse_review.py formal_model_v5.pdf
+python3 scripts/run_coarse_review.py formal_model_v6.pdf
 ```
 
 The wrapper validates `OPENROUTER_API_KEY` against the OpenRouter `/api/v1/key` endpoint before launch, prefers the macOS Keychain value over any inherited environment variable, pre-extracts PDF text with `pdftotext` when available, and passes the validated key explicitly to the `coarse-review` subprocess. This prevents the recurring failure mode where a Codex session inherits an old/stale `OPENROUTER_API_KEY` even though the renewed key in the shell/Keychain is valid. If the user asks why or seems likely to run the old command manually, tell them to use the wrapper because direct `coarse-review` can silently pick up a stale environment key.
 
 ## Operating Rules for Future Sessions
 
-- Start from `formal_model_v5.Rmd` after the 2026-05-15 integration pass, but verify any formal claim against the appendix proof status before changing theorem language.
+- Before any substantive manuscript reset, use the `paper-version` workflow. Do not create a misleading tag on a dirty worktree; first resolve or commit the relevant state, then tag the intended snapshot.
+- Start from the separate derivation in `model_redesign/power_architecture_derivations.Rmd`; when ready to migrate to the manuscript, target `formal_model_v6.Rmd`. Use `formal_model_v5.Rmd` only as reference history for the 2026-05-15 integration pass and appendix proof status.
+- Priority 1 is now the clean-baseline reset: derive the `b_theta = 0` benchmark with immediate R1 opt-out payoff `o_theta` for `H` in `model_redesign/power_architecture_derivations.Rmd` before changing the active paper. Treat delayed continuation inside the IO, `max{o_theta, beta C_theta}` hybrid exit, and `t_theta = d_theta - b_theta` as extensions/microfoundations.
 - Do not do "minimal correction" on formal proofs. Rederive from primitives.
 - Do not add ad hoc assumptions to rescue old results.
 - Do not remove a branch, case, result, or equilibrium path by adding an ad hoc
@@ -339,9 +372,10 @@ The wrapper validates `OPENROUTER_API_KEY` against the OpenRouter `/api/v1/key` 
 - State R1 as payoff-equivalence to `P`, `L`, or `R` under the maintained assessment, not as a uniqueness or all-PBE characterization.
 - For R1 rejected histories, use the rejected-history reduction lemma. It classifies proposer-relevant rejected outcomes: designed weak-caused failures reduce to `R`; the high-type rejection branch belongs to `L`; low-type rejection/high-type acceptance is ruled out by threshold order; weak-voter deviations in `P` and `L` are handled by approval ICs.
 - Maintain implementer/reviewer separation: implementation agents edit; review agents do not edit.
+- For the clean-baseline reset, run two independent read-only review passes after implementation: one formal-model review and one adversarial math/game-theory audit. The implementer must not be either reviewer.
 - Entry by weak states is collective/all-or-nothing.
-- The main body has been revised to the fixed-pie `pi_H=0` baseline, but still needs a full independent coherence review before final submission.
-- Do not edit `formal_model_v5.Rmd` to add new theorem architecture unless the result has first been derived and checked separately.
+- The v5 main body has been revised to the fixed-pie `pi_H=0` baseline, but the next target is v6 and it still needs a full independent coherence review before final submission.
+- Do not edit `formal_model_v6.Rmd` to add new theorem architecture unless the result has first been derived and checked separately.
 - If using agents, separate derivation agents from verification agents and iterate until a verification pass has no reservations.
 - Lean is internal only; do not cite Lean in the paper.
 - Paper language is English; notes and project documentation can be Portuguese.
@@ -354,5 +388,5 @@ The wrapper validates `OPENROUTER_API_KEY` against the OpenRouter `/api/v1/key` 
 Recommended opening prompt for a fresh session:
 
 ```text
-Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, formal_model_v5.Rmd e quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md. O manuscrito ativo já usa o baseline fixed-pie relative-package com pi_H=0, weak-state agenda e weak-vote-passive assessment. Não use linguagem de rule-choice endógeno; trate o resultado como comparação institucional condicional. A Proposição R1 deve ficar como selected PBE outcome payoff-equivalent to P/L/R, não como caracterização de todos os PBEs. A prova de rejected histories tem lema A+ revisado por dois agentes; preserve a distinção entre proposer-relevant rejected outcomes, weak-voter deviations handled by ICs, designed weak-caused failures, e H-caused failures. Próximo passo recomendado: fazer uma revisão independente de coerência global do paper e checar captions/figuras/tabelas antes de nova circulação.
+Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, formal_model_v6.Rmd, formal_model_v5.Rmd, quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md e quality_reports/2026-05-25_clean_baseline_priority.md. O alvo correto do próximo manuscrito é formal_model_v6.Rmd; formal_model_v5.Rmd é referência histórica da integração de 2026-05-15. Prioridade 1: antes de mexer no manuscrito v6, rederivar em model_redesign/power_architecture_derivations.Rmd o baseline limpo com b_theta=0 e opt-out imediato de H em R1: se H rejeita, nenhum acordo inclui H e o tipo theta recebe o_theta sem desconto. Trate delayed continuation dentro da IO, o caso hibrido max{o_theta,beta C_theta} e t_theta=d_theta-b_theta como extensões/microfundamentos. Use paper-version/git tag workflow antes de qualquer reset substantivo, mas não crie tag enganosa em worktree suja. Preserve a linguagem de comparação institucional condicional, weak-state agenda pi_H=0 e weak-vote-passive assessment quando migrar para v6. A Proposição R1 deve ficar como selected PBE outcome payoff-equivalent to P/L/R, não como caracterização de todos os PBEs, salvo se a nova derivação provar outro enunciado. A prova de rejected histories v5 teve lema A+ revisado por dois agentes; preserve a distinção entre proposer-relevant rejected outcomes, weak-voter deviations handled by ICs, designed weak-caused failures, e H-caused failures se essa arquitetura sobreviver em v6. Após implementar o reset, dois revisores independentes e sem edição devem revisar: um com formal-model review e outro com adversarial math/game-theory audit.
 ```
