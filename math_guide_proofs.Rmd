@@ -123,10 +123,11 @@ Resultado do paper & Ferramenta matemática & Onde a ferramenta entra \\
 \midrule
 \endhead
 Definição 1: jogo baseline & Jogo finito dinâmico com informação incompleta; conjunto factível linear & Define estados, propostas, votos, thresholds e entry. Não requer prova, mas fixa o domínio das demais provas. \\
-Definição 2: weak-vote-passive assessment & Sistema de crenças e atualização condicional; pivotalidade de votos & Determina quais desvios de weak voters alteram, ou não alteram, crenças sobre \(\theta\). \\
+Definição 2: weak-vote-passive assessment & Sistema de crenças e atualização condicional; pivotalidade de votos & Determina os usos remanescentes da assessment: desvios de weak voters e desvios de \(H\) a partir de prescrições pooling. \\
 Proposição 1: Majority no-screening & Indução retroativa; comparação de custos; função afim em \(\mu\) & Mostra que, se \(a_0^M>\beta/m\), comprar \(H\) não é mais barato que comprar um weak voter. \\
 Lema 1: Terminal unanimity threshold & Redução por thresholds; solução de desigualdade linear & Compara \((1-\mu)(1-t_0)\) com \(1-t_1\) e obtém \(\mu_2^*=(t_1-t_0)/(1-t_0)\). \\
-Lema 2: Rejected-history reduction & Partição de histórias; compatibilidade de incentivos; ordem de thresholds & Classifica rejeições como delay, ramo high-rejection de low-only, ou história não compatível com incentivos. \\
+Lema 2: weak-caused failures and nonpivotal \(H\) votes & Compatibilidade de incentivos; atualização bayesiana em voto pooling & Mostra que uma falha causada por weak rejection não sustenta sinalização pura informativa pelo voto não pivotal de \(H\). \\
+Lema 3: Rejected-history reduction & Partição de histórias; compatibilidade de incentivos; ordem de thresholds & Classifica rejeições como delay, ramo high-rejection de low-only, ou história não compatível com incentivos. \\
 Proposição 2: Round-1 outcome & Exaustão de candidatos finitos; envelope superior; tie-break & Reduz Round 1 a \(\max\{\Pi_P,\Pi_L,\Pi_D\}\) sobre candidatos admissíveis. \\
 Proposição 3: Weak-state entry nesting & Limites superiores e inclusão de conjuntos & Mostra \(S_K^U\leq1\), logo \(V_W^U\leq V_W^M\) e \(F_U\subseteq F_M\). \\
 Proposição 4: Conditional comparison & Sinal de uma diferença de payoff & Usa \(\Delta_H(\mu)\) para classificar a preferência de \(H\) quando ambas as regras formam. \\
@@ -222,18 +223,57 @@ O número de weak states divide o payoff representativo, mas não muda a escolha
 do proposer entre \(t_0\) e \(t_1\), porque ambos os candidatos escalam da mesma
 forma no terminal round.
 
-## Lema 2: Rejected-history reduction
+## Lema 2: falhas weak-caused e votos não pivotais de \(H\)
 
-O Lema 2 é a prova mais delicada porque seu papel é disciplinar histórias que
+O novo Lema 2 reduz uma parte da dependência da weak-vote-passive assessment.
+Ele trata apenas de propostas que já estão desenhadas para falhar por rejeição
+weak: a proposta e o vetor \(x\) são públicos, e pelo menos um weak voter
+necessário recebe menos que seu valor de continuação. Então \(H\) sabe que a
+proposta não passa, qualquer que seja seu próprio voto.
+
+Nesse ponto, o voto de \(H\) não determina o resultado corrente. A única
+questão é se esse voto não pivotal poderia funcionar como sinal puro e criar um
+quarto candidato de payoff para o proposer. A resposta é não, sob o domínio do
+paper.
+
+Considere uma prescrição separadora pura. Seja \(v_0\) o voto prescrito ao tipo
+low e \(v_1\neq v_0\) o voto prescrito ao tipo high. Como o prior é interior,
+Bayes dá posterior zero depois de \(v_0\) e posterior um depois de \(v_1\). O
+tipo high é indiferente entre posteriors, porque
+\[
+C_1(\nu)=o_1
+\]
+para todo \(\nu\). O tipo low, porém, prefere o posterior alto:
+\[
+C_0(1)=o_0+t_1-t_0>o_0=C_0(0),
+\]
+pois \(t_1>t_0\). Logo, o tipo low imita o voto \(v_1\) que induz posterior um.
+Isso viola a restrição de incentivo da separação.
+
+Se os dois tipos de \(H\) fazem pooling no mesmo voto, o voto observado não
+contém informação sobre \(\theta\), e Bayes mantém o posterior em \(\mu\). Como
+a falha weak-caused é induzida por alocação pública, não por informação privada
+de weak voters, essa história é equivalente ao delay sem informação \(D\).
+
+O alcance do lema é deliberadamente local: ele não é uma refinement, não fixa
+crenças fora do caminho depois de desvios de uma prescrição pooling, e não
+caracteriza todos os PBEs irrestritos. Ele apenas remove a necessidade de uma
+cláusula separada da assessment para o voto não pivotal de \(H\) em falhas
+weak-caused dentro da análise pura selecionada.
+
+## Lema 3: Rejected-history reduction
+
+O Lema 3 é a prova mais delicada porque seu papel é disciplinar histórias que
 não terminam em acordo. A prova não calcula um novo payoff; ela mostra que essas
 histórias não criam um quarto candidato relevante.
 
 O primeiro corte é entre falhas causadas por weak voters e falhas causadas por
 \(H\). Se a proposta foi desenhada para falhar por weak rejection, pelo menos um
 weak voter necessário recebe menos que seu continuation value. Nessa situação,
-alterar o voto de \(H\) não torna a proposta aprovada. Pela weak-vote-passive
-assessment, o voto de \(H\) é não pivotal para crenças, e o posterior permanece
-\(\mu\). Essas histórias são equivalentes em payoff ao candidato delay \(D\).
+alterar o voto de \(H\) não torna a proposta aprovada. Pelo Lema 2, o voto não
+pivotal de \(H\) não pode sustentar separação pura informativa, e votos pooling
+de \(H\) deixam o posterior em \(\mu\). Essas histórias são equivalentes em
+payoff ao candidato delay \(D\).
 
 O segundo corte trata falhas causadas por \(H\), isto é, todos os weak voters
 aprovam e a proposta falha porque \(H\) rejeita. Se low aceita e high rejeita,
@@ -258,7 +298,7 @@ Isso abre caminho para a Proposição 2.
 
 ## Proposição 2: outcome de Round 1
 
-A Proposição 2 combina o Lema 2 com maximização finita.
+A Proposição 2 combina os Lemas 2 e 3 com maximização finita.
 
 O primeiro passo é exaustão de candidatos aceitos. Pela ordem dinâmica de
 thresholds, high-only acceptance é excluída. Pacotes acima do threshold relevante
@@ -292,13 +332,14 @@ aprovar na história low. O proposer recebe residual no estado low e continuaç�
 \]
 
 O quarto passo é delay \(D\). O proposer escolhe uma proposta factível com
-\(y=0\) e pagamentos weak zero. A proposta é rejeitada pelos weak voters e, pela
-assessment, não revela informação sobre \(H\). O proposer recebe
+\(y=0\) e pagamentos weak zero. A proposta é rejeitada pelos weak voters; pelo
+Lema 2, o voto não pivotal de \(H\) não sustenta separação pura informativa, e
+um voto pooling de \(H\) mantém o posterior em \(\mu\). O proposer recebe
 \[
 \Pi_D^U(\mu)=c(\mu).
 \]
 
-O quinto passo invoca o Lema 2 para garantir que rejeições não adicionam outro
+O quinto passo invoca o Lema 3 para garantir que rejeições não adicionam outro
 candidato. O sexto passo aplica o máximo:
 \[
 \bar\Pi^U(\mu)=\max_{K\in\mathcal K(\mu)}\Pi_K^U(\mu).
@@ -574,18 +615,19 @@ necessário.
 
 A Definição 2 especifica uma weak-vote-passive assessment: desvios unilaterais
 de weak voters não atualizam crenças sobre \(\theta\), votos de \(H\) podem
-separar tipos quando prescritos de forma separadora, e propostas desenhadas para
-falhar por rejeição weak preservam o prior. Isso é essencial no Lema 2 e na
-Proposição 2.
+separar tipos quando prescritos de forma separadora, e desvios de \(H\) a partir
+de prescrições pooling recebem posteriors especificados. O Lema 2 substitui a
+antiga cláusula separada para propostas desenhadas para falhar por rejeição
+weak. Esses elementos são essenciais nos Lemas 2 e 3 e na Proposição 2.
 
 Na prova da Proposição 2:
 
 - Em \(P\), o proposer paga \(c(\mu)\) aos weak voters.
 - Em \(L\), o proposer paga \(c(0)\) aos weak voters, porque a aprovação é
   avaliada na história em que o low type aceita e o high type rejeita.
-- Em \(D\), weak voters são pagos zero e rejeitam; como a falha é causada por
-  weak voters, a posterior permanece \(\mu\), então o proposer recebe
-  \(c(\mu)\).
+- Em \(D\), weak voters são pagos zero e rejeitam; pelo Lema 2, a falha
+  weak-caused não gera sinalização pura informativa pelo voto não pivotal de
+  \(H\), então o proposer recebe \(c(\mu)\).
 
 ## Exercícios
 
@@ -658,9 +700,9 @@ A Proposição 2 é exatamente uma proposição de máximo finito:
 \[
 \bar\Pi^U(\mu)=\max_{K\in\mathcal K(\mu)}\Pi_K^U(\mu),
 \]
-com \(K\in\{P,L,D\}\). O Lema 2 faz o trabalho de limpeza: rejeições causadas
-por weak voters reduzem a delay; rejeição do high type pertence ao ramo
-low-only; high-only é incompatível com a ordem de thresholds.
+com \(K\in\{P,L,D\}\). Os Lemas 2 e 3 fazem o trabalho de limpeza: rejeições
+causadas por weak voters reduzem a delay; rejeição do high type pertence ao
+ramo low-only; high-only é incompatível com a ordem de thresholds.
 
 Depois disso, a seleção do Round 1 é o envelope superior dos candidatos
 admissíveis. A regra de tie-break contra \(H\) não altera o valor do weak
@@ -677,7 +719,7 @@ proposer; ela escolhe um dos maximizadores quando há empate.
 5. Mostre que, se \(D\) é sempre abaixo de \(P\) e \(L\), o envelope de
    \(\{P,L,D\}\) coincide com o envelope de \(\{P,L\}\).
 6. Explique por que a prova da Proposição 2 não poderia simplesmente escrever
-   o máximo sem antes provar o Lema 2.
+   o máximo sem antes provar os Lemas 2 e 3.
 
 Soluções na Seção \ref{solucoes-envelope}.
 
@@ -971,8 +1013,8 @@ Comparative statics elementar & Simon e Blume, capítulos 14--15 & Dixit, *Optim
    \(D\) ao conjunto não altera o maior valor. Logo os envelopes coincidem.
 
 6. Porque o máximo só é correto se o conjunto de candidatos for exaustivo. Sem
-   o Lema 2, poderia haver uma história rejeitada ou separadora com payoff maior
-   que \(P,L,D\).
+   os Lemas 2 e 3, poderia haver uma história rejeitada ou separadora com payoff
+   maior que \(P,L,D\).
 
 ## Soluções: conjuntos \label{solucoes-conjuntos}
 
@@ -1031,8 +1073,8 @@ Comparative statics elementar & Simon e Blume, capítulos 14--15 & Dixit, *Optim
 
 # Checklist de cobertura
 
-- Proposição 1, Lema 1, Lema 2, Proposição 2, Proposição 3, Proposição 4 e
-  Corolário 1 estão mapeados na tabela inicial.
+- Proposição 1, Lema 1, Lema 2, Lema 3, Proposição 2, Proposição 3,
+  Proposição 4 e Corolário 1 estão mapeados na tabela inicial.
 - As duas definições centrais do paper estão conectadas às seções de jogo,
   beliefs e restrições de incentivo.
 - O Apêndice B está coberto como microfundação, one-shot bridge, complete
