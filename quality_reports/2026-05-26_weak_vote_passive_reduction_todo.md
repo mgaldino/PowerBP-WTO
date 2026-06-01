@@ -1,57 +1,111 @@
-# TODO: reduce reliance on weak-vote-passive assessment
+# Weak-Vote-Passive Reduction: weak-caused failures
 
-Date: 2026-05-26
+Date opened: 2026-05-26
+Status updated: 2026-06-01
+Target manuscript: `formal_model_v6.Rmd`
 
-Target manuscript: `formal_model_v6.Rmd`.
+## Status
 
-## Priority proof task
+Completed for the weak-caused-failure branch.
 
-Replace as much of the current weak-vote-passive assessment as possible with
-endogenous no-information/no-separation lemmas.
+The manuscript now replaces the old belief-assessment clause for designed
+weak-caused failures with a local pure-strategy incentive-compatibility lemma.
+The weak-vote-passive assessment remains in force for the other off-path cases:
+weak-voter deviations and deviations by `H` from pooling prescriptions.
 
-The immediate candidate is the weak-caused failure branch in the rejected-history
-reduction. If a public proposal gives at least one necessary weak voter less
-than its continuation value, `H` can anticipate that the proposal fails by weak
-rejection. `H`'s vote is non-outcome-determining for current passage. The proof
-task is to show that this nonpivotal vote cannot support informative
-pure-strategy signaling that improves on no-information delay:
+## Local derivation
 
-- the high type's Round-2 payoff is `C_1(nu)=o_1`, independent of posterior;
-- the low type weakly prefers the high posterior when terminal pooling gives
-  `C_0(1)=o_0+t_1-t_0 > C_0(0)=o_0`;
-- therefore any separating nonpivotal vote that induces a high posterior is
-  mimicked by the low type;
-- pooling nonpivotal votes leave posterior `mu`, so weak-caused failures are
-  payoff-equivalent to no-information delay.
+The proposal and all weak-state allocations are public. If a public proposal
+gives at least one necessary weak voter less than its continuation value, that
+weak voter rejects and the ballot fails regardless of `H`'s vote. `H`'s ballot
+is therefore non-outcome-determining for current passage.
 
-If this lemma is valid under the maintained threshold domain, the proof can
-replace the statement "by weak-vote-passive assessment, posterior remains `mu`"
-for weak-caused failures with an equilibrium argument.
+The local question is whether this nonpivotal vote can sustain informative
+pure-strategy signaling and create a fourth rejected-history candidate.
 
-## Remaining assessment cases to audit
+For an interior belief `mu in (0,1)`, a separating nonpivotal voting prescription
+would assign different ballots `v_0` and `v_1` to the low and high types. Bayes'
+rule would then assign posterior `0` after `v_0` and posterior `1` after `v_1`.
+The continuation payoffs are:
 
-1. Weak-voter deviations in accepted candidates.
-   Current role: price weak-voter approval ICs in `P` and `L`. Need decide
-   whether this can be replaced by a no-private-information/consistency lemma:
-   weak voters do not observe `theta`, so their unilateral off-path votes should
-   not update beliefs about `H`; any updating should come only from `H`'s
-   simultaneously observed vote.
+```text
+C_1(nu) = o_1
+C_0(1)  = o_0 + t_1 - t_0
+C_0(0)  = o_0
+```
 
-2. Off-path beliefs after weak-voter votes more generally.
-   Current role: prevent weak votes from becoming signals about information weak
-   voters do not possess.
+Under the Threshold Order, `t_1 > t_0`, so the low type strictly prefers the
+high-posterior ballot. The low type therefore mimics any high-type vote that
+induces posterior one. Separating nonpivotal voting is not incentive compatible.
+If `H` pools on a nonpivotal ballot, Bayes leaves the on-path posterior at `mu`.
+Thus weak-caused failures are payoff-equivalent to no-information delay `D`
+within the selected pure-strategy analysis.
 
-3. Off-path deviations by `H` from pooling prescriptions.
-   Current role: specify posteriors after unexpected `H` votes when both types
-   were prescribed to vote yes or both were prescribed to vote no. Need check
-   whether one can derive that no profitable separating deviation exists, or
-   whether a limited belief protocol remains necessary.
+This is a local result only. It is not an equilibrium refinement, does not
+introduce D1, Intuitive Criterion, sequential equilibrium, trembling hand,
+stationarity, or a new signaling model, and does not characterize all
+unrestricted PBEs.
 
-## Documentation target
+## Manuscript changes
 
-After proof audit, update:
+- `formal_model_v6.Rmd`: removed the old weak-caused-failure belief clause from
+  Definition 2.
+- `formal_model_v6.Rmd`: added Lemma `Weak-caused failures and nonpivotal H
+  votes`.
+- `formal_model_v6.Rmd`: updated the rejected-history reduction, R1 proposition,
+  Appendix A.3 proof, assessment-scope table, and discussion language.
+- `math_guide_proofs.Rmd`: added a Portuguese explanation of the local lemma and
+  renumbered the rejected-history discussion in the guide as the next lemma.
 
-- Appendix A.3 proof of rejected-history reduction and R1 selection;
-- Definition of the belief protocol in the main text;
-- Table of assessment-free vs assessment-dependent components;
-- `math_guide_proofs.Rmd`, especially Sections 3.3, 3.4, and 6.
+## Independent read-only review
+
+Reviewer 1: `game-theory-audit`, focused on PBE, voting, signaling, and
+incentive compatibility.
+
+Verdict: **APPROVED WITH ONLY NON-BLOCKING EDITORIAL ISSUES**.
+
+Summary: The reviewer approved the IC logic. In weak-caused failures, current
+passage is already impossible; a separating nonpivotal `H` ballot gives the low
+type a strict incentive to mimic the high-posterior ballot, while pooling
+nonpivotal ballots leave the on-path posterior at `mu` by Bayes.
+
+Reviewer 2: adversarial formal-model-writing review, focused on algebra,
+quantifiers, domain restrictions, and scope.
+
+Verdict: **APPROVED WITH ONLY NON-BLOCKING EDITORIAL ISSUES**.
+
+Summary: The reviewer found no substantive proof gap. The proof correctly uses
+`C_1(nu)=o_1`, `C_0(1)=o_0+t_1-t_0`, and `C_0(0)=o_0`; it narrows rather than
+overclaims the weak-vote-passive assessment.
+
+## Editorial fixes after review
+
+- Tightened the proof language so it does not claim to analyze every possible
+  pooling prescription under arbitrary off-path beliefs.
+- Added endpoint-belief scope language to Proposition R1.
+- Clarified that the relevant weak voter rejects regardless of `H`'s ballot.
+
+## Remaining uses of weak-vote-passive assessment
+
+The proof repair does not remove the weak-vote-passive assessment globally.
+Remaining necessary uses are:
+
+1. Weak-voter deviations in accepted or separating candidates such as `P` and
+   `L`.
+2. Off-path beliefs after deviations by `H` from pooling yes or pooling no
+   prescriptions.
+3. The selected R1 candidate comparison outside the local weak-caused-failure
+   branch.
+
+## Compilation
+
+Completed on 2026-06-01.
+
+- `rmarkdown::render("formal_model_v6.Rmd")` completed successfully and created
+  `formal_model_v6.pdf`.
+- `rmarkdown::render("math_guide_proofs.Rmd")` completed successfully and
+  created `math_guide_proofs.pdf`.
+- `pdfinfo formal_model_v6.pdf`: 51 pages, creation time 2026-06-01 14:59:27
+  -03.
+- `pdfinfo math_guide_proofs.pdf`: 20 pages, creation time 2026-06-01 14:59:33
+  -03.

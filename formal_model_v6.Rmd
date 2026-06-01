@@ -460,6 +460,7 @@ Under the Threshold Order, High-Posterior Pooling, the R1 Dynamic Threshold Orde
 \bar\Pi^U(\mu)=\max_{K\in\mathcal K(\mu)}\Pi_K^U(\mu).
 \tag{14}
 \]
+The local nonpivotal-vote lemma is stated for \(\mu\in(0,1)\); endpoint beliefs use the degenerate-belief or limiting convention stated after Definition \ref{def:passive}.
 This is a selection result under the baseline voting assessment, not a uniqueness result over the unrestricted set of PBEs.
 \end{proposition}
 Proof in Appendix A.3.
@@ -870,14 +871,14 @@ C_0(1)=o_0+t_1-t_0>o_0=C_0(0),
 \]
 because \(t_1>t_0\). Therefore the low type strictly prefers to cast the high type's ballot \(v_1\), which induces posterior one, rather than follow \(v_0\), which induces posterior zero. This contradicts incentive compatibility of any separating pure voting prescription for \(H\)'s nonpivotal ballot.
 
-Thus a weak-caused failed proposal cannot use \(H\)'s nonpivotal vote to sustain informative pure-strategy separation. The only incentive-compatible pure prescriptions relevant to the selected candidate comparison are pooling prescriptions for \(H\)'s nonpivotal ballot, and their on-path posterior is \(\mu\). Therefore weak-caused failures are payoff-equivalent to no-information delay \(D\) within the selected pure-strategy analysis. The argument does not restrict arbitrary off-path beliefs after deviations from pooling prescriptions and does not characterize all unrestricted PBEs. \(\square\)
+Thus a weak-caused failed proposal cannot use \(H\)'s nonpivotal vote to sustain informative pure-strategy separation. For a pooling nonpivotal ballot used in the selected candidate comparison, Bayes' rule gives posterior \(\mu\) on path. Therefore weak-caused failures are payoff-equivalent to no-information delay \(D\) within the selected pure-strategy analysis. The argument does not restrict arbitrary off-path beliefs after deviations from pooling prescriptions and does not characterize all unrestricted PBEs. \(\square\)
 
 \textit{Proof of Lemma \ref{lem:rejected-histories}.}
 Fix a Round-1 proposal \((y,x)\), where \(x\) is the public vector of weak-state allocations, and fix belief \(\mu\).
 
 The lemma classifies rejected outcomes that can matter for the weak proposer's candidate choice. Weak-voter deviations from accepted or separating candidates are not additional proposer candidates; they enter only through the weak-voter approval incentive constraints in Steps 2 and 3 below.
 
-Rejected histories divide first by whether the proposal is designed to fail by weak-state rejection or instead fails with all weak voters approving. In designed weak-caused failures, the public allocation gives at least one necessary weak voter less than its continuation value. Holding those weak votes fixed, changing \(H\)'s vote cannot make the proposal pass. Lemma \ref{lem:weak-caused-nonpivotal} then rules out informative pure-strategy separation by \(H\)'s nonpivotal ballot, while pooling nonpivotal ballots leave posterior \(\mu\) by Bayes. This is the no-information delay candidate \(D\). The local lemma is not used to price weak-voter deviations in separating candidates such as \(L\), where \(H\)'s prescribed vote separates types and the weak-voter approval constraint is evaluated against the continuation induced by \(H\)'s separating vote.
+Rejected histories divide first by whether the proposal is designed to fail by weak-state rejection or instead fails with all weak voters approving. In designed weak-caused failures, the public allocation gives at least one necessary weak voter less than its continuation value, so that this weak voter rejects regardless of \(H\)'s ballot. Holding those weak votes fixed, changing \(H\)'s vote cannot make the proposal pass. Lemma \ref{lem:weak-caused-nonpivotal} then rules out informative pure-strategy separation by \(H\)'s nonpivotal ballot, while pooling nonpivotal ballots leave posterior \(\mu\) by Bayes. This is the no-information delay candidate \(D\). The local lemma is not used to price weak-voter deviations in separating candidates such as \(L\), where \(H\)'s prescribed vote separates types and the weak-voter approval constraint is evaluated against the continuation induced by \(H\)'s separating vote.
 
 The remaining rejected histories are H-caused failures: all weak voters approve, and the ballot fails only because \(H\) rejects. These are the only rejected histories in which \(H\)'s vote can carry information under the maintained assessment. If the low type accepts and the high type rejects, the history is exactly the rejection branch of the low-only candidate \(L\). If the high type accepts and the low type rejects, the proposal is a high-only acceptance pattern, which is ruled out by the R1 Dynamic Threshold Order and the threshold-reduction argument used in Proposition \ref{prop:r1}. If both types reject with the same vote, the rejection pools types, preserves posterior \(\mu\), and is payoff-equivalent to \(D\).
 
