@@ -64,6 +64,15 @@ numerical illustration, or microfoundation, but it is not part of the baseline
 definition. The baseline also keeps `pi_H = 0` in every bargaining round, so
 `H` is never a proposer.
 
+**Clarification added 2026-08-03.** The direct cutoff
+`y_theta^*=o_theta` applies at a ballot information set where,
+under the weak voters' strategies, `H`'s yes vote implements a current
+agreement that includes it with probability one. It is not a global voting
+rule. Because ballots are simultaneous, if weak failure has positive
+probability, the proof must derive `H`'s expected IC from the implementation,
+opt-out, and continuation payoffs induced by each action; `H` cannot condition
+on the ex post vote vector.
+
 The delayed-continuation variants should be treated separately:
 
 ```text

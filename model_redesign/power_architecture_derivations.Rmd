@@ -26,9 +26,13 @@ pre-2026-05-25 delayed-continuation architecture, including
 `U_H(y,theta)=y+b_H(theta)` and Round-1 rejection payoffs based on discounted
 continuation values. Its theorem table, result statuses, and proof ledger are
 therefore historical inputs to the next derivation, not certification of the
-clean baseline. Goal 1 must rederive the baseline with `b_theta=0`, immediate
-rejection payoff `o_theta`, and threshold `y_theta^*=o_theta` before any result
-is transported to `formal_model_v6.Rmd`.
+clean baseline. Goal 1 must rederive the baseline with `b_theta=0` and immediate
+rejection payoff `o_theta` before any result is transported to
+`formal_model_v6.Rmd`. The direct threshold `y_theta^*=o_theta` applies only at
+a ballot information set where, under weak-voter strategies, `H`'s yes vote
+implements a current agreement with certainty. If weak failure has positive
+probability, simultaneous voting instead requires an expected IC over the
+implementation, opt-out, and continuation consequences of `H`'s action.
 
 The adopted voting protocol is unchanged by that reset: bargaining stages are
 sequential and public across rounds, while all non-proposers vote

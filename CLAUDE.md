@@ -2,7 +2,13 @@
 
 ## Projeto
 
-Paper teórico sobre **quando consenso pode beneficiar um hegemon** em organizações internacionais. O mecanismo: unanimidade força W a incluir H sob incerteza, criando screening que gera renda informacional. Sob maioria, W exclui H da coalizão → sem screening → payoff linear. Screening é o mecanismo central; Bayesian Persuasion aparece apenas como Remark.
+Paper teórico sobre **quando consenso pode beneficiar um hegemon** em
+organizações internacionais. O mecanismo-alvo é que unanimidade força W a
+incluir H sob incerteza, criando screening que gera renda informacional. Sob
+maioria, W pode excluir H; se a condição No-Cheap-H seleciona essa coalizão,
+surge o benchmark sem screening. Exclusão e no-screening continuam pendentes de
+rederivação no clean baseline. Screening é o mecanismo central; Bayesian
+Persuasion aparece apenas como Remark.
 
 ### Resultado central
 Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas. Unanimidade ativa poder informacional (screening sob pivotalidade) sem precisar dar poder formal de agenda a H. O consenso pode funcionar como tecnologia institucional de poder, não apenas como concessão.
@@ -17,7 +23,18 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 - **Protocolo de revisão**: quem implementa não revisa; quem revisa não implementa. Revisões formais, validação de scripts R, auditoria visual e integração final devem ser feitas por agentes independentes sem edição de arquivos.
 - **Decisão de redesign**: a próxima versão do modelo principal deve separar três fontes de poder: outside option, veto/pivotality e proposal power. Agenda power entra por uma recognition probability `pi_H`. O baseline principal usa `pi_H = 0`, isto é, weak states / coalizões não-hegemônicas propõem e `H` é veto player informado. Isso isola informational power through pivotality de agenda power.
 - **Reset arquitetural (2026-05-11, agora extensão para a próxima prova)**: abandonar o ramo de factibilidade state-contingent como mecanismo principal. Essa versão usava pacotes institucionais relativos, sempre factíveis, com `U_H(y, theta)=y+b_H(theta)`. Pela prioridade 2026-05-25, essa fórmula dinâmica não deve ser o próximo baseline; ela vira extensão/microfundamento.
-- **Prioridade 1 para a próxima prova (2026-05-25)**: antes de mexer no manuscrito v6, recentrar o próximo proof pass no baseline limpo documentado em `quality_reports/2026-05-25_clean_baseline_priority.md`: `b_theta = 0` e opt-out imediato de `H` em R1. Se `H` rejeita, nenhum acordo inclui `H` e o tipo `theta` recebe `o_theta` sem desconto. A interpretação atual de delayed continuation dentro da IO, o caso híbrido `max{o_theta,beta C_theta}` e a decomposição `t_theta = d_theta - b_theta` devem virar extensões/microfundamentos. Refaça primeiro em `model_redesign/power_architecture_derivations.Rmd`; só depois migre para `formal_model_v6.Rmd`.
+- **Prioridade 1 para a próxima prova (2026-05-25)**: antes de mexer no
+  manuscrito v6, recentrar o próximo proof pass no baseline limpo documentado
+  em `quality_reports/2026-05-25_clean_baseline_priority.md`: `b_theta = 0` e
+  opt-out imediato de `H` em R1. Se `H` rejeita, nenhum acordo inclui `H` e o
+  tipo `theta` recebe `o_theta` sem desconto. Usar `beta C_theta` como payoff do
+  próprio voto não/rejeição de `H`, o caso híbrido
+  `max{o_theta,beta C_theta}` e a decomposição `t_theta = d_theta-b_theta`
+  devem virar extensões/microfundamentos. Isso não exclui uma continuação R2
+  descontada depois de `H` votar sim e votos fracos causarem a falha de R1;
+  esse ramo deve ser definido no Gate 0 e derivado separadamente. Refaça
+  primeiro em `model_redesign/power_architecture_derivations.Rmd`; só depois
+  migre para `formal_model_v6.Rmd`.
 - **Arquivo histórico**: a derivação feasibility/C-B-R foi preservada na tag `redesign-feasibility-branch-2026-05-11`. É história diagnóstica, não arquitetura atual.
 - **Disciplina de protocolo**: não impor pooling, delay, rejeição, crenças off-path, ordem de votação, espaço contratual ou protocolo de continuação dentro de uma prova. Se uma prova precisar de novo protocolo, marcar `pending protocol decision`, explicar consequências substantivas e obter aprovação explícita antes de prosseguir.
 - **Protocolo de votação adotado**: a barganha é sequencial e pública entre
@@ -52,8 +69,13 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
   residual dos fracos um-para-um.
 - **Payoff de H no acordo**: `y`, pois `b_theta=0` no baseline.
 - **Opt-out de H**: se o tipo `theta` rejeita em R1, recebe `o_theta`
-  imediatamente, sem desconto; `o_theta` é primitivo e o threshold limpo é
-  `y_theta^*=o_theta`, com screening quando `o_1>o_0`.
+  imediatamente, sem desconto; `o_theta` é primitivo. No ramo em que o voto
+  sim de `H` implementa imediatamente um acordo que o inclui, o threshold
+  limpo é `y_theta^*=o_theta`, com screening quando `o_1>o_0`. Esse cutoff não
+  deve ser aplicado globalmente. Como os votos são simultâneos, se falha fraca
+  tiver probabilidade positiva no information set de `H`, derive a IC esperada
+  a partir dos payoffs de implementação, opt-out e continuação; não permita que
+  `H` condicione seu voto ao vetor ainda não revelado.
 - **Agenda**: `pi_H=0` em todas as rodadas; apenas weak states propõem.
 - **Votação**: ballots simultâneos com registro público ex post, usando o mesmo
   protocolo sob unanimidade e maioria.
@@ -121,7 +143,12 @@ Na calibração OPEC: `max{0.6842105, 0.8316498} < 0.9 < 0.9193777`.
 
 ### Correção crítica das provas (2026-05-10)
 
-O parecerista estava correto: o appendix antigo calculava payoffs de maioria como se a outside option de H fosse paga pela coalizão majoritária. Isso é errado no modelo. Sob maioria, W exclui H; H recebe `alpha V(theta)` externamente; o pie institucional disponível aos fracos não é reduzido por `(1-alpha)`.
+O parecerista estava correto: o appendix antigo calculava payoffs de maioria
+como se a outside option de H fosse paga pela coalizão majoritária. Isso é
+errado no modelo. No branch histórico em que W exclui H, H recebe
+`alpha V(theta)` externamente; o pie institucional disponível aos fracos não é
+reduzido por `(1-alpha)`. A contabilidade externa sobrevive ao reset, mas a
+seleção do branch no-H deve ser rederivada.
 
 Inequality importante:
 
@@ -227,8 +254,12 @@ Motivo: o erro anterior veio em parte de manter fórmulas de uma arquitetura ant
 
 ### Prompt recomendado para próxima sessão
 
+A especificação canônica e executável do Goal 1 está em
+`quality_reports/plans/2026-08-03-clean-baseline-goal.md`. O Gate 0 desse
+arquivo prevalece sobre o resumo histórico mais curto abaixo.
+
 ```text
-Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, formal_model_v6.Rmd, formal_model_v5.Rmd, quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md e quality_reports/2026-05-25_clean_baseline_priority.md. O alvo correto do próximo manuscrito é formal_model_v6.Rmd; formal_model_v5.Rmd é referência histórica da integração de 2026-05-15. Prioridade 1: antes de mexer no manuscrito v6, rederivar em model_redesign/power_architecture_derivations.Rmd o baseline limpo com b_theta=0 e opt-out imediato de H em R1: se H rejeita, nenhum acordo inclui H e o tipo theta recebe o_theta sem desconto. Trate delayed continuation dentro da IO, o caso hibrido max{o_theta,beta C_theta} e t_theta=d_theta-b_theta como extensões/microfundamentos. Preserve o protocolo adotado: o jogo é sequencial e público entre rodadas, mas dentro de cada ballot todos os não proponentes votam simultaneamente e os votos individuais só se tornam públicos após o fechamento; isso não é votação roll-call sequencial. Use paper-version/git tag workflow antes de reset substantivo, mas não crie tag enganosa em worktree suja. Preserve a linguagem de comparação institucional condicional, weak-state agenda pi_H=0 e weak-vote-passive assessment quando migrar para v6. A Proposição R1 deve ficar como selected PBE outcome payoff-equivalent to P/L/R, não como caracterização de todos os PBEs, salvo se a nova derivação provar outro enunciado. A prova de rejected histories v5 teve lema A+ revisado por dois agentes; preserve a distinção entre proposer-relevant rejected outcomes, weak-voter deviations handled by ICs, designed weak-caused failures, e H-caused failures se essa arquitetura sobreviver em v6. Após implementar o reset, dois revisores independentes e sem edição devem revisar: um com formal-model review e outro com adversarial math/game-theory audit.
+Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, formal_model_v6.Rmd, formal_model_v5.Rmd, quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md e quality_reports/2026-05-25_clean_baseline_priority.md. O alvo correto do próximo manuscrito é formal_model_v6.Rmd; formal_model_v5.Rmd é referência histórica da integração de 2026-05-15. Prioridade 1: antes de mexer no manuscrito v6, rederivar em model_redesign/power_architecture_derivations.Rmd o baseline limpo com b_theta=0 e opt-out imediato de H em R1: se H rejeita, nenhum acordo inclui H e o tipo theta recebe o_theta sem desconto. Trate delayed continuation dentro da IO, o caso hibrido max{o_theta,beta C_theta} e t_theta=d_theta-b_theta como extensões/microfundamentos. Preserve o protocolo adotado: o jogo é sequencial e público entre rodadas, mas dentro de cada ballot todos os não proponentes votam simultaneamente e os votos individuais só se tornam públicos após o fechamento; isso não é votação roll-call sequencial. Use paper-version/git tag workflow antes de reset substantivo, mas não crie tag enganosa em worktree suja. Preserve a linguagem de comparação institucional condicional, weak-state agenda pi_H=0 e weak-vote-passive assessment quando migrar para v6. Trate P/L/R e o rejected-history reduction lemma de v5 como candidatos históricos: preserve-os somente se forem rederivados no novo extensive form e, nesse caso, não alegue unicidade nem caracterização de todos os PBEs. Após implementar o reset, dois revisores independentes e sem edição devem revisar: um com formal-model review e outro com adversarial math/game-theory audit.
 ```
 
 ## PENDÊNCIAS RIO — Comparação com Hirsch & Shotts (AJPS 2025)
@@ -307,7 +338,9 @@ Sessões 2026-04-27b e 2026-04-29: RIO-1 a RIO-10 (Scope, Lit Review, provas B.1
 
 **Por que EUA aceitam consenso na OMC?** Três camadas:
 1. Por que não agenda control (H proposer exclusivo)? → Mata entrada (V_W = 0).
-2. Por que não maioria? → W exclui H, H recebe só αV(θ). Sem screening.
+2. Por que não maioria? → No benchmark histórico/No-Cheap-H, W exclui H, que
+   recebe só αV(θ), e não há screening; no clean reset, isso é alvo a
+   rederivar, não premissa.
 3. Por que unanimidade? → Screening. H abre mão de poder formal para amplificar poder informacional.
 
 ## Compilação
@@ -416,5 +449,8 @@ Roadmap detalhado em `quality_reports/2026-04-29_lean_v5_roadmap.md`. Resumo:
 - Notas em Markdown, modelo formal em Rmd → PDF
 - Idioma: português para notas; inglês para o paper
 - N genérico sempre (N=3 apenas no exemplo motivador Seção 2)
-- Sob maioria: W EXCLUI H (não convenção WLOG de inclusão)
+- Sob maioria no clean reset: W **pode** excluir H, mas exclusão/no-screening é
+  um resultado a rederivar, não uma convenção. A frase histórica “W exclui H”
+  vale apenas no branch no-H das provas corrigidas anteriores. Em qualquer
+  branch, a outside option de H permanece externa ao pie.
 - **Citações em ambientes LaTeX**: Dentro de `\begin{...}...\end{...}`, usar `[@key]` (bookdown resolve).

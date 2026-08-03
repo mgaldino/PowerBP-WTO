@@ -28,8 +28,14 @@ Current architecture:
 - the clean baseline sets `b_theta = 0`, so an accepted package gives `H`
   payoff `y`;
 - if type `theta` rejects in Round 1, it opts out immediately and receives
-  `o_theta` without discount; the clean acceptance threshold is therefore
+  `o_theta` without discount; when `H`'s yes vote implements a current
+  agreement that includes it, the clean acceptance threshold is
   `y_theta^* = o_theta`;
+- do not apply `y_theta^* = o_theta` as a global voting rule: because ballots
+  are simultaneous, if weak failure has positive probability at `H`'s voting
+  information set, derive its expected incentive constraint from the actual
+  implementation, opt-out, and continuation payoffs; do not let `H` condition
+  on the ex post vote vector;
 - screening in the clean baseline requires `o_1 > o_0`;
 - `o_theta` is a primitive in the clean theorem; a mapping such as
   `o_theta = alpha V(theta)` belongs to an application, numerical

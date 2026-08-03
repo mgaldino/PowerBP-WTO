@@ -97,15 +97,22 @@ y_theta^*(mu') = beta C_H(theta, mu') - b_H(theta)
 
 For the next proof pass, this is an extension/microfoundation, not the clean
 baseline. The clean baseline instead sets `b_theta=0` and gives `H` an
-immediate R1 opt-out payoff `o_theta` after rejection. The clean threshold is
-therefore:
+immediate R1 opt-out payoff `o_theta` after rejection. On a branch where `H`'s
+yes vote implements a current agreement that includes it, the clean direct
+acceptance threshold is therefore:
 
 ```text
 y_theta^* = o_theta
 ```
 
-so the clean screening target is `o_1 > o_0`. Do not derive the next baseline
-from `y + b_H(theta) >= beta C_H(theta, mu')`.
+so the clean screening target on that pivotal implementation branch is
+`o_1 > o_0`. This is not a global voting rule. Because votes are simultaneous,
+`H` cannot condition on weak votes that have not yet been revealed. If weak
+failure has positive probability at `H`'s ballot information set, derive the
+expected voting IC from the implementation, opt-out, and continuation payoffs
+induced by each action. Do not give `H` a new decision after observing the ex
+post vector, and do not derive the next baseline from
+`y + b_H(theta) >= beta C_H(theta, mu')`.
 
 The delayed-continuation extension's target condition is:
 
@@ -136,16 +143,26 @@ Use this workflow instead:
 4. Compile and audit the standalone derivation document.
 5. Only after the formal architecture is stable, transport results into `formal_model_v6.Rmd`.
 
-## Critical Correction From Referee
+## Historical Majority Accounting Correction From Referee
 
-The referee was right. The old majority proof treated the hegemon's outside option as if it reduced the institutional pie available to weak states. That is inconsistent with the model. The corrected convention is:
+The referee was right. The old majority proof treated the hegemon's outside
+option as if it reduced the institutional pie available to weak states. That
+accounting is inconsistent with the model. This section records the correction
+for the old random-proposer/BF architecture; its formulas are diagnostic
+history for the clean reset. The invariant carried forward is that `H`'s
+outside option is external to the institutional pie. Whether a majority weak
+proposer excludes `H` must be rederived under the clean contract and cannot be
+imposed as a primitive.
 
 - H's outside option is external to the institutional pie.
-- Under majority, a weak proposer excludes H and forms a coalition with other weak states.
-- H then receives `alpha V(theta)` externally, not as a payment from the majority coalition.
-- Therefore weak-state majority payoffs do not carry the old `(1-alpha)` factor.
+- On the historical majority path where a weak proposer excludes H, it forms a
+  coalition with other weak states.
+- On that path, H receives `alpha V(theta)` externally, not as a payment from
+  the majority coalition.
+- Therefore weak-state payoffs on that historical no-H path do not carry the
+  old `(1-alpha)` factor.
 
-Corrected majority formulas:
+Historical corrected majority formulas:
 
 ```text
 V_e(mu) = 1 + mu(r - 1)
@@ -357,7 +374,15 @@ The wrapper validates `OPENROUTER_API_KEY` against the OpenRouter `/api/v1/key` 
 
 - Before any substantive manuscript reset, use the `paper-version` workflow. Do not create a misleading tag on a dirty worktree; first resolve or commit the relevant state, then tag the intended snapshot.
 - Start from the separate derivation in `model_redesign/power_architecture_derivations.Rmd`; when ready to migrate to the manuscript, target `formal_model_v6.Rmd`. Use `formal_model_v5.Rmd` only as reference history for the 2026-05-15 integration pass and appendix proof status.
-- Priority 1 is now the clean-baseline reset: derive the `b_theta = 0` benchmark with immediate R1 opt-out payoff `o_theta` for `H` in `model_redesign/power_architecture_derivations.Rmd` before changing the active paper. Treat delayed continuation inside the IO, `max{o_theta, beta C_theta}` hybrid exit, and `t_theta = d_theta - b_theta` as extensions/microfoundations.
+- Priority 1 is now the clean-baseline reset: derive the `b_theta = 0`
+  benchmark with immediate R1 opt-out payoff `o_theta` for `H` in
+  `model_redesign/power_architecture_derivations.Rmd` before changing the
+  active paper. Treat `beta C_theta` as the payoff from `H`'s own no/rejection,
+  the `max{o_theta, beta C_theta}` hybrid exit, and
+  `t_theta = d_theta - b_theta` as extensions/microfoundations. This does not
+  rule out a legitimate discounted R2 continuation after `H` votes yes but
+  weak votes make the R1 ballot fail; Gate 0 must define and the proof must
+  derive that branch separately.
 - Do not do "minimal correction" on formal proofs. Rederive from primitives.
 - Do not add ad hoc assumptions to rescue old results.
 - Do not remove a branch, case, result, or equilibrium path by adding an ad hoc
@@ -382,8 +407,15 @@ The wrapper validates `OPENROUTER_API_KEY` against the OpenRouter `/api/v1/key` 
   never a proposer there; treat `pi_H > 0` as an extension or robustness
   exercise.
 - Use the term **weak-vote-passive assessment** for the baseline belief assessment. Do not call it a refinement. The defense is informational: weak states do not observe `theta`, so their unilateral vote deviations do not directly signal `H`'s type; `H`'s own separating vote can update beliefs; on-path beliefs follow Bayes' rule.
-- State R1 as payoff-equivalence to `P`, `L`, or `R` under the maintained assessment, not as a uniqueness or all-PBE characterization.
-- For R1 rejected histories, use the rejected-history reduction lemma. It classifies proposer-relevant rejected outcomes: designed weak-caused failures reduce to `R`; the high-type rejection branch belongs to `L`; low-type rejection/high-type acceptance is ruled out by threshold order; weak-voter deviations in `P` and `L` are handled by approval ICs.
+- The `P`/`L`/`R` characterization and the rejected-history reduction lemma are
+  verified results for the v5 reference architecture, not primitives of the
+  clean immediate-opt-out reset. During that reset, treat them as historical
+  candidates and preserve them only if they are rederived under the new
+  extensive-form game. If they do survive, state R1 as a selected PBE outcome
+  payoff-equivalent to `P`, `L`, or `R` under the maintained assessment, not as
+  uniqueness or an all-PBE characterization. If they do not survive, record
+  that result in the survival matrix and use the new characterization rather
+  than imposing the old lemma.
 - Maintain implementer/reviewer separation: implementation agents edit; review agents do not edit.
 - For the clean-baseline reset, run two independent read-only review passes after implementation: one formal-model review and one adversarial math/game-theory audit. The implementer must not be either reviewer.
 - Entry by weak states is collective/all-or-nothing.
@@ -398,8 +430,13 @@ The wrapper validates `OPENROUTER_API_KEY` against the OpenRouter `/api/v1/key` 
 
 ## Next Session Context
 
+For the clean-baseline Goal 1, the canonical executable specification is
+`quality_reports/plans/2026-08-03-clean-baseline-goal.md`. Its Gate 0 timing,
+contract-space, implementation, and review rules control over the shorter
+historical summary below.
+
 Recommended opening prompt for a fresh session:
 
 ```text
-Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, formal_model_v6.Rmd, formal_model_v5.Rmd, quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md e quality_reports/2026-05-25_clean_baseline_priority.md. O alvo correto do próximo manuscrito é formal_model_v6.Rmd; formal_model_v5.Rmd é referência histórica da integração de 2026-05-15. Prioridade 1: antes de mexer no manuscrito v6, rederivar em model_redesign/power_architecture_derivations.Rmd o baseline limpo com b_theta=0 e opt-out imediato de H em R1: se H rejeita, nenhum acordo inclui H e o tipo theta recebe o_theta sem desconto. Trate delayed continuation dentro da IO, o caso hibrido max{o_theta,beta C_theta} e t_theta=d_theta-b_theta como extensões/microfundamentos. Preserve o protocolo adotado: o jogo é sequencial e público entre rodadas, mas dentro de cada ballot todos os não proponentes votam simultaneamente e os votos individuais só se tornam públicos após o fechamento; isso não é votação roll-call sequencial. Use paper-version/git tag workflow antes de qualquer reset substantivo, mas não crie tag enganosa em worktree suja. Preserve a linguagem de comparação institucional condicional, weak-state agenda pi_H=0 e weak-vote-passive assessment quando migrar para v6. A Proposição R1 deve ficar como selected PBE outcome payoff-equivalent to P/L/R, não como caracterização de todos os PBEs, salvo se a nova derivação provar outro enunciado. A prova de rejected histories v5 teve lema A+ revisado por dois agentes; preserve a distinção entre proposer-relevant rejected outcomes, weak-voter deviations handled by ICs, designed weak-caused failures, e H-caused failures se essa arquitetura sobreviver em v6. Após implementar o reset, dois revisores independentes e sem edição devem revisar: um com formal-model review e outro com adversarial math/game-theory audit.
+Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, formal_model_v6.Rmd, formal_model_v5.Rmd, quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md e quality_reports/2026-05-25_clean_baseline_priority.md. O alvo correto do próximo manuscrito é formal_model_v6.Rmd; formal_model_v5.Rmd é referência histórica da integração de 2026-05-15. Prioridade 1: antes de mexer no manuscrito v6, rederivar em model_redesign/power_architecture_derivations.Rmd o baseline limpo com b_theta=0 e opt-out imediato de H em R1: se H rejeita, nenhum acordo inclui H e o tipo theta recebe o_theta sem desconto. Trate delayed continuation dentro da IO, o caso hibrido max{o_theta,beta C_theta} e t_theta=d_theta-b_theta como extensões/microfundamentos. Preserve o protocolo adotado: o jogo é sequencial e público entre rodadas, mas dentro de cada ballot todos os não proponentes votam simultaneamente e os votos individuais só se tornam públicos após o fechamento; isso não é votação roll-call sequencial. Use paper-version/git tag workflow antes de qualquer reset substantivo, mas não crie tag enganosa em worktree suja. Preserve a linguagem de comparação institucional condicional, weak-state agenda pi_H=0 e weak-vote-passive assessment quando migrar para v6. Trate P/L/R e o rejected-history reduction lemma de v5 como candidatos históricos: preserve-os somente se forem rederivados no novo extensive form e, nesse caso, não alegue unicidade nem caracterização de todos os PBEs. Após implementar o reset, dois revisores independentes e sem edição devem revisar: um com formal-model review e outro com adversarial math/game-theory audit.
 ```
