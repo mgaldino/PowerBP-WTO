@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Goal 1 — Clean Immediate-Opt-Out Baseline</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Goal 1 — Clean Immediate-Opt-Out Baseline</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#goal-1-clean-immediate-opt-out-baseline"
+id="toc-goal-1-clean-immediate-opt-out-baseline">Goal 1: Clean
+Immediate-Opt-Out Baseline</a>
+<ul>
+<li><a href="#opção-curta" id="toc-opção-curta">Opção curta</a></li>
+<li><a href="#especificação-operacional"
+id="toc-especificação-operacional">Especificação operacional</a>
+<ul>
+<li><a href="#objetivo" id="toc-objetivo">Objetivo</a></li>
+<li><a href="#fontes-obrigatórias" id="toc-fontes-obrigatórias">Fontes
+obrigatórias</a></li>
+</ul></li>
+<li><a href="#gate--1-provenance-e-snapshot"
+id="toc-gate--1-provenance-e-snapshot">Gate -1: provenance e
+snapshot</a></li>
+<li><a href="#gate-0-contrato-completo-do-jogo"
+id="toc-gate-0-contrato-completo-do-jogo">Gate 0: contrato completo do
+jogo</a>
+<ul>
+<li><a href="#01-primitivos-obrigatórios"
+id="toc-01-primitivos-obrigatórios">0.1 Primitivos obrigatórios</a></li>
+<li><a href="#01a-horizonte-reconhecimento-e-unidades-temporais"
+id="toc-01a-horizonte-reconhecimento-e-unidades-temporais">0.1A
+Horizonte, reconhecimento e unidades temporais</a></li>
+<li><a href="#01b-espaço-de-propostas-orçamento-e-implementação"
+id="toc-01b-espaço-de-propostas-orçamento-e-implementação">0.1B Espaço
+de propostas, orçamento e implementação</a></li>
+<li><a href="#01c-entry-coletivo" id="toc-01c-entry-coletivo">0.1C Entry
+coletivo</a></li>
+<li><a href="#02-protocolo-de-votação-obrigatório"
+id="toc-02-protocolo-de-votação-obrigatório">0.2 Protocolo de votação
+obrigatório</a></li>
+<li><a href="#03-opt-out-e-classes-de-históricos"
+id="toc-03-opt-out-e-classes-de-históricos">0.3 Opt-out e classes de
+históricos</a></li>
+<li><a href="#04-crenças-ics-e-tie-breaks"
+id="toc-04-crenças-ics-e-tie-breaks">0.4 Crenças, ICs e
+tie-breaks</a></li>
+<li><a href="#05-entrega-e-teste-do-gate-0"
+id="toc-05-entrega-e-teste-do-gate-0">0.5 Entrega e teste do Gate
+0</a></li>
+<li><a href="#06-auditoria-independente-do-gate-0"
+id="toc-06-auditoria-independente-do-gate-0">0.6 Auditoria independente
+do Gate 0</a></li>
+</ul></li>
+<li><a href="#fase-1-rederivação-analítica"
+id="toc-fase-1-rederivação-analítica">Fase 1: rederivação
+analítica</a></li>
+<li><a href="#fase-2-verificações-reproduzíveis"
+id="toc-fase-2-verificações-reproduzíveis">Fase 2: verificações
+reproduzíveis</a></li>
+<li><a href="#fase-3-compilação-do-laboratório"
+id="toc-fase-3-compilação-do-laboratório">Fase 3: compilação do
+laboratório</a></li>
+<li><a href="#fase-4-revisão-independente-e-repair-loop"
+id="toc-fase-4-revisão-independente-e-repair-loop">Fase 4: revisão
+independente e repair loop</a></li>
+<li><a href="#non-goals" id="toc-non-goals">Non-goals</a></li>
+<li><a href="#definition-of-done" id="toc-definition-of-done">Definition
+of done</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="goal-1-clean-immediate-opt-out-baseline">Goal 1: Clean
+Immediate-Opt-Out Baseline</h1>
+<p><strong>Project:</strong> Informational Power Through Pivotality
+<strong>Date:</strong> 2026-08-03 <strong>Working document:</strong>
+<code>model_redesign/power_architecture_derivations.Rmd</code>
+<strong>Future manuscript target, outside this goal:</strong>
+<code>formal_model_v6.Rmd</code></p>
+<h2 id="opção-curta">Opção curta</h2>
+<p>Use este launcher no Codex:</p>
+<pre class="text"><code>/goal Leia integralmente quality_reports/plans/2026-08-03-clean-baseline-goal.md e execute a Especificação operacional. Considere o objetivo concluído somente quando o Gate 0 estiver formalmente fechado, o baseline limpo pi_H=0 e b_theta=0 com opt-out imediato o_theta estiver rederivado no model_redesign, todos os verificadores passarem, o documento autônomo compilar e os revisores independentes emitirem PASS sem ressalvas substantivas. Não edite formal_model_v6.Rmd.</code></pre>
+<h2 id="especificação-operacional">Especificação operacional</h2>
+<h3 id="objetivo">Objetivo</h3>
+<p>Rederivar, verificar e obter aprovação independente para o baseline
+limpo de informational power through pivotality. O baseline deve separar
+poder de outside option, poder de veto/pivotalidade e poder de agenda,
+sem importar fórmulas ou resultados da arquitetura anterior.</p>
+<p>O resultado final deste Goal é um laboratório formal estável e
+auditado, não uma nova versão do manuscrito. Não transportar resultados
+para <code>formal_model_v6.Rmd</code> durante este Goal.</p>
+<h3 id="fontes-obrigatórias">Fontes obrigatórias</h3>
+<p>Antes de editar, leia integralmente:</p>
+<ol type="1">
+<li><code>AGENTS.md</code>;</li>
+<li><code>CLAUDE.md</code>;</li>
+<li><code>model_redesign/README.md</code>;</li>
+<li><code>quality_reports/2026-05-25_clean_baseline_priority.md</code>;</li>
+<li><code>quality_reports/2026-05-11_common_voting_protocol_unanimity_majority.md</code>;</li>
+<li><code>quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md</code>;</li>
+<li><code>model_redesign/power_architecture_derivations.Rmd</code>;</li>
+<li><code>formal_model_v6.Rmd</code> e <code>formal_model_v5.Rmd</code>
+apenas como referências de claims, apresentação e história, não como
+fontes de fórmulas válidas para o novo baseline.</li>
+</ol>
+<p>O aviso de reset no topo de
+<code>model_redesign/power_architecture_derivations.Rmd</code> prevalece
+sobre os status e ledgers antigos existentes no corpo do arquivo.</p>
+<h2 id="gate--1-provenance-e-snapshot">Gate -1: provenance e
+snapshot</h2>
+<p>Antes de qualquer edição substantiva:</p>
+<ol type="1">
+<li>verifique o Git root e execute
+<code>git status --short --branch</code>;</li>
+<li>confirme que o snapshot pré-reset foi commitado e recebeu uma tag
+anotada aprovada pelo usuário;</li>
+<li>se houver mudanças não relacionadas, não faça reset, checkout,
+stash, sobrescrita ou inclusão automática dessas mudanças;</li>
+<li>se o snapshot/tag ainda não existir, pare e solicite autorização
+antes de criar a tag;</li>
+<li>registre no relatório do Goal o commit e a tag usados como baseline
+de proveniência;</li>
+<li>registre o hash inicial de <code>formal_model_v6.Rmd</code> para
+demonstrar ao final que o manuscrito permaneceu intocado.</li>
+</ol>
+<h2 id="gate-0-contrato-completo-do-jogo">Gate 0: contrato completo do
+jogo</h2>
+<p>Não comece as provas enquanto este Gate não estiver fechado. Produza
+no início do documento de derivações uma especificação autônoma do jogo
+e uma tabela de históricos de votação.</p>
+<h3 id="01-primitivos-obrigatórios">0.1 Primitivos obrigatórios</h3>
+<ul>
+<li>Há <code>N&gt;=3</code> Estados: um hegemon <code>H</code> e
+<code>m=N-1</code> weak states.</li>
+<li>Natureza escolhe <code>theta in {0,1}</code>. Somente <code>H</code>
+observa <code>theta</code>; os fracos compartilham prior
+<code>mu=Pr(theta=1) in [0,1]</code>. Faça a derivação bayesiana
+principal para <code>mu in (0,1)</code> e trate <code>mu=0,1</code>
+separadamente como casos degenerados ou limites.</li>
+<li>O surplus institucional disponível à coalizão fraca é fixo,
+conhecido e normalizado em 1. O tipo de <code>H</code> não altera esse
+pie.</li>
+<li>Uma proposta de weak proposer <code>i</code> contém um pacote de
+participação <code>y in [0,ybar]</code> para <code>H</code> e ofertas
+não negativas <code>x_j</code> a cada weak state <code>j!=i</code>. O
+proposer retém o residual definido em 0.1B.</li>
+<li>O baseline fixa <code>b_0=b_1=0</code>. Se o acordo inclui
+<code>H</code>, seu payoff corrente é <code>y</code>.</li>
+<li>O outside payoff <code>o_theta</code> é primitivo. Não impor no
+teorema limpo <code>o_theta=alpha V(theta)</code>; essa parametrização
+pertence a aplicação, ilustração ou microfundamento.</li>
+<li>Domínio inicial: <code>0&lt;=o_0&lt;o_1&lt;=ybar&lt;=1</code> e
+<code>beta in (0,1]</code>.</li>
+<li>Weak-state outside payoffs são normalizados em zero.</li>
+<li>O baseline fixa <code>pi_H=0</code> em todas as rodadas.
+<code>H</code> nunca é proposer.</li>
+<li>Primitivos, parâmetros, distribuições, regras de reconhecimento,
+contract space, protocolo de votação, quotas e tie-breaks são
+conhecimento comum.</li>
+<li>Conceito de solução: PBE, com o escopo exato declarado em cada
+resultado.</li>
+</ul>
+<h3 id="01a-horizonte-reconhecimento-e-unidades-temporais">0.1A
+Horizonte, reconhecimento e unidades temporais</h3>
+<ul>
+<li>O baseline tem exatamente duas rodadas, R1 e R2. Não há R3. Natureza
+sorteia <code>theta</code> antes de R1, o tipo persiste e somente
+<code>H</code> o observa.</li>
+<li>Em cada rodada alcançada, um novo reconhecimento é sorteado
+publicamente. Cada um dos <code>m</code> weak states é reconhecido com
+probabilidade <code>1/m</code>, independentemente do reconhecimento
+anterior, de <code>theta</code> e da história, condicional ao fato de a
+rodada ser alcançada. <code>H</code> tem probabilidade zero.</li>
+<li>R1 define a unidade de payoff. Todo fluxo realizado em R2 é
+multiplicado por <code>beta</code> quando expresso em unidades de R1. Um
+opt-out de <code>H</code> em R1 paga <code>o_theta</code> imediatamente
+e, portanto, sem <code>beta</code>.</li>
+<li>R2 é terminal. Se <code>H</code> ainda está ativo e o ballot de R2
+falha, <code>H</code> recebe <code>o_theta</code> na data de R2,
+qualquer que tenha sido seu voto; em unidades de R1, isso vale
+<code>beta*o_theta</code>. Os weak states recebem zero. Se
+<code>H</code> vota não em R2, esse pagamento é seu opt-out terminal,
+não um pagamento adicional.</li>
+<li>Se <code>H</code> já exerceu opt-out em R1, recebe
+<code>o_theta</code> uma única vez e não recebe qualquer fluxo de R2.
+Uma falha terminal weak-only dá zero aos weak states.</li>
+<li>Se <code>H</code> permanece, o eleitorado continua sendo os
+<code>N</code> Estados. Depois do opt-out, somente os <code>m</code>
+weak states permanecem ativos, mas a quota institucional de maioria
+continua sendo a quota original <code>q=floor(N/2)+1</code>; ela não é
+recalculada sobre <code>m</code>. Como a unanimidade exige
+<code>N</code> votos, opt-out de <code>H</code> torna qualquer acordo
+unanimista futuro impossível e esse ramo termina.</li>
+</ul>
+<h3 id="01b-espaço-de-propostas-orçamento-e-implementação">0.1B Espaço
+de propostas, orçamento e implementação</h3>
+<ul>
+<li>O mesmo espaço de propostas vale em R1 e R2 e sob ambas as regras,
+salvo a restrição explícita <code>y=0</code> depois do opt-out de
+<code>H</code>.</li>
+<li>Enquanto <code>H</code> está ativo, toda proposta contém a oferta
+condicional <code>y</code>; não há indicador oculto adicional de
+inclusão. <code>H</code> é incluído se e somente se vota sim e o acordo
+passa. Um acordo passa sem <code>H</code> quando <code>H</code> vota não
+e a quota majoritária é atingida pelos weak states.</li>
+<li>O outside payoff <code>o_theta</code> é externo ao pie
+institucional: nunca é subtraído do surplus fraco e nunca pode ser
+somado a <code>y</code> para <code>H</code> no mesmo histórico.</li>
+<li>Se <code>H</code> participa, a identidade orçamentária é
+<code>y + sum_{j!=i} x_j + x_i = 1</code>, onde
+<code>x_i = 1-y-sum_{j!=i}x_j &gt;= 0</code> é o residual do weak
+proposer.</li>
+<li>As ofertas <code>x_j</code> são implementadas para os weak states
+nomeados sempre que o acordo passa, independentemente do voto individual
+de cada recebedor. O proposer escolhe quem recebe oferta e pode fixar
+zero para os demais.</li>
+<li><code>y</code> é condicional à participação de <code>H</code>. Se
+<code>H</code> vota sim e a quota é atingida, <code>H</code> participa e
+recebe <code>y</code>; o residual do proposer é <code>x_i</code>.</li>
+<li>Se <code>H</code> vota não e a quota de maioria é atingida apenas
+com votos fracos, <code>H</code> sai, recebe <code>o_theta</code>
+externamente e <code>y</code> não é implementado. As ofertas
+<code>x_j</code> permanecem e o weak proposer reabsorve a parcela
+condicional, recebendo <code>1-sum_{j!=i}x_j = x_i+y</code>. Não queime
+<code>y</code> nem pague <code>y+o_theta</code> a <code>H</code>.</li>
+<li>Depois de opt-out anterior de <code>H</code>, qualquer proposta
+weak-only fixa <code>y=0</code> e satisfaz
+<code>sum_{j!=i}x_j+x_i=1</code>.</li>
+<li>Se o ballot falha, nenhuma oferta corrente <code>x_j</code> e nenhum
+<code>y</code> são implementados. Aplicam-se apenas os payoffs de
+opt-out, continuação ou término definidos para aquele histórico.</li>
+</ul>
+<p>Essas regras tornam o pacote contingente somente à participação
+observável de <code>H</code>, não ao tipo privado. O Gate 0 deve
+verificar se esse contract space é coerente com todos os desvios. Se uma
+inconsistência exigir outra regra de implementação, marque
+<code>pending protocol decision</code> e peça decisão do usuário; não
+escolha entre cancelamento, queima ou reatribuição de <code>y</code>
+dentro da prova.</p>
+<h3 id="01c-entry-coletivo">0.1C Entry coletivo</h3>
+<ul>
+<li>A regra institucional <code>R in {U,M}</code> é fixada exogenamente
+para cada comparação; não há escolha endógena de regra neste Goal.</li>
+<li>Depois de Natureza sortear <code>theta</code>, mas antes do
+reconhecimento de R1, a coalizão dos <code>m</code> weak states toma uma
+única decisão coletiva e all-or-nothing de formar a instituição. Os
+fracos não observam <code>theta</code> e decidem usando <code>mu</code>;
+<code>H</code> observa o tipo, mas não toma ação na etapa de formação.
+Este é um primitivo coletivo, não um jogo simultâneo de entrada
+individual.</li>
+<li>Se formar, cada weak state incorre em custo externo e afundado
+<code>chi&gt;=0</code>, que não reduz o pie de valor 1. A barganha então
+começa.</li>
+<li>Se não formar, cada weak state recebe zero e <code>H</code> recebe
+<code>o_theta</code>. <code>H</code> não vota sobre formação.</li>
+<li>Como a decisão de formação é coletiva, defina o payoff bruto
+relevante como a média per capita dos payoffs fracos:
+<code>V_W^R(mu)=(1/m) E[sum_{j=1}^m u_j^R | formation]</code>,
+integrando tipo, reconhecimento e eventual seleção de parceiros de
+coalizão. A instituição se forma se <code>V_W^R(mu)-chi&gt;=0</code>; em
+empate, forma. Não interprete essa regra coletiva como prova de que todo
+weak state individualmente prefere entrar sem antes fornecer uma seleção
+simétrica entre coalizões. Não derive nesting ou classificação antes de
+verificar esse objeto a partir dos payoffs do jogo.</li>
+</ul>
+<h3 id="02-protocolo-de-votação-obrigatório">0.2 Protocolo de votação
+obrigatório</h3>
+<ul>
+<li>A barganha é sequencial e pública entre rodadas: proposta, ballot,
+publicação do vetor completo de votos e do resultado, seguida de
+eventual continuação.</li>
+<li>Dentro de cada ballot, todos observam a proposta e a história
+pública; <code>H</code> também conhece <code>theta</code>. O proposer
+conta como voto favorável e todos os demais jogadores ativos votam
+simultaneamente.</li>
+<li>Os votos individuais são revelados somente depois que todos
+votaram.</li>
+<li>Unanimidade e maioria usam o mesmo ballot; apenas a quota muda.</li>
+<li>Unanimidade exige <code>N</code> votos favoráveis.</li>
+<li>Maioria exige <code>q=floor(N/2)+1</code> votos favoráveis.</li>
+<li>Não reinterpretar este protocolo como roll-call sequencial.</li>
+</ul>
+<h3 id="03-opt-out-e-classes-de-históricos">0.3 Opt-out e classes de
+históricos</h3>
+<p>Use as seguintes regras como contrato inicial. Se alguma delas gerar
+inconsistência, não a altere silenciosamente: marque
+<code>pending protocol decision</code>, explique a consequência
+substantiva e solicite decisão do usuário.</p>
+<ol type="1">
+<li><p><strong>Acordo corrente que inclui H e passa.</strong> Se
+<code>H</code> vota sim e a quota é atingida, o acordo é implementado.
+<code>H</code> recebe <code>y</code>; os weak states recebem
+<code>x_j</code> e o proposer retém o residual. Em R2, todos esses
+fluxos valem <code>beta</code> em unidades de R1.</p></li>
+<li><p><strong>H vota não.</strong> O voto não de tipo
+<code>theta</code> exerce um opt-out imediato e irreversível: nenhum
+acordo presente ou futuro pode incluir <code>H</code>, e <code>H</code>
+recebe <code>o_theta</code> na data do voto, sem opção adicional
+<code>beta C_theta</code>. Em R1, isso vale <code>o_theta</code> sem
+desconto; em R2, vale <code>beta*o_theta</code> quando expresso em
+unidades de R1.</p></li>
+<li><p><strong>H-no em R1 sob unanimidade.</strong> O ballot falha. Como
+o opt-out impede a reinclusão de <code>H</code> e unanimidade mantém
+quota <code>N</code>, o ramo institucional termina imediatamente; os
+weak states recebem zero.</p></li>
+<li><p><strong>H-no sob maioria, quota atingida pelos fracos.</strong> O
+acordo weak-only passa sem <code>H</code>. <code>H</code> recebe
+<code>o_theta</code> externamente; a coalizão fraca recebe o payoff do
+acordo conforme as ofertas <code>x_j</code>, e o proposer reabsorve o
+<code>y</code> condicional conforme 0.1B. Se isso ocorre em R2, todos os
+fluxos da data de R2 são multiplicados por <code>beta</code> quando
+expressos em unidades de R1.</p></li>
+<li><p><strong>H-no em R1 sob maioria, quota não atingida.</strong>
+<code>H</code> sai e recebe <code>o_theta</code> imediatamente. O jogo
+segue obrigatoriamente para R2 weak-only, usa <code>pi_H=0</code>,
+mantém a quota original <code>q</code> e não pode reincluir
+<code>H</code>. Os valores dos fracos nessa continuação devem ser
+derivados, não impostos.</p></li>
+<li><p><strong>H-yes em R1 com falha causada apenas por weak
+votes.</strong> <code>H</code> não exerceu opt-out. O jogo segue
+obrigatoriamente para R2 sob a mesma regra institucional, com
+<code>pi_H=0</code> e <code>H</code> ainda presente. Os payoffs de R2
+são descontados por <code>beta</code>. Esse ramo permite testar, sem
+presumir, se o candidato de rejection/continuation e o rejected-history
+reduction lemma sobrevivem.</p></li>
+<li><p><strong>Rejeição conjunta em R1 de H e weak voters.</strong> O
+opt-out de <code>H</code> é definitivo. Sob unanimidade, o ramo termina
+e os weak states recebem zero. Sob maioria, se a quota não foi atingida,
+R2 é weak-only, mantém <code>q</code>, e não pode reincluir nem
+remunerar <code>H</code>.</p></li>
+<li><p><strong>Vetor que já alcança a quota.</strong> Não classificar
+como falha apenas porque <code>H</code> votou não. Sob maioria, o
+resultado depende da quota, não da inclusão de <code>H</code>.</p></li>
+<li><p><strong>Falha em R2 com H ainda presente.</strong> R2 é terminal.
+Nenhuma alocação corrente é implementada; <code>H</code> recebe
+<code>o_theta</code> na data de R2 e os weak states recebem zero. Isso
+também cobre <code>H</code>-yes seguido de falha causada por votos
+fracos; <code>H</code> não recebe <code>y</code> porque não houve
+acordo.</p></li>
+<li><p><strong>Acordo em R2 weak-only.</strong> Se os votos dos
+jogadores ativos alcançam a quota original <code>q</code>, o acordo
+passa com <code>y=0</code>. Os weak states recebem as ofertas
+<code>x_j</code>, o proposer retém o residual, e esses payoffs são
+multiplicados por <code>beta</code> em unidades de R1. <code>H</code>,
+já remunerado pelo opt-out de R1, não recebe nada adicional.</p></li>
+<li><p><strong>Falha em R2 weak-only.</strong> Se os votos ativos não
+alcançam <code>q</code>, o jogo termina, os weak states recebem zero e
+<code>H</code>, já remunerado pelo opt-out de R1, não recebe nada
+adicional.</p></li>
+</ol>
+<p>O cutoff direto <code>y_theta^*=o_theta</code> deve ser derivado
+somente em um ballot no qual, sob as estratégias dos weak voters, o voto
+sim de <code>H</code> leva com probabilidade 1 à implementação corrente
+de um acordo que o inclui e o voto não leva ao opt-out imediato. Ele não
+é uma regra global de votação. Como os votos são simultâneos,
+<code>H</code> não pode condicionar seu voto aos votos fracos ainda não
+observados. Em qualquer information set no qual falha causada pelos
+fracos tenha probabilidade positiva, derive a IC esperada de
+<code>H</code> comparando os payoffs de implementação, opt-out e
+continuação induzidos por cada voto. Não atribua a <code>H</code> uma
+nova decisão depois de observar o vetor já realizado.</p>
+<h3 id="04-crenças-ics-e-tie-breaks">0.4 Crenças, ICs e tie-breaks</h3>
+<ul>
+<li>Crenças on-path seguem Bayes após a publicação do vetor completo de
+votos.</li>
+<li>Use a expressão <strong>weak-vote-passive assessment</strong>. Ela é
+uma avaliação mantida do protocolo, não refinement, D1, Intuitive
+Criterion, sequential equilibrium restriction ou caracterização de todos
+os PBEs.</li>
+<li>Desvios unilaterais dos weak states não são tratados como sinais
+diretos de <code>theta</code>, pois eles não observam o tipo de
+<code>H</code>.</li>
+<li>Após qualquer vetor com desvio de weak voter, o posterior sobre
+<code>theta</code> deve ser o implicado pela proposta pública e pela
+estratégia/voto simultâneo de <code>H</code>, não pelo desvio de um
+jogador sem informação privada.</li>
+<li>Um voto separador de <code>H</code> pode atualizar crenças quando o
+ramo continua e a crença ainda é payoff-relevant.</li>
+<li>Em qualquer continuação de probabilidade zero na qual <code>H</code>
+permaneça ativo, declare a crença off-path necessária e mostre quais
+resultados dependem dela. Não escolha crença ad hoc para eliminar um
+ramo e não apresente um resultado condicionado a essa crença como
+caracterização de todos os PBEs.</li>
+<li>Depois que <code>H</code> exerce opt-out, <code>theta</code> deixa
+de ser payoff-relevant para a continuação weak-only. Registre o payoff
+já realizado de <code>H</code>, mas não invente posterior para resolver
+uma continuação que não depende do tipo.</li>
+<li>Verifique approval ICs, participation ICs e racionalidade sequencial
+em cada classe de histórico. Não use uma crença ou payoff de continuação
+antes de defini-lo.</li>
+<li>Formule a estratégia de voto de cada jogador no information set
+anterior ao fechamento do ballot. Históricos ex post servem para definir
+payoffs, posteriores e continuações, não para permitir condicionamento a
+votos simultâneos ainda não observados.</li>
+<li>Jogadores votam sim quando indiferentes.</li>
+<li>Entre propostas que maximizam o payoff do weak proposer, o tie-break
+minimiza o payoff esperado de <code>H</code>.</li>
+<li>Não introduza outro tie-break para fechar uma prova. Se necessário,
+marque <code>pending protocol decision</code> e peça decisão.</li>
+</ul>
+<h3 id="05-entrega-e-teste-do-gate-0">0.5 Entrega e teste do Gate 0</h3>
+<p>Inclua uma tabela exaustiva com, no mínimo, estas colunas:</p>
+<pre class="text"><code>round | regra | jogadores ativos | quota | quota atingida? | voto de H
+oferta de participação a H? | causa da falha | H incluído? | H permanece?
+y implementado? | destino de y
+payoff de H | payoff dos fracos | fator de desconto | posterior relevante
+terminal ou continuação | próximo subgame</code></pre>
+<p>O Gate 0 somente recebe <code>PASS</code> se:</p>
+<ul>
+<li>todas as classes acima tiverem payoffs e continuação definidos;</li>
+<li>não houver dupla remuneração de <code>H</code>;</li>
+<li>nenhum acordo posterior reincluir <code>H</code> depois do
+opt-out;</li>
+<li>nenhuma fórmula <code>beta C_theta</code> ou
+<code>beta D_theta</code> for usada como payoff do próprio voto
+não/opt-out de <code>H</code>, e <code>t_theta=d_theta-b_theta</code> ou
+<code>y+b_theta</code> não forem rotulados como baseline. É legítimo que
+<code>H</code>-yes seguido de falha fraca produza <code>beta</code>
+vezes um valor de R2; não confunda essa continuação com o payoff de
+opt-out;</li>
+<li>o mesmo protocolo de ballot for usado sob unanimidade e
+maioria;</li>
+<li>a quota e o eleitorado depois do opt-out estiverem definidos;</li>
+<li>todas as identidades orçamentárias fecharem em ramos H-including e
+weak-only;</li>
+<li>a IC de <code>H</code> for definida em cada information set de
+votação e integrar os possíveis vetores simultâneos, sem aplicar
+<code>y_theta^*=o_theta</code> globalmente;</li>
+<li>crenças estiverem definidas em toda continuação na qual
+<code>theta</code> permaneça payoff-relevant, com dependências off-path
+declaradas;</li>
+<li>nenhum resultado de equilíbrio tiver sido presumido como
+primitivo.</li>
+</ul>
+<p>Registre o resultado em
+<code>quality_reports/2026-08-03_clean_baseline_goal1_status.md</code>.
+Se o Gate 0 não passar, não prossiga para as provas.</p>
+<h3 id="06-auditoria-independente-do-gate-0">0.6 Auditoria independente
+do Gate 0</h3>
+<p>O implementador pode preparar o contrato e os testes, mas não pode
+atribuir o <code>PASS</code> final ao próprio Gate 0. Antes da Fase
+1:</p>
+<ol type="1">
+<li>fixe a especificação e a tabela de históricos em um commit
+candidato;</li>
+<li>designe um revisor read-only que não tenha editado os arquivos;</li>
+<li>peça uma auditoria do extensive form, cobrindo timing, ações,
+informação, reconhecimento, quotas, implementação, orçamento, payoffs
+terminais, unidades temporais, crenças e definição das ICs;</li>
+<li>se o veredito for <code>REPAIR</code>, o implementador corrige e o
+mesmo estado corrigido é rerevisado;</li>
+<li>prossiga para provas somente após <code>PASS</code> sem ressalva
+substantiva e registre parecer, commit e respostas no relatório do
+Goal.</li>
+</ol>
+<h2 id="fase-1-rederivação-analítica">Fase 1: rederivação analítica</h2>
+<p>Depois do Gate 0, rederive na seguinte ordem:</p>
+<ol type="1">
+<li>feasibility, budget identities e payoffs terminais;</li>
+<li>Round 2 sob unanimidade para os ramos em que <code>H</code>
+permanece;</li>
+<li>Round 2 weak-only sob maioria após opt-out, se esse ramo for
+alcançável;</li>
+<li>participation e approval ICs de Round 1;</li>
+<li>conjunto completo de accepted e rejected outcomes relevantes sob
+unanimidade;</li>
+<li>pooling, low-only e rejection/continuation apenas se forem
+admissíveis no novo jogo;</li>
+<li>exaustão de desvios e papel residual da weak-vote-passive
+assessment;</li>
+<li>majority/no-screening e a condição No-Cheap-H rederivada sob
+<code>o_theta</code> primitivo;</li>
+<li>entry/nesting;</li>
+<li>payoff de <code>H</code>, comparação institucional e classificação,
+somente se os resultados anteriores estiverem provados.</li>
+</ol>
+<p>Não preserve automaticamente <code>P</code>, <code>L</code>,
+<code>R</code>, No-Cheap-H, nesting ou a classificação anterior. Produza
+uma matriz de sobrevivência:</p>
+<pre class="text"><code>resultado antigo | sobrevive | muda | desaparece | vira extensão | evidência</code></pre>
+<p>Cada resultado deve apresentar:</p>
+<ul>
+<li>domínio e quantificadores;</li>
+<li>hipóteses usadas, nominalmente;</li>
+<li>conclusão exata e escopo de equilíbrio;</li>
+<li>intuição informal antes da prova;</li>
+<li>prova em passos ou claims numerados;</li>
+<li>casos de fronteira e empates;</li>
+<li>status: <code>proved</code>, <code>checked numerically</code>,
+<code>conjecture</code>, <code>pending</code> ou
+<code>rejected</code>.</li>
+</ul>
+<h2 id="fase-2-verificações-reproduzíveis">Fase 2: verificações
+reproduzíveis</h2>
+<p>Mantenha computação em scripts R separados. Não sobrescreva
+silenciosamente os verificadores da arquitetura de continuação
+descontada. Prefira nomes como:</p>
+<pre class="text"><code>scripts/verify_clean_optout_protocol_piH0.R
+scripts/verify_clean_optout_R2_piH0.R
+scripts/verify_clean_optout_R1_piH0.R
+scripts/verify_clean_optout_majority_piH0.R
+scripts/verify_clean_optout_entry_nesting_piH0.R
+scripts/verify_clean_optout_classification_piH0.R
+scripts/verify_clean_optout_margins_piH0.R
+scripts/verify_clean_optout_robustness_piH0.R</code></pre>
+<p>Nos scripts:</p>
+<ul>
+<li>usar <code>dplyr::select</code> ao selecionar colunas;</li>
+<li>testar endpoints, ties, feasibility, threshold order e
+denominadores;</li>
+<li>separar prova analítica de grid checks;</li>
+<li>usar exemplos internos e não boundary;</li>
+<li>registrar inputs, outputs, data e status;</li>
+<li>falhar com exit não zero quando uma condição obrigatória
+falhar;</li>
+<li>não tratar uma checagem numérica como prova universal.</li>
+</ul>
+<p>Lean pode verificar álgebra, inequalities e thresholds internamente,
+mas não deve ser citado no paper nem usado para alegar uma
+caracterização de PBE que não foi formalizada.</p>
+<h2 id="fase-3-compilação-do-laboratório">Fase 3: compilação do
+laboratório</h2>
+<p>Compile o documento autônomo pela configuração YAML:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;model_redesign/power_architecture_derivations.Rmd&quot;</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_format =</span> <span class="st">&quot;all&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Valide pelo menos:</p>
+<ul>
+<li>execução bem-sucedida de todos os novos scripts com
+<code>Rscript --vanilla</code>;</li>
+<li><code>git diff --check</code>;</li>
+<li>existência e page count do PDF;</li>
+<li>extração de texto com <code>pdftotext</code>;</li>
+<li>referências cruzadas e equações sem warnings materiais;</li>
+<li>inspeção visual das páginas alteradas.</li>
+</ul>
+<h2 id="fase-4-revisão-independente-e-repair-loop">Fase 4: revisão
+independente e repair loop</h2>
+<p>Quem implementa não revisa. Quem revisa não edita.</p>
+<p>Depois de a implementação estar fixada em um commit, execute em
+paralelo:</p>
+<ol type="1">
+<li><strong>Formal-model reviewer</strong>, usando
+<code>review-formal-model</code> ou workflow equivalente, com foco em
+primitivas, baseline/extensões, claim discipline e exposição
+técnica.</li>
+<li><strong>Adversarial game-theory reviewer</strong>, usando
+<code>game-theory-audit</code>, com foco em PBE, crenças, ICs,
+pivotalidade, outside option, opt-out, desvios e multiplicidade.</li>
+<li><strong>R reviewer</strong>, usando <code>review-r</code>, para
+todos os scripts novos ou alterados.</li>
+</ol>
+<p>Salvar os pareceres completos em <code>quality_reports/</code>, com
+commit revisado, veredito e achados classificados como críticos,
+maiores, menores ou editoriais.</p>
+<p>Se qualquer revisor emitir <code>REPAIR</code> ou encontrar problema
+substantivo:</p>
+<ol type="1">
+<li>o implementador corrige;</li>
+<li>registra uma matriz
+<code>finding | resposta | arquivo/linha | teste</code>;</li>
+<li>cria novo commit de candidato;</li>
+<li>os revisores, sem editar, fazem rerevisão do novo estado;</li>
+<li>repetir até os revisores emitirem <code>PASS</code> sem ressalvas
+substantivas.</li>
+</ol>
+<p>Comentários de revisor não são automaticamente verdadeiros nem
+automaticamente adotados: devem ser avaliados contra as primitivas e
+respondidos explicitamente.</p>
+<h2 id="non-goals">Non-goals</h2>
+<ul>
+<li>Não editar <code>formal_model_v6.Rmd</code> ou
+<code>formal_model_v6.pdf</code>.</li>
+<li>Não editar <code>formal_model_v5.Rmd</code>; ele é referência
+histórica.</li>
+<li>Não reintroduzir feasibility/C-B-R, A/C/R nem o reconhecimento
+antigo que dava probabilidade positiva a <code>H</code> (por exemplo,
+<code>1/N</code>) como baseline. O sorteio uniforme <code>1/m</code>
+apenas entre weak proposers é parte obrigatória do baseline
+<code>pi_H=0</code>, não o random-recognition branch arquivado.</li>
+<li>Não usar <code>b_theta</code>, delayed continuation, o híbrido
+<code>max{o_theta,beta C_theta}</code> ou
+<code>t_theta=d_theta-b_theta</code> como payoff do voto não/opt-out no
+baseline. Uma continuação legítima após <code>H</code> votar sim e uma
+falha fraca pode conter <code>beta</code> vezes o valor de R2.</li>
+<li>Neste Goal, apenas segregue e rotule essas extensões ou a história
+diagnóstica; não tente rederivá-las.</li>
+<li>Não resolver <code>pi_H&gt;0</code> neste Goal.</li>
+<li>Não criar rule-choice endógeno ou signaling da escolha da
+regra.</li>
+<li>Não chamar weak-vote-passive assessment de refinement.</li>
+<li>Não alegar unicidade, all-PBE characterization ou global dominance
+sem prova.</li>
+<li>Não usar working numerical illustration como empirical
+calibration.</li>
+<li>Não remover um ramo por hipótese ad hoc. Prove que não é equilíbrio,
+mantenha-o ou marque-o como pendente.</li>
+<li>Não otimizar a apresentação do manuscrito antes de estabilizar as
+provas.</li>
+</ul>
+<h2 id="definition-of-done">Definition of done</h2>
+<p>O Goal 1 somente está concluído quando todos os itens abaixo forem
+verdadeiros:</p>
+<ol type="1">
+<li>Gate -1 registra commit e tag de proveniência aprovados.</li>
+<li>Gate 0 recebeu <code>PASS</code> de revisor independente e contém
+tabela exaustiva de históricos, payoffs, crenças e continuações.</li>
+<li>O baseline usa globalmente <code>pi_H=0</code>,
+<code>b_theta=0</code>, payoff de acordo <code>y</code> e opt-out
+imediato <code>o_theta</code>. O threshold
+<code>y_theta^*=o_theta</code> foi derivado apenas no information set em
+que, dadas as estratégias fracas, <code>H</code>-yes implementa com
+certeza o acordo corrente; as demais ICs simultâneas foram derivadas a
+partir dos payoffs esperados efetivos.</li>
+<li>Delayed continuation e outras arquiteturas aparecem apenas como
+extensões claramente separadas ou história diagnóstica.</li>
+<li>Todos os resultados promovidos estão provados analiticamente e têm
+status fiel; checagens numéricas estão rotuladas como checagens.</li>
+<li>A matriz de sobrevivência dos resultados antigos está completa.</li>
+<li>Todos os scripts novos passam e receberam revisão R
+independente.</li>
+<li>O documento autônomo compila em HTML e PDF e passa nas verificações
+textual e visual.</li>
+<li>Os dois revisores formais emitiram <code>PASS</code> sem ressalvas
+substantivas sobre o mesmo estado final.</li>
+<li>O relatório
+<code>quality_reports/2026-08-03_clean_baseline_goal1_status.md</code>
+registra comandos, outputs, commits, reviewers, findings, respostas,
+limitações e resultados ainda pendentes.</li>
+<li>Os hashes inicial e final confirmam que
+<code>formal_model_v6.Rmd</code> permaneceu sem alterações durante o
+Goal.</li>
+</ol>
+<p>Não marcar o Goal como completo se houver
+<code>pending protocol decision</code> que afete um teorema do baseline,
+teste obrigatório falhando, revisor em <code>REPAIR</code>, status de
+prova superestimado ou migração prematura para o manuscrito.</p>
+</body>
+</html>
