@@ -20,15 +20,32 @@ fontsize: 11pt
 
 # Status
 
-This is the clean working surface for the reimplemented model architecture.
+**Reset warning (2026-08-03): the clean immediate-opt-out baseline is not yet
+implemented in this document.** The body below still contains the
+pre-2026-05-25 delayed-continuation architecture, including
+`U_H(y,theta)=y+b_H(theta)` and Round-1 rejection payoffs based on discounted
+continuation values. Its theorem table, result statuses, and proof ledger are
+therefore historical inputs to the next derivation, not certification of the
+clean baseline. Goal 1 must rederive the baseline with `b_theta=0`, immediate
+rejection payoff `o_theta`, and threshold `y_theta^*=o_theta` before any result
+is transported to `formal_model_v6.Rmd`.
+
+The adopted voting protocol is unchanged by that reset: bargaining stages are
+sequential and public across rounds, while all non-proposers vote
+simultaneously within each ballot and individual votes are revealed only after
+the ballot closes. This is not sequential roll-call voting.
+
+This is the designated working surface for the reimplemented model
+architecture.
 The prior feasibility-branch derivation has been archived in git tag
 `redesign-feasibility-branch-2026-05-11`. Do not import theorem statements,
 notation, or branch labels from that archived architecture without rederiving
 them here.
 
-The active manuscript `formal_model_v5.Rmd` remains frozen. New formal work
-should be developed in this file first, checked by scripts, independently
-verified, and only then transported to the paper.
+The target manuscript `formal_model_v6.Rmd` remains frozen for new theorem
+architecture. New formal work should be developed in this file first, checked
+by scripts, independently verified, and only then transported to the paper.
+`formal_model_v5.Rmd` remains reference history.
 
 ## Architecture Decision
 

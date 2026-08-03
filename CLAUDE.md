@@ -20,6 +20,14 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 - **Prioridade 1 para a próxima prova (2026-05-25)**: antes de mexer no manuscrito v6, recentrar o próximo proof pass no baseline limpo documentado em `quality_reports/2026-05-25_clean_baseline_priority.md`: `b_theta = 0` e opt-out imediato de `H` em R1. Se `H` rejeita, nenhum acordo inclui `H` e o tipo `theta` recebe `o_theta` sem desconto. A interpretação atual de delayed continuation dentro da IO, o caso híbrido `max{o_theta,beta C_theta}` e a decomposição `t_theta = d_theta - b_theta` devem virar extensões/microfundamentos. Refaça primeiro em `model_redesign/power_architecture_derivations.Rmd`; só depois migre para `formal_model_v6.Rmd`.
 - **Arquivo histórico**: a derivação feasibility/C-B-R foi preservada na tag `redesign-feasibility-branch-2026-05-11`. É história diagnóstica, não arquitetura atual.
 - **Disciplina de protocolo**: não impor pooling, delay, rejeição, crenças off-path, ordem de votação, espaço contratual ou protocolo de continuação dentro de uma prova. Se uma prova precisar de novo protocolo, marcar `pending protocol decision`, explicar consequências substantivas e obter aprovação explícita antes de prosseguir.
+- **Protocolo de votação adotado**: a barganha é sequencial e pública entre
+  rodadas — proposta, ballot, publicação do vetor completo de votos e do
+  resultado, seguida de eventual continuação. Dentro de cada ballot, porém, o
+  proponente conta como voto favorável, todos os demais Estados votam
+  simultaneamente e os votos individuais só são revelados após o fechamento.
+  Portanto, “sequencial e pública” não significa roll-call sequencial. Uma
+  extensão roll-call, na qual eleitores posteriores observam votos anteriores,
+  exige ordem explícita e nova derivação de crenças e incentivos.
 - **Status do paper**: `formal_model_v6.Rmd` é o alvo correto do próximo manuscrito. `formal_model_v5.Rmd` já recebeu o baseline fixed-pie `pi_H=0` e serve como referência histórica. Não reintroduzir branch labels antigos `A/C/R`, `C-B-R` ou linguagem random-proposer/H-proposer no corpo de v6.
 - **Paper v4** (ARQUIVO): `formal_model_v4.Rmd` — versão com BP como co-protagonista. Preservada intacta.
 - **Paper v2** (ARQUIVO): `formal_model_v2.Rmd` — versão densa com provas no corpo.
@@ -31,19 +39,51 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 
 ## Especificação do Modelo
 
-- **N jogadores** (N genérico, nunca N=3): 1 hegemon H + N-1 weak states W
-- **Pie**: V(θ) ∈ {1, r}, r > 1. H observa θ, W's não.
-- **d_W = 0** (normalização WLOG), **d_H = αV(θ)**, α ∈ (0, 1/r)
-- **Arquitetura antiga**: proposta aleatória (1/N) sob ambas as regras. Essa arquitetura gerou um ramo `H`-proposer sob unanimidade com payoff selection-dependent fora de accepted pooling.
-- **Arquitetura nova recomendada**: introduzir `pi_H` como probabilidade de reconhecimento de `H`. No baseline, `pi_H = 0`, então o proposer é sorteado apenas entre os `N-1` weak states. `H` não é agenda setter no modelo principal; é veto player informado sob unanimidade. Os casos `pi_H = 1/N` e `pi_H > 1/N` entram como extensões/robustez.
-- **Arquitetura 2026-05-11, rebaixada a extensão pela prioridade 2026-05-25**: propostas são pacotes institucionais relativos, não transferências fixas. Use `y` como concessão institucional a `H` e `b_H(theta)` como benefício direto do acordo para `H` apenas na extensão/microfundamento. A participação dinâmica `y+b_H(theta) >= beta C_H(theta,mu')` não deve carregar o próximo baseline.
-- **Prioridade 2026-05-25 para a próxima derivação**: simplificar o baseline para `b_theta=0` e opt-out imediato de `H` em R1, com payoff de rejeição `o_theta` sem desconto. Tratar `b_H(theta)`, delayed continuation e o híbrido `max{o_theta,beta C_theta}` como extensões que modulam o mecanismo, não como baseline.
-- **Barganha**: 2 rounds Baron-Ferejohn, discount β
-- **Conceito de solução**: PBE
+- **Status desta seção**: o baseline abaixo é o contrato-alvo do Goal 1 e ainda
+  precisa ser rederivado. Fórmulas históricas não são resultados do baseline
+  limpo.
 
-### Comparação institucional
-- **Unanimidade**: W deve incluir H; sob condições a rederivar, isso pode gerar screening/pooling e renda informacional para `H`
-- **Maioria**: W exclui H da coalizão, H captura αV(θ) bilateralmente → sem screening → V_H = λ_M · V_e(μ), afim
+### Baseline limpo a rederivar
+
+- **N jogadores**: um hegemon `H` e `N-1` weak states, com `N` genérico.
+- **Surplus institucional dos fracos**: fixo e normalizado em 1; o tipo privado
+  não altera esse pie.
+- **Pacote relativo**: `y` é uma concessão institucional a `H` e reduz o
+  residual dos fracos um-para-um.
+- **Payoff de H no acordo**: `y`, pois `b_theta=0` no baseline.
+- **Opt-out de H**: se o tipo `theta` rejeita em R1, recebe `o_theta`
+  imediatamente, sem desconto; `o_theta` é primitivo e o threshold limpo é
+  `y_theta^*=o_theta`, com screening quando `o_1>o_0`.
+- **Agenda**: `pi_H=0` em todas as rodadas; apenas weak states propõem.
+- **Votação**: ballots simultâneos com registro público ex post, usando o mesmo
+  protocolo sob unanimidade e maioria.
+- **Barganha**: duas rodadas no protocolo de referência; o tratamento exato de
+  cada falha de R1 deve ser fechado no Gate 0 do Goal 1, sem presumir que toda
+  falha ou todo candidato histórico sobreviva.
+- **Conceito de solução**: PBE sob o escopo explicitamente declarado no
+  resultado.
+
+### Parametrizações históricas, aplicações e extensões
+
+- A parametrização histórica `V(theta) in {1,r}` e
+  `d_H(theta)=alpha V(theta)` pertence ao modelo anterior ou a uma possível
+  aplicação/microfundação de `o_theta`; ela não define o clean baseline.
+- A arquitetura antiga reconhecia cada Estado com probabilidade `1/N` e gerava
+  um ramo `H`-proposer selection-dependent fora de accepted pooling.
+- A arquitetura de 2026-05-11 usava
+  `U_H(y,theta)=y+b_H(theta)` e a participação dinâmica
+  `y+b_H(theta)>=beta C_H(theta,mu')`. Pela prioridade de 2026-05-25, ela é
+  extensão/microfundamento, junto com
+  `max{o_theta,beta C_theta}` e `t_theta=d_theta-b_theta`.
+- Os casos `pi_H=1/N` e `pi_H>1/N` são extensões de agenda power.
+
+### Comparação institucional: alvos pendentes de rederivação
+
+- **Unanimidade**: W deve incluir H; sob condições a rederivar, isso pode gerar
+  screening/pooling e renda informacional para `H`.
+- **Maioria**: W pode excluir H da coalizão. A condição exata para ausência de
+  screening e os payoffs devem ser rederivados sob `o_theta` primitivo; não
+  importar automaticamente as fórmulas históricas em `alpha V(theta)`.
 
 ### Resultados-chave — status após correção das provas
 
@@ -188,7 +228,7 @@ Motivo: o erro anterior veio em parte de manter fórmulas de uma arquitetura ant
 ### Prompt recomendado para próxima sessão
 
 ```text
-Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, formal_model_v6.Rmd, formal_model_v5.Rmd, quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md e quality_reports/2026-05-25_clean_baseline_priority.md. O alvo correto do próximo manuscrito é formal_model_v6.Rmd; formal_model_v5.Rmd é referência histórica da integração de 2026-05-15. Prioridade 1: antes de mexer no manuscrito v6, rederivar em model_redesign/power_architecture_derivations.Rmd o baseline limpo com b_theta=0 e opt-out imediato de H em R1: se H rejeita, nenhum acordo inclui H e o tipo theta recebe o_theta sem desconto. Trate delayed continuation dentro da IO, o caso hibrido max{o_theta,beta C_theta} e t_theta=d_theta-b_theta como extensões/microfundamentos. Use paper-version/git tag workflow antes de reset substantivo, mas não crie tag enganosa em worktree suja. Preserve a linguagem de comparação institucional condicional, weak-state agenda pi_H=0 e weak-vote-passive assessment quando migrar para v6. A Proposição R1 deve ficar como selected PBE outcome payoff-equivalent to P/L/R, não como caracterização de todos os PBEs, salvo se a nova derivação provar outro enunciado. A prova de rejected histories v5 teve lema A+ revisado por dois agentes; preserve a distinção entre proposer-relevant rejected outcomes, weak-voter deviations handled by ICs, designed weak-caused failures, e H-caused failures se essa arquitetura sobreviver em v6. Após implementar o reset, dois revisores independentes e sem edição devem revisar: um com formal-model review e outro com adversarial math/game-theory audit.
+Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, formal_model_v6.Rmd, formal_model_v5.Rmd, quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md e quality_reports/2026-05-25_clean_baseline_priority.md. O alvo correto do próximo manuscrito é formal_model_v6.Rmd; formal_model_v5.Rmd é referência histórica da integração de 2026-05-15. Prioridade 1: antes de mexer no manuscrito v6, rederivar em model_redesign/power_architecture_derivations.Rmd o baseline limpo com b_theta=0 e opt-out imediato de H em R1: se H rejeita, nenhum acordo inclui H e o tipo theta recebe o_theta sem desconto. Trate delayed continuation dentro da IO, o caso hibrido max{o_theta,beta C_theta} e t_theta=d_theta-b_theta como extensões/microfundamentos. Preserve o protocolo adotado: o jogo é sequencial e público entre rodadas, mas dentro de cada ballot todos os não proponentes votam simultaneamente e os votos individuais só se tornam públicos após o fechamento; isso não é votação roll-call sequencial. Use paper-version/git tag workflow antes de reset substantivo, mas não crie tag enganosa em worktree suja. Preserve a linguagem de comparação institucional condicional, weak-state agenda pi_H=0 e weak-vote-passive assessment quando migrar para v6. A Proposição R1 deve ficar como selected PBE outcome payoff-equivalent to P/L/R, não como caracterização de todos os PBEs, salvo se a nova derivação provar outro enunciado. A prova de rejected histories v5 teve lema A+ revisado por dois agentes; preserve a distinção entre proposer-relevant rejected outcomes, weak-voter deviations handled by ICs, designed weak-caused failures, e H-caused failures se essa arquitetura sobreviver em v6. Após implementar o reset, dois revisores independentes e sem edição devem revisar: um com formal-model review e outro com adversarial math/game-theory audit.
 ```
 
 ## PENDÊNCIAS RIO — Comparação com Hirsch & Shotts (AJPS 2025)

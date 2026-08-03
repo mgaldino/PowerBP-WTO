@@ -18,9 +18,10 @@ classification must be treated as pending rederivation.
 This packet originally summarized the baseline architecture for the redesigned
 model. It is now retained as an audit artifact, not as a verified result packet.
 
-The active manuscript `formal_model_v5.Rmd` is not the source of truth for these
-results. The source of truth is
-`model_redesign/power_architecture_derivations.Rmd`.
+At the time of this packet, `formal_model_v5.Rmd` was the active manuscript.
+The current target is `formal_model_v6.Rmd`, but neither manuscript is the
+source of truth for the pending clean-baseline reset. That reset must first be
+rederived and reviewed in `model_redesign/power_architecture_derivations.Rmd`.
 
 The baseline stacks the agenda against the hegemon:
 
@@ -62,9 +63,13 @@ d_H(\theta)=\alpha V(\theta).
 Weak states have normalized outside option zero. The common discount factor is
 \(\beta \in (0,1)\).
 
-Voting is sequential and public. Proposals must be feasible in the realized
-state in which they pass. The maintained tie-breaking rule is acceptance in
-indifference.
+The bargaining stages are sequential and public across rounds; this does not
+mean sequential roll-call voting within a ballot. Under the later adopted
+common ballot protocol, all non-proposers vote simultaneously and the
+individual vote record is revealed after the ballot closes. Proposals must be
+feasible in the realized state in which they pass. The maintained tie-breaking
+rule is acceptance in indifference. See
+`quality_reports/2026-05-11_common_voting_protocol_unanimity_majority.md`.
 
 # Result 1: Majority Pass Branch
 
@@ -413,10 +418,10 @@ Independent verification reports:
 
 # Questions For External Review
 
-1. Is the no-information delay construction a PBE under the intended
-   sequential/public voting protocol? In particular, what beliefs are required
-   if a proposal fails by weak-voter rejection and H's action is or is not
-   observed?
+1. Is the no-information delay construction a PBE under the adopted
+   simultaneous-ballot protocol with ex post public vote records? In
+   particular, what beliefs are required if a proposal fails by weak-voter
+   rejection and H's action is or is not observed?
 
 2. Is the exclusion of the low-accepted/high-rejected R1 branch robust to all
    PBE-consistent off-path beliefs under acceptance in indifference?

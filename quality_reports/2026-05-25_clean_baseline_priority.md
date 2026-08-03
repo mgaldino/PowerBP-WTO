@@ -58,12 +58,35 @@ receives o_theta immediately. The baseline does not also give H a discounted
 continuation option.
 ```
 
+In the clean theorem, `o_theta` is a primitive. A parameterization such as
+`o_theta = alpha V(theta)` may be introduced later for an application,
+numerical illustration, or microfoundation, but it is not part of the baseline
+definition. The baseline also keeps `pi_H = 0` in every bargaining round, so
+`H` is never a proposer.
+
 The delayed-continuation variants should be treated separately:
 
 ```text
 Delayed-continuation extension: rejection payoff = beta C_theta(nu).
 Hybrid exit/continuation extension: rejection payoff = max{o_theta, beta C_theta(nu)}.
 ```
+
+## Voting Protocol Clarification
+
+The clean-baseline reset preserves the common ballot protocol adopted in
+`quality_reports/2026-05-11_common_voting_protocol_unanimity_majority.md`.
+The bargaining game is sequential and public **across rounds**: a proposal is
+made, a ballot is held, the complete vote vector and result become public, and
+only then does any continuation occur. This does not mean sequential roll-call
+voting within the ballot.
+
+Within each ballot, the proposer is counted as voting yes, all other states
+vote simultaneously, and individual votes are publicly revealed only after all
+ballots have been cast. Unanimity and majority use the same ballot protocol and
+differ only in the quota. A roll-call extension in which later voters observe
+earlier votes would introduce a new informational mechanism and would require
+an explicit voting order plus rederivation of beliefs and incentive
+constraints.
 
 ## What the Complications Add
 
