@@ -4,12 +4,14 @@
 `quality_reports/plans/2026-08-03-clean-baseline-goal.md`
 
 **Execution dates:** 2026-08-03--2026-08-04
-**Current state:** analytical candidate implemented; final independent reviews
-pending. The extensive-form Gate 0 audit returned `PASS` on commit
+**Current state:** first final-review round returned `REPAIR`; the analytical
+and computational repairs are implemented and await a fixed rereview commit.
+The extensive-form Gate 0 audit returned `PASS` on commit
 `fff4a35d1572c08bb2098cae9ad264a2eba80b41`. Phase 1 preserves that contract
 and derives explicit PBE-existence regions, nonexistence regions, boundary
-multiplicity, and a conditional institutional comparison. All six current R
-verifiers pass; no protocol change has been introduced.
+multiplicity, one-sided prior limits, and a conditional institutional
+comparison. All six repaired R verifiers pass; no protocol change has been
+introduced.
 
 ## Scope guardrail
 
@@ -207,22 +209,94 @@ than universal proofs:
 - protocol: 36/36;
 - R2: 8/8;
 - R1 unanimity: 11/11;
-- majority: 17/17;
+- majority: 18/18;
 - entry/classification: 10/10;
-- boundaries: 7/7.
+- boundaries: 13/13.
 
 Outputs are versioned under `tables/` and logs under
-`quality_reports/logs/`. Independent R review remains pending.
+`quality_reports/logs/`. The repaired total is 96/96. Independent R rereview
+remains pending.
+
+## Phase 3 first independent review -- REPAIR
+
+The first fixed candidate was commit
+`70969f5f14bdc63d557bc6d7d1e27bb3aa4c5304`. Three independent read-only
+reviewers examined that same state and made no edits:
+
+- formal-model: `/root/formal_final_reviewer`, `REPAIR`;
+- adversarial game theory: `/root/adversarial_final_reviewer`, `REPAIR`;
+- R: `/root/r_final_reviewer`, `REPAIR`.
+
+The full opinions are archived in:
+
+- `quality_reports/2026-08-04_clean_optout_formal_model_review.md`;
+- `quality_reports/2026-08-04_clean_optout_adversarial_game_theory_audit.md`;
+- `quality_reports/2026-08-04_clean_optout_R_review.md`.
+
+| Finding | Implementer response | File/object | Verification |
+|---|---|---|---|
+| Unanimity security lemma lacked the guarantee direction | Separated upper-bound completions from `G_L` and `G_P` proposals and proved approval against every rational completion | derivation Rmd, regular U lemma | formal/adversarial rereview pending |
+| Off-path belief pair and solution-concept dependence were implicit | Retained the prior at the uninformed proposer ballot, declared the pooling continuation posterior, and stated that weak PBE does not impose within-subtree consistency | belief discipline and U lemma | adversarial rereview pending |
+| `mu=0,1` were promised but not derived | Chose the Goal-authorized one-sided-limit convention and derived `L_e^R` for U and M by group size, with ties and entry implications | new endpoint-limit section | boundary checks plus rereview pending |
+| Boundary results lacked autonomous proofs | Derived exact security values `K_0` and `K_1`, completions, on-path classes, ties, overpaid pooling and all single-boundary intersections | U boundary section | 13/13 boundary checks; rereview pending |
+| Majority mixing and `[F_M,1]` sufficiency were implicit | Scoped pure support classes and constructed exclusion for every payoff, including the floor tie | majority `N>=5` section | formal/adversarial rereview pending |
+| R checks contained tautologies | Reconstructed ICs/payoffs from separate primitives and branch formulas; relabeled smoke checks honestly | five R scripts | 96/96; R rereview pending |
+| Majority proposal bounds sampled a biased 1.000-row prefix | Replaced it by the full 7.560-row grid | majority verifier | 18/18 |
+| Logs lacked full provenance | Added inputs, row counts, output, execution HEAD, timestamps, status and `sessionInfo()` | five verifier logs | textual inspection; R rereview pending |
+
+No reviewer found a counterexample to the regular interior theorems. The
+formal and adversarial reviews approved Gate 0, R2, the regular majority
+characterization, conditional nesting/ranking, architecture separation and
+the unchanged manuscript hash. Their objections concerned proof completeness,
+endpoint scope and evidence quality; the repair does not alter a game
+primitive.
+
+## Repair-candidate compilation and artifact validation -- PASS
+
+Commands:
+
+```sh
+Rscript --vanilla scripts/verify_clean_optout_protocol_piH0.R
+Rscript --vanilla scripts/verify_clean_optout_R2_piH0.R
+Rscript --vanilla scripts/verify_clean_optout_R1_piH0.R
+Rscript --vanilla scripts/verify_clean_optout_majority_piH0.R
+Rscript --vanilla scripts/verify_clean_optout_entry_classification_piH0.R
+Rscript --vanilla scripts/verify_clean_optout_boundaries_piH0.R
+```
+
+```r
+rmarkdown::render(
+  "model_redesign/power_architecture_derivations.Rmd",
+  output_format = "all",
+  clean = TRUE
+)
+```
+
+All six scripts exit zero and the repaired suite passes 96/96. Both HTML and
+PDF compile without material warnings. `pdfinfo` reports a valid, unencrypted
+23-page letter-size PDF; `pdftotext -layout` succeeds and contains no unresolved
+reference marker. The altered analytical pages 13--23 were raster-inspected:
+equations, the endpoint table, survival matrix and proof ledger are legible,
+with no clipping or orphaned header.
+
+Repair-candidate hashes before rereview:
+
+```text
+Rmd  d4e3e7d83dbf45a77aa8210c8b7224da955cec226f8b92f503152c58f9115878
+PDF  a865ad92ca834c34f944363ebbce708ad601172319f00afd1341d8644e4318fe
+HTML 85dbc23d53235acd86a8de9682ccf2c23fa8b2c015c4e82fab309a359f7d2fd6
+```
 
 ## Later phases -- IN PROGRESS
 
-- Clean analytical rederivation: implemented; final review pending.
-- Survival matrix: implemented; final review pending.
+- Clean analytical rederivation: repaired; final rereview pending.
+- Survival matrix: implemented; final rereview pending.
 - R2, R1 unanimity, majority, entry/nesting, classification, and boundary
   verifiers: PASS.
-- Independent R review: pending.
-- Final HTML/PDF textual and visual validation: pending.
-- Independent formal-model and adversarial game-theory reviews: pending.
+- Independent R rereview: pending.
+- Final HTML/PDF textual and visual validation: repair candidate PASS; repeat
+  after any rereview-driven edit.
+- Independent formal-model and adversarial game-theory rereviews: pending.
 
 ## Claim and architecture limits
 

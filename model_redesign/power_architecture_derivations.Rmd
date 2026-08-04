@@ -58,8 +58,9 @@ separately by backward induction.
 **Current formal status:** the extensive-form Gate 0 audit passed on the cited
 commit. Phase 1 has rederived the clean game under weak PBE and found endogenous
 existence restrictions, boundary multiplicity, and a conditional comparison
-domain. The analytical candidate awaits reproducible checks and final
-independent review; no protocol change has been introduced.
+domain. The analytical candidate has passed the reproducible checks and is in
+the independent repair-and-rereview loop; no protocol change has been
+introduced.
 
 **Manuscript boundary:** `formal_model_v6.Rmd` and `formal_model_v5.Rmd` are
 reference objects only. This Goal does not edit either manuscript.
@@ -99,9 +100,10 @@ share the prior
 \mu=\Pr(\theta=1)\in[0,1].
 \]
 
-The Bayesian derivations use \(\mu\in(0,1)\). The endpoints are treated as
-degenerate-belief cases or limits, and not as positive-probability separating
-histories containing both types.
+The Bayesian derivations use \(\mu\in(0,1)\). The endpoints are treated below
+as one-sided limits of that interior model, not as literal degenerate games.
+This convention retains both type-contingent strategies while avoiding an
+unstated restriction on beliefs about a zero-probability type.
 
 The weak coalition has a fixed, known institutional surplus normalized to
 one. The private type does not change this pie. Weak outside payoffs are zero.
@@ -669,6 +671,16 @@ weak-vote-passive assessment prevents an uninformed unilateral vote deviation
 from being treated as a direct signal, but it does not silently turn weak PBE
 into sequential equilibrium.
 
+In particular, when the proposal itself has probability zero, weak PBE does
+not impose consistency between the belief held at its ballot and the posterior
+at a later zero-probability continuation inside that same off-path subtree.
+The constructions below therefore state both beliefs. Some completions use a
+positive probability of the low type at the ballot and a pooling-selecting
+posterior after a separating \(H\)-yes history. That pair is admissible under
+weak PBE because both information sets are globally off path; it would require
+additional justification under sequential equilibrium. No result below calls
+this freedom a refinement or claims robustness to a stronger solution concept.
+
 All payoffs from deviations are evaluated under the true prior \(\mu\), even
 when voters at an off-path ballot hold a declared posterior \(\nu\). This
 separation is what generates the security-value discontinuities below.
@@ -792,10 +804,15 @@ G_P=aP.
 \tag{U-security}\label{U-security}
 \]
 
-The declared off-path continuation after low-type \(H\)-yes can put enough
-mass on the high type to select terminal pooling. The low type then obtains
-\(\beta o_1\) after weak-caused failure and is willing to vote yes; high-type
-\(H\) strictly opts out. This gives the following exhaustive completion.
+For each globally off-path proposal used in the upper-bound construction,
+retain the prior ballot belief \(\rho=1-\mu\in(0,1)\) on the low type, because
+the weak proposer is uninformed. After a history with
+low-type \(H\)-yes and exactly one weak no, declare
+\(\nu=1>\nu_2^*\), so terminal R2 selects pooling. These two beliefs are not
+linked by Bayes because the proposal itself has probability zero. The low type
+then obtains \(\beta o_1\) after weak-caused failure and is willing to vote
+yes; the high type strictly opts out. The following completion holds every
+proposal to an explicit upper bound.
 
 1. If \(y<o_0\), prescribe all weak voters yes and both types of \(H\) no. The
    proposer receives zero.
@@ -814,6 +831,40 @@ Two or more weak no votes cannot occur because each rejector would be
 nonpivotal and the tie rule would require yes. A nondegenerate ballot mixture
 cannot enlarge the set: mixing requires indifference, where the same rule
 assigns yes with probability one.
+
+The reverse, guarantee direction is separate. Consider first
+
+\[
+y=o_0,\qquad x_j=d\quad\text{for every }j\ne i.
+\tag{U-low-guarantee}\label{U-low-guarantee}
+\]
+
+In every sequentially rational completion, all weak voters must vote yes.
+Two weak no votes make each rejector nonpivotal and therefore require yes by
+the tie rule. With exactly one weak no, that voter can strictly prefer
+rejection only if its terminal continuation exceeds \(d\), which requires R2
+low-only rather than pooling. But low-only gives low-type \(H\) only
+\(\beta o_0<o_0\) after voting yes, so that type instead opts out. The lone
+weak rejector then becomes nonpivotal and must vote yes. With all weak voters
+yes, low-type \(H\) votes yes at \(y=o_0\), high-type \(H\) votes no, and the
+proposer obtains exactly \(G_L\).
+
+The same argument applies to
+
+\[
+y=o_1,\qquad x_j=d\quad\text{for every }j\ne i.
+\tag{U-pool-guarantee}\label{U-pool-guarantee}
+\]
+
+A lone weak rejector again needs more than \(d\), hence a low-only R2
+continuation. Following weak-caused failure, low-type \(H\) then prefers
+immediate opt-out because \(\beta o_0<o_0\), while high-type \(H\) prefers
+immediate opt-out because \(\beta o_1<o_1\). Rejection therefore makes the
+weak voter nonpivotal and contradicts the yes tie rule. All weak voters and
+both types of \(H\) vote yes, so the proposer obtains exactly \(G_P\).
+Thus \(G_L\) and \(G_P\) are genuine guarantees against every sequentially
+rational completion, whereas the four-case construction above supplies the
+matching upper bound.
 
 If \(\beta o_1<o_0\), step 4 is impossible. The feasible proposal
 \(y=o_1,x_j=0\) then has no sequentially rational ballot completion: all weak
@@ -845,9 +896,10 @@ G_P>G_L
 
 or, equivalently, \(\beta o_1\geq o_0\) and \(\mu>\mu_E\).
 
-**Proof.** The completion lemma shows that the proposer can force both
-\(G_L\) and \(G_P\), while every proposal can be completed at no more than
-their maximum. Yet the on-path low-only price is
+**Proof.** The guarantee part of the lemma shows that the proposer can force
+both \(G_L\) and \(G_P\) against every sequentially rational completion; its
+declared-belief construction completes every proposal at no more than their
+maximum. Yet the on-path low-only price is
 \(\beta D_0/m>d\), so
 
 \[
@@ -895,57 +947,141 @@ characterization and not a claim about parameter vectors outside
 
 ## Unanimity boundary results
 
-The boundary results are separate propositions obtained from the same ballot
-best-response enumeration.
+Throughout this section \(\mu\in(0,1)\). The propositions cover every
+single-parameter boundary and their intersections in the primitive domain.
+As in the regular theorem, they characterize pure on-path proposal classes;
+mixing is possible only over proposal ties that survive the stated tie-break.
 
 ### Zero low outside option
 
-Let \(\beta<1\), \(o_0=0\), and \(o_1<1\). A global PBE always exists. If
-\(L\geq P\), low-only is the only minimal total-payoff class and
-\(T_W^U=L\). If \(P>L\), canonical pooling exists, while low-only also exists
-if and only if
+Let \(\beta<1\), \(o_0=0\), and \(0<o_1\leq1\). Terminal low-only gives each
+weak state \(1/m\), so it can be used after a globally off-path proposal to
+make the approval price \(\beta/m\). Define the exact off-path security value
+
+\[
+K_0=\max\{aL,P-\delta\}.
+\tag{U-zero-low-security}\label{U-zero-low-security}
+\]
+
+The first term is the on-path low-only proposer payoff. The second is the
+payoff from a pooling proposal that pays \(\beta/m\) to every non-proposer and
+therefore forces their approval against every continuation when that proposal
+is feasible; if \(P-\delta<0\), the second component is inactive in the
+maximum.
+
+**Proposition.** A global PBE always exists. If \(L\geq P\), low-only is the
+selected accepted class and gives \(T_W^U=L\). If \(P>L\), canonical pooling
+exists and gives \(T_W^U=P\); low-only also exists if and only if
 
 \[
 P-\delta\leq aL.
 \tag{U-zero-low-multiplicity}\label{U-zero-low-multiplicity}
 \]
 
-At equality the proposal tie-break favors low-only. Pooling assessments with a
-larger concession \(y\in[o_1,\bar y]\) can also be sustained. If
-\(T=1-y\), their maximal proposer payoff is \(T-\delta P\). The strict
-interior of the constructed set satisfies
+At equality the proposal tie-break favors low-only. If \(P>L\), an overpaid
+pooling class with \(y>o_1\), \(T=1-y\), exists exactly when
 
 \[
-T\in[1-\bar y,P],
-\qquad
-T-\delta P>\max\{aL,P-\delta\}.
+T\in[1-\bar y,P),
+\qquad T-\delta P>K_0.
 \tag{U-zero-low-overpay}\label{U-zero-low-overpay}
 \]
 
-Equality is selected against pooling when the binding deviation pays less to
-\(H\); if both proposer and \(H\) payoffs tie, the outcome remains set-valued.
-Thus \(S(\mu)/m\) is an upper endpoint, not an all-PBE R1 value.
+**Proof.** Under low-only, a Bayes-consistent weak deviation leads to terminal
+low-only, so each non-proposer receives \(\beta/m\) and the proposer obtains
+\(aL\). Any off-path low-inclusion proposal can be held to that value by the
+same continuation. A pooling proposal can force approval only by paying
+\(\beta/m\) to every non-proposer, which yields \(P-\delta\). These two
+constructions give both active sides of \(K_0\); when the pooling proposal is
+infeasible, its negative component cannot bind. R1 rejection gives its original
+proposer only \((1-\mu)\beta/m<aL\), since
+\(a-\beta/m=1-\beta>0\).
+
+If \(L\geq P\), then \(aL\geq P-\delta\), so low-only attains \(K_0\).
+If \(P>L\), canonical pooling gives \(aP>K_0\). Low-only remains optimal
+under a different off-path completion exactly when
+\(aL\geq P-\delta\). At \(L=P\), low-only and pooling tie in proposer payoff,
+but low-only pays less to \(H\) and is selected. An overpaid pooling proposal
+gives the proposer \(T-\delta P\); it is sustainable precisely when it
+strictly exceeds both security components. Equality is selected against it by
+a deviation that pays less to \(H\). \(\square\)
+
+Low-only gives weak total \(L\) and \(H\) expected payoff \(\mu o_1\);
+canonical pooling gives weak total \(P\) and \(H\) payoff \(o_1\); overpaid
+pooling gives weak total \(T\) and \(H\) payoff \(1-T\). Rejection is never
+on path on this boundary.
 
 ### No terminal weak surplus
 
 If \(\beta<1\), \(o_0>0\), \(o_1=1\), and \(\mu\in(0,1)\), no PBE exists.
-An off-path posterior selecting zero-surplus pooling lets the proposer shave
-the low-only approval price below the Bayes-consistent on-path price.
+Here \(P=0\). The proposal \(y=o_0,x_j=0\) forces all weak voters to approve:
+two no votes make each rejector nonpivotal; with exactly one no, a positive
+weak continuation requires terminal low-only, but then low-type \(H\) obtains
+only \(\beta o_0<o_0\) after yes and instead opts out, making the rejector
+nonpivotal; a zero continuation invokes the weak yes tie rule. Low-type \(H\)
+therefore approves, high-type \(H\) opts out, and the deviation guarantees the
+proposer \(L\). On-path low-only gives only \(aL<L\), pooling leaves zero weak
+surplus, and R1 rejection gives the original proposer at most
+\(\beta L/m<L\). No on-path class can attain the guarantee, so no fixed point
+exists.
 
 ### No discounting
 
-If \(\beta=1\), rejection/continuation is admissible and gives proposer payoff
-\(S(\mu)/m\). When \(L\geq P\), low-only and rejection survive. When
-\(P>L\), pooling and rejection survive; low-only additionally survives iff
+Let \(\beta=1\) and \(0\leq o_0<o_1\leq1\). Rejection/continuation is
+admissible and gives the R1 proposer \(S(\mu)/m\) by uniform R2 recognition.
+Because \(D_0>P\), terminal low-only provides the largest per-capita weak
+continuation and can enforce the approval price \(D_0/m\) after any globally
+off-path proposal. Define
+
+\[
+K_1=\max\left\{\frac Lm,
+P-\frac{(m-1)D_0}{m}\right\}.
+\tag{U-beta-one-security}\label{U-beta-one-security}
+\]
+
+If \(L\geq P\), low-only and rejection survive and pooling is selected
+against. If \(P>L\), pooling and rejection survive; low-only additionally
+survives if and only if
 
 \[
 P-\frac{(m-1)(1-o_0)}m\leq\frac{L}{m}.
 \tag{U-beta-one-low}\label{U-beta-one-low}
 \]
 
-Overpaid pooling and proposal mixing can add payoff-equivalent or lower-total
-outcomes. No timing uniqueness is claimed. This is the only baseline locus on
-which the historical rejection/delay label survives on path.
+For \(P>L\), an overpaid pooling class with \(y>o_1\), \(T=1-y\), exists
+exactly when
+
+\[
+T-\frac{m-1}{m}P>K_1.
+\tag{U-beta-one-overpay}\label{U-beta-one-overpay}
+\]
+
+**Proof.** With no discounting, after weak-caused failure low-type \(H\) is
+indifferent between terminal low-only and immediate opt-out, and high-type
+\(H\) is indifferent between its terminal opt-out and immediate opt-out; the
+yes tie rule sustains the punitive continuation. Low-only therefore gives and
+can guarantee \(L/m\), while a pooling proposal that pays \(D_0/m\) to every
+non-proposer guarantees the second component of \(K_1\) when feasible; a
+negative component is inactive. A deliberately
+rejected proposal with one strict weak rejector gives \(S/m\). If \(L\geq P\),
+low-only and rejection attain that value; at equality they pay weakly less to
+\(H\) than pooling. If \(P>L\), canonical pooling and rejection give \(P/m\),
+which strictly exceeds \(K_1\); low-only survives exactly under
+\eqref{U-beta-one-low}. The overpaid condition compares its on-path payoff
+with both security components; equality is again selected against the larger
+payment to \(H\). Mixtures over the payoff- and \(H\)-payoff-equivalent
+low/rejection or pooling/rejection classes can survive. \(\square\)
+
+Writing \(\bar o:=(1-\mu)o_0+\mu o_1\), when \(L\geq P\), low-only and
+rejection give weak total \(L\) and \(H\) expected payoff \(\bar o\). When
+\(P>L\), canonical pooling and rejection
+give weak total \(P\) and \(H\) payoff \(o_1\). An overpaid pooling class gives
+weak total \(T\) and \(H\) payoff \(1-T\).
+
+No timing uniqueness is claimed. This is the only baseline locus on which the
+historical rejection/delay label survives on path. The cases
+\(o_0=0\) and \(o_1=1\) at \(\beta=1\) are included in this proposition, so
+the boundary intersections are not filled in by continuity.
 
 # Round 1 under majority
 
@@ -1063,7 +1199,10 @@ V_{\mathrm{prop}}^M\in[F_M,1].
 \tag{M-large-value}\label{M-large-value}
 \]
 
-Every regular PBE belongs to one of three classes.
+Every regular pure on-path proposal belongs to one of three classes. If an
+equilibrium mixes over proposal ties, every pure proposal in its support is in
+the listed classes, and convex combinations preserve the payoff bounds below;
+the classification does not exclude such mixing.
 
 1. **Exclusion:** \(y<o_0\), with weak total \(T_W^M=1\) and \(H\) receiving
    \(o_\theta\). Redundant weak transfers support proposer payoffs throughout
@@ -1087,6 +1226,17 @@ Every regular PBE belongs to one of three classes.
    tie-break.
 3. **Pooling:** \(y=o_1,X=0\), which exists iff
    \(P>\max\{E,B_M\}\). It gives \(T_W^M=P\) and \(E[u_H^M]=o_1\).
+
+The interval in \eqref{M-large-value} has an explicit sufficiency
+construction. For any \(v\in[F_M,1]\), select on path an exclusion proposal
+with \(y=0\) and total named weak offers \(X=1-v\). Since \(N\geq5\) implies
+\(q\leq m-1\), every non-proposer is nonpivotal at the all-weak-yes profile
+and votes yes by the tie rule; the proposal passes weak-only and gives the
+proposer \(v\). Complete every deviation with the security construction at no
+more than \(F_M\). At \(v=F_M\), exclusion gives \(H\) its outside payoff,
+the lowest payoff consistent with its opt-out, so the proposal tie-break does
+not select a payoff-tied deviation against it. This proves sufficiency at the
+floor as well as in the strict interior.
 
 Low-only with delay is not a regular large-\(N\) PBE because its maximal
 proposer payoff is strictly below \(B_M\). Across all three classes,
@@ -1156,6 +1306,139 @@ F_{M,0}=\max\left\{
 These formulas are boundary bounds, not substitutes for the regular theorem.
 The common institutional comparison below is intentionally restricted to
 \eqref{regular-domain}.
+
+# Degenerate priors as one-sided limits
+
+The primitive domain permits \(\mu=0,1\), but a literal degenerate game
+requires an additional convention about strategies and beliefs for a
+zero-probability type. The Goal permits endpoint cases or limits. We choose
+the latter and do not silently add that convention.
+
+Fix all other parameters in the regular domain. Let \(\mathcal E_R(\mu)\) be
+the correspondence of regular on-path PBE outcome vectors under rule \(R\),
+where
+
+\[
+z=(v_{\mathrm{prop}},T_W,V_W,E[u_H]),
+\qquad V_W=T_W/m.
+\]
+
+For \(e\in\{0,1\}\), define the one-sided cluster correspondence
+
+\[
+\mathcal L_e^R=
+\left\{
+\lim_{n\to\infty}z_n:
+\mu_n\in(0,1),\ \mu_n\to e,\
+z_n\in\mathcal E_R(\mu_n)
+\right\}.
+\tag{endpoint-limit}\label{endpoint-limit}
+\]
+
+This object records limits of equilibrium outcomes and payoffs, not complete
+assessments. An empty correspondence means that no sequence of regular PBEs
+approaches the endpoint; it is not a nonexistence claim about a separately
+specified degenerate game.
+
+## Unanimity limits
+
+Since
+
+\[
+\mu_E=\frac{D_0-P}{D_U}\in(0,1),
+\]
+
+the regular existence theorem gives
+
+\[
+\mathcal L_0^U=\varnothing,
+\qquad
+\mathcal L_1^U=
+\begin{cases}
+\{(aP,P,P/m,o_1)\},&\beta o_1\geq o_0,\\
+\varnothing,&\beta o_1<o_0.
+\end{cases}
+\tag{U-endpoint-limits}\label{U-endpoint-limits}
+\]
+
+The weak inequality includes \(\beta o_1=o_0\) because the low type votes yes
+when indifferent. The cutoff itself remains a nonexistence point even though
+the pooling vector is the limit from \(\mu>\mu_E\). In terminal R2,
+\(S(\mu)\to D_0\) as \(\mu\to0^+\) and \(S(\mu)\to P\) as
+\(\mu\to1^-\).
+
+## Majority limits
+
+Write
+
+\[
+B_0^+=D_0,\qquad B_1^-=c,
+\qquad F_0^+=\max\{E,D_0\},
+\qquad F_1^-=\max\{E,P\}.
+\tag{M-endpoint-floors}\label{M-endpoint-floors}
+\]
+
+Here \(E>c\) because \(E-c=1-q\beta/m>0\). The exact small-group
+correspondences are:
+
+| Group | \(\mu\to0^+\) | \(\mu\to1^-\) |
+|---|---|---|
+| \(N=3\) | low-only \((D_0,D_0,D_0/m,o_0)\) if \(D_0>E\); otherwise exclusion \((E,1,1/m,o_0)\) | pooling \((P,P,P/m,o_1)\) if \(P>E\); otherwise exclusion \((E,1,1/m,o_1)\) |
+| \(N=4\) | empty if \(D_0>E\); otherwise exclusion \((E,1,1/m,o_0)\) | pooling \((P,P,P/m,o_1)\) if \(P>E\); otherwise exclusion \((E,1,1/m,o_1)\) |
+
+At \(D_0=E\), \(B_M(\mu)-E=\mu(c-E)<0\), so the lateral tie belongs to
+exclusion. At \(P=E\), pooling's strict condition fails, so that tie also
+belongs to exclusion.
+
+For \(N\geq5\), the lower-endpoint correspondence is
+
+\[
+\mathcal L_0^M=
+\begin{cases}
+\{(v,1,1/m,o_0):v\in[E,1]\},&D_0<E,\\[3pt]
+\{(v,1,1/m,o_0):v\in[D_0,1]\}
+\mathbin{\cup}
+\{(D_0,t,t/m,o_0):t\in[D_0,1]\},&D_0\geq E.
+\end{cases}
+\tag{M-lower-limit}\label{M-lower-limit}
+\]
+
+The second set records mixtures over tied canonical separating and exclusion
+proposals. Separating rents vanish in the limit because any surviving
+separating proposal must have \(y\to o_0\). At the upper endpoint,
+
+\[
+\mathcal L_1^M=
+\{(v,1,1/m,o_1):v\in[F_1^-,1]\}
+\mathbin{\cup}
+\begin{cases}
+\{(P,P,P/m,o_1)\},&P>E,\\
+\varnothing,&P\leq E.
+\end{cases}
+\tag{M-upper-limit}\label{M-upper-limit}
+\]
+
+**Proof.** The affine guarantee satisfies
+\(B_M(\mu)\to D_0\) at \(0^+\) and \(B_M(\mu)\to c\) at \(1^-\).
+Substitution in the exact \(N=3\) and \(N=4\) characterizations gives the two
+small-group rows and their strict pooling conditions. For \(N\geq5\), the
+exclusion construction yields the stated proposer intervals. Near zero, a
+separating class has weak total
+\(1-(1-\mu)y\); attaining the floor forces \(y\to o_0\) when
+\(D_0\geq E\), while \(D_0<E\) excludes separation in a sufficiently small
+right neighborhood. Mixtures at the tie fill the second segment in
+\eqref{M-lower-limit}. Near one, every exclusion or separating class converges
+to weak total one and \(H\) payoff \(o_1\); canonical pooling adds its distinct
+limit exactly when \(P>E\). These are all the regular classes, so no other
+cluster point exists. \(\square\)
+
+Thus there is no common lower-endpoint comparison because
+\(\mathcal L_0^U\) is empty. At the upper endpoint a common limit exists iff
+\(\beta o_1\geq o_0\), and every majority weak-payoff limit is at least
+\(P/m\). The entry nesting and three cost regions below therefore carry to
+each common upper-endpoint selection. Every corresponding \(H\)-payoff limit
+equals \(o_1\), so the interior weak advantage of unanimity for \(H\)
+converges to equality.
 
 # Conditional institutional comparison
 
@@ -1231,9 +1514,9 @@ prove PBE by numerical enumeration.
 - `verify_clean_optout_protocol_piH0.R`: 36/36 PASS.
 - `verify_clean_optout_R2_piH0.R`: 8/8 PASS.
 - `verify_clean_optout_R1_piH0.R`: 11/11 PASS.
-- `verify_clean_optout_majority_piH0.R`: 17/17 PASS.
+- `verify_clean_optout_majority_piH0.R`: 18/18 PASS.
 - `verify_clean_optout_entry_classification_piH0.R`: 10/10 PASS.
-- `verify_clean_optout_boundaries_piH0.R`: 7/7 PASS.
+- `verify_clean_optout_boundaries_piH0.R`: 13/13 PASS.
 
 Machine-readable outputs are stored in `tables/`; timestamped execution logs
 are stored in `quality_reports/logs/`.
@@ -1269,7 +1552,8 @@ are stored in `quality_reports/logs/`.
 | R1 unanimity, boundaries | proved or bounded as stated; final review pending | Zero outside option, no discounting, and zero terminal surplus are separated. |
 | R1 majority, regular domain | proved; final review pending | Exact security value and \(N=3,4,\geq5\) characterization derived. |
 | Majority boundaries | bounded; no comparison promoted | Separate floors recorded; regular theorem not extrapolated. |
+| Degenerate priors | one-sided limits proved; final review pending | Cluster correspondences are derived without asserting PBEs of an underspecified literal endpoint game. |
 | Entry, nesting, and classification | proved conditionally; final review pending | Selection-free on the explicitly derived common PBE domain. |
-| Computational verification | passed; R review pending | Protocol 36/36, R2 8/8, R1 unanimity 11/11, majority 17/17, entry/classification 10/10, and boundary 7/7 checks pass. |
+| Computational verification | passed; R rereview pending | Protocol 36/36, R2 8/8, R1 unanimity 11/11, majority 18/18, entry/classification 10/10, and boundary 13/13 checks pass (96/96 total). |
 | Final formal and adversarial reviews | pending | Must review the same fixed candidate commit without editing. |
 | Delayed continuation and other architectures | extension/history only | Not part of this Goal's clean baseline. |

@@ -1,10 +1,36 @@
 script=scripts/verify_clean_optout_boundaries_piH0.R
-started_at=2026-08-04 01:26:54
-ended_at=2026-08-04 01:26:54
+git_head_at_execution=70969f5f14bdc63d557bc6d7d1e27bb3aa4c5304
+started_at=2026-08-04 02:11:23
+ended_at=2026-08-04 02:11:23
+inputs=zero_low:n=3,4,5,13;beta=0.2,0.6,0.9;mu=0.1,0.4,0.7,0.95;o1=0.1,0.35,0.7,0.95;beta_one:o0=0,0.05,0.2,0.45;o1=0.15,0.4,0.7,1;endpoint_eps=0.1,0.01,0.001
 zero_low_rows=192
-beta_one_rows=144
+o1_one_rows=81
+beta_one_rows=208
 majority_boundary_rows=1224
-passed=7
-total=7
+endpoint_rows=108
+output=tables/clean_optout_boundary_checks_piH0.csv
+passed=13
+total=13
 status=PASS
 failed_checks=
+session_info_begin
+R version 4.4.2 (2024-10-31)
+Platform: aarch64-apple-darwin20
+Running under: macOS Sonoma 14.7.3
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/Belem
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base
+
+loaded via a namespace (and not attached):
+[1] compiler_4.4.2
+session_info_end

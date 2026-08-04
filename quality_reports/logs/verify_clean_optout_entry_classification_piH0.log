@@ -1,9 +1,34 @@
 script=scripts/verify_clean_optout_entry_classification_piH0.R
-started_at=2026-08-04 01:26:54
-ended_at=2026-08-04 01:26:54
+git_head_at_execution=70969f5f14bdc63d557bc6d7d1e27bb3aa4c5304
+started_at=2026-08-04 02:11:23
+ended_at=2026-08-04 02:11:23
+inputs=n_states:3:20;beta:0.2,0.5,0.8,0.95;mu:seq(0.05,0.95,0.05);o0:0.02,0.08,0.2,0.4;o1:0.1,0.25,0.5,0.75,0.95
 regular_grid_rows=23256
 common_domain_rows=5735
+entry_case_rows=15
+output=tables/clean_optout_entry_classification_checks_piH0.csv
 passed=10
 total=10
 status=PASS
 failed_checks=
+session_info_begin
+R version 4.4.2 (2024-10-31)
+Platform: aarch64-apple-darwin20
+Running under: macOS Sonoma 14.7.3
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/Belem
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base
+
+loaded via a namespace (and not attached):
+[1] compiler_4.4.2
+session_info_end

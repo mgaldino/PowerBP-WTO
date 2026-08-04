@@ -49,8 +49,10 @@ grid$B <- grid$L_total + grid$mu * grid$c
 grid$P <- 1 - grid$o1
 grid$F <- pmax(grid$E, grid$B, grid$P)
 grid$A <- 1 - (1 - grid$mu) * grid$o0
-grid$low_candidate <- grid$B -
-  (1 - grid$mu) * (grid$k - 1) * grid$c
+grid$low_branch_low_state <- 1 - grid$o0 - (grid$k - 1) * grid$c
+grid$low_branch_high_state <- grid$c
+grid$low_candidate <- (1 - grid$mu) * grid$low_branch_low_state +
+  grid$mu * grid$low_branch_high_state
 grid$all_pass_small <- grid$E - (1 - grid$mu) * grid$o0
 
 add_check(
@@ -79,7 +81,13 @@ add_check(
     grid$low_candidate,
     grid$B - (1 - grid$mu) * (grid$k - 1) * grid$c
   ),
-  "low-only candidate is below B whenever k>1"
+  "branch-by-branch payoff equals the reduced expression"
+)
+add_check(
+  "low_candidate_strictly_below_B_when_k_gt_1",
+  all(grid$low_candidate[grid$k > 1] < grid$B[grid$k > 1]) &&
+    near(grid$low_candidate[grid$k == 1], grid$B[grid$k == 1]),
+  "strict for k>1 and equality for k=1"
 )
 add_check(
   "small_all_pass_below_exclusion",
@@ -182,7 +190,7 @@ add_check(
   "every canonical large-N weak total can lie within [F,1]"
 )
 
-proposal_grid <- grid[seq_len(min(1000L, nrow(grid))), , drop = FALSE]
+proposal_grid <- grid
 proposal_grid$X_paid <- proposal_grid$k * proposal_grid$c
 proposal_grid$intermediate_low_r <- (1 - proposal_grid$mu) *
   (1 - proposal_grid$o0 - proposal_grid$X_paid) +
@@ -207,18 +215,35 @@ utils::write.csv(checks, output_path, row.names = FALSE, fileEncoding = "UTF-8")
 ended_at <- Sys.time()
 passed_n <- sum(checks$passed)
 total_n <- nrow(checks)
+git_sha <- tryCatch(
+  system2("git", c("rev-parse", "HEAD"), stdout = TRUE, stderr = FALSE)[1],
+  error = function(e) "unavailable"
+)
+if (length(git_sha) == 0L || is.na(git_sha)) git_sha <- "unavailable"
+session_lines <- sub("[[:space:]]+$", "", capture.output(utils::sessionInfo()))
 log_lines <- c(
   sprintf("script=%s", script_name),
+  sprintf("git_head_at_execution=%s", git_sha),
   sprintf("started_at=%s", format(started_at, tz = "America/Sao_Paulo")),
   sprintf("ended_at=%s", format(ended_at, tz = "America/Sao_Paulo")),
+  paste0(
+    "inputs=n_states:3:20;beta:0.15,0.4,0.7,0.9,0.99;",
+    "mu:0.01,0.15,0.4,0.7,0.95,0.99;",
+    "o0:0.02,0.1,0.3,0.55;o1:0.08,0.2,0.5,0.8,0.98"
+  ),
   sprintf("regular_grid_rows=%d", nrow(grid)),
+  sprintf("proposal_bound_rows=%d", nrow(proposal_grid)),
+  sprintf("output=%s", output_path),
   sprintf("passed=%d", passed_n),
   sprintf("total=%d", total_n),
   sprintf("status=%s", if (passed_n == total_n) "PASS" else "FAIL"),
   sprintf(
     "failed_checks=%s",
     paste(checks$check_id[!checks$passed], collapse = ",")
-  )
+  ),
+  "session_info_begin",
+  session_lines,
+  "session_info_end"
 )
 writeLines(log_lines, log_path, useBytes = TRUE)
 

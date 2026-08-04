@@ -32,11 +32,15 @@ a declared component of the assessment. Weak-vote-passive prevents a weak vote
 from becoming a direct signal; it does not impose sequential-equilibrium
 consistency after every globally off-path proposal.
 
-If `beta*o1>=o0`, an off-path posterior that selects R2 pooling gives low-type
-H continuation `o1`. Exactly one underpaid weak voter can then reject, low H
-votes yes, high H opts out, and the rejector strictly values the positive R2
-continuation. The original proof therefore did not establish nonexistence on
-the whole regular domain.
+If `beta*o1>=o0`, the repaired completion retains the prior at the off-path
+ballot, since the weak proposer is uninformed, and separately declares a
+pooling-selecting posterior at the globally off-path continuation. Low-type H
+then obtains continuation `o1`. Exactly one underpaid weak voter can reject,
+low H votes yes, high H opts out, and the rejector strictly values the positive
+R2 continuation. Weak PBE does not link those two globally off-path beliefs;
+the theorem does not claim robustness to sequential-equilibrium consistency.
+The original proof therefore did not establish nonexistence on the whole
+regular domain.
 
 ## Corrected unanimity theorem
 
@@ -77,7 +81,10 @@ low-only is not a PBE.
 
 The case `o1=1` with `o0>0`, `beta<1`, and an interior prior also has no PBE.
 The loci `o0=0` and `beta=1` instead restore existence and create
-multiplicity; they are separate boundary propositions.
+multiplicity; they now have separate security values, complete ballot
+arguments, tie conditions, and proofs. Priors `mu=0,1` are treated as
+one-sided cluster correspondences of interior PBEs, not literal degenerate
+games with an unstated zero-probability-type convention.
 
 ## Corrected majority theorem
 
@@ -125,5 +132,6 @@ expected payoff between its outside payoff and `o1` under majority. These are
 conditional results, not global dominance statements.
 
 The superseded global blocker was not promoted. Its correction is incorporated
-in `model_redesign/power_architecture_derivations.Rmd` and is subject to the
-final independent formal and adversarial reviews.
+in `model_redesign/power_architecture_derivations.Rmd`; after a first review
+round returned `REPAIR` for proof completeness, the expanded proof is subject
+to final independent rereview.

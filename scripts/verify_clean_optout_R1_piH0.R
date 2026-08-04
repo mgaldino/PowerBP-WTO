@@ -167,9 +167,9 @@ zero_o0$a <- 1 - zero_o0$delta
 zero_o0$low_also_exists <- zero_o0$P - zero_o0$delta <=
   zero_o0$a * zero_o0$L + tol
 add_check(
-  "zero_o0_boundary_is_nonempty_and_classified",
+  "zero_o0_grid_exercises_both_algebraic_conditions",
   any(zero_o0$low_also_exists) && any(!zero_o0$low_also_exists),
-  "the o0=0 boundary exercises both multiplicity regimes"
+  "coverage check only; the analytical proof establishes PBE multiplicity"
 )
 
 dir.create(dirname(output_path), recursive = TRUE, showWarnings = FALSE)
@@ -179,18 +179,35 @@ utils::write.csv(checks, output_path, row.names = FALSE, fileEncoding = "UTF-8")
 ended_at <- Sys.time()
 passed_n <- sum(checks$passed)
 total_n <- nrow(checks)
+git_sha <- tryCatch(
+  system2("git", c("rev-parse", "HEAD"), stdout = TRUE, stderr = FALSE)[1],
+  error = function(e) "unavailable"
+)
+if (length(git_sha) == 0L || is.na(git_sha)) git_sha <- "unavailable"
+session_lines <- sub("[[:space:]]+$", "", capture.output(utils::sessionInfo()))
 log_lines <- c(
   sprintf("script=%s", script_name),
+  sprintf("git_head_at_execution=%s", git_sha),
   sprintf("started_at=%s", format(started_at, tz = "America/Sao_Paulo")),
   sprintf("ended_at=%s", format(ended_at, tz = "America/Sao_Paulo")),
+  paste0(
+    "inputs=n_states:3:20;beta:0.15,0.4,0.7,0.9,0.99;",
+    "mu:0.01,0.1,0.25,0.5,0.75,0.9,0.99;",
+    "o0:0.02,0.1,0.3,0.55;o1:0.08,0.2,0.5,0.8,0.98"
+  ),
   sprintf("regular_grid_rows=%d", nrow(grid)),
+  sprintf("zero_o0_rows=%d", nrow(zero_o0)),
+  sprintf("output=%s", output_path),
   sprintf("passed=%d", passed_n),
   sprintf("total=%d", total_n),
   sprintf("status=%s", if (passed_n == total_n) "PASS" else "FAIL"),
   sprintf(
     "failed_checks=%s",
     paste(checks$check_id[!checks$passed], collapse = ",")
-  )
+  ),
+  "session_info_begin",
+  session_lines,
+  "session_info_end"
 )
 writeLines(log_lines, log_path, useBytes = TRUE)
 

@@ -84,6 +84,18 @@ common$outside_H <- (1 - common$mu) * common$o0 +
 common$separating_y <- (common$o0 + common$o1) / 2
 common$separating_H <- (1 - common$mu) * common$separating_y +
   common$mu * common$o1
+common$pooling_y <- common$o1
+pooling_type_payoffs <- cbind(
+  low = common$pooling_y,
+  high = common$pooling_y
+)
+pooling_type_probabilities <- cbind(
+  low = 1 - common$mu,
+  high = common$mu
+)
+common$majority_H_pooling <- rowSums(
+  pooling_type_probabilities * pooling_type_payoffs
+)
 add_check(
   "majority_H_exclusion_lower_bound",
   all(common$outside_H <= common$o1 + tol),
@@ -99,8 +111,8 @@ add_check(
 )
 add_check(
   "majority_H_pooling_equality",
-  all(abs(common$o1 - common$o1) < tol),
-  "majority pooling ties unanimity pooling for H"
+  all(abs(common$majority_H_pooling - common$o1) < tol),
+  "type-weighted majority pooling payoff ties unanimity pooling for H"
 )
 
 entry_cases <- data.frame(
@@ -155,19 +167,36 @@ utils::write.csv(checks, output_path, row.names = FALSE, fileEncoding = "UTF-8")
 ended_at <- Sys.time()
 passed_n <- sum(checks$passed)
 total_n <- nrow(checks)
+git_sha <- tryCatch(
+  system2("git", c("rev-parse", "HEAD"), stdout = TRUE, stderr = FALSE)[1],
+  error = function(e) "unavailable"
+)
+if (length(git_sha) == 0L || is.na(git_sha)) git_sha <- "unavailable"
+session_lines <- sub("[[:space:]]+$", "", capture.output(utils::sessionInfo()))
 log_lines <- c(
   sprintf("script=%s", script_name),
+  sprintf("git_head_at_execution=%s", git_sha),
   sprintf("started_at=%s", format(started_at, tz = "America/Sao_Paulo")),
   sprintf("ended_at=%s", format(ended_at, tz = "America/Sao_Paulo")),
+  paste0(
+    "inputs=n_states:3:20;beta:0.2,0.5,0.8,0.95;",
+    "mu:seq(0.05,0.95,0.05);o0:0.02,0.08,0.2,0.4;",
+    "o1:0.1,0.25,0.5,0.75,0.95"
+  ),
   sprintf("regular_grid_rows=%d", nrow(grid)),
   sprintf("common_domain_rows=%d", nrow(common)),
+  sprintf("entry_case_rows=%d", nrow(entry_cases)),
+  sprintf("output=%s", output_path),
   sprintf("passed=%d", passed_n),
   sprintf("total=%d", total_n),
   sprintf("status=%s", if (passed_n == total_n) "PASS" else "FAIL"),
   sprintf(
     "failed_checks=%s",
     paste(checks$check_id[!checks$passed], collapse = ",")
-  )
+  ),
+  "session_info_begin",
+  session_lines,
+  "session_info_end"
 )
 writeLines(log_lines, log_path, useBytes = TRUE)
 
