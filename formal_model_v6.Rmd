@@ -214,10 +214,16 @@ No current or future agreement can then include \(H\). Under unanimity the
 branch ends because the original quota \(N\) is impossible. Under majority, a
 current weak-only agreement passes if the weak yes votes already reach \(q\);
 otherwise the game proceeds to a weak-only Round 2 with the original quota
-\(q\). If \(H\) votes yes and the Round-1 ballot fails only because weak votes
-do not reach the quota, \(H\) remains active and the game proceeds to Round 2.
+\(q\). After opt-out, every proposal fixes \(y=0\) and uses the weak-only
+budget in \eqref{eq:weak-only-budget}. If \(H\) votes yes and the Round-1
+ballot fails only because weak votes do not reach the quota, \(H\) remains
+active and the game proceeds to Round 2.
+
 Round 2 is terminal, and all Round-2 payoffs are multiplied by \(\beta\) in
-Round-1 units.
+Round-1 units. If \(H\) is still active and a Round-2 ballot fails, \(H\)
+receives \(o_\theta\) at the Round-2 date regardless of whether it voted yes
+or no, while weak states receive zero. If \(H\) opted out in Round 1, it
+receives no additional Round-2 flow.
 
 Before Round-1 recognition, weak states make one collective, all-or-nothing
 formation decision and pay an external sunk cost \(\chi\) each if the
@@ -228,6 +234,8 @@ V_W^R(\mu)=\frac1m
 \tag{5}\label{eq:entry-value}
 \]
 Formation occurs iff \(V_W^R(\mu)\geq\chi\), with formation at equality.
+If the institution does not form, every weak state receives zero and type
+\(\theta\) of \(H\) receives \(o_\theta\).
 \end{definition}
 
 The immediate-opt-out timing is summarized in Figure
@@ -265,11 +273,20 @@ followed by weak rejection is the core protocol distinction.
 \end{figure}
 
 \begin{definition}[Weak-vote-passive assessment]\label{def:passive}
-The solution concept is PBE. On-path beliefs obey Bayes' rule. A unilateral
-vote deviation by an uninformed weak state is not treated as direct evidence
-about \(\theta\); beliefs instead follow the public proposal and \(H\)'s
-simultaneous type-contingent strategy and revealed vote. A separating vote by
-\(H\) can update beliefs when \(H\) remains active.
+The primitives, type distribution, recognition rule, contract space, ballot
+protocol, quotas, implementation rules, payoff consequences, and tie-breaks
+are common knowledge. The solution concept is PBE. An assessment specifies
+the collective formation strategy; every weak proposer's proposal strategy at
+each public history where it is recognized; every active non-proposer's
+behavioral voting strategy; \(H\)'s type-contingent behavioral voting strategy;
+and beliefs at every information set where \(\theta\) remains payoff-relevant.
+Strategies are sequentially rational given those beliefs, and beliefs obey
+Bayes' rule wherever possible.
+
+A unilateral vote deviation by an uninformed weak state is not treated as
+direct evidence about \(\theta\); beliefs instead follow the public proposal
+and \(H\)'s simultaneous type-contingent strategy and revealed vote. A
+separating vote by \(H\) can update beliefs when \(H\) remains active.
 
 Every zero-probability continuation in which \(H\) remains active must state
 its off-path posterior. Globally off-path ballot beliefs and later
@@ -278,14 +295,23 @@ be linked by Bayes' rule. The assessment is not a refinement, D1, the
 Intuitive Criterion, a sequential-equilibrium restriction, or a
 characterization of all PBEs.
 
+Payoffs from a proposal deviation are evaluated under the true prior \(\mu\),
+even when voters at its globally off-path ballot hold a different declared
+belief. Each result states whether it concerns all PBEs, a pure on-path
+proposal class, a constructed weak PBE, or a selection-free bound.
+
 Players vote yes when indifferent. If a weak proposer is indifferent among
 payoff-maximizing proposals, the selected proposal minimizes \(H\)'s expected
 payoff. No third tie-break is imposed.
 \end{definition}
 
 For an R1 ballot information set \(I=(h,s_i)\), let \(v_W\) denote the
-simultaneous weak-vote vector and \(A_R^Y(v_W)\) indicate implementation when
-\(H\) votes yes. The correct incentive constraint is
+simultaneous weak-vote vector, let
+\(\sigma_W(v_W\mid I)\) be the proposal-indexed distribution induced by the
+weak voting strategies, and let \(A_R^Y(v_W)\) indicate implementation when
+\(H\) votes yes. The continuation history
+\(h_2=h_2(h,s_i,Y,v_W)\) includes the proposal, complete revealed vote vector,
+quota outcome, and opt-out status. The correct incentive constraint is
 \[
 \sum_{v_W}\sigma_W(v_W\mid I)
 \left[
