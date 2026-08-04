@@ -59,8 +59,10 @@ separately by backward induction.
 commit. Phase 1 has rederived the clean game under weak PBE and found endogenous
 existence restrictions, boundary multiplicity, and a conditional comparison
 domain. The analytical candidate has passed the reproducible checks and is in
-the independent repair-and-rereview loop; no protocol change has been
-introduced.
+the independent repair-and-rereview loop. The formal-model, adversarial
+game-theory, and R rereviews all returned PASS without substantive
+reservation on commit `db52b2030b4c4e8e84c845a18ea04d4c2a27ab9c`; no
+protocol change has been introduced.
 
 **Manuscript boundary:** `formal_model_v6.Rmd` and `formal_model_v5.Rmd` are
 reference objects only. This Goal does not edit either manuscript.
@@ -979,7 +981,7 @@ P-\delta\leq aL.
 \]
 
 At equality the proposal tie-break favors low-only. If \(P>L\), an overpaid
-pooling class with \(y>o_1\), \(T=1-y\), exists exactly when
+pooling class with \(o_1<y\leq\bar y\), \(T=1-y\), exists exactly when
 
 \[
 T\in[1-\bar y,P),
@@ -1048,7 +1050,8 @@ P-\frac{(m-1)(1-o_0)}m\leq\frac{L}{m}.
 \tag{U-beta-one-low}\label{U-beta-one-low}
 \]
 
-For \(P>L\), an overpaid pooling class with \(y>o_1\), \(T=1-y\), exists
+For \(P>L\), an overpaid pooling class with
+\(o_1<y\leq\bar y\), \(T=1-y\), exists
 exactly when
 
 \[
@@ -1145,6 +1148,11 @@ Conversely, paying \(c\) to \(k\) partners guarantees \(E\); the proposal
 and off-path completions can hold every deviation to at most \(F_M\).
 
 ## Majority characterization by group size
+
+For \(N=3,4\), the statements below classify every pure proposal in the
+support. Mixtures over payoff-tied classes are admitted only when the proposal
+tie-break does not select one support element; their expected payoffs remain
+in the convex hull of the listed class payoffs.
 
 ### Three states
 
@@ -1548,12 +1556,12 @@ are stored in `quality_reports/logs/`.
 | Gate 0 extensive form | independently verified | PASS on candidate commit `fff4a35`; 36/36 protocol checks pass. |
 | R2 unanimity | proved | Terminal low-only/pooling value and cutoff derived. |
 | R2 majority | proved | Active and weak-only continuation values derived selection-free. |
-| R1 unanimity, regular domain | proved; final review pending | Exact existence condition, nonexistence regions, and pooling payoff derived. |
-| R1 unanimity, boundaries | proved or bounded as stated; final review pending | Zero outside option, no discounting, and zero terminal surplus are separated. |
-| R1 majority, regular domain | proved; final review pending | Exact security value and \(N=3,4,\geq5\) characterization derived. |
+| R1 unanimity, regular domain | proved; independently verified | Exact existence condition, nonexistence regions, and pooling payoff derived. |
+| R1 unanimity, boundaries | proved or bounded as stated; independently verified | Zero outside option, no discounting, and zero terminal surplus are separated. |
+| R1 majority, regular domain | proved; independently verified | Exact security value and \(N=3,4,\geq5\) characterization derived. |
 | Majority boundaries | bounded; no comparison promoted | Separate floors recorded; regular theorem not extrapolated. |
-| Degenerate priors | one-sided limits proved; final review pending | Cluster correspondences are derived without asserting PBEs of an underspecified literal endpoint game. |
-| Entry, nesting, and classification | proved conditionally; final review pending | Selection-free on the explicitly derived common PBE domain. |
-| Computational verification | passed; R rereview pending | Protocol 36/36, R2 8/8, R1 unanimity 11/11, majority 18/18, entry/classification 10/10, and boundary 13/13 checks pass (96/96 total). |
-| Final formal and adversarial reviews | pending | Must review the same fixed candidate commit without editing. |
+| Degenerate priors | one-sided limits proved; independently verified | Cluster correspondences are derived without asserting PBEs of an underspecified literal endpoint game. |
+| Entry, nesting, and classification | proved conditionally; independently verified | Selection-free on the explicitly derived common PBE domain. |
+| Computational verification | passed; independent R PASS | Protocol 36/36, R2 8/8, R1 unanimity 11/11, majority 18/18, entry/classification 10/10, and boundary 13/13 checks pass (96/96 total). |
+| Final formal and adversarial reviews | PASS without substantive reservation | Both read-only rereviews examined commit `db52b20`; no critical, major, or minor substantive finding remained. |
 | Delayed continuation and other architectures | extension/history only | Not part of this Goal's clean baseline. |

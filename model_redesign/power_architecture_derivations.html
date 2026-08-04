@@ -1818,8 +1818,10 @@ separately by backward induction.</p>
 commit. Phase 1 has rederived the clean game under weak PBE and found endogenous
 existence restrictions, boundary multiplicity, and a conditional comparison
 domain. The analytical candidate has passed the reproducible checks and is in
-the independent repair-and-rereview loop; no protocol change has been
-introduced.</p>
+the independent repair-and-rereview loop. The formal-model, adversarial
+game-theory, and R rereviews all returned PASS without substantive
+reservation on commit <code>db52b2030b4c4e8e84c845a18ea04d4c2a27ab9c</code>; no
+protocol change has been introduced.</p>
 <p><strong>Manuscript boundary:</strong> <code>formal_model_v6.Rmd</code> and <code>formal_model_v5.Rmd</code> are
 reference objects only. This Goal does not edit either manuscript.</p>
 <p><strong>Excluded from the baseline:</strong> <span class="math inline">\(y+b_\theta\)</span>, a rejection payoff
@@ -3861,7 +3863,7 @@ P-\delta\leq aL.
 \tag{U-zero-low-multiplicity}\label{U-zero-low-multiplicity}
 \]</span></p>
 <p>At equality the proposal tie-break favors low-only. If <span class="math inline">\(P&gt;L\)</span>, an overpaid
-pooling class with <span class="math inline">\(y&gt;o_1\)</span>, <span class="math inline">\(T=1-y\)</span>, exists exactly when</p>
+pooling class with <span class="math inline">\(o_1&lt;y\leq\bar y\)</span>, <span class="math inline">\(T=1-y\)</span>, exists exactly when</p>
 <p><span class="math display">\[
 T\in[1-\bar y,P),
 \qquad T-\delta P&gt;K_0.
@@ -3922,7 +3924,8 @@ survives if and only if</p>
 P-\frac{(m-1)(1-o_0)}m\leq\frac{L}{m}.
 \tag{U-beta-one-low}\label{U-beta-one-low}
 \]</span></p>
-<p>For <span class="math inline">\(P&gt;L\)</span>, an overpaid pooling class with <span class="math inline">\(y&gt;o_1\)</span>, <span class="math inline">\(T=1-y\)</span>, exists
+<p>For <span class="math inline">\(P&gt;L\)</span>, an overpaid pooling class with
+<span class="math inline">\(o_1&lt;y\leq\bar y\)</span>, <span class="math inline">\(T=1-y\)</span>, exists
 exactly when</p>
 <p><span class="math display">\[
 T-\frac{m-1}{m}P&gt;K_1.
@@ -4011,6 +4014,10 @@ and off-path completions can hold every deviation to at most <span class="math i
 </div>
 <div id="majority-characterization-by-group-size" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Majority characterization by group size</h2>
+<p>For <span class="math inline">\(N=3,4\)</span>, the statements below classify every pure proposal in the
+support. Mixtures over payoff-tied classes are admitted only when the proposal
+tie-break does not select one support element; their expected payoffs remain
+in the convex hull of the listed class payoffs.</p>
 <div id="three-states" class="section level3" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Three states</h3>
 <p>For <span class="math inline">\(N=3\)</span>, the exact proposer payoff is</p>
@@ -4487,17 +4494,17 @@ are stored in <code>quality_reports/logs/</code>.</p>
 </tr>
 <tr class="odd">
 <td>R1 unanimity, regular domain</td>
-<td>proved; final review pending</td>
+<td>proved; independently verified</td>
 <td>Exact existence condition, nonexistence regions, and pooling payoff derived.</td>
 </tr>
 <tr class="even">
 <td>R1 unanimity, boundaries</td>
-<td>proved or bounded as stated; final review pending</td>
+<td>proved or bounded as stated; independently verified</td>
 <td>Zero outside option, no discounting, and zero terminal surplus are separated.</td>
 </tr>
 <tr class="odd">
 <td>R1 majority, regular domain</td>
-<td>proved; final review pending</td>
+<td>proved; independently verified</td>
 <td>Exact security value and <span class="math inline">\(N=3,4,\geq5\)</span> characterization derived.</td>
 </tr>
 <tr class="even">
@@ -4507,23 +4514,23 @@ are stored in <code>quality_reports/logs/</code>.</p>
 </tr>
 <tr class="odd">
 <td>Degenerate priors</td>
-<td>one-sided limits proved; final review pending</td>
+<td>one-sided limits proved; independently verified</td>
 <td>Cluster correspondences are derived without asserting PBEs of an underspecified literal endpoint game.</td>
 </tr>
 <tr class="even">
 <td>Entry, nesting, and classification</td>
-<td>proved conditionally; final review pending</td>
+<td>proved conditionally; independently verified</td>
 <td>Selection-free on the explicitly derived common PBE domain.</td>
 </tr>
 <tr class="odd">
 <td>Computational verification</td>
-<td>passed; R rereview pending</td>
+<td>passed; independent R PASS</td>
 <td>Protocol 36/36, R2 8/8, R1 unanimity 11/11, majority 18/18, entry/classification 10/10, and boundary 13/13 checks pass (96/96 total).</td>
 </tr>
 <tr class="even">
 <td>Final formal and adversarial reviews</td>
-<td>pending</td>
-<td>Must review the same fixed candidate commit without editing.</td>
+<td>PASS without substantive reservation</td>
+<td>Both read-only rereviews examined commit <code>db52b20</code>; no critical, major, or minor substantive finding remained.</td>
 </tr>
 <tr class="odd">
 <td>Delayed continuation and other architectures</td>

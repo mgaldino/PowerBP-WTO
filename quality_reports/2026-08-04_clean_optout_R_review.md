@@ -41,4 +41,17 @@ independente com 200 mil sorteios não encontrou contracounterexample numérico.
 
 ## Rodada 2
 
-Pendente até a fixação do novo commit candidato.
+- **Commit revisado:** `db52b2030b4c4e8e84c845a18ea04d4c2a27ab9c`.
+- **Veredito:** **PASS sem ressalvas substantivas**.
+- **Nota:** A.
+- **Critical/major/minor:** nenhum.
+- **Editorial:** os logs versionados registram
+  `git_head_at_execution=70969f5`, pois antecedem o commit que os contém; a
+  reprodução temporária registrou corretamente `db52b20`. Essa circularidade
+  natural não compromete a evidência versionada.
+
+Em extração temporária, os seis scripts passaram 96/96, sem warnings
+materiais, e os seis CSVs foram byte a byte idênticos aos blobs revisados. Um
+novo stress test com 200 mil sorteios contínuos encontrou zero violações nas
+identidades, desigualdades, fronteiras e limites laterais. O revisor confirmou
+fail-fast, tratamento de `NA`, tolerâncias, grids, logs e o hash intacto de v6.

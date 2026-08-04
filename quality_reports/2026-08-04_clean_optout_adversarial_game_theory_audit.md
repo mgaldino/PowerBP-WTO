@@ -40,4 +40,13 @@ de delayed continuation, híbrido ou `t_theta` foi importada e que
 
 ## Rodada 2
 
-Pendente até a fixação do novo commit candidato.
+- **Commit revisado:** `db52b2030b4c4e8e84c845a18ea04d4c2a27ab9c`.
+- **Veredito:** **PASS sem ressalvas substantivas**.
+- **Critical/major/minor:** nenhum.
+- **Editorial:** apenas os marcadores administrativos ainda pendentes no
+  commit revisado.
+
+O stress test aprovou o PBE fraco e o par de crenças off-path, as garantias
+`G_L/G_P`, `K_0`, `K_1`, a não existência em `o1=1`, todos os endpoint limits,
+a construção de maioria grande e o nesting/ranking. Confirmou novamente Gate
+0 intacto, ausência de extensões no baseline e SHA-256 de v6 inalterado.

@@ -42,4 +42,17 @@ textual do documento. Confirmou também o SHA-256 intacto de
 
 ## Rodada 2
 
-Pendente até a fixação do novo commit candidato.
+- **Commit revisado:** `db52b2030b4c4e8e84c845a18ea04d4c2a27ab9c`.
+- **Veredito:** **PASS sem ressalvas substantivas**.
+- **Critical/major/minor:** nenhum.
+- **Editorial:** o PDF repete o cabeçalho da tabela na página de continuação;
+  `y<=ybar` podia ser repetido nas condições de overpaid pooling; e o escopo
+  de suporte/mistura de `N=3,4` podia igualar o detalhamento de `N>=5`.
+
+O revisor confirmou as duas direções do lema de segurança, as crenças
+off-path, todas as fronteiras e interseções, os limites laterais, a construção
+de `[F_M,1]`, a comparação condicional, 96/96 checks, PDF/HTML válidos e o
+hash intacto de v6. As três observações editoriais foram respondidas no
+candidato administrativo de fechamento: o relatório não chama o cabeçalho de
+continuação de órfão; o domínio de `y` foi repetido; e o escopo de misturas de
+`N=3,4` foi explicitado.
