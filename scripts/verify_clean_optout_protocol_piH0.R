@@ -65,6 +65,108 @@ add_check(
   identical(history$history_id, expected_ids),
   paste("observed:", paste(history$history_id, collapse = ","))
 )
+
+matching_history_ids <- function(n_states, round, rule, h_active, h_vote, z) {
+  m <- n_states - 1L
+  q <- floor(n_states / 2) + 1L
+  matches <- c(
+    G01 = h_active && round == "R1" && rule == "U" && h_vote == "yes" && z == m,
+    G02 = h_active && round == "R1" && rule == "U" && h_vote == "yes" && z < m,
+    G03 = h_active && round == "R1" && rule == "U" && h_vote == "no" && z == m,
+    G04 = h_active && round == "R1" && rule == "U" && h_vote == "no" && z < m,
+    G05 = h_active && round == "R1" && rule == "M" && h_vote == "yes" && z >= q - 1L,
+    G06 = h_active && round == "R1" && rule == "M" && h_vote == "yes" && z <= q - 2L,
+    G07 = h_active && round == "R1" && rule == "M" && h_vote == "no" && z >= q,
+    G08 = h_active && round == "R1" && rule == "M" && h_vote == "no" && z == q - 1L,
+    G09 = h_active && round == "R1" && rule == "M" && h_vote == "no" && z <= q - 2L,
+    G10 = h_active && round == "R2" && rule == "U" && h_vote == "yes" && z == m,
+    G11 = h_active && round == "R2" && rule == "U" && h_vote == "yes" && z < m,
+    G12 = h_active && round == "R2" && rule == "U" && h_vote == "no" && z == m,
+    G13 = h_active && round == "R2" && rule == "U" && h_vote == "no" && z < m,
+    G14 = h_active && round == "R2" && rule == "M" && h_vote == "yes" && z >= q - 1L,
+    G15 = h_active && round == "R2" && rule == "M" && h_vote == "yes" && z <= q - 2L,
+    G16 = h_active && round == "R2" && rule == "M" && h_vote == "no" && z >= q,
+    G17 = h_active && round == "R2" && rule == "M" && h_vote == "no" && z == q - 1L,
+    G18 = h_active && round == "R2" && rule == "M" && h_vote == "no" && z <= q - 2L,
+    G19 = !h_active && round == "R2" && rule == "M" && z >= q,
+    G20 = !h_active && round == "R2" && rule == "M" && z < q,
+    G21 = !h_active && round == "R2" && rule == "U"
+  )
+  names(matches)[matches]
+}
+
+partition_audit <- list()
+audit_id <- 0L
+for (n_states in 3:60) {
+  m <- n_states - 1L
+  for (round in c("R1", "R2")) {
+    for (rule in c("U", "M")) {
+      for (h_vote in c("yes", "no")) {
+        for (z in seq_len(m)) {
+          audit_id <- audit_id + 1L
+          matched <- matching_history_ids(
+            n_states = n_states,
+            round = round,
+            rule = rule,
+            h_active = TRUE,
+            h_vote = h_vote,
+            z = z
+          )
+          partition_audit[[audit_id]] <- data.frame(
+            n_states = n_states,
+            round = round,
+            rule = rule,
+            h_active = TRUE,
+            h_vote = h_vote,
+            z = z,
+            n_matches = length(matched),
+            matched_id = paste(matched, collapse = ","),
+            stringsAsFactors = FALSE
+          )
+        }
+      }
+    }
+  }
+  for (rule in c("U", "M")) {
+    for (z in seq_len(m)) {
+      audit_id <- audit_id + 1L
+      matched <- matching_history_ids(
+        n_states = n_states,
+        round = "R2",
+        rule = rule,
+        h_active = FALSE,
+        h_vote = "not applicable",
+        z = z
+      )
+      partition_audit[[audit_id]] <- data.frame(
+        n_states = n_states,
+        round = "R2",
+        rule = rule,
+        h_active = FALSE,
+        h_vote = "not applicable",
+        z = z,
+        n_matches = length(matched),
+        matched_id = paste(matched, collapse = ","),
+        stringsAsFactors = FALSE
+      )
+    }
+  }
+}
+partition_audit <- dplyr::bind_rows(partition_audit)
+add_check(
+  "history_partition_exhaustive_and_exclusive",
+  all(partition_audit$n_matches == 1L),
+  sprintf(
+    "%d admissible tuples audited over N=3,...,60; zero/duplicate matches=%d",
+    nrow(partition_audit),
+    sum(partition_audit$n_matches != 1L)
+  )
+)
+add_check(
+  "history_partition_exercises_every_id",
+  setequal(unique(partition_audit$matched_id), expected_ids),
+  paste("exercised:", paste(sort(unique(partition_audit$matched_id)), collapse = ","))
+)
 add_check(
   "history_cells_nonempty",
   !any(is.na(history)) && !any(trimws(as.matrix(history)) == ""),
@@ -125,6 +227,12 @@ add_check(
     all(grepl("beta\\*C_H2", r1_h_yes_fail[["H payoff"]])) &&
     all(r1_h_yes_fail[["terminal or continuation"]] == "continuation"),
   "only H-yes plus weak shortfall creates an active-H R2 continuation"
+)
+add_check(
+  "active_h_continuation_uses_full_public_history",
+  all(grepl("theta,h2", r1_h_yes_fail[["H payoff"]], fixed = TRUE)) &&
+    all(grepl("full h2", r1_h_yes_fail[["relevant posterior"]], fixed = TRUE)),
+  "continuation payoff is indexed by h2 separately from posterior nu(h2)"
 )
 
 r2_h_yes_fail <- history[history$history_id %in% c("G11", "G15"), , drop = FALSE]
@@ -225,12 +333,51 @@ add_check(
   )
 )
 
+h_yes_r2 <- function(y, pass_probability, beta, outside_payoff) {
+  beta * (
+    pass_probability * y +
+      (1 - pass_probability) * outside_payoff
+  )
+}
+r2_probability <- 0.35
+r2_difference <- h_yes_r2(
+  y_example,
+  pass_probability = r2_probability,
+  beta = beta_example,
+  outside_payoff = o_example
+) - beta_example * o_example
+add_check(
+  "r2_positive_pass_probability_preserves_cutoff_sign",
+  abs(
+    r2_difference -
+      beta_example * r2_probability * (y_example - o_example)
+  ) < 1e-12 && sign(r2_difference) == sign(y_example - o_example),
+  sprintf("p=.35 R2 difference=%.6f", r2_difference)
+)
+add_check(
+  "r2_zero_pass_probability_implies_indifference",
+  abs(
+    h_yes_r2(
+      y_example,
+      pass_probability = 0,
+      beta = beta_example,
+      outside_payoff = o_example
+    ) - beta_example * o_example
+  ) < 1e-12,
+  "with p=0, H is indifferent for every y and the voting tie rule prescribes yes"
+)
+
 required_rmd_markers <- c(
   "pi_H=0",
   "b_0=b_1=0",
-  "EU_H^R(N\\mid\\theta,h)=o_\\theta",
+  "common knowledge",
+  "perfect Bayesian equilibrium (PBE)",
+  "I=(h,s_i)",
+  "EU_H^R(N\\mid\\theta,I)=o_\\theta",
+  "C_{H,2}^R\\!\\left(\\theta,h_2",
   "weak-vote-passive assessment",
   "not a global voting rule",
+  "every \\(p_R(I_2)>0\\)",
   "original \\(q\\)",
   "Independent Gate 0 verdict"
 )

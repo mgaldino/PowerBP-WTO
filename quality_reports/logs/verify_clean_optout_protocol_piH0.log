@@ -1,14 +1,16 @@
 Clean immediate-opt-out protocol verifier
 script: scripts/verify_clean_optout_protocol_piH0.R
-started_at: 2026-08-04 00:15:39
-finished_at: 2026-08-04 00:15:39
+started_at: 2026-08-04 00:27:46
+finished_at: 2026-08-04 00:27:49
 inputs: tables/clean_optout_gate0_histories_piH0.tsv and model_redesign/power_architecture_derivations.Rmd
-checks: 26
-passed: 26
+checks: 36
+passed: 36
 failed: 0
 status: PASS
 history_columns | PASS | columns: history_id | round | rule | active players | quota | quota reached? | H vote | participation offer to H? | failure cause | H included? | H remains? | y implemented? | destination of y | H payoff | weak payoffs | discount factor | relevant posterior | terminal or continuation | next subgame
 history_ids_complete | PASS | observed: G01,G02,G03,G04,G05,G06,G07,G08,G09,G10,G11,G12,G13,G14,G15,G16,G17,G18,G19,G20,G21
+history_partition_exhaustive_and_exclusive | PASS | 17690 admissible tuples audited over N=3,...,60; zero/duplicate matches=0
+history_partition_exercises_every_id | PASS | exercised: G01,G02,G03,G04,G05,G06,G07,G08,G09,G10,G11,G12,G13,G14,G15,G16,G17,G18,G19,G20,G21
 history_cells_nonempty | PASS | all versioned history-table cells must be populated
 h_no_never_included | PASS | every H-no row excludes H
 h_no_never_remains | PASS | every H-no row makes opt-out irreversible
@@ -18,6 +20,7 @@ r1_h_no_has_no_discounted_continuation | PASS | the no action never pays beta ti
 r2_h_no_is_terminal_optout | PASS | R2 H-no payoffs: beta*o_theta
 h_yes_pass_includes_h | PASS | an H-yes agreement that reaches the quota includes H and implements y
 r1_h_yes_weak_failure_keeps_h | PASS | only H-yes plus weak shortfall creates an active-H R2 continuation
+active_h_continuation_uses_full_public_history | PASS | continuation payoff is indexed by h2 separately from posterior nu(h2)
 r2_h_yes_failure_is_terminal | PASS | terminal failure pays H beta*o_theta and weak states zero
 majority_h_no_reabsorbs_y | PASS | current majority weak-only passage does not burn y
 post_optout_never_reincludes_h | PASS | after R1 opt-out, y is fixed at zero and H receives no additional flow
@@ -25,11 +28,18 @@ unanimity_post_optout_unreachable | PASS | the original N-vote quota cannot be m
 original_majority_quota_feasible_for_weak_only_r2 | PASS | min(m-q)=0 over N=3,...,200
 budget_identities | PASS | 500 deterministic random draws close both budgets and reabsorb y exactly
 direct_cutoff_only_under_certain_implementation | PASS | p=1 difference=0.150000; p=.35 expected-IC difference=0.156500
+r2_positive_pass_probability_preserves_cutoff_sign | PASS | p=.35 R2 difference=0.042000
+r2_zero_pass_probability_implies_indifference | PASS | with p=0, H is indifferent for every y and the voting tie rule prescribes yes
 rmd_marker_pi_H_0 | PASS | required marker: pi_H=0
 rmd_marker_b_0_b_1_0 | PASS | required marker: b_0=b_1=0
-rmd_marker_EU_H_R_N_mid_theta_h_o_theta | PASS | required marker: EU_H^R(N\mid\theta,h)=o_\theta
+rmd_marker_common_knowledge | PASS | required marker: common knowledge
+rmd_marker_perfect_Bayesian_equilibrium_PBE_ | PASS | required marker: perfect Bayesian equilibrium (PBE)
+rmd_marker_I_h_s_i_ | PASS | required marker: I=(h,s_i)
+rmd_marker_EU_H_R_N_mid_theta_I_o_theta | PASS | required marker: EU_H^R(N\mid\theta,I)=o_\theta
+rmd_marker_C_H_2_R_left_theta_h_2 | PASS | required marker: C_{H,2}^R\!\left(\theta,h_2
 rmd_marker_weak_vote_passive_assessment | PASS | required marker: weak-vote-passive assessment
 rmd_marker_not_a_global_voting_rule | PASS | required marker: not a global voting rule
+rmd_marker_every_p_R_I_2_0_ | PASS | required marker: every \(p_R(I_2)>0\)
 rmd_marker_original_q_ | PASS | required marker: original \(q\)
 rmd_marker_Independent_Gate_0_verdict | PASS | required marker: Independent Gate 0 verdict
 v6_is_not_an_rmd_output_dependency | PASS | the autonomous laboratory does not source the target manuscript

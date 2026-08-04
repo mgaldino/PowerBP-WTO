@@ -117,6 +117,24 @@ pie. It is never subtracted from weak surplus and is never paid together with
 The institutional rule \(R\in\{U,M\}\) is fixed exogenously for each
 comparison. There is no endogenous rule-choice stage.
 
+## Common knowledge and solution concept
+
+The primitives, parameters, type distribution, recognition rule, contract
+space, ballot protocol, quotas, implementation rule, payoff consequences, and
+tie-breaking rules stated here are common knowledge.
+
+The solution concept is perfect Bayesian equilibrium (PBE). An assessment
+contains the weak states' collective formation strategy; every weak proposer's
+proposal strategy at each public history where it is recognized; every active
+non-proposer's behavioral voting strategy at each ballot information set;
+\(H\)'s type-contingent behavioral voting strategy; and a belief system at
+every information set where \(\theta\) remains payoff-relevant. Strategies are
+sequentially rational given the belief system, and beliefs follow Bayes' rule
+wherever possible. Every result below must state whether it concerns all PBEs,
+pure-strategy PBEs, a constructed or selected PBE outcome, or a
+selection-free bound. The solution concept does not select among multiple PBEs
+unless one of the two stated tie rules applies.
+
 ## Horizon, recognition, and time units
 
 The game has exactly two bargaining rounds, R1 and R2. There is no R3. In each
@@ -277,43 +295,145 @@ to R2 under the same institutional rule.
 
 ## Exhaustive voting-history table
 
-Let \(z\) denote the number of weak yes votes, including the weak proposer's
-automatic yes vote. Table \@ref(tab:gate0-history-table) is generated from the versioned tab-separated
-source `tables/clean_optout_gate0_histories_piH0.tsv`. The concise entries use
-`C_H2^R(theta,nu)` only for the legitimate continuation after an R1 yes vote by
+Let \(z\in\{1,\ldots,m\}\) denote the number of weak yes votes, including the
+weak proposer's automatic yes vote. The tables in this section are generated
+from the single versioned tab-separated source
+`tables/clean_optout_gate0_histories_piH0.tsv`. HTML displays the complete
+19-column table in a scroll box. To preserve legibility, PDF displays the same
+rows and columns as four keyed panels. The concise entries use
+`C_H2^R(theta,h2)` only for the legitimate continuation after an R1 yes vote by
 \(H\) followed by a weak-caused failure. They never use that object as the
 payoff from a no vote.
 
-```{r gate0-history-table, results='asis'}
-history_display <- gate0_histories
-if (knitr::is_latex_output()) {
-  print(
-    kableExtra::kbl(
-      history_display,
-      format = "latex",
-      booktabs = TRUE,
-      longtable = TRUE,
-      escape = TRUE,
-      caption = "Gate 0 exhaustive voting histories, implementation rules, payoffs, beliefs, and continuations."
-    ) |>
-      kableExtra::kable_styling(
-        latex_options = c("repeat_header", "scale_down"),
-        font_size = 4
-      ) |>
-      kableExtra::landscape()
-  )
-} else {
-  print(
-    kableExtra::kbl(
-      history_display,
-      format = "html",
-      escape = TRUE,
-      caption = "Gate 0 exhaustive voting histories, implementation rules, payoffs, beliefs, and continuations."
-    ) |>
-      kableExtra::kable_styling(font_size = 10) |>
-      kableExtra::scroll_box(width = "100%", height = "650px")
-  )
-}
+```{r gate0-history-table-html, eval=!knitr::is_latex_output(), results='asis'}
+kableExtra::kbl(
+  gate0_histories,
+  format = "html",
+  escape = TRUE,
+  caption = "Gate 0 exhaustive voting histories, implementation rules, payoffs, beliefs, and continuations."
+) |>
+  kableExtra::kable_styling(font_size = 10) |>
+  kableExtra::scroll_box(width = "100%", height = "650px")
+```
+
+```{r gate0-history-timing, eval=knitr::is_latex_output(), results='asis'}
+history_timing <- dplyr::select(
+  gate0_histories,
+  history_id,
+  round,
+  rule,
+  `active players`,
+  quota,
+  `quota reached?`,
+  `H vote`
+)
+kableExtra::kbl(
+  history_timing,
+  format = "latex",
+  booktabs = TRUE,
+  longtable = TRUE,
+  escape = TRUE,
+  caption = "Gate 0 histories, panel A: timing, electorate, quota, and votes."
+) |>
+  kableExtra::kable_styling(
+    latex_options = "repeat_header",
+    font_size = 7
+  ) |>
+  kableExtra::column_spec(1, width = "0.55in") |>
+  kableExtra::column_spec(2, width = "0.45in") |>
+  kableExtra::column_spec(3, width = "0.35in") |>
+  kableExtra::column_spec(4, width = "1.55in") |>
+  kableExtra::column_spec(5, width = "0.75in") |>
+  kableExtra::column_spec(6, width = "1.55in") |>
+  kableExtra::column_spec(7, width = "0.85in") |>
+  kableExtra::landscape()
+```
+
+```{r gate0-history-implementation, eval=knitr::is_latex_output(), results='asis'}
+history_implementation <- dplyr::select(
+  gate0_histories,
+  history_id,
+  `participation offer to H?`,
+  `failure cause`,
+  `H included?`,
+  `H remains?`,
+  `y implemented?`,
+  `destination of y`
+)
+kableExtra::kbl(
+  history_implementation,
+  format = "latex",
+  booktabs = TRUE,
+  longtable = TRUE,
+  escape = TRUE,
+  caption = "Gate 0 histories, panel B: implementation and the disposition of the participation package."
+) |>
+  kableExtra::kable_styling(
+    latex_options = "repeat_header",
+    font_size = 7
+  ) |>
+  kableExtra::column_spec(1, width = "0.55in") |>
+  kableExtra::column_spec(2, width = "1.25in") |>
+  kableExtra::column_spec(3, width = "1.8in") |>
+  kableExtra::column_spec(4, width = "0.8in") |>
+  kableExtra::column_spec(5, width = "0.95in") |>
+  kableExtra::column_spec(6, width = "1.15in") |>
+  kableExtra::column_spec(7, width = "1.65in") |>
+  kableExtra::landscape()
+```
+
+```{r gate0-history-payoffs, eval=knitr::is_latex_output(), results='asis'}
+history_payoffs <- dplyr::select(
+  gate0_histories,
+  history_id,
+  `H payoff`,
+  `weak payoffs`,
+  `discount factor`
+)
+kableExtra::kbl(
+  history_payoffs,
+  format = "latex",
+  booktabs = TRUE,
+  longtable = TRUE,
+  escape = TRUE,
+  caption = "Gate 0 histories, panel C: payoffs and time units."
+) |>
+  kableExtra::kable_styling(
+    latex_options = "repeat_header",
+    font_size = 8
+  ) |>
+  kableExtra::column_spec(1, width = "0.65in") |>
+  kableExtra::column_spec(2, width = "1.75in") |>
+  kableExtra::column_spec(3, width = "3.7in") |>
+  kableExtra::column_spec(4, width = "2.1in") |>
+  kableExtra::landscape()
+```
+
+```{r gate0-history-continuations, eval=knitr::is_latex_output(), results='asis'}
+history_continuations <- dplyr::select(
+  gate0_histories,
+  history_id,
+  `relevant posterior`,
+  `terminal or continuation`,
+  `next subgame`
+)
+kableExtra::kbl(
+  history_continuations,
+  format = "latex",
+  booktabs = TRUE,
+  longtable = TRUE,
+  escape = TRUE,
+  caption = "Gate 0 histories, panel D: beliefs and continuation subgames."
+) |>
+  kableExtra::kable_styling(
+    latex_options = "repeat_header",
+    font_size = 8
+  ) |>
+  kableExtra::column_spec(1, width = "0.65in") |>
+  kableExtra::column_spec(2, width = "4.1in") |>
+  kableExtra::column_spec(3, width = "2.05in") |>
+  kableExtra::column_spec(4, width = "1.8in") |>
+  kableExtra::landscape()
 ```
 
 The R2-unanimity row with \(H\) already absent is included to document a
@@ -325,8 +445,39 @@ latent R2 action.
 
 ## Public histories and beliefs
 
-The public history after a ballot contains the proposal, complete vote vector,
-quota outcome, and any observed opt-out. On-path beliefs follow Bayes' rule.
+Let \(h\) denote the public history before a proposal, let \(s_i\) be the
+public proposal, and let
+
+\[
+I=(h,s_i)
+\]
+
+denote a ballot information set before simultaneous votes are cast. After the
+ballot, the public history is
+
+\[
+h_2=(h,s_i,a_H,v_W,\text{quota outcome},\text{opt-out status}).
+\]
+
+Thus continuation strategies may condition on the full proposal and revealed
+vote vector, not only on the posterior. Let \(\mu(h)\) be the belief before the
+ballot. Whenever the denominator is positive, Bayes' rule requires
+
+\[
+\nu(h_2)
+=
+\frac{
+  \mu(h)\Pr(h_2\mid\theta=1,h)
+}{
+  \mu(h)\Pr(h_2\mid\theta=1,h)
+  +\{1-\mu(h)\}\Pr(h_2\mid\theta=0,h)
+}.
+\tag{G0-Bayes}\label{G0-Bayes}
+\]
+
+The posterior \(\nu(h_2)\) and a continuation payoff
+\(C_{H,2}^R(\theta,h_2)\) are distinct objects. Histories with identical
+posteriors can induce different continuation strategies and payoffs.
 
 The baseline uses the expression **weak-vote-passive assessment**. It is a
 maintained assessment of the simultaneous public ballot, not a refinement, D1,
@@ -349,21 +500,21 @@ posterior is needed to solve it.
 
 ## Hegemon's expected ballot IC
 
-Fix an R1 public history \(h\), a proposal, and type \(\theta\). Let
+Fix an R1 ballot information set \(I=(h,s_i)\) and type \(\theta\). Let
 \(v_W\) be the simultaneous vector of non-proposer weak votes, let
 \(A_R^Y(v_W)\) indicate that the rule-\(R\) quota is reached when \(H\) votes
-yes, and let \(\sigma_W(v_W\mid h)\) be the probability induced by the weak
+yes, and let \(\sigma_W(v_W\mid I)\) be the probability induced by the weak
 strategies. The correct R1 payoff from voting yes is
 
 \[
-EU_H^R(Y\mid\theta,h)
+EU_H^R(Y\mid\theta,I)
 =
-\sum_{v_W}\sigma_W(v_W\mid h)
+\sum_{v_W}\sigma_W(v_W\mid I)
 \left[
 A_R^Y(v_W)y
 +
 \{1-A_R^Y(v_W)\}
-\beta C_{H,2}^R\!\left(\theta,\nu(h,Y,v_W)\right)
+\beta C_{H,2}^R\!\left(\theta,h_2(h,s_i,Y,v_W)\right)
 \right].
 \tag{G0-H-yes-R1}\label{G0-H-yes-R1}
 \]
@@ -371,7 +522,7 @@ A_R^Y(v_W)y
 The payoff from voting no is always
 
 \[
-EU_H^R(N\mid\theta,h)=o_\theta.
+EU_H^R(N\mid\theta,I)=o_\theta.
 \tag{G0-H-no-R1}\label{G0-H-no-R1}
 \]
 
@@ -380,32 +531,32 @@ or the weak states continue alone: \(H\) has opted out and receives no further
 flow. Sequential rationality requires
 
 \[
-EU_H^R(Y\mid\theta,h)\geq o_\theta
+EU_H^R(Y\mid\theta,I)\geq o_\theta
 \tag{G0-H-IC-R1}\label{G0-H-IC-R1}
 \]
 
 for a prescribed yes vote, with the reverse weak inequality for a prescribed
 no vote.
 
-At an R2 information set, a failed ballot with \(H\) still active pays the
-terminal outside payoff. Thus, in Round-1 units,
+At an R2 ballot information set \(I_2=(h_2,s_i)\), a failed ballot with \(H\)
+still active pays the terminal outside payoff. Thus, in Round-1 units,
 
 \[
-EU_H^R(Y\mid\theta,h_2)
+EU_H^R(Y\mid\theta,I_2)
 =
-\beta\sum_{v_W}\sigma_W(v_W\mid h_2)
+\beta\sum_{v_W}\sigma_W(v_W\mid I_2)
 \left[
 A_R^Y(v_W)y
 +
 \{1-A_R^Y(v_W)\}o_\theta
 \right],
 \qquad
-EU_H^R(N\mid\theta,h_2)=\beta o_\theta.
+EU_H^R(N\mid\theta,I_2)=\beta o_\theta.
 \tag{G0-H-IC-R2}\label{G0-H-IC-R2}
 \]
 
-Only when the weak strategies make \(A_R^Y(v_W)=1\) with probability one does
-the R1 or R2 yes/no comparison reduce to
+At an R1 information set where weak strategies make
+\(A_R^Y(v_W)=1\) with probability one, the comparison directly reduces to
 
 \[
 y\geq o_\theta.
@@ -418,20 +569,43 @@ weak-caused failure has positive probability, equation
 \eqref{G0-H-IC-R1} must integrate current implementation and the legitimate
 R2 continuation after a yes vote.
 
+R2 has a special terminal algebra that does not change this scope statement.
+If
+
+\[
+p_R(I_2)=\Pr\!\left(A_R^Y(v_W)=1\mid I_2\right),
+\]
+
+then equation \eqref{G0-H-IC-R2} implies
+
+\[
+EU_H^R(Y\mid\theta,I_2)-EU_H^R(N\mid\theta,I_2)
+=
+\beta p_R(I_2)(y-o_\theta).
+\tag{G0-H-R2-difference}\label{G0-H-R2-difference}
+\]
+
+Consequently, every \(p_R(I_2)>0\) produces the same sign as
+\(y-o_\theta\), while \(p_R(I_2)=0\) makes \(H\) indifferent for every \(y\)
+and the voting tie rule prescribes yes. This is a consequence of terminal
+failure payoffs, not a global primitive cutoff and not a license to replace
+the R1 expected IC when failure has positive probability.
+
 ## Weak-voter approval IC
 
-Fix a non-proposing weak voter \(j\). Its strategy is chosen before the
-simultaneous ballots are revealed. Let \(u_j(a_j,v_{-j})\) be the payoff
+Fix a non-proposing weak voter \(j\) at ballot information set \(I=(h,s_i)\).
+Its strategy is chosen before the simultaneous ballots are revealed. Let
+\(u_j(a_j,v_{-j};I)\) be the payoff
 specified by the history table: an implemented \(x_j\) if the current agreement
 passes, the appropriate discounted continuation if R1 fails, or zero after
 terminal failure. Its approval condition is
 
 \[
-\sum_{v_{-j}}\Pr(v_{-j}\mid h)
-u_j(Y,v_{-j})
+\sum_{v_{-j}}\Pr(v_{-j}\mid I)
+u_j(Y,v_{-j};I)
 \geq
-\sum_{v_{-j}}\Pr(v_{-j}\mid h)
-u_j(N,v_{-j}).
+\sum_{v_{-j}}\Pr(v_{-j}\mid I)
+u_j(N,v_{-j};I).
 \tag{G0-W-IC}\label{G0-W-IC}
 \]
 
@@ -459,15 +633,15 @@ substitute for the independent verdict.
 
 | Requirement | Candidate evidence | Implementer status |
 |---|---|---|
-| Every required history has a payoff and continuation | Table \@ref(tab:gate0-history-table), rows G01--G21 | checked |
+| Every required history has a payoff and continuation | Versioned history tables, rows G01--G21 | checked |
 | No double payment to H | Contract identities and all H-no rows | checked |
-| No reinclusion after opt-out | Rows G03, G04, G06, G08, G11, G13, G15--G18 | checked |
+| No reinclusion after opt-out | Rows G03, G04, G07--G09, G12, G13, and G16--G21 | checked |
 | No discounted continuation as payoff from H-no in R1 | Equation \eqref{G0-H-no-R1} and table H-no rows | checked |
 | Same simultaneous ballot under U and M | Equation \eqref{G0-quotas} | checked |
-| Post-opt-out electorate and quotas defined | Common-ballot section and rows G16--G18 | checked |
+| Post-opt-out electorate and quotas defined | Common-ballot section and rows G19--G21 | checked |
 | H-including and weak-only budgets close | Equations \eqref{G0-H-budget}--\eqref{G0-budget-closure} | checked |
 | H IC integrates simultaneous weak votes | Equations \eqref{G0-H-yes-R1}--\eqref{G0-H-IC-R2} | checked |
-| Beliefs stated whenever type remains relevant | Beliefs section and G02/G07 | checked |
+| Beliefs stated whenever type remains relevant | Beliefs section and G02/G06 | checked |
 | No equilibrium result presumed as a primitive | Status, primitives, and proof ledger | checked |
 
 **Independent Gate 0 verdict:** PENDING.
