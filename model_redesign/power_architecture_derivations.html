@@ -1814,8 +1814,11 @@ read-only audit returned PASS without substantive reservation on candidate
 commit <code>fff4a35d1572c08bb2098cae9ad264a2eba80b41</code>. Analytical equilibrium
 results are not presumed in the Gate 0 specification; they must be derived
 separately by backward induction.</p>
-<p><strong>Current formal status:</strong> Gate 0 PASS; Phase 1 analytical rederivation
-authorized.</p>
+<p><strong>Current formal status:</strong> the extensive-form Gate 0 audit passed on the cited
+commit. Phase 1 has rederived the clean game under weak PBE and found endogenous
+existence restrictions, boundary multiplicity, and a conditional comparison
+domain. The analytical candidate awaits reproducible checks and final
+independent review; no protocol change has been introduced.</p>
 <p><strong>Manuscript boundary:</strong> <code>formal_model_v6.Rmd</code> and <code>formal_model_v5.Rmd</code> are
 reference objects only. This Goal does not edit either manuscript.</p>
 <p><strong>Excluded from the baseline:</strong> <span class="math inline">\(y+b_\theta\)</span>, a rejection payoff
@@ -3573,17 +3576,525 @@ substitute for the independent verdict.</p>
 </tbody>
 </table>
 <p><strong>Independent Gate 0 verdict:</strong> <strong>PASS without substantive reservation</strong> on
-commit <code>fff4a35d1572c08bb2098cae9ad264a2eba80b41</code>. The read-only reviewer found
-no critical, major, or minor substantive issue after the repair round.</p>
+commit <code>fff4a35</code>. The read-only reviewer found no critical, major, or minor
+substantive issue after the repair round. Gate 0 fixes the game; it does not
+presume that a PBE exists for every parameter vector. The backward-induction
+results below therefore leave Gate 0 closed while reporting endogenous
+existence restrictions faithfully.</p>
 </div>
-<div id="phase-1-placeholder" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Phase 1 placeholder</h1>
-<p>No equilibrium candidate, historical label, threshold ordering, No-Cheap-H
-condition, entry nesting result, or institutional comparison has yet been
-promoted under the clean contract. Gate 0 is closed, so the next derivation
-must now proceed from terminal histories backward.</p>
-<div id="preliminary-survival-matrix" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Preliminary survival matrix</h2>
+<div id="analytical-rederivation" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Analytical rederivation</h1>
+<div id="belief-discipline-and-theorem-domains" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Belief discipline and theorem domains</h2>
+<p>The distinction between an on-path and a globally off-path proposal is
+essential. A proposal made with positive probability by an uninformed weak
+proposer preserves the current belief and subsequent positive-probability
+histories obey Bayes’ rule. After a globally zero-probability proposal, the
+posterior is a component of the PBE assessment and must be declared. The
+weak-vote-passive assessment prevents an uninformed unilateral vote deviation
+from being treated as a direct signal, but it does not silently turn weak PBE
+into sequential equilibrium.</p>
+<p>All payoffs from deviations are evaluated under the true prior <span class="math inline">\(\mu\)</span>, even
+when voters at an off-path ballot hold a declared posterior <span class="math inline">\(\nu\)</span>. This
+separation is what generates the security-value discontinuities below.</p>
+<p>The main theorems use the <strong>regular interior domain</strong></p>
+<p><span class="math display">\[
+\mu\in(0,1),\qquad
+\beta\in(0,1),\qquad
+0&lt;o_0&lt;o_1&lt;1.
+\tag{regular-domain}\label{regular-domain}
+\]</span></p>
+<p>The loci <span class="math inline">\(o_0=0\)</span>, <span class="math inline">\(o_1=1\)</span>, <span class="math inline">\(\beta=1\)</span>, and degenerate priors are stated
+separately. They are not imported into the regular theorem by continuity.</p>
+</div>
+<div id="round-2-under-unanimity" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Round 2 under unanimity</h2>
+<p>In terminal R2 unanimity, every non-proposing weak voter approves. A unilateral
+no either leaves failure unchanged or turns failure into an agreement paying
+that voter a nonnegative offer; equality invokes the yes-vote tie rule. Hence
+<span class="math inline">\(H\)</span> is pivotal and the R2 IC in <span class="math inline">\(\eqref{G0-H-R2-difference}\)</span> yields the direct
+cutoff <span class="math inline">\(y\geq o_\theta\)</span>.</p>
+<p>At posterior <span class="math inline">\(\nu\)</span>, define</p>
+<p><span class="math display">\[
+P=1-o_1,
+\qquad
+L(\nu)=(1-\nu)(1-o_0),
+\qquad
+S(\nu)=\max\{P,L(\nu)\}.
+\tag{R2-U-value}\label{R2-U-value}
+\]</span></p>
+<p>A pooling proposal sets <span class="math inline">\(y=o_1\)</span> and leaves weak total <span class="math inline">\(P\)</span>. A low-only
+proposal sets <span class="math inline">\(y=o_0\)</span> and leaves expected weak total <span class="math inline">\(L(\nu)\)</span>. At equality,
+the proposal tie-break selects low-only because it gives <span class="math inline">\(H\)</span> the lower
+expected payoff. Thus</p>
+<p><span class="math display">\[
+\nu_2^*=\frac{o_1-o_0}{1-o_0}
+\tag{R2-U-cutoff}\label{R2-U-cutoff}
+\]</span></p>
+<p>is the terminal belief cutoff, the total weak value is <span class="math inline">\(S(\nu)\)</span>, and each
+weak state’s ex ante R2 value is <span class="math inline">\(S(\nu)/m\)</span>. This is an all-PBE payoff result
+for the terminal subgame; allocation among weak states can still depend on the
+recognition draw.</p>
+</div>
+<div id="round-2-under-majority" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Round 2 under majority</h2>
+<p>In terminal R2 majority, weak approval is weakly dominant: failure pays zero,
+an implemented named offer is nonnegative, and ties go to yes. All weak states
+therefore approve. A weak proposer sets all named weak offers to zero, the
+proposal passes even after <span class="math inline">\(H\)</span>-no, and the proposer retains the unit pie.
+The conclusion is the same in the active-<span class="math inline">\(H\)</span> and post-opt-out weak-only
+subgames:</p>
+<p><span class="math display">\[
+C_{W,2}^M=\frac1m,
+\qquad
+c:=\beta C_{W,2}^M=\frac\beta m,
+\qquad
+C_{H,2}^M(\theta)=o_\theta.
+\tag{R2-M-values}\label{R2-M-values}
+\]</span></p>
+<p>The outside payoff remains external to the institutional pie. This proposition
+is selection-free.</p>
+</div>
+</div>
+<div id="round-1-under-unanimity" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Round 1 under unanimity</h1>
+<div id="on-path-candidates" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> On-path candidates</h2>
+<p>For the regular domain, write</p>
+<p><span class="math display">\[
+D_0=1-o_0,
+\qquad
+L=(1-\mu)D_0,
+\qquad
+\delta=\frac{\beta(m-1)}m,
+\qquad
+a=1-\delta.
+\tag{U-notation}\label{U-notation}
+\]</span></p>
+<p>If pooling is on path, a weak deviation after <span class="math inline">\(H\)</span>-yes preserves posterior
+<span class="math inline">\(\mu\)</span>. Each non-proposer must receive <span class="math inline">\(\beta S(\mu)/m\)</span>, and the maximal
+proposer payoff is</p>
+<p><span class="math display">\[
+\pi_P=P-\delta S(\mu).
+\tag{U-onpath-P}\label{U-onpath-P}
+\]</span></p>
+<p>If low-only is on path, <span class="math inline">\(H\)</span>-yes reveals the low type. Each non-proposer must
+receive <span class="math inline">\(\beta D_0/m\)</span>, so</p>
+<p><span class="math display">\[
+\pi_L=aL.
+\tag{U-onpath-L}\label{U-onpath-L}
+\]</span></p>
+<p>There is no high-branch continuation term in <span class="math inline">\(\pi_L\)</span>: high-type <span class="math inline">\(H\)</span>-no is
+immediate opt-out and ends unanimity. For <span class="math inline">\(o_0&gt;0\)</span> and <span class="math inline">\(\beta&lt;1\)</span>, an
+on-path weak-caused failure cannot be sustained because both types prefer
+immediate opt-out once Bayes disciplines the continuation.</p>
+</div>
+<div id="off-path-completion-lemma" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Off-path completion lemma</h2>
+<p>Assume first that <span class="math inline">\(\beta o_1\geq o_0\)</span>, and define</p>
+<p><span class="math display">\[
+d=\frac{\beta P}{m},
+\qquad
+G_L=(1-\mu)(D_0-\delta P),
+\qquad
+G_P=aP.
+\tag{U-security}\label{U-security}
+\]</span></p>
+<p>The declared off-path continuation after low-type <span class="math inline">\(H\)</span>-yes can put enough
+mass on the high type to select terminal pooling. The low type then obtains
+<span class="math inline">\(\beta o_1\)</span> after weak-caused failure and is willing to vote yes; high-type
+<span class="math inline">\(H\)</span> strictly opts out. This gives the following exhaustive completion.</p>
+<ol style="list-style-type: decimal">
+<li>If <span class="math inline">\(y&lt;o_0\)</span>, prescribe all weak voters yes and both types of <span class="math inline">\(H\)</span> no. The
+proposer receives zero.</li>
+<li>If <span class="math inline">\(o_0\leq y&lt;o_1\)</span> and every <span class="math inline">\(x_j\geq d\)</span>, prescribe all weak voters
+yes, low-type <span class="math inline">\(H\)</span> yes, and high-type <span class="math inline">\(H\)</span> no. A pooling posterior after a
+unilateral weak deviation makes <span class="math inline">\(d\)</span> the exact approval price. The best
+such deviation gives the proposer <span class="math inline">\(G_L\)</span>.</li>
+<li>If <span class="math inline">\(y\geq o_1\)</span> and every <span class="math inline">\(x_j\geq d\)</span>, prescribe all weak voters and both
+types of <span class="math inline">\(H\)</span> yes. The best such deviation gives <span class="math inline">\(G_P\)</span>.</li>
+<li>If some <span class="math inline">\(x_j&lt;d\)</span>, designate one underpaid weak rejector, prescribe low-type
+<span class="math inline">\(H\)</span> yes and high-type <span class="math inline">\(H\)</span> no, and use the pooling continuation. The
+rejector strictly prefers continuation. The proposer’s payoff is at most
+<span class="math inline">\((1-\mu)\beta P/m&lt;G_L\)</span>.</li>
+</ol>
+<p>Two or more weak no votes cannot occur because each rejector would be
+nonpivotal and the tie rule would require yes. A nondegenerate ballot mixture
+cannot enlarge the set: mixing requires indifference, where the same rule
+assigns yes with probability one.</p>
+<p>If <span class="math inline">\(\beta o_1&lt;o_0\)</span>, step 4 is impossible. The feasible proposal
+<span class="math inline">\(y=o_1,x_j=0\)</span> then has no sequentially rational ballot completion: all weak
+yes makes each weak voter prefer the positive R2 continuation, two weak no
+votes violate the tie rule, and with exactly one weak no both types of <span class="math inline">\(H\)</span>
+opt out. Thus the full game has no PBE on that open subdomain.</p>
+</div>
+<div id="unanimity-existence-theorem" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Unanimity existence theorem</h2>
+<p>Suppose <span class="math inline">\(\eqref{regular-domain}\)</span> holds. Define</p>
+<p><span class="math display">\[
+D_U=D_0-\delta P&gt;0,
+\qquad
+\mu_E=1-\frac{aP}{D_U}.
+\tag{U-existence-cutoff}\label{U-existence-cutoff}
+\]</span></p>
+<p>Then a global unanimity PBE exists if and only if</p>
+<p><span class="math display">\[
+\boxed{
+\beta o_1\geq o_0
+\quad\text{and}\quad
+G_P&gt;G_L
+}
+\tag{U-existence}\label{U-existence}
+\]</span></p>
+<p>or, equivalently, <span class="math inline">\(\beta o_1\geq o_0\)</span> and <span class="math inline">\(\mu&gt;\mu_E\)</span>.</p>
+<p><strong>Proof.</strong> The completion lemma shows that the proposer can force both
+<span class="math inline">\(G_L\)</span> and <span class="math inline">\(G_P\)</span>, while every proposal can be completed at no more than
+their maximum. Yet the on-path low-only price is
+<span class="math inline">\(\beta D_0/m&gt;d\)</span>, so</p>
+<p><span class="math display">\[
+G_L-\pi_L=(1-\mu)\delta(D_0-P)&gt;0.
+\tag{U-shaving-gap}\label{U-shaving-gap}
+\]</span></p>
+<p>Low-only can therefore never be a regular PBE: the proposer shaves every weak
+offer to <span class="math inline">\(d\)</span> when the deviation is off path, but Bayes would restore the
+higher price if that proposal became on path. Pooling can attain its off-path
+security payoff only when <span class="math inline">\(P&gt;L\)</span>, in which case
+<span class="math inline">\(\pi_P=aP=G_P\)</span>. Direct algebra gives</p>
+<p><span class="math display">\[
+\mu_E-\nu_2^*
+=
+\frac{\delta P(D_0-P)}{D_0D_U}&gt;0,
+\tag{U-cutoff-order}\label{U-cutoff-order}
+\]</span></p>
+<p>so <span class="math inline">\(G_P&gt;G_L\)</span> already implies <span class="math inline">\(P&gt;L\)</span>. If equality holds, the intermediate
+deviation ties the proposer payoff and pays less to <span class="math inline">\(H\)</span>; the proposal
+tie-break selects it, but its on-path approval price jumps back to
+<span class="math inline">\(\beta D_0/m\)</span>. No fixed point exists at equality. Under the strict
+inequality, pooling strictly dominates every completed deviation and the
+completion lemma constructs a global PBE. <span class="math inline">\(\square\)</span></p>
+<p>Every regular unanimity PBE in the existence domain has the same on-path
+outcome:</p>
+<p><span class="math display">\[
+y=o_1,
+\qquad
+T_W^U=P,
+\qquad
+V_W^U=\frac{P}{m},
+\qquad
+E[u_H^U]=o_1.
+\tag{U-regular-payoffs}\label{U-regular-payoffs}
+\]</span></p>
+<p>This is a pooling result, not a resurrection of the historical P/L/R
+characterization and not a claim about parameter vectors outside
+<span class="math inline">\(\eqref{U-existence}\)</span>.</p>
+</div>
+<div id="unanimity-boundary-results" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Unanimity boundary results</h2>
+<p>The boundary results are separate propositions obtained from the same ballot
+best-response enumeration.</p>
+<div id="zero-low-outside-option" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Zero low outside option</h3>
+<p>Let <span class="math inline">\(\beta&lt;1\)</span>, <span class="math inline">\(o_0=0\)</span>, and <span class="math inline">\(o_1&lt;1\)</span>. A global PBE always exists. If
+<span class="math inline">\(L\geq P\)</span>, low-only is the only minimal total-payoff class and
+<span class="math inline">\(T_W^U=L\)</span>. If <span class="math inline">\(P&gt;L\)</span>, canonical pooling exists, while low-only also exists
+if and only if</p>
+<p><span class="math display">\[
+P-\delta\leq aL.
+\tag{U-zero-low-multiplicity}\label{U-zero-low-multiplicity}
+\]</span></p>
+<p>At equality the proposal tie-break favors low-only. Pooling assessments with a
+larger concession <span class="math inline">\(y\in[o_1,\bar y]\)</span> can also be sustained. If
+<span class="math inline">\(T=1-y\)</span>, their maximal proposer payoff is <span class="math inline">\(T-\delta P\)</span>. The strict
+interior of the constructed set satisfies</p>
+<p><span class="math display">\[
+T\in[1-\bar y,P],
+\qquad
+T-\delta P&gt;\max\{aL,P-\delta\}.
+\tag{U-zero-low-overpay}\label{U-zero-low-overpay}
+\]</span></p>
+<p>Equality is selected against pooling when the binding deviation pays less to
+<span class="math inline">\(H\)</span>; if both proposer and <span class="math inline">\(H\)</span> payoffs tie, the outcome remains set-valued.
+Thus <span class="math inline">\(S(\mu)/m\)</span> is an upper endpoint, not an all-PBE R1 value.</p>
+</div>
+<div id="no-terminal-weak-surplus" class="section level3" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> No terminal weak surplus</h3>
+<p>If <span class="math inline">\(\beta&lt;1\)</span>, <span class="math inline">\(o_0&gt;0\)</span>, <span class="math inline">\(o_1=1\)</span>, and <span class="math inline">\(\mu\in(0,1)\)</span>, no PBE exists.
+An off-path posterior selecting zero-surplus pooling lets the proposer shave
+the low-only approval price below the Bayes-consistent on-path price.</p>
+</div>
+<div id="no-discounting" class="section level3" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> No discounting</h3>
+<p>If <span class="math inline">\(\beta=1\)</span>, rejection/continuation is admissible and gives proposer payoff
+<span class="math inline">\(S(\mu)/m\)</span>. When <span class="math inline">\(L\geq P\)</span>, low-only and rejection survive. When
+<span class="math inline">\(P&gt;L\)</span>, pooling and rejection survive; low-only additionally survives iff</p>
+<p><span class="math display">\[
+P-\frac{(m-1)(1-o_0)}m\leq\frac{L}{m}.
+\tag{U-beta-one-low}\label{U-beta-one-low}
+\]</span></p>
+<p>Overpaid pooling and proposal mixing can add payoff-equivalent or lower-total
+outcomes. No timing uniqueness is claimed. This is the only baseline locus on
+which the historical rejection/delay label survives on path.</p>
+</div>
+</div>
+</div>
+<div id="round-1-under-majority" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Round 1 under majority</h1>
+<div id="voting-reduction-and-security-value" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Voting reduction and security value</h2>
+<p>For the regular domain, define</p>
+<p><span class="math display">\[
+q=\left\lfloor\frac N2\right\rfloor+1,
+\qquad
+k=q-1,
+\qquad
+c=\frac\beta m,
+\tag{M-notation}\label{M-notation}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+E=1-kc,
+\qquad
+B_M=(1-\mu)(1-o_0)+\mu c,
+\qquad
+P=1-o_1,
+\qquad
+F_M=\max\{E,B_M,P\}.
+\tag{M-security}\label{M-security}
+\]</span></p>
+<p>For any non-proposing weak voter,</p>
+<p><span class="math display">\[
+EU_j(Y)-EU_j(N)
+=(x_j-c)\Pr(j\text{ is pivotal}).
+\tag{M-weak-IC}\label{M-weak-IC}
+\]</span></p>
+<p>If <span class="math inline">\(z\geq q-1\)</span>, <span class="math inline">\(H\)</span>-yes implements and type <span class="math inline">\(\theta\)</span> approves iff
+<span class="math inline">\(y\geq o_\theta\)</span>. If <span class="math inline">\(z\leq q-2\)</span>, <span class="math inline">\(H\)</span>-yes still fails and pays
+<span class="math inline">\(\beta o_\theta&lt;o_\theta\)</span>; both types opt out. Outside all-weak-yes, the only
+regular pure ballot size is therefore <span class="math inline">\(z=q-1\)</span>.</p>
+<p>The security value <span class="math inline">\(F_M\)</span> is exact. Let
+<span class="math inline">\(X=\sum_{j\ne i}x_j\)</span>, and let <span class="math inline">\(r\)</span> count non-proposers offered at least
+<span class="math inline">\(c\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li>If <span class="math inline">\(y&lt;o_0\)</span> and <span class="math inline">\(r\leq k-1\)</span>, a <span class="math inline">\(z=q-1\)</span> rejection completion pays the
+proposer <span class="math inline">\(c\)</span>; if <span class="math inline">\(r\geq k\)</span>, weak-only passage gives at most
+<span class="math inline">\(1-X\leq E\)</span>.</li>
+<li>If <span class="math inline">\(o_0\leq y&lt;o_1\)</span>, declare the off-path belief <span class="math inline">\(\nu=1\)</span>. With
+<span class="math inline">\(r\leq k-1\)</span>, choose <span class="math inline">\(z=q-1\)</span>; the true low state passes, the true high
+state continues, and the proposer receives at most <span class="math inline">\(B_M\)</span>. With
+<span class="math inline">\(r\geq k\)</span>, weak-only passage is forced and the proposer receives less
+than <span class="math inline">\(E\)</span>.</li>
+<li>If <span class="math inline">\(y\geq o_1\)</span>, all weak voters are nonpivotal when all vote yes, and the
+proposer receives at most <span class="math inline">\(P\)</span>.</li>
+</ol>
+<p>Conversely, paying <span class="math inline">\(c\)</span> to <span class="math inline">\(k\)</span> partners guarantees <span class="math inline">\(E\)</span>; the proposal
+<span class="math inline">\(y=o_1,x=0\)</span> guarantees <span class="math inline">\(P\)</span>; and <span class="math inline">\(y=o_0,x=0\)</span> guarantees at least
+<span class="math inline">\(B_M\)</span>. Hence no proposal system can give the proposer less than <span class="math inline">\(F_M\)</span>,
+and off-path completions can hold every deviation to at most <span class="math inline">\(F_M\)</span>.</p>
+</div>
+<div id="majority-characterization-by-group-size" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Majority characterization by group size</h2>
+<div id="three-states" class="section level3" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Three states</h3>
+<p>For <span class="math inline">\(N=3\)</span>, the exact proposer payoff is</p>
+<p><span class="math display">\[
+V_{\mathrm{prop}}^M=F_M.
+\tag{M-N3-value}\label{M-N3-value}
+\]</span></p>
+<p>Exclusion is selected when <span class="math inline">\(E\)</span> maximizes; low-only is selected when <span class="math inline">\(B_M\)</span>
+maximizes; pooling requires <span class="math inline">\(P&gt;\max\{E,B_M\}\)</span>. A tie <span class="math inline">\(E=B_M\)</span> remains
+set-valued because both classes give <span class="math inline">\(H\)</span> exactly its outside payoff. Their
+weak totals are</p>
+<p><span class="math display">\[
+T_W^E=1,
+\qquad
+T_W^B=(1-\mu)(1-o_0)+\mu\beta,
+\qquad
+T_W^P=P.
+\tag{M-N3-totals}\label{M-N3-totals}
+\]</span></p>
+</div>
+<div id="four-states" class="section level3" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Four states</h3>
+<p>For <span class="math inline">\(N=4\)</span>, the deviation <span class="math inline">\(y=o_0,x=0\)</span> guarantees <span class="math inline">\(B_M\)</span> when off path
+but has no Bayes-consistent pure ballot on path. The only on-path classes that
+can attain the security value are exclusion and pooling. Therefore</p>
+<p><span class="math display">\[
+\boxed{
+\text{a majority PBE exists iff }
+E\geq B_M\ \text{ or }\ P&gt;B_M
+}
+\tag{M-N4-existence}\label{M-N4-existence}
+\]</span></p>
+<p>or, equivalently, it fails to exist iff <span class="math inline">\(B_M&gt;E\)</span> and <span class="math inline">\(B_M\geq P\)</span>.
+Exclusion is selected iff <span class="math inline">\(E\geq\max\{B_M,P\}\)</span>, and pooling iff
+<span class="math inline">\(P&gt;\max\{B_M,E\}\)</span>. The boundary <span class="math inline">\(B_M=P&gt;E\)</span> also has no PBE: the
+unattainable deviation ties pooling in proposer payoff and the tie-break favors
+its lower payoff to <span class="math inline">\(H\)</span>.</p>
+</div>
+<div id="five-or-more-states" class="section level3" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Five or more states</h3>
+<p>For <span class="math inline">\(N\geq5\)</span>, all-weak-yes is oversized. A majority PBE always exists, and
+the exact set of proposer payoffs is</p>
+<p><span class="math display">\[
+V_{\mathrm{prop}}^M\in[F_M,1].
+\tag{M-large-value}\label{M-large-value}
+\]</span></p>
+<p>Every regular PBE belongs to one of three classes.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Exclusion:</strong> <span class="math inline">\(y&lt;o_0\)</span>, with weak total <span class="math inline">\(T_W^M=1\)</span> and <span class="math inline">\(H\)</span> receiving
+<span class="math inline">\(o_\theta\)</span>. Redundant weak transfers support proposer payoffs throughout
+<span class="math inline">\([F_M,1]\)</span>.</p></li>
+<li><p><strong>Separating current passage:</strong> <span class="math inline">\(o_0\leq y&lt;o_1\)</span>, low-type <span class="math inline">\(H\)</span> votes
+yes and high-type <span class="math inline">\(H\)</span> votes no, but the oversized weak coalition passes
+the agreement in both states. If the total named offers are <span class="math inline">\(X\)</span>,</p>
+<p><span class="math display">\[
+v=1-X-(1-\mu)y\geq F_M,
+\qquad
+T_W^M=1-(1-\mu)y,
+\qquad
+E[u_H^M]=(1-\mu)y+\mu o_1.
+\tag{M-large-separating}\label{M-large-separating}
+\]</span></p>
+<p>The canonical <span class="math inline">\(y=o_0,X=0\)</span> outcome exists iff
+<span class="math inline">\(1-(1-\mu)o_0\geq E\)</span>. At a proposer-payoff tie, a positive rent
+<span class="math inline">\(y-o_0\)</span> survives only when it also satisfies the stated proposal
+tie-break.</p></li>
+<li><p><strong>Pooling:</strong> <span class="math inline">\(y=o_1,X=0\)</span>, which exists iff
+<span class="math inline">\(P&gt;\max\{E,B_M\}\)</span>. It gives <span class="math inline">\(T_W^M=P\)</span> and <span class="math inline">\(E[u_H^M]=o_1\)</span>.</p></li>
+</ol>
+<p>Low-only with delay is not a regular large-<span class="math inline">\(N\)</span> PBE because its maximal
+proposer payoff is strictly below <span class="math inline">\(B_M\)</span>. Across all three classes,</p>
+<p><span class="math display">\[
+F_M\leq T_W^M\leq1,
+\qquad
+\frac{F_M}{m}\leq V_W^M\leq\frac1m.
+\tag{M-weak-bounds}\label{M-weak-bounds}
+\]</span></p>
+<p>The same weak-total bounds hold for <span class="math inline">\(N=3\)</span> and for every existing <span class="math inline">\(N=4\)</span>
+PBE, using the class-specific totals above.</p>
+</div>
+</div>
+<div id="no-cheap-h-changes" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> No-Cheap-H changes</h2>
+<p>The historical condition <span class="math inline">\(o_0\geq c\)</span> only compares exclusion with a
+minimal-coalition low-only proposal. Under weak PBE, the binding off-path
+comparison is <span class="math inline">\(B_M\)</span> versus <span class="math inline">\(E\)</span>:</p>
+<p><span class="math display">\[
+B_M-E
+=kc-o_0+\mu(o_0+c-1).
+\tag{M-no-cheap-gap}\label{M-no-cheap-gap}
+\]</span></p>
+<p>Because the endpoint gaps are <span class="math inline">\(kc-o_0\)</span> and <span class="math inline">\(qc-1\leq0\)</span>, the uniform
+condition becomes</p>
+<p><span class="math display">\[
+o_0\geq kc=(q-1)\frac\beta m.
+\tag{M-no-cheap-strong}\label{M-no-cheap-strong}
+\]</span></p>
+<p>It selects exclusion for <span class="math inline">\(N=3\)</span>, and guarantees existence with exclusion for
+<span class="math inline">\(N=4\)</span>. For <span class="math inline">\(N\geq5\)</span>, even this stronger condition does not remove
+separating current passage for sufficiently high priors. Majority
+no-screening is therefore not an all-PBE result.</p>
+</div>
+<div id="majority-boundary-warning" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Majority boundary warning</h2>
+<p>At <span class="math inline">\(\beta=1\)</span>, or at <span class="math inline">\(o_0=0\)</span> with <span class="math inline">\(\beta&lt;1\)</span>, <span class="math inline">\(H\)</span>-yes can be optimal
+even when <span class="math inline">\(z=q-2\)</span> and the current ballot still fails. Rejection classes
+reappear, and the regular security proof must be replaced. For <span class="math inline">\(N\geq4\)</span>,
+the corresponding algebraic floors are, respectively,</p>
+<p><span class="math display">\[
+F_{M,1}=\max\left\{
+1-kc,
+(1-\mu)[1-o_0-(k-1)c]+\mu c,
+1-o_1-(k-1)c
+\right\},
+\tag{M-beta-one-floor}\label{M-beta-one-floor}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+F_{M,0}=\max\left\{
+1-kc,
+(1-\mu)[1-(k-1)c]+\mu c,
+1-o_1-(k-1)c
+\right\}.
+\tag{M-zero-low-floor}\label{M-zero-low-floor}
+\]</span></p>
+<p>These formulas are boundary bounds, not substitutes for the regular theorem.
+The common institutional comparison below is intentionally restricted to
+<span class="math inline">\(\eqref{regular-domain}\)</span>.</p>
+</div>
+</div>
+<div id="conditional-institutional-comparison" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Conditional institutional comparison</h1>
+<div id="common-pbe-domain" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Common PBE domain</h2>
+<p>Let the regular unanimity conditions in <span class="math inline">\(\eqref{U-existence}\)</span> hold. For
+<span class="math inline">\(N=3\)</span> or <span class="math inline">\(N\geq5\)</span>, this is already a common existence domain. For
+<span class="math inline">\(N=4\)</span>, additionally impose <span class="math inline">\(\eqref{M-N4-existence}\)</span>. These are derived
+existence conditions, not ad hoc primitive restrictions.</p>
+<p>On this common domain unanimity has the single on-path payoff in
+<span class="math inline">\(\eqref{U-regular-payoffs}\)</span>. Majority may be set-valued, but its security value
+satisfies</p>
+<p><span class="math display">\[
+F_M=\max\{E,B_M,P\}\geq P.
+\tag{comparison-floor}\label{comparison-floor}
+\]</span></p>
+<p>Combining this inequality with <span class="math inline">\(\eqref{M-weak-bounds}\)</span> yields, in every majority
+PBE,</p>
+<p><span class="math display">\[
+V_W^M\geq\frac{F_M}{m}
+\geq\frac{P}{m}
+=V_W^U.
+\tag{entry-nesting}\label{entry-nesting}
+\]</span></p>
+<p>Thus collective formation sets satisfy</p>
+<p><span class="math display">\[
+\mathcal F_U\subseteq\mathcal F_M
+\tag{formation-nesting}\label{formation-nesting}
+\]</span></p>
+<p>selection-free on the common domain. Given a selected majority payoff
+<span class="math inline">\(v_M=V_W^M\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>if <span class="math inline">\(\chi\leq P/m\)</span>, both institutions form;</li>
+<li>if <span class="math inline">\(P/m&lt;\chi\leq v_M\)</span>, only majority forms;</li>
+<li>if <span class="math inline">\(\chi&gt;v_M\)</span>, neither forms.</li>
+</ol>
+<p>There is no region in which only unanimity forms.</p>
+<p>For <span class="math inline">\(H\)</span>, define its expected outside payoff</p>
+<p><span class="math display">\[
+\bar o=(1-\mu)o_0+\mu o_1.
+\]</span></p>
+<p>Every regular majority class satisfies</p>
+<p><span class="math display">\[
+\bar o\leq E[u_H^M]\leq o_1=E[u_H^U].
+\tag{H-payoff-bounds}\label{H-payoff-bounds}
+\]</span></p>
+<p>Consequently, when both institutions form, unanimity weakly favors <span class="math inline">\(H\)</span>, with
+equality only under majority pooling. When only majority forms, majority
+weakly favors <span class="math inline">\(H\)</span> relative to nonformation under unanimity. When neither
+forms, <span class="math inline">\(H\)</span> receives <span class="math inline">\(\bar o\)</span> under both rules. This is a conditional
+institutional classification over the common PBE domain, not global dominance
+over the primitive parameter space.</p>
+</div>
+</div>
+<div id="reproducible-verification" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Reproducible verification</h1>
+<p>The analytical proofs are accompanied by separate R scripts. They check
+identities, cutoff order, strict and weak inequalities, named counterexamples,
+quota geometry, boundary formulas, and formation margins; they do not claim to
+prove PBE by numerical enumeration.</p>
+<ul>
+<li><code>verify_clean_optout_protocol_piH0.R</code>: 36/36 PASS.</li>
+<li><code>verify_clean_optout_R2_piH0.R</code>: 8/8 PASS.</li>
+<li><code>verify_clean_optout_R1_piH0.R</code>: 11/11 PASS.</li>
+<li><code>verify_clean_optout_majority_piH0.R</code>: 17/17 PASS.</li>
+<li><code>verify_clean_optout_entry_classification_piH0.R</code>: 10/10 PASS.</li>
+<li><code>verify_clean_optout_boundaries_piH0.R</code>: 7/7 PASS.</li>
+</ul>
+<p>Machine-readable outputs are stored in <code>tables/</code>; timestamped execution logs
+are stored in <code>quality_reports/logs/</code>.</p>
+</div>
+<div id="survival-matrix" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Survival matrix</h1>
 <table>
 <colgroup>
 <col width="33%" />
@@ -3593,62 +4104,86 @@ must now proceed from terminal histories backward.</p>
 <thead>
 <tr class="header">
 <th>Historical result</th>
-<th>Current status before rederivation</th>
-<th>Required evidence</th>
+<th>Clean immediate-opt-out status</th>
+<th>Evidence</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Terminal low-only/pooling choice</td>
-<td>pending</td>
-<td>derive from R2 direct opt-out thresholds</td>
+<td><span class="math inline">\(\pi_H=0\)</span>, <span class="math inline">\(b_\theta=0\)</span>, immediate <span class="math inline">\(o_\theta\)</span></td>
+<td>survives as baseline primitives</td>
+<td>Gate 0 contract and history table</td>
 </tr>
 <tr class="even">
-<td>R1 pooling label P</td>
-<td>historical candidate only</td>
-<td>derive H and weak-voter ICs from Gate 0</td>
+<td>Direct threshold <span class="math inline">\(y_\theta^*=o_\theta\)</span></td>
+<td>survives locally</td>
+<td>derived only under certain implementation and in terminal R2</td>
 </tr>
 <tr class="odd">
-<td>R1 low-only label L</td>
-<td>historical candidate only</td>
-<td>derive H and weak-voter ICs from Gate 0</td>
+<td>Terminal unanimity P/L choice</td>
+<td>survives</td>
+<td><span class="math inline">\(S(\nu)=\max\{P,L(\nu)\}\)</span></td>
 </tr>
 <tr class="even">
-<td>R1 rejection/delay label R or D</td>
-<td>historical candidate only</td>
-<td>exhaust immediate-opt-out deviations; do not impose delay</td>
+<td>Regular R1 pooling</td>
+<td>survives conditionally</td>
+<td>exists exactly under <span class="math inline">\(\eqref{U-existence}\)</span></td>
 </tr>
 <tr class="odd">
+<td>Regular R1 low-only</td>
+<td>disappears</td>
+<td>payment-shaving gap <span class="math inline">\(\eqref{U-shaving-gap}\)</span></td>
+</tr>
+<tr class="even">
+<td>R1 rejection/delay</td>
+<td>becomes a boundary result</td>
+<td>survives at <span class="math inline">\(\beta=1\)</span>, not in the regular domain</td>
+</tr>
+<tr class="odd">
+<td>Exact reduction to historical P/L/R</td>
+<td>rejected</td>
+<td>boundary overpay pooling and weak-PBE multiplicity add classes</td>
+</tr>
+<tr class="even">
 <td>Rejected-history reduction lemma</td>
-<td>historical only</td>
-<td>reprove or reject under the new H-no payoff</td>
-</tr>
-<tr class="even">
-<td>No-Cheap-H</td>
-<td>historical only</td>
-<td>rederive with primitive <span class="math inline">\(o_\theta\)</span></td>
+<td>rejected for the clean game</td>
+<td>its hypotheses do not survive the new opt-out timing and belief discontinuity</td>
 </tr>
 <tr class="odd">
+<td>Global PBE existence over the primitive domain</td>
+<td>rejected</td>
+<td>unanimity and <span class="math inline">\(N=4\)</span> majority have derived nonexistence regions</td>
+</tr>
+<tr class="even">
 <td>Majority no-screening</td>
-<td>historical only</td>
-<td>compare all payoff-relevant majority coalitions</td>
+<td>rejected as all-PBE</td>
+<td>large groups admit separating current passage and rents</td>
+</tr>
+<tr class="odd">
+<td>Historical No-Cheap-H <span class="math inline">\(o_0\geq\beta/m\)</span></td>
+<td>changes</td>
+<td>uniform majority condition is <span class="math inline">\(\eqref{M-no-cheap-strong}\)</span></td>
 </tr>
 <tr class="even">
 <td>Entry nesting</td>
-<td>historical only</td>
-<td>derive total weak payoffs under selected clean paths</td>
+<td>survives conditionally and selection-free</td>
+<td>equation <span class="math inline">\(\eqref{formation-nesting}\)</span> on the common PBE domain</td>
 </tr>
 <tr class="odd">
-<td>H payoff comparison and classification</td>
-<td>historical only</td>
-<td>derive only after all preceding objects are proved</td>
+<td>H institutional ranking</td>
+<td>survives conditionally</td>
+<td>equation <span class="math inline">\(\eqref{H-payoff-bounds}\)</span> plus formation status</td>
+</tr>
+<tr class="even">
+<td>Delayed continuation, hybrid exit, and <span class="math inline">\(t_\theta=d_\theta-b_\theta\)</span></td>
+<td>extension/history only</td>
+<td>excluded from every baseline payoff and theorem above</td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
-<div id="proof-ledger" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Proof ledger</h1>
+<div id="proof-ledger" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Proof ledger</h1>
 <table>
 <colgroup>
 <col width="33%" />
@@ -3666,62 +4201,62 @@ must now proceed from terminal histories backward.</p>
 <tr class="odd">
 <td>Gate -1 provenance</td>
 <td>proved</td>
-<td>Clean HEAD, user-approved annotated tag, and initial v6 hash recorded.</td>
+<td>Clean baseline commit, user-approved annotated tag, and initial v6 hash recorded.</td>
 </tr>
 <tr class="even">
-<td>Gate 0 primitives and timing</td>
-<td>specified and independently verified</td>
-<td>PASS on candidate commit <code>fff4a35</code>.</td>
+<td>Gate 0 extensive form</td>
+<td>independently verified</td>
+<td>PASS on candidate commit <code>fff4a35</code>; 36/36 protocol checks pass.</td>
 </tr>
 <tr class="odd">
-<td>Gate 0 contract space and budgets</td>
-<td>specified and independently verified</td>
-<td>PASS on candidate commit <code>fff4a35</code>.</td>
-</tr>
-<tr class="even">
-<td>Gate 0 voting histories</td>
-<td>specified, mechanically checked, and independently verified</td>
-<td>Source is the versioned TSV; 36/36 protocol checks pass.</td>
-</tr>
-<tr class="odd">
-<td>Gate 0 beliefs and IC definitions</td>
-<td>specified and independently verified</td>
-<td>Expected IC explicitly integrates simultaneous weak votes; continuation uses full public history.</td>
-</tr>
-<tr class="even">
 <td>R2 unanimity</td>
-<td>pending</td>
-<td>No claim promoted.</td>
-</tr>
-<tr class="odd">
-<td>R2 majority with H active</td>
-<td>pending</td>
-<td>No claim promoted.</td>
+<td>proved</td>
+<td>Terminal low-only/pooling value and cutoff derived.</td>
 </tr>
 <tr class="even">
-<td>R2 majority weak-only</td>
-<td>pending</td>
-<td>No claim promoted.</td>
+<td>R2 majority</td>
+<td>proved</td>
+<td>Active and weak-only continuation values derived selection-free.</td>
 </tr>
 <tr class="odd">
-<td>R1 unanimity</td>
-<td>pending</td>
-<td>Historical P/L/R labels are not primitives.</td>
+<td>R1 unanimity, regular domain</td>
+<td>proved; final review pending</td>
+<td>Exact existence condition, nonexistence regions, and pooling payoff derived.</td>
 </tr>
 <tr class="even">
-<td>R1 majority and No-Cheap-H</td>
-<td>pending</td>
-<td>Must be rederived under primitive outside payoffs.</td>
+<td>R1 unanimity, boundaries</td>
+<td>proved or bounded as stated; final review pending</td>
+<td>Zero outside option, no discounting, and zero terminal surplus are separated.</td>
+</tr>
+<tr class="odd">
+<td>R1 majority, regular domain</td>
+<td>proved; final review pending</td>
+<td>Exact security value and <span class="math inline">\(N=3,4,\geq5\)</span> characterization derived.</td>
+</tr>
+<tr class="even">
+<td>Majority boundaries</td>
+<td>bounded; no comparison promoted</td>
+<td>Separate floors recorded; regular theorem not extrapolated.</td>
 </tr>
 <tr class="odd">
 <td>Entry, nesting, and classification</td>
+<td>proved conditionally; final review pending</td>
+<td>Selection-free on the explicitly derived common PBE domain.</td>
+</tr>
+<tr class="even">
+<td>Computational verification</td>
+<td>passed; R review pending</td>
+<td>Protocol 36/36, R2 8/8, R1 unanimity 11/11, majority 17/17, entry/classification 10/10, and boundary 7/7 checks pass.</td>
+</tr>
+<tr class="odd">
+<td>Final formal and adversarial reviews</td>
 <td>pending</td>
-<td>Must follow the equilibrium derivation.</td>
+<td>Must review the same fixed candidate commit without editing.</td>
 </tr>
 <tr class="even">
 <td>Delayed continuation and other architectures</td>
 <td>extension/history only</td>
-<td>Not part of this Goal’s baseline.</td>
+<td>Not part of this Goal’s clean baseline.</td>
 </tr>
 </tbody>
 </table>

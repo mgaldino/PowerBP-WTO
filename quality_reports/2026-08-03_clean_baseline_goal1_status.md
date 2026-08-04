@@ -4,12 +4,12 @@
 `quality_reports/plans/2026-08-03-clean-baseline-goal.md`
 
 **Execution dates:** 2026-08-03--2026-08-04
-**Current state:** Gate 0 is formally closed. The first independent audit
-returned `REPAIR` on commit
-`3e3af6a907c6e64224df052032991ffa4f691dac`; after correction, the same
-read-only reviewer returned `PASS` without substantive reservation on commit
-`fff4a35d1572c08bb2098cae9ad264a2eba80b41`. Phase 1 analytical rederivation is
-authorized.
+**Current state:** analytical candidate implemented; final independent reviews
+pending. The extensive-form Gate 0 audit returned `PASS` on commit
+`fff4a35d1572c08bb2098cae9ad264a2eba80b41`. Phase 1 preserves that contract
+and derives explicit PBE-existence regions, nonexistence regions, boundary
+multiplicity, and a conditional institutional comparison. All six current R
+verifiers pass; no protocol change has been introduced.
 
 ## Scope guardrail
 
@@ -146,12 +146,80 @@ Full round-1 and round-2 opinions are archived in
 `quality_reports/2026-08-04_gate0_independent_audit.md`. No analytical proof
 work was promoted before this PASS.
 
-## Later phases -- AUTHORIZED, NOT YET COMPLETE
+### Phase 1 existence audit
 
-- Clean analytical rederivation: pending.
-- Survival matrix: pending.
-- R2, R1 unanimity, majority, entry/nesting, classification, margins, and
-  robustness verifiers: pending.
+The first backward-induction pass overclaimed global nonexistence by applying
+Bayes inside a globally off-path proposal. The three read-only derivation
+agents challenged that step. The corrected audit in
+`quality_reports/2026-08-04_clean_optout_pbe_existence_blocker.md` distinguishes
+on-path Bayes from declared weak-PBE beliefs after zero-probability proposals.
+
+On the regular interior domain, define
+
+```text
+P     = 1 - o1
+delta = beta*(m - 1)/m
+a     = 1 - delta
+D_U   = 1 - o0 - delta*P
+G_P   = a*P
+G_L   = (1 - mu)*D_U
+```
+
+Unanimity has a global PBE iff `beta*o1>=o0` and `G_P>G_L`. The inequality is
+strict because an off-path low-inclusion proposal ties with a lower H payoff at
+equality but cannot satisfy the higher Bayes-consistent approval price after it
+becomes on path. When the PBE exists, the unique on-path payoff class is
+pooling: weak total `P` and H payoff `o1`. Regular low-only disappears because
+of this payment-shaving deviation. The cases `o0=0` and `beta=1` restore
+existence and multiplicity; `o1=1` with a positive low outside option and an
+interior prior has no PBE.
+
+For majority, define
+
+```text
+q   = floor(N/2) + 1
+k   = q - 1
+c   = beta/m
+E   = 1 - k*c
+B_M = (1 - mu)*(1 - o0) + mu*c
+F_M = max(E, B_M, P)
+```
+
+The exact regular security value is `F_M`. Majority always has a PBE for
+`N=3` and `N>=5`. For `N=4` it exists iff `E>=B_M` or `P>B_M`. Large groups
+admit exclusion, separating current passage, and pooling under their stated
+conditions, so majority no-screening is not an all-PBE theorem. The uniform
+No-Cheap-H condition changes from `o0>=beta/m` to
+`o0>=(q-1)*beta/m`, and even that does not remove large-group separation.
+
+On the derived common regular PBE domain, `F_M>=P` and every majority PBE has
+weak total at least `F_M`. Hence formation nesting
+`F_U subseteq F_M` survives selection-free. H receives `o1` under unanimity
+and between its expected outside payoff and `o1` under majority. The
+classification is conditional on formation status and on the common PBE
+domain; no global dominance is claimed.
+
+## Phase 2 verifiers -- PASS
+
+All scripts exit zero and label grid checks as computational evidence rather
+than universal proofs:
+
+- protocol: 36/36;
+- R2: 8/8;
+- R1 unanimity: 11/11;
+- majority: 17/17;
+- entry/classification: 10/10;
+- boundaries: 7/7.
+
+Outputs are versioned under `tables/` and logs under
+`quality_reports/logs/`. Independent R review remains pending.
+
+## Later phases -- IN PROGRESS
+
+- Clean analytical rederivation: implemented; final review pending.
+- Survival matrix: implemented; final review pending.
+- R2, R1 unanimity, majority, entry/nesting, classification, and boundary
+  verifiers: PASS.
 - Independent R review: pending.
 - Final HTML/PDF textual and visual validation: pending.
 - Independent formal-model and adversarial game-theory reviews: pending.
@@ -162,6 +230,8 @@ work was promoted before this PASS.
   `t_theta=d_theta-b_theta`, positive `pi_H`, endogenous rule choice, and the
   archived feasibility/C-B-R branch are not baseline results.
 - No uniqueness, all-PBE characterization, or global institutional dominance
-  is currently claimed.
+  is claimed outside the exact theorem scopes.
 - Numerical checks will not be represented as universal proofs.
-- There is no `pending protocol decision` in the closed Gate 0 contract.
+- The literal tie, action space, ballot, and weak-PBE solution concept are
+  preserved. Parameter regions without PBE are reported as results rather than
+  removed by a new protocol.
