@@ -49,12 +49,14 @@ opt-out. In Round 1 that action pays \(o_\theta\) immediately and without
 discounting. It does not also give the hegemon a discounted continuation
 option.
 
-The current version contains the complete Gate 0 contract. Analytical
-equilibrium results are not presumed below. They will be added only after an
-independent read-only audit gives Gate 0 a PASS without substantive
-reservation.
+The current version contains the complete Gate 0 contract. The independent
+read-only audit returned PASS without substantive reservation on candidate
+commit `fff4a35d1572c08bb2098cae9ad264a2eba80b41`. Analytical equilibrium
+results are not presumed in the Gate 0 specification; they must be derived
+separately by backward induction.
 
-**Current formal status:** Gate 0 candidate; independent verdict pending.
+**Current formal status:** Gate 0 PASS; Phase 1 analytical rederivation
+authorized.
 
 **Manuscript boundary:** `formal_model_v6.Rmd` and `formal_model_v5.Rmd` are
 reference objects only. This Goal does not edit either manuscript.
@@ -644,14 +646,16 @@ substitute for the independent verdict.
 | Beliefs stated whenever type remains relevant | Beliefs section and G02/G06 | checked |
 | No equilibrium result presumed as a primitive | Status, primitives, and proof ledger | checked |
 
-**Independent Gate 0 verdict:** PENDING.
+**Independent Gate 0 verdict:** **PASS without substantive reservation** on
+commit `fff4a35d1572c08bb2098cae9ad264a2eba80b41`. The read-only reviewer found
+no critical, major, or minor substantive issue after the repair round.
 
 # Phase 1 placeholder
 
 No equilibrium candidate, historical label, threshold ordering, No-Cheap-H
 condition, entry nesting result, or institutional comparison has yet been
-promoted under the clean contract. The next derivation must proceed from
-terminal histories backward only after Gate 0 receives an independent PASS.
+promoted under the clean contract. Gate 0 is closed, so the next derivation
+must now proceed from terminal histories backward.
 
 ## Preliminary survival matrix
 
@@ -672,10 +676,10 @@ terminal histories backward only after Gate 0 receives an independent PASS.
 | Object | Status | Notes |
 |---|---|---|
 | Gate -1 provenance | proved | Clean HEAD, user-approved annotated tag, and initial v6 hash recorded. |
-| Gate 0 primitives and timing | specified | Awaiting independent audit. |
-| Gate 0 contract space and budgets | specified | Awaiting independent audit. |
-| Gate 0 voting histories | specified and mechanically checked | Source is the versioned TSV; independent audit pending. |
-| Gate 0 beliefs and IC definitions | specified | Expected IC explicitly integrates simultaneous weak votes. |
+| Gate 0 primitives and timing | specified and independently verified | PASS on candidate commit `fff4a35`. |
+| Gate 0 contract space and budgets | specified and independently verified | PASS on candidate commit `fff4a35`. |
+| Gate 0 voting histories | specified, mechanically checked, and independently verified | Source is the versioned TSV; 36/36 protocol checks pass. |
+| Gate 0 beliefs and IC definitions | specified and independently verified | Expected IC explicitly integrates simultaneous weak votes; continuation uses full public history. |
 | R2 unanimity | pending | No claim promoted. |
 | R2 majority with H active | pending | No claim promoted. |
 | R2 majority weak-only | pending | No claim promoted. |

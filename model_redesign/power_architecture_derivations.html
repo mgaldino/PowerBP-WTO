@@ -1809,11 +1809,13 @@ superseded delayed-continuation derivation with a clean benchmark in which</p>
 opt-out. In Round 1 that action pays <span class="math inline">\(o_\theta\)</span> immediately and without
 discounting. It does not also give the hegemon a discounted continuation
 option.</p>
-<p>The current version contains the complete Gate 0 contract. Analytical
-equilibrium results are not presumed below. They will be added only after an
-independent read-only audit gives Gate 0 a PASS without substantive
-reservation.</p>
-<p><strong>Current formal status:</strong> Gate 0 candidate; independent verdict pending.</p>
+<p>The current version contains the complete Gate 0 contract. The independent
+read-only audit returned PASS without substantive reservation on candidate
+commit <code>fff4a35d1572c08bb2098cae9ad264a2eba80b41</code>. Analytical equilibrium
+results are not presumed in the Gate 0 specification; they must be derived
+separately by backward induction.</p>
+<p><strong>Current formal status:</strong> Gate 0 PASS; Phase 1 analytical rederivation
+authorized.</p>
 <p><strong>Manuscript boundary:</strong> <code>formal_model_v6.Rmd</code> and <code>formal_model_v5.Rmd</code> are
 reference objects only. This Goal does not edit either manuscript.</p>
 <p><strong>Excluded from the baseline:</strong> <span class="math inline">\(y+b_\theta\)</span>, a rejection payoff
@@ -3570,14 +3572,16 @@ substitute for the independent verdict.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Independent Gate 0 verdict:</strong> PENDING.</p>
+<p><strong>Independent Gate 0 verdict:</strong> <strong>PASS without substantive reservation</strong> on
+commit <code>fff4a35d1572c08bb2098cae9ad264a2eba80b41</code>. The read-only reviewer found
+no critical, major, or minor substantive issue after the repair round.</p>
 </div>
 <div id="phase-1-placeholder" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Phase 1 placeholder</h1>
 <p>No equilibrium candidate, historical label, threshold ordering, No-Cheap-H
 condition, entry nesting result, or institutional comparison has yet been
-promoted under the clean contract. The next derivation must proceed from
-terminal histories backward only after Gate 0 receives an independent PASS.</p>
+promoted under the clean contract. Gate 0 is closed, so the next derivation
+must now proceed from terminal histories backward.</p>
 <div id="preliminary-survival-matrix" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Preliminary survival matrix</h2>
 <table>
@@ -3666,23 +3670,23 @@ terminal histories backward only after Gate 0 receives an independent PASS.</p>
 </tr>
 <tr class="even">
 <td>Gate 0 primitives and timing</td>
-<td>specified</td>
-<td>Awaiting independent audit.</td>
+<td>specified and independently verified</td>
+<td>PASS on candidate commit <code>fff4a35</code>.</td>
 </tr>
 <tr class="odd">
 <td>Gate 0 contract space and budgets</td>
-<td>specified</td>
-<td>Awaiting independent audit.</td>
+<td>specified and independently verified</td>
+<td>PASS on candidate commit <code>fff4a35</code>.</td>
 </tr>
 <tr class="even">
 <td>Gate 0 voting histories</td>
-<td>specified and mechanically checked</td>
-<td>Source is the versioned TSV; independent audit pending.</td>
+<td>specified, mechanically checked, and independently verified</td>
+<td>Source is the versioned TSV; 36/36 protocol checks pass.</td>
 </tr>
 <tr class="odd">
 <td>Gate 0 beliefs and IC definitions</td>
-<td>specified</td>
-<td>Expected IC explicitly integrates simultaneous weak votes.</td>
+<td>specified and independently verified</td>
+<td>Expected IC explicitly integrates simultaneous weak votes; continuation uses full public history.</td>
 </tr>
 <tr class="even">
 <td>R2 unanimity</td>

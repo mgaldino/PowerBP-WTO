@@ -4,11 +4,12 @@
 `quality_reports/plans/2026-08-03-clean-baseline-goal.md`
 
 **Execution dates:** 2026-08-03--2026-08-04
-**Current state:** the first independent Gate 0 audit returned `REPAIR` on
-commit `3e3af6a907c6e64224df052032991ffa4f691dac`. The corrective candidate passes
-its expanded mechanical checks and compiles; a new commit and independent
-rereview are pending. Analytical results remain blocked until Gate 0 receives
-`PASS` without substantive reservation.
+**Current state:** Gate 0 is formally closed. The first independent audit
+returned `REPAIR` on commit
+`3e3af6a907c6e64224df052032991ffa4f691dac`; after correction, the same
+read-only reviewer returned `PASS` without substantive reservation on commit
+`fff4a35d1572c08bb2098cae9ad264a2eba80b41`. Phase 1 analytical rederivation is
+authorized.
 
 ## Scope guardrail
 
@@ -30,7 +31,7 @@ The final hash will be recorded before closure.
   reset`.
 - The tag resolves to the baseline commit above.
 
-## Gate 0: complete game contract -- REPAIR ROUND 1, REREVIEW PENDING
+## Gate 0: complete game contract -- PASS
 
 ### Implemented contract
 
@@ -126,11 +127,26 @@ were raster-inspected.
 | Checklist cited H-yes rows as no-reinclusion evidence and omitted post-opt-out rows | editorial | Corrected evidence to G03/G04, G07--G09, G12/G13, and G16--G21; post-opt-out evidence now cites G19--G21 | derivation Rmd checklist | textual inspection |
 | Domain of `z` was implicit | editorial | Stated `z in {1,...,m}` | derivation Rmd history section | exhaustive partition check |
 
-The same corrected state will be fixed in a new candidate commit and returned
-to an independent read-only rereview. No analytical proof work has been
-promoted during this repair round.
+### Independent Gate 0 audit: round 2
 
-## Later phases -- BLOCKED BY GATE 0
+- Reviewed commit: `fff4a35d1572c08bb2098cae9ad264a2eba80b41`.
+- Reviewer: the same independent read-only agent `/root/gate0_reviewer`; it
+  made no edits.
+- Verdict: **`PASS` without substantive reservation**.
+- Findings: no critical, major, or minor substantive findings.
+- Confirmed repairs: common knowledge and PBE scope; proposal-indexed ballot
+  information sets; full-history continuation values separated from beliefs;
+  correct R2 positive/zero implementation-probability algebra; corrected
+  checklist evidence; and explicit `z` domain.
+- Repeated evidence: G01--G21 exhaustive and mutually exclusive; 36/36 machine
+  checks pass; the PDF is a valid 12-page document with resolved references;
+  and the v6 SHA-256 remains unchanged.
+
+Full round-1 and round-2 opinions are archived in
+`quality_reports/2026-08-04_gate0_independent_audit.md`. No analytical proof
+work was promoted before this PASS.
+
+## Later phases -- AUTHORIZED, NOT YET COMPLETE
 
 - Clean analytical rederivation: pending.
 - Survival matrix: pending.
@@ -148,5 +164,4 @@ promoted during this repair round.
 - No uniqueness, all-PBE characterization, or global institutional dominance
   is currently claimed.
 - Numerical checks will not be represented as universal proofs.
-- There is no `pending protocol decision` in the Gate 0 candidate; the
-  independent audit remains authoritative on whether the contract is complete.
+- There is no `pending protocol decision` in the closed Gate 0 contract.
