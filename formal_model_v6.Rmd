@@ -745,9 +745,13 @@ voted no.
 ## A.2 Exhaustive history contract {-}
 
 Table panels \ref{tab:gate0-timing}--\ref{tab:gate0-continuations} are
-generated from the versioned source
-\texttt{tables/clean\_optout\_gate0\_histories\_piH0.tsv}. Together they cover the
-twenty-one history classes used by the proofs.
+generated from a versioned TSV file. Its repository path is
+
+\begin{center}
+\small\texttt{tables/clean\_optout\_gate0\_histories\_piH0.tsv}
+\end{center}
+
+Together the panels cover the twenty-one history classes used by the proofs.
 
 ```{r gate0-history-timing, results='asis'}
 history_timing <- dplyr::select(
