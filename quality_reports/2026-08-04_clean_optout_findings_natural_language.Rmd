@@ -1,0 +1,279 @@
+---
+title: "Achados do baseline limpo: uma leitura intuitiva dos equilíbrios"
+author: "PowerBayesianPersuasion — relatório complementar"
+date: "2026-08-04"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    keep_tex: true
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# Propósito do relatório
+
+Este relatório traduz para linguagem natural os resultados do documento
+autônomo `power_architecture_derivations.Rmd`. Ele não cria uma
+nova proposição. Seu objetivo é explicar a lógica econômica e estratégica dos
+equilíbrios para um leitor que queira entender primeiro o mecanismo e depois a
+álgebra.
+
+A ordem segue a lógica de backward induction: começamos pelo Round 2, que é
+terminal, depois voltamos ao Round 1, tratamos as fronteiras e finalmente
+comparamos unanimidade e maioria.
+
+# O baseline em uma frase
+
+O hegemon tem informação privada sobre seu tipo e uma opção externa própria,
+mas não tem poder de agenda no baseline. Os estados fracos fazem as propostas.
+Sob unanimidade, eles precisam comprar a aprovação do hegemon; sob maioria,
+podem formar uma coalizão que o exclui.
+
+O desenho limpo fixa `pi_H = 0` e `b_theta = 0`. Assim, quando um acordo inclui
+o hegemon, ele recebe apenas a concessão corrente `y`, sem um benefício direto
+adicional. Se ele rejeita no Round 1, sai imediatamente e recebe `o_theta`.
+Sua opção externa fica fora do bolo institucional: não é subtraída do que os
+estados fracos podem repartir.
+
+O conceito de equilíbrio é PBE, com a avaliação de crenças chamada
+*weak-vote-passive*. Estados fracos não observam o tipo do hegemon; portanto,
+uma mudança unilateral de voto deles não é tratada automaticamente como um
+sinal direto sobre esse tipo. Isso é uma avaliação mantida do protocolo, não
+uma afirmação de que o resultado vale para todos os refinamentos de equilíbrio.
+
+# 1. Round 2: o ponto de partida
+
+O Round 2 é terminal. Não existe uma terceira rodada. Consequentemente, cada
+jogador compara diretamente o que recebe se o acordo passa com o que recebe
+se ele rejeita.
+
+## 1.1 Unanimidade
+
+Como `pi_H = 0`, um estado fraco é reconhecido como proponente. Os demais
+estados fracos votam sim. Um voto não reduz sua oferta e, quando o acordo está
+disponível, votar sim é pelo menos tão bom quanto votar não; o desempate manda
+votar sim.
+
+O hegemon é pivotal. Para um tipo `theta`:
+
+- votar sim dá `y`;
+- votar não dá a opção externa `o_theta`.
+
+Logo, o hegemon aceita exatamente quando `y >= o_theta`. Essa é a origem do
+threshold direto do modelo: para obter o voto do tipo alto, a oferta precisa
+chegar a `o_1`; para obter apenas o voto do tipo baixo, basta chegar a `o_0`.
+
+O proponente fraco compara duas ofertas intuitivas.
+
+### Oferta low-only
+
+O proponente oferece `y = o_0`. O tipo baixo aceita. O tipo alto rejeita. O
+acordo, portanto, só passa quando o tipo baixo é realizado. Se `nu` é a
+probabilidade posterior de o tipo alto, o valor esperado para os estados
+fracos é
+
+`L(nu) = (1 - nu)(1 - o_0)`.
+
+### Oferta pooling
+
+O proponente oferece `y = o_1`. Ambos os tipos aceitam e o acordo passa sempre.
+O total que sobra para os estados fracos é
+
+`P = 1 - o_1`.
+
+O proponente escolhe a alternativa maior entre `L(nu)` e `P`. A mudança ocorre
+no cutoff
+
+`nu* = (o_1 - o_0)/(1 - o_0)`.
+
+Quando o tipo alto é improvável, vale a pena economizar e fazer uma oferta
+low-only. Quando ele é suficientemente provável, é melhor pagar `o_1` e
+garantir que o acordo passe.
+
+Se as duas ofertas empatam para o proponente, a regra de desempate escolhe
+low-only. Ela dá ao hegemon um payoff esperado menor do que o pooling, e a
+regra favorece a proposta que reduz o payoff esperado do hegemon.
+
+## 1.2 Por que esse resultado é equilíbrio?
+
+O equilíbrio fecha porque cada possível desvio é disciplinado:
+
+1. o hegemon não aceita uma oferta abaixo de sua opção externa;
+2. o proponente não oferece mais do que precisa pagar;
+3. os estados fracos votam sim porque não perdem com a passagem;
+4. uma oferta intermediária abaixo de `o_1` não convence o tipo alto;
+5. uma oferta acima do threshold reduz o residual do proponente.
+
+Assim, no Round 2 sob unanimidade, o payoff dos estados fracos é determinado
+por `max{P, L(nu)}`. A alocação entre os estados fracos pode depender de qual
+estado foi reconhecido, mas o valor total é o mesmo.
+
+## 1.3 Maioria no Round 2
+
+Sob maioria, os estados fracos conseguem aprovar a proposta mesmo quando o
+hegemon vota não. O proponente oferece `y = 0` ao hegemon e zero aos demais
+estados, a proposta passa com os votos fracos e o proponente retém o bolo
+inteiro.
+
+O hegemon vota não porque sua opção externa `o_theta` é melhor que receber
+zero no acordo. Isso não impede a aprovação. Ex ante, cada estado fraco recebe
+`1/m`, onde `m` é o número de estados fracos.
+
+Esse é o contraste fundamental: a informação privada do hegemon é relevante
+sob unanimidade porque ele é indispensável; ela não é necessária para a
+implementação sob maioria.
+
+# 2. Round 1: voltar um passo muda o problema
+
+No Round 1, uma rejeição pode levar ao Round 2. Além disso, o protocolo
+distingue dois tipos de fracasso: se o hegemon vota não, ele sai imediatamente;
+se ele vota sim mas os estados fracos não conseguem implementar o acordo, ele
+permanece ativo para a continuação. O voto é simultâneo: o hegemon não observa
+o vetor final de votos antes de escolher.
+
+Por isso, não basta comparar `y` com `o_theta`. O proponente precisa considerar
+as continuações e os incentivos de todos os tipos em todos os estados do
+mundo.
+
+## 2.1 O resultado regular sob unanimidade
+
+No domínio interior — probabilidade `mu` entre zero e um, desconto `beta` entre
+zero e um, e opções externas estritamente ordenadas — a existência de PBE
+depende de duas condições:
+
+1. `beta o_1 >= o_0`: a combinação de desconto e opções externas não pode
+   tornar as continuações mutuamente incompatíveis;
+2. a probabilidade do tipo alto deve superar um cutoff `mu_E`, ou,
+   equivalentemente, a garantia associada ao pooling deve superar a garantia
+   associada ao low-only.
+
+Se essas condições falham, não há PBE no jogo com o protocolo e as regras de
+desempate especificados. Isso é um resultado do modelo, não uma hipótese para
+remover parâmetros incômodos.
+
+Quando as condições são satisfeitas, todo PBE regular tem o mesmo resultado em
+caminho:
+
+- o estado fraco oferece `y = o_1`;
+- os dois tipos do hegemon aceitam;
+- o hegemon recebe `o_1`;
+- o conjunto fraco recebe o restante, `1 - o_1`.
+
+O resultado é pooling, não separação. A proposta low-only não sobrevive como
+equilíbrio regular porque o proponente pode reduzir a oferta fora do caminho,
+mas, quando a proposta se torna observável e passa a ser o caminho, as crenças
+exigem um preço maior. Essa diferença impede que low-only seja um ponto fixo
+do jogo.
+
+## 2.2 Intuição da seleção
+
+O equilíbrio regular não diz que toda proposta possível é irrelevante. Ele diz
+que, quando existe equilíbrio no domínio regular, o resultado em caminho é
+selecionado pelo mecanismo de screening: para garantir o tipo alto, o
+proponente precisa pagar `o_1`.
+
+As propostas alternativas continuam importantes para provar que o resultado é
+um equilíbrio. Elas fornecem limites superiores e inferiores para o que o
+proponente conseguiria obter sob diferentes crenças e continuações. O
+equilíbrio pooling sobrevive porque domina essas alternativas no domínio de
+existência.
+
+# 3. Resultados de fronteira
+
+As fronteiras não são detalhes cosméticos. Elas mudam os incentivos de rejeitar
+e, em alguns casos, mudam o conjunto de equilíbrios.
+
+## `o_0 = 0`
+
+Se o tipo baixo não perde nada ao rejeitar, rejeições e empates ficam mais
+fáceis de sustentar. O modelo recupera classes adicionais, incluindo casos de
+low-only, pooling sobrepago e empates entre rejeição e acordo. Não se deve
+simplesmente aplicar a fórmula do domínio interior por continuidade.
+
+## `beta = 1`
+
+Sem desconto, rejeitar hoje e continuar para o Round 2 não é penalizado pelo
+tempo. Isso permite que classes de rejeição e atraso reapareçam. O equilíbrio
+pode ser múltiplo, e a proposta escolhida depende das regras de desempate.
+
+## `o_1 = 1`
+
+Quando o tipo alto tem uma opção externa igual ao valor total do bolo, ele é
+extremamente caro de satisfazer. No domínio interior, com `o_0 > 0` e desconto
+estrito, o jogo não possui PBE. O proponente não consegue simultaneamente
+oferecer o suficiente ao tipo alto e manter uma continuação racional para os
+demais jogadores.
+
+## Priors degenerados
+
+Os casos `mu = 0` e `mu = 1` foram tratados como limites unilaterais dos
+equilíbrios interiores. Isso evita afirmar que existe um PBE de um jogo de
+endpoint cuja estrutura de crenças não foi especificada da mesma forma.
+
+## Ofertas sobrepagas
+
+Nas fronteiras, pode haver pooling com `o_1 < y <= ybar`: o proponente paga
+mais do que o mínimo necessário, mas a proposta ainda é sustentada pelas
+regras de desempate e pelas restrições de equilíbrio. Esse resultado é uma das
+razões pelas quais a antiga redução exata a três classes `P/L/R` não foi
+mantida como teorema global.
+
+# 4. Comparação entre os regimes institucionais
+
+No domínio comum em que unanimidade e maioria possuem PBE, a maioria garante
+ao conjunto fraco pelo menos tanto quanto a unanimidade. Em termos de valor
+total, a maioria tem um piso `F_M` que é pelo menos `P`, o valor fraco sob o
+pooling unanimista. Portanto, a formação sob unanimidade implica formação sob
+maioria: não há uma região comum em que apenas a unanimidade se forme.
+
+Isso não significa que a maioria tenha um único equilíbrio. Para grupos
+grandes, ela permite exclusão, passagem separadora e pooling. O resultado
+majoritário é uma correspondência de payoffs, não necessariamente um número
+único.
+
+Para o hegemon, a comparação é oposta. Sob unanimidade, o equilíbrio regular
+lhe dá `o_1`. Sob maioria, seu payoff fica entre sua opção externa esperada e
+`o_1`. Assim:
+
+- se ambas as instituições se formam, unanimidade favorece fracamente o
+  hegemon;
+- se apenas a maioria se forma, a comparação deve ser feita contra a não
+  formação, não contra um equilíbrio unanimista inexistente;
+- se nenhuma se forma, o hegemon recebe sua opção externa esperada em ambos os
+  regimes.
+
+O resultado institucional é, portanto, condicional. O paper não deve dizer
+que unanimidade sempre beneficia o hegemon ou que maioria sempre elimina o
+screening em todos os equilíbrios.
+
+# 5. Take-away para o paper
+
+O argumento central pode ser apresentado assim:
+
+> A unanimidade pode favorecer um ator poderoso e privadamente informado mesmo
+> quando ele não possui poder formal de agenda. Como seu voto é indispensável,
+> os proponentes fracos precisam oferecer uma concessão que funcione contra um
+> tipo que eles não observam. A maioria permite contornar esse veto, mas cria
+> uma variedade de equilíbrios e não elimina toda possibilidade de passagem
+> separadora.
+
+Três cautelas devem acompanhar essa frase:
+
+1. o resultado é condicional ao domínio de existência de PBE;
+2. a análise usa PBE fraco com a avaliação *weak-vote-passive*, não é uma
+   caracterização de todos os PBEs nem uma afirmação de equilíbrio sequencial;
+3. poder de agenda, escolha endógena da regra, `pi_H > 0` e continuação
+   atrasada pertencem a extensões, não ao baseline.
+
+# 6. Evidência de fechamento
+
+O contrato completo do jogo foi auditado em 21 classes exaustivas de históricos
+e passou 36/36 verificações de Gate 0. Os seis verificadores analíticos passaram
+96/96. O documento autônomo compilou em PDF e HTML, com 23 páginas e validação
+textual e visual. Os revisores formal, adversarial e R emitiram `PASS` sem
+ressalvas substantivas no commit final.
+
+O baseline foi fechado no commit
+`4467da58f99b1cf75b22e5bfca1a08ccf80d9be1`. O manuscrito
+`formal_model_v6.Rmd` permaneceu intocado.
