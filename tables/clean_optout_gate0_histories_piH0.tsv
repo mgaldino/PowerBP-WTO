@@ -1,0 +1,22 @@
+history_id	round	rule	active players	quota	quota reached?	H vote	participation offer to H?	failure cause	H included?	H remains?	y implemented?	destination of y	H payoff	weak payoffs	discount factor	relevant posterior	terminal or continuation	next subgame
+G01	R1	U	H plus m weak	N	yes: z=m	yes	yes	none	yes	no continuation	yes	paid to H	y	x_j; proposer gets 1-y-sum(x_j)	1	irrelevant after agreement	terminal	none
+G02	R1	U	H plus m weak	N	no: z<m	yes	yes	weak-vote shortfall	no	yes	no	not implemented	beta*C_H2^U(theta,nu)	beta times R2-U continuation payoffs	beta	nu from proposal and full vote vector; weak-vote-passive discipline applies	continuation	R2 U with H active
+G03	R1	U	H plus m weak	N	no: z=m	no	yes	H-no is decisive	no	no	no	not implemented	o_theta	0	1	irrelevant after opt-out	terminal	none
+G04	R1	U	H plus m weak	N	no: z<m	no	yes	joint H-no and weak rejection	no	no	no	not implemented	o_theta	0	1	irrelevant after opt-out	terminal	none
+G05	R1	M	H plus m weak	q	yes: z>=q-1	yes	yes	none	yes	no continuation	yes	paid to H	y	x_j; proposer gets 1-y-sum(x_j)	1	irrelevant after agreement	terminal	none
+G06	R1	M	H plus m weak	q	no: z<=q-2	yes	yes	weak-vote shortfall	no	yes	no	not implemented	beta*C_H2^M(theta,nu)	beta times R2-M continuation payoffs with H active	beta	nu from proposal and full vote vector; weak-vote-passive discipline applies	continuation	R2 M with H active
+G07	R1	M	H plus m weak	q	yes: z>=q	no	yes	none; weak votes reach q	no	no	no	reabsorbed by proposer	o_theta	x_j; proposer gets 1-sum(x_j)	1	irrelevant after opt-out	terminal	none
+G08	R1	M	H plus m weak	q	no: z=q-1	no	yes	H-no is decisive for failure	no	no	no	not implemented	o_theta	beta times R2 weak-only continuation payoffs	beta for weak continuation; H paid at R1	irrelevant after opt-out	continuation	R2 M weak-only
+G09	R1	M	H plus m weak	q	no: z<=q-2	no	yes	joint H-no and weak shortfall	no	no	no	not implemented	o_theta	beta times R2 weak-only continuation payoffs	beta for weak continuation; H paid at R1	irrelevant after opt-out	continuation	R2 M weak-only
+G10	R2	U	H plus m weak	N	yes: z=m	yes	yes	none	yes	no continuation	yes	paid to H	beta*y	beta times x_j; proposer gets beta*[1-y-sum(x_j)]	beta	irrelevant after terminal agreement	terminal	none
+G11	R2	U	H plus m weak	N	no: z<m	yes	yes	weak-vote shortfall	no	no	no	not implemented	beta*o_theta	0	beta	irrelevant at terminal date	terminal	none
+G12	R2	U	H plus m weak	N	no: z=m	no	yes	H-no is decisive	no	no	no	not implemented	beta*o_theta	0	beta	irrelevant at terminal date	terminal	none
+G13	R2	U	H plus m weak	N	no: z<m	no	yes	joint H-no and weak rejection	no	no	no	not implemented	beta*o_theta	0	beta	irrelevant at terminal date	terminal	none
+G14	R2	M	H plus m weak	q	yes: z>=q-1	yes	yes	none	yes	no continuation	yes	paid to H	beta*y	beta times x_j; proposer gets beta*[1-y-sum(x_j)]	beta	irrelevant after terminal agreement	terminal	none
+G15	R2	M	H plus m weak	q	no: z<=q-2	yes	yes	weak-vote shortfall	no	no	no	not implemented	beta*o_theta	0	beta	irrelevant at terminal date	terminal	none
+G16	R2	M	H plus m weak	q	yes: z>=q	no	yes	none; weak votes reach q	no	no	no	reabsorbed by proposer	beta*o_theta	beta times x_j; proposer gets beta*[1-sum(x_j)]	beta	irrelevant at terminal date	terminal	none
+G17	R2	M	H plus m weak	q	no: z=q-1	no	yes	H-no is decisive for failure	no	no	no	not implemented	beta*o_theta	0	beta	irrelevant at terminal date	terminal	none
+G18	R2	M	H plus m weak	q	no: z<=q-2	no	yes	joint H-no and weak shortfall	no	no	no	not implemented	beta*o_theta	0	beta	irrelevant at terminal date	terminal	none
+G19	R2	M	m weak; H already opted out	original q	yes: z>=q	not applicable	no; y fixed at 0	none	no	no	no; fixed at 0	not available	0 additional	beta times x_j; proposer gets beta*[1-sum(x_j)]	beta	theta is payoff-irrelevant	terminal	none
+G20	R2	M	m weak; H already opted out	original q	no: z<q	not applicable	no; y fixed at 0	weak-vote shortfall	no	no	no; fixed at 0	not available	0 additional	0	beta	theta is payoff-irrelevant	terminal	none
+G21	R2	U	m weak; H already opted out	N	structurally impossible	not applicable	no; y fixed at 0	H absent, so unanimity quota cannot be met	no	no	no; fixed at 0	not available	0 additional	0	not applicable	theta is payoff-irrelevant	unreachable; branch ended at opt-out	none

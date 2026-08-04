@@ -1,8 +1,8 @@
 ---
-title: "Power Architecture Derivations"
-subtitle: "Relative Institutional Packages and Type-Dependent Participation"
+title: "Clean Immediate-Opt-Out Baseline"
+subtitle: "A Formal Laboratory for Informational Power Through Pivotality"
 author: "Working formal appendix"
-date: "2026-05-11"
+date: "2026-08-04"
 output:
   bookdown::html_document2:
     toc: true
@@ -14,2010 +14,498 @@ output:
     toc: true
     number_sections: true
     latex_engine: xelatex
-geometry: margin=1in
-fontsize: 11pt
+header-includes:
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{pdflscape}
+  - \usepackage{array}
+geometry: margin=0.8in
+fontsize: 10pt
 ---
 
-# Status
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+history_path <- "../tables/clean_optout_gate0_histories_piH0.tsv"
+gate0_histories <- utils::read.delim(
+  history_path,
+  check.names = FALSE,
+  quote = "",
+  comment.char = "",
+  stringsAsFactors = FALSE
+)
+```
 
-**Reset warning (2026-08-03): the clean immediate-opt-out baseline is not yet
-implemented in this document.** The body below still contains the
-pre-2026-05-25 delayed-continuation architecture, including
-`U_H(y,theta)=y+b_H(theta)` and Round-1 rejection payoffs based on discounted
-continuation values. Its theorem table, result statuses, and proof ledger are
-therefore historical inputs to the next derivation, not certification of the
-clean baseline. Goal 1 must rederive the baseline with `b_theta=0` and immediate
-rejection payoff `o_theta` before any result is transported to
-`formal_model_v6.Rmd`. The direct threshold `y_theta^*=o_theta` applies only at
-a ballot information set where, under weak-voter strategies, `H`'s yes vote
-implements a current agreement with certainty. If weak failure has positive
-probability, simultaneous voting instead requires an expected IC over the
-implementation, opt-out, and continuation consequences of `H`'s action.
+# Status and scope
 
-The adopted voting protocol is unchanged by that reset: bargaining stages are
-sequential and public across rounds, while all non-proposers vote
-simultaneously within each ballot and individual votes are revealed only after
-the ballot closes. This is not sequential roll-call voting.
-
-This is the designated working surface for the reimplemented model
-architecture.
-The prior feasibility-branch derivation has been archived in git tag
-`redesign-feasibility-branch-2026-05-11`. Do not import theorem statements,
-notation, or branch labels from that archived architecture without rederiving
-them here.
-
-The target manuscript `formal_model_v6.Rmd` remains frozen for new theorem
-architecture. New formal work should be developed in this file first, checked
-by scripts, independently verified, and only then transported to the paper.
-`formal_model_v5.Rmd` remains reference history.
-
-## Architecture Decision
-
-The main baseline no longer uses fixed transfers that may fit one realized pie
-but not another. Proposals are relative institutional packages: quota rules,
-production shares, cut obligations, enforcement provisions, exceptions, and
-flexibility terms. These packages are feasible in every state.
-
-Screening comes from `H`'s type-dependent participation threshold:
+This document is the autonomous formal laboratory for Goal 1. It replaces the
+superseded delayed-continuation derivation with a clean benchmark in which
 
 \[
-U_H(y,\theta)=y+b_H(\theta),
+\pi_H=0,\qquad b_0=b_1=0,
 \]
 
-where \(y\) is the concession offered by weak states and \(b_H(\theta)\) is the
-direct benefit that `H` obtains from being inside the agreement. `H` accepts if
-the package payoff exceeds its continuation value.
+and a no vote by type \(\theta\) of the hegemon is an immediate, irreversible
+opt-out. In Round 1 that action pays \(o_\theta\) immediately and without
+discounting. It does not also give the hegemon a discounted continuation
+option.
 
-# Q&A
+The current version contains the complete Gate 0 contract. Analytical
+equilibrium results are not presumed below. They will be added only after an
+independent read-only audit gives Gate 0 a PASS without substantive
+reservation.
 
-**What is the substantive puzzle?**  
-When can unanimity or consensus favor a powerful hegemon even though the rule
-appears to constrain its formal power? In the current baseline, this is a
-conditional institutional-payoff question, not an endogenous rule-choice stage.
+**Current formal status:** Gate 0 candidate; independent verdict pending.
 
-**What mechanism should the model isolate?**  
-Unanimity can make an informed hegemon pivotal. Weak states must offer a package
-that satisfies `H`'s participation constraint, but they do not observe how
-favorable the package must be for `H` to prefer agreement to its outside option.
+**Manuscript boundary:** `formal_model_v6.Rmd` and `formal_model_v5.Rmd` are
+reference objects only. This Goal does not edit either manuscript.
 
-**What is the key modeling reset?**  
-The proposal is a relative institutional package, not an absolute transfer. It
-is always feasible. The private-information problem is about `H`'s type-specific
-acceptance threshold.
+**Excluded from the baseline:** \(y+b_\theta\), a rejection payoff
+\(\beta C_\theta\) chosen by a no vote in Round 1, the hybrid
+\(\max\{o_\theta,\beta C_\theta\}\), the decomposition
+\(t_\theta=d_\theta-b_\theta\), positive recognition probability for \(H\),
+endogenous rule choice, sequential roll-call voting, and the archived
+feasibility/C-B-R architecture. A discounted Round-2 payoff after \(H\) votes
+yes and weak votes make the Round-1 ballot fail is part of the baseline; it is
+not the payoff from opting out.
 
-**What is the OPEC interpretation?**  
-Members bargain over quotas, cuts, shares, monitoring, exceptions, and
-flexibility. They can observe the proposed package, but they do not know Saudi
-Arabia's true participation threshold because Saudi Arabia privately knows its
-spare capacity, opportunity cost, and outside option.
+## Provenance
 
-# Follow-up Q&A for This Proof Pass
+The pre-reset state is commit
+`84a644128586d4f4d81c022cd7d3e09454ee8004`, recorded in the user-approved
+annotated tag `pre-clean-optout-goal1-2026-08-03`. The initial SHA-256 of
+`formal_model_v6.Rmd` is
+`f18a999300c88e32bdc7542f3249cd258afd19a0c251c0b29c2c387a7131dbc1`.
 
-**Does the clean baseline use weak-state recognition in both rounds?**
-Yes. For this proof pass, \(\pi_H=0\) in both rounds. `H` is pivotal under
-unanimity but is not a formal agenda setter.
+# Gate 0: complete game contract
 
-**What happens after terminal Round-2 rejection?**
-The game ends. `H` receives an external disagreement payoff
-\(d_H(\theta)\), and weak states receive their normalized disagreement payoff
-zero.
-
-**Is \(y\) a fixed transfer from the institutional pie?**
-No. \(y\) is a relative institutional concession. It is always feasible as a
-package, but it reduces the residual payoff available to the weak coalition
-one-for-one.
-
-**What is being checked here?**
-This pass resets the primitives for a fixed-pie relative-package model. All
-previous Round-2 formulas are treated as superseded until they are rederived
-from these primitives.
-
-# Primitives
+## Players, type, prior, and parameters
 
 There are \(N\geq3\) states: one hegemon \(H\) and \(m=N-1\) weak states.
 Nature draws
 
 \[
-\theta\in\{0,1\}.
+\theta\in\{0,1\}
 \]
 
-The hegemon observes \(\theta\). Weak states share prior belief
+before Round 1. The type persists. Only \(H\) observes \(\theta\). Weak states
+share the prior
 
 \[
-\mu=\Pr(\theta=1).
+\mu=\Pr(\theta=1)\in[0,1].
 \]
 
-The institutional surplus available to the weak coalition is fixed and known.
-Normalize it to
+The Bayesian derivations use \(\mu\in(0,1)\). The endpoints are treated as
+degenerate-belief cases or limits, and not as positive-probability separating
+histories containing both types.
+
+The weak coalition has a fixed, known institutional surplus normalized to
+one. The private type does not change this pie. Weak outside payoffs are zero.
+The clean primitive domain is
 
 \[
-B=1.
+0\leq o_0<o_1\leq\bar y\leq1,
+\qquad
+\beta\in(0,1].
+\tag{G0-domain}\label{G0-domain}
 \]
 
-The private state \(\theta\) affects `H`'s participation threshold, not the size
-of the weak coalition's pie.
+If a current agreement includes \(H\), its payoff is \(y\). Thus
+\(b_0=b_1=0\). The outside payoff \(o_\theta\) is external to the institutional
+pie. It is never subtracted from weak surplus and is never paid together with
+\(y\) in the same history.
 
-The discount factor is \(\beta\in(0,1]\).
+The institutional rule \(R\in\{U,M\}\) is fixed exogenously for each
+comparison. There is no endogenous rule-choice stage.
 
-Agenda power is represented by
+## Horizon, recognition, and time units
+
+The game has exactly two bargaining rounds, R1 and R2. There is no R3. In each
+round that is reached, a new proposer is drawn publicly and independently of
+the previous recognition, the type, and the public history. The baseline fixes
 
 \[
-\pi_H\in[0,1].
+\pi_H=0
 \]
 
-The baseline sets
+in every round. Each weak state is recognized with probability \(1/m\),
+conditional on that round being reached.
+
+Round 1 defines the payoff unit. A payoff realized in R2 is multiplied by
+\(\beta\) in Round-1 units. A no vote by \(H\) in R1 pays \(o_\theta\) at once,
+without \(\beta\). A no vote by \(H\) in R2 pays \(o_\theta\) at the R2 date,
+or \(\beta o_\theta\) in Round-1 units.
+
+R2 is terminal. If \(H\) is still active and its R2 ballot fails, then \(H\)
+receives \(o_\theta\) at the R2 date, regardless of whether it voted yes or
+no; weak states receive zero. This is the terminal outside payoff, not a
+second payment. If \(H\) opted out in R1, it receives \(o_\theta\) exactly
+once and receives no R2 flow.
+
+## Formation
+
+After Nature draws \(\theta\), but before the R1 recognition draw, the \(m\)
+weak states make one collective, all-or-nothing formation decision. They do
+not observe \(\theta\). The hegemon observes its type but takes no formation
+action.
+
+If the institution forms, every weak state pays an external sunk cost
+\(\chi\geq0\). The cost does not reduce the unit pie. If the institution does
+not form, every weak state receives zero and \(H\) receives \(o_\theta\).
+
+For rule \(R\), the gross payoff relevant to collective formation is
 
 \[
-\pi_H=0,
-\]
-
-so only weak states are recognized as proposers. This isolates informational
-power through pivotality from proposal power.
-
-# Relative Package
-
-A proposal is a package
-
-\[
-x\in X.
-\]
-
-For the first reimplementation, use a scalar concession index
-
-\[
-y\in[0,\bar y],
-\]
-
-where a higher \(y\) is more favorable to \(H\) and less favorable to the weak
-coalition. The package is feasible if \(y\in[0,\bar y]\). Feasibility does not
-depend on \(\theta\).
-
-The fixed-pie baseline restricts
-
-\[
-0\leq \bar y\leq 1.
-\]
-
-Substantively, \(y\) may represent a larger production share for `H`, a weaker
-cut obligation, more flexibility, better enforcement against other members, or
-more favorable treatment under changing market conditions.
-
-## H Payoff
-
-The minimal payoff representation is
-
-\[
-U_H(y,\theta)=y+b_H(\theta).
-\tag{H-payoff}
-\]
-
-The term \(b_H(\theta)\) is the direct benefit `H` obtains from the agreement
-itself, apart from the concession \(y\). It may capture cartel coordination,
-price stability, predictability, reputation, or the value of constraining other
-members.
-
-Let
-
-\[
-C_H(\theta,\mu')
-\]
-
-be `H`'s continuation value after rejection, given the posterior \(\mu'\). `H`
-accepts package \(y\) in state \(\theta\) iff
-
-\[
-y+b_H(\theta)\geq \beta C_H(\theta,\mu').
-\tag{H-PC}
-\]
-
-Define the type-specific acceptance threshold
-
-\[
-y_\theta^*(\mu')
+V_W^R(\mu)
 =
-\beta C_H(\theta,\mu')-b_H(\theta).
-\tag{threshold}
+\frac{1}{m}
+\mathbb E\!\left[
+  \sum_{j=1}^{m}u_j^R
+  \;\middle|\;
+  \text{formation}
+\right].
+\tag{G0-entry-value}\label{G0-entry-value}
 \]
 
-The screening condition is
+The expectation integrates over the type, recognition, public histories, and
+any symmetric selection among weak coalition partners. Formation occurs iff
+\(V_W^R(\mu)-\chi\geq0\); equality leads to formation. This collective
+primitive is not an assertion that every realized weak state individually
+prefers formation under an asymmetric coalition selection.
+
+## Contract space and budget identities
+
+Suppose weak state \(i\) is proposer. While \(H\) is active, a proposal is
 
 \[
-y_1^*(\mu')>y_0^*(\mu').
-\tag{screening}
+s_i=(y,(x_j)_{j\ne i}),
 \]
 
-Equivalently, in a one-shot participation version with outside option
-\(o_H(\theta)\),
+where
 
 \[
-y_\theta^*=o_H(\theta)-b_H(\theta),
+y\in[0,\bar y],\qquad x_j\geq0,
 \]
 
-so screening requires
+and the proposer's residual if \(H\) participates is
 
 \[
-o_H(1)-b_H(1)>o_H(0)-b_H(0).
+x_i^H
+=1-y-\sum_{j\ne i}x_j\geq0.
+\tag{G0-H-budget}\label{G0-H-budget}
 \]
 
-The high type requires a larger concession because its outside option net of
-the direct benefit of agreement is higher.
+The same space applies in R1 and R2 and under both rules. The component \(y\)
+is a public offer conditional on the observed participation of \(H\); there is
+no hidden inclusion indicator. If \(H\) votes yes and the proposal passes, it
+is included and receives \(y\). Every named weak-state offer \(x_j\) is paid
+when the proposal passes, independently of that recipient's individual vote.
 
-## Weak-State Payoffs
-
-We now specify how \(y\) reduces the payoff available to weak states. The
-normalization is one-for-one in reduced form: increasing the concession to `H`
-by one unit reduces the surplus available to the weak coalition by one unit.
-
-The maintained reduced-form payoff primitive is:
+If \(H\) votes no under majority and the weak votes nevertheless reach the
+quota, the agreement passes without \(H\). The conditional component \(y\) is
+not burned and is not paid to \(H\). It is reabsorbed by the weak proposer, so
 
 \[
-\text{weak coalition surplus after accepted package }y
-=1-y.
-\tag{W-cost}
+x_i^{WO}
+=1-\sum_{j\ne i}x_j
+=x_i^H+y.
+\tag{G0-WO-budget}\label{G0-WO-budget}
 \]
 
-Thus \(y\) is costly one-for-one to the weak coalition. This is not a
-state-contingent feasibility constraint. The package \(y\in[0,\bar y]\) is
-available in every state; if a package leaves a low residual for weak states,
-that is a payoff consequence, not physical infeasibility.
-
-When weak state \(i\) is recognized and needs weak voters to approve, each
-non-proposing weak voter \(j\neq i\) receives its continuation value
-\(c_W\). The recognized weak proposer keeps the residual:
+The hegemon receives \(o_\theta\) externally. Hence both implemented budget
+identities close at one:
 
 \[
-u_i(y,\theta;c_W)
+y+\sum_{j\ne i}x_j+x_i^H=1,
+\qquad
+\sum_{j\ne i}x_j+x_i^{WO}=1.
+\tag{G0-budget-closure}\label{G0-budget-closure}
+\]
+
+After an earlier opt-out, only the \(m\) weak states remain active, every
+proposal fixes \(y=0\), and the weak-only identity in
+\eqref{G0-WO-budget} applies. If a ballot fails, no current \(x_j\) and no
+current \(y\) is implemented.
+
+These rules make \(y\) contingent only on publicly observed participation,
+not on the private type.
+
+## Common simultaneous ballot
+
+The game is sequential and public across rounds: proposal, ballot, publication
+of the complete vote vector and outcome, followed by any continuation. It is
+not sequential within a ballot.
+
+The proposer is counted as voting yes. All other active players observe the
+proposal and public history and vote simultaneously. The individual votes are
+revealed only after every ballot has been cast. The same ballot protocol is
+used under both rules. Only the quota changes:
+
+\[
+Q_U=N,
+\qquad
+Q_M=q=\left\lfloor\frac{N}{2}\right\rfloor+1.
+\tag{G0-quotas}\label{G0-quotas}
+\]
+
+Because \(N\geq3\), \(q\leq m\). While \(H\) remains active, the electorate
+contains all \(N\) states. After opt-out, the active electorate contains only
+the \(m\) weak states, but the majority quota remains the original \(q\); it
+is not recalculated. The unanimity quota remains \(N\). Therefore an opt-out
+makes future unanimity impossible and that branch ends immediately.
+
+Players vote yes when indifferent. Strategies are functions of information
+available before the ballot closes. No strategy may condition on a
+simultaneous vote that has not yet been observed.
+
+## Immediate opt-out
+
+A no vote by type \(\theta\) of \(H\) is an immediate and irreversible
+opt-out. No current or future agreement can then include \(H\). In R1 the
+action pays \(o_\theta\) immediately. In R2 it pays \(o_\theta\) at the R2
+date. There is no additional choice between opt-out and a discounted
+continuation.
+
+Under unanimity, an R1 no vote by \(H\) makes the quota impossible and ends the
+branch. Under majority, if the weak yes votes already reach \(q\), their
+current weak-only agreement passes. Otherwise the game proceeds to an R2
+weak-only subgame with the original quota \(q\). A joint R1 rejection by \(H\)
+and weak voters follows the same rules.
+
+A yes vote by \(H\) is not an opt-out. If the R1 ballot then fails only because
+weak votes do not reach the quota, \(H\) remains active and the game proceeds
+to R2 under the same institutional rule.
+
+## Exhaustive voting-history table
+
+Let \(z\) denote the number of weak yes votes, including the weak proposer's
+automatic yes vote. Table \@ref(tab:gate0-history-table) is generated from the versioned tab-separated
+source `tables/clean_optout_gate0_histories_piH0.tsv`. The concise entries use
+`C_H2^R(theta,nu)` only for the legitimate continuation after an R1 yes vote by
+\(H\) followed by a weak-caused failure. They never use that object as the
+payoff from a no vote.
+
+```{r gate0-history-table, results='asis'}
+history_display <- gate0_histories
+if (knitr::is_latex_output()) {
+  print(
+    kableExtra::kbl(
+      history_display,
+      format = "latex",
+      booktabs = TRUE,
+      longtable = TRUE,
+      escape = TRUE,
+      caption = "Gate 0 exhaustive voting histories, implementation rules, payoffs, beliefs, and continuations."
+    ) |>
+      kableExtra::kable_styling(
+        latex_options = c("repeat_header", "scale_down"),
+        font_size = 4
+      ) |>
+      kableExtra::landscape()
+  )
+} else {
+  print(
+    kableExtra::kbl(
+      history_display,
+      format = "html",
+      escape = TRUE,
+      caption = "Gate 0 exhaustive voting histories, implementation rules, payoffs, beliefs, and continuations."
+    ) |>
+      kableExtra::kable_styling(font_size = 10) |>
+      kableExtra::scroll_box(width = "100%", height = "650px")
+  )
+}
+```
+
+The R2-unanimity row with \(H\) already absent is included to document a
+structurally unreachable class: the branch ends when the opt-out occurs because
+the original quota \(N\) cannot be met by \(m\) active weak states. It is not a
+latent R2 action.
+
+# Information, beliefs, and incentive constraints
+
+## Public histories and beliefs
+
+The public history after a ballot contains the proposal, complete vote vector,
+quota outcome, and any observed opt-out. On-path beliefs follow Bayes' rule.
+
+The baseline uses the expression **weak-vote-passive assessment**. It is a
+maintained assessment of the simultaneous public ballot, not a refinement, D1,
+the Intuitive Criterion, a sequential-equilibrium restriction, or a
+characterization of all PBEs.
+
+A unilateral vote deviation by a weak state is not treated as direct evidence
+about \(\theta\), because weak states do not observe \(\theta\). Following a
+weak-voter deviation, the posterior is the posterior implied by the public
+proposal and \(H\)'s simultaneous type-contingent strategy and vote, not by the
+action of an uninformed deviator. A separating vote by \(H\) can update beliefs
+when the continuation keeps \(H\) active and the type remains payoff-relevant.
+
+Every zero-probability continuation in which \(H\) remains active must state
+the required off-path posterior and identify which result depends on it.
+Off-path posteriors are components of an assessment, not primitives of the
+game. They cannot be selected to delete an inconvenient branch. Once \(H\)
+opts out, \(\theta\) is payoff-irrelevant for the weak-only continuation and no
+posterior is needed to solve it.
+
+## Hegemon's expected ballot IC
+
+Fix an R1 public history \(h\), a proposal, and type \(\theta\). Let
+\(v_W\) be the simultaneous vector of non-proposer weak votes, let
+\(A_R^Y(v_W)\) indicate that the rule-\(R\) quota is reached when \(H\) votes
+yes, and let \(\sigma_W(v_W\mid h)\) be the probability induced by the weak
+strategies. The correct R1 payoff from voting yes is
+
+\[
+EU_H^R(Y\mid\theta,h)
 =
-1-y-(m-1)c_W,
-\qquad
-u_j(y,\theta;c_W)=c_W.
-\tag{W-residual}
+\sum_{v_W}\sigma_W(v_W\mid h)
+\left[
+A_R^Y(v_W)y
++
+\{1-A_R^Y(v_W)\}
+\beta C_{H,2}^R\!\left(\theta,\nu(h,Y,v_W)\right)
+\right].
+\tag{G0-H-yes-R1}\label{G0-H-yes-R1}
 \]
 
-In terminal Round 2, weak states' disagreement payoff is normalized to zero, so
-\(c_W=0\). Hence the recognized weak proposer's terminal payoff from an
-accepted package is \(1-y\). A representative weak state's ex ante Round-2
-value is the recognized-proposer value divided by \(m\), because each weak state
-is recognized with probability \(1/m\) when \(\pi_H=0\).
-
-**Status: adopted primitive for the current relative-package proof pass.**
-
-# Baseline Timing: \(\pi_H=0\)
-
-The first proof pass keeps \(\pi_H=0\) in both rounds.
-
-1. Nature draws \(\theta\); `H` observes \(\theta\), weak states observe only
-   \(\mu\).
-2. A weak state is recognized as proposer.
-3. The proposer offers a relative institutional package \(y\).
-4. Under unanimity, `H` must accept the package for agreement to form.
-5. Weak voters receive continuation-value offers required for coalition
-   approval.
-6. If agreement fails, the game proceeds to the next bargaining round with
-   beliefs updated by Bayes' rule on path.
-
-Voting follows the standard Baron--Ferejohn convention at pivotal acceptance
-constraints: a player whose vote would make agreement pass and who is
-indifferent between accepting the agreement and receiving its continuation or
-outside option accepts the agreement. Thus `H` accepts at its participation
-threshold when it is pivotal, and weak voters accept offers equal to their
-continuation values when their vote is pivotal. Non-pivotal tie-breaking is
-specified explicitly in each voting assessment.
-
-If a weak proposer is indifferent between two payoff-maximizing proposals, the
-baseline assumes that it selects the proposal that minimizes `H`'s expected
-payoff under the current belief. This tie-breaking rule is conservative with
-respect to the paper's main claim that private information allows the hegemon to
-extract informational rents. A later appendix should compare the baseline with
-the opposite efficient-agreement tie-breaking rule.
-
-No branch in this baseline relies on a package being feasible in one state and
-infeasible in another.
-
-# Objects To Derive
-
-## R2 Unanimity
-
-Status: fixed-pie derivation.
-
-This subsection derives terminal Round 2 from the fixed-pie primitives above.
-Let
+The payoff from voting no is always
 
 \[
-d_\theta=d_H(\theta),\qquad b_\theta=b_H(\theta).
+EU_H^R(N\mid\theta,h)=o_\theta.
+\tag{G0-H-no-R1}\label{G0-H-no-R1}
 \]
 
-In terminal Round 2, rejection ends the game. `H` accepts package \(y\) in state
-\(\theta\) iff
+This equality holds whether a majority weak-only agreement passes immediately
+or the weak states continue alone: \(H\) has opted out and receives no further
+flow. Sequential rationality requires
 
 \[
-y+b_\theta\geq d_\theta.
+EU_H^R(Y\mid\theta,h)\geq o_\theta
+\tag{G0-H-IC-R1}\label{G0-H-IC-R1}
 \]
 
-Define the terminal participation threshold
+for a prescribed yes vote, with the reverse weak inequality for a prescribed
+no vote.
+
+At an R2 information set, a failed ballot with \(H\) still active pays the
+terminal outside payoff. Thus, in Round-1 units,
 
 \[
-\tau_\theta=d_\theta-b_\theta.
-\]
-
-The fixed-pie screening domain is
-
-\[
-0\leq \tau_0<\tau_1\leq \bar y\leq1.
-\]
-
-The proposer never benefits from choosing a package strictly inside an
-acceptance region, because weak surplus is \(1-y\). Therefore the only accepted
-packages that can be optimal are:
-
-1. low-only: \(y=\tau_0\), accepted by low `H` and rejected by high `H`;
-2. pooling: \(y=\tau_1\), accepted by both types.
-
-The recognized weak proposer's payoff from low-only is
-
-\[
-L_2(\mu)=(1-\mu)(1-\tau_0).
-\]
-
-The recognized weak proposer's payoff from pooling is
-
-\[
-P_2(\mu)=1-\tau_1.
-\]
-
-The weak proposer chooses low-only iff
-
-\[
-(1-\mu)(1-\tau_0)\geq1-\tau_1.
-\]
-
-Solving this inequality gives the derived cutoff
-
-\[
-\mu_2^*=\frac{\tau_1-\tau_0}{1-\tau_0}.
-\]
-
-This is not a primitive. It is the belief at which the weak proposer is
-indifferent between the two accepted packages. Because
-\(0\leq\tau_0<\tau_1\leq1\), \(\mu_2^*\in(0,1]\), with an interior cutoff when
-\(\tau_1<1\).
-
-Under the conservative proposer tie-breaking rule, the equilibrium Round-2
-proposal is
-
-\[
-y_2^*(\mu)=
-\begin{cases}
-\tau_0, & \mu\leq\mu_2^*,\\
-\tau_1, & \mu>\mu_2^*.
-\end{cases}
-\]
-
-Thus the recognized weak proposer's Round-2 value is
-
-\[
-P_{2,prop}^U(\mu)=
-\begin{cases}
-(1-\mu)(1-\tau_0), & \mu\leq\mu_2^*,\\
-1-\tau_1, & \mu>\mu_2^*.
-\end{cases}
-\]
-
-The representative weak state's Round-2 continuation value is
-
-\[
-W_2^U(\mu)=\frac{P_{2,prop}^U(\mu)}{m}.
-\]
-
-The high type's Round-2 continuation value is
-
-\[
-C_{H,2}^U(1,\mu)=d_1
-\]
-
-for all \(\mu\): it either rejects the low-only offer and receives \(d_1\), or
-accepts the pooling offer at its threshold and receives \(d_1\). The low type's
-Round-2 continuation value is
-
-\[
-C_{H,2}^U(0,\mu)=
-\begin{cases}
-d_0, & \mu\leq\mu_2^*,\\
-d_0+\tau_1-\tau_0, & \mu>\mu_2^*.
-\end{cases}
-\]
-
-Status: proved for terminal Round 2 under the fixed-pie primitives, the
-normalized threshold domain, the Baron--Ferejohn weak-acceptance convention, and
-the conservative proposer tie-breaking rule. The derivation is checked in
-`scripts/verify_relative_package_R2_piH0.R`.
-
-## Voting Protocol for R1 Comparisons
-
-Use the same simultaneous public voting protocol under unanimity and majority.
-After a proposal is made, the proposer is counted as voting yes. All other
-states vote simultaneously. Individual votes are publicly revealed after the
-ballot closes. Equivalently, voting is a secret ballot with each player's vote
-opened and recorded at the end.
-
-A proposal passes if the number of yes votes meets the institutional quota:
-
-\[
-Q_U=N
-\]
-
-under unanimity and
-
-\[
-Q_M=q=\lfloor N/2\rfloor+1
-\]
-
-under majority. Players accept in indifference.
-
-The public history after the ballot includes the proposal, the full vote vector,
-and the outcome. If the game continues, beliefs are updated from that public
-history.
-
-The informational distinction comes from pivotality, not from whether a ballot
-is recorded. Under unanimity, `H` is pivotal because every state must vote yes.
-Under majority, a weak proposer may be able to assemble \(q\) weak-state yes
-votes without `H`; `H` may still cast a public no vote, but that vote is not
-pivotal on the no-screening majority path.
-
-Therefore the majority comparison is not built by suppressing `H`'s vote. It is
-built by showing when a weak proposer has no reason to buy `H`'s acceptance.
-This is not automatic. Under majority, buying `H`'s yes vote can replace one
-weak voter's yes vote. The no-screening majority benchmark therefore requires a
-condition under which `H` is not a cheaper coalition partner than a weak voter.
-
-Status: protocol convention adopted for the next R1 and majority derivations.
-The detailed assessment is recorded in
-`quality_reports/2026-05-11_common_voting_protocol_unanimity_majority.md`.
-
-## Weak-Vote-Passive Assessment
-
-The R1 unanimity result uses a pure-strategy PBE evaluated under a maintained
-weak-vote-passive assessment. This is not a refinement of standard PBE, not a
-D1 or intuitive-criterion restriction, and not a claim about all PBEs under
-arbitrary off-path beliefs. It is a maintained interpretation of the public
-voting protocol: weak states do not observe `H`'s type, so their unilateral vote
-deviations are not treated as direct signals about that type.
-
-The maintained assessment has three parts.
-
-1. **Passive beliefs after weak-state deviations.** Weak states do not observe
-   `H`'s type. Therefore, a unilateral deviation by a weak voter does not by
-   itself change beliefs about `H`. When `H`'s vote is pooling, the posterior
-   after a weak-vote deviation remains the prior. When `H`'s vote separates
-   types, the posterior is determined by `H`'s vote, not by the weak voter's
-   deviation.
-2. **H-vote posterior consistency.** If `H`'s prescribed votes separate the two
-   types, public histories with the low-type vote have posterior zero and public
-   histories with the high-type vote have posterior one. If `H`'s prescribed
-   vote pools the two types, that vote carries no type information.
-3. **Weak acceptance at pivotal constraints.** A pivotal voter accepts when the
-   proposed payoff equals its continuation value. Non-pivotal votes are not used
-   to create additional information about `H` unless `H`'s own prescribed vote
-   is type-dependent.
-
-The substantive justification is the standard no-signaling-what-you-do-not-know
-logic: weak states have no private information about `H`'s type, so their voting
-deviations should not be interpreted as signals about that type. The assessment
-rules out off-path belief assignments in which an uninformed weak voter's
-unexpected no vote changes beliefs about `H`; it does not purport to eliminate
-all such belief systems under unrestricted PBE.
-
-Bayesian updating statements below should be read literally for
-\(\mu\in(0,1)\). At endpoint beliefs, the same payoff formulas are interpreted
-as degenerate-belief or limiting cases, not as updates after
-positive-probability histories of both types.
-
-## R1 Unanimity
-
-Status: proved for the weak-vote-passive pure-threshold candidates below under
-the fixed-pie relative-package primitives, simultaneous public voting, passive
-beliefs after weak-state deviations, and weak acceptance at pivotal constraints.
-The algebra and candidate comparisons are checked in
-`scripts/verify_relative_package_R1_piH0.R`. This is not a characterization of
-all standard PBEs under arbitrary off-path beliefs.
-
-### R1 primitives
-
-Round 1 uses the same players and type space as Round 2. There are \(m=N-1\)
-weak states and one privately informed hegemon `H`. Nature draws
-\(\theta\in\{0,1\}\), `H` observes \(\theta\), and weak states share the prior
-\(\mu=\Pr(\theta=1)\).
-
-The baseline recognition protocol sets \(\pi_H=0\). A weak state \(i\) is
-recognized as proposer. The identity of the proposer is public. The proposer is
-counted as voting yes.
-
-A Round-1 proposal is
-
-\[
-s=(y,z_{-i}),
-\]
-
-where \(y\in[0,\bar y]\) is the relative institutional concession to `H`, and
-\(z_j\geq0\) is the payoff promised to each non-proposing weak voter
-\(j\neq i\). The proposal is feasible iff
-
-\[
-y+\sum_{j\neq i}z_j\leq1.
-\tag{R1-feasibility}
-\]
-
-This is a fixed weak-surplus constraint, not a state-contingent pie constraint.
-The package \(y\) is available in every state.
-
-After the proposal, `H` and all non-proposing weak states vote simultaneously.
-The proposal passes under unanimity iff every state votes yes. If it passes,
-
-\[
-u_H=y+b_\theta,\qquad
-u_j=z_j,\qquad
-u_i=1-y-\sum_{j\neq i}z_j.
-\]
-
-If it fails, the game proceeds to terminal Round 2. The public history is the
-proposal and the full vote vector. Let \(\nu\) denote the posterior probability
-of \(\theta=1\) after that public history. Weak states receive
-\(\beta W_2^U(\nu)\), and type \(\theta\) of `H` receives
-\(\beta C_{H,2}^U(\theta,\nu)\).
-
-From the R2 derivation, define the recognized weak proposer's terminal value
-
-\[
-p_2(\nu)=
-\max\{(1-\nu)(1-\tau_0),1-\tau_1\},
-\]
-
-with the conservative low-only tie-breaking rule at equality. Then
-
-\[
-W_2^U(\nu)=\frac{p_2(\nu)}{m},
-\qquad
-c(\nu)=\beta W_2^U(\nu)
-\tag{weak-cont}
-\]
-
-is the Round-1 public continuation value of a weak state after a failed
-proposal with posterior \(\nu\). Let
-
-\[
-D_0(\nu)=C_{H,2}^U(0,\nu)
+EU_H^R(Y\mid\theta,h_2)
 =
-\begin{cases}
-d_0, & \nu\leq\mu_2^*,\\
-d_0+\tau_1-\tau_0, & \nu>\mu_2^*,
-\end{cases}
+\beta\sum_{v_W}\sigma_W(v_W\mid h_2)
+\left[
+A_R^Y(v_W)y
++
+\{1-A_R^Y(v_W)\}o_\theta
+\right],
 \qquad
-D_1(\nu)=C_{H,2}^U(1,\nu)=d_1.
-\tag{H-R2-values}
+EU_H^R(N\mid\theta,h_2)=\beta o_\theta.
+\tag{G0-H-IC-R2}\label{G0-H-IC-R2}
 \]
 
-Thus `H`'s Round-1 rejection payoff after posterior \(\nu\) is
-\(\beta D_\theta(\nu)\). Define the high type's Round-1 threshold and the low
-type's high-posterior threshold:
+Only when the weak strategies make \(A_R^Y(v_W)=1\) with probability one does
+the R1 or R2 yes/no comparison reduce to
 
 \[
-a_1=\beta d_1-b_1,
-\qquad
-a_0(1)=\beta D_0(1)-b_0.
-\tag{R1-thresholds}
+y\geq o_\theta.
+\tag{G0-direct-cutoff}\label{G0-direct-cutoff}
 \]
 
-The argument in \(a_0(1)\) is the posterior used to price the low type's
-continuation value after a rejected low-only proposal. It is not an exponent.
+Therefore the direct threshold \(y_\theta^*=o_\theta\) is derived at a
+certain-implementation information set. It is not a global voting rule. If
+weak-caused failure has positive probability, equation
+\eqref{G0-H-IC-R1} must integrate current implementation and the legitimate
+R2 continuation after a yes vote.
 
-The weak R1 threshold-order domain for the current screening characterization
-is
+## Weak-voter approval IC
 
-\[
-0\leq a_0(1)\leq a_1\leq\bar y\leq1.
-\tag{R1-threshold-order-domain}
-\]
-
-Strict low-only separation requires \(a_0(1)<a_1\). If \(a_0(1)=a_1\), low-only
-separation is blocked but pooling at \(a_1\) remains admissible. If
-\(a_0(1)>a_1\), the high-threshold pooling proposal below is not admissible under
-the stated posterior after an off-path `H` no vote; that reversed-order case is
-outside the current screening characterization and remains blocked for this
-proof pass.
-
-### Exhaustion of pure threshold candidates
-
-For any fixed posterior \(\nu\), `H` accepts a package \(y\) iff
+Fix a non-proposing weak voter \(j\). Its strategy is chosen before the
+simultaneous ballots are revealed. Let \(u_j(a_j,v_{-j})\) be the payoff
+specified by the history table: an implemented \(x_j\) if the current agreement
+passes, the appropriate discounted continuation if R1 fails, or zero after
+terminal failure. Its approval condition is
 
 \[
-y+b_\theta\geq\beta D_\theta(\nu).
-\]
-
-Under the R1 separation domain, the high type's threshold is above the low
-type's relevant threshold. Therefore a pure threshold proposal can induce only
-three acceptance sets for `H`:
-
-1. both types accept;
-2. only the low type accepts;
-3. neither type's acceptance is needed because the proposal is deliberately
-   rejected and the game continues.
-
-A high-only accepted proposal is impossible in this scalar package order: if a
-package is high enough for the high type, it is also high enough for the low
-type under the stated domain. Within each accepted region, any package strictly
-above the relevant threshold is dominated for the weak proposer by lowering
-\(y\). Any weak-voter offer strictly above the relevant continuation value is
-also dominated. Hence the only payoff-relevant pure threshold candidates with
-accepted agreements are pooling and low-only. Deliberate failure gives the
-continuation candidate. The informative-failure lemma below rules out a
-profitable fourth candidate in which the proposer uses a rejected ballot only to
-extract information before Round 2.
-
-### Candidate P: pooling at the high threshold
-
-The pooling proposal is
-
-\[
-y_P=a_1,\qquad z_j=c(\mu)\quad\text{for all }j\neq i.
-\tag{P-proposal}
-\]
-
-It is physically feasible at belief \(\mu\) iff
-
-\[
-a_1+(m-1)c(\mu)\leq1.
-\tag{P-feas}
-\]
-
-It is an admissible pooling voting assessment iff (P-feas) holds and
-\(a_1\geq a_0(1)\).
-
-The proposed strategy profile is: both types of `H` vote yes; every
-non-proposing weak state votes yes.
-
-Posterior beliefs after public vote vectors are:
-
-\[
-\nu_P(v)=
-\begin{cases}
-\mu, & H\text{ votes yes},\\
-1, & H\text{ votes no}.
-\end{cases}
-\tag{P-beliefs}
-\]
-
-The all-yes vector is on path and the proposal passes. Vectors with `H` voting
-yes and at least one weak no vote are off path but preserve the prior because
-`H`'s prescribed yes vote is pooling. Vectors with `H` voting no are off path;
-the belief assigns probability one to the high type.
-
-Weak voters' constraint is
-
-\[
-z_j\geq c(\mu).
-\tag{P-W}
-\]
-
-If a weak voter votes yes, the proposal passes and it receives \(z_j\). If it
-unilaterally votes no while all others follow the proposed strategy, the
-proposal fails, `H`'s yes vote is uninformative, the posterior is \(\mu\), and
-the voter receives \(c(\mu)\). With \(z_j=c(\mu)\), weak voters accept in
-indifference.
-
-`H`'s constraints are
-
-\[
-a_1+b_1=\beta d_1=\beta D_1(1),
-\tag{P-H1}
-\]
-
-so the high type accepts by the weak-acceptance convention, and
-
-\[
-a_1+b_0\geq\beta D_0(1),
-\qquad\text{equivalently}\qquad a_1\geq a_0(1),
-\tag{P-H0}
-\]
-
-so the low type also accepts. The latter is implied by the R1 separation
-domain.
-
-The recognized weak proposer's pooling payoff is
-
-\[
-\Pi_P^U(\mu)=1-a_1-(m-1)c(\mu).
-\tag{P-payoff}
-\]
-
-**Voting-continuation proof.** Given the beliefs in (P-beliefs), each weak voter is indifferent
-between yes and no at \(z_j=c(\mu)\) and therefore votes yes by the
-weak-acceptance convention. The high type of `H` is indifferent between
-acceptance and rejection at \(y=a_1\) and votes yes by the same convention. The
-low type weakly prefers acceptance because \(a_1\geq a_0(1)\). The proposer pays
-the minimum concession and minimum weak-voter offers consistent with these
-constraints, so no lower-cost pooling proposal exists. Beliefs on the all-yes
-path are Bayesian; off-path beliefs are explicitly specified. Therefore the
-pooling proposal is an admissible voting-continuation assessment whenever
-(P-feas) holds and \(a_1\geq a_0(1)\). It is selected in the baseline value only
-when the proposer-optimality condition stated below also selects pooling.
-
-### Candidate L: low-only acceptance
-
-The low-only proposal is
-
-\[
-y_L=a_0(1),\qquad z_j=c(0)\quad\text{for all }j\neq i.
-\tag{L-proposal}
-\]
-
-It is feasible iff
-
-\[
-a_0(1)+(m-1)c(0)\leq1,
-\tag{L-feas}
-\]
-
-and it requires the strict separation condition \(a_0(1)<a_1\). The proposed
-strategy profile is: low `H` votes yes, high `H` votes no, and every
-non-proposing weak state votes yes.
-
-Posterior beliefs after public vote vectors are:
-
-\[
-\nu_L(v)=
-\begin{cases}
-0, & H\text{ votes yes},\\
-1, & H\text{ votes no}.
-\end{cases}
-\tag{L-beliefs}
-\]
-
-Thus the all-yes vector passes and reveals the low type. The vector in which
-`H` votes no and all weak states vote yes is on path in the high state, fails,
-and reveals the high type. Off-path vectors inherit the same rule: histories
-with `H` yes have posterior zero, and histories with `H` no have posterior one.
-
-Weak voters' constraint is
-
-\[
-z_j\geq c(0).
-\tag{L-W}
-\]
-
-To see this, compare a weak voter's yes and no payoffs given the proposed
-strategy profile. If the voter votes yes, it receives \(z_j\) in the low state
-and continuation \(c(1)\) in the high state, because high `H` rejects. If the
-voter votes no, the proposal fails in both states; the posterior is zero after
-low `H`'s yes vote and one after high `H`'s no vote. Hence the voter votes yes
-iff
-
-\[
-(1-\mu)z_j+\mu c(1)
+\sum_{v_{-j}}\Pr(v_{-j}\mid h)
+u_j(Y,v_{-j})
 \geq
-(1-\mu)c(0)+\mu c(1),
+\sum_{v_{-j}}\Pr(v_{-j}\mid h)
+u_j(N,v_{-j}).
+\tag{G0-W-IC}\label{G0-W-IC}
 \]
 
-which reduces to \(z_j\geq c(0)\) when \(\mu<1\). At \(\mu=1\), weak voters are
-not payoff-pivotal for the on-path high-state rejection and accept weakly under
-the same offer convention.
+The expectation includes \(H\)'s type-contingent simultaneous vote. A voter
+cannot condition on that vote before the ballot closes. If voter \(j\) is
+pivotal with probability one, equation \eqref{G0-W-IC} reduces to the usual
+comparison between \(x_j\) and the continuation induced by a no vote. If its
+vote never changes implementation or continuation, it is indifferent and votes
+yes. Offers are implemented for named recipients whenever the agreement passes,
+even if the recipient voted no.
 
-`H`'s constraints are
+## Tie-breaking
 
-\[
-a_0(1)+b_0=\beta D_0(1),
-\tag{L-H0}
-\]
+Every player votes yes when indifferent. Among proposals that maximize the
+weak proposer's payoff, the selected proposal minimizes \(H\)'s expected
+payoff. No third tie-break is available. If two proposals tie for both the weak
+proposer and \(H\) but imply different downstream objects, the result must
+remain set-valued or exclude that boundary by a stated strict theorem domain;
+the proof may not select one silently.
 
-so the low type accepts by the weak-acceptance convention, and
+# Gate 0 audit checklist
 
-\[
-a_0(1)+b_1<\beta d_1,
-\qquad\text{equivalently}\qquad a_0(1)<a_1,
-\tag{L-H1}
-\]
+The implementer records the following mechanical assessment, which does not
+substitute for the independent verdict.
 
-so the high type strictly rejects.
+| Requirement | Candidate evidence | Implementer status |
+|---|---|---|
+| Every required history has a payoff and continuation | Table \@ref(tab:gate0-history-table), rows G01--G21 | checked |
+| No double payment to H | Contract identities and all H-no rows | checked |
+| No reinclusion after opt-out | Rows G03, G04, G06, G08, G11, G13, G15--G18 | checked |
+| No discounted continuation as payoff from H-no in R1 | Equation \eqref{G0-H-no-R1} and table H-no rows | checked |
+| Same simultaneous ballot under U and M | Equation \eqref{G0-quotas} | checked |
+| Post-opt-out electorate and quotas defined | Common-ballot section and rows G16--G18 | checked |
+| H-including and weak-only budgets close | Equations \eqref{G0-H-budget}--\eqref{G0-budget-closure} | checked |
+| H IC integrates simultaneous weak votes | Equations \eqref{G0-H-yes-R1}--\eqref{G0-H-IC-R2} | checked |
+| Beliefs stated whenever type remains relevant | Beliefs section and G02/G07 | checked |
+| No equilibrium result presumed as a primitive | Status, primitives, and proof ledger | checked |
 
-The recognized weak proposer's low-only payoff is
+**Independent Gate 0 verdict:** PENDING.
 
-\[
-\Pi_L^U(\mu)
-=
-(1-\mu)\{1-a_0(1)-(m-1)c(0)\}
-+\mu c(1).
-\tag{L-payoff}
-\]
+# Phase 1 placeholder
 
-The second term is the proposer's continuation payoff after high `H` rejects
-and the public vote vector reveals posterior one.
+No equilibrium candidate, historical label, threshold ordering, No-Cheap-H
+condition, entry nesting result, or institutional comparison has yet been
+promoted under the clean contract. The next derivation must proceed from
+terminal histories backward only after Gate 0 receives an independent PASS.
 
-**Voting-continuation proof.** Given (L-beliefs), each weak voter is exactly compensated for the
-continuation it can induce in the low state and is unaffected in the high state,
-so voting yes is sequentially rational. Low `H` is indifferent between
-acceptance and mimicking high rejection at posterior one and votes yes by the
-weak-acceptance convention. High `H` strictly prefers rejection because
-\(a_0(1)<a_1\). The posterior after `H`'s on-path no vote is one by Bayes, and
-the posterior after `H`'s on-path yes vote is zero by Bayes. Off-path beliefs
-are explicitly stated in (L-beliefs). The proposer uses the minimum concession
-and weak-voter offers consistent with low-only acceptance. Therefore the
-low-only proposal is an admissible voting-continuation assessment whenever
-(L-feas) and \(a_0(1)<a_1\) hold. It is selected in the baseline value only when
-the proposer-optimality condition stated below also selects low-only.
+## Preliminary survival matrix
 
-### Candidate R: no-information rejection/continuation
+| Historical result | Current status before rederivation | Required evidence |
+|---|---|---|
+| Terminal low-only/pooling choice | pending | derive from R2 direct opt-out thresholds |
+| R1 pooling label P | historical candidate only | derive H and weak-voter ICs from Gate 0 |
+| R1 low-only label L | historical candidate only | derive H and weak-voter ICs from Gate 0 |
+| R1 rejection/delay label R or D | historical candidate only | exhaust immediate-opt-out deviations; do not impose delay |
+| Rejected-history reduction lemma | historical only | reprove or reject under the new H-no payoff |
+| No-Cheap-H | historical only | rederive with primitive \(o_\theta\) |
+| Majority no-screening | historical only | compare all payoff-relevant majority coalitions |
+| Entry nesting | historical only | derive total weak payoffs under selected clean paths |
+| H payoff comparison and classification | historical only | derive only after all preceding objects are proved |
 
-The continuation proposal designates one non-proposing weak state \(r\) as a
-strict rejecter and sets
-
-\[
-y_R=a_1,\qquad z_j=0\quad\text{for all }j\neq i.
-\tag{R-proposal}
-\]
-
-It is feasible when \(a_1\leq\bar y\leq1\). It is admissible as a strict
-rejection assessment at beliefs with \(c(\mu)>0\). The proposed voting strategy
-is: both types of `H` vote yes, the designated weak state \(r\) votes no, and
-all other non-proposing weak states vote yes. The proposal fails under
-unanimity because one weak state votes no.
-
-The posterior after every failed vote vector following this proposal is
-
-\[
-\nu_R(v)=\mu.
-\tag{R-beliefs}
-\]
-
-On path, `H`'s yes vote is pooling and weak votes carry no private information,
-so this posterior is Bayesian. Off path, the same belief rule keeps unilateral
-vote deviations from changing continuation beliefs.
-
-The designated weak state \(r\) strictly prefers no when \(c(\mu)>0\). If it
-votes no, the proposal fails and it receives \(c(\mu)\). If it unilaterally
-votes yes while all others follow the proposed strategy, the proposal passes
-and it receives \(z_r=0\). All other non-proposing weak states are non-pivotal
-because \(r\) votes no; they vote yes by the non-pivotal tie-breaking rule.
-
-`H` is not outcome-pivotal because \(r\) rejects. Under (R-beliefs), a
-unilateral `H` deviation from yes to no does not change the posterior, so both
-types of `H` are sequentially rational in voting yes. The choice \(y_R=a_1\)
-also means that if the weak rejection were removed, the high type would be at
-its acceptance threshold and the low type would weakly accept.
-
-The recognized weak proposer's continuation payoff is
-
-\[
-\Pi_R^U(\mu)=c(\mu).
-\tag{R-payoff}
-\]
-
-**Voting-continuation proof.** The on-path rejected vote vector preserves the
-prior by Bayes. The designated weak rejecter strictly prefers no when
-\(c(\mu)>0\). The other weak voters' yes votes are sequentially rational because
-their unilateral votes do not affect the outcome. `H`'s yes vote is
-sequentially rational because `H` is not outcome-pivotal and the stated off-path
-beliefs make vote deviations payoff-irrelevant. The proposal therefore
-implements no-information continuation as an admissible voting-continuation
-assessment whenever \(a_1\leq\bar y\) and \(c(\mu)>0\). It is selected in the
-baseline value only when the proposer-optimality condition stated below also
-selects rejection. This candidate is not a uniqueness claim about the voting
-subgame after a deliberately unacceptable proposal.
-
-### Lemma: informative rejected ballots do not add a profitable candidate
-
-An informative rejected ballot would try to make the proposal fail in both
-states while inducing different `H` votes, so that the public vote vector
-changes the posterior before Round 2. Such a ballot cannot strictly improve on
-the no-information continuation candidate under the maintained domain.
-
-To see this, suppose a rejected ballot separates `H`'s types. Since weak voters
-do not observe \(\theta\), only `H`'s vote can carry type information. In any
-separating rejected ballot, one `H` action must induce posterior zero and the
-other must induce posterior one. The low type's continuation payoff from
-revealing the low posterior is
-
-\[
-\beta D_0(0)=\beta d_0.
-\]
-
-The low type's payoff from mimicking the high-posterior vote is
-
-\[
-\beta D_0(1)\geq\beta D_0(0),
-\]
-
-with strict inequality whenever \(\tau_1<1\). Therefore the low type does not
-strictly prefer to reveal itself in a rejected ballot; when the inequality is
-strict, separation is not incentive-compatible. When \(\tau_1=1\), the
-inequality is an equality and the Round-2 weak-proposer value is linear:
-
-\[
-p_2(\nu)=(1-\nu)(1-\tau_0)
-\quad\text{for all }\nu\in[0,1].
-\]
-
-Thus even if an informative rejected ballot is sustained by indifference at the
-boundary, it gives the weak proposer
-
-\[
-(1-\mu)c(0)+\mu c(1)=c(\mu),
-\]
-
-exactly the no-information continuation payoff. Pooling rejected ballots also
-preserve the prior and give \(c(\mu)\). Hence rejected ballots add no candidate
-payoff above \(\Pi_R^U(\mu)\).
-
-Status: proved under the fixed-pie R2 continuation values and simultaneous
-public vote records.
-
-### Weak-vote-passive pure-threshold selected-value rule
-
-The preceding subsections establish the voting-continuation assessment for each
-candidate under the weak-vote-passive assessment. The selected baseline value
-also requires proposer optimality within the pure-threshold candidate set.
-
-For each \(\mu\), define the admissible candidate set
-
-\[
-\mathcal K(\mu)\subseteq\{P,L,R\}
-\]
-
-as follows: \(P\in\mathcal K(\mu)\) iff (P-feas) and \(a_1\geq a_0(1)\) hold;
-\(L\in\mathcal K(\mu)\) iff (L-feas) and \(a_0(1)<a_1\) hold; and
-\(R\in\mathcal K(\mu)\) iff \(a_1\leq\bar y\) and \(c(\mu)>0\). Inadmissible
-candidates receive payoff \(-\infty\). Let
-
-\[
-\bar\Pi^U(\mu)
-=
-\max_{k\in\mathcal K(\mu)}\Pi_k^U(\mu).
-\tag{R1-max}
-\]
-
-The proposer-optimal candidates are
-
-\[
-\mathcal A(\mu)=
-\{k\in\mathcal K(\mu):\Pi_k^U(\mu)=\bar\Pi^U(\mu)\}.
-\tag{R1-argmax}
-\]
-
-If \(\mathcal A(\mu)\) contains more than one candidate, the maintained
-tie-breaking rule selects the candidate that minimizes `H`'s expected payoff
-under the prior \(\mu\). These expected `H` payoffs are
-
-\[
-H_P(\mu)=(1-\mu)(a_1+b_0)+\mu(a_1+b_1),
-\]
-
-\[
-H_L(\mu)=(1-\mu)(a_0(1)+b_0)+\mu\beta d_1,
-\]
-
-and
-
-\[
-H_R(\mu)=(1-\mu)\beta D_0(\mu)+\mu\beta d_1.
-\]
-
-Thus the baseline selected candidate is
-
-\[
-k^*(\mu)\in
-\arg\min_{k\in\mathcal A(\mu)} H_k(\mu).
-\tag{R1-tie-break}
-\]
-
-For any selected \(k^*(\mu)\), the strategy profile is the corresponding
-candidate proposal and voting strategy above, with the stated posterior map
-after the public vote vector. The candidate proof gives responder sequential
-rationality and Bayesian consistency on path. Off-path histories are disciplined
-by the weak-vote-passive assessment above. The argmax condition gives proposer
-optimality. The informative-failure lemma rules out rejected-ballot deviations
-that would use public voting only to generate a strictly better posterior
-payoff. Therefore the selected assessment delivers a selected R1 value within
-the pure threshold class generated by the fixed-pie scalar package order. This
-is the baseline value under the maintained weak-vote-passive assessment, not a
-global exhaustion result over unrestricted PBEs.
-
-### Weak-vote-passive pure-threshold selected value under R1 unanimity
-
-For each prior \(\mu\), define invalid candidate values as \(-\infty\). The
-recognized weak proposer's selected weak-vote-passive pure-threshold R1
-unanimity value is
-
-\[
-P_{1,prop}^U(\mu)
-=
-\bar\Pi^U(\mu),
-\tag{R1-U-value}
-\]
-
-where admissibility is defined in \(\mathcal K(\mu)\) above. The corresponding
-proposer-recognition component for a symmetrically anonymous weak state is
-
-\[
-W_{1,prop}^U(\mu)=\frac{P_{1,prop}^U(\mu)}{m},
-\]
-
-because each weak state is recognized with probability \(1/m\) under
-\(\pi_H=0\). This is not yet the collective entry payoff of a representative
-weak state whenever non-proposing weak voters receive positive continuation
-offers. The entry section below adds those voter payments back and uses total
-weak payoff divided by \(m\).
-
-The important correction relative to any informal low-only intuition is that
-the low type's R1 acceptance threshold is not \(\beta d_0-b_0\). In a
-separating low-only proposal, a low type that rejects mimics the high type in
-the public vote record and receives the high-posterior R2 continuation value.
-The correct low-only concession is therefore \(a_0(1)=\beta D_0(1)-b_0\). If
-this reaches \(a_1\), low-only separation is blocked.
-
-Status ledger for R1 unanimity:
+# Proof ledger
 
 | Object | Status | Notes |
 |---|---|---|
-| R1 primitives | Specified | Players, types, proposer identity, proposal space, voting rule, payoffs, and continuation values are explicit. |
-| Weak-vote-passive candidate reduction | Established within pure threshold class | Accepted proposals reduce to pooling or low-only; informative rejected ballots do not improve on no-information continuation under the maintained assessment. This is not a characterization of all unrestricted PBEs. |
-| Pooling candidate | Derived and checked under weak-vote-passive assessment | Admissible voting-continuation assessment under (P-feas) and \(a_1\geq a_0(1)\); selected when it solves the argmax/tie-break problem. |
-| Low-only candidate | Derived and checked under weak-vote-passive assessment | Admissible voting-continuation assessment under (L-feas) and strict \(a_0(1)<a_1\); blocked when \(a_0(1)\geq a_1\); selected when it solves the argmax/tie-break problem. |
-| Rejection/continuation candidate | Derived and checked under weak-vote-passive assessment | Admissible no-information continuation assessment when \(a_1\leq\bar y\) and \(c(\mu)>0\); selected when it solves the argmax/tie-break problem. |
-| Weak-vote-passive pure-threshold selection | Derived and checked | Selected candidates maximize the proposer payoff among admissible candidates; ties minimize `H`'s expected payoff. |
-| Global characterization of all standard PBEs | Not claimed | Standard PBE permits arbitrary off-path beliefs after weak-voter deviations. The paper uses the weak-vote-passive assessment as a maintained baseline interpretation, not as a refinement. |
-| Numerical and algebraic verification | Checked | See `scripts/verify_relative_package_R1_piH0.R`. |
-
-## Majority
-
-Let
-
-\[
-q=\lfloor N/2\rfloor+1,
-\qquad
-k=q-1.
-\]
-
-The recognized weak proposer is counted as voting yes, so under majority it
-needs \(k\) additional yes votes.
-
-### R2 majority
-
-In terminal Round 2, weak voters' outside payoff is zero. The proposer can set
-\(y=0\), offer zero to \(k\) weak voters, and pass the proposal without `H`.
-Any \(y>0\) is costly to the weak coalition and is not needed for passage. Thus
-the recognized weak proposer's terminal majority value is
-
-\[
-P_{2,prop}^M=1.
-\]
-
-The representative weak state's terminal majority value is
-
-\[
-W_2^M=\frac{1}{m}.
-\]
-
-If excluded under majority, `H` receives its external payoff \(d_\theta\),
-outside the weak coalition's institutional surplus:
-
-\[
-C_{H,2}^M(\theta)=d_\theta.
-\]
-
-### R1 majority
-
-The public continuation value of a weak voter after R1 rejection is
-
-\[
-c_M=\beta W_2^M=\frac{\beta}{m}.
-\]
-
-A no-`H` majority proposal excludes `H` from the agreement, sets \(y=0\),
-offers \(c_M\) to \(k\) weak voters, and offers zero to all other states. `H`
-may still cast a public vote, but its vote is not pivotal and does not bring
-`H` inside the agreement or give it the agreement benefit \(b_\theta\). The
-proposal is accepted by the selected weak voters by the Baron--Ferejohn
-weak-acceptance convention. The recognized weak proposer's payoff is
-
-\[
-P_{1,noH}^M=1-kc_M
-=1-\frac{(q-1)\beta}{m}.
-\]
-
-Deliberate majority rejection gives the proposer \(c_M\). The accepted no-`H`
-proposal weakly dominates rejection because
-
-\[
-P_{1,noH}^M-c_M
-=1-(k+1)c_M
-=1-\frac{q\beta}{m}
-\geq0,
-\]
-
-using \(q\leq m\) for \(N\geq3\) and \(\beta\leq1\).
-
-Now check whether the proposer can do better by buying `H`'s vote and one fewer
-weak vote. Any majority package that includes `H` and still buys \(k\) weak
-votes is weakly dominated by dropping the concession to `H`, since `H`'s vote is
-not needed for passage. Any `H`-including package that sets \(y\) strictly
-inside an acceptance region is dominated by lowering \(y\) to the relevant
-threshold. Thus the only potentially profitable `H`-including alternatives are
-pooling at the high threshold and low-only at the low threshold, each with
-\(k-1\) weak voters.
-
-If `H` is made pivotal in an R1 majority coalition, its type-specific threshold
-is
-
-\[
-a_\theta^M=\beta C_{H,2}^M(\theta)-b_H(\theta)
-=\beta d_\theta-b_H(\theta).
-\]
-
-Assume the R1 majority threshold domain
-
-\[
-0\leq a_0^M<a_1^M\leq\bar y.
-\]
-
-A pooling `H`-including majority proposal costs \(a_1^M+(k-1)c_M\). It is not
-better than the no-`H` proposal iff
-
-\[
-a_1^M\geq c_M.
-\]
-
-A low-only `H`-including majority proposal costs \(a_0^M+(k-1)c_M\) when
-\(\theta=0\), but fails and yields continuation value \(c_M\) to the proposer
-when \(\theta=1\). Its expected payoff is
-
-\[
-P_{1,LH}^M(\mu)
-=
-(1-\mu)\{1-a_0^M-(k-1)c_M\}+\mu c_M.
-\]
-
-Relative to the no-`H` proposal,
-
-\[
-P_{1,LH}^M(\mu)-P_{1,noH}^M
-=
-c_M-a_0^M+\mu(a_0^M+kc_M-1).
-\tag{majority-low-H-gap}
-\]
-
-Since \(q=k+1\leq m\) for \(N\geq3\), and \(\beta\leq1\),
-
-\[
-(k+1)c_M=\frac{q\beta}{m}\leq1.
-\tag{quota-bound}
-\]
-
-Therefore, if
-
-\[
-a_0^M\geq c_M.
-\tag{no-cheap-H}
-\]
-
-then \(P_{1,LH}^M(0)-P_{1,noH}^M\leq0\) and
-\(P_{1,LH}^M(1)-P_{1,noH}^M=(k+1)c_M-1\leq0\). The gap is linear in \(\mu\),
-so the low-only `H`-including proposal is weakly dominated by the no-`H`
-proposal for every \(\mu\in[0,1]\).
-
-Because \(a_1^M>a_0^M\), condition (no-cheap-H) also implies
-\(a_1^M\geq c_M\), so pooling purchases of `H`'s vote are not profitable.
-Under this condition, the R1 majority no-`H` path has \(y=0\), a weak-state
-winning coalition, and no screening of `H`.
-
-The condition is also necessary for uniform no-screening. If
-\(a_0^M<c_M\), then at \(\mu=0\)
-
-\[
-P_{1,LH}^M(0)-P_{1,noH}^M=c_M-a_0^M>0.
-\]
-
-By continuity, a low-only `H`-including proposal strictly beats the no-`H`
-proposal for sufficiently low \(\mu\), when the high type is unlikely. In that region,
-majority itself has a screening motive: the weak proposer buys low `H` as a
-cheap substitute for one weak voter and lets the proposal fail when `H` is high.
-The cutoff for this majority-screening region is
-
-\[
-\mu_M^H
-=
-\frac{c_M-a_0^M}{1-a_0^M-kc_M}
-\]
-
-whenever \(a_0^M<c_M\). The quota bound above implies
-\(\mu_M^H\in(0,1]\).
-
-Thus condition (no-cheap-H) is not a verbal regularity condition. It is the
-payoff condition under which the no-`H` majority proposal weakly dominates the
-`H`-including majority proposals considered here for all beliefs. The
-voting-continuation assessment below supplies the associated strategy and belief
-map for these payoff-relevant threshold proposals.
-
-The recognized weak proposer's R1 majority value is therefore
-
-\[
-P_{1,prop}^M=1-\frac{(q-1)\beta}{m},
-\]
-
-and the symmetric ex ante representative weak-state value is
-
-\[
-W_1^M=\frac{1}{m}.
-\]
-
-Status: payoff path derived under the simultaneous public voting protocol and
-the no-cheap-`H` condition. The derivation is checked in
-`scripts/verify_relative_package_majority_piH0.R`.
-
-### Majority voting-continuation assessment
-
-The majority payoff comparison above can be supported by the following
-voting-continuation assessment for the payoff-relevant threshold proposals. This
-is not a characterization of all majority voting PBEs after arbitrary proposals;
-it is the strategy and belief map behind the no-screening benchmark and the
-cheap-`H` diagnostic branch.
-
-For the no-`H` majority proposal, the proposer sets \(y=0\), offers \(c_M\) to
-exactly \(k=q-1\) weak voters, and offers zero to all other states. The proposer
-votes yes. The \(k\) selected weak voters vote yes. Non-selected weak voters
-vote no. Both types of `H` vote no. The proposal passes with exactly \(q\) yes
-votes from the proposer and the selected weak voters; `H` is outside the
-agreement and receives \(d_\theta\). Since both types of `H` cast the same
-non-pivotal vote, `H`'s vote carries no type information on this path. If a
-selected weak voter unilaterally deviates to no, the proposal fails, the public
-history contains no type-dependent `H` vote, beliefs remain at the prior, and
-the weak voter receives \(c_M\). Thus selected weak voters accept at
-\(z_j=c_M\) by the weak-acceptance convention. Non-selected weak voters are not
-outcome-pivotal on this path and receive zero whether they vote yes or no.
-
-For an `H`-including pooling majority proposal, the proposer sets
-\(y=a_1^M\), offers \(c_M\) to \(k-1\) weak voters, and counts on `H` as the
-remaining coalition member. Both `H` types vote yes. The \(k-1\) selected weak
-voters vote yes; non-selected weak voters vote no. `H`'s yes vote pools the two
-types and therefore does not update beliefs. Selected weak voters receive their
-continuation value if the proposal passes and receive the same value after a
-unilateral no deviation that makes the proposal fail, so their yes votes are
-sequentially rational. High `H` accepts at its threshold
-\(a_1^M+b_1=\beta d_1\), and low `H` weakly accepts because
-\(a_1^M>a_0^M\).
-
-For an `H`-including low-only majority proposal, the proposer sets
-\(y=a_0^M\), offers \(c_M\) to \(k-1\) weak voters, and again counts on `H` as
-the remaining coalition member. Low `H` votes yes and high `H` votes no. The
-proposal passes only in the low state. The vote vector is type-revealing on
-path: histories with `H` voting yes have posterior zero, and histories with
-`H` voting no have posterior one. Selected weak voters vote yes because in the
-low state their deviation would induce failure and continuation value \(c_M\),
-while in the high state the proposal fails regardless. Low `H` accepts at
-\(a_0^M+b_0=\beta d_0\), and high `H` strictly rejects because
-\(a_0^M<a_1^M\).
-
-Under no-cheap-`H`, the no-`H` proposal weakly dominates both `H`-including
-threshold proposals for every belief, so the no-screening majority path is the
-selected benchmark path. If no-cheap-`H` fails, the same voting-continuation
-assessment identifies the low-belief region where the low-only `H`-including
-proposal is payoff-superior; that region is a majority-screening extension, not
-part of the clean no-screening contrast used in the baseline institutional
-comparison.
-
-### Majority without H when weak-only surplus is \(\rho<1\)
-
-The baseline majority benchmark assumes that weak states can exclude `H` and
-still preserve the full weak-coalition surplus normalized to one. This is a
-deliberately favorable benchmark for majority, but it is substantively strong in
-the OPEC interpretation. If Saudi Arabia is excluded, the remaining producers
-may not be able to preserve the same cartel surplus.
-
-As a stress test, let the surplus from a majority agreement that excludes `H`
-be
-
-\[
-\rho\in(0,1],
-\]
-
-while an agreement that includes `H` preserves the full normalized surplus one.
-This is not a new empirical calibration. It is a reduced-form way to check how
-much weak-only surplus the majority benchmark needs in order to remain a clean
-no-screening contrast to unanimity.
-
-In terminal majority, a no-`H` proposal gives the recognized weak proposer
-\(\rho\). An `H`-including terminal low-only proposal gives at most
-\(1-\tau_0\). Therefore the no-`H` terminal continuation is selected uniformly
-for all beliefs if
-
-\[
-\rho\geq 1-\tau_0.
-\tag{rho-terminal}
-\]
-
-Under this condition, the weak voter's public R1 continuation value on the
-no-`H` majority path is
-
-\[
-c_M(\rho)=\frac{\beta\rho}{m}.
-\]
-
-The R1 no-`H` majority proposal gives the recognized weak proposer
-
-\[
-P_{1,noH}^M(\rho)=\rho-kc_M(\rho).
-\]
-
-An `H`-including low-only proposal gives
-
-\[
-P_{1,LH}^M(\mu;\rho)
-=(1-\mu)\{1-a_0^M-(k-1)c_M(\rho)\}+\mu c_M(\rho).
-\]
-
-Relative to the no-`H` proposal,
-
-\[
-P_{1,LH}^M(\mu;\rho)-P_{1,noH}^M(\rho)
-=
-1-\rho+c_M(\rho)-a_0^M
-+\mu\{a_0^M+kc_M(\rho)-1\}.
-\tag{rho-majority-low-H-gap}
-\]
-
-The low-only `H`-including proposal is therefore not profitable for any belief
-if
-
-\[
-a_0^M\geq 1-\rho+\frac{\beta\rho}{m}.
-\tag{rho-no-cheap-H}
-\]
-
-Equivalently,
-
-\[
-\rho\geq
-\frac{1-a_0^M}{1-\beta/m}.
-\tag{rho-r1-min}
-\]
-
-Combining terminal and R1 requirements, the clean no-`H` majority benchmark is
-preserved if
-
-\[
-\rho
-\geq
-\bar\rho^M
-\equiv
-\max\left\{
-1-\tau_0,\,
-\frac{1-a_0^M}{1-\beta/m}
-\right\}.
-\tag{rho-clean-majority}
-\]
-
-If \(\rho<\bar\rho^M\), the majority benchmark no longer cleanly excludes `H`.
-Either the terminal majority continuation itself may want to include `H` for
-some beliefs, or, when the terminal no-`H` condition still holds but the R1
-condition fails, a weak proposer can gain by buying low-type `H` as a cheap
-coalition partner at sufficiently low beliefs. In the latter case the R1
-screening cutoff is
-
-\[
-\mu_M^H(\rho)
-=
-\frac{1-\rho+\beta\rho/m-a_0^M}
-{1-a_0^M-k\beta\rho/m},
-\tag{rho-majority-screening-cutoff}
-\]
-
-whenever the numerator is positive.
-
-For the working numerical illustration,
-
-\[
-N=13,\quad \beta=0.9,\quad d_0=0.19,\quad d_1=0.285,\quad b_0=b_1=0,
-\]
-
-the stress-test thresholds are
-
-\[
-1-\tau_0=0.81,
-\qquad
-\frac{1-a_0^M}{1-\beta/m}=0.896216.
-\]
-
-Thus the no-`H` majority benchmark survives this reduced-surplus stress test
-only if weak states retain at least about \(89.6\%\) of the full surplus when
-they exclude `H`. The weaker entry-nesting condition in the same numerical
-example is only
-
-\[
-\rho\geq mV_W^U=0.7435,
-\]
-
-so the binding issue is not entry nesting. It is whether majority can still be
-treated as a no-screening institution when excluding `H` substantially reduces
-the value of coordination.
-
-Status: reduced-surplus majority stress test derived as an interpretive/OPEC
-extension, not as an empirical calibration. The thresholds and example values
-are checked in `scripts/verify_relative_package_rho_majority_piH0.R`.
-
-### OPEC interpretation discipline
-
-The current OPEC use should be framed as an interpretation of the mechanism, not
-as evidence for the numerical example. The formal baseline intentionally sets
-\(\pi_H=0\): Saudi Arabia is pivotal and privately informed, but it is not the
-Round-1 agenda setter. This stacks the benchmark against agenda-power
-explanations and isolates informational power through pivotality.
-
-Under this interpretation, the parameters in the working numerical example are
-not estimates. The safe mapping is:
-
-| Model object | OPEC interpretation | Current evidentiary status |
-|---|---|---|
-| \(d_\theta\) or \(o_H(\theta)\) | Saudi Arabia's outside/continuation value from rejecting a proposed package, reflecting spare capacity, fiscal needs, opportunity cost, and expected market conditions. | Primitive in this proof pass; not empirically estimated. |
-| \(b_H(\theta)\) | Direct value to Saudi Arabia from participating in an agreement apart from the concession \(y\). | Primitive in this proof pass; not empirically estimated. |
-| \(y\) | Relative institutional concession: quota share, exemption, monitoring advantage, production flexibility, or enforcement term. | Conceptual mapping only. |
-| \(\rho\) | Fraction of coordination surplus retained by a majority coalition that excludes Saudi Arabia. | Reduced-form stress-test parameter; not an empirical estimate. |
-| \(\mu\) | Weak members' belief that Saudi Arabia has a high participation threshold. | Belief parameter; not measured in the numerical illustration. |
-
-Therefore the paper-ready OPEC language should make only three claims unless a
-separate empirical calibration is added. First, Saudi Arabia plausibly fits the
-role of a pivotal privately informed actor because its participation threshold
-depends on quantities other members do not fully observe. Second, excluding
-Saudi Arabia under majority may reduce the surplus available to the remaining
-coalition, which the model represents by \(\rho<1\). Third, the numerical
-threshold \(\bar\rho^M\) shows how demanding the clean no-`H` majority benchmark
-is in the illustrative parameterization; it does not estimate the historical
-value of majority rule in OPEC.
-
-If the manuscript later uses calibration language, the missing empirical inputs
-must be supplied outside this proof pass: a source for Saudi outside-option or
-opportunity-cost variation, a source for quota/concession magnitudes, a source
-for the value of coordination with and without Saudi participation, and a
-transparent way to map these quantities into \(d_\theta\), \(b_H(\theta)\),
-\(\rho\), and beliefs \(\mu\). Until then, the correct label is interpretive
-application or illustrative stress test.
-
-### Initial-recognition agenda-power bounds: \(\pi_H>0\)
-
-The main baseline sets \(\pi_H=0\) so that `H` is pivotal under unanimity but
-does not have formal proposal power. This isolates informational power through
-pivotality from agenda power.
-
-This extension changes only the initial Round-1 recognition probability while
-holding the continuation protocol at the \(\pi_H=0\) baseline derived above. It
-is therefore an initial-recognition agenda-power stress test, not a recursive
-solution of the full two-round game with \(\pi_H>0\) in every continuation. If
-\(\pi_H>0\) also applies after rejection, then the weak-proposer continuation
-values themselves must be rederived and the bounds below are not a complete
-solution of that recursive game.
-
-Under this initial-recognition interpretation, the expected payoff of any actor
-class under rule \(R\in\{U,M\}\) can be decomposed as
-
-\[
-V_i^R(\mu;\pi_H)
-=
-(1-\pi_H)V_i^{R,W}(\mu)
-+\pi_H V_i^{R,H}(\mu),
-\tag{piH-decomposition}
-\]
-
-where \(V_i^{R,W}\) is the weak-proposer value derived above and
-\(V_i^{R,H}\) is the value in the `H`-proposer branch.
-
-This document does not try to solve the `H`-proposer signaling branch as a
-unique payoff function. That branch can involve pooling, separating, or
-off-path belief-dependent behavior. Instead, the extension records
-selection-free bounds. Under fixed-pie relative packages, any accepted package
-has \(y\leq1\), and `H` can always induce rejection and receive at least its
-discounted terminal disagreement payoff. Thus, for type \(\theta\),
-
-\[
-\beta d_\theta
-\leq
-V_H^{R,H}(\theta,\mu)
-\leq
-1+b_\theta.
-\tag{piH-H-bounds}
-\]
-
-For an anonymous representative weak state, interpreted as the average payoff
-across the \(m\) weak states before identities are assigned, the fixed-pie
-normalization implies
-
-\[
-0
-\leq
-V_W^{R,H}(\mu)
-\leq
-\frac{1}{m}.
-\tag{piH-W-bounds}
-\]
-
-Combining these bounds with (piH-decomposition) gives immediate interval
-payoffs for any \(\pi_H\in[0,1]\). The intervals collapse to the exact baseline
-payoffs when \(\pi_H=0\). They widen as formal agenda power for `H` increases,
-which is the substantive point: once `H` can be the proposer, agenda power and
-pivotality are no longer cleanly separated without solving the signaling branch
-or imposing an additional selection rule.
-
-For the working numerical illustration, the bounds are reported in
-`tables/relative_package_piH_bounds.csv` and checked in
-`scripts/verify_relative_package_piH_bounds.R`. This is a robustness and scope
-exercise, not a replacement for the clean \(\pi_H=0\) theorem architecture and
-not an exact solution of the full recursive \(\pi_H>0\) game.
-
-## Entry and Institutional Choice
-
-Status: proved for weak-state entry/nesting under the selected
-pure-threshold R1 unanimity value and the no-cheap-`H` majority condition.
-Checked in `scripts/verify_relative_package_entry_nesting_piH0.R`.
-
-### Weak-state entry payoff
-
-Entry by weak states is collective and all-or-nothing. Therefore the entry
-payoff must include all weak-state payoffs generated by the selected R1
-equilibrium path, not only the residual kept by the recognized proposer.
-
-Let \(k^*(\mu)\in\{P,L,R\}\) denote the selected weak-vote-passive
-pure-threshold R1 unanimity
-candidate from (R1-tie-break). The total expected weak payoff under each
-candidate is:
-
-\[
-S_P^U(\mu)=1-a_1,
-\tag{entry-P}
-\]
-
-because pooling passes in both states and the concession \(a_1\) is the only
-loss from the fixed weak pie;
-
-\[
-S_L^U(\mu)
-=(1-\mu)(1-a_0(1))+\mu\beta p_2(1),
-\tag{entry-L}
-\]
-
-because the low-only proposal passes in the low state and continues to R2 with
-posterior one in the high state; and
-
-\[
-S_R^U(\mu)=\beta p_2(\mu),
-\tag{entry-R}
-\]
-
-because deliberate rejection preserves the prior and gives the weak coalition
-its discounted R2 value.
-
-The representative weak-state entry payoff under unanimity is
-
-\[
-V_W^U(\mu)=\frac{S_{k^*(\mu)}^U(\mu)}{m}.
-\tag{VW-U-entry}
-\]
-
-Under majority, impose the no-cheap-`H` condition derived above,
-
-\[
-a_0^M=\beta d_0-b_0\geq c_M=\frac{\beta}{m}.
-\tag{entry-no-cheap-H}
-\]
-
-Then the no-`H` majority proposal is selected for every belief, total weak
-payoff is one, and
-
-\[
-V_W^M(\mu)=\frac{1}{m}
-\quad\text{for all }\mu\in[0,1].
-\tag{VW-M-entry}
-\]
-
-### Entry sets and nesting
-
-Let \(\chi\geq0\) be the per-weak-state entry or formation cost. Define
-
-\[
-F_R(\chi)=\{\mu\in[0,1]:V_W^R(\mu)\geq\chi\},
-\qquad R\in\{U,M\}.
-\tag{entry-set}
-\]
-
-The entry condition is therefore explicit:
-
-\[
-\mu\in F_U(\chi)
-\quad\Longleftrightarrow\quad
-S_{k^*(\mu)}^U(\mu)\geq m\chi,
-\tag{FU-condition}
-\]
-
-while
-
-\[
-F_M(\chi)=
-\begin{cases}
-[0,1], & \chi\leq 1/m,\\
-\varnothing, & \chi>1/m.
-\end{cases}
-\tag{FM-condition}
-\]
-
-**Proposition: weak-state nesting.** Under the fixed-pie relative-package
-threshold domain, the weak-vote-passive pure-threshold R1 unanimity
-characterization,
-and the no-cheap-`H` majority condition, majority weakly dominates unanimity
-for weak-state entry:
-
-\[
-V_W^U(\mu)\leq V_W^M(\mu)=\frac{1}{m}
-\quad\text{for every }\mu\in[0,1].
-\tag{weak-payoff-dominance}
-\]
-
-Consequently,
-
-\[
-F_U(\chi)\subseteq F_M(\chi)
-\quad\text{for every entry cost }\chi\geq0.
-\tag{nesting}
-\]
-
-**Proof.** For pooling, \(S_P^U(\mu)=1-a_1\leq1\) because
-\(a_1\geq0\). For low-only,
-
-\[
-S_L^U(\mu)
-=(1-\mu)(1-a_0(1))+\mu\beta p_2(1)\leq(1-\mu)+\mu=1,
-\]
-
-because \(a_0(1)\geq0\), \(p_2(1)\leq1\), and \(\beta\leq1\). For rejection,
-
-\[
-S_R^U(\mu)=\beta p_2(\mu)\leq1.
-\]
-
-The selected candidate \(k^*(\mu)\) is one of these three candidates, so
-\(S_{k^*(\mu)}^U(\mu)\leq1\) and \(V_W^U(\mu)\leq1/m=V_W^M(\mu)\). The set
-inclusion follows immediately from the definition of \(F_R(\chi)\).
-
-The strict version is also transparent. If the selected unanimity path destroys
-strictly positive weak surplus--for example \(a_1>0\) under pooling,
-\(a_0(1)>0\) on the accepted low-only path, or \(\beta p_2(\mu)<1\) under
-rejection--then the majority payoff is strictly larger at that belief.
-
-### Conditional institutional comparison for H
-
-Weak-state nesting does not by itself imply that `H` always prefers unanimity.
-Under no-`H` majority, `H` receives its external payoff:
-
-\[
-V_H^M(\mu)=(1-\mu)d_0+\mu d_1.
-\tag{VH-M-entry}
-\]
-
-Under unanimity, the selected R1 candidate gives
-
-\[
-H_P(\mu)=(1-\mu)(a_1+b_0)+\mu(a_1+b_1),
-\]
-
-\[
-H_L(\mu)=(1-\mu)(a_0(1)+b_0)+\mu\beta d_1,
-\]
-
-and
-
-\[
-H_R(\mu)=(1-\mu)\beta D_0(\mu)+\mu\beta d_1.
-\]
-
-Thus
-
-\[
-V_H^U(\mu)=H_{k^*(\mu)}(\mu),
-\qquad
-\Delta_H(\mu)=V_H^U(\mu)-V_H^M(\mu).
-\tag{H-gap}
-\]
-
-**Proposition: conditional institutional comparison for `H`.** Under the
-fixed-pie relative-package threshold domain, the weak-vote-passive
-pure-threshold R1 unanimity characterization, and the no-cheap-`H` majority
-condition, the
-hegemon's institutional ranking on the set where both rules form is completely
-determined by \(\Delta_H(\mu)\):
-
-\[
-\begin{array}{lll}
-\Delta_H(\mu)>0 &\Longleftrightarrow& \text{H strictly prefers unanimity},\\
-\Delta_H(\mu)=0 &\Longleftrightarrow& \text{H is indifferent},\\
-\Delta_H(\mu)<0 &\Longleftrightarrow& \text{H strictly prefers majority}.
-\end{array}
-\tag{H-ranking}
-\]
-
-This is a conditional comparison, not a global dominance theorem. The sign of
-\(\Delta_H(\mu)\) depends on the selected unanimity candidate and on the
-primitive outside payoffs.
-
-### Complete institutional classification
-
-The entry convention is weak: weak states form an institution under rule \(R\)
-when \(V_W^R(\mu)\geq\chi\). Equality is therefore a formation tie, not a
-failure to form. The hegemon's institutional tie is kept separate: if
-\(\Delta_H(\mu)=0\), the classification records indifference rather than
-imposing an institutional tie-breaker.
-
-For any fixed entry cost \(\chi\geq0\), define the following five sets:
-
-\[
-\mathcal C_0(\chi)
-=
-[0,1]\setminus F_M(\chi),
-\tag{class-none}
-\]
-
-\[
-\mathcal C_M(\chi)
-=
-F_M(\chi)\setminus F_U(\chi),
-\tag{class-majority-only}
-\]
-
-\[
-\mathcal C_U^H(\chi)
-=
-F_U(\chi)\cap\{\mu:\Delta_H(\mu)>0\},
-\tag{class-both-H-U}
-\]
-
-\[
-\mathcal C_T^H(\chi)
-=
-F_U(\chi)\cap\{\mu:\Delta_H(\mu)=0\},
-\tag{class-both-H-tie}
-\]
-
-and
-
-\[
-\mathcal C_M^H(\chi)
-=
-F_U(\chi)\cap\{\mu:\Delta_H(\mu)<0\}.
-\tag{class-both-H-M}
-\]
-
-**Corollary: complete weak-vote-passive institutional classification under
-\(\pi_H=0\).** Under the weak-vote-passive pure-threshold selected value and
-tie-breaking convention used in the R1 unanimity theorem, and under the
-conditions of the weak-state nesting proposition, the five sets above form a
-mutually exclusive and exhaustive partition of \([0,1]\). Their substantive
-meaning is:
-
-1. \(\mathcal C_0(\chi)\): no rule forms;
-2. \(\mathcal C_M(\chi)\): only majority forms;
-3. \(\mathcal C_U^H(\chi)\): both rules form, and `H` strictly prefers
-   unanimity;
-4. \(\mathcal C_T^H(\chi)\): both rules form, and `H` is indifferent;
-5. \(\mathcal C_M^H(\chi)\): both rules form, and `H` strictly prefers
-   majority.
-
-There is no sixth "only unanimity forms" case in the no-screening majority
-domain because \(F_U(\chi)\subseteq F_M(\chi)\) for every \(\chi\). Since
-
-\[
-F_M(\chi)=
-\begin{cases}
-[0,1], & \chi\leq 1/m,\\
-\varnothing, & \chi>1/m,
-\end{cases}
-\]
-
-the no-formation case is simply all beliefs when \(\chi>1/m\), and empty when
-\(\chi\leq1/m\). At \(\chi=1/m\), majority forms by the weak entry convention.
-At beliefs where \(V_W^U(\mu)=\chi\), unanimity also forms by the same
-convention. These entry ties are distinct from hegemon indifference at
-\(\Delta_H(\mu)=0\).
-
-**Proof.** The definitions split \([0,1]\) first by whether majority forms,
-then by whether unanimity also forms, and finally by the sign of
-\(\Delta_H(\mu)\) on the both-form set. The sets are therefore disjoint and
-cover \([0,1]\). Weak-state nesting rules out \(F_U(\chi)\setminus F_M(\chi)\),
-so no only-unanimity category can occur.
-
-The classification is checked in
-`scripts/verify_relative_package_classification_piH0.R`, including formation
-ties, hegemon indifference ties, the no-cheap-`H` boundary, and \(\beta=1\).
-
-### Illustrative numerical classification
-
-For the working numerical illustration
-
-\[
-N=13,\quad \beta=0.9,\quad d_0=0.19,\quad d_1=0.285,\quad b_0=b_1=0,
-\]
-
-the majority no-cheap condition holds:
-
-\[
-a_0^M=0.171>c_M=0.075.
-\]
-
-The selected R1 unanimity candidate is pooling for every \(\mu\). Hence
-
-\[
-V_W^U(\mu)=\frac{1-0.2565}{12}=0.0619583,
-\qquad
-V_W^M(\mu)=\frac{1}{12}=0.0833333.
-\]
-
-The minimum weak-state nesting gap is
-
-\[
-\min_\mu\{V_W^M(\mu)-V_W^U(\mu)\}=0.021375.
-\]
-
-Therefore \(F_U(\chi)\subseteq F_M(\chi)\) for every \(\chi\). The conditional
-`H` comparison is
-
-\[
-\Delta_H(\mu)=0.0665-0.095\mu,
-\]
-
-so `H` weakly prefers unanimity for \(\mu\leq0.7\) and majority for higher
-beliefs.
-
-The illustrative institutional classification is therefore:
-
-\[
-\begin{array}{ll}
-0\leq\chi\leq0.0619583:
-&
-\begin{cases}
-\text{both form and H strictly prefers unanimity}, & \mu<0.7,\\
-\text{both form and H is indifferent}, & \mu=0.7,\\
-\text{both form and H strictly prefers majority}, & \mu>0.7;
-\end{cases}\\[1.2em]
-0.0619583<\chi\leq0.0833333:
-& \text{only majority forms for every }\mu;\\[0.4em]
-\chi>0.0833333:
-& \text{no rule forms for every }\mu.
-\end{array}
-\tag{illustrative-classification}
-\]
-
-At the lower boundary \(\chi=0.0619583\), unanimity forms because weak states
-are indifferent between forming and not forming. At \(\chi=1/12\), majority
-forms by equality, but unanimity does not form in this numerical illustration because
-\(V_W^U<1/12\).
-
-A strict low-only-available diagnostic with \(b_0=0.03\) also satisfies
-no-cheap-`H`. In that case the selected unanimity path is rejection for
-\(\mu\in[0,0.0164]\) on the numerical grid and pooling thereafter. The maximum
-unanimity weak entry payoff is \(0.063\), the majority payoff remains
-\(0.0833333\), and the minimum nesting gap is \(0.0203333\). In that diagnostic
-`H` prefers majority at very low beliefs, unanimity at intermediate beliefs,
-and majority again at high beliefs. This is a diagnostic robustness case, not an
-empirical calibration.
-
-The local robustness check in
-`scripts/verify_relative_package_robustness_piH0.R` uses the interior
-low-only/pooling center
-
-\[
-(\beta,t_0,t_1,o_0,o_1)=(0.9,0.19,0.285,0.19,0.265)
-\]
-
-At this center, the script verifies strict margins for the threshold-order
-condition, no-cheap-`H`, entry nesting, positive and negative values of
-\(\Delta_H\), low-only selection at \(\mu=0\), and pooling selection at
-\(\mu=0.01\). Because all candidate payoffs and thresholds are continuous in
-the primitive parameters wherever the threshold domain holds, these strict
-inequalities imply that there exists a nonempty open neighborhood around the
-center in which the same qualitative features persist. The reported margin
-table is `tables/relative_package_local_continuity_margins_piH0.csv`.
-
-As a numerical check around that continuity argument, the script also verifies
-all \(3^5=243\) grid points in the box obtained by perturbing each of
-\(\beta,t_0,t_1,o_0,o_1\) by \(-0.0005,0,0.0005\). Every point in this grid
-satisfies the core conditions, has low-only selected for some beliefs, has
-pooling selected for some beliefs, and preserves a strictly positive weak-entry
-nesting gap. The generated grid table is
-`tables/relative_package_open_neighborhood_piH0.csv`. These are still
-illustrative robustness checks, not empirical calibration.
-
-### Paper-ready theorem architecture
-
-The following architecture is a candidate for paper transport after external
-audit. Main-text statements should give intuition and compact results; proofs
-should remain in the appendix, and the R1 result should be stated as a selected
-value under the maintained weak-vote-passive assessment.
-
-| Result | Type | Claim | Status |
-|---|---|---|---|
-| Terminal unanimity | Proposition/Theorem | Under \(0\leq\tau_0<\tau_1\leq\bar y\leq1\), Round 2 selects low-only for \(\mu\leq\mu_2^*\) and pooling for \(\mu>\mu_2^*\), with \(\mu_2^*=(\tau_1-\tau_0)/(1-\tau_0)\). | Proved; checked in `scripts/verify_relative_package_R2_piH0.R`. |
-| R1 weak-vote-passive pure-threshold unanimity | Theorem | Under the R1 threshold-order domain and weak-vote-passive assessment, admissible pure-threshold candidates are pooling, low-only, and no-information rejection; the selected value maximizes the proposer payoff and uses the H-payoff-minimizing tie-break. | Derived within weak-vote-passive pure-threshold class; checked in `scripts/verify_relative_package_R1_piH0.R`. |
-| Majority no-screening | Proposition | Under \(0\leq a_0^M<a_1^M\leq\bar y\), the no-`H`, no-screening majority path weakly dominates the considered `H`-including proposals iff \(a_0^M\geq\beta/m\). If \(a_0^M<\beta/m\), majority can have a screening motive because `H` is a cheap coalition partner at low beliefs. | Payoff comparison derived with voting-continuation assessment for threshold proposals; checked in `scripts/verify_relative_package_majority_piH0.R`. |
-| Weak-state entry/nesting | Proposition | In the no-cheap-`H` majority domain, \(V_W^U(\mu)\leq V_W^M(\mu)=1/m\) for every \(\mu\), so \(F_U(\chi)\subseteq F_M(\chi)\) for every \(\chi\). | Proved; checked in `scripts/verify_relative_package_entry_nesting_piH0.R`. |
-| Conditional H comparison | Proposition | On \(F_U(\chi)\), `H` ranks unanimity versus majority by the sign of \(\Delta_H(\mu)\). | Proved; checked in entry/nesting and classification scripts. |
-| Institutional classification | Corollary | Under the weak-vote-passive pure-threshold selected value and stated tie-breaking convention, the five categories \(\mathcal C_0,\mathcal C_M,\mathcal C_U^H,\mathcal C_T^H,\mathcal C_M^H\) partition all beliefs and handle entry and H-preference ties explicitly. | Proved; checked in `scripts/verify_relative_package_classification_piH0.R`. |
-| Reduced-surplus majority stress test | Extension | If weak-only majority surplus is \(\rho<1\), the clean no-`H` majority benchmark requires \(\rho\geq\bar\rho^M=\max\{1-\tau_0,(1-a_0^M)/(1-\beta/m)\}\). | Derived as interpretive stress test; checked in `scripts/verify_relative_package_rho_majority_piH0.R`. |
-| Initial-recognition agenda-power bounds | Extension | If only the initial Round-1 recognition probability changes to \(\pi_H>0\) while continuations use the \(\pi_H=0\) baseline, expected payoffs decompose into weak-proposer values plus the unresolved `H`-proposer branch; selection-free bounds bracket the latter. | Bounded; checked in `scripts/verify_relative_package_piH_bounds.R`. |
-| Working numerical illustration | Corollary | For \(N=13,\beta=0.9,d_0=0.19,d_1=0.285,b_0=b_1=0\), classification is given by (illustrative-classification). | Illustrative and checked. |
-
-### Result status
-
-General results: terminal R2 unanimity, the selected R1 weak-vote-passive
-pure-threshold unanimity value, the majority no-screening payoff comparison,
-weak-state nesting, conditional H comparison, and the complete institutional
-classification are derived under the fixed-pie relative-package \(\pi_H=0\)
-primitives and weak-vote-passive voting assessment.
-
-Sufficient results: the primitive conditions
-\(0\leq\tau_0<\tau_1\leq\bar y\leq1\),
-\(0\leq a_0(1)\leq a_1\leq\bar y\), \(\beta\leq1\), and
-\(a_0^M\geq\beta/m\) are sufficient for the no-screening majority benchmark,
-weak-state nesting, and the five-way institutional classification.
-
-Illustrative numerical results: the working example satisfies the sufficient
-conditions, has a uniform weak-state nesting gap of \(0.021375\), and yields a
-single hegemon-preference cutoff at \(\mu=0.7\) when unanimity forms. It should
-not be described as an empirical calibration without external discipline for
-the parameters.
-
-Pending results: global characterization of all standard PBEs remains outside
-the baseline claim; exact recursive \(\pi_H>0\) payoffs remain unresolved
-because continuation values and the `H`-proposer signaling branch are
-selection-dependent; the case
-\(a_0^M<\beta/m\) belongs to a separate majority-screening extension; and
-alternative proposer tie-breaking rules should be documented before the final
-paper rewrite.
-
-# Reproducibility Plan
-
-Create new scripts rather than modifying archived proof scripts in place.
-Stable wrapper scripts matching the redesign agenda:
-
-1. `scripts/verify_relative_package_R2.R`
-2. `scripts/verify_relative_package_R1.R`
-3. `scripts/verify_relative_package_majority.R`
-4. `scripts/verify_relative_package_dominance.R`
-5. `scripts/verify_relative_package_entry_nesting.R`
-6. `scripts/verify_relative_package_calibration.R`
-
-Detailed baseline and extension scripts called directly or through the wrappers:
-
-1. `scripts/verify_relative_package_R2_piH0.R` (created and run for fixed-pie R2)
-2. `scripts/verify_relative_package_R1_piH0.R`
-3. `scripts/verify_relative_package_majority_piH0.R`
-4. `scripts/verify_relative_package_entry_nesting_piH0.R`
-5. `scripts/verify_relative_package_classification_piH0.R`
-6. `scripts/verify_relative_package_margins_piH0.R`
-7. `scripts/verify_relative_package_robustness_piH0.R`
-8. `scripts/verify_relative_package_rho_majority_piH0.R`
-9. `scripts/verify_relative_package_piH_bounds.R`
-
-Each result should be independently verified before being promoted in the proof
-ledger.
-
-# Proof Ledger
-
-| Object | Status | Notes |
-|---|---|---|
-| Archived feasibility-branch derivation | Archived | Preserved in tag `redesign-feasibility-branch-2026-05-11`; do not use as current architecture. |
-| Relative-package architecture | Adopted | Packages are feasible in every state; screening comes from type-dependent participation thresholds. |
-| Minimal H payoff primitive | Adopted | \(U_H(y,\theta)=y+b_H(\theta)\). |
-| Simultaneous public voting protocol | Adopted for next derivations | The proposer is counted as voting yes; all other states vote simultaneously; individual votes are publicly revealed after the ballot; unanimity uses quota \(N\), majority uses quota \(q=\lfloor N/2\rfloor+1\). |
-| Weak-vote-passive assessment | Adopted for baseline | Weak-state deviations do not update beliefs about `H` because weak states do not observe \(\theta\); informative histories are disciplined by `H`'s vote. This is a maintained assessment, not a refinement or unrestricted-PBE characterization. |
-| Screening condition | Adopted as target primitive | Need \(y_1^*(\mu')>y_0^*(\mu')\), equivalently \(\beta C_H(1,\mu')-b_H(1)>\beta C_H(0,\mu')-b_H(0)\). |
-| Weak-state cost of concession | Adopted for fixed-pie reset | \(y\) is costly one-for-one to the weak coalition; accepted weak surplus is \(1-y\); weak proposer keeps residual after weak voters receive continuation values. |
-| R2 unanimity under relative packages | Proved under fixed-pie baseline; checked numerically | Weak proposer chooses low-only for \(\mu\leq\mu_2^*\) and pooling for \(\mu>\mu_2^*\), where \(\mu_2^*=(\tau_1-\tau_0)/(1-\tau_0)\). |
-| R1 unanimity under relative packages | Derived weak-vote-passive pure-threshold selected value; checked numerically | Pooling, low-only, and rejection/continuation are derived from simultaneous public voting plus the maintained weak-vote-passive assessment; the selected value requires proposer argmax and the H-payoff tie-break. Low-only is blocked when \(a_0(1)\geq a_1\). Checked in `scripts/verify_relative_package_R1_piH0.R`. |
-| Majority under relative packages | Derived and checked numerically | No screening under \(\pi_H=0\) requires the no-cheap-`H` condition \(a_0^M\geq\beta/m\); otherwise `H` may be a cheap majority coalition partner. Voting-continuation assessment is specified for no-`H`, pooling-with-`H`, and low-only-with-`H` threshold proposals. |
-| Reduced-surplus majority/OPEC stress test | Derived and checked numerically | If weak-only majority without `H` creates surplus \(\rho<1\), the clean no-`H` majority benchmark survives only for \(\rho\geq\bar\rho^M\). In the working numerical illustration, \(\bar\rho^M=0.896216\). Checked in `scripts/verify_relative_package_rho_majority_piH0.R`. |
-| Initial-recognition \(\pi_H>0\) agenda-power bounds | Bounded and checked numerically | Expected payoffs are exact at \(\pi_H=0\) and bounded when only the initial Round-1 recognition probability changes to \(\pi_H>0\), holding continuations at the \(\pi_H=0\) baseline. Checked in `scripts/verify_relative_package_piH_bounds.R`. |
-| Entry/nesting | Proved and checked | Under the weak-vote-passive R1 unanimity value and no-cheap-`H` majority condition, \(V_W^U(\mu)\leq V_W^M(\mu)=1/m\) for every \(\mu\), so \(F_U(\chi)\subseteq F_M(\chi)\) for every entry cost. Checked in `scripts/verify_relative_package_entry_nesting_piH0.R`. |
-| Conditional institutional comparison | Derived and checked as sign comparison | For beliefs in \(F_U(\chi)\), `H` prefers unanimity iff \(\Delta_H(\mu)=V_H^U(\mu)-V_H^M(\mu)\geq0\). The sign is not globally fixed; the working numerical illustration has a cutoff at \(\mu=0.7\). |
-| Institutional classification | Proved and checked | Five-way classification covers no formation, majority only, both with H preferring unanimity, both with H indifferent, and both with H preferring majority. Entry ties and H-preference ties are explicit. Checked in `scripts/verify_relative_package_classification_piH0.R`. |
-| Exact recursive \(\pi_H>0\) game | Pending | Bounds are recorded for the initial-recognition stress test, but exact payoffs require rederiving continuation values and solving the `H`-proposer signaling branch. |
+| Gate -1 provenance | proved | Clean HEAD, user-approved annotated tag, and initial v6 hash recorded. |
+| Gate 0 primitives and timing | specified | Awaiting independent audit. |
+| Gate 0 contract space and budgets | specified | Awaiting independent audit. |
+| Gate 0 voting histories | specified and mechanically checked | Source is the versioned TSV; independent audit pending. |
+| Gate 0 beliefs and IC definitions | specified | Expected IC explicitly integrates simultaneous weak votes. |
+| R2 unanimity | pending | No claim promoted. |
+| R2 majority with H active | pending | No claim promoted. |
+| R2 majority weak-only | pending | No claim promoted. |
+| R1 unanimity | pending | Historical P/L/R labels are not primitives. |
+| R1 majority and No-Cheap-H | pending | Must be rederived under primitive outside payoffs. |
+| Entry, nesting, and classification | pending | Must follow the equilibrium derivation. |
+| Delayed continuation and other architectures | extension/history only | Not part of this Goal's baseline. |

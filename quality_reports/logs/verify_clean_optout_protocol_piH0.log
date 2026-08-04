@@ -1,0 +1,57 @@
+Clean immediate-opt-out protocol verifier
+script: scripts/verify_clean_optout_protocol_piH0.R
+started_at: 2026-08-04 00:15:39
+finished_at: 2026-08-04 00:15:39
+inputs: tables/clean_optout_gate0_histories_piH0.tsv and model_redesign/power_architecture_derivations.Rmd
+checks: 26
+passed: 26
+failed: 0
+status: PASS
+history_columns | PASS | columns: history_id | round | rule | active players | quota | quota reached? | H vote | participation offer to H? | failure cause | H included? | H remains? | y implemented? | destination of y | H payoff | weak payoffs | discount factor | relevant posterior | terminal or continuation | next subgame
+history_ids_complete | PASS | observed: G01,G02,G03,G04,G05,G06,G07,G08,G09,G10,G11,G12,G13,G14,G15,G16,G17,G18,G19,G20,G21
+history_cells_nonempty | PASS | all versioned history-table cells must be populated
+h_no_never_included | PASS | every H-no row excludes H
+h_no_never_remains | PASS | every H-no row makes opt-out irreversible
+h_no_never_implements_y | PASS | no H-no row implements the conditional participation package
+r1_h_no_is_immediate_optout | PASS | R1 H-no payoffs: o_theta
+r1_h_no_has_no_discounted_continuation | PASS | the no action never pays beta times an H continuation value
+r2_h_no_is_terminal_optout | PASS | R2 H-no payoffs: beta*o_theta
+h_yes_pass_includes_h | PASS | an H-yes agreement that reaches the quota includes H and implements y
+r1_h_yes_weak_failure_keeps_h | PASS | only H-yes plus weak shortfall creates an active-H R2 continuation
+r2_h_yes_failure_is_terminal | PASS | terminal failure pays H beta*o_theta and weak states zero
+majority_h_no_reabsorbs_y | PASS | current majority weak-only passage does not burn y
+post_optout_never_reincludes_h | PASS | after R1 opt-out, y is fixed at zero and H receives no additional flow
+unanimity_post_optout_unreachable | PASS | the original N-vote quota cannot be met by m active weak states
+original_majority_quota_feasible_for_weak_only_r2 | PASS | min(m-q)=0 over N=3,...,200
+budget_identities | PASS | 500 deterministic random draws close both budgets and reabsorb y exactly
+direct_cutoff_only_under_certain_implementation | PASS | p=1 difference=0.150000; p=.35 expected-IC difference=0.156500
+rmd_marker_pi_H_0 | PASS | required marker: pi_H=0
+rmd_marker_b_0_b_1_0 | PASS | required marker: b_0=b_1=0
+rmd_marker_EU_H_R_N_mid_theta_h_o_theta | PASS | required marker: EU_H^R(N\mid\theta,h)=o_\theta
+rmd_marker_weak_vote_passive_assessment | PASS | required marker: weak-vote-passive assessment
+rmd_marker_not_a_global_voting_rule | PASS | required marker: not a global voting rule
+rmd_marker_original_q_ | PASS | required marker: original \(q\)
+rmd_marker_Independent_Gate_0_verdict | PASS | required marker: Independent Gate 0 verdict
+v6_is_not_an_rmd_output_dependency | PASS | the autonomous laboratory does not source the target manuscript
+R version 4.4.2 (2024-10-31)
+Platform: aarch64-apple-darwin20
+Running under: macOS Sonoma 14.7.3
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/Belem
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.2.1 compiler_4.4.2   magrittr_2.0.4   R6_2.6.1
+ [5] generics_0.1.4   cli_3.6.5        pillar_1.11.1    glue_1.8.0
+ [9] dplyr_1.2.0      tibble_3.3.1     vctrs_0.7.1      lifecycle_1.0.5
+[13] pkgconfig_2.0.3  rlang_1.1.7
