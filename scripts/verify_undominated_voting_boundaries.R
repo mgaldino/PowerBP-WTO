@@ -115,6 +115,8 @@ o0_zero_row <- function(N, beta, o1, mu, bar_y) {
     M_exists = M_exists_TY,
     M_class = M_class_TY,
     M_value = M_value_TY,
+    A_cap = NA_real_,
+    lambda1_cap = NA_real_,
     checked_on = checked_on,
     source = source_note,
     stringsAsFactors = FALSE
@@ -168,6 +170,74 @@ beta_one_row <- function(N, o0, o1, mu, bar_y) {
     M_exists = TRUE,
     M_class = M_class,
     M_value = M_value,
+    A_cap = 1,
+    lambda1_cap = 1,
+    checked_on = checked_on,
+    source = source_note,
+    stringsAsFactors = FALSE
+  )
+}
+
+beta_one_cap_mixing_row <- function(N, o0, o1, mu, A, lambda1) {
+  g <- geometry(N, 1)
+  stopifnot(
+    o0 >= 0, o0 < o1, o1 <= 1,
+    mu > 0, mu < 1,
+    A >= 0, A <= 1,
+    lambda1 >= 0, lambda1 <= 1,
+    N > 3 || abs(A - 1) < tol
+  )
+
+  B <- (1 - mu) * (1 - o0 - g$r * g$c) + mu * g$c
+  D_over <- g$E - (1 - mu) * o0
+  C <- 1 - o1 - g$r * g$c
+  cap_feasible <- C >= -tol
+  Q_cap <- if (cap_feasible) {
+    g$c + A * (1 - mu + mu * lambda1) * (C - g$c)
+  } else {
+    -Inf
+  }
+  candidates <- c(
+    exclusion = g$E,
+    low_only = B,
+    oversized = D_over,
+    delay = g$c,
+    cap_actual = Q_cap
+  )
+  feasible <- c(
+    exclusion = TRUE,
+    low_only = 1 - o0 - g$r * g$c >= -tol,
+    oversized = 1 - o0 - g$k * g$c >= -tol,
+    delay = TRUE,
+    cap_actual = cap_feasible
+  )
+  candidates[!feasible] <- -Inf
+  M_value <- max(candidates)
+  M_class <- paste(names(candidates)[abs(candidates - M_value) < tol], collapse = "+")
+
+  data.frame(
+    boundary = "beta=1,cap",
+    selection = if (abs(A - 1) < tol && abs(lambda1 - 1) < tol) {
+      "global_TY_cap"
+    } else {
+      sprintf("cap_formula_A=%.2f_lambda1=%.2f", A, lambda1)
+    },
+    N = N,
+    beta = 1,
+    o0 = o0,
+    o1 = o1,
+    mu = mu,
+    bar_y = o1,
+    c = g$c,
+    E = g$E,
+    U_exists = NA,
+    U_class = NA_character_,
+    U_value_floor = NA_real_,
+    M_exists = if (abs(A - 1) < tol && abs(lambda1 - 1) < tol) TRUE else NA,
+    M_class = M_class,
+    M_value = M_value,
+    A_cap = A,
+    lambda1_cap = lambda1,
     checked_on = checked_on,
     source = source_note,
     stringsAsFactors = FALSE
@@ -222,6 +292,8 @@ o1_one_row <- function(N, beta, o0, mu) {
     M_exists = M_exists,
     M_class = M_class,
     M_value = M_value,
+    A_cap = NA_real_,
+    lambda1_cap = NA_real_,
     checked_on = checked_on,
     source = source_note,
     stringsAsFactors = FALSE
@@ -254,6 +326,83 @@ for (N in 3:10) {
     }
   }
 }
+
+# At beta=1 and bar_y=o1, high H can mix at the cap for every N. With r
+# threshold-paid supporters whose joint yes probability is A, direct outcome
+# enumeration must equal the reduced cap formula. This is not an N=3-only
+# exception.
+for (N in 3:10) {
+  A_grid <- if (N == 3) 1 else c(0, 0.25, 0.75, 1)
+  for (o0 in c(0.05, 0.2)) {
+    for (o1 in c(0.4, 0.8)) {
+      if (o0 >= o1) next
+      for (mu in c(0.1, 0.5, 0.9)) {
+        for (A in A_grid) {
+          for (lambda1 in c(0, 0.5, 0.9, 1)) {
+            row <- beta_one_cap_mixing_row(N, o0, o1, mu, A, lambda1)
+            records[[length(records) + 1L]] <- row
+            g <- geometry(N, 1)
+            C <- 1 - o1 - g$r * g$c
+            if (C >= -tol) {
+              formula <- g$c + A * (1 - mu + mu * lambda1) * (C - g$c)
+              enumerated <- (1 - mu) * (A * C + (1 - A) * g$c) +
+                mu * (
+                  lambda1 * (A * C + (1 - A) * g$c) +
+                    (1 - lambda1) * g$c
+                )
+              record_check(
+                sprintf(
+                  "beta1_cap_formula_N%s_o%s_h%s_mu%s_A%s_l%s",
+                  N, o0, o1, mu, A, lambda1
+                ),
+                abs(formula - enumerated) < tol,
+                sprintf("formula=%.8f; enumerated=%.8f", formula, enumerated)
+              )
+            } else {
+              record_check(
+                sprintf(
+                  "beta1_cap_infeasible_N%s_o%s_h%s_mu%s_A%s_l%s",
+                  N, o0, o1, mu, A, lambda1
+                ),
+                grepl("cap_actual", row$M_class, fixed = TRUE) == FALSE,
+                sprintf("C=%.8f; cap proposal infeasible", C)
+              )
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+# Regression supplied by the independent BF and adversarial reviews:
+# N=4 admits an assessment-dependent partial-cap maximizer that is strictly
+# below the unavailable full-acceptance target C.
+counter <- beta_one_cap_mixing_row(
+  N = 4, o0 = 1 / 10, o1 = 1 / 5, mu = 1 / 2,
+  A = 1, lambda1 = 9 / 10
+)
+counter_g <- geometry(4, 1)
+counter_B <- (1 - 1 / 2) * (1 - 1 / 10 - counter_g$r * counter_g$c) +
+  (1 / 2) * counter_g$c
+counter_C <- 1 - 1 / 5 - counter_g$r * counter_g$c
+counter_Q <- counter_g$c +
+  (1 - 1 / 2 + (1 / 2) * 9 / 10) * (counter_C - counter_g$c)
+record_check(
+  "beta1_cap_N4_partial_counterexample",
+  abs(counter_Q - 23 / 50) < tol &&
+    abs(counter_B - 9 / 20) < tol &&
+    abs(counter_C - 7 / 15) < tol &&
+    counter_C > counter_Q + tol &&
+    counter_Q > counter_B + tol &&
+    counter_B > counter_g$E + tol &&
+    counter$M_class == "cap_actual" &&
+    abs(counter$M_value - counter_Q) < tol,
+  sprintf(
+    "E=%.8f; B=%.8f; C=%.8f; Q=%.8f; class=%s",
+    counter_g$E, counter_B, counter_C, counter_Q, counter$M_class
+  )
+)
 
 for (N in 3:10) {
   for (o0 in c(0, 0.05, 0.2)) {
@@ -300,6 +449,12 @@ for (N in 3:10) {
       for (o1 in c(0.4, 0.8)) {
         if (o0 >= o1) next
         g <- geometry(N, beta)
+        D <- 1 - o0
+        P <- 1 - o1
+        nu2 <- (o1 - o0) / D
+        B_lower <- 1 - o0 - g$r * g$c
+        B_upper <- g$c
+        C_limit <- 1 - o1 - g$r * g$c
         lower_M_exists <- if (N == 3) {
           TRUE
         } else {
@@ -312,16 +467,35 @@ for (N in 3:10) {
         }
         record_check(
           sprintf("endpoint_U_lower_empty_N%s_b%s_o%s_h%s", N, beta, o0, o1),
-          TRUE,
-          "regular U requires mu above the strictly positive terminal cutoff"
+          nu2 > 0 && nu2 < 1 && P < D &&
+            abs(nu2 - (1 - P / D)) < tol,
+          sprintf("nu2=%.8f; P=%.8f; D=%.8f", nu2, P, D)
         )
         record_check(
           sprintf("endpoint_M_conditions_N%s_b%s_o%s_h%s", N, beta, o0, o1),
-          is.logical(lower_M_exists) && is.logical(upper_M_exists),
+          abs((g$E - B_lower) - (o0 - g$c)) < tol &&
+            abs((g$E - C_limit) - (o1 - g$c)) < tol &&
+            g$E + tol >= B_upper &&
+            lower_M_exists == if (N == 3) {
+              TRUE
+            } else {
+              g$E + tol >= B_lower && g$E + tol >= C_limit
+            } &&
+            upper_M_exists == if (N == 3) {
+              TRUE
+            } else {
+              g$E + tol >= B_upper && g$E + tol >= C_limit
+            },
           sprintf(
-            "lower_exists=%s; upper_exists=%s; c=%.8f",
+            paste0(
+              "lower_exists=%s; upper_exists=%s; ",
+              "E-B0=%.8f; E-B1=%.8f; E-C=%.8f; c=%.8f"
+            ),
             lower_M_exists,
             upper_M_exists,
+            g$E - B_lower,
+            g$E - B_upper,
+            g$E - C_limit,
             g$c
           )
         )

@@ -65,6 +65,8 @@ Nature draws \(\theta\in\{0,1\}\), observed only by \(H\), with
 \[
 0\leq o_0<o_1\leq\bar y\leq1,
 \qquad
+\mu\in[0,1],
+\qquad
 \beta\in(0,1].
 \tag{1}\label{eq:domain}
 \]
@@ -391,6 +393,8 @@ S_{\mathrm{cap}}(\nu,\lambda_1)
 A cap PBE-UD exists if and only if
 
 \[
+\{S_{\mathrm{cap}}=0\}
+\quad\text{or}\quad
 \{L=S_{\mathrm{cap}}\text{ and }e_L=1\}
 \quad\text{or}\quad
 \{J=S_{\mathrm{cap}}\text{ and }e_J=1\}.
@@ -400,7 +404,11 @@ Conditional on existence, the proposer obtains \(S_{\mathrm{cap}}\) and
 every weak state has ex ante value \(S_{\mathrm{cap}}/m\). In particular,
 partial high-type cap acceptance can produce
 \(L\leq J<P=S(\nu)\); the cap value is therefore not generally \(S(\nu)\).
-Existence and value are both assessment-dependent at the cap.
+Existence and value are both assessment-dependent at the cap. When
+\(S_{\mathrm{cap}}=0\), rejection is the always-attained maximizing class;
+no boundary acceptance is required. For example, this exception applies at
+\(\nu=1\) when high \(H\) rejects the cap and every feasible agreement gives
+the proposer zero.
 
 **Proof.** Terminal single crossing leaves three outcome classes: rejection,
 low-only, and pooling. Rejection gives the proposer zero. Low-only proposals
@@ -412,8 +420,10 @@ residual. Thus, with slack capacity, a best response exists exactly when a
 maximizing boundary attains \(S\); otherwise strict perturbations approach but
 do not attain it. At the cap, high-type acceptance \(\lambda_1\) changes the
 actual pooling target to \(J\), while the low target remains \(L\). The same
-attainment argument gives the displayed cap test. Uniform recognition divides
-expected total weak surplus equally ex ante. \(\square\)
+attainment argument gives the displayed cap test whenever its value is
+positive. If both active targets are zero, rejection attains the maximum zero.
+Uniform recognition divides expected total weak surplus equally ex ante.
+\(\square\)
 
 ## Majority
 
@@ -467,7 +477,7 @@ its support attains.
 
 | Terminal subgame | Full correspondence / \(T^Y\) | Global \(T^N\) | Proper mixing at every required equality |
 |:--|:--|:--|:--|
-| U, \(H\) active | slack: \(S(\nu)\); cap: \(S_{\mathrm{cap}}\), each conditional on attainment | no PBE | no PBE unless one maximizing boundary is accepted surely |
+| U, \(H\) active | slack: \(S(\nu)\); cap: \(S_{\mathrm{cap}}\), each conditional on attainment | no PBE except zero-value cap rejection | no PBE unless one maximizing boundary is accepted surely or the cap value is zero |
 | M, \(H\) active | zero-cost passage; proposer one | no PBE | no PBE unless \(z_W+z_H\geq k\) surely |
 | M, post-opt-out | weak-only passage; proposer one | no PBE | same sure-support condition |
 
@@ -1242,30 +1252,110 @@ the common maximum. Under a minimum-\(H\) proposer tie-break, such an equality
 candidate survives only if it also minimizes \(H\)'s payoff among tied best
 responses.
 
-For majority, use \(c=1/m\). Under \(T^Y\), the exact attained proposer value
-is
+For majority, use \(c=1/m\) and write
+\(D_O=E-(1-\mu)o_0\) for the oversized separating value. Under global
+\(T^Y\), the exact attained proposer value, both with slack capacity and at
+the cap, is
 
 \[
 \max\left\{
 E,\;
 (1-\mu)(1-o_0-rc)+\mu c,\;
-E-(1-\mu)o_0,\;
+D_O,\;
 1-o_1-rc
 \right\},
 \tag{51}\label{eq:m-beta1-value}
 \]
 
-over feasible classes. For a general fixed equality assessment, a full PBE-UD
-exists if and only if terminal free winning supports are valid and at least
-one class attaining the largest feasible value in \eqref{eq:m-beta1-value}
-is implemented by all equality actions it requires. Proposer mixing is only
-over attained maximizing classes. At \(N=3\) and \(\bar y=o_1\), replace the
-pooling entry by the attained cap value \(Q_1(\lambda_1)\) from
-\eqref{eq:m-n3-partial}. Under global \(T^Y\), all required exact classes are
-attained. Delay has value at most \(c\), which can tie \(E\) only for
-\(N=3,4\). A global \(T^N\) still has no full equilibrium because terminal
-majority lacks a proposer best response; any R1-no sensitivity with a valid
-terminal \(T^Y\) must be labeled hybrid.
+over feasible classes. The third entry is redundant for value comparisons
+because \(D_O\leq E\), but it records the oversized class explicitly. Delay
+gives \(c\leq E\), with equality only for \(N=3,4\).
+
+With slack capacity, a general fixed equality assessment uses the same four
+candidate suprema in \eqref{eq:m-beta1-value}, together with delay \(c\).
+A full PBE-UD exists if and only if terminal free winning supports are valid
+and at least one class equal to the largest feasible candidate is actually
+attained. Thus a unique low-only or pooling maximum requires its exact
+boundary actions to implement surely; otherwise strict perturbations approach
+the candidate but no best response exists. An attained exclusion class, or
+delay when \(E=c\), can support a tie at the maximum.
+
+At \(\bar y=o_1\), the pooling entry \(C=1-o_1-rc\) must instead be replaced
+for **every** \(N\), not only \(N=3\), by the actual cap correspondence. For
+a cap proposal with exactly \(r\) potentially approving weak supporters, let
+\(R_s=1-o_1-\sum_{j\in s}x_j\) be the current proposer residual, let
+\(A_s\) be the probability that all those supporters vote yes, and let
+\(\lambda_{1,s}\) be high-type acceptance at that proposal. Each supporter
+has \(x_j\geq c\); a strict offer forces yes, while \(x_j=c\) permits mixing.
+Low \(H\) votes yes surely because \(o_1>o_0\), whereas high \(H\) may mix at
+equality. The actual payoff is
+
+\[
+Q_s(\kappa)
+=c+A_s\{1-\mu+\mu\lambda_{1,s}\}(R_s-c).
+\]
+
+For the canonical threshold package \(x_j=c\) for all \(r\) supporters,
+\(R_s=C\), and hence
+
+\[
+Q_{1,N}(A,\lambda_1)
+=c+A(1-\mu+\mu\lambda_1)(C-c).
+\]
+
+When the threshold supporters approve surely, this reduces to
+
+\[
+Q_{1,N}(1,\lambda_1)
+=(1-\mu)C+\mu\{\lambda_1C+(1-\lambda_1)c\}.
+\]
+
+For \(N=3\), \(r=0\) and \(A=1\), so this is exactly
+\(Q_1(\lambda_1)\) in \eqref{eq:m-n3-partial}. Let
+\(\overline Q_\kappa\) be the supremum of \(Q_s(\kappa)\) over all feasible
+\(r\)-support cap proposals under the fixed, proposal-contingent assessment,
+set it to \(-\infty\) if that set is empty, and let \(e_Q=1\) exactly when
+that supremum is attained. Proposals with fewer than \(r\) potential
+supporters yield continuation \(c\); proposals with at
+least \(k=r+1\) potential supporters are bounded by the exclusion target
+\(E\). Therefore the cap target is
+
+\[
+V_{\mathrm{cap}}^\kappa
+=\max\{E,B,\overline Q_\kappa\},
+\]
+
+over feasible components. A full cap PBE-UD exists if and only if terminal
+free winning supports are valid and a component equal to
+\(V_{\mathrm{cap}}^\kappa\) is attained: exclusion (or delay when
+\(E=c\)), the exact low boundary for \(B\), or a cap proposal with
+\(e_Q=1\). Proposer mixing is only over attained pure maximizers. Under
+global \(T^Y\), \(A=\lambda_1=1\), so
+\(\overline Q_\kappa=C\), all feasible exact classes are attained, and
+\eqref{eq:m-beta1-value} follows.
+
+The cap distinction is substantive. For
+\(N=4,\ o_0=1/10,\ o_1=\bar y=1/5,\ \mu=1/2\), take
+\(A=1\) and \(\lambda_1=9/10\). Then
+
+\[
+E=\frac13,
+\qquad
+B=\frac9{20},
+\qquad
+C=\frac7{15},
+\qquad
+Q_{1,4}=\frac{23}{50}.
+\]
+
+Thus \(C>Q_{1,4}>B>E\). The full-acceptance value \(C\) is unavailable at
+the cap, but the partial cap class is attained and can be the unique proposer
+best response under a fixed assessment that selects high-type no at the other
+cap proposals. This is a PBE-UD possibility, not an \(N=3\) exception.
+
+A global \(T^N\) still has no full equilibrium because terminal majority
+lacks a proposer best response; any R1-no sensitivity with a valid terminal
+\(T^Y\) must be labeled hybrid.
 
 **Proof.** With \(\beta=1\), implementation and a failure continuation can
 coincide exactly with each type's outside payoff, so exact \(H\)-threshold
@@ -1274,8 +1364,17 @@ enumeration of low-only, pooling, and delay gives the two entries of \(K_1\);
 overpaid candidates continue to use \eqref{eq:u-proposer}. Under majority,
 the support enumeration from Theorems 1 and 2, now allowing exact thresholds,
 gives the four displayed current-proposal values; deliberate delay adds
-\(c\). Proposal optimality requires an actually attained maximum, and only
-ties among attained maxima can mix. \(\square\)
+\(c\). With slack capacity, strict perturbations retain those suprema and the
+usual attainment test.
+
+At the cap, exactly \(r\) weak supporters pass only when \(H=Y\) and all
+supporters approve. Failure gives the proposer continuation \(c\). Low \(H\)
+accepts surely, and high \(H\)'s equality action has probability
+\(\lambda_{1,s}\), so direct expectation yields \(Q_s(\kappa)\). Fewer
+supporters cannot pass; at least \(k\) can pass without \(H\) and cannot beat
+\(E\). This exhausts the cap support geometry. Taking the supremum over the
+proposal-contingent assessment and requiring its attainment proves the cap
+test. Only ties among attained pure maxima can mix. \(\square\)
 
 ## Priors as one-sided limits
 
@@ -1441,27 +1540,31 @@ All computation is in new, separate R scripts:
 
 - **verify_undominated_voting_gate0.R**: finite ballot checks of the local
   dominance lemmas, the \(N=3\) exception, and the pooling-continuation
-  counterexample;
+  counterexample, plus the zero-value terminal rejection exception;
 - **verify_undominated_voting_regular.R**: majority support enumeration,
-  regular existence identities, \(N=5,q=3\), and three unanimity witnesses
+  direct low-only and pooling branch assertions, regular existence identities,
+  \(N=5,q=3\), and three unanimity witnesses
   (strict pooling, pure-\(H\) weak mixing, and semi-pooling);
 - **verify_undominated_voting_boundaries.R**: \(o_0=0\), \(o_1=1\),
-  \(\beta=1\), and one-sided-limit algebra, with every row labeled
-  \(T^Y\) where applicable;
+  \(\beta=1\), the all-\(N\) cap-mixing formula and \(N=4\)
+  counterexample, and one-sided-limit algebra, with every row labeled by its
+  equality assessment where applicable;
 - **verify_undominated_voting_all.R**: orchestration wrapper.
 
 The current generated checks report:
 
 | Verifier | Result | Evidentiary status |
 |:--|--:|:--|
-| Gate 0 finite ballots | 126/126 PASS | checked numerically |
-| Regular-domain identities and enumeration | 6629/6629 PASS | checked numerically |
-| Boundary identities | 1488/1488 PASS | checked numerically |
+| Gate 0 finite ballots | 127/127 PASS | checked numerically |
+| Regular-domain identities and enumeration | 10085/10085 PASS | checked numerically |
+| Boundary identities | 2881/2881 PASS | checked numerically |
 
 Table: Reproducible Goal 3 verification summary. \label{tab:verification}
 
-The CSV outputs under **tables/** record parameters, source, date, and
-per-check status. These checks verify implementation of the displayed
+Every CSV output under **tables/** records source, date, and status. The
+regular and boundary region files carry parameter columns directly; the
+Gate 0 finite-ballot file records each tested value in its check identifier
+and detail field. These checks verify implementation of the displayed
 identities; the general results rest on the analytical proofs above.
 
 # Result ledger
@@ -1480,7 +1583,7 @@ identities; the general results rest on the analytical proofs above.
 | Old No-Cheap-H condition | rejected | replaced by \eqref{eq:m-prior-cutoff} and \eqref{eq:m-pool-condition} |
 | Entry nesting | proved anew | strict on the regular common domain |
 | Informational advantage for \(H\) | proved anew | \(E[u_H^U]\geq o_1\geq E[u_H^M]\) |
-| Global \(T^N\) equilibrium | rejected | terminal proposer best response absent |
+| Global \(T^N\) equilibrium | rejected generically | terminal proposer best response absent, except for the zero-value terminal-U cap rejection corner |
 
 Table: Goal 3 formal result ledger. \label{tab:result-ledger}
 

@@ -161,7 +161,7 @@ enumerate_majority_classes <- function(row) {
     pool_residual <- 1 - row$o1 - s * row$c
     if (row$bar_y > row$o1 && pool_residual >= -tol) {
       pool_value <- if (s == row$r) pool_residual else if (s >= row$k) {
-        1 - s * row$c
+        1 - row$o1 - s * row$c
       } else {
         row$c
       }
@@ -259,6 +259,81 @@ for (idx in seq_len(nrow(regions))) {
     sprintf("M_min_support_%04d", idx),
     abs(max_E - row$M_E) < tol,
     sprintf("enumerated=%.8f; E=%.8f", max_E, row$M_E)
+  )
+
+  low_r <- classes[
+    classes$class == "low_only" & classes$supporters == row$r,
+    ,
+    drop = FALSE
+  ]
+  low_r_feasible <- 1 - row$o0 - row$r * row$c >= -tol
+  record_check(
+    sprintf("M_low_r_branch_%04d", idx),
+    if (low_r_feasible) {
+      nrow(low_r) == 1L && abs(low_r$limiting_value - row$M_B_sup) < tol
+    } else {
+      nrow(low_r) == 0L && row$M_B_sup <= row$M_E + tol
+    },
+    sprintf(
+      "feasible=%s; enumerated=%s; B=%.8f",
+      low_r_feasible,
+      if (nrow(low_r) == 1L) sprintf("%.8f", low_r$limiting_value) else "absent",
+      row$M_B_sup
+    )
+  )
+
+  pool_r <- classes[
+    classes$class == "pooling" & classes$supporters == row$r,
+    ,
+    drop = FALSE
+  ]
+  pool_r_feasible <- row$M_pool_threat &&
+    1 - row$o1 - row$r * row$c >= -tol
+  record_check(
+    sprintf("M_pool_r_branch_%04d", idx),
+    if (pool_r_feasible) {
+      nrow(pool_r) == 1L && abs(pool_r$limiting_value - row$M_C_sup) < tol
+    } else {
+      nrow(pool_r) == 0L &&
+        (!row$M_pool_threat || row$M_C_sup <= row$M_E + tol)
+    },
+    sprintf(
+      "active_feasible=%s; enumerated=%s; C=%.8f",
+      pool_r_feasible,
+      if (nrow(pool_r) == 1L) sprintf("%.8f", pool_r$limiting_value) else "absent",
+      row$M_C_sup
+    )
+  )
+
+  pool_weak_only <- classes[
+    classes$class == "pooling" & classes$supporters >= row$k,
+    ,
+    drop = FALSE
+  ]
+  possible_supporters <- row$k:(row$m - 1)
+  expected_pool_supporters <- if (row$M_pool_threat) {
+    possible_supporters[
+      1 - row$o1 - possible_supporters * row$c >= -tol
+    ]
+  } else {
+    integer(0)
+  }
+  actual_pool_supporters <- pool_weak_only$supporters
+  pool_support_values_match <- nrow(pool_weak_only) == 0L || all(
+    abs(
+      pool_weak_only$limiting_value -
+        (1 - row$o1 - actual_pool_supporters * row$c)
+    ) < tol
+  )
+  record_check(
+    sprintf("M_pool_weak_support_branch_%04d", idx),
+    identical(as.integer(actual_pool_supporters), as.integer(expected_pool_supporters)) &&
+      pool_support_values_match,
+    sprintf(
+      "actual=%s; expected=%s",
+      paste(actual_pool_supporters, collapse = ","),
+      paste(expected_pool_supporters, collapse = ",")
+    )
   )
 
   if (row$N >= 4) {

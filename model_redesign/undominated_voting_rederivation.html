@@ -1524,6 +1524,8 @@ Nature draws <span class="math inline">\(\theta\in\{0,1\}\)</span>, observed onl
 <p><span class="math display">\[
 0\leq o_0&lt;o_1\leq\bar y\leq1,
 \qquad
+\mu\in[0,1],
+\qquad
 \beta\in(0,1].
 \tag{1}\label{eq:domain}
 \]</span></p>
@@ -1793,6 +1795,8 @@ S_{\mathrm{cap}}(\nu,\lambda_1)
 \]</span></p>
 <p>A cap PBE-UD exists if and only if</p>
 <p><span class="math display">\[
+\{S_{\mathrm{cap}}=0\}
+\quad\text{or}\quad
 \{L=S_{\mathrm{cap}}\text{ and }e_L=1\}
 \quad\text{or}\quad
 \{J=S_{\mathrm{cap}}\text{ and }e_J=1\}.
@@ -1801,7 +1805,11 @@ S_{\mathrm{cap}}(\nu,\lambda_1)
 every weak state has ex ante value <span class="math inline">\(S_{\mathrm{cap}}/m\)</span>. In particular,
 partial high-type cap acceptance can produce
 <span class="math inline">\(L\leq J&lt;P=S(\nu)\)</span>; the cap value is therefore not generally <span class="math inline">\(S(\nu)\)</span>.
-Existence and value are both assessment-dependent at the cap.</p>
+Existence and value are both assessment-dependent at the cap. When
+<span class="math inline">\(S_{\mathrm{cap}}=0\)</span>, rejection is the always-attained maximizing class;
+no boundary acceptance is required. For example, this exception applies at
+<span class="math inline">\(\nu=1\)</span> when high <span class="math inline">\(H\)</span> rejects the cap and every feasible agreement gives
+the proposer zero.</p>
 <p><strong>Proof.</strong> Terminal single crossing leaves three outcome classes: rejection,
 low-only, and pooling. Rejection gives the proposer zero. Low-only proposals
 have supremum <span class="math inline">\((1-\nu)(1-o_0)=L(\nu)\)</span>, attained only at the low boundary
@@ -1812,8 +1820,10 @@ residual. Thus, with slack capacity, a best response exists exactly when a
 maximizing boundary attains <span class="math inline">\(S\)</span>; otherwise strict perturbations approach but
 do not attain it. At the cap, high-type acceptance <span class="math inline">\(\lambda_1\)</span> changes the
 actual pooling target to <span class="math inline">\(J\)</span>, while the low target remains <span class="math inline">\(L\)</span>. The same
-attainment argument gives the displayed cap test. Uniform recognition divides
-expected total weak surplus equally ex ante. <span class="math inline">\(\square\)</span></p>
+attainment argument gives the displayed cap test whenever its value is
+positive. If both active targets are zero, rejection attains the maximum zero.
+Uniform recognition divides expected total weak surplus equally ex ante.
+<span class="math inline">\(\square\)</span></p>
 </div>
 <div id="majority" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Majority</h2>
@@ -1876,8 +1886,8 @@ its support attains.</p>
 <tr class="odd">
 <td align="left">U, <span class="math inline">\(H\)</span> active</td>
 <td align="left">slack: <span class="math inline">\(S(\nu)\)</span>; cap: <span class="math inline">\(S_{\mathrm{cap}}\)</span>, each conditional on attainment</td>
-<td align="left">no PBE</td>
-<td align="left">no PBE unless one maximizing boundary is accepted surely</td>
+<td align="left">no PBE except zero-value cap rejection</td>
+<td align="left">no PBE unless one maximizing boundary is accepted surely or the cap value is zero</td>
 </tr>
 <tr class="even">
 <td align="left">M, <span class="math inline">\(H\)</span> active</td>
@@ -2647,28 +2657,94 @@ with <span class="math inline">\(K_1\)</span> can also remain in the unselected 
 the common maximum. Under a minimum-<span class="math inline">\(H\)</span> proposer tie-break, such an equality
 candidate survives only if it also minimizes <span class="math inline">\(H\)</span>’s payoff among tied best
 responses.</p>
-<p>For majority, use <span class="math inline">\(c=1/m\)</span>. Under <span class="math inline">\(T^Y\)</span>, the exact attained proposer value
-is</p>
+<p>For majority, use <span class="math inline">\(c=1/m\)</span> and write
+<span class="math inline">\(D_O=E-(1-\mu)o_0\)</span> for the oversized separating value. Under global
+<span class="math inline">\(T^Y\)</span>, the exact attained proposer value, both with slack capacity and at
+the cap, is</p>
 <p><span class="math display">\[
 \max\left\{
 E,\;
 (1-\mu)(1-o_0-rc)+\mu c,\;
-E-(1-\mu)o_0,\;
+D_O,\;
 1-o_1-rc
 \right\},
 \tag{51}\label{eq:m-beta1-value}
 \]</span></p>
-<p>over feasible classes. For a general fixed equality assessment, a full PBE-UD
-exists if and only if terminal free winning supports are valid and at least
-one class attaining the largest feasible value in <span class="math inline">\(\eqref{eq:m-beta1-value}\)</span>
-is implemented by all equality actions it requires. Proposer mixing is only
-over attained maximizing classes. At <span class="math inline">\(N=3\)</span> and <span class="math inline">\(\bar y=o_1\)</span>, replace the
-pooling entry by the attained cap value <span class="math inline">\(Q_1(\lambda_1)\)</span> from
-<span class="math inline">\(\eqref{eq:m-n3-partial}\)</span>. Under global <span class="math inline">\(T^Y\)</span>, all required exact classes are
-attained. Delay has value at most <span class="math inline">\(c\)</span>, which can tie <span class="math inline">\(E\)</span> only for
-<span class="math inline">\(N=3,4\)</span>. A global <span class="math inline">\(T^N\)</span> still has no full equilibrium because terminal
-majority lacks a proposer best response; any R1-no sensitivity with a valid
-terminal <span class="math inline">\(T^Y\)</span> must be labeled hybrid.</p>
+<p>over feasible classes. The third entry is redundant for value comparisons
+because <span class="math inline">\(D_O\leq E\)</span>, but it records the oversized class explicitly. Delay
+gives <span class="math inline">\(c\leq E\)</span>, with equality only for <span class="math inline">\(N=3,4\)</span>.</p>
+<p>With slack capacity, a general fixed equality assessment uses the same four
+candidate suprema in <span class="math inline">\(\eqref{eq:m-beta1-value}\)</span>, together with delay <span class="math inline">\(c\)</span>.
+A full PBE-UD exists if and only if terminal free winning supports are valid
+and at least one class equal to the largest feasible candidate is actually
+attained. Thus a unique low-only or pooling maximum requires its exact
+boundary actions to implement surely; otherwise strict perturbations approach
+the candidate but no best response exists. An attained exclusion class, or
+delay when <span class="math inline">\(E=c\)</span>, can support a tie at the maximum.</p>
+<p>At <span class="math inline">\(\bar y=o_1\)</span>, the pooling entry <span class="math inline">\(C=1-o_1-rc\)</span> must instead be replaced
+for <strong>every</strong> <span class="math inline">\(N\)</span>, not only <span class="math inline">\(N=3\)</span>, by the actual cap correspondence. For
+a cap proposal with exactly <span class="math inline">\(r\)</span> potentially approving weak supporters, let
+<span class="math inline">\(R_s=1-o_1-\sum_{j\in s}x_j\)</span> be the current proposer residual, let
+<span class="math inline">\(A_s\)</span> be the probability that all those supporters vote yes, and let
+<span class="math inline">\(\lambda_{1,s}\)</span> be high-type acceptance at that proposal. Each supporter
+has <span class="math inline">\(x_j\geq c\)</span>; a strict offer forces yes, while <span class="math inline">\(x_j=c\)</span> permits mixing.
+Low <span class="math inline">\(H\)</span> votes yes surely because <span class="math inline">\(o_1&gt;o_0\)</span>, whereas high <span class="math inline">\(H\)</span> may mix at
+equality. The actual payoff is</p>
+<p><span class="math display">\[
+Q_s(\kappa)
+=c+A_s\{1-\mu+\mu\lambda_{1,s}\}(R_s-c).
+\]</span></p>
+<p>For the canonical threshold package <span class="math inline">\(x_j=c\)</span> for all <span class="math inline">\(r\)</span> supporters,
+<span class="math inline">\(R_s=C\)</span>, and hence</p>
+<p><span class="math display">\[
+Q_{1,N}(A,\lambda_1)
+=c+A(1-\mu+\mu\lambda_1)(C-c).
+\]</span></p>
+<p>When the threshold supporters approve surely, this reduces to</p>
+<p><span class="math display">\[
+Q_{1,N}(1,\lambda_1)
+=(1-\mu)C+\mu\{\lambda_1C+(1-\lambda_1)c\}.
+\]</span></p>
+<p>For <span class="math inline">\(N=3\)</span>, <span class="math inline">\(r=0\)</span> and <span class="math inline">\(A=1\)</span>, so this is exactly
+<span class="math inline">\(Q_1(\lambda_1)\)</span> in <span class="math inline">\(\eqref{eq:m-n3-partial}\)</span>. Let
+<span class="math inline">\(\overline Q_\kappa\)</span> be the supremum of <span class="math inline">\(Q_s(\kappa)\)</span> over all feasible
+<span class="math inline">\(r\)</span>-support cap proposals under the fixed, proposal-contingent assessment,
+set it to <span class="math inline">\(-\infty\)</span> if that set is empty, and let <span class="math inline">\(e_Q=1\)</span> exactly when
+that supremum is attained. Proposals with fewer than <span class="math inline">\(r\)</span> potential
+supporters yield continuation <span class="math inline">\(c\)</span>; proposals with at
+least <span class="math inline">\(k=r+1\)</span> potential supporters are bounded by the exclusion target
+<span class="math inline">\(E\)</span>. Therefore the cap target is</p>
+<p><span class="math display">\[
+V_{\mathrm{cap}}^\kappa
+=\max\{E,B,\overline Q_\kappa\},
+\]</span></p>
+<p>over feasible components. A full cap PBE-UD exists if and only if terminal
+free winning supports are valid and a component equal to
+<span class="math inline">\(V_{\mathrm{cap}}^\kappa\)</span> is attained: exclusion (or delay when
+<span class="math inline">\(E=c\)</span>), the exact low boundary for <span class="math inline">\(B\)</span>, or a cap proposal with
+<span class="math inline">\(e_Q=1\)</span>. Proposer mixing is only over attained pure maximizers. Under
+global <span class="math inline">\(T^Y\)</span>, <span class="math inline">\(A=\lambda_1=1\)</span>, so
+<span class="math inline">\(\overline Q_\kappa=C\)</span>, all feasible exact classes are attained, and
+<span class="math inline">\(\eqref{eq:m-beta1-value}\)</span> follows.</p>
+<p>The cap distinction is substantive. For
+<span class="math inline">\(N=4,\ o_0=1/10,\ o_1=\bar y=1/5,\ \mu=1/2\)</span>, take
+<span class="math inline">\(A=1\)</span> and <span class="math inline">\(\lambda_1=9/10\)</span>. Then</p>
+<p><span class="math display">\[
+E=\frac13,
+\qquad
+B=\frac9{20},
+\qquad
+C=\frac7{15},
+\qquad
+Q_{1,4}=\frac{23}{50}.
+\]</span></p>
+<p>Thus <span class="math inline">\(C&gt;Q_{1,4}&gt;B&gt;E\)</span>. The full-acceptance value <span class="math inline">\(C\)</span> is unavailable at
+the cap, but the partial cap class is attained and can be the unique proposer
+best response under a fixed assessment that selects high-type no at the other
+cap proposals. This is a PBE-UD possibility, not an <span class="math inline">\(N=3\)</span> exception.</p>
+<p>A global <span class="math inline">\(T^N\)</span> still has no full equilibrium because terminal majority
+lacks a proposer best response; any R1-no sensitivity with a valid terminal
+<span class="math inline">\(T^Y\)</span> must be labeled hybrid.</p>
 <p><strong>Proof.</strong> With <span class="math inline">\(\beta=1\)</span>, implementation and a failure continuation can
 coincide exactly with each type’s outside payoff, so exact <span class="math inline">\(H\)</span>-threshold
 votes re-enter the local undominated correspondence. Under unanimity, direct
@@ -2676,8 +2752,16 @@ enumeration of low-only, pooling, and delay gives the two entries of <span class
 overpaid candidates continue to use <span class="math inline">\(\eqref{eq:u-proposer}\)</span>. Under majority,
 the support enumeration from Theorems 1 and 2, now allowing exact thresholds,
 gives the four displayed current-proposal values; deliberate delay adds
-<span class="math inline">\(c\)</span>. Proposal optimality requires an actually attained maximum, and only
-ties among attained maxima can mix. <span class="math inline">\(\square\)</span></p>
+<span class="math inline">\(c\)</span>. With slack capacity, strict perturbations retain those suprema and the
+usual attainment test.</p>
+<p>At the cap, exactly <span class="math inline">\(r\)</span> weak supporters pass only when <span class="math inline">\(H=Y\)</span> and all
+supporters approve. Failure gives the proposer continuation <span class="math inline">\(c\)</span>. Low <span class="math inline">\(H\)</span>
+accepts surely, and high <span class="math inline">\(H\)</span>’s equality action has probability
+<span class="math inline">\(\lambda_{1,s}\)</span>, so direct expectation yields <span class="math inline">\(Q_s(\kappa)\)</span>. Fewer
+supporters cannot pass; at least <span class="math inline">\(k\)</span> can pass without <span class="math inline">\(H\)</span> and cannot beat
+<span class="math inline">\(E\)</span>. This exhausts the cap support geometry. Taking the supremum over the
+proposal-contingent assessment and requiring its attainment proves the cap
+test. Only ties among attained pure maxima can mix. <span class="math inline">\(\square\)</span></p>
 </div>
 <div id="priors-as-one-sided-limits" class="section level2" number="8.4">
 <h2><span class="header-section-number">8.4</span> Priors as one-sided limits</h2>
@@ -2821,13 +2905,15 @@ thresholds re-enter.</li>
 <ul>
 <li><strong>verify_undominated_voting_gate0.R</strong>: finite ballot checks of the local
 dominance lemmas, the <span class="math inline">\(N=3\)</span> exception, and the pooling-continuation
-counterexample;</li>
+counterexample, plus the zero-value terminal rejection exception;</li>
 <li><strong>verify_undominated_voting_regular.R</strong>: majority support enumeration,
-regular existence identities, <span class="math inline">\(N=5,q=3\)</span>, and three unanimity witnesses
+direct low-only and pooling branch assertions, regular existence identities,
+<span class="math inline">\(N=5,q=3\)</span>, and three unanimity witnesses
 (strict pooling, pure-<span class="math inline">\(H\)</span> weak mixing, and semi-pooling);</li>
 <li><strong>verify_undominated_voting_boundaries.R</strong>: <span class="math inline">\(o_0=0\)</span>, <span class="math inline">\(o_1=1\)</span>,
-<span class="math inline">\(\beta=1\)</span>, and one-sided-limit algebra, with every row labeled
-<span class="math inline">\(T^Y\)</span> where applicable;</li>
+<span class="math inline">\(\beta=1\)</span>, the all-<span class="math inline">\(N\)</span> cap-mixing formula and <span class="math inline">\(N=4\)</span>
+counterexample, and one-sided-limit algebra, with every row labeled by its
+equality assessment where applicable;</li>
 <li><strong>verify_undominated_voting_all.R</strong>: orchestration wrapper.</li>
 </ul>
 <p>The current generated checks report:</p>
@@ -2848,23 +2934,25 @@ regular existence identities, <span class="math inline">\(N=5,q=3\)</span>, and 
 <tbody>
 <tr class="odd">
 <td align="left">Gate 0 finite ballots</td>
-<td align="right">126/126 PASS</td>
+<td align="right">127/127 PASS</td>
 <td align="left">checked numerically</td>
 </tr>
 <tr class="even">
 <td align="left">Regular-domain identities and enumeration</td>
-<td align="right">6629/6629 PASS</td>
+<td align="right">10085/10085 PASS</td>
 <td align="left">checked numerically</td>
 </tr>
 <tr class="odd">
 <td align="left">Boundary identities</td>
-<td align="right">1488/1488 PASS</td>
+<td align="right">2881/2881 PASS</td>
 <td align="left">checked numerically</td>
 </tr>
 </tbody>
 </table>
-<p>The CSV outputs under <strong>tables/</strong> record parameters, source, date, and
-per-check status. These checks verify implementation of the displayed
+<p>Every CSV output under <strong>tables/</strong> records source, date, and status. The
+regular and boundary region files carry parameter columns directly; the
+Gate 0 finite-ballot file records each tested value in its check identifier
+and detail field. These checks verify implementation of the displayed
 identities; the general results rest on the analytical proofs above.</p>
 </div>
 <div id="result-ledger" class="section level1" number="11">
@@ -2946,8 +3034,8 @@ identities; the general results rest on the analytical proofs above.</p>
 </tr>
 <tr class="odd">
 <td align="left">Global <span class="math inline">\(T^N\)</span> equilibrium</td>
-<td align="left">rejected</td>
-<td align="left">terminal proposer best response absent</td>
+<td align="left">rejected generically</td>
+<td align="left">terminal proposer best response absent, except for the zero-value terminal-U cap rejection corner</td>
 </tr>
 </tbody>
 </table>

@@ -16,6 +16,8 @@ if (length(file_arg) == 1L) {
 }
 
 out_path <- file.path(repo_root, "tables", "undominated_voting_gate0_checks.csv")
+checked_on <- "2026-08-04"
+source_note <- "Goal 3 PBE-UD finite-ballot verification"
 
 records <- list()
 record_check <- function(id, domain, pass, detail) {
@@ -24,6 +26,8 @@ record_check <- function(id, domain, pass, detail) {
     domain = domain,
     pass = isTRUE(pass),
     detail = detail,
+    checked_on = checked_on,
+    source = source_note,
     stringsAsFactors = FALSE
   )
   invisible(pass)
@@ -209,6 +213,28 @@ record_check(
   "terminal U cap",
   J_cap + tol >= L_cap && J_cap < S_cap_slack - tol,
   sprintf("L=%.3f; J=%.3f; slack_S=%.3f", L_cap, J_cap, S_cap_slack)
+)
+
+# Terminal-U zero-surplus exception: rejection is an attained maximizer even
+# when neither boundary class is implemented.
+o0_zero_value <- 0.2
+o1_zero_value <- 1
+nu_zero_value <- 1
+lambda1_zero_value <- 0
+L_zero_value <- (1 - nu_zero_value) * (1 - o0_zero_value)
+J_zero_value <- (1 - nu_zero_value +
+  nu_zero_value * lambda1_zero_value) * (1 - o1_zero_value)
+record_check(
+  "R2_U_cap_zero_value_rejection",
+  "terminal U cap",
+  abs(L_zero_value) < tol &&
+    abs(J_zero_value) < tol &&
+    abs(max(0, L_zero_value, J_zero_value)) < tol,
+  sprintf(
+    "L=%.3f; J=%.3f; rejection=0 is attained",
+    L_zero_value,
+    J_zero_value
+  )
 )
 
 # Terminal-M free support can include H only at the degenerate low posterior
