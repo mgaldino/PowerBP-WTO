@@ -1,0 +1,197 @@
+#!/usr/bin/env Rscript
+
+# Goal 3: finite-ballot verification for the PBE-UD Gate 0.
+# This script is independent of the closed Goal 1/2 verifiers.
+
+options(stringsAsFactors = FALSE)
+
+# Resolve paths from the script location when invoked with Rscript.
+args_full <- commandArgs(trailingOnly = FALSE)
+file_arg <- grep("^--file=", args_full, value = TRUE)
+if (length(file_arg) == 1L) {
+  script_path <- sub("^--file=", "", file_arg)
+  repo_root <- normalizePath(file.path(dirname(script_path), ".."), mustWork = TRUE)
+} else {
+  repo_root <- normalizePath(".", mustWork = TRUE)
+}
+
+out_path <- file.path(repo_root, "tables", "undominated_voting_gate0_checks.csv")
+
+records <- list()
+record_check <- function(id, domain, pass, detail) {
+  records[[length(records) + 1L]] <<- data.frame(
+    check_id = id,
+    domain = domain,
+    pass = isTRUE(pass),
+    detail = detail,
+    stringsAsFactors = FALSE
+  )
+  invisible(pass)
+}
+
+quota <- function(N, rule) {
+  if (identical(rule, "U")) N else floor(N / 2) + 1
+}
+
+passes_active <- function(N, rule, weak_yes, h_vote) {
+  q <- quota(N, rule)
+  if (identical(h_vote, "Y")) {
+    weak_yes + 1L >= q
+  } else if (identical(rule, "M")) {
+    weak_yes >= q
+  } else {
+    FALSE
+  }
+}
+
+passes_weak_only <- function(N, weak_yes) {
+  weak_yes >= quota(N, "M")
+}
+
+tol <- 1e-12
+
+# Lemma G0.1: weak voter at every reachable terminal quota.
+for (N in 3:10) {
+  m <- N - 1L
+  for (rule in c("U", "M")) {
+    for (active_h in c(TRUE, FALSE)) {
+      if (!active_h && identical(rule, "U")) next
+      other_max <- m - 2L
+      for (x in c(0, 0.2)) {
+        deltas <- numeric()
+        for (other_yes in 0:other_max) {
+          h_votes <- if (active_h) c("Y", "N") else "absent"
+          for (h_vote in h_votes) {
+            weak_yes_y <- 1L + other_yes + 1L
+            weak_yes_n <- 1L + other_yes
+            if (active_h) {
+              pass_y <- passes_active(N, rule, weak_yes_y, h_vote)
+              pass_n <- passes_active(N, rule, weak_yes_n, h_vote)
+            } else {
+              pass_y <- passes_weak_only(N, weak_yes_y)
+              pass_n <- passes_weak_only(N, weak_yes_n)
+            }
+            u_y <- if (pass_y) x else 0
+            u_n <- if (pass_n) x else 0
+            deltas <- c(deltas, u_y - u_n)
+          }
+        }
+        expected <- if (x == 0) {
+          all(abs(deltas) < tol)
+        } else {
+          all(deltas >= -tol) && any(deltas > tol)
+        }
+        id <- sprintf("G0.1_N%s_%s_H%s_x%s", N, rule, active_h, x)
+        detail <- sprintf("min_delta=%.3f; max_delta=%.3f", min(deltas), max(deltas))
+        record_check(id, "terminal weak voter", expected, detail)
+      }
+    }
+  }
+}
+
+# Lemma G0.2: terminal H sign is exactly the sign of y-o_theta.
+for (N in 3:10) {
+  m <- N - 1L
+  for (rule in c("U", "M")) {
+    o_theta <- 0.4
+    for (y in c(0.3, 0.4, 0.5)) {
+      deltas <- vapply(1:m, function(z) {
+        u_y <- if (passes_active(N, rule, z, "Y")) y else o_theta
+        u_n <- o_theta
+        u_y - u_n
+      }, numeric(1))
+      expected <- if (y < o_theta) {
+        all(deltas <= tol) && any(deltas < -tol)
+      } else if (y > o_theta) {
+        all(deltas >= -tol) && any(deltas > tol)
+      } else {
+        all(abs(deltas) < tol)
+      }
+      id <- sprintf("G0.2_N%s_%s_y%s", N, rule, y)
+      detail <- sprintf("min_delta=%.3f; max_delta=%.3f", min(deltas), max(deltas))
+      record_check(id, "terminal H", expected, detail)
+    }
+  }
+}
+
+# Corollary G0.4a: at y=o_theta, discounted weak-caused failure makes H-yes
+# weakly dominated in R1 whenever beta<1, a failure vector is feasible, and
+# that continuation pays no more than o_theta. This is a conditional result.
+for (N in 3:10) {
+  m <- N - 1L
+  for (rule in c("U", "M")) {
+    beta <- 0.9
+    o_theta <- 0.4
+    y <- o_theta
+    deltas <- vapply(1:m, function(z) {
+      u_y <- if (passes_active(N, rule, z, "Y")) y else beta * o_theta
+      u_n <- o_theta
+      u_y - u_n
+    }, numeric(1))
+    failure_feasible <- identical(rule, "U") || quota(N, rule) >= 3L
+    expected <- if (failure_feasible) {
+      all(deltas <= tol) && any(deltas < -tol) && any(abs(deltas) < tol)
+    } else {
+      all(abs(deltas) < tol)
+    }
+    id <- sprintf("G0.4a_N%s_%s", N, rule)
+    detail <- sprintf(
+      "failure_feasible=%s; min_delta=%.3f; max_delta=%.3f",
+      failure_feasible,
+      min(deltas),
+      max(deltas)
+    )
+    record_check(id, "R1 H exact threshold", expected, detail)
+  }
+}
+
+# Counterexample to treating the preceding continuation inequality as
+# automatic. Under terminal U pooling, the low type can receive beta*o1>o0
+# after weak-caused failure, so neither R1 action dominates at y=o0.
+beta_counter <- 0.9
+o0_counter <- 0.1
+o1_counter <- 0.2
+deltas_counter <- c(
+  implementation = o0_counter - o0_counter,
+  weak_failure = beta_counter * o1_counter - o0_counter
+)
+record_check(
+  "G0.4b_U_pooling_counterexample",
+  "R1 H exact-threshold caveat",
+  all(deltas_counter >= -tol) && any(deltas_counter > tol),
+  sprintf(
+    "implementation_delta=%.3f; failure_delta=%.3f",
+    deltas_counter[["implementation"]],
+    deltas_counter[["weak_failure"]]
+  )
+)
+
+# Lemma G0.3: scalar pivotal comparison.
+for (x in c(0.1, 0.2, 0.3)) {
+  c_j <- 0.2
+  pivotal_probabilities <- c(0, 0.25, 1)
+  deltas <- pivotal_probabilities * (x - c_j)
+  expected <- if (x < c_j) {
+    all(deltas <= tol) && any(deltas < -tol)
+  } else if (x > c_j) {
+    all(deltas >= -tol) && any(deltas > tol)
+  } else {
+    all(abs(deltas) < tol)
+  }
+  id <- sprintf("G0.3_x%s", x)
+  detail <- sprintf("min_delta=%.3f; max_delta=%.3f", min(deltas), max(deltas))
+  record_check(id, "scalar weak voter", expected, detail)
+}
+
+results <- do.call(rbind, records)
+dir.create(dirname(out_path), recursive = TRUE, showWarnings = FALSE)
+utils::write.csv(results, out_path, row.names = FALSE, fileEncoding = "UTF-8")
+
+failed <- results[!results$pass, , drop = FALSE]
+cat(sprintf("Gate 0 checks: %d/%d PASS\n", sum(results$pass), nrow(results)))
+cat(sprintf("Output: %s\n", out_path))
+
+if (nrow(failed) > 0L) {
+  print(failed)
+  quit(status = 1L)
+}

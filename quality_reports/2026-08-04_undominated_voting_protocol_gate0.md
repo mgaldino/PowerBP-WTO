@@ -2,8 +2,7 @@
 
 **Data:** 2026-08-04
 
-**Status:** PASS para promoção à rederivação após reparos e duas auditorias
-independentes sem ressalvas substantivas
+**Status:** PASS após stress test terminal, reparo e rerevisão independente
 
 **Escopo:** baseline limpo `pi_H=0`; nenhum resultado do v6 é presumido
 
@@ -322,15 +321,25 @@ N é dominado por Y
 Nos demais casos ambas as ações permanecem não dominadas, sujeito ainda à IC
 esperada de PBE.
 
-### Corolário G0.4a — Armadilha do threshold exato (`proved`)
+### Corolário G0.4a — Teste condicional do threshold exato (`proved`)
 
-Se `y=o_theta`, toda continuação após falha fraca satisfaz
-`beta*C_H2<=o_theta` e pelo menos uma desigualdade é estrita, `H`-yes é
+Suponha conjuntamente que: (i) `y=o_theta`; (ii) para todo vetor fraco que
+produz falha depois de `H=Y`, vale `beta*C_H2<=o_theta`; e (iii) existe pelo
+menos um vetor factível no qual essa desigualdade é estrita. Então `H`-yes é
 fracamente dominado por opt-out, mesmo que a estratégia fraca de equilíbrio
 faça a implementação corrente ocorrer com probabilidade um.
 
-Consequentemente, nenhum pooling ou low-only em threshold exato será
-transportado do v6 sem aplicar este teste a todos os vetores fracos factíveis.
+As condições (ii)–(iii) não decorrem apenas de `y=o_theta`. Por exemplo, sob
+unanimidade uma continuação pooling pode dar ao tipo baixo `C_H2=o_1`, de modo
+que `beta*o_1>o_0`. Consequentemente, cada pooling ou low-only em threshold
+exato deve calcular as continuações de todos os vetores factíveis antes de
+classificar a ação de `H`; não existe uma eliminação universal por threshold.
+
+**Exceção geométrica.** Sob maioria com `N=3`, temos `q=2`: o voto automático
+do proponente mais `H=Y` já aprova a proposta. Não existe vetor fraco capaz de
+causar falha depois de `H=Y`, de modo que o componente estrito do corolário
+falha. Nesse caso, `y=o_theta` deixa as duas ações de `H` admissíveis e deve ser
+tratado separadamente.
 
 ## 8. Indiferença e seleções
 
@@ -408,6 +417,20 @@ rerevisão deu **PASS sem reservas** para paginação, escopo da fonte, distinç
 entre dominância e sim na indiferença, ballot simultâneo e ausência de ordem de
 `H`. O auditor permaneceu somente leitura.
 
-**Gate 0 final:** **PASS**. Esses pareceres autorizam a indução retroativa, mas
-não substituem os três pareceres independentes exigidos sobre a versão
-candidata completa do Goal 3.
+### Stress test terminal posterior
+
+A primeira enumeração de R2 detectou que a redação original do Corolário G0.4a
+tratava `beta*C_H2<=o_theta` como se decorresse do threshold exato. O
+contraexemplo é unanimidade com continuação pooling e
+`beta*o_1>o_0`: o tipo baixo pode preferir permanecer ativo depois de uma falha
+fraca. O corolário foi reescrito como implicação que exige explicitamente as
+condições sobre todas as continuações. Nenhuma conclusão de R1 é promovida até
+a rerevisão deste reparo.
+
+O revisor terminal confirmou em passe somente leitura que a nova implicação
+decorre do Lema G0.4, que o contraexemplo pooling ficou corretamente excluído
+da conclusão automática e que a exceção `M,N=3` está correta.
+
+**Gate 0 final:** **PASS** após rerevisão. Os pareceres anteriores e o stress
+test permanecem registrados como trilha de reparo; nenhum deles substitui os
+três pareceres finais sobre a versão candidata completa.
