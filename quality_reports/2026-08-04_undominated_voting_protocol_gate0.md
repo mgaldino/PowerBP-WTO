@@ -2,8 +2,9 @@
 
 **Data:** 2026-08-04
 
-**Status:** REABERTO após decisão substantiva do usuário sobre coalizão mínima;
-reparo candidato pendente de rerevisão independente
+**Status:** PASS FINAL; decisão coalition-pure incorporada e rerevisada por
+três auditores independentes no commit
+`5bd7fbe47f63f6b94ca4085852596f1d4ad9901c`
 
 **Escopo:** baseline limpo `pi_H=0`; nenhum resultado do v6 é presumido
 
@@ -458,9 +459,12 @@ O revisor terminal confirmou em passe somente leitura que a nova implicação
 decorre do Lema G0.4, que o contraexemplo pooling ficou corretamente excluído
 da conclusão automática e que a exceção `M,N=3` está correta.
 
-**Fechamento anterior do Gate 0:** o PASS acima permanece como trilha válida
-para a disciplina local de voto, mas foi reaberto apenas no componente de
-seleção de proposta pela decisão coalition-pure da Seção 2.1. O fechamento
-atual depende de rerevisão da correspondência proposal-contingent e da prova de
-que gifts a outsiders não entram nos outcomes selecionados nem são omitidos do
-conjunto de desvios.
+**Fechamento final do Gate 0:** o PASS anterior para a disciplina local de voto
+permanece válido. A reabertura limitada ao componente coalition-pure foi
+fechada no commit acima. Os três passes finais confirmaram que: (i) o baseline
+retém somente suporte vencedor inclusion-minimal e zera pagamentos a weak
+outsiders; (ii) igualdade ao valor de continuação preserva a correspondência de
+voto; (iii) propostas com gifts continuam no espaço irrestrito e nos testes de
+desvio; e (iv) cada residual desconta todas as ofertas que seriam pagas se a
+proposta passasse. Vereditos finais: BF/formal PASS, auditoria adversarial PASS
+e R/reprodutibilidade/PDF PASS, todos sem ressalva substantiva.

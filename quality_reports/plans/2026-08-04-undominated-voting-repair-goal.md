@@ -2,7 +2,8 @@
 
 **Data:** 2026-08-04
 
-**Status inicial:** autorizado por GO explícito; execução em andamento
+**Status final:** CONCLUÍDO; três pareceres independentes deram PASS sem
+ressalva substantiva no candidato `5bd7fbe47f63f6b94ca4085852596f1d4ad9901c`
 
 **Addendum substantivo durante a rerevisão:** o usuário determinou que o
 baseline retenha coalizões vencedoras mínimas e não pague países fora da
@@ -168,3 +169,14 @@ existência e multiplicidade classificadas, entry e comparação institucional
 rederivadas, matriz de impacto sem pendência substantiva, scripts passando, PDF
 autônomo validado, três PASS independentes, hashes protegidos preservados e
 handoff explícito para o Goal 4. Nenhuma migração ao v6 pertence a este Goal.
+
+## Fechamento
+
+Todos os gates foram satisfeitos. O Gate 0, a indução retroativa, entry, a
+comparação institucional, as fronteiras e a seleção coalition-pure foram
+rederivados no documento autônomo. Os verificadores retornaram `137/137`,
+`10086/10086` e `2882/2882` PASS. O PDF de 21 páginas foi recompilado e
+inspecionado integralmente. Os três revisores finais permaneceram somente
+leitura e deram PASS no mesmo commit. Os arquivos v5/v6 e a derivação
+canônica anterior permaneceram inalterados. O Goal 4 é uma fase futura e exige
+autorização própria antes de qualquer edição do v6.
