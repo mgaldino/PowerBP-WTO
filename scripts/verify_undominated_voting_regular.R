@@ -453,6 +453,38 @@ record_check(
   sprintf("E=%.8f; B=%.8f", diag$M_E, diag$M_B_sup)
 )
 
+# Regular N=3 cap regression. Unrestricted weak PBE can attach a positive
+# subthreshold gift to a forced-no outsider solely to select high-H equality
+# acceptance. The coalition-pure baseline keeps the outsider at x=0 but still
+# checks the gift proposal as a feasible deviation.
+n3_beta <- 4 / 5
+n3_c <- n3_beta / 2
+n3_o0 <- 1 / 10
+n3_o1 <- 3 / 10
+n3_mu <- 1 / 2
+n3_P <- 1 - n3_o1
+n3_E <- 1 - n3_c
+n3_B <- (1 - n3_mu) * (1 - n3_o0) + n3_mu * n3_c
+n3_Z <- (1 - n3_mu) * n3_P + n3_mu * n3_c
+n3_x_gift <- 1 / 100
+n3_Q_gift <- n3_c +
+  (1 - n3_mu + n3_mu * 1) * (n3_P - n3_x_gift - n3_c)
+record_check(
+  "M_N3_cap_proposal_contingent_gift",
+  abs(n3_E - 3 / 5) < tol &&
+    abs(n3_B - 13 / 20) < tol &&
+    abs(n3_Z - 11 / 20) < tol &&
+    abs(n3_Q_gift - 69 / 100) < tol &&
+    n3_Q_gift > n3_B + tol &&
+    n3_B > n3_E + tol &&
+    n3_Z < n3_B - tol &&
+    n3_x_gift < n3_c,
+  sprintf(
+    "E=%.3f; B=%.3f; clean_Q=%.3f; gift_Q=%.3f; x=%.3f<c=%.3f",
+    n3_E, n3_B, n3_Z, n3_Q_gift, n3_x_gift, n3_c
+  )
+)
+
 tests <- do.call(rbind, checks)
 candidate_examples <- rbind(pure_example, weak_mix_example, semi_example)
 

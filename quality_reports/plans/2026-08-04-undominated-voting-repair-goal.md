@@ -4,6 +4,12 @@
 
 **Status inicial:** autorizado por GO explícito; execução em andamento
 
+**Addendum substantivo durante a rerevisão:** o usuário determinou que o
+baseline retenha coalizões vencedoras mínimas e não pague países fora da
+coalizão. A rederivação deve distinguir PBE-UD irrestrita da seleção
+coalition-pure, manter propostas com gifts como desvios factíveis e não impor
+voto sim quando um membro recebe exatamente seu valor de continuação.
+
 **Tag de entrada:** `pre-undominated-voting-repair-2026-08-04`
 
 **Commit protegido de referência:** `8692a6b31539d117134a580009d4e4dbe783403d`
@@ -64,10 +70,14 @@ model_redesign/power_architecture_derivations.Rmd
 - entry dos fracos coletiva e all-or-nothing;
 - comparação institucional somente no domínio comum de existência.
 
-Não são primitivos: coalizão mínima, voto como se pivotal, seleção sim na
-indiferença, redução P/L/R, `F_M`, `[F_M,1]`, No-Cheap-H, delayed continuation,
+Não são primitivos: voto como se pivotal, seleção sim na indiferença, redução
+P/L/R, `F_M`, `[F_M,1]`, No-Cheap-H, delayed continuation,
 hybrid exit, `t_theta`, `pi_H>0`, trembling-hand, coalition-proofness, escolha
 endógena da regra ou qualquer ordem de votação.
+
+A coalizão mínima não é presumida como consequência de PBE puro: ela entra,
+após a decisão posterior do usuário, como seleção coalition-pure explicitamente
+reportada ao lado da correspondência irrestrita.
 
 ## Objeto de solução e Gate 0
 

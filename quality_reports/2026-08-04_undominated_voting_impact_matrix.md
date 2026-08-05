@@ -59,7 +59,7 @@ admissibilidade local de votos fracamente não dominados, a migração precisa:
 
 | Linhas v6 | Objeto | Consequência PBE-UD | Classificação |
 |:--|:--|:--|:--|
-| 362–378 | Lema terminal U e equações 9–10 | Valor S(nu) apenas se um boundary maximizador for atingido; no teto com valor zero, rejeição é um máximo atingido | precisa de nova prova |
+| 362–378 | Lema terminal U e equações 9–10 | Valor S(nu) apenas se um boundary maximizador for atingido; no teto usar a correspondência proposal-contingent J_s, incluindo mistura fraca parcial e rejeição de valor zero | precisa de nova prova |
 | 380–392 | Proposição terminal M e equação 11 | Payoff 1/m sobrevive condicionado a suporte gratuito vencedor | sobrevive com reescrita |
 | 394–397 | R1 requer IC esperado | Permanece | sobrevive sem alteração |
 
@@ -80,7 +80,7 @@ admissibilidade local de votos fracamente não dominados, a migração precisa:
 |:--|:--|:--|:--|
 | 485–496 | k, c, E, B_M e F_M | Manter k, c, E; trocar B_M por B_UD e C_UD; remover F_M global | sobrevive com reescrita |
 | 497–502 | IC fraco M e equação 21 | Preservar fórmula e explicitar x<c, x=c, x>c | sobrevive com reescrita |
-| 506–511 | Caso N=3 | Adicionar seleção, cap, Q1 e attainment | sobrevive com reescrita |
+| 506–511 | Caso N=3 | Adicionar seleção, cap proposal-contingent Q_x e attainment; no baseline coalition-pure, outsider recebe zero | sobrevive com reescrita |
 | 512–518 | Existência N=4, equação 22 | Fórmula antiga é falsa sob PBE-UD | deve ser removido do baseline |
 | 519–533 | N>=5 sempre existe, intervalo e separação | Rejeitado; mesmo gate de N=4 e payoff de exclusão | deve ser removido do baseline |
 | 534–540 | Bounds via F_M, equação 25 | Substituir por igualdade em N>=4 e classes em N=3 | deve ser removido do baseline |
@@ -135,7 +135,7 @@ admissibilidade local de votos fracamente não dominados, a migração precisa:
 |:--|:--|:--|:--|
 | 1085–1135 | U em o0=0, C1–C3 | Reescrever por seleção e attainment | sobrevive com reescrita |
 | 1137–1154 | U em o1=1 | Não existência regular sobrevive, mas exige prova PBE-UD | precisa de nova prova |
-| 1156–1198 | Fronteira beta=1, C4–C6 | Thresholds e delay reentram; no teto, mistura parcial de H gera Q_1,N para todo N, não apenas N=3 | sobrevive com reescrita |
+| 1156–1198 | Fronteira beta=1, C4–C6 | Thresholds e delay reentram; no teto, mistura parcial de H gera Q_1,N para todo N, residual desconta todas as ofertas e a seleção coalition-pure zera gifts a outsiders | sobrevive com reescrita |
 | 1200–1225 | Floors M, C7–C8 | Rederivar como correspondência de attainment | precisa de nova prova |
 | 1227–1247 | Definição de limite unilateral, C9 | Permanece | sobrevive sem alteração |
 | 1249–1258 | Limites U, C10 | Recalcular sob o novo domínio | deve ser removido do baseline |

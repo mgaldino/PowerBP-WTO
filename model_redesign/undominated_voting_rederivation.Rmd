@@ -140,6 +140,10 @@ x_i^{WO}=1-\sum_{j\ne i}x_j.
 After opt-out, R2 proposals fix \(y=0\). A named offer is paid whenever the
 current proposal passes, even if its recipient voted no.
 
+The coalition-pure baseline selection defined below sets every weak
+outsider's named offer to zero. The implementation rule is retained so that
+non-coalition-pure proposals remain well-defined feasible deviations.
+
 ## Formation
 
 Before R1 recognition, the \(m\) weak states make a collective all-or-nothing
@@ -217,6 +221,27 @@ weak-vote-passive belief discipline; (iv) ballot strategies supported only on
 the local \(UD_i(I,\kappa)\) correspondence at every on- and off-path ballot;
 and (v) proposal optimality given the complete voting and continuation
 assessment. Admissibility does not replace sequential rationality.
+
+## Minimal-coalition baseline selection
+
+The baseline additionally reports a **coalition-pure PBE-UD** selection. An
+on-path proposal is coalition-pure when its intended winning support is
+inclusion-minimal, every weak state outside that support is offered zero, and
+every required supporter is offered at least its continuation value. A
+supporter may receive exactly its continuation value; whether it then votes
+yes surely or mixes remains part of the equality assessment. Under unanimity
+all nonproposers belong to the required support. Under majority, a proposal
+that passes with proposer plus \(H\) does not pay a weak outsider merely to
+label the proposal differently.
+
+This selection implements the substantive interpretation that the proposal
+divides the pie among members of a minimal winning coalition, with no gifts to
+countries whose votes do not affect passage. It is stated explicitly rather
+than falsely attributed to PBE alone: an unrestricted weak PBE can make an
+indifferent vote depend on a payoff-irrelevant gift. Such non-coalition-pure
+proposals remain feasible deviations when proposal optimality is checked, but
+they are not retained as baseline equilibrium outcomes. Whenever the
+unrestricted and coalition-pure correspondences differ, both are reported.
 
 ## Equality objects
 
@@ -373,42 +398,69 @@ by every required zero-paid weak voter. If the maximizing boundary is not
 attained, strict offers approach \(S(\nu)\) but no pure or mixed proposal
 attains it.
 
-At \(\bar y=o_1\), let \(\lambda_1\) be high-type acceptance at the cap. The
-cap target gives
+At \(\bar y=o_1\), equality behavior may depend on the complete cap proposal.
+For each feasible cap proposal \(s=(o_1,(x_j)_{j\ne i})\), define
 
 \[
-J(\lambda_1)=\{1-\nu+\nu\lambda_1\}P.
+R_s=1-o_1-\sum_{j\ne i}x_j,
+\qquad
+A_s=\Pr(\text{all weak nonproposers vote yes}\mid s),
+\]
+
+and let \(\lambda_{1,s}\) be high-type acceptance. Low \(H\) accepts surely.
+The actual cap payoff is
+
+\[
+J_s(\kappa)
+=A_s\{1-\nu+\nu\lambda_{1,s}\}R_s.
 \tag{14}\label{eq:r2-cap}
 \]
 
-Let \(e_L\) indicate that the low boundary is accepted surely by the low type
-and all required zero-paid weak voters, and let \(e_J\) indicate that all
-required zero-paid weak voters approve the cap surely. Set
+Let \(\overline J_\kappa\) be the supremum of \(J_s(\kappa)\) over all
+feasible cap proposals, set it to \(-\infty\) if the set is empty, and let
+\(e_J=1\) exactly when that supremum is attained. Let \(e_L\) indicate that
+the low boundary attains \(L(\nu)\). Set
 
 \[
-S_{\mathrm{cap}}(\nu,\lambda_1)
-=\max\{L(\nu),J(\lambda_1)\}.
+S_{\mathrm{cap}}^\kappa(\nu)
+=\max\{0,L(\nu),\overline J_\kappa\}.
 \]
 
 A cap PBE-UD exists if and only if
 
 \[
-\{S_{\mathrm{cap}}=0\}
+\{S_{\mathrm{cap}}^\kappa=0\}
 \quad\text{or}\quad
-\{L=S_{\mathrm{cap}}\text{ and }e_L=1\}
+\{L=S_{\mathrm{cap}}^\kappa\text{ and }e_L=1\}
 \quad\text{or}\quad
-\{J=S_{\mathrm{cap}}\text{ and }e_J=1\}.
+\{\overline J_\kappa=S_{\mathrm{cap}}^\kappa
+  \text{ and }e_J=1\}.
 \]
 
-Conditional on existence, the proposer obtains \(S_{\mathrm{cap}}\) and
-every weak state has ex ante value \(S_{\mathrm{cap}}/m\). In particular,
-partial high-type cap acceptance can produce
-\(L\leq J<P=S(\nu)\); the cap value is therefore not generally \(S(\nu)\).
-Existence and value are both assessment-dependent at the cap. When
-\(S_{\mathrm{cap}}=0\), rejection is the always-attained maximizing class;
-no boundary acceptance is required. For example, this exception applies at
-\(\nu=1\) when high \(H\) rejects the cap and every feasible agreement gives
-the proposer zero.
+Conditional on existence, the proposer obtains
+\(S_{\mathrm{cap}}^\kappa\). If an attained cap proposal \(s\) is selected,
+write \(p_s=A_s\{1-\nu+\nu\lambda_{1,s}\}\). Its total weak payoff is
+\(T_{W,2}^U(s)=p_sP\), so the collective ex ante average is
+\(p_sP/m\). This equals the proposer payoff divided by \(m\) only when
+\(R_s=P\), that is, when weak transfers are zero. A selected low-only class
+has total \(L\), and rejection has total zero. The zero-transfer,
+sure-weak-yes special case
+is \(J(\lambda_1)=\{1-\nu+\nu\lambda_1\}P\). Partial high acceptance or
+partial zero-paid weak passage can make an attained cap value strictly below
+that target and still uniquely optimal. Existence and value are therefore
+assessment-dependent at the cap. When \(S_{\mathrm{cap}}^\kappa=0\),
+rejection is the always-attained maximizing class; no boundary acceptance is
+required. For example, this exception applies at \(\nu=1\) when high \(H\)
+rejects the cap and every feasible agreement gives the proposer zero.
+
+The joint-passage term matters. With
+\(N=3,o_0=1/5,o_1=\bar y=3/5,\nu=3/4\), suppose the zero-paid weak voter
+approves with probability \(A_s=3/4\) and high \(H\) accepts the zero-transfer
+cap surely. Then \(L=1/5\), the counterfactual sure-weak-yes cap target is
+\(2/5\), but the attained payoff is \(J_s=3/10>L\). If high \(H\) rejects
+other cap proposals, this partially implemented cap can be the unique best
+response. The proposal-complete \(\overline J_\kappa\), unlike a sure-passage
+indicator, records it.
 
 **Proof.** Terminal single crossing leaves three outcome classes: rejection,
 low-only, and pooling. Rejection gives the proposer zero. Low-only proposals
@@ -418,12 +470,16 @@ with all required equality votes. Pooling proposals have supremum
 votes. Any positive weak transfer or excess concession lowers the relevant
 residual. Thus, with slack capacity, a best response exists exactly when a
 maximizing boundary attains \(S\); otherwise strict perturbations approach but
-do not attain it. At the cap, high-type acceptance \(\lambda_1\) changes the
-actual pooling target to \(J\), while the low target remains \(L\). The same
-attainment argument gives the displayed cap test whenever its value is
-positive. If both active targets are zero, rejection attains the maximum zero.
-Uniform recognition divides expected total weak surplus equally ex ante.
-\(\square\)
+do not attain it. At the cap, every pooling proposal's actual payoff is
+exactly \(J_s(\kappa)\): passage requires all weak votes and an accepting type
+of \(H\), and the implemented residual is \(R_s\). Taking the supremum over
+the proposal-contingent assessment and recording its attainment exhausts all
+cap proposals. The low-only supremum remains \(L\), because strict
+concessions and strictly positive weak offers approach it while forcing the
+required votes. If all active targets are zero, rejection attains the maximum.
+The total-payoff formula follows because every implemented cap agreement
+allocates the residual pie \(P\) among weak states; uniform recognition and
+symmetric support selection divide that total equally ex ante. \(\square\)
 
 ## Majority
 
@@ -477,7 +533,7 @@ its support attains.
 
 | Terminal subgame | Full correspondence / \(T^Y\) | Global \(T^N\) | Proper mixing at every required equality |
 |:--|:--|:--|:--|
-| U, \(H\) active | slack: \(S(\nu)\); cap: \(S_{\mathrm{cap}}\), each conditional on attainment | no PBE except zero-value cap rejection | no PBE unless one maximizing boundary is accepted surely or the cap value is zero |
+| U, \(H\) active | slack: \(S(\nu)\); cap: \(S_{\mathrm{cap}}^\kappa\), each conditional on attainment | no PBE except zero-value cap rejection | cap uses the attained proposal-contingent \(\overline J_\kappa\), including partial weak passage |
 | M, \(H\) active | zero-cost passage; proposer one | no PBE | no PBE unless \(z_W+z_H\geq k\) surely |
 | M, post-opt-out | weak-only passage; proposer one | no PBE | same sure-support condition |
 
@@ -719,21 +775,63 @@ payoff is \(\max\{E,B,C\}\).
 If \(\bar y=o_1\), strict pooling is unavailable. Set
 
 \[
-V_{\mathrm{cap}}=\max\{E,B,Q_1(\lambda_1)\}.
+Q_x(\kappa)
+=c+\{1-\mu+\mu\lambda_1(x)\}(P-x-c),
+\qquad 0\leq x<c,\quad x\leq P,
+\]
+
+where \(\lambda_1(x)\) is high-type acceptance at the complete cap proposal
+\((y=o_1,x)\). Let \(\overline Q_\kappa\) be the supremum of these values,
+with \(e_Q=1\) exactly when it is attained, and set
+
+\[
+V_{\mathrm{cap}}^\kappa
+=\max\{E,B,\overline Q_\kappa\}.
 \tag{29}\label{eq:m-n3-cap-value}
 \]
 
-Existence requires an attained maximizer: \(E=V_{\mathrm{cap}}\) with
-\(e=1\), \(B=V_{\mathrm{cap}}\) with \(\lambda_0=1\), or
-\(Q_1(\lambda_1)=V_{\mathrm{cap}}\). The cap class is attained even under
-partial high-type acceptance and can be uniquely optimal.
+An unrestricted PBE-UD exists exactly when a maximizer is attained:
+\(E=V_{\mathrm{cap}}^\kappa\) with \(e=1\),
+\(B=V_{\mathrm{cap}}^\kappa\) with \(\lambda_0=1\), or
+\(\overline Q_\kappa=V_{\mathrm{cap}}^\kappa\) with \(e_Q=1\).
+
+For the coalition-pure baseline, proposer plus \(H\) already form the
+minimal winning coalition, so the weak outsider must receive \(x=0\). Write
+\(Q_1(\lambda_1(0))=Q_x(\kappa)|_{x=0}\). A coalition-pure cap PBE-UD exists
+if and only if the unrestricted maximum is attained by exclusion, low-only, or
+this clean \(x=0\) cap proposal. An attained maximizer at \(x>0\) is an
+unrestricted no-vote gift equilibrium and is not retained in the baseline.
+Under global \(T^Y\), \(\lambda_1(x)=1\), so
+\(\overline Q_\kappa=C=P\) is attained at \(x=0\), and the unrestricted and
+coalition-pure values coincide.
+
+The distinction is observable in the regular primitive domain. Let
+\(\beta=4/5,o_0=1/10,o_1=\bar y=3/10,\mu=1/2\). Then
+\(c=2/5,E=3/5,B=13/20\). If high \(H\) accepts only the cap proposal with
+\(x=1/100<c\), that proposal gives the proposer \(69/100>B\) even though the
+weak outsider votes no. It is an unrestricted PBE-UD candidate. The
+coalition-pure baseline rejects that gift outcome because proposer plus \(H\)
+already meet the quota; the clean cap sets \(x=0\). Because the gift remains a
+feasible deviation, a coalition-pure equilibrium under that same assessment
+exists only if some clean coalition-pure class also attains the unrestricted
+maximum.
 
 **Proof.** Let \(x\) be the offer to the sole nonproposing weak voter. If
-\(x<c\), that voter chooses no, and the proposer maximizes within this region
-at \(x=0\). If \(x=c\), the weak voter may mix; if \(x>c\), the voter chooses
-yes surely, but any excess above \(c\) strictly reduces the proposer residual.
-Thus the only candidate values are exclusion, low-only, pooling, and their
-exact-threshold mixtures in \eqref{eq:m-n3-partial}.
+\(x<c\), that voter chooses no. At the cap, proposer plus an accepting \(H\)
+pass, while rejection leads to continuation \(c\); direct expectation gives
+\(Q_x(\kappa)\). Because the indifferent high type may condition on the full
+proposal, no proposal-independent \(\lambda_1\) permits setting \(x=0\)
+without loss. If \(x\geq c\), every implemented proposer residual, every
+weak-only residual after \(H=N\), and continuation are bounded above by
+\(E=1-c\). Thus \(E,B\), and the proposal-contingent cap family exhaust the
+cap.
+
+Away from the cap, strict pooling proposals with \(x=0\) and
+\(y\downarrow o_1\) approach \(C\) while forcing both types of \(H\) to
+accept. Exact cap proposals with arbitrary \(x\) cannot exceed
+\(\max\{C,c\}\leq\max\{E,C\}\). Hence the only relevant suprema remain
+exclusion, low-only, and pooling, together with their exact-threshold
+attainment conditions in \eqref{eq:m-n3-partial}.
 
 Because \(c<E\),
 
@@ -749,14 +847,14 @@ Moreover,
 Z=B-(1-\mu)(o_1-o_0)<B,
 \]
 
-so \(Q_1(\lambda_1)\leq\max\{B,C\}\). Therefore, away from the cap,
+so the clean \(Q_1(\lambda_1)\leq\max\{B,C\}\). Therefore, away from the cap,
 partial threshold acceptance cannot exceed \(V\); a maximizing class is a
 best response exactly when its required equality action is actually attained,
 which gives \eqref{eq:m-n3-existence}. At the cap, the actual class
-\(Q_1(\lambda_1)\) replaces the unavailable strict-pooling value \(C\) and is
-attained for every fixed \(\lambda_1\). The same comparison yields
-\eqref{eq:m-n3-cap-value} and its attainment test. A mixed proposer strategy
-adds only mixtures over pure actions that already attain the common maximum.
+is the full family \(Q_x(\kappa)\). Its supremum and attainment test yield
+\eqref{eq:m-n3-cap-value}. Coalition purity then retains only the clean
+\(x=0\) member when a cap class is on path. A mixed proposer strategy adds
+only mixtures over pure actions that already attain the common maximum.
 \(\square\)
 
 | \(N=3\) class | Total weak payoff \(T_W^M\) | Collective average \(T_W^M/2\) | Expected \(H\) payoff |
@@ -764,7 +862,7 @@ adds only mixtures over pure actions that already attain the common maximum.
 | Exclusion \(E\) | \(1\) | \(1/2\) | \(\bar o\) |
 | Low-only \(B\) | \((1-\mu)(1-o_0)+\mu\beta\) | total divided by \(2\) | \(\bar o\) |
 | Pooling \(C\) | \(P\) | \(P/2\) | \(o_1\) |
-| Cap \(Q_1\) | \((1-\mu)P+\mu\{\lambda_1P+(1-\lambda_1)\beta\}\) | total divided by \(2\) | \(o_1\) |
+| Coalition-pure cap \(Q_1(\lambda_1(0))\) | \((1-\mu)P+\mu\{\lambda_1(0)P+(1-\lambda_1(0))\beta\}\) | total divided by \(2\) | \(o_1\) |
 
 Table: Regular \(N=3\) majority payoff correspondence. \label{tab:m-n3-payoffs}
 
@@ -1171,8 +1269,9 @@ threshold-paid sure weak yes votes; attaining \(B_0\) requires the low type of
 \(H\) and the \(r\) threshold-paid weak supporters to vote yes surely. Under
 global \(T^Y\), both classes are attained. For \(N=3\), apply Theorem 2 with
 \(B_0\) in place of \(B\): use \(\max\{E,B_0,C\}\) off the cap and
-\(\max\{E,B_0,Q_1(\lambda_1)\}\) at the cap, always conditional on valid
-terminal support and the stated attainment test.
+\(\max\{E,B_0,\overline Q_\kappa\}\) at the cap, always conditional on valid
+terminal support and the stated unrestricted or coalition-pure attainment
+test.
 
 **Proof.** Setting \(o_0=0\) makes the low threshold an admissible equality
 and replaces the regular low supremum \(B\) by the attained value \(B_0\).
@@ -1180,7 +1279,8 @@ The support enumeration in Theorems 1 and 2 is otherwise unchanged. The
 strict pooling target remains nonattained off the cap, while Proposition 2's
 corrected free-support condition governs every reached terminal majority
 subgame, including a degenerate low posterior. Comparing the attained classes
-with \(C\), or with the actual cap class \(Q_1\), yields the stated tests.
+with \(C\), or with the proposal-contingent cap correspondence, yields the
+stated tests.
 \(\square\)
 
 ## \(o_1=1\), \(\beta<1\)
@@ -1283,10 +1383,13 @@ delay when \(E=c\), can support a tie at the maximum.
 At \(\bar y=o_1\), the pooling entry \(C=1-o_1-rc\) must instead be replaced
 for **every** \(N\), not only \(N=3\), by the actual cap correspondence. For
 a cap proposal with exactly \(r\) potentially approving weak supporters, let
-\(R_s=1-o_1-\sum_{j\in s}x_j\) be the current proposer residual, let
+\(R_s=1-o_1-\sum_{j\ne i}x_j\) be the current proposer residual, let
 \(A_s\) be the probability that all those supporters vote yes, and let
 \(\lambda_{1,s}\) be high-type acceptance at that proposal. Each supporter
 has \(x_j\geq c\); a strict offer forces yes, while \(x_j=c\) permits mixing.
+The residual subtracts every named offer, including any subthreshold offer to
+a forced-no outsider, because the contract pays named offers whenever the
+proposal passes.
 Low \(H\) votes yes surely because \(o_1>o_0\), whereas high \(H\) may mix at
 equality. The actual payoff is
 
@@ -1295,8 +1398,8 @@ Q_s(\kappa)
 =c+A_s\{1-\mu+\mu\lambda_{1,s}\}(R_s-c).
 \]
 
-For the canonical threshold package \(x_j=c\) for all \(r\) supporters,
-\(R_s=C\), and hence
+For the coalition-pure canonical threshold package \(x_j=c\) for all \(r\)
+supporters and zero for every outsider, \(R_s=C\), and hence
 
 \[
 Q_{1,N}(A,\lambda_1)
@@ -1329,8 +1432,13 @@ over feasible components. A full cap PBE-UD exists if and only if terminal
 free winning supports are valid and a component equal to
 \(V_{\mathrm{cap}}^\kappa\) is attained: exclusion (or delay when
 \(E=c\)), the exact low boundary for \(B\), or a cap proposal with
-\(e_Q=1\). Proposer mixing is only over attained pure maximizers. Under
-global \(T^Y\), \(A=\lambda_1=1\), so
+\(e_Q=1\). The coalition-pure baseline further requires that a maximizing cap
+proposal use exactly the \(r\) necessary weak supporters and pay every weak
+outsider zero. A cap supremum attained only by a positive gift to a forced-no
+outsider is recorded as an unrestricted PBE-UD but is not retained as a
+baseline outcome. Proposer mixing is only over attained pure maximizers.
+Under global \(T^Y\), \(A=\lambda_1=1\), outsider gifts only reduce the
+residual, so
 \(\overline Q_\kappa=C\), all feasible exact classes are attained, and
 \eqref{eq:m-beta1-value} follows.
 
@@ -1352,6 +1460,10 @@ Thus \(C>Q_{1,4}>B>E\). The full-acceptance value \(C\) is unavailable at
 the cap, but the partial cap class is attained and can be the unique proposer
 best response under a fixed assessment that selects high-type no at the other
 cap proposals. This is a PBE-UD possibility, not an \(N=3\) exception.
+If the same labeled proposal also gives a forced-no outsider
+\(1/50<c\), the correct residual lowers its payoff to \(441/1000<B\).
+This is why \(R_s\) subtracts all named offers even though the
+coalition-pure baseline sets outsider gifts to zero.
 
 A global \(T^N\) still has no full equilibrium because terminal majority
 lacks a proposer best response; any R1-no sensitivity with a valid terminal
@@ -1436,7 +1548,7 @@ The regular common domain consists of \eqref{eq:u-existence}, a valid
 terminal equality support, and the applicable majority existence condition:
 Theorem 1 for \(N\geq4\), or the attainment condition in Theorem 2 for
 \(N=3\). Because regular unanimity requires \(\bar y>o_1\), the \(N=3\)
-cap class \(Q_1\) lies outside this common regular domain.
+cap correspondence lies outside this common regular domain.
 
 **Proposition 4 (proved: regular entry nesting).** In every regular
 unanimity PBE-UD,
@@ -1540,14 +1652,15 @@ All computation is in new, separate R scripts:
 
 - **verify_undominated_voting_gate0.R**: finite ballot checks of the local
   dominance lemmas, the \(N=3\) exception, and the pooling-continuation
-  counterexample, plus the zero-value terminal rejection exception;
+  counterexample, plus zero-value rejection and proposal-contingent weak
+  mixing at the terminal-U cap;
 - **verify_undominated_voting_regular.R**: majority support enumeration,
   direct low-only and pooling branch assertions, regular existence identities,
-  \(N=5,q=3\), and three unanimity witnesses
+  \(N=5,q=3\), the \(N=3\) outsider-gift diagnostic, and three unanimity witnesses
   (strict pooling, pure-\(H\) weak mixing, and semi-pooling);
 - **verify_undominated_voting_boundaries.R**: \(o_0=0\), \(o_1=1\),
   \(\beta=1\), the all-\(N\) cap-mixing formula and \(N=4\)
-  counterexample, and one-sided-limit algebra, with every row labeled by its
+  no-gift/gift residual counterexamples, and one-sided-limit algebra, with every row labeled by its
   equality assessment where applicable;
 - **verify_undominated_voting_all.R**: orchestration wrapper.
 
@@ -1555,9 +1668,9 @@ The current generated checks report:
 
 | Verifier | Result | Evidentiary status |
 |:--|--:|:--|
-| Gate 0 finite ballots | 127/127 PASS | checked numerically |
-| Regular-domain identities and enumeration | 10085/10085 PASS | checked numerically |
-| Boundary identities | 2881/2881 PASS | checked numerically |
+| Gate 0 finite ballots | 137/137 PASS | checked numerically |
+| Regular-domain identities and enumeration | 10086/10086 PASS | checked numerically |
+| Boundary identities | 2882/2882 PASS | checked numerically |
 
 Table: Reproducible Goal 3 verification summary. \label{tab:verification}
 
@@ -1572,7 +1685,8 @@ identities; the general results rest on the analytical proofs above.
 | Object | Final status | Goal 3 conclusion |
 |:--|:--|:--|
 | Simultaneous sealed ballot | proved | preserved; no order of \(H\) exists |
-| Terminal U correspondence | proved | slack value \(S\); cap value \(S_{\mathrm{cap}}\), each conditional on attainment |
+| Terminal U correspondence | proved | slack value \(S\); cap value \(S_{\mathrm{cap}}^\kappa\), including partial weak passage and zero-value rejection |
+| Minimal-coalition baseline | proved | coalition-pure outcomes pay no weak outsider; unrestricted gift proposals remain in deviation checks |
 | Terminal M payoff | proved | unique conditional on endogenous free support, including the degenerate free-\(H\) exception |
 | Exact R1-U low-only | rejected | dominated \(H_0\)-yes on separating path |
 | Exact R1-U pooling | rejected | dominated \(H_1\)-yes |

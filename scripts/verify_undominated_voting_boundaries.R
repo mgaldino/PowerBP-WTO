@@ -117,6 +117,7 @@ o0_zero_row <- function(N, beta, o1, mu, bar_y) {
     M_value = M_value_TY,
     A_cap = NA_real_,
     lambda1_cap = NA_real_,
+    outsider_waste = NA_real_,
     checked_on = checked_on,
     source = source_note,
     stringsAsFactors = FALSE
@@ -172,28 +173,33 @@ beta_one_row <- function(N, o0, o1, mu, bar_y) {
     M_value = M_value,
     A_cap = 1,
     lambda1_cap = 1,
+    outsider_waste = 0,
     checked_on = checked_on,
     source = source_note,
     stringsAsFactors = FALSE
   )
 }
 
-beta_one_cap_mixing_row <- function(N, o0, o1, mu, A, lambda1) {
+beta_one_cap_mixing_row <- function(
+  N, o0, o1, mu, A, lambda1, outsider_waste = 0
+) {
   g <- geometry(N, 1)
   stopifnot(
     o0 >= 0, o0 < o1, o1 <= 1,
     mu > 0, mu < 1,
     A >= 0, A <= 1,
     lambda1 >= 0, lambda1 <= 1,
+    outsider_waste >= 0,
     N > 3 || abs(A - 1) < tol
   )
 
   B <- (1 - mu) * (1 - o0 - g$r * g$c) + mu * g$c
   D_over <- g$E - (1 - mu) * o0
   C <- 1 - o1 - g$r * g$c
-  cap_feasible <- C >= -tol
+  R_cap <- C - outsider_waste
+  cap_feasible <- R_cap >= -tol
   Q_cap <- if (cap_feasible) {
-    g$c + A * (1 - mu + mu * lambda1) * (C - g$c)
+    g$c + A * (1 - mu + mu * lambda1) * (R_cap - g$c)
   } else {
     -Inf
   }
@@ -217,10 +223,18 @@ beta_one_cap_mixing_row <- function(N, o0, o1, mu, A, lambda1) {
 
   data.frame(
     boundary = "beta=1,cap",
-    selection = if (abs(A - 1) < tol && abs(lambda1 - 1) < tol) {
+    selection = if (
+      abs(A - 1) < tol && abs(lambda1 - 1) < tol &&
+        abs(outsider_waste) < tol
+    ) {
       "global_TY_cap"
     } else {
-      sprintf("cap_formula_A=%.2f_lambda1=%.2f", A, lambda1)
+      sprintf(
+        "cap_formula_A=%.2f_lambda1=%.2f_waste=%.3f",
+        A,
+        lambda1,
+        outsider_waste
+      )
     },
     N = N,
     beta = 1,
@@ -233,11 +247,15 @@ beta_one_cap_mixing_row <- function(N, o0, o1, mu, A, lambda1) {
     U_exists = NA,
     U_class = NA_character_,
     U_value_floor = NA_real_,
-    M_exists = if (abs(A - 1) < tol && abs(lambda1 - 1) < tol) TRUE else NA,
+    M_exists = if (
+      abs(A - 1) < tol && abs(lambda1 - 1) < tol &&
+        abs(outsider_waste) < tol
+    ) TRUE else NA,
     M_class = M_class,
     M_value = M_value,
     A_cap = A,
     lambda1_cap = lambda1,
+    outsider_waste = outsider_waste,
     checked_on = checked_on,
     source = source_note,
     stringsAsFactors = FALSE
@@ -294,6 +312,7 @@ o1_one_row <- function(N, beta, o0, mu) {
     M_value = M_value,
     A_cap = NA_real_,
     lambda1_cap = NA_real_,
+    outsider_waste = NA_real_,
     checked_on = checked_on,
     source = source_note,
     stringsAsFactors = FALSE
@@ -401,6 +420,31 @@ record_check(
   sprintf(
     "E=%.8f; B=%.8f; C=%.8f; Q=%.8f; class=%s",
     counter_g$E, counter_B, counter_C, counter_Q, counter$M_class
+  )
+)
+
+# The current residual subtracts every named offer, even a subthreshold gift
+# to a forced-no outsider. This regression would reverse the existence ranking
+# if the gift were omitted from the residual.
+waste_counter <- beta_one_cap_mixing_row(
+  N = 4, o0 = 1 / 10, o1 = 1 / 5, mu = 1 / 2,
+  A = 1, lambda1 = 9 / 10, outsider_waste = 1 / 50
+)
+records[[length(records) + 1L]] <- waste_counter
+waste_Q <- counter_g$c +
+  (1 - 1 / 2 + (1 / 2) * 9 / 10) *
+    (counter_C - 1 / 50 - counter_g$c)
+record_check(
+  "beta1_cap_N4_subthreshold_outsider_gift",
+  abs(waste_Q - 441 / 1000) < tol &&
+    abs(waste_counter$M_value - counter_B) < tol &&
+    waste_counter$M_class == "low_only" &&
+    counter_Q > counter_B + tol &&
+    counter_B > waste_Q + tol &&
+    waste_Q > counter_g$E + tol,
+  sprintf(
+    "no_gift_Q=%.8f; B=%.8f; gift_Q=%.8f; class=%s",
+    counter_Q, counter_B, waste_Q, waste_counter$M_class
   )
 )
 

@@ -215,6 +215,57 @@ record_check(
   sprintf("L=%.3f; J=%.3f; slack_S=%.3f", L_cap, J_cap, S_cap_slack)
 )
 
+# Proposal-complete terminal-U cap formula. Both high-H acceptance and the
+# joint weak passage probability may vary at equality across cap proposals.
+nu_cap_grid <- 0.75
+R_cap_grid <- 0.4
+for (A_cap_grid in c(0.25, 0.75, 1)) {
+  for (lambda_cap_grid in c(0, 0.5, 1)) {
+    reduced <- A_cap_grid *
+      (1 - nu_cap_grid + nu_cap_grid * lambda_cap_grid) * R_cap_grid
+    enumerated <- (1 - nu_cap_grid) * A_cap_grid * R_cap_grid +
+      nu_cap_grid * lambda_cap_grid * A_cap_grid * R_cap_grid
+    record_check(
+      sprintf(
+        "R2_U_cap_joint_formula_A%s_l%s",
+        A_cap_grid,
+        lambda_cap_grid
+      ),
+      "terminal U cap",
+      abs(reduced - enumerated) < tol,
+      sprintf("reduced=%.3f; enumerated=%.3f", reduced, enumerated)
+    )
+  }
+}
+
+# Adversarial regression: a zero-transfer cap with partial weak passage can be
+# an attained maximizer even though the sure-passage target is not attained.
+o0_weak_mix <- 1 / 5
+o1_weak_mix <- 3 / 5
+nu_weak_mix <- 3 / 4
+A_weak_mix <- 3 / 4
+lambda_weak_mix <- 1
+P_weak_mix <- 1 - o1_weak_mix
+L_weak_mix <- (1 - nu_weak_mix) * (1 - o0_weak_mix)
+J_sure_weak_mix <- (1 - nu_weak_mix +
+  nu_weak_mix * lambda_weak_mix) * P_weak_mix
+J_actual_weak_mix <- A_weak_mix * J_sure_weak_mix
+record_check(
+  "R2_U_cap_partial_weak_maximizer",
+  "terminal U cap",
+  abs(L_weak_mix - 1 / 5) < tol &&
+    abs(J_sure_weak_mix - 2 / 5) < tol &&
+    abs(J_actual_weak_mix - 3 / 10) < tol &&
+    J_sure_weak_mix > J_actual_weak_mix + tol &&
+    J_actual_weak_mix > L_weak_mix + tol,
+  sprintf(
+    "L=%.3f; sure_J=%.3f; actual_J=%.3f",
+    L_weak_mix,
+    J_sure_weak_mix,
+    J_actual_weak_mix
+  )
+)
+
 # Terminal-U zero-surplus exception: rejection is an attained maximizer even
 # when neither boundary class is implemented.
 o0_zero_value <- 0.2

@@ -2,7 +2,8 @@
 
 **Data:** 2026-08-04
 
-**Status:** PASS após stress test terminal, reparo e rerevisão independente
+**Status:** REABERTO após decisão substantiva do usuário sobre coalizão mínima;
+reparo candidato pendente de rerevisão independente
 
 **Escopo:** baseline limpo `pi_H=0`; nenhum resultado do v6 é presumido
 
@@ -50,6 +51,28 @@ Se `H` participa e a proposta passa, `H` recebe `y`; cada fraco nomeado recebe
 aprova, `y` é reabsorvido pelo proponente e o orçamento fraco continua igual a
 um. Ofertas nomeadas são pagas quando a proposta passa mesmo que o destinatário
 tenha votado não.
+
+### 2.1 Seleção de coalizão mínima e ausência de gifts
+
+Por decisão substantiva do usuário durante a rerevisão final, o baseline
+reporta separadamente uma seleção de **PBE-UD coalition-pure**. Em toda
+proposta on-path retida no baseline:
+
+1. o suporte vencedor pretendido é inclusion-minimal;
+2. todo fraco fora desse suporte recebe `x_j=0`;
+3. todo apoiador necessário recebe ao menos seu valor de continuação;
+4. receber exatamente o valor de continuação mantém a correspondência de
+   igualdade: o voto sim é admissível, mas não é imposto como certo;
+5. sob unanimidade, todos os não proponentes integram o suporte necessário;
+6. sob maioria, uma proposta que já passa com proponente mais `H` não paga um
+   fraco outsider apenas para alterar o rótulo público da proposta.
+
+Essa disciplina não é atribuída indevidamente a PBE puro. Sob PBE fraco, um
+voto indiferente pode depender de uma transferência payoff-irrelevant a
+terceiro e sustentar um resultado com desperdício. Tais propostas continuam no
+espaço de desvios e entram no teste de optimalidade do proponente, mas não são
+retidas como outcomes do baseline coalition-pure. Quando a correspondência
+PBE-UD irrestrita divergir da seleção coalition-pure, ambas serão registradas.
 
 As quotas originais são
 
@@ -246,6 +269,10 @@ Admissibilidade não substitui racionalidade sequencial. Uma ação pode ser uma
 melhor resposta fraca no perfil de equilíbrio e, ainda assim, ser excluída por
 dominância em uma contingência factível fora desse perfil.
 
+Uma **PBE-UD coalition-pure** é uma PBE-UD que adicionalmente satisfaz a
+seleção da Seção 2.1 em toda proposta on-path. A pureza de coalizão restringe o
+outcome selecionado, não elimina desvios factíveis do teste de proposta ótima.
+
 ## 7. Lemas locais
 
 ### Lema G0.1 — Ballot terminal de um fraco (`proved`)
@@ -431,6 +458,9 @@ O revisor terminal confirmou em passe somente leitura que a nova implicação
 decorre do Lema G0.4, que o contraexemplo pooling ficou corretamente excluído
 da conclusão automática e que a exceção `M,N=3` está correta.
 
-**Gate 0 final:** **PASS** após rerevisão. Os pareceres anteriores e o stress
-test permanecem registrados como trilha de reparo; nenhum deles substitui os
-três pareceres finais sobre a versão candidata completa.
+**Fechamento anterior do Gate 0:** o PASS acima permanece como trilha válida
+para a disciplina local de voto, mas foi reaberto apenas no componente de
+seleção de proposta pela decisão coalition-pure da Seção 2.1. O fechamento
+atual depende de rerevisão da correspondência proposal-contingent e da prova de
+que gifts a outsiders não entram nos outcomes selecionados nem são omitidos do
+conjunto de desvios.
