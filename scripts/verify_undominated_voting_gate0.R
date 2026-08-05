@@ -183,6 +183,50 @@ for (x in c(0.1, 0.2, 0.3)) {
   record_check(id, "scalar weak voter", expected, detail)
 }
 
+# Feasible-but-zero-probability pivotality is not enough for strict interim
+# dominance. With a degenerate posterior assigning zero probability to every
+# pivotal state, both votes remain payoff-equivalent even when x != c_j.
+zero_pivotal_deltas <- c(0, 0, 0) * (0.3 - 0.2)
+record_check(
+  "G0.3_zero_interim_pivotality",
+  "scalar weak voter caveat",
+  all(abs(zero_pivotal_deltas) < tol),
+  "feasible pivotal state has zero interim mass; no action is strictly dominated"
+)
+
+# Terminal-U cap regression: partial high acceptance can make the attained cap
+# value strictly smaller than S while still beating the low-only target.
+o0_cap <- 0.2
+o1_cap <- 0.6
+nu_cap <- 0.75
+lambda1_cap <- 0.5
+L_cap <- (1 - nu_cap) * (1 - o0_cap)
+P_cap <- 1 - o1_cap
+S_cap_slack <- max(L_cap, P_cap)
+J_cap <- (1 - nu_cap + nu_cap * lambda1_cap) * P_cap
+record_check(
+  "R2_U_cap_partial_value",
+  "terminal U cap",
+  J_cap + tol >= L_cap && J_cap < S_cap_slack - tol,
+  sprintf("L=%.3f; J=%.3f; slack_S=%.3f", L_cap, J_cap, S_cap_slack)
+)
+
+# Terminal-M free support can include H only at the degenerate low posterior
+# with o0=0 and a sure yes equality action. This saves exactly one weak vote.
+for (N in 3:10) {
+  q_value <- quota(N, "M")
+  k_value <- q_value - 1L
+  r_value <- q_value - 2L
+  pass_with_h <- 1L + 1L + r_value >= q_value
+  fail_without_h <- 1L + r_value < q_value
+  record_check(
+    sprintf("R2_M_free_H_support_N%s", N),
+    "terminal M degenerate low posterior",
+    pass_with_h && fail_without_h && r_value == k_value - 1L,
+    sprintf("q=%s; weak_with_H=%s; regular_weak=%s", q_value, r_value, k_value)
+  )
+}
+
 results <- do.call(rbind, records)
 dir.create(dirname(out_path), recursive = TRUE, showWarnings = FALSE)
 utils::write.csv(results, out_path, row.names = FALSE, fileEncoding = "UTF-8")

@@ -74,6 +74,11 @@ payoffs are zero. The payoff \(o_\theta\) is external to that pie. The
 baseline fixes \(\pi_H=0\) and \(b_\theta=0\) in both rounds. A current
 agreement that includes \(H\) pays it \(y\).
 
+Nature draws the persistent type before R1; only \(H\) observes it. In every
+reached round, a new weak proposer is recognized uniformly and independently,
+so each weak state has recognition probability \(1/m\). Before R1 recognition,
+the weak states make the collective formation decision described below.
+
 The exogenous rule is \(R\in\{U,M\}\), with quotas
 
 \[
@@ -94,6 +99,13 @@ irreversibly. Under unanimity that ends the branch. Under majority, a current
 weak-only agreement passes if weak yes votes reach \(q\); otherwise R2 is a
 weak-only continuation. If \(H\) votes yes but weak votes cause failure,
 \(H\) remains active and R2 follows. R2 is terminal.
+
+The original quota \(q\) is not recalculated after opt-out. All R2 flows are
+multiplied by \(\beta\) in R1 units. If \(H\) is active and an R2 ballot
+fails, type \(\theta\) receives \(o_\theta\) at the R2 date and weak states
+receive zero, regardless of \(H\)'s R2 vote. If \(H\) opted out in R1, it
+receives no additional R2 flow. Continuation strategies and beliefs may depend
+on the complete public post-closure vector, but never on votes before closure.
 
 ## Proposals and budgets
 
@@ -144,12 +156,27 @@ When asymmetric transfers are allowed, \(T_W^R/m\) remains the collective
 average used by the formation primitive; it is not an individual entry claim
 for every realized coalition partner.
 
+If the institution does not form, every weak state receives zero and type
+\(\theta\) of \(H\) receives \(o_\theta\).
+
+For any selected collective value \(v_R\), define the formation set
+
+\[
+\mathcal F_R(v_R)=\{\chi\geq0:\chi\leq v_R\}.
+\]
+
 # Solution concept
 
 Fix a candidate continuation assessment \(\kappa\). The same \(\kappa\) is
 used to evaluate both votes against every feasible pure profile of the other
 voters. Beliefs and continuation strategies are not re-solved separately for
 each counterfactual profile. They must recursively satisfy PBE-UD.
+
+The weak-vote-passive assessment is a belief discipline: an uninformed weak
+state's unilateral vote deviation is not treated as a direct signal of
+\(\theta\). A type-contingent action of \(H\) may update beliefs after the
+ballot closes, and Bayes' rule applies whenever possible. This belief
+discipline neither deletes a ballot action nor selects a vote at indifference.
 
 For an uninformed weak voter \(j\), let \(\Omega_{-j}(I)\) contain all feasible
 pure plans of the other weak voters and all type-contingent plans of \(H\).
@@ -182,8 +209,12 @@ For \(H\), the comparison is type-specific:
 \]
 
 where \(v_W\) is a counterfactual weak vector, not an observed vector. A
-PBE-UD is a PBE whose behavioral ballot strategy places positive probability
-only on locally undominated votes.
+PBE-UD is an assessment satisfying: (i) sequential rationality at every
+information set; (ii) Bayes consistency whenever possible; (iii) the declared
+weak-vote-passive belief discipline; (iv) ballot strategies supported only on
+the local \(UD_i(I,\kappa)\) correspondence at every on- and off-path ballot;
+and (v) proposal optimality given the complete voting and continuation
+assessment. Admissibility does not replace sequential rationality.
 
 ## Equality objects
 
@@ -193,6 +224,12 @@ selections are then reported:
 1. \(T^Y\): yes at every voting indifference;
 2. \(T^N\): no at every voting indifference;
 3. \(T^p\): an explicitly stated behavioral mixture.
+
+A proposal class is **attained** under a fixed assessment when its stated
+target payoff is achieved by an available pure proposal and the required
+equality actions, rather than only approached by a strict sequence. For a cap
+class, the target already incorporates the fixed marginal-type acceptance
+probability.
 
 Proposer indifference is separate. Among proposal payoff ties, the legacy
 selection minimizes \(H\)'s expected payoff; the opposite selection maximizes
@@ -219,10 +256,23 @@ y>o_\theta\Rightarrow UD_H(\theta)=\{Y\},
 
 while \(y=o_\theta\) leaves both votes admissible.
 
+**Proof.** If \(H\)'s vote does not change terminal implementation, both
+actions deliver the same terminal outside payoff. A feasible pivotal weak
+vector exists; on it, yes gives \(y\) and no gives \(o_\theta\), with the
+common R2 discount multiplying both. The sign of \(y-o_\theta\) therefore
+gives the stated correspondence. \(\square\)
+
 **Lemma 3 (proved, conditional scalar reduction).** Suppose a weak voter's
 actions differ only in pivotal profiles; pivotal yes implements \(x_j\);
-pivotal no always produces the same continuation \(c_j\); and a pivotal
-profile is feasible. Then
+pivotal no always produces the same continuation \(c_j\); and there exists a
+profile \(\omega_{-j}\) with positive interim probability of pivotality,
+
+\[
+\sum_\theta\nu_I(\theta)
+\mathbf 1\{j\text{ is pivotal under }(\omega_{-j},\theta)\}>0.
+\]
+
+Then
 
 \[
 x_j<c_j\Rightarrow UD_j=\{N\},
@@ -234,9 +284,17 @@ x_j>c_j\Rightarrow UD_j=\{Y\},
 and equality leaves both votes admissible. This lemma is not used if public
 vote vectors induce different continuation values.
 
+**Proof.** For every counterfactual profile, nonpivotal states contribute
+zero to the payoff difference and pivotal states contribute \(x_j-c_j\).
+Hence \(\Delta_j(\omega_{-j})=p_j(\omega_{-j})(x_j-c_j)\), where
+\(p_j\geq0\), and the displayed condition supplies a profile with \(p_j>0\).
+The weak-dominance conclusions follow immediately. \(\square\)
+
 For an R1 vote by \(H\), let \(V_\theta(v_W)\) equal \(y\) after current
 implementation and
 \(\beta C_{H,2}^R(\theta,h_2(Y,v_W))\) after weak-caused failure.
+Here \(h_2(Y,v_W)\) is the complete public post-closure history induced by
+the current sealed ballot, not information observed during voting.
 
 **Lemma 4 (proved: R1 \(H\) min--max test).** Vote \(Y\) is dominated by
 opt-out exactly when
@@ -251,6 +309,20 @@ opt-out exactly when
 The reverse weak inequalities, with at least one strict, characterize
 domination of opt-out. Otherwise both votes are locally admissible and PBE
 expected incentives decide their use.
+
+Equivalently, opt-out is dominated by yes exactly when
+
+\[
+\min_{v_W}V_\theta(v_W)\geq o_\theta
+\quad\text{and}\quad
+\max_{v_W}V_\theta(v_W)>o_\theta.
+\]
+
+**Proof.** In R1, no gives the constant \(o_\theta\) against every weak
+vector, while yes gives \(V_\theta(v_W)\). Thus yes is weakly dominated
+exactly when every value of \(V_\theta\) is no larger than \(o_\theta\) and
+at least one is smaller. Reversing the inequalities gives domination of no.
+\(\square\)
 
 An exact offer \(y=o_0\) is not automatically rejected: an R2 pooling
 continuation can pay the low type \(o_1\), and \(\beta o_1\) may exceed
@@ -272,12 +344,16 @@ S(\nu)=\max\{L(\nu),P\}.
 
 ## Unanimity with \(H\) active
 
-**Proposition 1 (proved, conditional value).** Every terminal unanimity
-PBE-UD, if one exists, gives the recognized proposer \(S(\nu)\) and each weak
-state ex ante value \(S(\nu)/m\). Under \(T^Y\), low-only at
-\(y=o_0,x=0\) is selected when \(L(\nu)>P\), pooling at
-\(y=o_1,x=0\) when \(P>L(\nu)\), and both classes are available at equality.
-The cutoff is
+**Proposition 1 (proved: terminal unanimity correspondence).** If
+\(\bar y>o_1\), a terminal unanimity PBE-UD exists if and only if at least one
+class attaining \(S(\nu)\) is implemented with probability one by its
+marginal type of \(H\) and every required zero-paid weak voter. Conditional
+on existence, the recognized proposer obtains \(S(\nu)\) and every weak state
+has ex ante value \(S(\nu)/m\).
+
+Under \(T^Y\), low-only at \(y=o_0,x_j=0\) is selected when
+\(L(\nu)>P\), pooling at \(y=o_1,x_j=0\) when \(P>L(\nu)\), and both
+classes are available at equality. The cutoff is
 
 \[
 \nu_2^*=\frac{o_1-o_0}{1-o_0}.
@@ -296,25 +372,71 @@ attained, strict offers approach \(S(\nu)\) but no pure or mixed proposal
 attains it.
 
 At \(\bar y=o_1\), let \(\lambda_1\) be high-type acceptance at the cap. The
-cap proposal gives
+cap target gives
 
 \[
 J(\lambda_1)=\{1-\nu+\nu\lambda_1\}P.
 \tag{14}\label{eq:r2-cap}
 \]
 
-It is optimal if \(J(\lambda_1)\geq L(\nu)\); otherwise the low boundary must
-be attained. Thus the value is unique conditional on existence, but existence
-is not selection-free.
+Let \(e_L\) indicate that the low boundary is accepted surely by the low type
+and all required zero-paid weak voters, and let \(e_J\) indicate that all
+required zero-paid weak voters approve the cap surely. Set
+
+\[
+S_{\mathrm{cap}}(\nu,\lambda_1)
+=\max\{L(\nu),J(\lambda_1)\}.
+\]
+
+A cap PBE-UD exists if and only if
+
+\[
+\{L=S_{\mathrm{cap}}\text{ and }e_L=1\}
+\quad\text{or}\quad
+\{J=S_{\mathrm{cap}}\text{ and }e_J=1\}.
+\]
+
+Conditional on existence, the proposer obtains \(S_{\mathrm{cap}}\) and
+every weak state has ex ante value \(S_{\mathrm{cap}}/m\). In particular,
+partial high-type cap acceptance can produce
+\(L\leq J<P=S(\nu)\); the cap value is therefore not generally \(S(\nu)\).
+Existence and value are both assessment-dependent at the cap.
+
+**Proof.** Terminal single crossing leaves three outcome classes: rejection,
+low-only, and pooling. Rejection gives the proposer zero. Low-only proposals
+have supremum \((1-\nu)(1-o_0)=L(\nu)\), attained only at the low boundary
+with all required equality votes. Pooling proposals have supremum
+\(1-o_1=P\), attained only at the pooling boundary with all required equality
+votes. Any positive weak transfer or excess concession lowers the relevant
+residual. Thus, with slack capacity, a best response exists exactly when a
+maximizing boundary attains \(S\); otherwise strict perturbations approach but
+do not attain it. At the cap, high-type acceptance \(\lambda_1\) changes the
+actual pooling target to \(J\), while the low target remains \(L\). The same
+attainment argument gives the displayed cap test. Uniform recognition divides
+expected total weak surplus equally ex ante. \(\square\)
 
 ## Majority
 
 Let \(k=q-1\), the number of nonproposing weak yes votes required when \(H\)
 does not count.
 
+At a terminal majority proposal, call a set of zero-paid nonproposer votes a
+**free winning support** when those votes are cast yes with probability one
+and, together with the proposer's automatic yes, reach \(q\) in every type
+with positive posterior probability. Let \(z_W\) be the number of zero-paid
+weak sure yes votes. When \(H\) is active, let \(z_H=1\) if \(H\) accepts
+\(y=0\) surely for every posterior-supported type, and set \(z_H=0\)
+otherwise. Given \(o_0<o_1\), \(z_H=1\) is possible only at
+\(o_0=0,\nu=0\) under a yes equality action by the low type. After opt-out,
+set \(z_H=0\).
+
 **Proposition 2 (proved).** A terminal majority PBE-UD exists if and only if
-at least \(k\) zero-paid nonproposers vote yes with probability one. Every such
-equilibrium gives
+
+\[
+z_W+z_H\geq k.
+\]
+
+Every such equilibrium gives
 
 \[
 C_{W,2}^M=\frac1m,
@@ -323,13 +445,19 @@ C_{H,2}^M(\theta)=o_\theta,
 \tag{15}\label{eq:r2-majority}
 \]
 
-with proposer payoff one and total weak payoff one. The same result applies
-after R1 opt-out, except that \(H\) receives no new R2 flow.
+with proposer payoff one and total weak payoff one. On the regular domain and
+after R1 opt-out, \(z_H=0\), so the condition reduces to \(k\) zero-paid weak
+sure yes votes. If \(o_0=0,\nu=0\) and low \(H\) votes yes at equality, only
+\(q-2\) such weak votes are required; for \(N=3\), none is required. After R1
+opt-out, \(H\) receives no new R2 flow.
 
 **Proof.** Paying \(\varepsilon>0\) to any \(k\) weak voters forces their yes
 votes and gives the proposer \(1-k\varepsilon\). Hence a best response must
-attain one. Attainment requires zero total offers and sure weak-only passage,
-which is possible exactly with a free winning support of \(k\) voters.
+attain one. Attainment requires zero total offers and sure passage in every
+posterior-supported type. The proposer already supplies one vote; the
+zero-cost sure votes of \(H\) and the weak nonproposers supply exactly
+\(z_H+z_W\). Thus attainment is possible exactly under the displayed support
+condition.
 \(\square\)
 
 Under \(T^Y\) this support exists. Under global \(T^N\), or a proper mix that
@@ -339,8 +467,8 @@ its support attains.
 
 | Terminal subgame | Full correspondence / \(T^Y\) | Global \(T^N\) | Proper mixing at every required equality |
 |:--|:--|:--|:--|
-| U, \(H\) active | Value \(S(\nu)\) if a maximizing boundary is attained | no PBE | no PBE unless one maximizing boundary is accepted surely |
-| M, \(H\) active | weak-only passage; proposer one | no PBE | no PBE unless \(k\) zero-paid voters approve surely |
+| U, \(H\) active | slack: \(S(\nu)\); cap: \(S_{\mathrm{cap}}\), each conditional on attainment | no PBE | no PBE unless one maximizing boundary is accepted surely |
+| M, \(H\) active | zero-cost passage; proposer one | no PBE | no PBE unless \(z_W+z_H\geq k\) surely |
 | M, post-opt-out | weak-only passage; proposer one | no PBE | same sure-support condition |
 
 Table: Terminal PBE-UD existence and equality sensitivity. \label{tab:r2-sensitivity}
@@ -489,6 +617,9 @@ threshold-paid weak voters only convexifies these conditional values and
 cannot exceed \(\max\{E,B,C\}\). Likewise, a proposer mixture can be optimal
 only if every pure proposal in its support attains the same maximum.
 
+This conditioning is an ex post partition used by the proof. No voter observes
+or conditions on another current-ballot action before choosing its own vote.
+
 It follows that \(E\) is a best response exactly under
 \eqref{eq:m-existence}. If either strict supremum exceeds \(E\), no pure
 action attains the global supremum, and neither voter mixing nor proposer
@@ -545,7 +676,8 @@ Z&=(1-\mu)C+\mu c.
 
 Let \(\lambda_0\) be low-type acceptance at \(y=o_0\),
 \(\lambda_1\) high-type acceptance at \(y=o_1\), and let \(e=1\) when an
-exclusion proposal at \(x=c\) is supported by a sure weak yes. Exact-threshold
+exclusion proposal at \(x=c\) is supported by a sure weak yes, with
+\(e\in\{0,1\}\). Exact-threshold
 payoffs are
 
 \[
@@ -688,10 +820,21 @@ The second is approached by strict pooling proposals
 unanimity PBE-UD gives the recognized proposer at least the applicable floor
 in \eqref{eq:u-security}. Conversely, an on-path candidate satisfying Bayes'
 rule, all vote ICs, local PBE-UD, budget feasibility, and proposer payoff at
-least \(K(\mu)\) can be completed as a weak PBE-UD when
+least \(K(\mu)\) can be completed as a PBE-UD under the declared weak-PBE
+off-path assessment when
 \(\bar y>o_1\).
 
-**Completion.** At every globally off-path proposal, assign probability one
+**Security proof.** Terminal weak continuation never exceeds \(D/m\). For
+every \(\varepsilon>0\), a strict low-only deviation sets
+\(y=o_0+\varepsilon\) and pays each weak nonproposer slightly more than
+\(\beta D/m\), forcing all weak yes votes and yielding proposer payoff
+arbitrarily close to \(a(1-\mu)D\). When \(\bar y>o_1\), the analogous
+strict pooling deviation sets \(y=o_1+\varepsilon\) and approaches
+\(P-\delta D\). An equilibrium proposal is a best response and therefore
+cannot pay less than the supremum of these guaranteed deviations. At the cap,
+the strict pooling deviation is infeasible and that component is absent.
+
+**Completion proof.** At every globally off-path proposal, assign probability one
 to the low type both at its ballot and after every \(H=Y\), weak-failure
 history. Select terminal low-only and yes at its required equalities. This
 gives weak continuation \(\beta D/m\). A weak voter offered less votes no;
@@ -702,7 +845,8 @@ second. This completes every deviation at no more than \(K\).
 
 This construction uses the declared freedom of weak PBE at globally off-path
 proposals. It is not robustly claimed for sequential equilibrium, and it does
-not follow from weak-vote-passive beliefs alone.
+not follow from weak-vote-passive beliefs alone. Together, the two arguments
+prove the lemma. \(\square\)
 
 ## Exact reduced system
 
@@ -980,6 +1124,17 @@ high-participation equilibria also exist when \(\bar y>o_1\) and
 Thus at least one unanimity PBE-UD exists everywhere on this boundary under
 \(T^Y\), though the correspondence can be multiple.
 
+**Proof.** At \(o_0=0\), low-type current implementation, opt-out, and the
+selected low terminal continuation all pay zero, so the low type's exact yes
+vote is admissible. With all required equality votes selected yes, the exact
+low-only proposal pays the proposer \(a(1-\mu)\). Under slack capacity its
+only active security competitor is the strict-pooling limit \(P-\delta\),
+giving the stated comparison; at the cap that deviation is unavailable. If
+the exact class loses under slack capacity, then
+\(a(1-\mu)<a-o_1\), so \(\mu>o_1/a>o_1\); the strict
+high-participation condition holds. Substituting \(D=1\) in Theorem 3 gives
+the remaining candidates. \(\square\)
+
 For a general fixed equality assessment, the exact low-only class attains
 \(a(1-\mu)\) only when the low type of \(H\) and every equality-paid weak
 voter needed for unanimity vote yes with probability one. It is a proposer
@@ -990,7 +1145,8 @@ its full value and the partially implemented class cannot be a best response.
 The strict high-participation candidates are governed by the full system in
 Theorem 3 with \(D=1\), rather than by an equality convention.
 
-Under majority, exact low-only is also attained. For \(N\geq4\), define
+**Majority boundary classification (proved).** Under global \(T^Y\), exact
+low-only is also attained. For \(N\geq4\), define
 
 \[
 B_0=(1-\mu)(1-rc)+\mu c.
@@ -1008,7 +1164,18 @@ global \(T^Y\), both classes are attained. For \(N=3\), apply Theorem 2 with
 \(\max\{E,B_0,Q_1(\lambda_1)\}\) at the cap, always conditional on valid
 terminal support and the stated attainment test.
 
+**Proof.** Setting \(o_0=0\) makes the low threshold an admissible equality
+and replaces the regular low supremum \(B\) by the attained value \(B_0\).
+The support enumeration in Theorems 1 and 2 is otherwise unchanged. The
+strict pooling target remains nonattained off the cap, while Proposition 2's
+corrected free-support condition governs every reached terminal majority
+subgame, including a degenerate low posterior. Comparing the attained classes
+with \(C\), or with the actual cap class \(Q_1\), yields the stated tests.
+\(\square\)
+
 ## \(o_1=1\), \(\beta<1\)
+
+**Boundary classification (proved).**
 
 Here \(\bar y=o_1=1\), so strict high participation is impossible. If
 \(o_0>0\), regular-style low-only remains unattained and unanimity has no
@@ -1023,7 +1190,18 @@ maximizing class is attained as in Theorem 2. At \(N\geq4\) and
 support, and the outcome is exclusion. The corner \(o_0=0,o_1=1\) is governed
 by the preceding subsection, where exact low-only may also attain the maximum.
 
+**Proof.** Capacity rules out every offer strictly above the high threshold.
+When \(o_0>0\), exact low yes is removed by the regular weak-failure test and
+strict low offers have an unattained supremum, so unanimity has no proposer
+best response. At \(o_0=0\), Proposition 3 applies. Under majority, the
+pooling residual is zero and cannot exceed exclusion or low-only. Theorem 2
+then gives the \(N=3\) attainment test, while Theorem 1 gives exclusion for
+\(N\geq4\) on the stated noncorner domain. \(\square\)
+
 ## \(\beta=1\)
+
+**Boundary classification (proved conditional on the stated equality
+assessment).**
 
 At no discounting, a failure continuation can pay each type exactly its
 outside option. Exact \(H\) thresholds again remain admissible, but a class
@@ -1089,7 +1267,19 @@ attained. Delay has value at most \(c\), which can tie \(E\) only for
 majority lacks a proposer best response; any R1-no sensitivity with a valid
 terminal \(T^Y\) must be labeled hybrid.
 
+**Proof.** With \(\beta=1\), implementation and a failure continuation can
+coincide exactly with each type's outside payoff, so exact \(H\)-threshold
+votes re-enter the local undominated correspondence. Under unanimity, direct
+enumeration of low-only, pooling, and delay gives the two entries of \(K_1\);
+overpaid candidates continue to use \eqref{eq:u-proposer}. Under majority,
+the support enumeration from Theorems 1 and 2, now allowing exact thresholds,
+gives the four displayed current-proposal values; deliberate delay adds
+\(c\). Proposal optimality requires an actually attained maximum, and only
+ties among attained maxima can mix. \(\square\)
+
 ## Priors as one-sided limits
+
+**One-sided-limit classification (proved).**
 
 Literal \(\mu=0,1\) games require a convention for zero-probability types.
 The objects here are cluster limits from \(\mu\in(0,1)\).
@@ -1126,6 +1316,13 @@ sequence requires only the latter capacity-dependent pooling condition.
 \(N=3\) under \(T^Y\) has the direct limits of
 \(\max\{E,B,C\}\). These are limits of regular equilibria, not solutions of
 new degenerate games.
+
+**Proof.** Take \(\mu\to0^+\) and \(\mu\to1^-\) in the regular existence
+conditions and payoff formulas while holding the remaining primitives fixed.
+The strict lower cutoff excludes a unanimity sequence at zero; substituting
+the pure construction gives \eqref{eq:u-upper-limit}. Equations
+\eqref{eq:m-pool-condition} and \eqref{eq:m-prior-cutoff} give the majority
+endpoint conditions. \(\square\)
 
 # Entry and institutional comparison
 
@@ -1206,6 +1403,16 @@ domain. Equality is possible only in the \(N=3\) majority pooling class when
 unanimity keeps the high type exactly indifferent; the \(T^Y\) strict-pooling
 construction gives a strict advantage \(o_1+\eta>o_1\).
 
+**Proof.** For regular \(N\geq4\), Theorem 1 gives \(H\) the type-specific
+outside payoff, whose expectation is \(\bar o\). For \(N=3\), exclusion and
+low-only also give \(\bar o\), whereas pooling and the cap class give
+\(o_1\); mixtures remain between these values. Under unanimity, high-type
+sequential rationality requires its yes payoff to be at least \(o_1\).
+Single crossing makes the low type accept surely and, on the surviving
+pooling continuation, gives it the same or a larger payoff. Hence the expected
+unanimity payoff is at least \(o_1\). The equality and strict cases follow
+from the identified classes and \eqref{eq:u-ty-payoffs}. \(\square\)
+
 The mechanism therefore survives, but with new mathematics: exact pooling at
 \(o_1\) is removed, strict overpayment or mixing replaces it, and majority
 exclusion becomes the unique regular payoff for \(N\geq4\) whenever it
@@ -1247,7 +1454,7 @@ The current generated checks report:
 
 | Verifier | Result | Evidentiary status |
 |:--|--:|:--|
-| Gate 0 finite ballots | 116/116 PASS | checked numerically |
+| Gate 0 finite ballots | 126/126 PASS | checked numerically |
 | Regular-domain identities and enumeration | 6629/6629 PASS | checked numerically |
 | Boundary identities | 1488/1488 PASS | checked numerically |
 
@@ -1262,8 +1469,8 @@ identities; the general results rest on the analytical proofs above.
 | Object | Final status | Goal 3 conclusion |
 |:--|:--|:--|
 | Simultaneous sealed ballot | proved | preserved; no order of \(H\) exists |
-| Terminal U value \(S(\nu)\) | proved | survives only conditional on boundary attainment |
-| Terminal M payoff | proved | unique conditional on endogenous free-support existence |
+| Terminal U correspondence | proved | slack value \(S\); cap value \(S_{\mathrm{cap}}\), each conditional on attainment |
+| Terminal M payoff | proved | unique conditional on endogenous free support, including the degenerate free-\(H\) exception |
 | Exact R1-U low-only | rejected | dominated \(H_0\)-yes on separating path |
 | Exact R1-U pooling | rejected | dominated \(H_1\)-yes |
 | Strict/semi-pooling under U | proved | full correspondence in Theorem 3 |
