@@ -2,6 +2,13 @@
 
 **Data:** 2026-08-04
 
+**Status pós-fechamento (2026-08-05): BLOQUEADA / HISTÓRICA.** O usuário adotou
+`T^Y`, com aceitação na igualdade, e confirmou que R2 é resolvido sem `beta`,
+descontando-se a continuação apenas quando ela entra em R1. Esta matriz mapeia a
+especificação PBE-UD anterior e não pode orientar a migração ao v6. Todas as
+classificações abaixo são provisórias até uma rederivação integral. Ver
+`quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
+
 **Fonte protegida inventariada:** formal_model_v6.Rmd, SHA256
 131cc2356cd6318211fdbb9304ac8d7c8a99356837b6e71097011c36ae9c270d
 

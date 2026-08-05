@@ -1,16 +1,21 @@
 # Goal 4 Handoff — Controlled Migration to formal_model_v6.Rmd
 
 **Date:** 2026-08-04
-**Status:** prepared, not authorized
+**Status:** BLOCKED; DO NOT USE FOR MIGRATION
 **Source candidate:** `5bd7fbe47f63f6b94ca4085852596f1d4ad9901c`
 
 ## Decision boundary
 
-Goal 3 is closed. This handoff does not authorize editing or compiling
-`formal_model_v6.Rmd`. Goal 4 starts only after explicit user authorization and
-a fresh paper-version gate.
+The user adopted `T^Y` on 2026-08-05: accept at exact outside/continuation
+value. Terminal R2 must be solved without `beta`, and only an R2 continuation
+entering R1 is discounted. Goal 3's reviewed candidate used a different
+equality treatment. Therefore this handoff is historical and cannot authorize
+editing or compiling `formal_model_v6.Rmd`. Before any Goal 4, a new standalone
+Gate 0 and full rederivation must close the interaction between `T^Y` and
+PBE-UD. See
+`quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
 
-## Governing inputs
+## Historical governing inputs — do not use for migration
 
 1. `model_redesign/undominated_voting_rederivation.Rmd`;
 2. `quality_reports/2026-08-04_undominated_voting_impact_matrix.md`;
@@ -19,7 +24,7 @@ a fresh paper-version gate.
 5. protected v6 SHA-256
    `131cc2356cd6318211fdbb9304ac8d7c8a99356837b6e71097011c36ae9c270d`.
 
-## Migration order
+## Historical migration order — superseded
 
 1. Verify a clean worktree, protected hashes, and the Goal 3 closure commit.
 2. Create the pre-migration version marker without tagging a dirty state.
@@ -36,22 +41,24 @@ a fresh paper-version gate.
 9. Obtain fresh independent formal, adversarial, and reproducibility/PDF
    reviews. The implementer must not review.
 
-## Nonnegotiable migration rules
+## Preserved constraints for the future rederivation
 
 - No intraballot public or sequential voting and no order of `H`.
 - Baseline outcomes are coalition-pure: minimal winning support and zero for
   weak outsiders.
 - Gift proposals remain feasible deviations and must remain in proposal
   optimality checks.
-- Equality at continuation is a correspondence, not an automatic yes vote.
-- Report unrestricted PBE-UD separately wherever it diverges from the
-  coalition-pure baseline.
+- The intended bargaining convention is `T^Y`: accept at exact
+  outside/continuation value. A new Gate 0 must settle how this primitive
+  interacts with PBE-UD before any theorem is promoted.
+- Do not transport the old unrestricted PBE-UD versus coalition-pure split
+  without rederiving it under `T^Y`.
 - Do not reuse the old `P/L/R`, `F_M`, No-Cheap-H, feasibility/C-B-R, delayed
   continuation, or positive-`pi_H` architecture without a new proof.
 - Keep institutional comparisons conditional on common equilibrium existence.
 
-## Copy-ready opening prompt
+## Superseded opening prompt — do not execute Goal 4
 
 ```text
-Estamos no repositório /Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion. Execute o Goal 4: migração controlada da derivação PBE-UD fechada no commit 5bd7fbe47f63f6b94ca4085852596f1d4ad9901c para formal_model_v6.Rmd. Antes de editar, leia AGENTS.md, model_redesign/undominated_voting_rederivation.Rmd, quality_reports/2026-08-04_undominated_voting_goal3_status.md, quality_reports/2026-08-04_undominated_voting_impact_matrix.md e quality_reports/plans/2026-08-04-goal4-v6-migration-handoff.md; verifique worktree, HEAD e o hash protegido de v6; use paper-version sem criar tag enganosa em estado sujo. Preserve ballots simultâneos e selados, sem votação pública dentro do ballot e sem ordem de H. No baseline, use a seleção coalition-pure: suporte vencedor mínimo, zero para weak outsiders e apoiadores necessários protegidos pelo valor de continuação; mantenha ofertas com gifts como desvios factíveis na checagem de optimalidade e reporte a correspondência PBE-UD irrestrita separadamente quando divergir. Trate igualdade como correspondência, não como voto sim imposto. Migre primeiro definições e provas, depois entry/fronteiras e somente por último abstract, introdução, captions e conclusão. Compile no formato YAML/bookdown, valide o PDF inteiro e obtenha três pareceres independentes, somente leitura, no mesmo commit final. Quem implementa não revisa. Não faça push.
+Não execute o Goal 4. Reabra primeiro a derivação autônoma do Goal 3 sob a decisão registrada em quality_reports/2026-08-05_goal3_accept_at_equality_pending.md: adote T^Y como primitivo de aceitação na igualdade, resolva R2 em unidades correntes sem beta e use beta*C_2 apenas quando a continuação entra em R1. Preserve ballots simultâneos, ausência de ordem de H, pi_H=0, opt-out imediato, coalizão mínima e zero para outsiders. Antes de provar, o novo Gate 0 deve decidir se T^Y seleciona apenas entre ações localmente não dominadas ou substitui PBE-UD na igualdade. Não edite nem compile formal_model_v6.Rmd; não migre teoremas, matrizes ou pareceres do candidato 5bd7fbe. Encerre após documentar o novo plano, salvo GO explícito para rederivação.
 ```

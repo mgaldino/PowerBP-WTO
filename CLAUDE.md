@@ -15,6 +15,15 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 
 ## Status
 
+- **Decisão pós-Goal 3 (2026-08-05; bloqueio de migração)**: o usuário adotou
+  a convenção de barganha `T^Y`: o agente aceita quando a oferta é exatamente
+  igual à opção externa ou ao valor de continuação. R2 é terminal e deve ser
+  resolvido sem `beta`; `beta*C_2` entra somente quando a continuação é avaliada
+  em R1. Os artefatos, pareceres, matriz de impacto e handoff fechados do Goal 3
+  são históricos para a especificação sem aceitação global na igualdade e não
+  podem ser migrados ao v6. A relação entre `T^Y` e PBE-UD no ballot simultâneo
+  está `pending protocol decision` e exige novo Gate 0 e rederivação integral.
+  Ver `quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
 - **Fase**: integração do manuscrito após correção técnica das provas.
 - **Paper v6** (ALVO CORRETO): `formal_model_v6.Rmd` — alvo do próximo manuscript pass. `formal_model_v6.pdf` existe como PDF compilado atual.
 - **Paper v5** (REFERÊNCIA HISTÓRICA): `formal_model_v5.Rmd` — baseline fixed-pie relative-package com `pi_H=0`, weak-state agenda e weak-vote-passive assessment. `formal_model_v5.pdf` recompilado em 2026-05-15. Não usar v5 como alvo do clean-baseline reset.

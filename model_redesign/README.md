@@ -2,6 +2,16 @@
 
 This folder is the formal laboratory for the next version of the paper.
 
+**Current blocker (2026-08-05).** The user adopted the standard bargaining
+tie-break `T^Y`: accept an offer exactly equal to outside/continuation value.
+Terminal R2 must be solved in current units without `beta`; only an R2 value
+carried into R1 is multiplied by `beta`. The file
+`undominated_voting_rederivation.Rmd` and its rendered outputs are historical
+audits of the superseded no-global-tie-break specification. Do not migrate
+their results. A new Gate 0 must settle how `T^Y` interacts with PBE-UD under
+simultaneous ballots before any rederivation. See
+`quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
+
 Do not edit `formal_model_v6.Rmd` while the proof architecture is unsettled.
 `formal_model_v5.Rmd` is an archival/reference object. Results should remain in
 this folder until they have been rederived, audited, and compiled cleanly.
@@ -12,6 +22,12 @@ Current working document:
   relative-package `pi_H = 0` reset. Its current body still contains the
   pre-2026-05-25 delayed-continuation architecture and must not be treated as a
   completed derivation of the immediate-opt-out baseline.
+
+Historical, not migration-ready:
+
+- `undominated_voting_rederivation.Rmd`: reviewed Goal 3 derivation under the
+  superseded equality treatment; retained for provenance only pending a full
+  `T^Y` rederivation.
 
 Archived reference:
 

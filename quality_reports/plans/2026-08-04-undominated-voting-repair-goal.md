@@ -2,14 +2,23 @@
 
 **Data:** 2026-08-04
 
-**Status final:** CONCLUÍDO; três pareceres independentes deram PASS sem
-ressalva substantiva no candidato `5bd7fbe47f63f6b94ca4085852596f1d4ad9901c`
+**Status atual:** FECHAMENTO HISTÓRICO; `PENDING REDERIVATION` e bloqueado para
+migração após a decisão `T^Y` de 2026-08-05
 
-**Addendum substantivo durante a rerevisão:** o usuário determinou que o
-baseline retenha coalizões vencedoras mínimas e não pague países fora da
-coalizão. A rederivação deve distinguir PBE-UD irrestrita da seleção
-coalition-pure, manter propostas com gifts como desvios factíveis e não impor
-voto sim quando um membro recebe exatamente seu valor de continuação.
+**Aviso:** os três pareceres deram PASS sem ressalva para o candidato
+`5bd7fbe47f63f6b94ca4085852596f1d4ad9901c`, mas esse candidato não incorpora
+a convenção agora fixada pelo usuário: aceitar oferta exatamente igual à opção
+externa/continuação. R2 deve ser resolvido sem `beta`, usando `beta*C_2` apenas
+em R1. A relação entre `T^Y` e PBE-UD requer novo Gate 0 e rederivação integral.
+Nenhum resultado deste plano deve ser migrado. Ver
+`quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
+
+**Addendum histórico durante a rerevisão:** o usuário determinou que o baseline
+retenha coalizões vencedoras mínimas e não pague países fora da coalizão. O
+candidato então revisado distinguiu PBE-UD irrestrita da seleção
+coalition-pure, manteve gifts como desvios e não impôs voto sim na igualdade.
+Esta última cláusula foi substituída pela decisão `T^Y` de 2026-08-05; o restante
+deve ser reavaliado na nova derivação.
 
 **Tag de entrada:** `pre-undominated-voting-repair-2026-08-04`
 

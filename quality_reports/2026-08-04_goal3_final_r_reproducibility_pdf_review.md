@@ -6,6 +6,16 @@
 **Rmd SHA-256:** `2f6d77a61210fe85a8dca8f589f17e06b149c55a520668b08c87932ef0925aa2`
 **Versioned PDF SHA-256:** `c4cdcd500425c96b8a3d0286713d3b1dce17a3aa49a71a615e057002628a433d`
 
+## Post-closure scope warning — 2026-08-05
+
+This PASS and these hashes remain valid only for the reviewed candidate. The
+user later adopted `T^Y` acceptance at exact outside/continuation value and
+clarified terminal timing for `beta`. The intended model therefore requires a
+new Gate 0 and full rederivation. This review is historical evidence and must
+not be cited as validation of a v6 migration. A warning-only rerender of the
+historical Rmd may have a different hash without changing the reviewed formal
+body. See `quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
+
 ## Verdict
 
 **PASS — no substantive reservation.**

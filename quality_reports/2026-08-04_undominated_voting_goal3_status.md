@@ -1,10 +1,23 @@
 # Goal 3 Status — Simultaneous-Ballot PBE-UD Repair
 
 **Date:** 2026-08-04
-**Status:** CLOSED
+**Status:** HISTORICAL CLOSURE; `PENDING REDERIVATION`, NOT MIGRATION-READY
 **Entry tag:** `pre-undominated-voting-repair-2026-08-04`
 **Protected entry commit:** `8692a6b31539d117134a580009d4e4dbe783403d`
 **Final reviewed candidate:** `5bd7fbe47f63f6b94ca4085852596f1d4ad9901c`
+
+## Post-closure protocol decision — 2026-08-05
+
+The user adopted `T^Y`: an agent accepts an offer exactly equal to its
+outside/continuation value. R2 is terminal and must be solved without `beta`;
+only the R2 continuation imported into R1 is discounted. The closed results
+below were derived under the different specification that retained the full
+equality correspondence. They remain valid audit records for that reviewed
+candidate, but they are quarantined and must not be migrated to v6.
+
+The interaction between `T^Y` and PBE-UD in a simultaneous ballot requires a
+new Gate 0 and full backward induction. Canonical pending note:
+`quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
 
 ## Outcome
 
@@ -96,7 +109,7 @@ HTML, or PDF from that reviewed candidate.
 
 ## Next authorization boundary
 
-Migration to `formal_model_v6.Rmd` is not part of Goal 3. It may begin only
-after a separate Goal 4 authorization, using the impact matrix and handoff
-plan. A new versioning gate and fresh independent manuscript reviews are
-required.
+Migration to `formal_model_v6.Rmd` is blocked. A future session must first
+rederive the standalone baseline under the newly declared `T^Y` primitive and
+obtain fresh independent reviews. The existing impact matrix and Goal 4
+handoff are historical and cannot authorize migration.

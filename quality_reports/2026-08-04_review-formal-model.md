@@ -4,6 +4,17 @@
 **Reviewed candidate:** `5bd7fbe47f63f6b94ca4085852596f1d4ad9901c`
 **Artifact:** `model_redesign/undominated_voting_rederivation.Rmd`
 
+## Post-closure scope warning — 2026-08-05
+
+This PASS applies only to the reviewed specification and commit identified
+above. The user subsequently adopted global `T^Y` acceptance at exact
+outside/continuation value and clarified that terminal R2 is solved without
+`beta`, with discounting only when R1 imports the continuation. Those are
+material protocol changes. The review is retained for provenance but does not
+validate the intended baseline or authorize migration. A new Gate 0,
+rederivation, and independent review are pending. See
+`quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
+
 ## Editorial decision
 
 **PASS — no substantive reservation after repair and full rereview.**

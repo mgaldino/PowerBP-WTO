@@ -2,11 +2,22 @@
 
 **Data:** 2026-08-04
 
-**Status:** PASS FINAL; decisão coalition-pure incorporada e rerevisada por
-três auditores independentes no commit
-`5bd7fbe47f63f6b94ca4085852596f1d4ad9901c`
+**Status:** PASS HISTÓRICO para o contrato revisado em `5bd7fbe`; Gate 0
+reaberto e `PENDING REDERIVATION` após a decisão `T^Y` de 2026-08-05
 
 **Escopo:** baseline limpo `pi_H=0`; nenhum resultado do v6 é presumido
+
+## 0. Aviso pós-fechamento
+
+O usuário determinou que o baseline adote `T^Y`: o agente aceita quando a
+oferta é exatamente igual à sua opção externa ou continuação. Também confirmou
+que R2 é resolvido em unidades correntes, sem `beta`; o desconto aparece apenas
+como `beta*C_2` quando R1 olha para frente. Este Gate 0 foi fechado sob uma
+especificação que mantinha ambas as ações na igualdade e, portanto, não governa
+mais a arquitetura pretendida. A relação entre `T^Y` e PBE-UD no ballot
+simultâneo deve ser resolvida em um novo Gate 0. Até lá, todo resultado derivado
+deste contrato está em quarentena. Ver
+`quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
 
 ## 1. Decisão de protocolo
 

@@ -8,6 +8,17 @@ do Goal 2
 **Escopo:** novo Goal 3; nenhuma alteração retrospectiva dos artefatos ou
 pareceres encerrados
 
+## Atualização de status — 2026-08-05
+
+O usuário confirmou que o modelo pretendido adota `T^Y`: aceitar oferta
+exatamente igual à opção externa/continuação, como convenção de barganha para
+evitar conjuntos abertos e supremos artificiais. Também confirmou que R2 é
+resolvido sem `beta`, descontando-se `C_2` apenas quando R1 olha para frente.
+Assim, o programa PBE-UD sem seleção global na igualdade descrito abaixo é
+histórico e está bloqueado para migração. A relação exata entre `T^Y` e PBE-UD
+no ballot simultâneo está pendente e exige novo Gate 0. Ver
+`quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
+
 ## Declaração executiva
 
 Os PASS dos Goals 1 e 2 permanecem evidência válida para o objeto que aqueles

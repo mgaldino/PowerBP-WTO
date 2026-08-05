@@ -6,6 +6,17 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 
 ## Current Status
 
+- **Post-Goal-3 protocol decision (2026-08-05; migration blocker)**: the user
+  confirmed the standard bargaining convention `T^Y`: an agent accepts an
+  offer exactly equal to its outside/continuation value. Solve terminal R2 in
+  current units with no internal `beta`; multiply the resulting continuation
+  by `beta` only when it enters an R1 decision. The closed Goal 3 PBE-UD
+  artifacts, reviews, impact matrix, and Goal 4 handoff are historical for the
+  specification that did not impose global acceptance at equality. Do not
+  migrate them to v6. The interaction between `T^Y` and local PBE-UD in a
+  simultaneous ballot is `pending protocol decision` and requires a new
+  standalone Gate 0 and full rederivation. See
+  `quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
 - **Phase**: manuscript integration after post-referee proof repair.
 - **Target paper for the next manuscript pass**: `formal_model_v6.Rmd`.
 - **Target compiled PDF**: `formal_model_v6.pdf`.
@@ -390,6 +401,12 @@ The wrapper validates `OPENROUTER_API_KEY` against the OpenRouter `/api/v1/key` 
   either prove it is not an equilibrium under the stated game, keep it and
   interpret it honestly, or explicitly mark the issue as unresolved.
 - Do not introduce a strategic option, voting history, tie-breaking convention, information structure, contract space, or continuation protocol inside a proof unless it is already a stated primitive. If a derivation requires one, stop, label the result `pending protocol decision`, explain the substantive consequence, and ask the user before proceeding.
+- The intended baseline tie-break is now `T^Y`: a responder accepts an offer
+  exactly equal to its outside/continuation value. Do not infer from this note
+  whether `T^Y` merely selects among locally undominated equality actions or
+  supersedes PBE-UD elimination at equality; that interaction is pending and
+  must be fixed in Gate 0 before proof. Resolve terminal R2 without `beta` and
+  use `beta*C_2` only when R2 continuation values enter R1 incentives.
 - No pooling, delay, rejection path, or off-path belief can be imposed. It must be shown to be incentive-compatible under the stated extensive-form game.
 - Keep majority outside options external to the pie.
 - **Voting-protocol terminology**: the bargaining game is sequential and public
