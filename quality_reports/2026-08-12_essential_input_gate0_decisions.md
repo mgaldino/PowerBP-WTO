@@ -15,13 +15,33 @@ incorporadas ao contrato antes de o Goal 1 abrir.
 **Decisão.** A proposta é uma alocação da pie unitária. Se aprovada pela regra
 vigente, é implementada exatamente como proposta. Não há pagamentos laterais.
 
-Se `H` vota não e a proposta passa mesmo assim, `H` não integra o acordo e
-**`y` é perdido**: os weak states ficam com `1-y`, cada um recebendo o que lhe
-foi proposto. `y` não é reabsorvido pelo residual do proponente. Excluir `H`
-depois de lhe ter oferecido algo é, portanto, custoso.
+Se `H` vota não e a proposta passa mesmo assim, `H` não integra o acordo, recebe
+`o_theta`, **e recebe `y` como escrito na proposta**. A alocação é executada
+integralmente. Nada é destruído e nada é realocado.
+
+**Justificativa, e por que as alternativas foram descartadas.** Esta é a única
+leitura compatível com as duas primitivas já decididas:
+
+- *`y` destruído, fracos ficam com `1-y`*: descartada porque aloca apenas `1-y`
+  no ramo de exclusão, fazendo a pie encolher e contradizendo a pie fixa.
+- *`y` revertido ao residual do proponente*: descartada porque exige realocar
+  conforme quem acabou na coalizão, o que é contrato contingente ao resultado do
+  ballot — precisamente a segunda decisão pós-voto que foi descartada.
 
 Propostas cuja soma seja inferior a 1 não são de equilíbrio. Isso é conclusão
 sobre comportamento, não restrição imposta, e deve ser derivada.
+
+**Alcance do ramo, a provar e não a assumir.** Sob unanimidade o ramo não
+existe: o `não` de `H` derruba a proposta e nada é implementado. Sob maioria,
+oferecer `y>0` comprando `q-1` votos fracos é estritamente dominado por oferecer
+`y=0`, já que `H` não é necessário e embolsaria `y+o_theta` votando não. O ramo
+não ocorre no caminho de equilíbrio.
+
+**Consequência que a derivação deve tratar.** Quando `H` não é pivotal sob
+maioria, votar não dá `y+o_theta` e votar sim dá `y`, então sim não domina.
+Com estratégias puras e undominância a pivotalidade de `H` é determinística no
+caminho, dado o que o proponente comprou. Fora do caminho, e na construção da IC
+de `H` sob maioria, esse termo entra e não pode ser suprimido.
 
 **Data.** Todos são pagos quando o jogo termina. O jogo termina quando uma
 proposta é aprovada, em R1 ou R2, ou quando R2 falha. Se uma proposta é aprovada
