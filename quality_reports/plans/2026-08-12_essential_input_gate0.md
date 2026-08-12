@@ -115,7 +115,8 @@ qualquer diferença de continuation value entre unanimidade e maioria fica
 contaminada por um privilégio de ação, que não é nenhum dos canais de interesse.
 
 **Segunda — o mecanismo dinâmico está eliminado por construção.** Sob a
-primitiva atual, `H` alcança R2 apenas votando sim. Rejeitar termina o jogo.
+primitiva da cadeia pivotal-response, `H` alcança R2 apenas votando sim.
+Rejeitar termina o jogo.
 O tipo baixo não pode rejeitar em R1 e esperar oferta melhor em R2. A opção de
 atraso, que é a fonte de renda informacional dinâmica, não existe. Isso explica
 por que o resultado de pooling da arquitetura atual coincide com o do jogo de
