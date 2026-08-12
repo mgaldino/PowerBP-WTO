@@ -6,18 +6,56 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 
 ## Current Status
 
-- **Post-Goal-3 protocol decision (2026-08-05; migration blocker)**: the user
-  confirmed the standard bargaining convention `T^Y`: an agent accepts an
-  offer exactly equal to its outside/continuation value. Solve terminal R2 in
-  current units with no internal `beta`; multiply the resulting continuation
-  by `beta` only when it enters an R1 decision. The closed Goal 3 PBE-UD
-  artifacts, reviews, impact matrix, and Goal 4 handoff are historical for the
-  specification that did not impose global acceptance at equality. Do not
-  migrate them to v6. The interaction between `T^Y` and local PBE-UD in a
-  simultaneous ballot is `pending protocol decision` and requires a new
-  standalone Gate 0 and full rederivation. See
-  `quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
-- **Phase**: manuscript integration after post-referee proof repair.
+> ## CURRENT ARCHITECTURE — essential-input (2026-08-12)
+>
+> **The governing contract is
+> `quality_reports/plans/2026-08-12_essential_input_gate0.md`, status APPROVED.**
+> It controls over every statement elsewhere in this file. Read it before acting.
+>
+> **What changed, and what in this file is now superseded:**
+>
+> 1. **No opt-out action.** Ballot action sets are symmetric: everyone votes
+>    yes or no, nobody exits. `H`'s no is only a no, and `H` stays in the game.
+>    Every statement below describing an immediate irreversible R1 opt-out for
+>    `H`, or "no current or future agreement can include `H`", is **superseded**.
+>    That primitive gave `H` a privilege weak states lacked and destroyed the
+>    delay option that generates the dynamic informational rent.
+> 2. **`o_theta` is a disagreement payoff**, realized at the end of the game if
+>    nothing passes, with the same date and discount treatment as every other
+>    player's. It is not accessed undiscounted in R1. The clean acceptance
+>    threshold `y_theta^* = o_theta` is **superseded**; R1 reservation is the
+>    continuation value, R2 threshold is `o_theta` because R2 is terminal.
+> 3. **Solution concept: PBE plus stage-undominated voting**, with `T^Y` for
+>    exact equality. The 2026-08-05 `pending protocol decision` about whether
+>    `T^Y` supersedes undominance at equality is **RESOLVED and was a false
+>    dichotomy**: at exact equality both ballot actions are payoff-identical in
+>    every contingency, so undominance eliminates nothing and there is nothing
+>    to supersede. The two devices have disjoint domains — undominance decides
+>    strict cases, `T^Y` decides equality. Dropping undominance was the wrong
+>    branch. Stage-undominated voting is a declared refinement of PBE
+>    implemented as a strategy restriction, not a belief restriction; do not
+>    confuse it with the weak-vote-passive assessment, which is not a refinement.
+> 4. **The pie is fixed at 1**, independent of `H`'s type and of `H`'s
+>    inclusion. `V(theta)` pies and inclusion-dependent pies are eliminated
+>    alternatives, extensions for a different paper. Do not repropose.
+> 5. **Derivation order**: `N1` R2-majority, `N2` R2-unanimity, `N3` R1-majority,
+>    `N4` R1-unanimity, `N5` entry, `N6` comparison. Difficulty is concentrated
+>    in `N4`. Work in `model_redesign/essential_input_*`; the
+>    `power_architecture_derivations.Rmd` and `pivotal_response_*` workspaces are
+>    provenance only.
+>
+> **The `pivotal-response` chain (12 nodes, commit `19c431a`) is closed
+> provenance.** Its PASS reviews are valid only for the specification they
+> reviewed. Do not migrate, cite as current evidence, or edit any of its
+> artifacts. The same applies to all Goal-3 PBE-UD artifacts and the Goal-4
+> handoff.
+>
+> **Findings default to escalation.** The burden of proof is on classifying a
+> finding as technical, and the test is whether exactly one repair is forced by
+> what is already written. Every ambiguity and every missing definition escalates
+> to the author, without exception.
+
+- **Phase**: essential-input Gate 0 approved; Goal 0 authorized, no derivation started.
 - **Target paper for the next manuscript pass**: `formal_model_v6.Rmd`.
 - **Target compiled PDF**: `formal_model_v6.pdf`.
 - **Previous manuscript baseline (2026-05-15, v5)**: `formal_model_v5.Rmd` carries the fixed-pie relative-package `pi_H=0` baseline and remains the reference history for the post-referee proof repair. The next clean-baseline reset should be derived in `model_redesign/power_architecture_derivations.Rmd` first, then transported into `formal_model_v6.Rmd`, not v5. The v5 paper frames the result as a conditional institutional comparison: consensus can benefit a hegemon through pivotality-based screening, but the model does **not** contain an endogenous rule-choice/signaling stage. The R1 result is stated under a **weak-vote-passive assessment**: weak-state vote deviations are not treated as signals about `H`'s type because weak states do not observe `theta`. Do not describe this assessment as a refinement, D1, intuitive criterion, sequential-equilibrium restriction, or characterization of all PBEs. It is a maintained interpretation of the public voting protocol. The R1 statement should say the selected PBE outcome is payoff-equivalent to one of `P`, `L`, `R`; it is a selection result under the baseline voting assessment, not uniqueness over unrestricted PBEs. The tie-break among weak-proposer payoff ties minimizes `H`'s expected payoff.
@@ -33,12 +71,12 @@ y_theta^*(mu') = beta C_H(theta, mu') - b_H(theta)
 screening requires y_1^*(mu') > y_0^*(mu')
 ```
 
-**2026-05-25 priority update**: do not use this delayed-continuation formula
-as the next baseline. The next proof pass should first derive the clean
-benchmark with `b_theta = 0` and immediate R1 opt-out for `H`: if type `theta`
-rejects in Round 1, no agreement includes `H` and it receives `o_theta`
-without discount. Treat `beta C_H(theta, mu')` and
-`max{o_theta, beta C_H(theta, mu')}` rejection payoffs as extensions.
+**2026-05-25 priority update — SUPERSEDED 2026-08-12.** That update told the
+next proof pass to use `b_theta = 0` with an immediate R1 opt-out for `H`. The
+opt-out was removed by the essential-input contract; `b_theta = 0` survives.
+Do not derive from the opt-out specification. `max{o_theta, beta C_theta}` is
+no longer an extension to be assumed: it follows from symmetric ballot actions
+with `o_theta` as an end-of-game disagreement payoff.
 
 - **Archived feasibility branch**: the old feasibility/C-B-R derivation is preserved in git tag `redesign-feasibility-branch-2026-05-11`. It is diagnostic history only. Do not import theorem statements or branch labels from that tag without rederiving them under the new relative-package architecture.
 - **Manuscript status warning**: `formal_model_v6.Rmd` is the correct target for the next manuscript pass. `formal_model_v5.Rmd` has been updated to the fixed-pie relative-package baseline and remains a reference history file, but do not use it as the target for the clean-baseline reset. Do not reintroduce old feasibility/C-B-R branch labels or old random-proposer theorem language.
@@ -106,24 +144,17 @@ and the threshold is:
 y_theta^*(mu') = beta C_H(theta, mu') - b_H(theta)
 ```
 
-For the next proof pass, this is an extension/microfoundation, not the clean
-baseline. The clean baseline instead sets `b_theta=0` and gives `H` an
-immediate R1 opt-out payoff `o_theta` after rejection. On a branch where `H`'s
-yes vote implements a current agreement that includes it, the clean direct
-acceptance threshold is therefore:
+**SUPERSEDED 2026-08-12.** `b_theta=0` survives. The immediate R1 opt-out and
+the threshold `y_theta^* = o_theta` do not. Under the essential-input contract,
+`H`'s no is only a no, `H` stays active, and `o_theta` is the disagreement payoff
+realized at the end of the game. The R2 threshold is `o_theta` because R2 is
+terminal; the R1 reservation is the continuation value, so a direct cutoff in
+`o_theta` is not available in R1. Screening still requires `o_1 > o_0`.
 
-```text
-y_theta^* = o_theta
-```
-
-so the clean screening target on that pivotal implementation branch is
-`o_1 > o_0`. This is not a global voting rule. Because votes are simultaneous,
-`H` cannot condition on weak votes that have not yet been revealed. If weak
-failure has positive probability at `H`'s ballot information set, derive the
-expected voting IC from the implementation, opt-out, and continuation payoffs
-induced by each action. Do not give `H` a new decision after observing the ex
-post vector, and do not derive the next baseline from
-`y + b_H(theta) >= beta C_H(theta, mu')`.
+What survives unchanged: because ballots are simultaneous, `H` cannot condition
+on weak votes that have not been revealed. Derive its voting IC from the payoffs
+each action induces across the whole weak-vote vector. Never give `H` a new
+decision after observing the ex post vector.
 
 The delayed-continuation extension's target condition is:
 
@@ -315,14 +346,12 @@ R tie/check                : 0.022868
 Do not present these as completed until checked in the active manuscript:
 
 - **Priority 1 for the next proof pass (2026-05-25 clean-baseline reset)**:
-  re-center the main architecture on the clean benchmark documented in
-  `quality_reports/2026-05-25_clean_baseline_priority.md`. Set `b_theta = 0`
-  in the baseline, make R1 rejection by `H` an immediate opt-out that gives
-  type `theta` payoff `o_theta` without discount, and move both the delayed-continuation
-  interpretation and the decomposition `t_theta = d_theta - b_theta` to
-  extensions/microfoundations. Do not edit `formal_model_v6.Rmd` for this reset
-  until the clean benchmark has been rederived and checked in
-  `model_redesign/power_architecture_derivations.Rmd`.
+  **SUPERSEDED 2026-08-12.** This item required an immediate R1 opt-out, which
+  the essential-input contract removed. Current priority 1 is Goal 0 of
+  `quality_reports/plans/2026-08-12_essential_input_gate0.md`. `b_theta = 0` and
+  `t_theta = d_theta - b_theta` as extension both survive; the opt-out and the
+  `power_architecture_derivations.Rmd` workspace do not. Do not edit
+  `formal_model_v6.Rmd` until Goal 4.
 - Run a full independent review of the target `formal_model_v6.Rmd` after the clean-baseline reset is migrated. The v5 R1 rejected-history lemma has A+ independent review, but the target manuscript still needs its own coherence pass after changes.
 - Check that every theorem statement, figure caption, and table caption uses the fixed-pie relative-package `pi_H=0` language and does not import feasibility/C-B-R branch labels.
 - Reaudit Appendix C only after the binary fixed-pie model is treated as stable.
@@ -342,7 +371,8 @@ The current safe theorem architecture is:
 - `formal_model_v5.Rmd`: previous manuscript baseline/reference history. Appendix contains the corrected v5 proof status.
 - `formal_model_v5.pdf`: compiled v5 reference output.
 - `quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md`: scope and implementation notes for the AJPS/referee-driven revision pass, including weak-vote-passive language, rejected histories, No-Cheap-H, rule-choice framing, numerical illustration, and tie-break handling.
-- `quality_reports/2026-05-25_clean_baseline_priority.md`: priority-1 note for the next proof pass. It records the clean-baseline reset (`b_theta = 0`, immediate R1 opt-out payoff `o_theta` for `H` after rejection), moves delayed continuation and `t_theta = d_theta - b_theta` to extensions, and specifies the required independent review protocol.
+- `quality_reports/plans/2026-08-12_essential_input_gate0.md`: **the governing contract**, status APPROVED. Symmetric ballot actions with no exit, `o_theta` as end-of-game disagreement payoff, PBE plus stage-undominated voting with `T^Y` at equality, fixed pie, derivation order `N1`..`N6`, finding-escalation rule, and the Goal 0 opening prompt in Section 14.
+- `quality_reports/2026-05-25_clean_baseline_priority.md`: **historical, superseded 2026-08-12**. Records the clean-baseline reset with immediate R1 opt-out. The opt-out was removed; do not derive from this note.
 - `model_redesign/power_architecture_derivations.Rmd`: standalone working document for the new proof architecture. Use this as the main work surface until the formal results are clean.
 - `model_redesign/README.md`: guardrails for the redesign workspace.
 - `quality_reports/notas_reescrita_provas_formulas.md`: detailed external/referee-style proof concerns; input to the correction, not final proof status.
@@ -385,15 +415,13 @@ The wrapper validates `OPENROUTER_API_KEY` against the OpenRouter `/api/v1/key` 
 
 - Before any substantive manuscript reset, use the `paper-version` workflow. Do not create a misleading tag on a dirty worktree; first resolve or commit the relevant state, then tag the intended snapshot.
 - Start from the separate derivation in `model_redesign/power_architecture_derivations.Rmd`; when ready to migrate to the manuscript, target `formal_model_v6.Rmd`. Use `formal_model_v5.Rmd` only as reference history for the 2026-05-15 integration pass and appendix proof status.
-- Priority 1 is now the clean-baseline reset: derive the `b_theta = 0`
-  benchmark with immediate R1 opt-out payoff `o_theta` for `H` in
-  `model_redesign/power_architecture_derivations.Rmd` before changing the
-  active paper. Treat `beta C_theta` as the payoff from `H`'s own no/rejection,
-  the `max{o_theta, beta C_theta}` hybrid exit, and
-  `t_theta = d_theta - b_theta` as extensions/microfoundations. This does not
-  rule out a legitimate discounted R2 continuation after `H` votes yes but
-  weak votes make the R1 ballot fail; Gate 0 must define and the proof must
-  derive that branch separately.
+- **SUPERSEDED 2026-08-12.** The clean-baseline reset with immediate R1 opt-out
+  is no longer the priority and its central primitive was removed. Priority 1 is
+  now Goal 0 of the essential-input architecture: version boundary, dependency
+  map, and independent review of the contract itself, with no derivation. See
+  `quality_reports/plans/2026-08-12_essential_input_gate0.md`. `b_theta = 0`
+  survives; immediate opt-out does not. `max{o_theta, beta C_theta}` is now a
+  consequence of the symmetric design rather than an extension to be assumed.
 - Do not do "minimal correction" on formal proofs. Rederive from primitives.
 - Do not add ad hoc assumptions to rescue old results.
 - Do not remove a branch, case, result, or equilibrium path by adding an ad hoc
@@ -401,12 +429,14 @@ The wrapper validates `OPENROUTER_API_KEY` against the OpenRouter `/api/v1/key` 
   either prove it is not an equilibrium under the stated game, keep it and
   interpret it honestly, or explicitly mark the issue as unresolved.
 - Do not introduce a strategic option, voting history, tie-breaking convention, information structure, contract space, or continuation protocol inside a proof unless it is already a stated primitive. If a derivation requires one, stop, label the result `pending protocol decision`, explain the substantive consequence, and ask the user before proceeding.
-- The intended baseline tie-break is now `T^Y`: a responder accepts an offer
-  exactly equal to its outside/continuation value. Do not infer from this note
-  whether `T^Y` merely selects among locally undominated equality actions or
-  supersedes PBE-UD elimination at equality; that interaction is pending and
-  must be fixed in Gate 0 before proof. Resolve terminal R2 without `beta` and
-  use `beta*C_2` only when R2 continuation values enter R1 incentives.
+- The baseline tie-break is `T^Y`: a responder accepts an offer exactly equal to
+  its outside/continuation value. **The interaction with undominance is resolved
+  and is not pending**: at exact equality both ballot actions are payoff-
+  identical in every contingency, so undominance eliminates nothing and `T^Y`
+  is not superseding anything. Undominance decides strict cases; `T^Y` decides
+  equality. `T^Y` exists so that the set of approvable offers is closed and the
+  proposer's problem has a maximum. Resolve terminal R2 without `beta` and use
+  `beta*C_2` only when R2 continuation values enter R1 incentives.
 - No pooling, delay, rejection path, or off-path belief can be imposed. It must be shown to be incentive-compatible under the stated extensive-form game.
 - Keep majority outside options external to the pie.
 - **Voting-protocol terminology**: the bargaining game is sequential and public
@@ -447,12 +477,16 @@ The wrapper validates `OPENROUTER_API_KEY` against the OpenRouter `/api/v1/key` 
 
 ## Next Session Context
 
-For the clean-baseline Goal 1, the canonical executable specification is
-`quality_reports/plans/2026-08-03-clean-baseline-goal.md`. Its Gate 0 timing,
-contract-space, implementation, and review rules control over the shorter
-historical summary below.
+The canonical executable specification is
+`quality_reports/plans/2026-08-12_essential_input_gate0.md`, status APPROVED.
+It authorizes Goal 0 only. Its opening prompt is in its Section 14 and controls
+over everything below.
 
-Recommended opening prompt for a fresh session:
+`quality_reports/plans/2026-08-03-clean-baseline-goal.md` and the prompt below
+are **historical**. They specify the immediate-opt-out architecture that was
+removed on 2026-08-12. Do not execute them.
+
+Historical opening prompt, superseded — do not run:
 
 ```text
 Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, formal_model_v6.Rmd, formal_model_v5.Rmd, quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md e quality_reports/2026-05-25_clean_baseline_priority.md. O alvo correto do próximo manuscrito é formal_model_v6.Rmd; formal_model_v5.Rmd é referência histórica da integração de 2026-05-15. Prioridade 1: antes de mexer no manuscrito v6, rederivar em model_redesign/power_architecture_derivations.Rmd o baseline limpo com b_theta=0 e opt-out imediato de H em R1: se H rejeita, nenhum acordo inclui H e o tipo theta recebe o_theta sem desconto. Trate delayed continuation dentro da IO, o caso hibrido max{o_theta,beta C_theta} e t_theta=d_theta-b_theta como extensões/microfundamentos. Preserve o protocolo adotado: o jogo é sequencial e público entre rodadas, mas dentro de cada ballot todos os não proponentes votam simultaneamente e os votos individuais só se tornam públicos após o fechamento; isso não é votação roll-call sequencial. Use paper-version/git tag workflow antes de qualquer reset substantivo, mas não crie tag enganosa em worktree suja. Preserve a linguagem de comparação institucional condicional, weak-state agenda pi_H=0 e weak-vote-passive assessment quando migrar para v6. Trate P/L/R e o rejected-history reduction lemma de v5 como candidatos históricos: preserve-os somente se forem rederivados no novo extensive form e, nesse caso, não alegue unicidade nem caracterização de todos os PBEs. Após implementar o reset, dois revisores independentes e sem edição devem revisar: um com formal-model review e outro com adversarial math/game-theory audit.

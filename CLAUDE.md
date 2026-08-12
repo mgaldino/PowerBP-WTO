@@ -15,16 +15,51 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 
 ## Status
 
-- **Decisão pós-Goal 3 (2026-08-05; bloqueio de migração)**: o usuário adotou
-  a convenção de barganha `T^Y`: o agente aceita quando a oferta é exatamente
-  igual à opção externa ou ao valor de continuação. R2 é terminal e deve ser
-  resolvido sem `beta`; `beta*C_2` entra somente quando a continuação é avaliada
-  em R1. Os artefatos, pareceres, matriz de impacto e handoff fechados do Goal 3
-  são históricos para a especificação sem aceitação global na igualdade e não
-  podem ser migrados ao v6. A relação entre `T^Y` e PBE-UD no ballot simultâneo
-  está `pending protocol decision` e exige novo Gate 0 e rederivação integral.
-  Ver `quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
-- **Fase**: integração do manuscrito após correção técnica das provas.
+> ## ARQUITETURA CORRENTE — essential-input (2026-08-12)
+>
+> **O contrato normativo é
+> `quality_reports/plans/2026-08-12_essential_input_gate0.md`, status APPROVED.**
+> Ele prevalece sobre qualquer afirmação no resto deste arquivo. Ler antes de agir.
+> A seção "Leitura para aprovação" explica as decisões sem jargão.
+>
+> **O que mudou, e o que aqui está superado:**
+>
+> 1. **Ninguém tem ação de saída.** Ballots simétricos: todos votam sim ou não.
+>    O `não` de `H` é só um não, e `H` continua no jogo. Toda afirmação abaixo
+>    sobre opt-out imediato e irreversível de `H`, ou "nenhum acordo inclui `H`
+>    depois disso", está **superada**. Aquela primitiva dava a `H` um privilégio
+>    que os fracos não tinham e eliminava a opção de atraso, que é a fonte da
+>    renda informacional dinâmica.
+> 2. **`o_theta` é payoff de desacordo**, recebido ao fim do jogo se nada
+>    passar, com a mesma data e o mesmo desconto de todo mundo. O limiar
+>    `y_theta^* = o_theta` está **superado**: vale em R2, que é terminal; em R1
+>    a reserva é o valor de continuação.
+> 3. **Conceito de solução: PBE mais stage-undominated voting**, com `T^Y` na
+>    igualdade exata. A pendência de 2026-08-05 sobre `T^Y` versus PBE-UD está
+>    **RESOLVIDA e era dicotomia falsa**: na igualdade exata as duas ações de
+>    voto são idênticas em todo contingente, então a undominância não elimina
+>    nada e não há o que substituir. Domínios disjuntos — undominância decide os
+>    casos estritos, `T^Y` decide o empate. Abandonar a undominância foi o ramo
+>    errado. Stage-undominated voting é refinamento declarado de PBE
+>    implementado como restrição de estratégias, não de crenças; não confundir
+>    com o weak-vote-passive assessment, que não é refinamento.
+> 4. **A pie é fixa em 1**, independente do tipo e da inclusão de `H`. Pie
+>    `V(theta)` e pie dependente da inclusão são alternativas eliminadas,
+>    extensões para outro paper. Não repropor.
+> 5. **Ordem de derivação**: `N1` R2-maioria, `N2` R2-unanimidade, `N3`
+>    R1-maioria, `N4` R1-unanimidade, `N5` entry, `N6` comparação. A dificuldade
+>    está concentrada em `N4`. Trabalhar em `model_redesign/essential_input_*`.
+>
+> **A cadeia `pivotal-response` (12 nós, commit `19c431a`) é proveniência
+> fechada.** Seus PASS valem apenas para a especificação que revisaram. Não
+> migrar, não citar como evidência corrente, não editar. Idem para os artefatos
+> PBE-UD do Goal 3 e o handoff do Goal 4.
+>
+> **Findings escalam por default.** O ônus é de quem quiser classificar como
+> técnico, e o teste é se existe exatamente um reparo forçado pelo que já está
+> escrito. Toda ambiguidade e toda definição faltando escalam, sem exceção.
+
+- **Fase**: Gate 0 essential-input aprovado; Goal 0 autorizado, sem derivação iniciada.
 - **Paper v6** (ALVO CORRETO): `formal_model_v6.Rmd` — alvo do próximo manuscript pass. `formal_model_v6.pdf` existe como PDF compilado atual.
 - **Paper v5** (REFERÊNCIA HISTÓRICA): `formal_model_v5.Rmd` — baseline fixed-pie relative-package com `pi_H=0`, weak-state agenda e weak-vote-passive assessment. `formal_model_v5.pdf` recompilado em 2026-05-15. Não usar v5 como alvo do clean-baseline reset.
 - **Atualização do baseline v5 (2026-05-15)**: v5 usa a arquitetura fixed-pie relative-package com `pi_H=0` no corpo. A avaliação de crenças deve ser chamada **weak-vote-passive assessment**, não refinement. A defesa é informacional: weak states não observam `theta`, então desvios unilaterais de voto dos fracos não sinalizam diretamente o tipo de `H`; votos separadores de `H` podem atualizar crenças; crenças on-path seguem Bayes. O resultado R1 deve ser formulado como selected PBE outcome payoff-equivalente a `P`, `L` ou `R` sob a avaliação mantida, não como unicidade nem caracterização de todos os PBEs.
@@ -33,14 +68,13 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 - **Decisão de redesign**: a próxima versão do modelo principal deve separar três fontes de poder: outside option, veto/pivotality e proposal power. Agenda power entra por uma recognition probability `pi_H`. O baseline principal usa `pi_H = 0`, isto é, weak states / coalizões não-hegemônicas propõem e `H` é veto player informado. Isso isola informational power through pivotality de agenda power.
 - **Reset arquitetural (2026-05-11, agora extensão para a próxima prova)**: abandonar o ramo de factibilidade state-contingent como mecanismo principal. Essa versão usava pacotes institucionais relativos, sempre factíveis, com `U_H(y, theta)=y+b_H(theta)`. Pela prioridade 2026-05-25, essa fórmula dinâmica não deve ser o próximo baseline; ela vira extensão/microfundamento.
 - **Prioridade 1 para a próxima prova (2026-05-25)**: antes de mexer no
-  manuscrito v6, recentrar o próximo proof pass no baseline limpo documentado
-  em `quality_reports/2026-05-25_clean_baseline_priority.md`: `b_theta = 0` e
-  opt-out imediato de `H` em R1. Se `H` rejeita, nenhum acordo inclui `H` e o
-  tipo `theta` recebe `o_theta` sem desconto. Usar `beta C_theta` como payoff do
-  próprio voto não/rejeição de `H`, o caso híbrido
-  `max{o_theta,beta C_theta}` e a decomposição `t_theta = d_theta-b_theta`
-  devem virar extensões/microfundamentos. Isso não exclui uma continuação R2
-  descontada depois de `H` votar sim e votos fracos causarem a falha de R1;
+  manuscrito v6 — **SUPERADO em 2026-08-12**. Essa prioridade exigia opt-out
+  imediato de `H` em R1, primitiva removida pelo contrato essential-input.
+  `b_theta = 0` sobrevive; o opt-out não. `max{o_theta,beta C_theta}` deixou de
+  ser extensão a supor e passou a ser consequência do desenho simétrico. A
+  prioridade corrente é o Goal 0 de
+  `quality_reports/plans/2026-08-12_essential_input_gate0.md`. Texto histórico a
+  seguir, não executar;
   esse ramo deve ser definido no Gate 0 e derivado separadamente. Refaça
   primeiro em `model_redesign/power_architecture_derivations.Rmd`; só depois
   migre para `formal_model_v6.Rmd`.
@@ -77,14 +111,15 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 - **Pacote relativo**: `y` é uma concessão institucional a `H` e reduz o
   residual dos fracos um-para-um.
 - **Payoff de H no acordo**: `y`, pois `b_theta=0` no baseline.
-- **Opt-out de H**: se o tipo `theta` rejeita em R1, recebe `o_theta`
-  imediatamente, sem desconto; `o_theta` é primitivo. No ramo em que o voto
-  sim de `H` implementa imediatamente um acordo que o inclui, o threshold
-  limpo é `y_theta^*=o_theta`, com screening quando `o_1>o_0`. Esse cutoff não
-  deve ser aplicado globalmente. Como os votos são simultâneos, se falha fraca
-  tiver probabilidade positiva no information set de `H`, derive a IC esperada
-  a partir dos payoffs de implementação, opt-out e continuação; não permita que
-  `H` condicione seu voto ao vetor ainda não revelado.
+- **Desacordo de H** (SUPERSEDE o opt-out imediato, 2026-08-12): `o_theta` é o
+  payoff de desacordo de `H`, recebido ao fim do jogo se nada passar, com a
+  mesma data e desconto dos fracos, cujo payoff de desacordo é zero. `H` não
+  tem ação de saída e permanece ativo depois de votar não. O limiar
+  `y_theta^*=o_theta` vale em R2, que é terminal; em R1 a reserva é o valor de
+  continuação. Screening continua exigindo `o_1>o_0`. Como os votos são
+  simultâneos, derive a IC de `H` a partir dos payoffs que cada ação induz sobre
+  todo o vetor de votos fracos; nunca permita que `H` condicione seu voto ao
+  vetor ainda não revelado nem decida depois de observá-lo.
 - **Agenda**: `pi_H=0` em todas as rodadas; apenas weak states propõem.
 - **Votação**: ballots simultâneos com registro público ex post, usando o mesmo
   protocolo sob unanimidade e maioria.
@@ -140,7 +175,7 @@ Na calibração OPEC: `max{0.6842105, 0.8316498} < 0.9 < 0.9193777`.
 - Classificação institucional calibrada: verificada para OPEC porque dominância condicional, nesting e `lambda_M^E > alpha` passam.
 
 **Pendentes; não tratar como fechados:**
-- Prioridade 1: rederivar o baseline limpo (`b_theta=0`, rejeição de `H` em R1 dá opt-out imediato `o_theta` sem desconto) em `model_redesign/power_architecture_derivations.Rmd`, conforme `quality_reports/2026-05-25_clean_baseline_priority.md`. Usar `paper-version`/git tag workflow antes de reset substantivo, mas não criar tag enganosa em worktree suja.
+- Prioridade 1 (**substituída em 2026-08-12**): a antiga prioridade era o baseline limpo com opt-out imediato em `model_redesign/power_architecture_derivations.Rmd`. O opt-out foi removido e aquele workspace é proveniência. A prioridade corrente é o Goal 0 do contrato essential-input, derivando em `model_redesign/essential_input_*`. Continua valendo: usar `paper-version`/git tag antes de reset substantivo, e nunca criar tag enganosa em worktree suja.
 - Revisão independente de coerência global de `formal_model_v6.Rmd` depois da migração do clean-baseline reset. A prova de rejected histories em v5 recebeu A+, mas v6 precisará de leitura final própria.
 - Checar captions, figuras e tabelas para garantir que tudo usa a arquitetura fixed-pie relative-package `pi_H=0` e não importa linguagem antiga de feasibility/C-B-R ou random proposer.
 - Reauditar Appendix C somente depois de estabilizar o modelo binário redesenhado.
@@ -237,12 +272,11 @@ y_theta^*(mu') = beta C_H(theta, mu') - b_H(theta)
 screening: y_1^*(mu') > y_0^*(mu')
 ```
 
-Atualização prioritária de 2026-05-25: a próxima derivação deve começar pelo
-caso limpo `b_theta=0` e opt-out imediato de `H` em R1. Se `H` rejeita, nenhum
-acordo inclui `H` e o tipo `theta` recebe `o_theta` sem desconto. A fórmula
-acima deve ser tratada como extensão/microfundamento depois que o benchmark
-limpo estiver provado e revisado; uma extensão híbrida pode estudar o payoff de
-rejeição `max{o_theta,beta C_theta}`.
+Atualização prioritária de 2026-05-25 — **SUPERADA em 2026-08-12**. Ela mandava
+começar pelo caso limpo com opt-out imediato de `H` em R1. O opt-out foi
+removido; `b_theta=0` permanece. A fórmula acima continua sendo
+extensão/microfundamento, e `max{o_theta,beta C_theta}` deixou de ser extensão
+hipotética para virar consequência do desenho simétrico.
 
 Interpretação OPEC: `y` é quota/share/flexibilidade/exceção/enforcement
 favorável à Arábia Saudita; `b_H(theta)` é o benefício direto do acordo para a
@@ -263,9 +297,15 @@ Motivo: o erro anterior veio em parte de manter fórmulas de uma arquitetura ant
 
 ### Prompt recomendado para próxima sessão
 
-A especificação canônica e executável do Goal 1 está em
-`quality_reports/plans/2026-08-03-clean-baseline-goal.md`. O Gate 0 desse
-arquivo prevalece sobre o resumo histórico mais curto abaixo.
+A especificação canônica e executável é
+`quality_reports/plans/2026-08-12_essential_input_gate0.md`, status APPROVED,
+e o prompt de abertura está na Seção 14 dele. Ele autoriza o Goal 0 e só ele.
+
+O plano `2026-08-03-clean-baseline-goal.md` e o prompt abaixo são **históricos**:
+especificam a arquitetura com opt-out imediato, removida em 2026-08-12. Não
+executar.
+
+Prompt histórico, superado — não rodar:
 
 ```text
 Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md, formal_model_v6.Rmd, formal_model_v5.Rmd, quality_reports/2026-05-15_ajps_revision_scope_after_discussion.md e quality_reports/2026-05-25_clean_baseline_priority.md. O alvo correto do próximo manuscrito é formal_model_v6.Rmd; formal_model_v5.Rmd é referência histórica da integração de 2026-05-15. Prioridade 1: antes de mexer no manuscrito v6, rederivar em model_redesign/power_architecture_derivations.Rmd o baseline limpo com b_theta=0 e opt-out imediato de H em R1: se H rejeita, nenhum acordo inclui H e o tipo theta recebe o_theta sem desconto. Trate delayed continuation dentro da IO, o caso hibrido max{o_theta,beta C_theta} e t_theta=d_theta-b_theta como extensões/microfundamentos. Preserve o protocolo adotado: o jogo é sequencial e público entre rodadas, mas dentro de cada ballot todos os não proponentes votam simultaneamente e os votos individuais só se tornam públicos após o fechamento; isso não é votação roll-call sequencial. Use paper-version/git tag workflow antes de reset substantivo, mas não crie tag enganosa em worktree suja. Preserve a linguagem de comparação institucional condicional, weak-state agenda pi_H=0 e weak-vote-passive assessment quando migrar para v6. Trate P/L/R e o rejected-history reduction lemma de v5 como candidatos históricos: preserve-os somente se forem rederivados no novo extensive form e, nesse caso, não alegue unicidade nem caracterização de todos os PBEs. Após implementar o reset, dois revisores independentes e sem edição devem revisar: um com formal-model review e outro com adversarial math/game-theory audit.
@@ -414,7 +454,7 @@ rmarkdown::render("formal_model_v6.Rmd")
 - **Prop 4** (classificação): LÓGICA ABSTRATA — herda gaps do Corollary
 - **LemmaVWMax** (V_W global max): PARCIAL — 1/4 candidatos verificados
 
-**Não usar esse status como evidência atual.** Para a próxima fase, primeiro formalizar o baseline limpo de 2026-05-25 (`b_theta=0`, opt-out imediato de `H` em R1). O regime `A/C/R`, a factibilidade BF e o antigo lower bound do ramo H-proposer são história diagnóstica ou extensão, não alvo inicial do próximo Lean/proof pass.
+**Não usar esse status como evidência atual.** As provas Lean existentes verificam arquiteturas já abandonadas, incluindo a de opt-out imediato. Não há alvo Lean definido enquanto a cadeia essential-input não estabilizar; quando houver, o alvo será o baseline simétrico sem opt-out. O regime `A/C/R`, a factibilidade BF e o antigo lower bound do ramo H-proposer são história diagnóstica.
 
 ### O que o Lean NÃO verifica (e por quê)
 
