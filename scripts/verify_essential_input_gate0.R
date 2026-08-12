@@ -23,13 +23,14 @@ nodes <- manifest$nodes
 node_ids <- vapply(nodes, `[[`, character(1), "id")
 names(nodes) <- node_ids
 
-expected_ids <- paste0("N", 1:6)
+assert_true(identical(manifest$schema_version, "essential-input-gate0-v2"), "The manifest must use the post-decisions Gate 0 schema version.")
+
+expected_ids <- c("N1", "N2", "N3", "N4", "N6")
 expected_names <- c(
   N1 = "r2_majority",
   N2 = "r2_unanimity",
   N3 = "r1_majority",
   N4 = "r1_unanimity",
-  N5 = "entry",
   N6 = "comparison"
 )
 expected_dependencies <- list(
@@ -37,12 +38,12 @@ expected_dependencies <- list(
   N2 = character(),
   N3 = "N1",
   N4 = "N2",
-  N5 = c("N3", "N4"),
-  N6 = "N5"
+  N6 = c("N3", "N4")
 )
 
-assert_true(identical(node_ids, expected_ids), "The DAG must contain N1 through N6 in order.")
-assert_true(length(unique(node_ids)) == 6L, "Node ids must be unique.")
+assert_true(identical(node_ids, expected_ids), "The DAG must contain exactly N1, N2, N3, N4, and N6 in order.")
+assert_true(length(unique(node_ids)) == 5L, "The five node ids must be unique.")
+assert_true(!("N5" %in% node_ids), "N5 entry must be absent from the baseline DAG.")
 
 for (node_id in expected_ids) {
   node <- nodes[[node_id]]
@@ -66,7 +67,8 @@ for (node_id in expected_ids) {
     "recognized_proposer_payoff",
     "weak_nonproposer_pre_recognition_expected_value",
     "hegemon_payoff_by_type",
-    "outcome_distribution"
+    "outcome_distribution",
+    "complete_information_benchmark"
   )
   assert_true(identical(names(interface), required_interface_fields), paste(node_id, "has the wrong interface schema."))
   assert_true(is.null(interface$recognized_proposer_payoff), paste(node_id, "has a filled proposer payoff."))
@@ -80,6 +82,14 @@ for (node_id in expected_ids) {
   if (identical(node$round, "R1")) {
     assert_true("delay" %in% names(interface$outcome_distribution), paste(node_id, "must export delay."))
   }
+
+  benchmark <- interface$complete_information_benchmark
+  assert_true(identical(names(benchmark), "hegemon_payoff_by_type"), paste(node_id, "has the wrong complete-information benchmark schema."))
+  assert_true(identical(names(benchmark$hegemon_payoff_by_type), c("theta_0", "theta_1")), paste(node_id, "has the wrong complete-information H-type schema."))
+  assert_true(all(vapply(benchmark$hegemon_payoff_by_type, is.null, logical(1))), paste(node_id, "has a filled complete-information benchmark."))
+
+  forbidden_formation_fields <- c("formation", "formation_decision", "entry_decision", "entry_cost")
+  assert_true(!any(forbidden_formation_fields %in% names(interface)), paste(node_id, "contains a formation coordinate."))
 }
 
 assert_true(identical(manifest$interface_hashing$algorithm, "sha256"), "Interface hashing must use SHA-256.")
@@ -127,11 +137,19 @@ assert_true("N3" %in% ready_nodes(n1_frozen), "Frozen N1 must release N3.")
 n2_frozen <- freeze_node(nodes, "N2")
 assert_true("N4" %in% ready_nodes(n2_frozen), "Frozen N2 must release N4.")
 
-# N5 requires both R1 interfaces; either one alone is insufficient.
+# N6 requires both R1 interfaces; either one alone is insufficient.
 n3_only <- freeze_node(freeze_node(freeze_node(nodes, "N1"), "N2"), "N3")
-assert_true(!("N5" %in% ready_nodes(n3_only)), "N3 alone must not release N5.")
+assert_true(!("N6" %in% ready_nodes(n3_only)), "N3 alone must not release N6.")
 n4_only <- freeze_node(freeze_node(freeze_node(nodes, "N1"), "N2"), "N4")
-assert_true(!("N5" %in% ready_nodes(n4_only)), "N4 alone must not release N5.")
+assert_true(!("N6" %in% ready_nodes(n4_only)), "N4 alone must not release N6.")
+
+n3_unhashed_with_n4 <- freeze_node(n4_only, "N3", include_hash = FALSE)
+assert_true(!("N6" %in% ready_nodes(n3_unhashed_with_n4)), "N3 without a frozen hash must not release N6 even when N4 is frozen.")
+n4_unhashed_with_n3 <- freeze_node(n3_only, "N4", include_hash = FALSE)
+assert_true(!("N6" %in% ready_nodes(n4_unhashed_with_n3)), "N4 without a frozen hash must not release N6 even when N3 is frozen.")
+
+both_r1_frozen <- freeze_node(n3_only, "N4")
+assert_true("N6" %in% ready_nodes(both_r1_frozen), "Frozen N3 and N4 must release N6.")
 
 direct_dependents <- function(candidate_nodes, node_id) {
   names(candidate_nodes)[vapply(candidate_nodes, function(node) {
@@ -152,15 +170,14 @@ descendants <- function(candidate_nodes, changed_id) {
 }
 
 expected_invalidations <- list(
-  N1 = c("N3", "N5", "N6"),
-  N2 = c("N4", "N5", "N6"),
-  N3 = c("N5", "N6"),
-  N4 = c("N5", "N6"),
-  N5 = "N6",
+  N1 = c("N3", "N6"),
+  N2 = c("N4", "N6"),
+  N3 = "N6",
+  N4 = "N6",
   N6 = character()
 )
 for (node_id in expected_ids) {
   assert_true(identical(descendants(nodes, node_id), expected_invalidations[[node_id]]), paste(node_id, "has the wrong invalidation descendants."))
 }
 
-cat("PASS: essential-input Gate 0 DAG, empty interface schema, readiness gates, and invalidation rules verified.\n")
+cat("PASS: five-node essential-input Gate 0 DAG, empty interface schema, complete-information benchmark, readiness gates, and invalidation rules verified.\n")
