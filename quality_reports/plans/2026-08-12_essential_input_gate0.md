@@ -40,6 +40,9 @@ acordo.** Isso ocorre se uma proposta passa sem `H` ou se R2 termina sem acordo.
 Todos são pagos na data em que o jogo termina: aprovação em R1, aprovação em R2
 ou falha de R2. Antes, `H` acessava sua alternativa em R1 enquanto os fracos só
 acessavam continuações descontadas, inflando artificialmente seu preço.
+Se uma proposta passa sem `H`, a coordenada `y` votada continua sendo paga a
+`H`, além de `o_theta`, que vem de fora da pie. `y` não é destruído nem
+redistribuído depois do ballot.
 *Observe:* `H` não recebe `o_theta` antes de o jogo terminar nem em data
 diferente da alocação recebida pelos weak states.
 
@@ -206,7 +209,9 @@ Pie            surplus institucional fixo, normalizado em 1
 Pacote         alocação s = (y, (x_j)_{j in W sem i}, r_i), com
                0 <= y <= y_bar, x_j >= 0, r_i >= 0 e
                y + sum_j x_j + r_i <= 1; y é destinado a H
-Payoff de H    y se o acordo o inclui; b_theta = 0
+Payoff de H    se a proposta passa: y quando H vota sim; y+o_theta quando H
+               vota não e a proposta passa sem ele; se R2 falha: o_theta;
+               b_theta = 0
 Desacordo      weak state: 0;  H: o_theta, com 0 < o_0 < o_1 <= y_bar <= 1
 Agenda         pi_H = 0 em toda rodada; só weak states propõem
 Reconhecimento sorteios iid com reposição, uniformes entre os m weak states;
@@ -219,13 +224,13 @@ Rodadas        duas; R2 terminal
 aplicação, ilustração numérica ou microfundamento, e não são impostos.
 
 A opção externa de `H` é **externa à pie institucional**. Se uma proposta passa
-com voto `não` de `H`, ele fica fora do acordo e recebe `o_theta` de fora na data
-da aprovação. O `y` que lhe havia sido destinado é perdido, não retorna ao
-residual; os weak states recebem exatamente suas alocações propostas. Se R2
-falha, `H` recebe `o_theta` e os weak states recebem zero na data terminal.
-Não há pagamentos laterais. Uma proposta aprovada é implementada exatamente
-como proposta. Que propostas com folga orçamentária não sejam ótimas é resultado
-a provar, não restrição adicional ao conjunto factível.
+com voto `não` de `H`, ele fica fora do acordo, recebe `o_theta` de fora na data
+da aprovação **e recebe `y` como escrito na proposta**. Toda coordenada da
+alocação aprovada é executada integralmente, para todos os destinatários,
+independentemente do voto: nada é destruído e nada é realocado depois do ballot.
+Se R2 falha, `H` recebe `o_theta` e os weak states recebem zero na data terminal.
+Não há pagamentos laterais. Que propostas com folga orçamentária não sejam
+ótimas é resultado a provar, não restrição adicional ao conjunto factível.
 
 ---
 
@@ -272,12 +277,14 @@ sob maioria. Nenhuma região, condição de exclusão ou inércia informacional 
 ser imposta antes da derivação.
 
 **Dominância a provar sob maioria.** Oferecer `y>0` e simultaneamente comprar
-`q-1` votos fracos de reserva deve ser comparado com `y=0` e os mesmos votos.
-Que a primeira proposta seja estritamente dominada pela segunda é obrigação de
-prova de `N3`, apoiada na pie fixa e na perda de `y`; não é restrição do espaço
-de propostas. Uma vez provada, restam para comparação a exclusão com `y=0` e
-`q-1` votos fracos, ou a tentativa de substituir um voto fraco por `H`, com
-`y>0` e `q-2` votos fracos.
+`q-1` votos fracos de reserva na proposta `s=(y,x,r_i)` deve ser comparado com a
+proposta alternativa `s'=(0,x,r_i+y)`, que compra os mesmos votos fracos e é
+factível sempre que `s` é. Esta é uma comparação **ex ante entre duas
+propostas**, não realocação depois do ballot. Que `s` seja estritamente dominada
+por `s'` é obrigação de prova de `N3`, apoiada na pie fixa e na execução integral
+de `y`; não é restrição do espaço de propostas. Uma vez provada, restam para
+comparação a exclusão com `y=0` e `q-1` votos fracos, ou a tentativa de
+substituir um voto fraco por `H`, com `y>0` e `q-2` votos fracos.
 
 ### Decisão: conceito de solução no ballot
 
@@ -305,9 +312,9 @@ de propostas. Uma vez provada, restam para comparação a exclusão com `y=0` e
 - **Escolha**: o surplus institucional dos fracos é **fixo e normalizado em 1**,
   independente do tipo de `H` e independente de `H` estar ou não no acordo.
   Quando uma proposta passa sem `H`, ele recebe `o_theta` de fora; a pie factível
-  continua sendo uma unidade, mas qualquer `y` que a proposta lhe destinou é
-  perdido e não pode ser reabsorvido pelos weak states. Decisão do autor em
-  2026-08-12, definitiva para este paper.
+  continua sendo uma unidade e toda a alocação proposta, inclusive `y`, é paga
+  exatamente como votada. `o_theta` não reduz a pie porque é externo. Decisão do
+  autor em 2026-08-12, definitiva para este paper.
 - **Alternativas descartadas**:
   - *Pie dependente do tipo, `V(theta) in {1,r}` (arquitetura de 2026-04-19)*:
     descartada porque, embora mais rica e embora fosse o que sustentava o
@@ -368,11 +375,25 @@ t=2   Novo sorteio uniforme, independente e com reposição, entre todos os m
 
 **Implementação e inclusão.** Se uma proposta passa, todos os weak states
 recebem exatamente a alocação proposta a cada um e o proponente recebe `r_i`,
-independentemente de seus votos. `H` integra o acordo e recebe `y` se vota
-`sim`. Se vota `não` e a proposta ainda assim passa, fica fora, recebe
-`o_theta` de fora na mesma data e `y` é perdido. Não há realocação ex post nem
-pagamentos laterais. Se o ballot falha em R1, nenhuma alocação é paga e o jogo
-segue para R2.
+independentemente de seus votos. `H` recebe `y` sempre que a proposta passa. Se
+vota `sim`, integra o acordo e seu payoff é `y`. Se vota `não` e a proposta ainda
+assim passa, fica fora do acordo e seu payoff é `y+o_theta`: `y` é a coordenada
+institucional executada e `o_theta` é externo à pie, ambos recebidos na mesma
+data. Não há destruição, realocação ex post nem pagamentos laterais. Se o ballot
+falha em R1, o jogo não terminou: nenhum pagamento ocorre e o jogo segue para
+R2.
+
+**Tabela 1. Payoffs e datas por resultado do ballot**
+
+| Resultado | `H`, tipo baixo | `H`, tipo alto | Proponente `i` | Cada weak nonproposer `j` |
+|---|---|---|---|---|
+| Proposta aprovada com `H` — possível sob maioria e unanimidade | `y`, na data da aprovação | `y`, na data da aprovação | `r_i`, na data da aprovação | `x_j`, na data da aprovação |
+| Proposta aprovada sem `H` — possível sob maioria; **inalcançável sob unanimidade** | `y+o_0`, na data da aprovação | `y+o_1`, na data da aprovação | `r_i`, na data da aprovação | `x_j`, na data da aprovação |
+| Falha em R1 — história não terminal | Nenhum pagamento; o jogo não terminou e segue para R2 | Nenhum pagamento; o jogo não terminou e segue para R2 | Nenhum pagamento; o jogo não terminou e segue para R2 | Nenhum pagamento; o jogo não terminou e segue para R2 |
+| Falha em R2 — história terminal | `o_0`, na data terminal de R2 | `o_1`, na data terminal de R2 | `0`, na data terminal de R2 | `0`, na data terminal de R2 |
+
+A linha de falha em R1 registra uma transição, não um payoff corrente: pagamentos
+só existem quando o jogo termina.
 
 **Reconhecimento.** Os sorteios de R1 e R2 são independentes, com reposição e
 uniformes entre os `m` weak states. Todos continuam elegíveis em R2. A identidade
@@ -398,11 +419,15 @@ pagamentos após uma falha de R1 não estabelece o lema.
 
 **Obrigações de prova da forma extensiva.** Nenhuma pode ser usada como
 premissa: (i) propostas com soma estritamente menor que 1 não são ótimas; (ii)
-sob maioria, a proposta-hedge com `y>0` e `q-1` votos fracos é estritamente
-dominada por `y=0` com os mesmos votos; e (iii) votos e demais ações fracas são
-não informativos sobre `theta`, de modo que o posterior depende apenas do voto
-do próprio `H`. A terceira obrigação deve ser demonstrada por Bayes a partir de
-`pi_H=0` e do fato de nenhum weak state observar `theta`.
+sob maioria, a proposta-hedge `s=(y,x,r_i)`, com `y>0` e `q-1` votos fracos, é
+estritamente dominada pela proposta alternativa `s'=(0,x,r_i+y)` com os mesmos
+votos; e (iii) o ramo em que uma proposta aprovada paga `y+o_theta` a `H` fora
+do acordo não ocorre no caminho de equilíbrio — sob unanimidade é inalcançável,
+e sob maioria sua exclusão do caminho deve decorrer da prova de (ii); e (iv)
+votos e demais ações fracas são não informativos sobre `theta`, de modo que o
+posterior depende apenas do voto do próprio `H`. A quarta obrigação deve ser
+demonstrada por Bayes a partir de `pi_H=0` e do fato de nenhum weak state observar
+`theta`.
 
 ---
 
@@ -464,6 +489,13 @@ todo perfil e a undominância tende a ficar slack, com o PBE já determinando a
 melhor resposta em esperança. Onde as crenças não respondem ao voto de `H`, sua
 decisão reduz-se à comparação na linha de aprovação.
 
+Sob maioria, a IC de `H` deve preservar também o ramo em que ele não é pivotal.
+Se a proposta passa qualquer que seja seu voto, `sim` paga `y`, enquanto `não`
+paga `y+o_theta`; portanto `sim` não domina `não`. Com estratégias puras, a
+pivotalidade de `H` no caminho deve ser derivada da proposta e das estratégias
+dos weak states. O termo `y+o_theta` não pode ser apagado dos perfis fora do
+caminho nem da construção da IC de `H`.
+
 **Tie-break no nível da proposta.** Entre propostas que maximizam o payoff do
 proponente, seleciona-se a que minimiza o payoff esperado de `H`. Esta seleção é
 distinta de `T^Y`, que governa a resposta no ballot, e é conservadora em relação
@@ -484,10 +516,10 @@ voto do próprio `H`. O voto de `H` permanece informativo e atualiza crenças.
 R2 é terminal e resolve-se inteiramente em unidades correntes, sem `beta`
 interno. `beta` incide **exatamente uma vez**, quando um valor de R2 entra numa
 comparação de incentivos de R1. Se o jogo termina por aprovação em R1, todas as
-alocações dessa história — inclusive `o_theta` quando `H` fica fora — são pagas
-na data de R1. Se continua, todos os payoffs de R2 entram em R1 multiplicados
-uma única vez por `beta`. Nenhum jogador recebe em data diferente dos demais na
-mesma história terminal.
+parcelas do payoff dessa história — inclusive `y` e `o_theta` quando `H` fica
+fora — são pagas na data de R1. Se continua, não há pagamento em R1; todos os
+payoffs de R2 entram na avaliação de R1 multiplicados uma única vez por `beta`.
+Nenhum jogador recebe em data diferente dos demais na mesma história terminal.
 
 ---
 
@@ -627,8 +659,17 @@ payoff do proponente; não se pode substituir a desigualdade factível por uma
 igualdade primitiva.
 
 **P1 — Dominância do hedge sob maioria.** `N3` deve provar que oferecer `y>0` e
-comprar simultaneamente `q-1` votos fracos é estritamente dominado por oferecer
-`y=0` com os mesmos votos. O resultado depende da pie fixa e da perda de `y`.
+comprar simultaneamente `q-1` votos fracos na proposta `s=(y,x,r_i)` é
+estritamente dominado pela proposta `s'=(0,x,r_i+y)`, com os mesmos pagamentos
+aos `q-1` weak states. A comparação é entre propostas ex ante e preserva a soma
+orçamentária; não é realocação depois do ballot. O resultado depende da pie fixa,
+da execução integral de `y` e da IC de `H`, e não pode ser assumido.
+
+**P1a — Ausência on-path do ramo `y+o_theta`.** Deve-se provar que a história em
+que uma proposta passa sem `H` e lhe paga `y+o_theta` não ocorre no caminho de
+equilíbrio. Sob unanimidade a história é inalcançável porque o `não` de `H`
+derruba a proposta. Sob maioria, a conclusão deve seguir da prova de P1, não de
+uma regra de implementação que destrua ou reverta `y`.
 
 **P2 — Três regiões de N3.** Com `a` como preço do voto fraco substituto, `N3`
 deve derivar separadamente os casos em que ambos os tipos de `H` estão acima de
@@ -672,6 +713,9 @@ primitivas:
   assimétrica;
 - `o_theta` disparado por um voto `não` antes de o jogo terminar, ou payoff de
   R2 importado em R1 sem exatamente uma aplicação de `beta`;
+- destruição de `y`, reversão de `y` ao residual ou qualquer realocação
+  contingente ao resultado do ballot; uma proposta aprovada é executada
+  integralmente e `H` recebe `y+o_theta` se ela passa com seu voto `não`;
 - redução exaustiva a `P/L/R`; rejected-history reduction lemma;
 - maioria como benchmark geral de no-screening, exclusão geral ou inclusão
   geral — `N3` deve derivar as três regiões em torno do preço substituto;
