@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "pivotal-response-entry-unanimity-v1",
+  "state_id": "entry_unanimity",
+  "status": "candidate_pending_independent_review",
+  "created_date": "2026-08-12",
+  "repair_of_rejected_candidate_sha256": "efa5933adba180bff9d1c8ffd6ff6c53b7dc5345de72b14f088a7dd2542553e8",
+  "solution_concept": "perfect Bayesian equilibrium",
+  "institutional_rule": "unanimity",
+  "native_payoff_date": "before Round 1 recognition",
+  "provenance": {
+    "frozen_gate0_bundle": "gate0_bundle_v1.json",
+    "frozen_gate0_bundle_sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1",
+    "frozen_r1_batch": "r1_batch_frozen_v1.json",
+    "frozen_r1_batch_sha256": "f4ac7b89f4c08d4ee461ca1431135286304abaae2589a337aeffdb38b5941c3a",
+    "frozen_c1_unanimity": "r1_unanimity_v1.json",
+    "frozen_c1_unanimity_sha256": "37aae1bfe7921c6c90aff5d05ed301f8729c2b899477991619bcf0cb6c96e8b5",
+    "derivation_note": "../pivotal_response_nodes/entry_unanimity_v1.md",
+    "mechanical_verifier": "../../scripts/verify_pivotal_response_entry_unanimity.R",
+    "check_table": "../../tables/pivotal_response_entry_unanimity_checks.csv",
+    "assessment_fixture_table": "../../tables/pivotal_response_entry_unanimity_assessment_fixtures_v1.csv",
+    "realized_payoff_fixture_table": "../../tables/pivotal_response_entry_unanimity_realized_payoffs_v1.csv",
+    "endpoint_logic_table": "../../tables/pivotal_response_entry_unanimity_endpoint_logic_v1.csv",
+    "historical_entry_formulas_imported": false
+  },
+  "dependency_discipline": {
+    "literal_input": "consume one complete alpha from the exact frozen C1-U correspondence, including its type-by-identity payoffs, H payoffs, strategies, beliefs, payments, continuation selections, and type-conditional outcome kernels",
+    "no_r1_or_c2_rederivation": true,
+    "no_scalar_selection": true,
+    "no_bound_selection": true,
+    "downstream_discount_application_count": 0,
+    "cost_application_count_if_formation": "one subtraction of chi from each weak identity after C1 is computed",
+    "mutation_rule": "any byte change to Gate 0, the R1 batch freeze, or C1-U invalidates this candidate and every descendant"
+  },
+  "validated_domain_gate": {
+    "population": "integer N=m+1>=3",
+    "prior": "mu in [0,1]",
+    "outside_options": "0<=o_0<o_1<=y_bar<=1",
+    "discount": "beta in (0,1]",
+    "entry_cost": "chi>=0",
+    "validated_common_existence_domain": "every primitive-admissible N>=3 case exported by frozen C1-U",
+    "boundary_inclusion": [
+      "N=3",
+      "mu=0",
+      "mu=1",
+      "o_0=0",
+      "o_1=y_bar",
+      "y_bar=1",
+      "beta=1",
+      "chi=0",
+      "chi=1/m",
+      "chi>1/m"
+    ],
+    "consumer_rule": "the candidate is consumable only after independent PASS of this exact hash"
+  },
+  "formation_primitive": {
+    "timing": "Nature draws theta, then the uninformed weak coalition makes one collective all-or-nothing decision, then Round-1 recognition occurs if and only if it forms",
+    "information": "the weak coalition knows mu and the complete equilibrium assessment alpha but does not observe theta",
+    "cost": "each of the m weak states pays the same external sunk cost chi if formation occurs; chi never reduces the unit bargaining pie and never changes C1",
+    "nonformation": "each weak state receives zero, H type theta receives o_theta, and the terminal outcome is nonformation",
+    "equality": "formation occurs when the collective net value is exactly zero",
+    "individual_participation_warning": "the collective primitive does not require every weak identity or every realized type to have a nonnegative net payoff under an asymmetric alpha"
+  },
+  "required_assessment_payload": {
+    "assessment_index": "alpha is the complete frozen C1-U selection and must remain attached to every entry output",
+    "within_recognizer_input": "for each recognized weak proposer i, E_sigma_i[U_Wk^i(theta;alpha_i)] for every weak identity k and theta, plus the aligned H coordinate and outcome kernel",
+    "c1_weak_matrix": "C1_W_alpha[theta,k]=(1/m) sum_i E_sigma_i[U_Wk^i(theta;alpha_i)], a 2 by m matrix",
+    "c1_hegemon_vector": "C1_H_alpha[theta]=(1/m) sum_i E_sigma_i[U_H^i(theta;alpha_i)]",
+    "c1_outcome_kernel": "D1_alpha(theta) integrates the same alpha first over sigma_i and then over uniform recognition, separately by theta",
+    "alignment": "payoffs and outcome kernels must use the same sigma, recognition weights, beliefs, strategies, payments, and continuation selections; coordinate splicing is forbidden"
+  },
+  "integration_operator": {
+    "step_1": "inside each recognizer i and each theta, integrate U^i(theta;s,alpha_i) and its aligned outcome kernel over sigma_i",
+    "step_2": "for each theta and player identity, average the Step-1 coordinates over the m uniformly recognized weak proposers to obtain C1_W_alpha[theta,k], C1_H_alpha[theta], and D1_alpha(theta)",
+    "step_3": "retain both theta rows and every weak identity; define T_W_alpha(theta)=sum_k C1_W_alpha[theta,k]",
+    "step_4": "only now integrate type using the public prior: G_U(alpha,mu)=((1-mu)T_W_alpha(0)+mu T_W_alpha(1))/m",
+    "step_5": "define the collective net formation value Z_U(alpha,mu,chi)=G_U(alpha,mu)-chi",
+    "forbidden_orders": [
+      "replacing the identity vector by a scalar before C1 is constructed",
+      "selecting different alpha coordinates for different types, identities, payoffs, or outcomes",
+      "conditioning recognition on theta or proposal outcomes",
+      "subtracting chi before bargaining or from the unit pie",
+      "multiplying any C1 coordinate by beta again"
+    ]
+  },
+  "assessment_level_output": {
+    "gross_value": "G_U(alpha,mu)=((1-mu)T_W_alpha(0)+mu T_W_alpha(1))/m",
+    "net_decision_value": "Z_U(alpha,mu,chi)=G_U(alpha,mu)-chi",
+    "formation_indicator": "e_U(alpha,mu,chi)=1{G_U(alpha,mu)>=chi}",
+    "status_label": "form when e_U=1 and no_form when e_U=0",
+    "alpha_retention": "two alphas remain distinct even if gross values, net values, or status labels coincide"
+  },
+  "realized_payoff_and_outcome_map": {
+    "if_form_weak_type_identity": "u_entry_Wk(theta;alpha)=C1_W_alpha[theta,k]-chi",
+    "if_form_weak_type_total": "sum_k u_entry_Wk(theta;alpha)=T_W_alpha(theta)-m*chi",
+    "if_form_weak_ex_ante_average": "G_U(alpha,mu)-chi",
+    "if_form_hegemon_type": "u_entry_H(theta;alpha)=C1_H_alpha[theta]",
+    "if_form_outcome": "D_entry_alpha(theta)=D1_alpha(theta), with an external cost overlay of chi for every weak identity",
+    "if_no_form_weak": "u_entry_Wk(theta;alpha)=0 for every k and theta",
+    "if_no_form_hegemon": "u_entry_H(theta;alpha)=o_theta",
+    "if_no_form_outcome": "D_entry_alpha(theta) is degenerate at nonformation",
+    "ex_ante_outcome": "(1-mu)D_entry_alpha(0)+mu D_entry_alpha(1)",
+    "type_independence_of_action": "because theta is unobserved, the same e_U applies to both type rows"
+  },
+  "exact_set_valued_entry_correspondence": {
+    "source_set": "A_U(P) is the nonempty full C1-U assessment correspondence for primitives and public history P on the validated N>=3 domain",
+    "gross_value_image": "Gset_U(P,mu)={G_U(alpha,mu): alpha in A_U(P)}",
+    "entry_map": "Entry_U(alpha,mu,chi) is the complete alpha-preserving record of G_U, Z_U, e_U, the type-by-identity realized payoff map, H payoffs, and aligned outcome kernels",
+    "correspondence": "E_U(P,mu,chi)={Entry_U(alpha,mu,chi): alpha in A_U(P)}",
+    "status_projection": "S_U(P,mu,chi)={form: some alpha has G_U>=chi} union {no_form: some alpha has G_U<chi}",
+    "nonemptiness": "proved from frozen universal C1-U existence for every primitive-admissible N>=3 case",
+    "preservation_rule": "E_U is not quotiented by its scalar gross-value image or status projection; alpha, identity payoffs, H coordinates, and outcomes remain in every element",
+    "selection_status": "exact and set-valued; no entry selection is added"
+  },
+  "endpoint_interface": {
+    "lower_endpoint": "L_U(P,mu)=inf Gset_U(P,mu)",
+    "upper_endpoint": "U_U(P,mu)=sup Gset_U(P,mu)",
+    "existence": "both finite endpoints exist because Gset_U is nonempty and bounded in [0,1/m]",
+    "lower_attainment_indicator": "a_U_minus=1 iff some alpha has G_U(alpha,mu)=L_U; no general N=3 truth value is supplied",
+    "upper_attainment_indicator": "a_U_plus=1 iff some alpha has G_U(alpha,mu)=U_U; no general truth value is supplied",
+    "no_compactness_assumption": "the frozen C1 correspondence can inherit nonclosed continuation boundaries, so endpoint attainment is never inferred from boundedness",
+    "proved_special_attainment": "for every N>=4, the frozen universal zero-weak-value C1-U assessment proves L_U=0 and a_U_minus=1",
+    "N3_attainment_status": "parameter- and correspondence-dependent; pending any sharper result and not defaulted",
+    "upper_attainment_status": "parameter- and correspondence-dependent for every N>=3; not defaulted",
+    "closed_form_value_status": "not supplied by the frozen interface in general; consumers requiring numeric endpoints must solve the full C1 image rather than insert a bound or choose alpha"
+  },
+  "selection_free_formation_logic": {
+    "all_form": "every alpha forms iff L_U>=chi",
+    "possible_form": "some alpha forms iff chi<U_U, or chi=U_U and a_U_plus=1",
+    "possible_no_form": "some alpha does not form iff L_U<chi",
+    "all_no_form": "every alpha does not form iff U_U<chi, or chi=U_U and a_U_plus=0",
+    "lower_equality": "at chi=L_U every alpha forms whether or not L_U is attained",
+    "upper_equality": "at chi=U_U, formation is possible exactly when the supremum is attained; if it is unattained, every alpha has G_U<chi and all do not form",
+    "singleton_check": "if L_U=U_U=chi, bounded nonemptiness implies both endpoints are attained, every alpha forms, and no alpha chooses no formation"
+  },
+  "selection_free_bounds": {
+    "frozen_c1_input": "for every alpha and theta, 0<=C1_W_alpha[theta,k] and 0<=T_W_alpha(theta)<=1",
+    "derived_gross_bound": "0<=G_U(alpha,mu)<=1/m",
+    "derived_net_bound_if_form": "-chi<=G_U(alpha,mu)-chi<=1/m-chi",
+    "derived_realized_weak_bounds_if_form": "-chi<=C1_W_alpha[theta,k]-chi<=1-chi and -m*chi<=T_W_alpha(theta)-m*chi<=1-m*chi",
+    "cost_zero": "chi=0 implies all_form for every N>=3, including equality at zero",
+    "cost_above_upper_bound": "chi>1/m implies all_no_form for every N>=3",
+    "cost_at_upper_bound": "at chi=1/m, possible_form requires an alpha attaining G_U=1/m; otherwise all_no_form",
+    "interior_cost": "for 0<chi<1/m, the coarse C1 bounds alone do not select or classify all assessments",
+    "Nge4_zero_assessment": "for every N>=4 and chi>0, the attained zero-weak-value alpha proves possible_no_form and rules out all_form",
+    "N3_warning": "no zero-value assessment is asserted from the general N=3 C1 export",
+    "individual_warning": "formation based on the collective average does not imply nonnegative type-by-identity realized net payoffs"
+  },
+  "input_sufficiency_and_stop_rule": {
+    "sufficient_for": [
+      "the exact alpha-preserving entry operator",
+      "assessment-level formation decisions",
+      "realized type-by-identity weak and H payoff maps",
+      "aligned outcome maps",
+      "the exact endpoint-conditional selection-free logic",
+      "the stated coarse bounds and N>=4 lower-endpoint result"
+    ],
+    "not_sufficient_for": "a general closed-form numerical formula for L_U, U_U, or upper-endpoint attainment",
+    "decision": "no upstream reopen is needed for the exact entry correspondence; no unavailable closed-form endpoint is claimed",
+    "mandatory_reopen": "reopen or further solve frozen C1-U before any consumer reports numeric endpoint functions, treats [0,1/m] as the attained value set, or chooses alpha using a bound"
+  },
+  "mechanical_checks": {
+    "scope": "exact dependency hashes, synthetic full-vector assessment fixtures, sigma-recognition-type-average order, identity asymmetry, aligned outcomes, external cost accounting, equality formation, nonformation, exact finite-correspondence preservation, symbolic endpoint/nonattainment logic, boundaries, mutations, and protected hashes",
+    "result": "37 PASS / 37 total",
+    "assessment_fixture_rows": 72,
+    "realized_payoff_rows": 48,
+    "endpoint_logic_cases": 7,
+    "protected_hashes_checked": 27,
+    "dependency_mutation_guards": 3,
+    "independent_review": "pending"
+  },
+  "claim_status": {
+    "assessment_level_operator": "proved",
+    "exact_set_valued_entry_correspondence": "proved",
+    "selection_free_endpoint_logic": "proved",
+    "general_weak_value_bounds": "proved from frozen C1-U",
+    "Nge4_zero_lower_endpoint_and_attainment": "proved from frozen C1-U",
+    "general_N3_endpoint_values_and_attainment": "pending",
+    "general_upper_endpoint_value_and_attainment": "pending",
+    "closed_form_entry_regions": "pending and not claimed",
+    "historical_entry_formulas": "rejected as inputs",
+    "mechanical_fixtures": "checked numerically",
+    "independent_formal_acceptance": "pending",
+    "rendered_layout": "pending"
+  },
+  "invalidation": "any change to the exact Gate 0, R1 batch, or C1-U bytes; to collective all-or-nothing entry; to type information; to external per-weak cost; to equality formation; or to the aligned alpha payload reopens this node and every descendant",
+  "artifact_hash_protocol": "SHA-256 is computed externally over exact UTF-8 bytes; the digest is not stored recursively inside this candidate"
+}

@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "pivotal-response-gate0-contract-v1",
+  "status": "candidate_pending_independent_review",
+  "created_date": "2026-08-11",
+  "provenance": {
+    "git_root": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion",
+    "branch_at_start": "main",
+    "head_at_start": "df3a0f2990ad7b86559ffc3ef05015e2250653a7",
+    "worktree_at_start": "clean",
+    "primitive_source": "../power_architecture_derivations.Rmd",
+    "quarantined_history": "../undominated_voting_rederivation.Rmd",
+    "protected_hash_manifest": "../../quality_reports/2026-08-11_pivotal_response_protected_hash_manifest.tsv"
+  },
+  "game_class": "finite two-round imperfect-information game with simultaneous ballots and an acyclic continuation graph",
+  "solution_concept": "perfect Bayesian equilibrium",
+  "players": {
+    "hegemon": "H",
+    "weak_states": "W_1,...,W_m",
+    "population": "N=m+1 with N>=3"
+  },
+  "nature_and_information": {
+    "type": "theta in {0,1}",
+    "prior": "mu=Pr(theta=1) in [0,1]",
+    "persistence": "theta is drawn before formation and persists through both rounds",
+    "private_observation": "only H observes theta",
+    "common_knowledge": "the prior and every game primitive in this contract are common knowledge"
+  },
+  "primitive_domain": {
+    "outside_options": "0<=o_0<o_1<=y_bar<=1",
+    "discount": "beta in (0,1]",
+    "weak_outside_payoff": 0,
+    "weak_institutional_surplus": 1,
+    "hegemon_agreement_benefit": "b_0=b_1=0",
+    "recognition": "pi_H=0 in both rounds; exactly one weak proposer is drawn uniformly in every reached round, and the draw is independent across rounds and independent of theta and public history"
+  },
+  "institutional_rule": {
+    "choice": "R in {U,M} is fixed exogenously",
+    "unanimity_quota": "Q_U=N",
+    "majority_quota": "Q_M=q=floor(N/2)+1",
+    "post_optout_quota": "the original quota is retained; it is not recalculated"
+  },
+  "formation": {
+    "timing": "after Nature draws theta and before Round-1 recognition",
+    "decision": "the weak states make one collective all-or-nothing decision without observing theta",
+    "cost": "each weak state pays external sunk cost chi if the institution forms",
+    "nonformation_payoffs": "each weak state receives 0 and H receives o_theta",
+    "assessment_index": "alpha indexes a complete equilibrium assessment or authorized selection from the downstream payoff correspondence",
+    "gross_value": "V_W^R(alpha,mu)=(1/m) E_alpha[sum_j u_j^R | formation]",
+    "net_value": "V_W^R(alpha,mu)-chi",
+    "formation_rule": "form if and only if V_W^R(alpha,mu)-chi>=0; equality forms",
+    "correspondence_rule": "when bargaining payoffs are a correspondence, entry is evaluated assessment by assessment; payoff bounds support only selection-free claims and never choose an assessment"
+  },
+  "proposal_space": {
+    "active_H": "a recognized weak proposer i chooses s_i=(y,(x_j)_{j!=i}) with 0<=y<=y_bar and x_j>=0",
+    "active_H_residual": "x_i^H=1-y-sum_{j!=i}x_j>=0",
+    "H_excluded_residual": "x_i^WO=1-sum_{j!=i}x_j=x_i^H+y",
+    "weak_only": "after H has opted out the proposal fixes y=0 and allocates the unit weak surplus",
+    "named_payment_rule": "a named x_j is paid whenever the current proposal passes even if recipient j voted no",
+    "participation_payment_rule": "y is paid only when the current agreement includes H; otherwise it is reabsorbed by the weak proposer"
+  },
+  "ballot": {
+    "proposer_vote": "the proposer is counted as yes",
+    "nonproposer_moves": "all active nonproposers vote yes or no simultaneously",
+    "observations_before_vote": "public history and current proposal only; H additionally observes theta",
+    "publication": "the complete vote vector and outcome become public only after every vote is cast",
+    "within_ballot_order": "none",
+    "behavioral_randomization": "in the absence of an authorized correlating device, behavioral randomizations are independent conditional on the player's information set; no proof may insert correlation among simultaneous ballots"
+  },
+  "hegemon_optout": {
+    "trigger": "a no vote by H",
+    "effect": "immediate and irreversible exclusion from every current or future agreement",
+    "R1_payoff": "o_theta at the Round-1 date with no discount",
+    "R2_payoff": "o_theta at the Round-2 date",
+    "yes_weak_failure": "if H votes yes and weak votes cause Round-1 failure then H remains active and the appropriate active-H Round-2 continuation is reached"
+  },
+  "terminal_failure": {
+    "active_H_R2": "H receives o_theta in Round-2 units and every weak state receives 0",
+    "post_optout_R2": "weak states receive 0; H receives no new flow because its Round-1 outside payoff was already realized"
+  },
+  "payoff_dates_and_discount": {
+    "native_R2_units": "all Round-2 decision problems are solved without beta",
+    "transport_to_R1": "multiply a frozen Round-2 continuation by beta exactly once when it enters a Round-1 incentive calculation",
+    "immediate_R1_optout": "o_theta is not multiplied by beta"
+  },
+  "beliefs": {
+    "public_history": "beliefs are indexed by the full public history and current proposal",
+    "bayes": "update by Bayes rule at every information set reached with positive probability",
+    "zero_probability": "off-path beliefs are assessment components and must be stated rather than chosen inside a proof",
+    "uninformed_vote": "a unilateral vote by a weak state is not treated as direct information about theta",
+    "type_relevance_after_optout": "theta is payoff-irrelevant to a weak-only continuation after H has opted out"
+  },
+  "vote_relevance": {
+    "outcome_signature": [
+      "approval_or_rejection",
+      "H_inclusion_or_exclusion",
+      "H_optout_status",
+      "implemented_payment_vector_and_destination_of_y",
+      "terminal_outcome_or_continuation_outcome_under_the_frozen_assessment"
+    ],
+    "outcome_map": "Phi maps an action profile to the induced terminal outcome or to the continuation outcome/interface kappa_C2(h2) under the frozen assessment; a raw successor label or raw vote vector is never itself the continuation component",
+    "relevant_profile": "conditional on voter i's information set I, a profile (theta,a_-i) is relevant exactly when changing i's vote changes at least one component of Phi after action-specific continuation interfaces are evaluated",
+    "same_continuation_class": "in R1, if both votes reach the same named C2 class but produce different full histories h2, compare kappa_C2(h2_yes) with kappa_C2(h2_no); equal raw node labels do not establish irrelevance",
+    "incentive_difference": "sum Pr(theta,a_-i|I) times [u_i(yes)-u_i(no)] only over relevant profiles; every omitted profile contributes exactly zero",
+    "response_when_relevance_has_positive_probability": "choose yes when its expected payoff is at least the expected payoff from no; choose no otherwise",
+    "equality_when_relevant": "choose yes when the two expected payoffs are equal and relevance has positive probability",
+    "zero_probability_relevance": "holding every other strategy fixed, yes and no give the same expected outcome on the current assessment support; the assessment must record an explicit full-profile completion, but no universal player-by-player yes completion is imposed because changing several locally irrelevant actions jointly can change passage",
+    "joint_completion_equivalence": "two full assessment-level completions may be quotiented only if they induce the same outcome signature, public-history and belief distribution where relevant, and payoff distribution at every affected proposal and history",
+    "product_safe_warning": "individual local irrelevance is not closed under joint changes: with N=4 at terminal unanimity, proposer and H yes, two zero-paid weak no votes are individually irrelevant against the other's no, but changing both to yes passes; the same hazard occurs in N=4 terminal weak-only majority",
+    "completion_invariance_obligation": "no substantive result may be promoted until a downstream product-safe proof establishes invariance of outcomes, beliefs, payoffs, proposals, and proposer optimality across the full completions being compared; otherwise retain separate outcome classes or a correspondence"
+  },
+  "coalitions_and_deviations": {
+    "primitive_restriction": "none beyond feasibility and the institutional quota",
+    "supporter_payments": "payments required for support must be derived from voting incentives",
+    "outsider_gifts": "positive transfers to outsiders remain feasible proposal deviations and stay in proposer optimality checks",
+    "unrestricted_completion_correspondence": "voting completions are proposal-contingent; an on-path proposal and a proposal deviation may have different locally rational full-profile completions",
+    "general_minimality_result": "not available from PBE plus local relevance: positive gifts and oversized support can survive because deleting a gift changes the proposal information set and may change its completion",
+    "gift_counterexample": "in terminal weak-only majority with N=5 and q=3, proposer plus three weak yes votes pass and each weak vote is individually irrelevant; at a deviated zero-gift proposal all three weak no votes also make each unilateral switch irrelevant while the proposal fails",
+    "open_set_implication": "the N=5 finding is not a knife-edge: an open set of feasible positive gift vectors can be paired with the all-yes completion while a distinct deviated proposal receives the all-no completion",
+    "minimal_winning_representation": "may be used only for a subclass after product-safe invariance or secured passage and proposer optimality are proved; otherwise retain unrestricted proposal-contingent completions and their outcome correspondence"
+  },
+  "proposal_tie_break": "only after proposal-payoff maximization, minimize H's expected payoff among tied proposals; if both the proposer and H payoffs tie and downstream objects differ, retain the correspondence",
+  "entry_and_comparison_scope": "entry nodes consume the frozen Round-1 payoff correspondence or valid selection-free bounds; institutional comparison is restricted to the common equilibrium-existence domain",
+  "transition_registry": "../../tables/pivotal_response_gate0_transitions_v1.csv",
+  "information_set_registry": "../../tables/pivotal_response_information_sets_v1.csv",
+  "sufficient_state_registry": "../../tables/pivotal_response_sufficient_states_v1.csv",
+  "relevance_registry": "../../tables/pivotal_response_relevance_registry_v1.csv",
+  "c2_interface_scope": "each C2 object consumed by R1 is a pre-recognition correspondence indexed by the full public h2 and integrates the uniform Round-2 proposer draw; proposer and ballot states are internal to that interface",
+  "gate0_bundle": "gate0_bundle_v1.json",
+  "dag": "../pivotal_response_game_dag.json",
+  "barrier": {
+    "gate0": "independent read-only review must pass the hash-complete Gate 0 bundle before any Round-2 derivation begins",
+    "R2_to_R1": "r2_batch_review must pass after all three Round-2 interfaces are PASS and hash-frozen before either Round-1 node starts",
+    "R1_to_entry": "r1_batch_frozen must pass after both Round-1 interfaces are PASS and hash-frozen before either entry node starts",
+    "upstream_change": "a changed continuation hash invalidates every descendant interface and review"
+  },
+  "derivation_status": "no Round-2 or Round-1 equilibrium result is contained in this artifact"
+}

@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "pivotal-response-entry-majority-v1",
+  "state_id": "entry_majority",
+  "status": "candidate_pending_independent_review",
+  "created_date": "2026-08-12",
+  "implementation_role": "candidate entry lift; implementer did not review this artifact",
+  "dependencies": [
+    {
+      "role": "frozen_gate0_bundle",
+      "path": "gate0_bundle_v1.json",
+      "sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1"
+    },
+    {
+      "role": "frozen_R1_batch",
+      "path": "r1_batch_frozen_v1.json",
+      "sha256": "f4ac7b89f4c08d4ee461ca1431135286304abaae2589a337aeffdb38b5941c3a"
+    },
+    {
+      "role": "C1_majority",
+      "path": "r1_majority_v1.json",
+      "sha256": "21c3a9dd2d6c9d25450978c2f7d9925af02e478b9c03d421d2a7b0f9aa2c77c9"
+    }
+  ],
+  "solution_concept": "perfect Bayesian equilibrium with a collective all-or-nothing weak-state formation decision layered assessment by assessment on the frozen C1 majority correspondence",
+  "native_payoff_date": "entry date, with imported C1 payoffs already in Round-1 units",
+  "domain": {
+    "population": "N=m+1>=3",
+    "true_preentry_belief": "mu in [0,1]",
+    "entry_cost": "chi>=0, paid separately by every weak identity if and only if the institution forms",
+    "weak_information": "the weak coalition does not observe theta at entry",
+    "formation_technology": "collective and all-or-nothing; there is no identity-level unilateral entry decision",
+    "nonformation": "every weak identity receives zero and H type theta receives o_theta",
+    "equality": "the weak coalition forms when its collective net value equals zero"
+  },
+  "upstream_consumption": {
+    "unit": "one complete identity-indexed C1-M assessment alpha=(alpha_1,...,alpha_m), including every proposal mixture, ballot strategy and completion, belief, posterior, continuation selection, type-by-identity payoff, payment, inclusion, opt-out, full history, and outcome distribution",
+    "preservation": "alpha is retained whole as a coordinate of the entry assessment and is never chosen, spliced, or replaced by a scalar bound",
+    "no_rederivation": "no R1 or C2 strategy, belief, payoff, or equilibrium condition is rederived or repaired here",
+    "discount": "no additional beta is applied because C1-M is already dated in Round-1 units",
+    "true_belief": "entry uses true mu, never a proposal-contingent ballot belief rho"
+  },
+  "collective_value_operator": {
+    "sigma_first": "for each recognized proposer i, type theta, and named player k, integrate U_k^{i,theta} over the complete proposal mixture sigma_i inside alpha_i",
+    "recognition_second": "C1_M,k^alpha(theta|h1)=(1/m) sum_i U_k^{i,theta}(alpha_i)",
+    "type_third": "C1_M,W_j^alpha(mu|h1)=(1-mu)C1_M,W_j^alpha(0|h1)+mu C1_M,W_j^alpha(1|h1) for each named weak identity j",
+    "cross_weak_fourth": "V_W^M(alpha,mu)=(1/m) sum_j C1_M,W_j^alpha(mu|h1)",
+    "equivalent_type_total_formula": "T_W^M(alpha,theta)=sum_j C1_M,W_j^alpha(theta|h1), so V_W^M(alpha,mu)=[(1-mu)T_W^M(alpha,0)+mu T_W^M(alpha,1)]/m",
+    "linearity_note": "the two displayed formulas are identical by finite-sum linearity; the computational contract is E_sigma, then recognition, then type integration, then cross-weak averaging",
+    "forbidden_projection": "the recognized-proposer payoff, its N=3 singleton or interval, and the proved [0,1] proposer projections are not collective weak values"
+  },
+  "assessment_level_entry_rule": {
+    "gross_collective_value": "V_W^M(alpha,mu)",
+    "net_collective_value": "N_W^M(alpha,mu,chi)=V_W^M(alpha,mu)-chi",
+    "decision": "form if and only if V_W^M(alpha,mu)>=chi; equality forms",
+    "collective_interpretation": "the rule maximizes the average payoff of the collective weak-state formation device; it does not add an unmodeled individual participation veto",
+    "formed_named_weak_type_payoff": "E_M,W_j^alpha(theta)=C1_M,W_j^alpha(theta|h1)-chi for every named j and theta",
+    "formed_named_weak_ex_ante_payoff": "E_M,W_j^alpha(mu)=C1_M,W_j^alpha(mu|h1)-chi; negative identity-level net payoffs are retained and never truncated",
+    "formed_H_type_payoff": "E_M,H^alpha(theta)=C1_M,H^alpha(theta|h1)",
+    "formed_outcome": "inherit alpha's complete type-conditional C1-M outcome distribution and append formed status plus an external cost ledger chi for each named weak identity",
+    "nonformed_named_weak_payoff": "E_M,W_j(theta)=0 for every named j and theta",
+    "nonformed_H_type_payoff": "E_M,H(theta)=o_theta",
+    "nonformed_outcome": "collective_nonformation; H excluded; no institutional allocation, proposal, ballot, R1, or R2 is realized",
+    "external_cost_accounting": "chi is sunk and external: it does not reduce the institutional pie, change gifts, transfer to H, enter a ballot IC, or receive beta"
+  },
+  "exact_entry_correspondence": {
+    "assessment_set": "A_M(h1) is the full nonempty frozen C1-M assessment correspondence at the entry history",
+    "object": "E_M(h0,mu,chi) contains, for every whole alpha in A_M(h1), alpha itself, V_W, V_W-chi, the deterministic formation status, all type-by-identity entry payoffs, H type payoffs, cost ledger, and the complete inherited or nonformation outcome distribution",
+    "necessity": "any entry PBE fixes a complete off-path-or-on-path C1-M assessment alpha and the collective action must obey the displayed comparison",
+    "sufficiency": "for every alpha in A_M, the prescribed collective action plus alpha after formation and the primitive nonformation terminal outcome is sequentially rational",
+    "selection_status": "set-valued assessment by assessment; no assessment is selected by an infimum, supremum, average over assessments, or proposer-payoff projection"
+  },
+  "selection_free_bounds": {
+    "value_set": "S_M(mu)={V_W^M(alpha,mu): alpha in A_M(h1)} is nonempty",
+    "lower_endpoint": "v_M^-(mu)=inf S_M(mu)",
+    "upper_endpoint": "v_M^+(mu)=sup S_M(mu)",
+    "attainment_flags": "a_M^- and a_M^+ separately record whether some complete alpha attains v_M^- or v_M^+; no compactness or attainment is presumed unless proved",
+    "resource_envelope": "0<=v_M^-<=v_M^+<=1/m",
+    "resource_proof_basis": "on every PR04-PR07 realization the aggregate weak gross payoff is nonnegative and at most one in Round-1 units; sigma, ballot, recognition, and type integration preserve that bound",
+    "N_at_least_4_upper_endpoint": "for every N>=4, v_M^+=1/m and a_M^+=true because the frozen value-one assessment gives aggregate weak gross payoff one in every type",
+    "N_equals_3_endpoint_status": "the frozen proposer projection does not identify v_M^- or v_M^+; beyond the resource envelope and assessment-level formula, endpoint values and attainment must be computed from complete alpha objects",
+    "lower_endpoint_status": "no universal exact value or attainment claim is made for v_M^-",
+    "proposer_projection_construction_note": "in every proved [0,1] proposer-payoff construction, y=0, gifts total 1-V, and current passage give aggregate weak gross payoff one, hence collective value 1/m for every proposer payoff V; that continuum does not widen the collective value by itself"
+  },
+  "formation_regions": {
+    "all_form": "chi<=v_M^-",
+    "possible_form": "chi<v_M^+ or [chi=v_M^+ and a_M^+=true]",
+    "possible_no": "chi>v_M^-",
+    "all_no": "chi>v_M^+ or [chi=v_M^+ and a_M^+=false]",
+    "both_entry_statuses_possible": "chi>v_M^- and {chi<v_M^+ or [chi=v_M^+ and a_M^+=true]}",
+    "lower_attainment_equality": "at chi=v_M^- every assessment forms, whether or not the infimum is attained, because every value is at least the infimum and equality forms",
+    "upper_attainment_equality": "at chi=v_M^+ formation is possible exactly when the supremum is attained; otherwise every assessment has V_W<chi and all choose no",
+    "universal_cost_implications": "chi=0 implies all form; chi>1/m implies all no; for N>=4, chi=1/m admits formation through the attained value-one assessment",
+    "nonattainment_warning": "possible formation at the upper endpoint may not be inferred from a supremum alone"
+  },
+  "N3_proposer_projection_counterexample": {
+    "primitives": "N=3, beta=.5, o_0=0, o_1=.8, mu=.9",
+    "frozen_recognized_proposer_projection": "[.325,.75]",
+    "double_tied_proposals": "the weak-no proposal (y,x)=(0,0) and weak-yes proposal (0,.675) both give the recognized proposer .325 and H .72",
+    "first_collective_value": "weak-no yields aggregate weak gross .55 ex ante and V_W=.275",
+    "second_collective_value": "weak-yes yields aggregate weak gross one ex ante and V_W=.5",
+    "mixing": "any mixture of the double-tied signatures preserves proposer .325 and H .72 while spanning collective values [.275,.5]",
+    "implication": "even a fixed proposer value and tie-minimal H payoff do not determine entry; the complete type-by-identity alpha is indispensable"
+  },
+  "boundary_cases": [
+    "N=3 remains in the validated domain, but its proposer-value interval is never substituted for collective weak value",
+    "mu=0 or mu=1 uses the applicable type coordinate while retaining the counterfactual coordinate inside alpha",
+    "chi=0 forms even at zero gross value because equality forms",
+    "chi=v_M^- is all-form irrespective of lower-endpoint attainment",
+    "chi=v_M^+ requires the upper-attainment flag for possible formation",
+    "chi>1/m is universally all-no",
+    "for N>=4, chi=1/m has at least one forming assessment",
+    "formed identity-level net payoffs may be negative under the collective average criterion",
+    "nonformation pays H o_theta without beta and pays every weak identity zero"
+  ],
+  "rejected_shortcuts": [
+    "using a recognized-proposer payoff as V_W",
+    "using the N=3 proposer singleton or interval as an entry region",
+    "using the [0,1] proposer projection as a collective-value interval",
+    "choosing one C1 assessment from lower or upper bounds",
+    "averaging across distinct assessments",
+    "discarding identity coordinates before sigma and recognition integration",
+    "adding an individual weak-state participation constraint",
+    "charging chi inside the institutional pie",
+    "discounting C1 or the entry cost again",
+    "assuming a supremum is attained"
+  ],
+  "verification": {
+    "script": "../../scripts/verify_pivotal_response_entry_majority.R",
+    "checks_table": "../../tables/pivotal_response_entry_majority_checks_v1.csv",
+    "assessment_fixture_table": "../../tables/pivotal_response_entry_majority_assessment_fixtures_v1.csv",
+    "type_identity_fixture_table": "../../tables/pivotal_response_entry_majority_type_identity_fixtures_v1.csv",
+    "region_logic_table": "../../tables/pivotal_response_entry_majority_region_logic_v1.csv",
+    "scope": "exact dependency and transitive-component hashes; mutation invalidation; E_sigma to recognition to type to cross-weak aggregation; asymmetric named identities and proposal mixing; equality; external cost; negative identity net payoff; nonformation; resource envelope; N>=4 attained upper endpoint; N=3 double-tie nonidentification; endpoint and nonattainment logic; 27 protected hashes"
+  },
+  "review": {
+    "implementer_role": "entry derivation and implementation only",
+    "independent_review_required": true,
+    "review_status": "pending"
+  },
+  "invalidation": "any byte change to Gate 0, the frozen R1 batch, C1-M, or any transitive frozen component invalidates this candidate and every descendant",
+  "artifact_hash_policy": "the exact UTF-8 JSON bytes are hashed externally after serialization; no self-referential hash is embedded"
+}

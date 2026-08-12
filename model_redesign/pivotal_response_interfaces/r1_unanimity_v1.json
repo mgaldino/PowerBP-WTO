@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.1.0",
+  "artifact_id": "pivotal-response-r1-unanimity-v1",
+  "state_id": "r1_unanimity",
+  "status": "candidate_pending_independent_review",
+  "created_date": "2026-08-11",
+  "repair_of_rejected_candidate_sha256": "da52b135198898948ae88f919a849c76189f27fc6fff4d3f7646c4218d0f30aa",
+  "solution_concept": "perfect Bayesian equilibrium",
+  "native_payoff_date": "Round 1",
+  "provenance": {
+    "frozen_gate0_bundle": "gate0_bundle_v1.json",
+    "frozen_gate0_bundle_sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1",
+    "frozen_r2_batch": "r2_batch_review_v1.json",
+    "frozen_r2_batch_sha256": "00f84d4221d100f0def858e8c8bf19a58f79522f217118693837edf73583316a",
+    "frozen_c2_unanimity": "r2_unanimity_active_h_v1.json",
+    "frozen_c2_unanimity_sha256": "f3ca4ebf28827d7e18d9f3a2d07d41ffd6fe57532c9af09300f20a8ab5cecf10",
+    "derivation_note": "../pivotal_response_nodes/r1_unanimity_v1.md",
+    "mechanical_verifier": "../../scripts/verify_pivotal_response_r1_unanimity.R",
+    "check_table": "../../tables/pivotal_response_r1_unanimity_checks.csv",
+    "N3_primitive_grid_table": "../../tables/pivotal_response_r1_unanimity_n3_grid_v1.csv",
+    "historical_equilibrium_results_imported": false
+  },
+  "dependency_discipline": {
+    "c2_consumption": "every failed H-yes vector imports one literal full element of the frozen C2-U correspondence at its own full public h2",
+    "local_selection_forbidden": "Round 1 neither repairs nor optimizes over the internal strategies of an imported C2 element; the complete mapping from h2 to C2 elements is part of the Round-1 assessment",
+    "internal_c2_discount_application_count": 0,
+    "r1_transport_discount_application_count": 1,
+    "immediate_h_no_discount_application_count": 0,
+    "mutation_rule": "a byte change to the Gate 0 bundle, R2 batch, or C2-U interface invalidates this candidate and every descendant"
+  },
+  "export_domain_gate": {
+    "validated_exportable_domain": "N>=3",
+    "N>=3": "proved_consumable_pending_independent_rereview",
+    "N>=4": "proved_consumable_pending_independent_rereview",
+    "N=3": "proved_consumable_pending_independent_rereview",
+    "consumer_rule": "after this exact repaired candidate receives independent PASS, r1_batch_frozen, entry_unanimity, institutional_comparison, and manuscript-survival consumers may consume every primitive-admissible N>=3 case; no consumer may replace any nonclosed C2 endpoint by its unattained infimum",
+    "N3_closure_method": "five explicit attained cases split by G=1-o_1, beta, and mu; they use posterior-zero C2 elements on reached separating H-yes failures and posterior-one C2 elements only at globally off-path histories",
+    "reopening_rule": "any loss of attainment, Bayes alignment, public-history measurability, or exact frozen-C2 membership at N=3 reopens the full-domain export"
+  },
+  "state_key": {
+    "rule": "unanimity",
+    "round": 1,
+    "H_status": "active",
+    "public_history": "full h1",
+    "public_preproposal_belief": "mu=Pr(theta=1|h1) in [0,1]",
+    "recognition": "one of m=N-1 weak proposers is drawn uniformly and independently of theta and h1"
+  },
+  "primitive_problem": {
+    "population": "N=m+1>=3; recognized weak proposer i is counted yes and J_i contains n=N-2 weak nonproposer voters",
+    "type": "theta in {0,1}; only H observes theta; 0<=o_0<o_1<=y_bar<=1",
+    "proposal": "s_i=(y,(x_j)_{j in J_i}); 0<=y<=y_bar; x_j>=0; r_i=1-y-sum_j x_j>=0",
+    "ballot": "H and all voters in J_i act simultaneously; conditional behavioral randomizations are independent",
+    "passage": "the current agreement passes exactly when H and all voters in J_i choose yes",
+    "current_pass_payoffs": "H receives y, voter j receives x_j, and proposer i receives r_i",
+    "H_no": "immediate irreversible opt-out; H receives o_theta in Round-1 units, every weak state receives zero, and no continuation is reached",
+    "H_yes_weak_failure": "H remains active and the full revealed vector reaches its own selected C2-U element",
+    "equality": "yes is selected when a payoff-relevant expected comparison is equal; zero relevance permits an explicit completion"
+  },
+  "full_vector_notation": {
+    "weak_vector": "w in {0,1}^J records every weak nonproposer vote; bold 1 is the all-yes vector",
+    "independent_probability": "Q_p(w)=product_j p_j^w_j (1-p_j)^(1-w_j)",
+    "failure_history": "h2^Y(w)=(h1,i,s_i,H=Y,w,failed ballot) for every w distinct from bold 1",
+    "literal_selection": "kappa(h2^Y(w))=(nu_w,alpha_2,w,(c_k,w^theta)_{k,theta},(D_w^theta)_theta,strategies,beliefs) is one single exact element of the frozen pre-recognition C2,U(h2^Y(w);nu_w) correspondence",
+    "native_continuation_payoff": "c_k,w^theta is player k's type-conditional payoff in native Round-2 units; D_w^theta is the undiscounted terminal-outcome distribution",
+    "history_specificity": "equal posteriors do not identify kappa across different full vectors; every failed vector keeps its own assessment selection, although a construction may choose outcome-equivalent elements when the frozen correspondence contains them"
+  },
+  "continuation_projection_and_map": {
+    "frozen_source": "r2_unanimity_active_h_v1.json.pre_recognition_C2_correspondence",
+    "source_projection": "c_k,w^theta and D_w^theta are projections of the same selected pre-recognition C2 element kappa(h2); they are not selected directly from the recognized-proposer scalar payoff projection",
+    "domain": "complete public failed histories h2=(h1,i,s,H=Y,w,failed ballot) together with their public posterior nu(h2)",
+    "map_properties": [
+      "public_history_measurable",
+      "type_blind",
+      "one_full_element_per_history",
+      "both_type_coordinates_retained",
+      "all_player_coordinates_retained",
+      "belief_strategy_payoff_outcome_alignment"
+    ],
+    "type_blind_rule": "kappa is indexed by the public history h2 and never by privately known theta; one call kappa(h2) returns both theta=0 and theta=1 coordinates, and coordinatewise splicing from different C2 elements is forbidden",
+    "membership_rule": "kappa(h2) must belong to frozen C2,U(h2;nu(h2)); membership is checked at the Bayes posterior on every positive-probability history and at the explicitly assigned posterior on every globally off-path history",
+    "outcome_equivalence_rule": "two action-specific selections are outcome-equivalent only when the same public posterior, internal strategy and belief kernels, both-type all-player payoff coordinates, and both-type terminal-outcome kernels agree; equality of node names, scalar payoffs, or passage status is insufficient",
+    "measurability_rule": "the proposal-indexed maps rho_i(s), h_i,theta(s), p_i,j(s), and the public-history map kappa_i(h2) are Borel-measurable assessment components; sigma_i is a probability measure on the feasible proposal set"
+  },
+  "belief_interface": {
+    "proposal_ballot_belief": "rho_i(s) is the weak voters' belief at the ballot following proposal s",
+    "on_support_proposal": "rho_i(s)=mu because the recognized weak proposer is uninformed",
+    "globally_off_path_proposal": "rho_i(s) is an explicit assessment component in [0,1]",
+    "positive_probability_failure": "if a proposal is on the support of sigma_i, Q_p(w)>0, and d=(1-mu)h_0+mu h_1>0, Bayes gives nu_w=mu*h_1/d; in particular nu_w=0 under h=(1,0), nu_w=1 under h=(0,1), and nu_w=mu under h=(1,1); the type-independent weak-vector probability cancels",
+    "zero_probability_failure": "if the proposal, H-yes event, or vector has zero equilibrium probability, nu_w and kappa_i(h2) are explicit off-path assessment components subject only to membership in the frozen C2-U correspondence",
+    "deviation_evaluation": "a voter at the current ballot evaluates type-conditional payoffs using rho_i(s), while future strategies are those inside the action-specific selected kappa_i(h2); a proposal deviation is evaluated under the true preproposal mu",
+    "weak_vote_information": "a weak vote is not direct evidence about theta, but the public H vote can update the posterior",
+    "degenerate_beliefs": "both H-type actions and both type-conditional payoff vectors remain recorded when mu or rho is zero or one",
+    "posterior_membership_alignment": "the nu_w used in Bayes, the posterior field of kappa(h2), the frozen C2 membership test, and every payoff/outcome projection must be the same value"
+  },
+  "action_consequence_map": {
+    "H_yes_all_weak_yes": "current Round-1 implementation with payoff vector (r_i,(x_j),y)",
+    "H_yes_weak_failure": "payoff beta*c_k,w^theta for every player k; outcome probabilities are D_w^theta and are not multiplied by beta",
+    "H_no_any_weak_vector": "immediate terminal payoff (all weak zero,H=o_theta); beta never multiplies o_theta",
+    "outcome_signature": "current passage, immediate opt-out, or the full selected continuation interface including beliefs, strategies, type/player payoffs, and outcome distributions; a raw vector alone is not a payoff consequence"
+  },
+  "hegemon_ballot_fixed_point": {
+    "expected_difference": "Delta_H(theta)=Q_p(bold 1)*(y-o_theta)+sum_{w!=bold 1}Q_p(w)*(beta*c_H,w^theta-o_theta)",
+    "relevance": "positive with probability one because H-no implements immediate opt-out whereas H-yes either implements inclusion or preserves active-H continuation",
+    "response": "h_theta=1 if Delta_H(theta)>=0 and h_theta=0 otherwise",
+    "mixing": "none; equality is a relevant comparison and selects yes",
+    "no_global_payment_cutoff": "y>=o_theta is valid only when Q_p(bold 1)=1; failure continuations enter every other case"
+  },
+  "weak_ballot_fixed_point": {
+    "action_payoff_given_H_yes": "g_j^theta(a,w_-j)=x_j if (a,w_-j)=bold 1, and beta*c_j,(a,w_-j)^theta otherwise",
+    "expected_difference": "Delta_j=sum_theta lambda_theta(rho) h_theta sum_w_-j Q_p,-j(w_-j)[g_j^theta(1,w_-j)-g_j^theta(0,w_-j)]",
+    "relevance_probability": "R_j is the rho-weighted probability, over theta and every vector w_-j, that H chooses yes and the two action-specific outcome signatures differ",
+    "response_positive_relevance": "if R_j>0, p_j=1 when Delta_j>=0 and p_j=0 when Delta_j<0",
+    "response_zero_relevance": "if R_j=0, any p_j in [0,1] is an assessment completion; exact outcome-signature equality implies Delta_j=0",
+    "same_quota_branch": "when both actions fail, beta times the two distinct type-conditional C2 payoffs still enters Delta_j; unchanged passage status never by itself proves irrelevance",
+    "independence": "the simultaneous behavioral probabilities p_j form a product distribution; no correlating device is added"
+  },
+  "fixed_proposal_theorem": {
+    "assessment_element": "A_i(s)=(rho_i(s),(h_0,h_1),(p_j)_j,{(nu_w,kappa(h2^Y(w))):w!=bold 1})",
+    "necessary_and_sufficient_conditions": [
+      "every kappa_i(h2^Y(w)) is a literal member of the frozen C2-U correspondence at its full history and recorded posterior",
+      "Bayes' rule holds at every positive-probability reached failure history",
+      "both H types satisfy the hegemon ballot fixed point",
+      "every weak voter satisfies the weak ballot fixed point over the complete vector space"
+    ],
+    "status": "proved",
+    "closed_form_status": "the assessment fixed point is exact; a single threshold or scalar continuation value is not an equivalent representation"
+  },
+  "type_conditional_payoffs": {
+    "recognized_proposer": "U_i^theta=sum_w Q_p(w) h_theta [1{w=bold 1}r_i+1{w!=bold 1}beta*c_i,w^theta]",
+    "weak_nonproposer": "U_j^theta=sum_w Q_p(w) h_theta [1{w=bold 1}x_j+1{w!=bold 1}beta*c_j,w^theta]",
+    "hegemon": "U_H^theta=(1-h_theta)o_theta+h_theta[Q_p(bold 1)y+sum_{w!=bold 1}Q_p(w)beta*c_H,w^theta]",
+    "outcome_distribution": "combine current passage, immediate opt-out, and each D_w^theta using h_theta and Q_p(w); beta changes dates of payoffs, not probabilities",
+    "budget_fact": "the outside option is external to the unit weak surplus"
+  },
+  "proposal_stage_assessment": {
+    "components": [
+      "Borel probability measure sigma_i on the feasible proposal set",
+      "one complete fixed-proposal assessment element A_i(s) at every feasible proposal, including every deviation",
+      "full type/player payoff and terminal-outcome distributions"
+    ],
+    "map_measurability": "rho_i(s), h_i,theta(s), p_i,j(s), every payoff/outcome kernel, and kappa_i(h2) are public-history-measurable; kappa_i is type-blind",
+    "recognized_proposer_value": "V_i(s,A;mu)=(1-mu)U_i^0+mu U_i^1",
+    "hegemon_tie_break_value": "Hbar(s,A;mu)=(1-mu)U_H^0+mu U_H^1",
+    "sequential_rationality": "every support pair (s,A_i(s)) maximizes V_i against all feasible proposals evaluated with their proposal-contingent assessment elements and the true mu",
+    "tie_break": "after proposer maximization, support elements minimize Hbar among proposer maximizers; if both quantities tie, retain different payment, continuation, belief, and outcome distributions",
+    "mixing": "proposal mixing is allowed only across support elements tying in both V_i and Hbar",
+    "necessary_and_sufficient_PBE_characterization": "a complete proposer assessment is a PBE if and only if every proposal-indexed ballot element satisfies the fixed-proposal theorem, beliefs obey the stated Bayes restrictions, and the support satisfies maximization plus the frozen tie-break",
+    "selection_status": "set-valued; no equilibrium selection beyond the frozen equality and proposer tie conventions"
+  },
+  "constructive_subclasses": {
+    "secured_pooling_current_passage": {
+      "conditions": "p_j=1 for all j, h_0=h_1=1, y>=o_1, and for every voter the complete-vector IC against its unilateral failed-history continuation is nonnegative; proposal maximization and the tie-break must also hold",
+      "weak_IC": "sum_theta lambda_theta(rho)[x_j-beta*c_j,w(j=0,others=1)^theta]>=0",
+      "interpretation": "a current agreement includes H for both types; the direct y cutoff is valid here only because all weak votes are sure yes"
+    },
+    "secured_low_type_current_passage": {
+      "conditions": "mu<1, p_j=1 for all j, h_0=1,h_1=0, o_0<=y<o_1, each complete-vector weak IC is nonnegative, and proposal maximization plus the tie-break hold",
+      "weak_IC": "(1-rho)[x_j-beta*c_j,w(j=0,others=1)^0]>=0 when rho<1",
+      "interpretation": "the low type is included and the high type immediately opts out"
+    },
+    "flat_continuation_failure_ballot": {
+      "conditions": "N>=4, at least two weak voters choose no with probability one, and every unilateral weak switch selects an outcome-equivalent C2 element across the still-failed histories",
+      "weak_response": "every such weak action has zero relevance and is an admissible completion",
+      "H_response": "type theta chooses yes exactly when beta*E_p[c_H,w^theta]>=o_theta",
+      "proposal_stage_warning": "this is a ballot construction; it becomes an on-path proposer PBE only after proposal maximization and the tie-break are verified against all assigned deviation assessments"
+    },
+    "universal_zero_weak_value_PBE_for_Nge4": {
+      "construction": "after every proposal set every weak nonproposer to no and h_theta=1 exactly when beta*o_theta>=o_theta; after a positive-probability H-yes failure first compute nu(h2) by Bayes and then select from frozen pre-recognition C2,U(h2;nu(h2)) the canonical coordinated-failure element: a fixed feasible R2 proposal at each recognition node, deterministic all-no weak ballots after every R2 proposal, both R2 H types yes, every weak payoff zero, and both H coordinates c_H^theta=o_theta; this explicit element varies only in its recorded nu and is measurable; use an explicitly assigned posterior and the same canonical class at globally off-path h2",
+      "posterior_cases": "if beta=1, h=(1,1) and nu=mu; if beta<1 and o_0=0, h=(1,0) and every reached H-yes failure has nu=0; if both outside options are positive and beta<1, H-yes failures are off path",
+      "selection_alignment": "for failed histories connected by one weak switch after the same proposal, choose frozen elements with the same posterior and outcome-equivalent internal strategies, beliefs, both-type payoff vectors, and outcome kernels; the map remains one public-history-indexed, type-blind kappa",
+      "ballot_rationality": "every weak switch leaves another no and reaches an outcome-equivalent zero-weak-payoff continuation; H follows its exact full-vector IC",
+      "proposal_optimality": "every feasible proposal gives the proposer zero and H its expected outside payoff, so all proposals tie in both the proposer objective and the frozen H-payoff tie-break",
+      "existence": "proves nonemptiness and attainment for every N>=4, mu in [0,1], beta in (0,1], and admissible outside options"
+    },
+    "universal_N3_PBE": {
+      "notation": "G=1-o_1, D=1-o_0, c_G=G/2 when G>0, and c_0=D/4 when G=0",
+      "C2_G_positive": "for every posterior nu, kappa^G_nu is the symmetric frozen C2 pooling element: each R2 recognized proposer offers y_2=o_1 and zero to the other weak state, so each weak identity has both-type pre-recognition payoff c_G and H has both coordinates o_1",
+      "C2_G_zero_nu_zero": "kappa^0_0 is the symmetric frozen C2 separating element with each recognized proposer offering y_2=o_0+D/2, zero to the other weak state, and retaining D/2; each weak identity has low-type pre-recognition payoff c_0=D/4 and H's low coordinate is o_0+D/2",
+      "C2_G_zero_nu_one": "kappa^0_1 is the frozen C2 element with R2 proposal y_2=1 and all weak payments zero; both weak type coordinates are zero and both H coordinates equal one",
+      "case_G_positive_beta_less_1": "on path propose (y,x)=(o_1,beta*c_G), all current voters yes, and obtain V=G(1-beta/2); after every off-path proposal set rho=1, weak no, and select kappa^G_1, giving every deviation at most (1-mu)beta*c_G<V",
+      "case_G_positive_beta_equal_1": "let P=c_G, R=D-c_G, S=(1-mu)R; choose pooling (o_1,c_G) if P>S and separating (o_0,c_G) if S>=P; off path at rho=1 choose weak no with kappa^G_1 when x<c_G and weak yes when x>=c_G; every deviation is bounded by max{P,S}, and equality P=S selects separation because it gives H strictly less whenever mu<1",
+      "case_G_zero_beta_less_1_mu_less_1": "on path propose (o_0,beta*c_0), low H and the weak voter yes, high H no, and obtain (1-mu)(D-beta*c_0)>0; the reached weak-no history has posterior zero and selects kappa^0_0; every off-path proposal uses rho=1, weak no, and kappa^0_1, so its payoff is zero",
+      "case_G_zero_beta_equal_1_mu_less_1": "on path propose (o_0,c_0) and obtain V=(1-mu)(D-c_0)>0 using kappa^0_0 after the reached weak-no history; at off-path y<1 use rho=1, kappa^0_1, and a measurable p(s)>0 small enough that high H opts out, low H accepts, and (1-mu)p(s)r(s)<V; y=1 has zero residual",
+      "case_G_zero_mu_equal_1": "on path propose (1,0) and choose all yes; if beta<1 use rho=1, weak no, and kappa^0_1 off path; if beta=1 and y<1 use any strictly positive weak-yes probability so high H opts out, and at y=1 use weak yes with zero feasible residual; every proposal gives the sole supported high type's weak proposer zero and H one",
+      "Bayes_alignment": "the on-path G=0 separating weak-no history uses nu=0, never nu=mu unless mu=0; posterior-one elements are used only behind globally off-path proposals; G>0 pooling weak-no histories use nu=mu",
+      "nonclosed_endpoint_handling": "when G=0 the frozen N=3 C2 value set at nu<1 is open at zero; the construction uses the attained positive element kappa^0_0 with c_0=D/4 and never inserts the missing endpoint",
+      "existence": "proves nonemptiness and attainment for every N=3, mu in [0,1], beta in (0,1], and admissible outside options"
+    }
+  },
+  "survival_findings": {
+    "historical_P_label": "if P denotes a both-type current agreement, its outcome motif survives conditionally as the secured pooling subclass, not as a universal outcome or an imported formula",
+    "historical_L_label": "if L denotes low-type current passage with high-type opt-out, its outcome motif survives conditionally as the secured low-type subclass, not as a universal outcome or an imported formula",
+    "historical_R_label": "if R denotes deliberate failure followed by active-H continuation, its outcome motif survives conditionally only through a full failed-vector assessment satisfying all weak and H fixed-point inequalities",
+    "three_label_exhaustiveness": "rejected for the current PBE object: history-specific C2 selections, immediate opt-out branches, gifts, zero-relevance completions, proposal mixtures, and full outcome distributions are not generally represented by one of three scalar labels",
+    "historical_formulas_used": false
+  },
+  "pre_recognition_C1_correspondence": {
+    "validated_domain": "N>=3 after independent acceptance of this repaired candidate",
+    "assessment_index": "alpha selects one complete recognized-proposer PBE element e_i=(sigma_i,rho_i,h_i,p_i,kappa_i) for each i=1,...,m; selections may be identity-asymmetric and every component is measurable as specified above",
+    "within_recognizer_type_payoff": "E_sigma_i[U_k^i(theta;e_i)]=integral over feasible s of U_k^i(theta;s,e_i) sigma_i(ds), computed separately for every player identity k and both theta coordinates",
+    "weak_state_k_type_theta": "C_1,U^alpha(h1)_{W_k}(theta)=(1/m)sum_i E_sigma_i[U_{W_k}^i(theta;e_i)]",
+    "hegemon_type_theta": "C_1,U^alpha(h1)_H(theta)=(1/m)sum_i E_sigma_i[U_H^i(theta;e_i)]",
+    "weak_ex_ante_mu_projection": "V_{W_k,U}^alpha(h1;mu)=(1-mu)C_1,U^alpha(h1)_{W_k}(0)+mu C_1,U^alpha(h1)_{W_k}(1); this mu integration is performed only after sigma and recognition integration and remains separate by weak identity",
+    "optional_cross_weak_summary": "bar V_W,U^alpha=(1/m)sum_k V_{W_k,U}^alpha may be reported as a summary but never replaces the identity vector for collective entry",
+    "outcome_distribution": "for each theta, integrate under the same sigma_i and then the same uniform recognition weights the aligned current-passage, immediate-optout, and history-specific R2 outcome kernels selected by that same alpha; payoff and outcome coordinates may not use different selections",
+    "history_index": "the full h1 and mu remain distinct indices; equal mu does not force a common assessment selection",
+    "selection_status": "set-valued; on N>=3 the full type-by-identity payoff, belief, strategy, payment, continuation-selection, and outcome correspondence—not a scalar projection—is exported to the R1 batch freeze"
+  },
+  "bounds_and_boundaries": {
+    "weak_bounds": "for every equilibrium element, each weak payoff lies in [0,1] and the sum of weak payoffs is at most one, type by type and ex ante",
+    "hegemon_bounds": "for every type theta, o_theta<=C_1,U,H(theta)<=1 because H can choose immediate opt-out at every reached ballot",
+    "N_equal_3": "there is one weak nonproposer and no coordinated-failure completion; universal proposal-stage existence and attainment follow from the five explicit cases recorded above",
+    "N_at_least_4": "two or more sure no votes make passage impossible after a unilateral weak switch, but zero relevance still requires outcome-equivalent action-specific C2 selections; it is not automatic",
+    "o_0_equal_0": "type zero always chooses H-yes because every H-yes branch payoff is nonnegative and immediate opt-out is zero; equality selects yes",
+    "beta_equal_1": "continuation payoffs enter once without attenuation; immediate opt-out remains undiscounted",
+    "mu_equal_0_or_1": "Bayes applies on supported types and counterfactual type actions/payoffs remain recorded",
+    "o_1_equal_1": "current pooling leaves no residual at y=o_1, but continuation assessments may still matter; no R2 scalar projection is imported",
+    "C2_nonclosed_boundary": "the frozen C2-U N=3 projection has a nonclosed zero endpoint when o_1=1 and nu<1: recognized-proposer values are (0,L_nu], not [0,L_nu]; R1 may not substitute the unattained infimum zero or assume a measurable attaining selector",
+    "N3_attainment_resolution": "the open zero endpoint is never used: when G=0 and mu<1 the construction selects the attained posterior-zero element with c_0=(1-o_0)/4>0; when mu=1 the posterior-one y_2=1 element is attained",
+    "global_existence": "the proposal-indexed fixed-point and maximizer set is exact; the five N=3 cases and the Bayes-aligned N>=4 construction prove universal nonemptiness and attainment on the full primitive domain N>=3",
+    "multiplicity": "whenever several fixed-point elements or double-tied proposal elements exist, the full belief/payoff/outcome correspondence is retained"
+  },
+  "checks": {
+    "mechanical_scope": "small-N full-vector enumeration, action-specific continuation selections, Bayes/off-path cases, payoff accounting, beta transport, immediate opt-out, bounds, and dependency mutation guards",
+    "mechanical_result": "37 PASS / 37 total",
+    "full_weak_vectors_enumerated": 5670,
+    "H_type_conditional_vector_evaluations": 11340,
+    "weak_type_action_other_vector_comparisons": 28890,
+    "random_type_conditional_accounting_branches": 720,
+    "universal_Nge4_construction_cases": 540,
+    "universal_N3_primitive_grid_cases": 96,
+    "N3_offpath_deviation_cases": 319,
+    "N3_exact_proposer_tie_boundaries": 4,
+    "positive_probability_Bayes_membership_cases": 60,
+    "wrong_posterior_negative_test": "must fail whenever posterior=mu is substituted on a separating H-yes history",
+    "type_blind_kappa_negative_test": "must fail if continuation coordinates are selected by private type instead of one public-history map",
+    "domain_gate_negative_test": "must accept every N>=3 and reject N<3 or every mutation of the machine-readable full-domain status",
+    "analytic_status": "proved where marked in the derivation note",
+    "independent_review": "pending"
+  },
+  "claim_status": {
+    "full_vector_ballot_fixed_point": "proved",
+    "belief_and_action_specific_C2_mapping": "proved",
+    "proposal_stage_assessment_characterization": "proved",
+    "pre_recognition_sigma_then_uniform_integration_Nge4": "proved",
+    "selection_free_bounds": "proved",
+    "universal_Nge4_existence": "proved",
+    "universal_N3_existence_and_attainment": "proved",
+    "validated_exportable_domain": "N>=3",
+    "conditional_motif_survival": "proved",
+    "global_three_label_reduction": "rejected",
+    "mechanical_enumeration": "checked numerically",
+    "independent_formal_acceptance": "pending",
+    "rendered_layout": "pending"
+  },
+  "invalidation": "any change to the exact Gate 0, R2 batch, or C2-U hashes; to simultaneous ballot information; to full-vector publication; to immediate opt-out; to beta dating; to proposal feasibility; to Bayes discipline; or to either frozen tie convention reopens this node and every descendant",
+  "artifact_hash_protocol": "SHA-256 is computed externally over the exact UTF-8 bytes of this candidate JSON; storing the digest inside the hashed file would be self-referential"
+}

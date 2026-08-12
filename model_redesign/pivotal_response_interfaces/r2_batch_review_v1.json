@@ -1,0 +1,288 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "pivotal-response-r2-batch-review-v1",
+  "state_id": "r2_batch_review",
+  "status": "pass",
+  "closed_date": "2026-08-11",
+  "solution_concept": "perfect Bayesian equilibrium under the frozen Gate 0 contract",
+  "native_payoff_date": "Round 2",
+  "internal_discounting": "none; every C2 object remains in native Round-2 units",
+  "reviewed_gate0": {
+    "path": "gate0_bundle_v1.json",
+    "sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1"
+  },
+  "components": [
+    {
+      "role": "gate0_bundle",
+      "node": "gate0_contract",
+      "path": "gate0_bundle_v1.json",
+      "sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1"
+    },
+    {
+      "role": "gate0_independent_review",
+      "node": "gate0_contract",
+      "path": "gate0_review_v1.json",
+      "sha256": "dd5403b0e2d4de8522615adce7d2cca3bc295a3ecc323780d3c36cb1701ad130"
+    },
+    {
+      "role": "protected_hash_manifest",
+      "node": "gate0_contract",
+      "path": "../../quality_reports/2026-08-11_pivotal_response_protected_hash_manifest.tsv",
+      "sha256": "e6c2dcaea628acf84ea77853448b185b189e24d7b809e540e442fd820b0d6d6c"
+    },
+    {
+      "role": "continuation_interface",
+      "node": "r2_unanimity_active_h",
+      "path": "r2_unanimity_active_h_v1.json",
+      "sha256": "f3ca4ebf28827d7e18d9f3a2d07d41ffd6fe57532c9af09300f20a8ab5cecf10"
+    },
+    {
+      "role": "derivation_note",
+      "node": "r2_unanimity_active_h",
+      "path": "../pivotal_response_nodes/r2_unanimity_active_h_v1.md",
+      "sha256": "cdc25327f51d66d62685fd680f14c6f24ed26d8b874d684df2e9cba672d8755e"
+    },
+    {
+      "role": "node_status",
+      "node": "r2_unanimity_active_h",
+      "path": "../../quality_reports/2026-08-11_pivotal_response_r2_unanimity_active_h_status.md",
+      "sha256": "6a0e6af3978ef16d8e35e538d22853a53dc403ef038784d8298afb53d50bc450"
+    },
+    {
+      "role": "node_verifier",
+      "node": "r2_unanimity_active_h",
+      "path": "../../scripts/verify_pivotal_response_r2_unanimity_active_h.R",
+      "sha256": "4072483a11534ad3b342cb5e724463faeb9167124b30a3a3cede270159c837d0"
+    },
+    {
+      "role": "node_check_table",
+      "node": "r2_unanimity_active_h",
+      "path": "../../tables/pivotal_response_r2_unanimity_active_h_checks.csv",
+      "sha256": "a86b40f6e2577b9a4019252296ce15bc81372b0bb2c6f9ef8d3fa8f1aea436f7"
+    },
+    {
+      "role": "continuation_interface",
+      "node": "r2_majority_active_h",
+      "path": "r2_majority_active_h_v1.json",
+      "sha256": "a4ae73e9bb4114490bbc517732eca0ff7f5368186aee1a02388a8f85f52568b2"
+    },
+    {
+      "role": "derivation_note",
+      "node": "r2_majority_active_h",
+      "path": "../pivotal_response_nodes/r2_majority_active_h_v1.md",
+      "sha256": "7637a8cc05c9ffec1a09b4c8677ea3ff382d49d7bdbc606f1e298db04bd00e1c"
+    },
+    {
+      "role": "node_status",
+      "node": "r2_majority_active_h",
+      "path": "../../quality_reports/2026-08-11_pivotal_response_r2_majority_active_h_status.md",
+      "sha256": "a25706cb64865ff06565b8d209e34f942fe19322c3bef4d50b961d8cec0a4495"
+    },
+    {
+      "role": "node_verifier",
+      "node": "r2_majority_active_h",
+      "path": "../../scripts/verify_pivotal_response_r2_majority_active_h.R",
+      "sha256": "116056ae6291a8adbb83d77994ff0b448ca56428b7c10301b11d434e220958a5"
+    },
+    {
+      "role": "node_check_table",
+      "node": "r2_majority_active_h",
+      "path": "../../tables/pivotal_response_r2_majority_active_h_checks.csv",
+      "sha256": "2df97d9eda8d7b6d83174679782b333676545fbd43f2960ab4eebb9680d19127"
+    },
+    {
+      "role": "continuation_interface",
+      "node": "r2_majority_weak_only",
+      "path": "r2_majority_weak_only_v1.json",
+      "sha256": "e0ec6cd35e145f04d1a2897fc1f78157f2b0d45de478046ac5451b2df0a74b5d"
+    },
+    {
+      "role": "derivation_note",
+      "node": "r2_majority_weak_only",
+      "path": "../pivotal_response_nodes/r2_majority_weak_only_v1.md",
+      "sha256": "ab2dba442e7104c26a5188aae9060475b3c77577ce219ff5fefea2471f91fcf1"
+    },
+    {
+      "role": "node_status",
+      "node": "r2_majority_weak_only",
+      "path": "../../quality_reports/2026-08-11_pivotal_response_r2_majority_weak_only_status.md",
+      "sha256": "eb58a9a8346aacd9fc26ecb416d700c8efe6815d4f6306715fc8957526aaa329"
+    },
+    {
+      "role": "node_verifier",
+      "node": "r2_majority_weak_only",
+      "path": "../../scripts/verify_pivotal_response_r2_majority_weak_only.R",
+      "sha256": "b7a5562fa69f3f431f1b8baba0ac378b10f83a82cb0e7371d1da3f11c7d98821"
+    },
+    {
+      "role": "node_case_table",
+      "node": "r2_majority_weak_only",
+      "path": "../../tables/pivotal_response_r2_majority_weak_only_cases_v1.csv",
+      "sha256": "882e8b2ea556e826f2b783bae26a64ce865cd4506988ff8b9f7f557d0e4a9f90"
+    },
+    {
+      "role": "node_check_table",
+      "node": "r2_majority_weak_only",
+      "path": "../../tables/pivotal_response_r2_majority_weak_only_checks_v1.csv",
+      "sha256": "1e0f3a5560bdbaf82fddeed6c9ebe9fb6a7974491d4e26906388ceb71971550b"
+    }
+  ],
+  "node_reviews": [
+    {
+      "node": "r2_unanimity_active_h",
+      "approved_sha256": "f3ca4ebf28827d7e18d9f3a2d07d41ffd6fe57532c9af09300f20a8ab5cecf10",
+      "initial_formal_review": {
+        "order": 17,
+        "verdict": "pass",
+        "critical_findings": 0,
+        "major_findings": 0,
+        "minor_findings": 0
+      },
+      "initial_adversarial_review": {
+        "order": 18,
+        "verdict": "pass",
+        "critical_findings": 0,
+        "major_findings": 0,
+        "minor_findings": 0
+      }
+    },
+    {
+      "node": "r2_majority_active_h",
+      "rejected_sha256": "93fee7f50a0b2d07f584ec60f6d39339ed238cd3d1b018751bb24cdc3efb79aa",
+      "initial_formal_review": {
+        "order": 17,
+        "verdict": "repair"
+      },
+      "initial_adversarial_review": {
+        "order": 18,
+        "verdict": "repair"
+      },
+      "repair_started_order": 19,
+      "repair_completed_order": 20,
+      "approved_sha256": "a4ae73e9bb4114490bbc517732eca0ff7f5368186aee1a02388a8f85f52568b2",
+      "formal_rereview": {
+        "order": 21,
+        "verdict": "pass",
+        "critical_findings": 0,
+        "major_findings": 0,
+        "minor_findings": 0
+      },
+      "adversarial_rereview": {
+        "order": 22,
+        "verdict": "pass",
+        "critical_findings": 0,
+        "major_findings": 0,
+        "minor_findings": 0
+      },
+      "repair_finding_closed": "off-path ballot belief rho(s) is distinct from true preproposal posterior nu, while proposer deviations are integrated under nu"
+    },
+    {
+      "node": "r2_majority_weak_only",
+      "approved_sha256": "e0ec6cd35e145f04d1a2897fc1f78157f2b0d45de478046ac5451b2df0a74b5d",
+      "initial_formal_review": {
+        "order": 17,
+        "verdict": "pass",
+        "critical_findings": 0,
+        "major_findings": 0,
+        "minor_findings": 0
+      },
+      "initial_adversarial_review": {
+        "order": 18,
+        "verdict": "pass",
+        "critical_findings": 0,
+        "major_findings": 0,
+        "minor_findings": 0
+      }
+    }
+  ],
+  "execution_events": [
+    {
+      "order": 11,
+      "event": "r2_unanimity_active_h_start"
+    },
+    {
+      "order": 12,
+      "event": "r2_majority_active_h_initial_start"
+    },
+    {
+      "order": 13,
+      "event": "r2_majority_weak_only_start"
+    },
+    {
+      "order": 14,
+      "event": "r2_majority_active_h_initial_complete"
+    },
+    {
+      "order": 15,
+      "event": "r2_majority_weak_only_complete"
+    },
+    {
+      "order": 16,
+      "event": "r2_unanimity_active_h_complete"
+    },
+    {
+      "order": 17,
+      "event": "initial_formal_reviews"
+    },
+    {
+      "order": 18,
+      "event": "initial_adversarial_reviews"
+    },
+    {
+      "order": 19,
+      "event": "r2_majority_active_h_repair_start"
+    },
+    {
+      "order": 20,
+      "event": "r2_majority_active_h_repair_complete"
+    },
+    {
+      "order": 21,
+      "event": "r2_majority_active_h_formal_rereview_pass"
+    },
+    {
+      "order": 22,
+      "event": "r2_majority_active_h_adversarial_rereview_pass"
+    },
+    {
+      "order": 23,
+      "event": "r2_batch_close_start"
+    },
+    {
+      "order": 24,
+      "event": "r2_batch_mechanical_verification_pass"
+    },
+    {
+      "order": 25,
+      "event": "r2_batch_close_pass"
+    }
+  ],
+  "batch_close": {
+    "started_order": 23,
+    "passed_order": 25,
+    "status": "pass",
+    "ready_antichain": [
+      "r1_unanimity",
+      "r1_majority"
+    ],
+    "started_descendants": []
+  },
+  "conditions": [
+    "This PASS applies only to the exact Gate 0 bundle, three C2 interfaces, proof notes, node status reports, node verifiers and node tables hashed above.",
+    "Each C2 is imported as its full assessment-level correspondence; no batch scalarization or additional equilibrium selection is introduced.",
+    "Every C2 payoff remains in native Round-2 units. A Round-1 consumer applies beta exactly once only along a transition that reaches that C2.",
+    "The rejected r2_majority_active_h hash 93fee7f50a0b2d07f584ec60f6d39339ed238cd3d1b018751bb24cdc3efb79aa is historical only and is not a batch component or consumable dependency.",
+    "The two Round-1 nodes may be authorized and ready after event 25 but remain pending and unstarted until separately dispatched.",
+    "No Round-1 node may replace a C2 correspondence by a scalar or locally repair, select or rederive a frozen C2."
+  ],
+  "invalidation": {
+    "rule": "any byte change to a component changes or invalidates this batch interface and reopens r2_batch_review plus every R1 and later descendant",
+    "required_mutation_tests": [
+      "changing the r2_unanimity_active_h hash invalidates both R1 candidates",
+      "changing the r2_majority_active_h hash invalidates both R1 candidates",
+      "changing the r2_majority_weak_only hash invalidates both R1 candidates",
+      "changing the r2_batch_review hash invalidates both R1 candidates"
+    ]
+  },
+  "artifact_hash_protocol": "SHA-256 is computed externally over the exact UTF-8 bytes; the digest is stored in the DAG and downstream dependency_hashes, not recursively inside this file"
+}

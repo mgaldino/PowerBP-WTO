@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "pivotal-response-v6-survival-matrix-v1",
+  "state_id": "v6_survival_matrix",
+  "status": "candidate_pending_independent_review",
+  "created_date": "2026-08-12",
+  "implementation_started_order": 61,
+  "implementation_role": "nonmigratory claim-level survival classification only; no theorem is rederived and no manuscript is edited",
+  "dependencies": [
+    {
+      "role": "approved_institutional_comparison",
+      "path": "institutional_comparison_v1.json",
+      "sha256": "cab69c5ddda3616f51c697c189c86316df5546501a183eb6cc9e437dc813f3af"
+    },
+    {
+      "role": "comparison_review_and_consumer_contract",
+      "path": "institutional_comparison_review_v1.json",
+      "sha256": "0acd9648eb7e03d4dabfaa91ffd559fe3c5b6f61a96ba676d6c6ccd9d4c6bb3c"
+    }
+  ],
+  "solution_and_scope": {
+    "current_object": "perfect Bayesian equilibrium under local outcome-signature relevance, yes at payoff-relevant equality, and explicit full-profile completion at zero relevance",
+    "comparison_object": "the exact Cartesian product of whole entry-augmented assessments under two fixed counterfactual rules",
+    "validated_common_domain": "every primitive-admissible N>=3 case exported by the frozen entry interfaces",
+    "selection_boundary": "no cross-rule selection, common randomization, rank matching, scalar splice, endogenous rule choice, or universal ranking is supplied",
+    "historical_use": "allowed sources identify candidate claims and locators only; no historical proof, equation, label, or number is evidence for current validity",
+    "migration_status": "blocked; this candidate classifies claims but authorizes no edit or compilation of formal_model_v5.Rmd, formal_model_v6.Rmd, or their outputs"
+  },
+  "authoritative_matrix": {
+    "path": "../../tables/pivotal_response_v6_survival_matrix_v1.csv",
+    "sha256": "672170253dab3cd2798552cf70e175cfac08941af961d85d3c96d9b567e536ba",
+    "row_count": 52,
+    "column_count": 11,
+    "columns": [
+      "claim_id",
+      "historical_source_path",
+      "historical_locator",
+      "historical_claim",
+      "current_status",
+      "current_precise_replacement",
+      "current_evidence_path_hash",
+      "domain_selection_scope",
+      "manuscript_action",
+      "migration_blocker",
+      "notes"
+    ],
+    "claim_id_range": "SM001-SM052",
+    "status_counts": {
+      "survives": 8,
+      "conditional": 13,
+      "changes": 7,
+      "rejected": 12,
+      "pending": 6,
+      "outside_scope": 6
+    },
+    "action_counts": {
+      "retain_with_rewrite": 21,
+      "replace": 10,
+      "remove": 9,
+      "do_not_add": 6,
+      "pending": 6
+    }
+  },
+  "matrix_semantics": {
+    "allowed_current_status": [
+      "survives",
+      "conditional",
+      "changes",
+      "rejected",
+      "pending",
+      "outside_scope"
+    ],
+    "allowed_manuscript_action": [
+      "retain_with_rewrite",
+      "replace",
+      "remove",
+      "do_not_add",
+      "pending"
+    ],
+    "survives": "the exact historical claim survives within the current evidence and stated scope; wording is still rewritten to attach the complete current object",
+    "conditional": "only the expressly stated subclass, domain, projection, or conditional identity survives",
+    "changes": "a nearby object survives but the historical statement must be replaced by the precise current object",
+    "rejected": "the historical statement is false as a characterization or generalization of the current game",
+    "pending": "the current approved interfaces do not identify the claim and no conclusion is made",
+    "outside_scope": "the claim concerns a different game or quarantined historical protocol; it is neither current evidence nor a current theorem",
+    "evidence_rule": "every row contains one or more repo-relative path@sha256#locator references to exact approved current artifacts",
+    "historical_locator_rule": "every source locator is a checked inclusive line range in an allowed read-only inventory source"
+  },
+  "historical_inventory": [
+    {
+      "path": "../../formal_model_v5.Rmd",
+      "sha256": "1b0e420155b58e4b069f04b210736b3fab60cf060f87a6ca30ce5019676620af",
+      "role": "protected historical manuscript; claim inventory only"
+    },
+    {
+      "path": "../../formal_model_v6.Rmd",
+      "sha256": "131cc2356cd6318211fdbb9304ac8d7c8a99356837b6e71097011c36ae9c270d",
+      "role": "protected target manuscript; claim inventory only and no migration"
+    },
+    {
+      "path": "../power_architecture_derivations.Rmd",
+      "sha256": "8fbb7edff59fb0dc6fb36571564ec94d26e66b1211496ed10e9d9191ef2f68c6",
+      "role": "protected prior derivation; inventory of one candidate claim only, never proof evidence"
+    },
+    {
+      "path": "../../AGENTS.md",
+      "sha256": "2164d24786ecd01b7297c2d10c0175b76b851ad782285e88fc9b1d9c1b9baabf",
+      "role": "governance and historical candidate inventory"
+    }
+  ],
+  "evidence_hash_registry": {
+    "gate0_contract_v1.json": "cd4316adb5056142e4ac1119c24f75c136b27d574246818e92bc9600407cf245",
+    "gate0_bundle_v1.json": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1",
+    "gate0_review_v1.json": "dd5403b0e2d4de8522615adce7d2cca3bc295a3ecc323780d3c36cb1701ad130",
+    "r2_batch_review_v1.json": "00f84d4221d100f0def858e8c8bf19a58f79522f217118693837edf73583316a",
+    "r2_unanimity_active_h_v1.json": "f3ca4ebf28827d7e18d9f3a2d07d41ffd6fe57532c9af09300f20a8ab5cecf10",
+    "r2_majority_active_h_v1.json": "a4ae73e9bb4114490bbc517732eca0ff7f5368186aee1a02388a8f85f52568b2",
+    "r2_majority_weak_only_v1.json": "e0ec6cd35e145f04d1a2897fc1f78157f2b0d45de478046ac5451b2df0a74b5d",
+    "r1_batch_frozen_v1.json": "f4ac7b89f4c08d4ee461ca1431135286304abaae2589a337aeffdb38b5941c3a",
+    "r1_unanimity_v1.json": "37aae1bfe7921c6c90aff5d05ed301f8729c2b899477991619bcf0cb6c96e8b5",
+    "r1_majority_v1.json": "21c3a9dd2d6c9d25450978c2f7d9925af02e478b9c03d421d2a7b0f9aa2c77c9",
+    "entry_batch_review_v1.json": "8817a9c505ce9e5b79deea1b38055d88a629e740e324fbcd5bca707b108b5433",
+    "entry_unanimity_v1.json": "05e39ad2b84ede134268ffae0898c8cafd8f3de01ef725ca2da6159156a83ed6",
+    "entry_majority_v1.json": "4eb343ce6f6fb7c34782e708a0e787908437d2682d079e91f26103706c083f21",
+    "institutional_comparison_v1.json": "cab69c5ddda3616f51c697c189c86316df5546501a183eb6cc9e437dc813f3af",
+    "institutional_comparison_review_v1.json": "0acd9648eb7e03d4dabfaa91ffd559fe3c5b6f61a96ba676d6c6ccd9d4c6bb3c",
+    "2026-08-11_pivotal_response_protected_hash_manifest.tsv": "e6c2dcaea628acf84ea77853448b185b189e24d7b809e540e442fd820b0d6d6c"
+  },
+  "required_topic_index": {
+    "PBE_only_and_local_relevance": ["SM001", "SM002"],
+    "simultaneous_ballot_and_histories": ["SM003", "SM004"],
+    "dating_and_immediate_optout": ["SM005", "SM006"],
+    "weak_state_agenda": ["SM007"],
+    "outside_option_accounting": ["SM008"],
+    "belief_assessment": ["SM009", "SM010"],
+    "direct_cutoff_scope": ["SM011"],
+    "coalitions_and_gifts": ["SM012"],
+    "historical_motifs_and_exhaustiveness": ["SM013", "SM014"],
+    "majority_no_screening": ["SM015", "SM042"],
+    "terminal_correspondences": ["SM016", "SM017", "SM018", "SM048", "SM049", "SM050", "SM051"],
+    "Round1_correspondences": ["SM019", "SM020", "SM021", "SM052"],
+    "historical_boundaries": ["SM022"],
+    "common_existence_domain": ["SM023"],
+    "entry_by_assessment": ["SM024", "SM047"],
+    "three_nesting_objects": ["SM025", "SM026", "SM027", "SM028"],
+    "exclusive_formation_patterns": ["SM029", "SM030"],
+    "H_floor_and_rankings": ["SM031", "SM032", "SM033", "SM034", "SM035"],
+    "universal_rule_ranking": ["SM036"],
+    "resource_boundaries": ["SM037"],
+    "extensions_and_archives": ["SM038", "SM039", "SM040", "SM041", "SM043", "SM044"],
+    "migration_gate": ["SM045"],
+    "qualitative_mechanism": ["SM046"]
+  },
+  "prohibited_promotions": [
+    "treating a historical proof or formula as current evidence",
+    "assigning a historical scalar label to a current equilibrium assessment",
+    "describing the current object with a quarantined solution-concept acronym or an invented equality-convention label",
+    "describing the simultaneous ballot as sequential within the ballot",
+    "collapsing a full assessment correspondence to proposer payoff, collective gross value, or a selected endpoint",
+    "claiming universal formation nesting, strict H rent, majority no-screening, or institutional dominance from an existence construction or payoff floor",
+    "editing or compiling a protected manuscript on the authority of this candidate"
+  ],
+  "verification": {
+    "script": "../../scripts/verify_pivotal_response_v6_survival_matrix.R",
+    "checks_table": "../../tables/pivotal_response_v6_survival_matrix_checks_v1.csv",
+    "human_report": "../pivotal_response_nodes/v6_survival_matrix_v1.md",
+    "status_report": "../../quality_reports/2026-08-12_pivotal_response_v6_survival_matrix_status.md",
+    "required_negative_tests": [
+      "missing current evidence rejects the row",
+      "changing a locked status to a stronger status rejects the matrix",
+      "changing a protected hash rejects the matrix",
+      "copying an archived formula or branch label into a current replacement rejects the matrix",
+      "assigning a historical label to a current PBE rejects the matrix",
+      "marking an archived formula or rejected scalar theorem as survives rejects the matrix",
+      "changing either approved comparison dependency invalidates the candidate"
+    ]
+  },
+  "review": {
+    "implementer_role": "survival classification only",
+    "independent_read_only_reviews_required": 2,
+    "formal_review_status": "pending",
+    "adversarial_review_status": "pending",
+    "consumer_rule": "no manuscript or integrated derivation may consume this candidate before both reviewers accept its exact hash"
+  },
+  "invalidation": "any byte change to the approved comparison, comparison review bundle, authoritative CSV, protected inventory sources, or any cited current evidence artifact invalidates this candidate and every later migration consumer",
+  "artifact_hash_policy": "SHA-256 is computed externally over exact UTF-8 bytes; no self-referential digest is embedded"
+}

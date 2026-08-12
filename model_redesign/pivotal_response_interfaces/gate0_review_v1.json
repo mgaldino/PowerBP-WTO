@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "pivotal-response-gate0-independent-review-v1",
+  "status": "pass",
+  "closed_date": "2026-08-11",
+  "reviewed_bundle": {
+    "path": "gate0_bundle_v1.json",
+    "sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1"
+  },
+  "reviewed_dag_before_governance_close": {
+    "path": "../pivotal_response_game_dag.json",
+    "sha256": "f8912af836894767cb850d121c46ce1f3836dd121a6bf66cb961210822584e41"
+  },
+  "review_rounds": [
+    {
+      "round": 1,
+      "reviewed_object": "initial Gate 0 contract candidate",
+      "sha256": "37bd422df0bafd7c93162198594c49fd3114d304750d282318d7a705348bc9bb",
+      "reviewers": [
+        "independent formal-model reviewer",
+        "independent adversarial game-theory reviewer"
+      ],
+      "verdict": "repair",
+      "findings": "nonzero; the required repairs are preserved in the proof ledger and Gate 0 status report"
+    },
+    {
+      "round": 2,
+      "reviewed_object": "dependency-complete Gate 0 bundle",
+      "sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1",
+      "reviews": [
+        {
+          "role": "independent formal-model reviewer",
+          "verdict": "pass",
+          "critical_findings": 0,
+          "major_findings": 0,
+          "minor_findings": 0
+        },
+        {
+          "role": "independent adversarial game-theory reviewer",
+          "verdict": "pass",
+          "critical_findings": 0,
+          "major_findings": 0,
+          "minor_findings": 0
+        }
+      ]
+    }
+  ],
+  "conditions": [
+    "PASS applies only to the exact reviewed bundle hash and the reviewed substantive DAG edges.",
+    "The governance close may change only Gate 0 status, passed_order and review reference fields, plus R2 authorization flags; it may not change the reviewed bundle, contract, registries or DAG edges.",
+    "Any later change to the bundle or a component reopens Gate 0 and invalidates this review and every descendant.",
+    "The three R2 nodes may become authorized and ready only after event 10; none is started by this close.",
+    "General coalition minimality remains unavailable except for a subclass with product-safe invariance, secured passage and proposer optimality.",
+    "The future R1 batch must test that changing a frozen C2 interface invalidates or fails its R1 consumers.",
+    "Rendered PDF and HTML layout remain not tested; the PASS covers the formal source and machine artifacts."
+  ],
+  "execution_events": [
+    {
+      "order": 1,
+      "event": "gate0_start"
+    },
+    {
+      "order": 2,
+      "event": "initial_implementation_complete"
+    },
+    {
+      "order": 3,
+      "event": "review_round_1_start"
+    },
+    {
+      "order": 4,
+      "event": "review_round_1_repair"
+    },
+    {
+      "order": 5,
+      "event": "repair_implementation_start"
+    },
+    {
+      "order": 6,
+      "event": "repaired_implementation_complete"
+    },
+    {
+      "order": 7,
+      "event": "independent_rereview_start"
+    },
+    {
+      "order": 8,
+      "event": "formal_review_pass"
+    },
+    {
+      "order": 9,
+      "event": "adversarial_review_pass"
+    },
+    {
+      "order": 10,
+      "event": "gate0_close"
+    }
+  ],
+  "gate_close": {
+    "status": "pass",
+    "passed_order": 10,
+    "ready_antichain": [
+      "r2_unanimity_active_h",
+      "r2_majority_active_h",
+      "r2_majority_weak_only"
+    ],
+    "started_nodes": []
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "pivotal-response-entry-batch-review-v1",
+  "state_id": "entry_batch_review",
+  "status": "pass",
+  "closed_date": "2026-08-12",
+  "solution_concept": "perfect Bayesian equilibrium with collective all-or-nothing formation evaluated assessment by assessment under each frozen institutional rule",
+  "native_payoff_date": "entry date, with imported C1 payoffs already expressed in Round-1 units",
+  "reviewed_upstream": [
+    {
+      "node": "gate0_contract",
+      "path": "gate0_bundle_v1.json",
+      "sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1"
+    },
+    {
+      "node": "r1_batch_frozen",
+      "path": "r1_batch_frozen_v1.json",
+      "sha256": "f4ac7b89f4c08d4ee461ca1431135286304abaae2589a337aeffdb38b5941c3a"
+    }
+  ],
+  "components": [
+    {
+      "role": "gate0_bundle",
+      "node": "gate0_contract",
+      "path": "gate0_bundle_v1.json",
+      "sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1"
+    },
+    {
+      "role": "r1_batch_interface",
+      "node": "r1_batch_frozen",
+      "path": "r1_batch_frozen_v1.json",
+      "sha256": "f4ac7b89f4c08d4ee461ca1431135286304abaae2589a337aeffdb38b5941c3a"
+    },
+    {
+      "role": "protected_hash_manifest",
+      "node": "gate0_contract",
+      "path": "../../quality_reports/2026-08-11_pivotal_response_protected_hash_manifest.tsv",
+      "sha256": "e6c2dcaea628acf84ea77853448b185b189e24d7b809e540e442fd820b0d6d6c"
+    },
+    {
+      "role": "entry_interface",
+      "node": "entry_unanimity",
+      "path": "entry_unanimity_v1.json",
+      "sha256": "05e39ad2b84ede134268ffae0898c8cafd8f3de01ef725ca2da6159156a83ed6"
+    },
+    {
+      "role": "derivation_note",
+      "node": "entry_unanimity",
+      "path": "../pivotal_response_nodes/entry_unanimity_v1.md",
+      "sha256": "29e9d62e272ab4ef292653d0ad0000b88c24a7da47d98c5a9d311550bff09c5a"
+    },
+    {
+      "role": "candidate_status_snapshot",
+      "node": "entry_unanimity",
+      "path": "../../quality_reports/2026-08-12_pivotal_response_entry_unanimity_status.md",
+      "sha256": "b643a4d430a2e5b2627588ffada83217d99614beab09febe3cc149eca6519c05"
+    },
+    {
+      "role": "node_verifier",
+      "node": "entry_unanimity",
+      "path": "../../scripts/verify_pivotal_response_entry_unanimity.R",
+      "sha256": "7a6f53e242aa7b938ffee9202f7ddfac4eed5742bd33c01cfbe2c201ad37f76e"
+    },
+    {
+      "role": "node_check_table",
+      "node": "entry_unanimity",
+      "path": "../../tables/pivotal_response_entry_unanimity_checks.csv",
+      "sha256": "8e87dc91c21e1a3aa29a508b80640527fa57fe09cd071acba7100cf458495552"
+    },
+    {
+      "role": "assessment_fixture_table",
+      "node": "entry_unanimity",
+      "path": "../../tables/pivotal_response_entry_unanimity_assessment_fixtures_v1.csv",
+      "sha256": "3e0fe880587a8f5694e84aa8239fd2256ad65cf19c53350f096f5e27749422ed"
+    },
+    {
+      "role": "type_identity_fixture_table",
+      "node": "entry_unanimity",
+      "path": "../../tables/pivotal_response_entry_unanimity_realized_payoffs_v1.csv",
+      "sha256": "36c21275226886873e2f963add2e63d374acce88912d66c304df64171cd2333c"
+    },
+    {
+      "role": "endpoint_logic_table",
+      "node": "entry_unanimity",
+      "path": "../../tables/pivotal_response_entry_unanimity_endpoint_logic_v1.csv",
+      "sha256": "db12159a79e84388c1a921efa3467e75b2fbcfefd1fa1b21838584aabcdc5010"
+    },
+    {
+      "role": "entry_interface",
+      "node": "entry_majority",
+      "path": "entry_majority_v1.json",
+      "sha256": "4eb343ce6f6fb7c34782e708a0e787908437d2682d079e91f26103706c083f21"
+    },
+    {
+      "role": "derivation_note",
+      "node": "entry_majority",
+      "path": "../pivotal_response_nodes/entry_majority_v1.md",
+      "sha256": "1cb38c928a362c4d93b9546db069306e068afa09e0a1a143bcd50189c55cff8f"
+    },
+    {
+      "role": "candidate_status_snapshot",
+      "node": "entry_majority",
+      "path": "../../quality_reports/2026-08-12_pivotal_response_entry_majority_status.md",
+      "sha256": "8215a28b5d6686db5fb91cd320522047a999c94d7c01b507685a6877ffac90ba"
+    },
+    {
+      "role": "node_verifier",
+      "node": "entry_majority",
+      "path": "../../scripts/verify_pivotal_response_entry_majority.R",
+      "sha256": "045838f98af6ab443e3d0ac2bfe237d4bd27ac8d74205b146fefd764c2779576"
+    },
+    {
+      "role": "node_check_table",
+      "node": "entry_majority",
+      "path": "../../tables/pivotal_response_entry_majority_checks_v1.csv",
+      "sha256": "c145e6b192e882927ceeac8983118d1445d61e0257b55d06f4ada8dba18181cf"
+    },
+    {
+      "role": "assessment_fixture_table",
+      "node": "entry_majority",
+      "path": "../../tables/pivotal_response_entry_majority_assessment_fixtures_v1.csv",
+      "sha256": "8c89ea236a1970ffaa78d1eb0a1ea756712aff7f2ff7c2f878e64c053b09ff89"
+    },
+    {
+      "role": "type_identity_fixture_table",
+      "node": "entry_majority",
+      "path": "../../tables/pivotal_response_entry_majority_type_identity_fixtures_v1.csv",
+      "sha256": "5db0c6d77ff7df1af4678fd09eb0ebc35d848595105d6453213d91dff14ff108"
+    },
+    {
+      "role": "endpoint_logic_table",
+      "node": "entry_majority",
+      "path": "../../tables/pivotal_response_entry_majority_region_logic_v1.csv",
+      "sha256": "eb4ed3aa4342c134a6bb7a0af5344ff5ca2c9b68f60e6f481f7e3c43e244e592"
+    }
+  ],
+  "node_reviews": [
+    {
+      "node": "entry_majority",
+      "approved_sha256": "4eb343ce6f6fb7c34782e708a0e787908437d2682d079e91f26103706c083f21",
+      "formal_cold_review": {
+        "order": 45,
+        "verdict": "pass",
+        "critical_findings": 0,
+        "major_findings": 0,
+        "minor_findings": 0,
+        "official_verifier": "24/24 PASS"
+      },
+      "adversarial_review": {
+        "order": 46,
+        "verdict": "pass",
+        "critical_findings": 0,
+        "major_findings": 0,
+        "minor_findings": 0,
+        "official_verifier": "24/24 PASS"
+      }
+    },
+    {
+      "node": "entry_unanimity",
+      "approved_sha256": "05e39ad2b84ede134268ffae0898c8cafd8f3de01ef725ca2da6159156a83ed6",
+      "initial_candidate_review": {
+        "candidate_sha256": "efa5933adba180bff9d1c8ffd6ff6c53b7dc5345de72b14f088a7dd2542553e8",
+        "formal_cold_review_order": 45,
+        "adversarial_review_order": 46,
+        "verdict": "repair",
+        "critical_findings": 0,
+        "major_findings": 0,
+        "minor_findings": 2,
+        "repair_scope": "separate endpoint-attainment notation from the assessment set and record completed mechanical execution consistently; the mathematics was unchanged"
+      },
+      "repair_started_order": 47,
+      "repair_completed_order": 48,
+      "formal_rereview": {
+        "order": 49,
+        "verdict": "pass",
+        "critical_findings": 0,
+        "major_findings": 0,
+        "minor_findings": 0,
+        "official_verifier": "37/37 PASS"
+      },
+      "adversarial_rereview": {
+        "order": 50,
+        "verdict": "pass",
+        "critical_findings": 0,
+        "major_findings": 0,
+        "minor_findings": 0,
+        "official_verifier": "37/37 PASS"
+      }
+    }
+  ],
+  "rejected_history": [
+    {
+      "node": "entry_unanimity",
+      "sha256": "efa5933adba180bff9d1c8ffd6ff6c53b7dc5345de72b14f088a7dd2542553e8",
+      "status": "rejected_historical_nonconsumable",
+      "reason": "two minor notation and execution-record inconsistencies required repair before independent acceptance; no mathematical change was required"
+    }
+  ],
+  "execution_events": [
+    {
+      "order": 43,
+      "event": "entry_majority_implementation_complete"
+    },
+    {
+      "order": 44,
+      "event": "entry_unanimity_initial_implementation_complete"
+    },
+    {
+      "order": 45,
+      "event": "entry_formal_cold_reviews_complete"
+    },
+    {
+      "order": 46,
+      "event": "entry_adversarial_reviews_complete"
+    },
+    {
+      "order": 47,
+      "event": "entry_unanimity_repair_start"
+    },
+    {
+      "order": 48,
+      "event": "entry_unanimity_repair_complete"
+    },
+    {
+      "order": 49,
+      "event": "entry_unanimity_formal_rereview_pass"
+    },
+    {
+      "order": 50,
+      "event": "entry_unanimity_adversarial_rereview_pass"
+    },
+    {
+      "order": 51,
+      "event": "entry_batch_close_start"
+    },
+    {
+      "order": 52,
+      "event": "entry_batch_mechanical_verification_pass"
+    },
+    {
+      "order": 53,
+      "event": "entry_batch_close_pass"
+    }
+  ],
+  "batch_close": {
+    "started_order": 51,
+    "verification_order": 52,
+    "passed_order": 53,
+    "status": "pass",
+    "validated_common_existence_domain": "N>=3",
+    "ready_after_close": [
+      "institutional_comparison"
+    ],
+    "started_descendants": []
+  },
+  "consumer_contract": {
+    "object": "the full assessment-indexed entry correspondence under each rule, including the retained C1 assessment, collective gross and net values, deterministic formation decision, type-by-identity payoffs, H payoffs, external cost ledger, and aligned inherited or nonformation outcome distribution",
+    "assessment_preservation": "every downstream comparison must compare whole entry-assessment elements or selection-free projections and bounds; it may not splice coordinates or substitute a recognized-proposer payoff",
+    "common_domain": "both independently approved entry interfaces are nonempty and exportable for every primitive-admissible N>=3 case",
+    "equality_rule": "formation occurs assessment by assessment when the collective gross value equals chi",
+    "discount_rule": "entry applies no additional beta to imported C1 payoffs or to chi",
+    "comparison_boundary": "this freeze authorizes the institutional-comparison node to start but contains no institutional ranking, dominance, formation-set nesting, or rule-choice conclusion"
+  },
+  "conditions": [
+    "This PASS applies only to the exact Gate 0, R1 batch, entry interfaces, notes, candidate-status snapshots, node verifiers, and node tables hashed above.",
+    "Candidate-status snapshots remain immutable implementer handoffs; hash-specific approval is recorded by this batch interface, the independent-review report, the DAG, and the proof ledger.",
+    "The rejected efa593 candidate is historical only and is neither a component nor a consumable dependency.",
+    "The common existence domain is N>=3; endpoint values or attainment claims left pending by either entry interface remain pending.",
+    "After order 53 exactly institutional_comparison is ready and authorized but unstarted; v6_survival_matrix remains blocked and unauthorized.",
+    "No institutional-comparison interface, ranking, or manuscript-survival result is created by this close."
+  ],
+  "invalidation": {
+    "rule": "any byte change to Gate 0, the R1 batch, either approved entry interface, or any frozen auxiliary changes or invalidates this interface and reopens the affected node plus every descendant",
+    "required_mutation_tests": [
+      "changing the entry_unanimity hash invalidates institutional_comparison and v6_survival_matrix",
+      "changing the entry_majority hash invalidates institutional_comparison and v6_survival_matrix",
+      "changing the r1_batch_frozen hash invalidates both entry nodes and every later descendant",
+      "changing this entry-batch dependency-bundle hash invalidates an authorized institutional-comparison consumer even though the authoritative DAG dependencies remain the two entry nodes"
+    ]
+  },
+  "artifact_hash_protocol": "SHA-256 is computed externally over the exact UTF-8 bytes; the digest is stored in the DAG and downstream dependency-bundle fields, not recursively inside this file"
+}

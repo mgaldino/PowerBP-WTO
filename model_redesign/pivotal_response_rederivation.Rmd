@@ -1,0 +1,650 @@
+---
+title: "Pivotal-Response Rederivation: Gate 0 Contract"
+subtitle: "Clean Two-Round Baseline Under Simultaneous Ballots"
+author: "Formal model workspace"
+date: "2026-08-11"
+output:
+  bookdown::html_document2:
+    toc: true
+    number_sections: true
+    theme: readable
+    code_folding: hide
+  bookdown::pdf_document2:
+    toc: true
+    number_sections: true
+    latex_engine: xelatex
+geometry: margin=0.8in
+fontsize: 10pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+transition_registry <- utils::read.csv(
+  "../tables/pivotal_response_gate0_transitions_v1.csv",
+  check.names = FALSE,
+  na.strings = character()
+)
+information_registry <- utils::read.csv(
+  "../tables/pivotal_response_information_sets_v1.csv",
+  check.names = FALSE,
+  na.strings = character()
+)
+state_registry <- utils::read.csv(
+  "../tables/pivotal_response_sufficient_states_v1.csv",
+  check.names = FALSE,
+  na.strings = character()
+)
+relevance_registry <- utils::read.csv(
+  "../tables/pivotal_response_relevance_registry_v1.csv",
+  check.names = FALSE,
+  na.strings = character()
+)
+proof_ledger <- utils::read.delim(
+  "../quality_reports/2026-08-11_pivotal_response_proof_ledger.tsv",
+  check.names = FALSE,
+  quote = "",
+  comment.char = ""
+)
+```
+
+# Status and readback
+
+This is a new, autonomous Gate 0 workspace. Its objective is to freeze the
+extensive form needed to rederive the clean two-round model by dependency-safe
+backward reasoning under **Perfect Bayesian equilibrium**. It contains no
+Round-2 or Round-1 equilibrium result.
+
+The conceptual method is:
+
+1. reconstruct primitives and histories without importing candidate formulas;
+2. define information sets, vote relevance, transitions, payoff dates, and
+   assessment-level completion discipline;
+3. validate the continuation DAG and obtain an independent read-only Gate 0
+   review;
+4. solve the three independent terminal Round-2 problems in native Round-2
+   units and freeze their interfaces;
+5. only then solve Round 1, entry, and the institutional comparison in reverse
+   dependency order.
+
+The new artifacts are this document, the JSON contract interface, a
+dependency-complete JSON bundle, the independent-review interface and report,
+the JSON DAG, four machine-readable Gate 0 registries, a protected-artifact
+hash manifest, a new proof ledger and status report, and a new R verifier. The
+protected manuscripts, prior derivation, quarantined workspace and its
+reports, reviews, scripts, and outputs are read-only. Their initial SHA-256
+values are recorded in
+`quality_reports/2026-08-11_pivotal_response_protected_hash_manifest.tsv`.
+
+The remaining work has four controlled phases: terminal Round 2 plus cold
+review; two parallel Round-1 nodes plus review; entry and common-domain
+comparison; and a non-migrating survival matrix plus two final read-only
+audits. Each phase may reopen an upstream interface and invalidate all
+descendants.
+
+**Current status:** Gate 0 is **PASS** at `passed_order=10`. After an
+initial REPAIR, independent formal-model and adversarial rereviews returned
+PASS on the exact dependency-complete bundle, with zero findings. The three
+Round-2 nodes are authorized and graph-ready but remain `pending`, with
+no `started_order`, interface, or result. Rendered layout remains not
+tested.
+
+# Provenance and quarantine
+
+The implementation began from:
+
+| Field | Recorded value |
+|:--|:--|
+| Git root | `/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion` |
+| Branch | `main` |
+| HEAD | `df3a0f2990ad7b86559ffc3ef05015e2250653a7` |
+| Worktree at start | clean |
+| Primitive source | `model_redesign/power_architecture_derivations.Rmd` |
+| Quarantined history | `model_redesign/undominated_voting_rederivation.Rmd` |
+| Contract interface | `model_redesign/pivotal_response_interfaces/gate0_contract_v1.json` |
+
+The primitive source is used only to reconstruct the players, timing,
+contract space, budgets, information, payoffs, and continuation protocol. Its
+equilibrium formulas and classifications are not inputs. The quarantined file
+is provenance only and supplies no result, threshold, branch, or selection to
+this workspace.
+
+Neither manuscript is edited or compiled here. No protected historical file
+is edited or compiled here.
+
+# Extensive-form contract
+
+## Players, type, prior, and primitive domain
+
+There are $N=m+1\geq3$ states: one hegemon $H$ and $m$ weak states
+$W_1,\ldots,W_m$. Nature draws a persistent type
+
+\[
+\theta\in\{0,1\}
+\]
+
+before formation. Only $H$ observes the realization. Weak states share the
+common prior
+
+\[
+\mu=\Pr(\theta=1)\in[0,1].
+\]
+
+The weak institutional surplus is fixed, public, and normalized to one. Weak
+outside payoffs are zero. The clean primitive domain is
+
+\[
+0\leq o_0<o_1\leq \bar y\leq1,
+\qquad
+\beta\in(0,1].
+\]
+
+An agreement that includes $H$ gives it $y$; hence $b_0=b_1=0$. The
+outside payoff $o_\theta$ is external to the unit institutional surplus.
+The rule $R\in\{U,M\}$ is fixed exogenously; there is no rule-choice move.
+
+All primitives, the prior, the recognition rule, the contract space, the
+ballot, the transition map, payoffs, and the two tie rules below are common
+knowledge.
+
+## Formation, recognition, and horizon
+
+After Nature draws the type, but before Round-1 recognition, the weak states
+make one collective all-or-nothing formation decision without observing
+$\theta$. If they form, each pays an external sunk cost $\chi\geq0$. If
+they do not form, every weak state receives zero and $H$ receives
+$o_\theta$.
+
+Let $\alpha$ index a complete equilibrium assessment or an authorized
+selection from the downstream payoff correspondence. The gross collective
+value under rule $R$ is
+
+\[
+V_W^R(\alpha,\mu)
+=
+\frac{1}{m}
+\mathbb E_\alpha\!\left[
+  \sum_{j=1}^{m}u_j^R
+  \mathrel{\big|}\text{formation}
+\right].
+\]
+
+The net value is $V_W^R(\alpha,\mu)-\chi$. Formation occurs if and only if
+this quantity is weakly positive; equality leads to formation. If bargaining
+payoffs form a correspondence, entry is evaluated assessment by assessment.
+Payoff bounds may support a selection-free claim, but they never choose an
+assessment or define the formation rule.
+
+There are exactly two bargaining rounds. Round 2 is terminal. In every reached
+round, exactly one weak proposer is drawn uniformly. The draws are independent
+across rounds and independent of type and public history. The hegemon is never
+recognized in this baseline: $\pi_H=0$ in both rounds.
+
+## Proposal space and budgets
+
+When $H$ is active and weak state $i$ is recognized, it proposes
+
+\[
+s_i=\left(y,(x_j)_{j\ne i}\right),
+\qquad
+0\leq y\leq\bar y,
+\qquad
+x_j\geq0.
+\]
+
+If the current agreement includes $H$, the proposer's residual is
+
+\[
+x_i^H=1-y-\sum_{j\ne i}x_j\geq0.
+\]
+
+If a majority agreement passes without $H$, the participation component is
+not burned. It is reabsorbed by the proposer:
+
+\[
+x_i^{WO}=1-\sum_{j\ne i}x_j=x_i^H+y.
+\]
+
+A named $x_j$ is paid whenever the current proposal passes, even if $j$
+voted no. The participation component $y$ is paid only when the implemented
+agreement includes $H$. After $H$ has opted out, a weak-only proposal
+fixes $y=0$ and allocates the unit weak surplus.
+
+The proposal space contains gifts to voters whose ballots may not be needed
+for passage. They are not removed from the action space or from deviation
+checks.
+
+## Simultaneous ballot and quotas
+
+The proposer is counted as voting yes. All other active players observe the
+public history and current proposal, then vote yes or no simultaneously. $H$
+also observes its private type. No voter observes another current vote when
+acting. The complete vector and outcome become public only after every vote
+has been cast.
+
+In the absence of an authorized correlating device, behavioral randomizations
+are independent conditional on the player's information set. A derivation may
+not insert correlated ballots.
+
+The quotas are
+
+\[
+Q_U=N,
+\qquad
+Q_M=q=\left\lfloor\frac N2\right\rfloor+1.
+\]
+
+After $H$ opts out, the original quota is retained rather than recalculated.
+Because only $m=N-1$ players then remain, the unanimity quota is impossible.
+That branch is a terminal outcome, not an artificial continuation game.
+
+## Immediate opt-out and continuation
+
+A no vote by type $\theta$ of $H$ is an immediate and irreversible
+opt-out. No current or future agreement can include it after that action. In
+Round 1 the action pays $o_\theta$ immediately, without discount. In Round
+2 it pays $o_\theta$ at the Round-2 date.
+
+If $H$ votes yes in Round 1 but weak votes make the current ballot fail,
+$H$ remains active and the appropriate active-$H$ Round-2 state is reached.
+If $H$ votes no under majority, a current weak-only agreement passes when
+the weak yes votes reach $q$; otherwise the game reaches the terminal
+weak-only Round-2 majority problem. A Round-1 no vote by $H$ under
+unanimity ends at the quota-impossible terminal outcome.
+
+If an active-$H$ Round-2 ballot fails, $H$ receives $o_\theta$ in
+Round-2 units and weak states receive zero. If $H$ opted out in Round 1, it
+receives no additional Round-2 flow.
+
+## Payoff dates and discounting
+
+Round 2 is solved entirely in its native current units, with no internal
+discount factor. In the backward step, **beta is applied exactly once only
+when a frozen Round-2 value enters Round 1**. Immediate Round-1 opt-out is not
+discounted. A predecessor must import a literal frozen continuation interface;
+it may not rederive or repair that continuation locally.
+
+## Solution concept and beliefs
+
+The solution concept is Perfect Bayesian equilibrium. An assessment specifies
+formation, proposal strategies, behavioral ballot strategies at every public
+proposal history, $H$'s type-contingent ballots, and beliefs wherever the
+type remains payoff-relevant. Strategies must be sequentially rational and
+beliefs must follow Bayes' rule wherever possible.
+
+The full public history and the posterior are separate state objects.
+Continuation strategies may depend on the proposal and the complete revealed
+vote vector even when two histories induce the same posterior. At a
+zero-probability history, the required belief must be stated as part of the
+assessment; it may not be introduced inside a proof to suppress a branch.
+
+The maintained weak-vote-passive belief discipline reflects that weak voters
+do not observe the type: a unilateral weak vote is not direct evidence about
+$\theta$. A type-contingent vote by $H$ may update beliefs once the ballot
+closes. After completed opt-out, the type is payoff-irrelevant to the
+weak-only continuation.
+
+## Direct response convention and proposal ties
+
+When a player's vote changes a payoff-relevant event with positive
+probability, it votes yes when the expected payoff from yes is greater than or
+equal to the expected payoff from no. It votes no when the expected payoff
+from no is strictly larger. At equality with positive probability of
+relevance, the player votes yes.
+
+When relevance has probability zero, the two actions are locally
+outcome-equivalent holding the other strategies fixed. The assessment must
+still record a complete behavioral profile, but that bookkeeping action is not
+a substantive equilibrium class. Section \@ref(completion-discipline) explains
+why local equivalence does not license simultaneous replacement of several
+actions.
+
+Only after maximizing the weak proposer's payoff, a proposal-payoff tie is
+resolved by minimizing $H$'s expected payoff. If both the proposer and $H$
+tie while downstream objects differ, the outcome remains a correspondence.
+
+# Vote relevance
+
+## Outcome signature
+
+Fix player $i$'s ballot information set $I$, its action
+$a_i\in\{Y,N\}$, the other simultaneous actions $a_{-i}$, and the type
+when it remains relevant. Define the outcome signature
+
+\[
+\Phi_I(a_i,a_{-i},\theta)
+=
+\bigl(
+A,
+J_H,
+O_H,
+P,
+S
+\bigr),
+\]
+
+where:
+
+- $A$ records approval or rejection;
+- $J_H$ records inclusion or exclusion of $H$;
+- $O_H$ records opt-out status;
+- $P$ records the implemented payment vector and the destination of $y$;
+- $S$ records the induced terminal outcome or the continuation
+  outcome/interface under the frozen assessment.
+
+If an action reaches a continuation, $S$ is the action-specific object
+$\kappa_{C_2}(h_2)$, including its induced belief and payoff distribution.
+It is not a raw successor label or a raw vote vector. Thus, in Round 1, two
+actions that reach the same named $C_2$ class can remain relevant when they
+produce different full histories and
+$\kappa_{C_2}(h_2^Y)\ne\kappa_{C_2}(h_2^N)$.
+
+The other-action profile is relevant for voter $i$ exactly when
+
+\[
+\Phi_I(Y,a_{-i},\theta)\ne
+\Phi_I(N,a_{-i},\theta).
+\]
+
+This definition is conditional on the information set. It does not condition
+on a simultaneous action the voter has not observed.
+
+## Expected voting incentive
+
+Let ${\cal R}_i(I)$ be the set of relevant pairs
+$(\theta,a_{-i})$. The expected difference is
+
+\[
+\Delta_i(I)
+=
+\sum_{(\theta,a_{-i})\in{\cal R}_i(I)}
+\Pr(\theta,a_{-i}\mid I)
+\left[
+u_i(Y,a_{-i};\theta,I)
+-u_i(N,a_{-i};\theta,I)
+\right].
+\]
+
+Every profile outside ${\cal R}_i(I)$ contributes exactly zero. If
+$\Pr({\cal R}_i(I)\mid I)>0$, the prescribed response is yes when
+$\Delta_i(I)\geq0$ and no when $\Delta_i(I)<0$. This is an expected
+comparison over events the vote actually changes, not a blanket quota test.
+
+For weak voters, relevant profiles normally occur at quota boundaries and can
+change current payment versus continuation. For $H$, relevance must be
+derived separately. Even when weak votes already meet a majority quota,
+changing $H$'s ballot can change inclusion, payment $y$, opt-out, or the
+continuation. Terminal opt-out status is part of the outcome signature even
+when terminal monetary payoffs happen to coincide.
+
+## Formal relevance registry
+
+The authoritative registry is
+`tables/pivotal_response_relevance_registry_v1.csv`. It separates weak and
+hegemon ballots by round, rule, participation status, and information set.
+
+```{r relevance-table, results='asis'}
+knitr::kable(
+  relevance_registry,
+  caption = "Gate 0 vote-relevance registry."
+)
+```
+
+For a weak nonproposer $j$, let $w_{-j}\in\{1,\ldots,m-1\}$ count weak
+yes votes other than $j$, including the proposer's automatic yes. The
+current-approval structural toggle occurs exactly in the following cases:
+
+- active-$H$ unanimity: $H=Y$ and $w_{-j}=m-1$; no weak toggle can
+  restore unanimity after $H=N$;
+- active-$H$ majority with $H=Y$: $w_{-j}=q-2$, an empty set when
+  $N=3$ because then $q-2=0<w_{-j}$;
+- active-$H$ majority with $H=N$: $w_{-j}=q-1$;
+- weak-only majority: $w_{-j}=q-1$.
+
+These quota cases do not exhaust Round-1 relevance when both actions fail.
+The action-specific full histories must still be passed through the frozen
+continuation interface. The verifier enumerates the structural cases for
+$N=3,\ldots,60$, including the empty $N=3$ majority-with-$H=Y$ case. The
+hegemon is analyzed separately for every $z\in\{1,\ldots,m\}$; no weak-voter
+quota shortcut is applied to its inclusion, opt-out, payment, or continuation
+comparison.
+
+## Product-safe completion discipline {#completion-discipline}
+
+Local irrelevance is not closed under changing several actions jointly.
+Consider terminal unanimity with $N=4$. The proposer and $H$ vote yes and
+the two weak nonproposers vote no. Holding the other no fixed, either weak
+voter can switch alone without producing passage, so each action is locally
+irrelevant. If both switch to yes, the proposal passes. Terminal weak-only
+majority with $N=4,q=3$ has the same structure.
+
+Accordingly, this Gate 0 does not impose a universal player-by-player
+completion. Every assessment records an explicit full behavioral profile at
+each proposal history. Two full completions may be quotiented only if they
+induce identical approval, $H$ inclusion and opt-out, transfers, successor
+state, relevant belief distribution, and payoff distribution at every
+affected proposal and history.
+
+Any later invariance claim must be product-safe: it must compare the induced
+joint distributions, not merely verify that each vote is individually
+irrelevant at one profile. If this proof fails, the different completions
+remain distinct outcome classes or a correspondence. Proposal optimality must
+also remain unchanged before a result is called completion-invariant.
+
+# Coalitions, gifts, and proposal optimality
+
+No coalition-size restriction is a primitive or an additional equilibrium
+concept. Offers required to obtain support must be derived from ballot
+incentives. **Gifts to outsiders remain feasible deviations** and must be
+included in the recognized proposer's best-response problem.
+
+Nor does local irrelevance generally imply zero outsider gifts or a minimum
+winning representation. In terminal weak-only majority with $N=5,q=3$, an
+on-path proposal may have the proposer plus all three other weak voters voting
+yes. Each nonproposer is locally irrelevant against the other two yes votes,
+and the proposal passes. At a different, zero-gift proposal history, all three
+nonproposers may vote no; each unilateral switch remains locally irrelevant
+because proposer plus one yes still falls short of $q$, and the proposal
+fails. Deleting a gift changes the proposal information set and need not
+preserve its completion or the proposer's payoff.
+
+This finding is not confined to a knife-edge. An open set of feasible positive
+gift vectors can accompany the all-yes completion, while a distinct deviated
+proposal receives the all-no completion. Therefore a general zero-gift or
+minimum-coalition conclusion is rejected in
+this contract. A compact minimum-winning representation may be used only for a
+proved subclass in which passage is secured or full completion invariance is
+product-safe and proposer optimality removes every redundant transfer.
+Otherwise the proof must retain unrestricted proposal-contingent completions,
+positive gifts, oversized support, and any resulting correspondence.
+
+# Histories and information sets
+
+The authoritative information-set registry is
+`tables/pivotal_response_information_sets_v1.csv`. It records what every mover
+observes, what remains unobserved, when actions become public, the feasible
+actions, successors, and the relevant belief object.
+
+```{r information-set-table, results='asis'}
+knitr::kable(
+  information_registry,
+  caption = "Gate 0 information sets and observations."
+)
+```
+
+The key safeguards are:
+
+- weak ballot strategies cannot condition on the type or another current
+  vote;
+- $H$'s strategy can condition on its type but not on current weak votes;
+- a Round-2 state retains the complete public Round-1 proposal and vote vector
+  separately from its posterior;
+- the weak-only Round-2 state requires no belief about the type for its payoff
+  problem.
+
+# Exhaustive transition registry
+
+Let $z\in\{1,\ldots,m\}$ be the number of weak yes votes, including the
+proposer's automatic yes. The authoritative transition registry is
+`tables/pivotal_response_gate0_transitions_v1.csv`.
+
+```{r transition-table, results='asis'}
+knitr::kable(
+  transition_registry,
+  caption = "Gate 0 exhaustive ballot transitions in native payoff units."
+)
+```
+
+The R verifier enumerates every admissible ballot tuple for
+$N=3,\ldots,60$, both rules, both rounds, active-$H$ yes and no, and the
+terminal weak-only majority state. Each tuple must map to exactly one of
+PR01--PR16. The symbolic range $1,\ldots,q-2$ is empty at $q=2$, rather than
+new histories.
+
+No terminal outcome is promoted to a decision problem. In particular, after
+an $H$-no under unanimity, the original quota is impossible and the branch
+ends.
+
+# Sufficient states
+
+The authoritative sufficient-state registry is
+`tables/pivotal_response_sufficient_states_v1.csv`.
+
+```{r state-table, results='asis'}
+knitr::kable(
+  state_registry,
+  caption = "Gate 0 payoff- and belief-sufficient states."
+)
+```
+
+The registry separates pre-recognition, proposer-before-$s_i$, weak-ballot,
+and $H$-ballot states. A weak-ballot key retains both voter $j$ and the
+public proposal $s_i$; an $H$-ballot key retains $s_i$ and private
+$\theta$. Each $C_2(h_2)$ imported by Round 1 is a pre-recognition
+correspondence indexed by the full public $h_2$ and integrates the uniform
+proposer draw. Histories may be compressed only after proving that feasible
+actions, payoff consequences, beliefs, admissible strategies, and all future
+continuations coincide.
+
+# Continuation DAG and barriers
+
+The machine-readable graph is
+`model_redesign/pivotal_response_game_dag.json`. The Gate 0 contract is a
+`pass` protocol node whose artifact is the dependency-complete
+`model_redesign/pivotal_response_interfaces/gate0_bundle_v1.json`. The bundle
+hash covers the contract plus the transition, information-set,
+sufficient-state, and relevance registries. The separate
+`gate0_review_v1.json` records both independent PASS decisions and the
+event log through `passed_order=10`. Because the gate is closed, the
+generic DAG checker reports exactly the three terminal Round-2 problems as the
+ready antichain.
+
+The dependency-first schedule is:
+
+| Batch | Nodes | Required frozen inputs | Current authorization |
+|:--|:--|:--|:--|
+| Gate 0 | `gate0_contract` | none | PASS at event 10 |
+| R2 antichain | `r2_unanimity_active_h`; `r2_majority_active_h`; `r2_majority_weak_only` | reviewed Gate 0 hash | authorized and ready; not started |
+| R2 batch gate | `r2_batch_review` | all three R2 interfaces and independent review | blocked |
+| R1 antichain | `r1_unanimity`; `r1_majority` | `r2_batch_review` plus local R2 hashes | blocked |
+| R1 batch gate | `r1_batch_frozen` | both R1 interfaces frozen | blocked |
+| Entry | `entry_unanimity`; `entry_majority` | `r1_batch_frozen` plus corresponding R1 hash | blocked |
+| Comparison | `institutional_comparison` | both entry hashes and common existence domain | blocked |
+| Survival inventory | `v6_survival_matrix` | comparison hash | blocked; no migration |
+
+The three Round-2 nodes are graph-independent conditional on Gate 0. The two
+Round-1 nodes remain blocked until `r2_batch_review` independently accepts and
+freezes all three terminal interfaces. Entry remains blocked until
+`r1_batch_frozen` freezes both Round-1 interfaces. Entry then consumes the
+corresponding Round-1 payoff correspondence assessment by assessment; a valid
+bound can support only a selection-free claim. Institutional comparison is
+restricted to the common equilibrium-existence domain; no scalar selection is
+silently inserted.
+
+The following are terminal outcomes, not nodes: nonformation, current passage
+with $H$, current weak-only passage, terminal active-$H$ failure, terminal
+weak-only failure, and the quota-impossible unanimity outcome after opt-out.
+
+# Continuation interfaces and native-time ledger
+
+The versioning policy is in
+`model_redesign/pivotal_response_interfaces/README.md`. Gate 0 has a
+versioned contract, dependency-complete bundle, and independent-review
+interface. Its contract and four authoritative registries are hash-closed by
+`gate0_bundle_v1.json`. No Round-2 interface file exists.
+
+Every future closed continuation interface must state strategies, beliefs,
+payoff vector or correspondence, native payoff date, existence and
+multiplicity, boundaries, equality cases, assumptions, checks, status,
+provenance, and SHA-256.
+
+| Imported object | Native date | Consuming date | Permitted transformation | Status |
+|:--|:--|:--|:--|:--|
+| $C_{2,U}^{A}(h_2)$ | R2 | R1 | $\beta C_{2,U}^{A}(h_2)$ exactly once | nonexistent; R2 not started |
+| $C_{2,M}^{A}(h_2)$ | R2 | R1 | $\beta C_{2,M}^{A}(h_2)$ exactly once | nonexistent; R2 not started |
+| $C_{2,M}^{WO}(h_2)$ | R2 | R1 weak payoffs only | $\beta C_{2,M}^{WO}(h_2)$ exactly once | nonexistent; R2 not started |
+| immediate $o_\theta$ after $H$-no in R1 | R1 | R1 | none | primitive |
+
+Changing any Gate 0 bundle component changes the bundle hash, reopens Gate 0,
+and invalidates every descendant derivation and review. Likewise, changing any
+later frozen interface hash reopens that node and invalidates its descendants.
+A predecessor may not fill an interface gap locally.
+
+# Proof ledger
+
+```{r proof-ledger-table, results='asis'}
+knitr::kable(
+  proof_ledger,
+  caption = "Pivotal-response proof and execution ledger."
+)
+```
+
+The statuses `checked numerically` in Gate 0 refer only to hash, partition, or
+graph checks. The extensive form, relevance discipline, sufficient states,
+transitions, and DAG are `proved` in the ledger only in the governance
+sense that both independent reviewers accepted the exact bundle and source
+with zero findings. The general zero-gift or minimum-coalition conclusion
+remains `rejected` by the proposal-contingent completion counterexample.
+Every equilibrium node remains `pending` and has no `started_order` or
+`passed_order`.
+
+# Independent Gate 0 review closure
+
+The formal-model and adversarial read-only reviewers independently answered
+all of the following questions affirmatively for the exact frozen bundle:
+
+1. PR01--PR16 exhaust and partition the feasible ballot profiles;
+2. the information sets prevent conditioning on unobserved current votes;
+3. vote relevance includes approval, participation, opt-out, payments, and
+   the induced terminal or assessed continuation outcome without using a raw
+   successor label or collapsing $H$'s problem to quota pivotality;
+4. equality is resolved as yes only when relevance has positive probability;
+5. assessment-level completions and independent behavioral mixing are defined
+   without overclaiming invariance from individual local irrelevance;
+6. the N=4 joint-completion and N=5 gift counterexamples are handled
+   correctly;
+7. the unrestricted proposal space preserves gifts as deviations and avoids a
+   general minimum-coalition claim;
+8. the DAG enforces the Gate 0, R2-batch-to-R1, and
+   R1-batch-to-entry barriers;
+9. all Round-2 payoffs are native-date objects and discounting occurs exactly
+   once upon import to Round 1;
+10. no equilibrium result has entered the Gate 0 contract.
+
+The first review round returned REPAIR on contract hash
+`37bd422df0bafd7c93162198594c49fd3114d304750d282318d7a705348bc9bb`.
+After repair, both rereviews returned PASS with zero critical, major, or minor
+findings on bundle
+`sha256:6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1`.
+The closure and conditions are recorded in
+`model_redesign/pivotal_response_interfaces/gate0_review_v1.json` and
+`quality_reports/2026-08-11_pivotal_response_gate0_independent_review.md`.
+No unresolved Gate 0 protocol choice remains. Any bundle-component change
+reopens the gate and invalidates all descendants.
+
+# Stop boundary
+
+`STOP_BEFORE_R2`
+
+This file ends at the Gate 0 contract and work agenda. It does not solve any
+terminal ballot, characterize any proposal, compute any continuation value,
+or import any prior equilibrium result.

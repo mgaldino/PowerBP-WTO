@@ -1,0 +1,222 @@
+{
+  "schema_version": "1.1.0",
+  "artifact_id": "pivotal-response-r2-majority-active-h-v1",
+  "state_id": "r2_majority_active_h",
+  "status": "candidate_pending_independent_review",
+  "created_date": "2026-08-11",
+  "implementation_role": "repaired candidate derivation; implementer did not review this artifact",
+  "dependency": {
+    "artifact_id": "pivotal-response-gate0-bundle-v1",
+    "path": "gate0_bundle_v1.json",
+    "sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1"
+  },
+  "native_payoff_date": "Round 2",
+  "discount_application_count": 0,
+  "solution_concept": "perfect Bayesian equilibrium with the Gate 0 response-at-equality rule and no additional selection or correlating device",
+  "state_key": "(M,round=2,H=active,full h2,nu(h2)) before the uniform weak-proposer recognition draw",
+  "domain": {
+    "population": "N=m+1>=3",
+    "weak_nonproposers_after_recognition": "n=m-1=N-2",
+    "quota": "q=floor(N/2)+1, unchanged after an H no vote",
+    "true_preproposal_posterior": "nu in [0,1]",
+    "ballot_belief": "rho(s) in [0,1]",
+    "outside_options": "0<=o_0<o_1<=y_bar<=1",
+    "proposal": "s_i=(y,(x_j)_{j!=i}), 0<=y<=y_bar, x_j>=0, X=sum x_j<=1-y"
+  },
+  "belief_layers": {
+    "on_support_proposal": "rho(s)=nu because the weak proposer has no private information and recognition is type-independent",
+    "globally_off_path_proposal": "rho(s) is an explicitly recorded assessment component in [0,1]",
+    "deviation_distribution": "the proposer evaluates every proposal deviation under the true preproposal distribution nu, never under rho(s)",
+    "terminal_update": "after a positive-probability H ballot a, posterior type-one probability is rho(s)1{h_1=a}/[(1-rho(s))1{h_0=a}+rho(s)1{h_1=a}]; the weak vote vector is type-independent conditional on s",
+    "zero_probability_terminal_history": "the terminal posterior is stated as an assessment component, but no later player moves and no terminal payoff depends on it"
+  },
+  "notation": {
+    "a": "q-3",
+    "b": "q-2=a+1",
+    "p_j": "independent behavioral probability that weak nonproposer j votes yes",
+    "K": "number of weak-nonproposer yes votes",
+    "A_p": "Pr_p(K>=b)",
+    "B_p": "Pr_p(K>=b+1)",
+    "S_p": "number of j with p_j=1",
+    "L_p": "number of j with p_j>0",
+    "h_theta": "1{A_p=0 or y>=o_theta}",
+    "t_rho_y": "(1-rho)h_0+rho h_1",
+    "t_nu_y": "(1-nu)h_0+nu h_1",
+    "r_i": "1-y-X",
+    "o_bar_nu": "(1-nu)o_0+nu o_1"
+  },
+  "terminal_transitions": [
+    {
+      "gate0_id": "PR11",
+      "condition": "H=yes and K>=q-2",
+      "outcome": "pass with H",
+      "payoffs": "H:y; proposer:r_i; named weak j:x_j"
+    },
+    {
+      "gate0_id": "PR12",
+      "condition": "H=yes and K<=q-3",
+      "outcome": "terminal active-H failure",
+      "payoffs": "H:o_theta; all weak:0"
+    },
+    {
+      "gate0_id": "PR13",
+      "condition": "H=no and K>=q-1",
+      "outcome": "pass weak-only after immediate H opt-out; y reabsorbed",
+      "payoffs": "H:o_theta; proposer:1-X; named weak j:x_j"
+    },
+    {
+      "gate0_id": "PR14",
+      "condition": "H=no and K<=q-2",
+      "outcome": "terminal failure after H opt-out",
+      "payoffs": "H:o_theta; all weak:0"
+    }
+  ],
+  "fixed_proposal_best_responses_at_rho": {
+    "hegemon": {
+      "monetary_difference": "Delta_H(theta)=A_p(y-o_theta)",
+      "relevance": "H changes at least opt-out status at every weak vote profile, so its relevance probability is one",
+      "strategy": "h_theta=yes iff A_p=0 or y>=o_theta; otherwise no",
+      "equality": "yes at y=o_theta and yes when A_p=0"
+    },
+    "weak_nonproposer_j": {
+      "relevance_probability": "R_j=t_rho_y Pr(K_-j=q-3)+(1-t_rho_y)Pr(K_-j=q-2)",
+      "monetary_difference": "Delta_j=x_j R_j",
+      "strategy": "p_j=1 if R_j>0; p_j may be any number in [0,1] if R_j=0",
+      "equality": "yes when R_j>0 even if x_j=0; R_j=0 actions are explicit completions",
+      "independence": "all weak behavioral randomizations are independent conditional on the ballot information set"
+    }
+  },
+  "complete_fixed_proposal_ballot_correspondence_at_rho": {
+    "exhaustive_partition": true,
+    "no_interior_A": "every equilibrium has A_p=0 or A_p=1; none has 0<A_p<1",
+    "failure_class_F": {
+      "existence": "if and only if q>=4, equivalently N>=6",
+      "necessary_and_sufficient_condition": "L_p<=q-4",
+      "H_strategy": "both types yes",
+      "outcome": "terminal active-H failure surely",
+      "type_conditional_payoffs": "U_H,theta=o_theta; every weak payoff=0",
+      "mixed_completions": "at most q-4 weak voters may have arbitrary positive yes probabilities; every other weak voter uses zero",
+      "rho_dependence": "none"
+    },
+    "secured_class_S": {
+      "existence": "for every N>=3, rho, and feasible proposal",
+      "A_p": 1,
+      "H_strategy": "h_theta=1{y>=o_theta}",
+      "necessary_and_sufficient_weak_condition": {
+        "if_t_rho_y_equals_1": "S_p>=q-2",
+        "if_t_rho_y_less_than_1": "S_p>=q-1"
+      },
+      "remaining_completions": "every nonsure weak voter may use any independent probability in [0,1]",
+      "B_boundary": "if t_rho_y<1 then B_p=1; if t_rho_y=1 then B_p may lie anywhere in [0,1]",
+      "belief_warning": "when t_rho_y=1, a type assigned zero probability by rho may reject and receive weak-only passage only with probability B_p; that type can still have positive probability under true nu at an off-path proposal"
+    },
+    "rho_boundaries": [
+      "if y<o_0, then t_rho_y=0 for every rho",
+      "if o_0<=y<o_1, then t_rho_y=1-rho, so rho=0 permits B_p in [0,1] while every rho>0 forces B_p=1",
+      "if y>=o_1, then t_rho_y=1 for every rho, but both types accept so B_p does not affect realized type payoffs"
+    ]
+  },
+  "fixed_proposal_outcome_and_payoff_correspondence": {
+    "type_conditional_terminal_probabilities": {
+      "PR11_pass_with_H": "h_theta A_p",
+      "PR12_active_H_failure": "h_theta(1-A_p)",
+      "PR13_weak_only_pass": "(1-h_theta)B_p",
+      "PR14_post_optout_failure": "(1-h_theta)(1-B_p)"
+    },
+    "type_conditional_payoffs": {
+      "H": "u_H(theta)=o_theta+h_theta A_p(y-o_theta)",
+      "proposer_i": "u_i(theta)=h_theta A_p r_i+(1-h_theta)B_p(1-X)",
+      "weak_j_not_i": "u_j(theta)=[h_theta A_p+(1-h_theta)B_p]x_j"
+    },
+    "true_nu_expected_payoffs": {
+      "proposer": "g_i(s,b;nu)=(1-nu)u_i(0)+nu u_i(1)",
+      "H": "g_H(s,b;nu)=(1-nu)u_H(0)+nu u_H(1)",
+      "weak_j_not_i": "g_j(s,b;nu)=(1-nu)u_j(0)+nu u_j(1)"
+    },
+    "secured_simplification": "in S, g_i=[t_nu_y+(1-t_nu_y)B_p](1-X)-t_nu_y y; only at an on-support proposal rho=nu does this always reduce to 1-X-t_nu_y y",
+    "failure_simplification": "in F, g_i=0, every weak payoff is zero, and g_H=o_bar_nu"
+  },
+  "proposal_assessment": {
+    "components": "a proposal distribution sigma_i; rho_i(s)=nu on its support and an explicit rho_i(s) at every globally off-path proposal; one fixed-proposal ballot element b_i(s) satisfying the rho_i(s) correspondence; terminal beliefs; full proposal/type/identity outcome vectors",
+    "proposer_support": "support is contained in argmax_s g_i(s,b_i(s);nu), with deviations integrated under true nu",
+    "tie_break": "after proposer-payoff maximization, retain only maximizers minimizing g_H(s,b_i(s);nu); if proposer and H payoffs tie while allocations, type outcomes, identities, or terminal signatures differ, retain the correspondence",
+    "proposal_mixing": "all support elements have the same maximal proposer payoff and the same tie-minimal H payoff; otherwise the higher-H element is removed by the primitive tie-break",
+    "warning": "rho(s), B_p, gifts, and full ballot completions are proposal-contingent; no common minimal-coalition or zero-gift convention is imposed"
+  },
+  "proposal_stage_characterization": {
+    "N_3_to_5_o0_positive": {
+      "conditions": "3<=N<=5 and o_0>0",
+      "failure_class_available": false,
+      "proposer_payoff_projection": "{1}",
+      "reason": "the deviation y=0,X=0 has both H types reject under every rho and therefore forces B_p=1 and payoff one",
+      "tie_refined_on_path_condition": "rho=nu, S, X=0, and t_nu_y*y=0",
+      "H_expected_payoff": "o_bar_nu",
+      "supported_type_weak_payoffs": "proposer=1; every other weak=0",
+      "multiplicity": "proposal, inclusion/opt-out signature, off-support type outcome, and ballot completion may remain multiple"
+    },
+    "N_3_to_5_o0_zero": {
+      "conditions": "3<=N<=5 and o_0=0",
+      "failure_class_available": false,
+      "lower_bound_components": {
+        "G": "1-o_1, forced by the pooling deviation y=o_1,X=0",
+        "L": "1-nu, forced by the deviation y=0,X=0; its minimum is attained off path with rho=0, exactly q-2 sure weak yes votes, and B_p=0",
+        "D": "max{G,L}"
+      },
+      "proposer_payoff_projection": "[D,1]",
+      "attainment": "every V in [D,1] is attained on path by y=0,X=1-V with rho=nu and an S completion",
+      "off_path_punishment": "every separating deviation can be assigned rho=0 and B_p=0, yielding true-nu payoff (1-nu)r_i<=L; every pooling deviation yields at most G",
+      "interior_V_above_D": "any on-support S outcome with proposer payoff V>D is supportable by assigning every other proposal payoff strictly below V",
+      "boundary_V_equals_D": {
+        "if_L_greater_than_G": "the unavoidable y=0,X=0 tie gives H o_bar_nu, so support outcomes must have g_H=o_bar_nu",
+        "if_G_greater_than_L": "the unavoidable y=o_1,X=0 tie gives H o_1, so support outcomes must have g_H<=o_1",
+        "if_G_equals_L": "the two unavoidable ties make o_bar_nu the minimum H payoff, so support outcomes must have g_H=o_bar_nu"
+      },
+      "degenerate_corner": "if nu=1 and o_1=1, then D=0; y=0,X=1 and y=1,X=0 are the two pure proposal forms with value zero, and both give the actual H type payoff one"
+    },
+    "N_at_least_6": {
+      "conditions": "N>=6",
+      "failure_class_available_at_every_proposal_and_rho": true,
+      "proposer_payoff_projection": "[0,1]",
+      "positive_value_support": "every on-support S outcome with V=1-X-t_nu_y y>0 is supportable by assigning F to all other proposals; every V in (0,1] is attainable with y=0,X=1-V",
+      "zero_value_support": "F outcomes at arbitrary proposals, plus on-support S outcomes satisfying 1-X-t_nu_y y=0 and g_H=o_bar_nu",
+      "zero_value_S_equivalent_conditions": "either y=0,X=1; or y>0,t_nu_y=1,X=1-y and every type with positive nu probability has o_theta=y",
+      "noninvariance": "zero-value F gives all weak states zero while zero-value S may give nonproposing weak states the entire unit; both survive the stated tie-break"
+    }
+  },
+  "recognized_proposer_correspondence": {
+    "object": "all type-conditional payoff vectors, proposal distributions, rho maps, local ballot completions, terminal-outcome distributions, terminal beliefs, and named weak allocations generated by the exact assessment characterization",
+    "scalar_projection_warning": "the proposer payoff projections are implications of, not replacements for, the full continuation interface"
+  },
+  "pre_recognition_interface": {
+    "recognition": "each weak i is recognized with probability 1/m independently of theta and public history",
+    "correspondence": "C2_M_active(h2)={(1/m)sum_i U^{i,alpha_i}: alpha_i is an admissible recognized-proposer PBE assessment at true posterior nu(h2)}",
+    "H_coordinate_by_type": "C_H,theta=(1/m)sum_i U_H,theta^{i,alpha_i}",
+    "weak_coordinate_by_identity_and_type": "C_W,j,theta=(1/m)sum_i U_W,j,theta^{i,alpha_i}",
+    "terminal_signature_coordinate": "the same uniform average is retained over PR11-PR14 probabilities, H inclusion/opt-out status, and implemented payment vectors",
+    "history_index": "full h2 is retained separately from nu because rho maps and completion maps may differ across equal-posterior histories",
+    "proposer_mixing": "expectations over tie-refined proposer mixtures are included"
+  },
+  "existence_and_multiplicity": {
+    "existence": "nonempty for every admissible primitive vector, N>=3, nu, and full history h2",
+    "N_3_to_5": "the proposer value is one when o_0>0, but is the interval [max{1-o_1,1-nu},1] when o_0=0; full outcomes remain more numerous than these scalar projections",
+    "N_at_least_6": "proposal-contingent F completions generate proposer values [0,1] and a broad payoff/outcome correspondence",
+    "selection_status": "set-valued; no selection beyond the primitive proposer/H tie-break has been imposed"
+  },
+  "boundary_cases": [
+    "N=3: q=2 and b=0; in S, t_rho_y=1 requires no sure weak yes while t_rho_y<1 requires the sole weak nonproposer to be sure yes",
+    "N=4,5: q=3 and b=1; F is impossible; S requires one sure weak yes at t_rho_y=1 and two at t_rho_y<1",
+    "N>=6: F exists and is exactly L_p<=q-4",
+    "nu=0 or nu=1: true type probabilities used for proposal optimality may differ from off-path rho; both type strategies and counterfactual payoff coordinates remain recorded",
+    "rho=0 at a separating off-path proposal permits B_p in [0,1], including the payoff-minimizing B_p=0 completion",
+    "rho=1 at a separating proposal has t_rho_y=0 and forces B_p=1",
+    "y=o_theta: H votes yes",
+    "x_j=0 and R_j>0: weak j votes yes"
+  ],
+  "checks": {
+    "r_verifier": "../../scripts/verify_pivotal_response_r2_majority_active_h.R",
+    "check_table": "../../tables/pivotal_response_r2_majority_active_h_checks.csv",
+    "derivation_note": "../pivotal_response_nodes/r2_majority_active_h_v1.md",
+    "independent_review": "pending rereview of repaired candidate"
+  },
+  "invalidation": "any change to the Gate 0 bundle invalidates this interface and all descendants; R1 must import the reviewed frozen replacement and apply beta exactly once"
+}

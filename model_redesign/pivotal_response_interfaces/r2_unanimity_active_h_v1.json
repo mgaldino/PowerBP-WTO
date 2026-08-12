@@ -1,0 +1,231 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "pivotal-response-r2-unanimity-active-h-v1",
+  "state_id": "r2_unanimity_active_h",
+  "status": "candidate_pending_independent_review",
+  "created_date": "2026-08-11",
+  "solution_concept": "perfect Bayesian equilibrium",
+  "native_payoff_date": "Round 2",
+  "internal_discounting": "none",
+  "provenance": {
+    "frozen_gate0_bundle": "gate0_bundle_v1.json",
+    "frozen_gate0_bundle_sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1",
+    "derivation_note": "../pivotal_response_nodes/r2_unanimity_active_h_v1.md",
+    "mechanical_verifier": "../../scripts/verify_pivotal_response_r2_unanimity_active_h.R",
+    "check_table": "../../tables/pivotal_response_r2_unanimity_active_h_checks.csv",
+    "historical_equilibrium_results_imported": false
+  },
+  "state_key": {
+    "rule": "unanimity",
+    "round": 2,
+    "H_status": "active",
+    "public_history": "full h2",
+    "public_preproposal_belief": "nu=Pr(theta=1|h2) in [0,1]",
+    "recognition": "one of m=N-1 weak proposers is drawn uniformly and independently of theta and h2"
+  },
+  "primitives_used": {
+    "population": "N=m+1>=3; after weak proposer i is counted yes, n=N-2=m-1 weak nonproposers vote",
+    "type_and_outside_options": "theta in {0,1}; 0<=o_0<o_1<=y_bar<=1",
+    "proposal": "s_i=(y,(x_j)_{j!=i}); 0<=y<=y_bar; x_j>=0; r_i=1-y-sum_j x_j>=0",
+    "ballot": "H and all weak nonproposers vote simultaneously and independently conditional on their information sets; no correlation device",
+    "passage": "pass if and only if H and all m weak states vote yes; proposer is already counted yes",
+    "pass_payoffs": "H gets y; weak j!=i gets named x_j; proposer i gets r_i",
+    "failure_payoffs": "every weak state gets 0 and type theta of H gets o_theta",
+    "H_no_outcome": "immediate opt-out and quota-impossible terminal outcome",
+    "H_yes_weak_failure_outcome": "terminal active-H failure without opt-out",
+    "equality": "yes when a payoff-relevant comparison is equal; zero relevance permits an explicit assessment completion",
+    "proposal_tie_break": "after maximizing the recognized proposer payoff, minimize H's expected payoff; retain a correspondence if both tie"
+  },
+  "fixed_proposal_ballot_interface": {
+    "notation": {
+      "p_j": "independent yes probability of weak nonproposer j",
+      "P_W": "product_j p_j",
+      "h_theta": "type-theta H yes action in {0,1}",
+      "rho": "weak ballot belief Pr(theta=1|h2,s_i)",
+      "a_rho": "(1-rho)h_0+rho h_1",
+      "P_minus_j": "product_{k!=j}p_k",
+      "Z": "set of weak nonproposers with p_j=0"
+    },
+    "H_best_response": {
+      "payoff_difference": "Delta_H(theta)=P_W(y-o_theta)",
+      "strategy": "h_theta=1{P_W=0 or y>=o_theta}",
+      "sure_weak_failure": "when P_W=0, opt-out status makes the action relevant and the zero monetary difference selects H-yes",
+      "mixing": "none, including at y=o_theta"
+    },
+    "weak_best_response": {
+      "relevance_probability": "a_rho P_minus_j",
+      "strategy": "p_j=1 if a_rho P_minus_j>0; any p_j in [0,1] if it equals zero",
+      "zero_offer": "x_j=0 still selects yes at positive relevance probability"
+    },
+    "complete_independent_behavioral_correspondence": [
+      {
+        "class": "positive_product",
+        "conditions": "Z is empty and P_W>0",
+        "H_strategy": "h_theta=1{y>=o_theta}",
+        "weak_strategy_if_a_rho_positive": "p_j=1 for every j",
+        "weak_strategy_if_a_rho_zero": "each p_j may be any number in (0,1] independently",
+        "a_rho_zero_cases": "y<o_0 for any rho; or o_0<=y<o_1 and rho=1"
+      },
+      {
+        "class": "coordinated_failure",
+        "conditions": "|Z|>=2; exists if and only if N>=4",
+        "H_strategy": "h_0=h_1=1",
+        "weak_strategy": "zero components remain zero and every positive p_j may be arbitrary in (0,1]",
+        "outcome": "weak-caused failure for both types"
+      }
+    ],
+    "excluded_profile": "exactly one p_j=0 is never a ballot equilibrium",
+    "pure_profiles": "either every weak nonproposer votes yes and H uses its threshold, or N>=4 and at least two weak nonproposers vote no while both H types vote yes",
+    "product_safe_warning": "positive-product mixing at rho=1 may change the true low-type passage probability after an off-path proposal and must be retained through proposal optimality"
+  },
+  "terminal_distribution_and_payoffs": {
+    "type_conditional_outcome_probabilities": {
+      "pass_with_H": "h_theta P_W",
+      "weak_caused_failure_without_optout": "h_theta(1-P_W)",
+      "quota_impossible_after_H_optout": "1-h_theta"
+    },
+    "type_conditional_payoff_vector": {
+      "recognized_proposer_i": "u_i(theta)=h_theta P_W r_i",
+      "weak_nonproposer_j": "u_j(theta)=h_theta P_W x_j for every named j",
+      "hegemon": "u_H(theta)=o_theta+h_theta P_W(y-o_theta)"
+    },
+    "proposal_stage_expectations": {
+      "recognized_proposer": "v_i(s,b;nu)=(1-nu)u_i(0)+nu u_i(1)",
+      "hegemon": "hbar(s,b;nu)=(1-nu)u_H(0)+nu u_H(1)"
+    },
+    "external_outside_option": "failure payments o_theta are not subtracted from the unit weak surplus"
+  },
+  "belief_interface": {
+    "on_support_proposal": "rho(s)=nu because the weak proposer does not know theta",
+    "globally_off_path_proposal": "rho(s) is an explicitly recorded assessment component in [0,1]",
+    "deviation_distribution": "the proposer's payoff from deviating is integrated under the true preproposal nu, not the off-path ballot belief rho",
+    "weak_vote": "an uninformed weak vote is not direct evidence about theta",
+    "post_ballot": "the vote vector may reveal theta, but the game is terminal and no successor belief enters an action or payoff",
+    "degenerate_posterior": "strategies and type-conditional payoffs are recorded for both H types even when nu is 0 or 1"
+  },
+  "proposal_assessment_definition": {
+    "components": [
+      "proposal distribution sigma_i",
+      "ballot belief rho_i(s) at every feasible proposal",
+      "one fixed-proposal ballot element b_i(s) from the exact ballot correspondence at every proposal",
+      "full type/player payoff and terminal-outcome distributions"
+    ],
+    "sequential_rationality": "every support proposal maximizes v_i(s,b_i(s);nu)",
+    "tie_break": "among maximizers, every support proposal minimizes hbar(s,b_i(s);nu)",
+    "mixing": "proposal mixing is allowed only among support elements tying in both quantities; differing payment or outcome distributions then remain in the correspondence"
+  },
+  "recognized_proposer_N3": {
+    "notation": {
+      "G": "1-o_1",
+      "L_nu": "(1-nu)(1-o_0)"
+    },
+    "nu_less_than_1": {
+      "canonical_pooling": {
+        "existence": "if G>0, always",
+        "proposal": "y=o_1, x=0, r_i=G",
+        "ballot": "all yes",
+        "recognized_proposer_payoff": "G",
+        "conditional_payoffs": "for both types: proposer G, other weak state 0, H o_1"
+      },
+      "separating_family": {
+        "value_domain": "0<V<=L_nu and V>=G; when G=0 this is the nonclosed interval (0,L_nu]",
+        "proposal": "r_i=V/(1-nu); o_0<=y<o_1; y+r_i<=1; x=1-y-r_i",
+        "ballot_and_outcome": "weak voter yes; low H yes and passage; high H no and opt-out",
+        "type_0_payoffs": "proposer r_i, other weak x, H y",
+        "type_1_payoffs": "both weak states 0, H o_1",
+        "tie_at_V_equal_G": "forced pooling ties the proposer but pays strictly more to H, so the authorized proposal tie-break selects separation"
+      },
+      "G_zero_pooling_rejection": "if o_1=1, canonical pooling payoff 0 cannot suppress every positive-residual separating deviation to exactly zero and is not a PBE",
+      "off_path_construction": "at every separating deviation set rho=1 and select a sufficiently small but strictly positive weak yes probability; pooling deviations cannot exceed G"
+    },
+    "nu_equal_1": {
+      "G_positive": "canonical pooling is the unique on-path monetary outcome",
+      "G_zero": "every fixed-proposal ballot equilibrium is proposal-stage admissible; actual weak payoffs are zero and actual high H payoff is o_1=1; proposal mixtures and counterfactual low-type objects remain"
+    },
+    "on_path_mixing": "for nu<1 no new nontrivial proposal mixture survives the proposal tie-break; for nu=1 and G=0 the full tied correspondence remains",
+    "existence": "nonempty for every primitive and posterior"
+  },
+  "recognized_proposer_Nge4": {
+    "notation": {
+      "G": "1-o_1",
+      "L_nu": "(1-nu)(1-o_0)",
+      "M_nu": "max{G,L_nu}",
+      "expected_outside_H": "(1-nu)o_0+nu o_1"
+    },
+    "proposer_scalar_payoff_projection": "the exact projection is [0,M_nu], but downstream users must consume the vector correspondence, not only this interval",
+    "positive_separating_passage": {
+      "availability": "nu<1 and 0<V<=L_nu",
+      "proposal": "r_i=V/(1-nu); o_0<=y<o_1; y+r_i<=1; sum_j x_j=1-y-r_i with arbitrary nonnegative named distribution",
+      "ballot": "all weak nonproposers yes; low H yes; high H no",
+      "type_0_payoffs": "proposer r_i, named weak vector (x_j), H y",
+      "type_1_payoffs": "all weak states 0, H o_1"
+    },
+    "positive_pooling_passage": {
+      "availability": "0<V<=G",
+      "proposal": "r_i=V; o_1<=y<=min{y_bar,1-V}; sum_j x_j=1-y-V with arbitrary nonnegative named distribution",
+      "ballot": "all voters and both H types yes",
+      "type_conditional_payoffs": "for both types: proposer V, named weak vector (x_j), H y"
+    },
+    "support_construction": "assign coordinated failure with at least two zero weak yes probabilities to every off-support proposal; every selected positive passage outcome is then a strict proposer optimum",
+    "zero_payoff_class": {
+      "necessary_and_sufficient_conditions": "v_i(s,b;nu)=0 and hbar(s,b;nu)=expected_outside_H",
+      "classes": [
+        "every terminal-failure ballot completion",
+        "if nu<1, separating passage only with r_i=0 and y=o_0",
+        "if nu=1, every separating positive-product completion",
+        "if nu=1, pooling passage exactly with y=o_1 and r_i=0; feasible named gifts may consume 1-o_1"
+      ],
+      "mixing": "retain mixtures over tied zero-payoff/H-payoff outcomes, including distinct opt-out, failure, payment, and counterfactual-type distributions"
+    },
+    "gift_and_support_implication": "positive named gifts and oversized unanimous support survive in both positive passage classes; no coalition minimality or zero-gift property is derived",
+    "existence": "nonempty for every primitive and posterior"
+  },
+  "pre_recognition_C2_correspondence": {
+    "assessment_index": "alpha selects one recognized-proposer PBE element e_i for each i=1,...,m; selections may be identity-asymmetric",
+    "weak_state_k": "C_2,U^alpha(h2)_k=(1/m)sum_i[(1-nu)u_k^i(0;e_i)+nu u_k^i(1;e_i)]",
+    "hegemon_type_theta": "C_2,U^alpha(h2)_H(theta)=(1/m)sum_i u_H^i(theta;e_i)",
+    "outcome_distribution": "apply the same uniform average to pass-with-H, weak-caused-failure, and H-optout probabilities conditional on each type",
+    "history_index": "the full public h2 and nu remain distinct interface indices; equal nu does not force the same assessment selection",
+    "selection_status": "set-valued; no selection beyond the two frozen tie conventions",
+    "transport_rule": "a Round-1 consumer imports a literal selected element and applies beta exactly once where its own transition reaches this state"
+  },
+  "boundaries": {
+    "N_equal_3": "no coordinated-failure ballot completion",
+    "N_at_least_4": "coordinated failure exists after every feasible proposal",
+    "o_0_equal_0": "the y<o_0 region is empty; all other formulas are unchanged",
+    "o_1_equal_1": "G=0; N=3 with nu<1 has a proposer payoff set open at zero, while N>=4 includes zero",
+    "nu_equal_0": "use the nu<1 branches and retain counterfactual high-type strategies/payoffs",
+    "nu_equal_1": "record counterfactual low-type strategies/payoffs even though proposal optimality uses the actual high type",
+    "y_bar_equal_o_1": "pooling proposals above o_1 disappear; canonical pooling remains feasible",
+    "y_equal_o_theta": "type theta votes yes",
+    "x_j_equal_0_at_positive_relevance": "weak voter j votes yes"
+  },
+  "existence_and_multiplicity": {
+    "existence": "PBE exists for all N>=3, nu in [0,1], and 0<=o_0<o_1<=y_bar<=1",
+    "ballot_multiplicity": "exactly the fixed-proposal correspondence above",
+    "proposal_multiplicity": "exactly the N=3 and N>=4 assessment-level families above",
+    "selection_warning": "do not collapse the interface to a scalar continuation value or impose symmetry, coalition minimality, zero gifts, or a joint yes completion"
+  },
+  "checks": {
+    "mechanical_result": "18 PASS / 18 total",
+    "pure_profiles_enumerated": 15240,
+    "random_payoff_vectors_checked": 250,
+    "N3_separating_candidates_checked": 78,
+    "Nge4_coordination_cases_checked": 135,
+    "Nge4_positive_values_constructed": 42,
+    "analytic_status": "proved in the derivation note",
+    "independent_review": "pending"
+  },
+  "claim_status": {
+    "fixed_proposal_ballot_correspondence": "proved",
+    "full_payoff_and_outcome_vector": "proved",
+    "N3_proposal_correspondence": "proved",
+    "Nge4_proposal_correspondence": "proved",
+    "uniform_pre_recognition_integration": "proved",
+    "mechanical_enumeration": "checked numerically",
+    "independent_formal_acceptance": "pending",
+    "rendered_layout": "pending"
+  },
+  "invalidation": "any change to the frozen Gate 0 bundle, ballot relevance, simultaneous information, proposal space, budget, terminal failure, equality convention, belief discipline, or proposal tie-break invalidates this interface and every descendant",
+  "artifact_hash_protocol": "SHA-256 is computed externally over the exact UTF-8 bytes of this candidate JSON; storing the digest inside the hashed file would be self-referential"
+}

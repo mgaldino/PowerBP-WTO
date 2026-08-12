@@ -1,0 +1,225 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "pivotal-response-institutional-comparison-v1",
+  "state_id": "institutional_comparison",
+  "status": "candidate_pending_independent_review",
+  "created_date": "2026-08-12",
+  "implementation_started_order": 54,
+  "implementation_role": "comparison-layer implementation only; no R1, C2, or entry object is rederived",
+  "dependencies": [
+    {
+      "role": "frozen_entry_batch",
+      "path": "entry_batch_review_v1.json",
+      "sha256": "8817a9c505ce9e5b79deea1b38055d88a629e740e324fbcd5bca707b108b5433"
+    },
+    {
+      "role": "approved_entry_unanimity",
+      "path": "entry_unanimity_v1.json",
+      "sha256": "05e39ad2b84ede134268ffae0898c8cafd8f3de01ef725ca2da6159156a83ed6"
+    },
+    {
+      "role": "approved_entry_majority",
+      "path": "entry_majority_v1.json",
+      "sha256": "4eb343ce6f6fb7c34782e708a0e787908437d2682d079e91f26103706c083f21"
+    }
+  ],
+  "solution_concept": "counterfactual comparison of complete entry-augmented perfect Bayesian equilibrium assessments under two fixed institutional rules",
+  "native_payoff_date": "entry date; imported C1 payoffs are already in Round-1 units and receive no additional discount",
+  "validated_common_domain": {
+    "population": "integer N=m+1>=3",
+    "prior": "mu in [0,1]",
+    "outside_options": "0<=o_0<o_1<=y_bar<=1",
+    "discount": "beta in (0,1]",
+    "entry_cost": "chi>=0",
+    "existence": "both frozen entry correspondences are nonempty for every primitive-admissible point in this domain",
+    "boundary_cases": [
+      "N=3",
+      "N>=4",
+      "mu=0",
+      "mu=1",
+      "chi=0",
+      "chi=1/m",
+      "chi>1/m"
+    ]
+  },
+  "counterfactual_comparison_protocol": {
+    "fixed_rules": "unanimity and majority are fixed counterfactual institutions; there is no endogenous rule-choice or rule-choice signaling stage",
+    "unanimity_assessment_set": "A_U(P) is the exact full assessment set exported by the approved entry-unanimity interface",
+    "majority_assessment_set": "A_M(P) is the exact full assessment set exported by the approved entry-majority interface",
+    "comparison_index_set": "A_U(P) x A_M(P), the full Cartesian product of complete assessments",
+    "no_coupling_primitive": "the game supplies no selection, common random device, rank matching, shared off-path belief, or correlation restriction across the two counterfactual rules",
+    "prohibited_couplings": [
+      "matching assessments by proposer payoff or scalar gross value",
+      "matching lower to lower or upper to upper endpoints",
+      "using one rule's belief, continuation selection, identity permutation, or outcome kernel inside the other rule",
+      "averaging or optimizing over assessment pairs",
+      "choosing a favorable pair and reporting it as a selection-free ranking"
+    ],
+    "retained_payload": "each comparison element retains alpha_U and alpha_M whole, including every type-by-identity payoff, H payoff, strategy, belief, continuation selection, cost ledger, and aligned outcome distribution"
+  },
+  "pairwise_operator": {
+    "gross_values": "G_R=G_R(alpha_R,mu) for R in {U,M}, imported literally from the corresponding complete entry element",
+    "formation_indicator": "e_R(alpha_R,mu,chi)=1{G_R>=chi}; equality forms",
+    "weak_realized_collective_net": "W_R(alpha_R,mu,chi)=e_R*(G_R-chi), hence W_R=0 when the rule does not form",
+    "hegemon_type_payoff": "H_R(theta;alpha_R)=e_R*C1_R,H^alpha_R(theta)+(1-e_R)*o_theta",
+    "hegemon_ex_ante_payoff": "H_R(mu;alpha_R)=(1-mu)H_R(0;alpha_R)+mu*H_R(1;alpha_R), using the true prior",
+    "weak_delta": "Delta_W=W_U-W_M",
+    "hegemon_type_delta": "Delta_H(theta)=H_U(theta)-H_M(theta)",
+    "hegemon_ex_ante_delta": "Delta_H(mu)=H_U(mu)-H_M(mu)",
+    "formation_pattern": "both if (e_U,e_M)=(1,1), U_only if (1,0), M_only if (0,1), and neither if (0,0)",
+    "outcome_retention": "the comparison record contains both complete rule-specific realized entry outcomes; it never replaces them by the formation label or payoff deltas"
+  },
+  "exact_comparison_correspondence": {
+    "definition": "C(P,mu,chi)={Comp(alpha_U,alpha_M;mu,chi):(alpha_U,alpha_M) in A_U(P) x A_M(P)}",
+    "necessity": "without a cross-rule selection primitive, every admissible whole assessment under one counterfactual rule can be paired with every admissible whole assessment under the other",
+    "sufficiency": "each coordinate is independently an approved entry PBE assessment for its fixed rule, and the comparison operator changes neither coordinate",
+    "selection_status": "exact and set-valued on the Cartesian product; no institutional ranking is selected"
+  },
+  "pairwise_formation_sets": {
+    "definition": "F_R(alpha_R)={chi>=0:e_R(alpha_R,mu,chi)=1}=[0,G_R]",
+    "unanimity_nested_in_majority": "F_U(alpha_U) subseteq F_M(alpha_M) iff G_U<=G_M",
+    "majority_nested_in_unanimity": "F_M(alpha_M) subseteq F_U(alpha_U) iff G_M<=G_U",
+    "equal_sets": "F_U(alpha_U)=F_M(alpha_M) iff G_U=G_M",
+    "strict_sets": "F_U(alpha_U) is a strict subset of F_M(alpha_M) iff G_U<G_M, and conversely with U and M exchanged",
+    "U_only_cost_region": "G_M<chi<=G_U; this region is nonempty iff G_U>G_M",
+    "M_only_cost_region": "G_U<chi<=G_M; this region is nonempty iff G_M>G_U",
+    "both_cost_region": "0<=chi<=min{G_U,G_M}",
+    "neither_cost_region": "chi>max{G_U,G_M}",
+    "equality_discipline": "the upper boundary belongs to the forming rule in each exclusive region"
+  },
+  "endpoint_and_status_logic": {
+    "value_sets": "S_R(P,mu)={G_R(alpha_R,mu):alpha_R in A_R(P)}",
+    "endpoints": "l_R=inf S_R and u_R=sup S_R",
+    "attainment": "a_R_minus and a_R_plus record lower- and upper-endpoint attainment; no general compactness or attainment is presumed",
+    "possible_form": "PF_R(chi) iff chi<u_R, or chi=u_R and a_R_plus=1",
+    "possible_no": "PN_R(chi) iff l_R<chi",
+    "both_exists": "PF_U(chi) and PF_M(chi)",
+    "U_only_exists": "PF_U(chi) and PN_M(chi)",
+    "M_only_exists": "PN_U(chi) and PF_M(chi)",
+    "neither_exists": "PN_U(chi) and PN_M(chi)",
+    "product_reason": "the four existence statements are exact because the admissible comparison index is the full Cartesian product",
+    "upper_boundary_warning": "at chi=u_R, PF_R is false when the supremum is unattained; a numerical supremum alone cannot create a forming assessment",
+    "lower_boundary_note": "at chi=l_R, PN_R is false irrespective of lower-endpoint attainment, because no value lies strictly below its infimum"
+  },
+  "cost_set_projections": {
+    "possible_cost_set": "K_R_exists=union_{alpha_R}F_R(alpha_R)=[0,u_R] when a_R_plus=1 and [0,u_R) when a_R_plus=0",
+    "guaranteed_cost_set": "K_R_forall=intersection_{alpha_R}F_R(alpha_R)=[0,l_R], irrespective of lower-endpoint attainment",
+    "possible_U_in_M": "K_U_exists subseteq K_M_exists iff u_U<u_M, or u_U=u_M and [a_U_plus=0 or a_M_plus=1]",
+    "possible_M_in_U": "K_M_exists subseteq K_U_exists iff u_M<u_U, or u_M=u_U and [a_M_plus=0 or a_U_plus=1]",
+    "possible_set_equality": "K_U_exists=K_M_exists iff u_U=u_M and a_U_plus=a_M_plus; strict inclusion is inclusion plus failure of this equality condition",
+    "guaranteed_U_in_M": "K_U_forall subseteq K_M_forall iff l_U<=l_M; strict iff l_U<l_M and equal iff l_U=l_M",
+    "guaranteed_M_in_U": "K_M_forall subseteq K_U_forall iff l_M<=l_U; strict iff l_M<l_U and equal iff l_M=l_U",
+    "distinction": "possible-cost and guaranteed-cost projections compare unions or intersections within each rule; neither is the universal cross-assessment pair condition below"
+  },
+  "selection_free_global_nesting": {
+    "U_in_M_for_all_pairs": "F_U(alpha_U) subseteq F_M(alpha_M) for every cross-pair iff u_U<=l_M",
+    "M_in_U_for_all_pairs": "F_M(alpha_M) subseteq F_U(alpha_U) for every cross-pair iff u_M<=l_U",
+    "strict_U_in_M_for_all_pairs": "F_U(alpha_U) is a strict subset of F_M(alpha_M) for every cross-pair iff u_U<l_M, or u_U=l_M and not[a_U_plus=1 and a_M_minus=1]",
+    "strict_M_in_U_for_all_pairs": "F_M(alpha_M) is a strict subset of F_U(alpha_U) for every cross-pair iff u_M<l_U, or u_M=l_U and not[a_M_plus=1 and a_U_minus=1]",
+    "proof_basis": "all cross-pair inequalities G_U<=G_M are equivalent to sup S_U<=inf S_M, and analogously with the rules reversed",
+    "global_equality": "all cross-pair formation sets are equal iff both value sets are the same singleton, equivalently l_U=u_U=l_M=u_M",
+    "numeric_status": "the frozen interfaces do not generally identify u_U or l_M, so no general numeric U-in-M conclusion is made; they also do not generally identify u_M or l_U at N=3",
+    "no_same_rank_shortcut": "checking selected, same-rank, endpoint-matched, or proposer-payoff-matched pairs is neither necessary nor sufficient for a Cartesian-product global nesting claim"
+  },
+  "hegemon_outside_option_floor": {
+    "claim": "for every complete frozen C1 assessment alpha_R, every rule R, and every type theta, C1_R,H^alpha_R(theta)>=o_theta",
+    "proof": "at every H ballot information set, action no gives type theta the immediate irreversible opt-out payoff o_theta for every simultaneous weak-vote realization; PBE sequential rationality makes H's equilibrium behavioral action weakly better than that available action, and proposal-mixture plus uniform-recognition integration preserves the inequality",
+    "simultaneous_vote_discipline": "the proof does not condition H on an unobserved weak-vote vector and does not reduce relevance to the quota",
+    "entry_implication": "H_R(theta)>=o_theta whether the rule forms or not",
+    "floor_attainment_if_possible_no": "if PN_R(chi) holds, some complete entry element does not form and attains H_R(theta)=o_theta simultaneously for both types",
+    "all_no_implication": "if all assessments under rule R choose no, every entry element gives the exact outside-option vector to H"
+  },
+  "conditional_pairwise_rankings": {
+    "neither": {
+      "weak": "W_U=W_M=0",
+      "hegemon": "H_U(theta)=H_M(theta)=o_theta for both types and Delta_H(mu)=0"
+    },
+    "U_only": {
+      "weak": "Delta_W=G_U-chi>=0",
+      "hegemon": "Delta_H(theta)=C1_U,H(theta)-o_theta>=0 for each type, hence Delta_H(mu)>=0"
+    },
+    "M_only": {
+      "weak": "Delta_W=-(G_M-chi)<=0",
+      "hegemon": "Delta_H(theta)=o_theta-C1_M,H(theta)<=0 for each type, hence Delta_H(mu)<=0"
+    },
+    "both": {
+      "weak": "Delta_W=G_U-G_M",
+      "hegemon": "Delta_H(theta)=C1_U,H(theta)-C1_M,H(theta); its sign is indeterminate without the retained pair values"
+    },
+    "interpretation": "these are conditional identities and bounds for each complete pair, not an assessment selection or unconditional institutional dominance theorem"
+  },
+  "pairwise_weak_curve_and_H_rents": {
+    "weak_curve": "W_R(chi)=max{G_R-chi,0}",
+    "weak_curve_order": "G_U<=G_M iff W_U(chi)<=W_M(chi) for every chi>=0; equality of the curves for every cost iff G_U=G_M",
+    "hegemon_rent": "r_R(theta)=C1_R,H(theta)-o_theta>=0",
+    "hegemon_decomposition": "H_R(theta)=o_theta+e_R*r_R(theta), so Delta_H(theta)=e_U*r_U(theta)-e_M*r_M(theta)",
+    "strictness_warning": "U_only or M_only yields only a weak H ranking because the forming rule's rent may equal zero"
+  },
+  "selection_free_payoff_bounds": {
+    "weak_each_rule": "0<=W_R<=max{1/m-chi,0}",
+    "weak_delta": "-max{1/m-chi,0}<=Delta_W<=max{1/m-chi,0}",
+    "hegemon_floor": "H_R(theta)>=o_theta and H_R(mu)>=(1-mu)o_0+mu*o_1",
+    "no_cross_rule_H_sign": "outside the neither, U_only, and M_only conditional cases, the outside-option floor alone gives no sign for Delta_H",
+    "outcome_warning": "equal payoffs or equal formation status do not identify equal payments, inclusion, opt-out histories, or outcome distributions"
+  },
+  "special_endpoint_consequences": {
+    "common_resource_envelope": "0<=G_R<=1/m under both rules",
+    "zero_cost": "at chi=0 every assessment under both rules forms, so every comparison pair has pattern both",
+    "cost_above_envelope": "at chi>1/m every assessment under both rules does not form, so every pair has pattern neither and both H types receive their outside options",
+    "Nge4_endpoints": "for every N>=4, entry-U proves l_U=0 attained and entry-M proves u_M=1/m attained",
+    "Nge4_possible_cost_nesting": "K_M_exists=[0,1/m], so K_U_exists subseteq K_M_exists; equality versus strict inclusion depends on u_U and its upper-attainment flag",
+    "Nge4_guaranteed_cost_nesting": "K_U_forall={0} subseteq K_M_forall=[0,l_M]; equality versus strict inclusion depends on whether l_M=0 or l_M>0",
+    "Nge4_M_only_existence": "for every N>=4 and 0<chi<=1/m, pairing an attained U assessment with G_U=0 and an attained M assessment with G_M=1/m yields an M_only comparison element",
+    "Nge4_extreme_pair_H_equality": "the frozen M value-one assessment gives H its type-specific outside payoff; paired with U nonformation, the guaranteed M_only pair has Delta_H(theta)=0 for both types, so no strict H advantage follows",
+    "Nge4_extreme_pair_weak_delta": "on that pair Delta_W=-(1/m-chi), strictly negative for 0<chi<1/m and equal to zero at chi=1/m despite the M_only status",
+    "chi_equal_one_over_m": "the same construction remains M_only at chi=1/m because majority forms at equality and unanimity with G_U=0 does not form",
+    "logical_scope": "the N>=4 endpoints prove possible-cost U-in-M nesting, guaranteed-cost U-in-M nesting, existence of an M_only pair, and failure of universal cross-assessment M-in-U nesting; they do not prove universal cross-assessment U-in-M nesting, that every pair is M_only, or that either rule is selected",
+    "N3_status": "the special zero-U and one-over-m-M endpoint attainments are not imported at N=3; only the exact pairwise and endpoint-conditional statements apply"
+  },
+  "rejected_shortcuts": [
+    "rederiving or repairing R1, C2, or entry",
+    "coupling counterfactual assessments without a primitive",
+    "comparing proposer-payoff projections instead of collective gross entry values",
+    "using endpoint bounds as attained assessments",
+    "ignoring upper-endpoint nonattainment at equality",
+    "claiming universal nesting from the N>=4 M_only existence construction",
+    "claiming an unconditional H ranking when both rules form",
+    "introducing endogenous rule choice or interpreting fixed-rule differences as signaling"
+  ],
+  "verification": {
+    "script": "../../scripts/verify_pivotal_response_institutional_comparison.R",
+    "checks_table": "../../tables/pivotal_response_institutional_comparison_checks_v1.csv",
+    "pair_fixture_table": "../../tables/pivotal_response_institutional_comparison_pair_fixtures_v1.csv",
+    "status_logic_table": "../../tables/pivotal_response_institutional_comparison_status_logic_v1.csv",
+    "boundary_table": "../../tables/pivotal_response_institutional_comparison_boundaries_v1.csv",
+    "scope": "exact dependency bytes; Cartesian-product algebra; exhaustive finite value sets; attained and unattained endpoint logic; randomized complete asymmetric assessment pairs with type-specific H coordinates and retained outcome labels; N=3 and N>=4 boundaries; false-nesting and proposer-projection negative tests; dependency mutations; and 27 protected hashes"
+  },
+  "claim_status": {
+    "Cartesian_product_comparison": "proved",
+    "pairwise_payoff_and_formation_operator": "proved",
+    "pairwise_threshold_nesting": "proved",
+    "endpoint_aware_status_pattern_existence": "proved",
+    "possible_and_guaranteed_cost_set_nesting": "proved with endpoint-attainment, strictness, and equality conditions",
+    "selection_free_global_nesting_iff": "proved as an endpoint characterization; general numeric ordering pending and not claimed",
+    "hegemon_outside_option_floor": "proved from the frozen H ballot best-response inequalities",
+    "hegemon_floor_attainment_on_no_form_elements": "proved",
+    "conditional_H_and_weak_rankings": "proved",
+    "pairwise_weak_curve_order_and_H_rent_decomposition": "proved",
+    "Nge4_M_only_pair_for_positive_cost_through_one_over_m": "proved",
+    "Nge4_extreme_M_only_pair_has_no_strict_H_gain": "proved from the frozen M value-one assessment",
+    "universal_institutional_dominance": "pending and not claimed",
+    "endogenous_rule_choice_or_signaling": "outside the game and rejected as an interpretation",
+    "mechanical_fixtures": "checked numerically",
+    "independent_formal_review": "pending",
+    "independent_adversarial_review": "pending",
+    "rendered_layout": "pending"
+  },
+  "review": {
+    "implementer_role": "comparison derivation and implementation only",
+    "independent_read_only_review_required": true,
+    "review_status": "pending",
+    "consumer_rule": "no survival-matrix or manuscript consumer may treat this candidate as frozen before independent acceptance of its exact hash"
+  },
+  "invalidation": "any byte change to the exact entry batch, either approved entry interface, the common N>=3 domain, equality formation, complete-assessment preservation, collective entry primitive, or fixed-rule counterfactual protocol invalidates this candidate and every descendant",
+  "artifact_hash_policy": "SHA-256 is computed externally over exact UTF-8 bytes; no self-referential digest is embedded"
+}

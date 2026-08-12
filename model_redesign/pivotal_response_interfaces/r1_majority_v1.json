@@ -1,0 +1,234 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "pivotal-response-r1-majority-v1",
+  "state_id": "r1_majority",
+  "status": "candidate_pending_independent_review",
+  "created_date": "2026-08-11",
+  "implementation_role": "candidate derivation; implementer did not review this artifact",
+  "dependencies": [
+    {
+      "role": "reviewed_R2_batch",
+      "path": "r2_batch_review_v1.json",
+      "sha256": "00f84d4221d100f0def858e8c8bf19a58f79522f217118693837edf73583316a"
+    },
+    {
+      "role": "C2_majority_active_H",
+      "path": "r2_majority_active_h_v1.json",
+      "sha256": "a4ae73e9bb4114490bbc517732eca0ff7f5368186aee1a02388a8f85f52568b2"
+    },
+    {
+      "role": "C2_majority_weak_only",
+      "path": "r2_majority_weak_only_v1.json",
+      "sha256": "e0ec6cd35e145f04d1a2897fc1f78157f2b0d45de478046ac5451b2df0a74b5d"
+    }
+  ],
+  "solution_concept": "perfect Bayesian equilibrium under the frozen Gate 0 consequential-equality response convention",
+  "native_payoff_date": "Round 1",
+  "discount_accounting": {
+    "C2_native_date": "Round 2",
+    "active_H_failure": "beta times the literal selected C2-majority-active-H payoff, exactly once",
+    "H_no_weak_failure": "H receives o_theta immediately without beta; each weak state receives beta times the literal selected C2-majority-weak-only payoff, exactly once",
+    "current_passage": "current Round-1 payoff without beta",
+    "export": "all payoffs in this interface are already in Round-1 units; descendants do not discount them again"
+  },
+  "state_key": "(M,round=1,H=active,full h1,mu(h1)) before the uniform weak-proposer recognition draw",
+  "domain": {
+    "population": "N=m+1>=3",
+    "weak_nonproposers_after_recognition": "n=m-1=N-2",
+    "quota": "q=floor(N/2)+1",
+    "true_preproposal_prior": "mu in [0,1]",
+    "ballot_belief": "rho(s) in [0,1]",
+    "outside_options": "0<=o_0<o_1<=y_bar<=1",
+    "discount": "beta in (0,1]",
+    "proposal": "s_i=(y,(x_j)_{j!=i}), 0<=y<=y_bar, x_j>=0, X=sum x_j<=1-y, r_i=1-y-X"
+  },
+  "belief_layers": {
+    "on_support_proposal": "rho(s)=mu because the weak proposer has no private information and recognition is type-independent",
+    "globally_off_path_proposal": "rho(s) is an explicit assessment component in [0,1]",
+    "voter_distribution": "weak voters and C2 posterior maps use rho(s)",
+    "deviation_distribution": "the proposer evaluates every proposal deviation under true mu, never under rho(s)",
+    "positive_probability_h2": "Bayes uses rho(s), the type-contingent H action, and the complete local strategy; the weak vector has no type likelihood conditional on s",
+    "zero_probability_h2": "an explicit off-path posterior is retained, including histories reached only after a pure-action deviation",
+    "full_history": "equal posteriors do not merge histories because continuation selections and completion maps may differ"
+  },
+  "continuation_selection_maps": {
+    "active_H": "for every H-yes plus weak-failure full h2, kappa_A(h2) is one literal complete element of frozen C2_M_active(h2)",
+    "weak_only": "for every H-no plus weak-failure full h2, kappa_O(h2) is one literal complete element of frozen C2_M_WO(h2)",
+    "timing": "both maps are assessment components fixed before the current ballot, not ex-post voter choices",
+    "public_measurability": "kappa_A and kappa_O are functions only of the complete public h2; they cannot condition directly on privately known theta",
+    "type_blind_selection": "if one public h2 is compatible with both types, one selected C2 element governs both and supplies its internal type-conditional payoff and outcome coordinates; there is no kappa_theta",
+    "no_scalarization": "retain strategies, beliefs, type and identity payoffs, recognition averaging, terminal signatures, gifts, and completion maps from each selected C2 element",
+    "distinct_histories": "two histories reaching the same named C2 class may receive different admissible selections and are compared action by action"
+  },
+  "transition_and_payoff_map": [
+    {
+      "gate0_id": "PR04",
+      "condition": "H=yes and z>=q-1",
+      "outcome": "current passage with H",
+      "payoffs_R1": "H:y; proposer:1-y-X; named weak j:x_j"
+    },
+    {
+      "gate0_id": "PR05",
+      "condition": "H=yes and z<=q-2",
+      "outcome": "weak-caused failure with H still active",
+      "payoffs_R1": "beta*C^A_{k,theta}(h2) for every player k, with beta applied once"
+    },
+    {
+      "gate0_id": "PR06",
+      "condition": "H=no and z>=q",
+      "outcome": "current weak-only passage after immediate H opt-out",
+      "payoffs_R1": "H:o_theta; proposer:1-X; named weak j:x_j"
+    },
+    {
+      "gate0_id": "PR07",
+      "condition": "H=no and z<=q-1",
+      "outcome": "immediate H opt-out followed by weak-only C2",
+      "payoffs_R1": "H:o_theta exactly once without beta; weak k:beta*C^O_k(h2) exactly once"
+    }
+  ],
+  "fixed_proposal_fixed_point": {
+    "weak_profile_probability": "P_p(a)=product_j p_j^{a_j}(1-p_j)^{1-a_j}, with independent behavioral randomizations",
+    "H_difference": "Delta_H(theta)=sum_{z(a)>=q-1}P_p(a)(y-o_theta)+sum_{z(a)<=q-2}P_p(a)[beta*C^A_H,theta(h2^Y_a)-o_theta]",
+    "H_relevance": "one: yes versus no changes at least opt-out status for every weak vector, independently of whether the weak quota is met",
+    "H_response": "h_theta=yes iff Delta_H(theta)>=0; otherwise no; equality yes and no H mixing",
+    "weak_H_yes_difference": {
+      "z0_at_least_q_minus_1": "0 because both actions pass the same current proposal",
+      "z0_equals_q_minus_2": "x_j-beta*C^A_j,theta(h2 with j=no)",
+      "z0_at_most_q_minus_3": "beta*[C^A_j,theta(h2 with j=yes)-C^A_j,theta(h2 with j=no)]"
+    },
+    "weak_H_no_difference": {
+      "z0_at_least_q": "0 because both actions pass the same current weak-only proposal",
+      "z0_equals_q_minus_1": "x_j-beta*C^O_j(h2 with j=no)",
+      "z0_at_most_q_minus_2": "beta*[C^O_j(h2 with j=yes)-C^O_j(h2 with j=no)]"
+    },
+    "weak_expected_difference": "D_j is the rho-weighted expectation of the applicable action-specific difference over theta, H action, and every a_-j",
+    "weak_relevance": "R_j is the probability that the two complete Gate 0 outcome signatures differ after evaluating action-specific C2 selections; equal raw node labels do not establish irrelevance",
+    "weak_response": "if R_j>0, p_j=1 when D_j>=0 and p_j=0 when D_j<0; if R_j=0, any p_j in [0,1] is an explicit completion",
+    "mixed_actions": "a weak interior randomization can occur only as a zero-relevance completion",
+    "fixed_point_status": "necessary and sufficient for ballot sequential rationality at fixed proposal, beliefs, posteriors, and continuation maps"
+  },
+  "type_and_identity_payoff_correspondence": {
+    "type_conditional": "for each theta integrate the complete PR04-PR07 payoff and outcome vector over all weak action vectors using P_p",
+    "recognized_proposer_true_payoff": "G_i(s;mu)=(1-mu)E_p[U_i^{h_0}(0,a;s)]+mu E_p[U_i^{h_1}(1,a;s)]",
+    "proposal_mixture_type_payoff": "U_k^{i,theta}(alpha_i)=integral U_k^theta(s,A_i(s)) d sigma_i(s) for every player identity k",
+    "proposal_mixture_ex_ante_payoff": "integral [(1-mu)U_k^0(s,A_i(s))+mu U_k^1(s,A_i(s))] d sigma_i(s)",
+    "H_and_named_weak": "use the same true-mu joint distribution for G_H and every identity-specific G_j",
+    "retained_nonpayoff_coordinates": "proposal, full ballot vector, posterior, PR branch, H inclusion, irreversible opt-out, y destination, payment vector, selected C2 assessment, and terminal/continuation signature"
+  },
+  "proposal_assessment": {
+    "components": "sigma_i; rho_i(s); type actions; independent weak probabilities and full-profile completions; posterior map; kappa_A and kappa_O at every failed h2; complete type, identity, payoff, belief, and outcome vectors",
+    "local_condition": "the fixed-proposal fixed point holds at every feasible proposal, including globally off-path proposals",
+    "proposer_support": "support is contained in the nonempty argmax_s G_i(s;mu), with every deviation integrated under true mu",
+    "tie_break": "after proposer-payoff maximization retain only maximizers minimizing G_H(s;mu); if both payoffs tie and downstream objects differ, retain the correspondence",
+    "proposal_mixing": "support elements have the same maximal proposer payoff and the same tie-minimal H payoff",
+    "nonattainment_warning": "an arbitrary off-path belief/completion map can make the continuum-action objective discontinuous; the exact characterization requires an attained argmax and never substitutes a supremum",
+    "necessity_and_sufficiency": "the listed local fixed points, Bayes consistency, literal C2 membership, attained proposer argmax, and primitive tie-break are necessary and sufficient for a recognized-proposer PBE"
+  },
+  "closed_results": {
+    "N_equals_3": {
+      "quota": 2,
+      "active_H_C2_reached": false,
+      "weak_only_C2": "unique pre-recognition payoff 1/2 for each weak identity",
+      "H_response": "yes iff y>=o_theta",
+      "weak_response": "when rejection has positive ballot-belief probability, yes iff x_j>=beta/2; otherwise an explicit completion",
+      "b": "beta/2",
+      "candidate_A": "1-b",
+      "candidate_C": "(1-mu)(1-o_0)+mu*b",
+      "candidate_D": "1-o_1",
+      "lower_bound": "L=max{C,D}",
+      "upper_bound": "U=max{A,C,D}",
+      "recognized_proposer_projection_o0_positive": "{U}",
+      "recognized_proposer_projection_o0_zero": "[L,U]",
+      "why_A_is_not_forced_at_o0_zero": "y=0,x_j=b is separating, not both-reject; off-path rho=0 plus weak-no completion gives (1-mu)A+mu*b<=C",
+      "necessity": "C and D are unavoidable deviation lower bounds; A is additionally unavoidable only when o_0>0; every on-support both-reject, separating, or pooling proposal is bounded above by A, C, or D",
+      "sufficiency_every_V_o0_zero": "for every V in [L,U], use a y=0 separating threshold construction when V<=max{A,C}, or pooling y=o_1,x_j=0 in the only remaining case V=D>max{A,C}; assign rho=0 and weak no to every distinct off-path separating proposal",
+      "existence": "nonempty for every primitive vector and mu, and nonempty at every value in the stated projection",
+      "H_tie_break_o0_positive": "if D>max{A,C}, tie-minimal H payoff is o_1; otherwise it is o_bar=(1-mu)o_0+mu o_1; a tied pooling signature survives only if its H payoff also ties",
+      "H_tie_break_o0_zero": "for V<=max{A,C}, tie-minimal H payoff is mu*o_1 and separating y=0 signatures attain it; if D>max{A,C}, the projection is {D} and tie-minimal H payoff is o_1",
+      "mixing": "support may mix only among proposals separately attaining the same V and the same tie-minimal H payoff; unequal pure payoffs are never averaged into optimality",
+      "counterexample": "beta=.5,o_0=0,o_1=.8,mu=.9 gives [L,U]=[.325,.75]; y=0,x_j=0 with weak no implements .325, while y=0,x_j=.675 with weak yes implements the same value and may be mixed with it"
+    },
+    "all_N_at_least_4_value_one": {
+      "construction": "on path y=0,X=0 and all weak nonproposers yes; H yes exactly for types with o_theta=0",
+      "N_at_least_5_weak_condition": "a unilateral weak no leaves current passage under either H action, so the ballot is a completion",
+      "N_equals_4_weak_condition": "after H no, select the admissible zero-vector C2_M_WO at the toggled history; current zero and continuation zero imply relevant equality and hence yes",
+      "payoffs": "proposer one in every type; H its type-specific outside payoff",
+      "existence": "proves a PBE exists for every N>=4, beta, mu, and primitive vector"
+    },
+    "proposer_projection_zero_to_one": {
+      "proved_domains": [
+        "N>=6",
+        "N in {4,5}, o_0>0, beta<1"
+      ],
+      "result": "exact recognized-proposer payoff projection [0,1]",
+      "on_path_construction": "y=0, gifts X=1-V, all weak yes implements arbitrary V in [0,1]",
+      "N_at_least_6_punishment": "all weak no plus class-F active-H C2 and zero-vector weak-only C2 gives every proposal deviation zero",
+      "small_N_punishment": "with o_0>0 and beta<1 choose active-H C2 type payoff o_theta; after all weak no both types strictly choose immediate opt-out, and zero-vector weak-only C2 gives deviations zero",
+      "outside_domain": "the exact fixed-point correspondence applies; [0,1] is not asserted"
+    }
+  },
+  "o0_zero_active_H_pathology": {
+    "scope": "N in {4,5}",
+    "frozen_C2_recognized_proposer_projection": "[D_A(nu),1], D_A(nu)=max{1-o_1,1-nu}",
+    "contrast": "when o_0>0 the same recognized Round-2 proposer projection is {1}",
+    "identity_lower_bound": "under the public posterior, every weak identity j has E_nu[C^A_W,j(h2)]>=D_A(nu(h2))/m by uniform recognition and nonnegative payoffs",
+    "degenerate_collapse": "D_A=0 only at nu=1 and o_1=1",
+    "on_path_low_revelation": "if separating H=yes reveals type 0, nu(h2)=0, so every weak identity's active-H continuation is at least 1/m and enters R1 as beta/m once",
+    "H_low_type": "when o_0=0, H type 0 compares immediate no payoff zero with a nonnegative H-yes active continuation and selects yes at equality",
+    "beta_one_boundary": "at beta=1 and o_0>0, an outside-payoff active-H selection also makes H choose yes at equality after failure",
+    "implication": "the zero-punishment construction for N in {4,5} is unavailable on these boundaries; history-specific C2 selections must remain literal"
+  },
+  "pre_recognition_interface": {
+    "recognition": "each weak identity i is recognized with probability 1/m independently of theta and public history",
+    "sigma_expectation": "U_k^{i,theta}(alpha_i)=integral U_k^theta(s,A_i(s)) d sigma_i(s) for every player identity k before recognition averaging",
+    "type_by_identity_correspondence": "C1_M,k^alpha(theta|h1)=(1/m)sum_i U_k^{i,theta}(alpha_i) for every H or named weak identity k and each theta",
+    "weak_ex_ante_payoff": "C1_M,k^alpha(h1)=(1-mu)C1_M,k^alpha(0|h1)+mu*C1_M,k^alpha(1|h1)",
+    "correspondence": "C1_M(h1) is the set of full vectors and distributions generated by every admissible identity-indexed alpha=(alpha_1,...,alpha_m)",
+    "outcome_distribution": "apply the same sigma_i expectation and uniform 1/m recognition average to each type-conditional PR04-PR07, inclusion, opt-out, payment, full-history, and terminal/continuation-signature distribution",
+    "retained_coordinates": "type-conditional H and every named weak payoff, player identities, proposal mixing, rho maps, full ballot vectors, public-measurable type-blind action-specific C2 selections, posteriors, PR04-PR07 probabilities, inclusion, opt-out, payments, and terminal/continuation signatures",
+    "history_index": "full h1 is retained separately from mu",
+    "selection_status": "set-valued; no selection beyond the primitive proposer/H tie-break"
+  },
+  "existence_and_multiplicity": {
+    "global_existence": "nonempty for every admissible primitive vector, beta, mu, and N>=3",
+    "proof_partition": "closed N=3 construction plus value-one construction for every N>=4",
+    "multiplicity": "generally a continuum of proposal-contingent beliefs, ballot completions, continuation selections, gifts, proposal mixtures, and type/identity outcome vectors",
+    "exact_global_object": "necessary-and-sufficient assessment fixed point; scalar projections are reported only for proved subclasses"
+  },
+  "boundary_cases": [
+    "N=3: q=2; PR05 is empty and active-H C2 is unreachable; the proposer projection is {max(A,C,D)} when o_0>0 but [max(C,D),max(A,C,D)] when o_0=0",
+    "N=4: q=3; a weak deviation from the value-one all-yes construction can toggle H-no current passage versus C2_M_WO, so the zero-vector continuation is used literally",
+    "N=5: q=3; all-yes current passage remains secured after one weak deviation under either H action",
+    "N>=6: class-F C2_M_active and zero-vector C2_M_WO jointly permit selection-safe zero punishment and the [0,1] construction",
+    "beta=1: active-H continuation is still multiplied once; immediate opt-out is not discounted",
+    "mu=0 or mu=1: counterfactual type strategies and type payoff coordinates remain recorded; Bayes is imposed only at positive-probability histories",
+    "rho(s) may differ from mu only off path and never replaces mu in proposal optimality",
+    "H equality has positive relevance and prescribes yes; a weak equality with positive signature relevance prescribes yes; zero-relevance actions remain explicit completions"
+  ],
+  "rejected_shortcuts": [
+    "one scalar C2 value",
+    "one continuation selection shared across full histories",
+    "minimal winning coalition",
+    "zero gifts",
+    "global threshold y for H in R1",
+    "using rho instead of mu in proposer deviations",
+    "discounting immediate H opt-out",
+    "paying H again in C2_M_WO",
+    "quotienting double-failure histories by raw successor label"
+  ],
+  "verification": {
+    "script": "../../scripts/verify_pivotal_response_r1_majority.R",
+    "checks_table": "../../tables/pivotal_response_r1_majority_checks_v1.csv",
+    "cases_table": "../../tables/pivotal_response_r1_majority_cases_v1.csv",
+    "N3_projection_table": "../../tables/pivotal_response_r1_majority_n3_projection_v1.csv",
+    "scope": "dependency hashes and mutation; PR04-PR07 full-vector enumeration; action-specific C2 weak and H IC checks; rho-versus-mu separation; beta-once and immediate-optout accounting; exact N=3 singleton-or-interval projection with a non-tautological legacy-singleton mutation test and 48-plus primitive grid; constructive N and beta boundaries; active-H o_0=0 pathology; public-measurable type-blind continuations; sigma and full type-by-identity C1 export",
+    "derivation_note": "../pivotal_response_nodes/r1_majority_v1.md"
+  },
+  "review": {
+    "implementer_role": "derivation and implementation only",
+    "independent_review_required": true,
+    "review_status": "pending"
+  },
+  "invalidation": "any change to the reviewed R2 batch, either frozen C2 interface, Gate 0 timing, ballot simultaneity, equality response, immediate H opt-out, discount convention, or proposal payment rule invalidates this interface and every descendant",
+  "artifact_hash_policy": "the exact UTF-8 JSON bytes are hashed externally after serialization; no self-referential hash is embedded"
+}

@@ -1,0 +1,17 @@
+transition_id,round,rule,h_status,h_vote,z_range,condition_code,current_outcome,h_included,h_optout,y_destination,h_native_payoff,weak_native_payoff,successor,terminal,discount_note
+PR01,R1,U,active,Y,m,r1_u_hy_pass,pass_with_H,yes,no,paid_to_H,y,current implemented weak allocation,terminal_current_agreement,yes,current R1 units
+PR02,R1,U,active,Y,1..m-1,r1_u_hy_fail,fail_weak_caused,no,no,not_implemented,beta times active-H R2 continuation,beta times active-H R2 continuation,r2_unanimity_active_h,no,apply beta only after the R2 interface is frozen
+PR03,R1,U,active,N,1..m,r1_u_hn_end,quota_impossible_after_optout,no,yes,not_implemented,o_theta,0,terminal_quota_impossible_u_after_h_optout,yes,immediate R1 optout has no beta
+PR04,R1,M,active,Y,q-1..m,r1_m_hy_pass,pass_with_H,yes,no,paid_to_H,y,current implemented weak allocation,terminal_current_agreement,yes,current R1 units
+PR05,R1,M,active,Y,1..q-2,r1_m_hy_fail,fail_weak_caused,no,no,not_implemented,beta times active-H R2 continuation,beta times active-H R2 continuation,r2_majority_active_h,no,empty range when q=2; otherwise beta enters only at R1 import
+PR06,R1,M,active,N,q..m,r1_m_hn_pass_weak,pass_weak_only,no,yes,reabsorbed_by_weak_proposer,o_theta,current weak-only allocation,terminal_current_weak_only_agreement,yes,immediate R1 optout has no beta
+PR07,R1,M,active,N,1..q-1,r1_m_hn_fail_weak,fail_then_weak_only_R2,no,yes,not_implemented,o_theta,beta times weak-only R2 continuation,r2_majority_weak_only,no,H receives o_theta once at R1; only weak continuation is discounted
+PR08,R2,U,active,Y,m,r2_u_hy_pass,pass_with_H,yes,no,paid_to_H,y,current implemented weak allocation,terminal_current_agreement,yes,native R2 units without beta
+PR09,R2,U,active,Y,1..m-1,r2_u_hy_fail,terminal_failure,no,no,not_implemented,o_theta,0,terminal_failure_active_h,yes,native R2 units without beta
+PR10,R2,U,active,N,1..m,r2_u_hn_end,quota_impossible_after_optout,no,yes,not_implemented,o_theta,0,terminal_quota_impossible_u_after_h_optout,yes,native R2 units without beta
+PR11,R2,M,active,Y,q-1..m,r2_m_hy_pass,pass_with_H,yes,no,paid_to_H,y,current implemented weak allocation,terminal_current_agreement,yes,native R2 units without beta
+PR12,R2,M,active,Y,1..q-2,r2_m_hy_fail,terminal_failure,no,no,not_implemented,o_theta,0,terminal_failure_active_h,yes,empty range when q=2; native R2 units without beta
+PR13,R2,M,active,N,q..m,r2_m_hn_pass_weak,pass_weak_only,no,yes,reabsorbed_by_weak_proposer,o_theta,current weak-only allocation,terminal_current_weak_only_agreement,yes,native R2 units without beta
+PR14,R2,M,active,N,1..q-1,r2_m_hn_fail,terminal_failure_after_optout,no,yes,not_implemented,o_theta,0,terminal_failure_after_h_optout,yes,native R2 units without beta
+PR15,R2,M,absent,NA,q..m,r2_m_wo_pass,pass_weak_only,no,already_complete,fixed_at_zero,0 current flow,current weak-only allocation,terminal_current_weak_only_agreement,yes,H outside payoff was already realized at R1
+PR16,R2,M,absent,NA,1..q-1,r2_m_wo_fail,terminal_failure_weak_only,no,already_complete,fixed_at_zero,0 current flow,0,terminal_failure_weak_only,yes,H outside payoff was already realized at R1
