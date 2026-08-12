@@ -1,0 +1,268 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "pivotal-response-v6-survival-matrix-review-v1",
+  "state_id": "v6_survival_matrix_review",
+  "status": "pass",
+  "closed_date": "2026-08-12",
+  "solution_concept": "claim-level survival inventory for the rederived perfect Bayesian equilibrium correspondence; this bundle performs no theorem rederivation and no manuscript migration",
+  "reviewed_upstream": [
+    {
+      "node": "institutional_comparison",
+      "path": "institutional_comparison_v1.json",
+      "sha256": "cab69c5ddda3616f51c697c189c86316df5546501a183eb6cc9e437dc813f3af"
+    },
+    {
+      "node": "institutional_comparison_review",
+      "path": "institutional_comparison_review_v1.json",
+      "sha256": "0acd9648eb7e03d4dabfaa91ffd559fe3c5b6f61a96ba676d6c6ccd9d4c6bb3c"
+    }
+  ],
+  "components": [
+    {
+      "role": "comparison_interface",
+      "node": "institutional_comparison",
+      "path": "institutional_comparison_v1.json",
+      "sha256": "cab69c5ddda3616f51c697c189c86316df5546501a183eb6cc9e437dc813f3af"
+    },
+    {
+      "role": "comparison_review_bundle",
+      "node": "institutional_comparison",
+      "path": "institutional_comparison_review_v1.json",
+      "sha256": "0acd9648eb7e03d4dabfaa91ffd559fe3c5b6f61a96ba676d6c6ccd9d4c6bb3c"
+    },
+    {
+      "role": "protected_hash_manifest",
+      "node": "gate0_contract",
+      "path": "../../quality_reports/2026-08-11_pivotal_response_protected_hash_manifest.tsv",
+      "sha256": "e6c2dcaea628acf84ea77853448b185b189e24d7b809e540e442fd820b0d6d6c"
+    },
+    {
+      "role": "gate0_contract",
+      "node": "gate0_contract",
+      "path": "gate0_contract_v1.json",
+      "sha256": "cd4316adb5056142e4ac1119c24f75c136b27d574246818e92bc9600407cf245"
+    },
+    {
+      "role": "gate0_bundle",
+      "node": "gate0_contract",
+      "path": "gate0_bundle_v1.json",
+      "sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1"
+    },
+    {
+      "role": "gate0_review",
+      "node": "gate0_contract",
+      "path": "gate0_review_v1.json",
+      "sha256": "dd5403b0e2d4de8522615adce7d2cca3bc295a3ecc323780d3c36cb1701ad130"
+    },
+    {
+      "role": "r2_batch_review",
+      "node": "r2_batch_review",
+      "path": "r2_batch_review_v1.json",
+      "sha256": "00f84d4221d100f0def858e8c8bf19a58f79522f217118693837edf73583316a"
+    },
+    {
+      "role": "r2_interface",
+      "node": "r2_unanimity_active_h",
+      "path": "r2_unanimity_active_h_v1.json",
+      "sha256": "f3ca4ebf28827d7e18d9f3a2d07d41ffd6fe57532c9af09300f20a8ab5cecf10"
+    },
+    {
+      "role": "r2_interface",
+      "node": "r2_majority_active_h",
+      "path": "r2_majority_active_h_v1.json",
+      "sha256": "a4ae73e9bb4114490bbc517732eca0ff7f5368186aee1a02388a8f85f52568b2"
+    },
+    {
+      "role": "r2_interface",
+      "node": "r2_majority_weak_only",
+      "path": "r2_majority_weak_only_v1.json",
+      "sha256": "e0ec6cd35e145f04d1a2897fc1f78157f2b0d45de478046ac5451b2df0a74b5d"
+    },
+    {
+      "role": "r1_batch_interface",
+      "node": "r1_batch_frozen",
+      "path": "r1_batch_frozen_v1.json",
+      "sha256": "f4ac7b89f4c08d4ee461ca1431135286304abaae2589a337aeffdb38b5941c3a"
+    },
+    {
+      "role": "r1_interface",
+      "node": "r1_unanimity",
+      "path": "r1_unanimity_v1.json",
+      "sha256": "37aae1bfe7921c6c90aff5d05ed301f8729c2b899477991619bcf0cb6c96e8b5"
+    },
+    {
+      "role": "r1_interface",
+      "node": "r1_majority",
+      "path": "r1_majority_v1.json",
+      "sha256": "21c3a9dd2d6c9d25450978c2f7d9925af02e478b9c03d421d2a7b0f9aa2c77c9"
+    },
+    {
+      "role": "entry_batch_interface",
+      "node": "entry_batch_review",
+      "path": "entry_batch_review_v1.json",
+      "sha256": "8817a9c505ce9e5b79deea1b38055d88a629e740e324fbcd5bca707b108b5433"
+    },
+    {
+      "role": "entry_interface",
+      "node": "entry_unanimity",
+      "path": "entry_unanimity_v1.json",
+      "sha256": "05e39ad2b84ede134268ffae0898c8cafd8f3de01ef725ca2da6159156a83ed6"
+    },
+    {
+      "role": "entry_interface",
+      "node": "entry_majority",
+      "path": "entry_majority_v1.json",
+      "sha256": "4eb343ce6f6fb7c34782e708a0e787908437d2682d079e91f26103706c083f21"
+    },
+    {
+      "role": "survival_interface",
+      "node": "v6_survival_matrix",
+      "path": "v6_survival_matrix_v1.json",
+      "sha256": "5278b14d442d49d799b93323516fc081c9e7ed57a7ad2f794bfac3e7a5a27801"
+    },
+    {
+      "role": "authoritative_survival_matrix",
+      "node": "v6_survival_matrix",
+      "path": "../../tables/pivotal_response_v6_survival_matrix_v1.csv",
+      "sha256": "f634c46a764f9bacef13474be1c5f31371db8c42592f9699197191b94c0e0bd8"
+    },
+    {
+      "role": "survival_human_report",
+      "node": "v6_survival_matrix",
+      "path": "../pivotal_response_nodes/v6_survival_matrix_v1.md",
+      "sha256": "518a752388679dd51951299a8d9b13250945da53b21b80d122d47aacff23760b"
+    },
+    {
+      "role": "survival_candidate_status_snapshot",
+      "node": "v6_survival_matrix",
+      "path": "../../quality_reports/2026-08-12_pivotal_response_v6_survival_matrix_status.md",
+      "sha256": "5ac452c2262051248a55ce396fad967050b180eeec5e0082aeb2219703354b27"
+    },
+    {
+      "role": "survival_candidate_verifier",
+      "node": "v6_survival_matrix",
+      "path": "../../scripts/verify_pivotal_response_v6_survival_matrix.R",
+      "sha256": "751c0d94c021a2bcd45e6aaaa081a52c95fc632041442b4e9fee6e4ebb080ed2"
+    },
+    {
+      "role": "survival_candidate_check_table",
+      "node": "v6_survival_matrix",
+      "path": "../../tables/pivotal_response_v6_survival_matrix_checks_v1.csv",
+      "sha256": "6ec075d25f8c4cf121426a201e0a48a03e2f2026cf4594bdc7ab034bd1945370"
+    },
+    {
+      "role": "historical_inventory_source",
+      "node": "v6_survival_matrix",
+      "path": "../../formal_model_v5.Rmd",
+      "sha256": "1b0e420155b58e4b069f04b210736b3fab60cf060f87a6ca30ce5019676620af"
+    },
+    {
+      "role": "historical_inventory_source",
+      "node": "v6_survival_matrix",
+      "path": "../../formal_model_v6.Rmd",
+      "sha256": "131cc2356cd6318211fdbb9304ac8d7c8a99356837b6e71097011c36ae9c270d"
+    },
+    {
+      "role": "historical_inventory_source",
+      "node": "v6_survival_matrix",
+      "path": "../power_architecture_derivations.Rmd",
+      "sha256": "8fbb7edff59fb0dc6fb36571564ec94d26e66b1211496ed10e9d9191ef2f68c6"
+    },
+    {
+      "role": "governance_inventory_source",
+      "node": "v6_survival_matrix",
+      "path": "../../AGENTS.md",
+      "sha256": "2164d24786ecd01b7297c2d10c0175b76b851ad782285e88fc9b1d9c1b9baabf"
+    }
+  ],
+  "candidate_review": {
+    "node": "v6_survival_matrix",
+    "approved_interface_sha256": "5278b14d442d49d799b93323516fc081c9e7ed57a7ad2f794bfac3e7a5a27801",
+    "approved_matrix_sha256": "f634c46a764f9bacef13474be1c5f31371db8c42592f9699197191b94c0e0bd8",
+    "implementation_started_order": 61,
+    "implementation_completed_order": 62,
+    "formal_cold_review": {
+      "reviewer": "Dirac",
+      "order": 63,
+      "verdict": "pass",
+      "critical_findings": 0,
+      "major_findings": 0,
+      "minor_findings": 0,
+      "official_verifier": "43/43 PASS",
+      "protected_hashes": "27/27 PASS",
+      "review_mode": "independent and read-only"
+    },
+    "adversarial_game_theory_review": {
+      "reviewer": "independent adversarial game-theory reviewer",
+      "order": 64,
+      "verdict": "pass",
+      "critical_findings": 0,
+      "major_findings": 0,
+      "minor_findings": 0,
+      "official_verifier": "43/43 PASS",
+      "protected_hashes": "27/27 PASS",
+      "review_mode": "independent and read-only"
+    }
+  },
+  "rejected_history": [],
+  "execution_events": [
+    {
+      "order": 62,
+      "event": "v6_survival_matrix_implementation_complete"
+    },
+    {
+      "order": 63,
+      "event": "v6_survival_matrix_formal_cold_review_pass"
+    },
+    {
+      "order": 64,
+      "event": "v6_survival_matrix_adversarial_game_theory_review_pass"
+    },
+    {
+      "order": 65,
+      "event": "v6_survival_matrix_freeze_start"
+    },
+    {
+      "order": 66,
+      "event": "v6_survival_matrix_mechanical_verification_pass"
+    },
+    {
+      "order": 67,
+      "event": "v6_survival_matrix_close_pass"
+    }
+  ],
+  "survival_close": {
+    "started_order": 65,
+    "verification_order": 66,
+    "passed_order": 67,
+    "status": "pass",
+    "claim_count": 53,
+    "ready_after_close": [],
+    "started_descendants": []
+  },
+  "consumer_contract": {
+    "object": "the exact 53-row claim-level survival inventory and its conservative status, replacement, evidence, scope, action, and blocker fields",
+    "classification_preservation": "a later consumer must preserve each full row or explicitly reopen and re-review the changed claim; it may not promote conditional, pending, rejected, or outside-scope claims",
+    "current_evidence_boundary": "only the exact current interfaces cited by the matrix are proof evidence; historical manuscript and governance sources identify candidate claims but prove none",
+    "selection_boundary": "the matrix supplies no equilibrium selection, cross-rule assessment coupling, universal institutional ranking, or strict hegemonic-rent conclusion",
+    "migration_boundary": "this close is explicitly non-migrating and does not authorize editing or compiling formal_model_v5.Rmd, formal_model_v6.Rmd, or their outputs"
+  },
+  "conditions": [
+    "This PASS applies only to the exact 26 components hashed above.",
+    "The candidate-status snapshot remains an immutable implementer handoff; exact-hash approval is recorded by this review bundle, the independent-review report, the DAG, and the proof ledger.",
+    "Both independent reviewers returned PASS on the exact candidate JSON and CSV with zero critical, major, or minor findings.",
+    "The authoritative matrix remains a non-migrating inventory with 53 claims; no theorem or manuscript content was changed by closure.",
+    "After order 67 every game-DAG node is frozen PASS and no node is ready."
+  ],
+  "invalidation": {
+    "rule": "any byte change to a reviewed upstream dependency, the survival JSON, CSV, note, candidate status, candidate verifier, candidate checks, protected manifest, cited current evidence, or historical inventory source invalidates this bundle and reopens v6_survival_matrix",
+    "required_mutation_tests": [
+      "changing the institutional-comparison hash invalidates v6_survival_matrix",
+      "changing the comparison-review-bundle hash invalidates v6_survival_matrix",
+      "changing any of the six exact survival-candidate artifacts invalidates this review",
+      "changing a protected or historical-inventory hash invalidates this review",
+      "promoting any locked claim status invalidates the matrix"
+    ]
+  },
+  "artifact_hash_protocol": "SHA-256 is computed externally over the exact UTF-8 bytes; the digest is stored in the DAG and later consumers rather than recursively inside this file"
+}

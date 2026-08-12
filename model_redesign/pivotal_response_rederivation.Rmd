@@ -1,8 +1,8 @@
 ---
-title: "Pivotal-Response Rederivation: Gate 0 Contract"
-subtitle: "Clean Two-Round Baseline Under Simultaneous Ballots"
+title: "Pivotal-Response Rederivation"
+subtitle: "Clean Two-Round Baseline Under Simultaneous Sealed Ballots"
 author: "Formal model workspace"
-date: "2026-08-11"
+date: "2026-08-12"
 output:
   bookdown::html_document2:
     toc: true
@@ -13,8 +13,12 @@ output:
     toc: true
     number_sections: true
     latex_engine: xelatex
+    keep_tex: true
 geometry: margin=0.8in
 fontsize: 10pt
+header-includes:
+  - \setlength{\emergencystretch}{3em}
+  - \raggedbottom
 ---
 
 ```{r setup, include=FALSE}
@@ -45,14 +49,271 @@ proof_ledger <- utils::read.delim(
   quote = "",
   comment.char = ""
 )
+survival_matrix <- utils::read.csv(
+  "../tables/pivotal_response_v6_survival_matrix_v1.csv",
+  check.names = FALSE,
+  na.strings = character()
+)
+
+include_node <- function(path, heading_shift = 1L) {
+  text <- paste(
+    readLines(path, warn = FALSE, encoding = "UTF-8"),
+    collapse = "\n"
+  )
+  snapshot_updates <- c(
+    "- Status: candidate, pending independent read-only review." =
+      "- Post-freeze status: exact interface accepted by two independent read-only reviews.",
+    "- Status: repaired candidate, pending independent read-only rereview." =
+      "- Post-freeze status: repaired exact interface accepted by two independent read-only rereviews.",
+    "**Status.** Repaired candidate pending independent read-only rereview" =
+      "**Post-freeze status.** Repaired exact interface accepted by two independent read-only rereviews.",
+    "It remains pending independent rereview." =
+      "Its repaired exact hash was accepted by two independent read-only rereviews.",
+    "- Interface status: **candidate pending independent review**." =
+      "- Post-freeze interface status: **PASS after two independent read-only reviews**.",
+    "| Independent formal/adversarial acceptance | not yet performed | pending |" =
+      "| Independent formal/adversarial acceptance | two exact-hash read-only reviews | proved by review bundle |",
+    "| Rendered document layout | not attempted for this node note | pending |" =
+      "| Inclusion in standalone output | post-freeze render | checked separately |",
+    "| Rendered layout | not attempted | pending |" =
+      "| Inclusion in standalone output | post-freeze render | checked separately |",
+    "| Independent formal acceptance | pending |" =
+      "| Independent read-only reviews | PASS on the exact repaired hash |",
+    "`proved_consumable_pending_independent_rereview`" =
+      "`proved_consumable_after_independent_rereview`",
+    "The exact candidate interface is" =
+      "The exact reviewed interface is",
+    "invalidates this candidate" =
+      "invalidates this frozen interface",
+    "This implementer does not mark the node PASS." =
+      "The independent review bundle later marked the exact node PASS.",
+    "# v6 survival matrix: claim-level, nonmigratory classification" =
+      paste0(
+        "# v6 survival matrix: claim-level, nonmigratory classification\n\n",
+        "This frozen inventory records how the completed rederivation bears on historical claims; ",
+        "it neither selects an equilibrium nor authorizes manuscript migration."
+      )
+  )
+  for (old in names(snapshot_updates)) {
+    text <- gsub(old, snapshot_updates[[old]], text, fixed = TRUE)
+  }
+  text <- gsub(
+    paste0(
+      "This artifact is a candidate pending independent read-only review. Its R\n",
+      "verifier checks"
+    ),
+    paste0(
+      "The exact artifact was subsequently accepted by two independent read-only reviews. Its R\n",
+      "verifier checks"
+    ),
+    text,
+    fixed = TRUE
+  )
+  text <- gsub(
+    paste0(
+      "This artifact remains a candidate until two independent read-only\n",
+      "reviews accept its exact hash. No survival-matrix or manuscript claim may use\n",
+      "it as frozen before then."
+    ),
+    paste0(
+      "The exact artifact was subsequently accepted by two independent read-only\n",
+      "reviews. Its frozen review bundle, rather than this implementation snapshot,\n",
+      "authorizes the nonmigrating survival inventory to consume it."
+    ),
+    text,
+    fixed = TRUE
+  )
+  text <- gsub(
+    paste0(
+      "This candidate remains nonmigratory and pending two independent read-only\n",
+      "reviews. `formal_model_v6.Rmd`, `formal_model_v5.Rmd`, the prior derivation,\n",
+      "their outputs, the shared Rmd, DAG, and proof ledger were not edited or\n",
+      "compiled. No protected-target migration is authorized."
+    ),
+    paste0(
+      "The exact nonmigratory candidate was subsequently accepted by two independent\n",
+      "read-only reviews and frozen by its review bundle. The protected manuscripts\n",
+      "and prior derivation remained byte-identical. No protected-target migration is\n",
+      "authorized."
+    ),
+    text,
+    fixed = TRUE
+  )
+  text <- gsub(
+    paste0(
+      "This repaired export covers `N>=3`, including the attained N=3 construction\n",
+      "in Proposition 4. Downstream entry and institutional comparison may consume\n",
+      "it only after independent rereview accepts this exact candidate hash."
+    ),
+    paste0(
+      "This repaired export covers `N>=3`, including the attained N=3 construction\n",
+      "in Proposition 4. Its exact hash was accepted by two independent rereviews and\n",
+      "is consumed downstream only through the frozen R1 batch."
+    ),
+    text,
+    fixed = TRUE
+  )
+  text <- gsub(
+    paste0(
+      "Any byte change to Gate 0, the R1 batch, or C1-U invalidates this candidate.\n",
+      "This implementer does not mark the node PASS."
+    ),
+    paste0(
+      "Any byte change to Gate 0, the R1 batch, or C1-U invalidates this interface.\n",
+      "The exact repaired hash was later marked PASS by its independent review bundle."
+    ),
+    text,
+    fixed = TRUE
+  )
+  text <- gsub(
+    paste0(
+      "invalidates this node and every descendant. Reviewers must audit the exact\n",
+      "candidate hash and remain read-only."
+    ),
+    paste0(
+      "invalidates this node and every descendant. Two independent read-only reviews\n",
+      "subsequently accepted the exact candidate hash."
+    ),
+    text,
+    fixed = TRUE
+  )
+  text <- gsub(
+    "sha256:([a-f0-9]{8})[a-f0-9]{56}",
+    "sha256:\\1...",
+    text,
+    perl = TRUE
+  )
+  text <- gsub(
+    "(^|[^a-f0-9])([a-f0-9]{8})[a-f0-9]{56}([^a-f0-9]|$)",
+    "\\1\\2...\\3",
+    text,
+    perl = TRUE
+  )
+  text <- gsub(
+    "model_redesign/pivotal_response_interfaces/",
+    "interfaces/",
+    text,
+    fixed = TRUE
+  )
+  text <- gsub(
+    "model_redesign/power_architecture_derivations.Rmd",
+    "power_architecture_derivations.Rmd",
+    text,
+    fixed = TRUE
+  )
+  text <- gsub(
+    "verify_pivotal_response_[A-Za-z0-9_]+[.]R",
+    "node-specific R verifier",
+    text,
+    perl = TRUE
+  )
+  text <- gsub(
+    "scripts/node-specific R verifier",
+    "scripts/verify_pivotal_response_v6_survival_matrix.R",
+    text,
+    fixed = TRUE
+  )
+  text <- gsub(
+    "`delta_j^d(theta,a_-j)`",
+    "$\\delta_j^d(\\theta,a_{-j})$",
+    text,
+    fixed = TRUE
+  )
+  text <- gsub("formal_model_v5.Rmd", "v5 manuscript", text, fixed = TRUE)
+  text <- gsub("formal_model_v6.Rmd", "v6 manuscript", text, fixed = TRUE)
+  text <- gsub(
+    "power_architecture_derivations.Rmd",
+    "prior derivation",
+    text,
+    fixed = TRUE
+  )
+  lines <- strsplit(text, "\n", fixed = TRUE)[[1L]]
+  flattened <- character()
+  idx <- 1L
+  while (idx <= length(lines)) {
+    is_table <- idx < length(lines) &&
+      grepl("^[[:space:]]*\\|.*\\|[[:space:]]*$", lines[[idx]]) &&
+      grepl("^[[:space:]]*\\|[|: -]+\\|[[:space:]]*$", lines[[idx + 1L]])
+    if (!is_table) {
+      flattened <- c(flattened, lines[[idx]])
+      idx <- idx + 1L
+      next
+    }
+    split_cells <- function(line) {
+      line <- sub("^[[:space:]]*\\|", "", line)
+      line <- sub("\\|[[:space:]]*$", "", line)
+      trimws(strsplit(line, "\\|", fixed = FALSE)[[1L]])
+    }
+    headers <- split_cells(lines[[idx]])
+    idx <- idx + 2L
+    flattened <- c(flattened, "")
+    while (
+      idx <= length(lines) &&
+      grepl("^[[:space:]]*\\|.*\\|[[:space:]]*$", lines[[idx]])
+    ) {
+      cells <- split_cells(lines[[idx]])
+      if (length(cells) < length(headers)) {
+        cells <- c(cells, rep("", length(headers) - length(cells)))
+      }
+      flattened <- c(
+        flattened,
+        paste0("- **", cells[[1L]], ".**")
+      )
+      for (col_idx in seq.int(2L, length(headers))) {
+        flattened <- c(
+          flattened,
+          paste0("  - **", headers[[col_idx]], ":** ", cells[[col_idx]])
+        )
+      }
+      idx <- idx + 1L
+    }
+    flattened <- c(flattened, "")
+  }
+  lines <- flattened
+  in_fence <- FALSE
+  for (idx in seq_along(lines)) {
+    if (grepl("^[[:space:]]*```", lines[[idx]])) {
+      in_fence <- !in_fence
+    } else if (!in_fence && grepl("^#{1,5}[[:space:]]", lines[[idx]])) {
+      lines[[idx]] <- sub(
+        "^(#{1,5})[[:space:]]+[0-9]+([.][0-9]+)*[.]?[[:space:]]+",
+        "\\1 ",
+        lines[[idx]],
+        perl = TRUE
+      )
+      lines[[idx]] <- paste0(strrep("#", heading_shift), lines[[idx]])
+    }
+  }
+  cat(paste(lines, collapse = "\n"), "\n")
+  invisible(NULL)
+}
+
+compact_table <- function(x, caption, font_size = 6) {
+  out <- knitr::kable(
+    x,
+    caption = caption,
+    booktabs = knitr::is_latex_output()
+  )
+  if (knitr::is_latex_output()) {
+    out <- kableExtra::kable_styling(
+      out,
+      latex_options = "scale_down",
+      font_size = font_size
+    )
+  }
+  out
+}
 ```
 
 # Status and readback
 
-This is a new, autonomous Gate 0 workspace. Its objective is to freeze the
-extensive form needed to rederive the clean two-round model by dependency-safe
-backward reasoning under **Perfect Bayesian equilibrium**. It contains no
-Round-2 or Round-1 equilibrium result.
+This autonomous workspace rederives the clean two-round model by
+dependency-safe backward reasoning under **Perfect Bayesian equilibrium**. It
+does not add a global deletion of weakly dominated actions. A voter chooses
+yes at a payoff-relevant equality; when its action has zero probability of
+changing any payoff-relevant outcome, the assessment records an explicit
+completion without treating that completion as the substantive equilibrium
+object.
 
 The conceptual method is:
 
@@ -61,32 +322,29 @@ The conceptual method is:
    assessment-level completion discipline;
 3. validate the continuation DAG and obtain an independent read-only Gate 0
    review;
-4. solve the three independent terminal Round-2 problems in native Round-2
-   units and freeze their interfaces;
-5. only then solve Round 1, entry, and the institutional comparison in reverse
-   dependency order.
+4. solve and freeze the three independent terminal Round-2 problems in native
+   Round-2 units;
+5. import those interfaces literally into Round 1, applying `beta` exactly
+   once where a terminal continuation enters a Round-1 comparison;
+6. derive collective entry, institutional comparison, and a nonmigrating
+   claim-level survival matrix only after their dependencies pass.
 
-The new artifacts are this document, the JSON contract interface, a
-dependency-complete JSON bundle, the independent-review interface and report,
-the JSON DAG, four machine-readable Gate 0 registries, a protected-artifact
-hash manifest, a new proof ledger and status report, and a new R verifier. The
-protected manuscripts, prior derivation, quarantined workspace and its
-reports, reviews, scripts, and outputs are read-only. Their initial SHA-256
-values are recorded in
-`quality_reports/2026-08-11_pivotal_response_protected_hash_manifest.tsv`.
+The artifacts include this document, versioned continuation interfaces,
+dependency-complete review bundles, detailed node proofs, the JSON DAG, four
+machine-readable Gate 0 registries, claim-level and verification tables, a
+protected-artifact hash manifest, a proof ledger, status reports, and separate
+R verifiers. The protected manuscripts, prior derivation, quarantined
+workspace and its historical reports, reviews, scripts, and outputs remain
+read-only. Their initial SHA-256 values are recorded in
+the protected-artifact manifest.
 
-The remaining work has four controlled phases: terminal Round 2 plus cold
-review; two parallel Round-1 nodes plus review; entry and common-domain
-comparison; and a non-migrating survival matrix plus two final read-only
-audits. Each phase may reopen an upstream interface and invalidate all
-descendants.
-
-**Current status:** Gate 0 is **PASS** at `passed_order=10`. After an
-initial REPAIR, independent formal-model and adversarial rereviews returned
-PASS on the exact dependency-complete bundle, with zero findings. The three
-Round-2 nodes are authorized and graph-ready but remain `pending`, with
-no `started_order`, interface, or result. Rendered layout remains not
-tested.
+**Analytic status:** the complete DAG is **PASS** through the nonmigrating
+survival inventory at `passed_order=67`; the dependency checker reports
+`Ready: none`. Every substantive node was implemented by an agent distinct
+from its read-only reviewers. Rejected candidates remain in the ledger as
+provenance and are not consumed. The integrated document and its rendered
+outputs are a post-freeze presentation layer: they may summarize or reproduce
+the frozen objects, but they cannot repair or reinterpret them.
 
 # Provenance and quarantine
 
@@ -94,13 +352,13 @@ The implementation began from:
 
 | Field | Recorded value |
 |:--|:--|
-| Git root | `/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion` |
+| Git root | repository `PowerBayesianPersuasion` |
 | Branch | `main` |
-| HEAD | `df3a0f2990ad7b86559ffc3ef05015e2250653a7` |
+| HEAD | `df3a0f2...` |
 | Worktree at start | clean |
-| Primitive source | `model_redesign/power_architecture_derivations.Rmd` |
-| Quarantined history | `model_redesign/undominated_voting_rederivation.Rmd` |
-| Contract interface | `model_redesign/pivotal_response_interfaces/gate0_contract_v1.json` |
+| Primitive source | `power_architecture_derivations.Rmd` |
+| Quarantined history | `undominated_voting_rederivation.Rmd` |
+| Contract interface | `gate0_contract_v1.json` |
 
 The primitive source is used only to reconstruct the players, timing,
 contract space, budgets, information, payoffs, and continuation protocol. Its
@@ -383,11 +641,22 @@ The authoritative registry is
 hegemon ballots by round, rule, participation status, and information set.
 
 ```{r relevance-table, results='asis'}
-knitr::kable(
-  relevance_registry,
+compact_table(
+  dplyr::select(
+    relevance_registry,
+    relevance_id,
+    round,
+    rule,
+    h_status,
+    player_class,
+    structural_condition
+  ),
   caption = "Gate 0 vote-relevance registry."
 )
 ```
+
+The complete 14-column registry remains authoritative in the CSV; the table
+shows only the columns needed to audit the partition in print.
 
 For a weak nonproposer $j$, let $w_{-j}\in\{1,\ldots,m-1\}$ count weak
 yes votes other than $j$, including the proposer's automatic yes. The
@@ -465,11 +734,20 @@ observes, what remains unobserved, when actions become public, the feasible
 actions, successors, and the relevant belief object.
 
 ```{r information-set-table, results='asis'}
-knitr::kable(
-  information_registry,
+compact_table(
+  dplyr::select(
+    information_registry,
+    information_set_id,
+    stage,
+    movers,
+    unobserved,
+    successors
+  ),
   caption = "Gate 0 information sets and observations."
 )
 ```
+
+The complete 11-column information registry remains authoritative in the CSV.
 
 The key safeguards are:
 
@@ -488,11 +766,24 @@ proposer's automatic yes. The authoritative transition registry is
 `tables/pivotal_response_gate0_transitions_v1.csv`.
 
 ```{r transition-table, results='asis'}
-knitr::kable(
-  transition_registry,
+compact_table(
+  dplyr::select(
+    transition_registry,
+    transition_id,
+    round,
+    rule,
+    h_status,
+    h_vote,
+    z_range,
+    current_outcome,
+    successor
+  ),
   caption = "Gate 0 exhaustive ballot transitions in native payoff units."
 )
 ```
+
+The complete 16-column transition registry, including native payoffs and
+discount notes, remains authoritative in the CSV.
 
 The R verifier enumerates every admissible ballot tuple for
 $N=3,\ldots,60$, both rules, both rounds, active-$H$ yes and no, and the
@@ -510,11 +801,21 @@ The authoritative sufficient-state registry is
 `tables/pivotal_response_sufficient_states_v1.csv`.
 
 ```{r state-table, results='asis'}
-knitr::kable(
-  state_registry,
+compact_table(
+  dplyr::select(
+    state_registry,
+    state_id,
+    round,
+    rule,
+    h_status,
+    stage,
+    interface_role
+  ),
   caption = "Gate 0 payoff- and belief-sufficient states."
 )
 ```
+
+The complete 12-column state registry remains authoritative in the CSV.
 
 The registry separates pre-recognition, proposer-before-$s_i$, weak-ballot,
 and $H$-ballot states. A weak-ballot key retains both voter $j$ and the
@@ -528,37 +829,39 @@ continuations coincide.
 # Continuation DAG and barriers
 
 The machine-readable graph is
-`model_redesign/pivotal_response_game_dag.json`. The Gate 0 contract is a
-`pass` protocol node whose artifact is the dependency-complete
-`model_redesign/pivotal_response_interfaces/gate0_bundle_v1.json`. The bundle
-hash covers the contract plus the transition, information-set,
-sufficient-state, and relevance registries. The separate
-`gate0_review_v1.json` records both independent PASS decisions and the
-event log through `passed_order=10`. Because the gate is closed, the
-generic DAG checker reports exactly the three terminal Round-2 problems as the
-ready antichain.
+`model_redesign/pivotal_response_game_dag.json`. Its dependency direction is
+
+```text
+Gate 0
+  -> {R2-U-active, R2-M-active, R2-M-weak-only}
+  -> R2 batch review
+  -> {R1-U, R1-M}
+  -> R1 batch freeze
+  -> {entry-U, entry-M}
+  -> institutional comparison
+  -> nonmigrating survival matrix.
+```
+
+Every brace is an antichain conditional on the preceding reviewed freeze.
+The final graph has all nodes at `pass`; the generic checker validates the
+execution orders and reports `Ready: none`.
 
 The dependency-first schedule is:
 
-| Batch | Nodes | Required frozen inputs | Current authorization |
+| Batch | Nodes | Frozen closure | Status |
 |:--|:--|:--|:--|
-| Gate 0 | `gate0_contract` | none | PASS at event 10 |
-| R2 antichain | `r2_unanimity_active_h`; `r2_majority_active_h`; `r2_majority_weak_only` | reviewed Gate 0 hash | authorized and ready; not started |
-| R2 batch gate | `r2_batch_review` | all three R2 interfaces and independent review | blocked |
-| R1 antichain | `r1_unanimity`; `r1_majority` | `r2_batch_review` plus local R2 hashes | blocked |
-| R1 batch gate | `r1_batch_frozen` | both R1 interfaces frozen | blocked |
-| Entry | `entry_unanimity`; `entry_majority` | `r1_batch_frozen` plus corresponding R1 hash | blocked |
-| Comparison | `institutional_comparison` | both entry hashes and common existence domain | blocked |
-| Survival inventory | `v6_survival_matrix` | comparison hash | blocked; no migration |
+| Gate 0 | `gate0_contract` | bundle `6e28cb3...` | PASS, event 10 |
+| R2 antichain | three terminal nodes | batch `00f84d42...` | PASS, event 25 |
+| R1 antichain | `r1_unanimity`; `r1_majority` | batch `f4ac7b89...` | PASS, event 40 |
+| Entry | `entry_unanimity`; `entry_majority` | batch `8817a9c5...` | PASS, event 53 |
+| Comparison | comparison node | review `0acd9648...` | PASS, event 60 |
+| Survival inventory | `v6_survival_matrix` | review `80c912ba...` | PASS, event 67; no migration |
 
-The three Round-2 nodes are graph-independent conditional on Gate 0. The two
-Round-1 nodes remain blocked until `r2_batch_review` independently accepts and
-freezes all three terminal interfaces. Entry remains blocked until
-`r1_batch_frozen` freezes both Round-1 interfaces. Entry then consumes the
-corresponding Round-1 payoff correspondence assessment by assessment; a valid
-bound can support only a selection-free claim. Institutional comparison is
-restricted to the common equilibrium-existence domain; no scalar selection is
-silently inserted.
+Entry consumes its corresponding Round-1 payoff correspondence assessment by
+assessment; a valid bound supports only a selection-free claim. Institutional
+comparison uses the Cartesian product of complete entry assessments on the
+full common existence domain. No scalar selection, rank matching, or
+cross-rule randomization is inserted.
 
 The following are terminal outcomes, not nodes: nonformation, current passage
 with $H$, current weak-only passage, terminal active-$H$ failure, terminal
@@ -567,45 +870,80 @@ weak-only failure, and the quota-impossible unanimity outcome after opt-out.
 # Continuation interfaces and native-time ledger
 
 The versioning policy is in
-`model_redesign/pivotal_response_interfaces/README.md`. Gate 0 has a
-versioned contract, dependency-complete bundle, and independent-review
-interface. Its contract and four authoritative registries are hash-closed by
-`gate0_bundle_v1.json`. No Round-2 interface file exists.
-
-Every future closed continuation interface must state strategies, beliefs,
-payoff vector or correspondence, native payoff date, existence and
-multiplicity, boundaries, equality cases, assumptions, checks, status,
-provenance, and SHA-256.
+`model_redesign/pivotal_response_interfaces/README.md`. Every closed
+continuation states strategies, beliefs, payoff vectors or correspondences,
+native payoff date, existence and multiplicity, boundaries, equality cases,
+assumptions, checks, status, provenance, and dependency hashes. Candidate
+interfaces are immutable snapshots; authority to consume them is supplied by
+their reviewed batch bundle.
 
 | Imported object | Native date | Consuming date | Permitted transformation | Status |
 |:--|:--|:--|:--|:--|
-| $C_{2,U}^{A}(h_2)$ | R2 | R1 | $\beta C_{2,U}^{A}(h_2)$ exactly once | nonexistent; R2 not started |
-| $C_{2,M}^{A}(h_2)$ | R2 | R1 | $\beta C_{2,M}^{A}(h_2)$ exactly once | nonexistent; R2 not started |
-| $C_{2,M}^{WO}(h_2)$ | R2 | R1 weak payoffs only | $\beta C_{2,M}^{WO}(h_2)$ exactly once | nonexistent; R2 not started |
+| $C_{2,U}^{A}(h_2)$ | R2 | R1 | $\beta C_{2,U}^{A}(h_2)$ exactly once | frozen `f3ca4ebf...` |
+| $C_{2,M}^{A}(h_2)$ | R2 | R1 | $\beta C_{2,M}^{A}(h_2)$ exactly once | frozen `a4ae73e9...` |
+| $C_{2,M}^{WO}(h_2)$ | R2 | R1 weak payoffs only | $\beta C_{2,M}^{WO}(h_2)$ exactly once | frozen `e0ec6cd3...` |
 | immediate $o_\theta$ after $H$-no in R1 | R1 | R1 | none | primitive |
 
-Changing any Gate 0 bundle component changes the bundle hash, reopens Gate 0,
-and invalidates every descendant derivation and review. Likewise, changing any
-later frozen interface hash reopens that node and invalidates its descendants.
-A predecessor may not fill an interface gap locally.
+Changing any frozen component changes its bundle hash, reopens that node, and
+invalidates every descendant derivation and review. A predecessor may not fill
+an interface gap locally.
+
+The principal frozen objects and local check snapshots are:
+
+| Object | SHA-256 prefix | Checks | Independent closure |
+|:--|:--|--:|:--|
+| Gate 0 | `6e28cb3f...` | 69/69 | two rereviews PASS |
+| R2-U, active H | `f3ca4ebf...` | 18/18 | two reviews PASS |
+| R2-M, active H | `a4ae73e9...` | 17/17 | two rereviews PASS |
+| R2-M, weak-only | `e0ec6cd3...` | 13/13 | two reviews PASS |
+| R2 batch | `00f84d42...` | 30/30 | frozen PASS |
+| R1-U | `37aae1bf...` | 37/37 | two rereviews PASS |
+| R1-M | `21c3a9dd...` | 23/23 | two rereviews PASS |
+| R1 batch | `f4ac7b89...` | 24/24 | frozen PASS |
+| Entry-U | `05e39ad2...` | 37/37 | two rereviews PASS |
+| Entry-M | `4eb343ce...` | 24/24 | two reviews PASS |
+| Entry batch | `8817a9c5...` | 27/27 | frozen PASS |
+| Comparison | `cab69c5d...` | 42/42 | two reviews PASS |
+| Comparison review | `0acd9648...` | 26/26 | frozen PASS |
+| Survival candidate | `5278b14d...` | 43/43 | two reviews PASS |
+| Survival review | `80c912ba...` | 24/24 | frozen PASS |
+
+Full digests are machine-readable in the corresponding review bundles and in
+the proof ledger. Prefixes are shown here only to keep the rendered table
+legible.
 
 # Proof ledger
 
 ```{r proof-ledger-table, results='asis'}
-knitr::kable(
+proof_ledger_display <- dplyr::select(
   proof_ledger,
-  caption = "Pivotal-response proof and execution ledger."
+  object,
+  status,
+  started_order,
+  passed_order
 )
+proof_ledger_table <- knitr::kable(
+  proof_ledger_display,
+  caption = "Pivotal-response proof and execution ledger (display columns).",
+  longtable = knitr::is_latex_output(),
+  booktabs = knitr::is_latex_output()
+)
+if (knitr::is_latex_output()) {
+  proof_ledger_table <- kableExtra::kable_styling(
+    proof_ledger_table,
+    font_size = 6
+  )
+}
+proof_ledger_table
 ```
 
-The statuses `checked numerically` in Gate 0 refer only to hash, partition, or
-graph checks. The extensive form, relevance discipline, sufficient states,
-transitions, and DAG are `proved` in the ledger only in the governance
-sense that both independent reviewers accepted the exact bundle and source
-with zero findings. The general zero-gift or minimum-coalition conclusion
-remains `rejected` by the proposal-contingent completion counterexample.
-Every equilibrium node remains `pending` and has no `started_order` or
-`passed_order`.
+The ledger distinguishes analytic proof, numerical or mechanical checking,
+rejected candidates, and final reviewed freezes. Numerical enumeration does
+not substitute for the propositions below. The general zero-gift or
+minimum-coalition conclusion remains `rejected` by the proposal-contingent
+completion counterexample. Initial R2-M-active, R1-U, R1-M, and entry-U
+candidates are also retained as rejected provenance; only their repaired,
+independently approved hashes are consumed downstream.
 
 # Independent Gate 0 review closure
 
@@ -631,20 +969,161 @@ all of the following questions affirmatively for the exact frozen bundle:
 10. no equilibrium result has entered the Gate 0 contract.
 
 The first review round returned REPAIR on contract hash
-`37bd422df0bafd7c93162198594c49fd3114d304750d282318d7a705348bc9bb`.
+`37bd422d...`.
 After repair, both rereviews returned PASS with zero critical, major, or minor
 findings on bundle
-`sha256:6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1`.
+`sha256:6e28cb3f...`.
 The closure and conditions are recorded in
-`model_redesign/pivotal_response_interfaces/gate0_review_v1.json` and
-`quality_reports/2026-08-11_pivotal_response_gate0_independent_review.md`.
+`gate0_review_v1.json` and the independent Gate 0 review report.
 No unresolved Gate 0 protocol choice remains. Any bundle-component change
 reopens the gate and invalidates all descendants.
 
-# Stop boundary
+# How to read the frozen node proofs
 
-`STOP_BEFORE_R2`
+The remaining chapters reproduce the detailed node proofs that generated the
+reviewed interfaces. Proposition numbering is local to each named node. The
+notes are immutable implementation snapshots, so a note may describe its own
+interface as a review candidate; the batch and review bundles listed above are
+the authoritative records that subsequently accepted those exact bytes. The
+embedded notes do not select an equilibrium from a correspondence and do not
+authorize manuscript migration.
 
-This file ends at the Gate 0 contract and work agenda. It does not solve any
-terminal ballot, characterize any proposal, compute any continuation value,
-or import any prior equilibrium result.
+# Round 2: terminal continuation correspondences
+
+Each terminal problem is solved in Round-2 units. There is no `beta` inside a
+terminal interface.
+
+```{r include-r2-u, results='asis'}
+include_node("pivotal_response_nodes/r2_unanimity_active_h_v1.md")
+```
+
+```{r include-r2-m-active, results='asis'}
+include_node("pivotal_response_nodes/r2_majority_active_h_v1.md")
+```
+
+```{r include-r2-m-weak-only, results='asis'}
+include_node("pivotal_response_nodes/r2_majority_weak_only_v1.md")
+```
+
+# Round 1: literal continuation import
+
+The two Round-1 nodes import the frozen terminal elements by full public
+history, type, identity, payoff vector, outcome distribution, belief, and
+completion. A terminal payoff is multiplied by `beta` once, and only when it
+enters a Round-1 continuation branch.
+
+```{r include-r1-u, results='asis'}
+include_node("pivotal_response_nodes/r1_unanimity_v1.md")
+```
+
+```{r include-r1-m, results='asis'}
+include_node("pivotal_response_nodes/r1_majority_v1.md")
+```
+
+# Collective entry
+
+Entry is evaluated assessment by assessment. The full bargaining assessment
+is retained after the weak coalition forms or declines to form; a proposer
+payoff projection never determines collective value by itself.
+
+```{r include-entry-u, results='asis'}
+include_node("pivotal_response_nodes/entry_unanimity_v1.md")
+```
+
+```{r include-entry-m, results='asis'}
+include_node("pivotal_response_nodes/entry_majority_v1.md")
+```
+
+# Institutional comparison
+
+The exact comparison object is the Cartesian product of whole entry
+assessments under the two fixed rules. There is no primitive that couples,
+rank-matches, or jointly selects assessments across rules.
+
+```{r include-comparison, results='asis'}
+include_node("pivotal_response_nodes/institutional_comparison_v1.md")
+```
+
+# Nonmigrating survival inventory
+
+The claim-level matrix compares historical statements with the frozen current
+objects only after the new derivation is complete. It is a provenance and
+migration-warning artifact, not a source of equilibrium results and not an
+authorization to edit a manuscript.
+
+```{r include-survival, results='asis'}
+include_node("pivotal_response_nodes/v6_survival_matrix_v1.md")
+```
+
+The authoritative matrix has the following final distribution:
+
+```{r survival-status-summary, results='asis'}
+survival_counts <- as.data.frame(table(survival_matrix$current_status))
+names(survival_counts) <- c("Status", "Claims")
+knitr::kable(
+  survival_counts,
+  caption = "Claim-level survival classifications after the independent rederivation."
+)
+```
+
+# Consolidated results and limits
+
+The rederivation changes the substantive object from a small list of scalar
+candidate outcomes to a full PBE correspondence. Five conclusions organize
+the result.
+
+1. **Local voting discipline does not generate a global equilibrium
+   selection.** When a vote changes a payoff-relevant outcome with positive
+   probability, yes is prescribed exactly when its expected payoff is weakly
+   higher. When relevance is zero, explicit completions remain part of the
+   assessment. Individual irrelevance is not closed under joint changes, so
+   different full-profile completions can sustain different outcomes.
+
+2. **Terminal correspondences are generally broad.** Under unanimity with an
+   active hegemon, coordinated failure is available from `N>=4`; under
+   active-H majority, the recognized-proposer projection is `{1}` for
+   `3<=N<=5` when `o_0>0`, becomes
+   `[max{1-o_1,1-nu},1]` when `o_0=0`, and is `[0,1]` for `N>=6`.
+   Weak-only majority is unique only at `N=3`; from `N>=4` it contains passage,
+   failure, gifts, and identity-distinct allocations. None of these scalar
+   projections replaces the full interface.
+
+3. **Both Round-1 games have a PBE throughout the primitive domain.** The
+   exact characterization is proposal- and history-indexed. Under majority at
+   `N=3`, with `b=beta/2`,
+   `A_3=1-b`, `C_3=(1-mu)(1-o_0)+mu*b`, and `D_3=1-o_1`, the proposer
+   projection is `{max(A_3,C_3,D_3)}` if `o_0>0` and
+   `[max(C_3,D_3),max(A_3,C_3,D_3)]` if `o_0=0`. A value-one majority PBE
+   exists for every `N>=4`. Under unanimity, the familiar pooling, low-only,
+   and continuation motifs survive only as verified subclasses; they do not
+   exhaust the equilibrium correspondence.
+
+4. **Entry is assessment-specific.** For either rule,
+
+   \[
+   G_R(\alpha,\mu)
+   =\frac{(1-\mu)T_W^R(\alpha,0)+\mu T_W^R(\alpha,1)}{m},
+   \]
+
+   and the weak coalition forms exactly when `G_R>=chi`. In both rules,
+   `0<=G_R<=1/m`. For `N>=4`, unanimity attains its lower endpoint zero and
+   majority attains its upper endpoint `1/m`; the other general endpoints are
+   not identified by the frozen interfaces.
+
+5. **The institutional comparison is set-valued.** For a fixed assessment
+   pair, formation costs are `[0,G_R]`, so pairwise U-in-M nesting holds
+   exactly when `G_U<=G_M`. Possible-cost, guaranteed-cost, and universal
+   cross-assessment nesting are different propositions. For `N>=4`, there is
+   an M-only pair at every `0<chi<=1/m`, and universal M-in-U nesting is false.
+   Universal U-in-M nesting remains pending. The hegemon's payoff is always at
+   least its type-specific outside option, but this floor does not create a
+   universal rule ranking; when both institutions form, the sign is generally
+   indeterminate.
+
+The proof therefore does **not** establish equilibrium uniqueness, a general
+minimum winning coalition, zero gifts, an all-yes ballot, a global Round-1
+cutoff, an exhaustive three-motif reduction, a universal formation nesting,
+or universal hegemon dominance. Positive hegemon recognition, endogenous rule
+choice, delayed or hybrid exit, and historical numerical applications are
+outside this baseline. No result in this workspace has been migrated to the
+target manuscript.

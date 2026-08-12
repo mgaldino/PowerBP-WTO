@@ -28,7 +28,7 @@ their frozen hashes are `formal_model_v5.Rmd` (`1b0e420...`),
 
 ## Machine-readable result
 
-The authoritative CSV contains 52 source-claim-granular rows and exactly 11
+The authoritative CSV contains 53 source-claim-granular rows and exactly 11
 columns. Every row records its historical path and inclusive line locator,
 plain-language historical claim, one allowed status, precise current
 replacement, one or more current `path@sha256#pointer` references, domain and
@@ -38,14 +38,14 @@ Status counts are:
 
 | Status | Claims |
 |---|---:|
-| `survives` | 8 |
+| `survives` | 9 |
 | `conditional` | 13 |
 | `changes` | 7 |
 | `rejected` | 12 |
 | `pending` | 6 |
 | `outside_scope` | 6 |
 
-Manuscript-action counts are 21 `retain_with_rewrite`, 10 `replace`, 9
+Manuscript-action counts are 22 `retain_with_rewrite`, 10 `replace`, 9
 `remove`, 6 `do_not_add`, and 6 `pending`. These are future migration
 instructions only. They do not authorize a manuscript edit.
 
@@ -53,6 +53,11 @@ instructions only. They do not authorize a manuscript edit.
 
 ### Solution, ballot, timing, and beliefs
 
+- The full fixed-pie primitive and proposal-space contract survives: `N>=3`, a
+  binary private H type and common prior, unit weak surplus, zero weak outside
+  payoffs, zero direct H agreement benefit, nonnegative named weak payments,
+  residual allocation to the proposer, reabsorption of the conditional H
+  package upon exclusion, and no double receipt by H.
 - PBE, the simultaneous sealed ballot, weak-state agenda with `pi_H=0`, the
   immediate Round-1 opt-out, external H outside options, and formation at
   equality survive.
@@ -138,7 +143,7 @@ Run:
 Rscript --vanilla scripts/verify_pivotal_response_v6_survival_matrix.R
 ```
 
-Result: **42/42 PASS**.
+Result: **43/43 PASS**.
 
 The verifier checks every source locator, every evidence hash and JSON pointer,
 the exact status/action locks and counts, all 27 protected hashes, and full

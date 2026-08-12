@@ -22,7 +22,7 @@ Independent comparison review bundle
 
 ## Candidate contents
 
-- authoritative CSV: 52 claims, 11 exact columns;
+- authoritative CSV: 53 claims, 11 exact columns;
 - JSON consumer interface with frozen dependency, inventory, and evidence
   hashes;
 - human-readable classification report;
@@ -32,27 +32,27 @@ Independent comparison review bundle
 ```text
 JSON interface
   model_redesign/pivotal_response_interfaces/v6_survival_matrix_v1.json
-  sha256:047660b24e8009e57fa13852c442e5cd78377539e6ddd668a498f5e7416647fa
+  sha256:5278b14d442d49d799b93323516fc081c9e7ed57a7ad2f794bfac3e7a5a27801
 
 Authoritative CSV
   tables/pivotal_response_v6_survival_matrix_v1.csv
-  sha256:672170253dab3cd2798552cf70e175cfac08941af961d85d3c96d9b567e536ba
+  sha256:f634c46a764f9bacef13474be1c5f31371db8c42592f9699197191b94c0e0bd8
 
 Human-readable report
   model_redesign/pivotal_response_nodes/v6_survival_matrix_v1.md
-  sha256:246774fe5a11988c4ebac055aa7c62f6d92280fd3478d4a57c54311c4f79bc7c
+  sha256:518a752388679dd51951299a8d9b13250945da53b21b80d122d47aacff23760b
 
 R verifier
   scripts/verify_pivotal_response_v6_survival_matrix.R
-  sha256:0a3c50138443f40b329e956254f44c604c5c537b0dba4111cdba155a10c3d3f8
+  sha256:751c0d94c021a2bcd45e6aaaa081a52c95fc632041442b4e9fee6e4ebb080ed2
 
 Check table
   tables/pivotal_response_v6_survival_matrix_checks_v1.csv
-  sha256:690287358e098915c0d4ec6036283a22232e5dff691834595d899fd412ab1a96
+  sha256:6ec075d25f8c4cf121426a201e0a48a03e2f2026cf4594bdc7ab034bd1945370
 ```
 
-Status counts are 8 `survives`, 13 `conditional`, 7 `changes`, 12 `rejected`,
-6 `pending`, and 6 `outside_scope`. Action counts are 21
+Status counts are 9 `survives`, 13 `conditional`, 7 `changes`, 12 `rejected`,
+6 `pending`, and 6 `outside_scope`. Action counts are 22
 `retain_with_rewrite`, 10 `replace`, 9 `remove`, 6 `do_not_add`, and 6
 `pending`.
 
@@ -64,9 +64,9 @@ Command:
 Rscript --vanilla scripts/verify_pivotal_response_v6_survival_matrix.R
 ```
 
-Result: **42/42 PASS**.
+Result: **43/43 PASS**.
 
-The 42 checks include exact comparison dependencies, CSV shape and hash, all
+The 43 checks include exact comparison dependencies, CSV shape and hash, all
 historical locators, all current evidence hashes and JSON pointers, evidence
 registry completeness, exact status/action locks, topic coverage, all 27
 protected hashes, and seven blocking negative mutations.

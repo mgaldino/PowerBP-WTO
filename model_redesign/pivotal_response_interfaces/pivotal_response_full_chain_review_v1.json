@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "pivotal-response-full-chain-review-v1",
+  "state_id": "pivotal_response_full_chain_release_review",
+  "status": "pass",
+  "closed_date": "2026-08-12",
+  "scope": "final exact-hash review and mechanical freeze of the integrated presentation layer after every analytic game node closed",
+  "migration_authority": "none; this bundle does not authorize edits to formal_model_v5.Rmd, formal_model_v6.Rmd, their outputs, or any frozen analytic interface",
+  "reviewed_release": {
+    "path": "pivotal_response_full_chain_release_v1.json",
+    "sha256": "d06fe49b9ae90b9f6def399b45b27aec264342a3a460722cbb38d633d373e917",
+    "immutable_status": "candidate_pending_final_read_only_reviews",
+    "consumer_status_after_this_review": "pass"
+  },
+  "components": [
+    {
+      "role": "gate0_bundle",
+      "path": "gate0_bundle_v1.json",
+      "sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1"
+    },
+    {
+      "role": "r2_batch_review",
+      "path": "r2_batch_review_v1.json",
+      "sha256": "00f84d4221d100f0def858e8c8bf19a58f79522f217118693837edf73583316a"
+    },
+    {
+      "role": "r1_batch_frozen",
+      "path": "r1_batch_frozen_v1.json",
+      "sha256": "f4ac7b89f4c08d4ee461ca1431135286304abaae2589a337aeffdb38b5941c3a"
+    },
+    {
+      "role": "entry_batch_review",
+      "path": "entry_batch_review_v1.json",
+      "sha256": "8817a9c505ce9e5b79deea1b38055d88a629e740e324fbcd5bca707b108b5433"
+    },
+    {
+      "role": "institutional_comparison_review",
+      "path": "institutional_comparison_review_v1.json",
+      "sha256": "0acd9648eb7e03d4dabfaa91ffd559fe3c5b6f61a96ba676d6c6ccd9d4c6bb3c"
+    },
+    {
+      "role": "v6_survival_matrix_review",
+      "path": "v6_survival_matrix_review_v1.json",
+      "sha256": "80c912ba35fc46bdb1859edeb91402dcb63f52079cd3ca8c4aeeb4b98b0077a7"
+    },
+    {
+      "role": "final_game_dag",
+      "path": "../pivotal_response_game_dag.json",
+      "sha256": "4b7aa1b9647791b7e2b3a62fd21c1b782982eca40d44414c8e23f88140b166c0"
+    },
+    {
+      "role": "proof_ledger",
+      "path": "../../quality_reports/2026-08-11_pivotal_response_proof_ledger.tsv",
+      "sha256": "23d0566aa55aeac74b43819d907c9022ed02e065210694d26dda7b13283c1750"
+    },
+    {
+      "role": "protected_hash_manifest",
+      "path": "../../quality_reports/2026-08-11_pivotal_response_protected_hash_manifest.tsv",
+      "sha256": "e6c2dcaea628acf84ea77853448b185b189e24d7b809e540e442fd820b0d6d6c"
+    },
+    {
+      "role": "integrated_rmd",
+      "path": "../pivotal_response_rederivation.Rmd",
+      "sha256": "de956ec7f84c37991494e87962317369d382674783d7af4de648c56be1cd0b66"
+    },
+    {
+      "role": "primary_pdf",
+      "path": "../pivotal_response_rederivation.pdf",
+      "sha256": "6ff930e1a3d3ba11a0b9630149a42a23bdb1ef204b71ece7e17f5ece62594126"
+    },
+    {
+      "role": "companion_html",
+      "path": "../pivotal_response_rederivation.html",
+      "sha256": "0867d1cde8bceebcf57bc414a8e9ddb600f1a4d3e847c2bb3b6f7a423472ad44"
+    },
+    {
+      "role": "kept_tex",
+      "path": "../pivotal_response_rederivation.tex",
+      "sha256": "9a5b27196d956bc95d99e5645956559bd2e1e6877ada03291819f2e19604c6bd"
+    },
+    {
+      "role": "master_verifier",
+      "path": "../../scripts/verify_pivotal_response_full_chain.R",
+      "sha256": "3d4537dd9042d3237f7a315473cb1a3cef154dae8901a9978f9ed640e0a16864"
+    },
+    {
+      "role": "master_check_table",
+      "path": "../../tables/pivotal_response_full_chain_checks_v1.csv",
+      "sha256": "1b947c5049b3262f0802ef635be38f7ce6a95689207349edec8ad79e6a366da1"
+    },
+    {
+      "role": "candidate_status_snapshot",
+      "path": "../../quality_reports/2026-08-12_pivotal_response_full_chain_candidate_status.md",
+      "sha256": "05be9fbcc3ed0d12f53a142e282113d495a781b4c76c11faf2b874fcede98c3d"
+    },
+    {
+      "role": "candidate_visual_audit",
+      "path": "../../quality_reports/2026-08-12_pivotal_response_full_chain_visual_audit.md",
+      "sha256": "f448d595e55986aea21eb00345dd55105c145476c68816f9f3d740f45afb0e5c"
+    }
+  ],
+  "required_final_reviews": {
+    "count": 2,
+    "formal_model_and_integration": {
+      "reviewer_id": "gate0_reviewer",
+      "mode": "independent and read-only",
+      "reviewed_release_sha256": "d06fe49b9ae90b9f6def399b45b27aec264342a3a460722cbb38d633d373e917",
+      "verdict": "pass",
+      "critical_findings": 0,
+      "major_findings": 0,
+      "minor_findings": 0
+    },
+    "adversarial_game_theory_reproducibility_and_visual": {
+      "reviewer_id": "full_chain_adversarial",
+      "mode": "independent and read-only",
+      "reviewed_release_sha256": "d06fe49b9ae90b9f6def399b45b27aec264342a3a460722cbb38d633d373e917",
+      "verdict": "pass",
+      "critical_findings": 0,
+      "major_findings": 0,
+      "minor_findings": 0
+    }
+  },
+  "supplemental_visual_rereview": {
+    "reviewer_id": "survival_closer",
+    "mode": "independent, read-only presentation rereview",
+    "reviewed_release_sha256": "d06fe49b9ae90b9f6def399b45b27aec264342a3a460722cbb38d633d373e917",
+    "reviewed_pdf_sha256": "6ff930e1a3d3ba11a0b9630149a42a23bdb1ef204b71ece7e17f5ece62594126",
+    "pages_inspected": 60,
+    "pages_total": 60,
+    "page_57_repair_confirmed": true,
+    "verdict": "pass",
+    "critical_findings": 0,
+    "major_findings": 0,
+    "minor_findings": 0,
+    "rendered_stale_markers": 0,
+    "rendered_forbidden_markers": 0,
+    "missing_glyph_markers": 0
+  },
+  "rejected_release_history": [
+    {
+      "release_sha256": "a930d5114c4ee8e38e2585cb4ccd49b630822bac78a651cb81731ce5aae4b215",
+      "rmd_sha256": "9b824f3bc405d218d3d38968c0afc8e1ff95baa889e9d2b2b2d179c1480a5711",
+      "pdf_sha256": "43e0023e93734797dea8cc451fca311cac77e8ebbbb9fb82f92054545a2e4499",
+      "html_sha256": "378719333dd9a06238e5776a56e905f4bc33e959c08901423e8968a74f5ae8f1",
+      "tex_sha256": "eed1408770c226198c685d5b4ddee87acc644d6b39315623f894a7db629332ed",
+      "verdict": "repair",
+      "critical_findings": 0,
+      "major_findings": 1,
+      "minor_findings": 0,
+      "finding": "PDF page 57 concatenated the 18.1 and 18.1.1 headings on one baseline without vertical separation",
+      "repaired_by_release_sha256": "d06fe49b9ae90b9f6def399b45b27aec264342a3a460722cbb38d633d373e917"
+    }
+  ],
+  "mechanical_close": {
+    "master_verifier_result": "25/25 PASS",
+    "master_check_snapshot": "25/25 PASS",
+    "protected_artifacts": "27/27 PASS",
+    "game_dag_checker": "VALID",
+    "game_dag_ready": [],
+    "game_dag_state": "all 12 game nodes pass through order 67; this presentation freeze adds no game node and changes no execution order"
+  },
+  "consumer_contract": {
+    "authority": "this exact review bundle, not a mutation of the candidate release JSON, supplies final consumption authority for the integrated standalone report",
+    "analytic_boundary": "the presentation layer may reproduce frozen objects but may not rederive, repair, reinterpret, or select within any analytic correspondence",
+    "review_boundary": "both required independent reviewers accepted the same repaired release hash with zero critical, major, or minor findings",
+    "presentation_boundary": "the exact 60-page PDF passed a separate full visual rereview after the page-57 repair",
+    "migration_boundary": "no result is migrated to the target manuscript; the full-chain release remains a standalone, nonmigrating artifact"
+  },
+  "conditions": [
+    "The candidate release JSON intentionally retains its pre-review status and exact bytes; this review bundle records final acceptance.",
+    "The rejected a930d511 release and its page-57 defect remain invalidation history and are not consumable.",
+    "All direct analytic, governance, presentation, validation, status, and visual components listed above must retain their exact hashes.",
+    "The game DAG and proof ledger remain unchanged because the full-chain freeze is a post-DAG presentation layer, not a new equilibrium node.",
+    "No manuscript migration is authorized."
+  ],
+  "invalidation": {
+    "rule": "any byte change to the reviewed release, a listed component, an analytic root, a governance artifact, a presentation artifact, a protected target, the master verifier or checks, the candidate status, or the visual audit invalidates this final review and requires two new exact-hash reviews",
+    "required_negative_tests": [
+      "changing the reviewed release hash invalidates final acceptance",
+      "changing either required review verdict or finding count invalidates final acceptance",
+      "changing any direct component hash invalidates dependency completeness",
+      "substituting the rejected a930d511 release invalidates the close",
+      "changing the repaired PDF hash or page count invalidates the visual close",
+      "reopening a game-DAG node or producing a nonempty Ready frontier invalidates the release",
+      "changing a protected artifact invalidates the release",
+      "granting manuscript migration authority invalidates this nonmigrating close"
+    ]
+  },
+  "artifact_hash_protocol": "SHA-256 is computed externally over these exact UTF-8 bytes; the review-bundle digest is reported by the final status and verifier rather than recursively stored in this file"
+}

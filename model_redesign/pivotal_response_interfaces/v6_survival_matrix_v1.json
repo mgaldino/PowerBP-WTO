@@ -28,8 +28,8 @@
   },
   "authoritative_matrix": {
     "path": "../../tables/pivotal_response_v6_survival_matrix_v1.csv",
-    "sha256": "672170253dab3cd2798552cf70e175cfac08941af961d85d3c96d9b567e536ba",
-    "row_count": 52,
+    "sha256": "f634c46a764f9bacef13474be1c5f31371db8c42592f9699197191b94c0e0bd8",
+    "row_count": 53,
     "column_count": 11,
     "columns": [
       "claim_id",
@@ -44,9 +44,9 @@
       "migration_blocker",
       "notes"
     ],
-    "claim_id_range": "SM001-SM052",
+    "claim_id_range": "SM001-SM053",
     "status_counts": {
-      "survives": 8,
+      "survives": 9,
       "conditional": 13,
       "changes": 7,
       "rejected": 12,
@@ -54,7 +54,7 @@
       "outside_scope": 6
     },
     "action_counts": {
-      "retain_with_rewrite": 21,
+      "retain_with_rewrite": 22,
       "replace": 10,
       "remove": 9,
       "do_not_add": 6,
@@ -149,7 +149,8 @@
     "resource_boundaries": ["SM037"],
     "extensions_and_archives": ["SM038", "SM039", "SM040", "SM041", "SM043", "SM044"],
     "migration_gate": ["SM045"],
-    "qualitative_mechanism": ["SM046"]
+    "qualitative_mechanism": ["SM046"],
+    "fixed_pie_primitive_and_proposal_space": ["SM053"]
   },
   "prohibited_promotions": [
     "treating a historical proof or formula as current evidence",

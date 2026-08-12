@@ -135,7 +135,7 @@ status_lock <- c(
   SM043="outside_scope", SM044="outside_scope", SM045="pending",
   SM046="conditional", SM047="survives", SM048="conditional",
   SM049="conditional", SM050="conditional",
-  SM051="conditional", SM052="conditional"
+  SM051="conditional", SM052="conditional", SM053="survives"
 )
 
 archived_formula_tokens <- c(
@@ -169,8 +169,8 @@ matrix_core_valid <- function(tab, registry, allowed_sources) {
     "current_status", "current_precise_replacement", "current_evidence_path_hash",
     "domain_selection_scope", "manuscript_action", "migration_blocker", "notes"
   )
-  if (!identical(names(tab), expected_columns) || nrow(tab) != 52L) return(FALSE)
-  if (!identical(tab$claim_id, sprintf("SM%03d", seq_len(52L)))) return(FALSE)
+  if (!identical(names(tab), expected_columns) || nrow(tab) != 53L) return(FALSE)
+  if (!identical(tab$claim_id, sprintf("SM%03d", seq_len(53L)))) return(FALSE)
   if (anyDuplicated(tab$claim_id) || any(!nzchar(as.matrix(tab)))) return(FALSE)
   if (!all(tab$current_status %in% allowed_status) || !all(tab$manuscript_action %in% allowed_action)) return(FALSE)
   if (!identical(stats::setNames(tab$current_status, tab$claim_id), status_lock)) return(FALSE)
@@ -236,9 +236,9 @@ add_check(
   "authoritative_matrix_hash_and_shape",
   identical(resolve_from(interface_path, interface$authoritative_matrix$path), normalizePath(matrix_path, mustWork = TRUE)) &&
     identical(interface$authoritative_matrix$sha256, sha256_file(matrix_path)) &&
-    identical(as.integer(interface$authoritative_matrix$row_count), 52L) &&
+    identical(as.integer(interface$authoritative_matrix$row_count), 53L) &&
     identical(as.integer(interface$authoritative_matrix$column_count), 11L),
-  paste("Authoritative matrix has 52 claims, 11 columns, and hash", sha256_file(matrix_path)),
+  paste("Authoritative matrix has 53 claims, 11 columns, and hash", sha256_file(matrix_path)),
   "Matrix path, hash, row count, or column count differs."
 )
 
@@ -254,15 +254,15 @@ add_check(
   "status_vocabulary_and_exact_locks",
   all(matrix$current_status %in% allowed_status) &&
     identical(stats::setNames(matrix$current_status, matrix$claim_id), status_lock),
-  "Every claim has exactly one allowed status and all 52 conservative status locks match.",
+  "Every claim has exactly one allowed status and all 53 conservative status locks match.",
   "A status is invalid or stronger than the locked classification."
 )
 
 add_check(
   "status_counts_exact",
-  identical(as.integer(table(factor(matrix$current_status, levels = allowed_status))), c(8L,13L,7L,12L,6L,6L)) &&
-    identical(as.integer(unlist(interface$authoritative_matrix$status_counts)), c(8L,13L,7L,12L,6L,6L)),
-  "Status counts are 8 survives, 13 conditional, 7 changes, 12 rejected, 6 pending, and 6 outside scope.",
+  identical(as.integer(table(factor(matrix$current_status, levels = allowed_status))), c(9L,13L,7L,12L,6L,6L)) &&
+    identical(as.integer(unlist(interface$authoritative_matrix$status_counts)), c(9L,13L,7L,12L,6L,6L)),
+  "Status counts are 9 survives, 13 conditional, 7 changes, 12 rejected, 6 pending, and 6 outside scope.",
   "Matrix or interface status counts differ."
 )
 
@@ -270,9 +270,9 @@ add_check(
   "action_vocabulary_compatibility_and_counts",
   all(matrix$manuscript_action %in% allowed_action) &&
     all(mapply(action_compatible, matrix$current_status, matrix$manuscript_action)) &&
-    identical(as.integer(table(factor(matrix$manuscript_action, levels = allowed_action))), c(21L,10L,9L,6L,6L)) &&
-    identical(as.integer(unlist(interface$authoritative_matrix$action_counts)), c(21L,10L,9L,6L,6L)),
-  "All actions match status semantics; counts are 21 retain, 10 replace, 9 remove, 6 do not add, and 6 pending.",
+    identical(as.integer(table(factor(matrix$manuscript_action, levels = allowed_action))), c(22L,10L,9L,6L,6L)) &&
+    identical(as.integer(unlist(interface$authoritative_matrix$action_counts)), c(22L,10L,9L,6L,6L)),
+  "All actions match status semantics; counts are 22 retain, 10 replace, 9 remove, 6 do not add, and 6 pending.",
   "An action is invalid, incompatible, or miscounted."
 )
 
@@ -280,7 +280,7 @@ add_check(
   "historical_locators_exist",
   all(mapply(historical_locator_valid, matrix$historical_source_path, matrix$historical_locator,
              MoreArgs = list(allowed_sources = inventory_repo_paths))),
-  "All 52 source line locators exist inside the four exact allowed inventories.",
+  "All 53 source line locators exist inside the four exact allowed inventories.",
   "A historical path or line locator is invalid."
 )
 
@@ -316,7 +316,7 @@ add_check(
 
 add_check(
   "complete_rows_and_unique_ids",
-  identical(matrix$claim_id, sprintf("SM%03d", seq_len(52L))) && !anyDuplicated(matrix$claim_id) &&
+  identical(matrix$claim_id, sprintf("SM%03d", seq_len(53L))) && !anyDuplicated(matrix$claim_id) &&
     !any(!nzchar(as.matrix(matrix))),
   "The matrix has contiguous unique IDs and no empty machine-readable field.",
   "Claim IDs are noncontiguous, duplicated, or a field is empty."
@@ -352,6 +352,16 @@ add_check(
     grepl("simultaneous", matrix$current_precise_replacement[matrix$claim_id == "SM003"], fixed = TRUE),
   "PBE-only, outcome-signature relevance, equality response, and simultaneous ballot are classified separately.",
   "Core solution or ballot protocol wording is missing or overclaimed."
+)
+
+add_check(
+  "fixed_pie_primitive_and_proposal_contract_survives",
+  identical(matrix$current_status[matrix$claim_id == "SM053"], "survives") &&
+    grepl("unit institutional surplus", matrix$current_precise_replacement[matrix$claim_id == "SM053"], fixed = TRUE) &&
+    grepl("reabsorbed when H is excluded", matrix$current_precise_replacement[matrix$claim_id == "SM053"], fixed = TRUE) &&
+    grepl("both an agreement package and its outside payoff", matrix$current_precise_replacement[matrix$claim_id == "SM053"], fixed = TRUE),
+  "The full fixed-pie primitive and proposal-space contract is retained as a distinct surviving claim.",
+  "The migration-critical fixed-pie primitive or proposal-space contract is missing or weakened."
 )
 
 add_check(
@@ -500,7 +510,7 @@ topic_ids <- unique(unlist(interface$required_topic_index, use.names = FALSE))
 add_check(
   "required_topic_index_complete",
   setequal(topic_ids, matrix$claim_id) && all(topic_ids %in% matrix$claim_id),
-  "The machine-readable topic index covers all 52 claims exactly.",
+  "The machine-readable topic index covers all 53 claims exactly.",
   "The topic index omits or invents a claim ID."
 )
 

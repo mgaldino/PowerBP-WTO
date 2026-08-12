@@ -375,15 +375,31 @@
       "depends_on": [
         "institutional_comparison"
       ],
-      "status": "pending",
+      "status": "pass",
       "authorized": true,
       "interface_target": "pivotal_response_interfaces/v6_survival_matrix_v1.json",
       "started_order": 61,
+      "artifact_path": "pivotal_response_interfaces/v6_survival_matrix_v1.json",
+      "artifact_hash": "sha256:5278b14d442d49d799b93323516fc081c9e7ed57a7ad2f794bfac3e7a5a27801",
+      "implementation_completed_order": 62,
+      "review_orders": [
+        63,
+        64
+      ],
+      "review_verdicts": [
+        "formal_cold_pass",
+        "adversarial_game_theory_pass"
+      ],
+      "freeze_started_order": 65,
+      "verification_order": 66,
+      "passed_order": 67,
       "dependency_hashes": {
         "institutional_comparison": "sha256:cab69c5ddda3616f51c697c189c86316df5546501a183eb6cc9e437dc813f3af"
       },
       "dependency_review_bundle_path": "pivotal_response_interfaces/institutional_comparison_review_v1.json",
-      "dependency_review_bundle_hash": "sha256:0acd9648eb7e03d4dabfaa91ffd559fe3c5b6f61a96ba676d6c6ccd9d4c6bb3c"
+      "dependency_review_bundle_hash": "sha256:0acd9648eb7e03d4dabfaa91ffd559fe3c5b6f61a96ba676d6c6ccd9d4c6bb3c",
+      "review_bundle_path": "pivotal_response_interfaces/v6_survival_matrix_review_v1.json",
+      "review_bundle_hash": "sha256:80c912ba35fc46bdb1859edeb91402dcb63f52079cd3ca8c4aeeb4b98b0077a7"
     }
   ]
 }

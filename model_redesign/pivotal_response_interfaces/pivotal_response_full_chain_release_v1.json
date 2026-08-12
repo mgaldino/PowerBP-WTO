@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "pivotal-response-full-chain-release-v1",
+  "created_date": "2026-08-12",
+  "status": "candidate_pending_final_read_only_reviews",
+  "scope": "post-freeze integration of the independently derived two-round PBE chain; presentation layer only",
+  "solution_object": "complete Perfect Bayesian equilibrium correspondences under local outcome-signature relevance, yes at payoff-relevant equality, and explicit zero-relevance completions",
+  "migration_authority": "none; this release does not authorize edits to formal_model_v5.Rmd, formal_model_v6.Rmd, or their outputs",
+  "analytic_roots": [
+    {
+      "role": "gate0_bundle",
+      "path": "gate0_bundle_v1.json",
+      "sha256": "6e28cb3faf3b70bc5ed990ce35a9e39326be15f93252e93e6663d771e2b0b7c1"
+    },
+    {
+      "role": "r2_batch_review",
+      "path": "r2_batch_review_v1.json",
+      "sha256": "00f84d4221d100f0def858e8c8bf19a58f79522f217118693837edf73583316a"
+    },
+    {
+      "role": "r1_batch_frozen",
+      "path": "r1_batch_frozen_v1.json",
+      "sha256": "f4ac7b89f4c08d4ee461ca1431135286304abaae2589a337aeffdb38b5941c3a"
+    },
+    {
+      "role": "entry_batch_review",
+      "path": "entry_batch_review_v1.json",
+      "sha256": "8817a9c505ce9e5b79deea1b38055d88a629e740e324fbcd5bca707b108b5433"
+    },
+    {
+      "role": "institutional_comparison_review",
+      "path": "institutional_comparison_review_v1.json",
+      "sha256": "0acd9648eb7e03d4dabfaa91ffd559fe3c5b6f61a96ba676d6c6ccd9d4c6bb3c"
+    },
+    {
+      "role": "v6_survival_matrix_review",
+      "path": "v6_survival_matrix_review_v1.json",
+      "sha256": "80c912ba35fc46bdb1859edeb91402dcb63f52079cd3ca8c4aeeb4b98b0077a7"
+    }
+  ],
+  "governance_artifacts": [
+    {
+      "role": "final_game_dag",
+      "path": "../pivotal_response_game_dag.json",
+      "sha256": "4b7aa1b9647791b7e2b3a62fd21c1b782982eca40d44414c8e23f88140b166c0",
+      "expected_state": "all nodes pass; Ready none"
+    },
+    {
+      "role": "proof_ledger",
+      "path": "../../quality_reports/2026-08-11_pivotal_response_proof_ledger.tsv",
+      "sha256": "23d0566aa55aeac74b43819d907c9022ed02e065210694d26dda7b13283c1750",
+      "last_passed_order": 67
+    },
+    {
+      "role": "protected_hash_manifest",
+      "path": "../../quality_reports/2026-08-11_pivotal_response_protected_hash_manifest.tsv",
+      "sha256": "e6c2dcaea628acf84ea77853448b185b189e24d7b809e540e442fd820b0d6d6c",
+      "protected_count": 27
+    }
+  ],
+  "presentation_artifacts": [
+    {
+      "role": "integrated_source",
+      "path": "../pivotal_response_rederivation.Rmd",
+      "sha256": "de956ec7f84c37991494e87962317369d382674783d7af4de648c56be1cd0b66",
+      "bytes": 43325
+    },
+    {
+      "role": "primary_pdf",
+      "path": "../pivotal_response_rederivation.pdf",
+      "sha256": "6ff930e1a3d3ba11a0b9630149a42a23bdb1ef204b71ece7e17f5ece62594126",
+      "bytes": 293990,
+      "pages": 60
+    },
+    {
+      "role": "companion_html",
+      "path": "../pivotal_response_rederivation.html",
+      "sha256": "0867d1cde8bceebcf57bc414a8e9ddb600f1a4d3e847c2bb3b6f7a423472ad44",
+      "bytes": 1088943
+    },
+    {
+      "role": "kept_latex_source",
+      "path": "../pivotal_response_rederivation.tex",
+      "sha256": "9a5b27196d956bc95d99e5645956559bd2e1e6877ada03291819f2e19604c6bd",
+      "bytes": 253603
+    }
+  ],
+  "render": {
+    "command": "LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 Rscript --vanilla -e 'rmarkdown::render(\"model_redesign/pivotal_response_rederivation.Rmd\", output_format = \"all\", clean = TRUE)'",
+    "formats": [
+      "bookdown::html_document2",
+      "bookdown::pdf_document2"
+    ],
+    "latex_engine": "xelatex",
+    "source_of_truth": "the Rmd reads frozen CSVs, ledger, and immutable node notes; display-only normalization shortens digests and updates pre-review status prose without changing frozen bytes or claims"
+  },
+  "validation_contract": {
+    "required_frozen_check_counts": {
+      "gate0": 69,
+      "r2_batch": 30,
+      "r1_batch": 24,
+      "entry_batch": 27,
+      "institutional_comparison": 42,
+      "institutional_comparison_freeze": 26,
+      "survival_matrix": 43,
+      "survival_matrix_freeze": 24
+    },
+    "required_pdf_sections": [
+      "Round 2: terminal continuation correspondences",
+      "Round 1: literal continuation import",
+      "Collective entry",
+      "Institutional comparison",
+      "Nonmigrating survival inventory",
+      "Consolidated results and limits"
+    ],
+    "forbidden_rendered_markers": [
+      "STOP_BEFORE_R2",
+      "pending independent read-only review",
+      "pending independent read-only rereview",
+      "PBE-UD",
+      "as-if pivotal",
+      "roll-call voting"
+    ],
+    "visual_protocol": "rasterize all PDF pages; inspect the title/TOC, every Gate 0 registry, proof ledger, each node transition, comparison, survival, and final synthesis; reject clipping, overlap, stale status, missing glyphs, or unreadable tables"
+  },
+  "review_contract": {
+    "required_reviews": 2,
+    "formal_model_review": "pending",
+    "adversarial_game_theory_and_reproducibility_review": "pending",
+    "reviewers_must_be_read_only": true,
+    "consumer_rule": "no final PASS report may cite this release until both reviews accept this exact JSON and every presentation-artifact hash"
+  },
+  "invalidation": "any byte change to an analytic root, governance artifact, presentation artifact, protected target, or this release candidate invalidates both final reviews and the final PASS report"
+}
