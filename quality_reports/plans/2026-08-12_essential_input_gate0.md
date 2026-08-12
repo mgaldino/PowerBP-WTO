@@ -162,9 +162,28 @@ informacional é a diferença entre o payoff de `H` no jogo com informação pri
 e seu payoff no mesmo jogo com `theta` público desde `t=0`, mantendo todas as
 demais primitivas e o protocolo idênticos. Cada nó deve exportar esse benchmark;
 a renda é calculada como diferença e nunca inferida do excesso sobre `o_theta`.
-No benchmark público, a derivação deve verificar que o proponente oferece a
-reserva do tipo observado e que `H` aceita por `T^Y`, em vez de impor esse payoff
-como definição.
+
+**Lema do benchmark público, por ramos.** O jogo com `theta` público deve ser
+resolvido, não substituído por um payoff imposto. Para cada regra, tipo e nó, a
+derivação deve primeiro determinar qual ramo é ótimo:
+
+1. **Inclusão.** Se a proposta ótima inclui `H`, provar que o proponente oferece
+   exatamente a reserva relevante do tipo conhecido e que `H` aceita na
+   igualdade por `T^Y`. Em R2 a reserva é corrente; em R1 ela é a continuação
+   pública de R2 transportada uma única vez por `beta`. Esta cláusula permanece
+   condicionada à resolução do conflito ainda pendente, na Seção 5, entre `T^Y`
+   e stage-undominated voting para `H`.
+2. **Exclusão sob maioria.** Se a proposta ótima exclui `H`, provar que ela fixa
+   `y=0`, passa sem o voto de `H`, `H` vota `não` e recebe `o_theta` de fora na
+   data da aprovação. Este ramo é inalcançável sob unanimidade.
+3. **Continuação ou falha.** Se R1 falha, não há pagamento e o benchmark de R1
+   importa a interface pública de R2 uma única vez por `beta`. Se R2 falha, `H`
+   recebe `o_theta` na data terminal e os weak states recebem zero.
+
+Qual ramo prevalece é resultado, não primitiva. Somente depois de provar o lema
+no ramo pertinente a exposição pode substituir o contrafactual por uma medida
+simples de payoff menos opção externa, com a opção externa transportada para a
+data correta. Essa equivalência não é global entre ramos nem entre regras.
 
 **Escopo da resposta sobre delay.** O ballot é restrito a estratégias puras e
 `T^Y` vale em toda igualdade. A decisão do autor antecipa ausência de atraso sob
@@ -422,8 +441,9 @@ premissa: (i) propostas com soma estritamente menor que 1 não são ótimas; (ii
 sob maioria, a proposta-hedge `s=(y,x,r_i)`, com `y>0` e `q-1` votos fracos, é
 estritamente dominada pela proposta alternativa `s'=(0,x,r_i+y)` com os mesmos
 votos; e (iii) o ramo em que uma proposta aprovada paga `y+o_theta` a `H` fora
-do acordo não ocorre no caminho de equilíbrio — sob unanimidade é inalcançável,
-e sob maioria sua exclusão do caminho deve decorrer da prova de (ii); e (iv)
+do acordo **com `y>0`** não ocorre no caminho de equilíbrio — sob unanimidade é
+inalcançável, e sob maioria sua exclusão do caminho deve decorrer da prova de
+(ii); e (iv)
 votos e demais ações fracas são não informativos sobre `theta`, de modo que o
 posterior depende apenas do voto do próprio `H`. A quarta obrigação deve ser
 demonstrada por Bayes a partir de `pi_H=0` e do fato de nenhum weak state observar
@@ -541,7 +561,8 @@ N3  R1 maioria           prova a dominância que elimina o hedge e deriva as
 N4  R1 unanimidade       screening sequencial puro de dois períodos; prova ou
                          refuta separating e caracteriza pooling/falha.
 N6  Comparação           produto cartesiano dos assessments; delay e renda
-                         informacional contra o benchmark público por regra;
+                         informacional contra o benchmark público por regra e
+                         por ramo;
                          resposta às perguntas 1 e 2, condicional à organização
                          existir sob ambas as regras.
 ```
@@ -628,6 +649,9 @@ Para cada nó, em função da crença de entrada:
 O schema não contém decisão ou valor de formação. A renda informacional é a
 diferença entre o payoff sob informação privada e a coordenada correspondente
 do benchmark de informação completa; ela não é inferida de `U_H-o_theta`.
+O ramo que produz cada payoff público — inclusão, exclusão, continuação ou falha
+— e sua data devem constar do ledger de claims do nó. Isso não amplia o schema
+comum: é parte da correspondência completa exigida na Seção 8.
 
 Qualquer nó que precise exportar mais do que isto deve declarar a extensão do
 schema no DAG antes de derivar, com justificativa.
@@ -639,8 +663,9 @@ tipo e por identidade; crenças on-path e off-path explícitas; interface
 congelada com hash para o consumidor; e ledger de claims classificando cada
 resultado como `proved`, `checked numerically`, `conjecture`, `pending` ou
 `rejected`. O benchmark de informação completa deve ser resolvido sob a mesma
-regra e reportado nas mesmas unidades antes de calcular qualquer renda
-informacional.
+regra, por ramos, e reportado nas mesmas unidades antes de calcular qualquer
+renda informacional. O nó deve registrar qual ramo gera o payoff público de cada
+tipo e não pode impor inclusão de `H` como parte da definição do benchmark.
 
 `N6` deve entregar, adicionalmente, resposta explícita e assinada às perguntas 1
 e 2 da Seção 1, incluindo o desfecho negativo se for o caso.
@@ -665,11 +690,12 @@ aos `q-1` weak states. A comparação é entre propostas ex ante e preserva a so
 orçamentária; não é realocação depois do ballot. O resultado depende da pie fixa,
 da execução integral de `y` e da IC de `H`, e não pode ser assumido.
 
-**P1a — Ausência on-path do ramo `y+o_theta`.** Deve-se provar que a história em
-que uma proposta passa sem `H` e lhe paga `y+o_theta` não ocorre no caminho de
-equilíbrio. Sob unanimidade a história é inalcançável porque o `não` de `H`
-derruba a proposta. Sob maioria, a conclusão deve seguir da prova de P1, não de
-uma regra de implementação que destrua ou reverta `y`.
+**P1a — Ausência on-path do ramo aprovado sem `H` com `y>0`.** Deve-se provar
+que a história em que uma proposta com `y>0` passa sem `H` e lhe paga
+`y+o_theta` não ocorre no caminho de equilíbrio. Sob unanimidade a história é
+inalcançável porque o `não` de `H` derruba a proposta. Sob maioria, a conclusão
+deve seguir da prova de P1, não de uma regra de implementação que destrua ou
+reverta `y`. A obrigação não elimina a exclusão com `y=0`, preservada em P2.
 
 **P2 — Três regiões de N3.** Com `a` como preço do voto fraco substituto, `N3`
 deve derivar separadamente os casos em que ambos os tipos de `H` estão acima de
@@ -702,6 +728,17 @@ sustentar multiplicidade residual. Se sobrar multiplicidade que impeça responde
 em `nu'`. Isso é o motor do mecanismo e não deve ser truncado. Mas gera um ramo
 de sinalização em R1 que precisa de tratamento explícito de crenças off-path.
 
+**P8 — Benchmark público por ramos.** Cada nó deve resolver o mesmo jogo com
+`theta` público e provar qual ramo prevalece para cada tipo. Condicional à
+inclusão, deve provar oferta na reserva relevante e aceitação na igualdade;
+condicional à exclusão sob maioria, deve provar `y=0`, voto `não` de `H` e payoff
+`o_theta` na data corrente; após falha em R1, deve importar uma única vez por
+`beta` o benchmark público de R2. A definição contrafactual é primária. A medida
+simples de excesso sobre a opção externa só pode ser usada no ramo e na data em
+que sua equivalência tiver sido provada. A parte de aceitação na igualdade
+permanece condicionada à decisão de protocolo pendente sobre `T^Y` e
+stage-undominated voting para `H`.
+
 ---
 
 ## 10. No-go list
@@ -719,6 +756,9 @@ primitivas:
 - redução exaustiva a `P/L/R`; rejected-history reduction lemma;
 - maioria como benchmark geral de no-screening, exclusão geral ou inclusão
   geral — `N3` deve derivar as três regiões em torno do preço substituto;
+- afirmação universal de que o benchmark público inclui `H` sob ambas as regras,
+  ou substituição global do contrafactual por `U_H-o_theta`; inclusão, exclusão,
+  continuação e data devem ser derivadas por ramo;
 - dominância do hedge, inexistência de separating, ausência de delay ou
   não informatividade dos votos fracos tratadas como premissas;
 - calibração OPEC histórica, arquitetura feasibility/C-B-R, `pi_H > 0`,
