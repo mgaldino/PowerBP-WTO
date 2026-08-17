@@ -1,9 +1,11 @@
 # Gate 0 — Arquitetura essential-input
 
 **Data:** 2026-08-12
-**Status:** `APPROVED` — aprovado pelo autor em 2026-08-12 e emendado pelas
-decisões normativas do commit `162616d`. Autoriza o Goal 0; nenhum nó de
-derivação está autorizado antes das duas novas revisões independentes.
+**Status:** `APPROVED` — aprovado pelo autor em 2026-08-12, emendado pelas
+decisões normativas do commit `162616d` e pela decisão autoral de 2026-08-17
+sobre o escopo de stage-undominated voting. Autoriza o Goal 0; nenhum nó de
+derivação está autorizado antes das duas novas revisões independentes e da
+resolução de qualquer finding remanescente.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
 
@@ -46,24 +48,31 @@ redistribuído depois do ballot.
 *Observe:* `H` não recebe `o_theta` antes de o jogo terminar nem em data
 diferente da alocação recebida pelos weak states.
 
-**3. Cada um vota como se seu voto fosse o decisivo.** Em votação simultânea
-existe um problema conhecido: se ninguém sozinho muda o resultado, todo mundo
-pode votar qualquer coisa, e o modelo passa a admitir que todos rejeitem um bom
-acordo. Isso é patologia de votação, não descoberta sobre organizações. A
-correção padrão — usada por Baron e Ferejohn, que é a base do modelo — é exigir
-que cada votante escolha o que seria melhor **se seu voto decidisse**.
-*Observe:* isso é um refinamento declarado, e deve estar dito no paper como tal,
-não escondido dentro de uma prova.
+**3. Weak nonproposers não usam votos fracamente dominados.** Em votação
+simultânea existe um problema conhecido: vários weak states podem sustentar uma
+falha coordenada embora cada um preferisse aprovar se seu voto fosse decisivo.
+O baseline enfrenta essa patologia exigindo stage-undominated voting dos
+**weak nonproposers apenas**. Em R2, isso elimina a falha coordenada dos fracos;
+em R1, se a elimina é resultado a provar porque os vetores de votos podem
+induzir continuações distintas. `H` não está sujeito a essa restrição adicional:
+seu voto é disciplinado por racionalidade sequencial em PBE, porque pode mudar
+sua inclusão e seu payoff mesmo quando não altera a aprovação da proposta.
+*Observe:* a assimetria é deliberada e deve estar declarada no paper. Não se
+pode reaplicar undominância a `H` dentro de uma prova.
 
-**4. Empate conta como aceitação.** Quando a oferta dá a alguém exatamente o que
-ele teria recusando, a regra do item 3 não decide nada — as duas opções valem o
-mesmo, e nenhuma é pior. Precisa de uma convenção, e a convenção é: aceita. Sem
+**4. Empate conta como aceitação.** Quando os payoffs de `sim` e `não` são
+exatamente iguais no problema relevante do votante, a convenção é: aceita. Sem
 ela o proponente ficaria querendo oferecer "um centavo a mais que o mínimo", que
 não existe, e o modelo perde solução fechada. Nos documentos técnicos isso
-aparece como `T^Y`; é só isso que significa. O ballot usa apenas estratégias
-puras, e `T^Y` vale também quando a igualdade envolve continuação endógena.
-*Observe:* os itens 3 e 4 não competem. Um decide quando há preferência estrita,
-o outro quando há empate. A confusão entre os dois travou o trabalho em agosto.
+aparece como `T^Y`; é só isso que significa. A convenção vale para todos os
+votantes, inclusive `H`, nas duas rodadas e também quando a igualdade envolve
+continuação endógena. Ela não transforma igualdade em uma linha isolada em
+aceitação quando o mesmo votante tem preferência estrita no problema que
+efetivamente enfrenta.
+*Observe:* para weak nonproposers, primeiro se verifica a restrição do item 3 e,
+entre melhores respostas admissíveis realmente empatadas, aplica-se `T^Y`. Para
+`H`, PBE determina a melhor resposta e `T^Y` seleciona `sim` apenas na
+indiferença genuína.
 
 **5. O bolo é sempre o mesmo, com ou sem `H`.** Decisão sua, reafirmada, e
 definitiva para este paper. É menos realista, e é o preço de isolar o mecanismo.
@@ -170,9 +179,9 @@ derivação deve primeiro determinar qual ramo é ótimo:
 1. **Inclusão.** Se a proposta ótima inclui `H`, provar que o proponente oferece
    exatamente a reserva relevante do tipo conhecido e que `H` aceita na
    igualdade por `T^Y`. Em R2 a reserva é corrente; em R1 ela é a continuação
-   pública de R2 transportada uma única vez por `beta`. Esta cláusula permanece
-   condicionada à resolução do conflito ainda pendente, na Seção 5, entre `T^Y`
-   e stage-undominated voting para `H`.
+   pública de R2 transportada uma única vez por `beta`. Stage-undominated voting
+   não se aplica a `H`; sua aceitação deve satisfazer racionalidade sequencial e
+   a convenção de igualdade da Seção 5.
 2. **Exclusão sob maioria.** Se a proposta ótima exclui `H`, provar que ela fixa
    `y=0`, passa sem o voto de `H`, `H` vota `não` e recebe `o_theta` de fora na
    data da aprovação. Este ramo é inalcançável sob unanimidade.
@@ -308,8 +317,11 @@ substituir um voto fraco por `H`, com `y>0` e `q-2` votos fracos.
 ### Decisão: conceito de solução no ballot
 
 - **Escolha**: **PBE com estratégias puras no ballot e stage-undominated
-  voting**, mais a convenção `T^Y` de aceitação em toda igualdade. Os
-  instrumentos e sua divisão de trabalho estão especificados na Seção 5.
+  voting somente para weak nonproposers**, mais a convenção `T^Y` de aceitação
+  em toda igualdade para todos os votantes. `H` é disciplinado por racionalidade
+  sequencial em PBE e por `T^Y` quando estiver genuinamente indiferente. Decisão
+  do autor em 2026-08-17; os instrumentos e sua divisão de trabalho estão
+  especificados na Seção 5.
 - **Alternativas descartadas**:
   - *PBE sem restrição de votação (arquitetura pivotal-response)*:
     descartada porque admite equilíbrios de falha coordenada em que dois ou mais
@@ -317,14 +329,23 @@ substituir um voto fraco por `H`, com `y>0` e `q-2` votos fracos.
     pivotais. Isso destrói unicidade em `N >= 4` e torna as perguntas 1 e 2 da
     Seção 1 não respondíveis. Baron & Ferejohn (1989), base do modelo, excluem
     exatamente esses equilíbrios.
-  - *`T^Y` como substituto da undominância*: descartada porque a dicotomia é
-    falsa. Na igualdade a undominância não elimina ação alguma, logo não há o
-    que substituir. Os dois instrumentos operam em domínios disjuntos. Esta é a
-    resolução da pendência registrada em
+  - *`T^Y` como substituto da undominância dos weak nonproposers*: descartada
+    porque `T^Y` seleciona entre melhores respostas realmente empatadas, mas não
+    elimina uma ação fracamente dominada quando há comparação estrita contra
+    algum perfil relevante. Esta é a resolução da pendência registrada em
     `quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
-  - *Eliminação de dominância fraca sobre estratégias completas*: descartada
-    porque é dependente da ordem de eliminação e não é o objeto padrão da
-    literatura de barganha legislativa.
+  - *Stage-undominated voting aplicado também a `H`*: descartada porque, sob
+    execução integral, a linha não pivotal é estruturalmente diferente para
+    `H`. Um weak nonproposer recebe `x_j` com qualquer voto quando a proposta
+    passa sem ele; `H` recebe `y` votando `sim` e `y+o_theta` votando `não`
+    quando a proposta passa sem seu voto. Em uma igualdade na linha pivotal,
+    essa linha não pivotal pode fazer `não` fracamente dominar `sim` para `H`,
+    em conflito com a aceitação na igualdade.
+  - *Eliminação ordenada weak-first e depois `H`*: descartada porque seria uma
+    seleção lexicográfica adicional. Eliminação iterada de dominância fraca é
+    dependente da ordem em geral, e a continuação após vetores off-path de R1
+    impede tratar a prioridade weak-first como consequência automática das
+    primitivas. A ordem não será inserida dentro de uma derivação.
 
 ### Decisão: a pie não depende de `H`
 
@@ -446,8 +467,10 @@ inalcançável, e sob maioria sua exclusão do caminho deve decorrer da prova de
 (ii); e (iv)
 votos e demais ações fracas são não informativos sobre `theta`, de modo que o
 posterior depende apenas do voto do próprio `H`. A quarta obrigação deve ser
-demonstrada por Bayes a partir de `pi_H=0` e do fato de nenhum weak state observar
-`theta`.
+demonstrada por Bayes nas histórias on-path a partir de `pi_H=0` e do fato de
+nenhum weak state observar `theta`. Para histórias off-path, as crenças devem ser
+explicitadas e a extensão do lema verificada; PBE sozinho não autoriza impor a
+mesma atualização.
 
 ---
 
@@ -460,61 +483,86 @@ ballot é componente explícito do assessment e não é restringida por Bayes; o
 proponente desviante avalia seu desvio com a distribuição verdadeira
 pré-proposta.
 
-**Refinamento — stage-undominated voting.** Em cada ballot, tomando como dados
-os valores de continuação induzidos pelo próprio assessment, a ação de cada
-votante não pode ser fracamente dominada no stage game daquele ballot. Uma ação
-`a` é eliminada quando existe `a'` que dá payoff pelo menos igual contra todo
-perfil dos demais votos e estritamente maior contra algum.
+**Refinamento — stage-undominated voting apenas para weak nonproposers.** Em
+cada ballot, tomando como dados os valores de continuação induzidos pelo próprio
+assessment, a ação prescrita para cada weak nonproposer não pode ser fracamente
+dominada no stage game daquele ballot. Uma ação `a_j` é eliminada quando existe
+`a'_j` que dá ao weak state payoff interim pelo menos igual contra todo perfil
+dos demais votos e estritamente maior contra algum. O refinamento não se aplica
+ao proponente, que não vota, nem a `H`.
 
-Isto é refinamento de PBE implementado como **restrição de estratégias**, não de
-crenças. Não pertence à família sequential equilibrium / D1 / intuitive
-criterion. É condição de ponto fixo: o assessment é admissível se, em cada
-information set de ballot, a ação prescrita é não dominada no stage game
-induzido por aquele mesmo assessment.
+Isto é refinamento de PBE implementado como **restrição de estratégias dos weak
+nonproposers**, não de crenças. Não pertence à família sequential equilibrium /
+D1 / intuitive criterion. É condição de ponto fixo: o assessment é admissível
+se, em cada information set de ballot de um weak nonproposer, a ação prescrita é
+não dominada no stage game induzido por aquele mesmo assessment. PBE continua
+impondo racionalidade sequencial a todos os jogadores, inclusive `H`.
 
-**O que ele elimina.** Para o não proponente fraco `j`, com pagamento `x_j` e
-continuação `c_j`:
+**O que ele elimina em R2.** Como R2 é terminal, a continuação de qualquer weak
+state após falha é zero. Para o weak nonproposer `j`:
 
 ```text
 perfil dos outros                 sim      não
-j é pivotal                       x_j      c_j
+j é pivotal                       x_j      0
 quota passa mesmo sem j           x_j      x_j
-quota falha mesmo com j           c_j      c_j
+quota falha mesmo com j           0        0
 ```
 
-Se `x_j > c_j`, o `não` é fracamente dominado e sai; se `x_j < c_j`, o `sim`
-sai. A eliminação é unilateral, logo mata os equilíbrios de falha coordenada
-independentemente do que os outros fracos façam.
+Se `x_j>0`, `não` é fracamente dominado por `sim`. Se `x_j=0`, as ações dão o
+mesmo payoff em todo perfil e a convenção de igualdade seleciona `sim`. Assim, o
+refinamento elimina em R2 a falha coordenada sustentada por votos fracos contra
+uma oferta estritamente positiva. Esta conclusão terminal não pode ser
+transportada para R1 sem verificar as continuações.
 
-**Convenção de igualdade — `T^Y`.** Em `x_j = c_j` as duas colunas são idênticas
-em toda linha. Nenhuma ação domina a outra e a undominância é **silenciosa**.
-`T^Y` decide: o agente aceita em **toda** igualdade entre o payoff de `sim` e o
-payoff de `não`, inclusive quando o valor de continuação é endógeno ao próprio
-assessment. A regra vale para todos os votantes e nas duas rodadas. Com a
-restrição a estratégias puras, ela exclui mistura no ballot. Sua função é fechar
-o conjunto de ofertas aprováveis, garantir máximos e evitar argumentos de
-epsilon e ínfimos não atingidos.
-
-Os dois instrumentos têm domínios disjuntos:
+**Ressalva obrigatória em R1.** Quando uma proposta de R1 falha, o vetor
+completo de votos torna-se público. Para um perfil `v_{-j}` dos demais votos, a
+tabela relevante é:
 
 ```text
-x_j > c_j  ou  x_j < c_j   ->  undominância decide
-x_j = c_j                  ->  undominância silenciosa, T^Y decide
+perfil dos outros                 sim                         não
+j é pivotal                       x_j                         beta*C_j(h^não)
+quota passa mesmo sem j           x_j                         x_j
+quota falha mesmo com j           beta*C_j(h^sim)             beta*C_j(h^não)
 ```
 
-**Aplicação a `H`.** A undominância se aplica igualmente a `H`. Nota antecipada
-para a derivação, a ser verificada e não assumida: quando o assessment faz a
-continuação de R2 depender do voto de `H`, a ação de `H` é payoff-relevante em
-todo perfil e a undominância tende a ficar slack, com o PBE já determinando a
-melhor resposta em esperança. Onde as crenças não respondem ao voto de `H`, sua
-decisão reduz-se à comparação na linha de aprovação.
+As histórias públicas `h^sim` e `h^não` podem induzir crenças e continuações
+distintas, sobretudo fora do caminho. Portanto não se pode substituir essa
+tabela por uma única constante `c_j`, nem afirmar de antemão que um voto fraco é
+dominado independentemente de `H` ou dos demais votos. `N3` e `N4` devem
+verificar a dominância contra todos os perfis e valores de continuação do
+assessment. Se o refinamento não eliminar toda multiplicidade relevante em R1,
+reportar o conjunto sobrevivente; não acrescentar uma restrição de crenças ou
+uma ordem de eliminação.
 
-Sob maioria, a IC de `H` deve preservar também o ramo em que ele não é pivotal.
-Se a proposta passa qualquer que seja seu voto, `sim` paga `y`, enquanto `não`
-paga `y+o_theta`; portanto `sim` não domina `não`. Com estratégias puras, a
-pivotalidade de `H` no caminho deve ser derivada da proposta e das estratégias
-dos weak states. O termo `y+o_theta` não pode ser apagado dos perfis fora do
-caminho nem da construção da IC de `H`.
+**Convenção de igualdade — `T^Y`.** Depois de impor racionalidade sequencial e,
+para weak nonproposers, a restrição de stage-undominance, `T^Y` seleciona `sim`
+quando os payoffs interim de `sim` e `não` são exatamente iguais no information
+set relevante. A regra vale para todos os votantes e nas duas rodadas, inclusive
+quando o valor de continuação é endógeno ao próprio assessment. Com a restrição
+a estratégias puras, ela exclui mistura no ballot. Sua função é fechar o
+conjunto de ofertas aprováveis, garantir máximos e evitar argumentos de epsilon
+e ínfimos não atingidos. Uma igualdade em apenas uma linha da tabela não aciona
+`T^Y` se o problema relevante do votante contém uma preferência estrita.
+
+```text
+weak nonproposer -> PBE + stage-undominance; em indiferença genuína, T^Y
+H                -> PBE; em indiferença genuína, T^Y
+```
+
+**Aplicação a `H`.** Stage-undominated voting **não se aplica a `H`**. Sua ação
+deve ser uma melhor resposta sequencial no assessment. Se os payoffs das duas
+ações forem iguais, `T^Y` seleciona `sim`; se forem distintos, PBE seleciona a
+ação de maior payoff.
+
+Sob maioria, a IC de `H` deve preservar o ramo em que ele não é pivotal. Se a
+proposta passa qualquer que seja seu voto, `sim` paga `y`, enquanto `não` paga
+`y+o_theta`; como `o_theta>0`, `não` é estritamente melhor. A origem do conflito
+de protocolo agora resolvido é estrutural: um weak nonproposer não pivotal
+recebe `x_j` com qualquer voto, mas `H` não pivotal tem acesso adicional a
+`o_theta` ao ficar fora do acordo. Com estratégias puras, a pivotalidade de `H`
+no caminho deve ser derivada da proposta e das estratégias dos weak states. O
+termo `y+o_theta` não pode ser apagado dos perfis fora do caminho nem da
+construção da IC de `H`.
 
 **Tie-break no nível da proposta.** Entre propostas que maximizam o payoff do
 proponente, seleciona-se a que minimiza o payoff esperado de `H`. Esta seleção é
@@ -525,9 +573,14 @@ ao resultado de interesse.
 expressão `weak-vote-passive assessment` pode nomear apenas o resultado a ser
 provado; ela não é suposição nem refinamento. Sob `pi_H=0`, nenhum weak state,
 inclusive o proponente, observa `theta`, de modo que nenhuma estratégia fraca
-pode condicionar diretamente no tipo. `N4` deve demonstrar por Bayes que ações
-fracas são não informativas sobre `theta` e que o posterior depende apenas do
-voto do próprio `H`. O voto de `H` permanece informativo e atualiza crenças.
+pode condicionar diretamente no tipo. On path, `N4` deve demonstrar por Bayes
+que ações fracas são não informativas sobre `theta` e que o posterior depende
+apenas do voto do próprio `H`. Fora do caminho, PBE não disciplina crenças por
+Bayes; o nó deve tornar explícitas as crenças após cada história relevante e
+verificar se o lema se estende. Se não se estender sob todos os assessments
+admissíveis necessários à caracterização, parar e escalar em vez de impor o
+resultado como restrição. O voto de `H` permanece informativo e atualiza
+crenças.
 
 ---
 
@@ -570,13 +623,14 @@ N6  Comparação           produto cartesiano dos assessments; delay e renda
 `N1` e `N2` são independentes e podem ser derivados em paralelo. `N3` consome
 `N1`; `N4` consome `N2`. `N6` consome diretamente `N3` e `N4`.
 
-**Sobre N4.** Com stage-undominated voting, `T^Y` em toda igualdade e estratégias
-puras no ballot, `N4` deve provar — não assumir — que o ramo de falha fraca sai
-do caminho, que não existe equilíbrio separating e se restam apenas pooling e
-falha deliberada. A decisão do autor antecipa que não haverá atraso em equilíbrio
-e que a opção de esperar precificará o acordo mesmo sem ser exercida; ambas as
-afirmações permanecem obrigações de prova. Nenhuma mistura pode ser introduzida
-para obter o efeito ratchet.
+**Sobre N4.** Com stage-undominated voting restrito aos weak nonproposers,
+`T^Y` em toda igualdade e estratégias puras no ballot, `N4` deve provar — não
+assumir — se o ramo de falha fraca sai do caminho, que não existe equilíbrio
+separating e se restam apenas pooling e falha deliberada. A decisão do autor
+antecipa que não haverá atraso em equilíbrio e que a opção de esperar
+precificará o acordo mesmo sem ser exercida; ambas as afirmações permanecem
+obrigações de prova. Nenhuma mistura pode ser introduzida para obter o efeito
+ratchet.
 
 Com `o_0>0`, a desigualdade estrita candidata `a_U<a_M` deixa de ter o ponto de
 fronteira que produzia igualdade, mas ainda deve ser verificada na derivação dos
@@ -674,8 +728,9 @@ e 2 da Seção 1, incluindo o desfecho negativo se for o caso.
 
 ## 9. Obrigações de prova que não podem ser assumidas
 
-As decisões de protocolo D1--D9 estão resolvidas. Os itens abaixo são resultados
-que a derivação deve provar sob essas decisões; nenhum pode ser inserido como
+As decisões de protocolo D1--D9 e a decisão autoral de 2026-08-17 sobre o escopo
+de stage-undominated voting estão resolvidas. Os itens abaixo são resultados que
+a derivação deve provar sob essas decisões; nenhum pode ser inserido como
 premissa ou orientação de resultado.
 
 **P0 — Uso integral da pie em equilíbrio.** A factibilidade permite
@@ -708,10 +763,14 @@ estratégias puras e `T^Y` em toda igualdade, se candidatos separating falham e
 se pooling ou falha deliberada esgotam os equilíbrios admissíveis. A ausência de
 delay também deve sair dessa prova, não da descrição do nó.
 
-**P4 — Não informatividade dos votos fracos.** `N4` deve provar por Bayes que,
-como nenhum weak state observa `theta`, suas ações são não informativas e o
-posterior depende apenas do voto de `H`. `Weak-vote-passive assessment` é o nome
-do lema, não uma restrição mantida de crenças.
+**P4 — Não informatividade dos votos fracos.** `N4` deve provar por Bayes, nas
+histórias on-path, que, como nenhum weak state observa `theta`, suas ações são
+não informativas e o posterior depende apenas do voto de `H`.
+`Weak-vote-passive assessment` é o nome do lema, não uma restrição mantida de
+crenças. Como PBE deixa livres crenças após histórias de probabilidade zero, o
+nó deve verificar separadamente se o lema se estende às histórias off-path
+relevantes. Se não se estender, registrar o finding e escalar; não converter o
+lema em assessment imposto.
 
 **P5 — Suficiência do posterior em R2.** Deve-se provar que, como R2 é terminal e
 o reconhecimento é iid com reposição, histórias públicas com o mesmo posterior
@@ -719,10 +778,11 @@ induzem o mesmo problema de maximização, sem impor estratégias Markov como
 restrição.
 
 **P6 — Unicidade on-path após o refinamento.** Espera-se que stage-undominated
-voting restaure unicidade no caminho de equilíbrio, mas isso deve ser **provado
-por nó**, não assumido. Crenças em propostas off-path permanecem livres e podem
-sustentar multiplicidade residual. Se sobrar multiplicidade que impeça responder
-às perguntas 1 e 2, parar e reportar, não adicionar seleção ad hoc.
+voting dos weak nonproposers restaure unicidade no caminho de equilíbrio, mas
+isso deve ser **provado por nó**, não assumido. Crenças em propostas e vetores de
+votos off-path permanecem livres e podem impedir dominância em R1 ou sustentar
+multiplicidade residual. Se sobrar multiplicidade que impeça responder às
+perguntas 1 e 2, parar e reportar, não adicionar seleção ad hoc.
 
 **P7 — Informatividade do voto de `H` em R1.** O voto de `H` é público e entra
 em `nu'`. Isso é o motor do mecanismo e não deve ser truncado. Mas gera um ramo
@@ -735,9 +795,8 @@ condicional à exclusão sob maioria, deve provar `y=0`, voto `não` de `H` e pa
 `o_theta` na data corrente; após falha em R1, deve importar uma única vez por
 `beta` o benchmark público de R2. A definição contrafactual é primária. A medida
 simples de excesso sobre a opção externa só pode ser usada no ramo e na data em
-que sua equivalência tiver sido provada. A parte de aceitação na igualdade
-permanece condicionada à decisão de protocolo pendente sobre `T^Y` e
-stage-undominated voting para `H`.
+que sua equivalência tiver sido provada. A aceitação de `H` na igualdade segue
+PBE e `T^Y`; stage-undominated voting não se aplica a `H`.
 
 ---
 
@@ -767,7 +826,12 @@ primitivas:
 - `weak-vote-passive assessment` chamado de refinamento ou imposto em vez de
   provado como lema;
 - mixed strategies no ballot ou exceção a `T^Y` em igualdade endógena;
-- stage-undominated voting descrito como restrição de crenças.
+- stage-undominated voting descrito como restrição de crenças, aplicado a `H`
+  ou estendido por uma eliminação ordenada weak-first;
+- igualdade em uma linha isolada usada para acionar `T^Y` apesar de preferência
+  estrita no problema relevante do votante;
+- uma única continuação `c_j` atribuída a todos os vetores de falha de R1 sem
+  provar que as histórias induzem o mesmo valor.
 
 ---
 
