@@ -86,11 +86,14 @@ hoje depende do que acontece amanhã.
 
 **Goal 1 — os nós terminais e R1 maioria.** Maioria nas duas rodadas, e
 unanimidade na segunda. A substituibilidade de `H` põe um teto em seu preço, mas
-não torna sua informação inerte por construção. `N3` deve derivar, sem orientação
-prévia, as regiões em que `H` é excluído nos dois tipos, incluído nos dois tipos
-ou screened porque apenas um tipo é mais barato que o voto fraco substituto.
-*Checar:* a dominância que elimina o hedge caro e as três regiões precisam sair
-como resultados, não entrar como suposições.
+não torna sua informação inerte por construção. `N3` deve resolver o jogo de R1
+maioria a partir das primitivas e da interface congelada de `N1`. Exclusão,
+inclusão e screening são rótulos diagnósticos aplicados somente depois da
+solução; nenhum deles organiza a derivação de antemão.
+*Checar:* a dominância que elimina o hedge caro e a partição do espaço de
+parâmetros precisam sair como resultados, não entrar como suposições. Se algum
+regime candidato for vazio ou aparecer um caso adicional, o resultado deve ser
+preservado e escalado, não forçado à classificação antecipada.
 
 **Goal 2 — a parte difícil.** Unanimidade na primeira rodada. É aqui que o paper
 se decide. Com estratégias puras no ballot e `T^Y` em toda igualdade, `N4` deve
@@ -298,11 +301,16 @@ Não há pagamentos laterais. Que propostas com folga orçamentária não sejam
     tem valor de continuação superior, isso aparece na IC; não precisa ser
     imposto.
 
-**Sem caracterização antecipada sob maioria.** Com `a` denotando o preço do voto
-fraco substituto em R1, `N3` deve derivar três regiões: ambos os tipos de `H`
-acima de `a`, ambos abaixo de `a`, e `o_0 < a < o_1`. A última admite screening
-sob maioria. Nenhuma região, condição de exclusão ou inércia informacional pode
-ser imposta antes da derivação.
+**Sem caracterização antecipada sob maioria.** `N3` deve derivar o equilíbrio de
+R1 maioria a partir das primitivas e da interface congelada de `N1`, sem
+introduzir um preço genérico para o voto substituto nem comparar diretamente
+`o_theta` com um cutoff pré-declarado. Os três desfechos econômicos identificados
+em D3 — exclusão de `H`, inclusão pooling e inclusão dependente do tipo com
+screening — são perguntas diagnósticas a responder depois da solução, não uma
+partição imposta ao problema. As fronteiras, os casos de igualdade, a não
+vacuidade dos regimes e sua exaustividade devem ser derivados. Se a solução
+produzir um regime adicional ou tornar algum dos três vazio, `N3` deve conservar
+esse resultado e escalá-lo, em vez de forçar a taxonomia.
 
 **Dominância a provar sob maioria.** Oferecer `y>0` e simultaneamente comprar
 `q-1` votos fracos de reserva na proposta `s=(y,x,r_i)` deve ser comparado com a
@@ -610,7 +618,8 @@ N2  R2 unanimidade       screening puro, sem sinalização (terminal).
                          M(nu) = max{G,L}, nu* = (o_1-o_0)/(1-o_0).
                          Rederivar sob as primitivas novas; não importar.
 N3  R1 maioria           prova a dominância que elimina o hedge e deriva as
-                         três regiões em torno do preço a do voto substituto.
+                         estratégias, crenças, payoffs e a partição de
+                         parâmetros a partir da interface congelada de N1.
 N4  R1 unanimidade       screening sequencial puro de dois períodos; prova ou
                          refuta separating e caracteriza pooling/falha.
 N6  Comparação           produto cartesiano dos assessments; delay e renda
@@ -632,9 +641,10 @@ precificará o acordo mesmo sem ser exercida; ambas as afirmações permanecem
 obrigações de prova. Nenhuma mistura pode ser introduzida para obter o efeito
 ratchet.
 
-Com `o_0>0`, a desigualdade estrita candidata `a_U<a_M` deixa de ter o ponto de
-fronteira que produzia igualdade, mas ainda deve ser verificada na derivação dos
-nós correspondentes.
+Com `o_0>0`, a decisão D8 antecipa que o custo de continuação de um voto fraco é
+estritamente menor sob unanimidade do que sob maioria. Esse ranking permanece
+apenas candidato: deve ser verificado nos nós correspondentes e não pode ser
+importado como input da derivação.
 
 ---
 
@@ -654,8 +664,9 @@ Goal 0  Contrato e infraestrutura
 
 Goal 1  Nós baratos — N1, N2, N3
         N1 e N2 em paralelo; N3 consome N1. N3 deriva a dominância do hedge e
-        as três regiões, sem assumir informação privada inerte. Um ciclo de
-        revisão ao final do batch, não por nó.
+        a partição completa de seu espaço de parâmetros diretamente do jogo,
+        sem assumir informação privada inerte. Um ciclo de revisão ao final do
+        batch, não por nó.
 
 Goal 2  Nó caro — N4
         R1 unanimidade, sozinho, com ciclo de revisão próprio. Consome a
@@ -752,11 +763,18 @@ inalcançável porque o `não` de `H` derruba a proposta. Sob maioria, a conclus
 deve seguir da prova de P1, não de uma regra de implementação que destrua ou
 reverta `y`. A obrigação não elimina a exclusão com `y=0`, preservada em P2.
 
-**P2 — Três regiões de N3.** Com `a` como preço do voto fraco substituto, `N3`
-deve derivar separadamente os casos em que ambos os tipos de `H` estão acima de
-`a`, ambos abaixo, e `o_0<a<o_1`. Inércia informacional sob maioria não é
-premissa. Nos pontos `o_theta=a`, a fronteira deve respeitar `T^Y`, que exige
-aceitação na igualdade.
+**P2 — Caracterização de N3 desde as primitivas.** `N3` deve resolver R1 maioria
+por indução retroativa, consumindo apenas a interface congelada de `N1`. Para
+cada proposta factível e perfil de ações no ballot, os payoffs devem ser
+construídos pelas transições e pelos desfechos terminais da Seção 4; quando a
+história continua, a interface de `N1` é transportada para R1 conforme a
+convenção temporal da Seção 6. Estratégias e crenças devem então satisfazer o
+conceito de solução da Seção 5. Exclusão, inclusão pooling e screening são
+rótulos aplicados à correspondência obtida, não regiões assumidas antes da
+solução. `N3` deve derivar suas fronteiras, tratar as igualdades conforme `T^Y`
+e demonstrar se os regimes candidatos são não vazios e exaustivos. Se aparecer
+outro regime, ou se algum deles for vazio, deve registrar e escalar o resultado,
+não suprimi-lo para reproduzir D3.
 
 **P3 — Inexistência de separating em R1 unanimidade.** `N4` deve provar, sob
 estratégias puras e `T^Y` em toda igualdade, se candidatos separating falham e
@@ -814,7 +832,8 @@ primitivas:
   integralmente e `H` recebe `y+o_theta` se ela passa com seu voto `não`;
 - redução exaustiva a `P/L/R`; rejected-history reduction lemma;
 - maioria como benchmark geral de no-screening, exclusão geral ou inclusão
-  geral — `N3` deve derivar as três regiões em torno do preço substituto;
+  geral — `N3` deve derivar a correspondência e sua partição de parâmetros
+  diretamente das primitivas; os regimes são rótulos diagnósticos ex post;
 - afirmação universal de que o benchmark público inclui `H` sob ambas as regras,
   ou substituição global do contrafactual por `U_H-o_theta`; inclusão, exclusão,
   continuação e data devem ser derivadas por ramo;
