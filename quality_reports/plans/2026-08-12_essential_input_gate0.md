@@ -3,18 +3,41 @@
 **Data:** 2026-08-12
 **Status:** `APPROVED` — aprovado pelo autor em 2026-08-12, emendado pelas
 decisões normativas do commit `162616d` e pela decisão autoral de 2026-08-17
-sobre o escopo de stage-undominated voting. Autoriza o Goal 0; nenhum nó de
-derivação está autorizado antes das duas novas revisões independentes e da
-resolução de qualquer finding remanescente.
+sobre o escopo de stage-undominated voting, as obrigações de prova e o protocolo
+de revisão. Autoriza o Goal 0; nenhum nó de derivação está autorizado antes das
+duas novas revisões independentes e da resolução de qualquer finding
+remanescente.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
+
+### Regra de fonte normativa única
+
+Cada regra deste contrato tem **uma única fonte canônica**. Menções fora dessa
+fonte servem apenas para explicar, usar o objeto já definido ou apontar para a
+seção correspondente; não podem qualificá-lo, ampliá-lo nem criar exceções.
+
+| Conteúdo normativo | Fonte única |
+|---|---|
+| status e autorização da fase | cabeçalho acima |
+| estimando e escopo da comparação | Seção 1 |
+| primitivas e factibilidade | Seção 2 |
+| transições, informação e payoffs terminais | Seção 4 |
+| conceito de solução | Seção 5 |
+| unidades temporais e desconto | Seção 6 |
+| nós, arestas e schema | Seções 7 e 7.2 |
+| entregáveis e hashes das interfaces | Seção 8 |
+| obrigações de prova | Seção 9 |
+| materiais históricos que não podem ser transportados | Seção 10 |
+| prontidão, congelamento, revisão, gates, findings e reporte | Seção 11 |
+| invalidação | Seção 12 |
+| fronteira de versão e artefatos protegidos | Seção 13 |
 
 ---
 
 ## Leitura para aprovação — sem jargão
 
-Esta seção é para o autor decidir se o desenho está alinhado com o que ele quer.
-As seções numeradas depois são para quem implementa.
+Esta seção explica a intuição para o autor. Ela não contém regras adicionais:
+as definições e obrigações formais estão somente nas fontes indicadas acima.
 
 ### O que o paper quer mostrar
 
@@ -29,86 +52,46 @@ O ponto é que a unanimidade transforma a informação privada dele em renda.
 
 ### As cinco decisões centrais, e o que observar
 
-**1. Ninguém tem botão de saída.** Todos votam sim ou não, e um não é só um não.
-Antes, o não de `H` significava "saio da organização para sempre", e nenhum
-acordo futuro podia incluí-lo. Isso dava a `H` um poder que os fracos não tinham
-e, pior, impedia `H` de recusar hoje para negociar melhor amanhã — que é
-justamente o mecanismo que queremos.
-*Observe:* se em algum momento reaparecer a ideia de que `H` "sai" ao votar não,
-está errado.
+**1. Ninguém tem botão de saída.** A arquitetura anterior confundia votar não
+com abandonar definitivamente a organização. Isso dava a `H` um privilégio que
+os fracos não tinham e eliminava a possibilidade de rejeitar hoje e negociar
+amanhã. O espaço de ações vigente está na Seção 4; a justificativa da escolha,
+na Seção 3.
 
-**2. A alternativa externa de `H` é o que ele recebe quando fica fora do
-acordo.** Isso ocorre se uma proposta passa sem `H` ou se R2 termina sem acordo.
-Todos são pagos na data em que o jogo termina: aprovação em R1, aprovação em R2
-ou falha de R2. Antes, `H` acessava sua alternativa em R1 enquanto os fracos só
-acessavam continuações descontadas, inflando artificialmente seu preço.
-Se uma proposta passa sem `H`, a coordenada `y` votada continua sendo paga a
-`H`, além de `o_theta`, que vem de fora da pie. `y` não é destruído nem
-redistribuído depois do ballot.
-*Observe:* `H` não recebe `o_theta` antes de o jogo terminar nem em data
-diferente da alocação recebida pelos weak states.
+**2. A alternativa externa não pode distorcer o relógio.** O erro anterior
+permitia que `H` acessasse sua alternativa numa data enquanto os fracos eram
+avaliados noutra. A forma extensiva e os payoffs terminais estão na Seção 4; a
+conversão entre datas, na Seção 6.
 
-**3. Weak nonproposers não usam votos fracamente dominados.** Em votação
-simultânea existe um problema conhecido: vários weak states podem sustentar uma
-falha coordenada embora cada um preferisse aprovar se seu voto fosse decisivo.
-O baseline enfrenta essa patologia exigindo stage-undominated voting dos
-**weak nonproposers apenas**. Em R2, isso elimina a falha coordenada dos fracos;
-em R1, se a elimina é resultado a provar porque os vetores de votos podem
-induzir continuações distintas. `H` não está sujeito a essa restrição adicional:
-seu voto é disciplinado por racionalidade sequencial em PBE, porque pode mudar
-sua inclusão e seu payoff mesmo quando não altera a aprovação da proposta.
-*Observe:* a assimetria é deliberada e deve estar declarada no paper. Não se
-pode reaplicar undominância a `H` dentro de uma prova.
+**3. O protocolo precisa lidar com falha coordenada.** Em votação simultânea,
+vários weak states podem sustentar uma rejeição mesmo quando cada um aprovaria
+se fosse decisivo. O conceito escolhido enfrenta essa patologia sem apagar a
+assimetria substantiva entre `H` e os fracos. Seu escopo exato está somente na
+Seção 5; o que ainda precisa ser demonstrado, na Seção 9.
 
-**4. Empate conta como aceitação.** Quando os payoffs de `sim` e `não` são
-exatamente iguais no problema relevante do votante, a convenção é: aceita. Sem
-ela o proponente ficaria querendo oferecer "um centavo a mais que o mínimo", que
-não existe, e o modelo perde solução fechada. Nos documentos técnicos isso
-aparece como `T^Y`; é só isso que significa. A convenção vale para todos os
-votantes, inclusive `H`, nas duas rodadas e também quando a igualdade envolve
-continuação endógena. Ela não transforma igualdade em uma linha isolada em
-aceitação quando o mesmo votante tem preferência estrita no problema que
-efetivamente enfrenta.
-*Observe:* para weak nonproposers, primeiro se verifica a restrição do item 3 e,
-entre melhores respostas admissíveis realmente empatadas, aplica-se `T^Y`. Para
-`H`, PBE determina a melhor resposta e `T^Y` seleciona `sim` apenas na
-indiferença genuína.
+**4. A aceitação na igualdade fecha o problema do proponente.** Sem uma regra
+para indiferença, o melhor contrato pode virar apenas um ínfimo não atingido. A
+definição e seu domínio estão exclusivamente na Seção 5.
 
-**5. O bolo é sempre o mesmo, com ou sem `H`.** Decisão sua, reafirmada, e
-definitiva para este paper. É menos realista, e é o preço de isolar o mecanismo.
-*Observe:* se alguém propuser que o acordo vale menos sem `H` "porque é mais
-realista", é alternativa já eliminada. Vai para outro paper.
+**5. O bolo é mantido fixo para isolar o mecanismo.** É uma escolha menos
+realista, mas impede que contribuição produtiva e renda informacional sejam
+confundidas. A primitiva está na Seção 2; as alternativas descartadas, na
+Seção 3.
 
 ### Como o trabalho é dividido, e o que checar em cada etapa
 
 Resolve-se de trás para frente: a última rodada primeiro, porque a decisão de
 hoje depende do que acontece amanhã.
 
-**Goal 1 — os nós terminais e R1 maioria.** Maioria nas duas rodadas, e
-unanimidade na segunda. A substituibilidade de `H` põe um teto em seu preço, mas
-não torna sua informação inerte por construção. `N3` deve resolver o jogo de R1
-maioria a partir das primitivas e da interface congelada de `N1`. Exclusão,
-inclusão e screening são rótulos diagnósticos aplicados somente depois da
-solução; nenhum deles organiza a derivação de antemão.
-*Checar:* a dominância que elimina o hedge caro e a partição do espaço de
-parâmetros precisam sair como resultados, não entrar como suposições. Se algum
-regime candidato for vazio ou aparecer um caso adicional, o resultado deve ser
-preservado e escalado, não forçado à classificação antecipada.
+**Goal 1 — nós terminais e R1 maioria.** Resolve `N1`, `N2` e `N3` conforme a
+topologia da Seção 7 e testa as obrigações correspondentes da Seção 9.
 
-**Goal 2 — a parte difícil.** Unanimidade na primeira rodada. É aqui que o paper
-se decide. Com estratégias puras no ballot e `T^Y` em toda igualdade, `N4` deve
-provar — não assumir — se pode existir equilíbrio separating e se a opção de
-espera gera renda mesmo sem atraso realizado.
-*Checar:* a inexistência de separating e a ausência de atraso são obrigações de
-prova condicionadas à restrição a estratégias puras, não primitivas escondidas.
+**Goal 2 — o nó decisivo.** Resolve `N4` conforme as Seções 7, 9 e 11.
 
-**Goal 3 — juntar tudo e responder.** Comparação entre as regras, condicional à
-organização existir sob ambas. Ao final desta etapa, apresentação do equilíbrio,
-da intuição e do take away substantivo, em linguagem corrente. A decisão de
-entry fica fora do baseline e é extensão futura.
+**Goal 3 — comparação.** Resolve `N6` no escopo definido na Seção 1 e entrega o
+objeto especificado na Seção 8.
 
-**Goal 4 — levar para o manuscrito.** Só depois que dois revisores independentes
-aprovarem sem ressalvas.
+**Goal 4 — manuscrito.** A migração segue exclusivamente os gates da Seção 11.
 
 ---
 
@@ -172,36 +155,14 @@ regras; a decisão de formação não integra este jogo.
 **Estimando da renda informacional.** Para cada regra e tipo, renda
 informacional é a diferença entre o payoff de `H` no jogo com informação privada
 e seu payoff no mesmo jogo com `theta` público desde `t=0`, mantendo todas as
-demais primitivas e o protocolo idênticos. Cada nó deve exportar esse benchmark;
-a renda é calculada como diferença e nunca inferida do excesso sobre `o_theta`.
+demais primitivas e o protocolo idênticos. O campo que carrega esse contrafactual
+está no schema da Seção 7.2; a obrigação de resolvê-lo por ramos está somente em
+P8, na Seção 9. A renda nunca é definida pelo excesso sobre `o_theta`.
 
-**Lema do benchmark público, por ramos.** O jogo com `theta` público deve ser
-resolvido, não substituído por um payoff imposto. Para cada regra, tipo e nó, a
-derivação deve primeiro determinar qual ramo é ótimo:
-
-1. **Inclusão.** Se a proposta ótima inclui `H`, provar que o proponente oferece
-   exatamente a reserva relevante do tipo conhecido e que `H` aceita na
-   igualdade por `T^Y`. Em R2 a reserva é corrente; em R1 ela é a continuação
-   pública de R2 transportada uma única vez por `beta`. Stage-undominated voting
-   não se aplica a `H`; sua aceitação deve satisfazer racionalidade sequencial e
-   a convenção de igualdade da Seção 5.
-2. **Exclusão sob maioria.** Se a proposta ótima exclui `H`, provar que ela fixa
-   `y=0`, passa sem o voto de `H`, `H` vota `não` e recebe `o_theta` de fora na
-   data da aprovação. Este ramo é inalcançável sob unanimidade.
-3. **Continuação ou falha.** Se R1 falha, não há pagamento e o benchmark de R1
-   importa a interface pública de R2 uma única vez por `beta`. Se R2 falha, `H`
-   recebe `o_theta` na data terminal e os weak states recebem zero.
-
-Qual ramo prevalece é resultado, não primitiva. Somente depois de provar o lema
-no ramo pertinente a exposição pode substituir o contrafactual por uma medida
-simples de payoff menos opção externa, com a opção externa transportada para a
-data correta. Essa equivalência não é global entre ramos nem entre regras.
-
-**Escopo da resposta sobre delay.** O ballot é restrito a estratégias puras e
-`T^Y` vale em toda igualdade. A decisão do autor antecipa ausência de atraso sob
-essa restrição, mas `N4` deve prová-la. O paper deverá declarar que a renda vem
-da opção de atraso, não necessariamente de seu exercício, e que a ausência de
-delay é condicionada à restrição a puras.
+**Benchmark público e delay.** Qual ramo prevalece no jogo com `theta` público
+é resultado, não parte da definição do estimando. P8 é a única fonte do lema
+necessário para usar qualquer medida simplificada. A existência de separating e
+de atraso é testada por P3 sob o conceito da Seção 5.
 
 **Candidato substantivo, não premissa.** A decisão do autor antecipa que a
 inexistência de separating fará a opção de espera sustentar renda
@@ -225,9 +186,8 @@ Os dois desfechos são informativos, e nenhum é fracasso:
 
 **Compromisso operacional.** Qualquer que seja o desfecho, ele é reportado como
 saiu. Não é permitido ajustar primitiva, protocolo ou conceito de solução para
-mudar o resultado depois de vê-lo. Se um ajuste parecer justificado por outra
-razão, ele reabre o Gate 0 e a derivação recomeça declaradamente, não como
-reparo local.
+mudar o resultado depois de vê-lo. Qualquer mudança segue exclusivamente a
+regra de invalidação da Seção 12.
 
 ---
 
@@ -235,18 +195,18 @@ reparo local.
 
 ```text
 Jogadores      H mais m = N-1 weak states, N >= 3 genérico
-Tipo           theta in {0,1}, privado de H, prior comum mu = Pr(theta=1)
+Tipo           theta in {0,1}, prior mu = Pr(theta=1); observação na Seção 4
 Pie            surplus institucional fixo, normalizado em 1
 Pacote         alocação s = (y, (x_j)_{j in W sem i}, r_i), com
                0 <= y <= y_bar, x_j >= 0, r_i >= 0 e
                y + sum_j x_j + r_i <= 1; y é destinado a H
-Payoff de H    se a proposta passa: y quando H vota sim; y+o_theta quando H
-               vota não e a proposta passa sem ele; se R2 falha: o_theta;
-               b_theta = 0
-Desacordo      weak state: 0;  H: o_theta, com 0 < o_0 < o_1 <= y_bar <= 1
+Benefício      b_theta = 0
+Desacordo      weak state: 0; H: o_theta externo à pie, com
+               0 < o_0 < o_1 <= y_bar <= 1
 Agenda         pi_H = 0 em toda rodada; só weak states propõem
 Reconhecimento sorteios iid com reposição, uniformes entre os m weak states;
                todos seguem elegíveis em R2, inclusive o proponente de R1
+Side payments inexistentes
 Desconto       beta in (0,1]
 Rodadas        duas; R2 terminal
 ```
@@ -254,23 +214,22 @@ Rodadas        duas; R2 terminal
 `o_theta` é primitivo. Mapeamentos como `o_theta = alpha V(theta)` pertencem a
 aplicação, ilustração numérica ou microfundamento, e não são impostos.
 
-A opção externa de `H` é **externa à pie institucional**. Se uma proposta passa
-com voto `não` de `H`, ele fica fora do acordo, recebe `o_theta` de fora na data
-da aprovação **e recebe `y` como escrito na proposta**. Toda coordenada da
-alocação aprovada é executada integralmente, para todos os destinatários,
-independentemente do voto: nada é destruído e nada é realocado depois do ballot.
-Se R2 falha, `H` recebe `o_theta` e os weak states recebem zero na data terminal.
-Não há pagamentos laterais. Que propostas com folga orçamentária não sejam
-ótimas é resultado a provar, não restrição adicional ao conjunto factível.
+A opção externa de `H` não entra na restrição de factibilidade da pie. A função
+de implementação e todos os payoffs terminais estão definidos exclusivamente na
+Seção 4; sua comparação entre datas segue a Seção 6. A desigualdade no conjunto
+factível não pode ser substituída por igualdade antes da prova P0 da Seção 9.
 
 ---
 
 ## 3. Decisões de desenho
 
+Esta seção registra a razão das escolhas e as alternativas descartadas. A
+especificação formal correspondente permanece exclusivamente nas Seções 2,
+4, 5 e 6.
+
 ### Decisão: espaço de ações no ballot
 
-- **Escolha**: conjuntos de ação **simétricos**. Todos os não proponentes votam
-  `{sim, não}`. Ninguém tem ação de saída. O voto de `H` é apenas um voto.
+- **Escolha**: o espaço de ações definido na Seção 4.
 - **Alternativas descartadas**:
   - *Opt-out imediato e irreversível de `H` (arquitetura pivotal-response)*:
     descartada porque dá a `H` um privilégio de ação que `W` não tem,
@@ -286,10 +245,8 @@ Não há pagamentos laterais. Que propostas com folga orçamentária não sejam
 
 ### Decisão: estatuto de `o_theta`
 
-- **Escolha**: `o_theta` é o **payoff de desacordo individual** de `H`, realizado
-  quando o jogo termina sem `H`: na data em que uma proposta passa sem ele ou,
-  se nada passa, ao fim de R2. Recebe o mesmo tratamento de data e desconto que
-  as alocações dos weak states na mesma história terminal.
+- **Escolha**: a natureza externa definida na Seção 2, a realização terminal da
+  Seção 4 e o tratamento entre datas da Seção 6.
 - **Alternativas descartadas**:
   - *`o_theta` disparado imediatamente pelo voto `não` de `H` em R1, mesmo sem
     o jogo terminar*: descartada porque cria uma assimetria de timing — `H`
@@ -301,35 +258,13 @@ Não há pagamentos laterais. Que propostas com folga orçamentária não sejam
     tem valor de continuação superior, isso aparece na IC; não precisa ser
     imposto.
 
-**Sem caracterização antecipada sob maioria.** `N3` deve derivar o equilíbrio de
-R1 maioria a partir das primitivas e da interface congelada de `N1`, sem
-introduzir um preço genérico para o voto substituto nem comparar diretamente
-`o_theta` com um cutoff pré-declarado. Os três desfechos econômicos identificados
-em D3 — exclusão de `H`, inclusão pooling e inclusão dependente do tipo com
-screening — são perguntas diagnósticas a responder depois da solução, não uma
-partição imposta ao problema. As fronteiras, os casos de igualdade, a não
-vacuidade dos regimes e sua exaustividade devem ser derivados. Se a solução
-produzir um regime adicional ou tornar algum dos três vazio, `N3` deve conservar
-esse resultado e escalá-lo, em vez de forçar a taxonomia.
-
-**Dominância a provar sob maioria.** Oferecer `y>0` e simultaneamente comprar
-`q-1` votos fracos de reserva na proposta `s=(y,x,r_i)` deve ser comparado com a
-proposta alternativa `s'=(0,x,r_i+y)`, que compra os mesmos votos fracos e é
-factível sempre que `s` é. Esta é uma comparação **ex ante entre duas
-propostas**, não realocação depois do ballot. Que `s` seja estritamente dominada
-por `s'` é obrigação de prova de `N3`, apoiada na pie fixa e na execução integral
-de `y`; não é restrição do espaço de propostas. Uma vez provada, restam para
-comparação a exclusão com `y=0` e `q-1` votos fracos, ou a tentativa de
-substituir um voto fraco por `H`, com `y>0` e `q-2` votos fracos.
+As consequências para maioria não são decisões de desenho. Elas estão
+exclusivamente nas obrigações P1, P1a e P2 da Seção 9.
 
 ### Decisão: conceito de solução no ballot
 
-- **Escolha**: **PBE com estratégias puras no ballot e stage-undominated
-  voting somente para weak nonproposers**, mais a convenção `T^Y` de aceitação
-  em toda igualdade para todos os votantes. `H` é disciplinado por racionalidade
-  sequencial em PBE e por `T^Y` quando estiver genuinamente indiferente. Decisão
-  do autor em 2026-08-17; os instrumentos e sua divisão de trabalho estão
-  especificados na Seção 5.
+- **Escolha**: o conceito definido exclusivamente na Seção 5, conforme decisão
+  do autor em 2026-08-17.
 - **Alternativas descartadas**:
   - *PBE sem restrição de votação (arquitetura pivotal-response)*:
     descartada porque admite equilíbrios de falha coordenada em que dois ou mais
@@ -344,11 +279,11 @@ substituir um voto fraco por `H`, com `y>0` e `q-2` votos fracos.
     `quality_reports/2026-08-05_goal3_accept_at_equality_pending.md`.
   - *Stage-undominated voting aplicado também a `H`*: descartada porque, sob
     execução integral, a linha não pivotal é estruturalmente diferente para
-    `H`. Um weak nonproposer recebe `x_j` com qualquer voto quando a proposta
-    passa sem ele; `H` recebe `y` votando `sim` e `y+o_theta` votando `não`
-    quando a proposta passa sem seu voto. Em uma igualdade na linha pivotal,
-    essa linha não pivotal pode fazer `não` fracamente dominar `sim` para `H`,
-    em conflito com a aceitação na igualdade.
+    `H`, conforme a Tabela 1. Um weak nonproposer recebe `x_j` com qualquer
+    voto quando a proposta passa sem ele; `H` recebe `y` votando `sim` e
+    `y+o_theta` votando `não` quando a proposta passa sem seu voto. Em uma
+    igualdade na linha pivotal, essa linha não pivotal pode fazer `não`
+    fracamente dominar `sim` para `H`, em conflito com a aceitação na igualdade.
   - *Eliminação ordenada weak-first e depois `H`*: descartada porque seria uma
     seleção lexicográfica adicional. Eliminação iterada de dominância fraca é
     dependente da ordem em geral, e a continuação após vetores off-path de R1
@@ -357,12 +292,8 @@ substituir um voto fraco por `H`, com `y>0` e `q-2` votos fracos.
 
 ### Decisão: a pie não depende de `H`
 
-- **Escolha**: o surplus institucional dos fracos é **fixo e normalizado em 1**,
-  independente do tipo de `H` e independente de `H` estar ou não no acordo.
-  Quando uma proposta passa sem `H`, ele recebe `o_theta` de fora; a pie factível
-  continua sendo uma unidade e toda a alocação proposta, inclusive `y`, é paga
-  exatamente como votada. `o_theta` não reduz a pie porque é externo. Decisão do
-  autor em 2026-08-12, definitiva para este paper.
+- **Escolha**: a pie e a factibilidade definidas exclusivamente na Seção 2;
+  implementação e payoffs conforme a Seção 4. Decisão do autor em 2026-08-12.
 - **Alternativas descartadas**:
   - *Pie dependente do tipo, `V(theta) in {1,r}` (arquitetura de 2026-04-19)*:
     descartada porque, embora mais rica e embora fosse o que sustentava o
@@ -384,7 +315,7 @@ substituir um voto fraco por `H`, com `y>0` e `q-2` votos fracos.
 
 ### Decisão: número de rodadas
 
-- **Escolha**: duas rodadas, R2 terminal.
+- **Escolha**: o horizonte da Seção 2 e as transições da Seção 4.
 - **Alternativas descartadas**:
   - *Uma rodada*: descartada porque o resultado estático de screening já está
     publicado em `@glynia2026unanimity`, e porque não permite responder se há
@@ -404,32 +335,26 @@ unanimidade, `q = floor(N/2)+1` sob maioria.
 
 ```text
 t=0   Natureza sorteia theta; H observa; mu é comum
-t=1   Sorteio uniforme de um weak state i entre os m
-      i propõe s = (y, (x_j)_{j in W sem i}, r_i), com 0 <= y <= y_bar,
-        x_j >= 0, r_i >= 0 e y + sum_j x_j + r_i <= 1
+t=1   Reconhecimento de um weak state i conforme a Seção 2
+      i propõe uma alocação s factível conforme a Seção 2
       Ballot simultâneo e selado de todos os não proponentes, inclusive H;
         i conta como sim
       Fecha o ballot; o vetor completo de votos e o resultado tornam-se públicos
       Se os sim atingem q: a alocação proposta é implementada, todos são pagos
         nessa data e o jogo termina
       Se não: segue para t=2
-t=2   Novo sorteio uniforme, independente e com reposição, entre todos os m
-        weak states, inclusive quem propôs em R1
+t=2   Novo reconhecimento conforme a mesma lei da Seção 2
       Proposta, ballot simultâneo e selado, publicação
       Se os sim atingem q: a alocação proposta é implementada, todos são pagos
         nessa data e o jogo termina
       Se não: o jogo termina com 0 para cada weak state e o_theta para H
 ```
 
-**Implementação e inclusão.** Se uma proposta passa, todos os weak states
-recebem exatamente a alocação proposta a cada um e o proponente recebe `r_i`,
-independentemente de seus votos. `H` recebe `y` sempre que a proposta passa. Se
-vota `sim`, integra o acordo e seu payoff é `y`. Se vota `não` e a proposta ainda
-assim passa, fica fora do acordo e seu payoff é `y+o_theta`: `y` é a coordenada
-institucional executada e `o_theta` é externo à pie, ambos recebidos na mesma
-data. Não há destruição, realocação ex post nem pagamentos laterais. Se o ballot
-falha em R1, o jogo não terminou: nenhum pagamento ocorre e o jogo segue para
-R2.
+**Implementação e inclusão.** Uma alocação aprovada é executada integralmente,
+exatamente como votada. Não há destruição nem realocação ex post; pagamentos
+laterais são excluídos pela Seção 2. O voto de `H` determina se ele integra o
+acordo, não se a coordenada `y` é executada. A Tabela 1 é a fonte completa dos
+payoffs e das datas em cada resultado possível.
 
 **Tabela 1. Payoffs e datas por resultado do ballot**
 
@@ -440,12 +365,9 @@ R2.
 | Falha em R1 — história não terminal | Nenhum pagamento; o jogo não terminou e segue para R2 | Nenhum pagamento; o jogo não terminou e segue para R2 | Nenhum pagamento; o jogo não terminou e segue para R2 | Nenhum pagamento; o jogo não terminou e segue para R2 |
 | Falha em R2 — história terminal | `o_0`, na data terminal de R2 | `o_1`, na data terminal de R2 | `0`, na data terminal de R2 | `0`, na data terminal de R2 |
 
-A linha de falha em R1 registra uma transição, não um payoff corrente: pagamentos
-só existem quando o jogo termina.
-
-**Reconhecimento.** Os sorteios de R1 e R2 são independentes, com reposição e
-uniformes entre os `m` weak states. Todos continuam elegíveis em R2. A identidade
-do proponente anterior não altera probabilidades nem conjuntos de ação.
+A linha de falha em R1 registra uma transição, não um payoff corrente:
+pagamentos só existem quando o jogo termina. A lei de reconhecimento é a
+primitiva da Seção 2.
 
 **Publicidade.** O jogo é sequencial e público **entre rodadas**. Dentro de cada
 ballot os votos são simultâneos e selados, e os votos individuais só se tornam
@@ -453,32 +375,17 @@ públicos após o fechamento. Isso **não** é roll-call. Nenhuma ordem de vota�
 nenhuma posição de `H` no ballot.
 
 **Conjuntos de informação.** Weak states nunca observam `theta`. `H` observa
-`theta` desde t=0. Na entrada de R2 o estado público é `(regra, nu')`, onde
-`nu'` é o posterior induzido pelo vetor de votos de R1. Como `H` permanece
-sempre ativo, não existe estado `weak-only`: os três nós de R2 da arquitetura
-anterior colapsam em dois, um por regra.
+`theta` desde t=0. A história pública completa de R1 — proposta, vetor de votos
+e resultado — induz o posterior `nu'` na entrada de R2. Se `(regra, nu')` basta
+para representar o problema de R2 é exatamente a obrigação P5. Como `H`
+permanece sempre ativo, não existe estado `weak-only`: os três nós de R2 da
+arquitetura anterior colapsam em dois, um por regra.
 
-**Suficiência do estado.** A derivação deve **provar**, não assumir, que a
-crença é estatística suficiente para R2 — que a história de R1 afeta R2 apenas
-pelo posterior sobre `theta`. O argumento a provar usa o fato de R2 ser terminal:
-o proponente reconhecido maximiza seu payoff corrente e não tem motivo para
-condicionar em identidade ou história além da crença. A mera ausência de
-pagamentos após uma falha de R1 não estabelece o lema.
-
-**Obrigações de prova da forma extensiva.** Nenhuma pode ser usada como
-premissa: (i) propostas com soma estritamente menor que 1 não são ótimas; (ii)
-sob maioria, a proposta-hedge `s=(y,x,r_i)`, com `y>0` e `q-1` votos fracos, é
-estritamente dominada pela proposta alternativa `s'=(0,x,r_i+y)` com os mesmos
-votos; e (iii) o ramo em que uma proposta aprovada paga `y+o_theta` a `H` fora
-do acordo **com `y>0`** não ocorre no caminho de equilíbrio — sob unanimidade é
-inalcançável, e sob maioria sua exclusão do caminho deve decorrer da prova de
-(ii); e (iv)
-votos e demais ações fracas são não informativos sobre `theta`, de modo que o
-posterior depende apenas do voto do próprio `H`. A quarta obrigação deve ser
-demonstrada por Bayes nas histórias on-path a partir de `pi_H=0` e do fato de
-nenhum weak state observar `theta`. Para histórias off-path, as crenças devem ser
-explicitadas e a extensão do lema verificada; PBE sozinho não autoriza impor a
-mesma atualização.
+**Resultados ainda não disponíveis.** A suficiência do posterior, o uso
+integral da pie, a dominância do hedge, a ausência on-path de aprovação sem `H`
+com `y>0` e a não informatividade das ações fracas são exclusivamente as
+obrigações P0, P1, P1a, P4 e P5 da Seção 9. Esta seção não as assume nem as
+demonstra.
 
 ---
 
@@ -506,8 +413,8 @@ se, em cada information set de ballot de um weak nonproposer, a ação prescrita
 não dominada no stage game induzido por aquele mesmo assessment. PBE continua
 impondo racionalidade sequencial a todos os jogadores, inclusive `H`.
 
-**O que ele elimina em R2.** Como R2 é terminal, a continuação de qualquer weak
-state após falha é zero. Para o weak nonproposer `j`:
+**Teste terminal do refinamento.** A Tabela 1 induz, em R2, a seguinte
+comparação para o weak nonproposer `j`:
 
 ```text
 perfil dos outros                 sim      não
@@ -516,13 +423,13 @@ quota passa mesmo sem j           x_j      x_j
 quota falha mesmo com j           0        0
 ```
 
-Se `x_j>0`, `não` é fracamente dominado por `sim`. Se `x_j=0`, as ações dão o
-mesmo payoff em todo perfil e a convenção de igualdade seleciona `sim`. Assim, o
-refinamento elimina em R2 a falha coordenada sustentada por votos fracos contra
-uma oferta estritamente positiva. Esta conclusão terminal não pode ser
-transportada para R1 sem verificar as continuações.
+As relações de dominância e igualdade sugeridas por essa tabela, bem como sua
+consequência para falha coordenada, pertencem à obrigação P6 da Seção 9 e devem
+ser estabelecidas em `N1` e `N2`. Nenhum resultado de nó é declarado aqui. A
+comparação terminal não pode ser transportada para R1 sem considerar as
+continuações.
 
-**Ressalva obrigatória em R1.** Quando uma proposta de R1 falha, o vetor
+**Teste dinâmico do refinamento.** Quando uma proposta de R1 falha, o vetor
 completo de votos torna-se público. Para um perfil `v_{-j}` dos demais votos, a
 tabela relevante é:
 
@@ -535,12 +442,9 @@ quota falha mesmo com j           beta*C_j(h^sim)             beta*C_j(h^não)
 
 As histórias públicas `h^sim` e `h^não` podem induzir crenças e continuações
 distintas, sobretudo fora do caminho. Portanto não se pode substituir essa
-tabela por uma única constante `c_j`, nem afirmar de antemão que um voto fraco é
-dominado independentemente de `H` ou dos demais votos. `N3` e `N4` devem
-verificar a dominância contra todos os perfis e valores de continuação do
-assessment. Se o refinamento não eliminar toda multiplicidade relevante em R1,
-reportar o conjunto sobrevivente; não acrescentar uma restrição de crenças ou
-uma ordem de eliminação.
+tabela por uma única continuação sem antes demonstrar que as histórias induzem
+o mesmo valor. P6 é a fonte única do teste e das consequências a reportar em
+`N3` e `N4`.
 
 **Convenção de igualdade — `T^Y`.** Depois de impor racionalidade sequencial e,
 para weak nonproposers, a restrição de stage-undominance, `T^Y` seleciona `sim`
@@ -557,7 +461,8 @@ weak nonproposer -> PBE + stage-undominance; em indiferença genuína, T^Y
 H                -> PBE; em indiferença genuína, T^Y
 ```
 
-**Aplicação a `H`.** Stage-undominated voting **não se aplica a `H`**. Sua ação
+**Aplicação da Tabela 1 a `H`.** Stage-undominated voting **não se aplica a
+`H`**. Sua ação
 deve ser uma melhor resposta sequencial no assessment. Se os payoffs das duas
 ações forem iguais, `T^Y` seleciona `sim`; se forem distintos, PBE seleciona a
 ação de maior payoff.
@@ -577,18 +482,11 @@ proponente, seleciona-se a que minimiza o payoff esperado de `H`. Esta seleção
 distinta de `T^Y`, que governa a resposta no ballot, e é conservadora em relação
 ao resultado de interesse.
 
-**Não informatividade dos votos fracos — lema, não assessment mantido.** A
-expressão `weak-vote-passive assessment` pode nomear apenas o resultado a ser
-provado; ela não é suposição nem refinamento. Sob `pi_H=0`, nenhum weak state,
-inclusive o proponente, observa `theta`, de modo que nenhuma estratégia fraca
-pode condicionar diretamente no tipo. On path, `N4` deve demonstrar por Bayes
-que ações fracas são não informativas sobre `theta` e que o posterior depende
-apenas do voto do próprio `H`. Fora do caminho, PBE não disciplina crenças por
-Bayes; o nó deve tornar explícitas as crenças após cada história relevante e
-verificar se o lema se estende. Se não se estender sob todos os assessments
-admissíveis necessários à caracterização, parar e escalar em vez de impor o
-resultado como restrição. O voto de `H` permanece informativo e atualiza
-crenças.
+**Nenhum assessment passivo adicional.** A expressão `weak-vote-passive
+assessment` pode nomear somente o lema se ele for provado; ela não acrescenta
+uma suposição nem um refinamento ao conceito desta seção. O escopo on-path e o
+tratamento separado das crenças off-path estão exclusivamente em P4, na Seção
+9.
 
 ---
 
@@ -606,45 +504,20 @@ Nenhum jogador recebe em data diferente dos demais na mesma história terminal.
 
 ## 7. Ordem de derivação
 
-Do mais simples ao mais difícil. A substituibilidade de `H` sob maioria limita
-seu preço, mas não autoriza concluir de antemão que sua informação é inerte.
-Inclusão, exclusão e screening devem ser derivados em cada região.
+A tabela abaixo define somente os nós e as dependências. Ela não antecipa
+resultados. As obrigações substantivas estão exclusivamente na Seção 9.
 
-```text
-N1  R2 maioria           dá o valor terminal e o preço do substituto; deriva
-                         inclusão ou exclusão sem assumir no-screening.
-N2  R2 unanimidade       screening puro, sem sinalização (terminal).
-                         Candidato: G = 1-o_1, L(nu) = (1-nu)(1-o_0),
-                         M(nu) = max{G,L}, nu* = (o_1-o_0)/(1-o_0).
-                         Rederivar sob as primitivas novas; não importar.
-N3  R1 maioria           prova a dominância que elimina o hedge e deriva as
-                         estratégias, crenças, payoffs e a partição de
-                         parâmetros a partir da interface congelada de N1.
-N4  R1 unanimidade       screening sequencial puro de dois períodos; prova ou
-                         refuta separating e caracteriza pooling/falha.
-N6  Comparação           produto cartesiano dos assessments; delay e renda
-                         informacional contra o benchmark público por regra e
-                         por ramo;
-                         resposta às perguntas 1 e 2, condicional à organização
-                         existir sob ambas as regras.
-```
+| Nó | Subjogo ou operação | Dependências | Função arquitetural |
+|---|---|---|---|
+| `N1` | R2 maioria | nenhuma | resolver o nó terminal e exportar a interface da Seção 7.2 |
+| `N2` | R2 unanimidade | nenhuma | resolver o nó terminal e exportar a interface da Seção 7.2 |
+| `N3` | R1 maioria | `N1` | resolver R1 consumindo somente a interface congelada de `N1` |
+| `N4` | R1 unanimidade | `N2` | resolver R1 consumindo somente a interface congelada de `N2` |
+| `N6` | comparação | `N3`, `N4` | responder às perguntas da Seção 1 com as interfaces congeladas de ambas as regras |
 
-`N1` e `N2` são independentes e podem ser derivados em paralelo. `N3` consome
-`N1`; `N4` consome `N2`. `N6` consome diretamente `N3` e `N4`.
-
-**Sobre N4.** Com stage-undominated voting restrito aos weak nonproposers,
-`T^Y` em toda igualdade e estratégias puras no ballot, `N4` deve provar — não
-assumir — se o ramo de falha fraca sai do caminho, que não existe equilíbrio
-separating e se restam apenas pooling e falha deliberada. A decisão do autor
-antecipa que não haverá atraso em equilíbrio e que a opção de esperar
-precificará o acordo mesmo sem ser exercida; ambas as afirmações permanecem
-obrigações de prova. Nenhuma mistura pode ser introduzida para obter o efeito
-ratchet.
-
-Com `o_0>0`, a decisão D8 antecipa que o custo de continuação de um voto fraco é
-estritamente menor sob unanimidade do que sob maioria. Esse ranking permanece
-apenas candidato: deve ser verificado nos nós correspondentes e não pode ser
-importado como input da derivação.
+`N1` e `N2` são mutuamente independentes. `N3` e `N4` não consomem um ao
+outro. A prontidão para consumo e a cadência de revisão são definidas somente
+na Seção 11.
 
 ---
 
@@ -657,37 +530,29 @@ de continuação invalida os consumidores automaticamente.
 
 ```text
 Goal 0  Contrato e infraestrutura
-        Fechar este Gate 0 após aprovação do autor. Construir o DAG com os cinco
-        nós, arestas, e interfaces vazias com schema declarado (7.2). Registrar
-        a regra de invalidação. Revisão independente do contrato antes de
-        qualquer derivação.
+        Fechar o contrato e representar no DAG os cinco nós, as arestas e o
+        schema comum da Seção 7.2.
 
 Goal 1  Nós baratos — N1, N2, N3
-        N1 e N2 em paralelo; N3 consome N1. N3 deriva a dominância do hedge e
-        a partição completa de seu espaço de parâmetros diretamente do jogo,
-        sem assumir informação privada inerte. Um ciclo de revisão ao final do
-        batch, não por nó.
+        Resolver N1 e N2 em paralelo e, quando N1 estiver apto a ser consumido,
+        resolver N3. Seguir a Seção 11 para revisão e avanço.
 
 Goal 2  Nó caro — N4
-        R1 unanimidade, sozinho, com ciclo de revisão próprio. Consome a
-        interface congelada de N2. Prova inexistência de separating, ausência
-        ou presença de delay e não informatividade dos votos fracos sob puras.
+        Resolver N4 a partir da interface congelada de N2. As obrigações a
+        testar estão na Seção 9; o tratamento especial da revisão, na Seção 11.
 
 Goal 3  Comparação — N6
-        Consome diretamente N3 e N4. N6 assina a resposta às perguntas 1 e 2
-        da Seção 1, condicional à organização existir sob as duas regras.
-        Entrega obrigatória ao autor, em linguagem corrente e sem jargão:
-        o equilíbrio, a intuição e o take away substantivo.
+        Resolver N6 a partir das interfaces congeladas de N3 e N4 e produzir o
+        objeto adicional definido na Seção 8.
 
 Goal 4  Migração para formal_model_v6.Rmd
-        Só após PASS 0/0/0 dos dois revisores em Goal 3.
+        Seguir o gate de migração da Seção 11.
 ```
 
-**Escopo da infraestrutura.** Manter DAG, hashing de interfaces e a regra de
-invalidação: é isso que dá a disciplina de dependência. Não replicar as camadas
-de release/review/status bundles, o manifesto de 27 artefatos protegidos nem os
-verificadores de mutação da cadeia anterior — foi daí que veio a maior parte do
-custo, e não da auditabilidade em si.
+O DAG registra a topologia desta seção. Os entregáveis e hashes estão na Seção
+8; prontidão e congelamento, na Seção 11; invalidação, na Seção 12. Camadas
+adicionais de release ou manifestos da cadeia anterior não integram esta
+arquitetura.
 
 ### 7.2 Schema de interface
 
@@ -701,39 +566,42 @@ Para cada nó, em função da crença de entrada:
 
   1. payoff do proponente reconhecido
   2. valor esperado pré-reconhecimento de um weak nonproposer
-       -> é isto que, transportado uma vez por beta, vira o preço do voto
-          na rodada anterior; valor e regiões devem ser derivados
   3. payoff de H por tipo, theta = 0 e theta = 1
   4. distribuição de outcomes: passagem com H, passagem sem H, falha
-       -> e, nos nós de R1, atraso, que é o que responde à pergunta 1
-  5. benchmark de informação completa: payoff de H por tipo, theta=0 e
-       theta=1, no mesmo nó e sob a mesma regra com theta público desde t=0
-       e todas as demais primitivas idênticas
+       e, nos nós de R1, atraso
+  5. benchmark de informação completa definido na Seção 1, com payoff de H
+       por tipo, theta=0 e theta=1
 ```
 
-O schema não contém decisão ou valor de formação. A renda informacional é a
-diferença entre o payoff sob informação privada e a coordenada correspondente
-do benchmark de informação completa; ela não é inferida de `U_H-o_theta`.
-O ramo que produz cada payoff público — inclusão, exclusão, continuação ou falha
-— e sua data devem constar do ledger de claims do nó. Isso não amplia o schema
-comum: é parte da correspondência completa exigida na Seção 8.
+O schema não contém decisão nem valor de formação. O ramo e a data associados
+a cada coordenada constam do ledger definido na Seção 8, sem ampliar o schema
+comum.
 
 Qualquer nó que precise exportar mais do que isto deve declarar a extensão do
-schema no DAG antes de derivar, com justificativa.
+schema no DAG antes de derivar, com justificativa; a mudança segue a Seção 12.
 
 ## 8. O que cada nó deve entregar
 
-Além do schema de 7.2: correspondência completa de equilíbrio com payoffs por
-tipo e por identidade; crenças on-path e off-path explícitas; interface
-congelada com hash para o consumidor; e ledger de claims classificando cada
-resultado como `proved`, `checked numerically`, `conjecture`, `pending` ou
-`rejected`. O benchmark de informação completa deve ser resolvido sob a mesma
-regra, por ramos, e reportado nas mesmas unidades antes de calcular qualquer
-renda informacional. O nó deve registrar qual ramo gera o payoff público de cada
-tipo e não pode impor inclusão de `H` como parte da definição do benchmark.
+Cada nó entrega:
 
-`N6` deve entregar, adicionalmente, resposta explícita e assinada às perguntas 1
-e 2 da Seção 1, incluindo o desfecho negativo se for o caso.
+1. correspondência completa de equilíbrio, com payoffs por tipo e identidade;
+2. crenças on-path e off-path explícitas;
+3. interface preenchida segundo o schema da Seção 7.2;
+4. ledger de claims, que registra para cada coordenada o ramo e a data que a
+   geram e classifica cada claim como `proved`, `checked numerically`,
+   `conjecture`, `pending` ou `rejected`;
+5. hash imutável do candidato submetido à revisão.
+
+O candidato e seu hash entram no protocolo de prontidão, congelamento e revisão
+da Seção 11. Qualquer alteração posterior segue a Seção 12.
+
+A coordenada de informação completa é resolvida conforme P8 e reportada nas
+mesmas unidades da coordenada privada antes de calcular a renda definida na
+Seção 1.
+
+`N6` entrega adicionalmente uma resposta explícita às duas perguntas da Seção
+1, inclusive se o resultado for negativo. O tratamento de sua revisão está na
+Seção 11.
 
 ---
 
@@ -757,11 +625,10 @@ orçamentária; não é realocação depois do ballot. O resultado depende da pi
 da execução integral de `y` e da IC de `H`, e não pode ser assumido.
 
 **P1a — Ausência on-path do ramo aprovado sem `H` com `y>0`.** Deve-se provar
-que a história em que uma proposta com `y>0` passa sem `H` e lhe paga
-`y+o_theta` não ocorre no caminho de equilíbrio. Sob unanimidade a história é
-inalcançável porque o `não` de `H` derruba a proposta. Sob maioria, a conclusão
-deve seguir da prova de P1, não de uma regra de implementação que destrua ou
-reverta `y`. A obrigação não elimina a exclusão com `y=0`, preservada em P2.
+que a história da segunda linha da Tabela 1 não ocorre no caminho de equilíbrio
+quando `y>0`. Sob unanimidade, a própria regra torna essa linha inalcançável.
+Sob maioria, a conclusão deve seguir de P1, não de uma mudança na função de
+implementação. A obrigação não elimina a exclusão com `y=0`, preservada em P2.
 
 **P2 — Caracterização de N3 desde as primitivas.** `N3` deve resolver R1 maioria
 por indução retroativa, consumindo apenas a interface congelada de `N1`. Para
@@ -776,91 +643,131 @@ e demonstrar se os regimes candidatos são não vazios e exaustivos. Se aparecer
 outro regime, ou se algum deles for vazio, deve registrar e escalar o resultado,
 não suprimi-lo para reproduzir D3.
 
-**P3 — Inexistência de separating em R1 unanimidade.** `N4` deve provar, sob
-estratégias puras e `T^Y` em toda igualdade, se candidatos separating falham e
-se pooling ou falha deliberada esgotam os equilíbrios admissíveis. A ausência de
-delay também deve sair dessa prova, não da descrição do nó.
+**P3 — Teste de separating e caracterização de N4.** Sob o conceito da Seção 5,
+`N4` deve construir e testar todos os candidatos separating em estratégias
+puras, além dos candidatos pooling, de falha deliberada e de atraso. Deve provar
+quais sobrevivem e se a correspondência obtida é exaustiva. O contrato não fixa
+o resultado: separating sobrevivente, delay ou qualquer regime adicional deve
+ser preservado na correspondência e no reporte, não suprimido.
 
-**P4 — Não informatividade dos votos fracos.** `N4` deve provar por Bayes, nas
-histórias on-path, que, como nenhum weak state observa `theta`, suas ações são
-não informativas e o posterior depende apenas do voto de `H`.
-`Weak-vote-passive assessment` é o nome do lema, não uma restrição mantida de
-crenças. Como PBE deixa livres crenças após histórias de probabilidade zero, o
-nó deve verificar separadamente se o lema se estende às histórias off-path
-relevantes. Se não se estender, registrar o finding e escalar; não converter o
-lema em assessment imposto.
+**P4 — Não informatividade on-path das ações fracas.** Em cada conjunto de
+informação no caminho, `N4` deve testar por Bayes se, condicionalmente a toda a
+informação pública já disponível naquele ponto, a distribuição de **cada ação
+de weak state** é a mesma para todo tipo de `H` ainda possível. Isso inclui a
+proposta do weak proposer e os votos dos weak nonproposers. A consequência a
+demonstrar no ballot é que observar os votos fracos não acrescenta informação
+sobre `theta` além da proposta e da história públicas; qualquer atualização
+adicional do posterior pode vir apenas do voto de `H`. A expressão
+`weak-vote-passive assessment` nomeia o lema se provado, não uma restrição de
+crenças. Histórias de probabilidade zero e suas crenças devem ser tratadas
+separadamente e explicitadas; nenhuma conclusão on-path é automaticamente
+estendida para fora do caminho.
 
 **P5 — Suficiência do posterior em R2.** Deve-se provar que, como R2 é terminal e
 o reconhecimento é iid com reposição, histórias públicas com o mesmo posterior
 induzem o mesmo problema de maximização, sem impor estratégias Markov como
 restrição.
 
-**P6 — Unicidade on-path após o refinamento.** Espera-se que stage-undominated
-voting dos weak nonproposers restaure unicidade no caminho de equilíbrio, mas
-isso deve ser **provado por nó**, não assumido. Crenças em propostas e vetores de
-votos off-path permanecem livres e podem impedir dominância em R1 ou sustentar
-multiplicidade residual. Se sobrar multiplicidade que impeça responder às
-perguntas 1 e 2, parar e reportar, não adicionar seleção ad hoc.
+**P6 — Efeito on-path do refinamento.** Cada nó deve demonstrar quais ações o
+stage-undominated voting dos weak nonproposers elimina e como `T^Y` resolve as
+indiferenças genuínas. Não se presume unicidade. Crenças em propostas e vetores
+de votos off-path podem impedir dominância em R1 ou sustentar multiplicidade
+residual. Se a multiplicidade impedir responder às perguntas da Seção 1, o nó
+deve reportá-la sem acrescentar seleção ad hoc.
 
-**P7 — Informatividade do voto de `H` em R1.** O voto de `H` é público e entra
-em `nu'`. Isso é o motor do mecanismo e não deve ser truncado. Mas gera um ramo
-de sinalização em R1 que precisa de tratamento explícito de crenças off-path.
+**P7 — Tratamento do voto de `H` em R1.** Como o voto de `H` integra a história
+pública que conduz a R2, `N3` e `N4` devem incluí-lo na atualização para `nu'` e
+tratar explicitamente as crenças off-path correspondentes. O contrato não
+presume que esse voto separa os tipos: se e quanto ele atualiza a crença depende
+das estratégias derivadas.
 
-**P8 — Benchmark público por ramos.** Cada nó deve resolver o mesmo jogo com
-`theta` público e provar qual ramo prevalece para cada tipo. Condicional à
-inclusão, deve provar oferta na reserva relevante e aceitação na igualdade;
-condicional à exclusão sob maioria, deve provar `y=0`, voto `não` de `H` e payoff
-`o_theta` na data corrente; após falha em R1, deve importar uma única vez por
-`beta` o benchmark público de R2. A definição contrafactual é primária. A medida
-simples de excesso sobre a opção externa só pode ser usada no ramo e na data em
-que sua equivalência tiver sido provada. A aceitação de `H` na igualdade segue
-PBE e `T^Y`; stage-undominated voting não se aplica a `H`.
+**P8 — Benchmark público por ramos.** `N1`--`N4` devem resolver o contrafactual
+da Seção 1 no próprio subjogo e provar qual ramo prevalece para cada tipo. No
+ramo de inclusão, devem provar que o proponente oferece exatamente o valor de
+reserva ou continuação relevante e que `H` aceita pela regra da Seção 5,
+ficando na reserva. No ramo de exclusão sob maioria, devem provar `y=0`, o voto
+`não` de `H` e o payoff `o_theta` na data da aprovação a partir das Seções 4--6.
+Após falha em R1, devem transportar uma única vez o benchmark público de R2
+segundo a Seção 6. `N6` preenche sua coordenada obrigatória agregando os campos
+congelados de `N3` e `N4`, sem reabrir os subjogos. Só depois de provar e
+agregar os ramos sob cada regra o nó pode demonstrar se o payoff público
+coincide com a opção externa na data relevante e, portanto, se a exposição pode
+usar a medida simples. O conteúdo substantivo do lema é testar se, sem
+informação privada, `H` deixa de capturar renda.
 
 ---
 
-## 10. No-go list
+## 10. Índice de material não transportável
 
-Não promover a resultado, caption ou conclusão, sem rederivação sob estas
-primitivas:
+Esta seção identifica famílias históricas que não podem ser importadas como
+resultado corrente. Ela não especifica novamente o jogo; para saber a regra
+vigente, deve-se consultar a fonte canônica indicada.
 
-- opt-out imediato, exclusão de `H` por voto passado, ou qualquer ação de saída
-  assimétrica;
-- `o_theta` disparado por um voto `não` antes de o jogo terminar, ou payoff de
-  R2 importado em R1 sem exatamente uma aplicação de `beta`;
-- destruição de `y`, reversão de `y` ao residual ou qualquer realocação
-  contingente ao resultado do ballot; uma proposta aprovada é executada
-  integralmente e `H` recebe `y+o_theta` se ela passa com seu voto `não`;
-- redução exaustiva a `P/L/R`; rejected-history reduction lemma;
-- maioria como benchmark geral de no-screening, exclusão geral ou inclusão
-  geral — `N3` deve derivar a correspondência e sua partição de parâmetros
-  diretamente das primitivas; os regimes são rótulos diagnósticos ex post;
-- afirmação universal de que o benchmark público inclui `H` sob ambas as regras,
-  ou substituição global do contrafactual por `U_H-o_theta`; inclusão, exclusão,
-  continuação e data devem ser derivadas por ramo;
-- dominância do hedge, inexistência de separating, ausência de delay ou
-  não informatividade dos votos fracos tratadas como premissas;
-- calibração OPEC histórica, arquitetura feasibility/C-B-R, `pi_H > 0`,
-  escolha endógena de regra, decisão de entry, delayed continuation, hybrid exit;
-- qualquer teorema, fronteira ou ranking da cadeia `pivotal-response`;
-- `weak-vote-passive assessment` chamado de refinamento ou imposto em vez de
-  provado como lema;
-- mixed strategies no ballot ou exceção a `T^Y` em igualdade endógena;
-- stage-undominated voting descrito como restrição de crenças, aplicado a `H`
-  ou estendido por uma eliminação ordenada weak-first;
-- igualdade em uma linha isolada usada para acionar `T^Y` apesar de preferência
-  estrita no problema relevante do votante;
-- uma única continuação `c_j` atribuída a todos os vetores de falha de R1 sem
-  provar que as histórias induzem o mesmo valor.
+- As arquiteturas de opt-out, saída assimétrica, `weak-only`, hybrid exit e
+  delayed continuation foram descartadas na Seção 3. Espaço de ações,
+  transições e tempo são regidos pelas Seções 2, 4 e 6.
+- Destruição ou reversão de `y`, realocação contingente ao ballot e qualquer
+  payoff terminal alternativo não são transportáveis. A única função de
+  implementação está na Seção 4.
+- A redução `P/L/R`, o rejected-history reduction lemma, afirmações gerais de
+  no-screening sob maioria, fronteiras e rankings antigos só podem reaparecer se
+  forem rederivados pelas obrigações da Seção 9.
+- Teoremas, correspondências e pareceres da cadeia `pivotal-response` valem
+  apenas para a especificação arquivada; a proteção dos artefatos está na
+  Seção 13.
+- Calibração OPEC, feasibility/C-B-R, `pi_H>0`, escolha endógena de regra e
+  entry são extensões fora do escopo definido nas Seções 1 e 2.
+- Atalhos no conceito de solução — mistura no ballot, seleção por uma igualdade
+  apenas local, aplicação do refinamento a `H`, eliminação ordenada ou restrição
+  adicional de crenças — não são transportáveis. A única especificação vigente
+  está na Seção 5 e seu teste, em P6.
+- O antigo weak-vote-passive assessment não pode ser imposto. O único objeto
+  corrente com esse nome é o possível lema de P4.
+- Medidas simplificadas de renda e conclusões universais sobre inclusão no
+  benchmark público não substituem a definição da Seção 1 nem o teste por
+  ramos de P8.
 
 ---
 
 ## 11. Protocolo de revisão
 
-Implementador não revisa; revisor não edita. Após cada nó, e obrigatoriamente ao
-final da cadeia, duas revisões independentes read-only: uma `review-formal-model`
-e uma auditoria adversarial de teoria dos jogos. Qualquer finding exige reparo
-pelo implementador e rereview dos hashes novos. Nenhuma migração para
-`formal_model_v6.Rmd` antes de PASS `0/0/0` dos dois revisores.
+Implementador não revisa; revisor não edita. Cada ciclo usa dois revisores
+independentes e read-only: um parecer de desenho formal e uma auditoria
+adversarial de matemática e teoria dos jogos.
+
+**Princípio da fronteira de dependência.** A fronteira de dependência determina
+a frequência **mínima** de revisão. Nenhum nó pode consumir uma interface antes
+de o mesmo hash receber PASS `0/0/0` dos dois revisores e ser congelado. Enquanto
+a implementação ou a revisão estiver aberta, o nó permanece `pending`; somente
+depois desses dois PASS o mesmo hash passa a `pass` e `frozen`. Nós independentes
+que estejam prontos ao mesmo tempo podem compartilhar um ciclo, com veredicto
+separado para cada nó e cada hash. Compartilhar não é obrigatório: a importância
+substantiva de um nó pode justificar um ciclo exclusivo.
+
+**Cadência canônica.** Esta é a única especificação da cadência; a Seção 7
+apenas aponta para ela.
+
+1. **Goal 0:** o contrato recebe os dois pareceres e o autor decide o gate do
+   Goal 1 antes de qualquer derivação.
+2. **Goal 1, primeira fronteira:** `N1` e `N2` podem ser implementados em
+   paralelo e compartilham um ciclo de revisão, com veredictos separados. `N3`
+   só começa depois de `N1` obter os dois PASS e sua interface ser congelada.
+3. **Goal 1, segunda fronteira:** `N3` recebe ciclo próprio. O Goal 1 só fecha
+   quando `N1`, `N2` e `N3` tiverem passado e o autor autorizar o avanço.
+4. **Goal 2:** `N4` só começa com `N2` congelado e após o gate autoral do Goal
+   1. Embora não consuma `N3`, recebe um ciclo **exclusivo**, sem outro nó no
+   mesmo pacote, porque decide o mecanismo central do paper. O Goal 2 só fecha
+   após os dois PASS e o aval do autor.
+5. **Goal 3:** `N6` só começa com `N3` e `N4` congelados e após o gate autoral
+   do Goal 2. Seu único ciclo revisa simultaneamente o próprio `N6` e a
+   integração da cadeia completa; esse ciclo conta também como a revisão
+   integrada final, não há uma segunda revisão final duplicada.
+6. **Goal 4:** a migração para `formal_model_v6.Rmd` só pode começar depois dos
+   dois PASS do ciclo de `N6` e de autorização explícita do autor.
+
+Todo finding segue a classificação da Seção 11.1. Apenas reparo técnico ou
+reparo substantivo autorizado pelo autor pode gerar novo hash; todo hash novo
+retorna aos dois revisores do ciclo afetado.
 
 **Revisão do contrato no Goal 0.** Antes de qualquer derivação, os dois
 revisores leem este contrato e tentam quebrá-lo. Instrução explícita ao revisor,
@@ -934,64 +841,58 @@ avança sem esse aval.
 
 ## 12. Invalidação
 
-Qualquer mudança no espaço ou na implementação das propostas, destino de `y`,
-estatuto ou data de `o_theta`, conceito de solução, restrição a estratégias
-puras, convenção de igualdade, tie-break de proposta, estrutura de informação,
-lei de reconhecimento, timing do desconto, benchmark de informação completa ou
-escopo condicional da comparação reabre este Gate 0 e invalida todo nó
-descendente.
+1. **Mudança no contrato do jogo.** Alteração do estimando ou do escopo da
+   comparação; das primitivas ou da factibilidade; das ações, transições,
+   informação, implementação ou payoffs; do conceito de solução; do desconto;
+   da topologia ou do schema; ou das obrigações de prova reabre este Gate 0 e
+   devolve todos os nós de derivação a `pending`.
+2. **Mudança em interface congelada.** O produtor volta a `pending` e
+   `unfrozen`; seus pareceres e hash anteriores tornam-se obsoletos; e todos os
+   descendentes transitivos voltam a `pending`. Nós fora dessa descendência
+   permanecem válidos somente se a mudança não alterar uma fonte compartilhada
+   do contrato.
+3. **Mudança no protocolo de revisão.** Uma alteração da Seção 11 invalida os
+   pareceres e a prontidão que dependam da regra modificada. Não invalida por si
+   só uma derivação ou interface cujo conteúdo permaneça idêntico, mas impede
+   seu consumo até que o novo protocolo seja satisfeito.
+4. **Reparo de finding.** A autorização e a autoria do reparo seguem a Seção
+   11.1; seu alcance de invalidação segue os itens anteriores. Nenhum reparo
+   local pode contornar essas regras.
 
 ---
 
-## 13. Estado do repositório na abertura
+## 13. Fronteira de versão e artefatos protegidos
 
-```text
-HEAD      f53e6769624ce3dd6e64e21ad40d08230b0950a7
-branch    main
-worktree  limpo exceto por este documento
-```
+A tag anotada `pre-essential-input-2026-08-12` já existe e aponta, após
+*peeling*, para o commit
+`f53e6769624ce3dd6e64e21ad40d08230b0950a7`, a fronteira anterior a esta
+arquitetura. Não recriar, mover nem substituir a tag.
 
-`formal_model_v6.Rmd` e `formal_model_v5.Rmd` intocados. A cadeia
-`pivotal-response` permanece no repositório como proveniência: não editar, não
-migrar, não citar como evidência corrente.
+`HEAD`, branch e limpeza do worktree são fatos operacionais mutáveis e devem ser
+verificados ao vivo no início de cada sessão; não são congelados neste contrato.
 
-Antes de iniciar a derivação, usar o workflow `paper-version` para criar o
-marcador pré-arquitetura. Não criar tag em worktree suja.
+São protegidos:
+
+- `quality_reports/2026-08-12_essential_input_gate0_decisions.md`, fonte
+  normativa das decisões incorporadas aqui;
+- `formal_model_v5.Rmd` e `formal_model_v6.Rmd`, até o gate do Goal 4;
+- todos os artefatos da cadeia `pivotal-response`, que permanecem apenas como
+  proveniência e não podem ser editados, migrados nem citados como evidência
+  corrente.
 
 ---
 
 ## 14. Prompt de abertura da próxima sessão
 
 ```text
-Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md e, como contrato
-normativo, quality_reports/plans/2026-08-12_essential_input_gate0.md. Use as
-skills solve-dynamic-games e paper-version.
+Estamos no repo PowerBayesianPersuasion. Leia AGENTS.md e este contrato inteiro
+antes de agir. Este prompt é apenas um índice e não concede autorização nem
+reformula regra alguma.
 
-O contrato está APPROVED e autoriza o Goal 0, e só o Goal 0. Ele substitui a
-cadeia pivotal-response, que permanece no repositório apenas como proveniência:
-não editar, não migrar, não citar como evidência corrente. Não editar nem
-compilar formal_model_v5.Rmd ou formal_model_v6.Rmd.
-
-Goal 0 tem três entregas, nesta ordem:
-1. marcador de versão pré-arquitetura pelo workflow paper-version, pedindo
-   autorização antes de criar tag ou branch, e nunca em worktree suja;
-2. mapa de dependências com os cinco nós `N1`, `N2`, `N3`, `N4` e `N6`, arestas
-   conforme a Seção 7, e interfaces vazias declarando o schema da Seção 7.2;
-3. revisão independente do próprio contrato, read-only, por dois revisores que
-   não o escreveram, com a instrução da Seção 11: verificar, para cada
-   primitiva, se ela é necessária ao mecanismo ou se está ali por conveniência
-   de tratabilidade.
-
-Não iniciar nenhuma derivação. Os cinco nós permanecem `pending` e não
-autorizados até o Goal 0 fechar com PASS dos dois revisores.
-
-Regras que valem desde o primeiro minuto. O default de qualquer finding é
-escalar ao autor; o ônus da prova é de quem quiser classificar como técnico, e o
-teste é se existe exatamente um reparo forçado pelo que já está escrito. Toda
-ambiguidade e toda definição faltando escalam sempre, sem exceção, em lote na
-fronteira do goal quando não bloqueiam e na hora quando bloqueiam. Quem
-implementa não revisa e quem revisa não edita. Ao fechar o goal, reportar ao
-autor em linguagem corrente, sem jargão interno e sem notação inventada na
-derivação, dizendo o que foi feito, por que, e qual pergunta ele deve fazer para
-verificar alinhamento.
+1. Verifique ao vivo a fronteira de versão e preserve os artefatos da Seção 13.
+2. Tome a autorização corrente somente do cabeçalho.
+3. Siga a topologia e o schema da Seção 7, os entregáveis da Seção 8, as
+   obrigações da Seção 9, o protocolo da Seção 11 e a invalidação da Seção 12.
+4. Execute o verifier da infraestrutura antes de qualquer trabalho autorizado.
+5. Se surgir finding, aplique a Seção 11.1 sem completar lacunas por suposição.
 ```
