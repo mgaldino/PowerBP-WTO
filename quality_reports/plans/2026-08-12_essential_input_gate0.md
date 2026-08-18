@@ -174,6 +174,14 @@ duas rendas potencialmente distintas, `RI_U` e `RI_M`, e o contraste
 institucional é a diferença das diferenças
 `DeltaRI = {r_U - r_M: r_U in RI_U, r_M in RI_M}`.
 
+**Existência separada por regra.** A existência de `RI_M` e de `RI_U` é
+avaliada separadamente. Se `V_g^priv` ou `V_g^pub` for vazio, `RI_g` é vazio;
+isso não apaga a renda da outra regra. `DeltaRI` é vazio quando `RI_M` ou
+`RI_U` for vazio, pois somente o contraste exige as duas regras. Não se declara
+ordenação institucional robusta numa região em que `DeltaRI` seja vazio. As
+interfaces de `N6` e `N7` preservam esses três estados separadamente conforme a
+Seção 7.2, sem campos opcionais nem registros parcialmente preenchidos.
+
 Quando os jogos são payoff-únicos, esses conjuntos são singletons e, para cada
 tipo, a definição se reduz a
 `RI_g(theta) = U_H^priv(theta,g) - U_H^pub(theta,g)`. Se houver multiplicidade
@@ -669,9 +677,40 @@ fonte de continuação são vazios; em `N3` e `N4`, identificam os registros e o
 hash exatos de `N1` ou `N2` consumidos pelo equilíbrio.
 
 **Comparação privada `N6`.** A interface usa
-`private_information_comparison_v1`. Em Gate 0, `comparison_cells` é `null`.
-Em cada célula, o campo próprio é `comparison_records`; cada registro contém
-conjuntamente:
+`private_information_comparison_v1`. Em Gate 0, todas as coleções abaixo são
+`null`:
+
+```text
+private_rule_cells:
+  majority
+  unanimity
+comparison_cells
+```
+
+`private_rule_cells` preserva cada regra antes de compará-las. Em cada célula,
+o campo próprio é `private_rule_records`; cada registro contém conjuntamente:
+
+```text
+private_rule_record_id
+institution
+admissibility_conditions
+source_equilibrium_cell_id
+source_equilibrium_id
+source_interface_hash
+private_payoff_vector: theta_0, theta_1
+private_outcome_distribution: pass_with_hegemon, pass_without_hegemon, failure, delay
+selection_status
+checks_performed
+```
+
+Cada `private_rule_record_id` é único no artefato e corresponde exatamente a um
+registro de `N3` quando `institution = majority` ou de `N4` quando
+`institution = unanimity`, preservando sua célula, ID e hash. Cada registro de
+origem aparece exatamente uma vez na coleção de sua regra. Uma célula `none` de
+uma regra não altera a coleção da outra.
+
+Em `comparison_cells`, o campo próprio é `comparison_records`; cada registro
+contém conjuntamente:
 
 ```text
 comparison_id
@@ -694,8 +733,11 @@ Cada `comparison_id` é único no artefato. Cada registro cita **exatamente um**
 hashes correspondentes nos campos `N3` e `N4`; cada vetor de payoff tem
 exatamente as coordenadas `theta_0` e `theta_1`. `N6` inclui exatamente uma vez
 cada combinação admissível desses registros congelados; não seleciona uma
-delas. Sua interface contém tudo que `N7` precisa do modelo privado, de modo
-que `N7` depende diretamente apenas de `N6`.
+delas. `comparison_cells` é o refinamento comum das duas partições por regra:
+fica `none` onde qualquer regra não tiver registro, sem apagar os
+`private_rule_records` da regra sobrevivente. Assim, a interface contém tudo
+que `N7` precisa do modelo privado e `N7` continua dependendo diretamente
+apenas de `N6`.
 
 **Benchmark terminal `N7`.** A interface usa
 `complete_information_benchmark_v1` e é função de `prior_mu in [0,1]` apenas
@@ -709,7 +751,10 @@ public_equilibrium_cells:
   unanimity:
     R2: theta_0, theta_1
     R1: theta_0, theta_1
-informational_rent_cells
+informational_rent_cells:
+  majority
+  unanimity
+informational_rent_contrast_cells
 ```
 
 Em cada célula pública, o campo próprio é `public_equilibrium_records`. Cada
@@ -731,20 +776,17 @@ de `N7`, nunca um ID privado. Como o registro público já fixa `theta`,
 privados necessários para transportar R2 a R1 e tornam inequívoca a coordenada
 de `H` usada em `V_g^pub`.
 
-Em cada célula de renda, o campo próprio é `informational_rent_records`. Cada
-registro de renda contém conjuntamente:
+As células de renda são separadas por regra. Em cada uma, o campo próprio é
+`informational_rent_records`; cada registro contém conjuntamente:
 
 ```text
 rent_record_id
+institution
 admissibility_conditions
-private_source_comparison_id
-public_source_equilibrium_ids:
-  majority: theta_0, theta_1
-  unanimity: theta_0, theta_1
+private_source_rule_record_id
+public_source_equilibrium_ids: theta_0, theta_1
 source_N6_interface_hash
-RI_U: theta_0, theta_1
-RI_M: theta_0, theta_1
-DeltaRI: theta_0, theta_1
+RI: theta_0, theta_1
 ex_ante_images
 envelopes
 selection_status
@@ -752,13 +794,34 @@ robustness_indicators
 ```
 
 O `rent_record_id` é único no artefato. Cada registro combina exatamente um
-`comparison_id` privado, os quatro `public_equilibrium_id` de `R1` — uma regra
-por tipo — e o hash congelado de `N6`; a ligação de cada registro público de
-`R1` a `R2` permanece preservada pelos IDs de continuação acima. Existe
-exatamente um registro de renda por tupla completa admissível dessas fontes.
-As células não selecionam combinações; uma célula `none` preserva a ausência de
-tupla admissível e seu certificado. Nenhum desses campos retorna como input a
-`N1`, `N2`, `N3`, `N4` ou `N6`.
+`private_rule_record_id`, os dois `public_equilibrium_id` de `R1` da **mesma
+regra** — um por tipo — e o hash congelado de `N6`; a ligação de cada registro
+público de `R1` a `R2` permanece preservada pelos IDs de continuação acima.
+Existe exatamente um registro de renda por tupla completa admissível dessas
+fontes. A coleção de maioria calcula `RI_M`; a de unanimidade calcula `RI_U`.
+Uma coleção permanece preenchida mesmo se a outra for `none`.
+
+`informational_rent_contrast_cells` é o refinamento comum das duas coleções de
+renda. Seu campo próprio é `informational_rent_contrast_records`; cada registro
+contém conjuntamente:
+
+```text
+contrast_record_id
+admissibility_conditions
+source_rent_record_ids: majority, unanimity
+DeltaRI: theta_0, theta_1
+ex_ante_images
+envelopes
+selection_status
+robustness_indicators
+```
+
+Cada `contrast_record_id` é único no artefato e cada par admissível de registros
+de renda aparece exatamente uma vez. A célula de contraste é `none` sempre que
+qualquer renda-fonte for `none`, mas as coleções individuais de `RI_M` e `RI_U`
+permanecem intactas. Não há campos opcionais nem registro parcialmente
+preenchido. Nenhuma dessas coleções retorna como input a `N1`, `N2`, `N3`, `N4`
+ou `N6`.
 
 Nenhum schema contém decisão nem valor de formação. Qualquer nó que precise
 exportar mais do que isto deve declarar a extensão no DAG antes de derivar, com
@@ -768,10 +831,11 @@ justificativa; a mudança segue a Seção 12.
 
 `N1`--`N4` entregam a correspondência completa de equilíbrio nas células e
 registros atômicos da Seção 7.2. `N6` entrega a correspondência completa de
-comparações privadas, inclusive células vazias certificadas, mantendo os IDs e
-hashes das duas regras. `N7` entrega as correspondências completas dos jogos
-públicos por regra e tipo e a correspondência de rendas definida na Seção 1,
-inclusive as regiões em que alguma delas é vazia.
+cada regra privada e, separadamente, a correspondência de comparações, inclusive
+células vazias certificadas, mantendo IDs e hashes. `N7` entrega as
+correspondências completas dos jogos públicos por regra e tipo, as duas
+correspondências de renda por regra e a correspondência separada de `DeltaRI`,
+inclusive as regiões em que apenas parte desses objetos existe.
 
 Todo nó entrega ainda:
 
@@ -784,12 +848,13 @@ Todo nó entrega ainda:
 O candidato e seu hash entram no protocolo de prontidão, congelamento e revisão
 da Seção 11. Qualquer alteração posterior segue a Seção 12.
 
-`N6` fecha o modelo principal: responde à pergunta de delay e reporta a
-comparação dos payoffs e outcomes privados entre regras, inclusive se não houver
-ordenação robusta. `N7` resolve P8 nas mesmas unidades dos registros privados e
-completa a pergunta de renda da Seção 1, inclusive se o resultado for negativo,
-set-valued ou inexistente sob o conceito vigente. O tratamento de ambas as
-revisões está na Seção 11.
+`N6` fecha o modelo principal: responde à pergunta de delay, preserva cada regra
+privada e reporta a comparação dos payoffs e outcomes entre regras, inclusive
+se não houver ordenação robusta ou se a comparação for vazia. `N7` resolve P8
+nas mesmas unidades dos registros privados e completa `RI_M`, `RI_U` e
+`DeltaRI` conforme a existência separada da Seção 1, inclusive se qualquer
+objeto for negativo, set-valued ou vazio sob o conceito vigente. O tratamento
+de ambas as revisões está na Seção 11.
 
 ---
 
@@ -1122,10 +1187,10 @@ Rscript scripts/verify_essential_input_gate0.R
 
 Esse é o único verifier referido sem qualificação neste contrato. Ele checa a
 infraestrutura do Gate 0 — topologia de seis nós sem `N5`, schemas vazios de
-coleções de cobertura, tipagem dos payoffs públicos, isolamento terminal de
-`N7`, estados `pending`, gates de congelamento com duas revisões, prontidão
-**topológica** e invalidação — e deve
-terminar com `PASS`. Seu resultado não substitui nenhum gate autoral da Seção
+coleções de cobertura, preservação separada de `RI_M`, `RI_U` e `DeltaRI`,
+tipagem dos payoffs públicos, isolamento terminal de `N7`, estados `pending`,
+gates de congelamento com duas revisões, prontidão **topológica** e invalidação
+— e deve terminar com `PASS`. Seu resultado não substitui nenhum gate autoral da Seção
 11. Falha nessa verificação bloqueia o trabalho até ser classificada e resolvida
 conforme a Seção 11.1.
 

@@ -97,7 +97,20 @@
     "private_information_comparison_v1": {
       "applies_to": ["N6"],
       "cell_schema_ref": "coverage_cell_v1",
+      "private_rule_cell_record_field": "private_rule_records",
       "cell_record_field": "comparison_records",
+      "private_rule_record_fields": [
+        "private_rule_record_id",
+        "institution",
+        "admissibility_conditions",
+        "source_equilibrium_cell_id",
+        "source_equilibrium_id",
+        "source_interface_hash",
+        "private_payoff_vector",
+        "private_outcome_distribution",
+        "selection_status",
+        "checks_performed"
+      ],
       "record_fields": [
         "comparison_id",
         "admissibility_conditions",
@@ -110,6 +123,19 @@
         "checks_performed"
       ],
       "institution_fields": ["majority", "unanimity"],
+      "private_rule_source_node_map": {
+        "majority": "N3",
+        "unanimity": "N4"
+      },
+      "private_rule_payoff_vector_fields": ["theta_0", "theta_1"],
+      "private_rule_outcome_distribution_fields": [
+        "pass_with_hegemon",
+        "pass_without_hegemon",
+        "failure",
+        "delay"
+      ],
+      "unique_private_rule_id_field": "private_rule_record_id",
+      "private_rule_passthrough_rule": "Each N3 equilibrium record appears exactly once in majority private_rule_cells and each N4 equilibrium record appears exactly once in unanimity private_rule_cells, preserving source cell id, equilibrium id, and interface hash; one rule may be nonempty when the other is empty.",
       "source_node_fields": ["N3", "N4"],
       "source_equilibrium_id_fields": ["majority", "unanimity"],
       "source_interface_hash_fields": ["N3", "N4"],
@@ -123,13 +149,15 @@
         "delay"
       ],
       "unique_comparison_id_field": "comparison_id",
-      "source_cardinality_rule": "Each record cites exactly one N3 majority equilibrium id, exactly one N4 unanimity equilibrium id, and their matching interface hashes; each admissible source pair appears exactly once."
+      "source_cardinality_rule": "Each record cites exactly one N3 majority equilibrium id, exactly one N4 unanimity equilibrium id, and their matching interface hashes; each admissible source pair appears exactly once.",
+      "comparison_refinement_rule": "comparison_cells is the common refinement of majority and unanimity private_rule_cells and is none wherever either source cell is none, without changing either private-rule collection."
     },
     "complete_information_benchmark_v1": {
       "applies_to": ["N7"],
       "cell_schema_ref": "coverage_cell_v1",
       "public_equilibrium_cell_record_field": "public_equilibrium_records",
       "informational_rent_cell_record_field": "informational_rent_records",
+      "informational_rent_contrast_cell_record_field": "informational_rent_contrast_records",
       "public_equilibrium_record_fields": [
         "public_equilibrium_id",
         "institution",
@@ -150,12 +178,21 @@
       ],
       "informational_rent_record_fields": [
         "rent_record_id",
+        "institution",
         "admissibility_conditions",
-        "private_source_comparison_id",
+        "private_source_rule_record_id",
         "public_source_equilibrium_ids",
         "source_N6_interface_hash",
-        "RI_U",
-        "RI_M",
+        "RI",
+        "ex_ante_images",
+        "envelopes",
+        "selection_status",
+        "robustness_indicators"
+      ],
+      "informational_rent_contrast_record_fields": [
+        "contrast_record_id",
+        "admissibility_conditions",
+        "source_rent_record_ids",
         "DeltaRI",
         "ex_ante_images",
         "envelopes",
@@ -169,13 +206,19 @@
       "unique_public_id_field": "public_equilibrium_id",
       "public_payoff_vector_schema_ref": "public_payoff_vector_v1",
       "public_continuation_rule": "R2 source_public_continuation_ids is empty; R1 contains all and only consumed R2 public_equilibrium_ids from the same institution and type.",
-      "rent_public_source_nesting": ["institution", "type"],
-      "rent_private_source_id_field": "private_source_comparison_id",
-      "rent_public_source_id_fields": ["majority.theta_0", "majority.theta_1", "unanimity.theta_0", "unanimity.theta_1"],
+      "rent_cell_nesting": ["institution"],
+      "rent_public_source_nesting": ["type"],
+      "rent_private_source_id_field": "private_source_rule_record_id",
+      "rent_public_source_id_fields": ["theta_0", "theta_1"],
       "rent_source_interface_hash_field": "source_N6_interface_hash",
       "rent_vector_fields": ["theta_0", "theta_1"],
       "unique_rent_id_field": "rent_record_id",
-      "rent_tuple_rule": "Exactly one rent record per admissible tuple of one private comparison id, four R1 public equilibrium ids (two institutions by two types), and the frozen N6 interface hash.",
+      "rent_tuple_rule": "Exactly one rent record per admissible same-institution tuple of one private-rule record, two R1 public equilibrium ids (one per type), and the frozen N6 interface hash; majority and unanimity rent collections remain independent.",
+      "rent_independence_rule": "RI_M and RI_U are represented in separate coverage-cell collections; either may be nonempty when the other is empty.",
+      "contrast_source_rent_id_fields": ["majority", "unanimity"],
+      "contrast_vector_fields": ["theta_0", "theta_1"],
+      "unique_contrast_id_field": "contrast_record_id",
+      "contrast_tuple_rule": "Exactly one contrast record per admissible majority-unanimity rent-record pair; the contrast cell is none wherever either source rent cell is none, without changing either rent collection.",
       "outcome_distribution_fields": [
         "pass_with_hegemon",
         "pass_without_hegemon",
@@ -262,6 +305,10 @@
           "name": "entry_belief",
           "domain": "[0,1]"
         },
+        "private_rule_cells": {
+          "majority": null,
+          "unanimity": null
+        },
         "comparison_cells": null
       }
     },
@@ -300,7 +347,11 @@
             }
           }
         },
-        "informational_rent_cells": null
+        "informational_rent_cells": {
+          "majority": null,
+          "unanimity": null
+        },
+        "informational_rent_contrast_cells": null
       }
     }
   ]

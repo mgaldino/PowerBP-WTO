@@ -215,8 +215,27 @@ assert_true(
 )
 assert_true(
   identical(comparison_schema$cell_schema_ref, "coverage_cell_v1") &&
+    identical(comparison_schema$private_rule_cell_record_field, "private_rule_records") &&
     identical(comparison_schema$cell_record_field, "comparison_records"),
   "The private comparison schema must use typed coverage cells."
+)
+assert_true(
+  identical(
+    as_character(comparison_schema$private_rule_record_fields),
+    c(
+      "private_rule_record_id",
+      "institution",
+      "admissibility_conditions",
+      "source_equilibrium_cell_id",
+      "source_equilibrium_id",
+      "source_interface_hash",
+      "private_payoff_vector",
+      "private_outcome_distribution",
+      "selection_status",
+      "checks_performed"
+    )
+  ),
+  "The private-rule passthrough record has the wrong fields."
 )
 assert_true(
   identical(
@@ -238,6 +257,27 @@ assert_true(
 assert_true(
   identical(as_character(comparison_schema$institution_fields), c("majority", "unanimity")),
   "The private comparison schema has the wrong institution fields."
+)
+assert_true(
+  identical(
+    comparison_schema$private_rule_source_node_map,
+    list(majority = "N3", unanimity = "N4")
+  ) &&
+    identical(
+      as_character(comparison_schema$private_rule_payoff_vector_fields),
+      c("theta_0", "theta_1")
+    ) &&
+    identical(
+      as_character(comparison_schema$private_rule_outcome_distribution_fields),
+      c("pass_with_hegemon", "pass_without_hegemon", "failure", "delay")
+    ) &&
+    identical(comparison_schema$unique_private_rule_id_field, "private_rule_record_id"),
+  "The N6 private-rule passthrough maps or fields are incomplete."
+)
+assert_true(
+  grepl("exactly once", comparison_schema$private_rule_passthrough_rule, fixed = TRUE) &&
+    grepl("one rule may be nonempty", comparison_schema$private_rule_passthrough_rule, fixed = TRUE),
+  "N6 must preserve each private rule independently under partial existence."
 )
 assert_true(
   identical(as_character(comparison_schema$source_node_fields), c("N3", "N4")),
@@ -280,6 +320,12 @@ assert_true(
     grepl("exactly once", comparison_schema$source_cardinality_rule, fixed = TRUE),
   "The private comparison schema must fix source cardinality and completeness."
 )
+assert_true(
+  grepl("common refinement", comparison_schema$comparison_refinement_rule, fixed = TRUE) &&
+    grepl("none wherever either", comparison_schema$comparison_refinement_rule, fixed = TRUE) &&
+    grepl("without changing either", comparison_schema$comparison_refinement_rule, fixed = TRUE),
+  "N6 comparison cells must not erase the surviving private-rule collection."
+)
 
 benchmark_schema <- schemas$complete_information_benchmark_v1
 assert_true(
@@ -295,8 +341,12 @@ assert_true(
     identical(
       benchmark_schema$informational_rent_cell_record_field,
       "informational_rent_records"
+    ) &&
+    identical(
+      benchmark_schema$informational_rent_contrast_cell_record_field,
+      "informational_rent_contrast_records"
     ),
-  "The benchmark schema must type both public-equilibrium and rent coverage cells."
+  "The benchmark schema must type public, rent, and rent-contrast coverage cells."
 )
 assert_true(
   identical(
@@ -327,13 +377,12 @@ assert_true(
     as_character(benchmark_schema$informational_rent_record_fields),
     c(
       "rent_record_id",
+      "institution",
       "admissibility_conditions",
-      "private_source_comparison_id",
+      "private_source_rule_record_id",
       "public_source_equilibrium_ids",
       "source_N6_interface_hash",
-      "RI_U",
-      "RI_M",
-      "DeltaRI",
+      "RI",
       "ex_ante_images",
       "envelopes",
       "selection_status",
@@ -341,6 +390,22 @@ assert_true(
     )
   ),
   "The informational-rent record has the wrong fields."
+)
+assert_true(
+  identical(
+    as_character(benchmark_schema$informational_rent_contrast_record_fields),
+    c(
+      "contrast_record_id",
+      "admissibility_conditions",
+      "source_rent_record_ids",
+      "DeltaRI",
+      "ex_ante_images",
+      "envelopes",
+      "selection_status",
+      "robustness_indicators"
+    )
+  ),
+  "The informational-rent contrast record has the wrong fields."
 )
 assert_true(
   identical(as_character(benchmark_schema$institution_fields), c("majority", "unanimity")),
@@ -369,17 +434,18 @@ assert_true(
   "The public continuation-id target is not fully specified."
 )
 assert_true(
+  identical(as_character(benchmark_schema$rent_cell_nesting), "institution") &&
   identical(
     as_character(benchmark_schema$rent_public_source_nesting),
-    c("institution", "type")
+    "type"
   ) &&
-    identical(benchmark_schema$rent_private_source_id_field, "private_source_comparison_id") &&
+    identical(benchmark_schema$rent_private_source_id_field, "private_source_rule_record_id") &&
     identical(
       as_character(benchmark_schema$rent_public_source_id_fields),
-      c("majority.theta_0", "majority.theta_1", "unanimity.theta_0", "unanimity.theta_1")
+      c("theta_0", "theta_1")
     ) &&
     identical(benchmark_schema$rent_source_interface_hash_field, "source_N6_interface_hash"),
-  "Rent records must identify exactly one public R1 source by institution and type."
+  "Rent records must identify same-rule private and public sources by type."
 )
 assert_true(
   identical(as_character(benchmark_schema$rent_vector_fields), c("theta_0", "theta_1")) &&
@@ -388,9 +454,23 @@ assert_true(
 )
 assert_true(
   grepl("Exactly one rent record", benchmark_schema$rent_tuple_rule, fixed = TRUE) &&
-    grepl("four R1 public equilibrium ids", benchmark_schema$rent_tuple_rule, fixed = TRUE) &&
-    grepl("frozen N6 interface hash", benchmark_schema$rent_tuple_rule, fixed = TRUE),
+    grepl("two R1 public equilibrium ids", benchmark_schema$rent_tuple_rule, fixed = TRUE) &&
+    grepl("frozen N6 interface hash", benchmark_schema$rent_tuple_rule, fixed = TRUE) &&
+    grepl("remain independent", benchmark_schema$rent_tuple_rule, fixed = TRUE) &&
+    grepl("either may be nonempty", benchmark_schema$rent_independence_rule, fixed = TRUE),
   "The rent-record tuple and cardinality rule is incomplete."
+)
+assert_true(
+  identical(
+    as_character(benchmark_schema$contrast_source_rent_id_fields),
+    c("majority", "unanimity")
+  ) &&
+    identical(as_character(benchmark_schema$contrast_vector_fields), c("theta_0", "theta_1")) &&
+    identical(benchmark_schema$unique_contrast_id_field, "contrast_record_id") &&
+    grepl("Exactly one contrast record", benchmark_schema$contrast_tuple_rule, fixed = TRUE) &&
+    grepl("none wherever either", benchmark_schema$contrast_tuple_rule, fixed = TRUE) &&
+    grepl("without changing either", benchmark_schema$contrast_tuple_rule, fixed = TRUE),
+  "DeltaRI must use a separate contrast collection without erasing either RI_g."
 )
 assert_true(
   identical(
@@ -479,26 +559,38 @@ is_valid_pending_interface <- function(node_id, node) {
         identical(interface$function_of$domain, "[0,1]") &&
         is.null(interface$correspondence_cells) &&
         !("complete_information_benchmark" %in% all_field_names(interface)) &&
+        !("private_rule_cells" %in% all_field_names(interface)) &&
         !("public_equilibrium_cells" %in% all_field_names(interface)) &&
-        !("informational_rent_cells" %in% all_field_names(interface))
+        !("informational_rent_cells" %in% all_field_names(interface)) &&
+        !("informational_rent_contrast_cells" %in% all_field_names(interface))
     )
   }
 
   if (identical(node_id, "N6")) {
+    private_rule_cells <- interface$private_rule_cells
+    valid_private_rule_shape <-
+      identical(names(private_rule_cells), c("majority", "unanimity")) &&
+      all(vapply(private_rule_cells, is.null, logical(1)))
     return(
-      identical(names(interface), c("schema_ref", "function_of", "comparison_cells")) &&
+      identical(
+        names(interface),
+        c("schema_ref", "function_of", "private_rule_cells", "comparison_cells")
+      ) &&
         identical(interface$schema_ref, "private_information_comparison_v1") &&
         identical(interface$function_of$name, "entry_belief") &&
         identical(interface$function_of$domain, "[0,1]") &&
+        valid_private_rule_shape &&
         is.null(interface$comparison_cells) &&
         !("complete_information_benchmark" %in% all_field_names(interface)) &&
         !("public_equilibrium_cells" %in% all_field_names(interface)) &&
-        !("informational_rent_cells" %in% all_field_names(interface))
+        !("informational_rent_cells" %in% all_field_names(interface)) &&
+        !("informational_rent_contrast_cells" %in% all_field_names(interface))
     )
   }
 
   if (identical(node_id, "N7")) {
     public_cells <- interface$public_equilibrium_cells
+    rent_cells <- interface$informational_rent_cells
     valid_public_shape <-
       identical(names(public_cells), c("majority", "unanimity")) &&
       all(vapply(public_cells, function(rule_cells) {
@@ -508,6 +600,9 @@ is_valid_pending_interface <- function(node_id, node) {
               all(vapply(round_cells, is.null, logical(1)))
           }, logical(1)))
       }, logical(1)))
+    valid_rent_shape <-
+      identical(names(rent_cells), c("majority", "unanimity")) &&
+      all(vapply(rent_cells, is.null, logical(1)))
 
     return(
       identical(
@@ -516,15 +611,18 @@ is_valid_pending_interface <- function(node_id, node) {
           "schema_ref",
           "function_of",
           "public_equilibrium_cells",
-          "informational_rent_cells"
+          "informational_rent_cells",
+          "informational_rent_contrast_cells"
         )
       ) &&
         identical(interface$schema_ref, "complete_information_benchmark_v1") &&
         identical(interface$function_of$name, "prior_mu") &&
         identical(interface$function_of$domain, "[0,1]") &&
         valid_public_shape &&
-        is.null(interface$informational_rent_cells) &&
+        valid_rent_shape &&
+        is.null(interface$informational_rent_contrast_cells) &&
         !("correspondence_cells" %in% all_field_names(interface)) &&
+        !("private_rule_cells" %in% all_field_names(interface)) &&
         !("comparison_cells" %in% all_field_names(interface))
     )
   }
@@ -635,6 +733,83 @@ assert_true(
   "A public payoff vector without H's scalar payoff must fail validation."
 )
 
+# Partial-existence regression: one rule's RI survives while the joint
+# comparison and DeltaRI remain empty.
+majority_private_exists <- list(
+  cell_id = "majority-private-exists",
+  domain_conditions = list(expression = "mu in region-A"),
+  existence_status = "exists",
+  private_rule_records = list(list(private_rule_record_id = "private-M-1")),
+  nonexistence_certificate = NULL
+)
+unanimity_private_none <- list(
+  cell_id = "unanimity-private-none",
+  domain_conditions = list(expression = "mu in region-A"),
+  existence_status = "none",
+  private_rule_records = list(),
+  nonexistence_certificate = list(
+    ledger_claim_ids = list("claim-no-private-U"),
+    assumptions_used = list(),
+    checks_performed = list("source-cell-propagation")
+  )
+)
+comparison_none <- list(
+  cell_id = "comparison-none",
+  domain_conditions = list(expression = "mu in region-A"),
+  existence_status = "none",
+  comparison_records = list(),
+  nonexistence_certificate = list(
+    ledger_claim_ids = list("claim-no-joint-comparison"),
+    assumptions_used = list(),
+    checks_performed = list("common-refinement-check")
+  )
+)
+assert_true(
+  is_valid_coverage_cells(list(majority_private_exists), "private_rule_records") &&
+    is_valid_coverage_cells(list(unanimity_private_none), "private_rule_records") &&
+    is_valid_coverage_cells(list(comparison_none), "comparison_records"),
+  "N6 must represent one surviving private rule without fabricating a joint comparison."
+)
+
+majority_rent_exists <- list(
+  cell_id = "majority-rent-exists",
+  domain_conditions = list(expression = "mu in region-A"),
+  existence_status = "exists",
+  informational_rent_records = list(list(rent_record_id = "RI-M-1")),
+  nonexistence_certificate = NULL
+)
+unanimity_rent_none <- list(
+  cell_id = "unanimity-rent-none",
+  domain_conditions = list(expression = "mu in region-A"),
+  existence_status = "none",
+  informational_rent_records = list(),
+  nonexistence_certificate = list(
+    ledger_claim_ids = list("claim-no-RI-U"),
+    assumptions_used = list(),
+    checks_performed = list("same-rule-source-check")
+  )
+)
+contrast_none <- list(
+  cell_id = "contrast-none",
+  domain_conditions = list(expression = "mu in region-A"),
+  existence_status = "none",
+  informational_rent_contrast_records = list(),
+  nonexistence_certificate = list(
+    ledger_claim_ids = list("claim-no-DeltaRI"),
+    assumptions_used = list(),
+    checks_performed = list("rent-refinement-check")
+  )
+)
+assert_true(
+  is_valid_coverage_cells(list(majority_rent_exists), "informational_rent_records") &&
+    is_valid_coverage_cells(list(unanimity_rent_none), "informational_rent_records") &&
+    is_valid_coverage_cells(
+      list(contrast_none),
+      "informational_rent_contrast_records"
+    ),
+  "N7 must preserve RI_M when RI_U and DeltaRI are empty."
+)
+
 # Negative Gate 0 tests: pending interfaces must reject filled, old, marginal,
 # or cross-family fields.
 filled_private <- nodes$N1
@@ -678,6 +853,13 @@ assert_true(
   "A pending N6 with filled comparison cells must fail validation."
 )
 
+filled_n6_private_rule <- nodes$N6
+filled_n6_private_rule$interface$private_rule_cells$majority <- list(majority_private_exists)
+assert_true(
+  !is_valid_pending_interface("N6", filled_n6_private_rule),
+  "A pending N6 with a filled private-rule collection must fail validation."
+)
+
 benchmark_in_n6 <- nodes$N6
 benchmark_in_n6$interface$public_equilibrium_cells <- list()
 assert_true(
@@ -710,16 +892,17 @@ assert_true(
 )
 
 filled_n7_rent <- nodes$N7
-filled_n7_rent$interface$informational_rent_cells <- list(list(
-  cell_id = "rent-cell",
-  domain_conditions = list(expression = "mu in [0,1]"),
-  existence_status = "exists",
-  informational_rent_records = list(list(rent_record_id = "forbidden-at-gate0")),
-  nonexistence_certificate = NULL
-))
+filled_n7_rent$interface$informational_rent_cells$majority <- list(majority_rent_exists)
 assert_true(
   !is_valid_pending_interface("N7", filled_n7_rent),
   "A pending N7 with filled informational-rent cells must fail validation."
+)
+
+filled_n7_contrast <- nodes$N7
+filled_n7_contrast$interface$informational_rent_contrast_cells <- list(contrast_none)
+assert_true(
+  !is_valid_pending_interface("N7", filled_n7_contrast),
+  "A pending N7 with filled DeltaRI contrast cells must fail validation."
 )
 
 assert_true(identical(manifest$interface_hashing$algorithm, "sha256"), "Interface hashing must use SHA-256.")
@@ -1009,9 +1192,10 @@ for (node_id in expected_ids) {
 cat(
   paste0(
     "PASS: six-node essential-input Gate 0 DAG, typed coverage cells for empty and ",
-    "nonempty correspondences, role-typed public payoffs, terminal complete-information ",
-    "benchmark, two-review freeze gates, topological readiness, negative schema tests, ",
-    "and invalidation rules verified. Topological ",
+    "nonempty correspondences, independent RI_M and RI_U with a separate DeltaRI ",
+    "contrast, role-typed public payoffs, terminal complete-information benchmark, ",
+    "two-review freeze gates, topological readiness, negative schema tests, and ",
+    "invalidation rules verified. Topological ",
     "readiness does not grant author authorization; Section 11 controls.\n"
   )
 )
