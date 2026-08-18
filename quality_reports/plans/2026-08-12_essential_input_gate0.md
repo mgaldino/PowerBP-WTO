@@ -4,9 +4,10 @@
 **Status:** `APPROVED` — aprovado pelo autor em 2026-08-12, emendado pelas
 decisões normativas do commit `162616d` e pela decisão autoral de 2026-08-17
 sobre o escopo de stage-undominated voting, as obrigações de prova e o protocolo
-de revisão. Autoriza o Goal 0; nenhum nó de derivação está autorizado antes das
-duas novas revisões independentes e da resolução de qualquer finding
-remanescente.
+de revisão, além da decisão autoral de 2026-08-18 que torna o benchmark público
+um nó terminal posterior ao congelamento do modelo principal. Autoriza o Goal
+0; nenhum nó de derivação está autorizado antes das duas novas revisões
+independentes e da resolução de qualquer finding remanescente.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
 
@@ -91,7 +92,10 @@ topologia da Seção 7 e testa as obrigações correspondentes da Seção 9.
 **Goal 3 — comparação.** Resolve `N6` no escopo definido na Seção 1 e entrega o
 objeto especificado na Seção 8.
 
-**Goal 4 — manuscrito.** A migração segue exclusivamente os gates da Seção 11.
+**Goal 4 — benchmark público.** Depois de congelado o modelo principal, resolve
+`N7` e calcula as rendas informacionais sem alimentar de volta `N1`--`N6`.
+
+**Goal 5 — manuscrito.** A migração segue exclusivamente os gates da Seção 11.
 
 ---
 
@@ -167,16 +171,25 @@ institucional é a diferença das diferenças
 Quando os jogos são payoff-únicos, esses conjuntos são singletons e, para cada
 tipo, a definição se reduz a
 `RI_g(theta) = U_H^priv(theta,g) - U_H^pub(theta,g)`. Se houver multiplicidade
-com payoffs distintos, `N6` reporta os conjuntos exatos e seus envelopes
+com payoffs distintos, `N7` reporta os conjuntos exatos e seus envelopes
 inferior e superior, sem preencher lacunas de um conjunto não convexo e sem
 selecionar um equilíbrio ad hoc. Para um tipo `theta`, a conclusão
 `RI_U(theta) > RI_M(theta)` só é robusta se a coordenada `theta` for positiva
-em todo vetor de `DeltaRI`. `N6` reporta também a imagem ex ante de cada
+em todo vetor de `DeltaRI`. `N7` reporta também a imagem ex ante de cada
 conjunto, aplicando o mesmo prior `mu` a cada vetor, e só declara a ordenação ex
 ante robusta se todos os valores dessa imagem tiverem o mesmo sinal. O campo
-que carrega o contrafactual está no schema da Seção 7.2; a
-obrigação de resolvê-lo por ramos está somente em P8, na Seção 9. A renda nunca
-é definida pelo excesso sobre `o_theta`.
+que carrega o contrafactual existe somente na interface terminal de `N7`,
+definida na Seção 7.2; a obrigação de resolvê-lo por ramos está somente em P8,
+na Seção 9. A renda nunca é definida pelo excesso sobre `o_theta`.
+
+**Fronteira entre modelo principal e estimando.** `N1`, `N2`, `N3`, `N4` e `N6`
+resolvem, comparam, revisam e congelam exclusivamente os jogos com informação
+privada. O benchmark público não é argumento, continuação nem saída obrigatória
+desses nós. `N7` só é aberto depois do congelamento de `N6`: deriva os jogos
+públicos e combina seus payoffs com os registros privados congelados. Resultado,
+multiplicidade ou inexistência no benchmark não altera o modelo principal; a
+única exceção é um finding que demonstre erro em uma fonte compartilhada do
+contrato, caso regido pela Seção 12.
 
 **Benchmark público e delay.** Qual ramo prevalece no jogo com `theta` público
 é resultado, não parte da definição do estimando. P8 é a única fonte da
@@ -186,9 +199,10 @@ A existência de separating e de atraso é testada por P3 sob o conceito da
 Seção 5.
 
 **Candidato substantivo, não premissa.** A decisão do autor antecipa que a
-inexistência de separating fará a opção de espera sustentar renda
+inexistência de separating fará a opção de espera gerar o componente de payoff
 `beta*(o_1-o_0)` para todo prior mesmo sem atraso realizado. `N4` deve derivar
-ou refutar essa expressão sob o contrato emendado.
+ou refutar esse componente no jogo privado; somente `N7` testa se ele coincide
+com renda informacional no sentido contrafactual acima.
 
 **Prior do autor e desfechos, registrados antes de derivar.** A prior do autor é
 que o tipo privado permite extração de renda. Registrada aqui para que a
@@ -538,11 +552,13 @@ resultados. As obrigações substantivas estão exclusivamente na Seção 9.
 | `N2` | R2 unanimidade | nenhuma | resolver o nó terminal e exportar a interface da Seção 7.2 |
 | `N3` | R1 maioria | `N1` | resolver R1 consumindo somente a interface congelada de `N1` |
 | `N4` | R1 unanimidade | `N2` | resolver R1 consumindo somente a interface congelada de `N2` |
-| `N6` | comparação | `N3`, `N4` | responder às perguntas da Seção 1 com as interfaces congeladas de ambas as regras |
+| `N6` | comparação privada | `N3`, `N4` | comparar o modelo privado entre regras e congelar a cadeia principal |
+| `N7` | benchmark público e renda | `N6` | depois de congelado `N6`, derivar os jogos públicos e calcular `RI_U`, `RI_M` e `DeltaRI` |
 
 `N1` e `N2` são mutuamente independentes. `N3` e `N4` não consomem um ao
-outro. A prontidão para consumo e a cadência de revisão são definidas somente
-na Seção 11.
+outro. `N7` é consumidor terminal: nenhum nó do modelo principal depende dele.
+A prontidão para consumo e a cadência de revisão são definidas somente na
+Seção 11.
 
 ---
 
@@ -555,8 +571,8 @@ somente na Seção 12.
 
 ```text
 Goal 0  Contrato e infraestrutura
-        Fechar o contrato e representar no DAG os cinco nós, as arestas e o
-        schema comum da Seção 7.2.
+        Fechar o contrato e representar no DAG os seis nós N1, N2, N3, N4,
+        N6 e N7, as arestas e os schemas da Seção 7.2.
 
 Goal 1  Nós baratos — N1, N2, N3
         N1 e N2 podem ser resolvidos em paralelo. Quando N1 estiver apto a ser
@@ -566,11 +582,16 @@ Goal 2  Nó caro — N4
         Resolver N4 a partir da interface congelada de N2. As obrigações a
         testar estão na Seção 9; o tratamento especial da revisão, na Seção 11.
 
-Goal 3  Comparação — N6
-        Resolver N6 a partir das interfaces congeladas de N3 e N4 e produzir o
-        objeto adicional definido na Seção 8.
+Goal 3  Comparação privada — N6
+        Resolver N6 a partir das interfaces congeladas de N3 e N4, revisar a
+        integração e congelar o modelo principal.
 
-Goal 4  Migração para formal_model_v6.Rmd
+Goal 4  Benchmark público e renda — N7
+        Somente depois de N6 congelado, resolver os jogos públicos, calcular as
+        rendas da Seção 1 e congelar N7 sem alimentar de volta o modelo
+        principal.
+
+Goal 5  Migração para formal_model_v6.Rmd
         Seguir o gate de migração da Seção 11.
 ```
 
@@ -579,58 +600,117 @@ O DAG registra a topologia desta seção. Os entregáveis e hashes estão na Se�
 adicionais de release ou manifestos da cadeia anterior não integram esta
 arquitetura.
 
-### 7.2 Schema de interface
+### 7.2 Schemas de interface
 
-Todo nó exporta o mesmo objeto, como função da crença que entra nele. Fixar isto
-**agora**, antes de derivar, evita os dois modos de falha da cadeia anterior:
-congelamento prematuro, quando o consumidor precisa de algo que o produtor não
-exportou, e inchaço de interface, quando o produtor exporta tudo por precaução.
+Fixar os objetos consumidos **agora**, antes de derivar, evita congelamento
+prematuro e seleção silenciosa entre continuações. Payoffs, estratégias,
+crenças e outcomes do mesmo equilíbrio permanecem no mesmo registro atômico;
+projeções marginais nunca podem ser recombinadas para fabricar um equilíbrio.
+Os nomes de campos abaixo são espelhados no DAG e verificados pela Seção 13.
+
+**Nós de equilíbrio privado `N1`--`N4`.** A interface é função da crença de
+entrada e usa o schema `equilibrium_correspondence_v1`. Em Gate 0,
+`joint_records` é `null`. Depois de PASS, é uma lista não vazia; cada registro
+contém conjuntamente:
 
 ```text
-Para cada nó, em função da crença de entrada:
-
-  1. payoff do proponente reconhecido
-  2. valor esperado pré-reconhecimento de um weak nonproposer
-  3. payoff de H por tipo, theta = 0 e theta = 1
-  4. distribuição de outcomes: passagem com H, passagem sem H, falha
-       e, nos nós de R1, atraso
-  5. benchmark de informação completa definido na Seção 1, com a
-       correspondência de payoffs de H por tipo, theta=0 e theta=1
+equilibrium_id
+admissibility_conditions
+branch_classification
+strategy_profile
+belief_system
+source_continuation_record_ids
+source_interface_hashes
+existence_uniqueness_status
+selection_status
+assumptions_used
+checks_performed
+recognized_proposer_payoff
+weak_nonproposer_pre_recognition_expected_value
+hegemon_payoff_by_type: theta_0, theta_1
+outcome_distribution: pass_with_hegemon, pass_without_hegemon, failure, delay
+payoff_date
 ```
 
-O schema não contém decisão nem valor de formação. O ramo e a data associados
-a cada coordenada constam do ledger definido na Seção 8, sem ampliar o schema
-comum.
+O `equilibrium_id` é único dentro do artefato e identifica o mesmo objeto em
+todo o ledger. `payoff_date` declara as unidades nativas da interface; desconto
+para o predecessor segue somente a Seção 6. Nos nós terminais, os campos de
+fonte de continuação são vazios; em `N3` e `N4`, identificam os registros e o
+hash exatos de `N1` ou `N2` consumidos pelo equilíbrio.
 
-Cada coordenada de payoff carrega o conjunto induzido pela correspondência
-completa de equilíbrio do nó; ela só pode ser reportada como escalar quando for
-payoff-única. Isso não acrescenta seleção ao conceito da Seção 5.
+**Comparação privada `N6`.** A interface usa
+`private_information_comparison_v1`. Em Gate 0, `comparison_records` é `null`.
+Depois de PASS, cada registro contém conjuntamente:
 
-Qualquer nó que precise exportar mais do que isto deve declarar a extensão do
-schema no DAG antes de derivar, com justificativa; a mudança segue a Seção 12.
+```text
+comparison_id
+admissibility_conditions
+source_equilibrium_ids: majority, unanimity
+source_interface_hashes: N3, N4
+private_payoff_vectors_by_rule: majority, unanimity
+private_outcome_distributions_by_rule: majority, unanimity
+private_rule_contrasts
+selection_status
+checks_performed
+```
+
+`N6` inclui todas as combinações admissíveis dos registros congelados de `N3`
+e `N4`; não seleciona uma delas. Sua interface contém tudo que `N7` precisa do
+modelo privado, de modo que `N7` depende diretamente apenas de `N6`.
+
+**Benchmark terminal `N7`.** A interface usa
+`complete_information_benchmark_v1` e é função de `prior_mu in [0,1]` apenas
+para formar objetos ex ante. Em Gate 0, cada coleção abaixo é `null`:
+
+```text
+public_equilibrium_records:
+  majority: theta_0, theta_1
+  unanimity: theta_0, theta_1
+informational_rent_records
+```
+
+Cada registro público contém conjuntamente `public_equilibrium_id`,
+`institution`, `theta`, `admissibility_conditions`, `branch_classification`,
+`strategy_profile`, `belief_system`, `source_public_continuation_ids`,
+`existence_uniqueness_status`, `selection_status`,
+`assumptions_used`, `checks_performed`, `payoff_vector`,
+`outcome_distribution` — com passagem com `H`, passagem sem `H`, falha e atraso
+— e `payoff_date`. Cada registro de renda contém
+`rent_record_id`, `admissibility_conditions`, os IDs privados e públicos que o
+geram, o hash da interface congelada de `N6`, `RI_U`, `RI_M`, `DeltaRI`, suas
+imagens ex ante, envelopes, `selection_status` e indicadores de robustez. A
+lista preserva todas as combinações admissíveis e nenhum desses campos retorna
+como input a `N1`, `N2`, `N3`, `N4` ou `N6`.
+
+Nenhum schema contém decisão nem valor de formação. Qualquer nó que precise
+exportar mais do que isto deve declarar a extensão no DAG antes de derivar, com
+justificativa; a mudança segue a Seção 12.
 
 ## 8. O que cada nó deve entregar
 
-Cada nó entrega:
+`N1`--`N4` entregam a correspondência completa de equilíbrio dentro dos
+registros atômicos da Seção 7.2. `N6` entrega a correspondência completa de
+comparações privadas, mantendo os IDs e hashes das duas regras. `N7` entrega as
+correspondências completas dos jogos públicos por regra e tipo e a
+correspondência de rendas definida na Seção 1.
 
-1. correspondência completa de equilíbrio, com payoffs por tipo e identidade;
-2. crenças on-path e off-path explícitas;
-3. interface preenchida segundo o schema da Seção 7.2;
-4. ledger de claims, que registra para cada coordenada o ramo e a data que a
-   geram e classifica cada claim como `proved`, `checked numerically`,
-   `conjecture`, `pending` ou `rejected`;
-5. hash imutável do candidato submetido à revisão.
+Todo nó entrega ainda:
+
+1. interface preenchida segundo seu schema da Seção 7.2;
+2. ledger de claims ligado aos IDs dos registros, que registra ramo e data e
+   classifica cada claim como `proved`, `checked numerically`, `conjecture`,
+   `pending` ou `rejected`;
+3. hash imutável do candidato submetido à revisão.
 
 O candidato e seu hash entram no protocolo de prontidão, congelamento e revisão
 da Seção 11. Qualquer alteração posterior segue a Seção 12.
 
-A coordenada de informação completa é resolvida conforme P8 e reportada nas
-mesmas unidades da coordenada privada e como correspondência — singleton quando
-for payoff-única — antes de calcular a renda definida na Seção 1.
-
-`N6` entrega adicionalmente uma resposta explícita às duas perguntas da Seção
-1, inclusive se o resultado for negativo. O tratamento de sua revisão está na
-Seção 11.
+`N6` fecha o modelo principal: responde à pergunta de delay e reporta a
+comparação dos payoffs e outcomes privados entre regras, inclusive se não houver
+ordenação robusta. `N7` resolve P8 nas mesmas unidades dos registros privados e
+completa a pergunta de renda da Seção 1, inclusive se o resultado for negativo,
+set-valued ou inexistente sob o conceito vigente. O tratamento de ambas as
+revisões está na Seção 11.
 
 ---
 
@@ -716,29 +796,35 @@ tratar explicitamente as crenças off-path correspondentes. O contrato não
 presume que esse voto separa os tipos: se e quanto ele atualiza a crença depende
 das estratégias derivadas.
 
-**P8 — Benchmark público por ramos.** Os nós de `N1` a `N4` devem resolver no
-próprio subjogo a correspondência completa de equilíbrios do contrafactual da
-Seção 1 sob o conceito da Seção 5. Cada nó deve determinar existência e testar
-unicidade e unicidade de payoff. Se houver múltiplos equilíbrios, deve
-caracterizá-los todos, com seus ramos e payoffs; se não houver equilíbrio sob o
-conceito vigente, deve registrar e escalar a inexistência. Nenhuma seleção
-adicional pode ser acrescentada.
+**P8 — Benchmark público terminal por ramos.** Somente depois de `N6` receber os
+dois PASS e ser congelado, `N7` deve resolver os jogos em que `theta` é público
+desde `t=0`, sob as mesmas primitivas e o conceito da Seção 5. Dentro de `N7`,
+R2 é resolvida antes de R1 para cada regra; nenhum valor público de R1 pode ser
+construído sobre continuação pública de R2 ainda aberta. A derivação pública não
+usa o equilíbrio privado como premissa: a interface congelada de `N6` entra
+apenas depois, no cálculo das rendas.
+
+Para cada regra e tipo, `N7` determina existência e testa unicidade e unicidade
+de payoff. Se houver múltiplos equilíbrios, caracteriza todos, com seus ramos,
+estratégias, crenças, payoffs, outcomes e datas; se não houver equilíbrio sob o
+conceito vigente, registra e escala a inexistência. Nenhuma seleção adicional
+pode ser acrescentada.
 
 A unicidade e a seguinte caracterização são conjecturas a provar ou refutar,
 não resultados impostos: no ramo de inclusão, o proponente oferece exatamente
 o valor de reserva ou continuação relevante e `H` aceita pela regra da Seção 5,
 ficando na reserva; no ramo de exclusão sob maioria, a proposta fixa `y=0`, `H`
-vota `não` e recebe `o_theta` na data da aprovação. Os nós devem testar essas
-propriedades em cada equilíbrio encontrado a partir das Seções 4--6 e preservar
-qualquer contraexemplo ou ramo adicional.
+vota `não` e recebe `o_theta` na data da aprovação. `N7` testa essas propriedades
+em cada equilíbrio encontrado a partir das Seções 4--6 e preserva qualquer
+contraexemplo ou ramo adicional. Após falha em R1, transporta uma única vez a
+continuação pública de R2 segundo a Seção 6.
 
-Após falha em R1, o nó transporta uma única vez o benchmark público de R2
-segundo a Seção 6. `N6` preenche sua coordenada obrigatória agregando os campos
-congelados de `N3` e `N4`, sem reabrir os subjogos, e aplica a regra escalar ou
-de correspondências da Seção 1. Só depois dessa caracterização o nó pode
-demonstrar se todo payoff público coincide com a opção externa na data relevante
-e, portanto, se a exposição pode usar a medida simples. O conteúdo substantivo
-da conjectura é testar se, sem informação privada, `H` deixa de capturar renda.
+Só depois dessa caracterização `N7` combina os registros públicos com todos os
+registros privados admissíveis de `N6`, calcula `RI_U`, `RI_M` e `DeltaRI` pela
+Seção 1 e testa se todo payoff público coincide com a opção externa na data
+relevante. A medida simples só pode aparecer na exposição se essa equivalência
+for provada. O conteúdo substantivo da conjectura é testar se, sem informação
+privada, `H` deixa de capturar renda.
 
 ---
 
@@ -804,11 +890,17 @@ apenas aponta para ela.
    mesmo pacote, porque decide o mecanismo central do paper. O Goal 2 só fecha
    após os dois PASS e o aval do autor.
 5. **Goal 3:** `N6` só começa com `N3` e `N4` congelados e após o gate autoral
-   do Goal 2. Seu único ciclo revisa simultaneamente o próprio `N6` e a
-   integração da cadeia completa; esse ciclo conta também como a revisão
-   integrada final, não há uma segunda revisão final duplicada.
-6. **Goal 4:** a migração para `formal_model_v6.Rmd` só pode começar depois dos
-   dois PASS do ciclo de `N6` e de autorização explícita do autor.
+   do Goal 2. Seu ciclo revisa simultaneamente o próprio `N6` e a integração da
+   cadeia privada. Depois dos dois PASS, `N1`, `N2`, `N3`, `N4` e `N6` formam
+   o modelo principal congelado.
+6. **Goal 4:** `N7` só começa com `N6` congelado e após gate autoral do Goal 3.
+   Recebe ciclo exclusivo, que revisa os jogos públicos, a ligação aos registros
+   privados congelados e as rendas. Finding sobre resultado, multiplicidade ou
+   inexistência no benchmark não reabre o modelo principal; erro em fonte
+   compartilhada segue a Seção 12. O Goal 4 só fecha após os dois PASS e o aval
+   do autor.
+7. **Goal 5:** a migração para `formal_model_v6.Rmd` só pode começar depois dos
+   dois PASS do ciclo de `N7` e de autorização explícita do autor.
 
 Todo finding segue a classificação da Seção 11.1. Apenas reparo técnico ou
 reparo substantivo autorizado pelo autor pode gerar novo hash; todo hash novo
@@ -871,7 +963,7 @@ revisor é insumo, não decisão.
 trabalho são acumuladas em lista e enviadas juntas na fronteira do goal, com as
 leituras possíveis e a consequência de cada uma. Ambiguidade que bloqueia é
 enviada na hora. A assimetria de custo justifica o viés: uma pergunta custa uma
-mensagem; uma resolução errada propaga por cinco nós e só aparece goals depois.
+mensagem; uma resolução errada propaga por seis nós e só aparece goals depois.
 
 Todo parecer completo salvo em `quality_reports/YYYY-MM-DD_nome.md` antes de
 resumir. Nunca truncar.
@@ -895,7 +987,12 @@ avança sem esse aval.
    `unfrozen`; seus pareceres e hash anteriores tornam-se obsoletos; e todos os
    descendentes transitivos voltam a `pending`. Nós fora dessa descendência
    permanecem válidos somente se a mudança não alterar uma fonte compartilhada
-   do contrato.
+   do contrato. Como `N7` é terminal, mudança em seu conteúdo invalida apenas
+   `N7` e artefatos de migração que o tenham consumido. Finding sobre resultado,
+   multiplicidade ou inexistência no benchmark não invalida `N1`, `N2`, `N3`,
+   `N4` ou `N6`; se o finding demonstrar erro em primitiva, conceito de solução
+   ou outra fonte
+   compartilhada, aplica-se o item 1.
 3. **Mudança no protocolo de revisão.** Uma alteração da Seção 11 reabre o Gate
    0 de prontidão: todos os nós de derivação voltam a `pending`, e seus pareceres,
    congelamento e autorização de consumo tornam-se inválidos. Derivações e
@@ -929,16 +1026,16 @@ Rscript scripts/verify_essential_input_gate0.R
 ```
 
 Esse é o único verifier referido sem qualificação neste contrato. Ele checa a
-infraestrutura do Gate 0 — topologia de cinco nós, schema vazio, estados
-`pending`, gates de hash e invalidação — e deve terminar com `PASS`. Falha nessa
-verificação bloqueia o trabalho até ser classificada e resolvida conforme a
-Seção 11.1.
+infraestrutura do Gate 0 — topologia de seis nós sem `N5`, schemas vazios de
+registros conjuntos, isolamento terminal de `N7`, estados `pending`, gates de
+hash e invalidação — e deve terminar com `PASS`. Falha nessa verificação bloqueia
+o trabalho até ser classificada e resolvida conforme a Seção 11.1.
 
 São protegidos:
 
 - `quality_reports/2026-08-12_essential_input_gate0_decisions.md`, fonte
   normativa das decisões incorporadas aqui;
-- `formal_model_v5.Rmd` e `formal_model_v6.Rmd`, até o gate do Goal 4;
+- `formal_model_v5.Rmd` e `formal_model_v6.Rmd`, até o gate do Goal 5;
 - todos os artefatos da cadeia `pivotal-response`, que permanecem apenas como
   proveniência e não podem ser editados, migrados nem citados como evidência
   corrente.
