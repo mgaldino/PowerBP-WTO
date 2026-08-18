@@ -1,0 +1,11 @@
+claim_id	equilibrium_id	branch	payoff_date	claim	status	evidence
+N1-C01	N1-EQ-01	all feasible proposals	R2	For x_j>0, yes weakly dominates no for every weak nonproposer.	proved	model_redesign/essential_input_n1_r2_majority_derivation.md#claim-n1-c01
+N1-C02	N1-EQ-01	all feasible proposals	R2	For x_j=0, yes and no are genuinely payoff-identical and T^Y selects yes.	proved	model_redesign/essential_input_n1_r2_majority_derivation.md#claim-n1-c02
+N1-C03	N1-EQ-01	H nonpivotal	R2	The weak votes meet the majority quota; full execution gives H y after yes and y+o_theta after no, so both types strictly vote no.	proved	model_redesign/essential_input_n1_r2_majority_derivation.md#claim-n1-c03
+N1-C04	N1-EQ-01	proposer optimization	R2	The unique proposer optimum is y=0, every x_j=0, r_i=1; slack cannot maximize, so P0 holds.	proved	model_redesign/essential_input_n1_r2_majority_derivation.md#claim-n1-c04
+N1-C05	N1-EQ-01	all feasible proposals	R2	The specified pure strategies and admissible beliefs form a PBE satisfying weak-only stage-undominance and T^Y.	proved	model_redesign/essential_input_n1_r2_majority_derivation.md#claim-n1-c05
+N1-C06	N1-EQ-01	full correspondence	R2	All admissible assessments share the unique strategy, outcome, and payoff; only payoff-irrelevant off-path beliefs vary.	proved	model_redesign/essential_input_n1_r2_majority_derivation.md#claim-n1-c06
+N1-C07	N1-EQ-01	native-time audit	R2	All interface payoffs are in R2 current units with no internal discount.	proved	model_redesign/essential_input_n1_r2_majority_derivation.md#claim-n1-c07
+N1-C08	N1-EQ-01	posterior sufficiency	R2	Histories with the same posterior induce the same terminal maximization; P5 holds without a Markov restriction.	proved	model_redesign/essential_input_n1_r2_majority_derivation.md#claim-n1-c08
+N1-C09	N1-EQ-01	on-path refinement	R2	Stage-undominance removes weak no when x_j>0; at the on-path x_j=0, T^Y selects yes under genuine indifference; P6 holds.	proved	model_redesign/essential_input_n1_r2_majority_derivation.md#claim-n1-c09
+N1-C10	N1-EQ-01	strict primitive domain	R2	Restricting to 0<o_0<o_1<1 with o_1<=y_bar<=1 leaves the N1 strategy, belief class, payoff, outcome, and multiplicity correspondence unchanged.	proved	model_redesign/essential_input_n1_r2_majority_derivation.md#claim-n1-c10

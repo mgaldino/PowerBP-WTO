@@ -1,0 +1,117 @@
+{
+  "ledger_schema": "essential_input_claim_ledger_v1",
+  "node_id": "N2",
+  "artifact_path": "model_redesign/essential_input_n2_r2_unanimity_interface.json",
+  "artifact_hash": "sha256:32a2989f806af20b2557fa8f495dfbe661ac951be59ee68e583fd50735e486ed",
+  "node_status": "pending_independent_review",
+  "claims": [
+    {
+      "claim_id": "N2-CLM-001",
+      "equilibrium_ids": ["N2-EQ-LOW-TYPE-ONLY", "N2-EQ-POOLING"],
+      "branch": "all",
+      "payoff_date": "R2",
+      "claim": "R2 is terminal: approval and failure pay in current R2 units, and no expression or incentive contains beta.",
+      "status": "proved",
+      "evidence": "Contract Sections 4 and 6; derivation Sections 1, 2, and 10."
+    },
+    {
+      "claim_id": "N2-CLM-002",
+      "equilibrium_ids": ["N2-EQ-LOW-TYPE-ONLY", "N2-EQ-POOLING"],
+      "branch": "all",
+      "payoff_date": "R2",
+      "claim": "Every weak nonproposer votes yes after every feasible proposal: yes weakly dominates no when x_j>0, and T^Y selects yes when x_j=0.",
+      "status": "proved",
+      "evidence": "Terminal stage-game enumeration in derivation Section 3; obligation P6."
+    },
+    {
+      "claim_id": "N2-CLM-003",
+      "equilibrium_ids": ["N2-EQ-LOW-TYPE-ONLY", "N2-EQ-POOLING"],
+      "branch": "all",
+      "payoff_date": "R2",
+      "claim": "Given unanimous yes votes by weak nonproposers, H is pivotal and type theta votes yes exactly when y>=o_theta; equality is resolved by T^Y.",
+      "status": "proved",
+      "evidence": "H best-response comparison in derivation Section 4; obligation P6."
+    },
+    {
+      "claim_id": "N2-CLM-004",
+      "equilibrium_ids": ["N2-EQ-LOW-TYPE-ONLY", "N2-EQ-POOLING"],
+      "branch": "all",
+      "payoff_date": "R2",
+      "claim": "Every maximizing proposal sets all x_j=0 and uses the pie fully; because 1-o_1>0, the optimum passes with positive probability and any slack can be added to r_i to raise proposer payoff strictly.",
+      "status": "proved",
+      "evidence": "Deviation argument in derivation Section 5; obligation P0."
+    },
+    {
+      "claim_id": "N2-CLM-005",
+      "equilibrium_ids": ["N2-EQ-LOW-TYPE-ONLY", "N2-EQ-POOLING"],
+      "branch": "all",
+      "payoff_date": "R2",
+      "claim": "The only payoff-maximal candidates are y=o_0 with payoff (1-nu)(1-o_0) and y=o_1 with payoff 1-o_1.",
+      "status": "proved",
+      "evidence": "Exhaustive piecewise proposer objective in derivation Section 5."
+    },
+    {
+      "claim_id": "N2-CLM-006",
+      "equilibrium_ids": ["N2-EQ-LOW-TYPE-ONLY", "N2-EQ-POOLING"],
+      "branch": "frontier",
+      "payoff_date": "R2",
+      "claim": "The frontier nu_star=(o_1-o_0)/(1-o_0) is strictly interior; the low-type-only offer is selected for nu<=nu_star, including equality by the proposal-level H-payoff tie-break, and pooling is selected for nu>nu_star.",
+      "status": "proved",
+      "evidence": "Payoff difference identity and proposal-level tie-break in derivation Section 6."
+    },
+    {
+      "claim_id": "N2-CLM-007",
+      "equilibrium_ids": ["N2-EQ-POOLING"],
+      "branch": "former_degenerate_boundary",
+      "payoff_date": "R2",
+      "claim": "The former o_1=1, nu=1 degenerate family is outside the primitive domain; at every admissible o_1<1 and nu=1, y=o_1 yields positive proposer payoff 1-o_1 and uniquely dominates every rejected or slack proposal.",
+      "status": "proved",
+      "evidence": "Strict-gain comparison in derivation Section 7; obligation P0."
+    },
+    {
+      "claim_id": "N2-CLM-008",
+      "equilibrium_ids": ["N2-EQ-LOW-TYPE-ONLY", "N2-EQ-POOLING"],
+      "branch": "all",
+      "payoff_date": "R2",
+      "claim": "Histories with the same entry posterior induce the same R2 maximization problem; history labels and recognized proposer identity matter only by relabeling weak states.",
+      "status": "proved",
+      "evidence": "Sufficiency proof in derivation Section 8; obligation P5."
+    },
+    {
+      "claim_id": "N2-CLM-009",
+      "equilibrium_ids": ["N2-EQ-LOW-TYPE-ONLY", "N2-EQ-POOLING"],
+      "branch": "all",
+      "payoff_date": "R2",
+      "claim": "The two coverage cells are nonempty, mutually exclusive, and exhaustive over 0<=nu<=1 under 0<o_0<o_1<1; no cell lacks equilibrium.",
+      "status": "proved",
+      "evidence": "Partition proof in derivation Section 9 and executable verifier."
+    },
+    {
+      "claim_id": "N2-CLM-010",
+      "equilibrium_ids": ["N2-EQ-LOW-TYPE-ONLY", "N2-EQ-POOLING"],
+      "branch": "all",
+      "payoff_date": "R2",
+      "claim": "Passage without H and delay both have probability zero under terminal unanimity for every equilibrium record.",
+      "status": "proved",
+      "evidence": "Quota q=N and transition rule in Contract Section 4."
+    },
+    {
+      "claim_id": "N2-CLM-011",
+      "equilibrium_ids": ["N2-EQ-LOW-TYPE-ONLY", "N2-EQ-POOLING"],
+      "branch": "all",
+      "payoff_date": "R2",
+      "claim": "Before iid uniform R2 recognition, a representative weak state receives one over m times the recognized-proposer payoff because every weak nonproposer allocation is zero.",
+      "status": "proved",
+      "evidence": "Recognition accounting in derivation Section 8."
+    },
+    {
+      "claim_id": "N2-CLM-012",
+      "equilibrium_ids": ["N2-EQ-LOW-TYPE-ONLY", "N2-EQ-POOLING"],
+      "branch": "all",
+      "payoff_date": "R2",
+      "claim": "Unrestricted beliefs after zero-probability proposals generate assessment multiplicity but cannot change ballot responses, proposer deviation payoffs, outcomes, or the payoff correspondence in R2.",
+      "status": "proved",
+      "evidence": "Belief audit in derivation Sections 3, 4, and 9."
+    }
+  ]
+}

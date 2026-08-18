@@ -16,6 +16,23 @@ as_character <- function(x) {
   as.character(unlist(x, use.names = FALSE))
 }
 
+clone_object <- function(x) {
+  unserialize(serialize(x, NULL))
+}
+
+sha256_file <- function(path) {
+  output <- system2(
+    "shasum",
+    c("-a", "256", shQuote(path)),
+    stdout = TRUE,
+    env = c("LC_ALL=C", "LANG=C")
+  )
+  assert_true(length(output) == 1L, paste("Could not compute SHA-256 for", path))
+  hash <- strsplit(output[[1L]], "[[:space:]]+")[[1L]][1L]
+  assert_true(grepl("^[0-9a-f]{64}$", hash), paste("Malformed SHA-256 for", path))
+  hash
+}
+
 all_field_names <- function(x) {
   if (!is.list(x)) {
     return(character())
@@ -28,11 +45,31 @@ assert_true(length(script_argument) == 1L, "Could not resolve the verifier path.
 script_path <- normalizePath(sub("^--file=", "", script_argument), mustWork = TRUE)
 repository_root <- normalizePath(file.path(dirname(script_path), ".."), mustWork = TRUE)
 manifest_path <- file.path(repository_root, "model_redesign", "essential_input_game_dag.json")
+manifest_dir <- dirname(manifest_path)
 
 manifest <- jsonlite::fromJSON(manifest_path, simplifyVector = FALSE)
 nodes <- manifest$nodes
 node_ids <- vapply(nodes, `[[`, character(1), "id")
 names(nodes) <- node_ids
+
+contract_path <- normalizePath(
+  file.path(dirname(manifest_path), manifest$contract_path),
+  mustWork = TRUE
+)
+contract_text <- paste(readLines(contract_path, encoding = "UTF-8", warn = FALSE), collapse = "\n")
+assert_true(
+  grepl("0 < o_0 < o_1 < 1 e o_1 <= y_bar <= 1", contract_text, fixed = TRUE),
+  "The canonical contract must impose the author-approved strict restriction o_1 < 1."
+)
+assert_true(
+  !grepl("0 < o_0 < o_1 <= y_bar <= 1", contract_text, fixed = TRUE),
+  "The superseded weak disagreement-payoff bound must not remain in the canonical primitive block."
+)
+assert_true(
+  grepl("reabre o Gate 0", contract_text, fixed = TRUE) &&
+    grepl("`pending`, conforme a", contract_text, fixed = TRUE),
+  "The contract header must record the Section 12 contract-change invalidation."
+)
 
 assert_true(
   identical(manifest$schema_version, "essential-input-gate0-v3"),
@@ -641,8 +678,12 @@ for (node_id in expected_ids) {
     identical(dependencies, expected_dependencies[[node_id]]),
     paste(node_id, "has the wrong dependencies.")
   )
-  assert_true(identical(node$status, "pending"), paste(node_id, "must remain pending at Gate 0."))
+}
 
+pending_node_ids <- c("N4", "N6", "N7")
+for (node_id in pending_node_ids) {
+  node <- nodes[[node_id]]
+  assert_true(identical(node$status, "pending"), paste(node_id, "must remain pending."))
   forbidden_fields <- c(
     "result", "artifact_path", "artifact_hash", "dependency_hashes",
     "started_order", "passed_order", "frozen", "review", "reviews"
@@ -654,6 +695,21 @@ for (node_id in expected_ids) {
   assert_true(
     is_valid_pending_interface(node_id, node),
     paste(node_id, "has the wrong pending interface schema or a filled coverage-cell collection.")
+  )
+}
+
+# Synthetic all-pending state retained only for negative lifecycle/readiness tests.
+pending_fixture_nodes <- clone_object(nodes)
+for (node_id in c("N1", "N2", "N3")) {
+  pending_fixture_nodes[[node_id]]$status <- "pending"
+  pending_fixture_nodes[[node_id]]$interface["correspondence_cells"] <- list(NULL)
+  pending_fixture_nodes[[node_id]][c(
+    "artifact_path", "artifact_hash", "dependency_hashes", "started_order",
+    "passed_order", "frozen", "reviews"
+  )] <- NULL
+  assert_true(
+    is_valid_pending_interface(node_id, pending_fixture_nodes[[node_id]]),
+    paste("Synthetic pending fixture is invalid for", node_id)
   )
 }
 
@@ -812,28 +868,28 @@ assert_true(
 
 # Negative Gate 0 tests: pending interfaces must reject filled, old, marginal,
 # or cross-family fields.
-filled_private <- nodes$N1
+filled_private <- pending_fixture_nodes$N1
 filled_private$interface$correspondence_cells <- list(valid_exists_cell)
 assert_true(
   !is_valid_pending_interface("N1", filled_private),
   "A pending private node with filled correspondence cells must fail validation."
 )
 
-old_private_shape <- nodes$N1
+old_private_shape <- pending_fixture_nodes$N1
 old_private_shape$interface["joint_records"] <- list(NULL)
 assert_true(
   !is_valid_pending_interface("N1", old_private_shape),
   "The superseded joint-record interface must fail validation."
 )
 
-marginal_private <- nodes$N1
+marginal_private <- pending_fixture_nodes$N1
 marginal_private$interface$hegemon_payoff_by_type <- list(theta_0 = NULL, theta_1 = NULL)
 assert_true(
   !is_valid_pending_interface("N1", marginal_private),
   "A private node with a marginal payoff field must fail validation."
 )
 
-benchmark_in_private <- nodes$N1
+benchmark_in_private <- pending_fixture_nodes$N1
 benchmark_in_private$interface$complete_information_benchmark <- list()
 assert_true(
   !is_valid_pending_interface("N1", benchmark_in_private),
@@ -972,6 +1028,359 @@ is_frozen <- function(node) {
     isTRUE(valid_reviews)
 }
 
+is_valid_filled_equilibrium_interface <- function(interface) {
+  cells <- interface$correspondence_cells
+  valid_records <- is.list(cells) && length(cells) > 0L && all(vapply(cells, function(cell) {
+    records <- cell$equilibrium_records
+    is.list(records) && length(records) > 0L && all(vapply(records, function(record) {
+      is.list(record) &&
+        identical(names(record), as_character(equilibrium_schema$record_fields)) &&
+        identical(
+          names(record$hegemon_payoff_by_type),
+          as_character(equilibrium_schema$hegemon_payoff_by_type_fields)
+        ) &&
+        identical(
+          names(record$outcome_distribution),
+          as_character(equilibrium_schema$outcome_distribution_fields)
+        )
+    }, logical(1)))
+  }, logical(1)))
+
+  is.list(interface) &&
+    identical(names(interface), c("schema_ref", "function_of", "correspondence_cells")) &&
+    identical(interface$schema_ref, "equilibrium_correspondence_v1") &&
+    identical(names(interface$function_of), c("name", "domain")) &&
+    identical(interface$function_of$name, "entry_belief") &&
+    identical(interface$function_of$domain, "[0,1]") &&
+    is_valid_coverage_cells(cells, "equilibrium_records") &&
+    isTRUE(valid_records)
+}
+
+expected_frozen_node_fields <- c(
+  "id", "name", "round", "institution", "depends_on", "status", "interface",
+  "artifact_path", "artifact_hash", "dependency_hashes", "started_order",
+  "passed_order", "frozen", "reviews"
+)
+formal_reviewer_id <- "review-n1-n2-o1-formal-2026-08-18-r3"
+game_reviewer_id <- "review-n1-n2-o1-game-2026-08-18-r3"
+n3_formal_reviewer_id <- "review-n3-o1-formal-2026-08-18-r2"
+n3_game_reviewer_id <- "review-n3-o1-game-2026-08-18-r2"
+
+leaf_specs <- list(
+  N1 = list(
+    artifact_path = "essential_input_interfaces/n1_r2_majority_candidate_v1.json",
+    artifact_hash = "sha256:af128d9053ce1320a8ba9b033b40468d2f9e457be83330ee940b02b2e73534fd",
+    dependency_hashes = list(),
+    formal_reviewer_id = formal_reviewer_id,
+    game_reviewer_id = game_reviewer_id,
+    started_order = 1L,
+    passed_order = 3L
+  ),
+  N2 = list(
+    artifact_path = "essential_input_n2_r2_unanimity_interface.json",
+    artifact_hash = "sha256:32a2989f806af20b2557fa8f495dfbe661ac951be59ee68e583fd50735e486ed",
+    dependency_hashes = list(),
+    formal_reviewer_id = formal_reviewer_id,
+    game_reviewer_id = game_reviewer_id,
+    started_order = 2L,
+    passed_order = 4L
+  ),
+  N3 = list(
+    artifact_path = "essential_input_interfaces/n3_r1_majority_candidate_v1.json",
+    artifact_hash = "sha256:561026969956396dbcc8ee9015eb01eb839976385b3503332d9c6744b2fd951b",
+    dependency_hashes = list(
+      N1 = "sha256:af128d9053ce1320a8ba9b033b40468d2f9e457be83330ee940b02b2e73534fd"
+    ),
+    formal_reviewer_id = n3_formal_reviewer_id,
+    game_reviewer_id = n3_game_reviewer_id,
+    started_order = 5L,
+    passed_order = 6L
+  )
+)
+
+for (node_id in names(leaf_specs)) {
+  spec <- leaf_specs[[node_id]]
+  spec$artifact_full_path <- normalizePath(
+    file.path(manifest_dir, spec$artifact_path),
+    mustWork = TRUE
+  )
+  spec$artifact_object <- jsonlite::fromJSON(spec$artifact_full_path, simplifyVector = FALSE)
+  spec$computed_hash <- paste0("sha256:", sha256_file(spec$artifact_full_path))
+  spec$artifact_text <- paste(
+    readLines(spec$artifact_full_path, encoding = "UTF-8", warn = FALSE),
+    collapse = "\n"
+  )
+  leaf_specs[[node_id]] <- spec
+}
+
+expected_reviews <- function(spec) {
+  list(
+    list(
+      reviewer_role = "formal_design",
+      reviewer_id = spec$formal_reviewer_id,
+      verdict = "PASS",
+      artifact_hash = spec$artifact_hash,
+      finding_counts = list(critical = 0L, major = 0L, minor = 0L)
+    ),
+    list(
+      reviewer_role = "game_theory",
+      reviewer_id = spec$game_reviewer_id,
+      verdict = "PASS",
+      artifact_hash = spec$artifact_hash,
+      finding_counts = list(critical = 0L, major = 0L, minor = 0L)
+    )
+  )
+}
+
+is_valid_current_leaf <- function(node, node_id, spec) {
+  valid_dependency_hashes <- if (length(spec$dependency_hashes) == 0L) {
+    is.list(node$dependency_hashes) && length(node$dependency_hashes) == 0L
+  } else {
+    identical(node$dependency_hashes, spec$dependency_hashes)
+  }
+  identical(names(node), expected_frozen_node_fields) &&
+    identical(node$id, node_id) &&
+    identical(node$status, "pass") &&
+    identical(node$artifact_path, spec$artifact_path) &&
+    identical(node$artifact_hash, spec$artifact_hash) &&
+    identical(node$artifact_hash, spec$computed_hash) &&
+    isTRUE(valid_dependency_hashes) &&
+    identical(as.integer(node$started_order), spec$started_order) &&
+    identical(as.integer(node$passed_order), spec$passed_order) &&
+    node$started_order < node$passed_order &&
+    identical(node$interface, spec$artifact_object) &&
+    is_valid_filled_equilibrium_interface(node$interface) &&
+    identical(node$reviews, expected_reviews(spec)) &&
+    is_frozen(node) &&
+    grepl("0 < o_0 < o_1 < 1", spec$artifact_text, fixed = TRUE) &&
+    !grepl("0 < o_0 < o_1 <= y_bar", spec$artifact_text, fixed = TRUE)
+}
+
+for (node_id in names(leaf_specs)) {
+  assert_true(
+    is_valid_current_leaf(nodes[[node_id]], node_id, leaf_specs[[node_id]]),
+    paste(
+      node_id,
+      "must match its exact reviewed artifact, dependency hashes, lifecycle, and PASS 0/0/0 reviews."
+    )
+  )
+}
+assert_true(
+  identical(
+    c(
+      as.integer(nodes$N1$started_order),
+      as.integer(nodes$N2$started_order),
+      as.integer(nodes$N1$passed_order),
+      as.integer(nodes$N2$passed_order),
+      as.integer(nodes$N3$started_order),
+      as.integer(nodes$N3$passed_order)
+    ),
+    1:6
+  ) &&
+    nodes$N2$started_order < nodes$N1$passed_order &&
+    nodes$N3$started_order > nodes$N1$passed_order &&
+    nodes$N3$started_order > nodes$N2$passed_order,
+  paste0(
+    "The parallel first frontier must record starts 1/2 and passes 3/4, followed by ",
+    "N3 start/pass 5/6 in monotonic dependency-safe order."
+  )
+)
+
+review_report_specs <- list(
+  formal_design = list(
+    path = file.path(
+      repository_root,
+      "quality_reports",
+      "2026-08-18_essential_input_goal1_n1_n2_o1_formal_design_review_round3.md"
+    ),
+    expected_hash = "0b4e9d45ce7c721b15f90c26fe972af6f5d45300ff2a53ac3c8be3a560107cb1",
+    reviewer_id = formal_reviewer_id
+  ),
+  game_theory = list(
+    path = file.path(
+      repository_root,
+      "quality_reports",
+      "2026-08-18_essential_input_goal1_n1_n2_o1_game_theory_review_round3.md"
+    ),
+    expected_hash = "5b7cd25bce9566caa356ef8533b26f6b7d8157f4690c074b5a3719a0233b9970",
+    reviewer_id = game_reviewer_id
+  )
+)
+
+report_section <- function(lines, start_pattern, end_pattern) {
+  start <- grep(start_pattern, lines)
+  if (length(start) != 1L) {
+    return(character())
+  }
+  later_end <- grep(end_pattern, lines)
+  later_end <- later_end[later_end > start]
+  end <- if (length(later_end) == 0L) length(lines) else later_end[[1L]] - 1L
+  lines[start:end]
+}
+
+is_valid_review_report <- function(lines, role, spec) {
+  if (!identical(lines, spec$canonical_lines)) {
+    return(FALSE)
+  }
+  n1_section <- report_section(lines, "^## N1", "^## N2")
+  n2_section <- report_section(lines, "^## N2", "^## Conclus")
+  sections <- list(N1 = n1_section, N2 = n2_section)
+  expected_hashes <- c(
+    N1 = sub("^sha256:", "", leaf_specs$N1$artifact_hash),
+    N2 = sub("^sha256:", "", leaf_specs$N2$artifact_hash)
+  )
+  valid_sections <- all(vapply(names(sections), function(node_id) {
+    section <- sections[[node_id]]
+    length(section) > 0L &&
+      any(grepl("PASS", section, fixed = TRUE)) &&
+      any(grepl("critical[^0-9]*0", section, ignore.case = TRUE, perl = TRUE)) &&
+      any(grepl("major[^0-9]*0", section, ignore.case = TRUE, perl = TRUE)) &&
+      any(grepl("minor[^0-9]*0", section, ignore.case = TRUE, perl = TRUE)) &&
+      !any(grepl("FAIL", section, fixed = TRUE))
+  }, logical(1)))
+
+  length(lines) > 40L &&
+    any(grepl(paste0("reviewer_role=", role), lines, fixed = TRUE)) &&
+    any(grepl(paste0("reviewer_id=", spec$reviewer_id), lines, fixed = TRUE)) &&
+    all(vapply(expected_hashes, function(hash) {
+      any(grepl(hash, lines, fixed = TRUE))
+    }, logical(1))) &&
+    isTRUE(valid_sections)
+}
+
+for (role in names(review_report_specs)) {
+  spec <- review_report_specs[[role]]
+  assert_true(file.exists(spec$path), paste("Missing saved review report for", role))
+  assert_true(
+    identical(sha256_file(spec$path), spec$expected_hash),
+    paste("The complete saved r3 review report changed for", role)
+  )
+  spec$canonical_lines <- readLines(spec$path, encoding = "UTF-8", warn = FALSE)
+  review_report_specs[[role]] <- spec
+  assert_true(
+    is_valid_review_report(spec$canonical_lines, role, spec),
+    paste("The saved r3 report lacks complete same-hash PASS 0/0/0 evidence for", role)
+  )
+}
+
+n3_review_report_specs <- list(
+  formal_design = list(
+    path = file.path(
+      repository_root,
+      "quality_reports",
+      "2026-08-18_essential_input_goal1_n3_o1_formal_design_review_round2.md"
+    ),
+    expected_hash = "f40976cb8a9664a0b51e10a14fa2ae4938ec44cc50e2718f1fd24d3ad70205f9",
+    reviewer_id = n3_formal_reviewer_id
+  ),
+  game_theory = list(
+    path = file.path(
+      repository_root,
+      "quality_reports",
+      "2026-08-18_essential_input_goal1_n3_o1_game_theory_review_round2.md"
+    ),
+    expected_hash = "58f07c59bc845d82ecc6eba6b8ae864c65cf4f19104c303ca91203d23f5c3e5b",
+    reviewer_id = n3_game_reviewer_id
+  )
+)
+
+is_valid_n3_review_report <- function(lines, role, spec) {
+  identical(lines, spec$canonical_lines) &&
+    length(lines) > 40L &&
+    any(grepl(paste0("reviewer_role=", role), lines, fixed = TRUE)) &&
+    any(grepl(paste0("reviewer_id=", spec$reviewer_id), lines, fixed = TRUE)) &&
+    any(grepl(sub("^sha256:", "", leaf_specs$N3$artifact_hash), lines, fixed = TRUE)) &&
+    any(grepl("PASS", lines, fixed = TRUE)) &&
+    any(grepl("critical[^0-9]*0", lines, ignore.case = TRUE, perl = TRUE)) &&
+    any(grepl("major[^0-9]*0", lines, ignore.case = TRUE, perl = TRUE)) &&
+    any(grepl("minor[^0-9]*0", lines, ignore.case = TRUE, perl = TRUE)) &&
+    !any(grepl("FAIL", lines, fixed = TRUE))
+}
+
+for (role in names(n3_review_report_specs)) {
+  spec <- n3_review_report_specs[[role]]
+  assert_true(file.exists(spec$path), paste("Missing saved N3 round2 report for", role))
+  assert_true(
+    identical(sha256_file(spec$path), spec$expected_hash),
+    paste("The complete saved N3 round2 review report changed for", role)
+  )
+  spec$canonical_lines <- readLines(spec$path, encoding = "UTF-8", warn = FALSE)
+  n3_review_report_specs[[role]] <- spec
+  assert_true(
+    is_valid_n3_review_report(spec$canonical_lines, role, spec),
+    paste("The saved N3 round2 report lacks same-hash PASS 0/0/0 evidence for", role)
+  )
+}
+
+# Current-record mutations: any altered hash, object, lifecycle, dependency,
+# reviewer, review hash, finding count, cardinality, or report evidence must fail.
+for (node_id in names(leaf_specs)) {
+  spec <- leaf_specs[[node_id]]
+  mutate_and_reject <- function(label, mutate_node) {
+    altered <- mutate_node(clone_object(nodes[[node_id]]))
+    assert_true(
+      !is_valid_current_leaf(altered, node_id, spec),
+      paste("Negative current-leaf mutation passed:", node_id, label)
+    )
+  }
+  mutate_and_reject("wrong artifact hash", function(x) {
+    x$artifact_hash <- paste0("sha256:", paste(rep("0", 64L), collapse = "")); x
+  })
+  mutate_and_reject("wrong interface object", function(x) {
+    x$interface$correspondence_cells[[1L]]$cell_id <- "CORRUPTED"; x
+  })
+  mutate_and_reject("wrong artifact path", function(x) {
+    x$artifact_path <- "wrong.json"; x
+  })
+  mutate_and_reject("spurious dependency", function(x) {
+    x$dependency_hashes$N0 <- spec$artifact_hash; x
+  })
+  if (length(spec$dependency_hashes) > 0L) {
+    mutate_and_reject("missing required dependency", function(x) {
+      x$dependency_hashes <- list(); x
+    })
+    mutate_and_reject("wrong required dependency hash", function(x) {
+      dependency_id <- names(spec$dependency_hashes)[[1L]]
+      x$dependency_hashes[[dependency_id]] <- paste0(
+        "sha256:", paste(rep("d", 64L), collapse = "")
+      )
+      x
+    })
+  }
+  mutate_and_reject("wrong execution order", function(x) {
+    x$passed_order <- x$started_order; x
+  })
+  mutate_and_reject("wrong reviewer id", function(x) {
+    x$reviews[[2L]]$reviewer_id <- "wrong-reviewer"; x
+  })
+  mutate_and_reject("wrong review hash", function(x) {
+    x$reviews[[2L]]$artifact_hash <- paste0("sha256:", paste(rep("f", 64L), collapse = "")); x
+  })
+  mutate_and_reject("nonzero finding", function(x) {
+    x$reviews[[1L]]$finding_counts$minor <- 1L; x
+  })
+  mutate_and_reject("extra review", function(x) {
+    x$reviews[[3L]] <- x$reviews[[2L]]; x$reviews[[3L]]$reviewer_id <- "extra-reviewer"; x
+  })
+}
+
+for (role in names(review_report_specs)) {
+  spec <- review_report_specs[[role]]
+  altered <- c(spec$canonical_lines, "FAIL")
+  assert_true(
+    !is_valid_review_report(altered, role, spec),
+    paste("A mutated or truncated review report must fail for", role)
+  )
+}
+for (role in names(n3_review_report_specs)) {
+  spec <- n3_review_report_specs[[role]]
+  altered <- c(spec$canonical_lines, "FAIL")
+  assert_true(
+    !is_valid_n3_review_report(altered, role, spec),
+    paste("A mutated or appended N3 round2 report must fail for", role)
+  )
+}
+
 topologically_ready_nodes <- function(candidate_nodes) {
   candidate_ids <- names(candidate_nodes)
   candidate_ids[vapply(candidate_ids, function(node_id) {
@@ -1018,24 +1427,31 @@ freeze_node <- function(
 }
 
 assert_true(
-  identical(sort(topologically_ready_nodes(nodes)), c("N1", "N2")),
-  "N1 and N2 must be the only initially topologically ready antichain."
+  identical(topologically_ready_nodes(nodes), "N4"),
+  paste0(
+    "After N3 freezes, only N4 may be topologically ready, and N4 remains explicitly ",
+    "unauthorized. Topological readiness is not author authorization."
+  )
+)
+assert_true(
+  identical(sort(topologically_ready_nodes(pending_fixture_nodes)), c("N1", "N2")),
+  "The synthetic all-pending lifecycle must retain N1 and N2 as the initial ready antichain."
 )
 
 # Missing any freeze fact prevents consumption.
-n1_unhashed <- freeze_node(nodes, "N1", include_hash = FALSE)
+n1_unhashed <- freeze_node(pending_fixture_nodes, "N1", include_hash = FALSE)
 assert_true(
   !("N3" %in% topologically_ready_nodes(n1_unhashed)),
   "N1 without a frozen hash must not release N3."
 )
-n2_unhashed <- freeze_node(nodes, "N2", include_hash = FALSE)
+n2_unhashed <- freeze_node(pending_fixture_nodes, "N2", include_hash = FALSE)
 assert_true(
   !("N4" %in% topologically_ready_nodes(n2_unhashed)),
   "N2 without a frozen hash must not release N4."
 )
 
 n1_pass_hash_only <- freeze_node(
-  nodes,
+  pending_fixture_nodes,
   "N1",
   include_frozen = FALSE,
   include_reviews = FALSE
@@ -1045,20 +1461,20 @@ assert_true(
   "PASS plus a hash without frozen and reviews must not release N3."
 )
 
-n1_without_reviews <- freeze_node(nodes, "N1", include_reviews = FALSE)
+n1_without_reviews <- freeze_node(pending_fixture_nodes, "N1", include_reviews = FALSE)
 assert_true(
   !("N3" %in% topologically_ready_nodes(n1_without_reviews)),
   "A frozen flag and hash without reviews must not release N3."
 )
 
-n1_one_review <- freeze_node(nodes, "N1")
+n1_one_review <- freeze_node(pending_fixture_nodes, "N1")
 n1_one_review$N1$reviews <- n1_one_review$N1$reviews[1]
 assert_true(
   !("N3" %in% topologically_ready_nodes(n1_one_review)),
   "Exactly one review must not release N3."
 )
 
-n1_wrong_review_hash <- freeze_node(nodes, "N1")
+n1_wrong_review_hash <- freeze_node(pending_fixture_nodes, "N1")
 n1_wrong_review_hash$N1$reviews[[2]]$artifact_hash <- paste0(
   "sha256:", paste(rep("b", 64L), collapse = "")
 )
@@ -1067,14 +1483,14 @@ assert_true(
   "A review of a different hash must not release N3."
 )
 
-n1_nonzero_finding <- freeze_node(nodes, "N1")
+n1_nonzero_finding <- freeze_node(pending_fixture_nodes, "N1")
 n1_nonzero_finding$N1$reviews[[1]]$finding_counts$minor <- 1L
 assert_true(
   !("N3" %in% topologically_ready_nodes(n1_nonzero_finding)),
   "A review with any nonzero finding count must not release N3."
 )
 
-n1_duplicate_reviewer <- freeze_node(nodes, "N1")
+n1_duplicate_reviewer <- freeze_node(pending_fixture_nodes, "N1")
 n1_duplicate_reviewer$N1$reviews[[2]]$reviewer_id <-
   n1_duplicate_reviewer$N1$reviews[[1]]$reviewer_id
 assert_true(
@@ -1083,12 +1499,12 @@ assert_true(
 )
 
 # Frozen leaves release only their direct private-model consumers.
-n1_frozen <- freeze_node(nodes, "N1")
+n1_frozen <- freeze_node(pending_fixture_nodes, "N1")
 assert_true(
   "N3" %in% topologically_ready_nodes(n1_frozen),
   "Frozen N1 must make N3 topologically ready."
 )
-n2_frozen <- freeze_node(nodes, "N2")
+n2_frozen <- freeze_node(pending_fixture_nodes, "N2")
 assert_true(
   "N4" %in% topologically_ready_nodes(n2_frozen),
   "Frozen N2 must make N4 topologically ready."
@@ -1103,7 +1519,7 @@ assert_true(
 )
 
 # N6 requires both R1 interfaces; either one alone is insufficient.
-both_leaves_frozen <- freeze_node(freeze_node(nodes, "N1"), "N2")
+both_leaves_frozen <- freeze_node(freeze_node(pending_fixture_nodes, "N1"), "N2")
 n3_only <- freeze_node(both_leaves_frozen, "N3")
 assert_true(
   !("N6" %in% topologically_ready_nodes(n3_only)),
@@ -1191,7 +1607,9 @@ for (node_id in expected_ids) {
 
 cat(
   paste0(
-    "PASS: six-node essential-input Gate 0 DAG, typed coverage cells for empty and ",
+    "PASS: strict o_1 < 1 contract and six-node essential-input DAG with N1/N2 frozen on r3-reviewed artifacts and ",
+    "N3 frozen on its round2-reviewed artifact; only N4 is topologically ready and it remains explicitly unauthorized. ",
+    "Typed coverage cells for empty and ",
     "nonempty correspondences, independent RI_M and RI_U with a separate DeltaRI ",
     "contrast, role-typed public payoffs, terminal complete-information benchmark, ",
     "two-review freeze gates, topological readiness, negative schema tests, and ",

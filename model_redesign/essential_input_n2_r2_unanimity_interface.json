@@ -1,0 +1,125 @@
+{
+  "schema_ref": "equilibrium_correspondence_v1",
+  "function_of": {
+    "name": "entry_belief",
+    "domain": "[0,1]"
+  },
+  "correspondence_cells": [
+    {
+      "cell_id": "N2-CELL-LOW-TYPE-ONLY",
+      "domain_conditions": "Primitive domain: 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and 0 <= nu <= nu_star, where nu_star=(o_1-o_0)/(1-o_0) is strictly between 0 and 1.",
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N2-EQ-LOW-TYPE-ONLY",
+          "admissibility_conditions": "0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and 0 <= nu <= nu_star, where nu_star=(o_1-o_0)/(1-o_0).",
+          "branch_classification": "low-type-only passage (separating H ballot); no delay in terminal R2",
+          "strategy_profile": {
+            "recognized_weak_proposer": "Choose y=o_0, x_j=0 for every weak nonproposer j, and r_i=1-o_0.",
+            "weak_nonproposer_ballot": "Vote yes after every feasible proposal. If x_j>0, yes weakly dominates no; if x_j=0, the two actions are identical and T^Y selects yes.",
+            "hegemon_ballot_by_type": {
+              "theta_0": "Vote yes if and only if y >= o_0.",
+              "theta_1": "Vote yes if and only if y >= o_1."
+            }
+          },
+          "belief_system": {
+            "entry": "Pr(theta=1)=nu.",
+            "on_path_ballot": "The recognized weak proposer does not observe theta, so the on-path proposal carries no type information and the ballot belief remains nu.",
+            "off_path_ballot": "After a zero-probability proposal, any belief in [0,1] is admissible. Terminal weak and H ballot strategies and the proposer's deviation payoff are invariant to that belief."
+          },
+          "source_continuation_record_ids": [],
+          "source_interface_hashes": {},
+          "existence_uniqueness_status": "Exists. The proposal, pure ballot strategies, outcome distribution, and payoff vector are unique. PBE assessments are multiple only through unrestricted payoff-irrelevant beliefs after zero-probability proposals.",
+          "selection_status": "For nu<nu_star, y=o_0 strictly maximizes proposer payoff. At nu=nu_star, y=o_0 and y=o_1 tie for proposer payoff before the proposal-level tie-break; the stipulated tie-break selects y=o_0 because it gives H strictly lower expected payoff. T^Y selects yes for theta=0 at y=o_0.",
+          "assumptions_used": [
+            "Contract Section 2 primitives and feasibility, including 0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+            "Contract Section 4 terminal implementation and payoffs",
+            "Contract Section 5 PBE, stage-undominated voting for weak nonproposers, T^Y, and proposal-level tie-break",
+            "Contract Section 6 current R2 units",
+            "No continuation input"
+          ],
+          "checks_performed": [
+            "P0 full-pie test",
+            "P5 posterior-sufficiency test",
+            "P6 terminal refinement test",
+            "Complete pure-ballot best-response enumeration",
+            "Strict-interior frontier and proposal-tie check",
+            "Former-degenerate-corner exclusion check"
+          ],
+          "recognized_proposer_payoff": "(1-nu)*(1-o_0)",
+          "weak_nonproposer_pre_recognition_expected_value": "((1-nu)*(1-o_0))/m",
+          "hegemon_payoff_by_type": {
+            "theta_0": "o_0",
+            "theta_1": "o_1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": "1-nu",
+            "pass_without_hegemon": "0",
+            "failure": "nu",
+            "delay": "0"
+          },
+          "payoff_date": "R2_current_units_no_beta"
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N2-CELL-POOLING",
+      "domain_conditions": "Primitive domain: 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and nu_star < nu <= 1, where nu_star=(o_1-o_0)/(1-o_0) is strictly between 0 and 1.",
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N2-EQ-POOLING",
+          "admissibility_conditions": "0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and nu_star < nu <= 1, where nu_star=(o_1-o_0)/(1-o_0).",
+          "branch_classification": "pooling passage with H; no delay in terminal R2",
+          "strategy_profile": {
+            "recognized_weak_proposer": "Choose y=o_1, x_j=0 for every weak nonproposer j, and r_i=1-o_1.",
+            "weak_nonproposer_ballot": "Vote yes after every feasible proposal. If x_j>0, yes weakly dominates no; if x_j=0, the two actions are identical and T^Y selects yes.",
+            "hegemon_ballot_by_type": {
+              "theta_0": "Vote yes if and only if y >= o_0.",
+              "theta_1": "Vote yes if and only if y >= o_1."
+            }
+          },
+          "belief_system": {
+            "entry": "Pr(theta=1)=nu.",
+            "on_path_ballot": "The recognized weak proposer does not observe theta, so the on-path proposal carries no type information and the ballot belief remains nu.",
+            "off_path_ballot": "After a zero-probability proposal, any belief in [0,1] is admissible. Terminal weak and H ballot strategies and the proposer's deviation payoff are invariant to that belief."
+          },
+          "source_continuation_record_ids": [],
+          "source_interface_hashes": {},
+          "existence_uniqueness_status": "Exists. The proposal, pure ballot strategies, outcome distribution, and payoff vector are unique. PBE assessments are multiple only through unrestricted payoff-irrelevant beliefs after zero-probability proposals.",
+          "selection_status": "For nu>nu_star, y=o_1 strictly maximizes proposer payoff. T^Y selects yes for theta=1 at y=o_1. No proposal-level payoff tie occurs in this cell.",
+          "assumptions_used": [
+            "Contract Section 2 primitives and feasibility, including 0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+            "Contract Section 4 terminal implementation and payoffs",
+            "Contract Section 5 PBE, stage-undominated voting for weak nonproposers, T^Y, and proposal-level tie-break",
+            "Contract Section 6 current R2 units",
+            "No continuation input"
+          ],
+          "checks_performed": [
+            "P0 full-pie test",
+            "P5 posterior-sufficiency test",
+            "P6 terminal refinement test",
+            "Complete pure-ballot best-response enumeration",
+            "Strict-interior frontier and proposal-tie check",
+            "Former-degenerate-corner exclusion check"
+          ],
+          "recognized_proposer_payoff": "1-o_1",
+          "weak_nonproposer_pre_recognition_expected_value": "(1-o_1)/m",
+          "hegemon_payoff_by_type": {
+            "theta_0": "o_1",
+            "theta_1": "o_1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": "1",
+            "pass_without_hegemon": "0",
+            "failure": "0",
+            "delay": "0"
+          },
+          "payoff_date": "R2_current_units_no_beta"
+        }
+      ],
+      "nonexistence_certificate": null
+    }
+  ]
+}

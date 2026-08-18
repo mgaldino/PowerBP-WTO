@@ -5,10 +5,15 @@
 incorpora o registro decisório do commit `162616d` e as decisões autorais
 posteriores, inclusive as de 2026-08-17 sobre stage-undominated voting,
 obrigações de prova e revisão e a de 2026-08-18 que torna o benchmark público
-um nó terminal posterior ao congelamento do modelo principal. Decisão autoral
-posterior prevalece sobre registro histórico incompatível. Autoriza o Goal 0;
-nenhum nó de derivação está autorizado antes das duas novas revisões
-independentes e da resolução de qualquer finding remanescente.
+um nó terminal posterior ao congelamento do modelo principal, e a decisão de
+2026-08-18 que impõe a restrição estrita da Seção 2, `o_1 < 1`. Decisão
+autoral posterior prevalece sobre registro histórico incompatível. Essa mudança
+de primitiva reabre o Gate 0 e devolve todos os nós a `pending`, conforme a
+Seção 12. Depois de dois novos pareceres independentes `PASS 0/0/0` sobre este
+mesmo contrato, a autorização autoral de 2026-08-18 permite reavaliar o Goal 1
+exclusivamente para `N1`, `N2` e `N3`, seguindo integralmente os gates da
+Seção 11. Esta autorização não alcança `N4`, `N6`, `N7`, o Goal 2 nem qualquer
+migração para manuscrito.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
 
@@ -251,7 +256,7 @@ Pacote         alocação s = (y, (x_j)_{j in W sem i}, r_i), com
                y + sum_j x_j + r_i <= 1; y é destinado a H
 Benefício      b_theta = 0
 Desacordo      weak state: 0; H: o_theta externo à pie, com
-               0 < o_0 < o_1 <= y_bar <= 1
+               0 < o_0 < o_1 < 1 e o_1 <= y_bar <= 1
 Agenda         pi_H = 0 em toda rodada; só weak states propõem
 Reconhecimento sorteios iid com reposição, uniformes entre os m weak states;
                todos seguem elegíveis em R2, inclusive o proponente de R1
@@ -309,6 +314,24 @@ especificação formal correspondente permanece exclusivamente nas Seções 2,
 
 As consequências para maioria não são decisões de desenho. Elas estão
 exclusivamente nas obrigações P1, P1a e P2 da Seção 9.
+
+### Decisão: ganho estrito factível para os weak states
+
+- **Escolha**: a restrição estrita de `o_1` definida exclusivamente na Seção 2.
+  Mesmo quando `H` é do tipo alto, o pacote `y=o_1` satisfaz seu limiar em R2
+  e deixa residual estritamente positivo `1-o_1` para os weak states. A
+  restrição é uma condição de escopo sobre ganhos factíveis de acordo; não
+  transforma a opção externa de `H` em parcela da pie.
+- **Fronteira excluída**: `o_1=1`. Nessa fronteira, quando o tipo alto é certo,
+  pagar seu limiar deixa payoff zero ao proponente, enquanto rejeitar também
+  lhe dá zero. O problema terminal perde a comparação estrita que disciplina
+  a proposta e admite multiplicidade degenerada, inclusive propostas com
+  folga. A decisão autoral exclui esse caso de ganho residual nulo.
+- **Alternativa descartada**: impor que toda crença sobre o tipo alto seja
+  estritamente menor que um. Restringir apenas a prior não impediria posterior
+  igual a um após uma ação reveladora; restringir todos os posteriores
+  limitaria a aprendizagem bayesiana e alteraria o mecanismo informacional.
+  Por isso o domínio de crenças permanece o definido nas Seções 1, 4, 5 e 7.2.
 
 ### Decisão: conceito de solução no ballot
 
