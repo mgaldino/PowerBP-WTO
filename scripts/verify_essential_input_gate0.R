@@ -39,6 +39,46 @@ assert_true(
   "The manifest must use the terminal-benchmark Gate 0 schema version."
 )
 
+freeze_gate <- manifest$freeze_gate_schema
+assert_true(
+  identical(freeze_gate$canonical_source, "contract Section 11"),
+  "The executable freeze gate must point to the sole canonical protocol source."
+)
+assert_true(
+  identical(
+    as_character(freeze_gate$required_node_fields),
+    c("status", "frozen", "artifact_hash", "reviews")
+  ) &&
+    identical(freeze_gate$status_value, "pass") &&
+    identical(freeze_gate$frozen_value, TRUE),
+  "The executable freeze gate has the wrong required node facts."
+)
+assert_true(
+  identical(as.integer(freeze_gate$review_count), 2L) &&
+    identical(
+      as_character(freeze_gate$review_record_fields),
+      c("reviewer_role", "reviewer_id", "verdict", "artifact_hash", "finding_counts")
+    ) &&
+    identical(as_character(freeze_gate$reviewer_roles), c("formal_design", "game_theory")) &&
+    identical(freeze_gate$reviewer_ids_must_be_distinct, TRUE) &&
+    identical(freeze_gate$verdict_value, "PASS"),
+  "The executable freeze gate has the wrong two-review schema."
+)
+assert_true(
+  identical(
+    as_character(freeze_gate$finding_count_fields),
+    c("critical", "major", "minor")
+  ) &&
+    identical(as.integer(freeze_gate$finding_count_value), 0L) &&
+    grepl("exactly matches", freeze_gate$review_hash_rule, fixed = TRUE),
+  "The executable freeze gate must require same-hash PASS 0/0/0 reviews."
+)
+assert_true(
+  grepl("never sufficient author authorization", freeze_gate$topological_readiness_scope, fixed = TRUE) &&
+    grepl("Section 11", freeze_gate$topological_readiness_scope, fixed = TRUE),
+  "Topological readiness must not be represented as author authorization."
+)
+
 expected_ids <- c("N1", "N2", "N3", "N4", "N6", "N7")
 expected_names <- c(
   N1 = "r2_majority",
@@ -146,6 +186,43 @@ assert_true(
   identical(as_character(comparison_schema$source_node_fields), c("N3", "N4")),
   "The private comparison schema has the wrong source-node fields."
 )
+assert_true(
+  identical(
+    as_character(comparison_schema$source_equilibrium_id_fields),
+    c("majority", "unanimity")
+  ) &&
+    identical(as_character(comparison_schema$source_interface_hash_fields), c("N3", "N4")),
+  "The private comparison schema must type the exact source ids and hashes."
+)
+assert_true(
+  identical(
+    as_character(comparison_schema$private_payoff_vector_rule_fields),
+    c("majority", "unanimity")
+  ) &&
+    identical(
+      as_character(comparison_schema$private_outcome_distribution_rule_fields),
+      c("majority", "unanimity")
+    ),
+  "The private comparison maps must contain exactly the two institutional rules."
+)
+assert_true(
+  identical(as_character(comparison_schema$payoff_vector_type_fields), c("theta_0", "theta_1")),
+  "Each private payoff vector must have exactly the two type coordinates."
+)
+assert_true(
+  identical(
+    as_character(comparison_schema$outcome_distribution_fields),
+    c("pass_with_hegemon", "pass_without_hegemon", "failure", "delay")
+  ) &&
+    identical(comparison_schema$unique_comparison_id_field, "comparison_id"),
+  "The private comparison schema has the wrong outcome fields."
+)
+assert_true(
+  grepl("exactly one N3", comparison_schema$source_cardinality_rule, fixed = TRUE) &&
+    grepl("exactly one N4", comparison_schema$source_cardinality_rule, fixed = TRUE) &&
+    grepl("exactly once", comparison_schema$source_cardinality_rule, fixed = TRUE),
+  "The private comparison schema must fix source cardinality and completeness."
+)
 
 benchmark_schema <- schemas$complete_information_benchmark_v1
 assert_true(
@@ -158,6 +235,7 @@ assert_true(
     c(
       "public_equilibrium_id",
       "institution",
+      "round",
       "theta",
       "admissibility_conditions",
       "branch_classification",
@@ -181,9 +259,9 @@ assert_true(
     c(
       "rent_record_id",
       "admissibility_conditions",
-      "private_source_record_ids",
-      "public_source_record_ids",
-      "source_interface_hash",
+      "private_source_comparison_id",
+      "public_source_equilibrium_ids",
+      "source_N6_interface_hash",
       "RI_U",
       "RI_M",
       "DeltaRI",
@@ -200,8 +278,49 @@ assert_true(
   "The benchmark schema has the wrong institution fields."
 )
 assert_true(
+  identical(as_character(benchmark_schema$round_fields), c("R2", "R1")),
+  "The benchmark schema must distinguish R2 from R1."
+)
+assert_true(
   identical(as_character(benchmark_schema$type_fields), c("theta_0", "theta_1")),
   "The benchmark schema has the wrong type fields."
+)
+assert_true(
+  identical(
+    as_character(benchmark_schema$public_record_nesting),
+    c("institution", "round", "type")
+  ) &&
+    identical(benchmark_schema$unique_public_id_field, "public_equilibrium_id"),
+  "Public equilibrium records must be nested by institution, round, and type."
+)
+assert_true(
+  grepl("R2 source_public_continuation_ids is empty", benchmark_schema$public_continuation_rule, fixed = TRUE) &&
+    grepl("same institution and type", benchmark_schema$public_continuation_rule, fixed = TRUE),
+  "The public continuation-id target is not fully specified."
+)
+assert_true(
+  identical(
+    as_character(benchmark_schema$rent_public_source_nesting),
+    c("institution", "type")
+  ) &&
+    identical(benchmark_schema$rent_private_source_id_field, "private_source_comparison_id") &&
+    identical(
+      as_character(benchmark_schema$rent_public_source_id_fields),
+      c("majority.theta_0", "majority.theta_1", "unanimity.theta_0", "unanimity.theta_1")
+    ) &&
+    identical(benchmark_schema$rent_source_interface_hash_field, "source_N6_interface_hash"),
+  "Rent records must identify exactly one public R1 source by institution and type."
+)
+assert_true(
+  identical(as_character(benchmark_schema$rent_vector_fields), c("theta_0", "theta_1")) &&
+    identical(benchmark_schema$unique_rent_id_field, "rent_record_id"),
+  "Each informational-rent vector must have exactly the two type coordinates."
+)
+assert_true(
+  grepl("Exactly one rent record", benchmark_schema$rent_tuple_rule, fixed = TRUE) &&
+    grepl("four R1 public equilibrium ids", benchmark_schema$rent_tuple_rule, fixed = TRUE) &&
+    grepl("frozen N6 interface hash", benchmark_schema$rent_tuple_rule, fixed = TRUE),
+  "The rent-record tuple and cardinality rule is incomplete."
 )
 assert_true(
   identical(
@@ -249,8 +368,11 @@ is_valid_pending_interface <- function(node_id, node) {
     valid_public_shape <-
       identical(names(public_records), c("majority", "unanimity")) &&
       all(vapply(public_records, function(rule_records) {
-        identical(names(rule_records), c("theta_0", "theta_1")) &&
-          all(vapply(rule_records, is.null, logical(1)))
+        identical(names(rule_records), c("R2", "R1")) &&
+          all(vapply(rule_records, function(round_records) {
+            identical(names(round_records), c("theta_0", "theta_1")) &&
+              all(vapply(round_records, is.null, logical(1)))
+          }, logical(1)))
       }, logical(1)))
 
     return(
@@ -291,7 +413,7 @@ for (node_id in expected_ids) {
 
   forbidden_fields <- c(
     "result", "artifact_path", "artifact_hash", "dependency_hashes",
-    "started_order", "passed_order", "review", "reviews"
+    "started_order", "passed_order", "frozen", "review", "reviews"
   )
   assert_true(
     !any(forbidden_fields %in% names(node)),
@@ -325,6 +447,20 @@ assert_true(
   "A benchmark field in a private interface must fail validation."
 )
 
+filled_n6 <- nodes$N6
+filled_n6$interface$comparison_records <- list(list(comparison_id = "forbidden-at-gate0"))
+assert_true(
+  !is_valid_pending_interface("N6", filled_n6),
+  "A pending N6 with filled comparison records must fail validation."
+)
+
+benchmark_in_n6 <- nodes$N6
+benchmark_in_n6$interface$public_equilibrium_records <- list()
+assert_true(
+  !is_valid_pending_interface("N6", benchmark_in_n6),
+  "A public-benchmark field in N6 must fail validation."
+)
+
 wrong_n7_schema <- nodes$N7
 wrong_n7_schema$interface$schema_ref <- "equilibrium_correspondence_v1"
 assert_true(
@@ -333,10 +469,17 @@ assert_true(
 )
 
 filled_n7 <- nodes$N7
-filled_n7$interface$public_equilibrium_records$majority$theta_0 <- list(list())
+filled_n7$interface$public_equilibrium_records$majority$R2$theta_0 <- list(list())
 assert_true(
   !is_valid_pending_interface("N7", filled_n7),
   "A pending N7 with filled public-equilibrium records must fail validation."
+)
+
+filled_n7_rent <- nodes$N7
+filled_n7_rent$interface$informational_rent_records <- list(list(rent_record_id = "forbidden-at-gate0"))
+assert_true(
+  !is_valid_pending_interface("N7", filled_n7_rent),
+  "A pending N7 with filled informational-rent records must fail validation."
 )
 
 assert_true(identical(manifest$interface_hashing$algorithm, "sha256"), "Interface hashing must use SHA-256.")
@@ -353,14 +496,54 @@ assert_true(
   "The invalidation rule must isolate the terminal benchmark."
 )
 
+is_valid_finding_counts <- function(finding_counts) {
+  is.list(finding_counts) &&
+    identical(names(finding_counts), as_character(freeze_gate$finding_count_fields)) &&
+    all(vapply(finding_counts, function(value) {
+      is.numeric(value) && length(value) == 1L && !is.na(value) &&
+        value == freeze_gate$finding_count_value
+    }, logical(1)))
+}
+
+is_valid_review <- function(review, node_hash) {
+  is.list(review) &&
+    identical(names(review), as_character(freeze_gate$review_record_fields)) &&
+    is.character(review$reviewer_role) && length(review$reviewer_role) == 1L &&
+    review$reviewer_role %in% as_character(freeze_gate$reviewer_roles) &&
+    is.character(review$reviewer_id) && length(review$reviewer_id) == 1L &&
+    nzchar(review$reviewer_id) &&
+    identical(review$verdict, freeze_gate$verdict_value) &&
+    identical(review$artifact_hash, node_hash) &&
+    is_valid_finding_counts(review$finding_counts)
+}
+
 is_frozen <- function(node) {
-  identical(node$status, "pass") &&
+  valid_hash <-
     is.character(node$artifact_hash) &&
     length(node$artifact_hash) == 1L &&
     grepl("^sha256:[0-9a-f]{64}$", node$artifact_hash)
+  reviews <- node$reviews
+  valid_reviews <-
+    is.list(reviews) &&
+    length(reviews) == as.integer(freeze_gate$review_count) &&
+    valid_hash &&
+    all(vapply(reviews, is_valid_review, logical(1), node_hash = node$artifact_hash))
+
+  if (isTRUE(valid_reviews)) {
+    reviewer_roles <- vapply(reviews, `[[`, character(1), "reviewer_role")
+    reviewer_ids <- vapply(reviews, `[[`, character(1), "reviewer_id")
+    valid_reviews <-
+      identical(sort(reviewer_roles), sort(as_character(freeze_gate$reviewer_roles))) &&
+      length(unique(reviewer_ids)) == as.integer(freeze_gate$review_count)
+  }
+
+  identical(node$status, freeze_gate$status_value) &&
+    identical(node$frozen, freeze_gate$frozen_value) &&
+    isTRUE(valid_hash) &&
+    isTRUE(valid_reviews)
 }
 
-ready_nodes <- function(candidate_nodes) {
+topologically_ready_nodes <- function(candidate_nodes) {
   candidate_ids <- names(candidate_nodes)
   candidate_ids[vapply(candidate_ids, function(node_id) {
     node <- candidate_nodes[[node_id]]
@@ -372,62 +555,174 @@ ready_nodes <- function(candidate_nodes) {
 }
 
 frozen_hash <- paste0("sha256:", paste(rep("a", 64L), collapse = ""))
-freeze_node <- function(candidate_nodes, node_id, include_hash = TRUE, status = "pass") {
+make_review <- function(reviewer_role, reviewer_id, artifact_hash = frozen_hash) {
+  list(
+    reviewer_role = reviewer_role,
+    reviewer_id = reviewer_id,
+    verdict = "PASS",
+    artifact_hash = artifact_hash,
+    finding_counts = list(critical = 0L, major = 0L, minor = 0L)
+  )
+}
+
+freeze_node <- function(
+    candidate_nodes,
+    node_id,
+    include_hash = TRUE,
+    status = "pass",
+    include_frozen = TRUE,
+    include_reviews = TRUE) {
   candidate_nodes[[node_id]]$status <- status
   if (isTRUE(include_hash)) {
     candidate_nodes[[node_id]]$artifact_hash <- frozen_hash
+  }
+  if (isTRUE(include_frozen)) {
+    candidate_nodes[[node_id]]$frozen <- TRUE
+  }
+  if (isTRUE(include_reviews)) {
+    candidate_nodes[[node_id]]$reviews <- list(
+      make_review("formal_design", "reviewer-formal-design"),
+      make_review("game_theory", "reviewer-game-theory")
+    )
   }
   candidate_nodes
 }
 
 assert_true(
-  identical(sort(ready_nodes(nodes)), c("N1", "N2")),
-  "N1 and N2 must be the only initially ready antichain."
+  identical(sort(topologically_ready_nodes(nodes)), c("N1", "N2")),
+  "N1 and N2 must be the only initially topologically ready antichain."
 )
 
-# A PASS label alone is not a frozen interface and cannot release a consumer.
+# Missing any freeze fact prevents consumption.
 n1_unhashed <- freeze_node(nodes, "N1", include_hash = FALSE)
-assert_true(!("N3" %in% ready_nodes(n1_unhashed)), "N1 without a frozen hash must not release N3.")
+assert_true(
+  !("N3" %in% topologically_ready_nodes(n1_unhashed)),
+  "N1 without a frozen hash must not release N3."
+)
 n2_unhashed <- freeze_node(nodes, "N2", include_hash = FALSE)
-assert_true(!("N4" %in% ready_nodes(n2_unhashed)), "N2 without a frozen hash must not release N4.")
+assert_true(
+  !("N4" %in% topologically_ready_nodes(n2_unhashed)),
+  "N2 without a frozen hash must not release N4."
+)
+
+n1_pass_hash_only <- freeze_node(
+  nodes,
+  "N1",
+  include_frozen = FALSE,
+  include_reviews = FALSE
+)
+assert_true(
+  !("N3" %in% topologically_ready_nodes(n1_pass_hash_only)),
+  "PASS plus a hash without frozen and reviews must not release N3."
+)
+
+n1_without_reviews <- freeze_node(nodes, "N1", include_reviews = FALSE)
+assert_true(
+  !("N3" %in% topologically_ready_nodes(n1_without_reviews)),
+  "A frozen flag and hash without reviews must not release N3."
+)
+
+n1_one_review <- freeze_node(nodes, "N1")
+n1_one_review$N1$reviews <- n1_one_review$N1$reviews[1]
+assert_true(
+  !("N3" %in% topologically_ready_nodes(n1_one_review)),
+  "Exactly one review must not release N3."
+)
+
+n1_wrong_review_hash <- freeze_node(nodes, "N1")
+n1_wrong_review_hash$N1$reviews[[2]]$artifact_hash <- paste0(
+  "sha256:", paste(rep("b", 64L), collapse = "")
+)
+assert_true(
+  !("N3" %in% topologically_ready_nodes(n1_wrong_review_hash)),
+  "A review of a different hash must not release N3."
+)
+
+n1_nonzero_finding <- freeze_node(nodes, "N1")
+n1_nonzero_finding$N1$reviews[[1]]$finding_counts$minor <- 1L
+assert_true(
+  !("N3" %in% topologically_ready_nodes(n1_nonzero_finding)),
+  "A review with any nonzero finding count must not release N3."
+)
+
+n1_duplicate_reviewer <- freeze_node(nodes, "N1")
+n1_duplicate_reviewer$N1$reviews[[2]]$reviewer_id <-
+  n1_duplicate_reviewer$N1$reviews[[1]]$reviewer_id
+assert_true(
+  !("N3" %in% topologically_ready_nodes(n1_duplicate_reviewer)),
+  "Two review roles carried by the same reviewer id must not release N3."
+)
 
 # Frozen leaves release only their direct private-model consumers.
 n1_frozen <- freeze_node(nodes, "N1")
-assert_true("N3" %in% ready_nodes(n1_frozen), "Frozen N1 must release N3.")
+assert_true(
+  "N3" %in% topologically_ready_nodes(n1_frozen),
+  "Frozen N1 must make N3 topologically ready."
+)
 n2_frozen <- freeze_node(nodes, "N2")
-assert_true("N4" %in% ready_nodes(n2_frozen), "Frozen N2 must release N4.")
-assert_true(!("N7" %in% ready_nodes(n1_frozen)), "A frozen N1 must not release N7.")
-assert_true(!("N7" %in% ready_nodes(n2_frozen)), "A frozen N2 must not release N7.")
+assert_true(
+  "N4" %in% topologically_ready_nodes(n2_frozen),
+  "Frozen N2 must make N4 topologically ready."
+)
+assert_true(
+  !("N7" %in% topologically_ready_nodes(n1_frozen)),
+  "A frozen N1 must not make N7 topologically ready."
+)
+assert_true(
+  !("N7" %in% topologically_ready_nodes(n2_frozen)),
+  "A frozen N2 must not make N7 topologically ready."
+)
 
 # N6 requires both R1 interfaces; either one alone is insufficient.
 both_leaves_frozen <- freeze_node(freeze_node(nodes, "N1"), "N2")
 n3_only <- freeze_node(both_leaves_frozen, "N3")
-assert_true(!("N6" %in% ready_nodes(n3_only)), "N3 alone must not release N6.")
+assert_true(
+  !("N6" %in% topologically_ready_nodes(n3_only)),
+  "N3 alone must not make N6 topologically ready."
+)
 n4_only <- freeze_node(both_leaves_frozen, "N4")
-assert_true(!("N6" %in% ready_nodes(n4_only)), "N4 alone must not release N6.")
+assert_true(
+  !("N6" %in% topologically_ready_nodes(n4_only)),
+  "N4 alone must not make N6 topologically ready."
+)
 
 n3_unhashed_with_n4 <- freeze_node(n4_only, "N3", include_hash = FALSE)
 assert_true(
-  !("N6" %in% ready_nodes(n3_unhashed_with_n4)),
+  !("N6" %in% topologically_ready_nodes(n3_unhashed_with_n4)),
   "N3 without a frozen hash must not release N6 even when N4 is frozen."
 )
 n4_unhashed_with_n3 <- freeze_node(n3_only, "N4", include_hash = FALSE)
 assert_true(
-  !("N6" %in% ready_nodes(n4_unhashed_with_n3)),
+  !("N6" %in% topologically_ready_nodes(n4_unhashed_with_n3)),
   "N4 without a frozen hash must not release N6 even when N3 is frozen."
 )
 
 both_r1_frozen <- freeze_node(n3_only, "N4")
-assert_true("N6" %in% ready_nodes(both_r1_frozen), "Frozen N3 and N4 must release N6.")
-assert_true(!("N7" %in% ready_nodes(both_r1_frozen)), "Frozen N3 and N4 must not bypass N6 to release N7.")
+assert_true(
+  "N6" %in% topologically_ready_nodes(both_r1_frozen),
+  "Frozen N3 and N4 must make N6 topologically ready."
+)
+assert_true(
+  !("N7" %in% topologically_ready_nodes(both_r1_frozen)),
+  "Frozen N3 and N4 must not bypass N6 to make N7 topologically ready."
+)
 
 # N7 is terminal and requires N6 itself to be frozen.
 n6_unhashed <- freeze_node(both_r1_frozen, "N6", include_hash = FALSE)
-assert_true(!("N7" %in% ready_nodes(n6_unhashed)), "N6 without a frozen hash must not release N7.")
+assert_true(
+  !("N7" %in% topologically_ready_nodes(n6_unhashed)),
+  "N6 without a frozen hash must not make N7 topologically ready."
+)
 n6_hash_without_pass <- freeze_node(both_r1_frozen, "N6", include_hash = TRUE, status = "pending")
-assert_true(!("N7" %in% ready_nodes(n6_hash_without_pass)), "An N6 hash without PASS must not release N7.")
+assert_true(
+  !("N7" %in% topologically_ready_nodes(n6_hash_without_pass)),
+  "An N6 hash without PASS must not make N7 topologically ready."
+)
 n6_frozen <- freeze_node(both_r1_frozen, "N6")
-assert_true("N7" %in% ready_nodes(n6_frozen), "Only frozen N6 must release N7.")
+assert_true(
+  "N7" %in% topologically_ready_nodes(n6_frozen),
+  "Only frozen N6 must make N7 topologically ready."
+)
 
 direct_dependents <- function(candidate_nodes, node_id) {
   names(candidate_nodes)[vapply(candidate_nodes, function(node) {
@@ -468,7 +763,8 @@ for (node_id in expected_ids) {
 cat(
   paste0(
     "PASS: six-node essential-input Gate 0 DAG, joint private-equilibrium records, ",
-    "terminal complete-information benchmark, readiness gates, negative schema tests, ",
-    "and invalidation rules verified.\n"
+    "terminal complete-information benchmark, two-review freeze gates, topological ",
+    "readiness, negative schema tests, and invalidation rules verified. Topological ",
+    "readiness does not grant author authorization; Section 11 controls.\n"
   )
 )

@@ -1,17 +1,23 @@
 # Gate 0 — Arquitetura essential-input
 
 **Data:** 2026-08-12
-**Status:** `APPROVED` — aprovado pelo autor em 2026-08-12, emendado pelas
-decisões normativas do commit `162616d` e pela decisão autoral de 2026-08-17
-sobre o escopo de stage-undominated voting, as obrigações de prova e o protocolo
-de revisão, além da decisão autoral de 2026-08-18 que torna o benchmark público
-um nó terminal posterior ao congelamento do modelo principal. Autoriza o Goal
-0; nenhum nó de derivação está autorizado antes das duas novas revisões
+**Status:** `APPROVED` — aprovado pelo autor em 2026-08-12. Este contrato
+incorpora o registro decisório do commit `162616d` e as decisões autorais
+posteriores, inclusive as de 2026-08-17 sobre stage-undominated voting,
+obrigações de prova e revisão e a de 2026-08-18 que torna o benchmark público
+um nó terminal posterior ao congelamento do modelo principal. Decisão autoral
+posterior prevalece sobre registro histórico incompatível. Autoriza o Goal 0;
+nenhum nó de derivação está autorizado antes das duas novas revisões
 independentes e da resolução de qualquer finding remanescente.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
 
 ### Regra de fonte normativa única
+
+Este arquivo é a **única fonte normativa corrente** da arquitetura
+essential-input. Documentos decisórios anteriores são proveniência histórica:
+servem para auditar como este contrato foi formado, mas não constituem uma
+segunda autoridade sobre sua redação vigente.
 
 Cada regra deste contrato tem **uma única fonte canônica**. Menções fora dessa
 fonte servem apenas para explicar, usar o objeto já definido ou apontar para a
@@ -647,16 +653,24 @@ comparison_id
 admissibility_conditions
 source_equilibrium_ids: majority, unanimity
 source_interface_hashes: N3, N4
-private_payoff_vectors_by_rule: majority, unanimity
-private_outcome_distributions_by_rule: majority, unanimity
+private_payoff_vectors_by_rule:
+  majority: theta_0, theta_1
+  unanimity: theta_0, theta_1
+private_outcome_distributions_by_rule:
+  majority: pass_with_hegemon, pass_without_hegemon, failure, delay
+  unanimity: pass_with_hegemon, pass_without_hegemon, failure, delay
 private_rule_contrasts
 selection_status
 checks_performed
 ```
 
-`N6` inclui todas as combinações admissíveis dos registros congelados de `N3`
-e `N4`; não seleciona uma delas. Sua interface contém tudo que `N7` precisa do
-modelo privado, de modo que `N7` depende diretamente apenas de `N6`.
+Cada `comparison_id` é único no artefato. Cada registro cita **exatamente um**
+`equilibrium_id` de maioria de `N3`, exatamente um de unanimidade de `N4` e os
+hashes correspondentes nos campos `N3` e `N4`; cada vetor de payoff tem
+exatamente as coordenadas `theta_0` e `theta_1`. `N6` inclui exatamente uma vez
+cada combinação admissível desses registros congelados; não seleciona uma
+delas. Sua interface contém tudo que `N7` precisa do modelo privado, de modo
+que `N7` depende diretamente apenas de `N6`.
 
 **Benchmark terminal `N7`.** A interface usa
 `complete_information_benchmark_v1` e é função de `prior_mu in [0,1]` apenas
@@ -664,23 +678,54 @@ para formar objetos ex ante. Em Gate 0, cada coleção abaixo é `null`:
 
 ```text
 public_equilibrium_records:
-  majority: theta_0, theta_1
-  unanimity: theta_0, theta_1
+  majority:
+    R2: theta_0, theta_1
+    R1: theta_0, theta_1
+  unanimity:
+    R2: theta_0, theta_1
+    R1: theta_0, theta_1
 informational_rent_records
 ```
 
 Cada registro público contém conjuntamente `public_equilibrium_id`,
-`institution`, `theta`, `admissibility_conditions`, `branch_classification`,
-`strategy_profile`, `belief_system`, `source_public_continuation_ids`,
+`institution`, `round`, `theta`, `admissibility_conditions`,
+`branch_classification`, `strategy_profile`, `belief_system`,
+`source_public_continuation_ids`,
 `existence_uniqueness_status`, `selection_status`,
 `assumptions_used`, `checks_performed`, `payoff_vector`,
 `outcome_distribution` — com passagem com `H`, passagem sem `H`, falha e atraso
-— e `payoff_date`. Cada registro de renda contém
-`rent_record_id`, `admissibility_conditions`, os IDs privados e públicos que o
-geram, o hash da interface congelada de `N6`, `RI_U`, `RI_M`, `DeltaRI`, suas
-imagens ex ante, envelopes, `selection_status` e indicadores de robustez. A
-lista preserva todas as combinações admissíveis e nenhum desses campos retorna
-como input a `N1`, `N2`, `N3`, `N4` ou `N6`.
+— e `payoff_date`. Cada `public_equilibrium_id` é único no artefato. Em `R2`,
+`source_public_continuation_ids` é vazio. Em `R1`, ele contém todos e somente
+os IDs de registros de `R2` da **mesma regra e do mesmo tipo** efetivamente
+consumidos pelo registro de `R1`; portanto seu alvo é interno à coleção pública
+de `N7`, nunca um ID privado.
+
+Cada registro de renda contém conjuntamente:
+
+```text
+rent_record_id
+admissibility_conditions
+private_source_comparison_id
+public_source_equilibrium_ids:
+  majority: theta_0, theta_1
+  unanimity: theta_0, theta_1
+source_N6_interface_hash
+RI_U: theta_0, theta_1
+RI_M: theta_0, theta_1
+DeltaRI: theta_0, theta_1
+ex_ante_images
+envelopes
+selection_status
+robustness_indicators
+```
+
+O `rent_record_id` é único no artefato. Cada registro combina exatamente um
+`comparison_id` privado, os quatro `public_equilibrium_id` de `R1` — uma regra
+por tipo — e o hash congelado de `N6`; a ligação de cada registro público de
+`R1` a `R2` permanece preservada pelos IDs de continuação acima. Existe
+exatamente um registro de renda por tupla completa admissível dessas fontes.
+A lista não seleciona combinações e nenhum desses campos retorna como input a
+`N1`, `N2`, `N3`, `N4` ou `N6`.
 
 Nenhum schema contém decisão nem valor de formação. Qualquer nó que precise
 exportar mais do que isto deve declarar a extensão no DAG antes de derivar, com
@@ -875,6 +920,22 @@ que estejam prontos ao mesmo tempo podem compartilhar um ciclo, com veredicto
 separado para cada nó e cada hash. Compartilhar não é obrigatório: a importância
 substantiva de um nó pode justificar um ciclo exclusivo.
 
+**Registro executável do congelamento.** Um nó só está congelado quando reúne
+simultaneamente: `status = pass`; `frozen = true`; `artifact_hash` SHA-256
+válido; e `reviews` com exatamente dois registros, um de papel
+`formal_design` e outro de papel `game_theory`. Os `reviewer_id` devem ser
+distintos. Cada registro deve declarar `verdict = PASS`, repetir exatamente o
+`artifact_hash` do nó e trazer `finding_counts` iguais a zero em `critical`,
+`major` e `minor`. Ausência de qualquer desses fatos não congela a interface e
+não libera consumidor. Nós `pending` omitem `frozen`, `artifact_hash` e
+`reviews`; o DAG de Gate 0 permanece nesse estado vazio.
+
+A **prontidão topológica** significa apenas que todas as dependências de um nó
+estão congeladas segundo o parágrafo anterior. Ela é condição necessária, não
+autorização para trabalhar: os gates autorais da cadência canônica abaixo
+continuam necessários. O verifier da Seção 13 testa somente essa prontidão
+topológica e nunca concede autorização.
+
 **Cadência canônica.** Esta é a única especificação da cadência; a Seção 7
 apenas aponta para ela.
 
@@ -1028,13 +1089,16 @@ Rscript scripts/verify_essential_input_gate0.R
 Esse é o único verifier referido sem qualificação neste contrato. Ele checa a
 infraestrutura do Gate 0 — topologia de seis nós sem `N5`, schemas vazios de
 registros conjuntos, isolamento terminal de `N7`, estados `pending`, gates de
-hash e invalidação — e deve terminar com `PASS`. Falha nessa verificação bloqueia
-o trabalho até ser classificada e resolvida conforme a Seção 11.1.
+congelamento com duas revisões, prontidão **topológica** e invalidação — e deve
+terminar com `PASS`. Seu resultado não substitui nenhum gate autoral da Seção
+11. Falha nessa verificação bloqueia o trabalho até ser classificada e resolvida
+conforme a Seção 11.1.
 
 São protegidos:
 
-- `quality_reports/2026-08-12_essential_input_gate0_decisions.md`, fonte
-  normativa das decisões incorporadas aqui;
+- `quality_reports/2026-08-12_essential_input_gate0_decisions.md`, registro
+  histórico e proveniência das decisões incorporadas; permanece protegido, mas
+  não é fonte normativa corrente nem prevalece sobre este contrato;
 - `formal_model_v5.Rmd` e `formal_model_v6.Rmd`, até o gate do Goal 5;
 - todos os artefatos da cadeia `pivotal-response`, que permanecem apenas como
   proveniência e não podem ser editados, migrados nem citados como evidência

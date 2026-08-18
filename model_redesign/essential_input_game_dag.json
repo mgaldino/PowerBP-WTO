@@ -5,7 +5,28 @@
     "algorithm": "sha256",
     "hash_format": "sha256:<64 lowercase hexadecimal characters>",
     "artifact_rule": "When a node passes, serialize its exact nonempty interface as a standalone UTF-8 JSON artifact and hash the artifact file bytes.",
-    "pending_rule": "Pending nodes have null record collections and omit artifact_path, artifact_hash, and dependency_hashes."
+    "pending_rule": "Pending nodes have null record collections and omit artifact_path, artifact_hash, dependency_hashes, frozen, and reviews."
+  },
+  "freeze_gate_schema": {
+    "canonical_source": "contract Section 11",
+    "required_node_fields": ["status", "frozen", "artifact_hash", "reviews"],
+    "status_value": "pass",
+    "frozen_value": true,
+    "review_count": 2,
+    "review_record_fields": [
+      "reviewer_role",
+      "reviewer_id",
+      "verdict",
+      "artifact_hash",
+      "finding_counts"
+    ],
+    "reviewer_roles": ["formal_design", "game_theory"],
+    "reviewer_ids_must_be_distinct": true,
+    "verdict_value": "PASS",
+    "finding_count_fields": ["critical", "major", "minor"],
+    "finding_count_value": 0,
+    "review_hash_rule": "Each review artifact_hash exactly matches the node artifact_hash.",
+    "topological_readiness_scope": "Frozen dependencies are necessary but never sufficient author authorization; the contract Section 11 is the sole authority for author gates."
   },
   "invalidation_rule": {
     "interface_change": "A changed frozen interface hash invalidates every transitive descendant.",
@@ -56,13 +77,27 @@
         "checks_performed"
       ],
       "institution_fields": ["majority", "unanimity"],
-      "source_node_fields": ["N3", "N4"]
+      "source_node_fields": ["N3", "N4"],
+      "source_equilibrium_id_fields": ["majority", "unanimity"],
+      "source_interface_hash_fields": ["N3", "N4"],
+      "private_payoff_vector_rule_fields": ["majority", "unanimity"],
+      "payoff_vector_type_fields": ["theta_0", "theta_1"],
+      "private_outcome_distribution_rule_fields": ["majority", "unanimity"],
+      "outcome_distribution_fields": [
+        "pass_with_hegemon",
+        "pass_without_hegemon",
+        "failure",
+        "delay"
+      ],
+      "unique_comparison_id_field": "comparison_id",
+      "source_cardinality_rule": "Each record cites exactly one N3 majority equilibrium id, exactly one N4 unanimity equilibrium id, and their matching interface hashes; each admissible source pair appears exactly once."
     },
     "complete_information_benchmark_v1": {
       "applies_to": ["N7"],
       "public_equilibrium_record_fields": [
         "public_equilibrium_id",
         "institution",
+        "round",
         "theta",
         "admissibility_conditions",
         "branch_classification",
@@ -80,9 +115,9 @@
       "informational_rent_record_fields": [
         "rent_record_id",
         "admissibility_conditions",
-        "private_source_record_ids",
-        "public_source_record_ids",
-        "source_interface_hash",
+        "private_source_comparison_id",
+        "public_source_equilibrium_ids",
+        "source_N6_interface_hash",
         "RI_U",
         "RI_M",
         "DeltaRI",
@@ -92,7 +127,18 @@
         "robustness_indicators"
       ],
       "institution_fields": ["majority", "unanimity"],
+      "round_fields": ["R2", "R1"],
       "type_fields": ["theta_0", "theta_1"],
+      "public_record_nesting": ["institution", "round", "type"],
+      "unique_public_id_field": "public_equilibrium_id",
+      "public_continuation_rule": "R2 source_public_continuation_ids is empty; R1 contains all and only consumed R2 public_equilibrium_ids from the same institution and type.",
+      "rent_public_source_nesting": ["institution", "type"],
+      "rent_private_source_id_field": "private_source_comparison_id",
+      "rent_public_source_id_fields": ["majority.theta_0", "majority.theta_1", "unanimity.theta_0", "unanimity.theta_1"],
+      "rent_source_interface_hash_field": "source_N6_interface_hash",
+      "rent_vector_fields": ["theta_0", "theta_1"],
+      "unique_rent_id_field": "rent_record_id",
+      "rent_tuple_rule": "Exactly one rent record per admissible tuple of one private comparison id, four R1 public equilibrium ids (two institutions by two types), and the frozen N6 interface hash.",
       "outcome_distribution_fields": [
         "pass_with_hegemon",
         "pass_without_hegemon",
@@ -197,12 +243,24 @@
         },
         "public_equilibrium_records": {
           "majority": {
-            "theta_0": null,
-            "theta_1": null
+            "R2": {
+              "theta_0": null,
+              "theta_1": null
+            },
+            "R1": {
+              "theta_0": null,
+              "theta_1": null
+            }
           },
           "unanimity": {
-            "theta_0": null,
-            "theta_1": null
+            "R2": {
+              "theta_0": null,
+              "theta_1": null
+            },
+            "R1": {
+              "theta_0": null,
+              "theta_1": null
+            }
           }
         },
         "informational_rent_records": null
