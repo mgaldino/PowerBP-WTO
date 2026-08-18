@@ -12,7 +12,7 @@
         "N is an integer and N >= 3",
         "m = N-1",
         "q = floor(N/2)+1",
-        "beta in (0,1] and is payoff-irrelevant inside terminal R2",
+        "beta in (0,1) and is payoff-irrelevant inside terminal R2",
         "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
         "the proposal is feasible under y + sum_j x_j + r_i <= 1"
       ],
@@ -69,7 +69,8 @@
             "N1-C07 no internal discount in R2 payoffs",
             "N1-C08 P5 posterior sufficiency",
             "N1-C09 P6 on-path refinement effect",
-            "N1-C10 strict o_1<1 domain restriction leaves the N1 correspondence invariant"
+            "N1-C10 strict o_1<1 domain restriction leaves the N1 correspondence invariant",
+            "N1-C11 strict beta<1 domain restriction leaves the N1 correspondence invariant and beta absent from terminal R2 incentives"
           ],
           "recognized_proposer_payoff": "1",
           "weak_nonproposer_pre_recognition_expected_value": "1/m",

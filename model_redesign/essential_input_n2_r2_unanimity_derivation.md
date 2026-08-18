@@ -5,7 +5,7 @@
 **Normative source:** Sections 2, 4, 5, 6, 7.2, 8, 9, and 11 of
 `quality_reports/plans/2026-08-12_essential_input_gate0.md`
 **Interface:** `model_redesign/essential_input_n2_r2_unanimity_interface.json`
-**Candidate interface hash:** `sha256:32a2989f806af20b2557fa8f495dfbe661ac951be59ee68e583fd50735e486ed`
+**Candidate interface hash:** `sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2`
 **Claim ledger:** `model_redesign/essential_input_n2_r2_unanimity_ledger.json`
 **Verifier:** `scripts/verify_essential_input_n2.R`
 
@@ -35,7 +35,8 @@ The primitive domain relevant to this node is
 ```text
 0 <= nu <= 1,
 0 < o_0 < o_1 < 1,
-o_1 <= y_bar <= 1.
+o_1 <= y_bar <= 1,
+0 < beta < 1.
 ```
 
 Under unanimity, the proposal passes only if `H` and every weak
@@ -250,7 +251,25 @@ because R2 is terminal. The interface preserves the only remaining
 multiplicity: unrestricted payoff-irrelevant beliefs after zero-probability
 proposals.
 
-## 10. Invalidation and review status
+## 10. Invariance to the strict `beta < 1` domain
+
+### Claim N2-CLM-013 — terminal R2 is invariant to the beta restriction
+
+The cold derivation in Sections 2--9 compares only payoffs at the current R2
+date. Weak nonproposers compare `x_j` with zero, type `theta` of `H` compares
+`y` with `o_theta`, and the recognized proposer compares current expected
+residuals. R2 has no continuation to discount. Therefore no ballot incentive,
+proposal payoff, frontier, belief restriction, outcome probability, or payoff
+record contains an internal `beta`.
+
+Restricting the primitive domain from `beta in (0,1]` to `beta in (0,1)` removes
+only the parameter endpoint `beta=1`. For every remaining primitive vector the
+two cells, the frontier `nu_star`, their strategy profiles, the full belief
+class, their payoffs, outcomes, and multiplicity are exactly unchanged. This is
+a result of rederiving the terminal node, not an assumption that the former
+candidate survives.
+
+## 11. Invalidation and review status
 
 N2 consumes no continuation interface. Any change to the contract's
 primitives, terminal implementation, ballot solution concept, discount timing,

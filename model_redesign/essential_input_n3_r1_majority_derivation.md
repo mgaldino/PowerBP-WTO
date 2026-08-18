@@ -1,7 +1,7 @@
 # N3 — R1 sob maioria: derivação do candidato
 
 **Nó:** `N3`  
-**Dependência única consumida:** `N1-EQ-01`, hash `sha256:af128d9053ce1320a8ba9b033b40468d2f9e457be83330ee940b02b2e73534fd`  
+**Dependência única consumida:** `N1-EQ-01`, hash `sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5`
 **Data nativa dos payoffs:** R1  
 **Status:** `pending` — candidato de implementação, ainda sem os dois pareceres independentes do ciclo próprio de N3  
 **Fonte normativa exclusiva:** `quality_reports/plans/2026-08-12_essential_input_gate0.md`, Seções 2, 4, 5, 6, 7.2, 8, 9 e 11
@@ -97,10 +97,13 @@ E = 1-(q-1)w,
 L = 1-c*w-t_0,
 P = 1-c*w-t_1,
 S(nu) = (1-nu)L + nu*w,
-D = E-w = 1-q*w >= 0.
+D = E-w = 1-q*w > 0.
 ```
 
-A desigualdade `D>=0` decorre de `q<=m` e `beta<=1`. A igualdade `D=0` ocorre exatamente quando `beta=1` e `q=m`, isto é, `N in {3,4}`.
+Como `N>=3`, `q=floor(N/2)+1<=N-1=m`. Como `0<beta<1`, temos
+`beta*q/m<1`, inclusive quando `q=m`. Logo `D=1-beta*q/m>0` em todo o
+domínio corrente. A face `beta=1`, que poderia produzir `D=0` quando `q=m`,
+está excluída e não é derivada como parte do baseline.
 
 Para cada proponente `i`, defina as famílias puras abaixo. `K` sempre denota um subconjunto de `W sem i`.
 
@@ -154,7 +157,7 @@ Toda proposta aprovada sem `H` que pode maximizar reduz pagamentos redundantes, 
 
 Toda proposta com `H` pivotal e probabilidade positiva de aprovação reduz os pagamentos fracos a exatamente `q-2` parcelas de `w`. Se apenas o tipo baixo aprova e `nu<1`, o proponente escolhe o menor `y` aprovável, `t_0`, e fica com todo o residual: pertence a `S_i`. Se ambos aprovam, escolhe `t_1`: pertence a `P_i`. Quando o único tipo que aprovaria tem probabilidade zero, a proposta pertence a `R_i(nu)` e o pagamento nunca é executado no caminho.
 
-Qualquer proposta que falha para todos os tipos no suporte pertence a `R_i(nu)` e paga `w`. Portanto nenhum ótimo puro existe fora de
+Qualquer proposta que falha para todos os tipos no suporte pertence a `R_i(nu)` e paga `w`. Portanto nenhum candidato não dominado dentro de seu ramo existe fora de
 
 ```text
 B_i(nu) = E_i union [S_i if feasible] union [P_i if feasible] union R_i(nu).
@@ -164,9 +167,15 @@ B_i(nu) = E_i union [S_i if feasible] union [P_i if feasible] union R_i(nu).
 
 ### Claim N3-C05 — P0
 
-As propostas ótimas de exclusão, screening ou pooling usam integralmente a pie. Se uma delas tivesse folga, aumentar `r_i` preservaria proposta, crenças e respostas e elevaria estritamente o payoff do proponente nos estados em que a proposta passa.
+As propostas ótimas de exclusão, screening ou pooling usam integralmente a pie.
+Se uma delas tivesse folga, aumentar `r_i` preservaria proposta, crenças e
+respostas e elevaria estritamente o payoff do proponente nos estados em que a
+proposta passa. Screening selecionado sempre tem `nu<1`, pois em `nu=1` paga
+`w<E`; portanto também nesse ramo o ganho ocorre com probabilidade positiva.
 
-Propostas com folga sobrevivem apenas se pertencem a `R_i(nu)` e a rejeição on-path é selecionada. Isso requer `D=0`, pois `E>=w` e `R_i` paga `w`. Logo, folga só pode sobreviver quando `beta=1`, `q=m` e nenhum ramo aprovado dá payoff maior que `E=w`. P0 é, portanto, provada com uma exceção endógena preservada, não assumida fora da correspondência.
+Toda proposta em `R_i(nu)` paga `w`, enquanto exclusão paga `E=w+D>w`.
+Assim, rejeição deliberada nunca é selecionada e nenhuma proposta com folga
+sobrevive on path. P0 vale sem exceção no domínio `0<beta<1`.
 
 ### Claim N3-C06 — P1, dominância estrita do hedge
 
@@ -225,21 +234,28 @@ nu <= nu_SP = beta*(o_1-o_0)/(L-w),
 ```
 
 e pooling para `nu>nu_SP`. Na igualdade, screening minimiza estritamente o payoff de `H`.
-2. Se `o_0<1/m<o_1` e `D>0`, pooling é inferior a exclusão e
+2. Se `o_0<1/m<o_1`, pooling é inferior a exclusão e
 
 ```text
 nu_SE = beta*(1/m-o_0)/[beta*(1/m-o_0)+D].
 ```
 
-Screening vence para `nu<nu_SE`; exclusão vence para `nu>nu_SE`. Na igualdade, screening é selecionado se `beta<1`; se `beta=1`, screening e exclusão permanecem.
-3. Se `o_0>1/m` e `D>0`, exclusão é estritamente ótima.
+Screening vence para `nu<nu_SE`; exclusão vence para `nu>nu_SE`. Na igualdade,
+screening é o único selecionado, pois `h_S=beta*h_E<h_E` sob `beta<1`.
+3. Se `o_0>1/m`, exclusão é estritamente ótima.
 
 Essas três regiões abertas são não vazias quando suas desigualdades primitivas são satisfeitas.
 
 ### Claim N3-C09 — fronteiras de igualdade
 
-1. Se `o_0=1/m<o_1` e `D>0`, exclusão vence para `nu>0`. Em `nu=0`, screening e exclusão empatam no payoff do proponente; screening é selecionado se `beta<1`, e ambos permanecem se `beta=1`.
-2. Se `o_0<o_1=1/m` e `D>0`, compare screening com `E=P` usando `nu_SE`. Abaixo de `nu_SE`, screening vence. Na igualdade, screening é selecionado se `beta<1`; se `beta=1`, screening e exclusão permanecem, enquanto pooling é eliminado pelo tie-break. Acima de `nu_SE`, exclusão e pooling empatam para o proponente; seleciona-se exclusão se `h_E<h_P`, pooling se `h_P<h_E`, e ambos se `h_E=h_P`. A fronteira equivalente é
+1. Se `o_0=1/m<o_1`, exclusão vence para `nu>0`. Em `nu=0`,
+screening e exclusão empatam no payoff do proponente, mas screening é o único
+selecionado porque `h_S=beta*h_E<h_E`.
+2. Se `o_0<o_1=1/m`, compare screening com `E=P` usando `nu_SE`.
+Abaixo de `nu_SE`, screening vence. Na igualdade, screening é o único
+selecionado pelo mesmo tie-break estrito. Acima de `nu_SE`, exclusão e pooling
+empatam para o proponente; seleciona-se exclusão se `h_E<h_P`, pooling se
+`h_P<h_E`, e ambos se `h_E=h_P`. A fronteira equivalente é
 
 ```text
 nu_HP = (beta/m-o_0)/(1/m-o_0),
@@ -247,25 +263,28 @@ nu_HP = (beta/m-o_0)/(1/m-o_0),
 
 sem truncá-la artificialmente quando cair fora de `[0,1]`.
 
-### Claim N3-C10 — rejeição, delay e o corner `D=0`
+### Claim N3-C10 — `D>0`, rejeição, slack e delay
 
-`R_i(nu)` só pode ser selecionado se `E=w`, isto é, `D=0`. Nesse corner, `beta=1`, logo rejeição, screening e exclusão dão a `H` o mesmo payoff esperado sempre que empatam para o proponente. A família de rejeição é selecionada exatamente quando
+Toda proposta de rejeição deliberada dá ao proponente `w`. Exclusão é sempre
+factível e paga `E=w+D`, e a prova acima estabelece `D>0`. Logo `R_i(nu)`
+nunca integra `A_i_star(nu)`: não há seleção on-path de rejeição pura nem de
+proposta com folga.
 
-```text
-D=0,
-o_1>=1/m,
-e [nu=1 ou o_0>=1/m].
-```
+Isso não elimina todo delay. Quando screening é selecionado e `nu>0`, o tipo
+alto rejeita e o jogo segue para N1 com probabilidade `nu`; esse delay é gerado
+por aprendizagem e está ligado a uma proposta de screening que usa integralmente
+a pie. Assim, a conclusão correta é: delay deliberado desaparece, mas delay do ramo alto de screening sobrevive exatamente nas regiões em que `S_i` é
+selecionado e `nu>0`.
 
-Nessa região, `A_i_star` preserva `R_i(nu)`, `E_i` e qualquer outro candidato empatado após o tie-break. Isso inclui propostas com folga e gera delay em equilíbrio. Se `o_1<1/m`, pooling domina `E=w`, e a rejeição não sobrevive.
-
-Os Claims N3-C08--N3-C10, conjuntamente, cobrem todas as ordens estritas e igualdades possíveis entre `o_0`, `o_1` e `1/m`, os dois estados `D>0` e `D=0` e todo `nu in [0,1]`.
+Os Claims N3-C08--N3-C10 cobrem todas as ordens estritas e igualdades entre
+`o_0`, `o_1` e `1/m` e todo `nu in [0,1]` sob `D>0`. A face `D=0` pertence
+somente à extensão futura `beta=1` e não integra esta correspondência.
 
 ## 6. Crenças e vetor público de votos
 
 ### Claim N3-C11 — crença no ballot
 
-O weak proposer não observa `theta`. Para qualquer proposta que seja um átomo positivo de `F_i`, Bayes preserva `nu` no ballot. Após toda proposta individual de probabilidade zero, a crença `kappa_i(s)` é componente livre do assessment, inclusive quando `s` pertence ao suporte topológico de uma distribuição atomless. Nenhuma crença off-path é escolhida para obter os cutoffs: as respostas derivadas são independentes dela.
+O weak proposer não observa `theta`. Para qualquer proposta que seja um átomo positivo de `F_i`, Bayes preserva `nu` no ballot. Após toda proposta individual de probabilidade zero, inclusive todo ponto ao qual o `F_i` selecionado atribui massa zero, a crença `kappa_i(s)` é componente livre do assessment. Nenhuma crença off-path é escolhida para obter os cutoffs: as respostas derivadas são independentes dela.
 
 Nos endpoints `nu=0` e `nu=1`, as estratégias no ballot e os payoffs e outcomes
 condicionais continuam especificados para ambos os tipos. Bayes restringe apenas
@@ -311,9 +330,18 @@ Payoffs de aprovação em R1 são correntes. Somente `w=beta/m` e `t_theta=beta*
 
 ### Claim N3-C15 — existência, completude e multiplicidade
 
-`E_i` é sempre factível e `E>=w`, portanto existe equilíbrio para toda primitiva admissível e todo `nu`. O conjunto `A_i_star` aplica exatamente o tie-break autorizado, e todo `(F_i)` nele apoiado gera um PBE com estratégias puras no ballot. Reciprocamente, os Claims N3-C01--N3-C10 mostram que todo PBE admissível deve usar propostas nesse conjunto.
+`E_i` é sempre factível e `E>w`, portanto existe equilíbrio para toda primitiva
+admissível e todo `nu`. O conjunto `A_i_star` aplica exatamente o tie-break
+autorizado, e todo `(F_i)` nele apoiado gera um PBE com estratégias puras no
+ballot. Reciprocamente, os Claims N3-C01--N3-C10 mostram que todo PBE
+admissível deve usar propostas nesse conjunto.
 
-Não há célula de inexistência. Em geral há multiplicidade de identidade da coalizão; empates preservam misturas adicionais. Quando `R_i(nu)` é selecionada, podem existir propostas com folga, delay e multiplicidade de payoffs do tipo de probabilidade zero. Tudo permanece ligado ao mesmo `(F_i)` no registro atômico; nenhuma projeção marginal é recombinada.
+Não há célula de inexistência. Em geral há multiplicidade de identidade da
+coalizão, e o empate residual `E=P` pode preservar exclusão e pooling quando
+também empatam no payoff esperado de `H`. As distribuições condicionais por
+identidade `F_i` preservam exatamente essas combinações e os payoffs weak
+indexados; não há seleção simétrica nem recombinação de projeções marginais.
+Não existe multiplicidade on-path de rejeição ou slack sob `beta<1`.
 
 ### Claim N3-C16 — invariância no domínio estrito `o_1<1`
 
@@ -332,11 +360,21 @@ suas fronteiras internas, as crenças, os payoffs e os outcomes acima são a
 restrição do mesmo objeto ao novo domínio; a face excluída `o_1=1` não é
 usada para provar nenhum regime.
 
-Em particular, o corner de multiplicidade não desaparece. `D=0` equivale a
-`beta=1` e `q=m`, condições compatíveis com `o_1<1`. Portanto delay, propostas
-com folga e distribuições `F_i` indexadas por identidade continuam na
-correspondência exatamente nas condições do Claim N3-C10.
+O resultado de `o_1<1` é independente da nova restrição em `beta`: as famílias
+e fronteiras acima usam somente pontos interiores do domínio corrente.
+
+### Claim N3-C17 — domínio estrito `beta<1` e face excluída
+
+A rederivação usa `0<beta<1` em um passo substantivo: juntamente com `q<=m`,
+ela prova `D>0`. Isso elimina da correspondência baseline o antigo corner de
+rejeição deliberada, slack e delay puro. Todos os demais usos de `beta` são os
+transportes únicos `w=beta/m` e `t_theta=beta*o_theta` da interface N1 para a
+data de R1.
+
+`beta=1` aparece apenas como face excluída: se futuramente autorizada, exigirá
+nova derivação e novo ciclo de revisão. Nenhuma proposta, payoff, crença ou
+fronteira deste candidato a trata como primitiva admissível.
 
 ## 8. Invalidação
 
-N3 depende exclusivamente do objeto N1 no hash `sha256:af128d9053ce1320a8ba9b033b40468d2f9e457be83330ee940b02b2e73534fd`. Qualquer mudança nesse hash, nas primitivas, na função de implementação, no conceito de solução, no tie-break, no timing ou no schema invalida este candidato. O arquivo permanece `pending` até dois revisores independentes darem PASS `0/0/0` no mesmo hash.
+N3 depende exclusivamente do objeto N1 no hash `sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5`. Qualquer mudança nesse hash, nas primitivas, na função de implementação, no conceito de solução, no tie-break, no timing ou no schema invalida este candidato. O arquivo permanece `pending` até dois revisores independentes darem PASS `0/0/0` no mesmo hash.

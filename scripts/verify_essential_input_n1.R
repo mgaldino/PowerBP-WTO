@@ -61,17 +61,17 @@ ledger_path <- file.path(
 )
 dag_path <- file.path(repository_root, "model_redesign", "essential_input_game_dag.json")
 
-expected_interface_hash <- "af128d9053ce1320a8ba9b033b40468d2f9e457be83330ee940b02b2e73534fd"
-expected_ledger_hash <- "b438312588ed8af113b6a4313bf78df625aa954abfcbf3e4b4ed795630d2b990"
+expected_interface_hash <- "1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+expected_ledger_hash <- "a79fb842e1e57a3a26caf7bf91f1eaa395b4b0c263a7cf3ef04a8cd54e90a3cf"
 artifact_hash <- sha256_file(interface_path)
 ledger_hash <- sha256_file(ledger_path)
 assert_true(
   identical(artifact_hash, expected_interface_hash),
-  "The N1 candidate bytes differ from the reviewed canonical artifact."
+  "The N1 candidate bytes differ from the canonical pending artifact."
 )
 assert_true(
   identical(ledger_hash, expected_ledger_hash),
-  "The N1 ledger bytes differ from the canonical ten-claim ledger."
+  "The N1 ledger bytes differ from the canonical eleven-claim ledger."
 )
 
 interface_bytes <- readBin(interface_path, what = "raw", n = file.info(interface_path)$size)
@@ -95,6 +95,7 @@ assert_true(
     )
   ) &&
     identical(nodes$N1$status, "pass") &&
+    identical(nodes$N1$depends_on, list()) &&
     identical(nodes$N1$frozen, TRUE) &&
     identical(nodes$N1$artifact_path, "essential_input_interfaces/n1_r2_majority_candidate_v1.json") &&
     identical(nodes$N1$artifact_hash, paste0("sha256:", expected_interface_hash)) &&
@@ -107,16 +108,18 @@ assert_true(
     identical(
       vapply(n1_reviews, `[[`, character(1), "reviewer_id"),
       c(
-        "review-n1-n2-o1-formal-2026-08-18-r3",
-        "review-n1-n2-o1-game-2026-08-18-r3"
+        "review-n1-n2-beta-formal-2026-08-18-r1",
+        "review-n1-n2-beta-game-2026-08-18-r1"
       )
     ) &&
     all(vapply(n1_reviews, function(review) {
-      identical(review$verdict, "PASS") &&
+      identical(names(review), c("reviewer_role", "reviewer_id", "verdict", "artifact_hash", "finding_counts")) &&
+        identical(review$verdict, "PASS") &&
         identical(review$artifact_hash, paste0("sha256:", expected_interface_hash)) &&
+        identical(names(review$finding_counts), c("critical", "major", "minor")) &&
         all(as.numeric(unlist(review$finding_counts, use.names = FALSE)) == 0)
     }, logical(1))),
-  "N1 must remain frozen on the exact r3-reviewed candidate in the shared DAG."
+  "N1 must be frozen on the exact beta<1 candidate with both independent PASS 0/0/0 reviews."
 )
 
 equilibrium_schema <- dag$interface_schemas$equilibrium_correspondence_v1
@@ -169,7 +172,7 @@ validate_candidate <- function(object) {
     "N is an integer and N >= 3",
     "m = N-1",
     "q = floor(N/2)+1",
-    "beta in (0,1] and is payoff-irrelevant inside terminal R2",
+    "beta in (0,1) and is payoff-irrelevant inside terminal R2",
     "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
     "the proposal is feasible under y + sum_j x_j + r_i <= 1"
   )
@@ -304,12 +307,13 @@ validate_candidate <- function(object) {
     "N1-C07 no internal discount in R2 payoffs",
     "N1-C08 P5 posterior sufficiency",
     "N1-C09 P6 on-path refinement effect",
-    "N1-C10 strict o_1<1 domain restriction leaves the N1 correspondence invariant"
+    "N1-C10 strict o_1<1 domain restriction leaves the N1 correspondence invariant",
+    "N1-C11 strict beta<1 domain restriction leaves the N1 correspondence invariant and beta absent from terminal R2 incentives"
   )
   assert_true(
     identical(checks, expected_checks),
     paste0(
-      "The interface must state the exact content of claims N1-C01 through N1-C10, ",
+      "The interface must state the exact content of claims N1-C01 through N1-C11, ",
       "including strict-domain invariance."
     )
   )
@@ -341,9 +345,17 @@ validate_candidate <- function(object) {
     identical(record$payoff_date, "R2 current units"),
     "N1 payoffs must remain in current R2 units."
   )
+  internal_r2_objects <- list(
+    record$strategy_profile,
+    record$belief_system,
+    record$recognized_proposer_payoff,
+    record$weak_nonproposer_pre_recognition_expected_value,
+    record$hegemon_payoff_by_type,
+    record$outcome_distribution
+  )
   assert_true(
-    !any(grepl("\\bbeta\\b", all_strings(record), perl = TRUE)),
-    "No internal beta term is permitted in an R2 equilibrium record."
+    !any(grepl("\\bbeta\\b", all_strings(internal_r2_objects), perl = TRUE)),
+    "No internal beta term is permitted in R2 strategies, beliefs, payoffs, or outcomes."
   )
 
   invisible(TRUE)
@@ -367,10 +379,10 @@ validate_ledger <- function(ledger) {
     "evidence"
   )
   assert_true(identical(names(ledger), expected_columns), "The N1 ledger has the wrong columns.")
-  assert_true(nrow(ledger) == 10L, "The N1 ledger must contain ten atomic claims.")
+  assert_true(nrow(ledger) == 11L, "The N1 ledger must contain eleven atomic claims.")
   assert_true(
-    identical(ledger$claim_id, sprintf("N1-C%02d", 1:10)),
-    "The N1 ledger claim ids must be unique and exhaustive from N1-C01 to N1-C10."
+    identical(ledger$claim_id, sprintf("N1-C%02d", 1:11)),
+    "The N1 ledger claim ids must be unique and exhaustive from N1-C01 to N1-C11."
   )
   expected_branches <- c(
     "all feasible proposals",
@@ -382,7 +394,8 @@ validate_ledger <- function(ledger) {
     "native-time audit",
     "posterior sufficiency",
     "on-path refinement",
-    "strict primitive domain"
+    "strict primitive domain",
+    "strict beta domain"
   )
   expected_claims <- c(
     "For x_j>0, yes weakly dominates no for every weak nonproposer.",
@@ -412,14 +425,18 @@ validate_ledger <- function(ledger) {
     paste0(
       "Restricting to 0<o_0<o_1<1 with o_1<=y_bar<=1 leaves the N1 strategy, belief class, ",
       "payoff, outcome, and multiplicity correspondence unchanged."
+    ),
+    paste0(
+      "Restricting beta from (0,1] to (0,1) leaves the N1 strategy, belief class, payoff, ",
+      "outcome, and multiplicity correspondence unchanged because terminal R2 contains no internal discount."
     )
   )
   expected_evidence <- paste0(
     "model_redesign/essential_input_n1_r2_majority_derivation.md#claim-n1-c",
-    sprintf("%02d", 1:10)
+    sprintf("%02d", 1:11)
   )
   assert_true(
-    identical(ledger$equilibrium_id, rep("N1-EQ-01", 10L)),
+    identical(ledger$equilibrium_id, rep("N1-EQ-01", 11L)),
     "Every N1 claim must bind exactly to N1-EQ-01."
   )
   assert_true(
@@ -427,15 +444,15 @@ validate_ledger <- function(ledger) {
     "Every N1 ledger branch must match its exact atomic claim."
   )
   assert_true(
-    identical(ledger$payoff_date, rep("R2", 10L)),
+    identical(ledger$payoff_date, rep("R2", 11L)),
     "Every N1 claim must use exactly the native R2 date."
   )
   assert_true(
     identical(ledger$claim, expected_claims),
-    "The N1 ledger must preserve the exact semantics of all ten claims."
+    "The N1 ledger must preserve the exact semantics of all eleven claims."
   )
   assert_true(
-    identical(ledger$status, rep("proved", 10L)),
+    identical(ledger$status, rep("proved", 11L)),
     "Every current N1 ledger claim must be exactly proved."
   )
   assert_true(
@@ -577,6 +594,11 @@ expect_candidate_rejection("old weak o_1 boundary", function(x) {
   x$correspondence_cells[[1]]$domain_conditions[[6]] <- "0 < o_0 < o_1 <= y_bar <= 1"
   x
 })
+expect_candidate_rejection("old beta endpoint domain", function(x) {
+  x$correspondence_cells[[1]]$domain_conditions[[5]] <-
+    "beta in (0,1] and is payoff-irrelevant inside terminal R2"
+  x
+})
 expect_candidate_rejection("missing strict-domain invariance claim", function(x) {
   x$correspondence_cells[[1]]$equilibrium_records[[1]]$checks_performed[[10]] <-
     "N1-C10 omitted"
@@ -585,6 +607,16 @@ expect_candidate_rejection("missing strict-domain invariance claim", function(x)
 expect_candidate_rejection("false interface claim of change under o_1<1", function(x) {
   x$correspondence_cells[[1]]$equilibrium_records[[1]]$checks_performed[[10]] <-
     "N1-C10 strict o_1<1 domain restriction changes the N1 correspondence"
+  x
+})
+expect_candidate_rejection("missing strict beta-domain invariance claim", function(x) {
+  x$correspondence_cells[[1]]$equilibrium_records[[1]]$checks_performed[[11]] <-
+    "N1-C11 omitted"
+  x
+})
+expect_candidate_rejection("false change under beta<1", function(x) {
+  x$correspondence_cells[[1]]$equilibrium_records[[1]]$checks_performed[[11]] <-
+    "N1-C11 strict beta<1 domain restriction changes the N1 correspondence"
   x
 })
 expect_candidate_rejection("premature frozen status", function(x) {
@@ -639,6 +671,13 @@ expect_ledger_rejection("false N1-C10 change under o_1<1", function(x) {
   )
   x
 })
+expect_ledger_rejection("false N1-C11 change under beta<1", function(x) {
+  x$claim[11] <- paste0(
+    "Restricting beta from (0,1] to (0,1) changes the N1 strategy, belief class, ",
+    "payoff, outcome, and multiplicity correspondence."
+  )
+  x
+})
 
 for (field_name in names(ledger)) {
   local({
@@ -653,6 +692,7 @@ for (field_name in names(ledger)) {
 cat("PASS: N1 R2-majority candidate interface and ledger are internally valid.\n")
 cat("PASS: P0, P5, and P6 representation checks passed.\n")
 cat("PASS: strict 0<o_0<o_1<1 domain and N1 invariance checks passed.\n")
+cat("PASS: strict beta in (0,1) domain, beta invariance, and no internal R2 beta checks passed.\n")
 cat("PASS: all proportional negative tests were rejected.\n")
 cat(
   sprintf(
@@ -667,4 +707,4 @@ cat(
   )
 )
 cat("SHA-256:", artifact_hash, "\n")
-cat("STATUS: N1 is pass/frozen on the exact r3-reviewed candidate in the shared DAG.\n")
+cat("STATUS: N1 is pass/frozen on the exact beta<1 candidate in the shared DAG.\n")

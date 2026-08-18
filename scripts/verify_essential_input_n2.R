@@ -170,9 +170,9 @@ dag_path <- file.path(
   "essential_input_game_dag.json"
 )
 
-expected_interface_sha256 <- "32a2989f806af20b2557fa8f495dfbe661ac951be59ee68e583fd50735e486ed"
-expected_ledger_sha256 <- "e13702a1e3f94fb2a7ea682b15cdf91befc6558497ce363b951959f71ee02049"
-expected_derivation_sha256 <- "4e5e839c3d6a8186c334dde3a6484c8a29d84bfb85e72cf3b4a01bce7dc8c6fa"
+expected_interface_sha256 <- "c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2"
+expected_ledger_sha256 <- "42d4963c25a72df06e04627969d68cec931cd34cdde03e37b1c0d5bb007c36b7"
+expected_derivation_sha256 <- "3265be3379a902c4deac9db10d45babb2e6c7ad1f98a436ea113e33732cefc99"
 
 read_utf8_text(interface_path, "The N2 interface")
 read_utf8_text(ledger_path, "The N2 ledger")
@@ -226,19 +226,19 @@ expected_equilibrium_ids <- c(
 )
 
 expected_low_domain <- paste0(
-  "Primitive domain: 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, ",
+  "Primitive domain: beta in (0,1), 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, ",
   "and 0 <= nu <= nu_star, where nu_star=(o_1-o_0)/(1-o_0) is strictly between 0 and 1."
 )
 expected_pool_domain <- paste0(
-  "Primitive domain: 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, ",
+  "Primitive domain: beta in (0,1), 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, ",
   "and nu_star < nu <= 1, where nu_star=(o_1-o_0)/(1-o_0) is strictly between 0 and 1."
 )
 expected_low_admissibility <- paste0(
-  "0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and 0 <= nu <= nu_star, ",
+  "beta in (0,1), 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and 0 <= nu <= nu_star, ",
   "where nu_star=(o_1-o_0)/(1-o_0)."
 )
 expected_pool_admissibility <- paste0(
-  "0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and nu_star < nu <= 1, ",
+  "beta in (0,1), 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and nu_star < nu <= 1, ",
   "where nu_star=(o_1-o_0)/(1-o_0)."
 )
 
@@ -274,6 +274,23 @@ expected_low_selection_status <- paste0(
 expected_pooling_selection_status <- paste0(
   "For nu>nu_star, y=o_1 strictly maximizes proposer payoff. T^Y selects yes for theta=1 at y=o_1. ",
   "No proposal-level payoff tie occurs in this cell."
+)
+expected_assumptions <- c(
+  "Contract Section 2 primitives and feasibility, including 0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+  "Contract Section 2 strict discount domain beta in (0,1), which is payoff-irrelevant inside terminal R2",
+  "Contract Section 4 terminal implementation and payoffs",
+  "Contract Section 5 PBE, stage-undominated voting for weak nonproposers, T^Y, and proposal-level tie-break",
+  "Contract Section 6 current R2 units",
+  "No continuation input"
+)
+expected_checks <- c(
+  "P0 full-pie test",
+  "P5 posterior-sufficiency test",
+  "P6 terminal refinement test",
+  "Complete pure-ballot best-response enumeration",
+  "Strict-interior frontier and proposal-tie check",
+  "Former-degenerate-corner exclusion check",
+  "Strict beta-domain invariance check"
 )
 
 claim_spec <- function(claim_id, equilibrium_ids, branch, claim, evidence) {
@@ -373,6 +390,13 @@ expected_claims <- list(
     "all",
     "Unrestricted beliefs after zero-probability proposals generate assessment multiplicity but cannot change ballot responses, proposer deviation payoffs, outcomes, or the payoff correspondence in R2.",
     "Belief audit in derivation Sections 3, 4, and 9."
+  ),
+  claim_spec(
+    "N2-CLM-013",
+    both_equilibrium_ids,
+    "strict_beta_domain",
+    "Restricting beta from (0,1] to (0,1) leaves the N2 cells, frontier, strategies, belief class, payoffs, outcomes, and multiplicity unchanged because terminal R2 contains no internal discount.",
+    "Cold terminal-node derivation in Section 10 and current-date rule in Contract Section 6."
   )
 )
 
@@ -493,12 +517,11 @@ validate_interface <- function(candidate) {
       !any(grepl("beta", payoff_expressions, fixed = TRUE)),
       paste0("An R2 payoff or probability expression contains beta in ", record$equilibrium_id)
     )
-    assumptions <- paste(as_character(record$assumptions_used), collapse = " ")
+    assumptions <- as_character(record$assumptions_used)
     checks <- as_character(record$checks_performed)
     assert_true(
-      grepl("0 < o_0 < o_1 < 1", assumptions, fixed = TRUE) &&
-        all(c("P0 full-pie test", "P5 posterior-sufficiency test", "P6 terminal refinement test") %in% checks),
-      paste0("The strict domain or required P0/P5/P6 checks are missing in ", record$equilibrium_id)
+      identical(assumptions, expected_assumptions) && identical(checks, expected_checks),
+      paste0("The strict domains or required P0/P5/P6/invariance checks are wrong in ", record$equilibrium_id)
     )
     records[[record$equilibrium_id]] <- record
   }
@@ -571,7 +594,7 @@ validate_ledger <- function(candidate, valid_equilibrium_ids) {
     "The N2 ledger identity, hash format, or pending lifecycle status is wrong."
   )
   claims <- candidate$claims
-  assert_true(is.list(claims) && length(claims) == 12L, "The N2 ledger must contain exactly 12 atomic claims.")
+  assert_true(is.list(claims) && length(claims) == 13L, "The N2 ledger must contain exactly 13 atomic claims.")
   claim_ids <- vapply(claims, `[[`, character(1), "claim_id")
   expected_claim_ids <- vapply(expected_claims, `[[`, character(1), "claim_id")
   assert_true(
@@ -641,16 +664,18 @@ validate_dag_lifecycle <- function(candidate) {
       identical(
         vapply(reviews, `[[`, character(1), "reviewer_id"),
         c(
-          "review-n1-n2-o1-formal-2026-08-18-r3",
-          "review-n1-n2-o1-game-2026-08-18-r3"
+          "review-n1-n2-beta-formal-2026-08-18-r1",
+          "review-n1-n2-beta-game-2026-08-18-r1"
         )
       ) &&
       all(vapply(reviews, function(review) {
-        identical(review$verdict, "PASS") &&
+        identical(names(review), c("reviewer_role", "reviewer_id", "verdict", "artifact_hash", "finding_counts")) &&
+          identical(review$verdict, "PASS") &&
           identical(review$artifact_hash, paste0("sha256:", expected_interface_sha256)) &&
+          identical(names(review$finding_counts), c("critical", "major", "minor")) &&
           all(as.numeric(unlist(review$finding_counts, use.names = FALSE)) == 0)
       }, logical(1))),
-    "N2 must remain dependency-free and frozen on the exact r3-reviewed candidate."
+    "N2 must be dependency-free and frozen on the exact beta<1 candidate with both PASS 0/0/0 reviews."
   )
   invisible(TRUE)
 }
@@ -761,6 +786,15 @@ bad_primitive_domain$correspondence_cells[[1L]]$domain_conditions <- sub(
 )
 expect_validation_error(bad_primitive_domain, "wrong strict o_1 domain")
 
+bad_beta_domain <- deep_copy(interface)
+bad_beta_domain$correspondence_cells[[1L]]$domain_conditions <- sub(
+  "beta in (0,1)",
+  "beta in (0,1]",
+  bad_beta_domain$correspondence_cells[[1L]]$domain_conditions,
+  fixed = TRUE
+)
+expect_validation_error(bad_beta_domain, "old beta endpoint domain")
+
 bad_branch_append <- deep_copy(interface)
 bad_branch_append$correspondence_cells[[2L]]$equilibrium_records[[1L]]$branch_classification <- paste0(
   bad_branch_append$correspondence_cells[[2L]]$equilibrium_records[[1L]]$branch_classification,
@@ -779,6 +813,11 @@ bad_checks_corner_survival <- deep_copy(interface)
 bad_checks_corner_survival$correspondence_cells[[2L]]$equilibrium_records[[1L]]$checks_performed[[7L]] <-
   "Checked that the o_1=1 degenerate corner survives."
 expect_validation_error(bad_checks_corner_survival, "contradiction appended to checks_performed")
+
+bad_beta_invariance <- deep_copy(interface)
+bad_beta_invariance$correspondence_cells[[1L]]$equilibrium_records[[1L]]$checks_performed[[7L]] <-
+  "Strict beta-domain change check"
+expect_validation_error(bad_beta_invariance, "false beta-domain invariance check")
 
 bad_h_payoff <- deep_copy(interface)
 bad_h_payoff$correspondence_cells[[1L]]$equilibrium_records[[1L]]$hegemon_payoff_by_type$theta_1 <- "o_0"
@@ -872,6 +911,14 @@ expect_ledger_validation_error(
   "false survival of the excluded o_1=1 corner appended to N2-CLM-007"
 )
 
+bad_beta_invariance_claim <- deep_copy(ledger)
+bad_beta_invariance_claim$claims[[13L]]$claim <-
+  "Restricting beta from (0,1] to (0,1) changes the N2 correspondence."
+expect_ledger_validation_error(
+  bad_beta_invariance_claim,
+  "false change under strict beta domain appended to N2-CLM-013"
+)
+
 bad_dag_lifecycle <- deep_copy(dag)
 bad_dag_ids <- vapply(bad_dag_lifecycle$nodes, `[[`, character(1), "id")
 bad_dag_n2 <- which(bad_dag_ids == "N2")
@@ -922,3 +969,4 @@ cat(
   length(ledger_field_paths), "ledger fields rejected when changed.\n"
 )
 cat("SHA-256:", artifact_hash, "\n")
+cat("STATUS: N2 is pass/frozen on the exact beta<1 candidate in the shared DAG.\n")

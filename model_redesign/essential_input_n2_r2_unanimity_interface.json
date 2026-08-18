@@ -7,12 +7,12 @@
   "correspondence_cells": [
     {
       "cell_id": "N2-CELL-LOW-TYPE-ONLY",
-      "domain_conditions": "Primitive domain: 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and 0 <= nu <= nu_star, where nu_star=(o_1-o_0)/(1-o_0) is strictly between 0 and 1.",
+      "domain_conditions": "Primitive domain: beta in (0,1), 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and 0 <= nu <= nu_star, where nu_star=(o_1-o_0)/(1-o_0) is strictly between 0 and 1.",
       "existence_status": "exists",
       "equilibrium_records": [
         {
           "equilibrium_id": "N2-EQ-LOW-TYPE-ONLY",
-          "admissibility_conditions": "0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and 0 <= nu <= nu_star, where nu_star=(o_1-o_0)/(1-o_0).",
+          "admissibility_conditions": "beta in (0,1), 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and 0 <= nu <= nu_star, where nu_star=(o_1-o_0)/(1-o_0).",
           "branch_classification": "low-type-only passage (separating H ballot); no delay in terminal R2",
           "strategy_profile": {
             "recognized_weak_proposer": "Choose y=o_0, x_j=0 for every weak nonproposer j, and r_i=1-o_0.",
@@ -33,6 +33,7 @@
           "selection_status": "For nu<nu_star, y=o_0 strictly maximizes proposer payoff. At nu=nu_star, y=o_0 and y=o_1 tie for proposer payoff before the proposal-level tie-break; the stipulated tie-break selects y=o_0 because it gives H strictly lower expected payoff. T^Y selects yes for theta=0 at y=o_0.",
           "assumptions_used": [
             "Contract Section 2 primitives and feasibility, including 0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+            "Contract Section 2 strict discount domain beta in (0,1), which is payoff-irrelevant inside terminal R2",
             "Contract Section 4 terminal implementation and payoffs",
             "Contract Section 5 PBE, stage-undominated voting for weak nonproposers, T^Y, and proposal-level tie-break",
             "Contract Section 6 current R2 units",
@@ -44,7 +45,8 @@
             "P6 terminal refinement test",
             "Complete pure-ballot best-response enumeration",
             "Strict-interior frontier and proposal-tie check",
-            "Former-degenerate-corner exclusion check"
+            "Former-degenerate-corner exclusion check",
+            "Strict beta-domain invariance check"
           ],
           "recognized_proposer_payoff": "(1-nu)*(1-o_0)",
           "weak_nonproposer_pre_recognition_expected_value": "((1-nu)*(1-o_0))/m",
@@ -65,12 +67,12 @@
     },
     {
       "cell_id": "N2-CELL-POOLING",
-      "domain_conditions": "Primitive domain: 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and nu_star < nu <= 1, where nu_star=(o_1-o_0)/(1-o_0) is strictly between 0 and 1.",
+      "domain_conditions": "Primitive domain: beta in (0,1), 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and nu_star < nu <= 1, where nu_star=(o_1-o_0)/(1-o_0) is strictly between 0 and 1.",
       "existence_status": "exists",
       "equilibrium_records": [
         {
           "equilibrium_id": "N2-EQ-POOLING",
-          "admissibility_conditions": "0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and nu_star < nu <= 1, where nu_star=(o_1-o_0)/(1-o_0).",
+          "admissibility_conditions": "beta in (0,1), 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and nu_star < nu <= 1, where nu_star=(o_1-o_0)/(1-o_0).",
           "branch_classification": "pooling passage with H; no delay in terminal R2",
           "strategy_profile": {
             "recognized_weak_proposer": "Choose y=o_1, x_j=0 for every weak nonproposer j, and r_i=1-o_1.",
@@ -91,6 +93,7 @@
           "selection_status": "For nu>nu_star, y=o_1 strictly maximizes proposer payoff. T^Y selects yes for theta=1 at y=o_1. No proposal-level payoff tie occurs in this cell.",
           "assumptions_used": [
             "Contract Section 2 primitives and feasibility, including 0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+            "Contract Section 2 strict discount domain beta in (0,1), which is payoff-irrelevant inside terminal R2",
             "Contract Section 4 terminal implementation and payoffs",
             "Contract Section 5 PBE, stage-undominated voting for weak nonproposers, T^Y, and proposal-level tie-break",
             "Contract Section 6 current R2 units",
@@ -102,7 +105,8 @@
             "P6 terminal refinement test",
             "Complete pure-ballot best-response enumeration",
             "Strict-interior frontier and proposal-tie check",
-            "Former-degenerate-corner exclusion check"
+            "Former-degenerate-corner exclusion check",
+            "Strict beta-domain invariance check"
           ],
           "recognized_proposer_payoff": "1-o_1",
           "weak_nonproposer_pre_recognition_expected_value": "(1-o_1)/m",

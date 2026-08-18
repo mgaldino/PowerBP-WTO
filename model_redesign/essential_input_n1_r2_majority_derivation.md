@@ -30,7 +30,8 @@ As opções externas satisfazem o domínio estrito corrente
 
 ```text
 0 < o_0 < o_1 < 1,
-o_1 <= y_bar <= 1.
+o_1 <= y_bar <= 1,
+0 < beta < 1.
 ```
 
 O proponente conta como voto `sim`. Os `m-1` weak nonproposers e `H` votam simultaneamente e em segredo. Os votos só se tornam públicos depois do fechamento do ballot. Não há continuação depois de R2.
@@ -190,7 +191,23 @@ outcome e a multiplicidade de assessments continuam exatamente os derivados
 nas Seções 2--6 acima. Esta é invariância por restrição de domínio, não
 transporte do candidato anterior.
 
-## 8. Célula de cobertura e invalidação
+## 8. Invariância ao domínio estrito `beta < 1`
+
+### Claim N1-C11 — `beta` não entra no R2 terminal
+
+A rederivação das Seções 2--6 usa somente payoffs terminais na data corrente de
+R2. Não existe sucessor de R2 cujo valor pudesse ser descontado. Em particular,
+as comparações dos weak nonproposers são `x_j` contra zero, a comparação de `H`
+é `y+o_theta` contra `y`, e o problema do proponente é maximizar `r_i` sujeito à
+factibilidade corrente. Nenhuma dessas expressões contém `beta`.
+
+Logo, restringir a primitiva de `beta in (0,1]` para `beta in (0,1)` elimina
+apenas o ponto paramétrico `beta=1`; em todo ponto remanescente, a estratégia,
+a classe de crenças, os payoffs, o outcome e a multiplicidade da correspondência
+de N1 são idênticos. Esta conclusão foi obtida da data terminal de R2, sem
+importar o candidato anterior e sem inserir desconto interno.
+
+## 9. Célula de cobertura e invalidação
 
 A interface `equilibrium_correspondence_v1` usa uma única célula `exists`, válida para todo `nu in [0,1]` e para todas as primitivas admissíveis do contrato. A célula representa integralmente a classe de assessments descrita acima; não há célula `none`.
 

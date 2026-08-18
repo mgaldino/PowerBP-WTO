@@ -2,7 +2,7 @@
   "ledger_schema": "essential_input_claim_ledger_v1",
   "node_id": "N2",
   "artifact_path": "model_redesign/essential_input_n2_r2_unanimity_interface.json",
-  "artifact_hash": "sha256:32a2989f806af20b2557fa8f495dfbe661ac951be59ee68e583fd50735e486ed",
+  "artifact_hash": "sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2",
   "node_status": "pending_independent_review",
   "claims": [
     {
@@ -112,6 +112,15 @@
       "claim": "Unrestricted beliefs after zero-probability proposals generate assessment multiplicity but cannot change ballot responses, proposer deviation payoffs, outcomes, or the payoff correspondence in R2.",
       "status": "proved",
       "evidence": "Belief audit in derivation Sections 3, 4, and 9."
+    },
+    {
+      "claim_id": "N2-CLM-013",
+      "equilibrium_ids": ["N2-EQ-LOW-TYPE-ONLY", "N2-EQ-POOLING"],
+      "branch": "strict_beta_domain",
+      "payoff_date": "R2",
+      "claim": "Restricting beta from (0,1] to (0,1) leaves the N2 cells, frontier, strategies, belief class, payoffs, outcomes, and multiplicity unchanged because terminal R2 contains no internal discount.",
+      "status": "proved",
+      "evidence": "Cold terminal-node derivation in Section 10 and current-date rule in Contract Section 6."
     }
   ]
 }
