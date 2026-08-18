@@ -6,14 +6,16 @@ incorpora o registro decisório do commit `162616d` e as decisões autorais
 posteriores, inclusive as de 2026-08-17 sobre stage-undominated voting,
 obrigações de prova e revisão e a de 2026-08-18 que torna o benchmark público
 um nó terminal posterior ao congelamento do modelo principal, e a decisão de
-2026-08-18 que impõe a restrição estrita da Seção 2, `o_1 < 1`. Decisão
-autoral posterior prevalece sobre registro histórico incompatível. Essa mudança
-de primitiva reabre o Gate 0 e devolve todos os nós a `pending`, conforme a
-Seção 12. Depois de dois novos pareceres independentes `PASS 0/0/0` sobre este
-mesmo contrato, a autorização autoral de 2026-08-18 permite reavaliar o Goal 1
-exclusivamente para `N1`, `N2` e `N3`, seguindo integralmente os gates da
-Seção 11. Esta autorização não alcança `N4`, `N6`, `N7`, o Goal 2 nem qualquer
-migração para manuscrito.
+2026-08-18 que impõe a restrição estrita da Seção 2, `o_1 < 1`, e a decisão
+autoral posterior de 2026-08-18 que impõe `beta < 1` no baseline principal.
+Decisão autoral posterior prevalece sobre registro histórico incompatível. A
+mudança do domínio de `beta` é mudança de primitiva: reabre o Gate 0 e devolve
+todos os nós a `pending`, conforme a Seção 12. Depois de dois novos pareceres
+independentes `PASS 0/0/0` sobre este mesmo contrato, a autorização autoral
+posterior permite reavaliar o Goal 1 exclusivamente para `N1`, `N2` e `N3`,
+seguindo integralmente os gates da Seção 11. Esta autorização não alcança
+`N4`, `N6`, `N7`, o Goal 2, a fronteira `beta=1` nem qualquer migração para
+manuscrito.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
 
@@ -261,7 +263,7 @@ Agenda         pi_H = 0 em toda rodada; só weak states propõem
 Reconhecimento sorteios iid com reposição, uniformes entre os m weak states;
                todos seguem elegíveis em R2, inclusive o proponente de R1
 Side payments inexistentes
-Desconto       beta in (0,1]
+Desconto       beta in (0,1)
 Rodadas        duas; R2 terminal
 ```
 
@@ -332,6 +334,26 @@ exclusivamente nas obrigações P1, P1a e P2 da Seção 9.
   igual a um após uma ação reveladora; restringir todos os posteriores
   limitaria a aprendizagem bayesiana e alteraria o mecanismo informacional.
   Por isso o domínio de crenças permanece o definido nas Seções 1, 4, 5 e 7.2.
+
+### Decisão: custo estrito de atraso no baseline
+
+- **Escolha**: o baseline principal usa `beta in (0,1)`, conforme a primitiva
+  definida exclusivamente na Seção 2. Assim, esperar uma rodada tem algum custo
+  estrito para todos os jogadores.
+- **Consequência a reavaliar, não premissa transportada**: na derivação de N3,
+  a expressão antes obtida para o ganho de exclusão sobre rejeição foi
+  `D=1-beta*q/m`. Como `q<=m`, o novo domínio implica `D>0`; N3 deve revalidar
+  essa conclusão desde as primitivas antes que ela volte a integrar uma
+  interface corrente.
+- **Fronteira excluída**: `beta=1` elimina todo custo de atraso e, quando
+  `q=m`, produz o canto `D=0` associado na derivação anterior a delay,
+  propostas com folga e multiplicidade. Essa fronteira fica reservada a uma
+  possível extensão ou apêndice futuro, nenhum dos quais está autorizado agora.
+- **Precedente de domínio, não prova**: @eraslan2019legislative usam fatores de
+  desconto `delta_i in [0,1)` em sua revisão de bargaining legislativo e
+  multilateral (DOI `10.1146/annurev-economics-080218-025633`). A citação
+  mostra que excluir desconto unitário é uma escolha de domínio estabelecida;
+  ela não demonstra `D>0`, nem qualquer resultado de equilíbrio deste modelo.
 
 ### Decisão: conceito de solução no ballot
 
