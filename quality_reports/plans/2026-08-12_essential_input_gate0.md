@@ -148,21 +148,42 @@ regras; a decisão de formação não integra este jogo.
 **Duas perguntas que a derivação deve responder:**
 
 1. **Delay.** Existe atraso em equilíbrio, e ele é dependente da regra?
-2. **Sobrevivência da renda.** O payoff de equilíbrio de `H` excede
-   o payoff do mesmo jogo e da mesma regra quando `theta` é público, e essa
-   renda informacional é maior sob unanimidade que sob maioria?
+2. **Sobrevivência e diferença institucional da renda.** Para cada tipo, qual é
+   a renda informacional sob unanimidade, qual é a renda informacional sob
+   maioria e qual é a diferença entre as duas?
 
-**Estimando da renda informacional.** Para cada regra e tipo, renda
-informacional é a diferença entre o payoff de `H` no jogo com informação privada
-e seu payoff no mesmo jogo com `theta` público desde `t=0`, mantendo todas as
-demais primitivas e o protocolo idênticos. O campo que carrega esse contrafactual
-está no schema da Seção 7.2; a obrigação de resolvê-lo por ramos está somente em
-P8, na Seção 9. A renda nunca é definida pelo excesso sobre `o_theta`.
+**Estimando da renda informacional.** Para cada regra institucional
+`g in {U,M}`, seja `V_g^priv` o conjunto dos vetores de payoff de `H` por tipo,
+`(U_H(0),U_H(1))`, gerados pela correspondência completa de equilíbrios do jogo
+com informação privada. Seja `V_g^pub` o conjunto análogo obtido combinando os
+equilíbrios dos jogos em que cada tipo é público desde `t=0`, mantendo todas as
+demais primitivas e o protocolo idênticos. A correspondência de renda sob a
+regra `g` é a diferença componente a componente
+`RI_g = {v_priv - v_pub: v_priv in V_g^priv, v_pub in V_g^pub}`. Há, portanto,
+duas rendas potencialmente distintas, `RI_U` e `RI_M`, e o contraste
+institucional é a diferença das diferenças
+`DeltaRI = {r_U - r_M: r_U in RI_U, r_M in RI_M}`.
+
+Quando os jogos são payoff-únicos, esses conjuntos são singletons e, para cada
+tipo, a definição se reduz a
+`RI_g(theta) = U_H^priv(theta,g) - U_H^pub(theta,g)`. Se houver multiplicidade
+com payoffs distintos, `N6` reporta os conjuntos exatos e seus envelopes
+inferior e superior, sem preencher lacunas de um conjunto não convexo e sem
+selecionar um equilíbrio ad hoc. Para um tipo `theta`, a conclusão
+`RI_U(theta) > RI_M(theta)` só é robusta se a coordenada `theta` for positiva
+em todo vetor de `DeltaRI`. `N6` reporta também a imagem ex ante de cada
+conjunto, aplicando o mesmo prior `mu` a cada vetor, e só declara a ordenação ex
+ante robusta se todos os valores dessa imagem tiverem o mesmo sinal. O campo
+que carrega o contrafactual está no schema da Seção 7.2; a
+obrigação de resolvê-lo por ramos está somente em P8, na Seção 9. A renda nunca
+é definida pelo excesso sobre `o_theta`.
 
 **Benchmark público e delay.** Qual ramo prevalece no jogo com `theta` público
-é resultado, não parte da definição do estimando. P8 é a única fonte do lema
-necessário para usar qualquer medida simplificada. A existência de separating e
-de atraso é testada por P3 sob o conceito da Seção 5.
+é resultado, não parte da definição do estimando. P8 é a única fonte da
+obrigação de caracterizar a correspondência completa do benchmark e testar a
+conjectura de equivalência necessária para usar qualquer medida simplificada.
+A existência de separating e de atraso é testada por P3 sob o conceito da
+Seção 5.
 
 **Candidato substantivo, não premissa.** A decisão do autor antecipa que a
 inexistência de separating fará a opção de espera sustentar renda
@@ -353,8 +374,12 @@ t=2   Novo reconhecimento conforme a mesma lei da Seção 2
 **Implementação e inclusão.** Uma alocação aprovada é executada integralmente,
 exatamente como votada. Não há destruição nem realocação ex post; pagamentos
 laterais são excluídos pela Seção 2. O voto de `H` determina se ele integra o
-acordo, não se a coordenada `y` é executada. A Tabela 1 é a fonte completa dos
-payoffs e das datas em cada resultado possível.
+acordo, não se a coordenada `y` é executada. Em toda aprovação, `y` é o valor
+destinado a `H` na proposta efetivamente votada e pode ser zero. A aprovação
+implementa esse `y`; `o_theta` é acrescido somente quando `H` vota `não` e fica
+fora do acordo. Assim, na segunda linha da Tabela 1, se a proposta fixa `y=0`,
+`H` recebe apenas `o_theta`. A Tabela 1 é a fonte completa dos payoffs e das
+datas em cada resultado possível.
 
 **Tabela 1. Payoffs e datas por resultado do ballot**
 
@@ -569,13 +594,17 @@ Para cada nó, em função da crença de entrada:
   3. payoff de H por tipo, theta = 0 e theta = 1
   4. distribuição de outcomes: passagem com H, passagem sem H, falha
        e, nos nós de R1, atraso
-  5. benchmark de informação completa definido na Seção 1, com payoff de H
-       por tipo, theta=0 e theta=1
+  5. benchmark de informação completa definido na Seção 1, com a
+       correspondência de payoffs de H por tipo, theta=0 e theta=1
 ```
 
 O schema não contém decisão nem valor de formação. O ramo e a data associados
 a cada coordenada constam do ledger definido na Seção 8, sem ampliar o schema
 comum.
+
+Cada coordenada de payoff carrega o conjunto induzido pela correspondência
+completa de equilíbrio do nó; ela só pode ser reportada como escalar quando for
+payoff-única. Isso não acrescenta seleção ao conceito da Seção 5.
 
 Qualquer nó que precise exportar mais do que isto deve declarar a extensão do
 schema no DAG antes de derivar, com justificativa; a mudança segue a Seção 12.
@@ -596,8 +625,8 @@ O candidato e seu hash entram no protocolo de prontidão, congelamento e revisã
 da Seção 11. Qualquer alteração posterior segue a Seção 12.
 
 A coordenada de informação completa é resolvida conforme P8 e reportada nas
-mesmas unidades da coordenada privada antes de calcular a renda definida na
-Seção 1.
+mesmas unidades da coordenada privada e como correspondência — singleton quando
+for payoff-única — antes de calcular a renda definida na Seção 1.
 
 `N6` entrega adicionalmente uma resposta explícita às duas perguntas da Seção
 1, inclusive se o resultado for negativo. O tratamento de sua revisão está na
@@ -687,19 +716,29 @@ tratar explicitamente as crenças off-path correspondentes. O contrato não
 presume que esse voto separa os tipos: se e quanto ele atualiza a crença depende
 das estratégias derivadas.
 
-**P8 — Benchmark público por ramos.** Os nós de `N1` a `N4` devem resolver o
-contrafactual da Seção 1 no próprio subjogo e provar qual ramo prevalece para cada tipo. No
-ramo de inclusão, devem provar que o proponente oferece exatamente o valor de
-reserva ou continuação relevante e que `H` aceita pela regra da Seção 5,
-ficando na reserva. No ramo de exclusão sob maioria, devem provar `y=0`, o voto
-`não` de `H` e o payoff `o_theta` na data da aprovação a partir das Seções 4--6.
-Após falha em R1, devem transportar uma única vez o benchmark público de R2
+**P8 — Benchmark público por ramos.** Os nós de `N1` a `N4` devem resolver no
+próprio subjogo a correspondência completa de equilíbrios do contrafactual da
+Seção 1 sob o conceito da Seção 5. Cada nó deve determinar existência e testar
+unicidade e unicidade de payoff. Se houver múltiplos equilíbrios, deve
+caracterizá-los todos, com seus ramos e payoffs; se não houver equilíbrio sob o
+conceito vigente, deve registrar e escalar a inexistência. Nenhuma seleção
+adicional pode ser acrescentada.
+
+A unicidade e a seguinte caracterização são conjecturas a provar ou refutar,
+não resultados impostos: no ramo de inclusão, o proponente oferece exatamente
+o valor de reserva ou continuação relevante e `H` aceita pela regra da Seção 5,
+ficando na reserva; no ramo de exclusão sob maioria, a proposta fixa `y=0`, `H`
+vota `não` e recebe `o_theta` na data da aprovação. Os nós devem testar essas
+propriedades em cada equilíbrio encontrado a partir das Seções 4--6 e preservar
+qualquer contraexemplo ou ramo adicional.
+
+Após falha em R1, o nó transporta uma única vez o benchmark público de R2
 segundo a Seção 6. `N6` preenche sua coordenada obrigatória agregando os campos
-congelados de `N3` e `N4`, sem reabrir os subjogos. Só depois de provar e
-agregar os ramos sob cada regra o nó pode demonstrar se o payoff público
-coincide com a opção externa na data relevante e, portanto, se a exposição pode
-usar a medida simples. O conteúdo substantivo do lema é testar se, sem
-informação privada, `H` deixa de capturar renda.
+congelados de `N3` e `N4`, sem reabrir os subjogos, e aplica a regra escalar ou
+de correspondências da Seção 1. Só depois dessa caracterização o nó pode
+demonstrar se todo payoff público coincide com a opção externa na data relevante
+e, portanto, se a exposição pode usar a medida simples. O conteúdo substantivo
+da conjectura é testar se, sem informação privada, `H` deixa de capturar renda.
 
 ---
 
