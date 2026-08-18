@@ -4,8 +4,8 @@
   "interface_hashing": {
     "algorithm": "sha256",
     "hash_format": "sha256:<64 lowercase hexadecimal characters>",
-    "artifact_rule": "When a node passes, serialize its exact nonempty interface as a standalone UTF-8 JSON artifact and hash the artifact file bytes.",
-    "pending_rule": "Pending nodes have null record collections and omit artifact_path, artifact_hash, dependency_hashes, frozen, and reviews."
+    "artifact_rule": "When a node passes, serialize its exact nonempty interface object as a standalone UTF-8 JSON artifact and hash the artifact file bytes. An empty correspondence is represented by a nonempty coverage-cell list with an empty typed record payload and a nonexistence certificate.",
+    "pending_rule": "Pending nodes have null coverage-cell collections and omit artifact_path, artifact_hash, dependency_hashes, frozen, and reviews."
   },
   "freeze_gate_schema": {
     "canonical_source": "contract Section 11",
@@ -34,9 +34,40 @@
     "contract_change": "A change covered by Section 12 reopens Gate 0 and invalidates all six derivation nodes.",
     "terminal_benchmark": "N7 has no derivation descendants. A finding confined to its benchmark result invalidates N7 and migration consumers, not the frozen private-information model; a shared-contract error follows contract_change."
   },
+  "shared_schema_types": {
+    "coverage_cell_v1": {
+      "base_fields": [
+        "cell_id",
+        "domain_conditions",
+        "existence_status",
+        "nonexistence_certificate"
+      ],
+      "existence_status_values": ["exists", "none"],
+      "nonexistence_certificate_fields": [
+        "ledger_claim_ids",
+        "assumptions_used",
+        "checks_performed"
+      ],
+      "partition_required": true,
+      "cell_ids_unique_within_collection": true,
+      "exists_rule": "The family-specific record field is a nonempty list and nonexistence_certificate is null.",
+      "none_rule": "The family-specific record field is an empty list and nonexistence_certificate is nonnull with nonempty ledger_claim_ids.",
+      "domain_rule": "Cells are mutually exclusive and exhaustive over the declared interface domain."
+    },
+    "public_payoff_vector_v1": {
+      "fields": [
+        "recognized_proposer_payoff",
+        "weak_nonproposer_pre_recognition_expected_value",
+        "hegemon_payoff"
+      ],
+      "hegemon_payoff_rule": "Scalar because each public-equilibrium record fixes theta."
+    }
+  },
   "interface_schemas": {
     "equilibrium_correspondence_v1": {
       "applies_to": ["N1", "N2", "N3", "N4"],
+      "cell_schema_ref": "coverage_cell_v1",
+      "cell_record_field": "equilibrium_records",
       "record_fields": [
         "equilibrium_id",
         "admissibility_conditions",
@@ -65,6 +96,8 @@
     },
     "private_information_comparison_v1": {
       "applies_to": ["N6"],
+      "cell_schema_ref": "coverage_cell_v1",
+      "cell_record_field": "comparison_records",
       "record_fields": [
         "comparison_id",
         "admissibility_conditions",
@@ -94,6 +127,9 @@
     },
     "complete_information_benchmark_v1": {
       "applies_to": ["N7"],
+      "cell_schema_ref": "coverage_cell_v1",
+      "public_equilibrium_cell_record_field": "public_equilibrium_records",
+      "informational_rent_cell_record_field": "informational_rent_records",
       "public_equilibrium_record_fields": [
         "public_equilibrium_id",
         "institution",
@@ -131,6 +167,7 @@
       "type_fields": ["theta_0", "theta_1"],
       "public_record_nesting": ["institution", "round", "type"],
       "unique_public_id_field": "public_equilibrium_id",
+      "public_payoff_vector_schema_ref": "public_payoff_vector_v1",
       "public_continuation_rule": "R2 source_public_continuation_ids is empty; R1 contains all and only consumed R2 public_equilibrium_ids from the same institution and type.",
       "rent_public_source_nesting": ["institution", "type"],
       "rent_private_source_id_field": "private_source_comparison_id",
@@ -161,7 +198,7 @@
           "name": "entry_belief",
           "domain": "[0,1]"
         },
-        "joint_records": null
+        "correspondence_cells": null
       }
     },
     {
@@ -177,7 +214,7 @@
           "name": "entry_belief",
           "domain": "[0,1]"
         },
-        "joint_records": null
+        "correspondence_cells": null
       }
     },
     {
@@ -193,7 +230,7 @@
           "name": "entry_belief",
           "domain": "[0,1]"
         },
-        "joint_records": null
+        "correspondence_cells": null
       }
     },
     {
@@ -209,7 +246,7 @@
           "name": "entry_belief",
           "domain": "[0,1]"
         },
-        "joint_records": null
+        "correspondence_cells": null
       }
     },
     {
@@ -225,7 +262,7 @@
           "name": "entry_belief",
           "domain": "[0,1]"
         },
-        "comparison_records": null
+        "comparison_cells": null
       }
     },
     {
@@ -241,7 +278,7 @@
           "name": "prior_mu",
           "domain": "[0,1]"
         },
-        "public_equilibrium_records": {
+        "public_equilibrium_cells": {
           "majority": {
             "R2": {
               "theta_0": null,
@@ -263,7 +300,7 @@
             }
           }
         },
-        "informational_rent_records": null
+        "informational_rent_cells": null
       }
     }
   ]

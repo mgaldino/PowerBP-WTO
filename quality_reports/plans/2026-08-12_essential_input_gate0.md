@@ -614,10 +614,34 @@ crenças e outcomes do mesmo equilíbrio permanecem no mesmo registro atômico;
 projeções marginais nunca podem ser recombinadas para fabricar um equilíbrio.
 Os nomes de campos abaixo são espelhados no DAG e verificados pela Seção 13.
 
+**Envelope comum de cobertura.** Toda coleção que representa uma
+correspondência usa `coverage_cell_v1`. Em Gate 0, a coleção inteira é `null`.
+Depois de PASS, ela é uma lista não vazia de células mutuamente exclusivas e
+exaustivas do domínio declarado. Cada célula contém:
+
+```text
+cell_id
+domain_conditions
+existence_status: exists | none
+<campo de registros próprio da família>
+nonexistence_certificate
+```
+
+O `cell_id` é único dentro da coleção. Se `existence_status = exists`, o campo
+de registros próprio da família é uma lista não vazia e
+`nonexistence_certificate` é `null`. Se `existence_status = none`, esse campo é
+uma lista vazia e o certificado é obrigatório, com
+`ledger_claim_ids`, `assumptions_used` e `checks_performed`; os IDs do ledger
+não podem ser vazios. A célula vazia registra a inexistência demonstrada sem
+inventar um equilíbrio-sentinela. O mesmo envelope preserva regiões sem
+comparação ou sem renda quando uma fonte necessária inexiste. A interface
+continua sendo um objeto não vazio e pode ser revisada e congelada depois da
+prova de inexistência.
+
 **Nós de equilíbrio privado `N1`--`N4`.** A interface é função da crença de
 entrada e usa o schema `equilibrium_correspondence_v1`. Em Gate 0,
-`joint_records` é `null`. Depois de PASS, é uma lista não vazia; cada registro
-contém conjuntamente:
+`correspondence_cells` é `null`. Em cada célula, o campo próprio é
+`equilibrium_records`; cada registro contém conjuntamente:
 
 ```text
 equilibrium_id
@@ -645,8 +669,9 @@ fonte de continuação são vazios; em `N3` e `N4`, identificam os registros e o
 hash exatos de `N1` ou `N2` consumidos pelo equilíbrio.
 
 **Comparação privada `N6`.** A interface usa
-`private_information_comparison_v1`. Em Gate 0, `comparison_records` é `null`.
-Depois de PASS, cada registro contém conjuntamente:
+`private_information_comparison_v1`. Em Gate 0, `comparison_cells` é `null`.
+Em cada célula, o campo próprio é `comparison_records`; cada registro contém
+conjuntamente:
 
 ```text
 comparison_id
@@ -677,30 +702,37 @@ que `N7` depende diretamente apenas de `N6`.
 para formar objetos ex ante. Em Gate 0, cada coleção abaixo é `null`:
 
 ```text
-public_equilibrium_records:
+public_equilibrium_cells:
   majority:
     R2: theta_0, theta_1
     R1: theta_0, theta_1
   unanimity:
     R2: theta_0, theta_1
     R1: theta_0, theta_1
-informational_rent_records
+informational_rent_cells
 ```
 
-Cada registro público contém conjuntamente `public_equilibrium_id`,
+Em cada célula pública, o campo próprio é `public_equilibrium_records`. Cada
+registro público contém conjuntamente `public_equilibrium_id`,
 `institution`, `round`, `theta`, `admissibility_conditions`,
 `branch_classification`, `strategy_profile`, `belief_system`,
 `source_public_continuation_ids`,
 `existence_uniqueness_status`, `selection_status`,
-`assumptions_used`, `checks_performed`, `payoff_vector`,
+`assumptions_used`, `checks_performed`,
+`payoff_vector` — com exatamente `recognized_proposer_payoff`,
+`weak_nonproposer_pre_recognition_expected_value` e `hegemon_payoff` —,
 `outcome_distribution` — com passagem com `H`, passagem sem `H`, falha e atraso
 — e `payoff_date`. Cada `public_equilibrium_id` é único no artefato. Em `R2`,
 `source_public_continuation_ids` é vazio. Em `R1`, ele contém todos e somente
 os IDs de registros de `R2` da **mesma regra e do mesmo tipo** efetivamente
 consumidos pelo registro de `R1`; portanto seu alvo é interno à coleção pública
-de `N7`, nunca um ID privado.
+de `N7`, nunca um ID privado. Como o registro público já fixa `theta`,
+`hegemon_payoff` é escalar. As três coordenadas por papel espelham os payoffs
+privados necessários para transportar R2 a R1 e tornam inequívoca a coordenada
+de `H` usada em `V_g^pub`.
 
-Cada registro de renda contém conjuntamente:
+Em cada célula de renda, o campo próprio é `informational_rent_records`. Cada
+registro de renda contém conjuntamente:
 
 ```text
 rent_record_id
@@ -724,7 +756,8 @@ O `rent_record_id` é único no artefato. Cada registro combina exatamente um
 por tipo — e o hash congelado de `N6`; a ligação de cada registro público de
 `R1` a `R2` permanece preservada pelos IDs de continuação acima. Existe
 exatamente um registro de renda por tupla completa admissível dessas fontes.
-A lista não seleciona combinações e nenhum desses campos retorna como input a
+As células não selecionam combinações; uma célula `none` preserva a ausência de
+tupla admissível e seu certificado. Nenhum desses campos retorna como input a
 `N1`, `N2`, `N3`, `N4` ou `N6`.
 
 Nenhum schema contém decisão nem valor de formação. Qualquer nó que precise
@@ -733,11 +766,12 @@ justificativa; a mudança segue a Seção 12.
 
 ## 8. O que cada nó deve entregar
 
-`N1`--`N4` entregam a correspondência completa de equilíbrio dentro dos
+`N1`--`N4` entregam a correspondência completa de equilíbrio nas células e
 registros atômicos da Seção 7.2. `N6` entrega a correspondência completa de
-comparações privadas, mantendo os IDs e hashes das duas regras. `N7` entrega as
-correspondências completas dos jogos públicos por regra e tipo e a
-correspondência de rendas definida na Seção 1.
+comparações privadas, inclusive células vazias certificadas, mantendo os IDs e
+hashes das duas regras. `N7` entrega as correspondências completas dos jogos
+públicos por regra e tipo e a correspondência de rendas definida na Seção 1,
+inclusive as regiões em que alguma delas é vazia.
 
 Todo nó entrega ainda:
 
@@ -1088,8 +1122,9 @@ Rscript scripts/verify_essential_input_gate0.R
 
 Esse é o único verifier referido sem qualificação neste contrato. Ele checa a
 infraestrutura do Gate 0 — topologia de seis nós sem `N5`, schemas vazios de
-registros conjuntos, isolamento terminal de `N7`, estados `pending`, gates de
-congelamento com duas revisões, prontidão **topológica** e invalidação — e deve
+coleções de cobertura, tipagem dos payoffs públicos, isolamento terminal de
+`N7`, estados `pending`, gates de congelamento com duas revisões, prontidão
+**topológica** e invalidação — e deve
 terminar com `PASS`. Seu resultado não substitui nenhum gate autoral da Seção
 11. Falha nessa verificação bloqueia o trabalho até ser classificada e resolvida
 conforme a Seção 11.1.

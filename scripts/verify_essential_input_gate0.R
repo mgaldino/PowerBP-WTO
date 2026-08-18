@@ -79,6 +79,53 @@ assert_true(
   "Topological readiness must not be represented as author authorization."
 )
 
+shared_types <- manifest$shared_schema_types
+assert_true(
+  identical(names(shared_types), c("coverage_cell_v1", "public_payoff_vector_v1")),
+  "The manifest has the wrong shared schema registry."
+)
+
+coverage_schema <- shared_types$coverage_cell_v1
+assert_true(
+  identical(
+    as_character(coverage_schema$base_fields),
+    c("cell_id", "domain_conditions", "existence_status", "nonexistence_certificate")
+  ) &&
+    identical(as_character(coverage_schema$existence_status_values), c("exists", "none")),
+  "The coverage-cell base schema is incomplete."
+)
+assert_true(
+  identical(
+    as_character(coverage_schema$nonexistence_certificate_fields),
+    c("ledger_claim_ids", "assumptions_used", "checks_performed")
+  ) &&
+    identical(coverage_schema$partition_required, TRUE) &&
+    identical(coverage_schema$cell_ids_unique_within_collection, TRUE),
+  "Coverage cells must partition the domain and carry unique ids and typed certificates."
+)
+assert_true(
+  grepl("nonempty list", coverage_schema$exists_rule, fixed = TRUE) &&
+    grepl("empty list", coverage_schema$none_rule, fixed = TRUE) &&
+    grepl("nonempty ledger_claim_ids", coverage_schema$none_rule, fixed = TRUE) &&
+    grepl("mutually exclusive and exhaustive", coverage_schema$domain_rule, fixed = TRUE),
+  "The exists/none coverage-cell invariants are incomplete."
+)
+
+public_payoff_schema <- shared_types$public_payoff_vector_v1
+assert_true(
+  identical(
+    as_character(public_payoff_schema$fields),
+    c(
+      "recognized_proposer_payoff",
+      "weak_nonproposer_pre_recognition_expected_value",
+      "hegemon_payoff"
+    )
+  ) &&
+    grepl("Scalar", public_payoff_schema$hegemon_payoff_rule, fixed = TRUE) &&
+    grepl("fixes theta", public_payoff_schema$hegemon_payoff_rule, fixed = TRUE),
+  "The public payoff vector must be typed by roles with scalar H payoff."
+)
+
 expected_ids <- c("N1", "N2", "N3", "N4", "N6", "N7")
 expected_names <- c(
   N1 = "r2_majority",
@@ -121,6 +168,11 @@ assert_true(
   "The equilibrium schema must apply exactly to N1-N4."
 )
 assert_true(
+  identical(equilibrium_schema$cell_schema_ref, "coverage_cell_v1") &&
+    identical(equilibrium_schema$cell_record_field, "equilibrium_records"),
+  "The equilibrium schema must use typed coverage cells."
+)
+assert_true(
   identical(
     as_character(equilibrium_schema$record_fields),
     c(
@@ -160,6 +212,11 @@ comparison_schema <- schemas$private_information_comparison_v1
 assert_true(
   identical(as_character(comparison_schema$applies_to), "N6"),
   "The private comparison schema must apply exactly to N6."
+)
+assert_true(
+  identical(comparison_schema$cell_schema_ref, "coverage_cell_v1") &&
+    identical(comparison_schema$cell_record_field, "comparison_records"),
+  "The private comparison schema must use typed coverage cells."
 )
 assert_true(
   identical(
@@ -230,6 +287,18 @@ assert_true(
   "The complete-information benchmark schema must apply exactly to N7."
 )
 assert_true(
+  identical(benchmark_schema$cell_schema_ref, "coverage_cell_v1") &&
+    identical(
+      benchmark_schema$public_equilibrium_cell_record_field,
+      "public_equilibrium_records"
+    ) &&
+    identical(
+      benchmark_schema$informational_rent_cell_record_field,
+      "informational_rent_records"
+    ),
+  "The benchmark schema must type both public-equilibrium and rent coverage cells."
+)
+assert_true(
   identical(
     as_character(benchmark_schema$public_equilibrium_record_fields),
     c(
@@ -290,7 +359,8 @@ assert_true(
     as_character(benchmark_schema$public_record_nesting),
     c("institution", "round", "type")
   ) &&
-    identical(benchmark_schema$unique_public_id_field, "public_equilibrium_id"),
+    identical(benchmark_schema$unique_public_id_field, "public_equilibrium_id") &&
+    identical(benchmark_schema$public_payoff_vector_schema_ref, "public_payoff_vector_v1"),
   "Public equilibrium records must be nested by institution, round, and type."
 )
 assert_true(
@@ -330,6 +400,70 @@ assert_true(
   "The benchmark schema has the wrong outcome fields."
 )
 
+is_valid_nonexistence_certificate <- function(certificate) {
+  is.list(certificate) &&
+    identical(
+      names(certificate),
+      as_character(coverage_schema$nonexistence_certificate_fields)
+    ) &&
+    length(as_character(certificate$ledger_claim_ids)) > 0L &&
+    !any(!nzchar(as_character(certificate$ledger_claim_ids))) &&
+    !is.null(certificate$assumptions_used) &&
+    !is.null(certificate$checks_performed)
+}
+
+is_valid_coverage_cell <- function(cell, record_field) {
+  expected_fields <- c(
+    "cell_id",
+    "domain_conditions",
+    "existence_status",
+    record_field,
+    "nonexistence_certificate"
+  )
+  if (!is.list(cell) || !identical(names(cell), expected_fields)) {
+    return(FALSE)
+  }
+  if (!is.character(cell$cell_id) || length(cell$cell_id) != 1L || !nzchar(cell$cell_id)) {
+    return(FALSE)
+  }
+  if (is.null(cell$domain_conditions) || length(cell$domain_conditions) == 0L) {
+    return(FALSE)
+  }
+  if (
+    !is.character(cell$existence_status) ||
+      length(cell$existence_status) != 1L ||
+      !(cell$existence_status %in% as_character(coverage_schema$existence_status_values))
+  ) {
+    return(FALSE)
+  }
+
+  records <- cell[[record_field]]
+  if (!is.list(records)) {
+    return(FALSE)
+  }
+  if (identical(cell$existence_status, "exists")) {
+    return(length(records) > 0L && is.null(cell$nonexistence_certificate))
+  }
+  length(records) == 0L && is_valid_nonexistence_certificate(cell$nonexistence_certificate)
+}
+
+is_valid_coverage_cells <- function(cells, record_field) {
+  if (!is.list(cells) || length(cells) == 0L) {
+    return(FALSE)
+  }
+  if (!all(vapply(cells, is_valid_coverage_cell, logical(1), record_field = record_field))) {
+    return(FALSE)
+  }
+  cell_ids <- vapply(cells, `[[`, character(1), "cell_id")
+  length(unique(cell_ids)) == length(cell_ids)
+}
+
+is_valid_public_payoff_vector <- function(payoff_vector) {
+  is.list(payoff_vector) &&
+    identical(names(payoff_vector), as_character(public_payoff_schema$fields)) &&
+    !any(vapply(payoff_vector, is.null, logical(1)))
+}
+
 is_valid_pending_interface <- function(node_id, node) {
   interface <- node$interface
   forbidden_formation_fields <- c("formation", "formation_decision", "entry_decision", "entry_cost")
@@ -339,39 +473,39 @@ is_valid_pending_interface <- function(node_id, node) {
 
   if (node_id %in% c("N1", "N2", "N3", "N4")) {
     return(
-      identical(names(interface), c("schema_ref", "function_of", "joint_records")) &&
+      identical(names(interface), c("schema_ref", "function_of", "correspondence_cells")) &&
         identical(interface$schema_ref, "equilibrium_correspondence_v1") &&
         identical(interface$function_of$name, "entry_belief") &&
         identical(interface$function_of$domain, "[0,1]") &&
-        is.null(interface$joint_records) &&
+        is.null(interface$correspondence_cells) &&
         !("complete_information_benchmark" %in% all_field_names(interface)) &&
-        !("public_equilibrium_records" %in% all_field_names(interface)) &&
-        !("informational_rent_records" %in% all_field_names(interface))
+        !("public_equilibrium_cells" %in% all_field_names(interface)) &&
+        !("informational_rent_cells" %in% all_field_names(interface))
     )
   }
 
   if (identical(node_id, "N6")) {
     return(
-      identical(names(interface), c("schema_ref", "function_of", "comparison_records")) &&
+      identical(names(interface), c("schema_ref", "function_of", "comparison_cells")) &&
         identical(interface$schema_ref, "private_information_comparison_v1") &&
         identical(interface$function_of$name, "entry_belief") &&
         identical(interface$function_of$domain, "[0,1]") &&
-        is.null(interface$comparison_records) &&
+        is.null(interface$comparison_cells) &&
         !("complete_information_benchmark" %in% all_field_names(interface)) &&
-        !("public_equilibrium_records" %in% all_field_names(interface)) &&
-        !("informational_rent_records" %in% all_field_names(interface))
+        !("public_equilibrium_cells" %in% all_field_names(interface)) &&
+        !("informational_rent_cells" %in% all_field_names(interface))
     )
   }
 
   if (identical(node_id, "N7")) {
-    public_records <- interface$public_equilibrium_records
+    public_cells <- interface$public_equilibrium_cells
     valid_public_shape <-
-      identical(names(public_records), c("majority", "unanimity")) &&
-      all(vapply(public_records, function(rule_records) {
-        identical(names(rule_records), c("R2", "R1")) &&
-          all(vapply(rule_records, function(round_records) {
-            identical(names(round_records), c("theta_0", "theta_1")) &&
-              all(vapply(round_records, is.null, logical(1)))
+      identical(names(public_cells), c("majority", "unanimity")) &&
+      all(vapply(public_cells, function(rule_cells) {
+        identical(names(rule_cells), c("R2", "R1")) &&
+          all(vapply(rule_cells, function(round_cells) {
+            identical(names(round_cells), c("theta_0", "theta_1")) &&
+              all(vapply(round_cells, is.null, logical(1)))
           }, logical(1)))
       }, logical(1)))
 
@@ -381,17 +515,17 @@ is_valid_pending_interface <- function(node_id, node) {
         c(
           "schema_ref",
           "function_of",
-          "public_equilibrium_records",
-          "informational_rent_records"
+          "public_equilibrium_cells",
+          "informational_rent_cells"
         )
       ) &&
         identical(interface$schema_ref, "complete_information_benchmark_v1") &&
         identical(interface$function_of$name, "prior_mu") &&
         identical(interface$function_of$domain, "[0,1]") &&
         valid_public_shape &&
-        is.null(interface$informational_rent_records) &&
-        !("joint_records" %in% all_field_names(interface)) &&
-        !("comparison_records" %in% all_field_names(interface))
+        is.null(interface$informational_rent_cells) &&
+        !("correspondence_cells" %in% all_field_names(interface)) &&
+        !("comparison_cells" %in% all_field_names(interface))
     )
   }
 
@@ -421,16 +555,100 @@ for (node_id in expected_ids) {
   )
   assert_true(
     is_valid_pending_interface(node_id, node),
-    paste(node_id, "has the wrong pending interface schema or a filled record collection.")
+    paste(node_id, "has the wrong pending interface schema or a filled coverage-cell collection.")
   )
 }
 
-# Negative schema tests: Gate 0 must reject filled, marginal, or cross-family interfaces.
+# Coverage-cell and public-payoff schema regression tests.
+valid_exists_cell <- list(
+  cell_id = "cell-exists",
+  domain_conditions = list(expression = "mu in [0,1]"),
+  existence_status = "exists",
+  equilibrium_records = list(list(equilibrium_id = "eq-1")),
+  nonexistence_certificate = NULL
+)
+valid_none_cell <- list(
+  cell_id = "cell-none",
+  domain_conditions = list(expression = "mu in empty-region"),
+  existence_status = "none",
+  equilibrium_records = list(),
+  nonexistence_certificate = list(
+    ledger_claim_ids = list("claim-no-equilibrium"),
+    assumptions_used = list(),
+    checks_performed = list("exhaustive-deviation-check")
+  )
+)
+assert_true(
+  is_valid_coverage_cells(list(valid_exists_cell, valid_none_cell), "equilibrium_records"),
+  "A typed partition with existing and nonexistent regions must validate."
+)
+
+none_with_sentinel <- valid_none_cell
+none_with_sentinel$equilibrium_records <- list(list(equilibrium_id = "forbidden-sentinel"))
+assert_true(
+  !is_valid_coverage_cells(list(none_with_sentinel), "equilibrium_records"),
+  "A nonexistent region must not contain a sentinel equilibrium record."
+)
+
+none_without_certificate <- valid_none_cell
+none_without_certificate$nonexistence_certificate <- NULL
+assert_true(
+  !is_valid_coverage_cells(list(none_without_certificate), "equilibrium_records"),
+  "A nonexistent region without a certificate must fail validation."
+)
+
+exists_without_record <- valid_exists_cell
+exists_without_record$equilibrium_records <- list()
+assert_true(
+  !is_valid_coverage_cells(list(exists_without_record), "equilibrium_records"),
+  "An existing region without an equilibrium record must fail validation."
+)
+
+duplicate_cell_id <- valid_none_cell
+duplicate_cell_id$cell_id <- valid_exists_cell$cell_id
+assert_true(
+  !is_valid_coverage_cells(
+    list(valid_exists_cell, duplicate_cell_id),
+    "equilibrium_records"
+  ),
+  "Coverage-cell ids must be unique within a collection."
+)
+
+valid_public_payoff <- list(
+  recognized_proposer_payoff = "symbolic-proposer-payoff",
+  weak_nonproposer_pre_recognition_expected_value = "symbolic-weak-value",
+  hegemon_payoff = "symbolic-H-payoff"
+)
+assert_true(
+  is_valid_public_payoff_vector(valid_public_payoff),
+  "A public payoff vector typed by the three roles must validate."
+)
+untyped_public_payoff <- list(payoff = "ambiguous")
+assert_true(
+  !is_valid_public_payoff_vector(untyped_public_payoff),
+  "An untyped public payoff vector must fail validation."
+)
+missing_h_public_payoff <- valid_public_payoff
+missing_h_public_payoff$hegemon_payoff <- NULL
+assert_true(
+  !is_valid_public_payoff_vector(missing_h_public_payoff),
+  "A public payoff vector without H's scalar payoff must fail validation."
+)
+
+# Negative Gate 0 tests: pending interfaces must reject filled, old, marginal,
+# or cross-family fields.
 filled_private <- nodes$N1
-filled_private$interface$joint_records <- list(list(equilibrium_id = "forbidden-at-gate0"))
+filled_private$interface$correspondence_cells <- list(valid_exists_cell)
 assert_true(
   !is_valid_pending_interface("N1", filled_private),
-  "A pending private node with filled joint records must fail validation."
+  "A pending private node with filled correspondence cells must fail validation."
+)
+
+old_private_shape <- nodes$N1
+old_private_shape$interface["joint_records"] <- list(NULL)
+assert_true(
+  !is_valid_pending_interface("N1", old_private_shape),
+  "The superseded joint-record interface must fail validation."
 )
 
 marginal_private <- nodes$N1
@@ -448,14 +666,20 @@ assert_true(
 )
 
 filled_n6 <- nodes$N6
-filled_n6$interface$comparison_records <- list(list(comparison_id = "forbidden-at-gate0"))
+filled_n6$interface$comparison_cells <- list(list(
+  cell_id = "comparison-cell",
+  domain_conditions = list(expression = "mu in [0,1]"),
+  existence_status = "exists",
+  comparison_records = list(list(comparison_id = "forbidden-at-gate0")),
+  nonexistence_certificate = NULL
+))
 assert_true(
   !is_valid_pending_interface("N6", filled_n6),
-  "A pending N6 with filled comparison records must fail validation."
+  "A pending N6 with filled comparison cells must fail validation."
 )
 
 benchmark_in_n6 <- nodes$N6
-benchmark_in_n6$interface$public_equilibrium_records <- list()
+benchmark_in_n6$interface$public_equilibrium_cells <- list()
 assert_true(
   !is_valid_pending_interface("N6", benchmark_in_n6),
   "A public-benchmark field in N6 must fail validation."
@@ -469,20 +693,42 @@ assert_true(
 )
 
 filled_n7 <- nodes$N7
-filled_n7$interface$public_equilibrium_records$majority$R2$theta_0 <- list(list())
+filled_n7$interface$public_equilibrium_cells$majority$R2$theta_0 <- list(list(
+  cell_id = "public-cell",
+  domain_conditions = list(expression = "mu in [0,1]"),
+  existence_status = "none",
+  public_equilibrium_records = list(),
+  nonexistence_certificate = list(
+    ledger_claim_ids = list("claim-no-public-equilibrium"),
+    assumptions_used = list(),
+    checks_performed = list("equilibrium-existence-check")
+  )
+))
 assert_true(
   !is_valid_pending_interface("N7", filled_n7),
-  "A pending N7 with filled public-equilibrium records must fail validation."
+  "A pending N7 with filled public-equilibrium cells must fail validation."
 )
 
 filled_n7_rent <- nodes$N7
-filled_n7_rent$interface$informational_rent_records <- list(list(rent_record_id = "forbidden-at-gate0"))
+filled_n7_rent$interface$informational_rent_cells <- list(list(
+  cell_id = "rent-cell",
+  domain_conditions = list(expression = "mu in [0,1]"),
+  existence_status = "exists",
+  informational_rent_records = list(list(rent_record_id = "forbidden-at-gate0")),
+  nonexistence_certificate = NULL
+))
 assert_true(
   !is_valid_pending_interface("N7", filled_n7_rent),
-  "A pending N7 with filled informational-rent records must fail validation."
+  "A pending N7 with filled informational-rent cells must fail validation."
 )
 
 assert_true(identical(manifest$interface_hashing$algorithm, "sha256"), "Interface hashing must use SHA-256.")
+assert_true(
+  grepl("empty correspondence", manifest$interface_hashing$artifact_rule, fixed = TRUE) &&
+    grepl("nonexistence certificate", manifest$interface_hashing$artifact_rule, fixed = TRUE) &&
+    grepl("null coverage-cell collections", manifest$interface_hashing$pending_rule, fixed = TRUE),
+  "Hashing and pending-state rules must preserve certified empty correspondences."
+)
 assert_true(
   grepl("transitive descendant", manifest$invalidation_rule$interface_change, fixed = TRUE),
   "The invalidation rule must cover all transitive descendants."
@@ -762,9 +1008,10 @@ for (node_id in expected_ids) {
 
 cat(
   paste0(
-    "PASS: six-node essential-input Gate 0 DAG, joint private-equilibrium records, ",
-    "terminal complete-information benchmark, two-review freeze gates, topological ",
-    "readiness, negative schema tests, and invalidation rules verified. Topological ",
+    "PASS: six-node essential-input Gate 0 DAG, typed coverage cells for empty and ",
+    "nonempty correspondences, role-typed public payoffs, terminal complete-information ",
+    "benchmark, two-review freeze gates, topological readiness, negative schema tests, ",
+    "and invalidation rules verified. Topological ",
     "readiness does not grant author authorization; Section 11 controls.\n"
   )
 )
