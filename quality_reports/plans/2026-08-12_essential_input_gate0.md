@@ -30,7 +30,7 @@ seção correspondente; não podem qualificá-lo, ampliá-lo nem criar exceçõe
 | materiais históricos que não podem ser transportados | Seção 10 |
 | prontidão, congelamento, revisão, gates, findings e reporte | Seção 11 |
 | invalidação | Seção 12 |
-| fronteira de versão e artefatos protegidos | Seção 13 |
+| fronteira de versão, verificação da infraestrutura e artefatos protegidos | Seção 13 |
 
 ---
 
@@ -524,9 +524,9 @@ na Seção 11.
 ### 7.1 Estrutura de goals
 
 O DAG é construído **antes** de qualquer derivação, não depois. Um DAG post hoc
-descreve o que foi feito; um DAG a priori restringe o que pode ser feito. Com as
-interfaces registradas por hash antes de derivar, mudar silenciosamente um valor
-de continuação invalida os consumidores automaticamente.
+descreve o que foi feito; um DAG a priori restringe o que pode ser feito. O hash
+torna mudanças de interface detectáveis; suas consequências são definidas
+somente na Seção 12.
 
 ```text
 Goal 0  Contrato e infraestrutura
@@ -534,8 +534,8 @@ Goal 0  Contrato e infraestrutura
         schema comum da Seção 7.2.
 
 Goal 1  Nós baratos — N1, N2, N3
-        Resolver N1 e N2 em paralelo e, quando N1 estiver apto a ser consumido,
-        resolver N3. Seguir a Seção 11 para revisão e avanço.
+        N1 e N2 podem ser resolvidos em paralelo. Quando N1 estiver apto a ser
+        consumido, resolver N3. Seguir a Seção 11 para revisão e avanço.
 
 Goal 2  Nó caro — N4
         Resolver N4 a partir da interface congelada de N2. As obrigações a
@@ -608,27 +608,33 @@ Seção 11.
 ## 9. Obrigações de prova que não podem ser assumidas
 
 As decisões de protocolo D1--D9 e a decisão autoral de 2026-08-17 sobre o escopo
-de stage-undominated voting estão resolvidas. Os itens abaixo são resultados que
-a derivação deve provar sob essas decisões; nenhum pode ser inserido como
-premissa ou orientação de resultado.
+de stage-undominated voting estão resolvidas. Os itens abaixo são obrigações de
+prova ou testes a resolver sob essas decisões. Quando o item é formulado como
+conjectura, a derivação deve prová-la ou refutá-la e preservar o resultado;
+nenhum desfecho pode ser inserido como premissa ou orientação.
 
-**P0 — Uso integral da pie em equilíbrio.** A factibilidade permite
-`y+sum_j x_j+r_i<1`. Deve-se provar que propostas com folga não maximizam o
-payoff do proponente; não se pode substituir a desigualdade factível por uma
-igualdade primitiva.
+**P0 — Teste de uso integral da pie.** A factibilidade permite
+`y+sum_j x_j+r_i<1`. Os nós de `N1` a `N4` devem determinar, sob o conceito da Seção 5, se
+propostas com folga podem maximizar o payoff do proponente, levando em conta as
+crenças e respostas após propostas fora do caminho. Não se pode substituir a
+desigualdade factível por uma igualdade primitiva nem acrescentar uma restrição
+de crenças para obter o resultado. Se alguma proposta com folga sobreviver, ela
+deve permanecer na correspondência e no reporte.
 
-**P1 — Dominância do hedge sob maioria.** `N3` deve provar que oferecer `y>0` e
-comprar simultaneamente `q-1` votos fracos na proposta `s=(y,x,r_i)` é
-estritamente dominado pela proposta `s'=(0,x,r_i+y)`, com os mesmos pagamentos
-aos `q-1` weak states. A comparação é entre propostas ex ante e preserva a soma
-orçamentária; não é realocação depois do ballot. O resultado depende da pie fixa,
-da execução integral de `y` e da IC de `H`, e não pode ser assumido.
+**P1 — Teste da dominância candidata do hedge sob maioria.** `N3` deve comparar
+a proposta `s=(y,x,r_i)`, com `y>0` e `q-1` votos fracos comprados, com
+`s'=(0,x,r_i+y)`, que mantém os pagamentos aos mesmos `q-1` weak states e
+preserva a soma orçamentária. A comparação é ex ante entre propostas, não
+realocação depois do ballot, e deve incorporar as crenças e respostas que o
+assessment atribui a cada proposta, inclusive quando uma delas está fora do
+caminho. `N3` deve provar ou refutar a dominância estrita sem acrescentar uma
+restrição de crenças. Se ela falhar, o hedge permanece candidato em P2.
 
-**P1a — Ausência on-path do ramo aprovado sem `H` com `y>0`.** Deve-se provar
-que a história da segunda linha da Tabela 1 não ocorre no caminho de equilíbrio
-quando `y>0`. Sob unanimidade, a própria regra torna essa linha inalcançável.
-Sob maioria, a conclusão deve seguir de P1, não de uma mudança na função de
-implementação. A obrigação não elimina a exclusão com `y=0`, preservada em P2.
+**P1a — Teste on-path do ramo aprovado sem `H` com `y>0`.** Sob unanimidade, a
+segunda linha da Tabela 1 é inalcançável. Sob maioria, `N3` deve determinar se a
+ausência on-path dessa história decorre de P1. Se P1 for refutada, a história
+não pode ser suprimida e P1a também pode ser refutada. A obrigação não elimina a
+exclusão com `y=0`, preservada em P2.
 
 **P2 — Caracterização de N3 desde as primitivas.** `N3` deve resolver R1 maioria
 por indução retroativa, consumindo apenas a interface congelada de `N1`. Para
@@ -668,12 +674,12 @@ o reconhecimento é iid com reposição, histórias públicas com o mesmo poster
 induzem o mesmo problema de maximização, sem impor estratégias Markov como
 restrição.
 
-**P6 — Efeito on-path do refinamento.** Cada nó deve demonstrar quais ações o
-stage-undominated voting dos weak nonproposers elimina e como `T^Y` resolve as
-indiferenças genuínas. Não se presume unicidade. Crenças em propostas e vetores
-de votos off-path podem impedir dominância em R1 ou sustentar multiplicidade
-residual. Se a multiplicidade impedir responder às perguntas da Seção 1, o nó
-deve reportá-la sem acrescentar seleção ad hoc.
+**P6 — Efeito on-path do refinamento.** Os nós de `N1` a `N4` devem demonstrar
+quais ações o stage-undominated voting dos weak nonproposers elimina e como
+`T^Y` resolve as indiferenças genuínas. Não se presume unicidade. Crenças em
+propostas e vetores de votos off-path podem impedir dominância em R1 ou sustentar
+multiplicidade residual. Se a multiplicidade impedir responder às perguntas da
+Seção 1, o nó deve reportá-la sem acrescentar seleção ad hoc.
 
 **P7 — Tratamento do voto de `H` em R1.** Como o voto de `H` integra a história
 pública que conduz a R2, `N3` e `N4` devem incluí-lo na atualização para `nu'` e
@@ -681,8 +687,8 @@ tratar explicitamente as crenças off-path correspondentes. O contrato não
 presume que esse voto separa os tipos: se e quanto ele atualiza a crença depende
 das estratégias derivadas.
 
-**P8 — Benchmark público por ramos.** `N1`--`N4` devem resolver o contrafactual
-da Seção 1 no próprio subjogo e provar qual ramo prevalece para cada tipo. No
+**P8 — Benchmark público por ramos.** Os nós de `N1` a `N4` devem resolver o
+contrafactual da Seção 1 no próprio subjogo e provar qual ramo prevalece para cada tipo. No
 ramo de inclusão, devem provar que o proponente oferece exatamente o valor de
 reserva ou continuação relevante e que `H` aceita pela regra da Seção 5,
 ficando na reserva. No ramo de exclusão sob maioria, devem provar `y=0`, o voto
@@ -750,7 +756,7 @@ apenas aponta para ela.
 1. **Goal 0:** o contrato recebe os dois pareceres e o autor decide o gate do
    Goal 1 antes de qualquer derivação.
 2. **Goal 1, primeira fronteira:** `N1` e `N2` podem ser implementados em
-   paralelo e compartilham um ciclo de revisão, com veredictos separados. `N3`
+   paralelo e podem compartilhar um ciclo de revisão, com veredictos separados. `N3`
    só começa depois de `N1` obter os dois PASS e sua interface ser congelada.
 3. **Goal 1, segunda fronteira:** `N3` recebe ciclo próprio. O Goal 1 só fecha
    quando `N1`, `N2` e `N3` tiverem passado e o autor autorizar o avanço.
@@ -851,17 +857,22 @@ avança sem esse aval.
    descendentes transitivos voltam a `pending`. Nós fora dessa descendência
    permanecem válidos somente se a mudança não alterar uma fonte compartilhada
    do contrato.
-3. **Mudança no protocolo de revisão.** Uma alteração da Seção 11 invalida os
-   pareceres e a prontidão que dependam da regra modificada. Não invalida por si
-   só uma derivação ou interface cujo conteúdo permaneça idêntico, mas impede
-   seu consumo até que o novo protocolo seja satisfeito.
+3. **Mudança no protocolo de revisão.** Uma alteração da Seção 11 reabre o Gate
+   0 de prontidão: todos os nós de derivação voltam a `pending`, e seus pareceres,
+   congelamento e autorização de consumo tornam-se inválidos. Derivações e
+   interfaces cujo conteúdo permaneça idêntico não são apagadas nem precisam
+   ser refeitas por esse motivo; podem ser submetidas novamente ao protocolo
+   novo. Para a regra `contract_change` do DAG, “invalidar o nó” tem aqui esse
+   sentido de status, revisão e prontidão, não de destruição do conteúdo
+   matemático. Rederivação só é exigida se o conteúdo mudar ou se a nova revisão
+   encontrar problema substantivo.
 4. **Reparo de finding.** A autorização e a autoria do reparo seguem a Seção
    11.1; seu alcance de invalidação segue os itens anteriores. Nenhum reparo
    local pode contornar essas regras.
 
 ---
 
-## 13. Fronteira de versão e artefatos protegidos
+## 13. Fronteira de versão, verificação e artefatos protegidos
 
 A tag anotada `pre-essential-input-2026-08-12` já existe e aponta, após
 *peeling*, para o commit
@@ -870,6 +881,19 @@ arquitetura. Não recriar, mover nem substituir a tag.
 
 `HEAD`, branch e limpeza do worktree são fatos operacionais mutáveis e devem ser
 verificados ao vivo no início de cada sessão; não são congelados neste contrato.
+
+**Verificação canônica da infraestrutura.** Antes de qualquer trabalho
+autorizado, executar na raiz do repositório:
+
+```text
+Rscript scripts/verify_essential_input_gate0.R
+```
+
+Esse é o único verifier referido sem qualificação neste contrato. Ele checa a
+infraestrutura do Gate 0 — topologia de cinco nós, schema vazio, estados
+`pending`, gates de hash e invalidação — e deve terminar com `PASS`. Falha nessa
+verificação bloqueia o trabalho até ser classificada e resolvida conforme a
+Seção 11.1.
 
 São protegidos:
 
@@ -893,6 +917,6 @@ reformula regra alguma.
 2. Tome a autorização corrente somente do cabeçalho.
 3. Siga a topologia e o schema da Seção 7, os entregáveis da Seção 8, as
    obrigações da Seção 9, o protocolo da Seção 11 e a invalidação da Seção 12.
-4. Execute o verifier da infraestrutura antes de qualquer trabalho autorizado.
+4. Execute a verificação canônica definida na Seção 13.
 5. Se surgir finding, aplique a Seção 11.1 sem completar lacunas por suposição.
 ```
