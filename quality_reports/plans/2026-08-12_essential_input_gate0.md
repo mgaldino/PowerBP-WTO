@@ -56,6 +56,40 @@ O candidato intermediário da Fase A e os arquivos do antigo `N6` permanecem
 preservados como proveniência. Esta decisão não altera schema, topologia, jogo,
 P8 nem o protocolo geral e não autoriza `N7`, Goal 5, `beta=1` ou migração ou
 compilação de manuscrito.
+Em decisão autoral posterior de 2026-08-19, o autor escolheu a **Opção A** e
+reabriu exclusivamente `N3` e `N4`, preservando `N1` e `N2` byte a byte e
+objeto a objeto nos estados `pass/frozen`, com os mesmos hashes, pareceres e
+ordens. `N3` continua consumindo somente `N1`; `N4`, somente `N2`. Pela
+consequência da Seção 12.2, `N3` e `N4` retornam a `pending` e `unfrozen`, e
+`N6` e `N7` permanecem `pending` e `unfrozen`; os candidatos, derivações,
+ledgers, verificadores, hashes e pareceres anteriores de `N3`, `N4`, `N6` e
+`N7` são preservados apenas como proveniência obsoleta. A autorização alcança
+duas etapas distintas. Esta aplicação inicial alcança somente o registro do
+lifecycle no contrato, no DAG e no verificador de Gate 0, com os ajustes de
+pins de `N1` e `N2` estritamente forçados pelo novo contrato/DAG; ela própria
+não executa derivação. Depois desse reset administrativo, a decisão autoriza a
+rederivação fria, a publicação de novos candidatos e a revisão independente de
+`N3` e `N4` no mesmo schema, cada qual consumindo somente a dependência acima e
+ambos antes de qualquer retomada de `N6`. Os artefatos antigos não são
+reparados nem reutilizados como candidatos correntes. Depois que `N3` e `N4`
+estiverem novamente `pass/frozen`, cada um com exatamente dois pareceres
+independentes `PASS 0/0/0` sobre o mesmo novo hash de cada nó, `N6` fica autorizado
+contingentemente para ser reconstruído, revisado e congelado. Depois do novo
+congelamento de `N6`, retoma-se a Fase B de `N7` já autorizada; `N7` permanece
+`pending` e `unfrozen` até seus dois pareceres sobre o hash completo e o aval
+final do autor. Esta aplicação administrativa não executa `N6` nem `N7`.
+O Goal 5, suas figuras, `beta=1`, a migração e a compilação do manuscrito v5/v6
+continuam não autorizados.
+Na mesma decisão, o autor estabeleceu a regra permanente de persistência de
+PDFs e o requisito prospectivo de figuras do Goal 5, ambos registrados na
+Seção 8. Todo PDF de derivação, relatório, auditoria ou companion que esta
+execução efetivamente produza deve ser permanente, hashado e referenciado; não
+se autoriza PDF do manuscrito v5/v6 nem figura do Goal 5, que permanece fechado.
+Em decisão autoral posterior de 2026-08-19, o autor fechou exclusivamente a
+convenção de reporte em `nu=0` nas coordenadas definidas na Seção 1. Esta
+decisão não seleciona equilíbrio, não cria distribuição sobre a
+correspondência, não altera schema, primitivas, topologia ou obrigações de
+prova e não amplia a autorização administrativa acima.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
 
@@ -289,6 +323,28 @@ esse vetor não criam novo valor de renda. Nenhum equilíbrio válido é removid
 dos artefatos fonte: trata-se de um quociente para o estimando, não de seleção
 no jogo. Toda multiplicidade que produza vetores distintos de payoff de `H`
 permanece preservada.
+
+**Coordenadas de reporte em `nu=0`.** Para cada assessment admissível da
+correspondência completa em `nu=0`, o reporte usa as coordenadas
+`(rho_L,rho_P,rho_D)` para os ramos low-only, pooling e delay, respectivamente,
+com cada coordenada admissível, não negativa e
+`rho_L+rho_P+rho_D=1`. Reporta também as médias condicionais
+`bar_Y_L` e `bar_Y_P` das concessões `Y` dentro dos ramos low-only e pooling do
+próprio assessment. Essas coordenadas são derivadas das estratégias do registro
+fonte; não são frequências empíricas, pesos externos, probabilidades sobre
+equilíbrios nem uma regra de seleção. O reporte enumera toda a imagem admissível
+induzida pela correspondência, sem atribuir proporções, densidade ou
+distribuição aos seus pontos.
+
+Permutações de identidades podem ser colapsadas somente na projeção para o
+estimando de payoff de `H`, e cada ponto projetado preserva os IDs e hashes dos
+registros fonte que o geram. Se um assessment não contém uma categoria, sua
+média condicional é explicitamente **não aplicável** na representação tipada
+do reporte; nunca se usa zero, `NA`, string vazia ou outro sentinela numérico
+para fabricar a média. Esta convenção de `nu=0` é distinta da agregação
+equal-area sobre `(o_0,o_1)`: não impõe uniforme sobre outside options nem
+qualquer outra medida sobre parâmetros. Ela é um companion de reporte e não
+acrescenta campo ao schema das interfaces.
 
 **Objeto principal puro e robustez mista.** A análise principal calcula a
 renda de equilíbrios puros completamente especificados. Sob unanimidade
@@ -764,7 +820,8 @@ Goal 4  Benchmark público e renda — N7
         principal.
 
 Goal 5  Migração para formal_model_v6.Rmd
-        Seguir o gate de migração da Seção 11.
+        Seguir o gate de migração da Seção 11 e os entregáveis prospectivos de
+        figuras e persistência definidos na Seção 8.
 ```
 
 O DAG registra a topologia desta seção. Os entregáveis e hashes estão na Seção
@@ -1020,6 +1077,25 @@ reproduzível, ligado por hashes ao `N6` congelado, ao candidato intermediário 
 Fase A e ao candidato completo de `N7`. Esse companion não retorna como input a
 nenhum nó, não altera a interface, não cria campos novos e não integra os
 critérios formais de validade ou congelamento de `N7`.
+
+**Regra permanente de persistência de PDFs.** Todo PDF efetivamente gerado a
+partir desta decisão — de derivação, revisão, reporte, figura ou manuscrito —
+deve ser preservado em caminho permanente dentro do repositório e ter o
+SHA-256 de seus bytes registrado no ledger, reporte ou manifesto que o entrega.
+Um PDF mantido somente em diretório temporário, cache ou preview efêmero não
+constitui entregável. Esta regra não exige gerar PDF em toda etapa. No escopo
+corrente, qualquer PDF de derivação, relatório, auditoria ou companion que seja
+produzido deve obedecê-la; PDFs do manuscrito v5/v6 permanecem proibidos até o
+gate correspondente.
+
+**Entregável prospectivo de figuras no Goal 5.** Quando e somente quando o
+Goal 5 for aberto pelo gate autoral da Seção 11, sua migração deverá incluir
+uma frente explícita de figuras para expor o mecanismo e os resultados já
+congelados. As figuras e suas fontes deverão ser permanentes no repositório e
+hashadas no reporte do Goal 5. O conteúdo, o número e o formato das figuras
+serão definidos dentro do Goal 5 sem alterar retroativamente o jogo ou as
+interfaces congeladas. Nenhuma figura é criada, alterada ou compilada por este
+registro prospectivo.
 
 ---
 
@@ -1335,15 +1411,44 @@ avança sem esse aval.
    ou outra fonte
    compartilhada, aplica-se o item 1.
 
-   **Aplicação corrente autorizada pelo autor em 2026-08-19.** A reabertura
-   exclusiva de `N6` aplica exatamente a consequência de lifecycle deste item:
-   `N6` volta a `pending` e `unfrozen`, e seu hash e seus pareceres anteriores
+   **Aplicação histórica anterior, autorizada pelo autor em 2026-08-19.** A
+   reabertura exclusiva de `N6` aplicou exatamente a consequência de lifecycle deste item:
+   `N6` voltou a `pending` e `unfrozen`, e seu hash e seus pareceres anteriores
    tornam-se proveniência obsoleta; `N7`, seu único descendente, permanece
    `pending` e `unfrozen`. Como nenhum conteúdo nem fonte compartilhada de
    `N1`--`N4` mudou, esses quatro nós permanecem `pass/frozen` nos mesmos bytes,
    interfaces, hashes e pareceres. Os arquivos do antigo `N6` e o candidato
    intermediário da Fase A são preservados como proveniência. Este registro não
    cria exceção nem modifica a regra geral deste item.
+
+   **Aplicação corrente autorizada pelo autor em 2026-08-19 — Opção A.** A
+   reabertura simultânea de `N3` e `N4` aplica exatamente a consequência de
+   lifecycle deste item. `N3` e `N4` voltam a `pending` e `unfrozen`, sem
+   `artifact_path`, `artifact_hash`, `dependency_hashes`, ordens, `frozen` ou
+   `reviews` correntes, e suas coleções de cobertura retornam a `null`. Seus
+   antigos candidatos, derivações, ledgers, verificadores, hashes e pareceres
+   permanecem nos mesmos caminhos como proveniência obsoleta. Como `N6` e `N7`
+   são descendentes transitivos, ambos permanecem `pending` e `unfrozen`, com
+   suas coleções `null` e sem os mesmos campos de lifecycle. `N1` e `N2` estão
+   fora dessa descendência e, como nenhuma fonte compartilhada do contrato foi
+   alterada, permanecem byte a byte e objeto a objeto `pass/frozen`, com
+   interfaces, hashes, pareceres e ordens inalterados. A topologia também
+   permanece inalterada: `N3` depende somente de `N1` e `N4` somente de `N2`.
+   A decisão adicional sobre as coordenadas de reporte em `nu=0` fecha somente
+   essa convenção derivada e não preenche nenhuma coleção deste DAG. Este
+   registro não cria exceção nem modifica a regra geral deste item. Esta
+   aplicação administrativa não executa derivação ou revisão, mas a decisão
+   autoral que ela registra autoriza a rederivação fria, a publicação de novos
+   candidatos e a revisão independente de `N3` e `N4`, no mesmo schema e antes
+   de `N6`. Quando ambos voltarem a `pass/frozen`, cada um com exatamente dois
+   pareceres independentes `PASS 0/0/0` sobre o mesmo novo hash do respectivo nó, `N6` fica
+   autorizado contingentemente para reconstrução, revisão e congelamento.
+   Depois do novo congelamento de `N6`, a Fase B de `N7` já autorizada é
+   retomada; `N7` permanece `pending` e `unfrozen` até os dois pareceres sobre
+   seu hash completo e o aval final do autor. O ato administrativo corrente não
+   executa `N6` ou `N7`. Figuras do Goal 5, PDFs do manuscrito v5/v6, Goal 5,
+   `beta=1` e trabalho de manuscrito continuam fora do escopo; PDFs in-scope que
+   sejam produzidos seguem a regra permanente da Seção 8.
 3. **Mudança no protocolo de revisão.** Uma alteração da Seção 11 reabre o Gate
    0 de prontidão: todos os nós de derivação voltam a `pending`, e seus pareceres,
    congelamento e autorização de consumo tornam-se inválidos. Derivações e
