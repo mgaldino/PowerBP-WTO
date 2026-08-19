@@ -1,0 +1,2238 @@
+{
+  "schema_ref": "complete_information_benchmark_v1",
+  "function_of": {
+    "name": "prior_mu",
+    "domain": "[0,1]"
+  },
+  "public_equilibrium_cells": {
+    "majority": {
+      "R2": {
+        "theta_0": [
+          {
+            "cell_id": "N7A-PUB-M-R2-T0-M2-CELL",
+            "domain_conditions": [
+              "theta=0 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_0 in this public game",
+              "m=2"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R2-T0-M2",
+                "institution": "majority",
+                "round": "R2",
+                "theta": 0,
+                "admissibility_conditions": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m=2"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage without H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "terminal solution; y=0 is the lower feasibility boundary and there is no branch-parameter frontier",
+                  "payoff_or_outcome_difference": "none within the public correspondence",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For every recognized weak proposer i: y=0, every x_j=0, r_i=1.",
+                  "weak_nonproposers": "Vote yes after every proposal; positive x_j weakly favors yes and x_j=0 is resolved to yes by T^Y.",
+                  "hegemon": "Before the simultaneous ballot, the proposal-induced pure weak strategies prescribe all m weak yes votes, which meet q<=m; vote no because no yields y+o_0 rather than y.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=0 is common knowledge from t=0",
+                  "on_path": "Pr(theta=0)=1 after every on-path history",
+                  "off_path": "Pr(theta=0)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [],
+                "existence_uniqueness_status": "unique assessment, outcome, and payoff vector",
+                "selection_status": "Phase A public benchmark only; no additional selection and no public-private pairing",
+                "assumptions_used": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "q=floor((m+1)/2)+1<=m",
+                  "R2 is terminal and contains no beta"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C02",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1",
+                  "weak_nonproposer_pre_recognition_expected_value": "1/m",
+                  "hegemon_payoff": "o_0"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 0,
+                  "pass_without_hegemon": 1,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=2 native units; no beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-M-R2-T0-MGE3-CELL",
+            "domain_conditions": [
+              "theta=0 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_0 in this public game",
+              "m>=3"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R2-T0-MGE3",
+                "institution": "majority",
+                "round": "R2",
+                "theta": 0,
+                "admissibility_conditions": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m>=3"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage without H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "terminal solution; y=0 is the lower feasibility boundary and there is no branch-parameter frontier",
+                  "payoff_or_outcome_difference": "none within the public correspondence",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For every recognized weak proposer i: y=0, every x_j=0, r_i=1.",
+                  "weak_nonproposers": "Vote yes after every proposal; positive x_j weakly favors yes and x_j=0 is resolved to yes by T^Y.",
+                  "hegemon": "Before the simultaneous ballot, the proposal-induced pure weak strategies prescribe all m weak yes votes, which meet q<=m; vote no because no yields y+o_0 rather than y.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=0 is common knowledge from t=0",
+                  "on_path": "Pr(theta=0)=1 after every on-path history",
+                  "off_path": "Pr(theta=0)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [],
+                "existence_uniqueness_status": "unique assessment, outcome, and payoff vector",
+                "selection_status": "Phase A public benchmark only; no additional selection and no public-private pairing",
+                "assumptions_used": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "q=floor((m+1)/2)+1<=m",
+                  "R2 is terminal and contains no beta"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C02",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1",
+                  "weak_nonproposer_pre_recognition_expected_value": "1/m",
+                  "hegemon_payoff": "o_0"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 0,
+                  "pass_without_hegemon": 1,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=2 native units; no beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ],
+        "theta_1": [
+          {
+            "cell_id": "N7A-PUB-M-R2-T1-M2-CELL",
+            "domain_conditions": [
+              "theta=1 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_1 in this public game",
+              "m=2"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R2-T1-M2",
+                "institution": "majority",
+                "round": "R2",
+                "theta": 1,
+                "admissibility_conditions": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m=2"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage without H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "terminal solution; y=0 is the lower feasibility boundary and there is no branch-parameter frontier",
+                  "payoff_or_outcome_difference": "none within the public correspondence",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For every recognized weak proposer i: y=0, every x_j=0, r_i=1.",
+                  "weak_nonproposers": "Vote yes after every proposal; positive x_j weakly favors yes and x_j=0 is resolved to yes by T^Y.",
+                  "hegemon": "Before the simultaneous ballot, the proposal-induced pure weak strategies prescribe all m weak yes votes, which meet q<=m; vote no because no yields y+o_1 rather than y.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=1 is common knowledge from t=0",
+                  "on_path": "Pr(theta=1)=1 after every on-path history",
+                  "off_path": "Pr(theta=1)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [],
+                "existence_uniqueness_status": "unique assessment, outcome, and payoff vector",
+                "selection_status": "Phase A public benchmark only; no additional selection and no public-private pairing",
+                "assumptions_used": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "q=floor((m+1)/2)+1<=m",
+                  "R2 is terminal and contains no beta"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C02",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1",
+                  "weak_nonproposer_pre_recognition_expected_value": "1/m",
+                  "hegemon_payoff": "o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 0,
+                  "pass_without_hegemon": 1,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=2 native units; no beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-M-R2-T1-MGE3-CELL",
+            "domain_conditions": [
+              "theta=1 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_1 in this public game",
+              "m>=3"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R2-T1-MGE3",
+                "institution": "majority",
+                "round": "R2",
+                "theta": 1,
+                "admissibility_conditions": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m>=3"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage without H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "terminal solution; y=0 is the lower feasibility boundary and there is no branch-parameter frontier",
+                  "payoff_or_outcome_difference": "none within the public correspondence",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For every recognized weak proposer i: y=0, every x_j=0, r_i=1.",
+                  "weak_nonproposers": "Vote yes after every proposal; positive x_j weakly favors yes and x_j=0 is resolved to yes by T^Y.",
+                  "hegemon": "Before the simultaneous ballot, the proposal-induced pure weak strategies prescribe all m weak yes votes, which meet q<=m; vote no because no yields y+o_1 rather than y.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=1 is common knowledge from t=0",
+                  "on_path": "Pr(theta=1)=1 after every on-path history",
+                  "off_path": "Pr(theta=1)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [],
+                "existence_uniqueness_status": "unique assessment, outcome, and payoff vector",
+                "selection_status": "Phase A public benchmark only; no additional selection and no public-private pairing",
+                "assumptions_used": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "q=floor((m+1)/2)+1<=m",
+                  "R2 is terminal and contains no beta"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C02",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1",
+                  "weak_nonproposer_pre_recognition_expected_value": "1/m",
+                  "hegemon_payoff": "o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 0,
+                  "pass_without_hegemon": 1,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=2 native units; no beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ]
+      },
+      "R1": {
+        "theta_0": [
+          {
+            "cell_id": "N7A-PUB-M-R1-T0-M2-LT-CELL",
+            "domain_conditions": [
+              "theta=0 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_0 in this public game",
+              "m=2",
+              "o_0 < 1/2"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R1-T0-M2-LT",
+                "institution": "majority",
+                "round": "R1",
+                "theta": 0,
+                "admissibility_conditions": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m=2",
+                  "o_0 < 1/2",
+                  "q=floor((m+1)/2)+1"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "strict inclusion region",
+                  "payoff_or_outcome_difference": "none",
+                  "agreement_delay_mixing": "none because 1-beta*q/m>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For recognized i: choose C_i^I of size q-2; set y=beta*o_0, x_j=beta/m for j in C_i^I, x_j=0 otherwise, and r_i=1-beta*o_0-beta*(q-2)/m.",
+                  "coalition_correspondence": "C_i^I is the unique empty set of size q-2=0; equivalently F_i is degenerate on that set, with no proposal mixing.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, use the pure weak-vote count prescribed by the public proposal: vote no if the quota passes without H; if pivotal vote yes iff y>=beta*o_0; if the quota fails regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "boundary_selection": "The selected branch is strictly cheaper for the proposer.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=0 is common knowledge from t=0",
+                  "on_path": "Pr(theta=0)=1 after every on-path history",
+                  "off_path": "Pr(theta=0)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-M-R2-T0-M2"
+                ],
+                "existence_uniqueness_status": "unique assessment, outcome, and full payoff vector",
+                "selection_status": "Phase A public benchmark only. Proposer payoff is maximized first and expected H payoff is minimized second; no symmetry restriction, no agreement-delay selection, and no public-private pairing is added.",
+                "assumptions_used": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m=2",
+                  "o_0 < 1/2",
+                  "R2 majority continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C07",
+                  "N7A-C08",
+                  "N7A-C09",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*o_0-beta*(q-2)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": {
+                    "type": "identity-indexed map; symmetry is not imposed when F_i varies",
+                    "by_weak_state_k": "C_k=(1/m)*(1-beta*o_0-beta*(q-2)/m)+(beta/m^2)*sum_{i!=k} Pr_{C~F_i}(k in C_i^I)",
+                    "symmetric_uniform_special_case": "Use uniform F_i over size-q-2 coalitions for an anonymous symmetric benchmark.",
+                    "cross_identity_mean": "(1-beta*o_0)/m"
+                  },
+                  "hegemon_payoff": "beta*o_0"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-M-R1-T0-M2-EQ-CELL",
+            "domain_conditions": [
+              "theta=0 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_0 in this public game",
+              "m=2",
+              "o_0 = 1/2"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R1-T0-M2-EQ",
+                "institution": "majority",
+                "round": "R1",
+                "theta": 0,
+                "admissibility_conditions": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m=2",
+                  "o_0 = 1/2",
+                  "q=floor((m+1)/2)+1"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "inclusion-exclusion boundary",
+                  "payoff_or_outcome_difference": "none",
+                  "agreement_delay_mixing": "none because 1-beta*q/m>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For recognized i: choose C_i^I of size q-2; set y=beta*o_0, x_j=beta/m for j in C_i^I, x_j=0 otherwise, and r_i=1-beta*o_0-beta*(q-2)/m.",
+                  "coalition_correspondence": "C_i^I is the unique empty set of size q-2=0; equivalently F_i is degenerate on that set, with no proposal mixing.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, use the pure weak-vote count prescribed by the public proposal: vote no if the quota passes without H; if pivotal vote yes iff y>=beta*o_0; if the quota fails regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "boundary_selection": "The authorized proposal tie-break selects inclusion because beta*o_0<o_0; exclusion and cross-branch mixing are not selected.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=0 is common knowledge from t=0",
+                  "on_path": "Pr(theta=0)=1 after every on-path history",
+                  "off_path": "Pr(theta=0)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-M-R2-T0-M2"
+                ],
+                "existence_uniqueness_status": "unique assessment, outcome, and full payoff vector",
+                "selection_status": "Phase A public benchmark only. Proposer payoff is maximized first and expected H payoff is minimized second; no symmetry restriction, no agreement-delay selection, and no public-private pairing is added.",
+                "assumptions_used": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m=2",
+                  "o_0 = 1/2",
+                  "R2 majority continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C07",
+                  "N7A-C08",
+                  "N7A-C09",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*o_0-beta*(q-2)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": {
+                    "type": "identity-indexed map; symmetry is not imposed when F_i varies",
+                    "by_weak_state_k": "C_k=(1/m)*(1-beta*o_0-beta*(q-2)/m)+(beta/m^2)*sum_{i!=k} Pr_{C~F_i}(k in C_i^I)",
+                    "symmetric_uniform_special_case": "Use uniform F_i over size-q-2 coalitions for an anonymous symmetric benchmark.",
+                    "cross_identity_mean": "(1-beta*o_0)/m"
+                  },
+                  "hegemon_payoff": "beta*o_0"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-M-R1-T0-M2-GT-CELL",
+            "domain_conditions": [
+              "theta=0 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_0 in this public game",
+              "m=2",
+              "o_0 > 1/2"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R1-T0-M2-GT",
+                "institution": "majority",
+                "round": "R1",
+                "theta": 0,
+                "admissibility_conditions": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m=2",
+                  "o_0 > 1/2",
+                  "q=floor((m+1)/2)+1"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage without H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "strict exclusion region",
+                  "payoff_or_outcome_difference": "none",
+                  "agreement_delay_mixing": "none because 1-beta*q/m>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For recognized i: choose C_i^E of size q-1; set y=0, x_j=beta/m for j in C_i^E, x_j=0 otherwise, and r_i=1-beta*(q-1)/m.",
+                  "coalition_correspondence": "C_i^E is the unique other weak state of size q-1=1; equivalently F_i is degenerate on that set, with no proposal mixing.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, use the pure weak-vote count prescribed by the public proposal: vote no if the quota passes without H; if pivotal vote yes iff y>=beta*o_0; if the quota fails regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "boundary_selection": "The selected branch is strictly cheaper for the proposer.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=0 is common knowledge from t=0",
+                  "on_path": "Pr(theta=0)=1 after every on-path history",
+                  "off_path": "Pr(theta=0)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-M-R2-T0-M2"
+                ],
+                "existence_uniqueness_status": "unique assessment, outcome, and full payoff vector",
+                "selection_status": "Phase A public benchmark only. Proposer payoff is maximized first and expected H payoff is minimized second; no symmetry restriction, no agreement-delay selection, and no public-private pairing is added.",
+                "assumptions_used": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m=2",
+                  "o_0 > 1/2",
+                  "R2 majority continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C07",
+                  "N7A-C08",
+                  "N7A-C09",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*(q-1)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": {
+                    "type": "identity-indexed map; symmetry is not imposed when F_i varies",
+                    "by_weak_state_k": "C_k=(1/m)*(1-beta*(q-1)/m)+(beta/m^2)*sum_{i!=k} Pr_{C~F_i}(k in C_i^E)",
+                    "symmetric_uniform_special_case": "Use uniform F_i over size-q-1 coalitions for an anonymous symmetric benchmark.",
+                    "cross_identity_mean": "1/m"
+                  },
+                  "hegemon_payoff": "o_0"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 0,
+                  "pass_without_hegemon": 1,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-M-R1-T0-MGE3-LT-CELL",
+            "domain_conditions": [
+              "theta=0 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_0 in this public game",
+              "m>=3",
+              "o_0 < 1/m"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R1-T0-MGE3-LT",
+                "institution": "majority",
+                "round": "R1",
+                "theta": 0,
+                "admissibility_conditions": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m>=3",
+                  "o_0 < 1/m",
+                  "q=floor((m+1)/2)+1"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "pure or mixed proposer strategies over payoff-equivalent coalitions; pure ballot strategies",
+                  "identity_symmetry": "symmetric uniform and identity-asymmetric coalition strategies are both retained",
+                  "parameter_location": "strict inclusion region",
+                  "payoff_or_outcome_difference": "coalition choice may change weak identity payoffs only; branch, outcome, H payoff, and proposer payoff are invariant",
+                  "agreement_delay_mixing": "none because 1-beta*q/m>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For recognized i: choose C_i^I of size q-2; set y=beta*o_0, x_j=beta/m for j in C_i^I, x_j=0 otherwise, and r_i=1-beta*o_0-beta*(q-2)/m.",
+                  "coalition_correspondence": "For each identity i, F_i is any probability distribution over subsets C_i^I of W\\{i} with size q-2. Degenerate F_i are pure identity-asymmetric coalition choices; uniform F_i is symmetric; all mixing is within the inclusion branch.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, use the pure weak-vote count prescribed by the public proposal: vote no if the quota passes without H; if pivotal vote yes iff y>=beta*o_0; if the quota fails regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "boundary_selection": "The selected branch is strictly cheaper for the proposer.",
+                  "proposal_mixing": "allowed only among payoff-equivalent coalition proposals inside the selected branch"
+                },
+                "belief_system": {
+                  "type_information": "theta=0 is common knowledge from t=0",
+                  "on_path": "Pr(theta=0)=1 after every on-path history",
+                  "off_path": "Pr(theta=0)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-M-R2-T0-MGE3"
+                ],
+                "existence_uniqueness_status": "unique branch, outcome, H payoff, and proposer payoff; full weak payoff vector is set-valued by coalition composition",
+                "selection_status": "Phase A public benchmark only. Proposer payoff is maximized first and expected H payoff is minimized second; no symmetry restriction, no agreement-delay selection, and no public-private pairing is added.",
+                "assumptions_used": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m>=3",
+                  "o_0 < 1/m",
+                  "R2 majority continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C07",
+                  "N7A-C08",
+                  "N7A-C09",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*o_0-beta*(q-2)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": {
+                    "type": "identity-indexed map; symmetry is not imposed when F_i varies",
+                    "by_weak_state_k": "C_k=(1/m)*(1-beta*o_0-beta*(q-2)/m)+(beta/m^2)*sum_{i!=k} Pr_{C~F_i}(k in C_i^I)",
+                    "symmetric_uniform_special_case": "Use uniform F_i over size-q-2 coalitions for an anonymous symmetric benchmark.",
+                    "cross_identity_mean": "(1-beta*o_0)/m"
+                  },
+                  "hegemon_payoff": "beta*o_0"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-M-R1-T0-MGE3-EQ-CELL",
+            "domain_conditions": [
+              "theta=0 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_0 in this public game",
+              "m>=3",
+              "o_0 = 1/m"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R1-T0-MGE3-EQ",
+                "institution": "majority",
+                "round": "R1",
+                "theta": 0,
+                "admissibility_conditions": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m>=3",
+                  "o_0 = 1/m",
+                  "q=floor((m+1)/2)+1"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "pure or mixed proposer strategies over payoff-equivalent coalitions; pure ballot strategies",
+                  "identity_symmetry": "symmetric uniform and identity-asymmetric coalition strategies are both retained",
+                  "parameter_location": "inclusion-exclusion boundary",
+                  "payoff_or_outcome_difference": "coalition choice may change weak identity payoffs only; branch, outcome, H payoff, and proposer payoff are invariant",
+                  "agreement_delay_mixing": "none because 1-beta*q/m>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For recognized i: choose C_i^I of size q-2; set y=beta*o_0, x_j=beta/m for j in C_i^I, x_j=0 otherwise, and r_i=1-beta*o_0-beta*(q-2)/m.",
+                  "coalition_correspondence": "For each identity i, F_i is any probability distribution over subsets C_i^I of W\\{i} with size q-2. Degenerate F_i are pure identity-asymmetric coalition choices; uniform F_i is symmetric; all mixing is within the inclusion branch.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, use the pure weak-vote count prescribed by the public proposal: vote no if the quota passes without H; if pivotal vote yes iff y>=beta*o_0; if the quota fails regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "boundary_selection": "The authorized proposal tie-break selects inclusion because beta*o_0<o_0; exclusion and cross-branch mixing are not selected.",
+                  "proposal_mixing": "allowed only among payoff-equivalent coalition proposals inside the selected branch"
+                },
+                "belief_system": {
+                  "type_information": "theta=0 is common knowledge from t=0",
+                  "on_path": "Pr(theta=0)=1 after every on-path history",
+                  "off_path": "Pr(theta=0)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-M-R2-T0-MGE3"
+                ],
+                "existence_uniqueness_status": "unique branch, outcome, H payoff, and proposer payoff; full weak payoff vector is set-valued by coalition composition",
+                "selection_status": "Phase A public benchmark only. Proposer payoff is maximized first and expected H payoff is minimized second; no symmetry restriction, no agreement-delay selection, and no public-private pairing is added.",
+                "assumptions_used": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m>=3",
+                  "o_0 = 1/m",
+                  "R2 majority continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C07",
+                  "N7A-C08",
+                  "N7A-C09",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*o_0-beta*(q-2)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": {
+                    "type": "identity-indexed map; symmetry is not imposed when F_i varies",
+                    "by_weak_state_k": "C_k=(1/m)*(1-beta*o_0-beta*(q-2)/m)+(beta/m^2)*sum_{i!=k} Pr_{C~F_i}(k in C_i^I)",
+                    "symmetric_uniform_special_case": "Use uniform F_i over size-q-2 coalitions for an anonymous symmetric benchmark.",
+                    "cross_identity_mean": "(1-beta*o_0)/m"
+                  },
+                  "hegemon_payoff": "beta*o_0"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-M-R1-T0-MGE3-GT-CELL",
+            "domain_conditions": [
+              "theta=0 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_0 in this public game",
+              "m>=3",
+              "o_0 > 1/m"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R1-T0-MGE3-GT",
+                "institution": "majority",
+                "round": "R1",
+                "theta": 0,
+                "admissibility_conditions": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m>=3",
+                  "o_0 > 1/m",
+                  "q=floor((m+1)/2)+1"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage without H",
+                  "equilibrium_form": "pure or mixed proposer strategies over payoff-equivalent coalitions; pure ballot strategies",
+                  "identity_symmetry": "symmetric uniform and identity-asymmetric coalition strategies are both retained",
+                  "parameter_location": "strict exclusion region",
+                  "payoff_or_outcome_difference": "coalition choice may change weak identity payoffs only; branch, outcome, H payoff, and proposer payoff are invariant",
+                  "agreement_delay_mixing": "none because 1-beta*q/m>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For recognized i: choose C_i^E of size q-1; set y=0, x_j=beta/m for j in C_i^E, x_j=0 otherwise, and r_i=1-beta*(q-1)/m.",
+                  "coalition_correspondence": "For each identity i, F_i is any probability distribution over subsets C_i^E of W\\{i} with size q-1. The set is singleton at m=3 and has multiple members at m>=4; all mixing is within the exclusion branch.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, use the pure weak-vote count prescribed by the public proposal: vote no if the quota passes without H; if pivotal vote yes iff y>=beta*o_0; if the quota fails regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "boundary_selection": "The selected branch is strictly cheaper for the proposer.",
+                  "proposal_mixing": "allowed only among payoff-equivalent coalition proposals inside the selected branch"
+                },
+                "belief_system": {
+                  "type_information": "theta=0 is common knowledge from t=0",
+                  "on_path": "Pr(theta=0)=1 after every on-path history",
+                  "off_path": "Pr(theta=0)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-M-R2-T0-MGE3"
+                ],
+                "existence_uniqueness_status": "unique branch, outcome, H payoff, and proposer payoff; full weak payoff vector is unique at m=3 and set-valued by coalition composition at m>=4",
+                "selection_status": "Phase A public benchmark only. Proposer payoff is maximized first and expected H payoff is minimized second; no symmetry restriction, no agreement-delay selection, and no public-private pairing is added.",
+                "assumptions_used": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m>=3",
+                  "o_0 > 1/m",
+                  "R2 majority continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C07",
+                  "N7A-C08",
+                  "N7A-C09",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*(q-1)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": {
+                    "type": "identity-indexed map; symmetry is not imposed when F_i varies",
+                    "by_weak_state_k": "C_k=(1/m)*(1-beta*(q-1)/m)+(beta/m^2)*sum_{i!=k} Pr_{C~F_i}(k in C_i^E)",
+                    "symmetric_uniform_special_case": "Use uniform F_i over size-q-1 coalitions for an anonymous symmetric benchmark.",
+                    "cross_identity_mean": "1/m"
+                  },
+                  "hegemon_payoff": "o_0"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 0,
+                  "pass_without_hegemon": 1,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ],
+        "theta_1": [
+          {
+            "cell_id": "N7A-PUB-M-R1-T1-M2-LT-CELL",
+            "domain_conditions": [
+              "theta=1 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_1 in this public game",
+              "m=2",
+              "o_1 < 1/2"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R1-T1-M2-LT",
+                "institution": "majority",
+                "round": "R1",
+                "theta": 1,
+                "admissibility_conditions": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m=2",
+                  "o_1 < 1/2",
+                  "q=floor((m+1)/2)+1"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "strict inclusion region",
+                  "payoff_or_outcome_difference": "none",
+                  "agreement_delay_mixing": "none because 1-beta*q/m>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For recognized i: choose C_i^I of size q-2; set y=beta*o_1, x_j=beta/m for j in C_i^I, x_j=0 otherwise, and r_i=1-beta*o_1-beta*(q-2)/m.",
+                  "coalition_correspondence": "C_i^I is the unique empty set of size q-2=0; equivalently F_i is degenerate on that set, with no proposal mixing.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, use the pure weak-vote count prescribed by the public proposal: vote no if the quota passes without H; if pivotal vote yes iff y>=beta*o_1; if the quota fails regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "boundary_selection": "The selected branch is strictly cheaper for the proposer.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=1 is common knowledge from t=0",
+                  "on_path": "Pr(theta=1)=1 after every on-path history",
+                  "off_path": "Pr(theta=1)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-M-R2-T1-M2"
+                ],
+                "existence_uniqueness_status": "unique assessment, outcome, and full payoff vector",
+                "selection_status": "Phase A public benchmark only. Proposer payoff is maximized first and expected H payoff is minimized second; no symmetry restriction, no agreement-delay selection, and no public-private pairing is added.",
+                "assumptions_used": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m=2",
+                  "o_1 < 1/2",
+                  "R2 majority continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C07",
+                  "N7A-C08",
+                  "N7A-C09",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*o_1-beta*(q-2)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": {
+                    "type": "identity-indexed map; symmetry is not imposed when F_i varies",
+                    "by_weak_state_k": "C_k=(1/m)*(1-beta*o_1-beta*(q-2)/m)+(beta/m^2)*sum_{i!=k} Pr_{C~F_i}(k in C_i^I)",
+                    "symmetric_uniform_special_case": "Use uniform F_i over size-q-2 coalitions for an anonymous symmetric benchmark.",
+                    "cross_identity_mean": "(1-beta*o_1)/m"
+                  },
+                  "hegemon_payoff": "beta*o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-M-R1-T1-M2-EQ-CELL",
+            "domain_conditions": [
+              "theta=1 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_1 in this public game",
+              "m=2",
+              "o_1 = 1/2"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R1-T1-M2-EQ",
+                "institution": "majority",
+                "round": "R1",
+                "theta": 1,
+                "admissibility_conditions": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m=2",
+                  "o_1 = 1/2",
+                  "q=floor((m+1)/2)+1"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "inclusion-exclusion boundary",
+                  "payoff_or_outcome_difference": "none",
+                  "agreement_delay_mixing": "none because 1-beta*q/m>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For recognized i: choose C_i^I of size q-2; set y=beta*o_1, x_j=beta/m for j in C_i^I, x_j=0 otherwise, and r_i=1-beta*o_1-beta*(q-2)/m.",
+                  "coalition_correspondence": "C_i^I is the unique empty set of size q-2=0; equivalently F_i is degenerate on that set, with no proposal mixing.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, use the pure weak-vote count prescribed by the public proposal: vote no if the quota passes without H; if pivotal vote yes iff y>=beta*o_1; if the quota fails regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "boundary_selection": "The authorized proposal tie-break selects inclusion because beta*o_1<o_1; exclusion and cross-branch mixing are not selected.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=1 is common knowledge from t=0",
+                  "on_path": "Pr(theta=1)=1 after every on-path history",
+                  "off_path": "Pr(theta=1)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-M-R2-T1-M2"
+                ],
+                "existence_uniqueness_status": "unique assessment, outcome, and full payoff vector",
+                "selection_status": "Phase A public benchmark only. Proposer payoff is maximized first and expected H payoff is minimized second; no symmetry restriction, no agreement-delay selection, and no public-private pairing is added.",
+                "assumptions_used": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m=2",
+                  "o_1 = 1/2",
+                  "R2 majority continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C07",
+                  "N7A-C08",
+                  "N7A-C09",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*o_1-beta*(q-2)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": {
+                    "type": "identity-indexed map; symmetry is not imposed when F_i varies",
+                    "by_weak_state_k": "C_k=(1/m)*(1-beta*o_1-beta*(q-2)/m)+(beta/m^2)*sum_{i!=k} Pr_{C~F_i}(k in C_i^I)",
+                    "symmetric_uniform_special_case": "Use uniform F_i over size-q-2 coalitions for an anonymous symmetric benchmark.",
+                    "cross_identity_mean": "(1-beta*o_1)/m"
+                  },
+                  "hegemon_payoff": "beta*o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-M-R1-T1-M2-GT-CELL",
+            "domain_conditions": [
+              "theta=1 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_1 in this public game",
+              "m=2",
+              "o_1 > 1/2"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R1-T1-M2-GT",
+                "institution": "majority",
+                "round": "R1",
+                "theta": 1,
+                "admissibility_conditions": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m=2",
+                  "o_1 > 1/2",
+                  "q=floor((m+1)/2)+1"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage without H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "strict exclusion region",
+                  "payoff_or_outcome_difference": "none",
+                  "agreement_delay_mixing": "none because 1-beta*q/m>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For recognized i: choose C_i^E of size q-1; set y=0, x_j=beta/m for j in C_i^E, x_j=0 otherwise, and r_i=1-beta*(q-1)/m.",
+                  "coalition_correspondence": "C_i^E is the unique other weak state of size q-1=1; equivalently F_i is degenerate on that set, with no proposal mixing.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, use the pure weak-vote count prescribed by the public proposal: vote no if the quota passes without H; if pivotal vote yes iff y>=beta*o_1; if the quota fails regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "boundary_selection": "The selected branch is strictly cheaper for the proposer.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=1 is common knowledge from t=0",
+                  "on_path": "Pr(theta=1)=1 after every on-path history",
+                  "off_path": "Pr(theta=1)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-M-R2-T1-M2"
+                ],
+                "existence_uniqueness_status": "unique assessment, outcome, and full payoff vector",
+                "selection_status": "Phase A public benchmark only. Proposer payoff is maximized first and expected H payoff is minimized second; no symmetry restriction, no agreement-delay selection, and no public-private pairing is added.",
+                "assumptions_used": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m=2",
+                  "o_1 > 1/2",
+                  "R2 majority continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C07",
+                  "N7A-C08",
+                  "N7A-C09",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*(q-1)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": {
+                    "type": "identity-indexed map; symmetry is not imposed when F_i varies",
+                    "by_weak_state_k": "C_k=(1/m)*(1-beta*(q-1)/m)+(beta/m^2)*sum_{i!=k} Pr_{C~F_i}(k in C_i^E)",
+                    "symmetric_uniform_special_case": "Use uniform F_i over size-q-1 coalitions for an anonymous symmetric benchmark.",
+                    "cross_identity_mean": "1/m"
+                  },
+                  "hegemon_payoff": "o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 0,
+                  "pass_without_hegemon": 1,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-M-R1-T1-MGE3-LT-CELL",
+            "domain_conditions": [
+              "theta=1 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_1 in this public game",
+              "m>=3",
+              "o_1 < 1/m"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R1-T1-MGE3-LT",
+                "institution": "majority",
+                "round": "R1",
+                "theta": 1,
+                "admissibility_conditions": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m>=3",
+                  "o_1 < 1/m",
+                  "q=floor((m+1)/2)+1"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "pure or mixed proposer strategies over payoff-equivalent coalitions; pure ballot strategies",
+                  "identity_symmetry": "symmetric uniform and identity-asymmetric coalition strategies are both retained",
+                  "parameter_location": "strict inclusion region",
+                  "payoff_or_outcome_difference": "coalition choice may change weak identity payoffs only; branch, outcome, H payoff, and proposer payoff are invariant",
+                  "agreement_delay_mixing": "none because 1-beta*q/m>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For recognized i: choose C_i^I of size q-2; set y=beta*o_1, x_j=beta/m for j in C_i^I, x_j=0 otherwise, and r_i=1-beta*o_1-beta*(q-2)/m.",
+                  "coalition_correspondence": "For each identity i, F_i is any probability distribution over subsets C_i^I of W\\{i} with size q-2. Degenerate F_i are pure identity-asymmetric coalition choices; uniform F_i is symmetric; all mixing is within the inclusion branch.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, use the pure weak-vote count prescribed by the public proposal: vote no if the quota passes without H; if pivotal vote yes iff y>=beta*o_1; if the quota fails regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "boundary_selection": "The selected branch is strictly cheaper for the proposer.",
+                  "proposal_mixing": "allowed only among payoff-equivalent coalition proposals inside the selected branch"
+                },
+                "belief_system": {
+                  "type_information": "theta=1 is common knowledge from t=0",
+                  "on_path": "Pr(theta=1)=1 after every on-path history",
+                  "off_path": "Pr(theta=1)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-M-R2-T1-MGE3"
+                ],
+                "existence_uniqueness_status": "unique branch, outcome, H payoff, and proposer payoff; full weak payoff vector is set-valued by coalition composition",
+                "selection_status": "Phase A public benchmark only. Proposer payoff is maximized first and expected H payoff is minimized second; no symmetry restriction, no agreement-delay selection, and no public-private pairing is added.",
+                "assumptions_used": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m>=3",
+                  "o_1 < 1/m",
+                  "R2 majority continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C07",
+                  "N7A-C08",
+                  "N7A-C09",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*o_1-beta*(q-2)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": {
+                    "type": "identity-indexed map; symmetry is not imposed when F_i varies",
+                    "by_weak_state_k": "C_k=(1/m)*(1-beta*o_1-beta*(q-2)/m)+(beta/m^2)*sum_{i!=k} Pr_{C~F_i}(k in C_i^I)",
+                    "symmetric_uniform_special_case": "Use uniform F_i over size-q-2 coalitions for an anonymous symmetric benchmark.",
+                    "cross_identity_mean": "(1-beta*o_1)/m"
+                  },
+                  "hegemon_payoff": "beta*o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-M-R1-T1-MGE3-EQ-CELL",
+            "domain_conditions": [
+              "theta=1 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_1 in this public game",
+              "m>=3",
+              "o_1 = 1/m"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R1-T1-MGE3-EQ",
+                "institution": "majority",
+                "round": "R1",
+                "theta": 1,
+                "admissibility_conditions": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m>=3",
+                  "o_1 = 1/m",
+                  "q=floor((m+1)/2)+1"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "pure or mixed proposer strategies over payoff-equivalent coalitions; pure ballot strategies",
+                  "identity_symmetry": "symmetric uniform and identity-asymmetric coalition strategies are both retained",
+                  "parameter_location": "inclusion-exclusion boundary",
+                  "payoff_or_outcome_difference": "coalition choice may change weak identity payoffs only; branch, outcome, H payoff, and proposer payoff are invariant",
+                  "agreement_delay_mixing": "none because 1-beta*q/m>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For recognized i: choose C_i^I of size q-2; set y=beta*o_1, x_j=beta/m for j in C_i^I, x_j=0 otherwise, and r_i=1-beta*o_1-beta*(q-2)/m.",
+                  "coalition_correspondence": "For each identity i, F_i is any probability distribution over subsets C_i^I of W\\{i} with size q-2. Degenerate F_i are pure identity-asymmetric coalition choices; uniform F_i is symmetric; all mixing is within the inclusion branch.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, use the pure weak-vote count prescribed by the public proposal: vote no if the quota passes without H; if pivotal vote yes iff y>=beta*o_1; if the quota fails regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "boundary_selection": "The authorized proposal tie-break selects inclusion because beta*o_1<o_1; exclusion and cross-branch mixing are not selected.",
+                  "proposal_mixing": "allowed only among payoff-equivalent coalition proposals inside the selected branch"
+                },
+                "belief_system": {
+                  "type_information": "theta=1 is common knowledge from t=0",
+                  "on_path": "Pr(theta=1)=1 after every on-path history",
+                  "off_path": "Pr(theta=1)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-M-R2-T1-MGE3"
+                ],
+                "existence_uniqueness_status": "unique branch, outcome, H payoff, and proposer payoff; full weak payoff vector is set-valued by coalition composition",
+                "selection_status": "Phase A public benchmark only. Proposer payoff is maximized first and expected H payoff is minimized second; no symmetry restriction, no agreement-delay selection, and no public-private pairing is added.",
+                "assumptions_used": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m>=3",
+                  "o_1 = 1/m",
+                  "R2 majority continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C07",
+                  "N7A-C08",
+                  "N7A-C09",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*o_1-beta*(q-2)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": {
+                    "type": "identity-indexed map; symmetry is not imposed when F_i varies",
+                    "by_weak_state_k": "C_k=(1/m)*(1-beta*o_1-beta*(q-2)/m)+(beta/m^2)*sum_{i!=k} Pr_{C~F_i}(k in C_i^I)",
+                    "symmetric_uniform_special_case": "Use uniform F_i over size-q-2 coalitions for an anonymous symmetric benchmark.",
+                    "cross_identity_mean": "(1-beta*o_1)/m"
+                  },
+                  "hegemon_payoff": "beta*o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-M-R1-T1-MGE3-GT-CELL",
+            "domain_conditions": [
+              "theta=1 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_1 in this public game",
+              "m>=3",
+              "o_1 > 1/m"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-M-R1-T1-MGE3-GT",
+                "institution": "majority",
+                "round": "R1",
+                "theta": 1,
+                "admissibility_conditions": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m>=3",
+                  "o_1 > 1/m",
+                  "q=floor((m+1)/2)+1"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage without H",
+                  "equilibrium_form": "pure or mixed proposer strategies over payoff-equivalent coalitions; pure ballot strategies",
+                  "identity_symmetry": "symmetric uniform and identity-asymmetric coalition strategies are both retained",
+                  "parameter_location": "strict exclusion region",
+                  "payoff_or_outcome_difference": "coalition choice may change weak identity payoffs only; branch, outcome, H payoff, and proposer payoff are invariant",
+                  "agreement_delay_mixing": "none because 1-beta*q/m>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For recognized i: choose C_i^E of size q-1; set y=0, x_j=beta/m for j in C_i^E, x_j=0 otherwise, and r_i=1-beta*(q-1)/m.",
+                  "coalition_correspondence": "For each identity i, F_i is any probability distribution over subsets C_i^E of W\\{i} with size q-1. The set is singleton at m=3 and has multiple members at m>=4; all mixing is within the exclusion branch.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, use the pure weak-vote count prescribed by the public proposal: vote no if the quota passes without H; if pivotal vote yes iff y>=beta*o_1; if the quota fails regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "boundary_selection": "The selected branch is strictly cheaper for the proposer.",
+                  "proposal_mixing": "allowed only among payoff-equivalent coalition proposals inside the selected branch"
+                },
+                "belief_system": {
+                  "type_information": "theta=1 is common knowledge from t=0",
+                  "on_path": "Pr(theta=1)=1 after every on-path history",
+                  "off_path": "Pr(theta=1)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-M-R2-T1-MGE3"
+                ],
+                "existence_uniqueness_status": "unique branch, outcome, H payoff, and proposer payoff; full weak payoff vector is unique at m=3 and set-valued by coalition composition at m>=4",
+                "selection_status": "Phase A public benchmark only. Proposer payoff is maximized first and expected H payoff is minimized second; no symmetry restriction, no agreement-delay selection, and no public-private pairing is added.",
+                "assumptions_used": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m>=3",
+                  "o_1 > 1/m",
+                  "R2 majority continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C07",
+                  "N7A-C08",
+                  "N7A-C09",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*(q-1)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": {
+                    "type": "identity-indexed map; symmetry is not imposed when F_i varies",
+                    "by_weak_state_k": "C_k=(1/m)*(1-beta*(q-1)/m)+(beta/m^2)*sum_{i!=k} Pr_{C~F_i}(k in C_i^E)",
+                    "symmetric_uniform_special_case": "Use uniform F_i over size-q-1 coalitions for an anonymous symmetric benchmark.",
+                    "cross_identity_mean": "1/m"
+                  },
+                  "hegemon_payoff": "o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 0,
+                  "pass_without_hegemon": 1,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ]
+      }
+    },
+    "unanimity": {
+      "R2": {
+        "theta_0": [
+          {
+            "cell_id": "N7A-PUB-U-R2-T0-M2-CELL",
+            "domain_conditions": [
+              "theta=0 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_0 in this public game",
+              "m=2"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-U-R2-T0-M2",
+                "institution": "unanimity",
+                "round": "R2",
+                "theta": 0,
+                "admissibility_conditions": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m=2"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "offer boundary y=o_0; proposer strictly prefers agreement because 1-o_0>0",
+                  "payoff_or_outcome_difference": "none within the public correspondence",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For every recognized weak proposer i: y=o_0, every x_j=0, r_i=1-o_0.",
+                  "weak_nonproposers": "Vote yes after every proposal by terminal stage-undominance and T^Y at x_j=0.",
+                  "hegemon": "Before the simultaneous ballot, all pure weak strategies prescribe yes; vote yes iff y>=o_0; T^Y selects yes at equality. H never conditions on realized votes.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=0 is common knowledge from t=0",
+                  "on_path": "Pr(theta=0)=1 after every on-path history",
+                  "off_path": "Pr(theta=0)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [],
+                "existence_uniqueness_status": "unique assessment, outcome, and payoff vector",
+                "selection_status": "Phase A public benchmark only; no additional selection and no public-private pairing",
+                "assumptions_used": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "unanimity quota q=m+1",
+                  "R2 is terminal and contains no beta",
+                  "o_0<1 leaves strictly positive weak residual"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C03",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-o_0",
+                  "weak_nonproposer_pre_recognition_expected_value": "(1-o_0)/m",
+                  "hegemon_payoff": "o_0"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=2 native units; no beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-U-R2-T0-MGE3-CELL",
+            "domain_conditions": [
+              "theta=0 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_0 in this public game",
+              "m>=3"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-U-R2-T0-MGE3",
+                "institution": "unanimity",
+                "round": "R2",
+                "theta": 0,
+                "admissibility_conditions": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m>=3"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "offer boundary y=o_0; proposer strictly prefers agreement because 1-o_0>0",
+                  "payoff_or_outcome_difference": "none within the public correspondence",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For every recognized weak proposer i: y=o_0, every x_j=0, r_i=1-o_0.",
+                  "weak_nonproposers": "Vote yes after every proposal by terminal stage-undominance and T^Y at x_j=0.",
+                  "hegemon": "Before the simultaneous ballot, all pure weak strategies prescribe yes; vote yes iff y>=o_0; T^Y selects yes at equality. H never conditions on realized votes.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=0 is common knowledge from t=0",
+                  "on_path": "Pr(theta=0)=1 after every on-path history",
+                  "off_path": "Pr(theta=0)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [],
+                "existence_uniqueness_status": "unique assessment, outcome, and payoff vector",
+                "selection_status": "Phase A public benchmark only; no additional selection and no public-private pairing",
+                "assumptions_used": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "unanimity quota q=m+1",
+                  "R2 is terminal and contains no beta",
+                  "o_0<1 leaves strictly positive weak residual"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C03",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-o_0",
+                  "weak_nonproposer_pre_recognition_expected_value": "(1-o_0)/m",
+                  "hegemon_payoff": "o_0"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=2 native units; no beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ],
+        "theta_1": [
+          {
+            "cell_id": "N7A-PUB-U-R2-T1-M2-CELL",
+            "domain_conditions": [
+              "theta=1 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_1 in this public game",
+              "m=2"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-U-R2-T1-M2",
+                "institution": "unanimity",
+                "round": "R2",
+                "theta": 1,
+                "admissibility_conditions": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m=2"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "offer boundary y=o_1; proposer strictly prefers agreement because 1-o_1>0",
+                  "payoff_or_outcome_difference": "none within the public correspondence",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For every recognized weak proposer i: y=o_1, every x_j=0, r_i=1-o_1.",
+                  "weak_nonproposers": "Vote yes after every proposal by terminal stage-undominance and T^Y at x_j=0.",
+                  "hegemon": "Before the simultaneous ballot, all pure weak strategies prescribe yes; vote yes iff y>=o_1; T^Y selects yes at equality. H never conditions on realized votes.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=1 is common knowledge from t=0",
+                  "on_path": "Pr(theta=1)=1 after every on-path history",
+                  "off_path": "Pr(theta=1)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [],
+                "existence_uniqueness_status": "unique assessment, outcome, and payoff vector",
+                "selection_status": "Phase A public benchmark only; no additional selection and no public-private pairing",
+                "assumptions_used": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "unanimity quota q=m+1",
+                  "R2 is terminal and contains no beta",
+                  "o_1<1 leaves strictly positive weak residual"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C03",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-o_1",
+                  "weak_nonproposer_pre_recognition_expected_value": "(1-o_1)/m",
+                  "hegemon_payoff": "o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=2 native units; no beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-U-R2-T1-MGE3-CELL",
+            "domain_conditions": [
+              "theta=1 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_1 in this public game",
+              "m>=3"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-U-R2-T1-MGE3",
+                "institution": "unanimity",
+                "round": "R2",
+                "theta": 1,
+                "admissibility_conditions": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m>=3"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "offer boundary y=o_1; proposer strictly prefers agreement because 1-o_1>0",
+                  "payoff_or_outcome_difference": "none within the public correspondence",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For every recognized weak proposer i: y=o_1, every x_j=0, r_i=1-o_1.",
+                  "weak_nonproposers": "Vote yes after every proposal by terminal stage-undominance and T^Y at x_j=0.",
+                  "hegemon": "Before the simultaneous ballot, all pure weak strategies prescribe yes; vote yes iff y>=o_1; T^Y selects yes at equality. H never conditions on realized votes.",
+                  "proposal_mixing": "none"
+                },
+                "belief_system": {
+                  "type_information": "theta=1 is common knowledge from t=0",
+                  "on_path": "Pr(theta=1)=1 after every on-path history",
+                  "off_path": "Pr(theta=1)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [],
+                "existence_uniqueness_status": "unique assessment, outcome, and payoff vector",
+                "selection_status": "Phase A public benchmark only; no additional selection and no public-private pairing",
+                "assumptions_used": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "unanimity quota q=m+1",
+                  "R2 is terminal and contains no beta",
+                  "o_1<1 leaves strictly positive weak residual"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C03",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-o_1",
+                  "weak_nonproposer_pre_recognition_expected_value": "(1-o_1)/m",
+                  "hegemon_payoff": "o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=2 native units; no beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ]
+      },
+      "R1": {
+        "theta_0": [
+          {
+            "cell_id": "N7A-PUB-U-R1-T0-M2-CELL",
+            "domain_conditions": [
+              "theta=0 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_0 in this public game",
+              "m=2"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-U-R1-T0-M2",
+                "institution": "unanimity",
+                "round": "R1",
+                "theta": 0,
+                "admissibility_conditions": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m=2"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "all response cutoffs bind; agreement-delay margin is the strict interior value 1-beta>0",
+                  "payoff_or_outcome_difference": "none within the public correspondence",
+                  "agreement_delay_mixing": "none because 1-beta>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For every recognized weak proposer i: y=beta*o_0, every x_j=beta*(1-o_0)/m, r_i=1-beta*(m-1+o_0)/m.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta*(1-o_0)/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, if the public proposal induces all pure weak strategies to prescribe yes, vote yes iff y>=beta*o_0; if the prescribed weak profile makes failure certain regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "proposal_mixing": "none",
+                  "identity_roles": "no cooperative-versus-difficult proposer convention survives because immediate agreement beats delay strictly"
+                },
+                "belief_system": {
+                  "type_information": "theta=0 is common knowledge from t=0",
+                  "on_path": "Pr(theta=0)=1 after every on-path history",
+                  "off_path": "Pr(theta=0)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-U-R2-T0-M2"
+                ],
+                "existence_uniqueness_status": "unique assessment, outcome, and full payoff vector",
+                "selection_status": "Phase A public benchmark only; no additional selection and no public-private pairing",
+                "assumptions_used": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m=2",
+                  "R2 unanimity continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C10",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*(m-1+o_0)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": "(1-beta*o_0)/m",
+                  "hegemon_payoff": "beta*o_0"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-U-R1-T0-MGE3-CELL",
+            "domain_conditions": [
+              "theta=0 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_0 in this public game",
+              "m>=3"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-U-R1-T0-MGE3",
+                "institution": "unanimity",
+                "round": "R1",
+                "theta": 0,
+                "admissibility_conditions": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m>=3"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "all response cutoffs bind; agreement-delay margin is the strict interior value 1-beta>0",
+                  "payoff_or_outcome_difference": "none within the public correspondence",
+                  "agreement_delay_mixing": "none because 1-beta>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For every recognized weak proposer i: y=beta*o_0, every x_j=beta*(1-o_0)/m, r_i=1-beta*(m-1+o_0)/m.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta*(1-o_0)/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, if the public proposal induces all pure weak strategies to prescribe yes, vote yes iff y>=beta*o_0; if the prescribed weak profile makes failure certain regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "proposal_mixing": "none",
+                  "identity_roles": "no cooperative-versus-difficult proposer convention survives because immediate agreement beats delay strictly"
+                },
+                "belief_system": {
+                  "type_information": "theta=0 is common knowledge from t=0",
+                  "on_path": "Pr(theta=0)=1 after every on-path history",
+                  "off_path": "Pr(theta=0)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-U-R2-T0-MGE3"
+                ],
+                "existence_uniqueness_status": "unique assessment, outcome, and full payoff vector",
+                "selection_status": "Phase A public benchmark only; no additional selection and no public-private pairing",
+                "assumptions_used": [
+                  "theta=0 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_0 in this public game",
+                  "m>=3",
+                  "R2 unanimity continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C10",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*(m-1+o_0)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": "(1-beta*o_0)/m",
+                  "hegemon_payoff": "beta*o_0"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ],
+        "theta_1": [
+          {
+            "cell_id": "N7A-PUB-U-R1-T1-M2-CELL",
+            "domain_conditions": [
+              "theta=1 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_1 in this public game",
+              "m=2"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-U-R1-T1-M2",
+                "institution": "unanimity",
+                "round": "R1",
+                "theta": 1,
+                "admissibility_conditions": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m=2"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "all response cutoffs bind; agreement-delay margin is the strict interior value 1-beta>0",
+                  "payoff_or_outcome_difference": "none within the public correspondence",
+                  "agreement_delay_mixing": "none because 1-beta>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For every recognized weak proposer i: y=beta*o_1, every x_j=beta*(1-o_1)/m, r_i=1-beta*(m-1+o_1)/m.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta*(1-o_1)/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, if the public proposal induces all pure weak strategies to prescribe yes, vote yes iff y>=beta*o_1; if the prescribed weak profile makes failure certain regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "proposal_mixing": "none",
+                  "identity_roles": "no cooperative-versus-difficult proposer convention survives because immediate agreement beats delay strictly"
+                },
+                "belief_system": {
+                  "type_information": "theta=1 is common knowledge from t=0",
+                  "on_path": "Pr(theta=1)=1 after every on-path history",
+                  "off_path": "Pr(theta=1)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-U-R2-T1-M2"
+                ],
+                "existence_uniqueness_status": "unique assessment, outcome, and full payoff vector",
+                "selection_status": "Phase A public benchmark only; no additional selection and no public-private pairing",
+                "assumptions_used": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m=2",
+                  "R2 unanimity continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C10",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*(m-1+o_1)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": "(1-beta*o_1)/m",
+                  "hegemon_payoff": "beta*o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7A-PUB-U-R1-T1-MGE3-CELL",
+            "domain_conditions": [
+              "theta=1 is public from t=0",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "m=N-1 is an integer and m>=2",
+              "write o=o_1 in this public game",
+              "m>=3"
+            ],
+            "existence_status": "exists",
+            "public_equilibrium_records": [
+              {
+                "public_equilibrium_id": "N7A-PUB-U-R1-T1-MGE3",
+                "institution": "unanimity",
+                "round": "R1",
+                "theta": 1,
+                "admissibility_conditions": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m>=3"
+                ],
+                "branch_classification": {
+                  "outcome_branch": "immediate passage with H",
+                  "equilibrium_form": "unique pure proposal and pure ballot strategies",
+                  "identity_symmetry": "symmetric",
+                  "parameter_location": "all response cutoffs bind; agreement-delay margin is the strict interior value 1-beta>0",
+                  "payoff_or_outcome_difference": "none within the public correspondence",
+                  "agreement_delay_mixing": "none because 1-beta>0",
+                  "belief_only_multiplicity": "none"
+                },
+                "strategy_profile": {
+                  "proposer": "For every recognized weak proposer i: y=beta*o_1, every x_j=beta*(1-o_1)/m, r_i=1-beta*(m-1+o_1)/m.",
+                  "weak_nonproposers": "Vote yes iff x_j>=beta*(1-o_1)/m; T^Y selects yes at equality.",
+                  "hegemon": "Before the simultaneous ballot, if the public proposal induces all pure weak strategies to prescribe yes, vote yes iff y>=beta*o_1; if the prescribed weak profile makes failure certain regardless, T^Y selects yes. H never conditions on realized votes.",
+                  "proposal_mixing": "none",
+                  "identity_roles": "no cooperative-versus-difficult proposer convention survives because immediate agreement beats delay strictly"
+                },
+                "belief_system": {
+                  "type_information": "theta=1 is common knowledge from t=0",
+                  "on_path": "Pr(theta=1)=1 after every on-path history",
+                  "off_path": "Pr(theta=1)=1 after every zero-probability proposal and vote history; no free type belief remains",
+                  "multiplicity": "none: belief differences do not generate additional public assessments"
+                },
+                "source_public_continuation_ids": [
+                  "N7A-PUB-U-R2-T1-MGE3"
+                ],
+                "existence_uniqueness_status": "unique assessment, outcome, and full payoff vector",
+                "selection_status": "Phase A public benchmark only; no additional selection and no public-private pairing",
+                "assumptions_used": [
+                  "theta=1 is public from t=0",
+                  "beta in (0,1)",
+                  "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                  "m=N-1 is an integer and m>=2",
+                  "write o=o_1 in this public game",
+                  "m>=3",
+                  "R2 unanimity continuation is the same-rule same-type public record cited in source_public_continuation_ids",
+                  "beta enters exactly once when R2 enters R1",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "N7A-C01",
+                  "N7A-C04",
+                  "N7A-C05",
+                  "N7A-C06",
+                  "N7A-C10",
+                  "N7A-C11",
+                  "N7A-C12",
+                  "N7A-C13"
+                ],
+                "payoff_vector": {
+                  "recognized_proposer_payoff": "1-beta*(m-1+o_1)/m",
+                  "weak_nonproposer_pre_recognition_expected_value": "(1-beta*o_1)/m",
+                  "hegemon_payoff": "beta*o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "t=1 current units; each R2 continuation threshold contains exactly one beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ]
+      }
+    }
+  },
+  "informational_rent_cells": {
+    "majority": null,
+    "unanimity": null
+  },
+  "informational_rent_contrast_cells": null
+}

@@ -69,9 +69,9 @@ identical_utf8_text <- function(x, y) {
 }
 
 expected_beta_primitive <- "Desconto       beta in (0,1)"
-expected_contract_hash <- "70fdb6ade8f3b94e69e3b0ea96d1c9fdfe9179439634fee18be028ee7eb1f2f6"
+expected_contract_hash <- "98e74593c21b3326c1fd293de953130cf1d4940a942a8a8c3435247c7c9005b1"
 expected_contract_region_hashes <- c(
-  authorization_header = "fbfffa005bdb0c2180de4eb79cbb503f95bed87ebbfcb4ec84fdf7cd35d10ce6",
+  authorization_header = "889fae53945409cf0735b012286692da767816604f2e868349ea7d17bb1209e1",
   beta_primitive = "bb7ee3390b0f63a4d293fe8deab7d33fea725d280ad43121c615375f96bf41b4",
   delay_cost_decision = "3c4483859bc7cdaf36c8fe3c4a1c2d54a278e40980eacdaba2fb9b684ebb8f2a"
 )
@@ -149,9 +149,30 @@ is_valid_reopened_authorization <- function(text) {
       regions$authorization_header,
       fixed = TRUE
     ) &&
-    grepl("`N7`, Goal 4, Goal 5", regions$authorization_header, fixed = TRUE) &&
+    grepl("O Goal 3 fechou com `N6` `pass/frozen`", regions$authorization_header, fixed = TRUE) &&
+    grepl("Fase A do Goal 4", regions$authorization_header, fixed = TRUE) &&
+    grepl("benchmarks", regions$authorization_header, fixed = TRUE) &&
+    grepl("`RI_M`, `RI_U` ou", regions$authorization_header, fixed = TRUE) &&
+    grepl("`DeltaRI`", regions$authorization_header, fixed = TRUE) &&
+    grepl("`N7` permanece `pending` e `unfrozen`", regions$authorization_header, fixed = TRUE) &&
+    grepl("nova autoriza", regions$authorization_header, fixed = TRUE) &&
+    grepl("autoral expl", regions$authorization_header, fixed = TRUE) &&
+    grepl("congelamento de `N7`", regions$authorization_header, fixed = TRUE) &&
+    grepl("Goal 5", regions$authorization_header, fixed = TRUE) &&
     grepl("fronteira `beta=1`", regions$authorization_header, fixed = TRUE) &&
-    grepl("manuscrito.", regions$authorization_header, fixed = TRUE)
+    grepl("manuscrito continuam", regions$authorization_header, fixed = TRUE) &&
+    grepl("autorizados", regions$authorization_header, fixed = TRUE)
+}
+
+is_valid_phaseA_cadence <- function(text) {
+  grepl("Goal 4, Fase A", text, fixed = TRUE) &&
+    grepl("Gate autoral entre as Fases A e B", text, fixed = TRUE) &&
+    grepl("Goal 4, Fase B", text, fixed = TRUE) &&
+    grepl("nenhuma renda", text, fixed = TRUE) &&
+    grepl("calculada e `N7`", text, fixed = TRUE) &&
+    grepl("permanece `pending` e `unfrozen`", text, fixed = TRUE) &&
+    grepl("Somente nova autoriza", text, fixed = TRUE) &&
+    grepl("calcular `RI_M`, `RI_U` e `DeltaRI`", text, fixed = TRUE)
 }
 
 is_valid_strict_beta_contract <- function(text) {
@@ -171,7 +192,8 @@ is_valid_strict_beta_contract <- function(text) {
 is_valid_contract_semantics <- function(text) {
   identical(sha256_text(text), expected_contract_hash) &&
     is_valid_reopened_authorization(text) &&
-    is_valid_strict_beta_contract(text)
+    is_valid_strict_beta_contract(text) &&
+    is_valid_phaseA_cadence(text)
 }
 
 script_argument <- grep("^--file=", commandArgs(trailingOnly = FALSE), value = TRUE)
@@ -237,7 +259,7 @@ contract_path <- normalizePath(
 )
 assert_true(
   identical(sha256_file(contract_path), expected_contract_hash),
-  "The canonical contract bytes differ from the author-approved strict-beta snapshot."
+  "The canonical contract bytes differ from the author-approved N7 Phase A snapshot."
 )
 contract_text <- paste0(
   paste(readLines(contract_path, encoding = "UTF-8", warn = FALSE), collapse = "\n"),
@@ -2149,14 +2171,14 @@ assert_true(
 )
 
 expanded_authorization <- sub(
-  "`N7`, Goal 4, Goal 5, a fronteira `beta=1`",
-  "nenhuma fronteira adicional",
+  "`DeltaRI`. Ao fim da Fase A",
+  "`DeltaRI`, que pode ser calculado na Fase A. Ao fim da Fase A",
   contract_text,
   fixed = TRUE
 )
 assert_true(
   !is_valid_reopened_authorization(expanded_authorization),
-  "Removing the explicit N7, Goals 4-5, beta=1, and manuscript exclusions must fail."
+  "Expanding Phase A to informational-rent calculation must fail."
 )
 
 game_reviewer_paraphrases <- list(
@@ -2174,7 +2196,7 @@ game_reviewer_paraphrases <- list(
   ),
   list(
     region = "header",
-    text = "AUTORIZAÇÃO POSTERIOR: o Goal 4 pode começar por N7."
+    text = "AUTORIZAÇÃO POSTERIOR: a Fase B e as rendas podem começar sem novo gate."
   ),
   list(
     region = "delay",
@@ -2182,13 +2204,13 @@ game_reviewer_paraphrases <- list(
   ),
   list(
     region = "header",
-    text = "DECISÃO POSTERIOR: desconto unitário integra o benchmark e N7 está liberado."
+    text = "DECISÃO POSTERIOR: desconto unitário integra o benchmark e N7 pode ser congelado na Fase A."
   )
 )
 formal_reviewer_mutations <- list(
   list(
     region = "header",
-    text = "**Autorizacao corrente adicional:** N7, Goal 4 e beta=1 estao autorizados agora."
+    text = "**Autorizacao corrente adicional:** Fase B, freeze de N7 e beta=1 estao autorizados agora."
   ),
   list(
     region = "delay",
@@ -2236,17 +2258,16 @@ r3_contract_mutations <- list(
     )
   },
   n7_authorization_in_header = function(text) {
-    insert_after_matching_line(
+    insert_in_authorization_header(
       text,
-      function(line) identical(line, "manuscrito."),
-      "Autorizacao adicional: N7 pode comecar imediatamente."
+      "Autorizacao adicional: a Fase B e o freeze de N7 podem comecar imediatamente."
     )
   },
   n7_authorization_in_section_11 = function(text) {
     insert_before_matching_line(
       text,
       function(line) startsWith(line, "## 12. Invalida"),
-      "Autorizacao adicional da Secao 11: N7 e Goal 4 estao liberados."
+      "Autorizacao adicional da Secao 11: Fase B, rendas e freeze de N7 estao liberados."
     )
   },
   beta_exception_in_section_12 = function(text) {
@@ -2266,7 +2287,7 @@ r3_contract_mutations <- list(
   contradiction_inside_hashed_header = function(text) {
     insert_in_authorization_header(
       text,
-      "Autorizacao corrente adicional: N7, Goal 4 e beta=1 estao autorizados."
+      "Autorizacao corrente adicional: Fase B, freeze de N7 e beta=1 estao autorizados."
     )
   },
   imported_premise_inside_hashed_delay_decision = function(text) {
@@ -2389,7 +2410,7 @@ assert_true(
   identical(sort(topologically_ready_nodes(nodes)), "N7"),
   paste0(
     "After N6 freezes, exactly N7 must be topologically ready. ",
-    "Topological readiness does not authorize N7 or Goal 4."
+    "Topological readiness does not authorize Phase B, rents, or N7 freeze."
   )
 )
 assert_true(
@@ -2577,8 +2598,8 @@ cat(
 cat(
   paste0(
     "PASS: strict o_1 < 1 and beta < 1 contract with N1/N2/N3/N4/N6 pass/frozen on exact reviewed artifacts; ",
-    "Goal 2 closes at N4 and Goal 3 closes at N6; N7 is only topologically ready, while N7, Goals 4-5, beta=1 ",
-    "extensions, and manuscript migration remain unauthorized. ",
+    "Goal 2 closes at N4 and Goal 3 closes at N6; N7 Phase A public benchmarks are authorized while N7 remains ",
+    "pending/unfrozen; Phase B comparisons, RI_M, RI_U, DeltaRI, N7 freeze, Goal 5, beta=1 extensions, and manuscript migration remain unauthorized. ",
     "Typed coverage cells for empty and ",
     "nonempty correspondences, independent RI_M and RI_U with a separate DeltaRI ",
     "contrast, role-typed public payoffs, terminal complete-information benchmark, ",

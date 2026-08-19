@@ -18,8 +18,16 @@ seguindo integralmente os gates da Seção 11. O Goal 1 fechou com esses três n
 execução do Goal 2 exclusivamente para `N4`. O Goal 2 fechou com `N4`
 `pass/frozen`. Em decisão autoral posterior de 2026-08-19: Goal 2 fechado;
 Goal 3 autorizado pelo autor exclusivamente para `N6`. Esta autorização não
-alcança `N7`, Goal 4, Goal 5, a fronteira `beta=1` nem qualquer migração para
-manuscrito.
+alcançava `N7`, Goal 4, Goal 5, a fronteira `beta=1` nem qualquer migração para
+manuscrito. O Goal 3 fechou com `N6` `pass/frozen`. Em decisão autoral
+posterior de 2026-08-19, o autor abriu a **Fase A do Goal 4** exclusivamente
+para resolver, classificar e submeter a revisão independente os benchmarks
+públicos de `N7`. Essa autorização não alcança a comparação dos benchmarks
+públicos com os registros privados de `N6`, nem o cálculo de `RI_M`, `RI_U` ou
+`DeltaRI`. Ao fim da Fase A, `N7` permanece `pending` e `unfrozen`; a Fase B
+depende de nova autorização autoral explícita sobre quais comparações são
+substantivamente relevantes. O congelamento de `N7`, o Goal 5, a fronteira
+`beta=1` e qualquer migração para manuscrito continuam não autorizados.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
 
@@ -1102,14 +1110,30 @@ apenas aponta para ela.
    do Goal 2. Seu ciclo revisa simultaneamente o próprio `N6` e a integração da
    cadeia privada. Depois dos dois PASS, `N1`, `N2`, `N3`, `N4` e `N6` formam
    o modelo principal congelado.
-6. **Goal 4:** `N7` só começa com `N6` congelado e após gate autoral do Goal 3.
-   Recebe ciclo exclusivo, que revisa os jogos públicos, a ligação aos registros
-   privados congelados e as rendas. Finding sobre resultado, multiplicidade ou
+6. **Goal 4, Fase A — benchmarks públicos:** `N7` só começa com `N6` congelado
+   e após gate autoral do Goal 3. A Fase A resolve os jogos públicos de R2 antes
+   dos de R1, classifica a correspondência completa e submete o mesmo candidato
+   intermediário hashado a um ciclo exclusivo com os dois revisores. Nessa fase,
+   a interface privada de `N6` é apenas dependência arquitetural congelada: não
+   é combinada com os registros públicos, nenhuma renda é calculada e `N7`
+   permanece `pending` e `unfrozen`. Finding sobre resultado, multiplicidade ou
    inexistência no benchmark não reabre o modelo principal; erro em fonte
-   compartilhada segue a Seção 12. O Goal 4 só fecha após os dois PASS e o aval
-   do autor.
-7. **Goal 5:** a migração para `formal_model_v6.Rmd` só pode começar depois dos
-   dois PASS do ciclo de `N7` e de autorização explícita do autor.
+   compartilhada segue a Seção 12.
+7. **Gate autoral entre as Fases A e B:** depois dos dois PASS `0/0/0` sobre o
+   mesmo hash intermediário da Fase A, o trabalho para e o autor recebe a
+   correspondência pública e sua classificação. Somente nova autorização
+   autoral explícita define quais comparações são substantivamente relevantes e
+   abre a Fase B. Prontidão topológica, conclusão da Fase A ou parecer favorável
+   não substituem esse gate.
+8. **Goal 4, Fase B — comparação e rendas:** somente após o gate do item 7, a
+   Fase B pode ligar os benchmarks públicos aos registros privados congelados,
+   executar as comparações autorizadas e calcular `RI_M`, `RI_U` e `DeltaRI`.
+   O hash completo de `N7` retorna aos dois revisores; `N7` só pode passar e ser
+   congelado depois dos dois PASS e do aval do autor, conforme as regras gerais
+   desta seção.
+9. **Goal 5:** a migração para `formal_model_v6.Rmd` só pode começar depois dos
+   dois PASS do ciclo completo de `N7`, de seu congelamento e de autorização
+   explícita do autor.
 
 Todo finding segue a classificação da Seção 11.1. Apenas reparo técnico ou
 reparo substantivo autorizado pelo autor pode gerar novo hash; todo hash novo
