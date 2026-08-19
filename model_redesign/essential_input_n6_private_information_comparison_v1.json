@@ -1,0 +1,1226 @@
+{
+  "schema_ref": "private_information_comparison_v1",
+  "function_of": {
+    "name": "entry_belief",
+    "domain": "[0,1]"
+  },
+  "private_rule_cells": {
+    "majority": [
+      {
+        "cell_id": "N3-CELL-COMPLETE-MAJORITY",
+        "domain_conditions": [
+          "nu in [0,1]",
+          "N is an integer and N >= 3",
+          "m = N-1",
+          "q = floor(N/2)+1",
+          "beta in (0,1)",
+          "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+          "N1 is frozen at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+        ],
+        "existence_status": "exists",
+        "private_rule_records": [
+          {
+            "private_rule_record_id": "N6-PRIVATE-MAJORITY-N3-EQ-COMPLETE-FAMILY-01",
+            "institution": "majority",
+            "admissibility_conditions": [
+              "all primitive restrictions in N3-CELL-COMPLETE-MAJORITY hold",
+              "for each recognized proposer i, F_i is a probability distribution supported on A_i_star(nu)",
+              "A_i_star applies proposer-payoff maximization first and the authorized minimum-expected-H tie-break second",
+              "ballot strategies are pure even when proposer strategies F_i are mixed",
+              "no symmetry restriction is imposed across proposer identities"
+            ],
+            "source_equilibrium_cell_id": "N3-CELL-COMPLETE-MAJORITY",
+            "source_equilibrium_id": "N3-EQ-COMPLETE-FAMILY-01",
+            "source_interface_hash": "sha256:63552db82d2434e3016341c9e3db928bca78707a9e74b5fb0b9cd3f9566a71ee",
+            "private_payoff_vector": {
+              "theta_0": "C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+              "theta_1": "C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]"
+            },
+            "private_outcome_distribution": {
+              "pass_with_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+              "pass_without_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+              "failure": 0,
+              "delay": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]"
+            },
+            "selection_status": "full family of identity-indexed F_i distributions on the authorized lexicographic argmax A_i_star is preserved; no symmetric or Markov restriction, no belief restriction, and no ad hoc or additional equilibrium selection is added",
+            "checks_performed": {
+              "source_checks": [
+                "N3-C01 weak vote cutoff and T^Y",
+                "N3-C02 complete H IC including nonpivotal y versus y+o_theta",
+                "N3-C03 proposer payoff for every feasible proposal and vote profile",
+                "N3-C04 P2 exhaustive reduction to E_i, S_i, P_i, and R_i(nu)",
+                "N3-C05 P0 full-pie result and strict elimination of on-path slack",
+                "N3-C06 P1 strict hedge dominance including off-path proposals",
+                "N3-C07 P1a no on-path passage without H with y>0",
+                "N3-C08 P2 strict-region boundaries",
+                "N3-C09 P2 equality boundaries and proposal tie-break",
+                "N3-C10 P2 D>0 eliminates deliberate rejection and slack while screening delay survives",
+                "N3-C11 proposal beliefs after every individual zero-probability proposal",
+                "N3-C12 P7 public H vote and off-path posterior",
+                "N3-C13 P6 on-path refinement effect",
+                "N3-C14 exactly-one discount transport",
+                "N3-C15 existence, completeness, identity-indexed multiplicity, and no ad hoc selection",
+                "N3-C16 strict o_1<1 domain restriction preserves the N3 correspondence on the remaining domain",
+                "N3-C17 strict beta<1 proves D>0; beta=1 is an excluded future face and no baseline formula imports it"
+              ],
+              "n6_checks": ["N6-C01 exact frozen predecessor hash and source-record transport", "N6-C02 one-to-one private-record coverage for each rule", "N6-C03 common-refinement cell construction and Cartesian pairing", "N6-C04 preservation of none cells and nonexistence certificates", "N6-C05 joint type-payoff and outcome-distribution comparison", "N6-C06 delay and multiplicity reported without equilibrium selection", "N6-C07 no N7 benchmark, informational-rent, or formation calculation"]
+            }
+          }
+        ],
+        "nonexistence_certificate": null
+      }
+    ],
+    "unanimity": [
+      {
+        "cell_id": "N4-CELL-M2-NU0",
+        "domain_conditions": "m=2, nu=0, beta in (0,1), 0<o_0<o_1<1, and o_1<=y_bar<=1. Define a0=beta*(1-o_0)/2, z=beta*(1-o_1)/2, p=1-beta*o_1-z, u0=1-beta*o_0-z, q2=1-beta*o_0-a0, k2=max{0,1-beta*o_1-a0}, e2=z, s=z, and L2=max{k2,e2}.",
+        "existence_status": "exists",
+        "private_rule_records": [
+          {
+            "private_rule_record_id": "N6-PRIVATE-UNANIMITY-N4-EQ-COMPLETE-M2-NU0",
+            "institution": "unanimity",
+            "admissibility_conditions": "Each proposer identity chooses one local option: low-only passage; pooling passage; delay when k2<=a0; or a low-only/delay proposal mixture when k2<=a0. Low-only support has beta*o_0<=Y_i<beta*o_1, x_j>=z, L2<=R_i<=u0, feasibility, and common (R_i,Y_i). Pooling support has Y_i>=beta*o_1, x_j>=z, L2<=R_i<=p, feasibility, and common (R_i,Y_i); equality R_i=L2 requires Y_i=beta*o_1. The local low-only/delay mixture uses R_i=a0 and Y_i=beta*o_0. Pooling never mixes locally with another branch.",
+            "source_equilibrium_cell_id": "N4-CELL-M2-NU0",
+            "source_equilibrium_id": "N4-EQ-COMPLETE-M2-NU0",
+            "source_interface_hash": "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d",
+            "private_payoff_vector": {
+              "theta_0": "(1/2)*sum_i[lambda_i^L*E(y_i|L)+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0]",
+              "theta_1": "(1/2)*sum_i[lambda_i^L*beta*o_1+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]"
+            },
+            "private_outcome_distribution": {
+              "pass_with_hegemon": "1",
+              "pass_without_hegemon": "0",
+              "failure": "0",
+              "delay": "D=(1/2)*sum_i lambda_i^D"
+            },
+            "selection_status": "Within each identity, accepted support has common tie-break-minimal Y_i. The low-only/delay mixture is retained only at equal proposer and expected-H payoffs. Pooling cannot mix locally with low-only or delay. No additional selection is imposed.",
+            "checks_performed": {
+              "source_checks": [
+                "P0 slack audit",
+                "P3 endpoint and separation audit",
+                "P4 on-path Bayes audit",
+                "P6 dynamic stage-undominance audit",
+                "P7 H-vote update audit",
+                "m=2 exact guarantee audit",
+                "Off-path nonpivotal H-separation audit",
+                "Proposal-level lower-H tie audit",
+                "Identity-product closure audit",
+                "True-prior deviation audit",
+                "Atomless pointwise/Bayes-a.e. audit",
+                "Exactly-once discount audit"
+              ],
+              "n6_checks": ["N6-C01 exact frozen predecessor hash and source-record transport", "N6-C02 one-to-one private-record coverage for each rule", "N6-C03 common-refinement cell construction and Cartesian pairing", "N6-C04 preservation of none cells and nonexistence certificates", "N6-C05 joint type-payoff and outcome-distribution comparison", "N6-C06 delay and multiplicity reported without equilibrium selection", "N6-C07 no N7 benchmark, informational-rent, or formation calculation"]
+            }
+          }
+        ],
+        "nonexistence_certificate": null
+      },
+      {
+        "cell_id": "N4-CELL-M2-LOW",
+        "domain_conditions": "m=2 and 0<nu<=nu_2, where nu_2=(o_1-o_0)/(1-o_0). Define a0, z, d=(1-nu)*a0, g=d, p, q2, k2, e2=min{z,(1-nu)*q2}, s=(1-nu)*z, and L2=max{k2,e2}.",
+        "existence_status": "exists",
+        "private_rule_records": [
+          {
+            "private_rule_record_id": "N6-PRIVATE-UNANIMITY-N4-EQ-COMPLETE-M2-LOW",
+            "institution": "unanimity",
+            "admissibility_conditions": "Pooling always exists. Its support has Y_i>=beta*o_1, x_j>=z, L2<=R_i<=p, feasibility, and common (R_i,Y_i). For nu<1, equality R_i=L2 is excluded exactly when L2=(1-nu)*q2<z; every retained equality requires Y_i=beta*o_1. Delay exists iff k2<=d. Each identity selects pure pooling or, when admissible, pure delay; no within-identity cross-branch mixture survives in this low N2 region.",
+            "source_equilibrium_cell_id": "N4-CELL-M2-LOW",
+            "source_equilibrium_id": "N4-EQ-COMPLETE-M2-LOW",
+            "source_interface_hash": "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d",
+            "private_payoff_vector": {
+              "theta_0": "(1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0]",
+              "theta_1": "(1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]"
+            },
+            "private_outcome_distribution": {
+              "pass_with_hegemon": "1-D*nu",
+              "pass_without_hegemon": "0",
+              "failure": "D*nu",
+              "delay": "D=(1/2)*sum_i lambda_i^D"
+            },
+            "selection_status": "Accepted support uses common tie-break-minimal Y_i. Low-H equality bounds are open as stated. Delay cannot mix locally with pooling, but different proposer identities may choose different pure local branches.",
+            "checks_performed": {
+              "source_checks": [
+                "P0 slack audit",
+                "P3 pure-separation exhaustion",
+                "P4 on-path Bayes audit",
+                "P6 dynamic stage-undominance audit",
+                "P7 H-vote update audit",
+                "m=2 exact guarantee audit",
+                "Off-path nonpivotal H-separation audit",
+                "Exactly-one-weak-rejector delay audit",
+                "Proposal-level lower-H tie audit",
+                "Identity-product closure audit",
+                "True-prior deviation audit",
+                "Atomless pointwise/Bayes-a.e. audit",
+                "Exactly-once discount audit"
+              ],
+              "n6_checks": ["N6-C01 exact frozen predecessor hash and source-record transport", "N6-C02 one-to-one private-record coverage for each rule", "N6-C03 common-refinement cell construction and Cartesian pairing", "N6-C04 preservation of none cells and nonexistence certificates", "N6-C05 joint type-payoff and outcome-distribution comparison", "N6-C06 delay and multiplicity reported without equilibrium selection", "N6-C07 no N7 benchmark, informational-rent, or formation calculation"]
+            }
+          }
+        ],
+        "nonexistence_certificate": null
+      },
+      {
+        "cell_id": "N4-CELL-M2-HIGH",
+        "domain_conditions": "m=2 and nu_2<nu<=1. Define a0, z, d=(1-nu)*a0<z, g=z, p, q2, k2, e2=min{z,(1-nu)*q2}, s=(1-nu)*z, and L2=max{k2,e2}.",
+        "existence_status": "exists",
+        "private_rule_records": [
+          {
+            "private_rule_record_id": "N6-PRIVATE-UNANIMITY-N4-EQ-COMPLETE-M2-HIGH",
+            "institution": "unanimity",
+            "admissibility_conditions": "Pooling always exists. Support has Y_i>=beta*o_1, x_j>=z, L2<=R_i<=p, feasibility, and common (R_i,Y_i). For nu<1, equality R_i=L2 is excluded only when L2=(1-nu)*q2<z; every retained equality requires Y_i=beta*o_1. Delay exists iff k2<=z. When delay exists, a local pooling/delay mixture is admissible exactly at R_i=z and Y_i=beta*o_1. Pure pooling and pure delay are also retained.",
+            "source_equilibrium_cell_id": "N4-CELL-M2-HIGH",
+            "source_equilibrium_id": "N4-EQ-COMPLETE-M2-HIGH",
+            "source_interface_hash": "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d",
+            "private_payoff_vector": {
+              "theta_0": "(1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]",
+              "theta_1": "(1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]"
+            },
+            "private_outcome_distribution": {
+              "pass_with_hegemon": "1",
+              "pass_without_hegemon": "0",
+              "failure": "0",
+              "delay": "D=(1/2)*sum_i lambda_i^D"
+            },
+            "selection_status": "Accepted support has common tie-break-minimal Y_i. The local pooling/delay mixture survives only at equal proposer payoff z and equal H payoff beta*o_1. No extra selection is used.",
+            "checks_performed": {
+              "source_checks": [
+                "P0 slack audit",
+                "P3 pure-separation exhaustion",
+                "P4 on-path Bayes audit",
+                "P6 dynamic stage-undominance audit",
+                "P7 H-vote update audit",
+                "m=2 exact guarantee audit",
+                "Off-path nonpivotal H-separation audit",
+                "Exactly-one-weak-rejector delay audit",
+                "Cross-branch proposal-mixing audit",
+                "Proposal-level lower-H tie audit",
+                "Identity-product closure audit",
+                "True-prior deviation audit",
+                "Atomless pointwise/Bayes-a.e. audit",
+                "Exactly-once discount audit"
+              ],
+              "n6_checks": ["N6-C01 exact frozen predecessor hash and source-record transport", "N6-C02 one-to-one private-record coverage for each rule", "N6-C03 common-refinement cell construction and Cartesian pairing", "N6-C04 preservation of none cells and nonexistence certificates", "N6-C05 joint type-payoff and outcome-distribution comparison", "N6-C06 delay and multiplicity reported without equilibrium selection", "N6-C07 no N7 benchmark, informational-rent, or formation calculation"]
+            }
+          }
+        ],
+        "nonexistence_certificate": null
+      },
+      {
+        "cell_id": "N4-CELL-MGE3-NU0",
+        "domain_conditions": "m>=3, nu=0, beta in (0,1), 0<o_0<o_1<1, and o_1<=y_bar<=1. Define a0, z, p, u0, s=(1-nu)*z=z, and L3=s=z.",
+        "existence_status": "exists",
+        "private_rule_records": [
+          {
+            "private_rule_record_id": "N6-PRIVATE-UNANIMITY-N4-EQ-COMPLETE-MGE3-NU0",
+            "institution": "unanimity",
+            "admissibility_conditions": "Each identity chooses low-only passage, pooling passage, delay, or the low-only/delay boundary mixture. Low-only support has beta*o_0<=Y_i<beta*o_1, every x_j>=z, z<=R_i<=u0, feasibility, and common (R_i,Y_i). Pooling support has Y_i>=beta*o_1, every x_j>=z, z<=R_i<=p, feasibility, and common (R_i,Y_i); equality R_i=z requires Y_i=beta*o_1. Delay always exists. The local low-only/delay mixture uses R_i=a0 and Y_i=beta*o_0.",
+            "source_equilibrium_cell_id": "N4-CELL-MGE3-NU0",
+            "source_equilibrium_id": "N4-EQ-COMPLETE-MGE3-NU0",
+            "source_interface_hash": "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d",
+            "private_payoff_vector": {
+              "theta_0": "(1/m)*sum_i[lambda_i^L*E(y_i|L)+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0]",
+              "theta_1": "(1/m)*sum_i[lambda_i^L*beta*o_1+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]"
+            },
+            "private_outcome_distribution": {
+              "pass_with_hegemon": "1",
+              "pass_without_hegemon": "0",
+              "failure": "0",
+              "delay": "D=(1/m)*sum_i lambda_i^D"
+            },
+            "selection_status": "Accepted support has common tie-break-minimal Y_i. The low-only/delay tie has equal proposer and expected-H payoffs. Pooling cannot mix locally with either lower-H branch.",
+            "checks_performed": {
+              "source_checks": [
+                "P0 slack audit",
+                "P3 endpoint and separation audit",
+                "P4 on-path Bayes audit",
+                "P6 dynamic stage-undominance audit",
+                "P7 H-vote update audit",
+                "m>=3 exact guarantee audit",
+                "Off-path nonpivotal H-separation audit",
+                "Exactly-one and multiple-weak-rejector delay audit",
+                "Cross-branch proposal-mixing audit",
+                "Proposal-level lower-H tie audit",
+                "Identity-product closure audit",
+                "True-prior deviation audit",
+                "Atomless pointwise/Bayes-a.e. audit",
+                "Exactly-once discount audit"
+              ],
+              "n6_checks": ["N6-C01 exact frozen predecessor hash and source-record transport", "N6-C02 one-to-one private-record coverage for each rule", "N6-C03 common-refinement cell construction and Cartesian pairing", "N6-C04 preservation of none cells and nonexistence certificates", "N6-C05 joint type-payoff and outcome-distribution comparison", "N6-C06 delay and multiplicity reported without equilibrium selection", "N6-C07 no N7 benchmark, informational-rent, or formation calculation"]
+            }
+          }
+        ],
+        "nonexistence_certificate": null
+      },
+      {
+        "cell_id": "N4-CELL-MGE3-LOW",
+        "domain_conditions": "m>=3 and 0<nu<=nu_2. Define d=(1-nu)*a0>=z, g=d, p, s=(1-nu)*z, and L3=s.",
+        "existence_status": "exists",
+        "private_rule_records": [
+          {
+            "private_rule_record_id": "N6-PRIVATE-UNANIMITY-N4-EQ-COMPLETE-MGE3-LOW",
+            "institution": "unanimity",
+            "admissibility_conditions": "Pooling and delay both always exist. Pooling support has s<=R_i<=p, Y_i>=beta*o_1, every x_j>=z, feasibility, and common (R_i,Y_i); equality R_i=s requires Y_i=beta*o_1. Delay yields d. Each identity selects pure pooling or pure delay; no within-identity cross-branch mixture survives because delay gives H the strictly lower low-only continuation.",
+            "source_equilibrium_cell_id": "N4-CELL-MGE3-LOW",
+            "source_equilibrium_id": "N4-EQ-COMPLETE-MGE3-LOW",
+            "source_interface_hash": "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d",
+            "private_payoff_vector": {
+              "theta_0": "(1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0]",
+              "theta_1": "(1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]"
+            },
+            "private_outcome_distribution": {
+              "pass_with_hegemon": "1-D*nu",
+              "pass_without_hegemon": "0",
+              "failure": "D*nu",
+              "delay": "D=(1/m)*sum_i lambda_i^D"
+            },
+            "selection_status": "Accepted support has common tie-break-minimal Y_i. Delay gives H strictly less at a proposer-payoff tie, so pooling and delay cannot share one identity's support; identity heterogeneity remains admissible.",
+            "checks_performed": {
+              "source_checks": [
+                "P0 slack audit",
+                "P3 pure-separation exhaustion",
+                "P4 on-path Bayes audit",
+                "P6 dynamic stage-undominance audit",
+                "P7 H-vote update audit",
+                "m>=3 exact guarantee audit",
+                "Off-path nonpivotal H-separation audit",
+                "Exactly-one and multiple-weak-rejector delay audit",
+                "Proposal-level lower-H tie audit",
+                "Identity-product closure audit",
+                "True-prior deviation audit",
+                "Atomless pointwise/Bayes-a.e. audit",
+                "Exactly-once discount audit"
+              ],
+              "n6_checks": ["N6-C01 exact frozen predecessor hash and source-record transport", "N6-C02 one-to-one private-record coverage for each rule", "N6-C03 common-refinement cell construction and Cartesian pairing", "N6-C04 preservation of none cells and nonexistence certificates", "N6-C05 joint type-payoff and outcome-distribution comparison", "N6-C06 delay and multiplicity reported without equilibrium selection", "N6-C07 no N7 benchmark, informational-rent, or formation calculation"]
+            }
+          }
+        ],
+        "nonexistence_certificate": null
+      },
+      {
+        "cell_id": "N4-CELL-MGE3-HIGH",
+        "domain_conditions": "m>=3 and nu_2<nu<=1. Define d=(1-nu)*a0<z, g=z, p, s=(1-nu)*z, and L3=s.",
+        "existence_status": "exists",
+        "private_rule_records": [
+          {
+            "private_rule_record_id": "N6-PRIVATE-UNANIMITY-N4-EQ-COMPLETE-MGE3-HIGH",
+            "institution": "unanimity",
+            "admissibility_conditions": "Pooling and delay both always exist. Pooling support has s<=R_i<=p, Y_i>=beta*o_1, every x_j>=z, feasibility, and common (R_i,Y_i); equality R_i=s requires Y_i=beta*o_1. Delay yields z. A local pooling/delay mixture is admissible exactly at R_i=z and Y_i=beta*o_1.",
+            "source_equilibrium_cell_id": "N4-CELL-MGE3-HIGH",
+            "source_equilibrium_id": "N4-EQ-COMPLETE-MGE3-HIGH",
+            "source_interface_hash": "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d",
+            "private_payoff_vector": {
+              "theta_0": "(1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]",
+              "theta_1": "(1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]"
+            },
+            "private_outcome_distribution": {
+              "pass_with_hegemon": "1",
+              "pass_without_hegemon": "0",
+              "failure": "0",
+              "delay": "D=(1/m)*sum_i lambda_i^D"
+            },
+            "selection_status": "Accepted support has common tie-break-minimal Y_i. Pooling and delay may share support only at proposer payoff z and H payoff beta*o_1. No additional selection is imposed.",
+            "checks_performed": {
+              "source_checks": [
+                "P0 slack audit",
+                "P3 pure-separation exhaustion",
+                "P4 on-path Bayes audit",
+                "P6 dynamic stage-undominance audit",
+                "P7 H-vote update audit",
+                "m>=3 exact guarantee audit",
+                "Off-path nonpivotal H-separation audit",
+                "Exactly-one-weak-rejector delay audit",
+                "Cross-branch proposal-mixing audit",
+                "Proposal-level lower-H tie audit",
+                "Identity-product closure audit",
+                "True-prior deviation audit",
+                "Atomless pointwise/Bayes-a.e. audit",
+                "Exactly-once discount audit"
+              ],
+              "n6_checks": ["N6-C01 exact frozen predecessor hash and source-record transport", "N6-C02 one-to-one private-record coverage for each rule", "N6-C03 common-refinement cell construction and Cartesian pairing", "N6-C04 preservation of none cells and nonexistence certificates", "N6-C05 joint type-payoff and outcome-distribution comparison", "N6-C06 delay and multiplicity reported without equilibrium selection", "N6-C07 no N7 benchmark, informational-rent, or formation calculation"]
+            }
+          }
+        ],
+        "nonexistence_certificate": null
+      }
+    ]
+  },
+  "comparison_cells": [
+    {
+      "cell_id": "N6-CELL-N3-CELL-COMPLETE-MAJORITY--N4-CELL-M2-NU0",
+      "domain_conditions": {
+        "majority_cell_id": "N3-CELL-COMPLETE-MAJORITY",
+        "majority": [
+          "nu in [0,1]",
+          "N is an integer and N >= 3",
+          "m = N-1",
+          "q = floor(N/2)+1",
+          "beta in (0,1)",
+          "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+          "N1 is frozen at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+        ],
+        "unanimity_cell_id": "N4-CELL-M2-NU0",
+        "unanimity": "m=2, nu=0, beta in (0,1), 0<o_0<o_1<1, and o_1<=y_bar<=1. Define a0=beta*(1-o_0)/2, z=beta*(1-o_1)/2, p=1-beta*o_1-z, u0=1-beta*o_0-z, q2=1-beta*o_0-a0, k2=max{0,1-beta*o_1-a0}, e2=z, s=z, and L2=max{k2,e2}."
+      },
+      "existence_status": "exists",
+      "comparison_records": [
+        {
+          "comparison_id": "N6-COMPARISON-N3-EQ-COMPLETE-FAMILY-01--N4-EQ-COMPLETE-M2-NU0",
+          "admissibility_conditions": {
+            "majority_cell_id": "N3-CELL-COMPLETE-MAJORITY",
+            "majority": [
+              "nu in [0,1]",
+              "N is an integer and N >= 3",
+              "m = N-1",
+              "q = floor(N/2)+1",
+              "beta in (0,1)",
+              "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+              "N1 is frozen at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+            ],
+            "unanimity_cell_id": "N4-CELL-M2-NU0",
+            "unanimity": "m=2, nu=0, beta in (0,1), 0<o_0<o_1<1, and o_1<=y_bar<=1. Define a0=beta*(1-o_0)/2, z=beta*(1-o_1)/2, p=1-beta*o_1-z, u0=1-beta*o_0-z, q2=1-beta*o_0-a0, k2=max{0,1-beta*o_1-a0}, e2=z, s=z, and L2=max{k2,e2}.",
+            "common_refinement": "intersection of the two source-cell domains"
+          },
+          "source_equilibrium_ids": {
+            "majority": "N3-EQ-COMPLETE-FAMILY-01",
+            "unanimity": "N4-EQ-COMPLETE-M2-NU0"
+          },
+          "source_interface_hashes": {
+            "N3": "sha256:63552db82d2434e3016341c9e3db928bca78707a9e74b5fb0b9cd3f9566a71ee",
+            "N4": "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d"
+          },
+          "private_payoff_vectors_by_rule": {
+            "majority": {
+              "theta_0": "C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+              "theta_1": "C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]"
+            },
+            "unanimity": {
+              "theta_0": "(1/2)*sum_i[lambda_i^L*E(y_i|L)+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0]",
+              "theta_1": "(1/2)*sum_i[lambda_i^L*beta*o_1+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]"
+            }
+          },
+          "private_outcome_distributions_by_rule": {
+            "majority": {
+              "pass_with_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+              "pass_without_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+              "failure": 0,
+              "delay": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]"
+            },
+            "unanimity": {
+              "pass_with_hegemon": "1",
+              "pass_without_hegemon": "0",
+              "failure": "0",
+              "delay": "D=(1/2)*sum_i lambda_i^D"
+            }
+          },
+          "private_rule_contrasts": {
+            "status": "set_valued",
+            "scope": {
+              "formal_domain": "The complete formal comparison retains both m=2 and m>=3 source cells for coverage and completeness.",
+              "substantive_scope": "The main substantive interpretation emphasizes organizations with at least three weak states (m>=3; four or more total members).",
+              "m2_formal_status": "The m=2 cells remain formally covered but are secondary to the substantive paper scope; they are not deleted, collapsed, or used to redefine the contract.",
+              "mge3_delay_existence": "In the N4 m>=3 cells, delay equilibria exist universally in the source correspondence.",
+              "mge3_delay_selection": "Delay is not forced in those cells: pooling also exists, and N6 preserves both branches without selection.",
+              "comparison_reading": "No scalar payoff or delay ranking is asserted after restricting interpretation to m>=3; the complete set-valued comparison remains the object."
+            },
+            "payoff_by_type": {
+              "theta_0": {
+                "majority": "C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+                "unanimity": "(1/2)*sum_i[lambda_i^L*E(y_i|L)+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0]",
+                "difference_majority_minus_unanimity": "(C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]) - ((1/2)*sum_i[lambda_i^L*E(y_i|L)+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0])",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The source records are complete correspondences and N6 applies no equilibrium selection."
+              },
+              "theta_1": {
+                "majority": "C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]",
+                "unanimity": "(1/2)*sum_i[lambda_i^L*beta*o_1+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]",
+                "difference_majority_minus_unanimity": "(C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]) - ((1/2)*sum_i[lambda_i^L*beta*o_1+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1])",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The source records are complete correspondences and N6 applies no equilibrium selection."
+              }
+            },
+            "outcome_distribution": {
+              "pass_with_hegemon": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+                "unanimity": "1",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]) - (1)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "pass_without_hegemon": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+                "unanimity": "0",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]) - (0)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "failure": {
+                "majority": "0",
+                "unanimity": "0",
+                "difference_majority_minus_unanimity": "(0) - (0)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "delay": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]",
+                "unanimity": "D=(1/2)*sum_i lambda_i^D",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]) - (D=(1/2)*sum_i lambda_i^D)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              }
+            },
+            "delay": {
+              "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]",
+              "unanimity": "D=(1/2)*sum_i lambda_i^D",
+              "ordering_status": "no_robust_delay_ranking_asserted",
+              "finding": "Both source correspondences preserve delay-related branches or conditional delay support; N6 reports the exact source expressions and does not select among them."
+            },
+            "structural_invariants": {
+              "unanimity_pass_without_hegemon": "0 in every N4 source cell",
+              "majority_failure": "0 in the N3 source record",
+              "majority_exclusion": "retained as an admissible branch in the N3 source correspondence",
+              "multiplicity": "preserved atomically by source equilibrium IDs, payoff vectors, outcome distributions, and selection_status"
+            }
+          },
+          "selection_status": {
+            "majority": "full family of identity-indexed F_i distributions on the authorized lexicographic argmax A_i_star is preserved; no symmetric or Markov restriction, no belief restriction, and no ad hoc or additional equilibrium selection is added",
+            "unanimity": "Within each identity, accepted support has common tie-break-minimal Y_i. The low-only/delay mixture is retained only at equal proposer and expected-H payoffs. Pooling cannot mix locally with low-only or delay. No additional selection is imposed.",
+            "comparison": "No equilibrium, branch, identity product, or payoff vector is selected by N6."
+          },
+          "checks_performed": ["N6-C01 exact frozen predecessor hash and source-record transport", "N6-C02 one-to-one private-record coverage for each rule", "N6-C03 common-refinement cell construction and Cartesian pairing", "N6-C04 preservation of none cells and nonexistence certificates", "N6-C05 joint type-payoff and outcome-distribution comparison", "N6-C06 delay and multiplicity reported without equilibrium selection", "N6-C07 no N7 benchmark, informational-rent, or formation calculation"]
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N6-CELL-N3-CELL-COMPLETE-MAJORITY--N4-CELL-M2-LOW",
+      "domain_conditions": {
+        "majority_cell_id": "N3-CELL-COMPLETE-MAJORITY",
+        "majority": [
+          "nu in [0,1]",
+          "N is an integer and N >= 3",
+          "m = N-1",
+          "q = floor(N/2)+1",
+          "beta in (0,1)",
+          "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+          "N1 is frozen at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+        ],
+        "unanimity_cell_id": "N4-CELL-M2-LOW",
+        "unanimity": "m=2 and 0<nu<=nu_2, where nu_2=(o_1-o_0)/(1-o_0). Define a0, z, d=(1-nu)*a0, g=d, p, q2, k2, e2=min{z,(1-nu)*q2}, s=(1-nu)*z, and L2=max{k2,e2}."
+      },
+      "existence_status": "exists",
+      "comparison_records": [
+        {
+          "comparison_id": "N6-COMPARISON-N3-EQ-COMPLETE-FAMILY-01--N4-EQ-COMPLETE-M2-LOW",
+          "admissibility_conditions": {
+            "majority_cell_id": "N3-CELL-COMPLETE-MAJORITY",
+            "majority": [
+              "nu in [0,1]",
+              "N is an integer and N >= 3",
+              "m = N-1",
+              "q = floor(N/2)+1",
+              "beta in (0,1)",
+              "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+              "N1 is frozen at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+            ],
+            "unanimity_cell_id": "N4-CELL-M2-LOW",
+            "unanimity": "m=2 and 0<nu<=nu_2, where nu_2=(o_1-o_0)/(1-o_0). Define a0, z, d=(1-nu)*a0, g=d, p, q2, k2, e2=min{z,(1-nu)*q2}, s=(1-nu)*z, and L2=max{k2,e2}.",
+            "common_refinement": "intersection of the two source-cell domains"
+          },
+          "source_equilibrium_ids": {
+            "majority": "N3-EQ-COMPLETE-FAMILY-01",
+            "unanimity": "N4-EQ-COMPLETE-M2-LOW"
+          },
+          "source_interface_hashes": {
+            "N3": "sha256:63552db82d2434e3016341c9e3db928bca78707a9e74b5fb0b9cd3f9566a71ee",
+            "N4": "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d"
+          },
+          "private_payoff_vectors_by_rule": {
+            "majority": {
+              "theta_0": "C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+              "theta_1": "C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]"
+            },
+            "unanimity": {
+              "theta_0": "(1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0]",
+              "theta_1": "(1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]"
+            }
+          },
+          "private_outcome_distributions_by_rule": {
+            "majority": {
+              "pass_with_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+              "pass_without_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+              "failure": 0,
+              "delay": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]"
+            },
+            "unanimity": {
+              "pass_with_hegemon": "1-D*nu",
+              "pass_without_hegemon": "0",
+              "failure": "D*nu",
+              "delay": "D=(1/2)*sum_i lambda_i^D"
+            }
+          },
+          "private_rule_contrasts": {
+            "status": "set_valued",
+            "scope": {
+              "formal_domain": "The complete formal comparison retains both m=2 and m>=3 source cells for coverage and completeness.",
+              "substantive_scope": "The main substantive interpretation emphasizes organizations with at least three weak states (m>=3; four or more total members).",
+              "m2_formal_status": "The m=2 cells remain formally covered but are secondary to the substantive paper scope; they are not deleted, collapsed, or used to redefine the contract.",
+              "mge3_delay_existence": "In the N4 m>=3 cells, delay equilibria exist universally in the source correspondence.",
+              "mge3_delay_selection": "Delay is not forced in those cells: pooling also exists, and N6 preserves both branches without selection.",
+              "comparison_reading": "No scalar payoff or delay ranking is asserted after restricting interpretation to m>=3; the complete set-valued comparison remains the object."
+            },
+            "payoff_by_type": {
+              "theta_0": {
+                "majority": "C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+                "unanimity": "(1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0]",
+                "difference_majority_minus_unanimity": "(C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]) - ((1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0])",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The source records are complete correspondences and N6 applies no equilibrium selection."
+              },
+              "theta_1": {
+                "majority": "C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]",
+                "unanimity": "(1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]",
+                "difference_majority_minus_unanimity": "(C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]) - ((1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1])",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The source records are complete correspondences and N6 applies no equilibrium selection."
+              }
+            },
+            "outcome_distribution": {
+              "pass_with_hegemon": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+                "unanimity": "1-D*nu",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]) - (1-D*nu)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "pass_without_hegemon": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+                "unanimity": "0",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]) - (0)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "failure": {
+                "majority": "0",
+                "unanimity": "D*nu",
+                "difference_majority_minus_unanimity": "(0) - (D*nu)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "delay": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]",
+                "unanimity": "D=(1/2)*sum_i lambda_i^D",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]) - (D=(1/2)*sum_i lambda_i^D)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              }
+            },
+            "delay": {
+              "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]",
+              "unanimity": "D=(1/2)*sum_i lambda_i^D",
+              "ordering_status": "no_robust_delay_ranking_asserted",
+              "finding": "Both source correspondences preserve delay-related branches or conditional delay support; N6 reports the exact source expressions and does not select among them."
+            },
+            "structural_invariants": {
+              "unanimity_pass_without_hegemon": "0 in every N4 source cell",
+              "majority_failure": "0 in the N3 source record",
+              "majority_exclusion": "retained as an admissible branch in the N3 source correspondence",
+              "multiplicity": "preserved atomically by source equilibrium IDs, payoff vectors, outcome distributions, and selection_status"
+            }
+          },
+          "selection_status": {
+            "majority": "full family of identity-indexed F_i distributions on the authorized lexicographic argmax A_i_star is preserved; no symmetric or Markov restriction, no belief restriction, and no ad hoc or additional equilibrium selection is added",
+            "unanimity": "Accepted support uses common tie-break-minimal Y_i. Low-H equality bounds are open as stated. Delay cannot mix locally with pooling, but different proposer identities may choose different pure local branches.",
+            "comparison": "No equilibrium, branch, identity product, or payoff vector is selected by N6."
+          },
+          "checks_performed": ["N6-C01 exact frozen predecessor hash and source-record transport", "N6-C02 one-to-one private-record coverage for each rule", "N6-C03 common-refinement cell construction and Cartesian pairing", "N6-C04 preservation of none cells and nonexistence certificates", "N6-C05 joint type-payoff and outcome-distribution comparison", "N6-C06 delay and multiplicity reported without equilibrium selection", "N6-C07 no N7 benchmark, informational-rent, or formation calculation"]
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N6-CELL-N3-CELL-COMPLETE-MAJORITY--N4-CELL-M2-HIGH",
+      "domain_conditions": {
+        "majority_cell_id": "N3-CELL-COMPLETE-MAJORITY",
+        "majority": [
+          "nu in [0,1]",
+          "N is an integer and N >= 3",
+          "m = N-1",
+          "q = floor(N/2)+1",
+          "beta in (0,1)",
+          "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+          "N1 is frozen at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+        ],
+        "unanimity_cell_id": "N4-CELL-M2-HIGH",
+        "unanimity": "m=2 and nu_2<nu<=1. Define a0, z, d=(1-nu)*a0<z, g=z, p, q2, k2, e2=min{z,(1-nu)*q2}, s=(1-nu)*z, and L2=max{k2,e2}."
+      },
+      "existence_status": "exists",
+      "comparison_records": [
+        {
+          "comparison_id": "N6-COMPARISON-N3-EQ-COMPLETE-FAMILY-01--N4-EQ-COMPLETE-M2-HIGH",
+          "admissibility_conditions": {
+            "majority_cell_id": "N3-CELL-COMPLETE-MAJORITY",
+            "majority": [
+              "nu in [0,1]",
+              "N is an integer and N >= 3",
+              "m = N-1",
+              "q = floor(N/2)+1",
+              "beta in (0,1)",
+              "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+              "N1 is frozen at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+            ],
+            "unanimity_cell_id": "N4-CELL-M2-HIGH",
+            "unanimity": "m=2 and nu_2<nu<=1. Define a0, z, d=(1-nu)*a0<z, g=z, p, q2, k2, e2=min{z,(1-nu)*q2}, s=(1-nu)*z, and L2=max{k2,e2}.",
+            "common_refinement": "intersection of the two source-cell domains"
+          },
+          "source_equilibrium_ids": {
+            "majority": "N3-EQ-COMPLETE-FAMILY-01",
+            "unanimity": "N4-EQ-COMPLETE-M2-HIGH"
+          },
+          "source_interface_hashes": {
+            "N3": "sha256:63552db82d2434e3016341c9e3db928bca78707a9e74b5fb0b9cd3f9566a71ee",
+            "N4": "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d"
+          },
+          "private_payoff_vectors_by_rule": {
+            "majority": {
+              "theta_0": "C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+              "theta_1": "C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]"
+            },
+            "unanimity": {
+              "theta_0": "(1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]",
+              "theta_1": "(1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]"
+            }
+          },
+          "private_outcome_distributions_by_rule": {
+            "majority": {
+              "pass_with_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+              "pass_without_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+              "failure": 0,
+              "delay": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]"
+            },
+            "unanimity": {
+              "pass_with_hegemon": "1",
+              "pass_without_hegemon": "0",
+              "failure": "0",
+              "delay": "D=(1/2)*sum_i lambda_i^D"
+            }
+          },
+          "private_rule_contrasts": {
+            "status": "set_valued",
+            "scope": {
+              "formal_domain": "The complete formal comparison retains both m=2 and m>=3 source cells for coverage and completeness.",
+              "substantive_scope": "The main substantive interpretation emphasizes organizations with at least three weak states (m>=3; four or more total members).",
+              "m2_formal_status": "The m=2 cells remain formally covered but are secondary to the substantive paper scope; they are not deleted, collapsed, or used to redefine the contract.",
+              "mge3_delay_existence": "In the N4 m>=3 cells, delay equilibria exist universally in the source correspondence.",
+              "mge3_delay_selection": "Delay is not forced in those cells: pooling also exists, and N6 preserves both branches without selection.",
+              "comparison_reading": "No scalar payoff or delay ranking is asserted after restricting interpretation to m>=3; the complete set-valued comparison remains the object."
+            },
+            "payoff_by_type": {
+              "theta_0": {
+                "majority": "C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+                "unanimity": "(1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]",
+                "difference_majority_minus_unanimity": "(C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]) - ((1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1])",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The source records are complete correspondences and N6 applies no equilibrium selection."
+              },
+              "theta_1": {
+                "majority": "C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]",
+                "unanimity": "(1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]",
+                "difference_majority_minus_unanimity": "(C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]) - ((1/2)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1])",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The source records are complete correspondences and N6 applies no equilibrium selection."
+              }
+            },
+            "outcome_distribution": {
+              "pass_with_hegemon": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+                "unanimity": "1",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]) - (1)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "pass_without_hegemon": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+                "unanimity": "0",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]) - (0)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "failure": {
+                "majority": "0",
+                "unanimity": "0",
+                "difference_majority_minus_unanimity": "(0) - (0)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "delay": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]",
+                "unanimity": "D=(1/2)*sum_i lambda_i^D",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]) - (D=(1/2)*sum_i lambda_i^D)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              }
+            },
+            "delay": {
+              "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]",
+              "unanimity": "D=(1/2)*sum_i lambda_i^D",
+              "ordering_status": "no_robust_delay_ranking_asserted",
+              "finding": "Both source correspondences preserve delay-related branches or conditional delay support; N6 reports the exact source expressions and does not select among them."
+            },
+            "structural_invariants": {
+              "unanimity_pass_without_hegemon": "0 in every N4 source cell",
+              "majority_failure": "0 in the N3 source record",
+              "majority_exclusion": "retained as an admissible branch in the N3 source correspondence",
+              "multiplicity": "preserved atomically by source equilibrium IDs, payoff vectors, outcome distributions, and selection_status"
+            }
+          },
+          "selection_status": {
+            "majority": "full family of identity-indexed F_i distributions on the authorized lexicographic argmax A_i_star is preserved; no symmetric or Markov restriction, no belief restriction, and no ad hoc or additional equilibrium selection is added",
+            "unanimity": "Accepted support has common tie-break-minimal Y_i. The local pooling/delay mixture survives only at equal proposer payoff z and equal H payoff beta*o_1. No extra selection is used.",
+            "comparison": "No equilibrium, branch, identity product, or payoff vector is selected by N6."
+          },
+          "checks_performed": ["N6-C01 exact frozen predecessor hash and source-record transport", "N6-C02 one-to-one private-record coverage for each rule", "N6-C03 common-refinement cell construction and Cartesian pairing", "N6-C04 preservation of none cells and nonexistence certificates", "N6-C05 joint type-payoff and outcome-distribution comparison", "N6-C06 delay and multiplicity reported without equilibrium selection", "N6-C07 no N7 benchmark, informational-rent, or formation calculation"]
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N6-CELL-N3-CELL-COMPLETE-MAJORITY--N4-CELL-MGE3-NU0",
+      "domain_conditions": {
+        "majority_cell_id": "N3-CELL-COMPLETE-MAJORITY",
+        "majority": [
+          "nu in [0,1]",
+          "N is an integer and N >= 3",
+          "m = N-1",
+          "q = floor(N/2)+1",
+          "beta in (0,1)",
+          "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+          "N1 is frozen at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+        ],
+        "unanimity_cell_id": "N4-CELL-MGE3-NU0",
+        "unanimity": "m>=3, nu=0, beta in (0,1), 0<o_0<o_1<1, and o_1<=y_bar<=1. Define a0, z, p, u0, s=(1-nu)*z=z, and L3=s=z."
+      },
+      "existence_status": "exists",
+      "comparison_records": [
+        {
+          "comparison_id": "N6-COMPARISON-N3-EQ-COMPLETE-FAMILY-01--N4-EQ-COMPLETE-MGE3-NU0",
+          "admissibility_conditions": {
+            "majority_cell_id": "N3-CELL-COMPLETE-MAJORITY",
+            "majority": [
+              "nu in [0,1]",
+              "N is an integer and N >= 3",
+              "m = N-1",
+              "q = floor(N/2)+1",
+              "beta in (0,1)",
+              "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+              "N1 is frozen at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+            ],
+            "unanimity_cell_id": "N4-CELL-MGE3-NU0",
+            "unanimity": "m>=3, nu=0, beta in (0,1), 0<o_0<o_1<1, and o_1<=y_bar<=1. Define a0, z, p, u0, s=(1-nu)*z=z, and L3=s=z.",
+            "common_refinement": "intersection of the two source-cell domains"
+          },
+          "source_equilibrium_ids": {
+            "majority": "N3-EQ-COMPLETE-FAMILY-01",
+            "unanimity": "N4-EQ-COMPLETE-MGE3-NU0"
+          },
+          "source_interface_hashes": {
+            "N3": "sha256:63552db82d2434e3016341c9e3db928bca78707a9e74b5fb0b9cd3f9566a71ee",
+            "N4": "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d"
+          },
+          "private_payoff_vectors_by_rule": {
+            "majority": {
+              "theta_0": "C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+              "theta_1": "C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]"
+            },
+            "unanimity": {
+              "theta_0": "(1/m)*sum_i[lambda_i^L*E(y_i|L)+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0]",
+              "theta_1": "(1/m)*sum_i[lambda_i^L*beta*o_1+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]"
+            }
+          },
+          "private_outcome_distributions_by_rule": {
+            "majority": {
+              "pass_with_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+              "pass_without_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+              "failure": 0,
+              "delay": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]"
+            },
+            "unanimity": {
+              "pass_with_hegemon": "1",
+              "pass_without_hegemon": "0",
+              "failure": "0",
+              "delay": "D=(1/m)*sum_i lambda_i^D"
+            }
+          },
+          "private_rule_contrasts": {
+            "status": "set_valued",
+            "scope": {
+              "formal_domain": "The complete formal comparison retains both m=2 and m>=3 source cells for coverage and completeness.",
+              "substantive_scope": "The main substantive interpretation emphasizes organizations with at least three weak states (m>=3; four or more total members).",
+              "m2_formal_status": "The m=2 cells remain formally covered but are secondary to the substantive paper scope; they are not deleted, collapsed, or used to redefine the contract.",
+              "mge3_delay_existence": "In the N4 m>=3 cells, delay equilibria exist universally in the source correspondence.",
+              "mge3_delay_selection": "Delay is not forced in those cells: pooling also exists, and N6 preserves both branches without selection.",
+              "comparison_reading": "No scalar payoff or delay ranking is asserted after restricting interpretation to m>=3; the complete set-valued comparison remains the object."
+            },
+            "payoff_by_type": {
+              "theta_0": {
+                "majority": "C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+                "unanimity": "(1/m)*sum_i[lambda_i^L*E(y_i|L)+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0]",
+                "difference_majority_minus_unanimity": "(C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]) - ((1/m)*sum_i[lambda_i^L*E(y_i|L)+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0])",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The source records are complete correspondences and N6 applies no equilibrium selection."
+              },
+              "theta_1": {
+                "majority": "C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]",
+                "unanimity": "(1/m)*sum_i[lambda_i^L*beta*o_1+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]",
+                "difference_majority_minus_unanimity": "(C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]) - ((1/m)*sum_i[lambda_i^L*beta*o_1+lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1])",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The source records are complete correspondences and N6 applies no equilibrium selection."
+              }
+            },
+            "outcome_distribution": {
+              "pass_with_hegemon": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+                "unanimity": "1",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]) - (1)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "pass_without_hegemon": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+                "unanimity": "0",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]) - (0)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "failure": {
+                "majority": "0",
+                "unanimity": "0",
+                "difference_majority_minus_unanimity": "(0) - (0)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "delay": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]",
+                "unanimity": "D=(1/m)*sum_i lambda_i^D",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]) - (D=(1/m)*sum_i lambda_i^D)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              }
+            },
+            "delay": {
+              "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]",
+              "unanimity": "D=(1/m)*sum_i lambda_i^D",
+              "ordering_status": "no_robust_delay_ranking_asserted",
+              "finding": "Both source correspondences preserve delay-related branches or conditional delay support; N6 reports the exact source expressions and does not select among them."
+            },
+            "structural_invariants": {
+              "unanimity_pass_without_hegemon": "0 in every N4 source cell",
+              "majority_failure": "0 in the N3 source record",
+              "majority_exclusion": "retained as an admissible branch in the N3 source correspondence",
+              "multiplicity": "preserved atomically by source equilibrium IDs, payoff vectors, outcome distributions, and selection_status"
+            }
+          },
+          "selection_status": {
+            "majority": "full family of identity-indexed F_i distributions on the authorized lexicographic argmax A_i_star is preserved; no symmetric or Markov restriction, no belief restriction, and no ad hoc or additional equilibrium selection is added",
+            "unanimity": "Accepted support has common tie-break-minimal Y_i. The low-only/delay tie has equal proposer and expected-H payoffs. Pooling cannot mix locally with either lower-H branch.",
+            "comparison": "No equilibrium, branch, identity product, or payoff vector is selected by N6."
+          },
+          "checks_performed": ["N6-C01 exact frozen predecessor hash and source-record transport", "N6-C02 one-to-one private-record coverage for each rule", "N6-C03 common-refinement cell construction and Cartesian pairing", "N6-C04 preservation of none cells and nonexistence certificates", "N6-C05 joint type-payoff and outcome-distribution comparison", "N6-C06 delay and multiplicity reported without equilibrium selection", "N6-C07 no N7 benchmark, informational-rent, or formation calculation"]
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N6-CELL-N3-CELL-COMPLETE-MAJORITY--N4-CELL-MGE3-LOW",
+      "domain_conditions": {
+        "majority_cell_id": "N3-CELL-COMPLETE-MAJORITY",
+        "majority": [
+          "nu in [0,1]",
+          "N is an integer and N >= 3",
+          "m = N-1",
+          "q = floor(N/2)+1",
+          "beta in (0,1)",
+          "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+          "N1 is frozen at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+        ],
+        "unanimity_cell_id": "N4-CELL-MGE3-LOW",
+        "unanimity": "m>=3 and 0<nu<=nu_2. Define d=(1-nu)*a0>=z, g=d, p, s=(1-nu)*z, and L3=s."
+      },
+      "existence_status": "exists",
+      "comparison_records": [
+        {
+          "comparison_id": "N6-COMPARISON-N3-EQ-COMPLETE-FAMILY-01--N4-EQ-COMPLETE-MGE3-LOW",
+          "admissibility_conditions": {
+            "majority_cell_id": "N3-CELL-COMPLETE-MAJORITY",
+            "majority": [
+              "nu in [0,1]",
+              "N is an integer and N >= 3",
+              "m = N-1",
+              "q = floor(N/2)+1",
+              "beta in (0,1)",
+              "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+              "N1 is frozen at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+            ],
+            "unanimity_cell_id": "N4-CELL-MGE3-LOW",
+            "unanimity": "m>=3 and 0<nu<=nu_2. Define d=(1-nu)*a0>=z, g=d, p, s=(1-nu)*z, and L3=s.",
+            "common_refinement": "intersection of the two source-cell domains"
+          },
+          "source_equilibrium_ids": {
+            "majority": "N3-EQ-COMPLETE-FAMILY-01",
+            "unanimity": "N4-EQ-COMPLETE-MGE3-LOW"
+          },
+          "source_interface_hashes": {
+            "N3": "sha256:63552db82d2434e3016341c9e3db928bca78707a9e74b5fb0b9cd3f9566a71ee",
+            "N4": "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d"
+          },
+          "private_payoff_vectors_by_rule": {
+            "majority": {
+              "theta_0": "C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+              "theta_1": "C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]"
+            },
+            "unanimity": {
+              "theta_0": "(1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0]",
+              "theta_1": "(1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]"
+            }
+          },
+          "private_outcome_distributions_by_rule": {
+            "majority": {
+              "pass_with_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+              "pass_without_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+              "failure": 0,
+              "delay": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]"
+            },
+            "unanimity": {
+              "pass_with_hegemon": "1-D*nu",
+              "pass_without_hegemon": "0",
+              "failure": "D*nu",
+              "delay": "D=(1/m)*sum_i lambda_i^D"
+            }
+          },
+          "private_rule_contrasts": {
+            "status": "set_valued",
+            "scope": {
+              "formal_domain": "The complete formal comparison retains both m=2 and m>=3 source cells for coverage and completeness.",
+              "substantive_scope": "The main substantive interpretation emphasizes organizations with at least three weak states (m>=3; four or more total members).",
+              "m2_formal_status": "The m=2 cells remain formally covered but are secondary to the substantive paper scope; they are not deleted, collapsed, or used to redefine the contract.",
+              "mge3_delay_existence": "In the N4 m>=3 cells, delay equilibria exist universally in the source correspondence.",
+              "mge3_delay_selection": "Delay is not forced in those cells: pooling also exists, and N6 preserves both branches without selection.",
+              "comparison_reading": "No scalar payoff or delay ranking is asserted after restricting interpretation to m>=3; the complete set-valued comparison remains the object."
+            },
+            "payoff_by_type": {
+              "theta_0": {
+                "majority": "C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+                "unanimity": "(1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0]",
+                "difference_majority_minus_unanimity": "(C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]) - ((1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_0])",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The source records are complete correspondences and N6 applies no equilibrium selection."
+              },
+              "theta_1": {
+                "majority": "C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]",
+                "unanimity": "(1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]",
+                "difference_majority_minus_unanimity": "(C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]) - ((1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1])",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The source records are complete correspondences and N6 applies no equilibrium selection."
+              }
+            },
+            "outcome_distribution": {
+              "pass_with_hegemon": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+                "unanimity": "1-D*nu",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]) - (1-D*nu)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "pass_without_hegemon": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+                "unanimity": "0",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]) - (0)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "failure": {
+                "majority": "0",
+                "unanimity": "D*nu",
+                "difference_majority_minus_unanimity": "(0) - (D*nu)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "delay": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]",
+                "unanimity": "D=(1/m)*sum_i lambda_i^D",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]) - (D=(1/m)*sum_i lambda_i^D)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              }
+            },
+            "delay": {
+              "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]",
+              "unanimity": "D=(1/m)*sum_i lambda_i^D",
+              "ordering_status": "no_robust_delay_ranking_asserted",
+              "finding": "Both source correspondences preserve delay-related branches or conditional delay support; N6 reports the exact source expressions and does not select among them."
+            },
+            "structural_invariants": {
+              "unanimity_pass_without_hegemon": "0 in every N4 source cell",
+              "majority_failure": "0 in the N3 source record",
+              "majority_exclusion": "retained as an admissible branch in the N3 source correspondence",
+              "multiplicity": "preserved atomically by source equilibrium IDs, payoff vectors, outcome distributions, and selection_status"
+            }
+          },
+          "selection_status": {
+            "majority": "full family of identity-indexed F_i distributions on the authorized lexicographic argmax A_i_star is preserved; no symmetric or Markov restriction, no belief restriction, and no ad hoc or additional equilibrium selection is added",
+            "unanimity": "Accepted support has common tie-break-minimal Y_i. Delay gives H strictly less at a proposer-payoff tie, so pooling and delay cannot share one identity's support; identity heterogeneity remains admissible.",
+            "comparison": "No equilibrium, branch, identity product, or payoff vector is selected by N6."
+          },
+          "checks_performed": ["N6-C01 exact frozen predecessor hash and source-record transport", "N6-C02 one-to-one private-record coverage for each rule", "N6-C03 common-refinement cell construction and Cartesian pairing", "N6-C04 preservation of none cells and nonexistence certificates", "N6-C05 joint type-payoff and outcome-distribution comparison", "N6-C06 delay and multiplicity reported without equilibrium selection", "N6-C07 no N7 benchmark, informational-rent, or formation calculation"]
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N6-CELL-N3-CELL-COMPLETE-MAJORITY--N4-CELL-MGE3-HIGH",
+      "domain_conditions": {
+        "majority_cell_id": "N3-CELL-COMPLETE-MAJORITY",
+        "majority": [
+          "nu in [0,1]",
+          "N is an integer and N >= 3",
+          "m = N-1",
+          "q = floor(N/2)+1",
+          "beta in (0,1)",
+          "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+          "N1 is frozen at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+        ],
+        "unanimity_cell_id": "N4-CELL-MGE3-HIGH",
+        "unanimity": "m>=3 and nu_2<nu<=1. Define d=(1-nu)*a0<z, g=z, p, s=(1-nu)*z, and L3=s."
+      },
+      "existence_status": "exists",
+      "comparison_records": [
+        {
+          "comparison_id": "N6-COMPARISON-N3-EQ-COMPLETE-FAMILY-01--N4-EQ-COMPLETE-MGE3-HIGH",
+          "admissibility_conditions": {
+            "majority_cell_id": "N3-CELL-COMPLETE-MAJORITY",
+            "majority": [
+              "nu in [0,1]",
+              "N is an integer and N >= 3",
+              "m = N-1",
+              "q = floor(N/2)+1",
+              "beta in (0,1)",
+              "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+              "N1 is frozen at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+            ],
+            "unanimity_cell_id": "N4-CELL-MGE3-HIGH",
+            "unanimity": "m>=3 and nu_2<nu<=1. Define d=(1-nu)*a0<z, g=z, p, s=(1-nu)*z, and L3=s.",
+            "common_refinement": "intersection of the two source-cell domains"
+          },
+          "source_equilibrium_ids": {
+            "majority": "N3-EQ-COMPLETE-FAMILY-01",
+            "unanimity": "N4-EQ-COMPLETE-MGE3-HIGH"
+          },
+          "source_interface_hashes": {
+            "N3": "sha256:63552db82d2434e3016341c9e3db928bca78707a9e74b5fb0b9cd3f9566a71ee",
+            "N4": "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d"
+          },
+          "private_payoff_vectors_by_rule": {
+            "majority": {
+              "theta_0": "C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+              "theta_1": "C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]"
+            },
+            "unanimity": {
+              "theta_0": "(1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]",
+              "theta_1": "(1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]"
+            }
+          },
+          "private_outcome_distributions_by_rule": {
+            "majority": {
+              "pass_with_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+              "pass_without_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+              "failure": 0,
+              "delay": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]"
+            },
+            "unanimity": {
+              "pass_with_hegemon": "1",
+              "pass_without_hegemon": "0",
+              "failure": "0",
+              "delay": "D=(1/m)*sum_i lambda_i^D"
+            }
+          },
+          "private_rule_contrasts": {
+            "status": "set_valued",
+            "scope": {
+              "formal_domain": "The complete formal comparison retains both m=2 and m>=3 source cells for coverage and completeness.",
+              "substantive_scope": "The main substantive interpretation emphasizes organizations with at least three weak states (m>=3; four or more total members).",
+              "m2_formal_status": "The m=2 cells remain formally covered but are secondary to the substantive paper scope; they are not deleted, collapsed, or used to redefine the contract.",
+              "mge3_delay_existence": "In the N4 m>=3 cells, delay equilibria exist universally in the source correspondence.",
+              "mge3_delay_selection": "Delay is not forced in those cells: pooling also exists, and N6 preserves both branches without selection.",
+              "comparison_reading": "No scalar payoff or delay ranking is asserted after restricting interpretation to m>=3; the complete set-valued comparison remains the object."
+            },
+            "payoff_by_type": {
+              "theta_0": {
+                "majority": "C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+                "unanimity": "(1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]",
+                "difference_majority_minus_unanimity": "(C_H(0)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,0)+(y+o_0)*I_X(s,0)+t_0*I_D(s,0)]) - ((1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1])",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The source records are complete correspondences and N6 applies no equilibrium selection."
+              },
+              "theta_1": {
+                "majority": "C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]",
+                "unanimity": "(1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1]",
+                "difference_majority_minus_unanimity": "(C_H(1)=(1/m)*sum_i E_{s~F_i}[y*I_H(s,1)+(y+o_1)*I_X(s,1)+t_1*I_D(s,1)]) - ((1/m)*sum_i[lambda_i^P*E(y_i|P)+lambda_i^D*beta*o_1])",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The source records are complete correspondences and N6 applies no equilibrium selection."
+              }
+            },
+            "outcome_distribution": {
+              "pass_with_hegemon": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+                "unanimity": "1",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]) - (1)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "pass_without_hegemon": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+                "unanimity": "0",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]) - (0)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "failure": {
+                "majority": "0",
+                "unanimity": "0",
+                "difference_majority_minus_unanimity": "(0) - (0)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              },
+              "delay": {
+                "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]",
+                "unanimity": "D=(1/m)*sum_i lambda_i^D",
+                "difference_majority_minus_unanimity": "((1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]) - (D=(1/m)*sum_i lambda_i^D)",
+                "ordering_status": "set_valued_no_scalar_ordering_asserted",
+                "reason": "The comparison preserves the source outcome distributions jointly; it does not project a selected branch."
+              }
+            },
+            "delay": {
+              "majority": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]",
+              "unanimity": "D=(1/m)*sum_i lambda_i^D",
+              "ordering_status": "no_robust_delay_ranking_asserted",
+              "finding": "Both source correspondences preserve delay-related branches or conditional delay support; N6 reports the exact source expressions and does not select among them."
+            },
+            "structural_invariants": {
+              "unanimity_pass_without_hegemon": "0 in every N4 source cell",
+              "majority_failure": "0 in the N3 source record",
+              "majority_exclusion": "retained as an admissible branch in the N3 source correspondence",
+              "multiplicity": "preserved atomically by source equilibrium IDs, payoff vectors, outcome distributions, and selection_status"
+            }
+          },
+          "selection_status": {
+            "majority": "full family of identity-indexed F_i distributions on the authorized lexicographic argmax A_i_star is preserved; no symmetric or Markov restriction, no belief restriction, and no ad hoc or additional equilibrium selection is added",
+            "unanimity": "Accepted support has common tie-break-minimal Y_i. Pooling and delay may share support only at proposer payoff z and H payoff beta*o_1. No additional selection is imposed.",
+            "comparison": "No equilibrium, branch, identity product, or payoff vector is selected by N6."
+          },
+          "checks_performed": ["N6-C01 exact frozen predecessor hash and source-record transport", "N6-C02 one-to-one private-record coverage for each rule", "N6-C03 common-refinement cell construction and Cartesian pairing", "N6-C04 preservation of none cells and nonexistence certificates", "N6-C05 joint type-payoff and outcome-distribution comparison", "N6-C06 delay and multiplicity reported without equilibrium selection", "N6-C07 no N7 benchmark, informational-rent, or formation calculation"]
+        }
+      ],
+      "nonexistence_certificate": null
+    }
+  ]
+}
