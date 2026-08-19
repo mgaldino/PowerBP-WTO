@@ -1235,6 +1235,26 @@ avança sem esse aval.
    sentido de status, revisão e prontidão, não de destruição do conteúdo
    matemático. Rederivação só é exigida se o conteúdo mudar ou se a nova revisão
    encontrar problema substantivo.
+
+   **Exceção administrativa única, autorizada pelo autor em 2026-08-19.** A
+   alteração da Seção 11 realizada exclusivamente nesta ocorrência para dividir
+   o Goal 4 em Fase A — benchmarks públicos, gate autoral obrigatório e Fase B —
+   comparações autorizadas não invalida retrospectivamente os estados
+   `pass/frozen`, hashes, pareceres ou autorizações de consumo de `N1`, `N2`,
+   `N3`, `N4` e `N6`. A justificativa é estritamente administrativa e
+   prospectiva: a divisão acrescenta uma parada e uma autorização autoral antes
+   das comparações de `N7`, sem mudar jogo, primitivas, factibilidade, ações,
+   informação, payoffs, conceito de solução, desconto, topologia, schemas,
+   obrigações de prova, critérios de revisão, número ou independência dos
+   revisores, regra de mesmo hash ou requisitos de congelamento. Esta exceção
+   não se aplica a nenhuma outra alteração passada ou futura da Seção 11; fora
+   desta ocorrência precisamente identificada, o item 3 continua integralmente
+   vigente. Ela não autoriza alterar interfaces ou hashes congelados de
+   `N1`–`N6`, reclassificar findings, reduzir testes ou dispensar revisões. `N7`
+   continua `pending` e `unfrozen`, e a autorização permanece limitada à Fase A:
+   não autoriza cruzar o candidato público com `N6`, calcular `RI_M`, `RI_U` ou
+   `DeltaRI`, selecionar comparações, abrir a Fase B, congelar `N7`, iniciar o
+   Goal 5, tratar `beta=1` ou migrar ou compilar manuscritos.
 4. **Reparo de finding.** A autorização e a autoria do reparo seguem a Seção
    11.1; seu alcance de invalidação segue os itens anteriores. Nenhum reparo
    local pode contornar essas regras.

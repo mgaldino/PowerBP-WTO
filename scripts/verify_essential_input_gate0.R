@@ -69,7 +69,7 @@ identical_utf8_text <- function(x, y) {
 }
 
 expected_beta_primitive <- "Desconto       beta in (0,1)"
-expected_contract_hash <- "98e74593c21b3326c1fd293de953130cf1d4940a942a8a8c3435247c7c9005b1"
+expected_contract_hash <- "6900b8a87f224bd8ae4f4e9a231b5a60aae45a1639283aaf1ef09bd26605d63e"
 expected_contract_region_hashes <- c(
   authorization_header = "889fae53945409cf0735b012286692da767816604f2e868349ea7d17bb1209e1",
   beta_primitive = "bb7ee3390b0f63a4d293fe8deab7d33fea725d280ad43121c615375f96bf41b4",
@@ -175,6 +175,37 @@ is_valid_phaseA_cadence <- function(text) {
     grepl("calcular `RI_M`, `RI_U` e `DeltaRI`", text, fixed = TRUE)
 }
 
+is_valid_single_phaseA_protocol_exception <- function(text) {
+  exception_marker <- paste0(
+    "**Exceção administrativa única, autorizada pelo autor em 2026-08-19.**"
+  )
+  required_fragments <- c(
+    exception_marker,
+    "exclusivamente nesta ocorrência",
+    "Goal 4 em Fase A — benchmarks públicos, gate autoral obrigatório e Fase B —",
+    "não invalida retrospectivamente os estados",
+    "`pass/frozen`, hashes, pareceres ou autorizações de consumo",
+    "`N3`, `N4` e `N6`",
+    "A justificativa é estritamente administrativa",
+    "sem mudar jogo, primitivas, factibilidade, ações",
+    "critérios de revisão, número ou independência dos",
+    "não se aplica a nenhuma outra alteração passada ou futura da Seção 11",
+    "item 3 continua integralmente",
+    "não autoriza alterar interfaces ou hashes congelados",
+    "reclassificar findings, reduzir testes ou dispensar revisões",
+    "continua `pending` e `unfrozen`",
+    "não autoriza cruzar o candidato público com `N6`",
+    "calcular `RI_M`, `RI_U` ou",
+    "`DeltaRI`, selecionar comparações, abrir a Fase B, congelar `N7`",
+    "Goal 5, tratar `beta=1` ou migrar ou compilar manuscritos"
+  )
+  all(vapply(
+    required_fragments,
+    function(fragment) grepl(fragment, text, fixed = TRUE, useBytes = TRUE),
+    logical(1)
+  ))
+}
+
 is_valid_strict_beta_contract <- function(text) {
   regions <- extract_normative_contract_regions(text)
   !is.null(regions) &&
@@ -193,7 +224,8 @@ is_valid_contract_semantics <- function(text) {
   identical(sha256_text(text), expected_contract_hash) &&
     is_valid_reopened_authorization(text) &&
     is_valid_strict_beta_contract(text) &&
-    is_valid_phaseA_cadence(text)
+    is_valid_phaseA_cadence(text) &&
+    is_valid_single_phaseA_protocol_exception(text)
 }
 
 script_argument <- grep("^--file=", commandArgs(trailingOnly = FALSE), value = TRUE)
@@ -268,8 +300,9 @@ contract_text <- paste0(
 assert_true(
   is_valid_contract_semantics(contract_text),
   paste0(
-    "The canonical authorization header, beta primitive, or complete strict-delay ",
-    "decision differs from its exact author-approved regional object/hash."
+    "The canonical authorization header, beta primitive, complete strict-delay ",
+    "decision, or the single Phase A protocol exception differs from its exact ",
+    "author-approved object/hash."
   )
 )
 
@@ -2181,6 +2214,45 @@ assert_true(
   "Expanding Phase A to informational-rent calculation must fail."
 )
 
+broadened_protocol_exception <- sub(
+  "não se aplica a nenhuma outra alteração passada ou futura da Seção 11",
+  "também se aplica a outras alterações administrativas passadas ou futuras da Seção 11",
+  contract_text,
+  fixed = TRUE,
+  useBytes = TRUE
+)
+assert_true(
+  !is_valid_single_phaseA_protocol_exception(broadened_protocol_exception) &&
+    !is_valid_contract_semantics(broadened_protocol_exception),
+  "The one-time Section 11 administrative exception must not generalize."
+)
+
+phaseB_via_protocol_exception <- sub(
+  "não autoriza cruzar o candidato público com `N6`",
+  "autoriza cruzar o candidato público com `N6`",
+  contract_text,
+  fixed = TRUE,
+  useBytes = TRUE
+)
+assert_true(
+  !is_valid_single_phaseA_protocol_exception(phaseB_via_protocol_exception) &&
+    !is_valid_contract_semantics(phaseB_via_protocol_exception),
+  "The administrative exception must not authorize Phase B comparisons."
+)
+
+n7_freeze_via_protocol_exception <- sub(
+  "continua `pending` e `unfrozen`",
+  "pode passar e ser congelado",
+  contract_text,
+  fixed = TRUE,
+  useBytes = TRUE
+)
+assert_true(
+  !is_valid_single_phaseA_protocol_exception(n7_freeze_via_protocol_exception) &&
+    !is_valid_contract_semantics(n7_freeze_via_protocol_exception),
+  "The administrative exception must not authorize N7 pass or freeze."
+)
+
 game_reviewer_paraphrases <- list(
   list(
     region = "delay",
@@ -2598,6 +2670,7 @@ cat(
 cat(
   paste0(
     "PASS: strict o_1 < 1 and beta < 1 contract with N1/N2/N3/N4/N6 pass/frozen on exact reviewed artifacts; ",
+    "the unique 2026-08-19 administrative exception preserves those freezes only for the authorized Goal 4 cadence split; ",
     "Goal 2 closes at N4 and Goal 3 closes at N6; N7 Phase A public benchmarks are authorized while N7 remains ",
     "pending/unfrozen; Phase B comparisons, RI_M, RI_U, DeltaRI, N7 freeze, Goal 5, beta=1 extensions, and manuscript migration remain unauthorized. ",
     "Typed coverage cells for empty and ",
