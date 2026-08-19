@@ -68,10 +68,14 @@ identical_utf8_text <- function(x, y) {
     identical(charToRaw(enc2utf8(x)), charToRaw(enc2utf8(y)))
 }
 
+contains_fixed_utf8 <- function(text, fragment) {
+  grepl(enc2utf8(fragment), enc2utf8(text), fixed = TRUE, useBytes = TRUE)
+}
+
 expected_beta_primitive <- "Desconto       beta in (0,1)"
-expected_contract_hash <- "6900b8a87f224bd8ae4f4e9a231b5a60aae45a1639283aaf1ef09bd26605d63e"
+expected_contract_hash <- "649e8919c2c11be0c5f6a9f0bfe6487d7f4b9bff6490c6e7b127fd8175c652c8"
 expected_contract_region_hashes <- c(
-  authorization_header = "889fae53945409cf0735b012286692da767816604f2e868349ea7d17bb1209e1",
+  authorization_header = "492cc8e6c0f86952403d98103e6eba1cba9d888a4ebc95d36f5f24776884bef5",
   beta_primitive = "bb7ee3390b0f63a4d293fe8deab7d33fea725d280ad43121c615375f96bf41b4",
   delay_cost_decision = "3c4483859bc7cdaf36c8fe3c4a1c2d54a278e40980eacdaba2fb9b684ebb8f2a"
 )
@@ -157,11 +161,21 @@ is_valid_reopened_authorization <- function(text) {
     grepl("`N7` permanece `pending` e `unfrozen`", regions$authorization_header, fixed = TRUE) &&
     grepl("nova autoriza", regions$authorization_header, fixed = TRUE) &&
     grepl("autoral expl", regions$authorization_header, fixed = TRUE) &&
-    grepl("congelamento de `N7`", regions$authorization_header, fixed = TRUE) &&
+    grepl("fechamento e o congelamento", regions$authorization_header, fixed = TRUE) &&
     grepl("Goal 5", regions$authorization_header, fixed = TRUE) &&
     grepl("fronteira `beta=1`", regions$authorization_header, fixed = TRUE) &&
     grepl("manuscrito continuam", regions$authorization_header, fixed = TRUE) &&
-    grepl("autorizados", regions$authorization_header, fixed = TRUE)
+    grepl("autorizados", regions$authorization_header, fixed = TRUE) &&
+    grepl("reabriu **exclusivamente `N6`**", regions$authorization_header, fixed = TRUE) &&
+    grepl("`N6` retorna a", regions$authorization_header, fixed = TRUE) &&
+    grepl("sem hash nem pareceres correntes", regions$authorization_header, fixed = TRUE) &&
+    grepl("obsoleta", regions$authorization_header, fixed = TRUE) &&
+    grepl("`N1`, `N2`, `N3` e `N4`", regions$authorization_header, fixed = TRUE) &&
+    grepl("permanecem byte a byte `pass/frozen`", regions$authorization_header, fixed = TRUE) &&
+    grepl("`N7` permanece `pending` e `unfrozen`", regions$authorization_header, fixed = TRUE) &&
+    grepl("Goal 4 fica pausado", regions$authorization_header, fixed = TRUE) &&
+    grepl("schema, topologia, jogo", regions$authorization_header, fixed = TRUE) &&
+    grepl("`N7`, Goal 5", regions$authorization_header, fixed = TRUE)
 }
 
 is_valid_phaseA_cadence <- function(text) {
@@ -176,32 +190,61 @@ is_valid_phaseA_cadence <- function(text) {
 }
 
 is_valid_single_phaseA_protocol_exception <- function(text) {
-  exception_marker <- paste0(
-    "**Exceção administrativa única, autorizada pelo autor em 2026-08-19.**"
-  )
   required_fragments <- c(
-    exception_marker,
-    "exclusivamente nesta ocorrência",
-    "Goal 4 em Fase A — benchmarks públicos, gate autoral obrigatório e Fase B —",
-    "não invalida retrospectivamente os estados",
-    "`pass/frozen`, hashes, pareceres ou autorizações de consumo",
+    "administrativa",
+    "autorizada pelo autor em 2026-08-19",
+    "exclusivamente nesta",
+    "Goal 4 em Fase A",
+    "benchmarks",
+    "gate autoral",
+    "Fase B",
+    "retrospectivamente os estados",
+    "`pass/frozen`, hashes, pareceres",
     "`N3`, `N4` e `N6`",
-    "A justificativa é estritamente administrativa",
-    "sem mudar jogo, primitivas, factibilidade, ações",
-    "critérios de revisão, número ou independência dos",
-    "não se aplica a nenhuma outra alteração passada ou futura da Seção 11",
+    "estritamente administrativa",
+    "sem mudar jogo, primitivas, factibilidade",
+    "revisores, regra de mesmo hash",
+    "passada ou futura da Se",
     "item 3 continua integralmente",
-    "não autoriza alterar interfaces ou hashes congelados",
-    "reclassificar findings, reduzir testes ou dispensar revisões",
+    "interfaces ou hashes congelados",
+    "reclassificar findings, reduzir testes",
     "continua `pending` e `unfrozen`",
-    "não autoriza cruzar o candidato público com `N6`",
+    "candidato",
+    "cruzar o candidato",
+    "com `N6`",
     "calcular `RI_M`, `RI_U` ou",
-    "`DeltaRI`, selecionar comparações, abrir a Fase B, congelar `N7`",
-    "Goal 5, tratar `beta=1` ou migrar ou compilar manuscritos"
+    "`DeltaRI`, selecionar compara",
+    "abrir a Fase B, congelar `N7`",
+    "Goal 5, tratar `beta=1`",
+    "manuscritos"
   )
   all(vapply(
     required_fragments,
-    function(fragment) grepl(fragment, text, fixed = TRUE, useBytes = TRUE),
+    function(fragment) contains_fixed_utf8(text, fragment),
+    logical(1)
+  ))
+}
+
+is_valid_n6_reopen_application <- function(text) {
+  required_fragments <- c(
+    "corrente autorizada pelo autor em 2026-08-19",
+    "exclusiva de `N6`",
+    "lifecycle deste item",
+    "`N6` volta a `pending` e `unfrozen`",
+    "hash e seus pareceres anteriores",
+    "obsoleta",
+    "`N7`, seu",
+    "descendente, permanece",
+    "`N1`--`N4` mudou",
+    "permanecem `pass/frozen` nos mesmos bytes",
+    "arquivos do antigo `N6`",
+    "candidato intermedi",
+    "da Fase A",
+    "regra geral deste item"
+  )
+  all(vapply(
+    required_fragments,
+    function(fragment) contains_fixed_utf8(text, fragment),
     logical(1)
   ))
 }
@@ -225,7 +268,8 @@ is_valid_contract_semantics <- function(text) {
     is_valid_reopened_authorization(text) &&
     is_valid_strict_beta_contract(text) &&
     is_valid_phaseA_cadence(text) &&
-    is_valid_single_phaseA_protocol_exception(text)
+    is_valid_single_phaseA_protocol_exception(text) &&
+    is_valid_n6_reopen_application(text)
 }
 
 script_argument <- grep("^--file=", commandArgs(trailingOnly = FALSE), value = TRUE)
@@ -235,11 +279,11 @@ repository_root <- normalizePath(file.path(dirname(script_path), ".."), mustWork
 manifest_path <- file.path(repository_root, "model_redesign", "essential_input_game_dag.json")
 manifest_dir <- dirname(manifest_path)
 
-expected_manifest_hash <- "aafb39d47b0ae6a06f11b5a4894d82dc6c378e2f67e5d2b49176098066189507"
-expected_manifest_object_hash <- "ee14f4e18f23e98910891071995b41e71b44fe23d88e4ddfaca9740e4eee105e"
+expected_manifest_hash <- "3753dcdd9c61e545c3bb70099a55b443425695e626e4905a16f97f85edc3b4ab"
+expected_manifest_object_hash <- "e78431c5b70e107f33ea9eb8dd0596ad31647a679613490ad39819ca12e0c8a7"
 assert_true(
   identical(sha256_file(manifest_path), expected_manifest_hash),
-  "The Gate 0 manifest bytes differ from the approved post-N6 beta<1 lifecycle snapshot."
+  "The Gate 0 manifest bytes differ from the approved N6-reopened beta<1 lifecycle snapshot."
 )
 manifest <- jsonlite::fromJSON(manifest_path, simplifyVector = FALSE)
 canonical_manifest <- clone_object(manifest)
@@ -279,7 +323,7 @@ is_valid_manifest_top_level <- function(candidate_manifest) {
 }
 assert_true(
   is_valid_manifest_top_level(manifest) && is_valid_canonical_manifest(manifest),
-  "The manifest must be recursively identical to the complete canonical post-N6 lifecycle object."
+  "The manifest must be recursively identical to the complete canonical N6-reopened lifecycle object."
 )
 nodes <- manifest$nodes
 node_ids <- vapply(nodes, `[[`, character(1), "id")
@@ -291,7 +335,7 @@ contract_path <- normalizePath(
 )
 assert_true(
   identical(sha256_file(contract_path), expected_contract_hash),
-  "The canonical contract bytes differ from the author-approved N7 Phase A snapshot."
+  "The canonical contract bytes differ from the author-approved N6-reopening snapshot."
 )
 contract_text <- paste0(
   paste(readLines(contract_path, encoding = "UTF-8", warn = FALSE), collapse = "\n"),
@@ -301,7 +345,7 @@ assert_true(
   is_valid_contract_semantics(contract_text),
   paste0(
     "The canonical authorization header, beta primitive, complete strict-delay ",
-    "decision, or the single Phase A protocol exception differs from its exact ",
+    "decision, Phase A protocol exception, or N6 reopening differs from its exact ",
     "author-approved object/hash."
   )
 )
@@ -891,7 +935,7 @@ for (node_id in expected_ids) {
   )
 }
 
-pending_node_ids <- "N7"
+pending_node_ids <- c("N6", "N7")
 for (node_id in pending_node_ids) {
   node <- nodes[[node_id]]
   assert_true(identical(node$status, "pending"), paste(node_id, "must remain pending."))
@@ -1423,7 +1467,7 @@ is_valid_filled_private_comparison_interface <- function(interface) {
     !anyDuplicated(comparison_ids)
 }
 
-# Frozen N1/N2/N3/N4/N6 are consumable only on exact artifact bytes, object-identical
+# Frozen N1/N2/N3/N4 are consumable only on exact artifact bytes, object-identical
 # interfaces, dependency hashes, lifecycle fields, and same-hash PASS 0/0/0 reviews.
 expected_frozen_node_fields <- c(
   "id", "name", "round", "institution", "depends_on", "status", "interface",
@@ -1483,6 +1527,8 @@ leaf_specs <- list(
     game_reviewer_id = "review-n6-game-2026-08-19-r1"
   )
 )
+
+current_frozen_ids <- c("N1", "N2", "N3", "N4")
 
 for (node_id in names(leaf_specs)) {
   spec <- leaf_specs[[node_id]]
@@ -1546,7 +1592,7 @@ is_valid_current_leaf <- function(node_id, node, spec) {
     is_frozen(node)
 }
 
-for (node_id in names(leaf_specs)) {
+for (node_id in current_frozen_ids) {
   assert_true(
     is_valid_current_leaf(node_id, nodes[[node_id]], leaf_specs[[node_id]]),
     paste(
@@ -1581,14 +1627,6 @@ assert_true(
     nodes$N4$started_order < nodes$N4$passed_order,
   "N4 must record start/pass orders 7/8, strictly after Goal 1 passed."
 )
-assert_true(
-  identical(as.integer(nodes$N6$started_order), 9L) &&
-    identical(as.integer(nodes$N6$passed_order), 10L) &&
-    max(nodes$N3$passed_order, nodes$N4$passed_order) < nodes$N6$started_order &&
-    nodes$N6$started_order < nodes$N6$passed_order,
-  "N6 must record start/pass orders 9/10, strictly after N3 and N4 passed."
-)
-
 review_report_specs <- list(
   formal_design = list(
     path = file.path(
@@ -1714,7 +1752,7 @@ for (role in names(n3_review_report_specs)) {
 }
 
 n4_verifier_path <- file.path(repository_root, "scripts", "verify_essential_input_n4.R")
-expected_n4_verifier_hash <- "57ca46c48560a70b283ad06c51e3d2bef08c3e0849620c5881553abb12b55e81"
+expected_n4_verifier_hash <- "0bb26aeac0860f9b37c507c6bb8586d2fa9efb67361670a0f24365d8872976d6"
 assert_true(file.exists(n4_verifier_path), "Missing final N4 verifier.")
 assert_true(
   identical(sha256_file(n4_verifier_path), expected_n4_verifier_hash),
@@ -1770,10 +1808,10 @@ for (role in names(n4_review_report_specs)) {
 
 n6_verifier_path <- file.path(repository_root, "scripts", "verify_essential_input_n6.R")
 expected_n6_verifier_hash <- "7cf5db2ed94cfe09eb70d0ae3c41a797c70deac999f5a781da9d43f165e6ead5"
-assert_true(file.exists(n6_verifier_path), "Missing final N6 verifier.")
+assert_true(file.exists(n6_verifier_path), "Missing preserved obsolete N6 verifier.")
 assert_true(
   identical(sha256_file(n6_verifier_path), expected_n6_verifier_hash),
-  "The final N6 verifier changed after lifecycle integration."
+  "The obsolete N6 verifier changed instead of remaining preserved as provenance."
 )
 n6_verifier_output <- system2(
   "Rscript",
@@ -1788,7 +1826,7 @@ if (is.null(n6_verifier_status)) {
 assert_true(
   identical(as.integer(n6_verifier_status), 0L) &&
     any(grepl("PASS: six negative mutation tests rejected.", n6_verifier_output, fixed = TRUE)),
-  "The pinned N6 verifier must pass its positive checks and six negative mutations."
+  "The preserved obsolete N6 verifier must still reproduce its historical checks."
 )
 
 n6_support_specs <- list(
@@ -1818,7 +1856,7 @@ for (support_name in names(n6_support_specs)) {
   assert_true(file.exists(spec$path), paste("Missing N6", support_name, "artifact."))
   assert_true(
     identical(sha256_file(spec$path), spec$expected_hash),
-    paste("The N6", support_name, "artifact changed after review.")
+    paste("The obsolete N6", support_name, "artifact changed instead of remaining preserved.")
   )
 }
 
@@ -1866,11 +1904,11 @@ for (role in names(n6_review_report_specs)) {
   n6_review_report_specs[[role]] <- spec
   assert_true(
     is_valid_n6_review_report(spec$canonical_lines, role, spec),
-    paste("The N6 report lacks exact same-hash PASS 0/0/0 evidence for", role)
+    paste("The preserved obsolete N6 report lacks its historical same-hash PASS 0/0/0 evidence for", role)
   )
 }
 
-for (node_id in names(leaf_specs)) {
+for (node_id in current_frozen_ids) {
   spec <- leaf_specs[[node_id]]
   mutate_and_reject_leaf <- function(label, mutate_node) {
     altered <- mutate_node(clone_object(nodes[[node_id]]))
@@ -1941,11 +1979,11 @@ for (role in names(n6_review_report_specs)) {
   spec <- n6_review_report_specs[[role]]
   assert_true(
     !is_valid_n6_review_report(c(spec$canonical_lines, "FAIL"), role, spec),
-    paste("An appended FAIL must invalidate the N6 report for", role)
+    paste("An appended FAIL must invalidate the preserved obsolete N6 report for", role)
   )
 }
 
-# N7 alone retains the exact pending/null envelope after N6 freezes.
+# Reopened N6 and paused N7 retain their exact pending/null envelopes.
 expected_pending_node_fields <- c(
   "id", "name", "round", "institution", "depends_on", "status", "interface"
 )
@@ -2020,12 +2058,12 @@ for (field_path in manifest_field_paths) {
   )
 }
 
-current_pending_ids <- "N7"
+current_pending_ids <- c("N6", "N7")
 assert_true(
   all(vapply(current_pending_ids, function(node_id) {
     is_valid_current_pending_node(node_id, nodes[[node_id]])
   }, logical(1))),
-  "N7 must retain the exact pending/null lifecycle after N6 freezes."
+  "N6 and N7 must retain the exact pending/null lifecycle after the N6-only reopening."
 )
 
 # Current-state mutations cannot smuggle a stale result, lifecycle fact, or
@@ -2120,8 +2158,8 @@ for (node_id in current_pending_ids) {
 assert_true(
   is_valid_contract_semantics(contract_text),
   paste0(
-    "The contract must retain strict beta<1, closed Goals 1/2, authorization of Goal 3 ",
-    "only for N6, and explicit exclusion of N7/Goals 4-5/beta=1/manuscript migration."
+    "The contract must retain strict beta<1, frozen N1-N4, the N6-only reopening, ",
+    "paused N7/Goal 4, and explicit exclusion of Goal 5/beta=1/manuscript migration."
   )
 )
 
@@ -2228,8 +2266,8 @@ assert_true(
 )
 
 phaseB_via_protocol_exception <- sub(
-  "não autoriza cruzar o candidato público com `N6`",
-  "autoriza cruzar o candidato público com `N6`",
+  "cruzar o candidato",
+  "cruzar livremente o candidato",
   contract_text,
   fixed = TRUE,
   useBytes = TRUE
@@ -2479,10 +2517,10 @@ freeze_node <- function(
 }
 
 assert_true(
-  identical(sort(topologically_ready_nodes(nodes)), "N7"),
+  identical(sort(topologically_ready_nodes(nodes)), "N6"),
   paste0(
-    "After N6 freezes, exactly N7 must be topologically ready. ",
-    "Topological readiness does not authorize Phase B, rents, or N7 freeze."
+    "With N3 and N4 frozen and N6 reopened, exactly N6 must be topologically ready. ",
+    "Topological readiness does not freeze N6 or authorize N7/Phase B."
   )
 )
 assert_true(
@@ -2669,14 +2707,14 @@ cat(
 
 cat(
   paste0(
-    "PASS: strict o_1 < 1 and beta < 1 contract with N1/N2/N3/N4/N6 pass/frozen on exact reviewed artifacts; ",
-    "the unique 2026-08-19 administrative exception preserves those freezes only for the authorized Goal 4 cadence split; ",
-    "Goal 2 closes at N4 and Goal 3 closes at N6; N7 Phase A public benchmarks are authorized while N7 remains ",
-    "pending/unfrozen; Phase B comparisons, RI_M, RI_U, DeltaRI, N7 freeze, Goal 5, beta=1 extensions, and manuscript migration remain unauthorized. ",
+    "PASS: strict o_1 < 1 and beta < 1 contract with N1/N2/N3/N4 pass/frozen on exact reviewed artifacts; ",
+    "the author-approved Section 12.2 lifecycle reopening makes only N6 pending/unfrozen and leaves N7 pending/unfrozen; ",
+    "the old N6 hash/reviews and the Phase A candidate are preserved as obsolete provenance, while Goal 4 is paused and ",
+    "N7 work/freeze, Goal 5, beta=1 extensions, and manuscript migration remain unauthorized. ",
     "Typed coverage cells for empty and ",
     "nonempty correspondences, independent RI_M and RI_U with a separate DeltaRI ",
     "contrast, role-typed public payoffs, terminal complete-information benchmark, ",
-    "two-review freeze gates, byte-identical N6 integration, topological readiness, negative schema tests, and ",
+    "two-review freeze gates, byte-identical N1-N4 integration, N6 readiness, negative schema tests, and ",
     "invalidation rules verified. Topological ",
     "readiness does not grant author authorization; Section 11 controls.\n"
   )

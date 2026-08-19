@@ -43,6 +43,19 @@ independentes read-only `PASS 0/0/0` sobre o mesmo hash completo, o trabalho
 para e o autor decide o fechamento e o congelamento. O Goal 5, a fronteira
 `beta=1` e qualquer migração ou compilação de manuscrito continuam não
 autorizados.
+Em decisão autoral posterior de 2026-08-19, diante do finding bloqueante de
+suficiência da interface na Fase B, o autor reabriu **exclusivamente `N6`**
+para publicar uma interface autossuficiente no mesmo schema e consumindo os
+mesmos `N3` e `N4` congelados. Pela consequência da Seção 12.2, `N6` retorna a
+`pending` e `unfrozen`, sem hash nem pareceres correntes; o antigo hash
+`sha256:e5a71e29720598f829beb4f720bc966a64d2b04569ded0ba404cdd03b81b3f2a`
+e seus pareceres tornam-se proveniência obsoleta. `N1`, `N2`, `N3` e `N4`
+permanecem byte a byte `pass/frozen`, com interfaces, hashes e pareceres
+inalterados. `N7` permanece `pending` e `unfrozen`, e o Goal 4 fica pausado.
+O candidato intermediário da Fase A e os arquivos do antigo `N6` permanecem
+preservados como proveniência. Esta decisão não altera schema, topologia, jogo,
+P8 nem o protocolo geral e não autoriza `N7`, Goal 5, `beta=1` ou migração ou
+compilação de manuscrito.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
 
@@ -1321,6 +1334,16 @@ avança sem esse aval.
    `N4` ou `N6`; se o finding demonstrar erro em primitiva, conceito de solução
    ou outra fonte
    compartilhada, aplica-se o item 1.
+
+   **Aplicação corrente autorizada pelo autor em 2026-08-19.** A reabertura
+   exclusiva de `N6` aplica exatamente a consequência de lifecycle deste item:
+   `N6` volta a `pending` e `unfrozen`, e seu hash e seus pareceres anteriores
+   tornam-se proveniência obsoleta; `N7`, seu único descendente, permanece
+   `pending` e `unfrozen`. Como nenhum conteúdo nem fonte compartilhada de
+   `N1`--`N4` mudou, esses quatro nós permanecem `pass/frozen` nos mesmos bytes,
+   interfaces, hashes e pareceres. Os arquivos do antigo `N6` e o candidato
+   intermediário da Fase A são preservados como proveniência. Este registro não
+   cria exceção nem modifica a regra geral deste item.
 3. **Mudança no protocolo de revisão.** Uma alteração da Seção 11 reabre o Gate
    0 de prontidão: todos os nós de derivação voltam a `pending`, e seus pareceres,
    congelamento e autorização de consumo tornam-se inválidos. Derivações e
