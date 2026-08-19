@@ -26,8 +26,23 @@ públicos de `N7`. Essa autorização não alcança a comparação dos benchmark
 públicos com os registros privados de `N6`, nem o cálculo de `RI_M`, `RI_U` ou
 `DeltaRI`. Ao fim da Fase A, `N7` permanece `pending` e `unfrozen`; a Fase B
 depende de nova autorização autoral explícita sobre quais comparações são
-substantivamente relevantes. O congelamento de `N7`, o Goal 5, a fronteira
-`beta=1` e qualquer migração para manuscrito continuam não autorizados.
+substantivamente relevantes. A Fase A recebeu exatamente dois pareceres
+independentes read-only `PASS 0/0/0` sobre o mesmo candidato intermediário,
+`sha256:db7b590ab53694e9d6cb90a0aae7242ce1926c32a9f59638788bb0758d632cb5`.
+Em decisão autoral posterior de 2026-08-19, o autor abriu a **Fase B do Goal
+4**, exclusivamente para executar as comparações e rendas já definidas na
+Seção 1, sob as convenções de projeção e reporte registradas na subseção
+“Escopo autorizado da Fase B”, consumindo esse candidato intermediário e o
+`N6` congelado em
+`sha256:e5a71e29720598f829beb4f720bc966a64d2b04569ded0ba404cdd03b81b3f2a`.
+Esta decisão exerce o gate prospectivo que já constava do item 7 da Seção 11:
+não altera o estimando, P8, o schema, a topologia, o jogo ou o protocolo de
+revisão e não amplia a exceção administrativa estrita da Seção 12.3.
+Esta autorização não congela `N7`: depois de exatamente dois pareceres
+independentes read-only `PASS 0/0/0` sobre o mesmo hash completo, o trabalho
+para e o autor decide o fechamento e o congelamento. O Goal 5, a fronteira
+`beta=1` e qualquer migração ou compilação de manuscrito continuam não
+autorizados.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
 
@@ -230,6 +245,79 @@ obrigação de caracterizar a correspondência completa do benchmark e testar a
 conjectura de equivalência necessária para usar qualquer medida simplificada.
 A existência de separating e de atraso é testada por P3 sob o conceito da
 Seção 5.
+
+### Escopo autorizado da Fase B
+
+As decisões abaixo operacionalizam o estimando já definido nesta seção; não
+alteram o jogo, o tipo binário, o prior, o conceito de solução nem o schema de
+`N7`. Elas são convenções de projeção e reporte da correspondência completa já
+exigida por esta seção e por P8: não removem registros, não acrescentam seleção
+de equilíbrio e não alteram P8.
+
+**Mesmo ambiente contrafactual.** Para cada regra `g in {M,U}`, o vetor privado
+de payoff de `H` é comparado ao vetor público construído tipo a tipo sob o
+mesmo vetor completo de primitivas e parâmetros. “Mesma condição” não exige
+que os equilíbrios privado e público tenham o mesmo rótulo ou ramo. `RI_M`,
+`RI_U` e `DeltaRI` permanecem exatamente os objetos definidos acima, por tipo
+e ex ante com o mesmo prior `mu`. `DeltaRI` é uma diferença de diferenças
+algébrica no modelo — a vantagem `U-M` com informação privada menos a vantagem
+`U-M` com informação pública — e não é um estimador DiD empírico.
+
+**Domínio substantivo.** A análise substantiva principal da renda é restrita a
+`m>=3`. O caso `m=2` permanece integralmente preservado como cobertura formal
+secundária nos artefatos fonte e na interface completa; não é apagado nem
+reclassificado como parte da análise principal.
+
+**Equivalência para a renda de H.** A projeção da correspondência colapsa
+somente assessments ou equilíbrios que gerem exatamente o mesmo vetor
+`(U_H(0),U_H(1))`. Diferenças apenas na identidade dos weak states pagos, em
+seus payoffs, em folga, em crenças ou em componentes de pacote que não alterem
+esse vetor não criam novo valor de renda. Nenhum equilíbrio válido é removido
+dos artefatos fonte: trata-se de um quociente para o estimando, não de seleção
+no jogo. Toda multiplicidade que produza vetores distintos de payoff de `H`
+permanece preservada.
+
+**Objeto principal puro e robustez mista.** A análise principal calcula a
+renda de equilíbrios puros completamente especificados. Sob unanimidade
+privada, separa atraso universal; pooling puro na menor concessão admissível;
+pooling puro na maior concessão admissível quando o máximo existir, ou o
+supremo com declaração explícita de não atingimento; convenções puras por
+identidade parametrizadas por `rho=k/m`, `k=0,...,m`, e pela oferta média dos
+proponentes pooling; e os envelopes inferior e superior sobre todos os
+equilíbrios puros payoff-distintos para `H`. Permutações com o mesmo `rho` e a
+mesma oferta média são equivalentes para este estimando. Misturas válidas
+continuam preservadas e são verificadas como robustez secundária; quando todo o
+suporte gera o mesmo vetor de payoff de `H`, deve-se demonstrar a invariância
+da expectativa. Nenhuma distribuição sobre equilíbrios é criada. Sob maioria,
+testa-se se a projeção em payoff de `H` é genericamente singleton e preservam-se
+separadamente toda fronteira de medida zero e toda exceção exata.
+
+**Decomposição do pooling privado.** O reporte deriva, a partir do conteúdo
+privado transportado por `N6`, o conjunto exato de concessões `Y` sustentável
+em pooling sob unanimidade. Ele distingue o menor `Y` que satisfaz `H`; os
+limites impostos pela garantia e pelos desvios do proponente; factibilidade,
+payoff residual e distribuição do restante entre weak states; crenças e
+punições off-path; o tie-break no nível da proposta; e variações do pacote que
+não alteram `Y`. Não se acrescenta regra de seleção de `Y`: reportam-se mínimo,
+máximo quando existente, supremo quando não atingido, fórmula paramétrica e
+envelopes. Esta decomposição torna legível a correspondência já exigida; não é
+uma nova obrigação de prova nem autorização para consumir diretamente `N4`.
+
+**Agregação equal-area sobre parâmetros.** Como resumo pós-solução, fixe
+`m>=3`, `beta`, `mu` e `y_bar` e considere
+`Omega(y_bar)={(o_0,o_1):0<o_0<o_1<y_bar}` com densidade uniforme de área
+`2/y_bar^2`, equivalente a ordenar duas retiradas iid
+`Uniform(0,y_bar)`. A uniforme pondera configurações de primitivas; não é
+observada pelos jogadores, não substitui o prior binário `mu`, não seleciona
+equilíbrios e não é calibração nem distribuição empírica. Para cada seleção
+pura completamente especificada admissível, reportam-se a renda por tipo, sua
+imagem ex ante e, quando bem definida, a média uniforme. Para
+correspondências, reportam-se as médias uniformes dos envelopes inferior e
+superior, as parcelas de `Omega(y_bar)` em que `DeltaRI` é robustamente
+positiva, robustamente negativa ou dependente da seleção, sem convexificar
+lacunas. Ponderações não uniformes de `o_0` e `o_1` ficam como robustez futura
+até que o autor escolha uma medida alternativa; nenhuma é inventada nesta
+fase.
 
 **Candidato substantivo, não premissa.** A decisão do autor antecipa que a
 inexistência de separating fará a opção de espera gerar o componente de payoff
@@ -912,6 +1000,13 @@ nas mesmas unidades dos registros privados e completa `RI_M`, `RI_U` e
 `DeltaRI` conforme a existência separada da Seção 1, inclusive se qualquer
 objeto for negativo, set-valued ou vazio sob o conceito vigente. O tratamento
 de ambas as revisões está na Seção 11.
+
+A agregação equal-area autorizada na Seção 1 não integra o schema
+`complete_information_benchmark_v1`. Ela é um companion derivado e
+reproduzível, ligado por hashes ao `N6` congelado, ao candidato intermediário da
+Fase A e ao candidato completo de `N7`. Esse companion não retorna como input a
+nenhum nó, não altera a interface, não cria campos novos e não integra os
+critérios formais de validade ou congelamento de `N7`.
 
 ---
 
