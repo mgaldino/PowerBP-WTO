@@ -12,9 +12,11 @@ Decisão autoral posterior prevalece sobre registro histórico incompatível. A
 mudança do domínio de `beta` é mudança de primitiva: reabre o Gate 0 e devolve
 todos os nós a `pending`, conforme a Seção 12. Depois de dois novos pareceres
 independentes `PASS 0/0/0` sobre este mesmo contrato, a autorização autoral
-posterior permite reavaliar o Goal 1 exclusivamente para `N1`, `N2` e `N3`,
-seguindo integralmente os gates da Seção 11. Esta autorização não alcança
-`N4`, `N6`, `N7`, o Goal 2, a fronteira `beta=1` nem qualquer migração para
+posterior permitiu reavaliar o Goal 1 exclusivamente para `N1`, `N2` e `N3`,
+seguindo integralmente os gates da Seção 11. O Goal 1 fechou com esses três nós
+`pass/frozen`. Em decisão autoral posterior de 2026-08-18, o autor autorizou a
+execução do Goal 2 exclusivamente para `N4`. Esta autorização não alcança
+`N6`, `N7`, o Goal 3, a fronteira `beta=1` nem qualquer migração para
 manuscrito.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.

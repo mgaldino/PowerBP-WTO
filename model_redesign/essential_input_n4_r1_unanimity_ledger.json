@@ -1,0 +1,219 @@
+{
+  "ledger_schema": "essential_input_claim_ledger_v1",
+  "node_id": "N4",
+  "artifact_path": "model_redesign/essential_input_n4_r1_unanimity_interface.json",
+  "artifact_hash": "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d",
+  "node_status": "pending_independent_review",
+  "claims": [
+    {
+      "claim_id": "N4-CLM-001",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-M2-NU0",
+        "N4-EQ-COMPLETE-M2-LOW",
+        "N4-EQ-COMPLETE-M2-HIGH",
+        "N4-EQ-COMPLETE-MGE3-NU0",
+        "N4-EQ-COMPLETE-MGE3-LOW",
+        "N4-EQ-COMPLETE-MGE3-HIGH"
+      ],
+      "branch": "dependency_and_timing",
+      "payoff_date": "R1",
+      "claim": "N4 consumes only frozen N2 at hash c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2. Every N2 payoff is transported to current R1 units with beta exactly once; no N3 or historical artifact is an input.",
+      "status": "proved",
+      "evidence": "Derivation Sections 1-2 and every interface source/payoff-date field."
+    },
+    {
+      "claim_id": "N4-CLM-002",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-M2-NU0",
+        "N4-EQ-COMPLETE-M2-LOW",
+        "N4-EQ-COMPLETE-M2-HIGH",
+        "N4-EQ-COMPLETE-MGE3-NU0",
+        "N4-EQ-COMPLETE-MGE3-LOW",
+        "N4-EQ-COMPLETE-MGE3-HIGH"
+      ],
+      "branch": "P4_on_path_information",
+      "payoff_date": "R1",
+      "claim": "Because weak proposers and weak voters cannot condition on theta, their positive-probability actions have the same conditional distribution under every remaining H type. Bayes therefore makes weak actions uninformative on path. This derived lemma imposes no restriction on exact zero-probability proposals or vote vectors.",
+      "status": "proved",
+      "evidence": "Derivation Sections 2 and 4; interface belief_system fields."
+    },
+    {
+      "claim_id": "N4-CLM-003",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-M2-NU0",
+        "N4-EQ-COMPLETE-M2-LOW",
+        "N4-EQ-COMPLETE-M2-HIGH",
+        "N4-EQ-COMPLETE-MGE3-NU0",
+        "N4-EQ-COMPLETE-MGE3-LOW",
+        "N4-EQ-COMPLETE-MGE3-HIGH"
+      ],
+      "branch": "P3_P7_H_ballot_exhaustion",
+      "payoff_date": "R1",
+      "claim": "No pure H-ballot separating branch survives at 0<nu<1, whether every weak voter says yes or a weak no already blocks passage. Low-only current passage survives only at nu=0; positive-prior outcomes are pooling passage or deliberate delay.",
+      "status": "proved",
+      "evidence": "Derivation Section 5 and the six branch classifications."
+    },
+    {
+      "claim_id": "N4-CLM-004",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-M2-NU0",
+        "N4-EQ-COMPLETE-M2-LOW",
+        "N4-EQ-COMPLETE-M2-HIGH",
+        "N4-EQ-COMPLETE-MGE3-NU0",
+        "N4-EQ-COMPLETE-MGE3-LOW",
+        "N4-EQ-COMPLETE-MGE3-HIGH"
+      ],
+      "branch": "P6_delay_ballots",
+      "payoff_date": "R1",
+      "claim": "Delay support is exhausted by H rejection with all weak yes, or weak rejection with H yes. Exactly one weak rejector is strict and stage-undominated whenever x_j<g(nu), at every prior and every m>=2. Two or more weak rejectors survive exactly when nu<nu_2. T^Y removes genuine equality.",
+      "status": "proved",
+      "evidence": "Derivation Sections 3 and 8.2; each interface weak_nonproposer_ballot field."
+    },
+    {
+      "claim_id": "N4-CLM-005",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-M2-NU0",
+        "N4-EQ-COMPLETE-M2-LOW",
+        "N4-EQ-COMPLETE-M2-HIGH"
+      ],
+      "branch": "m2_exact_deviation_guarantee",
+      "payoff_date": "R1",
+      "claim": "For m=2 the exact support lower bound is L2(nu)=max{k2,min[z,(1-nu)q2]}. Whenever x<a0, weak rejection plus nonpivotal off-path low-H-no/high-H-yes separation yields only s=(1-nu)z. For x>=a0, endpoint/high rejection and forced passage establish the two binding guarantees e2 and k2.",
+      "status": "proved",
+      "evidence": "Derivation Section 6; m=2 interface zero_probability fields; executable reviewer-counterexample regression."
+    },
+    {
+      "claim_id": "N4-CLM-006",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-M2-NU0",
+        "N4-EQ-COMPLETE-M2-LOW",
+        "N4-EQ-COMPLETE-M2-HIGH"
+      ],
+      "branch": "m2_existence",
+      "payoff_date": "R1",
+      "claim": "Since L2<=p, m=2 pooling exists at every prior. Delay exists if and only if k2<=g(nu). At nu=0 low-only passage also always exists. Hence the prior candidate's m=2 none cell is refuted.",
+      "status": "proved",
+      "evidence": "Derivation Sections 6.3, 8, and 11; interface admissibility and existence fields."
+    },
+    {
+      "claim_id": "N4-CLM-007",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-MGE3-NU0",
+        "N4-EQ-COMPLETE-MGE3-LOW",
+        "N4-EQ-COMPLETE-MGE3-HIGH"
+      ],
+      "branch": "mge3_exact_deviation_guarantee",
+      "payoff_date": "R1",
+      "claim": "For m>=3 the exact lower support bound is L3(nu)=s(nu)=(1-nu)z. Two weak no votes permit nonpivotal off-path H separation after every null proposal, assigning pooling N2 after the true low type and low-only N2 after the true high type. Conditional N2 minima and a forced-failure package prove the matching lower guarantee.",
+      "status": "proved",
+      "evidence": "Derivation Section 7; m>=3 interface zero_probability fields."
+    },
+    {
+      "claim_id": "N4-CLM-008",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-MGE3-NU0",
+        "N4-EQ-COMPLETE-MGE3-LOW",
+        "N4-EQ-COMPLETE-MGE3-HIGH"
+      ],
+      "branch": "mge3_existence",
+      "payoff_date": "R1",
+      "claim": "For m>=3 both pooling and delay exist at every prior. In particular, the on-path exactly-one-weak-rejector construction survives at high priors and is distinct from the off-path two-rejector/nonpivotal-H-separation punishment.",
+      "status": "proved",
+      "evidence": "Derivation Sections 7-8; interface local_option_set and weak ballot fields; high-prior reviewer regression."
+    },
+    {
+      "claim_id": "N4-CLM-009",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-M2-NU0",
+        "N4-EQ-COMPLETE-M2-LOW",
+        "N4-EQ-COMPLETE-M2-HIGH",
+        "N4-EQ-COMPLETE-MGE3-NU0",
+        "N4-EQ-COMPLETE-MGE3-LOW",
+        "N4-EQ-COMPLETE-MGE3-HIGH"
+      ],
+      "branch": "proposal_tie_break",
+      "payoff_date": "R1",
+      "claim": "Within each proposer identity and accepted branch, every package in support has a common proposer payoff and common tie-break-minimal expected H payoff, equivalently common Y_i. The m=2 endpoint equality is open only when it necessarily uses the lower-H endpoint response; every retained pooling lower-bound equality requires the threshold offer.",
+      "status": "proved",
+      "evidence": "Derivation Section 8.1 and every interface selection_status field."
+    },
+    {
+      "claim_id": "N4-CLM-010",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-M2-NU0",
+        "N4-EQ-COMPLETE-M2-HIGH",
+        "N4-EQ-COMPLETE-MGE3-NU0",
+        "N4-EQ-COMPLETE-MGE3-HIGH"
+      ],
+      "branch": "within_identity_mixing",
+      "payoff_date": "R1",
+      "claim": "The only within-identity cross-branch proposal mixtures are low-only/delay at nu=0 with (R_i,Y_i)=(a0,beta*o_0), and pooling/delay at nu>nu_2 with (R_i,Y_i)=(z,beta*o_1), subject to the m=2 delay condition. Low-only/pooling and low-region pooling/delay ties are removed by the lower-H proposal tie-break.",
+      "status": "proved",
+      "evidence": "Derivation Section 9; endpoint and high-cell local option sets."
+    },
+    {
+      "claim_id": "N4-CLM-011",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-M2-NU0",
+        "N4-EQ-COMPLETE-M2-LOW",
+        "N4-EQ-COMPLETE-M2-HIGH",
+        "N4-EQ-COMPLETE-MGE3-NU0",
+        "N4-EQ-COMPLETE-MGE3-LOW",
+        "N4-EQ-COMPLETE-MGE3-HIGH"
+      ],
+      "branch": "identity_product_closure",
+      "payoff_date": "R1",
+      "claim": "Different recognized proposer identities may select different local branches and null-history response maps. The interface preserves the full Cartesian product inside one global assessment and never recombines beliefs, outcomes, or payoffs ex post across assessments.",
+      "status": "proved",
+      "evidence": "Derivation Sections 2 and 9; every strategy_profile proposal_mixing field."
+    },
+    {
+      "claim_id": "N4-CLM-012",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-M2-NU0",
+        "N4-EQ-COMPLETE-M2-LOW",
+        "N4-EQ-COMPLETE-M2-HIGH",
+        "N4-EQ-COMPLETE-MGE3-NU0",
+        "N4-EQ-COMPLETE-MGE3-LOW",
+        "N4-EQ-COMPLETE-MGE3-HIGH"
+      ],
+      "branch": "payoffs_and_outcomes",
+      "payoff_date": "R1",
+      "claim": "The lambda-indexed formulas retain proposer identity, asymmetric weak allocations, final N2 outcomes, and delay incidence. In the low N2 region final failure is D*nu; at nu=0 and in the high N2 region final passage with H is one. Passage without H is impossible under unanimity.",
+      "status": "proved",
+      "evidence": "Derivation Section 10 and every interface payoff/outcome field."
+    },
+    {
+      "claim_id": "N4-CLM-013",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-M2-NU0",
+        "N4-EQ-COMPLETE-M2-LOW",
+        "N4-EQ-COMPLETE-M2-HIGH",
+        "N4-EQ-COMPLETE-MGE3-NU0",
+        "N4-EQ-COMPLETE-MGE3-LOW",
+        "N4-EQ-COMPLETE-MGE3-HIGH"
+      ],
+      "branch": "P0_slack",
+      "payoff_date": "R1",
+      "claim": "P0 is refuted as a universal full-pie statement. Moving slack to r_i changes the exact proposal and may trigger a different pointwise ballot belief and punishment; accepted and delayed maximizing packages with strict budget slack survive.",
+      "status": "proved",
+      "evidence": "Derivation Section 11; interface set-valued support and slack statements."
+    },
+    {
+      "claim_id": "N4-CLM-014",
+      "equilibrium_ids": [
+        "N4-EQ-COMPLETE-M2-NU0",
+        "N4-EQ-COMPLETE-M2-LOW",
+        "N4-EQ-COMPLETE-M2-HIGH",
+        "N4-EQ-COMPLETE-MGE3-NU0",
+        "N4-EQ-COMPLETE-MGE3-LOW",
+        "N4-EQ-COMPLETE-MGE3-HIGH"
+      ],
+      "branch": "coverage_and_substantive_result",
+      "payoff_date": "R1",
+      "claim": "The six cells partition m=2 versus m>=3 and nu=0, 0<nu<=nu_2, and nu_2<nu<=1. Every cell exists and there is no none cell. The complete correspondence is set-valued and does not deliver universal delay, screening, uniqueness, or a single informational-rent formula.",
+      "status": "proved",
+      "evidence": "Derivation Sections 8-11; six complete interface records; executable coverage classifier."
+    }
+  ]
+}

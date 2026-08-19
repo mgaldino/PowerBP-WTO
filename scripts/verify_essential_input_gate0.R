@@ -69,9 +69,9 @@ identical_utf8_text <- function(x, y) {
 }
 
 expected_beta_primitive <- "Desconto       beta in (0,1)"
-expected_contract_hash <- "2f1f79efe4b9fd13f5ccf95aa1178a7f0da50cebca71abb3ed4f4f34374e85f6"
+expected_contract_hash <- "368b09eace9b1c2e68ffdcc61e6583dbc060591f1faf627f93919bae79e2241a"
 expected_contract_region_hashes <- c(
-  authorization_header = "dd1d2bb6b8ce16f4604057e87c1edfcd4e3d4d413268a24d3d17616b554f3467",
+  authorization_header = "981f79bbad186b1b7d4a81113da8f5ba58d0eada64aa6e6d5cc7e2c9e6032186",
   beta_primitive = "bb7ee3390b0f63a4d293fe8deab7d33fea725d280ad43121c615375f96bf41b4",
   delay_cost_decision = "3c4483859bc7cdaf36c8fe3c4a1c2d54a278e40980eacdaba2fb9b684ebb8f2a"
 )
@@ -139,7 +139,12 @@ is_valid_reopened_authorization <- function(text) {
     identical(
       sha256_text(regions$authorization_header),
       unname(expected_contract_region_hashes[["authorization_header"]])
-    )
+    ) &&
+    grepl("O Goal 1 fechou", regions$authorization_header, fixed = TRUE) &&
+    grepl("`pass/frozen`", regions$authorization_header, fixed = TRUE) &&
+    grepl("Goal 2 exclusivamente para `N4`", regions$authorization_header, fixed = TRUE) &&
+    grepl("`N6`, `N7`, o Goal 3", regions$authorization_header, fixed = TRUE) &&
+    grepl("manuscrito.", regions$authorization_header, fixed = TRUE)
 }
 
 is_valid_strict_beta_contract <- function(text) {
@@ -169,11 +174,11 @@ repository_root <- normalizePath(file.path(dirname(script_path), ".."), mustWork
 manifest_path <- file.path(repository_root, "model_redesign", "essential_input_game_dag.json")
 manifest_dir <- dirname(manifest_path)
 
-expected_manifest_hash <- "36ab77e4d9b1f196c25c215e7ca8b3e8b7ee960b49d946e264e3803ebfb50cc3"
-expected_manifest_object_hash <- "a94141313484a4fa123a20938901c6bb16b6e3b2f045701819ccb98f5e5eb8cc"
+expected_manifest_hash <- "3753dcdd9c61e545c3bb70099a55b443425695e626e4905a16f97f85edc3b4ab"
+expected_manifest_object_hash <- "e78431c5b70e107f33ea9eb8dd0596ad31647a679613490ad39819ca12e0c8a7"
 assert_true(
   identical(sha256_file(manifest_path), expected_manifest_hash),
-  "The Gate 0 manifest bytes differ from the approved beta<1 N1/N2/N3 lifecycle snapshot."
+  "The Gate 0 manifest bytes differ from the approved beta<1 N1/N2/N3/N4 lifecycle snapshot."
 )
 manifest <- jsonlite::fromJSON(manifest_path, simplifyVector = FALSE)
 canonical_manifest <- clone_object(manifest)
@@ -213,7 +218,7 @@ is_valid_manifest_top_level <- function(candidate_manifest) {
 }
 assert_true(
   is_valid_manifest_top_level(manifest) && is_valid_canonical_manifest(manifest),
-  "The manifest must be recursively identical to the complete canonical N1/N2/N3 lifecycle object."
+  "The manifest must be recursively identical to the complete canonical N1/N2/N3/N4 lifecycle object."
 )
 nodes <- manifest$nodes
 node_ids <- vapply(nodes, `[[`, character(1), "id")
@@ -824,7 +829,7 @@ for (node_id in expected_ids) {
   )
 }
 
-pending_node_ids <- c("N4", "N6", "N7")
+pending_node_ids <- c("N6", "N7")
 for (node_id in pending_node_ids) {
   node <- nodes[[node_id]]
   assert_true(identical(node$status, "pending"), paste(node_id, "must remain pending."))
@@ -844,7 +849,7 @@ for (node_id in pending_node_ids) {
 
 # Synthetic all-pending state retained only for negative lifecycle/readiness tests.
 pending_fixture_nodes <- clone_object(nodes)
-for (node_id in c("N1", "N2", "N3")) {
+for (node_id in c("N1", "N2", "N3", "N4")) {
   pending_fixture_nodes[[node_id]]$status <- "pending"
   pending_fixture_nodes[[node_id]]$interface["correspondence_cells"] <- list(NULL)
   pending_fixture_nodes[[node_id]][c(
@@ -1200,7 +1205,7 @@ is_valid_filled_equilibrium_interface <- function(interface) {
     isTRUE(valid_records)
 }
 
-# Frozen N1/N2/N3 are consumable only on exact artifact bytes, object-identical
+# Frozen N1/N2/N3/N4 are consumable only on exact artifact bytes, object-identical
 # interfaces, dependency hashes, lifecycle fields, and same-hash PASS 0/0/0 reviews.
 expected_frozen_node_fields <- c(
   "id", "name", "round", "institution", "depends_on", "status", "interface",
@@ -1238,6 +1243,17 @@ leaf_specs <- list(
     passed_order = 6L,
     formal_reviewer_id = "review-n3-beta-formal-2026-08-18-r3",
     game_reviewer_id = "review-n3-beta-game-2026-08-18-r3"
+  ),
+  N4 = list(
+    artifact_path = "essential_input_n4_r1_unanimity_interface.json",
+    artifact_hash = "sha256:ee61ce6f854d4393f51048592a5221a9999a8f3f7daca1e749e7f19a88927f2d",
+    dependency_hashes = list(
+      N2 = "sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2"
+    ),
+    started_order = 7L,
+    passed_order = 8L,
+    formal_reviewer_id = "review-n4-formal-2026-08-19-r8",
+    game_reviewer_id = "review-n4-game-2026-08-19-r8"
   )
 )
 
@@ -1325,6 +1341,13 @@ assert_true(
     nodes$N2$passed_order < nodes$N3$started_order &&
     nodes$N3$started_order < nodes$N3$passed_order,
   "N3 must record start/pass orders 5/6, strictly after the first frontier passed."
+)
+assert_true(
+  identical(as.integer(nodes$N4$started_order), 7L) &&
+    identical(as.integer(nodes$N4$passed_order), 8L) &&
+    nodes$N3$passed_order < nodes$N4$started_order &&
+    nodes$N4$started_order < nodes$N4$passed_order,
+  "N4 must record start/pass orders 7/8, strictly after Goal 1 passed."
 )
 
 review_report_specs <- list(
@@ -1451,6 +1474,61 @@ for (role in names(n3_review_report_specs)) {
   )
 }
 
+n4_verifier_path <- file.path(repository_root, "scripts", "verify_essential_input_n4.R")
+expected_n4_verifier_hash <- "33383adf43a2b18e54e092ecd924465e2da44be92f5c28405bca474a730948bc"
+assert_true(file.exists(n4_verifier_path), "Missing final N4 verifier.")
+assert_true(
+  identical(sha256_file(n4_verifier_path), expected_n4_verifier_hash),
+  "The final N4 verifier changed after lifecycle integration."
+)
+
+n4_review_report_specs <- list(
+  formal_design = list(
+    path = file.path(
+      repository_root, "quality_reports",
+      "2026-08-19_n4_formal_design_review_round8.md"
+    ),
+    expected_hash = "ba759c1c1eee3ebaf52fc68aca7dc4d4e6bc543e5c0e90c082928658b010143f",
+    reviewer_id = leaf_specs$N4$formal_reviewer_id
+  ),
+  game_theory = list(
+    path = file.path(
+      repository_root, "quality_reports",
+      "2026-08-19_n4_game_theory_review_round8.md"
+    ),
+    expected_hash = "89a38bcaea025f6c06c10688cae6967a61fe62c6e801f15e803bd89c3159071d",
+    reviewer_id = leaf_specs$N4$game_reviewer_id
+  )
+)
+
+is_valid_n4_review_report <- function(lines, role, spec) {
+  identical(lines, spec$canonical_lines) &&
+    length(lines) >= 7L &&
+    any(lines == paste0("reviewer_role: ", role)) &&
+    any(lines == paste0("reviewer_id: ", spec$reviewer_id)) &&
+    any(lines == paste0("artifact_hash: ", leaf_specs$N4$artifact_hash)) &&
+    any(lines == "verdict: PASS") &&
+    any(lines == "finding_counts: critical=0, major=0, minor=0") &&
+    any(lines == "findings:") &&
+    any(lines == "none") &&
+    !any(grepl("FAIL", lines, fixed = TRUE))
+}
+
+for (role in names(n4_review_report_specs)) {
+  spec <- n4_review_report_specs[[role]]
+  assert_true(file.exists(spec$path), paste("Missing saved N4 Round-8 report for", role))
+  assert_true(
+    identical(sha256_file(spec$path), spec$expected_hash),
+    paste("The complete saved N4 Round-8 report changed for", role)
+  )
+  spec$canonical_lines <- readLines(spec$path, encoding = "UTF-8", warn = FALSE)
+  n4_review_report_specs[[role]] <- spec
+  assert_true(
+    is_valid_n4_review_report(spec$canonical_lines, role, spec),
+    paste("The N4 Round-8 report lacks exact same-hash PASS 0/0/0 evidence for", role)
+  )
+}
+
 for (node_id in names(leaf_specs)) {
   spec <- leaf_specs[[node_id]]
   mutate_and_reject_leaf <- function(label, mutate_node) {
@@ -1510,7 +1588,15 @@ for (role in names(n3_review_report_specs)) {
   )
 }
 
-# N4 and all later nodes retain the exact pending/null envelope.
+for (role in names(n4_review_report_specs)) {
+  spec <- n4_review_report_specs[[role]]
+  assert_true(
+    !is_valid_n4_review_report(c(spec$canonical_lines, "FAIL"), role, spec),
+    paste("An appended FAIL must invalidate the N4 Round-8 report for", role)
+  )
+}
+
+# N6 and N7 retain the exact pending/null envelope.
 expected_pending_node_fields <- c(
   "id", "name", "round", "institution", "depends_on", "status", "interface"
 )
@@ -1585,12 +1671,12 @@ for (field_path in manifest_field_paths) {
   )
 }
 
-current_pending_ids <- c("N4", "N6", "N7")
+current_pending_ids <- c("N6", "N7")
 assert_true(
   all(vapply(current_pending_ids, function(node_id) {
     is_valid_current_pending_node(node_id, nodes[[node_id]])
   }, logical(1))),
-  "N4, N6, and N7 must retain the exact pending/null lifecycle."
+  "N6 and N7 must retain the exact pending/null lifecycle."
 )
 
 # Current-state mutations cannot smuggle a stale result, lifecycle fact, or
@@ -1684,7 +1770,10 @@ for (node_id in current_pending_ids) {
 
 assert_true(
   is_valid_contract_semantics(contract_text),
-  "The reopened contract must retain strict beta<1 and authorization only for N1-N3."
+  paste0(
+    "The contract must retain strict beta<1, closed Goal 1, authorization only for N4 ",
+    "in Goal 2, and explicit exclusion of N6/N7/Goal 3+/beta=1/manuscript migration."
+  )
 )
 
 insert_before_matching_line <- function(text, predicate, addition) {
@@ -1766,14 +1855,14 @@ assert_true(
 )
 
 expanded_authorization <- sub(
-  "`N4`, `N6`, `N7`, o Goal 2, a fronteira `beta=1`",
+  "`N6`, `N7`, o Goal 3, a fronteira `beta=1`",
   "nenhuma fronteira adicional",
   contract_text,
   fixed = TRUE
 )
 assert_true(
   !is_valid_reopened_authorization(expanded_authorization),
-  "Removing the explicit N4/N6/N7, Goal 2, and beta=1 exclusions must fail."
+  "Removing the explicit N6/N7, Goal 3+, beta=1, and manuscript exclusions must fail."
 )
 
 game_reviewer_paraphrases <- list(
@@ -1791,7 +1880,7 @@ game_reviewer_paraphrases <- list(
   ),
   list(
     region = "header",
-    text = "AUTORIZAÇÃO POSTERIOR: o Goal 2 pode começar por N4."
+    text = "AUTORIZAÇÃO POSTERIOR: o Goal 3 pode começar por N6."
   ),
   list(
     region = "delay",
@@ -1799,13 +1888,13 @@ game_reviewer_paraphrases <- list(
   ),
   list(
     region = "header",
-    text = "DECISÃO POSTERIOR: desconto unitário integra o benchmark e o segundo goal está liberado."
+    text = "DECISÃO POSTERIOR: desconto unitário integra o benchmark e N6 está liberado."
   )
 )
 formal_reviewer_mutations <- list(
   list(
     region = "header",
-    text = "**Autorizacao corrente adicional:** N4, Goal 2 e beta=1 estao autorizados agora."
+    text = "**Autorizacao corrente adicional:** N6, Goal 3 e beta=1 estao autorizados agora."
   ),
   list(
     region = "delay",
@@ -1852,18 +1941,18 @@ r3_contract_mutations <- list(
       "Regra adicional da Secao 2: beta=1 permanece admissivel no baseline."
     )
   },
-  n4_authorization_in_header = function(text) {
+  n6_authorization_in_header = function(text) {
     insert_after_matching_line(
       text,
       function(line) identical(line, "manuscrito."),
-      "Autorizacao adicional: N4 pode comecar imediatamente."
+      "Autorizacao adicional: N6 pode comecar imediatamente."
     )
   },
-  n4_authorization_in_section_11 = function(text) {
+  n6_authorization_in_section_11 = function(text) {
     insert_before_matching_line(
       text,
       function(line) startsWith(line, "## 12. Invalida"),
-      "Autorizacao adicional da Secao 11: N4 e Goal 2 estao liberados."
+      "Autorizacao adicional da Secao 11: N6 e Goal 3 estao liberados."
     )
   },
   beta_exception_in_section_12 = function(text) {
@@ -1883,7 +1972,7 @@ r3_contract_mutations <- list(
   contradiction_inside_hashed_header = function(text) {
     insert_in_authorization_header(
       text,
-      "Autorizacao corrente adicional: N4, Goal 2 e beta=1 estao autorizados."
+      "Autorizacao corrente adicional: N6, Goal 3 e beta=1 estao autorizados."
     )
   },
   imported_premise_inside_hashed_delay_decision = function(text) {
@@ -1906,7 +1995,7 @@ assert_true(
 coordinated_r3_contract_mutation <- r3_contract_mutations$beta_exception_after_primitive(
   contract_text
 )
-coordinated_r3_contract_mutation <- r3_contract_mutations$n4_authorization_in_section_11(
+coordinated_r3_contract_mutation <- r3_contract_mutations$n6_authorization_in_section_11(
   coordinated_r3_contract_mutation
 )
 assert_true(
@@ -1949,12 +2038,12 @@ coordinated_contract_mutation <- insert_in_authorization_header(
   game_reviewer_paraphrases[[6L]]$text
 )
 coordinated_manifest_mutation <- clone_object(manifest)
-coordinated_manifest_mutation$nodes[[4L]]$authorized <- TRUE
+coordinated_manifest_mutation$nodes[[5L]]$authorized <- TRUE
 assert_true(
   !is_valid_contract_semantics(coordinated_contract_mutation) &&
-    !is_valid_current_pending_node("N4", coordinated_manifest_mutation$nodes[[4L]]) &&
+    !is_valid_current_pending_node("N6", coordinated_manifest_mutation$nodes[[5L]]) &&
     !is_valid_canonical_manifest(coordinated_manifest_mutation),
-  "The coordinated contract-plus-N4 authorization mutation must fail both validators."
+  "The coordinated contract-plus-N6 authorization mutation must fail both validators."
 )
 
 topologically_ready_nodes <- function(candidate_nodes) {
@@ -2003,10 +2092,10 @@ freeze_node <- function(
 }
 
 assert_true(
-  identical(sort(topologically_ready_nodes(nodes)), "N4"),
+  identical(sort(topologically_ready_nodes(nodes)), "N6"),
   paste0(
-    "After N3 freezes, exactly N4 must be topologically ready. ",
-    "N4 remains unauthorized despite readiness; Goal 1 authorization ended at N3."
+    "After N4 freezes, exactly N6 must be topologically ready. ",
+    "Topological readiness does not authorize Goal 3; N6 and N7 remain unauthorized."
   )
 )
 assert_true(
@@ -2193,9 +2282,9 @@ cat(
 
 cat(
   paste0(
-    "PASS: strict o_1 < 1 and beta < 1 contract with N1/N2/N3 pass/frozen on exact reviewed artifacts; ",
-    "only N4 is topologically ready, but N4/N6/N7, Goal 2, beta=1 extensions, and manuscript ",
-    "migration remain unauthorized after the authorized N3 boundary. ",
+    "PASS: strict o_1 < 1 and beta < 1 contract with N1/N2/N3/N4 pass/frozen on exact reviewed artifacts; ",
+    "Goal 2 closes at N4; N6 is topologically ready but N6/N7, Goal 3+, beta=1 ",
+    "extensions, and manuscript migration remain unauthorized. ",
     "Typed coverage cells for empty and ",
     "nonempty correspondences, independent RI_M and RI_U with a separate DeltaRI ",
     "contrast, role-typed public payoffs, terminal complete-information benchmark, ",
