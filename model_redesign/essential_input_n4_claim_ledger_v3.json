@@ -1,0 +1,347 @@
+{
+  "ledger_schema": "essential_input_claim_ledger_v1",
+  "node_id": "N4",
+  "artifact_path": "model_redesign/essential_input_interfaces/n4_r1_unanimity_candidate_v3.json",
+  "artifact_hash": "sha256:6c199f961ba2b8e1f55719c8d678decf752fb7bcda042bf796a585f2a4278905",
+  "cold_note_path": "model_redesign/essential_input_n4_r1_unanimity_cold_notes_v3.md",
+  "cold_note_hash": "sha256:5c4065fa5ff7baa4abae80e28d0d0643714f425ac3c62e560c2b309a7b7ba2f3",
+  "node_status": "pending_independent_review",
+  "claims": [
+    {
+      "claim_id": "N4V3-CLM-001",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "continuation",
+      "payoff_date": "R1",
+      "claim": "N4 consumes only frozen N2 at its exact hash; low-type-only has weak realized vector (A,0), pooling has (B,B), and discount enters exactly once.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#importacao-fechada-de-n2"
+    },
+    {
+      "claim_id": "N4V3-CLM-002",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "oracle",
+      "payoff_date": "R1",
+      "claim": "The independent R oracle enumerates every simultaneous ballot vector and applies weak stage-undominance before sequential best response and T^Y.",
+      "status": "checked numerically",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#oracle-vetorial-do-ballot"
+    },
+    {
+      "claim_id": "N4V3-CLM-003",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "exhaustion",
+      "payoff_date": "R1",
+      "claim": "The on-path pure classes are exactly P, L at nu=0, and D; high-only never exists.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#classes-on-path-exaustivas"
+    },
+    {
+      "claim_id": "N4V3-CLM-004",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "weak_ballots",
+      "payoff_date": "R1",
+      "claim": "P/L require x_j>=B; H-veto and weak-veto bounds are the exact piecewise restrictions stated in the interface.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#respostas-weak-exatas"
+    },
+    {
+      "claim_id": "N4V3-CLM-005",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "security_m_ge_3",
+      "payoff_date": "R1",
+      "claim": "For m>=3 the exact attained proposer security is S_3=(1-nu)B; no proposal forces passage.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#security-para-m3"
+    },
+    {
+      "claim_id": "N4V3-CLM-006",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "security_m_2",
+      "payoff_date": "R1",
+      "claim": "For m=2 the exact security supremum is S_2=max{R_0,R_L,R_P}, with the three components and x-region exhaustion stated in the interface.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#security-para-m2"
+    },
+    {
+      "claim_id": "N4V3-CLM-007",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "topology",
+      "payoff_date": "R1",
+      "claim": "R_0 is attained, positive R_P is not, R_L has the exact strict attainment condition, and H_tie governs only proposal-payoff equality.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#security-para-m2"
+    },
+    {
+      "claim_id": "N4V3-CLM-008",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "pooling",
+      "payoff_date": "R1",
+      "claim": "Pooling exists universally with exact floors, residual rule, Y cap, endpoint topology, slack, and heterogeneous allocations preserved.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#familias-puras-e-endpoints"
+    },
+    {
+      "claim_id": "N4V3-CLM-009",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "low_type_only",
+      "payoff_date": "R1",
+      "claim": "Low-type-only exists exactly at nu=0 with Y in [ell,h), x_j>=B, r_i>=S, and its full endpoint rule.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#familias-puras-e-endpoints"
+    },
+    {
+      "claim_id": "N4V3-CLM-010",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "delay",
+      "payoff_date": "R1",
+      "claim": "Delay exists universally for m>=3 and iff C>=S_2 for m=2, with equality retained and every H/weak-veto constructor parameterized.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#familias-puras-e-endpoints"
+    },
+    {
+      "claim_id": "N4V3-CLM-011",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "nonexistence",
+      "payoff_date": "R1",
+      "claim": "High-only, positive-prior low-only, and H separation with a weak veto are impossible under PBE, Bayes, and T^Y.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#classes-on-path-exaustivas"
+    },
+    {
+      "claim_id": "N4V3-CLM-012",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "multi_veto",
+      "payoff_date": "R1",
+      "claim": "For m>=3 every labeled set of at least two weak vetoes is sustainable at every prior and feasible package; m=2 has no such set.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#respostas-weak-exatas"
+    },
+    {
+      "claim_id": "N4V3-CLM-013",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "proposal_mixing",
+      "payoff_date": "R1",
+      "claim": "The only cross-branch proposer mixtures are L/D at nu=0 and P/D above nu_star on the exact equal-payoff loci, conditional on delay availability.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#multiplicidade-misturas-e-payoffs"
+    },
+    {
+      "claim_id": "N4V3-CLM-014",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "identity",
+      "payoff_date": "R1",
+      "claim": "The full Cartesian product of locally admissible labeled proposer-identity assessments is retained without symmetry or equilibrium selection.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#multiplicidade-misturas-e-payoffs"
+    },
+    {
+      "claim_id": "N4V3-CLM-015",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "weak_payoffs",
+      "payoff_date": "R1",
+      "claim": "Weak pre-recognition payoffs are the identity-indexed vector V_Wk=(R_k+sum_{i!=k}w_ik)/m.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#multiplicidade-misturas-e-payoffs"
+    },
+    {
+      "claim_id": "N4V3-CLM-016",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "H_and_outcomes",
+      "payoff_date": "R1",
+      "claim": "H payoffs and R1 outcomes are the exact identity/strategy averages of the local P/L/D maps; passage without H and terminal R1 failure are zero.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#multiplicidade-misturas-e-payoffs"
+    },
+    {
+      "claim_id": "N4V3-CLM-017",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "beliefs",
+      "payoff_date": "R1",
+      "claim": "On-path weak actions are noninformative; every positive-probability failure uses Bayes and every zero-probability vector retains an explicit free posterior.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#p0-e-p3-p7"
+    },
+    {
+      "claim_id": "N4V3-CLM-018",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "slack",
+      "payoff_date": "R1",
+      "claim": "P0 is refuted as universal: slack proposals survive because filling slack changes the exact proposal and may change its off-path response.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#p0-e-p3-p7"
+    },
+    {
+      "claim_id": "N4V3-CLM-019",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "coverage",
+      "payoff_date": "R1",
+      "claim": "Six mutually exclusive and exhaustive cells cover m>=2 and nu in [0,1]; pooling makes every top-level cell nonempty and missing families carry certificates.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#cobertura-e-transporte"
+    },
+    {
+      "claim_id": "N4V3-CLM-020",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "provenance",
+      "payoff_date": "R1",
+      "claim": "The sealed cold derivation preserves structural invariants from v2 but replaces every invalid security, cap, endpoint, delay, and multi-veto conclusion listed in the provenance comparison.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#comparacao-pos-selagem-com-n4-v2"
+    },
+    {
+      "claim_id": "N4V3-CLM-021",
+      "equilibrium_ids": [
+        "N4V3-EQ-M2-NU0",
+        "N4V3-EQ-M2-LOW",
+        "N4V3-EQ-M2-HIGH",
+        "N4V3-EQ-MGE3-NU0",
+        "N4V3-EQ-MGE3-LOW",
+        "N4V3-EQ-MGE3-HIGH"
+      ],
+      "branch": "negative_fixtures",
+      "payoff_date": "R1",
+      "claim": "Independent executable fixtures validate the two review counterexamples and reject high-prior H-veto with x<B, Bayes corruption, missing vectors, wrong N2 records, and unauthorized primitives.",
+      "status": "checked numerically",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v3.md#oracle-vetorial-do-ballot"
+    }
+  ]
+}
