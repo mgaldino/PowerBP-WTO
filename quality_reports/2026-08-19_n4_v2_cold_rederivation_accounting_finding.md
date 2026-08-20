@@ -1,7 +1,7 @@
 # Finding bloqueante da rederivação fria de N4 v2
 
 **Data:** 2026-08-19  
-**Status:** `BLOCKED — aguardando decisão autoral`  
+**Status:** `AUTHORIZED — bloqueio decisório encerrado; rederivação fria de N4 pode continuar`
 **Nó afetado:** `N4` e, por descendência, `N6` e `N7`  
 **Nós não afetados:** `N1`, `N2` e a álgebra rederivada de `N3`  
 **Contrato governante:** `quality_reports/plans/2026-08-12_essential_input_gate0.md`  
@@ -127,9 +127,9 @@ investigação são hipóteses de trabalho, não resultados.
 - Nenhum PDF foi gerado, nenhum manuscrito foi tocado e nenhuma figura do
   Goal 5 foi produzida.
 
-## 6. Decisão autoral necessária
+## 6. Decisão autoral solicitada e decisão registrada
 
-**Recomendação:** autorizar exclusivamente a continuação da rederivação fria de
+**Solicitação original e recomendação:** autorizar exclusivamente a continuação da rederivação fria de
 `N4` com a contabilidade type-conditioned corrigida, mantendo integralmente
 N2, as primitivas, o conceito de solução, `T^Y`, o schema
 `equilibrium_correspondence_v1` e a topologia. O novo N4 deverá reconstruir
@@ -141,3 +141,27 @@ permanece inalterada.
 Sem essa autorização, o estado correto é manter N3/N4/N6/N7 pendentes e parar.
 Manter a fórmula antiga exigiria contrariar a interface N2 ou alterar o jogo e
 não é uma opção autorizada.
+
+**Decisão registrada em 2026-08-19:** o autor respondeu explicitamente `sim,
+autorizo`. A decisão encerra somente o bloqueio decisório
+`N4-V2-ACCOUNTING-01` e autoriza continuar a rederivação fria de `N4` usando
+payoff realizado `0` para cada weak state no ramo realizado `theta=1` sob a
+continuação low-only de `N2`. O finding original e sua verificação acima
+permanecem preservados como a razão da decisão.
+
+O alcance é estrito: `N2`, primitivas, factibilidade, payoffs, ações,
+informação, PBE, stage-undominated voting, `T^Y`, `beta in (0,1)`,
+`0 < o_0 < o_1 < 1`, schema e topologia permanecem inalterados. A autorização
+não predetermina quais equilíbrios sobrevivem. O novo trabalho deve reconstruir
+as garantias para `m=2` e `m>=3`, a natureza atingida ou não dos limites, todos
+os endpoints de `Y`, as condições de delay, as misturas e a multiplicidade.
+Qualquer nova divergência, ambiguidade ou definição faltante exige novo STOP e
+escalação.
+
+`N4` continua `pending/unfrozen` até exatamente dois pareceres independentes
+read-only `PASS 0/0/0` sobre o mesmo novo hash. `N3` continua `pending` em seu
+próprio ciclo. `N6` não pode ser retomado antes de `N3` e `N4` estarem ambos
+novamente `pass/frozen`; `N7` permanece barrado e ainda depende do novo
+congelamento de `N6`. Permanecem inalterados os limites da Fase A, a regra de
+persistência e hash de PDFs, o fechamento do Goal 5 e a proibição de migração
+ou compilação dos manuscritos v5/v6.

@@ -90,6 +90,26 @@ convenção de reporte em `nu=0` nas coordenadas definidas na Seção 1. Esta
 decisão não seleciona equilíbrio, não cria distribuição sobre a
 correspondência, não altera schema, primitivas, topologia ou obrigações de
 prova e não amplia a autorização administrativa acima.
+Em decisão autoral posterior de 2026-08-19, registrada pela resposta explícita
+`sim, autorizo`, o autor encerrou exclusivamente o bloqueio decisório
+`N4-V2-ACCOUNTING-01` e autorizou a continuação da rederivação fria de `N4`
+usando, no ramo realizado `theta=1` sob a continuação low-only de `N2`, payoff
+realizado `0` para cada weak state. Esta autorização preserva byte a byte a
+interface congelada de `N2` e não altera primitivas, factibilidade, payoffs,
+ações, informação, PBE, stage-undominated voting, `T^Y`, `beta in (0,1)`,
+`0 < o_0 < o_1 < 1`, schema ou topologia. Ela não seleciona nem predetermina
+quais equilíbrios sobrevivem. `N4` deve reconstruir desde a árvore as garantias
+para `m=2` e `m>=3`, a natureza atingida ou não dos limites, todos os endpoints
+de `Y`, as condições de delay, as misturas e a multiplicidade. Qualquer nova
+divergência, ambiguidade ou definição faltante aciona novo STOP e escalação sob
+a Seção 11.1. `N4` permanece `pending` e `unfrozen` até exatamente dois
+pareceres independentes read-only `PASS 0/0/0` sobre o mesmo novo hash; `N3`
+permanece `pending` em seu próprio ciclo. `N6` não pode ser retomado antes de
+`N3` e `N4` estarem ambos novamente `pass/frozen`, e `N7` permanece igualmente
+barrado e ainda depende do novo congelamento de `N6`, conforme a topologia e a
+cadência da Seção 11. Permanecem inalterados os limites da Fase A, a regra
+permanente de PDFs, o fechamento do Goal 5 e a proibição de migração ou
+compilação dos manuscritos v5/v6.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
 

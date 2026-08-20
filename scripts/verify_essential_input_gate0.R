@@ -73,9 +73,9 @@ contains_fixed_utf8 <- function(text, fragment) {
 }
 
 expected_beta_primitive <- "Desconto       beta in (0,1)"
-expected_contract_hash <- "f83167c10f037ffd6bf67f3151207394ff3b4880f3b24b9a77f484502d800766"
+expected_contract_hash <- "c1ecf76bd5891c5a6c659844373924f8094f3a8c2085f36095238d0e41da8391"
 expected_contract_region_hashes <- c(
-  authorization_header = "5e827051bf5a6eefa154c5fbfbd95f3d54867b336cca3f5b097db1a41862fadb",
+  authorization_header = "c5ed1e8ff88134542915a7962cda2993b735ccb3ac6716a33a5e37dd13c8e92b",
   beta_primitive = "bb7ee3390b0f63a4d293fe8deab7d33fea725d280ad43121c615375f96bf41b4",
   delay_cost_decision = "3c4483859bc7cdaf36c8fe3c4a1c2d54a278e40980eacdaba2fb9b684ebb8f2a"
 )
@@ -207,7 +207,42 @@ is_valid_reopened_authorization <- function(text) {
     grepl("conven", regions$authorization_header, fixed = TRUE) &&
     grepl("reporte em `nu=0`", regions$authorization_header, fixed = TRUE) &&
     grepl("seleciona equil", regions$authorization_header, fixed = TRUE) &&
-    grepl("cria distribui", regions$authorization_header, fixed = TRUE)
+    grepl("cria distribui", regions$authorization_header, fixed = TRUE) &&
+    grepl("`sim, autorizo`", regions$authorization_header, fixed = TRUE) &&
+    grepl("`N4-V2-ACCOUNTING-01`", regions$authorization_header, fixed = TRUE) &&
+    grepl("ramo realizado `theta=1`", regions$authorization_header, fixed = TRUE) &&
+    grepl("low-only de `N2`, payoff", regions$authorization_header, fixed = TRUE) &&
+    grepl("realizado `0` para cada weak state", regions$authorization_header, fixed = TRUE) &&
+    grepl("interface congelada de `N2` e n", regions$authorization_header, fixed = TRUE) &&
+    grepl("altera primitivas, factibilidade, payoffs", regions$authorization_header, fixed = TRUE) &&
+    grepl("PBE, stage-undominated voting", regions$authorization_header, fixed = TRUE) &&
+    grepl("stage-undominated voting, `T^Y`, `beta in (0,1)`", regions$authorization_header, fixed = TRUE) &&
+    grepl("`0 < o_0 < o_1 < 1`, schema ou topologia", regions$authorization_header, fixed = TRUE) &&
+    grepl("Ela n", regions$authorization_header, fixed = TRUE) &&
+    grepl("seleciona nem predetermina", regions$authorization_header, fixed = TRUE) &&
+    grepl("garantias", regions$authorization_header, fixed = TRUE) &&
+    grepl("`m=2` e `m>=3`", regions$authorization_header, fixed = TRUE) &&
+    grepl("natureza atingida ou", regions$authorization_header, fixed = TRUE) &&
+    grepl("todos os endpoints", regions$authorization_header, fixed = TRUE) &&
+    grepl("de `Y`, as condi", regions$authorization_header, fixed = TRUE) &&
+    grepl("de delay, as misturas e a multiplicidade", regions$authorization_header, fixed = TRUE) &&
+    grepl("diverg", regions$authorization_header, fixed = TRUE) &&
+    grepl("ambiguidade ou defini", regions$authorization_header, fixed = TRUE) &&
+    grepl("novo STOP", regions$authorization_header, fixed = TRUE) &&
+    grepl("`N4` permanece `pending` e `unfrozen`", regions$authorization_header, fixed = TRUE) &&
+    grepl("exatamente dois", regions$authorization_header, fixed = TRUE) &&
+    grepl("independentes read-only `PASS 0/0/0`", regions$authorization_header, fixed = TRUE) &&
+    grepl("mesmo novo hash", regions$authorization_header, fixed = TRUE) &&
+    grepl("mesmo novo hash; `N3`", regions$authorization_header, fixed = TRUE) &&
+    grepl("permanece `pending` em seu pr", regions$authorization_header, fixed = TRUE) &&
+    grepl("ciclo. `N6` n", regions$authorization_header, fixed = TRUE) &&
+    grepl("`N3` e `N4` estarem ambos novamente `pass/frozen`", regions$authorization_header, fixed = TRUE) &&
+    grepl("`N7` permanece igualmente", regions$authorization_header, fixed = TRUE) &&
+    grepl("depende do novo congelamento de `N6`", regions$authorization_header, fixed = TRUE) &&
+    grepl("inalterados os limites da Fase A, a regra", regions$authorization_header, fixed = TRUE) &&
+    grepl("permanente de PDFs", regions$authorization_header, fixed = TRUE) &&
+    grepl("fechamento do Goal 5", regions$authorization_header, fixed = TRUE) &&
+    grepl("manuscritos v5/v6", regions$authorization_header, fixed = TRUE)
 }
 
 is_valid_phaseA_cadence <- function(text) {
