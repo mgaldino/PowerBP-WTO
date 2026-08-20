@@ -135,6 +135,64 @@ dois `PASS 0/0/0` sobre o mesmo hash do respectivo nó. Esta autorização não
 abre `N6`, `N7`, Goal 5, manuscrito, figuras, PDFs ou `beta=1`. Nova
 ambiguidade, definição faltante ou pluralidade de reparos substantivos aciona
 novo STOP e escalação nos termos da Seção 11.1.
+Em decisão autoral posterior de 2026-08-20, registrada literalmente como
+`Autorizo a Opção A de certificação para N3 e N4`, o autor encerrou o finding
+de arquitetura de certificação semântica sem alterar schema, topologia, jogo,
+primitivas, obrigações de prova ou protocolo de revisão. A autorização tem
+exatamente estes **12 limites vinculantes**:
+
+1. preservar `equilibrium_correspondence_v1` e as interfaces públicas legíveis
+   de `N3` e `N4`;
+2. criar, somente na execução posterior do nó correspondente, um companion por
+   nó, derivado, machine-readable, tipado e hashado, com ASTs, formas canônicas
+   e certificados por claim;
+3. tratar cada companion exclusivamente como infraestrutura de certificação,
+   nunca como primitiva, payoff, ação, crença, interface ou dependência do jogo;
+4. exigir que o kernel independente derive suas expectativas somente das
+   primitivas e da dependência congelada do nó; builder, candidato esperado e
+   manifesto não podem ser consumidos como prova;
+5. analisar integralmente as strings matemáticas materiais do candidato e
+   compará-las por equivalência simbólica exata; prosa livre permanece evidência
+   legível para revisão humana e nunca conta como semanticamente provada por
+   mera presença de tokens;
+6. aplicar o mesmo padrão de certificação a `N3` e `N4`;
+7. manter `N6` e `N7` como consumidores somente das interfaces congeladas;
+   nenhum companion pode ser fonte substantiva ou dependência desses nós;
+8. fechar primeiro `N3`, com novo pacote de certificação hashado e exatamente
+   dois pareceres independentes read-only, nos papéis `formal_design` e
+   `game_theory`, ambos `PASS 0/0/0/0` sobre o mesmo hash da interface
+   candidata;
+9. somente depois do fechamento de `N3`, concluir `N4 v4` com a correção de
+   múltiplos vetos, candidato e companion hashados e os mesmos dois papéis
+   independentes read-only em `PASS 0/0/0/0` sobre o mesmo hash da interface
+   candidata;
+10. diante de mudança substantiva de interface, schema, jogo, primitivas ou
+    topologia, ou de mais de um reparo plausível, executar `STOP` e escalar pela
+    Seção 11.1;
+11. não iniciar `N6`, `N7`, Goal 5, manuscrito, figuras, PDF ou `beta=1`, e
+    preservar `N1`, `N2`, o candidato intermediário da Fase A, a tag protegida
+    e todos os artefatos históricos;
+12. tratar os quatro arquivos `N4 v4` do checkpoint `47b6358` como
+    intermediários não consumíveis: preservar sua proveniência e não os
+    consumir, revisar ou promover antes de `N3` fechar e de existir um candidato
+    `N4 v4` completo e hashado. Quando `N4` começar na ordem autorizada, esses
+    quatro arquivos poderão ser completados ou substituídos dentro da
+    implementação v4, mantendo os hashes do checkpoint registrados como
+    proveniência.
+
+Para evitar dúvida administrativa, o `artifact_hash` do DAG, dos ledgers e dos
+pareceres continua sendo o SHA-256 dos bytes da **interface candidata**, como
+definido nas Seções 8 e 11. O companion e eventual package manifest têm hashes
+próprios, citados pelos dois pareceres, mas não substituem o `artifact_hash`,
+não entram na interface e não viram dependência. Se a interface de `N3`
+permanecer byte-idêntica, seu mesmo candidate hash pode ser reapresentado com
+novo certification-package hash. Os pareceres `FAIL` de `N3 v5` permanecem
+`FAIL`: não existem pareceres `PASS` correntes para esse candidato. O quarto
+zero exigido nos pareceres completos é o finding epistemic; o registro
+executável do DAG continua com os três `finding_counts` já definidos na Seção
+11, todos iguais a zero. Esta decisão autoriza a arquitetura para execução
+posterior; não cria agora companion, candidato, pacote, manifesto ou revisão e
+não muda a dependência de `N3` somente em `N1` nem a de `N4` somente em `N2`.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
 

@@ -1,8 +1,27 @@
 # Finding de arquitetura de certificação semântica — N3/N4
 
 **Data:** 2026-08-20
-**Status:** `BLOCKING — AUTHOR DECISION REQUIRED`
+**Status:** `RESOLVED — OPTION A AUTHORIZED; IMPLEMENTATION NOT STARTED`
 **Escopo:** somente a certificação executável de N3 e, por implicação direta, N4
+
+## 0. Decisão autoral posterior
+
+Em decisão autoral posterior de 2026-08-20, registrada literalmente como
+`Autorizo a Opção A de certificação para N3 e N4`, o autor escolheu a Opção A.
+Os 12 limites vinculantes e a clarificação de hashes estão registrados no
+cabeçalho da fonte normativa única,
+`quality_reports/plans/2026-08-12_essential_input_gate0.md`.
+
+Esta decisão resolve somente a escolha arquitetural. Não apaga os findings,
+as alternativas nem a proveniência abaixo; não cria companion, candidato,
+package manifest ou parecer. `N3` deve fechar primeiro. Somente depois pode ser
+concluído `N4 v4`. Até `N3` fechar e existir um candidato `N4 v4` completo e
+hashado, os quatro arquivos do checkpoint `47b6358` permanecem intermediários
+não consumíveis, não revisáveis e não promovíveis. Quando `N4` começar na ordem
+autorizada, eles poderão ser completados ou substituídos dentro da implementação
+v4; seus hashes de checkpoint permanecem registrados como proveniência.
+Permanecem fora do escopo `N6`, `N7`, Goal 5, manuscrito, figuras, PDF e
+`beta=1`.
 
 ## 1. Gatilho
 
@@ -35,7 +54,7 @@ As três preservam primitivas, jogo e payoffs, mas diferem na representação no
 
 ## 3. Opções autorais
 
-### Opção A — companion tipado, preservando a interface pública — recomendada
+### Opção A — companion tipado, preservando a interface pública — recomendada e autorizada
 
 - Manter `equilibrium_correspondence_v1` e a representação pública legível de N3/N4.
 - Criar um companion derivado, machine-readable e hashado, com ASTs tipadas, formas canônicas e certificados por claim.
@@ -70,6 +89,10 @@ Autorizar a **Opção A para N3 e N4**, com quatro limites expressos:
 2. `equilibrium_correspondence_v1` permanece inalterado;
 3. N6/N7 consomem as interfaces congeladas, não o companion como fonte substantiva;
 4. todo novo pacote de certificação volta aos mesmos dois papéis read-only e só recebe PASS com `0/0/0/0` no mesmo hash do candidato.
+
+**Decisão posterior:** Opção A autorizada pelo autor em 2026-08-20, nos 12
+limites vinculantes do contrato canônico. Esta recomendação e seus quatro
+limites originais permanecem preservados como proveniência da decisão.
 
 ## 5. Estado de N4 na parada
 

@@ -73,9 +73,9 @@ contains_fixed_utf8 <- function(text, fragment) {
 }
 
 expected_beta_primitive <- "Desconto       beta in (0,1)"
-expected_contract_hash <- "e6c663806f40b43c30ae8d8847ba4268fc4714fc3dfedc9b74b22505a24248b3"
+expected_contract_hash <- "1e0bb0e42f3e65eab6d297e5d7d6776abbca9e88bbeabf3fb848a3a3a4dc8c21"
 expected_contract_region_hashes <- c(
-  authorization_header = "a52f7367b56b1f857be64eff86fb4016f245bfd83f9599091532a2d554d8c4f2",
+  authorization_header = "f6ab456432b993fe6f2d89c57abe6a06302a07361c16b391f564bb3f9d19387d",
   beta_primitive = "bb7ee3390b0f63a4d293fe8deab7d33fea725d280ad43121c615375f96bf41b4",
   delay_cost_decision = "3c4483859bc7cdaf36c8fe3c4a1c2d54a278e40980eacdaba2fb9b684ebb8f2a"
 )
@@ -294,6 +294,96 @@ is_valid_reopened_authorization <- function(text) {
     )
 }
 
+is_valid_certification_option_a_authorization <- function(text) {
+  regions <- extract_normative_contract_regions(text)
+  if (is.null(regions)) {
+    return(FALSE)
+  }
+  header_lines <- contract_lines(regions$authorization_header)
+  limit_start <- unique_matching_line(
+    header_lines,
+    function(line) startsWith(line, "1. preservar `equilibrium_correspondence_v1`")
+  )
+  limit_end <- unique_matching_line(
+    header_lines,
+    function(line) startsWith(line, "12. tratar os quatro arquivos `N4 v4`")
+  )
+  if (is.na(limit_start) || is.na(limit_end) || limit_start >= limit_end) {
+    return(FALSE)
+  }
+  limit_lines <- header_lines[limit_start:limit_end]
+  numbered_lines <- limit_lines[grepl("^[0-9]+\\.", limit_lines)]
+  limit_numbers <- suppressWarnings(as.integer(sub("\\..*$", "", numbered_lines)))
+  required_fragments <- c(
+    "`Autorizo a Op",
+    "de certifica",
+    "para N3 e N4`",
+    "exatamente estes **12 limites vinculantes**",
+    "preservar `equilibrium_correspondence_v1` e as interfaces p",
+    "um companion por",
+    "ASTs, formas can",
+    "certificados por claim",
+    "infraestrutura de certifica",
+    "nunca como primitiva, payoff, a",
+    "cren",
+    "interface ou depend",
+    "kernel independente derive suas expectativas somente das",
+    "builder, candidato esperado e",
+    "manifesto n",
+    "consumidos como prova",
+    "equival",
+    "simb",
+    "prosa livre permanece evid",
+    "mera presen",
+    "mesmo padr",
+    "a `N3` e `N4`",
+    "`N6` e `N7` como consumidores somente das interfaces congeladas",
+    "nenhum companion pode ser fonte substantiva ou depend",
+    "fechar primeiro `N3`",
+    "`formal_design` e",
+    "`game_theory`, ambos `PASS 0/0/0/0`",
+    "somente depois do fechamento de `N3`, concluir `N4 v4`",
+    "vetos",
+    "substantiva de interface, schema, jogo, primitivas ou",
+    "mais de um reparo plaus",
+    "executar `STOP` e escalar pela",
+    "iniciar `N6`, `N7`, Goal 5, manuscrito, figuras, PDF ou `beta=1`",
+    "preservar `N1`, `N2`, o candidato intermedi",
+    "da Fase A, a tag protegida",
+    "quatro arquivos `N4 v4` do checkpoint `47b6358`",
+    "intermedi",
+    "preservar sua proveni",
+    "consumir, revisar ou promover antes de `N3` fechar",
+    "candidato",
+    "`N4 v4` completo e hashado",
+    "Quando `N4` come",
+    "quatro arquivos poder",
+    "completados ou substitu",
+    "implementa",
+    "hashes do checkpoint registrados como",
+    "proveni",
+    "`artifact_hash` do DAG, dos ledgers e dos",
+    "SHA-256 dos bytes da **interface candidata**",
+    "package manifest t",
+    "substituem o `artifact_hash`",
+    "mesmo candidate hash pode ser reapresentado",
+    "novo certification-package hash",
+    "pareceres `FAIL` de `N3 v5` permanecem",
+    "existem pareceres `PASS` correntes",
+    "finding epistemic",
+    "`finding_counts` j",
+    "cria agora companion, candidato, pacote, manifesto ou revis",
+    "ncia de `N3` somente em `N1`",
+    "`N4` somente em `N2`"
+  )
+  identical(limit_numbers, seq_len(12L)) &&
+    all(vapply(
+      required_fragments,
+      function(fragment) contains_fixed_utf8(regions$authorization_header, fragment),
+      logical(1)
+    ))
+}
+
 is_valid_phaseA_cadence <- function(text) {
   grepl("Goal 4, Fase A", text, fixed = TRUE) &&
     grepl("Gate autoral entre as Fases A e B", text, fixed = TRUE) &&
@@ -459,6 +549,7 @@ is_valid_strict_beta_contract <- function(text) {
 is_valid_contract_semantics <- function(text) {
   identical(sha256_text(text), expected_contract_hash) &&
     is_valid_reopened_authorization(text) &&
+    is_valid_certification_option_a_authorization(text) &&
     is_valid_strict_beta_contract(text) &&
     is_valid_phaseA_cadence(text) &&
     is_valid_single_phaseA_protocol_exception(text) &&
@@ -530,7 +621,7 @@ contract_path <- normalizePath(
 )
 assert_true(
   identical(sha256_file(contract_path), expected_contract_hash),
-  "The canonical contract bytes differ from the author-approved Option-A reopening snapshot."
+  "The canonical contract bytes differ from the author-approved Option-A certification snapshot."
 )
 contract_text <- paste0(
   paste(readLines(contract_path, encoding = "UTF-8", warn = FALSE), collapse = "\n"),
@@ -540,7 +631,7 @@ assert_true(
   is_valid_contract_semantics(contract_text),
   paste0(
     "The canonical authorization header, beta primitive, complete strict-delay ",
-    "decision, Phase A protocol exception, Option-A reopening, nu=0 reporting, or persistent-output rule differs from its exact ",
+    "decision, Phase A protocol exception, Option-A reopening/certification, nu=0 reporting, or persistent-output rule differs from its exact ",
     "author-approved object/hash."
   )
 )
@@ -2348,7 +2439,8 @@ assert_true(
     is_valid_contract_semantics(contract_text),
   paste0(
     "The contract must retain strict beta<1, byte-identical frozen N1/N2, the Option-A N3/N4 reopening, ",
-    "conditional N6/N7 continuation, nu=0 reporting coordinates, persistent PDFs, and explicit exclusion of Goal 5/beta=1/manuscript migration."
+    "the 12-limit Option-A certification authorization, candidate-interface artifact_hash semantics, conditional N6/N7 continuation, ",
+    "nu=0 reporting coordinates, persistent PDFs, and explicit exclusion of Goal 5/beta=1/manuscript migration."
   )
 )
 
@@ -2899,6 +2991,9 @@ cat(
     "PASS: strict o_1 < 1 and beta < 1 contract with byte/object-identical N1/N2 pass/frozen on exact reviewed artifacts; ",
     "the author-approved Section 12.2 Option-A lifecycle reopening makes N3/N4 pending/unfrozen and leaves their descendants N6/N7 pending/unfrozen; ",
     "the old N3/N4/N6 hashes/reviews and the Phase A candidate remain obsolete provenance. N3 and N4 are topologically ready and authorized for cold rederivation/review; ",
+    "the 12-limit Option-A certification architecture is authorized for later execution, keeps equilibrium_correspondence_v1 and public interfaces intact, closes N3 before N4, ",
+    "and leaves artifact_hash pinned to candidate-interface bytes while companions/packages retain separate nondependency hashes; no companion or candidate is created by this administrative registration. ",
+    "The four N4 v4 checkpoint files remain nonconsumable provenance until N3 closes and a complete hashed N4 v4 candidate exists; they may then be completed or replaced inside the authorized v4 implementation while retaining the checkpoint hashes as provenance. ",
     "N6 is authorized conditionally after both refreeze, then the already authorized N7 Phase B resumes while N7 stays pending/unfrozen until final author approval. ",
     "The nu=0 reporting coordinates and permanent hashed-PDF rule are pinned; Goal 5 figures, beta=1, and v5/v6 manuscript migration/compilation remain unauthorized. ",
     "Typed coverage cells for empty and ",
