@@ -1,7 +1,7 @@
 # Finding consolidado — N3 v2, rodada 1
 
 **Data:** 2026-08-19  
-**Status:** decisão autoral necessária antes de qualquer reparo  
+**Status:** autorização autoral concedida; reparo e nova revisão pendentes
 **Candidato preservado:** `sha256:0954f7b7070c69f442981bec46f212cfa91b9f55bb337645fa91e991a2e54bb1`  
 **Pareceres independentes no mesmo hash:**
 
@@ -111,3 +111,13 @@ Após a decisão:
 
 Até lá, o hash da rodada 1 e seus pareceres permanecem como proveniência, sem
 reparo implícito.
+
+## 6. Decisão autoral posterior
+
+O autor respondeu literalmente: `Autorizo o reparo N3 recomendado e a Opção A
+de N4`. Para este finding, isso autoriza a recomendação da Seção 4: completar
+as crenças off-path, adotar comparação estrutural integral, acrescentar oracle
+algébrico independente e incluir negativas dirigidas aos contraexemplos da
+rodada 1. A autorização não altera jogo, schema, topologia ou protocolo de
+revisão. N3 permanece `pending/unfrozen`, e qualquer novo hash retorna aos dois
+papéis independentes read-only antes de consumo ou congelamento.

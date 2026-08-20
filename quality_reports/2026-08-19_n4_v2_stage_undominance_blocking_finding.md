@@ -2,7 +2,7 @@
 
 **Data:** 2026-08-19
 
-**Status:** decisão autoral necessária; nenhum reparo autorizado
+**Status:** Opção A autorizada; nova rederivação e revisão pendentes
 
 **Candidato preservado:** `sha256:67dc008a42db6d6c7f7c12eb3abf9fd7eb4a273a73ca0ec6f4a1ece180320c0b`
 **Commit do candidato:** `889c5ffcc8cc6bc5c903ec5197e418fed407c758`
@@ -160,3 +160,14 @@ artefato N4, DAG, lifecycle, N6 ou N7 deve ser alterado.
 - A tag protegida permaneceu intacta.
 - Nenhum PDF foi produzido.
 - Goal 5, manuscritos, figuras e `beta=1` continuam fora do escopo.
+
+## 8. Decisão autoral posterior
+
+O autor respondeu literalmente: `Autorizo o reparo N3 recomendado e a Opção A
+de N4`. Para este finding, isso autoriza exclusivamente a Opção A da Seção 6:
+uma nova rederivação fria desde as primitivas, P6 e N2, enumerando todos os
+vetores simultâneos relevantes e sem procurar preservar `S_m`, `S_2`, o
+componente `F` ou qualquer fórmula invalidada. A autorização não altera jogo,
+schema, topologia, conceito de solução ou protocolo de revisão. N4 permanece
+`pending/unfrozen`, e qualquer novo hash retorna aos dois papéis independentes
+read-only antes de consumo ou congelamento.

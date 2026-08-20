@@ -110,6 +110,31 @@ barrado e ainda depende do novo congelamento de `N6`, conforme a topologia e a
 cadência da Seção 11. Permanecem inalterados os limites da Fase A, a regra
 permanente de PDFs, o fechamento do Goal 5 e a proibição de migração ou
 compilação dos manuscritos v5/v6.
+Em decisão autoral posterior de 2026-08-19, registrada literalmente como
+`Autorizo o reparo N3 recomendado e a Opção A de N4`, o autor exerceu a Seção
+11.1 sobre os dois findings consolidados da primeira rodada de revisão de
+`N3 v2` e `N4 v2`. Para `N3`, a autorização alcança exclusivamente completar
+as crenças off-path já exigidas pelo contrato e pelo schema, substituir ou
+fortalecer o verifier por comparação estrutural integral e oracle algébrico
+independente e acrescentar testes negativos dirigidos às corrupções semânticas
+identificadas. Para `N4`, a autorização alcança exclusivamente uma nova
+rederivação fria desde as primitivas, P6 e a interface congelada de `N2`, com
+enumeração de todos os vetores simultâneos de votos relevantes, sem tentar
+preservar `S_m`, `S_2`, o componente `F` ou qualquer fórmula ou resultado
+invalidado. A rederivação reconstrói garantias, limites de pooling, condições
+de delay, endpoints, misturas, convenções por identidade, multiplicidade e
+payoffs condicionados ao tipo, preservando inclusive regiões `none` com
+certificado. Esta decisão não muda primitivas, jogo, factibilidade, payoffs,
+ações, informação, PBE, stage-undominated voting, `T^Y`, `beta in (0,1)`,
+`0 < o_0 < o_1 < 1`, schema, topologia, obrigações de prova ou protocolo de
+revisão. `N1`, `N2`, o candidato intermediário da Fase A e a tag protegida
+permanecem inalterados. `N3` e `N4` continuam `pending` e `unfrozen`; cada novo
+hash retorna a exatamente dois revisores independentes read-only, nos papéis
+`formal_design` e `game_theory`, e nenhum deles pode ser consumido antes de
+dois `PASS 0/0/0` sobre o mesmo hash do respectivo nó. Esta autorização não
+abre `N6`, `N7`, Goal 5, manuscrito, figuras, PDFs ou `beta=1`. Nova
+ambiguidade, definição faltante ou pluralidade de reparos substantivos aciona
+novo STOP e escalação nos termos da Seção 11.1.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
 

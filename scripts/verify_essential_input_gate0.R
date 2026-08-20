@@ -73,9 +73,9 @@ contains_fixed_utf8 <- function(text, fragment) {
 }
 
 expected_beta_primitive <- "Desconto       beta in (0,1)"
-expected_contract_hash <- "c1ecf76bd5891c5a6c659844373924f8094f3a8c2085f36095238d0e41da8391"
+expected_contract_hash <- "e6c663806f40b43c30ae8d8847ba4268fc4714fc3dfedc9b74b22505a24248b3"
 expected_contract_region_hashes <- c(
-  authorization_header = "c5ed1e8ff88134542915a7962cda2993b735ccb3ac6716a33a5e37dd13c8e92b",
+  authorization_header = "a52f7367b56b1f857be64eff86fb4016f245bfd83f9599091532a2d554d8c4f2",
   beta_primitive = "bb7ee3390b0f63a4d293fe8deab7d33fea725d280ad43121c615375f96bf41b4",
   delay_cost_decision = "3c4483859bc7cdaf36c8fe3c4a1c2d54a278e40980eacdaba2fb9b684ebb8f2a"
 )
@@ -242,7 +242,56 @@ is_valid_reopened_authorization <- function(text) {
     grepl("inalterados os limites da Fase A, a regra", regions$authorization_header, fixed = TRUE) &&
     grepl("permanente de PDFs", regions$authorization_header, fixed = TRUE) &&
     grepl("fechamento do Goal 5", regions$authorization_header, fixed = TRUE) &&
-    grepl("manuscritos v5/v6", regions$authorization_header, fixed = TRUE)
+    grepl("manuscritos v5/v6", regions$authorization_header, fixed = TRUE) &&
+    contains_fixed_utf8(
+      regions$authorization_header,
+      "`Autorizo o reparo N3 recomendado e a Op"
+    ) &&
+    contains_fixed_utf8(
+      regions$authorization_header,
+      "as cren"
+    ) &&
+    contains_fixed_utf8(regions$authorization_header, "off-path j") &&
+    contains_fixed_utf8(
+      regions$authorization_header,
+      "estrutural integral e oracle alg"
+    ) &&
+    contains_fixed_utf8(regions$authorization_header, "testes negativos dirigidos") &&
+    contains_fixed_utf8(
+      regions$authorization_header,
+      "fria desde as primitivas, P6 e a interface congelada de `N2`, com"
+    ) &&
+    contains_fixed_utf8(
+      regions$authorization_header,
+      "de todos os vetores simult"
+    ) &&
+    contains_fixed_utf8(regions$authorization_header, "de votos relevantes") &&
+    contains_fixed_utf8(
+      regions$authorization_header,
+      "preservar `S_m`, `S_2`, o componente `F` ou qualquer f"
+    ) &&
+    contains_fixed_utf8(
+      regions$authorization_header,
+      "`N1`, `N2`, o candidato intermedi"
+    ) &&
+    contains_fixed_utf8(regions$authorization_header, "da Fase A e a tag protegida") &&
+    contains_fixed_utf8(
+      regions$authorization_header,
+      "`N3` e `N4` continuam `pending` e `unfrozen`"
+    ) &&
+    contains_fixed_utf8(
+      regions$authorization_header,
+      "exatamente dois revisores independentes read-only"
+    ) &&
+    contains_fixed_utf8(regions$authorization_header, "`formal_design` e `game_theory`") &&
+    contains_fixed_utf8(
+      regions$authorization_header,
+      "abre `N6`, `N7`, Goal 5, manuscrito, figuras, PDFs ou `beta=1`"
+    ) &&
+    contains_fixed_utf8(
+      regions$authorization_header,
+      "faltante ou pluralidade de reparos substantivos aciona"
+    )
 }
 
 is_valid_phaseA_cadence <- function(text) {
