@@ -1,0 +1,297 @@
+{
+  "ledger_schema": "essential_input_claim_ledger_v1",
+  "node_id": "N4",
+  "artifact_path": "model_redesign/essential_input_interfaces/n4_r1_unanimity_candidate_v2.json",
+  "artifact_hash": "sha256:67dc008a42db6d6c7f7c12eb3abf9fd7eb4a273a73ca0ec6f4a1ece180320c0b",
+  "node_status": "pending_independent_review",
+  "claims": [
+    {
+      "claim_id": "N4V2-CLM-001",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "continuation",
+      "payoff_date": "R1",
+      "claim": "Frozen N2 is consumed at its exact hash and discounted once. Low-only gives each weak state the realized vector (a,0), not (a,b), while pooling gives (b,b).",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#frozen-continuation-and-notation"
+    },
+    {
+      "claim_id": "N4V2-CLM-002",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "accounting",
+      "payoff_date": "R1",
+      "claim": "A pivotal weak voter uses the subjective N2 value at its successor posterior, whose minimum is b, while a deviating proposer evaluates low-only continuation under the true prior and receives D=(1-nu)*a.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#frozen-continuation-and-notation"
+    },
+    {
+      "claim_id": "N4V2-CLM-003",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "security_m_ge_3",
+      "payoff_date": "R1",
+      "claim": "For m>=3 the exact proposer guarantee is S_m=min{P,D}; the low-prior punishment construction uses at least two strict weak vetoes, both H types voting yes, and a low-only successor posterior, never reverse H separation or a b-valued rejection when D>b.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#exact-proposer-security"
+    },
+    {
+      "claim_id": "N4V2-CLM-004",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "security_m_2",
+      "payoff_date": "R1",
+      "claim": "For m=2 the exact proposer guarantee is S_2=max{F,K,M}, with F=1-h-a, K=min{b,(1-nu)R_L}, R_L=1-ell-a, and M=min{P,D}; F may be negative and none of F,K,M may be omitted.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#exact-proposer-security"
+    },
+    {
+      "claim_id": "N4V2-CLM-005",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "pooling",
+      "payoff_date": "R1",
+      "claim": "Pooling has constant weak floor b, exact Y projection and open/closed cap stated in the interface, unique package at S=P, and the m=2 and m>=3 residual endpoint predicates stated there.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#local-pure-branches"
+    },
+    {
+      "claim_id": "N4V2-CLM-006",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "low_type_only",
+      "payoff_date": "R1",
+      "claim": "Low-type-only passage exists exactly at nu=0, has Y in [ell,h), and obeys the exact residual equality predicates stated separately for m=2 and m>=3.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#local-pure-branches"
+    },
+    {
+      "claim_id": "N4V2-CLM-007",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "delay",
+      "payoff_date": "R1",
+      "claim": "Every retained delay pays C, has full attained Y projection [0,y_bar], and is implemented by H veto, exactly one weak veto, or the stated low-prior multi-veto constructor.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#local-pure-branches"
+    },
+    {
+      "claim_id": "N4V2-CLM-008",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "ballots",
+      "payoff_date": "R1",
+      "claim": "All ballots are pure and sequentially rational under stage undominance and T^Y. Weak-veto delay makes H nonpivotal and therefore requires both H types to vote yes; multi-veto delay is impossible for m=2 and at nu>=nu_star.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#local-pure-branches"
+    },
+    {
+      "claim_id": "N4V2-CLM-009",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "delay_existence",
+      "payoff_date": "R1",
+      "claim": "Delay exists for all priors when m>=3 and exists iff C>=F when m=2, with equality retained by the proposal-level tie-break.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#local-pure-branches"
+    },
+    {
+      "claim_id": "N4V2-CLM-010",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "separation_nonexistence",
+      "payoff_date": "R1",
+      "claim": "High-type-only passage is impossible at all priors and low-type-only passage is impossible at every positive prior.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#local-pure-branches"
+    },
+    {
+      "claim_id": "N4V2-CLM-011",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "proposal_mixing",
+      "payoff_date": "R1",
+      "claim": "The only cross-branch within-proposer mixtures are L/D at nu=0,Y_L=ell,r_L=a and P/D at nu>nu_star,Y_P=h,r_P=b, with the stated m=2 feasibility predicates; no other cross mix survives.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#mixtures-and-identity-closure"
+    },
+    {
+      "claim_id": "N4V2-CLM-012",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "identity_multiplicity",
+      "payoff_date": "R1",
+      "claim": "Every admissible labeled proposer-identity assignment and within-branch proposal law is retained as a full Cartesian product; only the downstream source-preserving H-rent quotient may collapse identity permutations.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#mixtures-and-identity-closure"
+    },
+    {
+      "claim_id": "N4V2-CLM-013",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "weak_payoffs",
+      "payoff_date": "R1",
+      "claim": "The exact weak payoff object is identity-indexed: a recognized proposer receives its residual on passage and every weak state receives C after delay; no representative-agent collapse is valid.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#mixtures-and-identity-closure"
+    },
+    {
+      "claim_id": "N4V2-CLM-014",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "nu0_reporting",
+      "payoff_date": "R1",
+      "claim": "At nu=0 the interface reports every admissible rho_L,rho_P,rho_D combination, conditional bar_Y_L and bar_Y_P, typed category-empty non-applicability, and the resulting two-type H payoff map without imposing a distribution over equilibria.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#nu0-reporting-coordinates"
+    },
+    {
+      "claim_id": "N4V2-CLM-015",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "outcomes",
+      "payoff_date": "R1",
+      "claim": "The four output coordinates partition the R1 event: unanimity has no pass-without-H, terminal failure is zero, and R1 rejection is recorded as delay rather than overlaid with eventual N2 failure.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#nu0-reporting-coordinates"
+    },
+    {
+      "claim_id": "N4V2-CLM-016",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "beliefs",
+      "payoff_date": "R1",
+      "claim": "On-path proposals and weak votes do not reveal theta; public H votes update by Bayes when informative; off-path beliefs remain unrestricted only at zero-probability histories and are linked to their frozen N2 continuation.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#p0-p3-p7-and-beliefs"
+    },
+    {
+      "claim_id": "N4V2-CLM-017",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "slack",
+      "payoff_date": "R1",
+      "claim": "Universal full-pie use is false in N4: admissible accepted and delayed slack proposals survive except at the explicitly unique pooling boundary.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#p0-p3-p7-and-beliefs"
+    },
+    {
+      "claim_id": "N4V2-CLM-018",
+      "equilibrium_ids": [
+        "N4V2-EQ-M2-NU0",
+        "N4V2-EQ-M2-LOW",
+        "N4V2-EQ-M2-HIGH",
+        "N4V2-EQ-MGE3-NU0",
+        "N4V2-EQ-MGE3-LOW",
+        "N4V2-EQ-MGE3-HIGH"
+      ],
+      "branch": "coverage",
+      "payoff_date": "R1",
+      "claim": "The six cells are mutually exclusive and exhaustive over m>=2 and nu in [0,1]; pooling makes every cell nonempty, every empty candidate branch has a typed certificate, and the atomic records close all N6/N7 inputs.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n4_r1_unanimity_derivation_v2.md#coverage-and-status"
+    }
+  ]
+}
