@@ -1,0 +1,381 @@
+{
+  "schema_version": "essential-input-claim-ledger-v4",
+  "node": "N3",
+  "candidate_status": "pending_independent_review",
+  "source_interface": {
+    "record_id": "N1-EQ-01",
+    "artifact_hash": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+  },
+  "equilibrium_ids": [
+    "N3V4-EQ-O1LT-LOW",
+    "N3V4-EQ-O1LT-POOL",
+    "N3V4-EQ-CROSS-LOW",
+    "N3V4-EQ-CROSS-EXCLUDE",
+    "N3V4-EQ-O0GT-EXCLUDE",
+    "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+    "N3V4-EQ-O0EQ-EXCLUDE",
+    "N3V4-EQ-O1EQ-LOW",
+    "N3V4-EQ-O1EQ-EXCLUDE",
+    "N3V4-EQ-O1EQ-POOL",
+    "N3V4-EQ-O1EQ-MIXED-EP"
+  ],
+  "claims": [
+    {
+      "claim_id": "N3V4-C01",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "continuation",
+      "payoff_date": "R1 current units",
+      "claim": "N1-EQ-01 supplies 1/m to each weak state and o_theta to H in R2 current units; beta is applied exactly once in R1.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c01"
+    },
+    {
+      "claim_id": "N3V4-C02",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "weak ballot",
+      "payoff_date": "R1 current units",
+      "claim": "A weak nonproposer votes yes if and only if x_j>=beta/m, with T^Y selecting yes at equality.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c02"
+    },
+    {
+      "claim_id": "N3V4-C03",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "H ballot",
+      "payoff_date": "R1 current units",
+      "claim": "H's complete best-response map covers nonpivotal passage, pivotal passage, and inevitable failure after every feasible proposal.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c03"
+    },
+    {
+      "claim_id": "N3V4-C04",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "proposer deviations",
+      "payoff_date": "R1 current units",
+      "claim": "The closed proposer-payoff map covers every feasible proposal and both types under the true prior.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c04"
+    },
+    {
+      "claim_id": "N3V4-C05",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "candidate reduction",
+      "payoff_date": "R1 current units",
+      "claim": "Every payoff-maximizing pure proposal reduces to exclusion, low-type-only, or pooling; deliberate failure remains in the deviation set.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c05"
+    },
+    {
+      "claim_id": "N3V4-C06",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "P0",
+      "payoff_date": "R1 current units",
+      "claim": "Every selected proposal exhausts the pie because increasing the proposer residual preserves the belief-invariant response and outcome maps induced by frozen N1; no on-path slack survives.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c06"
+    },
+    {
+      "claim_id": "N3V4-C07",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "P1 and P1a",
+      "payoff_date": "R1 current units",
+      "claim": "Every pass-without-H proposal with y>0 is strictly dominated by shifting y to r_i, so every selected exclusion proposal has y=0.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c07"
+    },
+    {
+      "claim_id": "N3V4-C08",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "delay",
+      "payoff_date": "R1 current units",
+      "claim": "Deliberate failure pays beta/m and is strictly dominated by exclusion by 1-beta*q/m>0; screening delay survives with probability nu in selected low-type-only cells.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c08"
+    },
+    {
+      "claim_id": "N3V4-C09",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "feasibility",
+      "payoff_date": "R1 current units",
+      "claim": "Every selected low-type-only, pooling, and exclusion candidate is strictly feasible in its declared cell.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c09"
+    },
+    {
+      "claim_id": "N3V4-C10",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "partition",
+      "payoff_date": "R1 current units",
+      "claim": "The eleven cells are mutually exclusive and exhaustive over all admissible primitives and nu, including every equality and endpoint.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c10"
+    },
+    {
+      "claim_id": "N3V4-C11",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "o_1=1/m",
+      "payoff_date": "R1 current units",
+      "claim": "The residual E=P proposer-payoff tie is resolved by the expected-H comparison, with both branches and every mixture retained at exact equality.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c11"
+    },
+    {
+      "claim_id": "N3V4-C12",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "multiplicity",
+      "payoff_date": "R1 current units",
+      "claim": "All coalition identities, pure proposer-identity assignments, and proposer mixtures are parameterized without a symmetry restriction.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c12"
+    },
+    {
+      "claim_id": "N3V4-C13",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "beliefs",
+      "payoff_date": "R1 current units",
+      "claim": "Positive-probability proposals obey Bayes, zero-prior type strategies remain specified, and every zero-probability proposal-vote vector has an explicit unrestricted posterior at every nu.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c13"
+    },
+    {
+      "claim_id": "N3V4-C14",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "P7",
+      "payoff_date": "R1 current units",
+      "claim": "The public H vote enters every positive-probability posterior update; weak votes are type-independent.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c14"
+    },
+    {
+      "claim_id": "N3V4-C15",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "weak payoff map",
+      "payoff_date": "R1 current units",
+      "claim": "Each record exports the complete identity-indexed pre-recognition weak payoff map.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c15"
+    },
+    {
+      "claim_id": "N3V4-C16",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "transport sufficiency",
+      "payoff_date": "R1 current units",
+      "claim": "Every symbol in admissibility_conditions, selection_status, hegemon_payoff_by_type, and outcome_distribution is primitive or defined inside that transported record.",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c16"
+    },
+    {
+      "claim_id": "N3V4-C17",
+      "equilibrium_ids": [
+        "N3V4-EQ-O1LT-LOW",
+        "N3V4-EQ-O1LT-POOL",
+        "N3V4-EQ-CROSS-LOW",
+        "N3V4-EQ-CROSS-EXCLUDE",
+        "N3V4-EQ-O0GT-EXCLUDE",
+        "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+        "N3V4-EQ-O0EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-LOW",
+        "N3V4-EQ-O1EQ-EXCLUDE",
+        "N3V4-EQ-O1EQ-POOL",
+        "N3V4-EQ-O1EQ-MIXED-EP"
+      ],
+      "branch": "existence",
+      "payoff_date": "R1 current units",
+      "claim": "An equilibrium exists throughout the declared domain; there is no nonexistence cell under beta in (0,1).",
+      "status": "proved",
+      "evidence": "model_redesign/essential_input_n3_r1_majority_derivation_v4.md#claim-n3v4-c17"
+    }
+  ]
+}

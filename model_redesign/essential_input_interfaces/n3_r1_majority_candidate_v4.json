@@ -1,0 +1,1010 @@
+{
+  "schema_ref": "equilibrium_correspondence_v1",
+  "function_of": {
+    "name": "entry_belief",
+    "domain": "[0,1]"
+  },
+  "correspondence_cells": [
+    {
+      "cell_id": "N3V4-CELL-O1LT-LOW",
+      "domain_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_1<1/m", "0<=nu<=beta*(o_1-o_0)/(1-beta*o_0-beta*(q-1)/m)"],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N3V4-EQ-O1LT-LOW",
+          "admissibility_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_1<1/m", "0<=nu<=beta*(o_1-o_0)/(1-beta*o_0-beta*(q-1)/m)", "for every recognized proposer i in W, omega_{i,K}>=0 is defined for every K subset W\\{i} with |K|=q-2 and sum_K omega_{i,K}=1; the arrays may differ by i", "ballot actions are pure; only the weak proposer's proposal may be mixed through the explicitly parameterized finite weights", "the four outcome coordinates partition the R1 event: delay records R1 failure followed by N1, while failure records terminal failure after the two-round game"],
+          "branch_classification": "low-type-only R1 passage with H; the high type delays to N1; the S/P payoff equality is assigned here by the minimum-expected-H proposal tie-break",
+          "strategy_profile": {
+            "frozen_continuation": {
+              "source": "N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+              "weak_value_in_R2_current_units": "1/m",
+              "hegemon_value_in_R2_current_units": {
+                "theta_0": "o_0",
+                "theta_1": "o_1"
+              },
+              "transport_to_R1": "weak continuation beta/m and H continuation beta*o_theta, each discounted exactly once",
+              "posterior_invariance": "N1-EQ-01 is the same record for every R2 entry posterior in [0,1]"
+            },
+            "ballot_map_after_every_feasible_proposal": {
+              "definitions": "For proposer i and proposal s=(y,(x_j)_{j in W\\{i}},r_i), let K_i(s)={j in W\\{i}: x_j>=beta/m} and k_i(s)=|K_i(s)|.",
+              "weak_nonproposer_j": "vote yes iff x_j>=beta/m; at equality T^Y selects yes",
+              "hegemon_if_k_at_least_q_minus_1": "both types vote no because passage is independent of H and no pays y+o_theta>y",
+              "hegemon_if_k_equals_q_minus_2": "type theta votes yes iff y>=beta*o_theta; T^Y selects yes at equality",
+              "hegemon_if_k_at_most_q_minus_3": "both types vote yes by T^Y because either H action leads to the posterior-invariant N1 continuation"
+            },
+            "proposer_payoff_after_every_feasible_proposal": {
+              "if_k_at_least_q_minus_1": "r_i",
+              "if_k_equals_q_minus_2_and_y_below_beta_o0": "beta/m",
+              "if_k_equals_q_minus_2_and_beta_o0_at_most_y_below_beta_o1": "(1-nu)*r_i+nu*beta/m",
+              "if_k_equals_q_minus_2_and_y_at_least_beta_o1": "r_i",
+              "if_k_at_most_q_minus_3": "beta/m"
+            },
+            "candidate_payoffs_in_primitives": {
+              "exclusion": "1-beta*(q-1)/m",
+              "low_type_only": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+              "pooling": "1-beta*o_1-beta*(q-2)/m",
+              "deliberate_failure": "beta/m",
+              "exclusion_minus_deliberate_failure": "1-beta*q/m>0 because q<=m and beta<1",
+              "pooling_minus_exclusion": "beta*(1/m-o_1)",
+              "low_type_only_minus_exclusion": "(1-nu)*beta*(1/m-o_0)-nu*(1-beta*q/m)"
+            },
+            "selected_proposal_parameterization": {
+              "family": "For every i and every K with omega_{i,K}>0: y=beta*o_0; x_j=beta/m iff j in K and x_j=0 otherwise; r_i=1-beta*o_0-beta*(q-2)/m.",
+              "coalition_size": "|K|=q-2",
+              "pure_and_mixed": "A degenerate omega array is a pure proposal. Any nondegenerate omega array is an admissible proposer mixture over coalition identities."
+            },
+            "feasibility": "Every selected low-type-only proposal is strictly feasible because its cell has o_0<=1/m, so beta*[o_0+(q-2)/m] <= beta*(q-1)/m < 1; also 0<beta*o_0<o_0<y_bar."
+          },
+          "belief_system": {
+            "entry": "Pr(theta=1)=nu.",
+            "positive_weight_proposal": "The weak proposer does not observe theta, so every proposal assigned positive conditional weight has ballot posterior nu by Bayes.",
+            "zero_weight_proposal": "Every individual proposal assigned zero conditional weight receives an arbitrary ballot belief kappa_i(s) in [0,1].",
+            "published_vote_vector": "For nu>0, the unique positive-probability R1 failure after a selected low-type-only proposal has H voting no only under theta=1; Bayes therefore fixes the published R2 posterior at 1.",
+            "zero_probability_proposal_vote_vectors": "For every proposal s and complete published vote vector v such that (s,v) has probability zero under the assessment, at every nu in [0,1] including nu>0 and both endpoints, the R2 posterior is explicitly an arbitrary eta_i(s,v) in [0,1].",
+            "weak_vote_information": "Weak votes are deterministic functions of x_j and never of theta; they add no type information beyond the proposal and H vote on every positive-probability history.",
+            "zero_prior_types": "At nu=0 or nu=1, ballot strategies and conditional payoffs remain specified for both types; Bayes constrains only positive-probability histories.",
+            "continuation_effect": "Every on-path or off-path R2 posterior consumes the same frozen N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5.",
+            "deviating_proposer_evaluation": "Every proposal deviation is evaluated under the true pre-proposal prior nu, not the off-path ballot belief."
+          },
+          "source_continuation_record_ids": [
+            "N1-EQ-01"
+          ],
+          "source_interface_hashes": {
+            "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+          },
+          "existence_uniqueness_status": "exists; selected branch, recognized-proposer payoff, type-specific H payoff, and outcome distribution are unique in this cell; strategy multiplicity remains through coalition identities, arbitrary proposer mixing over those identities, and payoff-irrelevant off-path beliefs",
+          "selection_status": "All and only arrays omega_{i,K}>=0 over K subset W\\{i}, |K|=q-2, with sum_K omega_{i,K}=1 for each i are retained. A degenerate array is a pure proposal and a nondegenerate array is proposer mixing; arrays may differ across i. The minimum-expected-H tie-break selects low-type-only at every included payoff boundary. No symmetry or further selection is imposed.",
+          "assumptions_used": ["fixed unit pie, strict beta in (0,1), strict 0<o_0<o_1<1, and package feasibility from contract Section 2", "majority quota, full execution of y, simultaneous sealed ballots, public vote vector, and terminal payoffs from contract Section 4", "PBE with pure ballot strategies, weak-only stage-undominated voting, T^Y, and the minimum-expected-H proposal tie-break from contract Section 5", "exactly one multiplication by beta when the frozen N1 continuation enters R1 incentives under contract Section 6", "iid uniform weak-state recognition with replacement, no side payments, and no exit action"],
+          "checks_performed": ["N3V4-C01 frozen N1 import and exactly-one discount", "N3V4-C02 weak voting cutoff and T^Y", "N3V4-C03 complete H best-response map", "N3V4-C04 proposer payoff map for every feasible proposal", "N3V4-C05 exhaustive reduction to exclusion, low-type-only, pooling, and deliberate failure", "N3V4-C06 P0 full-pie use through belief-invariant N1 response maps", "N3V4-C07 P1 strict hedge dominance and P1a", "N3V4-C08 deliberate failure strictly dominated because 1-beta*q/m>0", "N3V4-C09 candidate feasibility in every selected cell", "N3V4-C10 strict-region and equality-boundary partition", "N3V4-C11 o_1=1/m residual proposer tie and expected-H tie-break", "N3V4-C12 pure identity assignments and all proposer mixtures", "N3V4-C13 Bayes and complete off-path proposal-vote beliefs at every nu", "N3V4-C14 P7 public H vote and posterior update", "N3V4-C15 identity-indexed weak payoff map", "N3V4-C16 closed N6-transported fields without free symbols", "N3V4-C17 complete existence and endpoint coverage"],
+          "recognized_proposer_payoff": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "type": "identity-indexed pre-recognition R1 payoff map; no symmetry restriction",
+            "by_weak_state_l": "C_l=(1/m)*[(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m] + (1/m)*sum_{i in W, i!=l}{(1-nu)*(beta/m)*sum_{K subset W\\{i}, |K|=q-2, l in K}omega_{i,K} + nu*beta/m}; for each i, omega_{i,K}>=0 and sum_{K subset W\\{i}, |K|=q-2}omega_{i,K}=1"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "beta*o_0",
+            "theta_1": "beta*o_1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": "1-nu",
+            "pass_without_hegemon": 0,
+            "failure": 0,
+            "delay": "nu"
+          },
+          "payoff_date": "R1 current units; frozen N1 continuation payoffs are multiplied by beta exactly once"
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N3V4-CELL-O1LT-POOL",
+      "domain_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_1<1/m", "beta*(o_1-o_0)/(1-beta*o_0-beta*(q-1)/m)<nu<=1"],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N3V4-EQ-O1LT-POOL",
+          "admissibility_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_1<1/m", "beta*(o_1-o_0)/(1-beta*o_0-beta*(q-1)/m)<nu<=1", "for every recognized proposer i in W, omega_{i,K}>=0 is defined for every K subset W\\{i} with |K|=q-2 and sum_K omega_{i,K}=1; the arrays may differ by i", "ballot actions are pure; only the weak proposer's proposal may be mixed through the explicitly parameterized finite weights", "the four outcome coordinates partition the R1 event: delay records R1 failure followed by N1, while failure records terminal failure after the two-round game"],
+          "branch_classification": "pooling R1 passage with H",
+          "strategy_profile": {
+            "frozen_continuation": {
+              "source": "N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+              "weak_value_in_R2_current_units": "1/m",
+              "hegemon_value_in_R2_current_units": {
+                "theta_0": "o_0",
+                "theta_1": "o_1"
+              },
+              "transport_to_R1": "weak continuation beta/m and H continuation beta*o_theta, each discounted exactly once",
+              "posterior_invariance": "N1-EQ-01 is the same record for every R2 entry posterior in [0,1]"
+            },
+            "ballot_map_after_every_feasible_proposal": {
+              "definitions": "For proposer i and proposal s=(y,(x_j)_{j in W\\{i}},r_i), let K_i(s)={j in W\\{i}: x_j>=beta/m} and k_i(s)=|K_i(s)|.",
+              "weak_nonproposer_j": "vote yes iff x_j>=beta/m; at equality T^Y selects yes",
+              "hegemon_if_k_at_least_q_minus_1": "both types vote no because passage is independent of H and no pays y+o_theta>y",
+              "hegemon_if_k_equals_q_minus_2": "type theta votes yes iff y>=beta*o_theta; T^Y selects yes at equality",
+              "hegemon_if_k_at_most_q_minus_3": "both types vote yes by T^Y because either H action leads to the posterior-invariant N1 continuation"
+            },
+            "proposer_payoff_after_every_feasible_proposal": {
+              "if_k_at_least_q_minus_1": "r_i",
+              "if_k_equals_q_minus_2_and_y_below_beta_o0": "beta/m",
+              "if_k_equals_q_minus_2_and_beta_o0_at_most_y_below_beta_o1": "(1-nu)*r_i+nu*beta/m",
+              "if_k_equals_q_minus_2_and_y_at_least_beta_o1": "r_i",
+              "if_k_at_most_q_minus_3": "beta/m"
+            },
+            "candidate_payoffs_in_primitives": {
+              "exclusion": "1-beta*(q-1)/m",
+              "low_type_only": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+              "pooling": "1-beta*o_1-beta*(q-2)/m",
+              "deliberate_failure": "beta/m",
+              "exclusion_minus_deliberate_failure": "1-beta*q/m>0 because q<=m and beta<1",
+              "pooling_minus_exclusion": "beta*(1/m-o_1)",
+              "low_type_only_minus_exclusion": "(1-nu)*beta*(1/m-o_0)-nu*(1-beta*q/m)"
+            },
+            "selected_proposal_parameterization": {
+              "family": "For every i and every K with omega_{i,K}>0: y=beta*o_1; x_j=beta/m iff j in K and x_j=0 otherwise; r_i=1-beta*o_1-beta*(q-2)/m.",
+              "coalition_size": "|K|=q-2",
+              "pure_and_mixed": "A degenerate omega array is a pure proposal. Any nondegenerate omega array is an admissible proposer mixture over coalition identities."
+            },
+            "feasibility": "Every selected pooling proposal is strictly feasible because its cell has o_1<=1/m, so beta*[o_1+(q-2)/m] <= beta*(q-1)/m < 1; also 0<beta*o_1<o_1<=y_bar."
+          },
+          "belief_system": {
+            "entry": "Pr(theta=1)=nu.",
+            "positive_weight_proposal": "The weak proposer does not observe theta, so every proposal assigned positive conditional weight has ballot posterior nu by Bayes.",
+            "zero_weight_proposal": "Every individual proposal assigned zero conditional weight receives an arbitrary ballot belief kappa_i(s) in [0,1].",
+            "published_vote_vector": "The selected proposal passes in R1, so it generates no positive-probability R1 failure.",
+            "zero_probability_proposal_vote_vectors": "For every proposal s and complete published vote vector v such that (s,v) has probability zero under the assessment, at every nu in [0,1] including nu>0 and both endpoints, the R2 posterior is explicitly an arbitrary eta_i(s,v) in [0,1].",
+            "weak_vote_information": "Weak votes are deterministic functions of x_j and never of theta; they add no type information beyond the proposal and H vote on every positive-probability history.",
+            "zero_prior_types": "At nu=0 or nu=1, ballot strategies and conditional payoffs remain specified for both types; Bayes constrains only positive-probability histories.",
+            "continuation_effect": "Every on-path or off-path R2 posterior consumes the same frozen N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5.",
+            "deviating_proposer_evaluation": "Every proposal deviation is evaluated under the true pre-proposal prior nu, not the off-path ballot belief."
+          },
+          "source_continuation_record_ids": [
+            "N1-EQ-01"
+          ],
+          "source_interface_hashes": {
+            "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+          },
+          "existence_uniqueness_status": "exists; selected branch, recognized-proposer payoff, type-specific H payoff, and outcome distribution are unique in this cell; strategy multiplicity remains through coalition identities, arbitrary proposer mixing over those identities, and payoff-irrelevant off-path beliefs",
+          "selection_status": "All and only arrays omega_{i,K}>=0 over K subset W\\{i}, |K|=q-2, with sum_K omega_{i,K}=1 for each i are retained. A degenerate array is pure and a nondegenerate array is proposer mixing; arrays may differ across i. Pooling uniquely minimizes expected H payoff among proposer-payoff maximizers in this cell. No further selection is imposed.",
+          "assumptions_used": ["fixed unit pie, strict beta in (0,1), strict 0<o_0<o_1<1, and package feasibility from contract Section 2", "majority quota, full execution of y, simultaneous sealed ballots, public vote vector, and terminal payoffs from contract Section 4", "PBE with pure ballot strategies, weak-only stage-undominated voting, T^Y, and the minimum-expected-H proposal tie-break from contract Section 5", "exactly one multiplication by beta when the frozen N1 continuation enters R1 incentives under contract Section 6", "iid uniform weak-state recognition with replacement, no side payments, and no exit action"],
+          "checks_performed": ["N3V4-C01 frozen N1 import and exactly-one discount", "N3V4-C02 weak voting cutoff and T^Y", "N3V4-C03 complete H best-response map", "N3V4-C04 proposer payoff map for every feasible proposal", "N3V4-C05 exhaustive reduction to exclusion, low-type-only, pooling, and deliberate failure", "N3V4-C06 P0 full-pie use through belief-invariant N1 response maps", "N3V4-C07 P1 strict hedge dominance and P1a", "N3V4-C08 deliberate failure strictly dominated because 1-beta*q/m>0", "N3V4-C09 candidate feasibility in every selected cell", "N3V4-C10 strict-region and equality-boundary partition", "N3V4-C11 o_1=1/m residual proposer tie and expected-H tie-break", "N3V4-C12 pure identity assignments and all proposer mixtures", "N3V4-C13 Bayes and complete off-path proposal-vote beliefs at every nu", "N3V4-C14 P7 public H vote and posterior update", "N3V4-C15 identity-indexed weak payoff map", "N3V4-C16 closed N6-transported fields without free symbols", "N3V4-C17 complete existence and endpoint coverage"],
+          "recognized_proposer_payoff": "1-beta*o_1-beta*(q-2)/m",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "type": "identity-indexed pre-recognition R1 payoff map; no symmetry restriction",
+            "by_weak_state_l": "C_l=(1/m)*[1-beta*o_1-beta*(q-2)/m] + (1/m)*sum_{i in W, i!=l}{(beta/m)*sum_{K subset W\\{i}, |K|=q-2, l in K}omega_{i,K}}; for each i, omega_{i,K}>=0 and sum_{K subset W\\{i}, |K|=q-2}omega_{i,K}=1"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "beta*o_1",
+            "theta_1": "beta*o_1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": 1,
+            "pass_without_hegemon": 0,
+            "failure": 0,
+            "delay": 0
+          },
+          "payoff_date": "R1 current units; frozen N1 continuation payoffs are multiplied by beta exactly once"
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N3V4-CELL-CROSS-LOW",
+      "domain_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0<1/m<o_1", "0<=nu<=beta*(1/m-o_0)/(beta*(1/m-o_0)+1-beta*q/m)"],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N3V4-EQ-CROSS-LOW",
+          "admissibility_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0<1/m<o_1", "0<=nu<=beta*(1/m-o_0)/(beta*(1/m-o_0)+1-beta*q/m)", "for every recognized proposer i in W, omega_{i,K}>=0 is defined for every K subset W\\{i} with |K|=q-2 and sum_K omega_{i,K}=1; the arrays may differ by i", "ballot actions are pure; only the weak proposer's proposal may be mixed through the explicitly parameterized finite weights", "the four outcome coordinates partition the R1 event: delay records R1 failure followed by N1, while failure records terminal failure after the two-round game"],
+          "branch_classification": "low-type-only R1 passage with H; the high type delays to N1; the S/E payoff equality is assigned here by the minimum-expected-H proposal tie-break",
+          "strategy_profile": {
+            "frozen_continuation": {
+              "source": "N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+              "weak_value_in_R2_current_units": "1/m",
+              "hegemon_value_in_R2_current_units": {
+                "theta_0": "o_0",
+                "theta_1": "o_1"
+              },
+              "transport_to_R1": "weak continuation beta/m and H continuation beta*o_theta, each discounted exactly once",
+              "posterior_invariance": "N1-EQ-01 is the same record for every R2 entry posterior in [0,1]"
+            },
+            "ballot_map_after_every_feasible_proposal": {
+              "definitions": "For proposer i and proposal s=(y,(x_j)_{j in W\\{i}},r_i), let K_i(s)={j in W\\{i}: x_j>=beta/m} and k_i(s)=|K_i(s)|.",
+              "weak_nonproposer_j": "vote yes iff x_j>=beta/m; at equality T^Y selects yes",
+              "hegemon_if_k_at_least_q_minus_1": "both types vote no because passage is independent of H and no pays y+o_theta>y",
+              "hegemon_if_k_equals_q_minus_2": "type theta votes yes iff y>=beta*o_theta; T^Y selects yes at equality",
+              "hegemon_if_k_at_most_q_minus_3": "both types vote yes by T^Y because either H action leads to the posterior-invariant N1 continuation"
+            },
+            "proposer_payoff_after_every_feasible_proposal": {
+              "if_k_at_least_q_minus_1": "r_i",
+              "if_k_equals_q_minus_2_and_y_below_beta_o0": "beta/m",
+              "if_k_equals_q_minus_2_and_beta_o0_at_most_y_below_beta_o1": "(1-nu)*r_i+nu*beta/m",
+              "if_k_equals_q_minus_2_and_y_at_least_beta_o1": "r_i",
+              "if_k_at_most_q_minus_3": "beta/m"
+            },
+            "candidate_payoffs_in_primitives": {
+              "exclusion": "1-beta*(q-1)/m",
+              "low_type_only": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+              "pooling": "1-beta*o_1-beta*(q-2)/m",
+              "deliberate_failure": "beta/m",
+              "exclusion_minus_deliberate_failure": "1-beta*q/m>0 because q<=m and beta<1",
+              "pooling_minus_exclusion": "beta*(1/m-o_1)",
+              "low_type_only_minus_exclusion": "(1-nu)*beta*(1/m-o_0)-nu*(1-beta*q/m)"
+            },
+            "selected_proposal_parameterization": {
+              "family": "For every i and every K with omega_{i,K}>0: y=beta*o_0; x_j=beta/m iff j in K and x_j=0 otherwise; r_i=1-beta*o_0-beta*(q-2)/m.",
+              "coalition_size": "|K|=q-2",
+              "pure_and_mixed": "A degenerate omega array is a pure proposal. Any nondegenerate omega array is an admissible proposer mixture over coalition identities."
+            },
+            "feasibility": "Every selected low-type-only proposal is strictly feasible because its cell has o_0<=1/m, so beta*[o_0+(q-2)/m] <= beta*(q-1)/m < 1; also 0<beta*o_0<o_0<y_bar."
+          },
+          "belief_system": {
+            "entry": "Pr(theta=1)=nu.",
+            "positive_weight_proposal": "The weak proposer does not observe theta, so every proposal assigned positive conditional weight has ballot posterior nu by Bayes.",
+            "zero_weight_proposal": "Every individual proposal assigned zero conditional weight receives an arbitrary ballot belief kappa_i(s) in [0,1].",
+            "published_vote_vector": "For nu>0, the unique positive-probability R1 failure after a selected low-type-only proposal has H voting no only under theta=1; Bayes therefore fixes the published R2 posterior at 1.",
+            "zero_probability_proposal_vote_vectors": "For every proposal s and complete published vote vector v such that (s,v) has probability zero under the assessment, at every nu in [0,1] including nu>0 and both endpoints, the R2 posterior is explicitly an arbitrary eta_i(s,v) in [0,1].",
+            "weak_vote_information": "Weak votes are deterministic functions of x_j and never of theta; they add no type information beyond the proposal and H vote on every positive-probability history.",
+            "zero_prior_types": "At nu=0 or nu=1, ballot strategies and conditional payoffs remain specified for both types; Bayes constrains only positive-probability histories.",
+            "continuation_effect": "Every on-path or off-path R2 posterior consumes the same frozen N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5.",
+            "deviating_proposer_evaluation": "Every proposal deviation is evaluated under the true pre-proposal prior nu, not the off-path ballot belief."
+          },
+          "source_continuation_record_ids": [
+            "N1-EQ-01"
+          ],
+          "source_interface_hashes": {
+            "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+          },
+          "existence_uniqueness_status": "exists; selected branch, recognized-proposer payoff, type-specific H payoff, and outcome distribution are unique in this cell; strategy multiplicity remains through coalition identities, arbitrary proposer mixing over those identities, and payoff-irrelevant off-path beliefs",
+          "selection_status": "All and only arrays omega_{i,K}>=0 over K subset W\\{i}, |K|=q-2, with sum_K omega_{i,K}=1 for each i are retained. A degenerate array is a pure proposal and a nondegenerate array is proposer mixing; arrays may differ across i. The minimum-expected-H tie-break selects low-type-only at every included payoff boundary. No symmetry or further selection is imposed.",
+          "assumptions_used": ["fixed unit pie, strict beta in (0,1), strict 0<o_0<o_1<1, and package feasibility from contract Section 2", "majority quota, full execution of y, simultaneous sealed ballots, public vote vector, and terminal payoffs from contract Section 4", "PBE with pure ballot strategies, weak-only stage-undominated voting, T^Y, and the minimum-expected-H proposal tie-break from contract Section 5", "exactly one multiplication by beta when the frozen N1 continuation enters R1 incentives under contract Section 6", "iid uniform weak-state recognition with replacement, no side payments, and no exit action"],
+          "checks_performed": ["N3V4-C01 frozen N1 import and exactly-one discount", "N3V4-C02 weak voting cutoff and T^Y", "N3V4-C03 complete H best-response map", "N3V4-C04 proposer payoff map for every feasible proposal", "N3V4-C05 exhaustive reduction to exclusion, low-type-only, pooling, and deliberate failure", "N3V4-C06 P0 full-pie use through belief-invariant N1 response maps", "N3V4-C07 P1 strict hedge dominance and P1a", "N3V4-C08 deliberate failure strictly dominated because 1-beta*q/m>0", "N3V4-C09 candidate feasibility in every selected cell", "N3V4-C10 strict-region and equality-boundary partition", "N3V4-C11 o_1=1/m residual proposer tie and expected-H tie-break", "N3V4-C12 pure identity assignments and all proposer mixtures", "N3V4-C13 Bayes and complete off-path proposal-vote beliefs at every nu", "N3V4-C14 P7 public H vote and posterior update", "N3V4-C15 identity-indexed weak payoff map", "N3V4-C16 closed N6-transported fields without free symbols", "N3V4-C17 complete existence and endpoint coverage"],
+          "recognized_proposer_payoff": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "type": "identity-indexed pre-recognition R1 payoff map; no symmetry restriction",
+            "by_weak_state_l": "C_l=(1/m)*[(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m] + (1/m)*sum_{i in W, i!=l}{(1-nu)*(beta/m)*sum_{K subset W\\{i}, |K|=q-2, l in K}omega_{i,K} + nu*beta/m}; for each i, omega_{i,K}>=0 and sum_{K subset W\\{i}, |K|=q-2}omega_{i,K}=1"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "beta*o_0",
+            "theta_1": "beta*o_1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": "1-nu",
+            "pass_without_hegemon": 0,
+            "failure": 0,
+            "delay": "nu"
+          },
+          "payoff_date": "R1 current units; frozen N1 continuation payoffs are multiplied by beta exactly once"
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N3V4-CELL-CROSS-EXCLUDE",
+      "domain_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0<1/m<o_1", "beta*(1/m-o_0)/(beta*(1/m-o_0)+1-beta*q/m)<nu<=1"],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N3V4-EQ-CROSS-EXCLUDE",
+          "admissibility_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0<1/m<o_1", "beta*(1/m-o_0)/(beta*(1/m-o_0)+1-beta*q/m)<nu<=1", "for every recognized proposer i in W, omega_{i,K}>=0 is defined for every K subset W\\{i} with |K|=q-1 and sum_K omega_{i,K}=1; the arrays may differ by i", "ballot actions are pure; only the weak proposer's proposal may be mixed through the explicitly parameterized finite weights", "the four outcome coordinates partition the R1 event: delay records R1 failure followed by N1, while failure records terminal failure after the two-round game"],
+          "branch_classification": "R1 passage without H at y=0",
+          "strategy_profile": {
+            "frozen_continuation": {
+              "source": "N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+              "weak_value_in_R2_current_units": "1/m",
+              "hegemon_value_in_R2_current_units": {
+                "theta_0": "o_0",
+                "theta_1": "o_1"
+              },
+              "transport_to_R1": "weak continuation beta/m and H continuation beta*o_theta, each discounted exactly once",
+              "posterior_invariance": "N1-EQ-01 is the same record for every R2 entry posterior in [0,1]"
+            },
+            "ballot_map_after_every_feasible_proposal": {
+              "definitions": "For proposer i and proposal s=(y,(x_j)_{j in W\\{i}},r_i), let K_i(s)={j in W\\{i}: x_j>=beta/m} and k_i(s)=|K_i(s)|.",
+              "weak_nonproposer_j": "vote yes iff x_j>=beta/m; at equality T^Y selects yes",
+              "hegemon_if_k_at_least_q_minus_1": "both types vote no because passage is independent of H and no pays y+o_theta>y",
+              "hegemon_if_k_equals_q_minus_2": "type theta votes yes iff y>=beta*o_theta; T^Y selects yes at equality",
+              "hegemon_if_k_at_most_q_minus_3": "both types vote yes by T^Y because either H action leads to the posterior-invariant N1 continuation"
+            },
+            "proposer_payoff_after_every_feasible_proposal": {
+              "if_k_at_least_q_minus_1": "r_i",
+              "if_k_equals_q_minus_2_and_y_below_beta_o0": "beta/m",
+              "if_k_equals_q_minus_2_and_beta_o0_at_most_y_below_beta_o1": "(1-nu)*r_i+nu*beta/m",
+              "if_k_equals_q_minus_2_and_y_at_least_beta_o1": "r_i",
+              "if_k_at_most_q_minus_3": "beta/m"
+            },
+            "candidate_payoffs_in_primitives": {
+              "exclusion": "1-beta*(q-1)/m",
+              "low_type_only": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+              "pooling": "1-beta*o_1-beta*(q-2)/m",
+              "deliberate_failure": "beta/m",
+              "exclusion_minus_deliberate_failure": "1-beta*q/m>0 because q<=m and beta<1",
+              "pooling_minus_exclusion": "beta*(1/m-o_1)",
+              "low_type_only_minus_exclusion": "(1-nu)*beta*(1/m-o_0)-nu*(1-beta*q/m)"
+            },
+            "selected_proposal_parameterization": {
+              "family": "For every i and every K with omega_{i,K}>0: y=0; x_j=beta/m iff j in K and x_j=0 otherwise; r_i=1-beta*(q-1)/m.",
+              "coalition_size": "|K|=q-1",
+              "pure_and_mixed": "A degenerate omega array is a pure proposal. Any nondegenerate omega array is an admissible proposer mixture over coalition identities."
+            },
+            "feasibility": "Every exclusion proposal is strictly feasible because y=0<=y_bar and beta*(q-1)/m<1."
+          },
+          "belief_system": {
+            "entry": "Pr(theta=1)=nu.",
+            "positive_weight_proposal": "The weak proposer does not observe theta, so every proposal assigned positive conditional weight has ballot posterior nu by Bayes.",
+            "zero_weight_proposal": "Every individual proposal assigned zero conditional weight receives an arbitrary ballot belief kappa_i(s) in [0,1].",
+            "published_vote_vector": "The selected proposal passes in R1, so it generates no positive-probability R1 failure.",
+            "zero_probability_proposal_vote_vectors": "For every proposal s and complete published vote vector v such that (s,v) has probability zero under the assessment, at every nu in [0,1] including nu>0 and both endpoints, the R2 posterior is explicitly an arbitrary eta_i(s,v) in [0,1].",
+            "weak_vote_information": "Weak votes are deterministic functions of x_j and never of theta; they add no type information beyond the proposal and H vote on every positive-probability history.",
+            "zero_prior_types": "At nu=0 or nu=1, ballot strategies and conditional payoffs remain specified for both types; Bayes constrains only positive-probability histories.",
+            "continuation_effect": "Every on-path or off-path R2 posterior consumes the same frozen N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5.",
+            "deviating_proposer_evaluation": "Every proposal deviation is evaluated under the true pre-proposal prior nu, not the off-path ballot belief."
+          },
+          "source_continuation_record_ids": [
+            "N1-EQ-01"
+          ],
+          "source_interface_hashes": {
+            "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+          },
+          "existence_uniqueness_status": "exists; selected branch, recognized-proposer payoff, type-specific H payoff, and outcome distribution are unique in this cell; strategy multiplicity remains through coalition identities, arbitrary proposer mixing over those identities, and payoff-irrelevant off-path beliefs",
+          "selection_status": "All and only arrays omega_{i,K}>=0 over K subset W\\{i}, |K|=q-1, with sum_K omega_{i,K}=1 for each i are retained. A degenerate array is pure and a nondegenerate array is proposer mixing; arrays may differ across i. Exclusion uniquely minimizes expected H payoff among proposer-payoff maximizers in this cell. No further selection is imposed.",
+          "assumptions_used": ["fixed unit pie, strict beta in (0,1), strict 0<o_0<o_1<1, and package feasibility from contract Section 2", "majority quota, full execution of y, simultaneous sealed ballots, public vote vector, and terminal payoffs from contract Section 4", "PBE with pure ballot strategies, weak-only stage-undominated voting, T^Y, and the minimum-expected-H proposal tie-break from contract Section 5", "exactly one multiplication by beta when the frozen N1 continuation enters R1 incentives under contract Section 6", "iid uniform weak-state recognition with replacement, no side payments, and no exit action"],
+          "checks_performed": ["N3V4-C01 frozen N1 import and exactly-one discount", "N3V4-C02 weak voting cutoff and T^Y", "N3V4-C03 complete H best-response map", "N3V4-C04 proposer payoff map for every feasible proposal", "N3V4-C05 exhaustive reduction to exclusion, low-type-only, pooling, and deliberate failure", "N3V4-C06 P0 full-pie use through belief-invariant N1 response maps", "N3V4-C07 P1 strict hedge dominance and P1a", "N3V4-C08 deliberate failure strictly dominated because 1-beta*q/m>0", "N3V4-C09 candidate feasibility in every selected cell", "N3V4-C10 strict-region and equality-boundary partition", "N3V4-C11 o_1=1/m residual proposer tie and expected-H tie-break", "N3V4-C12 pure identity assignments and all proposer mixtures", "N3V4-C13 Bayes and complete off-path proposal-vote beliefs at every nu", "N3V4-C14 P7 public H vote and posterior update", "N3V4-C15 identity-indexed weak payoff map", "N3V4-C16 closed N6-transported fields without free symbols", "N3V4-C17 complete existence and endpoint coverage"],
+          "recognized_proposer_payoff": "1-beta*(q-1)/m",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "type": "identity-indexed pre-recognition R1 payoff map; no symmetry restriction",
+            "by_weak_state_l": "C_l=(1/m)*[1-beta*(q-1)/m] + (1/m)*sum_{i in W, i!=l}{(beta/m)*sum_{K subset W\\{i}, |K|=q-1, l in K}omega_{i,K}}; for each i, omega_{i,K}>=0 and sum_{K subset W\\{i}, |K|=q-1}omega_{i,K}=1"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "o_0",
+            "theta_1": "o_1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": 0,
+            "pass_without_hegemon": 1,
+            "failure": 0,
+            "delay": 0
+          },
+          "payoff_date": "R1 current units; frozen N1 continuation payoffs are multiplied by beta exactly once"
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N3V4-CELL-O0GT-EXCLUDE",
+      "domain_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "1/m<o_0<o_1", "0<=nu<=1"],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N3V4-EQ-O0GT-EXCLUDE",
+          "admissibility_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "1/m<o_0<o_1", "0<=nu<=1", "for every recognized proposer i in W, omega_{i,K}>=0 is defined for every K subset W\\{i} with |K|=q-1 and sum_K omega_{i,K}=1; the arrays may differ by i", "ballot actions are pure; only the weak proposer's proposal may be mixed through the explicitly parameterized finite weights", "the four outcome coordinates partition the R1 event: delay records R1 failure followed by N1, while failure records terminal failure after the two-round game"],
+          "branch_classification": "R1 passage without H at y=0",
+          "strategy_profile": {
+            "frozen_continuation": {
+              "source": "N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+              "weak_value_in_R2_current_units": "1/m",
+              "hegemon_value_in_R2_current_units": {
+                "theta_0": "o_0",
+                "theta_1": "o_1"
+              },
+              "transport_to_R1": "weak continuation beta/m and H continuation beta*o_theta, each discounted exactly once",
+              "posterior_invariance": "N1-EQ-01 is the same record for every R2 entry posterior in [0,1]"
+            },
+            "ballot_map_after_every_feasible_proposal": {
+              "definitions": "For proposer i and proposal s=(y,(x_j)_{j in W\\{i}},r_i), let K_i(s)={j in W\\{i}: x_j>=beta/m} and k_i(s)=|K_i(s)|.",
+              "weak_nonproposer_j": "vote yes iff x_j>=beta/m; at equality T^Y selects yes",
+              "hegemon_if_k_at_least_q_minus_1": "both types vote no because passage is independent of H and no pays y+o_theta>y",
+              "hegemon_if_k_equals_q_minus_2": "type theta votes yes iff y>=beta*o_theta; T^Y selects yes at equality",
+              "hegemon_if_k_at_most_q_minus_3": "both types vote yes by T^Y because either H action leads to the posterior-invariant N1 continuation"
+            },
+            "proposer_payoff_after_every_feasible_proposal": {
+              "if_k_at_least_q_minus_1": "r_i",
+              "if_k_equals_q_minus_2_and_y_below_beta_o0": "beta/m",
+              "if_k_equals_q_minus_2_and_beta_o0_at_most_y_below_beta_o1": "(1-nu)*r_i+nu*beta/m",
+              "if_k_equals_q_minus_2_and_y_at_least_beta_o1": "r_i",
+              "if_k_at_most_q_minus_3": "beta/m"
+            },
+            "candidate_payoffs_in_primitives": {
+              "exclusion": "1-beta*(q-1)/m",
+              "low_type_only": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+              "pooling": "1-beta*o_1-beta*(q-2)/m",
+              "deliberate_failure": "beta/m",
+              "exclusion_minus_deliberate_failure": "1-beta*q/m>0 because q<=m and beta<1",
+              "pooling_minus_exclusion": "beta*(1/m-o_1)",
+              "low_type_only_minus_exclusion": "(1-nu)*beta*(1/m-o_0)-nu*(1-beta*q/m)"
+            },
+            "selected_proposal_parameterization": {
+              "family": "For every i and every K with omega_{i,K}>0: y=0; x_j=beta/m iff j in K and x_j=0 otherwise; r_i=1-beta*(q-1)/m.",
+              "coalition_size": "|K|=q-1",
+              "pure_and_mixed": "A degenerate omega array is a pure proposal. Any nondegenerate omega array is an admissible proposer mixture over coalition identities."
+            },
+            "feasibility": "Every exclusion proposal is strictly feasible because y=0<=y_bar and beta*(q-1)/m<1."
+          },
+          "belief_system": {
+            "entry": "Pr(theta=1)=nu.",
+            "positive_weight_proposal": "The weak proposer does not observe theta, so every proposal assigned positive conditional weight has ballot posterior nu by Bayes.",
+            "zero_weight_proposal": "Every individual proposal assigned zero conditional weight receives an arbitrary ballot belief kappa_i(s) in [0,1].",
+            "published_vote_vector": "The selected proposal passes in R1, so it generates no positive-probability R1 failure.",
+            "zero_probability_proposal_vote_vectors": "For every proposal s and complete published vote vector v such that (s,v) has probability zero under the assessment, at every nu in [0,1] including nu>0 and both endpoints, the R2 posterior is explicitly an arbitrary eta_i(s,v) in [0,1].",
+            "weak_vote_information": "Weak votes are deterministic functions of x_j and never of theta; they add no type information beyond the proposal and H vote on every positive-probability history.",
+            "zero_prior_types": "At nu=0 or nu=1, ballot strategies and conditional payoffs remain specified for both types; Bayes constrains only positive-probability histories.",
+            "continuation_effect": "Every on-path or off-path R2 posterior consumes the same frozen N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5.",
+            "deviating_proposer_evaluation": "Every proposal deviation is evaluated under the true pre-proposal prior nu, not the off-path ballot belief."
+          },
+          "source_continuation_record_ids": [
+            "N1-EQ-01"
+          ],
+          "source_interface_hashes": {
+            "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+          },
+          "existence_uniqueness_status": "exists; selected branch, recognized-proposer payoff, type-specific H payoff, and outcome distribution are unique in this cell; strategy multiplicity remains through coalition identities, arbitrary proposer mixing over those identities, and payoff-irrelevant off-path beliefs",
+          "selection_status": "All and only arrays omega_{i,K}>=0 over K subset W\\{i}, |K|=q-1, with sum_K omega_{i,K}=1 for each i are retained. A degenerate array is pure and a nondegenerate array is proposer mixing; arrays may differ across i. Exclusion uniquely minimizes expected H payoff among proposer-payoff maximizers in this cell. No further selection is imposed.",
+          "assumptions_used": ["fixed unit pie, strict beta in (0,1), strict 0<o_0<o_1<1, and package feasibility from contract Section 2", "majority quota, full execution of y, simultaneous sealed ballots, public vote vector, and terminal payoffs from contract Section 4", "PBE with pure ballot strategies, weak-only stage-undominated voting, T^Y, and the minimum-expected-H proposal tie-break from contract Section 5", "exactly one multiplication by beta when the frozen N1 continuation enters R1 incentives under contract Section 6", "iid uniform weak-state recognition with replacement, no side payments, and no exit action"],
+          "checks_performed": ["N3V4-C01 frozen N1 import and exactly-one discount", "N3V4-C02 weak voting cutoff and T^Y", "N3V4-C03 complete H best-response map", "N3V4-C04 proposer payoff map for every feasible proposal", "N3V4-C05 exhaustive reduction to exclusion, low-type-only, pooling, and deliberate failure", "N3V4-C06 P0 full-pie use through belief-invariant N1 response maps", "N3V4-C07 P1 strict hedge dominance and P1a", "N3V4-C08 deliberate failure strictly dominated because 1-beta*q/m>0", "N3V4-C09 candidate feasibility in every selected cell", "N3V4-C10 strict-region and equality-boundary partition", "N3V4-C11 o_1=1/m residual proposer tie and expected-H tie-break", "N3V4-C12 pure identity assignments and all proposer mixtures", "N3V4-C13 Bayes and complete off-path proposal-vote beliefs at every nu", "N3V4-C14 P7 public H vote and posterior update", "N3V4-C15 identity-indexed weak payoff map", "N3V4-C16 closed N6-transported fields without free symbols", "N3V4-C17 complete existence and endpoint coverage"],
+          "recognized_proposer_payoff": "1-beta*(q-1)/m",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "type": "identity-indexed pre-recognition R1 payoff map; no symmetry restriction",
+            "by_weak_state_l": "C_l=(1/m)*[1-beta*(q-1)/m] + (1/m)*sum_{i in W, i!=l}{(beta/m)*sum_{K subset W\\{i}, |K|=q-1, l in K}omega_{i,K}}; for each i, omega_{i,K}>=0 and sum_{K subset W\\{i}, |K|=q-1}omega_{i,K}=1"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "o_0",
+            "theta_1": "o_1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": 0,
+            "pass_without_hegemon": 1,
+            "failure": 0,
+            "delay": 0
+          },
+          "payoff_date": "R1 current units; frozen N1 continuation payoffs are multiplied by beta exactly once"
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N3V4-CELL-O0EQ-LOW-ENDPOINT",
+      "domain_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0=1/m<o_1", "nu=0"],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N3V4-EQ-O0EQ-LOW-ENDPOINT",
+          "admissibility_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0=1/m<o_1", "nu=0", "for every recognized proposer i in W, omega_{i,K}>=0 is defined for every K subset W\\{i} with |K|=q-2 and sum_K omega_{i,K}=1; the arrays may differ by i", "ballot actions are pure; only the weak proposer's proposal may be mixed through the explicitly parameterized finite weights", "the four outcome coordinates partition the R1 event: delay records R1 failure followed by N1, while failure records terminal failure after the two-round game"],
+          "branch_classification": "measure-zero low-type-only endpoint; its proposer payoff ties exclusion and the minimum-expected-H proposal tie-break selects it",
+          "strategy_profile": {
+            "frozen_continuation": {
+              "source": "N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+              "weak_value_in_R2_current_units": "1/m",
+              "hegemon_value_in_R2_current_units": {
+                "theta_0": "o_0",
+                "theta_1": "o_1"
+              },
+              "transport_to_R1": "weak continuation beta/m and H continuation beta*o_theta, each discounted exactly once",
+              "posterior_invariance": "N1-EQ-01 is the same record for every R2 entry posterior in [0,1]"
+            },
+            "ballot_map_after_every_feasible_proposal": {
+              "definitions": "For proposer i and proposal s=(y,(x_j)_{j in W\\{i}},r_i), let K_i(s)={j in W\\{i}: x_j>=beta/m} and k_i(s)=|K_i(s)|.",
+              "weak_nonproposer_j": "vote yes iff x_j>=beta/m; at equality T^Y selects yes",
+              "hegemon_if_k_at_least_q_minus_1": "both types vote no because passage is independent of H and no pays y+o_theta>y",
+              "hegemon_if_k_equals_q_minus_2": "type theta votes yes iff y>=beta*o_theta; T^Y selects yes at equality",
+              "hegemon_if_k_at_most_q_minus_3": "both types vote yes by T^Y because either H action leads to the posterior-invariant N1 continuation"
+            },
+            "proposer_payoff_after_every_feasible_proposal": {
+              "if_k_at_least_q_minus_1": "r_i",
+              "if_k_equals_q_minus_2_and_y_below_beta_o0": "beta/m",
+              "if_k_equals_q_minus_2_and_beta_o0_at_most_y_below_beta_o1": "(1-nu)*r_i+nu*beta/m",
+              "if_k_equals_q_minus_2_and_y_at_least_beta_o1": "r_i",
+              "if_k_at_most_q_minus_3": "beta/m"
+            },
+            "candidate_payoffs_in_primitives": {
+              "exclusion": "1-beta*(q-1)/m",
+              "low_type_only": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+              "pooling": "1-beta*o_1-beta*(q-2)/m",
+              "deliberate_failure": "beta/m",
+              "exclusion_minus_deliberate_failure": "1-beta*q/m>0 because q<=m and beta<1",
+              "pooling_minus_exclusion": "beta*(1/m-o_1)",
+              "low_type_only_minus_exclusion": "(1-nu)*beta*(1/m-o_0)-nu*(1-beta*q/m)"
+            },
+            "selected_proposal_parameterization": {
+              "family": "For every i and every K with omega_{i,K}>0: y=beta*o_0; x_j=beta/m iff j in K and x_j=0 otherwise; r_i=1-beta*o_0-beta*(q-2)/m.",
+              "coalition_size": "|K|=q-2",
+              "pure_and_mixed": "A degenerate omega array is a pure proposal. Any nondegenerate omega array is an admissible proposer mixture over coalition identities."
+            },
+            "feasibility": "Every selected low-type-only proposal is strictly feasible because its cell has o_0<=1/m, so beta*[o_0+(q-2)/m] <= beta*(q-1)/m < 1; also 0<beta*o_0<o_0<y_bar."
+          },
+          "belief_system": {
+            "entry": "Pr(theta=1)=nu.",
+            "positive_weight_proposal": "The weak proposer does not observe theta, so every proposal assigned positive conditional weight has ballot posterior nu by Bayes.",
+            "zero_weight_proposal": "Every individual proposal assigned zero conditional weight receives an arbitrary ballot belief kappa_i(s) in [0,1].",
+            "published_vote_vector": "For nu>0, the unique positive-probability R1 failure after a selected low-type-only proposal has H voting no only under theta=1; Bayes therefore fixes the published R2 posterior at 1.",
+            "zero_probability_proposal_vote_vectors": "For every proposal s and complete published vote vector v such that (s,v) has probability zero under the assessment, at every nu in [0,1] including nu>0 and both endpoints, the R2 posterior is explicitly an arbitrary eta_i(s,v) in [0,1].",
+            "weak_vote_information": "Weak votes are deterministic functions of x_j and never of theta; they add no type information beyond the proposal and H vote on every positive-probability history.",
+            "zero_prior_types": "At nu=0 or nu=1, ballot strategies and conditional payoffs remain specified for both types; Bayes constrains only positive-probability histories.",
+            "continuation_effect": "Every on-path or off-path R2 posterior consumes the same frozen N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5.",
+            "deviating_proposer_evaluation": "Every proposal deviation is evaluated under the true pre-proposal prior nu, not the off-path ballot belief."
+          },
+          "source_continuation_record_ids": [
+            "N1-EQ-01"
+          ],
+          "source_interface_hashes": {
+            "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+          },
+          "existence_uniqueness_status": "exists; selected branch, recognized-proposer payoff, type-specific H payoff, and outcome distribution are unique in this cell; strategy multiplicity remains through coalition identities, arbitrary proposer mixing over those identities, and payoff-irrelevant off-path beliefs",
+          "selection_status": "All and only arrays omega_{i,K}>=0 over K subset W\\{i}, |K|=q-2, with sum_K omega_{i,K}=1 for each i are retained. A degenerate array is a pure proposal and a nondegenerate array is proposer mixing; arrays may differ across i. The minimum-expected-H tie-break selects low-type-only at every included payoff boundary. No symmetry or further selection is imposed.",
+          "assumptions_used": ["fixed unit pie, strict beta in (0,1), strict 0<o_0<o_1<1, and package feasibility from contract Section 2", "majority quota, full execution of y, simultaneous sealed ballots, public vote vector, and terminal payoffs from contract Section 4", "PBE with pure ballot strategies, weak-only stage-undominated voting, T^Y, and the minimum-expected-H proposal tie-break from contract Section 5", "exactly one multiplication by beta when the frozen N1 continuation enters R1 incentives under contract Section 6", "iid uniform weak-state recognition with replacement, no side payments, and no exit action"],
+          "checks_performed": ["N3V4-C01 frozen N1 import and exactly-one discount", "N3V4-C02 weak voting cutoff and T^Y", "N3V4-C03 complete H best-response map", "N3V4-C04 proposer payoff map for every feasible proposal", "N3V4-C05 exhaustive reduction to exclusion, low-type-only, pooling, and deliberate failure", "N3V4-C06 P0 full-pie use through belief-invariant N1 response maps", "N3V4-C07 P1 strict hedge dominance and P1a", "N3V4-C08 deliberate failure strictly dominated because 1-beta*q/m>0", "N3V4-C09 candidate feasibility in every selected cell", "N3V4-C10 strict-region and equality-boundary partition", "N3V4-C11 o_1=1/m residual proposer tie and expected-H tie-break", "N3V4-C12 pure identity assignments and all proposer mixtures", "N3V4-C13 Bayes and complete off-path proposal-vote beliefs at every nu", "N3V4-C14 P7 public H vote and posterior update", "N3V4-C15 identity-indexed weak payoff map", "N3V4-C16 closed N6-transported fields without free symbols", "N3V4-C17 complete existence and endpoint coverage"],
+          "recognized_proposer_payoff": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "type": "identity-indexed pre-recognition R1 payoff map; no symmetry restriction",
+            "by_weak_state_l": "C_l=(1/m)*[(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m] + (1/m)*sum_{i in W, i!=l}{(1-nu)*(beta/m)*sum_{K subset W\\{i}, |K|=q-2, l in K}omega_{i,K} + nu*beta/m}; for each i, omega_{i,K}>=0 and sum_{K subset W\\{i}, |K|=q-2}omega_{i,K}=1"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "beta*o_0",
+            "theta_1": "beta*o_1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": "1-nu",
+            "pass_without_hegemon": 0,
+            "failure": 0,
+            "delay": "nu"
+          },
+          "payoff_date": "R1 current units; frozen N1 continuation payoffs are multiplied by beta exactly once"
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N3V4-CELL-O0EQ-EXCLUDE",
+      "domain_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0=1/m<o_1", "0<nu<=1"],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N3V4-EQ-O0EQ-EXCLUDE",
+          "admissibility_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0=1/m<o_1", "0<nu<=1", "for every recognized proposer i in W, omega_{i,K}>=0 is defined for every K subset W\\{i} with |K|=q-1 and sum_K omega_{i,K}=1; the arrays may differ by i", "ballot actions are pure; only the weak proposer's proposal may be mixed through the explicitly parameterized finite weights", "the four outcome coordinates partition the R1 event: delay records R1 failure followed by N1, while failure records terminal failure after the two-round game"],
+          "branch_classification": "R1 passage without H at y=0",
+          "strategy_profile": {
+            "frozen_continuation": {
+              "source": "N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+              "weak_value_in_R2_current_units": "1/m",
+              "hegemon_value_in_R2_current_units": {
+                "theta_0": "o_0",
+                "theta_1": "o_1"
+              },
+              "transport_to_R1": "weak continuation beta/m and H continuation beta*o_theta, each discounted exactly once",
+              "posterior_invariance": "N1-EQ-01 is the same record for every R2 entry posterior in [0,1]"
+            },
+            "ballot_map_after_every_feasible_proposal": {
+              "definitions": "For proposer i and proposal s=(y,(x_j)_{j in W\\{i}},r_i), let K_i(s)={j in W\\{i}: x_j>=beta/m} and k_i(s)=|K_i(s)|.",
+              "weak_nonproposer_j": "vote yes iff x_j>=beta/m; at equality T^Y selects yes",
+              "hegemon_if_k_at_least_q_minus_1": "both types vote no because passage is independent of H and no pays y+o_theta>y",
+              "hegemon_if_k_equals_q_minus_2": "type theta votes yes iff y>=beta*o_theta; T^Y selects yes at equality",
+              "hegemon_if_k_at_most_q_minus_3": "both types vote yes by T^Y because either H action leads to the posterior-invariant N1 continuation"
+            },
+            "proposer_payoff_after_every_feasible_proposal": {
+              "if_k_at_least_q_minus_1": "r_i",
+              "if_k_equals_q_minus_2_and_y_below_beta_o0": "beta/m",
+              "if_k_equals_q_minus_2_and_beta_o0_at_most_y_below_beta_o1": "(1-nu)*r_i+nu*beta/m",
+              "if_k_equals_q_minus_2_and_y_at_least_beta_o1": "r_i",
+              "if_k_at_most_q_minus_3": "beta/m"
+            },
+            "candidate_payoffs_in_primitives": {
+              "exclusion": "1-beta*(q-1)/m",
+              "low_type_only": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+              "pooling": "1-beta*o_1-beta*(q-2)/m",
+              "deliberate_failure": "beta/m",
+              "exclusion_minus_deliberate_failure": "1-beta*q/m>0 because q<=m and beta<1",
+              "pooling_minus_exclusion": "beta*(1/m-o_1)",
+              "low_type_only_minus_exclusion": "(1-nu)*beta*(1/m-o_0)-nu*(1-beta*q/m)"
+            },
+            "selected_proposal_parameterization": {
+              "family": "For every i and every K with omega_{i,K}>0: y=0; x_j=beta/m iff j in K and x_j=0 otherwise; r_i=1-beta*(q-1)/m.",
+              "coalition_size": "|K|=q-1",
+              "pure_and_mixed": "A degenerate omega array is a pure proposal. Any nondegenerate omega array is an admissible proposer mixture over coalition identities."
+            },
+            "feasibility": "Every exclusion proposal is strictly feasible because y=0<=y_bar and beta*(q-1)/m<1."
+          },
+          "belief_system": {
+            "entry": "Pr(theta=1)=nu.",
+            "positive_weight_proposal": "The weak proposer does not observe theta, so every proposal assigned positive conditional weight has ballot posterior nu by Bayes.",
+            "zero_weight_proposal": "Every individual proposal assigned zero conditional weight receives an arbitrary ballot belief kappa_i(s) in [0,1].",
+            "published_vote_vector": "The selected proposal passes in R1, so it generates no positive-probability R1 failure.",
+            "zero_probability_proposal_vote_vectors": "For every proposal s and complete published vote vector v such that (s,v) has probability zero under the assessment, at every nu in [0,1] including nu>0 and both endpoints, the R2 posterior is explicitly an arbitrary eta_i(s,v) in [0,1].",
+            "weak_vote_information": "Weak votes are deterministic functions of x_j and never of theta; they add no type information beyond the proposal and H vote on every positive-probability history.",
+            "zero_prior_types": "At nu=0 or nu=1, ballot strategies and conditional payoffs remain specified for both types; Bayes constrains only positive-probability histories.",
+            "continuation_effect": "Every on-path or off-path R2 posterior consumes the same frozen N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5.",
+            "deviating_proposer_evaluation": "Every proposal deviation is evaluated under the true pre-proposal prior nu, not the off-path ballot belief."
+          },
+          "source_continuation_record_ids": [
+            "N1-EQ-01"
+          ],
+          "source_interface_hashes": {
+            "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+          },
+          "existence_uniqueness_status": "exists; selected branch, recognized-proposer payoff, type-specific H payoff, and outcome distribution are unique in this cell; strategy multiplicity remains through coalition identities, arbitrary proposer mixing over those identities, and payoff-irrelevant off-path beliefs",
+          "selection_status": "All and only arrays omega_{i,K}>=0 over K subset W\\{i}, |K|=q-1, with sum_K omega_{i,K}=1 for each i are retained. A degenerate array is pure and a nondegenerate array is proposer mixing; arrays may differ across i. Exclusion uniquely minimizes expected H payoff among proposer-payoff maximizers in this cell. No further selection is imposed.",
+          "assumptions_used": ["fixed unit pie, strict beta in (0,1), strict 0<o_0<o_1<1, and package feasibility from contract Section 2", "majority quota, full execution of y, simultaneous sealed ballots, public vote vector, and terminal payoffs from contract Section 4", "PBE with pure ballot strategies, weak-only stage-undominated voting, T^Y, and the minimum-expected-H proposal tie-break from contract Section 5", "exactly one multiplication by beta when the frozen N1 continuation enters R1 incentives under contract Section 6", "iid uniform weak-state recognition with replacement, no side payments, and no exit action"],
+          "checks_performed": ["N3V4-C01 frozen N1 import and exactly-one discount", "N3V4-C02 weak voting cutoff and T^Y", "N3V4-C03 complete H best-response map", "N3V4-C04 proposer payoff map for every feasible proposal", "N3V4-C05 exhaustive reduction to exclusion, low-type-only, pooling, and deliberate failure", "N3V4-C06 P0 full-pie use through belief-invariant N1 response maps", "N3V4-C07 P1 strict hedge dominance and P1a", "N3V4-C08 deliberate failure strictly dominated because 1-beta*q/m>0", "N3V4-C09 candidate feasibility in every selected cell", "N3V4-C10 strict-region and equality-boundary partition", "N3V4-C11 o_1=1/m residual proposer tie and expected-H tie-break", "N3V4-C12 pure identity assignments and all proposer mixtures", "N3V4-C13 Bayes and complete off-path proposal-vote beliefs at every nu", "N3V4-C14 P7 public H vote and posterior update", "N3V4-C15 identity-indexed weak payoff map", "N3V4-C16 closed N6-transported fields without free symbols", "N3V4-C17 complete existence and endpoint coverage"],
+          "recognized_proposer_payoff": "1-beta*(q-1)/m",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "type": "identity-indexed pre-recognition R1 payoff map; no symmetry restriction",
+            "by_weak_state_l": "C_l=(1/m)*[1-beta*(q-1)/m] + (1/m)*sum_{i in W, i!=l}{(beta/m)*sum_{K subset W\\{i}, |K|=q-1, l in K}omega_{i,K}}; for each i, omega_{i,K}>=0 and sum_{K subset W\\{i}, |K|=q-1}omega_{i,K}=1"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "o_0",
+            "theta_1": "o_1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": 0,
+            "pass_without_hegemon": 1,
+            "failure": 0,
+            "delay": 0
+          },
+          "payoff_date": "R1 current units; frozen N1 continuation payoffs are multiplied by beta exactly once"
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N3V4-CELL-O1EQ-LOW",
+      "domain_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0<o_1=1/m", "0<=nu<=beta*(1/m-o_0)/(beta*(1/m-o_0)+1-beta*q/m)"],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N3V4-EQ-O1EQ-LOW",
+          "admissibility_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0<o_1=1/m", "0<=nu<=beta*(1/m-o_0)/(beta*(1/m-o_0)+1-beta*q/m)", "for every recognized proposer i in W, omega_{i,K}>=0 is defined for every K subset W\\{i} with |K|=q-2 and sum_K omega_{i,K}=1; the arrays may differ by i", "ballot actions are pure; only the weak proposer's proposal may be mixed through the explicitly parameterized finite weights", "the four outcome coordinates partition the R1 event: delay records R1 failure followed by N1, while failure records terminal failure after the two-round game"],
+          "branch_classification": "low-type-only R1 passage with H; the high type delays to N1; the S/(E=P) equality is assigned here by the minimum-expected-H proposal tie-break",
+          "strategy_profile": {
+            "frozen_continuation": {
+              "source": "N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+              "weak_value_in_R2_current_units": "1/m",
+              "hegemon_value_in_R2_current_units": {
+                "theta_0": "o_0",
+                "theta_1": "o_1"
+              },
+              "transport_to_R1": "weak continuation beta/m and H continuation beta*o_theta, each discounted exactly once",
+              "posterior_invariance": "N1-EQ-01 is the same record for every R2 entry posterior in [0,1]"
+            },
+            "ballot_map_after_every_feasible_proposal": {
+              "definitions": "For proposer i and proposal s=(y,(x_j)_{j in W\\{i}},r_i), let K_i(s)={j in W\\{i}: x_j>=beta/m} and k_i(s)=|K_i(s)|.",
+              "weak_nonproposer_j": "vote yes iff x_j>=beta/m; at equality T^Y selects yes",
+              "hegemon_if_k_at_least_q_minus_1": "both types vote no because passage is independent of H and no pays y+o_theta>y",
+              "hegemon_if_k_equals_q_minus_2": "type theta votes yes iff y>=beta*o_theta; T^Y selects yes at equality",
+              "hegemon_if_k_at_most_q_minus_3": "both types vote yes by T^Y because either H action leads to the posterior-invariant N1 continuation"
+            },
+            "proposer_payoff_after_every_feasible_proposal": {
+              "if_k_at_least_q_minus_1": "r_i",
+              "if_k_equals_q_minus_2_and_y_below_beta_o0": "beta/m",
+              "if_k_equals_q_minus_2_and_beta_o0_at_most_y_below_beta_o1": "(1-nu)*r_i+nu*beta/m",
+              "if_k_equals_q_minus_2_and_y_at_least_beta_o1": "r_i",
+              "if_k_at_most_q_minus_3": "beta/m"
+            },
+            "candidate_payoffs_in_primitives": {
+              "exclusion": "1-beta*(q-1)/m",
+              "low_type_only": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+              "pooling": "1-beta*o_1-beta*(q-2)/m",
+              "deliberate_failure": "beta/m",
+              "exclusion_minus_deliberate_failure": "1-beta*q/m>0 because q<=m and beta<1",
+              "pooling_minus_exclusion": "beta*(1/m-o_1)",
+              "low_type_only_minus_exclusion": "(1-nu)*beta*(1/m-o_0)-nu*(1-beta*q/m)"
+            },
+            "selected_proposal_parameterization": {
+              "family": "For every i and every K with omega_{i,K}>0: y=beta*o_0; x_j=beta/m iff j in K and x_j=0 otherwise; r_i=1-beta*o_0-beta*(q-2)/m.",
+              "coalition_size": "|K|=q-2",
+              "pure_and_mixed": "A degenerate omega array is a pure proposal. Any nondegenerate omega array is an admissible proposer mixture over coalition identities."
+            },
+            "feasibility": "Every selected low-type-only proposal is strictly feasible because its cell has o_0<=1/m, so beta*[o_0+(q-2)/m] <= beta*(q-1)/m < 1; also 0<beta*o_0<o_0<y_bar."
+          },
+          "belief_system": {
+            "entry": "Pr(theta=1)=nu.",
+            "positive_weight_proposal": "The weak proposer does not observe theta, so every proposal assigned positive conditional weight has ballot posterior nu by Bayes.",
+            "zero_weight_proposal": "Every individual proposal assigned zero conditional weight receives an arbitrary ballot belief kappa_i(s) in [0,1].",
+            "published_vote_vector": "For nu>0, the unique positive-probability R1 failure after a selected low-type-only proposal has H voting no only under theta=1; Bayes therefore fixes the published R2 posterior at 1.",
+            "zero_probability_proposal_vote_vectors": "For every proposal s and complete published vote vector v such that (s,v) has probability zero under the assessment, at every nu in [0,1] including nu>0 and both endpoints, the R2 posterior is explicitly an arbitrary eta_i(s,v) in [0,1].",
+            "weak_vote_information": "Weak votes are deterministic functions of x_j and never of theta; they add no type information beyond the proposal and H vote on every positive-probability history.",
+            "zero_prior_types": "At nu=0 or nu=1, ballot strategies and conditional payoffs remain specified for both types; Bayes constrains only positive-probability histories.",
+            "continuation_effect": "Every on-path or off-path R2 posterior consumes the same frozen N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5.",
+            "deviating_proposer_evaluation": "Every proposal deviation is evaluated under the true pre-proposal prior nu, not the off-path ballot belief."
+          },
+          "source_continuation_record_ids": [
+            "N1-EQ-01"
+          ],
+          "source_interface_hashes": {
+            "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+          },
+          "existence_uniqueness_status": "exists; selected branch, recognized-proposer payoff, type-specific H payoff, and outcome distribution are unique in this cell; strategy multiplicity remains through coalition identities, arbitrary proposer mixing over those identities, and payoff-irrelevant off-path beliefs",
+          "selection_status": "All and only arrays omega_{i,K}>=0 over K subset W\\{i}, |K|=q-2, with sum_K omega_{i,K}=1 for each i are retained. A degenerate array is a pure proposal and a nondegenerate array is proposer mixing; arrays may differ across i. The minimum-expected-H tie-break selects low-type-only at every included payoff boundary. No symmetry or further selection is imposed.",
+          "assumptions_used": ["fixed unit pie, strict beta in (0,1), strict 0<o_0<o_1<1, and package feasibility from contract Section 2", "majority quota, full execution of y, simultaneous sealed ballots, public vote vector, and terminal payoffs from contract Section 4", "PBE with pure ballot strategies, weak-only stage-undominated voting, T^Y, and the minimum-expected-H proposal tie-break from contract Section 5", "exactly one multiplication by beta when the frozen N1 continuation enters R1 incentives under contract Section 6", "iid uniform weak-state recognition with replacement, no side payments, and no exit action"],
+          "checks_performed": ["N3V4-C01 frozen N1 import and exactly-one discount", "N3V4-C02 weak voting cutoff and T^Y", "N3V4-C03 complete H best-response map", "N3V4-C04 proposer payoff map for every feasible proposal", "N3V4-C05 exhaustive reduction to exclusion, low-type-only, pooling, and deliberate failure", "N3V4-C06 P0 full-pie use through belief-invariant N1 response maps", "N3V4-C07 P1 strict hedge dominance and P1a", "N3V4-C08 deliberate failure strictly dominated because 1-beta*q/m>0", "N3V4-C09 candidate feasibility in every selected cell", "N3V4-C10 strict-region and equality-boundary partition", "N3V4-C11 o_1=1/m residual proposer tie and expected-H tie-break", "N3V4-C12 pure identity assignments and all proposer mixtures", "N3V4-C13 Bayes and complete off-path proposal-vote beliefs at every nu", "N3V4-C14 P7 public H vote and posterior update", "N3V4-C15 identity-indexed weak payoff map", "N3V4-C16 closed N6-transported fields without free symbols", "N3V4-C17 complete existence and endpoint coverage"],
+          "recognized_proposer_payoff": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "type": "identity-indexed pre-recognition R1 payoff map; no symmetry restriction",
+            "by_weak_state_l": "C_l=(1/m)*[(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m] + (1/m)*sum_{i in W, i!=l}{(1-nu)*(beta/m)*sum_{K subset W\\{i}, |K|=q-2, l in K}omega_{i,K} + nu*beta/m}; for each i, omega_{i,K}>=0 and sum_{K subset W\\{i}, |K|=q-2}omega_{i,K}=1"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "beta*o_0",
+            "theta_1": "beta*o_1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": "1-nu",
+            "pass_without_hegemon": 0,
+            "failure": 0,
+            "delay": "nu"
+          },
+          "payoff_date": "R1 current units; frozen N1 continuation payoffs are multiplied by beta exactly once"
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N3V4-CELL-O1EQ-EXCLUDE",
+      "domain_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0<o_1=1/m", "beta*(1/m-o_0)/(beta*(1/m-o_0)+1-beta*q/m)<nu<=1", "(1-nu)*o_0+nu/m<beta/m"],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N3V4-EQ-O1EQ-EXCLUDE",
+          "admissibility_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0<o_1=1/m", "beta*(1/m-o_0)/(beta*(1/m-o_0)+1-beta*q/m)<nu<=1", "(1-nu)*o_0+nu/m<beta/m", "for every recognized proposer i in W, omega_{i,K}>=0 is defined for every K subset W\\{i} with |K|=q-1 and sum_K omega_{i,K}=1; the arrays may differ by i", "ballot actions are pure; only the weak proposer's proposal may be mixed through the explicitly parameterized finite weights", "the four outcome coordinates partition the R1 event: delay records R1 failure followed by N1, while failure records terminal failure after the two-round game"],
+          "branch_classification": "measure-zero residual E=P proposer-payoff tie; exclusion uniquely minimizes expected H payoff",
+          "strategy_profile": {
+            "frozen_continuation": {
+              "source": "N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+              "weak_value_in_R2_current_units": "1/m",
+              "hegemon_value_in_R2_current_units": {
+                "theta_0": "o_0",
+                "theta_1": "o_1"
+              },
+              "transport_to_R1": "weak continuation beta/m and H continuation beta*o_theta, each discounted exactly once",
+              "posterior_invariance": "N1-EQ-01 is the same record for every R2 entry posterior in [0,1]"
+            },
+            "ballot_map_after_every_feasible_proposal": {
+              "definitions": "For proposer i and proposal s=(y,(x_j)_{j in W\\{i}},r_i), let K_i(s)={j in W\\{i}: x_j>=beta/m} and k_i(s)=|K_i(s)|.",
+              "weak_nonproposer_j": "vote yes iff x_j>=beta/m; at equality T^Y selects yes",
+              "hegemon_if_k_at_least_q_minus_1": "both types vote no because passage is independent of H and no pays y+o_theta>y",
+              "hegemon_if_k_equals_q_minus_2": "type theta votes yes iff y>=beta*o_theta; T^Y selects yes at equality",
+              "hegemon_if_k_at_most_q_minus_3": "both types vote yes by T^Y because either H action leads to the posterior-invariant N1 continuation"
+            },
+            "proposer_payoff_after_every_feasible_proposal": {
+              "if_k_at_least_q_minus_1": "r_i",
+              "if_k_equals_q_minus_2_and_y_below_beta_o0": "beta/m",
+              "if_k_equals_q_minus_2_and_beta_o0_at_most_y_below_beta_o1": "(1-nu)*r_i+nu*beta/m",
+              "if_k_equals_q_minus_2_and_y_at_least_beta_o1": "r_i",
+              "if_k_at_most_q_minus_3": "beta/m"
+            },
+            "candidate_payoffs_in_primitives": {
+              "exclusion": "1-beta*(q-1)/m",
+              "low_type_only": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+              "pooling": "1-beta*o_1-beta*(q-2)/m",
+              "deliberate_failure": "beta/m",
+              "exclusion_minus_deliberate_failure": "1-beta*q/m>0 because q<=m and beta<1",
+              "pooling_minus_exclusion": "beta*(1/m-o_1)",
+              "low_type_only_minus_exclusion": "(1-nu)*beta*(1/m-o_0)-nu*(1-beta*q/m)"
+            },
+            "selected_proposal_parameterization": {
+              "family": "For every i and every K with omega_{i,K}>0: y=0; x_j=beta/m iff j in K and x_j=0 otherwise; r_i=1-beta*(q-1)/m.",
+              "coalition_size": "|K|=q-1",
+              "pure_and_mixed": "A degenerate omega array is a pure proposal. Any nondegenerate omega array is an admissible proposer mixture over coalition identities."
+            },
+            "feasibility": "Every exclusion proposal is strictly feasible because y=0<=y_bar and beta*(q-1)/m<1."
+          },
+          "belief_system": {
+            "entry": "Pr(theta=1)=nu.",
+            "positive_weight_proposal": "The weak proposer does not observe theta, so every proposal assigned positive conditional weight has ballot posterior nu by Bayes.",
+            "zero_weight_proposal": "Every individual proposal assigned zero conditional weight receives an arbitrary ballot belief kappa_i(s) in [0,1].",
+            "published_vote_vector": "The selected proposal passes in R1, so it generates no positive-probability R1 failure.",
+            "zero_probability_proposal_vote_vectors": "For every proposal s and complete published vote vector v such that (s,v) has probability zero under the assessment, at every nu in [0,1] including nu>0 and both endpoints, the R2 posterior is explicitly an arbitrary eta_i(s,v) in [0,1].",
+            "weak_vote_information": "Weak votes are deterministic functions of x_j and never of theta; they add no type information beyond the proposal and H vote on every positive-probability history.",
+            "zero_prior_types": "At nu=0 or nu=1, ballot strategies and conditional payoffs remain specified for both types; Bayes constrains only positive-probability histories.",
+            "continuation_effect": "Every on-path or off-path R2 posterior consumes the same frozen N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5.",
+            "deviating_proposer_evaluation": "Every proposal deviation is evaluated under the true pre-proposal prior nu, not the off-path ballot belief."
+          },
+          "source_continuation_record_ids": [
+            "N1-EQ-01"
+          ],
+          "source_interface_hashes": {
+            "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+          },
+          "existence_uniqueness_status": "exists; selected branch, recognized-proposer payoff, type-specific H payoff, and outcome distribution are unique in this cell; strategy multiplicity remains through coalition identities, arbitrary proposer mixing over those identities, and payoff-irrelevant off-path beliefs",
+          "selection_status": "All and only arrays omega_{i,K}>=0 over K subset W\\{i}, |K|=q-1, with sum_K omega_{i,K}=1 for each i are retained. A degenerate array is pure and a nondegenerate array is proposer mixing; arrays may differ across i. Exclusion uniquely minimizes expected H payoff among proposer-payoff maximizers in this cell. No further selection is imposed.",
+          "assumptions_used": ["fixed unit pie, strict beta in (0,1), strict 0<o_0<o_1<1, and package feasibility from contract Section 2", "majority quota, full execution of y, simultaneous sealed ballots, public vote vector, and terminal payoffs from contract Section 4", "PBE with pure ballot strategies, weak-only stage-undominated voting, T^Y, and the minimum-expected-H proposal tie-break from contract Section 5", "exactly one multiplication by beta when the frozen N1 continuation enters R1 incentives under contract Section 6", "iid uniform weak-state recognition with replacement, no side payments, and no exit action"],
+          "checks_performed": ["N3V4-C01 frozen N1 import and exactly-one discount", "N3V4-C02 weak voting cutoff and T^Y", "N3V4-C03 complete H best-response map", "N3V4-C04 proposer payoff map for every feasible proposal", "N3V4-C05 exhaustive reduction to exclusion, low-type-only, pooling, and deliberate failure", "N3V4-C06 P0 full-pie use through belief-invariant N1 response maps", "N3V4-C07 P1 strict hedge dominance and P1a", "N3V4-C08 deliberate failure strictly dominated because 1-beta*q/m>0", "N3V4-C09 candidate feasibility in every selected cell", "N3V4-C10 strict-region and equality-boundary partition", "N3V4-C11 o_1=1/m residual proposer tie and expected-H tie-break", "N3V4-C12 pure identity assignments and all proposer mixtures", "N3V4-C13 Bayes and complete off-path proposal-vote beliefs at every nu", "N3V4-C14 P7 public H vote and posterior update", "N3V4-C15 identity-indexed weak payoff map", "N3V4-C16 closed N6-transported fields without free symbols", "N3V4-C17 complete existence and endpoint coverage"],
+          "recognized_proposer_payoff": "1-beta*(q-1)/m",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "type": "identity-indexed pre-recognition R1 payoff map; no symmetry restriction",
+            "by_weak_state_l": "C_l=(1/m)*[1-beta*(q-1)/m] + (1/m)*sum_{i in W, i!=l}{(beta/m)*sum_{K subset W\\{i}, |K|=q-1, l in K}omega_{i,K}}; for each i, omega_{i,K}>=0 and sum_{K subset W\\{i}, |K|=q-1}omega_{i,K}=1"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "o_0",
+            "theta_1": "o_1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": 0,
+            "pass_without_hegemon": 1,
+            "failure": 0,
+            "delay": 0
+          },
+          "payoff_date": "R1 current units; frozen N1 continuation payoffs are multiplied by beta exactly once"
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N3V4-CELL-O1EQ-POOL",
+      "domain_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0<o_1=1/m", "beta*(1/m-o_0)/(beta*(1/m-o_0)+1-beta*q/m)<nu<=1", "beta/m<(1-nu)*o_0+nu/m"],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N3V4-EQ-O1EQ-POOL",
+          "admissibility_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0<o_1=1/m", "beta*(1/m-o_0)/(beta*(1/m-o_0)+1-beta*q/m)<nu<=1", "beta/m<(1-nu)*o_0+nu/m", "for every recognized proposer i in W, omega_{i,K}>=0 is defined for every K subset W\\{i} with |K|=q-2 and sum_K omega_{i,K}=1; the arrays may differ by i", "ballot actions are pure; only the weak proposer's proposal may be mixed through the explicitly parameterized finite weights", "the four outcome coordinates partition the R1 event: delay records R1 failure followed by N1, while failure records terminal failure after the two-round game"],
+          "branch_classification": "measure-zero residual E=P proposer-payoff tie; pooling uniquely minimizes expected H payoff",
+          "strategy_profile": {
+            "frozen_continuation": {
+              "source": "N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+              "weak_value_in_R2_current_units": "1/m",
+              "hegemon_value_in_R2_current_units": {
+                "theta_0": "o_0",
+                "theta_1": "o_1"
+              },
+              "transport_to_R1": "weak continuation beta/m and H continuation beta*o_theta, each discounted exactly once",
+              "posterior_invariance": "N1-EQ-01 is the same record for every R2 entry posterior in [0,1]"
+            },
+            "ballot_map_after_every_feasible_proposal": {
+              "definitions": "For proposer i and proposal s=(y,(x_j)_{j in W\\{i}},r_i), let K_i(s)={j in W\\{i}: x_j>=beta/m} and k_i(s)=|K_i(s)|.",
+              "weak_nonproposer_j": "vote yes iff x_j>=beta/m; at equality T^Y selects yes",
+              "hegemon_if_k_at_least_q_minus_1": "both types vote no because passage is independent of H and no pays y+o_theta>y",
+              "hegemon_if_k_equals_q_minus_2": "type theta votes yes iff y>=beta*o_theta; T^Y selects yes at equality",
+              "hegemon_if_k_at_most_q_minus_3": "both types vote yes by T^Y because either H action leads to the posterior-invariant N1 continuation"
+            },
+            "proposer_payoff_after_every_feasible_proposal": {
+              "if_k_at_least_q_minus_1": "r_i",
+              "if_k_equals_q_minus_2_and_y_below_beta_o0": "beta/m",
+              "if_k_equals_q_minus_2_and_beta_o0_at_most_y_below_beta_o1": "(1-nu)*r_i+nu*beta/m",
+              "if_k_equals_q_minus_2_and_y_at_least_beta_o1": "r_i",
+              "if_k_at_most_q_minus_3": "beta/m"
+            },
+            "candidate_payoffs_in_primitives": {
+              "exclusion": "1-beta*(q-1)/m",
+              "low_type_only": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+              "pooling": "1-beta*o_1-beta*(q-2)/m",
+              "deliberate_failure": "beta/m",
+              "exclusion_minus_deliberate_failure": "1-beta*q/m>0 because q<=m and beta<1",
+              "pooling_minus_exclusion": "beta*(1/m-o_1)",
+              "low_type_only_minus_exclusion": "(1-nu)*beta*(1/m-o_0)-nu*(1-beta*q/m)"
+            },
+            "selected_proposal_parameterization": {
+              "family": "For every i and every K with omega_{i,K}>0: y=beta*o_1; x_j=beta/m iff j in K and x_j=0 otherwise; r_i=1-beta*o_1-beta*(q-2)/m.",
+              "coalition_size": "|K|=q-2",
+              "pure_and_mixed": "A degenerate omega array is a pure proposal. Any nondegenerate omega array is an admissible proposer mixture over coalition identities."
+            },
+            "feasibility": "Every selected pooling proposal is strictly feasible because its cell has o_1<=1/m, so beta*[o_1+(q-2)/m] <= beta*(q-1)/m < 1; also 0<beta*o_1<o_1<=y_bar."
+          },
+          "belief_system": {
+            "entry": "Pr(theta=1)=nu.",
+            "positive_weight_proposal": "The weak proposer does not observe theta, so every proposal assigned positive conditional weight has ballot posterior nu by Bayes.",
+            "zero_weight_proposal": "Every individual proposal assigned zero conditional weight receives an arbitrary ballot belief kappa_i(s) in [0,1].",
+            "published_vote_vector": "The selected proposal passes in R1, so it generates no positive-probability R1 failure.",
+            "zero_probability_proposal_vote_vectors": "For every proposal s and complete published vote vector v such that (s,v) has probability zero under the assessment, at every nu in [0,1] including nu>0 and both endpoints, the R2 posterior is explicitly an arbitrary eta_i(s,v) in [0,1].",
+            "weak_vote_information": "Weak votes are deterministic functions of x_j and never of theta; they add no type information beyond the proposal and H vote on every positive-probability history.",
+            "zero_prior_types": "At nu=0 or nu=1, ballot strategies and conditional payoffs remain specified for both types; Bayes constrains only positive-probability histories.",
+            "continuation_effect": "Every on-path or off-path R2 posterior consumes the same frozen N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5.",
+            "deviating_proposer_evaluation": "Every proposal deviation is evaluated under the true pre-proposal prior nu, not the off-path ballot belief."
+          },
+          "source_continuation_record_ids": [
+            "N1-EQ-01"
+          ],
+          "source_interface_hashes": {
+            "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+          },
+          "existence_uniqueness_status": "exists; selected branch, recognized-proposer payoff, type-specific H payoff, and outcome distribution are unique in this cell; strategy multiplicity remains through coalition identities, arbitrary proposer mixing over those identities, and payoff-irrelevant off-path beliefs",
+          "selection_status": "All and only arrays omega_{i,K}>=0 over K subset W\\{i}, |K|=q-2, with sum_K omega_{i,K}=1 for each i are retained. A degenerate array is pure and a nondegenerate array is proposer mixing; arrays may differ across i. Pooling uniquely minimizes expected H payoff among proposer-payoff maximizers in this cell. No further selection is imposed.",
+          "assumptions_used": ["fixed unit pie, strict beta in (0,1), strict 0<o_0<o_1<1, and package feasibility from contract Section 2", "majority quota, full execution of y, simultaneous sealed ballots, public vote vector, and terminal payoffs from contract Section 4", "PBE with pure ballot strategies, weak-only stage-undominated voting, T^Y, and the minimum-expected-H proposal tie-break from contract Section 5", "exactly one multiplication by beta when the frozen N1 continuation enters R1 incentives under contract Section 6", "iid uniform weak-state recognition with replacement, no side payments, and no exit action"],
+          "checks_performed": ["N3V4-C01 frozen N1 import and exactly-one discount", "N3V4-C02 weak voting cutoff and T^Y", "N3V4-C03 complete H best-response map", "N3V4-C04 proposer payoff map for every feasible proposal", "N3V4-C05 exhaustive reduction to exclusion, low-type-only, pooling, and deliberate failure", "N3V4-C06 P0 full-pie use through belief-invariant N1 response maps", "N3V4-C07 P1 strict hedge dominance and P1a", "N3V4-C08 deliberate failure strictly dominated because 1-beta*q/m>0", "N3V4-C09 candidate feasibility in every selected cell", "N3V4-C10 strict-region and equality-boundary partition", "N3V4-C11 o_1=1/m residual proposer tie and expected-H tie-break", "N3V4-C12 pure identity assignments and all proposer mixtures", "N3V4-C13 Bayes and complete off-path proposal-vote beliefs at every nu", "N3V4-C14 P7 public H vote and posterior update", "N3V4-C15 identity-indexed weak payoff map", "N3V4-C16 closed N6-transported fields without free symbols", "N3V4-C17 complete existence and endpoint coverage"],
+          "recognized_proposer_payoff": "1-beta*o_1-beta*(q-2)/m",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "type": "identity-indexed pre-recognition R1 payoff map; no symmetry restriction",
+            "by_weak_state_l": "C_l=(1/m)*[1-beta*o_1-beta*(q-2)/m] + (1/m)*sum_{i in W, i!=l}{(beta/m)*sum_{K subset W\\{i}, |K|=q-2, l in K}omega_{i,K}}; for each i, omega_{i,K}>=0 and sum_{K subset W\\{i}, |K|=q-2}omega_{i,K}=1"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "beta*o_1",
+            "theta_1": "beta*o_1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": 1,
+            "pass_without_hegemon": 0,
+            "failure": 0,
+            "delay": 0
+          },
+          "payoff_date": "R1 current units; frozen N1 continuation payoffs are multiplied by beta exactly once"
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N3V4-CELL-O1EQ-MIXED-EP",
+      "domain_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0<o_1=1/m", "beta*(1/m-o_0)/(beta*(1/m-o_0)+1-beta*q/m)<nu<=1", "(1-nu)*o_0+nu/m=beta/m"],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N3V4-EQ-O1EQ-MIXED-EP",
+          "admissibility_conditions": ["nu is the entry belief Pr(theta=1) and 0 <= nu <= 1", "N is an integer and N >= 3", "W is the set of weak states, m=N-1, and |W|=m", "q=floor(N/2)+1 and q<=m", "0 < beta < 1", "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1", "every proposal satisfies 0<=y<=y_bar, every x_j>=0, r_i>=0, and y+sum_j x_j+r_i<=1", "the sole continuation is N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5", "o_0<o_1=1/m", "beta*(1/m-o_0)/(beta*(1/m-o_0)+1-beta*q/m)<nu<=1", "(1-nu)*o_0+nu/m=beta/m", "for every recognized proposer i in W, e_{i,K}>=0 is defined for every exclusion coalition K subset W\\{i} with |K|=q-1 and p_{i,T}>=0 for every pooling coalition T subset W\\{i} with |T|=q-2; sum_K e_{i,K}+sum_T p_{i,T}=1, independently for each i", "ballot actions are pure; only the weak proposer's proposal may be mixed through the explicitly parameterized finite weights", "the four outcome coordinates partition the R1 event: delay records R1 failure followed by N1, while failure records terminal failure after the two-round game"],
+          "branch_classification": "measure-zero residual E=P proposer-payoff and expected-H tie; every pure proposer-identity assignment and every proposer mixture over exclusion and pooling is admissible",
+          "strategy_profile": {
+            "frozen_continuation": {
+              "source": "N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+              "weak_value_in_R2_current_units": "1/m",
+              "hegemon_value_in_R2_current_units": {
+                "theta_0": "o_0",
+                "theta_1": "o_1"
+              },
+              "transport_to_R1": "weak continuation beta/m and H continuation beta*o_theta, each discounted exactly once",
+              "posterior_invariance": "N1-EQ-01 is the same record for every R2 entry posterior in [0,1]"
+            },
+            "ballot_map_after_every_feasible_proposal": {
+              "definitions": "For proposer i and proposal s=(y,(x_j)_{j in W\\{i}},r_i), let K_i(s)={j in W\\{i}: x_j>=beta/m} and k_i(s)=|K_i(s)|.",
+              "weak_nonproposer_j": "vote yes iff x_j>=beta/m; at equality T^Y selects yes",
+              "hegemon_if_k_at_least_q_minus_1": "both types vote no because passage is independent of H and no pays y+o_theta>y",
+              "hegemon_if_k_equals_q_minus_2": "type theta votes yes iff y>=beta*o_theta; T^Y selects yes at equality",
+              "hegemon_if_k_at_most_q_minus_3": "both types vote yes by T^Y because either H action leads to the posterior-invariant N1 continuation"
+            },
+            "proposer_payoff_after_every_feasible_proposal": {
+              "if_k_at_least_q_minus_1": "r_i",
+              "if_k_equals_q_minus_2_and_y_below_beta_o0": "beta/m",
+              "if_k_equals_q_minus_2_and_beta_o0_at_most_y_below_beta_o1": "(1-nu)*r_i+nu*beta/m",
+              "if_k_equals_q_minus_2_and_y_at_least_beta_o1": "r_i",
+              "if_k_at_most_q_minus_3": "beta/m"
+            },
+            "candidate_payoffs_in_primitives": {
+              "exclusion": "1-beta*(q-1)/m",
+              "low_type_only": "(1-nu)*(1-beta*o_0-beta*(q-2)/m)+nu*beta/m",
+              "pooling": "1-beta*o_1-beta*(q-2)/m",
+              "deliberate_failure": "beta/m",
+              "exclusion_minus_deliberate_failure": "1-beta*q/m>0 because q<=m and beta<1",
+              "pooling_minus_exclusion": "beta*(1/m-o_1)",
+              "low_type_only_minus_exclusion": "(1-nu)*beta*(1/m-o_0)-nu*(1-beta*q/m)"
+            },
+            "selected_proposal_parameterization": {
+              "family": "For every i, e_{i,K}>0 supports y=0, x_j=beta/m iff j in K with |K|=q-1, and r_i=1-beta*(q-1)/m. The weight p_{i,T}>0 supports y=beta/m, x_j=beta/m iff j in T with |T|=q-2, and the same r_i=1-beta*(q-1)/m.",
+              "coalition_size": "exclusion uses |K|=q-1 and pooling uses |T|=q-2",
+              "pure_and_mixed": "The strategy of proposer i is pure iff exactly one of its e or p weights equals one. Every other admissible weight array is a proposer mixture. Pure choices and mixtures may differ across proposer identities."
+            },
+            "feasibility": "Both support families are strictly feasible: o_1=1/m makes pooling cost beta*(q-1)/m, the same cost as exclusion, beta*(q-1)/m<1, and pooling y=beta*o_1<o_1<=y_bar while exclusion y=0."
+          },
+          "belief_system": {
+            "entry": "Pr(theta=1)=nu.",
+            "positive_weight_proposal": "The weak proposer does not observe theta, so every proposal assigned positive conditional weight has ballot posterior nu by Bayes.",
+            "zero_weight_proposal": "Every individual proposal assigned zero conditional weight receives an arbitrary ballot belief kappa_i(s) in [0,1].",
+            "published_vote_vector": "The selected proposal passes in R1, so it generates no positive-probability R1 failure.",
+            "zero_probability_proposal_vote_vectors": "For every proposal s and complete published vote vector v such that (s,v) has probability zero under the assessment, at every nu in [0,1] including nu>0 and both endpoints, the R2 posterior is explicitly an arbitrary eta_i(s,v) in [0,1].",
+            "weak_vote_information": "Weak votes are deterministic functions of x_j and never of theta; they add no type information beyond the proposal and H vote on every positive-probability history.",
+            "zero_prior_types": "At nu=0 or nu=1, ballot strategies and conditional payoffs remain specified for both types; Bayes constrains only positive-probability histories.",
+            "continuation_effect": "Every on-path or off-path R2 posterior consumes the same frozen N1-EQ-01 at sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5.",
+            "deviating_proposer_evaluation": "Every proposal deviation is evaluated under the true pre-proposal prior nu, not the off-path ballot belief."
+          },
+          "source_continuation_record_ids": [
+            "N1-EQ-01"
+          ],
+          "source_interface_hashes": {
+            "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+          },
+          "existence_uniqueness_status": "exists; strategy, type-specific H payoff, and outcome multiple through arbitrary pure identity assignments and proposer mixtures between exclusion and pooling, plus coalition-identity mixing and payoff-irrelevant off-path beliefs; all multiplicity is parameterized in this record",
+          "selection_status": "For each i, retain every nonnegative array e_{i,K} over |K|=q-1 exclusion coalitions and p_{i,T} over |T|=q-2 pooling coalitions whose total sum is one. The strategy is pure iff exactly one weight equals one for every i; otherwise the corresponding proposer mixes. Arrays may differ across proposer identities. Because proposer payoff and expected H payoff tie exactly in this cell, all pure identity assignments and all proposer mixtures over exclusion and pooling are retained, with no symmetry or further selection.",
+          "assumptions_used": ["fixed unit pie, strict beta in (0,1), strict 0<o_0<o_1<1, and package feasibility from contract Section 2", "majority quota, full execution of y, simultaneous sealed ballots, public vote vector, and terminal payoffs from contract Section 4", "PBE with pure ballot strategies, weak-only stage-undominated voting, T^Y, and the minimum-expected-H proposal tie-break from contract Section 5", "exactly one multiplication by beta when the frozen N1 continuation enters R1 incentives under contract Section 6", "iid uniform weak-state recognition with replacement, no side payments, and no exit action"],
+          "checks_performed": ["N3V4-C01 frozen N1 import and exactly-one discount", "N3V4-C02 weak voting cutoff and T^Y", "N3V4-C03 complete H best-response map", "N3V4-C04 proposer payoff map for every feasible proposal", "N3V4-C05 exhaustive reduction to exclusion, low-type-only, pooling, and deliberate failure", "N3V4-C06 P0 full-pie use through belief-invariant N1 response maps", "N3V4-C07 P1 strict hedge dominance and P1a", "N3V4-C08 deliberate failure strictly dominated because 1-beta*q/m>0", "N3V4-C09 candidate feasibility in every selected cell", "N3V4-C10 strict-region and equality-boundary partition", "N3V4-C11 o_1=1/m residual proposer tie and expected-H tie-break", "N3V4-C12 pure identity assignments and all proposer mixtures", "N3V4-C13 Bayes and complete off-path proposal-vote beliefs at every nu", "N3V4-C14 P7 public H vote and posterior update", "N3V4-C15 identity-indexed weak payoff map", "N3V4-C16 closed N6-transported fields without free symbols", "N3V4-C17 complete existence and endpoint coverage"],
+          "recognized_proposer_payoff": "1-beta*(q-1)/m",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "type": "identity-indexed pre-recognition R1 payoff map; no symmetry restriction",
+            "by_weak_state_l": "C_l=(1/m)*[1-beta*(q-1)/m] + (1/m)*sum_{i in W, i!=l}{(beta/m)*[sum_{K subset W\\{i}, |K|=q-1, l in K}e_{i,K}+sum_{T subset W\\{i}, |T|=q-2, l in T}p_{i,T}]}; for each i all e and p are nonnegative and sum_{K subset W\\{i}, |K|=q-1}e_{i,K}+sum_{T subset W\\{i}, |T|=q-2}p_{i,T}=1"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "(1/m)*sum_{i in W}{o_0*sum_{K subset W\\{i}, |K|=q-1}e_{i,K} + (beta/m)*sum_{T subset W\\{i}, |T|=q-2}p_{i,T}}, where for each i all e and p are nonnegative and the two displayed sums add to 1",
+            "theta_1": "(1/m)*sum_{i in W}{(1/m)*sum_{K subset W\\{i}, |K|=q-1}e_{i,K} + (beta/m)*sum_{T subset W\\{i}, |T|=q-2}p_{i,T}}, where o_1=1/m and for each i all e and p are nonnegative and the two displayed sums add to 1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": "(1/m)*sum_{i in W}sum_{T subset W\\{i}, |T|=q-2}p_{i,T}, where for each i all e_{i,K} and p_{i,T} are nonnegative and sum_{K subset W\\{i}, |K|=q-1}e_{i,K}+sum_{T subset W\\{i}, |T|=q-2}p_{i,T}=1",
+            "pass_without_hegemon": "(1/m)*sum_{i in W}sum_{K subset W\\{i}, |K|=q-1}e_{i,K}, where for each i all e_{i,K} and p_{i,T} are nonnegative and sum_{K subset W\\{i}, |K|=q-1}e_{i,K}+sum_{T subset W\\{i}, |T|=q-2}p_{i,T}=1",
+            "failure": 0,
+            "delay": 0
+          },
+          "payoff_date": "R1 current units; frozen N1 continuation payoffs are multiplied by beta exactly once"
+        }
+      ],
+      "nonexistence_certificate": null
+    }
+  ]
+}
