@@ -82,7 +82,10 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 >    tipo prescrito (ação não identifica tipo inexistente); livre em [0,1] no
 >    endpoint (ressuscitaria tipo impossível off-path). Antes de PASS de N4,
 >    verificar que nenhum registro off-path de endpoint usa posterior positivo
->    no tipo de prior zero.
+>    no tipo de prior zero. **Errata N2 registrada (opção A)**: a frase da
+>    derivação de N2 sobre multiplicidade de crenças off-path lê-se restrita ao
+>    suporte do prior; artefatos congelados de N2 NÃO devem ser editados por
+>    isso — detalhes no registro de decisão.
 > 2. **Votação dos fracos: as-if-pivotal.** Comparação por valor esperado condicional
 >    ao evento pivotal; se estrita, decide o voto. Admissibilidade pura (só proibir
 >    voto fracamente dominado) foi descartada: com vetor público ex post ela deixa

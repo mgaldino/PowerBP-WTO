@@ -80,7 +80,10 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 >    pinning to the prescribed type (an action cannot identify a nonexistent
 >    type); free in [0,1] at endpoints (would resurrect the impossible type
 >    off-path). Before any N4 PASS, verify that no off-path endpoint record uses
->    positive posterior on the zero-prior type.
+>    positive posterior on the zero-prior type. **N2 erratum registered (option
+>    A)**: the N2 derivation's sentence about off-path belief multiplicity is to
+>    be read as restricted to the prior's support; N2's frozen artifacts must
+>    NOT be edited for this — details in the decision record.
 > 2. **Weak-state voting: as-if-pivotal.** Expected-value comparison conditional on
 >    the pivotal event; when strict, it decides the vote. Pure admissibility (only
 >    banning weakly dominated votes) was discarded: with ex-post public vote
