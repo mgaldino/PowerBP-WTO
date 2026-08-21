@@ -169,11 +169,11 @@ repository_root <- normalizePath(file.path(dirname(script_path), ".."), mustWork
 manifest_path <- file.path(repository_root, "model_redesign", "essential_input_game_dag.json")
 manifest_dir <- dirname(manifest_path)
 
-expected_manifest_hash <- "36ab77e4d9b1f196c25c215e7ca8b3e8b7ee960b49d946e264e3803ebfb50cc3"
-expected_manifest_object_hash <- "a94141313484a4fa123a20938901c6bb16b6e3b2f045701819ccb98f5e5eb8cc"
+expected_manifest_hash <- "747ac44e35739fff0e4c004175ede221f62b3431b720ac94f115ce948a8d8f2a"
+expected_manifest_object_hash <- "1afb924c8ce951aed43eee3e39be827d08f1f665ac5778e577d8d060b9bbea1a"
 assert_true(
   identical(sha256_file(manifest_path), expected_manifest_hash),
-  "The Gate 0 manifest bytes differ from the approved beta<1 N1/N2/N3 lifecycle snapshot."
+  "The Gate 0 manifest bytes differ from the approved beta<1 N1-N4 lifecycle snapshot."
 )
 manifest <- jsonlite::fromJSON(manifest_path, simplifyVector = FALSE)
 canonical_manifest <- clone_object(manifest)
@@ -213,7 +213,7 @@ is_valid_manifest_top_level <- function(candidate_manifest) {
 }
 assert_true(
   is_valid_manifest_top_level(manifest) && is_valid_canonical_manifest(manifest),
-  "The manifest must be recursively identical to the complete canonical N1/N2/N3 lifecycle object."
+  "The manifest must be recursively identical to the complete canonical N1-N4 lifecycle object."
 )
 nodes <- manifest$nodes
 node_ids <- vapply(nodes, `[[`, character(1), "id")
@@ -237,6 +237,18 @@ assert_true(
     "The canonical authorization header, beta primitive, or complete strict-delay ",
     "decision differs from its exact author-approved regional object/hash."
   )
+)
+
+integration_record_path <- file.path(
+  repository_root,
+  "quality_reports",
+  "2026-08-21_integracao_administrativa_n3_n4.md"
+)
+expected_integration_record_hash <- "0f654b62eb6532a8f02ead123215b49f7d6f702946362dba2b5af69da7e7009c"
+assert_true(
+  file.exists(integration_record_path) &&
+    identical(sha256_file(integration_record_path), expected_integration_record_hash),
+  "The posterior author-authorization and N3/N4 administrative integration record changed."
 )
 
 assert_true(
@@ -824,7 +836,7 @@ for (node_id in expected_ids) {
   )
 }
 
-pending_node_ids <- c("N4", "N6", "N7")
+pending_node_ids <- c("N6", "N7")
 for (node_id in pending_node_ids) {
   node <- nodes[[node_id]]
   assert_true(identical(node$status, "pending"), paste(node_id, "must remain pending."))
@@ -844,7 +856,7 @@ for (node_id in pending_node_ids) {
 
 # Synthetic all-pending state retained only for negative lifecycle/readiness tests.
 pending_fixture_nodes <- clone_object(nodes)
-for (node_id in c("N1", "N2", "N3")) {
+for (node_id in c("N1", "N2", "N3", "N4")) {
   pending_fixture_nodes[[node_id]]$status <- "pending"
   pending_fixture_nodes[[node_id]]$interface["correspondence_cells"] <- list(NULL)
   pending_fixture_nodes[[node_id]][c(
@@ -1176,7 +1188,13 @@ is_valid_filled_equilibrium_interface <- function(interface) {
   cells <- interface$correspondence_cells
   valid_records <- is.list(cells) && length(cells) > 0L && all(vapply(cells, function(cell) {
     records <- cell$equilibrium_records
-    is.list(records) && length(records) > 0L && all(vapply(records, function(record) {
+    if (!is.list(records)) {
+      return(FALSE)
+    }
+    if (identical(cell$existence_status, "none")) {
+      return(length(records) == 0L)
+    }
+    length(records) > 0L && all(vapply(records, function(record) {
       is.list(record) &&
         identical(names(record), as_character(equilibrium_schema$record_fields)) &&
         identical(
@@ -1200,7 +1218,7 @@ is_valid_filled_equilibrium_interface <- function(interface) {
     isTRUE(valid_records)
 }
 
-# Frozen N1/N2/N3 are consumable only on exact artifact bytes, object-identical
+# Frozen N1-N4 are consumable only on exact artifact bytes, object-identical
 # interfaces, dependency hashes, lifecycle fields, and same-hash PASS 0/0/0 reviews.
 expected_frozen_node_fields <- c(
   "id", "name", "round", "institution", "depends_on", "status", "interface",
@@ -1229,15 +1247,26 @@ leaf_specs <- list(
     game_reviewer_id = game_reviewer_id
   ),
   N3 = list(
-    artifact_path = "essential_input_interfaces/n3_r1_majority_candidate_v1.json",
-    artifact_hash = "sha256:63552db82d2434e3016341c9e3db928bca78707a9e74b5fb0b9cd3f9566a71ee",
+    artifact_path = "essential_input_solution_concept/n3_r1_majority_candidate.json",
+    artifact_hash = "sha256:ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d",
     dependency_hashes = list(
       N1 = "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
     ),
     started_order = 5L,
-    passed_order = 6L,
-    formal_reviewer_id = "review-n3-beta-formal-2026-08-18-r3",
-    game_reviewer_id = "review-n3-beta-game-2026-08-18-r3"
+    passed_order = 7L,
+    formal_reviewer_id = "codex-formal-design-n3-final-20260821",
+    game_reviewer_id = "codex-game-theory-n3-final-20260821"
+  ),
+  N4 = list(
+    artifact_path = "essential_input_solution_concept/n4_r1_unanimity_candidate.json",
+    artifact_hash = "sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+    dependency_hashes = list(
+      N2 = "sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2"
+    ),
+    started_order = 6L,
+    passed_order = 8L,
+    formal_reviewer_id = "codex-formal-design-n4-final-exclusive-20260821",
+    game_reviewer_id = "codex-game-theory-n4-final-20260821"
   )
 )
 
@@ -1321,10 +1350,19 @@ assert_true(
 )
 assert_true(
   identical(as.integer(nodes$N3$started_order), 5L) &&
-    identical(as.integer(nodes$N3$passed_order), 6L) &&
+    identical(as.integer(nodes$N3$passed_order), 7L) &&
     nodes$N2$passed_order < nodes$N3$started_order &&
     nodes$N3$started_order < nodes$N3$passed_order,
-  "N3 must record start/pass orders 5/6, strictly after the first frontier passed."
+  "N3 must record start/pass orders 5/7, strictly after the first frontier passed."
+)
+assert_true(
+  identical(as.integer(nodes$N4$started_order), 6L) &&
+    identical(as.integer(nodes$N4$passed_order), 8L) &&
+    nodes$N2$passed_order < nodes$N4$started_order &&
+    nodes$N4$started_order < nodes$N4$passed_order &&
+    nodes$N3$started_order < nodes$N4$started_order &&
+    nodes$N3$passed_order < nodes$N4$passed_order,
+  "N4 must record start/pass orders 6/8, after N2 passed and in the reviewed R1 frontier order."
 )
 
 review_report_specs <- list(
@@ -1402,33 +1440,67 @@ for (role in names(review_report_specs)) {
   )
 }
 
-n3_review_report_specs <- list(
-  formal_design = list(
-    path = file.path(
-      repository_root, "quality_reports",
-      "2026-08-18_essential_input_goal1_n3_beta_formal_design_review_round3.md"
+node_review_report_specs <- list(
+  N3 = list(
+    manifest_hash = "90d6d8bfc4f1ef18c7edf5f9e1ea08870aec0385e625573e31b1b63a5a3d2bd4",
+    formal_design = list(
+      path = file.path(
+        repository_root, "quality_reports",
+        "2026-08-21_n3_final_formal_design_review.md"
+      ),
+      expected_hash = "0863f748fe6927794a7fa8cd14b99176dcfbc1092c60a8fee6f1189a30663b7c",
+      reviewer_id = leaf_specs$N3$formal_reviewer_id
     ),
-    expected_hash = "6003aea1922435faf53f6bd94481366888d82456ab32b8ca4caec259aaa32873",
-    reviewer_id = leaf_specs$N3$formal_reviewer_id
+    game_theory = list(
+      path = file.path(
+        repository_root, "quality_reports",
+        "2026-08-21_n3_final_game_theory_review.md"
+      ),
+      expected_hash = "b90efd428c24884ffc32a1bc713d9f77f4b88efb98a903fd3606e28b1436e99f",
+      reviewer_id = leaf_specs$N3$game_reviewer_id
+    )
   ),
-  game_theory = list(
-    path = file.path(
-      repository_root, "quality_reports",
-      "2026-08-18_essential_input_goal1_n3_beta_game_theory_review_round3.md"
+  N4 = list(
+    manifest_hash = "5c252aca20ee980a6f3faef7f97570f0bc9590c86b7b216a615afede31dbd93c",
+    formal_design = list(
+      path = file.path(
+        repository_root, "quality_reports",
+        "2026-08-21_n4_final_formal_design_review.md"
+      ),
+      expected_hash = "69c64a2519e044a95f0ee765324b15165cca09d782d392d118adb07d81e2719a",
+      reviewer_id = leaf_specs$N4$formal_reviewer_id
     ),
-    expected_hash = "580eb6ed8291f4a20e531a22f043307ee23e116d0ba09c48ac372cfce1ff3d83",
-    reviewer_id = leaf_specs$N3$game_reviewer_id
+    game_theory = list(
+      path = file.path(
+        repository_root, "quality_reports",
+        "2026-08-21_n4_final_game_theory_review.md"
+      ),
+      expected_hash = "008cd1c673354e6da4fe6827f4ac7ce48cd81ee7a82070fadd4251fd571c497d",
+      reviewer_id = leaf_specs$N4$game_reviewer_id
+    )
   )
 )
 
-is_valid_n3_review_report <- function(lines, role, spec) {
+is_valid_node_review_report <- function(lines, node_id, role, spec, manifest_hash) {
+  dependency_hashes <- unname(unlist(
+    leaf_specs[[node_id]]$dependency_hashes,
+    recursive = TRUE,
+    use.names = FALSE
+  ))
+  valid_dependencies <- length(dependency_hashes) == 0L || all(vapply(
+    dependency_hashes,
+    function(dependency_hash) {
+      any(grepl(sub("^sha256:", "", dependency_hash), lines, fixed = TRUE))
+    },
+    logical(1)
+  ))
   identical(lines, spec$canonical_lines) &&
     length(lines) > 40L &&
     any(grepl(role, lines, fixed = TRUE)) &&
     any(grepl(spec$reviewer_id, lines, fixed = TRUE)) &&
-    any(grepl(sub("^sha256:", "", leaf_specs$N3$artifact_hash), lines, fixed = TRUE)) &&
-    any(grepl(sub("^sha256:", "", leaf_specs$N3$dependency_hashes$N1), lines, fixed = TRUE)) &&
-    any(grepl("7072a58bf9fbaf012535418a93418dffb8d4692f13919f39101c8ecb37710f6b", lines, fixed = TRUE)) &&
+    any(grepl(sub("^sha256:", "", leaf_specs[[node_id]]$artifact_hash), lines, fixed = TRUE)) &&
+    any(grepl(manifest_hash, lines, fixed = TRUE)) &&
+    isTRUE(valid_dependencies) &&
     any(grepl("PASS", lines, fixed = TRUE)) &&
     any(grepl("critical[^0-9]*0", lines, ignore.case = TRUE, perl = TRUE)) &&
     any(grepl("major[^0-9]*0", lines, ignore.case = TRUE, perl = TRUE)) &&
@@ -1436,19 +1508,23 @@ is_valid_n3_review_report <- function(lines, role, spec) {
     !any(grepl("VEREDICTO ESTRITO: FAIL", lines, fixed = TRUE))
 }
 
-for (role in names(n3_review_report_specs)) {
-  spec <- n3_review_report_specs[[role]]
-  assert_true(file.exists(spec$path), paste("Missing saved N3 Round-3 report for", role))
-  assert_true(
-    identical(sha256_file(spec$path), spec$expected_hash),
-    paste("The complete saved N3 Round-3 report changed for", role)
-  )
-  spec$canonical_lines <- readLines(spec$path, encoding = "UTF-8", warn = FALSE)
-  n3_review_report_specs[[role]] <- spec
-  assert_true(
-    is_valid_n3_review_report(spec$canonical_lines, role, spec),
-    paste("The N3 Round-3 report lacks exact same-hash PASS 0/0/0 evidence for", role)
-  )
+for (node_id in names(node_review_report_specs)) {
+  node_specs <- node_review_report_specs[[node_id]]
+  manifest_hash <- node_specs$manifest_hash
+  for (role in c("formal_design", "game_theory")) {
+    spec <- node_specs[[role]]
+    assert_true(file.exists(spec$path), paste("Missing saved final report for", node_id, role))
+    assert_true(
+      identical(sha256_file(spec$path), spec$expected_hash),
+      paste("The complete saved final report changed for", node_id, role)
+    )
+    spec$canonical_lines <- readLines(spec$path, encoding = "UTF-8", warn = FALSE)
+    node_review_report_specs[[node_id]][[role]] <- spec
+    assert_true(
+      is_valid_node_review_report(spec$canonical_lines, node_id, role, spec, manifest_hash),
+      paste("The final report lacks exact same-hash PASS 0/0/0 evidence for", node_id, role)
+    )
+  }
 }
 
 for (node_id in names(leaf_specs)) {
@@ -1502,15 +1578,24 @@ for (role in names(review_report_specs)) {
     paste("An appended FAIL must invalidate the saved report for", role)
   )
 }
-for (role in names(n3_review_report_specs)) {
-  spec <- n3_review_report_specs[[role]]
-  assert_true(
-    !is_valid_n3_review_report(c(spec$canonical_lines, "VEREDICTO ESTRITO: FAIL"), role, spec),
-    paste("An appended FAIL must invalidate the N3 Round-3 report for", role)
-  )
+for (node_id in names(node_review_report_specs)) {
+  manifest_hash <- node_review_report_specs[[node_id]]$manifest_hash
+  for (role in c("formal_design", "game_theory")) {
+    spec <- node_review_report_specs[[node_id]][[role]]
+    assert_true(
+      !is_valid_node_review_report(
+        c(spec$canonical_lines, "VEREDICTO ESTRITO: FAIL"),
+        node_id,
+        role,
+        spec,
+        manifest_hash
+      ),
+      paste("An appended FAIL must invalidate the final report for", node_id, role)
+    )
+  }
 }
 
-# N4 and all later nodes retain the exact pending/null envelope.
+# N6 and N7 retain the exact pending/null envelope.
 expected_pending_node_fields <- c(
   "id", "name", "round", "institution", "depends_on", "status", "interface"
 )
@@ -1585,12 +1670,12 @@ for (field_path in manifest_field_paths) {
   )
 }
 
-current_pending_ids <- c("N4", "N6", "N7")
+current_pending_ids <- c("N6", "N7")
 assert_true(
   all(vapply(current_pending_ids, function(node_id) {
     is_valid_current_pending_node(node_id, nodes[[node_id]])
   }, logical(1))),
-  "N4, N6, and N7 must retain the exact pending/null lifecycle."
+  "N6 and N7 must retain the exact pending/null lifecycle."
 )
 
 # Current-state mutations cannot smuggle a stale result, lifecycle fact, or
@@ -1952,7 +2037,7 @@ coordinated_manifest_mutation <- clone_object(manifest)
 coordinated_manifest_mutation$nodes[[4L]]$authorized <- TRUE
 assert_true(
   !is_valid_contract_semantics(coordinated_contract_mutation) &&
-    !is_valid_current_pending_node("N4", coordinated_manifest_mutation$nodes[[4L]]) &&
+    !is_valid_current_leaf("N4", coordinated_manifest_mutation$nodes[[4L]], leaf_specs$N4) &&
     !is_valid_canonical_manifest(coordinated_manifest_mutation),
   "The coordinated contract-plus-N4 authorization mutation must fail both validators."
 )
@@ -2003,10 +2088,10 @@ freeze_node <- function(
 }
 
 assert_true(
-  identical(sort(topologically_ready_nodes(nodes)), "N4"),
+  identical(sort(topologically_ready_nodes(nodes)), "N6"),
   paste0(
-    "After N3 freezes, exactly N4 must be topologically ready. ",
-    "N4 remains unauthorized despite readiness; Goal 1 authorization ended at N3."
+    "After N3 and N4 freeze, exactly N6 must be topologically ready. ",
+    "N6 remains unauthorized despite readiness."
   )
 )
 assert_true(
@@ -2193,9 +2278,9 @@ cat(
 
 cat(
   paste0(
-    "PASS: strict o_1 < 1 and beta < 1 contract with N1/N2/N3 pass/frozen on exact reviewed artifacts; ",
-    "only N4 is topologically ready, but N4/N6/N7, Goal 2, beta=1 extensions, and manuscript ",
-    "migration remain unauthorized after the authorized N3 boundary. ",
+    "PASS: strict o_1 < 1 and beta < 1 contract with N1/N2/N3/N4 pass/frozen on exact reviewed artifacts; ",
+    "only N6 is topologically ready, while N6/N7, beta=1 extensions, and manuscript migration ",
+    "remain unauthorized. ",
     "Typed coverage cells for empty and ",
     "nonempty correspondences, independent RI_M and RI_U with a separate DeltaRI ",
     "contrast, role-typed public payoffs, terminal complete-information benchmark, ",

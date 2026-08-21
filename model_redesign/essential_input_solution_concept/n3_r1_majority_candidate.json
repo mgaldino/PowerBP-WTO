@@ -1,0 +1,122 @@
+{
+  "schema_ref": "equilibrium_correspondence_v1",
+  "function_of": {
+    "name": "entry_belief",
+    "domain": "[0,1]"
+  },
+  "correspondence_cells": [
+    {
+      "cell_id": "N3-SC-CELL-ALL",
+      "domain_conditions": [
+        "nu in [0,1]",
+        "N is an integer and N >= 3",
+        "m=N-1 and q=floor(N/2)+1",
+        "beta in (0,1)",
+        "0<o_0<o_1<1 and o_1<=y_bar<=1",
+        "N1 hash is sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+      ],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N3-SC-EQ-COMPLETE",
+          "admissibility_conditions": [
+            "ballot strategies are pure",
+            "weak voters use as-if-pivotal expected-value comparison",
+            "T^Y selects yes at expected-value equality",
+            "weak proposals and votes do not move beliefs about theta",
+            "the proposer first maximizes own payoff and then minimizes expected H payoff"
+          ],
+          "branch_classification": "complete majority correspondence over exclusion, low-type screening with high-type delay, and pooling; deliberate rejection and on-path slack excluded",
+          "strategy_profile": {
+            "definitions": {
+              "w": "beta/m",
+              "t_0": "beta*o_0",
+              "t_1": "beta*o_1",
+              "E": "1-(q-1)*w",
+              "L": "1-(q-2)*w-t_0",
+              "S_of_nu": "(1-nu)*L+nu*w",
+              "P": "1-(q-2)*w-t_1",
+              "R": "w",
+              "strict_exclusion_gain_over_rejection": "1-beta*q/m>0"
+            },
+            "weak_nonproposer_vote": "yes iff x_j>=w",
+            "hegemon_vote": {
+              "at_least_q_minus_1_weak_yes": "no for both types; proposal passes without H",
+              "exactly_q_minus_2_weak_yes": "type theta votes yes iff y>=t_theta",
+              "at_most_q_minus_3_weak_yes": "yes for both types by T^Y; proposal still fails"
+            },
+            "candidate_families": {
+              "exclusion": "choose q-1 responders, pay each w, set y=0 and retain E",
+              "screening": "choose q-2 responders, pay each w, set y=t_0 and retain L when feasible",
+              "pooling": "choose q-2 responders, pay each w, set y=t_1 and retain P when feasible"
+            },
+            "atomic_family_binder": "All strategy, payoff, and outcome fields in this record use the same identity-indexed family F=(F_i)_{i in W}, with each F_i supported on the feasible lexicographic argmax A_i_star(nu).",
+            "outcome_indicators": {
+              "I_H(s,theta)": "one iff proposal s passes with H for type theta",
+              "I_X(s,theta)": "one iff proposal s passes without H for type theta",
+              "I_D(s,theta)": "one iff proposal s fails in R1 and reaches N1 for type theta",
+              "partition": "I_H+I_X+I_D=1 proposal-by-proposal and type-by-type"
+            },
+            "selection": "for each proposer identity, any distribution supported on the feasible lexicographic argmax of {E,S(nu),P}; coalition-identity multiplicity is preserved",
+            "frontiers": {
+              "nu_SE": "beta*(1/m-o_0)/[beta*(1/m-o_0)+1-beta*q/m], used only when o_0<1/m",
+              "nu_SP": "beta*(o_1-o_0)/[1-beta*o_0-beta*(q-1)/m], used only when o_1<1/m",
+              "pooling_exclusion_tie": "o_1=1/m; above screening, compare expected H payoffs h_E and h_P"
+            }
+          },
+          "belief_system": {
+            "after_every_weak_proposal": "nu",
+            "after_weak_votes": "unchanged from the belief before the ballot",
+            "after_prescribed_H_vote": "Bayes using H's type-contingent strategy whenever the denominator is positive; weak-vote factors cancel",
+            "zero_total_probability_H_action": "support-restricted: posterior zero throughout the tree at nu=0 and one throughout the tree at nu=1; when 0<nu<1, an out-of-profile H action may induce any posterior in [0,1]",
+            "after_H_action_outside_profile": "free in [0,1] only for 0<nu<1; fixed at zero when nu=0 and at one when nu=1",
+            "continuation_effect": "all resulting beliefs consume posterior-invariant N1-EQ-01"
+          },
+          "source_continuation_record_ids": [
+            "N1-EQ-01"
+          ],
+          "source_interface_hashes": {
+            "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+          },
+          "existence_uniqueness_status": "exists for every admissible primitive and nu; generally strategy-multiple through coalition identities and the residual exclusion-pooling tie",
+          "selection_status": "all lexicographically optimal proposer distributions preserved; no symmetry, belief, or equilibrium selection added",
+          "assumptions_used": [
+            "fixed unit pie and full implementation",
+            "majority quota",
+            "no exit action",
+            "N1 only",
+            "new solution-concept package of 2026-08-21 plus the subsequent endpoint support restriction"
+          ],
+          "checks_performed": [
+            "complete proposal-by-proposal payoff formula",
+            "screening and pooling feasibility implication",
+            "nu_SP domain and denominator",
+            "expected-H tie-breaks",
+            "current versus delayed o_theta timing",
+            "belief transport under no-signaling and endpoint support restriction",
+            "strict exclusion gain over deliberate rejection",
+            "atomic binding of every payoff and outcome to the same F=(F_i)_i"
+          ],
+          "recognized_proposer_payoff": "For every recognized i, E_{s~F_i,theta~nu}[r_i(s)*(I_H(s,theta)+I_X(s,theta))+w*I_D(s,theta)]=V_star(nu)=max{E,S(nu),P} after feasibility and the authorized tie-break; the same F_i is used in every field.",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "atomic_family": "the same F=(F_i)_i used by strategy_profile, H payoffs, and outcomes",
+            "by_weak_state_l": "C_l(F)=V_star/m+(1/m)*sum_{i!=l} E_{s~F_i,theta~nu}[x_l(s)*(I_H(s,theta)+I_X(s,theta))+w*I_D(s,theta)]",
+            "recognition_accounting": "the first term is l's probability 1/m of being proposer; each term in the sum is probability 1/m that another identity i proposes"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "C_H(0;F)=(1/m)*sum_i E_{s~F_i}[y(s)*I_H(s,0)+(y(s)+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+            "theta_1": "C_H(1;F)=(1/m)*sum_i E_{s~F_i}[y(s)*I_H(s,1)+(y(s)+o_1)*I_X(s,1)+t_1*I_D(s,1)]"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+            "pass_without_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+            "failure": 0,
+            "delay": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]"
+          },
+          "payoff_date": "R1 current units; N1 values multiplied by beta exactly once"
+        }
+      ],
+      "nonexistence_certificate": null
+    }
+  ]
+}

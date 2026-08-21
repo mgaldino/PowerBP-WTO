@@ -1,0 +1,14 @@
+claim_id	equilibrium_id	branch	payoff_date	status	evidence	claim
+N3-SC-C01	N3-SC-EQ-COMPLETE	all ballots	R1	proved	n3_r1_majority_rederivation_candidate.md#lema-n3-1--voto-fraco-como-se-pivotal	Weak nonproposer votes yes iff x_j>=beta/m.
+N3-SC-C02	N3-SC-EQ-COMPLETE	H pivotality	R1	proved	n3_r1_majority_rederivation_candidate.md#lema-n3-2--melhor-resposta-de-h	H preserves y+o_theta when excluded and compares y with beta*o_theta only when pivotal.
+N3-SC-C03	N3-SC-EQ-COMPLETE	all proposals	R1	proved	n3_r1_majority_rederivation_candidate.md#lema-n3-3--payoff-do-proponente	The proposer-payoff expression exhausts every feasible proposal and type.
+N3-SC-C04	N3-SC-EQ-COMPLETE	candidate reduction	R1	proved	n3_r1_majority_rederivation_candidate.md#4-redução-exaustiva-e-factibilidade	Only exclusion, screening, pooling, and deliberate rejection remain after within-class dominance.
+N3-SC-C05	N3-SC-EQ-COMPLETE	feasibility	R1	proved	n3_r1_majority_rederivation_candidate.md#factibilidade-que-faltava-na-prova-anterior	Any screening or pooling candidate that can beat exclusion is feasible.
+N3-SC-C06	N3-SC-EQ-COMPLETE	P0-P1-P1a	R1	proved	n3_r1_majority_rederivation_candidate.md#uso-integral-da-pie-e-hedge	Selected proposals exhaust the pie; no approval without H has y>0.
+N3-SC-C07	N3-SC-EQ-COMPLETE	deliberate rejection	R1	proved	n3_r1_majority_rederivation_candidate.md#4-redução-exaustiva-e-factibilidade	E-R=1-beta*q/m>0 eliminates deliberate rejection.
+N3-SC-C08	N3-SC-EQ-COMPLETE	frontiers	R1	proved	n3_r1_majority_rederivation_candidate.md#5-fronteiras-e-domínio-correto-de-nu_sp	The frontier partition and all equality tie-breaks are exhaustive.
+N3-SC-C09	N3-SC-EQ-COMPLETE	nu_SP domain	R1	proved	n3_r1_majority_rederivation_candidate.md#5-fronteiras-e-domínio-correto-de-nu_sp	The nu_SP denominator is positive and nu_SP lies in (0,1) where it is used.
+N3-SC-C10	N3-SC-EQ-COMPLETE	beliefs	R1	proved	n3_r1_majority_rederivation_candidate.md#6-crenças-sob-a-decisão-de-2026-08-21	No-signaling narrows assessments but leaves N3 strategies and payoffs unchanged because N1 is posterior-invariant.
+N3-SC-C11	N3-SC-EQ-COMPLETE	multiplicity	R1	proved	n3_r1_majority_rederivation_candidate.md#7-correspondência-e-multiplicidade	Coalition-identity and residual proposal-tie multiplicity are preserved without symmetry.
+N3-SC-C12	N3-SC-EQ-COMPLETE	discount	R1	proved	n3_r1_majority_rederivation_candidate.md#2-contrato-local-e-notação	N1 values receive beta exactly once; current exclusion o_theta is not discounted.
+N3-SC-C13	N3-SC-EQ-COMPLETE	atomic correspondence	R1	proved	n3_r1_majority_rederivation_candidate.md#7-correspondência-e-multiplicidade	Strategy, every weak payoff, both H payoffs, and all outcome probabilities are functions of the same identity-indexed family F=(F_i)_i.

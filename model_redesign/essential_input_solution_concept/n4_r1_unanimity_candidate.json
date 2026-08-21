@@ -1,0 +1,222 @@
+{
+  "schema_ref": "equilibrium_correspondence_v1",
+  "function_of": {
+    "name": "entry_belief",
+    "domain": "[0,1]"
+  },
+  "correspondence_cells": [
+    {
+      "cell_id": "N4-SC-CELL-NU-ZERO",
+      "domain_conditions": [
+        "nu=0",
+        "nu_star=(o_1-o_0)/(1-o_0); ell=beta*o_0; h=beta*o_1; A=beta*(1-o_0)/m; B=beta*(1-o_1)/m; Q_L=1-ell-(m-1)*A=A+1-beta",
+        "all primitive restrictions hold",
+        "frozen N2 interface hash is sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2",
+        "N2 endpoint-support erratum hash is sha256:94062c0803d9ed455fbec3b9508fabd2eb4cb86018fbe036b618671f452f7a69"
+      ],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N4-SC-EQ-L-STAR",
+          "admissibility_conditions": [
+            "ballot strategies are pure",
+            "weak voters use as-if-pivotal comparison",
+            "T^Y selects yes at equality",
+            "no-signaling, structural consistency, and endpoint support restriction govern beliefs"
+          ],
+          "branch_classification": "unique low-type-only immediate agreement at the zero-prior endpoint",
+          "strategy_profile": {
+            "definitions": "nu_star=(o_1-o_0)/(1-o_0); ell=beta*o_0; h=beta*o_1; A=beta*(1-o_0)/m; B=beta*(1-o_1)/m; C=A at nu=0; Q_L=A+1-beta",
+            "recognized_weak_proposer": "Y=ell, every x_j=A, r_i=Q_L",
+            "weak_nonproposers": "yes",
+            "hegemon": {
+              "theta_0": "yes",
+              "theta_1": "no"
+            },
+            "complete_off_path_ballot_correspondence": {
+              "notation": "u=min_j x_j and W(eta)=(1-eta)*A for eta<=nu_star, B otherwise",
+              "H_yes_yes": "admissible iff u<A or [u>=A and Y>=h]; posterior is zero after both H actions, and weak j votes yes iff x_j>=A",
+              "H_no_no": "admissible iff u>=A and Y<ell; posterior is zero and all weak voters vote yes",
+              "H_yes_no": "admissible iff u>=A and ell<=Y<h; posterior is zero after both H actions and all weak voters vote yes",
+              "H_no_yes": "never admissible",
+              "strategy_overlap": "none; exactly one pure H profile is admissible after each feasible proposal; if B<=u<A and Y<ell, only H=(yes,yes) with weak veto survives"
+            }
+          },
+          "belief_system": {
+            "after_weak_actions": "nu remains zero",
+            "endpoint_support_restriction": "eta_Y=eta_N=0 after every H action, including zero-denominator and out-of-profile actions",
+            "positive_probability_prescribed_H_action": "Bayes gives posterior zero",
+            "H_yes_yes_with_weak_veto": "the out-of-profile eta_N is zero",
+            "H_no_no": "the out-of-profile eta_Y is zero, so W(eta_Y)=A and u>=A is necessary",
+            "H_yes_no": "the prescribed H1 no has zero total probability but support restriction fixes eta_N=0",
+            "other_histories": "posterior zero throughout the tree"
+          },
+          "source_continuation_record_ids": [
+            "N2-EQ-LOW-TYPE-ONLY"
+          ],
+          "source_interface_hashes": {
+            "N2": "sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2",
+            "N2_endpoint_support_erratum": "sha256:94062c0803d9ed455fbec3b9508fabd2eb4cb86018fbe036b618671f452f7a69"
+          },
+          "existence_uniqueness_status": "exists; the on-path proposal, outcome, and payoff are unique, and endpoint support restriction makes the pure ballot profile and belief unique after every feasible proposal",
+          "selection_status": "no additional selection; Q_L exceeds delay by 1-beta and exceeds every pooling proposal; the unique admissible off-path ballot profile is retained proposal-by-proposal",
+          "assumptions_used": [
+            "N2 only",
+            "beta in (0,1)",
+            "pure ballots",
+            "new solution-concept package of 2026-08-21 plus the subsequent endpoint support restriction"
+          ],
+          "checks_performed": [
+            "agreement floor A",
+            "full-pie feasibility",
+            "four-profile H enumeration",
+            "Q_L-A=1-beta",
+            "no on-path delay or mixture",
+            "complete pure sequential correspondence after every feasible proposal",
+            "endpoint support fixed at zero and no off-path strategy overlap"
+          ],
+          "recognized_proposer_payoff": "Q_L=A+1-beta",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "entry_prior_value": "(Q_L+(m-1)*A)/m=(1-ell)/m because nu=0",
+            "theta_0_realized_vector": "recognized R1 proposer Q_L; every R1 weak nonproposer A; representative weak before R1 recognition (1-ell)/m",
+            "theta_1_realized_vector": "every weak state 0 after the failed R1 proposal and N2 screening; theta_1 has zero prior probability in this cell"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "ell",
+            "theta_1": "h"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": 1,
+            "pass_without_hegemon": 0,
+            "failure": 0,
+            "delay": 0
+          },
+          "payoff_date": "R1 current units"
+        }
+      ],
+      "nonexistence_certificate": null
+    },
+    {
+      "cell_id": "N4-SC-CELL-NO-PURE-PBE",
+      "domain_conditions": [
+        "0<nu<=nu_star",
+        "nu_star=(o_1-o_0)/(1-o_0); ell=beta*o_0; h=beta*o_1; A=beta*(1-o_0)/m; B=beta*(1-o_1)/m; Q_L=1-ell-(m-1)*A=A+1-beta",
+        "all primitive restrictions hold",
+        "ballot strategies must be pure"
+      ],
+      "existence_status": "none",
+      "equilibrium_records": [],
+      "nonexistence_certificate": {
+        "ledger_claim_ids": [
+          "N4-C08"
+        ],
+        "assumptions_used": [
+          "nu_star=(o_1-o_0)/(1-o_0), ell=beta*o_0, h=beta*o_1, A=beta*(1-o_0)/m, B=beta*(1-o_1)/m, and Q_L=A+1-beta",
+          "feasible forcing proposal s_dagger=(ell,A,...,A,Q_L)",
+          "weak pivotal continuation values lie in [B,A]",
+          "T^Y selects yes at expected-value equality",
+          "structural Bayes for prescribed H actions"
+        ],
+        "checks_performed": [
+          "all weak voters must vote yes after s_dagger for each of the four pure H profiles",
+          "(yes,yes) fails by H1 deviation",
+          "(no,no) fails by H0 and T^Y",
+          "(yes,no) fails by H0 imitation",
+          "(no,yes) fails by H1 imitation",
+          "PBE requires a sequentially rational pure ballot response after every feasible proposal"
+        ]
+      }
+    },
+    {
+      "cell_id": "N4-SC-CELL-HIGH-PRIOR",
+      "domain_conditions": [
+        "nu_star<nu<=1",
+        "nu_star=(o_1-o_0)/(1-o_0); ell=beta*o_0; h=beta*o_1; A=beta*(1-o_0)/m; B=beta*(1-o_1)/m; Q_P=1-h-(m-1)*B=B+1-beta",
+        "all primitive restrictions hold",
+        "frozen N2 interface hash is sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2",
+        "N2 endpoint-support erratum hash is sha256:94062c0803d9ed455fbec3b9508fabd2eb4cb86018fbe036b618671f452f7a69"
+      ],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N4-SC-EQ-P-STAR",
+          "admissibility_conditions": [
+            "ballot strategies are pure",
+            "weak voters use as-if-pivotal comparison",
+            "T^Y selects yes at equality",
+            "no-signaling, structural consistency, and endpoint support restriction govern beliefs"
+          ],
+          "branch_classification": "unique immediate pooling agreement",
+          "strategy_profile": {
+            "definitions": "nu_star=(o_1-o_0)/(1-o_0); ell=beta*o_0; h=beta*o_1; A=beta*(1-o_0)/m; B=beta*(1-o_1)/m; C=B at nu>nu_star; Q_P=B+1-beta",
+            "recognized_weak_proposer": "Y=h, every x_j=B, r_i=Q_P",
+            "weak_nonproposers": "yes",
+            "hegemon": {
+              "theta_0": "yes",
+              "theta_1": "yes"
+            },
+            "complete_off_path_ballot_correspondence": {
+              "notation": "u=min_j x_j and W(eta)=(1-eta)*A for eta<=nu_star, B otherwise",
+              "H_yes_yes": "admissible iff u<B or [u>=B and Y>=h]; Bayes gives eta_Y=nu and weak j votes yes iff x_j>=B; eta_N may be IC-compatible and free only when nu<1, while eta_N=1 at nu=1",
+              "H_no_no": "admissible iff u>=B and Y<h; all weak voters vote yes and Bayes gives eta_N=nu; when nu<1, out-of-profile eta_Y must satisfy W(eta_Y)<=u, while eta_Y=1 at nu=1",
+              "separating_profiles": "H=(yes,no) and H=(no,yes) are never admissible, including at nu=1 by expected-value T^Y",
+              "strategy_overlap": "none; exactly one pure H profile is admissible after each feasible proposal"
+            }
+          },
+          "belief_system": {
+            "after_weak_actions": "nu is unchanged",
+            "positive_probability_pooling_H_action": "nu by Bayes",
+            "H_yes_yes": "for nu<1, eta_N may be any value in [0,1] because every such value sustains the prescribed votes in its admissible regions; at nu=1, eta_N=1",
+            "H_no_no": "for nu<1, eta_Y is restricted by W(eta_Y)<=u, equivalently eta_Y>=1-u/A when B<=u<A and any eta_Y when u>=A; at nu=1, eta_Y=1",
+            "zero_prior_endpoint": "at nu=1, support restriction fixes posterior one after every H action, including actions used only by H0 or outside the profile",
+            "other_histories": "no unrestricted belief class is exported independently of the strategy ICs"
+          },
+          "source_continuation_record_ids": [
+            "N2-EQ-LOW-TYPE-ONLY",
+            "N2-EQ-POOLING"
+          ],
+          "source_interface_hashes": {
+            "N2": "sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2",
+            "N2_endpoint_support_erratum": "sha256:94062c0803d9ed455fbec3b9508fabd2eb4cb86018fbe036b618671f452f7a69"
+          },
+          "existence_uniqueness_status": "exists; the on-path proposal, pure ballot profile, outcome, and payoff are unique; the pure off-path H profile is unique proposal-by-proposal, belief multiplicity is preserved only for nu<1 subject to the stated IC constraints, and the belief is unique at nu=1",
+          "selection_status": "no additional selection; Q_P exceeds every delay payoff by 1-beta; no belief outside the prior support is included",
+          "assumptions_used": [
+            "N2 only",
+            "beta in (0,1)",
+            "pure ballots",
+            "new solution-concept package of 2026-08-21 plus the subsequent endpoint support restriction"
+          ],
+          "checks_performed": [
+            "agreement floor B",
+            "open weak-veto boundary",
+            "full-pie feasibility",
+            "four-profile H fixed-point enumeration",
+            "Q_P-B=1-beta",
+            "no separating, delay, or mixture",
+            "complete pure sequential correspondence after every feasible proposal",
+            "separate support-restricted posterior-one check at nu=1"
+          ],
+          "recognized_proposer_payoff": "Q_P=B+1-beta",
+          "weak_nonproposer_pre_recognition_expected_value": {
+            "entry_prior_value": "(Q_P+(m-1)*B)/m=(1-h)/m",
+            "theta_0_realized_vector": "recognized R1 proposer Q_P; every R1 weak nonproposer B; representative weak before R1 recognition (1-h)/m",
+            "theta_1_realized_vector": "recognized R1 proposer Q_P; every R1 weak nonproposer B; representative weak before R1 recognition (1-h)/m"
+          },
+          "hegemon_payoff_by_type": {
+            "theta_0": "h",
+            "theta_1": "h"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": 1,
+            "pass_without_hegemon": 0,
+            "failure": 0,
+            "delay": 0
+          },
+          "payoff_date": "R1 current units"
+        }
+      ],
+      "nonexistence_certificate": null
+    }
+  ]
+}
