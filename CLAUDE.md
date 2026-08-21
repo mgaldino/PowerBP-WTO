@@ -59,6 +59,39 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 > técnico, e o teste é se existe exatamente um reparo forçado pelo que já está
 > escrito. Toda ambiguidade e toda definição faltando escalam, sem exceção.
 
+> ## DECISÃO 2026-08-21 — Conceito de solução FIXADO (crenças off-path, votação, T^Y)
+>
+> **Registro normativo: `quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md`
+> (status APPROVED, decisão do autor). Ler antes de qualquer derivação ou revisão de N4.**
+> Origem: auditoria game-teórica em `quality_reports/2026-08-21_game-theory-audit_essential_input.md`
+> (2 passes independentes), que demonstrou que as provas provisórias de N4 usavam
+> convenções mutuamente incompatíveis. Conversa completa em
+> `quality_reports/2026-08-21_conversa_decisao_conceito_solucao.md`.
+>
+> O pacote decidido, que prevalece sobre formulações anteriores do conceito de solução:
+>
+> 1. **Crenças off-path: no-signaling-what-you-don't-know + consistência estrutural.**
+>    Desvios de Estados fracos (propostas ou votos) NÃO movem a crença sobre `theta`.
+>    Só ações de `H` movem crenças, por Bayes dado o perfil, mesmo em subárvores
+>    off-path; desvios do próprio `H` deixam a crença livre. Descartadas: crenças
+>    livres literais; dominância path-dependent (incoerente — não repropor).
+> 2. **Votação dos fracos: as-if-pivotal.** Comparação por valor esperado condicional
+>    ao evento pivotal; se estrita, decide o voto. Admissibilidade pura (só proibir
+>    voto fracamente dominado) foi descartada: com vetor público ex post ela deixa
+>    vetos sustentados por linhas contrafactuais de desvios de `H` que nunca ocorrem.
+> 3. **T^Y: indiferença em valor esperado** (integrando `theta` e a loteria de
+>    reconhecimento) na comparação pivotal ⇒ vota sim. A leitura
+>    contingência-a-contingência foi descartada (destrói existência de proposta
+>    ótima). Isto REFINA o item 3 do banner de 2026-08-12: "idênticas em todo
+>    contingente" vale nos nós terminais, não em geral; igualdade é em valor esperado.
+>
+> **Consequências assumidas**: S₃=(1−ν)B deixa de ser exata (segurança sobe, rederivar);
+> pisos de pagamento em acordo viram o valor de continuação C, não B uniforme;
+> necessidade do lema multi-veto passa a valer com fronteiras de veto ABERTAS
+> (desigualdades estritas; em indiferença exata T^Y força sim); §10.3–§10.7 do
+> relatório de provas de 2026-08-21 devem ser rederivados sob este pacote.
+> N1/N2 intactos; N3 só reparos menores (belief-free sob maioria).
+
 - **Fase**: Gate 0 essential-input aprovado; Goal 0 autorizado, sem derivação iniciada.
 - **Paper v6** (ALVO CORRETO): `formal_model_v6.Rmd` — alvo do próximo manuscript pass. `formal_model_v6.pdf` existe como PDF compilado atual.
 - **Paper v5** (REFERÊNCIA HISTÓRICA): `formal_model_v5.Rmd` — baseline fixed-pie relative-package com `pi_H=0`, weak-state agenda e weak-vote-passive assessment. `formal_model_v5.pdf` recompilado em 2026-05-15. Não usar v5 como alvo do clean-baseline reset.
