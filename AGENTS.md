@@ -55,6 +55,43 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 > what is already written. Every ambiguity and every missing definition escalates
 > to the author, without exception.
 
+> ## DECISION 2026-08-21 — Solution concept FIXED (off-path beliefs, voting, T^Y)
+>
+> **Normative record: `quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md`
+> (status APPROVED, author's decision). Read it before any N4 derivation or review.**
+> Origin: the game-theory audit in `quality_reports/2026-08-21_game-theory-audit_essential_input.md`
+> (two independent passes) proved that the provisional N4 proofs relied on mutually
+> incompatible conventions. Full conversation record in
+> `quality_reports/2026-08-21_conversa_decisao_conceito_solucao.md`.
+>
+> The decided package, which prevails over earlier formulations of the solution concept:
+>
+> 1. **Off-path beliefs: no-signaling-what-you-don't-know + structural consistency.**
+>    Deviations by weak states (proposals or votes) do NOT move the public belief
+>    about `theta`. Only `H`'s actions move beliefs, via Bayes given the profile,
+>    including inside off-path subtrees; deviations by `H` itself leave beliefs
+>    free. Discarded: literal free beliefs; path-dependent dominance (incoherent —
+>    do not repropose).
+> 2. **Weak-state voting: as-if-pivotal.** Expected-value comparison conditional on
+>    the pivotal event; when strict, it decides the vote. Pure admissibility (only
+>    banning weakly dominated votes) was discarded: with ex-post public vote
+>    vectors it sustains vetoes through counterfactual rows built on `H`-vote
+>    deviations that never occur.
+> 3. **T^Y: expected-value indifference** (integrating `theta` and the recognition
+>    lottery) at the pivotal comparison ⇒ vote yes. The contingency-by-contingency
+>    reading was discarded (it destroys existence of optimal proposals). This
+>    REFINES item 3 of the 2026-08-12 banner: "payoff-identical in every
+>    contingency" holds at terminal nodes, not in general; equality is in
+>    expected value.
+>
+> **Accepted consequences**: S_3=(1-nu)B is no longer exact (security rises;
+> rederive); payment floors in agreement classes become the current continuation
+> value C, not a uniform B; the multi-veto lemma's necessity direction now holds,
+> with OPEN veto boundaries (strict inequalities; at exact indifference T^Y forces
+> yes); §10.3–§10.7 of the 2026-08-21 proof report must be rederived under this
+> package. N1/N2 untouched; N3 needs only the audit's minor repairs (majority
+> continuation is belief-free).
+
 - **Phase**: essential-input Gate 0 approved; Goal 0 authorized, no derivation started.
 - **Target paper for the next manuscript pass**: `formal_model_v6.Rmd`.
 - **Target compiled PDF**: `formal_model_v6.pdf`.

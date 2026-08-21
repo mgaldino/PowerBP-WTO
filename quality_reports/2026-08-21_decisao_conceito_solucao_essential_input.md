@@ -1,0 +1,55 @@
+# DECISÃO 2026-08-21 — Conceito de solução da cadeia essential-input (crenças off-path, refinamento de votação, T^Y)
+
+**Status**: APPROVED (decisão do autor, martelo batido em 2026-08-21)
+**Autor da decisão**: Manoel Galdino
+**Origem**: auditoria game-teórica de `2026-08-21_essential_input_jogo_e_provas_disponiveis.md` (worktree `codex/essential-input-beta-interior`), salva em `quality_reports/2026-08-21_game-theory-audit_essential_input.md`. A auditoria (dois passes independentes) demonstrou que as provas de N4 usavam convenções mutuamente incompatíveis de crenças fora do caminho e de refinamento de votação — em particular, a necessidade do lema dos múltiplos vetos (§10.4) e a exatidão da segurança S₃=(1−ν)B (§10.5) não valem sob nenhuma convenção única. O finding escalou ao autor conforme o contrato Gate 0 ("toda ambiguidade e toda definição faltando escalam, sem exceção") e foi resolvido pela decisão abaixo.
+**Relação com o contrato Gate 0**: esta decisão NÃO altera primitivas do jogo (jogadores, timing, ballots simétricos, o_theta como desacordo, pie fixa, pi_H=0). Ela fixa as três convenções do conceito de solução que o texto das provas deixava ambíguas. Prevalece sobre formulações anteriores do conceito de solução, inclusive a formulação do §2.5 do relatório de provas de 2026-08-21 e a nota de 2026-08-12 sobre T^Y ("idênticas em todo contingente"), que fica refinada conforme a Decisão 3.
+**Registro da conversa que fundamentou a decisão**: `quality_reports/2026-08-21_conversa_decisao_conceito_solucao.md`.
+
+---
+
+### Decisão 1: Regra de crenças em histórias de probabilidade zero
+
+- **Escolha**: **No-signaling-what-you-don't-know com consistência estrutural.** Desvios de jogadores não informados (Estados fracos: propostas ou votos fora do caminho) NÃO movem a crença pública sobre `theta` — o posterior permanece o corrente. Apenas ações de `H`, que é informado, movem crenças; e movem por Bayes sempre que o perfil prescrito o permitir, inclusive dentro de subárvores fora do caminho (se o perfil prescreve votos separadores de H, o vetor com o voto do tipo alto carrega a crença que Bayes induz dado o perfil, mesmo que a subárvore tenha sido alcançada por um desvio anterior de um fraco). Crenças após desvios do próprio `H` (ações de H fora do perfil prescrito) permanecem livres em [0,1], pois qualquer tipo poderia ter desviado.
+- **Racional substantivo (do autor)**: o modelo trata de Estados representados por diplomatas. Ninguém considera informativo o voto errático de um Estado fraco que não tem informação privada sobre o tipo do hegemon — não houve comunicação privada do hegemon para ele. O voto de um fraco não pode sinalizar o que o fraco não sabe. É a mesma lógica informacional do weak-vote-passive assessment defendido na v5 do paper, agora elevada a convenção declarada do conceito de solução.
+- **Alternativas descartadas**:
+  - **Crenças livres literais** (qualquer crença após qualquer história de probabilidade zero): descartada porque permite que o desvio de um jogador não informado mova a crença sobre `theta` — o desvio "sinalizaria" o que o desviante não sabe, o que o autor considera indefensável no ambiente diplomático modelado. Era a convenção que sustentava a exatidão de S₃=(1−ν)B e derrubava a necessidade do lema dos múltiplos vetos.
+  - **No-signaling só para fracos, livre para tudo dentro de subárvores off-path (sem consistência estrutural)**: descartada por ser meio-termo instável — deixa indefinida a crença nos vetores em que H vota conforme prescrito dentro de uma subárvore alcançada por desvio de um fraco, e conforme essa sub-escolha colapsa em uma das duas alternativas acima.
+  - **Dominância dependente do caminho** ("votos on-path devem dominar fracamente; off-path não"): descartada em definitivo. É a única regra que salvaria simultaneamente §10.4-necessidade e §10.5-exatidão como escritos, mas é incoerente como restrição de estratégia (o caminho de equilíbrio é determinado pelo próprio perfil que a regra pretende restringir) e foi construída para salvar resultados, não para descrever o ambiente. Não repropor.
+
+### Decisão 2: Refinamento de votação dos Estados fracos
+
+- **Escolha**: **As-if-pivotal (primazia da comparação pivotal).** Cada respondente fraco compara sim e não pelo valor esperado condicional ao evento de seu voto ser decisivo; quando essa comparação é estrita, o voto segue a preferência pivotal. Substitui a formulação anterior "votação não dominada por estágio" lida como mera admissibilidade.
+- **Racional**: (i) em jogos de votação padrão, em que payoffs dependem só do resultado, admissibilidade e as-if-pivotal coincidem — a expressão "stage-undominated voting" da literatura (Baron–Ferejohn; Austen-Smith–Banks) é usada nesse sentido. Neste jogo a equivalência quebra porque o vetor de votos é público ex post e continuações podem condicionar nele. (ii) Sob a Decisão 1, o único canal que separa as duas noções são linhas contrafactuais construídas sobre desvios de voto de `H` que nunca ocorrem em equilíbrio: admissibilidade sozinha permitiria que um fraco sustentasse veto contra oferta melhor que sua continuação apoiado em "num cenário que nunca ocorre, com crenças desenhadas sob medida, meu não teria sido melhor". As-if-pivotal assume o diplomata instrumental: "meu voto só importa quando decide; condicional a decidir, o que prefiro?". (iii) Coerência: no-signaling fecha o canal informacional dos votos fracos; as-if-pivotal fecha o canal estratégico residual (manipulação de continuações via registro público). São o mesmo princípio aplicado a crenças e a estratégias.
+- **Alternativas descartadas**:
+  - **Admissibilidade pura** (proibir apenas votos fracamente dominados): descartada porque, mesmo com no-signaling, vetos contra ofertas generosas continuam sustentáveis via linhas fantasma de desvios contrafactuais de `H` — e com ela a necessidade do lema dos múltiplos vetos não vale (contraexemplo C1 da auditoria). Combinação no-signaling + admissibilidade derruba tanto a necessidade quanto a segurança: pior dos dois mundos.
+  - **Nenhum refinamento de votação** (PBE puro nos ballots): nunca esteve em consideração; equilíbrios com todos votando não sustentados por nenhum voto ser pivotal são triviais e não informativos.
+
+### Decisão 3: Domínio do desempate T^Y ("indiferença genuína")
+
+- **Escolha**: **Indiferença em valor esperado na comparação pivotal.** O fraco compara sim e não pelo valor esperado interino (integrando `theta` sob a crença corrente e a loteria de reconhecimento futuro) condicional ao evento pivotal; se estrito, segue a preferência (Decisão 2); se indiferente, vota sim. Para `H` e nos nós terminais, T^Y idem: indiferença em valor esperado ⇒ sim.
+- **Racional**: os jogadores são maximizadores de utilidade esperada; no momento do voto não conhecem `theta` nem o sorteio de reconhecimento de R2 — sua preferência É a comparação de valores esperados. A leitura alternativa (identidade contingência a contingência) quase nunca se aplicaria (sempre há uma loteria de um lado), os ínfimos não fechariam e a proposta ótima deixaria de existir (problema do "reserva + ε" do jogo do ultimato). T^Y existe exatamente para fechar ínfimos e garantir existência.
+- **Alternativas descartadas**:
+  - **Identidade contingência a contingência como gatilho do T^Y**: descartada porque destrói a existência de proposta ótima (T^Y quase nunca acionaria) e porque só aparecia como candidata para permitir que as provas antigas de N4 escapassem do T^Y em fronteiras de veto — motivação que desaparece sob o pacote escolhido.
+  - **T^Y em valor esperado global (não condicional ao evento pivotal)**: absorvida pela formulação escolhida — sob as-if-pivotal a comparação relevante é a pivotal; fora dela os votos ou são payoff-equivalentes ou a Decisão 2 já decide.
+- **Nota de refinamento sobre a nota de 2026-08-12**: a afirmação "na igualdade exata as duas ações de voto são idênticas em todo contingente" era correta nos nós terminais (N1/N2), mas falsa em geral quando um lado é loteria de continuação. A resolução correta é esta Decisão 3: domínios continuam disjuntos (comparação pivotal estrita decide; T^Y decide a igualdade), com igualdade definida em valor esperado.
+
+---
+
+## Consequências assumidas de olhos abertos (o que muda na rederivação de N4)
+
+1. **A segurança S₃ = (1−ν)B deixa de ser exata** — a punição por votos separadores de H com crença invertida é impossível sob a Decisão 1; a segurança do proponente sobe e deve ser rederivada, com efeito sobre a região de atraso.
+2. **O piso de pagamento aos fracos em classes de acordo vira o valor de continuação corrente C** (D = (1−ν)A abaixo de ν*, B acima) — não o B uniforme do §10.3 antigo. Pooling fica mais caro para ν<ν*; propaga para §10.7 e N6.
+3. **A necessidade do lema dos múltiplos vetos passa a valer** (x_k ≤ B para ν≥ν*, e o análogo x_k ≤ D para ν<ν* — a cláusula "nenhuma restrição além da factibilidade" para ν<ν* NÃO sobrevive), com **fronteiras abertas**: em indiferença exata o T^Y força sim, então regiões de veto/atraso são definidas por desigualdades estritas (x_k < limiar). Análogo exato do ultimato, onde o respondente aceita a oferta zero.
+4. **Fronteiras de acordo fecham** (proponente paga exatamente valores de reserva), **fronteiras de veto abrem**. Construções que dependiam de veto em indiferença exata — por exemplo, a mistura pooling/atraso em Y=h via veto de H indiferente — provavelmente não sobrevivem e devem ser reexaminadas.
+5. **§10.3–§10.7 do relatório de provas de 2026-08-21 devem ser rederivados** sob este pacote. §10.1, §10.2 (contabilidade condicionada ao tipo; exaustividade P/L/D; impossibilidade de separação para ν>0) sobrevivem no nível de resultado. N1, N2 não são afetados. N3 não depende de crenças (continuação de maioria é belief-free) — apenas os reparos menores da auditoria (factibilidade, domínio de ν_SP, timing de o_theta) se aplicam.
+6. **A discrepância A-vs-C do caso m=2 (§10.6)** se resolve automaticamente na direção C sob este pacote, mas a seção inteira precisa de rederivação, como o próprio documento de provas já reconhecia.
+
+## Proveniência
+
+| Objeto | Caminho |
+|---|---|
+| Documento de provas auditado | `quality_reports/2026-08-21_essential_input_jogo_e_provas_disponiveis.md` (worktree `codex/essential-input-beta-interior`) |
+| Auditoria (2 passes independentes) | `quality_reports/2026-08-21_game-theory-audit_essential_input.md` (cópias no repo principal e na worktree) |
+| Registro da conversa de decisão | `quality_reports/2026-08-21_conversa_decisao_conceito_solucao.md` |
+| Contrato normativo (inalterado) | `quality_reports/plans/2026-08-12_essential_input_gate0.md` |
