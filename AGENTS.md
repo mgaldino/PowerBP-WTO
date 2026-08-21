@@ -72,6 +72,15 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 >    including inside off-path subtrees; deviations by `H` itself leave beliefs
 >    free. Discarded: literal free beliefs; path-dependent dominance (incoherent —
 >    do not repropose).
+>    **AMENDMENT (endpoints, Decision 1a)**: when the Bayes denominator is zero,
+>    beliefs are free WITHIN the support of the prior — a type with zero prior
+>    probability never receives positive posterior. At nu=0 the posterior is
+>    identically 0 throughout the tree (nu=1: identically 1); endpoints coincide
+>    with the complete-information games (the N7 benchmark). Discarded: structural
+>    pinning to the prescribed type (an action cannot identify a nonexistent
+>    type); free in [0,1] at endpoints (would resurrect the impossible type
+>    off-path). Before any N4 PASS, verify that no off-path endpoint record uses
+>    positive posterior on the zero-prior type.
 > 2. **Weak-state voting: as-if-pivotal.** Expected-value comparison conditional on
 >    the pivotal event; when strict, it decides the vote. Pure admissibility (only
 >    banning weakly dominated votes) was discarded: with ex-post public vote

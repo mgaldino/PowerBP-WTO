@@ -75,6 +75,14 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 >    Só ações de `H` movem crenças, por Bayes dado o perfil, mesmo em subárvores
 >    off-path; desvios do próprio `H` deixam a crença livre. Descartadas: crenças
 >    livres literais; dominância path-dependent (incoerente — não repropor).
+>    **EMENDA (endpoints, Decisão 1a)**: com denominador bayesiano zero, a crença é
+>    livre DENTRO do suporte do prior — tipo com prior zero nunca recebe posterior
+>    positivo. Em ν=0, posterior ≡ 0 em toda a árvore (ν=1: ≡ 1); endpoints
+>    coincidem com informação completa (benchmark N7). Descartadas: pinagem no
+>    tipo prescrito (ação não identifica tipo inexistente); livre em [0,1] no
+>    endpoint (ressuscitaria tipo impossível off-path). Antes de PASS de N4,
+>    verificar que nenhum registro off-path de endpoint usa posterior positivo
+>    no tipo de prior zero.
 > 2. **Votação dos fracos: as-if-pivotal.** Comparação por valor esperado condicional
 >    ao evento pivotal; se estrita, decide o voto. Admissibilidade pura (só proibir
 >    voto fracamente dominado) foi descartada: com vetor público ex post ela deixa
