@@ -81,9 +81,13 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 >    type); free in [0,1] at endpoints (would resurrect the impossible type
 >    off-path). Before any N4 PASS, verify that no off-path endpoint record uses
 >    positive posterior on the zero-prior type. **N2 erratum registered (option
->    A)**: the N2 derivation's sentence about off-path belief multiplicity is to
->    be read as restricted to the prior's support; N2's frozen artifacts must
->    NOT be edited for this — details in the decision record.
+>    A, Codex's canonical text accepted)**: N2's effective interface is the
+>    frozen artifact (`c6a65dc8...a85a2`, byte-identical) read jointly with
+>    Amendment 1a — no belief multiplicity at endpoints; interior unchanged.
+>    It touches `belief_system.off_path_ballot` and `existence_uniqueness_status`
+>    in both cells, the matching derivation passages, and the ledger's
+>    multiplicity claims; no payoff changes. Do NOT edit N2 artifacts — full
+>    text in the decision record.
 > 2. **Weak-state voting: as-if-pivotal.** Expected-value comparison conditional on
 >    the pivotal event; when strict, it decides the vote. Pure admissibility (only
 >    banning weakly dominated votes) was discarded: with ex-post public vote
