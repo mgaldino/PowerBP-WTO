@@ -36,6 +36,21 @@
 
 ---
 
+### EMENDA — Decisão 1a: restrição de suporte nos endpoints do prior (ν=0 e ν=1)
+
+**Origem**: a rederivação cega de N4 parou em `pending protocol decision` ao encontrar uma definição genuinamente faltante: nos endpoints ν=0 e ν=1, uma ação prescrita exclusivamente ao tipo de probabilidade a priori zero produz denominador bayesiano nulo (0/0), e a Decisão 1 não determinava a crença nesse caso. As duas leituras propostas pelos agentes mudavam existência de equilíbrio no endpoint. Decisão autoral registrada após análise.
+
+- **Escolha**: **Restrição de suporte.** Crenças em histórias com denominador bayesiano zero são livres **dentro do suporte do prior**: tipo com probabilidade a priori zero nunca recebe posterior positivo. Em ν=0 isso implica posterior ≡ 0 em toda a árvore (e ≡ 1 em ν=1). No interior 0<ν<1 nada muda: desvios de `H` deixam a crença livre em [0,1], pois ambos os tipos têm prior positivo.
+- **Racional**: (i) em ν=0 o jogo É o jogo de informação completa com H0 — ninguém pode sinalizar ser um tipo que todos sabem inexistir; é o caso-limite do no-signaling. (ii) É a extensão canônica da consistência estrutural: a consistência de Kreps–Wilson implica exatamente isso (com ν=0, todo tremble atribui a ação observada a um erro de H0; o limite dá η=0 sempre), e a definição de PBE de Fudenberg–Tirole impõe que o suporte do posterior nunca cresça. (iii) Alinha os endpoints de N4 com os jogos de θ público que N7 resolve — sem isso, a medição da renda informacional fica mal definida na fronteira.
+- **Alternativas descartadas**:
+  - **Pinagem estrutural no tipo prescrito** (a ação identifica o tipo ao qual foi prescrita, mesmo com prior zero): descartada porque ação não identifica tipo inexistente; destruiria o acordo de informação completa do endpoint (W comprando H0 pela reserva), estenderia a inexistência ao caso de certeza e reabriria o pacote principal — tudo sem respaldo em nenhum conceito da literatura.
+  - **Crença livre literal em [0,1] no endpoint** (a "Opção A" como formulada pelos agentes): descartada porque permitiria ressuscitar o tipo impossível como instrumento off-path — a mesma classe de contabilidade off-path que causou as duas crises anteriores do projeto. No desfecho do endpoint reportado pelos agentes ela coincide com a restrição de suporte; a diferença é o que ela deixaria permitido em registros futuros.
+- **Verificação obrigatória antes de qualquer PASS de N4**: confirmar que nenhuma construção — do N4 principal E da derivação cega — usa, em qualquer registro off-path dos endpoints, posterior positivo no tipo de prior zero. Se nenhuma usa, nada reabre; se alguma usa, é reparo pontual dessa construção, não reabertura do pacote.
+- **Consequência substantiva registrada**: sob esta regra a correspondência é descontínua em ν=0⁺ — com qualquer dose de dúvida a separação some; com certeza, existe (descontinuidade clássica de modelos de reputação, estilo Fudenberg–Levine). É resultado interessante para o paper, não anomalia: incerteza infinitesimal sobre a opção externa do hegemon já destrói a capacidade dos fracos de comprá-lo barato.
+- **Confirmação independente registrada no mesmo ciclo**: a derivação cega confirmou o resultado central da região interior — para 0<ν≤ν* existem propostas fora do caminho cujo ballot não possui equilíbrio puro, inclusive com m=2.
+
+---
+
 ## Consequências assumidas de olhos abertos (o que muda na rederivação de N4)
 
 1. **A segurança S₃ = (1−ν)B deixa de ser exata** — a punição por votos separadores de H com crença invertida é impossível sob a Decisão 1; a segurança do proponente sobe e deve ser rederivada, com efeito sobre a região de atraso.

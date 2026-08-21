@@ -65,6 +65,18 @@ Pacote completo: **no-signaling + consistência estrutural** (crenças), **as-if
 
 Consequências assumidas de olhos abertos (detalhadas no registro de decisão): S₃=(1−ν)B deixa de ser exata; pisos viram C; necessidade do multi-veto passa a valer com fronteiras abertas (e a cláusula ν<ν* "sem restrição" não sobrevive); §10.3–§10.7 rederivar; N1/N2 intactos; N3 afetado só pelos reparos menores.
 
+## 6a. Adendo — episódio dos endpoints durante a rederivação cega de N4 (Decisão 1a)
+
+Na sequência, com o Codex rederivando N3 e N4 sob o pacote decidido, a derivação cega de N4 parou em `pending protocol decision`: nos endpoints ν=0 e ν=1, uma ação prescrita exclusivamente ao tipo de probabilidade a priori zero produz denominador bayesiano nulo (0/0), e o pacote não determinava a crença. Os agentes propuseram um binário — "crença livre em [0,1]" vs. "pinagem estrutural no tipo prescrito" — e o orquestrador recomendou a primeira, invocando "a leitura padrão de PBE".
+
+A análise nesta sessão mostrou que o binário era falso: a resposta canônica é a terceira leitura, **restrição de suporte** (crenças livres dentro do suporte do prior; tipo com prior zero nunca recebe posterior positivo; em ν=0, posterior ≡ 0 na árvore inteira). Argumentos: em ν=0 o jogo É o de informação completa (caso-limite do no-signaling: não se sinaliza ser o que todos sabem que você não é); Kreps–Wilson implica a restrição automaticamente via trembles; Fudenberg–Tirole a impõe na definição de PBE (suporte do posterior nunca cresce); e ela alinha os endpoints de N4 com o benchmark N7 de θ público. A pinagem estrutural destruiria o acordo de informação completa do endpoint e reabriria o pacote; a crença livre literal permitiria ressuscitar o tipo impossível como instrumento off-path — a mesma classe de contabilidade que causou as crises anteriores.
+
+O autor bateu o martelo na restrição de suporte e enviou a decisão ao Codex, com a verificação obrigatória antes de PASS (nenhum registro off-path de endpoint, do N4 principal ou da derivação cega, pode usar posterior positivo no tipo de prior zero). Registrada também a consequência substantiva: descontinuidade da correspondência em ν=0⁺ (reputação à la Fudenberg–Levine) — incerteza infinitesimal sobre a opção externa do hegemon já destrói a compra barata de H0 pelos fracos; é resultado para o paper, não anomalia. No mesmo ciclo, a derivação cega confirmou independentemente a inexistência de equilíbrio puro no ballot para propostas off-path com 0<ν≤ν*, inclusive com m=2.
+
+Formalização: seção "EMENDA — Decisão 1a" em `2026-08-21_decisao_conceito_solucao_essential_input.md`; destaques atualizados em CLAUDE.md e AGENTS.md.
+
+Neste mesmo período o autor validou dois pontos de protocolo: (i) a exigência de registrar toda multiplicidade, inclusive off-path, antes de PASS — rastreada às cláusulas P0, P4, P6, ao envelope de cobertura (§10) e ao PASS 0/0/0 (§11) do contrato Gate 0, e avaliada como correta (completude é o claim certificado; interfaces off-path alimentam N6/N7); (ii) a intuição pré-derivação sobre unanimidade: nenhuma separação pelo voto de H sobrevive em R1 para ν>0 (nem pivotal nem por voto informativo não pivotal — o tipo baixo sempre imita; o voto é cheap talk sem single-crossing), separação vive só no screening terminal de R2; a renda do tipo baixo vive no pooling (h−ℓ). Registrado como intuição, não resultado — a derivação cega deve chegar lá por conta própria.
+
 ## 7. Artefatos produzidos na sessão
 
 1. `quality_reports/2026-08-21_game-theory-audit_essential_input.md` — auditoria completa (2 passes), no repo principal e na worktree `725d`.
