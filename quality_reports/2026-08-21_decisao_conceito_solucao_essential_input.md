@@ -67,6 +67,22 @@ Notas de proveniência: hash da interface verificado intacto e idêntico em toda
 5. **§10.3–§10.7 do relatório de provas de 2026-08-21 devem ser rederivados** sob este pacote. §10.1, §10.2 (contabilidade condicionada ao tipo; exaustividade P/L/D; impossibilidade de separação para ν>0) sobrevivem no nível de resultado. N1, N2 não são afetados. N3 não depende de crenças (continuação de maioria é belief-free) — apenas os reparos menores da auditoria (factibilidade, domínio de ν_SP, timing de o_theta) se aplicam.
 6. **A discrepância A-vs-C do caso m=2 (§10.6)** se resolve automaticamente na direção C sob este pacote, mas a seção inteira precisa de rederivação, como o próprio documento de provas já reconhecia.
 
+## AUTORIZAÇÃO DE N6 (2026-08-21, decisão do autor)
+
+### Decisão: escopo e tratamento da região sem equilíbrio puro em N6
+
+- **Escolha**: N6 autorizado com seis cláusulas: (1) comparação privada apenas — rendas, benchmark público, RI_U, RI_M e ΔRI são entregáveis exclusivos de N7, que só abre após N6 frozen; (2) mesmo ponto do espaço de parâmetros, m≥3, somente onde ambas as regras têm PBE puro sob o conceito fixado; (3) região 0<ν≤ν* como células isoladas com existence_status=none, certificado técnico com a intuição do ciclo (voto informativo de H ↔ cálculo as-if-pivotal dos fracos), sem imputação de payoff; conceito do paper permanece PBE em estratégias puras por decisão autoral — extensões com aleatorização fora do escopo do baseline; eventual remark de robustez de existência é decisão exclusiva do Goal 5; (4) multiplicidade de fronteira de N3 por reporte exato de conjuntos, sem média sobre o espaço de parâmetros como métrica; (5) permutações de identidades fracas quocientáveis no reporte, preservando o registro por identidade; (6) N6 não abre antes de N3 e N4 frozen com dois PASS 0/0/0 cada, incluída a verificação de endpoints da Emenda 1a (N4 principal e derivação cega).
+- **Alternativas descartadas**:
+  - **Imputar payoff na região vazia**: descartada — o contrato prescreve RI_g vazio e ΔRI vazio, sem ordenação institucional robusta onde ΔRI é vazio.
+  - **Abrir agora extensão com votos mistos**: descartada — o autor analisa somente estratégias puras; nota registrada de que um eventual reparo futuro ("puro no caminho, misto só em ballots off-path") jamais colocaria mistura nas predições, mas a decisão de sequer mencioná-lo como remark pertence ao Goal 5. Anteriormente esta rota constava como "adiada"; a formulação vigente é "fora do escopo do baseline por decisão autoral".
+  - **Calcular rendas dentro de N6**: descartada — viola a fronteira N6/N7 do contrato ("o benchmark público não é argumento, continuação nem saída obrigatória" de N1–N6).
+  - **Média sobre o espaço de parâmetros como métrica**: descartada — não existe no contrato; a única agregação prevista é a imagem ex ante aplicando o prior ν aos vetores de payoff.
+  - **Comparação sem restrição de m**: descartada — m=2 é periférico e matematicamente delicado; permanece registrado como provisório, fora da comparação. Efeito colateral eliminado pela decisão do exemplo motivador em N=5 (m=4).
+
+### Nota autoral registrada para o Goal 5 — interpretação qualitativa da inexistência
+
+Hipótese do autor (2026-08-21), para a Discussion do manuscrito, nunca como teorema: a região sem PBE puro (0<ν≤ν*) pode ser lida como **instabilidade institucional sob declínio hegemônico contestado**. Com ν alto (força do hegemon crível), pooling existe e H extrai a renda — a organização "funciona" (ilustração: OMC com os EUA no auge). Com ν baixo mas positivo (declínio contestado), os fracos querem pagar só o mínimo, o hegemon depende da dúvida sobre sua força, e nenhum padrão puro de votação é estável — o ballot cicla à la matching pennies. Em ν=0 exato (fraqueza como conhecimento comum, Emenda 1a), o equilíbrio reaparece: informação completa, H comprado barato. Estabilidade com hegemonia crível OU fraqueza consensual; instabilidade na zona contestada. Guardrails obrigatórios: (i) o resultado é relativo ao conceito declarado (PBE puro); âncora de precedente: ciclos de Edgeworth em competição de preços (inexistência de equilíbrio puro lida como instabilidade real); (ii) remark qualitativo, sem linguagem de equilíbrio de atraso nem dinâmica além de duas rodadas; (iii) a aplicação move ν ("a crença na força ficou rara"), não o₀/o₁. Esta interpretação NÃO entra em nenhum artefato de N6.
+
 ## Proveniência
 
 | Objeto | Caminho |

@@ -544,7 +544,11 @@ Roadmap detalhado em `quality_reports/2026-04-29_lean_v5_roadmap.md`. Resumo:
 - **Paper é documento atemporal**: NUNCA referenciar versões anteriores ou mudanças. Escrever como se o leitor visse pela primeira vez.
 - Notas em Markdown, modelo formal em Rmd → PDF
 - Idioma: português para notas; inglês para o paper
-- N genérico sempre (N=3 apenas no exemplo motivador Seção 2)
+- N genérico sempre. Exemplo motivador (Seção 2): usar **N=5** (decisão do autor,
+  2026-08-21 — ímpar evita empates de maioria e fica dentro do domínio m≥3 da
+  comparação; N=3 era a versão antiga). O exemplo atual em `formal_model_v6.Rmd`
+  ainda usa N=3 e linguagem de opt-out imediato, ambos superados; reescrever na
+  migração Goal 5 a partir das interfaces congeladas.
 - Sob maioria no clean reset: W **pode** excluir H, mas exclusão/no-screening é
   um resultado a rederivar, não uma convenção. A frase histórica “W exclui H”
   vale apenas no branch no-H das provas corrigidas anteriores. Em qualquer
