@@ -6,6 +6,10 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 
 ## Current Status
 
+- **Essential-input chain (2026-08-21):** N1--N4 and N6 are `pass/frozen`,
+  each on a final hash with two independent PASS 0/0/0 reviews; N5 is absent
+  from the DAG; N7 is `pending/null` and has not been started.
+
 > ## CURRENT ARCHITECTURE — essential-input (2026-08-12)
 >
 > **The governing contract is

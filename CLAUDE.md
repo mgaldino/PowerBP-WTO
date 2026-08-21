@@ -15,6 +15,10 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 
 ## Status
 
+- **Cadeia essential-input (2026-08-21):** N1--N4 e N6 estão `pass/frozen`,
+  cada um no hash final com dois pareceres independentes PASS 0/0/0; N5 não
+  integra o DAG; N7 está `pending/null` e não foi iniciado.
+
 > ## ARQUITETURA CORRENTE — essential-input (2026-08-12)
 >
 > **O contrato normativo é
