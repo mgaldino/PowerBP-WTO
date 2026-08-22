@@ -91,3 +91,9 @@ Neste mesmo período o autor validou dois pontos de protocolo: (i) a exigência 
 2. `quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md` — registro formal da decisão com alternativas descartadas.
 3. Este registro de conversa.
 4. Destaques em `CLAUDE.md` e `AGENTS.md` apontando para a decisão.
+
+## 8. Adendo — descoberta substantiva via Figura F1 e registro PENDENTE (2026-08-21, final da sessão)
+
+A auditoria visual do round 2 das figuras (`2026-08-21_visual_audit_figuras_narrativa_round2.md`) mostrou que, acima do limiar de hegemonia (o₁ > 1/m) e com ν > ν*, o tipo fraco de H prefere unanimidade e o tipo forte prefere maioria — porque a exclusão sob maioria paga o₁ sem desconto no round 1, enquanto a unanimidade paga a reserva descontada β·o₁. O autor leu corretamente: o tipo forte não precisa da instituição; falta na utilidade de H o benefício direto de membership (b_θ), zerado de propósito no baseline. Discussão: (i) a convenção de timing de o_θ é load-bearing (item M6 da auditoria das provas); (ii) b_θ = 0 implica "só o hegemon cuja força é superestimada valoriza o consenso" — enunciado do mecanismo, não defeito; (iii) a comparação ex ante dá uma janela de construção de consenso ν* < ν < ν̂ = (β·o₁−o₀)/[(β·o₁−o₀)+(1−β)·o₁] (exemplo do paper: 0.278 < ν < 0.86), com leitura "consenso é a instituição do hegemon paciente cuja força é crível mas contestável", posicionável contra Gruber (go-it-alone power) e Ikenberry (strategic restraint).
+
+O autor pediu registro **pendente de revisão** ("preciso pensar"): itens P1 (timing de o_θ), P2 (b_θ = 0 e consequência), P3 (janela ex ante como candidata a proposição) estão no registro de decisão sob status PENDENTE, sem autorização de derivação ou enunciado. Única ação liberada: faceta ex ante na F1 (imagem ex ante do contrato, não derivação nova).

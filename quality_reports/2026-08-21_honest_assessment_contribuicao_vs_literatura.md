@@ -49,3 +49,11 @@
 - [ ] Goal 5, introdução benchmark-primeiro: (i) informação completa = poder puro (Miller et al.); (ii) preços de informados por regra = P–V/GTX; (iii) novidade: composição de coalizão com substitutos não informados, decomposição ΔRI, limiar de hegemonia, consenso sem agenda power como tecnologia de poder.
 - [ ] Parágrafo de conceito comparando nosso pacote com o de P–V (D1 + mistura + proposer-preferred) e explicando a região de inexistência.
 - [ ] Quando N6/N7 fecharem: verificar a projeção o₁ vs 1/m; se confirmada, promover a resultado central.
+
+## Adendo v3 — confronto da projeção com N7 congelado (2026-08-21)
+
+N7 (`pass/frozen`, interface `4e0169de...49c45`) fecha as rendas. Notação de N7: d = β(o₁−o₀) > 0; k = β·o₁ − o₀; a_θ = (1−β)·o_θ. Regiões públicas de maioria: II (o₁ ≤ 1/m, hegemon fraco), IX (o₀ ≤ 1/m < o₁, hegemonia), XX (1/m < o₀). Sob unanimidade, RI_U = (d, 0) para ν > ν* (renda de pooling, toda do tipo fraco), vazia em (0, ν*], (0,0) em ν=0.
+
+**A projeção "ΔRI liga em o₁ > 1/m" foi parcialmente confirmada e precisa ser refinada.** Para ν > ν*: na região II, ΔRI = (0,0) quando a maioria também faz pooling (classe P) — como projetado —, mas (d,0) quando a maioria faz screening (S) e (k, −a₁) quando exclui (E). Nas regiões IX e XX, ΔRI tem coordenada do tipo fraco positiva (d ou k, com k > 0 sse β·o₁ > o₀). **Enunciado correto**: a unanimidade acrescenta renda informacional ao tipo fraco em toda parte, EXCETO onde a maioria já paga o preço de pooling (hegemon fraco com força crível alta); o limiar o₁ vs 1/m governa isso porque acima dele a maioria nunca faz pooling (exclui). A dependência é por célula, não uma chave única em o₁.
+
+**Os termos a_θ = (1−β)·o_θ são exatamente a cunha de timing (P1).** Toda coordenada do tipo forte em ΔRI (±a₁) e a diferença entre "exclusão" e "compra" nas rendas de maioria vêm da convenção de que a exclusão em R1 paga o_θ sem desconto. Sob a convenção alternativa, a_θ ≡ 0, a coordenada do tipo forte é sempre zero e as tabelas colapsam em {(0,0), (d,0), (k,0)}: só d e k — os objetos informacionais — sobrevivem. Isso torna a decisão P1 nítida: ela decide se o paper tem um efeito de timing sobre o tipo forte ou só o efeito informacional sobre o tipo fraco.
