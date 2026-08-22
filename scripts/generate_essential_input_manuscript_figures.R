@@ -88,6 +88,13 @@ if (!skip_f1) {
   slices <- c(0.50, 0.25, 0.75)
   if (include_example_slice) slices <- c(slices, 2 / 7)
   for (kappa in slices) {
+    checked_points <- ei_verify_f1_ex_ante_partition(
+      kappa = kappa, m = 4L, beta = 0.90
+    )
+    cat(sprintf(
+      "F1_EX_ANTE_PRIOR_IMAGE: PASS — kappa=%.6f, checked_points=%d\n",
+      kappa, checked_points
+    ))
     for (vertical_scale in c("raw", "normalized")) {
       example <- NULL
       if (abs(kappa - 2 / 7) < 1e-12) {
@@ -108,7 +115,7 @@ if (!skip_f1) {
         prefix = paste0(
           "figure_f1_institutional_map_kappa", kappa_code, "_", vertical_scale
         ),
-        plot = plot, width = 10.8, height = 7.0
+        plot = plot, width = 13.4, height = 7.4
       )
     }
   }
@@ -121,7 +128,7 @@ f2_data <- essential_input_f2_data(
 register(
   prefix = "figure_f2_prices_coalition_anatomy_n5",
   plot = plot_essential_input_f2(f2_data),
-  width = 10.6, height = 9.6
+  width = 10.6, height = 10.4
 )
 
 for (x_scale in c("raw", "normalized")) {

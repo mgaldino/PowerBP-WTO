@@ -92,7 +92,8 @@ ei_compose_vertical <- function(plots, heights, title, caption) {
     gp = grid::gpar(fontsize = 14, fontface = "bold", col = "#1D2630")
   )
   caption_grob <- grid::textGrob(
-    ei_wrap_text(caption), x = grid::unit(0, "npc"), hjust = 0, vjust = 1,
+    ei_wrap_text(caption),
+    x = grid::unit(0, "npc"), y = grid::unit(1, "npc"), hjust = 0, vjust = 1,
     gp = grid::gpar(fontsize = 8.2, col = "#46515C", lineheight = 0.98)
   )
   layout <- gtable::gtable(
@@ -153,8 +154,107 @@ ei_f1_cutoff_functions <- function(kappa, m, beta) {
     nu_SE = function(o_1) {
       beta * (1 / m - kappa * o_1) /
         (beta * (1 / m - kappa * o_1) + 1 - beta * q / m)
-    }
+    },
+    nu_XA = function(o_1) rep((beta - kappa) / (1 - kappa), length(o_1))
   )
+}
+
+# N6 passes through the complete type-payoff vectors from the frozen N3 and N4
+# interfaces.  This helper forms their ex ante image by applying the same prior
+# (1-nu, nu) to every selected vector before taking unanimity minus majority.
+# It introduces no new equilibrium selection or public-information benchmark.
+ei_n6_prior_weighted_private_comparison <- function(o_0, o_1, m, beta, nu) {
+  majority <- n3_closed_form(m + 1L, o_0, o_1, beta, nu)
+  unanimity <- n4_closed_form(m + 1L, o_0, o_1, beta, nu)
+  if (!identical(unanimity$existence_status, "exists")) {
+    return(list(
+      existence_status = "none",
+      region = "No comparison: no pure-vote PBE (unanimity)",
+      majority_ex_ante = numeric(0), unanimity_ex_ante = NA_real_,
+      contrast = numeric(0), majority_classes = majority$selected_classes
+    ))
+  }
+  majority_vectors <- majority$selected_table[, c("H_theta_0", "H_theta_1"), drop = FALSE]
+  majority_ex_ante <-
+    (1 - nu) * majority_vectors$H_theta_0 + nu * majority_vectors$H_theta_1
+  unanimity_vector <- unanimity$hegemon_payoff[c("theta_0", "theta_1")]
+  unanimity_ex_ante <- (1 - nu) * unanimity_vector[[1L]] + nu * unanimity_vector[[2L]]
+  contrast <- unanimity_ex_ante - majority_ex_ante
+  tolerance <- 1e-10
+  region <- if (all(contrast > tolerance)) {
+    "H prefers unanimity"
+  } else if (all(contrast < -tolerance)) {
+    "H prefers majority"
+  } else if (all(abs(contrast) <= tolerance)) {
+    "H indifferent"
+  } else {
+    "No robust comparison: selected payoff image crosses zero"
+  }
+  list(
+    existence_status = "exists", region = region,
+    majority_ex_ante = majority_ex_ante,
+    unanimity_ex_ante = unanimity_ex_ante,
+    contrast = contrast,
+    majority_classes = majority$selected_classes
+  )
+}
+
+ei_verify_f1_ex_ante_partition <- function(kappa, m, beta) {
+  functions <- ei_f1_cutoff_functions(kappa, m, beta)
+  substitute_cost <- 1 / m
+  o_1_values <- sort(unique(c(
+    seq(0.04, 0.96, length.out = 19L),
+    substitute_cost - 0.015, substitute_cost + 0.015
+  )))
+  o_1_values <- o_1_values[o_1_values > 0 & o_1_values < 1]
+  nu_values <- seq(0.02, 0.98, length.out = 31L)
+  checked <- 0L
+  for (o_1 in o_1_values) {
+    if (abs(o_1 - substitute_cost) < 1e-8) next
+    o_0 <- kappa * o_1
+    nu_star <- functions$nu_star(o_1)
+    second_boundary <- if (o_1 < substitute_cost) {
+      functions$nu_SP(o_1)
+    } else {
+      functions$nu_XA(o_1)
+    }
+    for (nu in nu_values) {
+      if (abs(nu - nu_star) < 1e-6 || abs(nu - second_boundary) < 1e-6) next
+      expected <- if (nu <= nu_star) {
+        "No comparison: no pure-vote PBE (unanimity)"
+      } else if (o_1 < substitute_cost) {
+        if (nu < second_boundary) "H prefers unanimity" else "H indifferent"
+      } else {
+        if (nu < second_boundary) "H prefers unanimity" else "H prefers majority"
+      }
+      observed <- ei_n6_prior_weighted_private_comparison(
+        o_0, o_1, m, beta, nu
+      )$region
+      if (!identical(observed, expected)) {
+        stop(
+          sprintf(
+            "F1 ex ante partition mismatch at kappa=%.6f, o1=%.6f, nu=%.6f: expected '%s', observed '%s'.",
+            kappa, o_1, nu, expected, observed
+          ),
+          call. = FALSE
+        )
+      }
+      checked <- checked + 1L
+    }
+  }
+  endpoint_o_1 <- c(0.10, 0.95)
+  for (o_1 in endpoint_o_1) {
+    o_0 <- kappa * o_1
+    expected <- if (o_0 <= substitute_cost) "H indifferent" else "H prefers majority"
+    observed <- ei_n6_prior_weighted_private_comparison(
+      o_0, o_1, m, beta, 0
+    )$region
+    if (!identical(observed, expected)) {
+      stop("F1 ex ante endpoint partition mismatch.", call. = FALSE)
+    }
+    checked <- checked + 1L
+  }
+  invisible(checked)
 }
 
 ei_f1_crossing_o1 <- function(kappa, m, beta, functions) {
@@ -181,6 +281,12 @@ essential_input_f1_data <- function(
   substitute_cost <- 1 / m
   crossing_upper <- min(1, 1 / (m * kappa))
   crossing_root <- ei_f1_crossing_o1(kappa, m, beta, functions)
+  ex_ante_cutoff <- functions$nu_XA(0.5)
+  ex_ante_crossing <- ex_ante_cutoff /
+    (1 - kappa + kappa * ex_ante_cutoff)
+  comparison_views <- c(
+    "Low type", "High type", "Ex ante (before H learns its type)"
+  )
 
   low_o1 <- seq(epsilon, substitute_cost, length.out = resolution)
   high_o1 <- seq(substitute_cost, 1 - epsilon, length.out = resolution)
@@ -188,7 +294,7 @@ essential_input_f1_data <- function(
   crossing_high <- seq(crossing_root, 1 - epsilon, length.out = resolution)
   all_o1 <- seq(epsilon, 1 - epsilon, length.out = resolution)
 
-  none_region <- lapply(c("Low type", "High type"), function(type) {
+  none_region <- lapply(comparison_views, function(type) {
     ei_curve_band_polygon(
       all_o1, function(y) rep(0, length(y)), functions$nu_star,
       "No comparison: no pure-vote PBE (unanimity)", type,
@@ -230,11 +336,47 @@ essential_input_f1_data <- function(
     )
   )
 
-  regions <- ei_safe_rbind(c(none_region, low_type_regions, high_type_regions))
+  ex_ante_above_low <- seq(
+    substitute_cost, min(ex_ante_crossing, 1 - epsilon), length.out = resolution
+  )
+  ex_ante_above_high <- seq(
+    max(ex_ante_crossing, substitute_cost), 1 - epsilon, length.out = resolution
+  )
+  ex_ante_regions <- list(
+    ei_curve_band_polygon(
+      low_o1, functions$nu_star, functions$nu_SP,
+      "H prefers unanimity", "Ex ante (before H learns its type)",
+      "ex_ante_u_below", multiplier
+    ),
+    ei_curve_band_polygon(
+      low_o1, functions$nu_SP, function(y) rep(1, length(y)),
+      "H indifferent", "Ex ante (before H learns its type)",
+      "ex_ante_i_below", multiplier
+    ),
+    ei_curve_band_polygon(
+      ex_ante_above_low, functions$nu_star, functions$nu_XA,
+      "H prefers unanimity", "Ex ante (before H learns its type)",
+      "ex_ante_u_above", multiplier
+    ),
+    ei_curve_band_polygon(
+      ex_ante_above_low, functions$nu_XA, function(y) rep(1, length(y)),
+      "H prefers majority", "Ex ante (before H learns its type)",
+      "ex_ante_m_above_before_crossing", multiplier
+    ),
+    ei_curve_band_polygon(
+      ex_ante_above_high, functions$nu_star, function(y) rep(1, length(y)),
+      "H prefers majority", "Ex ante (before H learns its type)",
+      "ex_ante_m_above_after_crossing", multiplier
+    )
+  )
+
+  regions <- ei_safe_rbind(c(
+    none_region, low_type_regions, high_type_regions, ex_ante_regions
+  ))
 
   frontier_rows <- list()
-  add_frontier <- function(name, y_values, x_values) {
-    do.call(rbind, lapply(c("Low type", "High type"), function(type) {
+  add_frontier <- function(name, y_values, x_values, views = comparison_views) {
+    do.call(rbind, lapply(views, function(type) {
       data.frame(
         nu = x_values,
         vertical_value = y_values * multiplier,
@@ -247,11 +389,20 @@ essential_input_f1_data <- function(
     }))
   }
   frontier_rows[[1L]] <- add_frontier("nu_star", all_o1, functions$nu_star(all_o1))
-  frontier_rows[[2L]] <- add_frontier("nu_SP", low_o1, functions$nu_SP(low_o1))
+  frontier_rows[[2L]] <- add_frontier(
+    "nu_SP", low_o1, functions$nu_SP(low_o1),
+    c("Low type", "Ex ante (before H learns its type)")
+  )
   valid_se_o1 <- seq(substitute_cost, crossing_upper - epsilon, length.out = resolution)
-  frontier_rows[[3L]] <- add_frontier("nu_SE", valid_se_o1, functions$nu_SE(valid_se_o1))
+  frontier_rows[[3L]] <- add_frontier(
+    "nu_SE", valid_se_o1, functions$nu_SE(valid_se_o1), "High type"
+  )
   frontier_rows[[4L]] <- add_frontier(
     "substitute_cost", c(substitute_cost, substitute_cost), c(0, 1)
+  )
+  frontier_rows[[5L]] <- add_frontier(
+    "nu_XA", ex_ante_above_low, functions$nu_XA(ex_ante_above_low),
+    "Ex ante (before H learns its type)"
   )
   frontiers <- ei_safe_rbind(frontier_rows)
 
@@ -264,7 +415,7 @@ essential_input_f1_data <- function(
       stringsAsFactors = FALSE
     )[0, , drop = FALSE]
   ))
-  endpoint <- do.call(rbind, lapply(c("Low type", "High type"), function(type) {
+  endpoint <- do.call(rbind, lapply(comparison_views, function(type) {
     pieces <- list(data.frame(
       nu = c(0, 0), vertical_value = c(epsilon, endpoint_threshold) * multiplier,
       region = "H indifferent", hegemon_type = type,
@@ -284,7 +435,7 @@ essential_input_f1_data <- function(
 
   hatch_rows <- list()
   hatch_index <- 0L
-  for (type in c("Low type", "High type")) {
+  for (type in comparison_views) {
     for (o_1 in seq(0.04, 0.96, by = 0.045)) {
       maximum <- functions$nu_star(o_1)
       if (!is.finite(maximum) || maximum - 0.018 < 0.012) next
@@ -305,17 +456,21 @@ essential_input_f1_data <- function(
   hatch <- ei_safe_rbind(hatch_rows)
 
   example_rows <- data.frame()
+  example_ex_ante <- NULL
   if (!is.null(example)) {
     required <- c("nu", "o_0", "o_1")
     if (!all(required %in% names(example))) stop("example is missing required fields.", call. = FALSE)
     if (abs(example$o_0 / example$o_1 - kappa) > 1e-10) {
       stop("The worked example does not belong to the requested kappa slice.", call. = FALSE)
     }
+    example_ex_ante <- ei_n6_prior_weighted_private_comparison(
+      example$o_0, example$o_1, m, beta, example$nu
+    )
     example_rows <- data.frame(
-      nu = rep(example$nu, 2L),
-      vertical_value = rep(example$o_1 * multiplier, 2L),
+      nu = rep(example$nu, length(comparison_views)),
+      vertical_value = rep(example$o_1 * multiplier, length(comparison_views)),
       region = "Worked example",
-      hegemon_type = c("Low type", "High type"),
+      hegemon_type = comparison_views,
       polygon_id = NA_character_, record_type = "worked_example",
       stringsAsFactors = FALSE
     )
@@ -327,10 +482,13 @@ essential_input_f1_data <- function(
     endpoint = endpoint,
     hatch = hatch,
     example = example_rows,
+    example_ex_ante = example_ex_ante,
     constants = list(
       kappa = kappa, m = m, beta = beta, q = functions$q,
       substitute_cost = substitute_cost, vertical_scale = vertical_scale,
-      multiplier = multiplier, crossing_root = crossing_root
+      multiplier = multiplier, crossing_root = crossing_root,
+      ex_ante_cutoff = ex_ante_cutoff, ex_ante_crossing = ex_ante_crossing,
+      comparison_views = comparison_views
     )
   )
 }
@@ -383,12 +541,12 @@ plot_essential_input_f1 <- function(data_object, figure_label = "Figure F1") {
       linewidth = 2.1, show.legend = FALSE
     ) +
     ggplot2::facet_wrap(
-      ~factor(hegemon_type, levels = c("Low type", "High type")), nrow = 1
+      ~factor(hegemon_type, levels = constants$comparison_views), nrow = 1
     ) +
     ggplot2::scale_fill_manual(values = ei_response_palette, drop = FALSE) +
     ggplot2::scale_colour_manual(values = ei_response_palette, drop = FALSE) +
     ggplot2::scale_linetype_manual(
-      values = c(nu_star = "solid", nu_SP = "22", nu_SE = "42")
+      values = c(nu_star = "solid", nu_SP = "22", nu_SE = "42", nu_XA = "11")
     ) +
     ggplot2::scale_x_continuous(
       limits = c(0, 1), breaks = seq(0, 1, by = 0.2), expand = c(0, 0)
@@ -399,30 +557,31 @@ plot_essential_input_f1 <- function(data_object, figure_label = "Figure F1") {
       expand = c(0, 0)
     ) +
     ggplot2::labs(
-      title = paste0(figure_label, ". Institutional preference depends on type and substitutability"),
+      title = paste0(figure_label, ". Institutional preference depends on type and ex ante exposure"),
       subtitle = sprintf(
         "Outside-option slice o0 = %.3f x o1; m = %d weak states; beta = %.2f",
         constants$kappa, constants$m, constants$beta
       ),
       x = "Prior probability of the strong type, nu",
       y = y_label,
-      fill = "Private-rule comparison",
+      fill = "H's payoff comparison (private information)",
       linetype = "Analytical boundary",
       caption = ei_wrap_text(paste0(
-        "Colored polygons report the type-specific payoff comparison between unanimity and majority. ",
+        "Colored polygons report the payoff comparison between unanimity and majority. The first two panels condition on H's type. ",
+        "The ex ante panel applies the prior weights (1-nu, nu) to every type-payoff vector passed through the frozen N6 interface before taking unanimity minus majority; it adds no equilibrium selection or public benchmark. ",
         "The neutral hatched region has no comparison because unanimity has no pure-vote PBE. ",
         "The left-edge segments report the distinct complete-information endpoint at nu = 0. ",
         "Boundaries are nu* = (1-kappa)o1/(1-kappa o1), nu_SP = beta(1-kappa)o1/[1-beta kappa o1-beta(q-1)/m], ",
-        "and nu_SE = beta(1/m-kappa o1)/[beta(1/m-kappa o1)+1-beta q/m]. ",
+        "nu_SE = beta(1/m-kappa o1)/[beta(1/m-kappa o1)+1-beta q/m], and nu_XA = (beta-kappa)/(1-kappa) on the majority-exclusion branch. ",
         threshold_caption,
-        "Note: Model-generated regions; all boundaries closed-form."
-      ), width = 150L)
+        "Note: Model-generated regions from the frozen private-information payoff vectors; all boundaries closed-form."
+      ), width = 175L)
     ) +
     ei_manuscript_theme(10.3) +
     ggplot2::theme(
-      panel.spacing.x = grid::unit(2.0, "lines"),
+      panel.spacing.x = grid::unit(1.35, "lines"),
       legend.box = "vertical",
-      plot.caption = ggplot2::element_text(hjust = 0, size = 7.6)
+      plot.caption = ggplot2::element_text(hjust = 0, size = 7.3)
     )
 
   label_data <- data.frame(
@@ -432,13 +591,24 @@ plot_essential_input_f1 <- function(data_object, figure_label = "Figure F1") {
       0.55,
       0.82,
       0.55,
-      0.74
+      0.74,
+      0.52,
+      0.88,
+      0.55,
+      0.90
     ),
-    vertical_value = c(0.60, 0.08, 0.91, 0.08, 0.91, 0.62) * y_max,
-    hegemon_type = c("Low type", "Low type", "Low type", "High type", "High type", "High type"),
+    vertical_value = c(
+      0.60, 0.08, 0.91, 0.08, 0.91, 0.62, 0.60, 0.08, 0.91, 0.62
+    ) * y_max,
+    hegemon_type = c(
+      "Low type", "Low type", "Low type",
+      "High type", "High type", "High type",
+      rep("Ex ante (before H learns its type)", 4L)
+    ),
     label = c(
       "Unanimity", "Indifferent", "No comparison",
-      "Indifferent", "No comparison", "Majority"
+      "Indifferent", "No comparison", "Majority",
+      "Unanimity", "Indifferent", "No comparison", "Majority"
     ),
     stringsAsFactors = FALSE
   )
@@ -453,29 +623,33 @@ plot_essential_input_f1 <- function(data_object, figure_label = "Figure F1") {
   sp_o1 <- 0.18
   se_upper <- min(1, 1 / (constants$m * constants$kappa))
   se_o1 <- (constants$substitute_cost + se_upper) / 2
+  xa_o1 <- (constants$substitute_cost + constants$ex_ante_crossing) / 2
   formula_labels <- data.frame(
     nu = c(
       functions$nu_star(star_o1),
       functions$nu_SP(sp_o1),
       functions$nu_SE(se_o1),
+      functions$nu_XA(xa_o1),
       0.78
     ),
     vertical_value = c(
-      star_o1, sp_o1, se_o1, constants$substitute_cost
+      star_o1, sp_o1, se_o1, xa_o1, constants$substitute_cost
     ) * constants$multiplier,
-    hegemon_type = c("Low type", "Low type", "High type", "High type"),
+    hegemon_type = c(
+      "Low type", "Low type", "High type",
+      "Ex ante (before H learns its type)",
+      "Ex ante (before H learns its type)"
+    ),
     label = c(
-      "nu* = (1-kappa)o1 /\n(1-kappa o1)",
-      "nu_SP = beta(1-kappa)o1 /\n[1-beta kappa o1-beta(q-1)/m]",
-      "nu_SE = beta(1/m-kappa o1) /\n[beta(1/m-kappa o1)+1-beta q/m]",
+      "nu*", "nu_SP", "nu_SE", "nu_XA",
       if (constants$vertical_scale == "raw") {
-        "substitute cost: o1 = 1/m"
+        "o1 = 1/m"
       } else {
-        "hegemony threshold: m x o1 = 1"
+        "m x o1 = 1"
       }
     ),
-    hjust = c(1, 0, 0, 0),
-    vjust = c(-0.08, -0.08, -0.08, -0.12),
+    hjust = c(1, 0, 0, 0, 0),
+    vjust = c(-0.12, -0.12, -0.12, -0.12, -0.12),
     stringsAsFactors = FALSE
   )
   plot <- plot + ggplot2::geom_label(
@@ -489,6 +663,20 @@ plot_essential_input_f1 <- function(data_object, figure_label = "Figure F1") {
   )
 
   if (nrow(data_object$example) > 0L) {
+    example_label <- if (!is.null(data_object$example_ex_ante)) {
+      ifelse(
+        data_object$example$hegemon_type == "Ex ante (before H learns its type)",
+        paste0(
+          "worked example:\n",
+          sub("^H prefers ", "", data_object$example_ex_ante$region), " ex ante"
+        ),
+        "worked example"
+      )
+    } else {
+      rep("worked example", nrow(data_object$example))
+    }
+    example_text <- data_object$example
+    example_text$label <- example_label
     plot <- plot +
       ggplot2::geom_point(
         data = data_object$example,
@@ -497,10 +685,10 @@ plot_essential_input_f1 <- function(data_object, figure_label = "Figure F1") {
         fill = "white", colour = "black"
       ) +
       ggplot2::geom_text(
-        data = data_object$example,
-        ggplot2::aes(x = nu, y = vertical_value, label = "worked example"),
+        data = example_text,
+        ggplot2::aes(x = nu, y = vertical_value, label = label),
         inherit.aes = FALSE, nudge_x = 0.035, nudge_y = 0.025 * y_max,
-        hjust = 0, size = 2.7
+        hjust = 0, size = 2.55
       )
   }
   attr(plot, "figure_data") <- ei_safe_rbind(list(
@@ -579,7 +767,7 @@ essential_input_f2_data <- function(
     levels = c("Substitute votes", "Weak-state floors", "Concession to H", "Proposer residual")
   )
   outside_markers <- data.frame(
-    rule = "Majority", x = 0.62,
+    rule = "Majority", x = 1.37,
     type = c("Low type", "High type"), payoff = c(o_0, o_1),
     stringsAsFactors = FALSE
   )
@@ -648,12 +836,20 @@ plot_essential_input_f2 <- function(data_object) {
       colour = "#1D2630", linetype = "longdash", linewidth = 0.65
     ) +
     ggplot2::geom_line(
-      data = data_object$lines,
+      data = data_object$lines[data_object$lines$type == "Low type", ],
       ggplot2::aes(
         x = nu, y = payoff, colour = type, linetype = type,
         group = interaction(rule, type, segment)
       ),
-      linewidth = 0.9
+      linewidth = 1.05
+    ) +
+    ggplot2::geom_line(
+      data = data_object$lines[data_object$lines$type == "High type", ],
+      ggplot2::aes(
+        x = nu, y = payoff, colour = type, linetype = type,
+        group = interaction(rule, type, segment)
+      ),
+      linewidth = 0.72
     ) +
     ggplot2::geom_point(
       data = data_object$endpoints,
@@ -664,6 +860,20 @@ plot_essential_input_f2 <- function(data_object) {
       data = cutoff_data,
       ggplot2::aes(x = cutoff, y = 0.392, label = label),
       inherit.aes = FALSE, hjust = -0.08, vjust = 1, size = 2.8
+    ) +
+    ggplot2::geom_segment(
+      data = data.frame(rule = "Unanimity"),
+      ggplot2::aes(x = 0.58, xend = 0.62, y = 0.355, yend = constants$h),
+      inherit.aes = FALSE, colour = "#36434D", linewidth = 0.45
+    ) +
+    ggplot2::geom_label(
+      data = data.frame(
+        rule = "Unanimity", nu = 0.56, payoff = 0.362,
+        label = "both types receive h"
+      ),
+      ggplot2::aes(x = nu, y = payoff, label = label),
+      inherit.aes = FALSE, hjust = 1, size = 2.55, linewidth = 0.16,
+      fill = grDevices::adjustcolor("white", alpha.f = 0.86)
     ) +
     ggplot2::geom_segment(
       data = data.frame(rule = "Unanimity"),
@@ -713,7 +923,10 @@ plot_essential_input_f2 <- function(data_object) {
       colour = "Hegemon type", linetype = "Hegemon type", shape = "Hegemon type"
     ) +
     ei_manuscript_theme(9.7) +
-    ggplot2::theme(legend.position = "bottom")
+    ggplot2::theme(
+      legend.position = "bottom",
+      panel.spacing.x = grid::unit(3.0, "lines")
+    )
 
   if (!is.null(data_object$public_benchmark)) {
     panel_a <- panel_a + ggplot2::geom_line(
@@ -735,13 +948,16 @@ plot_essential_input_f2 <- function(data_object) {
       fill = "white", colour = "#1D2630"
     ) +
     ggplot2::geom_text(
-      data = data.frame(x = 0.48, y = 0.47, label = "outside option\n(external to the pie)"),
+      data = data.frame(
+        x = 1.37, y = 0.47,
+        label = "H excluded: collects o_theta\noutside the pie"
+      ),
       ggplot2::aes(x = x, y = y, label = label),
-      inherit.aes = FALSE, hjust = 0.5, size = 2.7, colour = "#36434D"
+      inherit.aes = FALSE, hjust = 0.5, size = 2.55, colour = "#36434D"
     ) +
     ggplot2::scale_fill_manual(values = ei_allocation_palette, drop = FALSE) +
     ggplot2::scale_shape_manual(values = c("Low type" = 21, "High type" = 24)) +
-    ggplot2::scale_x_discrete(expand = ggplot2::expansion(add = c(0.65, 0.35))) +
+    ggplot2::scale_x_discrete(expand = ggplot2::expansion(add = c(0.35, 0.35))) +
     ggplot2::scale_y_continuous(
       limits = c(0, 1), breaks = seq(0, 1, by = 0.2), expand = c(0, 0)
     ) +
@@ -762,8 +978,8 @@ plot_essential_input_f2 <- function(data_object) {
     paste0(
       "Figure F2. Majority caps the hegemon's price by buying substitute votes; unanimity pays the hegemon directly. ",
       "Panel A plots type-specific round-1 payoffs. Majority pays beta x o0 and beta x o1 through nu_SE, then exclusion leaves H with its outside option; unanimity has no pure-vote PBE for 0 < nu <= nu* and pools at h = beta x o1 above nu*. ",
-      "The yellow span is the low type's pooling rent h - ell, not the public-benchmark rent estimand. ",
-      "Panel B decomposes the unit surplus at nu = %.2f: majority buys q-1 substitutes at beta/m and keeps H's outside option external to the pie; unanimity pays m-1 weak-state floors, h, and the proposer residual. ",
+      "Under unanimity both types receive h; the dashed high-type line is drawn over the solid low-type line where they coincide. The yellow span is the low type's pooling rent h - ell, not the public-benchmark rent estimand. ",
+      "Panel B decomposes the unit surplus at nu = %.2f: majority buys q-1 substitutes at beta/m, while the adjacent markers show the excluded H collecting o_theta outside the pie; unanimity pays m-1 weak-state floors, h, and the proposer residual. ",
       "Parameters: o0 = %.3f, o1 = %.3f, m = %d, beta = %.2f. Note: Model-generated regions; all boundaries closed-form."
     ),
     parameters$nu_example, parameters$o_0, parameters$o_1, parameters$m, parameters$beta
@@ -996,7 +1212,14 @@ plot_essential_input_f4 <- function(data_object) {
     ggplot2::geom_rect(
       data = data_object$regions,
       ggplot2::aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = region),
-      colour = NA
+      colour = NA, alpha = 0.16
+    ) +
+    ggplot2::geom_rect(
+      ggplot2::aes(
+        xmin = constants$nu_star, xmax = 1,
+        ymin = constants$ell, ymax = constants$h
+      ),
+      inherit.aes = FALSE, fill = "#E69F00", alpha = 0.28, colour = NA
     ) +
     ggplot2::geom_segment(
       data = hatch,
@@ -1082,6 +1305,7 @@ plot_essential_input_f4 <- function(data_object) {
       fill = "Region",
       caption = ei_wrap_text(paste0(
         "The figure should be read from high to low nu. Above nu*, pooling pays the low type h = beta x o1, creating the rent h - ell relative to its reservation price ell = beta x o0. ",
+        "The light orange field identifies the pooling region; the darker band isolates the payoff-relevant rent between ell and h. ",
         "For 0 < nu <= nu*, the hatched area records the absence of a stable pure voting pattern; nu = 0 is an isolated complete-information endpoint, not an interval, and the low type is bought at reservation. ",
         "This is a qualitative interpretation analogous to Edgeworth-cycle instability, not a theorem that the game cycles. ",
         "Note: Model-generated regions; all boundaries closed-form."
