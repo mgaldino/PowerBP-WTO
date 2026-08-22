@@ -115,7 +115,7 @@ if (!skip_f1) {
         prefix = paste0(
           "figure_f1_institutional_map_kappa", kappa_code, "_", vertical_scale
         ),
-        plot = plot, width = 13.4, height = 7.4
+        plot = plot, width = 14.5, height = 8.0
       )
     }
   }

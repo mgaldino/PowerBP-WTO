@@ -279,7 +279,6 @@ essential_input_f1_data <- function(
   multiplier <- if (vertical_scale == "normalized") m else 1
   epsilon <- 1e-5
   substitute_cost <- 1 / m
-  crossing_upper <- min(1, 1 / (m * kappa))
   crossing_root <- ei_f1_crossing_o1(kappa, m, beta, functions)
   ex_ante_cutoff <- functions$nu_XA(0.5)
   ex_ante_crossing <- ex_ante_cutoff /
@@ -393,7 +392,7 @@ essential_input_f1_data <- function(
     "nu_SP", low_o1, functions$nu_SP(low_o1),
     c("Low type", "Ex ante (before H learns its type)")
   )
-  valid_se_o1 <- seq(substitute_cost, crossing_upper - epsilon, length.out = resolution)
+  valid_se_o1 <- seq(substitute_cost, crossing_root, length.out = resolution)
   frontier_rows[[3L]] <- add_frontier(
     "nu_SE", valid_se_o1, functions$nu_SE(valid_se_o1), "High type"
   )
@@ -546,7 +545,9 @@ plot_essential_input_f1 <- function(data_object, figure_label = "Figure F1") {
     ggplot2::scale_fill_manual(values = ei_response_palette, drop = FALSE) +
     ggplot2::scale_colour_manual(values = ei_response_palette, drop = FALSE) +
     ggplot2::scale_linetype_manual(
-      values = c(nu_star = "solid", nu_SP = "22", nu_SE = "42", nu_XA = "11")
+      values = c(nu_star = "solid", nu_SP = "22", nu_SE = "42", nu_XA = "11"),
+      breaks = c("nu_star", "nu_SP", "nu_SE", "nu_XA"),
+      labels = expression(nu^"*", nu[SP], nu[SE], nu[XA])
     ) +
     ggplot2::scale_x_continuous(
       limits = c(0, 1), breaks = seq(0, 1, by = 0.2), expand = c(0, 0)
@@ -573,6 +574,8 @@ plot_essential_input_f1 <- function(data_object, figure_label = "Figure F1") {
         "The left-edge segments report the distinct complete-information endpoint at nu = 0. ",
         "Boundaries are nu* = (1-kappa)o1/(1-kappa o1), nu_SP = beta(1-kappa)o1/[1-beta kappa o1-beta(q-1)/m], ",
         "nu_SE = beta(1/m-kappa o1)/[beta(1/m-kappa o1)+1-beta q/m], and nu_XA = (beta-kappa)/(1-kappa) on the majority-exclusion branch. ",
+        "The vertical nu_XA line is specific to the displayed slice o0 = kappa o1, where o1 cancels; if o0 were held fixed, the ex ante boundary would vary with o1. ",
+        "Because b_theta = 0 by construction, the strong type has no direct membership benefit and its only gain from inclusion is the concession; its preference for exclusion reflects the baseline's isolation of informational power, not a general substantive prediction. ",
         threshold_caption,
         "Note: Model-generated regions from the frozen private-information payoff vectors; all boundaries closed-form."
       ), width = 175L)
@@ -641,11 +644,11 @@ plot_essential_input_f1 <- function(data_object, figure_label = "Figure F1") {
       "Ex ante (before H learns its type)"
     ),
     label = c(
-      "nu*", "nu_SP", "nu_SE", "nu_XA",
+      "nu^'*'", "nu[SP]", "nu[SE]", "nu[XA]",
       if (constants$vertical_scale == "raw") {
-        "o1 = 1/m"
+        "o[1] == 1/m"
       } else {
-        "m x o1 = 1"
+        "m~o[1] == 1"
       }
     ),
     hjust = c(1, 0, 0, 0, 0),
@@ -659,7 +662,7 @@ plot_essential_input_f1 <- function(data_object, figure_label = "Figure F1") {
     ),
     inherit.aes = FALSE, size = 2.2, linewidth = 0.16,
     fill = grDevices::adjustcolor("white", alpha.f = 0.84),
-    label.padding = grid::unit(0.10, "lines")
+    label.padding = grid::unit(0.10, "lines"), parse = TRUE
   )
 
   if (nrow(data_object$example) > 0L) {
@@ -736,8 +739,8 @@ essential_input_f2_data <- function(
     )
   )
   endpoint_data <- data.frame(
-    rule = "Unanimity", type = c("Low type", "High type"), segment = "endpoint",
-    nu = 0, payoff = c(constants$ell, constants$h), stringsAsFactors = FALSE
+    rule = "Unanimity", type = "Low type", segment = "endpoint",
+    nu = 0, payoff = constants$ell, stringsAsFactors = FALSE
   )
   if (!is.null(public_benchmark)) {
     required <- c("rule", "type", "nu", "payoff")
@@ -853,8 +856,9 @@ plot_essential_input_f2 <- function(data_object) {
     ) +
     ggplot2::geom_point(
       data = data_object$endpoints,
-      ggplot2::aes(x = nu, y = payoff, colour = type, shape = type),
-      size = 2.9, stroke = 0.8
+      ggplot2::aes(x = nu, y = payoff, colour = type),
+      shape = 21, size = 2.9, stroke = 0.8, fill = "white",
+      show.legend = FALSE
     ) +
     ggplot2::geom_text(
       data = cutoff_data,
@@ -912,7 +916,6 @@ plot_essential_input_f2 <- function(data_object) {
     ggplot2::facet_wrap(~rule, nrow = 1) +
     ggplot2::scale_colour_manual(values = ei_type_palette) +
     ggplot2::scale_linetype_manual(values = c("Low type" = "solid", "High type" = "22")) +
-    ggplot2::scale_shape_manual(values = c("Low type" = 21, "High type" = 24)) +
     ggplot2::scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, by = 0.2), expand = c(0, 0)) +
     ggplot2::scale_y_continuous(limits = c(0, 0.40), breaks = seq(0, 0.4, by = 0.1), expand = c(0, 0)) +
     ggplot2::coord_cartesian(clip = "off") +
@@ -920,7 +923,7 @@ plot_essential_input_f2 <- function(data_object) {
       title = "A. Prices paid to the hegemon",
       x = "Prior probability of the strong type, nu",
       y = "Hegemon payoff in round 1",
-      colour = "Hegemon type", linetype = "Hegemon type", shape = "Hegemon type"
+      colour = "Hegemon type", linetype = "Hegemon type"
     ) +
     ei_manuscript_theme(9.7) +
     ggplot2::theme(
@@ -947,13 +950,15 @@ plot_essential_input_f2 <- function(data_object) {
       inherit.aes = FALSE, size = 3.0, stroke = 0.85,
       fill = "white", colour = "#1D2630"
     ) +
-    ggplot2::geom_text(
+    ggplot2::geom_label(
       data = data.frame(
-        x = 1.37, y = 0.47,
+        x = 1.40, y = 0.48,
         label = "H excluded: collects o_theta\noutside the pie"
       ),
       ggplot2::aes(x = x, y = y, label = label),
-      inherit.aes = FALSE, hjust = 0.5, size = 2.55, colour = "#36434D"
+      inherit.aes = FALSE, hjust = 0.5, size = 2.45, colour = "#36434D",
+      fill = grDevices::adjustcolor("white", alpha.f = 0.92),
+      linewidth = 0.16, label.padding = grid::unit(0.09, "lines")
     ) +
     ggplot2::scale_fill_manual(values = ei_allocation_palette, drop = FALSE) +
     ggplot2::scale_shape_manual(values = c("Low type" = 21, "High type" = 24)) +
