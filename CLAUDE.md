@@ -17,7 +17,9 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 
 - **Cadeia essential-input (2026-08-21):** N1--N4 e N6 estão `pass/frozen`,
   cada um no hash final com dois pareceres independentes PASS 0/0/0; N5 não
-  integra o DAG; N7 está `pending/null` e não foi iniciado.
+  integra o DAG. Neste snapshot de consolidação, N7 ainda está `pending/null`;
+  o autor o autorizou e sua derivação está ativa em worktree limpa separada,
+  baseada diretamente no checkpoint congelado de N6.
 
 > ## ARQUITETURA CORRENTE — essential-input (2026-08-12)
 >
@@ -79,6 +81,20 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 >    Só ações de `H` movem crenças, por Bayes dado o perfil, mesmo em subárvores
 >    off-path; desvios do próprio `H` deixam a crença livre. Descartadas: crenças
 >    livres literais; dominância path-dependent (incoerente — não repropor).
+>    **EMENDA (endpoints, Decisão 1a)**: com denominador bayesiano zero, a crença é
+>    livre DENTRO do suporte do prior — tipo com prior zero nunca recebe posterior
+>    positivo. Em ν=0, posterior ≡ 0 em toda a árvore (ν=1: ≡ 1); endpoints
+>    coincidem com informação completa (benchmark N7). Descartadas: pinagem no
+>    tipo prescrito (ação não identifica tipo inexistente); livre em [0,1] no
+>    endpoint (ressuscitaria tipo impossível off-path). Antes de PASS de N4,
+>    verificar que nenhum registro off-path de endpoint usa posterior positivo
+>    no tipo de prior zero. **Errata N2 registrada (opção A, texto canônico do
+>    Codex aceito)**: a interface efetiva de N2 é o artefato congelado
+>    (`c6a65dc8...a85a2`, intacto byte a byte) lido conjuntamente com a Emenda
+>    1a — endpoints sem multiplicidade de crenças; interior inalterado. Incide
+>    em `belief_system.off_path_ballot` e `existence_uniqueness_status` das duas
+>    células, na derivação e no ledger; nenhum payoff muda. NÃO editar artefatos
+>    de N2 — texto integral no registro de decisão.
 > 2. **Votação dos fracos: as-if-pivotal.** Comparação por valor esperado condicional
 >    ao evento pivotal; se estrita, decide o voto. Admissibilidade pura (só proibir
 >    voto fracamente dominado) foi descartada: com vetor público ex post ela deixa
@@ -96,7 +112,9 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 > relatório de provas de 2026-08-21 devem ser rederivados sob este pacote.
 > N1/N2 intactos; N3 só reparos menores (belief-free sob maioria).
 
-- **Fase**: Gate 0 essential-input aprovado; Goal 0 autorizado, sem derivação iniciada.
+- **Fase**: N1--N4 e N6 estão `pass/frozen`; Goal 4 está autorizado; N7 está
+  ativo, `pending/unfrozen`, em worktree limpa separada. Goal 5 não está
+  autorizado.
 - **Paper v6** (ALVO CORRETO): `formal_model_v6.Rmd` — alvo do próximo manuscript pass. `formal_model_v6.pdf` existe como PDF compilado atual.
 - **Paper v5** (REFERÊNCIA HISTÓRICA): `formal_model_v5.Rmd` — baseline fixed-pie relative-package com `pi_H=0`, weak-state agenda e weak-vote-passive assessment. `formal_model_v5.pdf` recompilado em 2026-05-15. Não usar v5 como alvo do clean-baseline reset.
 - **Atualização do baseline v5 (2026-05-15)**: v5 usa a arquitetura fixed-pie relative-package com `pi_H=0` no corpo. A avaliação de crenças deve ser chamada **weak-vote-passive assessment**, não refinement. A defesa é informacional: weak states não observam `theta`, então desvios unilaterais de voto dos fracos não sinalizam diretamente o tipo de `H`; votos separadores de `H` podem atualizar crenças; crenças on-path seguem Bayes. O resultado R1 deve ser formulado como selected PBE outcome payoff-equivalente a `P`, `L` ou `R` sob a avaliação mantida, não como unicidade nem caracterização de todos os PBEs.
@@ -336,7 +354,10 @@ Motivo: o erro anterior veio em parte de manter fórmulas de uma arquitetura ant
 
 A especificação canônica e executável é
 `quality_reports/plans/2026-08-12_essential_input_gate0.md`, status APPROVED,
-e o prompt de abertura está na Seção 14 dele. Ele autoriza o Goal 0 e só ele.
+e seu prompt na Seção 14 governou a abertura original do Gate 0. Decisões
+autorais explícitas posteriores autorizam agora o Goal 4 somente até N7; ver
+`quality_reports/2026-08-21_consolidacao_pos_n6_e_abertura_n7.md`. Goal 5 não
+está autorizado.
 
 O plano `2026-08-03-clean-baseline-goal.md` e o prompt abaixo são **históricos**:
 especificam a arquitetura com opt-out imediato, removida em 2026-08-12. Não
@@ -534,7 +555,11 @@ Roadmap detalhado em `quality_reports/2026-04-29_lean_v5_roadmap.md`. Resumo:
 - **Paper é documento atemporal**: NUNCA referenciar versões anteriores ou mudanças. Escrever como se o leitor visse pela primeira vez.
 - Notas em Markdown, modelo formal em Rmd → PDF
 - Idioma: português para notas; inglês para o paper
-- N genérico sempre (N=3 apenas no exemplo motivador Seção 2)
+- N genérico sempre. Exemplo motivador (Seção 2): usar **N=5** (decisão do autor,
+  2026-08-21 — ímpar evita empates de maioria e fica dentro do domínio m≥3 da
+  comparação; N=3 era a versão antiga). O exemplo atual em `formal_model_v6.Rmd`
+  ainda usa N=3 e linguagem de opt-out imediato, ambos superados; reescrever na
+  migração Goal 5 a partir das interfaces congeladas.
 - Sob maioria no clean reset: W **pode** excluir H, mas exclusão/no-screening é
   um resultado a rederivar, não uma convenção. A frase histórica “W exclui H”
   vale apenas no branch no-H das provas corrigidas anteriores. Em qualquer
