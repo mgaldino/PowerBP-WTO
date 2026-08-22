@@ -8,12 +8,14 @@
 
 ## 1. Summary
 
-The repaired manuscript contains 6,512 words as parsed from the R Markdown
+The repaired manuscript contains 6,563 words as parsed from the R Markdown
 source. The increase from the first candidate comes mostly from the four
 numbered tables required by the migration matrix and from the exact multiplicity
 and envelope statements requested by formal review. The final increment defines
 history-indexed continuation values and distinguishes weak-vote prices under
 majority and unanimity.
+The final authorial correction also distinguishes the broad institutional-choice
+motivation from the narrower fixed-rule puzzle the model solves.
 
 Aggregate sentence-level readability remains favorable relative to the
 descriptive pre-ChatGPT IR benchmark. Flesch Reading Ease lies between the
@@ -30,9 +32,9 @@ repeatedly treats unavoidable terms such as *information*, *institution*,
 
 | Metric | Candidate | IR p10 | IR p25 | IR median | IR p75 | IR p90 | Approximate position | Direction |
 |---|---:|---:|---:|---:|---:|---:|---|---|
-| Flesch Reading Ease | 31.3 | -101.67 | -71.62 | 13.15 | 34.05 | 37.29 | p50--p75 | Higher is easier |
+| Flesch Reading Ease | 31.2 | -101.67 | -71.62 | 13.15 | 34.05 | 37.29 | p50--p75 | Higher is easier |
 | Flesch-Kincaid grade | 12.9 | 12.11 | 12.72 | 16.55 | 26.77 | 30.84 | p25--p50 | Lower is easier |
-| Gunning Fog | 15.1 | 14.80 | 15.10 | 16.25 | 17.60 | 18.69 | p25--p50 | Lower is easier |
+| Gunning Fog | 15.2 | 14.80 | 15.10 | 16.25 | 17.60 | 18.69 | p25--p50 | Lower is easier |
 | SMOG | 14.1 | 13.40 | 14.03 | 14.45 | 15.45 | 15.99 | p25--p50 | Lower is easier |
 | Passive voice (%) | 10.8 | 2.31 | 2.82 | 5.50 | 8.55 | 10.89 | p75--p90 | Lower is usually easier |
 | Nominalizations (%) | 6.3 | 3.12 | 3.98 | 4.45 | 5.30 | 5.97 | above p90 | Lower is usually easier |
@@ -48,7 +50,7 @@ sentence formulas to symbol definitions.
 | Section | Words | Flesch | FK grade | Fog | SMOG | Passive % | Nominalization % | Hedging % |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | Preamble | 1 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| Introduction | 661 | 21.7 | 14.4 | 17.0 | 15.4 | 15.4 | 8.2 | 0.8 |
+| Introduction | 712 | 21.1 | 14.6 | 17.2 | 15.5 | 14.6 | 8.1 | 0.7 |
 | A working numerical illustration | 122 | 67.7 | 5.9 | 8.4 | 9.0 | 5.0 | 5.7 | 0.0 |
 | Players, information, and proposals | 180 | 49.4 | 9.5 | 13.0 | 12.3 | 13.3 | 5.0 | 1.1 |
 | Ballots, timing, and payoffs | 467 | 37.4 | 12.8 | 14.1 | 13.6 | 18.5 | 2.6 | 0.0 |
