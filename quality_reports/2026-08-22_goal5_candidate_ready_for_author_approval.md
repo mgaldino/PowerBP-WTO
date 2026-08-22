@@ -2,11 +2,11 @@
 
 ## Snapshot substantivo revisado
 
-- Commit revisado: `733c22795f0631179d1d3a33a4d4a5446d085985`.
+- Commit revisado: `b5fdefb1f80090b8da893bf19e754915d557502a`.
 - SHA-256 de `formal_model_v6.Rmd`:
-  `34ad6d5481b42736646bc89d2e4fd39debe2766dcb9aa9cecd739000f0d50ec6`.
+  `32b49f7503caac34cdf225f73d7e76ab60d1340937b095e3e611f009030f8744`.
 - SHA-256 de `formal_model_v6.pdf`:
-  `76ad164c50942fc5d6b8bd4d4aa3cec866eba0ab139163746b3a31f770799fe3`.
+  `85d24122008af9ad484a6df53679c3f455f75fb94fffc70aa9ccbd8ffb62fe17`.
 - Interfaces N1, N2, N3, N4, N6 e N7: intactas nos hashes congelados.
 
 ## Evidência do gate
@@ -19,8 +19,8 @@ de hashes:
 
 Os pareceres completos estão em:
 
-- `quality_reports/2026-08-22_goal5_round3_formal_design_review.md`;
-- `quality_reports/2026-08-22_goal5_round3_exposition_visual_review.md`.
+- `quality_reports/2026-08-22_goal5_puzzle_round2_formal_review.md`;
+- `quality_reports/2026-08-22_goal5_puzzle_round2_exposition_visual_review.md`.
 
 ## Validação complementar
 
@@ -30,6 +30,9 @@ Os pareceres completos estão em:
 - Inspeção visual: 31 de 31 páginas.
 - Busca negativa por arquiteturas descartadas e linguagem de versões: nenhuma ocorrência.
 - Marcadores: somente `[AUTHOR: P1]` e `[AUTHOR: P2]`; P3 ausente.
+- Puzzle: escolha institucional explicitamente tratada como motivação ampla;
+  abstract e modelo limitados à comparação entre regras fixas e à decomposição
+  entre veto e informação.
 - Push: não realizado.
 - Tag final: não criada.
 
