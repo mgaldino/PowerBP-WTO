@@ -15,11 +15,10 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 
 ## Status
 
-- **Cadeia essential-input (2026-08-21):** N1--N4 e N6 estão `pass/frozen`,
-  cada um no hash final com dois pareceres independentes PASS 0/0/0; N5 não
-  integra o DAG. Neste snapshot de consolidação, N7 ainda está `pending/null`;
-  o autor o autorizou e sua derivação está ativa em worktree limpa separada,
-  baseada diretamente no checkpoint congelado de N6.
+- **Cadeia essential-input (2026-08-21):** N1--N4, N6 e o nó terminal N7 estão
+  `pass/frozen`, cada um no hash final com dois pareceres independentes PASS
+  0/0/0; N5 não integra o DAG. O autor aprovou explicitamente N7 congelado e
+  encerrou o Goal 4. Goal 5 não está autorizado.
 
 > ## ARQUITETURA CORRENTE — essential-input (2026-08-12)
 >
@@ -112,9 +111,8 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 > relatório de provas de 2026-08-21 devem ser rederivados sob este pacote.
 > N1/N2 intactos; N3 só reparos menores (belief-free sob maioria).
 
-- **Fase**: N1--N4 e N6 estão `pass/frozen`; Goal 4 está autorizado; N7 está
-  ativo, `pending/unfrozen`, em worktree limpa separada. Goal 5 não está
-  autorizado.
+- **Fase**: N1--N4, N6 e N7 estão `pass/frozen`; o autor encerrou o Goal 4.
+  Goal 5 não está autorizado.
 - **Paper v6** (ALVO CORRETO): `formal_model_v6.Rmd` — alvo do próximo manuscript pass. `formal_model_v6.pdf` existe como PDF compilado atual.
 - **Paper v5** (REFERÊNCIA HISTÓRICA): `formal_model_v5.Rmd` — baseline fixed-pie relative-package com `pi_H=0`, weak-state agenda e weak-vote-passive assessment. `formal_model_v5.pdf` recompilado em 2026-05-15. Não usar v5 como alvo do clean-baseline reset.
 - **Atualização do baseline v5 (2026-05-15)**: v5 usa a arquitetura fixed-pie relative-package com `pi_H=0` no corpo. A avaliação de crenças deve ser chamada **weak-vote-passive assessment**, não refinement. A defesa é informacional: weak states não observam `theta`, então desvios unilaterais de voto dos fracos não sinalizam diretamente o tipo de `H`; votos separadores de `H` podem atualizar crenças; crenças on-path seguem Bayes. O resultado R1 deve ser formulado como selected PBE outcome payoff-equivalente a `P`, `L` ou `R` sob a avaliação mantida, não como unicidade nem caracterização de todos os PBEs.
@@ -355,9 +353,9 @@ Motivo: o erro anterior veio em parte de manter fórmulas de uma arquitetura ant
 A especificação canônica e executável é
 `quality_reports/plans/2026-08-12_essential_input_gate0.md`, status APPROVED,
 e seu prompt na Seção 14 governou a abertura original do Gate 0. Decisões
-autorais explícitas posteriores autorizam agora o Goal 4 somente até N7; ver
-`quality_reports/2026-08-21_consolidacao_pos_n6_e_abertura_n7.md`. Goal 5 não
-está autorizado.
+autorais explícitas posteriores autorizaram e encerraram o Goal 4 com N7
+congelado; ver `quality_reports/2026-08-21_fechamento_autoral_goal4_n7.md`.
+Goal 5 não está autorizado e exige nova decisão autoral explícita.
 
 O plano `2026-08-03-clean-baseline-goal.md` e o prompt abaixo são **históricos**:
 especificam a arquitetura com opt-out imediato, removida em 2026-08-12. Não

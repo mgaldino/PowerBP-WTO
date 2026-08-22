@@ -169,11 +169,11 @@ repository_root <- normalizePath(file.path(dirname(script_path), ".."), mustWork
 manifest_path <- file.path(repository_root, "model_redesign", "essential_input_game_dag.json")
 manifest_dir <- dirname(manifest_path)
 
-expected_manifest_hash <- "c7ceac8552599b19147742fe7f31edd636f44d563cd72f63ece86665489034c3"
-expected_manifest_object_hash <- "28a28afaede75d54460101938d5ba2ecdab319e6def7f0adf1f970097aef00d7"
+expected_manifest_hash <- "36155405a635bf6842c09dcde127907ec1f6fe61bb86ec06d932d7e472abf9ab"
+expected_manifest_object_hash <- "4981280db8592bfe1a61676df5bb76526cdd6cbc464e8b1a6799691fec8f1784"
 assert_true(
   identical(sha256_file(manifest_path), expected_manifest_hash),
-  "The Gate 0 manifest bytes differ from the approved beta<1 N1-N4/N6 lifecycle snapshot."
+  "The Gate 0 manifest bytes differ from the approved beta<1 N1-N4/N6/N7 lifecycle snapshot."
 )
 manifest <- jsonlite::fromJSON(manifest_path, simplifyVector = FALSE)
 canonical_manifest <- clone_object(manifest)
@@ -213,7 +213,7 @@ is_valid_manifest_top_level <- function(candidate_manifest) {
 }
 assert_true(
   is_valid_manifest_top_level(manifest) && is_valid_canonical_manifest(manifest),
-  "The manifest must be identical to the complete canonical N1-N4/N6 lifecycle object."
+  "The manifest must be identical to the complete canonical N1-N4/N6/N7 lifecycle object."
 )
 nodes <- manifest$nodes
 node_ids <- vapply(nodes, `[[`, character(1), "id")
@@ -297,6 +297,54 @@ assert_true(
   file.exists(n6_integration_record_path) &&
     identical(sha256_file(n6_integration_record_path), expected_n6_integration_record_hash),
   "The final N6 integration and stop record changed."
+)
+
+n7_candidate_manifest_path <- file.path(
+  repository_root,
+  "quality_reports",
+  "2026-08-21_n7_candidate_review_manifest.sha256"
+)
+expected_n7_candidate_manifest_hash <- "a54c86df332780756c52a170f6e8f0aef113683c04402ee668a4a92c6d987b09"
+assert_true(
+  file.exists(n7_candidate_manifest_path) &&
+    identical(sha256_file(n7_candidate_manifest_path), expected_n7_candidate_manifest_hash),
+  "The same-hash N7 candidate review manifest changed."
+)
+
+n7_final_review_manifest_path <- file.path(
+  repository_root,
+  "quality_reports",
+  "2026-08-21_n7_final_review_manifest.sha256"
+)
+expected_n7_final_review_manifest_hash <- "56669e62160fb7718992170555dcca8ad46e40dd41123ad2f07d9484283bae0e"
+assert_true(
+  file.exists(n7_final_review_manifest_path) &&
+    identical(sha256_file(n7_final_review_manifest_path), expected_n7_final_review_manifest_hash),
+  "The exact N7 final review manifest changed."
+)
+
+n7_integration_record_path <- file.path(
+  repository_root,
+  "quality_reports",
+  "2026-08-21_integracao_final_n7.md"
+)
+expected_n7_integration_record_hash <- "bd4136ae84084d089905344a41edf24d6bcd91bf6e095f7b58ccb0d04a296bfc"
+assert_true(
+  file.exists(n7_integration_record_path) &&
+    identical(sha256_file(n7_integration_record_path), expected_n7_integration_record_hash),
+  "The final N7 integration and author-approval stop record changed."
+)
+
+goal4_author_closure_path <- file.path(
+  repository_root,
+  "quality_reports",
+  "2026-08-21_fechamento_autoral_goal4_n7.md"
+)
+expected_goal4_author_closure_hash <- "ca7a842b3a953ab16e76dbf518692a0d05a87d1224093a53d4ccc647624545d2"
+assert_true(
+  file.exists(goal4_author_closure_path) &&
+    identical(sha256_file(goal4_author_closure_path), expected_goal4_author_closure_hash),
+  "The exact post-freeze author approval and Goal 4 closure record changed."
 )
 
 assert_true(
@@ -884,7 +932,7 @@ for (node_id in expected_ids) {
   )
 }
 
-pending_node_ids <- "N7"
+pending_node_ids <- character()
 for (node_id in pending_node_ids) {
   node <- nodes[[node_id]]
   assert_true(identical(node$status, "pending"), paste(node_id, "must remain pending."))
@@ -925,6 +973,16 @@ pending_fixture_nodes$N6[c(
 assert_true(
   is_valid_pending_interface("N6", pending_fixture_nodes$N6),
   "Synthetic pending fixture is invalid for N6."
+)
+pending_fixture_nodes$N7$status <- "pending"
+pending_fixture_nodes$N7$interface <- clone_object(expected_pending_interfaces$N7)
+pending_fixture_nodes$N7[c(
+  "artifact_path", "artifact_hash", "dependency_hashes", "started_order",
+  "passed_order", "frozen", "reviews"
+)] <- NULL
+assert_true(
+  is_valid_pending_interface("N7", pending_fixture_nodes$N7),
+  "Synthetic pending fixture is invalid for N7."
 )
 
 # Coverage-cell and public-payoff schema regression tests.
@@ -1399,7 +1457,151 @@ is_valid_filled_private_comparison_interface <- function(interface) {
     }, logical(1)))
 }
 
-# Frozen N1-N4 and N6 are consumable only on exact artifact bytes, object-identical
+# N7 is checked here only at the terminal interface boundary. Its standalone
+# verifier reconstructs the games and rent identities; this administrative
+# validator checks typed collections, exact source direction, and cardinality.
+is_valid_public_equilibrium_record <- function(record, institution, round, theta) {
+  sources <- as_character(record$source_public_continuation_ids)
+  expected_source <- paste0(
+    "N7-PUB-", ifelse(identical(institution, "majority"), "M", "U"),
+    "-R2-", ifelse(identical(theta, "theta_0"), "T0", "T1")
+  )
+  valid_sources <- if (identical(round, "R2")) {
+    length(sources) == 0L
+  } else {
+    identical(sources, expected_source)
+  }
+  is.list(record) &&
+    identical(names(record), as_character(benchmark_schema$public_equilibrium_record_fields)) &&
+    identical(record$institution, institution) &&
+    identical(record$round, round) &&
+    identical(record$theta, theta) &&
+    identical(names(record$payoff_vector), as_character(public_payoff_schema$fields)) &&
+    identical(
+      names(record$outcome_distribution),
+      as_character(benchmark_schema$outcome_distribution_fields)
+    ) &&
+    isTRUE(valid_sources)
+}
+
+is_valid_informational_rent_record <- function(record, institution) {
+  is.list(record) &&
+    identical(names(record), as_character(benchmark_schema$informational_rent_record_fields)) &&
+    identical(record$institution, institution) &&
+    identical(
+      record$source_N6_interface_hash,
+      "sha256:a9cfd5935377197b51637a525f26627c296eed1e21bfe8cfcf6906b4d90a5a92"
+    ) &&
+    length(as_character(record$public_source_equilibrium_ids)) > 0L &&
+    is.character(record$private_source_rule_record_id) &&
+    length(record$private_source_rule_record_id) == 1L &&
+    nzchar(record$private_source_rule_record_id)
+}
+
+is_valid_informational_rent_contrast_record <- function(record) {
+  is.list(record) &&
+    identical(
+      names(record),
+      as_character(benchmark_schema$informational_rent_contrast_record_fields)
+    ) &&
+    length(as_character(record$source_rent_record_ids)) > 0L
+}
+
+is_valid_filled_complete_information_interface <- function(interface) {
+  if (
+    !is.list(interface) ||
+      !identical(
+        names(interface),
+        c(
+          "schema_ref", "function_of", "public_equilibrium_cells",
+          "informational_rent_cells", "informational_rent_contrast_cells"
+        )
+      ) ||
+      !identical(interface$schema_ref, "complete_information_benchmark_v1") ||
+      !identical(names(interface$function_of), c("name", "domain")) ||
+      !identical(interface$function_of$name, "prior_mu") ||
+      !identical(interface$function_of$domain, "[0,1]") ||
+      !identical(names(interface$public_equilibrium_cells), c("majority", "unanimity")) ||
+      !identical(names(interface$informational_rent_cells), c("majority", "unanimity"))
+  ) {
+    return(FALSE)
+  }
+
+  expected_public_counts <- list(
+    majority = list(R2 = c(theta_0 = 1L, theta_1 = 1L), R1 = c(theta_0 = 2L, theta_1 = 2L)),
+    unanimity = list(R2 = c(theta_0 = 1L, theta_1 = 1L), R1 = c(theta_0 = 1L, theta_1 = 1L))
+  )
+  public_records <- list()
+  for (institution in c("majority", "unanimity")) {
+    institution_cells <- interface$public_equilibrium_cells[[institution]]
+    if (!identical(names(institution_cells), c("R2", "R1"))) return(FALSE)
+    for (round in c("R2", "R1")) {
+      round_cells <- institution_cells[[round]]
+      if (!identical(names(round_cells), c("theta_0", "theta_1"))) return(FALSE)
+      for (theta in c("theta_0", "theta_1")) {
+        cells <- round_cells[[theta]]
+        if (!is_valid_coverage_cells(cells, "public_equilibrium_records")) return(FALSE)
+        records <- records_from_cells(cells, "public_equilibrium_records")
+        if (length(records) != expected_public_counts[[institution]][[round]][[theta]]) return(FALSE)
+        if (!all(vapply(
+          records,
+          is_valid_public_equilibrium_record,
+          logical(1),
+          institution = institution,
+          round = round,
+          theta = theta
+        ))) return(FALSE)
+        public_records <- c(public_records, records)
+      }
+    }
+  }
+  public_ids <- vapply(public_records, `[[`, character(1), "public_equilibrium_id")
+  if (length(public_ids) != 10L || anyDuplicated(public_ids)) return(FALSE)
+
+  rent_records <- list()
+  expected_rent_cell_counts <- c(majority = 3L, unanimity = 3L)
+  expected_rent_record_counts <- c(majority = 3L, unanimity = 2L)
+  for (institution in c("majority", "unanimity")) {
+    cells <- interface$informational_rent_cells[[institution]]
+    if (
+      !is_valid_coverage_cells(cells, "informational_rent_records") ||
+        length(cells) != expected_rent_cell_counts[[institution]]
+    ) return(FALSE)
+    records <- records_from_cells(cells, "informational_rent_records")
+    if (
+      length(records) != expected_rent_record_counts[[institution]] ||
+        !all(vapply(
+          records,
+          is_valid_informational_rent_record,
+          logical(1),
+          institution = institution
+        ))
+    ) return(FALSE)
+    rent_records <- c(rent_records, records)
+  }
+  rent_ids <- vapply(rent_records, `[[`, character(1), "rent_record_id")
+  if (length(rent_ids) != 5L || anyDuplicated(rent_ids)) return(FALSE)
+
+  contrast_cells <- interface$informational_rent_contrast_cells
+  if (
+    !is_valid_coverage_cells(contrast_cells, "informational_rent_contrast_records") ||
+      length(contrast_cells) != 9L
+  ) return(FALSE)
+  contrast_records <- records_from_cells(
+    contrast_cells,
+    "informational_rent_contrast_records"
+  )
+  contrast_ids <- vapply(contrast_records, `[[`, character(1), "contrast_record_id")
+  length(contrast_records) == 6L &&
+    !anyDuplicated(contrast_ids) &&
+    all(vapply(
+      contrast_records,
+      is_valid_informational_rent_contrast_record,
+      logical(1)
+    ))
+}
+
+# Frozen N1-N4, N6, and N7 are consumable only on exact artifact bytes, object-identical
 # interfaces, dependency hashes, lifecycle fields, and same-hash PASS 0/0/0 reviews.
 expected_frozen_node_fields <- c(
   "id", "name", "round", "institution", "depends_on", "status", "interface",
@@ -1460,6 +1662,17 @@ leaf_specs <- list(
     passed_order = 10L,
     formal_reviewer_id = "codex-formal-design-n6-private-final-20260821",
     game_reviewer_id = "codex-game-theory-n6-pure-final-20260821"
+  ),
+  N7 = list(
+    artifact_path = "essential_input_n7_complete_information_benchmark_candidate.json",
+    artifact_hash = "sha256:4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45",
+    dependency_hashes = list(
+      N6 = "sha256:a9cfd5935377197b51637a525f26627c296eed1e21bfe8cfcf6906b4d90a5a92"
+    ),
+    started_order = 11L,
+    passed_order = 12L,
+    formal_reviewer_id = "codex-formal-design-n7-final-20260821",
+    game_reviewer_id = "codex-game-theory-n7-final-20260821"
   )
 )
 
@@ -1501,6 +1714,8 @@ is_valid_current_leaf <- function(node_id, node, spec) {
   }
   valid_interface <- if (identical(node_id, "N6")) {
     is_valid_filled_private_comparison_interface(node$interface)
+  } else if (identical(node_id, "N7")) {
+    is_valid_filled_complete_information_interface(node$interface)
   } else {
     is_valid_filled_equilibrium_interface(node$interface)
   }
@@ -1568,6 +1783,13 @@ assert_true(
     nodes$N4$passed_order < nodes$N6$started_order &&
     nodes$N6$started_order < nodes$N6$passed_order,
   "N6 must record start/pass orders 9/10 after both private R1 interfaces passed."
+)
+assert_true(
+  identical(as.integer(nodes$N7$started_order), 11L) &&
+    identical(as.integer(nodes$N7$passed_order), 12L) &&
+    nodes$N6$passed_order < nodes$N7$started_order &&
+    nodes$N7$started_order < nodes$N7$passed_order,
+  "N7 must record start/pass orders 11/12 after the frozen N6 comparison."
 )
 
 review_report_specs <- list(
@@ -1702,6 +1924,25 @@ node_review_report_specs <- list(
       expected_hash = "a85e2e5d83900d1d8564a1e9d6b79939cb8499d079abb9f4388a6a175fc86513",
       reviewer_id = leaf_specs$N6$game_reviewer_id
     )
+  ),
+  N7 = list(
+    manifest_hash = "a54c86df332780756c52a170f6e8f0aef113683c04402ee668a4a92c6d987b09",
+    formal_design = list(
+      path = file.path(
+        repository_root, "quality_reports",
+        "2026-08-21_n7_final_formal_design_review.md"
+      ),
+      expected_hash = "eca9697269589688a0bb568be96deeaa446326e2a40b8b9c3c0c919159857aad",
+      reviewer_id = leaf_specs$N7$formal_reviewer_id
+    ),
+    game_theory = list(
+      path = file.path(
+        repository_root, "quality_reports",
+        "2026-08-21_n7_final_game_theory_review.md"
+      ),
+      expected_hash = "42604ed0770923c1fa94e3a4314376a1fd3bb05f3fb024750b77fa7e9da4ae0d",
+      reviewer_id = leaf_specs$N7$game_reviewer_id
+    )
   )
 )
 
@@ -1726,9 +1967,9 @@ is_valid_node_review_report <- function(lines, node_id, role, spec, manifest_has
     any(grepl(manifest_hash, lines, fixed = TRUE)) &&
     isTRUE(valid_dependencies) &&
     any(grepl("PASS", lines, fixed = TRUE)) &&
-    any(grepl("critical[^0-9]*0", lines, ignore.case = TRUE, perl = TRUE)) &&
-    any(grepl("major[^0-9]*0", lines, ignore.case = TRUE, perl = TRUE)) &&
-    any(grepl("minor[^0-9]*0", lines, ignore.case = TRUE, perl = TRUE)) &&
+    any(grepl("critical[^0-9]*0|0[^0-9]*critical", lines, ignore.case = TRUE, perl = TRUE)) &&
+    any(grepl("major[^0-9]*0|0[^0-9]*major", lines, ignore.case = TRUE, perl = TRUE)) &&
+    any(grepl("minor[^0-9]*0|0[^0-9]*minor", lines, ignore.case = TRUE, perl = TRUE)) &&
     !any(grepl("VEREDICTO ESTRITO: FAIL", lines, fixed = TRUE))
 }
 
@@ -1795,6 +2036,46 @@ assert_true(
   }, logical(1))),
   "A directed N6 lifecycle, source, none, review, or artifact mutation passed."
 )
+n7_negative_fixtures <- list(
+  wrong_artifact_hash = local({
+    x <- clone_object(nodes$N7)
+    x$artifact_hash <- paste0("sha256:", paste(rep("0", 64L), collapse = ""))
+    x
+  }),
+  wrong_source_hash = local({
+    x <- clone_object(nodes$N7)
+    x$dependency_hashes$N6 <- x$artifact_hash
+    x
+  }),
+  truncated_hegemon_strategy = local({
+    x <- clone_object(nodes$N7)
+    x$interface$public_equilibrium_cells$majority$R1$theta_0[[2L]]$
+      public_equilibrium_records[[1L]]$strategy_profile$hegemon <-
+      "no because the proposal passes without H"
+    x
+  }),
+  none_with_record = local({
+    x <- clone_object(nodes$N7)
+    x$interface$informational_rent_cells$unanimity[[2L]]$
+      informational_rent_records <- list(
+        x$interface$informational_rent_cells$unanimity[[1L]]$
+          informational_rent_records[[1L]]
+      )
+    x
+  }),
+  wrong_review_hash = local({
+    x <- clone_object(nodes$N7)
+    x$reviews[[2L]]$artifact_hash <-
+      paste0("sha256:", paste(rep("f", 64L), collapse = ""))
+    x
+  })
+)
+assert_true(
+  all(!vapply(n7_negative_fixtures, function(node) {
+    is_valid_current_leaf("N7", node, leaf_specs$N7)
+  }, logical(1))),
+  "A directed N7 artifact, source, strategy, none, or review mutation passed."
+)
 for (role in names(review_report_specs)) {
   spec <- review_report_specs[[role]]
   assert_true(
@@ -1819,7 +2100,7 @@ for (node_id in names(node_review_report_specs)) {
   }
 }
 
-# N7 alone retains the exact pending/null envelope.
+# The exact pending/null N7 envelope is retained as a synthetic lifecycle fixture.
 expected_pending_node_fields <- c(
   "id", "name", "round", "institution", "depends_on", "status", "interface"
 )
@@ -1840,10 +2121,9 @@ is_valid_current_pending_node <- function(node_id, node) {
     is_valid_pending_interface(node_id, node)
 }
 
-current_pending_ids <- "N7"
 assert_true(
-  is_valid_current_pending_node("N7", nodes$N7),
-  "N7 must retain the exact pending/null lifecycle."
+  is_valid_current_pending_node("N7", pending_fixture_nodes$N7),
+  "The synthetic N7 fixture must retain the exact pending/null lifecycle."
 )
 
 # Directed manifest mutations replace recursive field/leaf fuzzing. The exact
@@ -1877,31 +2157,32 @@ targeted_manifest_mutations <- list(
     x$nodes[[5L]]$passed_order <- x$nodes[[5L]]$started_order
     x
   }),
-  n7_filled = local({
+  n7_truncated_strategy = local({
     x <- clone_object(manifest)
-    x$nodes[[6L]]$interface$informational_rent_cells$majority <-
-      list(list(stale = TRUE))
+    x$nodes[[6L]]$interface$public_equilibrium_cells$majority$R1$theta_0[[2L]]$
+      public_equilibrium_records[[1L]]$strategy_profile$hegemon <-
+      "no because the proposal passes without H"
     x
   })
 )
 assert_true(
   all(!vapply(targeted_manifest_mutations, is_valid_canonical_manifest, logical(1))),
-  "A directed source, none, review, lifecycle, or pending-N7 manifest mutation passed."
+  "A directed source, none, review, lifecycle, or N7-strategy manifest mutation passed."
 )
 
-stale_n7 <- clone_object(nodes$N7)
+stale_n7 <- clone_object(pending_fixture_nodes$N7)
 stale_n7$status <- "pass"
 assert_true(
   !is_valid_current_pending_node("N7", stale_n7),
   "A stale PASS status must fail for N7."
 )
-authorized_n7 <- clone_object(nodes$N7)
+authorized_n7 <- clone_object(pending_fixture_nodes$N7)
 authorized_n7$authorized <- TRUE
 assert_true(
   !is_valid_current_pending_node("N7", authorized_n7),
   "An extra authorized=true field must fail for N7."
 )
-filled_current_n7 <- clone_object(nodes$N7)
+filled_current_n7 <- clone_object(pending_fixture_nodes$N7)
 filled_current_n7$interface$informational_rent_cells$majority <- list(list(stale = TRUE))
 assert_true(
   !is_valid_current_pending_node("N7", filled_current_n7),
@@ -2232,11 +2513,8 @@ freeze_node <- function(
 }
 
 assert_true(
-  identical(sort(topologically_ready_nodes(nodes)), "N7"),
-  paste0(
-    "After N6 freeze, exactly N7 must be topologically ready. ",
-    "N7 remains unauthorized despite readiness."
-  )
+  length(topologically_ready_nodes(nodes)) == 0L,
+  "After the terminal N7 freeze, no derivation node may remain topologically ready."
 )
 assert_true(
   identical(sort(topologically_ready_nodes(pending_fixture_nodes)), c("N1", "N2")),
@@ -2373,6 +2651,11 @@ assert_true(
   "N7" %in% topologically_ready_nodes(n6_frozen),
   "Only frozen N6 must make N7 topologically ready."
 )
+n7_frozen <- freeze_node(n6_frozen, "N7")
+assert_true(
+  length(topologically_ready_nodes(n7_frozen)) == 0L,
+  "Freezing terminal N7 must leave no derivation node ready."
+)
 
 direct_dependents <- function(candidate_nodes, node_id) {
   names(candidate_nodes)[vapply(candidate_nodes, function(node) {
@@ -2415,16 +2698,16 @@ cat(
     "MUTATION_REJECTED: the independent full-contract identity returned FALSE for all 9 ",
     "Round 3 mutations when only the first external pin was bypassed; regional diagnostics, ",
     "the coordinated Section 2/Section 11 mutation, exact full-manifest identity/hash, ",
-    "nested invalidation/freeze/interface-schema extras, five directed N6 mutations, and ",
-    "the pending-N7 lifecycle mutations also failed.\n"
+    "nested invalidation/freeze/interface-schema extras, five directed N6 mutations, five ",
+    "directed N7 mutations, and the synthetic pending-N7 lifecycle mutations also failed.\n"
   )
 )
 
 cat(
   paste0(
-    "PASS: strict o_1 < 1 and beta < 1 contract with N1/N2/N3/N4/N6 pass/frozen on exact reviewed artifacts; ",
-    "only N7 is topologically ready, while N7, beta=1 extensions, and manuscript migration ",
-    "remain unauthorized. N7 readiness is not author authorization. ",
+    "PASS: strict o_1 < 1 and beta < 1 contract with N1/N2/N3/N4/N6/N7 pass/frozen on exact reviewed artifacts; ",
+    "no derivation node is topologically ready. The author's exact post-freeze approval is pinned and Goal 4 is closed; ",
+    "Goal 5, beta=1 extensions, and manuscript migration remain unauthorized. ",
     "Typed coverage cells for empty and ",
     "nonempty correspondences, independent RI_M and RI_U with a separate DeltaRI ",
     "contrast, role-typed public payoffs, terminal complete-information benchmark, ",
