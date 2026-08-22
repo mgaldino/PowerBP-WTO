@@ -1,17 +1,19 @@
-# Readability audit — formal_model_v6.Rmd (repaired candidate)
+# Readability audit — formal_model_v6.Rmd (final repaired candidate)
 
 **Date:** 2026-08-22
 **Field benchmark:** International Relations
 **Pangram:** **not run**, as required by the authorial authorization.
-**Input:** repaired Goal-5 R Markdown candidate after the first independent review cycle.
+**Input:** final repaired Goal-5 R Markdown candidate after the second independent review cycle.
 **Tool:** local `readability_audit.py`; no network service was called.
 
 ## 1. Summary
 
-The repaired manuscript contains 6,456 words as parsed from the R Markdown
+The repaired manuscript contains 6,512 words as parsed from the R Markdown
 source. The increase from the first candidate comes mostly from the four
 numbered tables required by the migration matrix and from the exact multiplicity
-and envelope statements requested by formal review.
+and envelope statements requested by formal review. The final increment defines
+history-indexed continuation values and distinguishes weak-vote prices under
+majority and unanimity.
 
 Aggregate sentence-level readability remains favorable relative to the
 descriptive pre-ChatGPT IR benchmark. Flesch Reading Ease lies between the
@@ -28,11 +30,11 @@ repeatedly treats unavoidable terms such as *information*, *institution*,
 
 | Metric | Candidate | IR p10 | IR p25 | IR median | IR p75 | IR p90 | Approximate position | Direction |
 |---|---:|---:|---:|---:|---:|---:|---|---|
-| Flesch Reading Ease | 31.2 | -101.67 | -71.62 | 13.15 | 34.05 | 37.29 | p50--p75 | Higher is easier |
+| Flesch Reading Ease | 31.3 | -101.67 | -71.62 | 13.15 | 34.05 | 37.29 | p50--p75 | Higher is easier |
 | Flesch-Kincaid grade | 12.9 | 12.11 | 12.72 | 16.55 | 26.77 | 30.84 | p25--p50 | Lower is easier |
-| Gunning Fog | 15.2 | 14.80 | 15.10 | 16.25 | 17.60 | 18.69 | p25--p50 | Lower is easier |
+| Gunning Fog | 15.1 | 14.80 | 15.10 | 16.25 | 17.60 | 18.69 | p25--p50 | Lower is easier |
 | SMOG | 14.1 | 13.40 | 14.03 | 14.45 | 15.45 | 15.99 | p25--p50 | Lower is easier |
-| Passive voice (%) | 10.9 | 2.31 | 2.82 | 5.50 | 8.55 | 10.89 | about p90 | Lower is usually easier |
+| Passive voice (%) | 10.8 | 2.31 | 2.82 | 5.50 | 8.55 | 10.89 | p75--p90 | Lower is usually easier |
 | Nominalizations (%) | 6.3 | 3.12 | 3.98 | 4.45 | 5.30 | 5.97 | above p90 | Lower is usually easier |
 | Hedging (%) | 0.3 | 0.11 | 0.43 | 0.60 | 0.78 | 1.17 | p10--p25 | Lower is more direct |
 
@@ -49,10 +51,10 @@ sentence formulas to symbol definitions.
 | Introduction | 661 | 21.7 | 14.4 | 17.0 | 15.4 | 15.4 | 8.2 | 0.8 |
 | A working numerical illustration | 122 | 67.7 | 5.9 | 8.4 | 9.0 | 5.0 | 5.7 | 0.0 |
 | Players, information, and proposals | 180 | 49.4 | 9.5 | 13.0 | 12.3 | 13.3 | 5.0 | 1.1 |
-| Ballots, timing, and payoffs | 427 | 35.3 | 13.1 | 14.6 | 14.0 | 20.0 | 2.8 | 0.0 |
+| Ballots, timing, and payoffs | 467 | 37.4 | 12.8 | 14.1 | 13.6 | 18.5 | 2.6 | 0.0 |
 | Solution concept | 269 | 28.8 | 13.8 | 16.2 | 15.3 | 13.3 | 4.8 | 0.7 |
 | Results opening | 47 | 45.1 | 10.9 | 13.1 | 13.0 | 0.0 | 6.4 | 0.0 |
-| Complete-information benchmark | 289 | 35.4 | 12.6 | 14.9 | 13.9 | 5.3 | 4.8 | 0.0 |
+| Complete-information benchmark | 305 | 33.0 | 12.9 | 15.2 | 14.0 | 5.0 | 5.9 | 0.0 |
 | Private information in the terminal round | 154 | 42.2 | 11.1 | 12.4 | 12.0 | 9.1 | 3.9 | 0.0 |
 | Private majority in Round 1 | 281 | 36.1 | 11.8 | 14.1 | 13.3 | 21.1 | 4.3 | 0.0 |
 | Private unanimity in Round 1 | 413 | 11.8 | 17.3 | 18.9 | 17.0 | 9.5 | 8.0 | 0.0 |

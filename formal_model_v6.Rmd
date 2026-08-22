@@ -218,11 +218,16 @@ Event & Weak-state payoffs & \(H\) votes yes & \(H\) votes no \\
 \midrule
 Proposal passes & Proposed \(x_j\) and \(r_i\) & \(y\) & \(y+o_\theta\) \\
 Round-1 proposal fails & No current payoff; proceed to Round 2 &
-\(\beta\) times the Round-2 continuation & Same continuation \\
+\(\beta C_H(h^Y)\) & \(\beta C_H(h^N)\) \\
 Round-2 proposal fails & Zero & \(o_\theta\) & \(o_\theta\) \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+Here \(h^Y\) and \(h^N\) denote the distinct public histories in which \(H\)
+voted yes or no, and \(C_H(h^a)\) denotes \(H\)'s Round-2 continuation value
+after history \(h^a\). These continuation values need not be equal because the
+public vote can change beliefs before Round 2.
 
 \begin{figure}[H]
 \centering
@@ -307,7 +312,10 @@ With a public type, no belief or signaling issue remains. The proposer compares
 the price of \(H\)'s vote with the price of enough weak-state votes. In the
 terminal round, the relevant price of \(H\) is \(o_\theta\). In the first
 round, it is \(\beta o_\theta\), because rejection leads to the terminal
-round. A weak-state vote costs \(\beta/m\) in first-round units.
+round.
+Under majority, a weak-state vote costs \(\beta/m\) in first-round units. Under
+unanimity with public disagreement payoff \(o\), each weak responder's
+continuation price is \(\beta(1-o)/m\).
 
 \begin{proposition}[Public-type benchmark]\label{prop:public}
 Fix a public type with disagreement payoff \(o\). In the terminal round,
