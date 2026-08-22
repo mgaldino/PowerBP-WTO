@@ -9,7 +9,12 @@
   },
   "freeze_gate_schema": {
     "canonical_source": "contract Section 11",
-    "required_node_fields": ["status", "frozen", "artifact_hash", "reviews"],
+    "required_node_fields": [
+      "status",
+      "frozen",
+      "artifact_hash",
+      "reviews"
+    ],
     "status_value": "pass",
     "frozen_value": true,
     "review_count": 2,
@@ -20,10 +25,17 @@
       "artifact_hash",
       "finding_counts"
     ],
-    "reviewer_roles": ["formal_design", "game_theory"],
+    "reviewer_roles": [
+      "formal_design",
+      "game_theory"
+    ],
     "reviewer_ids_must_be_distinct": true,
     "verdict_value": "PASS",
-    "finding_count_fields": ["critical", "major", "minor"],
+    "finding_count_fields": [
+      "critical",
+      "major",
+      "minor"
+    ],
     "finding_count_value": 0,
     "review_hash_rule": "Each review artifact_hash exactly matches the node artifact_hash.",
     "topological_readiness_scope": "Frozen dependencies are necessary but never sufficient author authorization; the contract Section 11 is the sole authority for author gates."
@@ -42,7 +54,10 @@
         "existence_status",
         "nonexistence_certificate"
       ],
-      "existence_status_values": ["exists", "none"],
+      "existence_status_values": [
+        "exists",
+        "none"
+      ],
       "nonexistence_certificate_fields": [
         "ledger_claim_ids",
         "assumptions_used",
@@ -65,7 +80,12 @@
   },
   "interface_schemas": {
     "equilibrium_correspondence_v1": {
-      "applies_to": ["N1", "N2", "N3", "N4"],
+      "applies_to": [
+        "N1",
+        "N2",
+        "N3",
+        "N4"
+      ],
       "cell_schema_ref": "coverage_cell_v1",
       "cell_record_field": "equilibrium_records",
       "record_fields": [
@@ -86,7 +106,10 @@
         "outcome_distribution",
         "payoff_date"
       ],
-      "hegemon_payoff_by_type_fields": ["theta_0", "theta_1"],
+      "hegemon_payoff_by_type_fields": [
+        "theta_0",
+        "theta_1"
+      ],
       "outcome_distribution_fields": [
         "pass_with_hegemon",
         "pass_without_hegemon",
@@ -95,7 +118,9 @@
       ]
     },
     "private_information_comparison_v1": {
-      "applies_to": ["N6"],
+      "applies_to": [
+        "N6"
+      ],
       "cell_schema_ref": "coverage_cell_v1",
       "private_rule_cell_record_field": "private_rule_records",
       "cell_record_field": "comparison_records",
@@ -122,12 +147,18 @@
         "selection_status",
         "checks_performed"
       ],
-      "institution_fields": ["majority", "unanimity"],
+      "institution_fields": [
+        "majority",
+        "unanimity"
+      ],
       "private_rule_source_node_map": {
         "majority": "N3",
         "unanimity": "N4"
       },
-      "private_rule_payoff_vector_fields": ["theta_0", "theta_1"],
+      "private_rule_payoff_vector_fields": [
+        "theta_0",
+        "theta_1"
+      ],
       "private_rule_outcome_distribution_fields": [
         "pass_with_hegemon",
         "pass_without_hegemon",
@@ -136,12 +167,30 @@
       ],
       "unique_private_rule_id_field": "private_rule_record_id",
       "private_rule_passthrough_rule": "Each N3 equilibrium record appears exactly once in majority private_rule_cells and each N4 equilibrium record appears exactly once in unanimity private_rule_cells, preserving source cell id, equilibrium id, and interface hash; one rule may be nonempty when the other is empty.",
-      "source_node_fields": ["N3", "N4"],
-      "source_equilibrium_id_fields": ["majority", "unanimity"],
-      "source_interface_hash_fields": ["N3", "N4"],
-      "private_payoff_vector_rule_fields": ["majority", "unanimity"],
-      "payoff_vector_type_fields": ["theta_0", "theta_1"],
-      "private_outcome_distribution_rule_fields": ["majority", "unanimity"],
+      "source_node_fields": [
+        "N3",
+        "N4"
+      ],
+      "source_equilibrium_id_fields": [
+        "majority",
+        "unanimity"
+      ],
+      "source_interface_hash_fields": [
+        "N3",
+        "N4"
+      ],
+      "private_payoff_vector_rule_fields": [
+        "majority",
+        "unanimity"
+      ],
+      "payoff_vector_type_fields": [
+        "theta_0",
+        "theta_1"
+      ],
+      "private_outcome_distribution_rule_fields": [
+        "majority",
+        "unanimity"
+      ],
       "outcome_distribution_fields": [
         "pass_with_hegemon",
         "pass_without_hegemon",
@@ -153,7 +202,9 @@
       "comparison_refinement_rule": "comparison_cells is the common refinement of majority and unanimity private_rule_cells and is none wherever either source cell is none, without changing either private-rule collection."
     },
     "complete_information_benchmark_v1": {
-      "applies_to": ["N7"],
+      "applies_to": [
+        "N7"
+      ],
       "cell_schema_ref": "coverage_cell_v1",
       "public_equilibrium_cell_record_field": "public_equilibrium_records",
       "informational_rent_cell_record_field": "informational_rent_records",
@@ -199,24 +250,53 @@
         "selection_status",
         "robustness_indicators"
       ],
-      "institution_fields": ["majority", "unanimity"],
-      "round_fields": ["R2", "R1"],
-      "type_fields": ["theta_0", "theta_1"],
-      "public_record_nesting": ["institution", "round", "type"],
+      "institution_fields": [
+        "majority",
+        "unanimity"
+      ],
+      "round_fields": [
+        "R2",
+        "R1"
+      ],
+      "type_fields": [
+        "theta_0",
+        "theta_1"
+      ],
+      "public_record_nesting": [
+        "institution",
+        "round",
+        "type"
+      ],
       "unique_public_id_field": "public_equilibrium_id",
       "public_payoff_vector_schema_ref": "public_payoff_vector_v1",
       "public_continuation_rule": "R2 source_public_continuation_ids is empty; R1 contains all and only consumed R2 public_equilibrium_ids from the same institution and type.",
-      "rent_cell_nesting": ["institution"],
-      "rent_public_source_nesting": ["type"],
+      "rent_cell_nesting": [
+        "institution"
+      ],
+      "rent_public_source_nesting": [
+        "type"
+      ],
       "rent_private_source_id_field": "private_source_rule_record_id",
-      "rent_public_source_id_fields": ["theta_0", "theta_1"],
+      "rent_public_source_id_fields": [
+        "theta_0",
+        "theta_1"
+      ],
       "rent_source_interface_hash_field": "source_N6_interface_hash",
-      "rent_vector_fields": ["theta_0", "theta_1"],
+      "rent_vector_fields": [
+        "theta_0",
+        "theta_1"
+      ],
       "unique_rent_id_field": "rent_record_id",
       "rent_tuple_rule": "Exactly one rent record per admissible same-institution tuple of one private-rule record, two R1 public equilibrium ids (one per type), and the frozen N6 interface hash; majority and unanimity rent collections remain independent.",
       "rent_independence_rule": "RI_M and RI_U are represented in separate coverage-cell collections; either may be nonempty when the other is empty.",
-      "contrast_source_rent_id_fields": ["majority", "unanimity"],
-      "contrast_vector_fields": ["theta_0", "theta_1"],
+      "contrast_source_rent_id_fields": [
+        "majority",
+        "unanimity"
+      ],
+      "contrast_vector_fields": [
+        "theta_0",
+        "theta_1"
+      ],
       "unique_contrast_id_field": "contrast_record_id",
       "contrast_tuple_rule": "Exactly one contrast record per admissible majority-unanimity rent-record pair; the contrast cell is none wherever either source rent cell is none, without changing either rent collection.",
       "outcome_distribution_fields": [
@@ -234,15 +314,130 @@
       "round": "R2",
       "institution": "majority",
       "depends_on": [],
-      "status": "pending",
+      "status": "pass",
       "interface": {
         "schema_ref": "equilibrium_correspondence_v1",
         "function_of": {
           "name": "entry_belief",
           "domain": "[0,1]"
         },
-        "correspondence_cells": null
-      }
+        "correspondence_cells": [
+          {
+            "cell_id": "N1-CELL-ALL-NU",
+            "domain_conditions": [
+              "nu in [0,1]",
+              "N is an integer and N >= 3",
+              "m = N-1",
+              "q = floor(N/2)+1",
+              "beta in (0,1) and is payoff-irrelevant inside terminal R2",
+              "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+              "the proposal is feasible under y + sum_j x_j + r_i <= 1"
+            ],
+            "existence_status": "exists",
+            "equilibrium_records": [
+              {
+                "equilibrium_id": "N1-EQ-01",
+                "admissibility_conditions": [
+                  "all primitive restrictions in N1-CELL-ALL-NU hold",
+                  "ballot strategies are pure",
+                  "weak nonproposer strategies satisfy stage-undominated voting",
+                  "T^Y selects yes only at genuine indifference"
+                ],
+                "branch_classification": "terminal approval without H",
+                "strategy_profile": {
+                  "recognized_weak_proposer": {
+                    "proposal": {
+                      "y": "0",
+                      "x_j_for_each_weak_nonproposer": "0",
+                      "r_i": "1"
+                    },
+                    "proposal_is_unique_argmax": true
+                  },
+                  "weak_nonproposer_vote_after_every_feasible_proposal": "yes",
+                  "hegemon_vote_after_every_feasible_proposal": {
+                    "theta_0": "no",
+                    "theta_1": "no"
+                  }
+                },
+                "belief_system": {
+                  "entry_belief": "Pr(theta=1)=nu",
+                  "on_path_after_proposal": "Pr(theta=1 | y=0, every x_j=0, r_i=1)=nu by Bayes",
+                  "off_path_after_zero_probability_proposal": "arbitrary kappa(s) in [0,1]",
+                  "off_path_belief_effect": "none on strategies, outcomes, or payoffs"
+                },
+                "source_continuation_record_ids": [],
+                "source_interface_hashes": [],
+                "existence_uniqueness_status": "exists; unique strategy profile, outcome, and payoff; multiplicity only in arbitrary payoff-irrelevant off-path beliefs",
+                "selection_status": "full assessment class preserved; no ad hoc equilibrium selection; proposal tie-break inactive because the argmax is unique",
+                "assumptions_used": [
+                  "fixed unit pie and package feasibility from Section 2",
+                  "majority quota and terminal transition/payoffs from Section 4",
+                  "PBE with pure ballot strategies, weak-only stage-undominated voting, and T^Y from Section 5",
+                  "R2 native current units from Section 6",
+                  "iid uniform recognition with replacement"
+                ],
+                "checks_performed": [
+                  "N1-C01 weak yes weakly dominates no when x_j>0",
+                  "N1-C02 T^Y selects weak yes when x_j=0",
+                  "N1-C03 H strictly votes no when nonpivotal while y is fully executed",
+                  "N1-C04 P0 unique full-pie proposer optimum",
+                  "N1-C05 sequential rationality after every feasible proposal",
+                  "N1-C06 exhaustive correspondence with off-path belief multiplicity preserved",
+                  "N1-C07 no internal discount in R2 payoffs",
+                  "N1-C08 P5 posterior sufficiency",
+                  "N1-C09 P6 on-path refinement effect",
+                  "N1-C10 strict o_1<1 domain restriction leaves the N1 correspondence invariant",
+                  "N1-C11 strict beta<1 domain restriction leaves the N1 correspondence invariant and beta absent from terminal R2 incentives"
+                ],
+                "recognized_proposer_payoff": "1",
+                "weak_nonproposer_pre_recognition_expected_value": "1/m",
+                "hegemon_payoff_by_type": {
+                  "theta_0": "o_0",
+                  "theta_1": "o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 0,
+                  "pass_without_hegemon": 1,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "R2 current units"
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ]
+      },
+      "artifact_path": "essential_input_interfaces/n1_r2_majority_candidate_v1.json",
+      "artifact_hash": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+      "dependency_hashes": {},
+      "started_order": 1,
+      "passed_order": 3,
+      "frozen": true,
+      "reviews": [
+        {
+          "reviewer_role": "formal_design",
+          "reviewer_id": "review-n1-n2-beta-formal-2026-08-18-r1",
+          "verdict": "PASS",
+          "artifact_hash": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+          "finding_counts": {
+            "critical": 0,
+            "major": 0,
+            "minor": 0
+          }
+        },
+        {
+          "reviewer_role": "game_theory",
+          "reviewer_id": "review-n1-n2-beta-game-2026-08-18-r1",
+          "verdict": "PASS",
+          "artifact_hash": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+          "finding_counts": {
+            "critical": 0,
+            "major": 0,
+            "minor": 0
+          }
+        }
+      ]
     },
     {
       "id": "N2",
@@ -250,55 +445,605 @@
       "round": "R2",
       "institution": "unanimity",
       "depends_on": [],
-      "status": "pending",
+      "status": "pass",
       "interface": {
         "schema_ref": "equilibrium_correspondence_v1",
         "function_of": {
           "name": "entry_belief",
           "domain": "[0,1]"
         },
-        "correspondence_cells": null
-      }
+        "correspondence_cells": [
+          {
+            "cell_id": "N2-CELL-LOW-TYPE-ONLY",
+            "domain_conditions": "Primitive domain: beta in (0,1), 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and 0 <= nu <= nu_star, where nu_star=(o_1-o_0)/(1-o_0) is strictly between 0 and 1.",
+            "existence_status": "exists",
+            "equilibrium_records": [
+              {
+                "equilibrium_id": "N2-EQ-LOW-TYPE-ONLY",
+                "admissibility_conditions": "beta in (0,1), 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and 0 <= nu <= nu_star, where nu_star=(o_1-o_0)/(1-o_0).",
+                "branch_classification": "low-type-only passage (separating H ballot); no delay in terminal R2",
+                "strategy_profile": {
+                  "recognized_weak_proposer": "Choose y=o_0, x_j=0 for every weak nonproposer j, and r_i=1-o_0.",
+                  "weak_nonproposer_ballot": "Vote yes after every feasible proposal. If x_j>0, yes weakly dominates no; if x_j=0, the two actions are identical and T^Y selects yes.",
+                  "hegemon_ballot_by_type": {
+                    "theta_0": "Vote yes if and only if y >= o_0.",
+                    "theta_1": "Vote yes if and only if y >= o_1."
+                  }
+                },
+                "belief_system": {
+                  "entry": "Pr(theta=1)=nu.",
+                  "on_path_ballot": "The recognized weak proposer does not observe theta, so the on-path proposal carries no type information and the ballot belief remains nu.",
+                  "off_path_ballot": "After a zero-probability proposal, any belief in [0,1] is admissible. Terminal weak and H ballot strategies and the proposer's deviation payoff are invariant to that belief."
+                },
+                "source_continuation_record_ids": [],
+                "source_interface_hashes": {},
+                "existence_uniqueness_status": "Exists. The proposal, pure ballot strategies, outcome distribution, and payoff vector are unique. PBE assessments are multiple only through unrestricted payoff-irrelevant beliefs after zero-probability proposals.",
+                "selection_status": "For nu<nu_star, y=o_0 strictly maximizes proposer payoff. At nu=nu_star, y=o_0 and y=o_1 tie for proposer payoff before the proposal-level tie-break; the stipulated tie-break selects y=o_0 because it gives H strictly lower expected payoff. T^Y selects yes for theta=0 at y=o_0.",
+                "assumptions_used": [
+                  "Contract Section 2 primitives and feasibility, including 0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+                  "Contract Section 2 strict discount domain beta in (0,1), which is payoff-irrelevant inside terminal R2",
+                  "Contract Section 4 terminal implementation and payoffs",
+                  "Contract Section 5 PBE, stage-undominated voting for weak nonproposers, T^Y, and proposal-level tie-break",
+                  "Contract Section 6 current R2 units",
+                  "No continuation input"
+                ],
+                "checks_performed": [
+                  "P0 full-pie test",
+                  "P5 posterior-sufficiency test",
+                  "P6 terminal refinement test",
+                  "Complete pure-ballot best-response enumeration",
+                  "Strict-interior frontier and proposal-tie check",
+                  "Former-degenerate-corner exclusion check",
+                  "Strict beta-domain invariance check"
+                ],
+                "recognized_proposer_payoff": "(1-nu)*(1-o_0)",
+                "weak_nonproposer_pre_recognition_expected_value": "((1-nu)*(1-o_0))/m",
+                "hegemon_payoff_by_type": {
+                  "theta_0": "o_0",
+                  "theta_1": "o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": "1-nu",
+                  "pass_without_hegemon": "0",
+                  "failure": "nu",
+                  "delay": "0"
+                },
+                "payoff_date": "R2_current_units_no_beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N2-CELL-POOLING",
+            "domain_conditions": "Primitive domain: beta in (0,1), 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and nu_star < nu <= 1, where nu_star=(o_1-o_0)/(1-o_0) is strictly between 0 and 1.",
+            "existence_status": "exists",
+            "equilibrium_records": [
+              {
+                "equilibrium_id": "N2-EQ-POOLING",
+                "admissibility_conditions": "beta in (0,1), 0 < o_0 < o_1 < 1, o_1 <= y_bar <= 1, and nu_star < nu <= 1, where nu_star=(o_1-o_0)/(1-o_0).",
+                "branch_classification": "pooling passage with H; no delay in terminal R2",
+                "strategy_profile": {
+                  "recognized_weak_proposer": "Choose y=o_1, x_j=0 for every weak nonproposer j, and r_i=1-o_1.",
+                  "weak_nonproposer_ballot": "Vote yes after every feasible proposal. If x_j>0, yes weakly dominates no; if x_j=0, the two actions are identical and T^Y selects yes.",
+                  "hegemon_ballot_by_type": {
+                    "theta_0": "Vote yes if and only if y >= o_0.",
+                    "theta_1": "Vote yes if and only if y >= o_1."
+                  }
+                },
+                "belief_system": {
+                  "entry": "Pr(theta=1)=nu.",
+                  "on_path_ballot": "The recognized weak proposer does not observe theta, so the on-path proposal carries no type information and the ballot belief remains nu.",
+                  "off_path_ballot": "After a zero-probability proposal, any belief in [0,1] is admissible. Terminal weak and H ballot strategies and the proposer's deviation payoff are invariant to that belief."
+                },
+                "source_continuation_record_ids": [],
+                "source_interface_hashes": {},
+                "existence_uniqueness_status": "Exists. The proposal, pure ballot strategies, outcome distribution, and payoff vector are unique. PBE assessments are multiple only through unrestricted payoff-irrelevant beliefs after zero-probability proposals.",
+                "selection_status": "For nu>nu_star, y=o_1 strictly maximizes proposer payoff. T^Y selects yes for theta=1 at y=o_1. No proposal-level payoff tie occurs in this cell.",
+                "assumptions_used": [
+                  "Contract Section 2 primitives and feasibility, including 0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+                  "Contract Section 2 strict discount domain beta in (0,1), which is payoff-irrelevant inside terminal R2",
+                  "Contract Section 4 terminal implementation and payoffs",
+                  "Contract Section 5 PBE, stage-undominated voting for weak nonproposers, T^Y, and proposal-level tie-break",
+                  "Contract Section 6 current R2 units",
+                  "No continuation input"
+                ],
+                "checks_performed": [
+                  "P0 full-pie test",
+                  "P5 posterior-sufficiency test",
+                  "P6 terminal refinement test",
+                  "Complete pure-ballot best-response enumeration",
+                  "Strict-interior frontier and proposal-tie check",
+                  "Former-degenerate-corner exclusion check",
+                  "Strict beta-domain invariance check"
+                ],
+                "recognized_proposer_payoff": "1-o_1",
+                "weak_nonproposer_pre_recognition_expected_value": "(1-o_1)/m",
+                "hegemon_payoff_by_type": {
+                  "theta_0": "o_1",
+                  "theta_1": "o_1"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": "1",
+                  "pass_without_hegemon": "0",
+                  "failure": "0",
+                  "delay": "0"
+                },
+                "payoff_date": "R2_current_units_no_beta"
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ]
+      },
+      "artifact_path": "essential_input_n2_r2_unanimity_interface.json",
+      "artifact_hash": "sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2",
+      "dependency_hashes": {},
+      "started_order": 2,
+      "passed_order": 4,
+      "frozen": true,
+      "reviews": [
+        {
+          "reviewer_role": "formal_design",
+          "reviewer_id": "review-n1-n2-beta-formal-2026-08-18-r1",
+          "verdict": "PASS",
+          "artifact_hash": "sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2",
+          "finding_counts": {
+            "critical": 0,
+            "major": 0,
+            "minor": 0
+          }
+        },
+        {
+          "reviewer_role": "game_theory",
+          "reviewer_id": "review-n1-n2-beta-game-2026-08-18-r1",
+          "verdict": "PASS",
+          "artifact_hash": "sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2",
+          "finding_counts": {
+            "critical": 0,
+            "major": 0,
+            "minor": 0
+          }
+        }
+      ]
     },
     {
       "id": "N3",
       "name": "r1_majority",
       "round": "R1",
       "institution": "majority",
-      "depends_on": ["N1"],
-      "status": "pending",
+      "depends_on": [
+        "N1"
+      ],
+      "status": "pass",
       "interface": {
         "schema_ref": "equilibrium_correspondence_v1",
         "function_of": {
           "name": "entry_belief",
           "domain": "[0,1]"
         },
-        "correspondence_cells": null
-      }
+        "correspondence_cells": [
+          {
+            "cell_id": "N3-SC-CELL-ALL",
+            "domain_conditions": [
+              "nu in [0,1]",
+              "N is an integer and N >= 3",
+              "m=N-1 and q=floor(N/2)+1",
+              "beta in (0,1)",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "N1 hash is sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+            ],
+            "existence_status": "exists",
+            "equilibrium_records": [
+              {
+                "equilibrium_id": "N3-SC-EQ-COMPLETE",
+                "admissibility_conditions": [
+                  "ballot strategies are pure",
+                  "weak voters use as-if-pivotal expected-value comparison",
+                  "T^Y selects yes at expected-value equality",
+                  "weak proposals and votes do not move beliefs about theta",
+                  "the proposer first maximizes own payoff and then minimizes expected H payoff"
+                ],
+                "branch_classification": "complete majority correspondence over exclusion, low-type screening with high-type delay, and pooling; deliberate rejection and on-path slack excluded",
+                "strategy_profile": {
+                  "definitions": {
+                    "w": "beta/m",
+                    "t_0": "beta*o_0",
+                    "t_1": "beta*o_1",
+                    "E": "1-(q-1)*w",
+                    "L": "1-(q-2)*w-t_0",
+                    "S_of_nu": "(1-nu)*L+nu*w",
+                    "P": "1-(q-2)*w-t_1",
+                    "R": "w",
+                    "strict_exclusion_gain_over_rejection": "1-beta*q/m>0"
+                  },
+                  "weak_nonproposer_vote": "yes iff x_j>=w",
+                  "hegemon_vote": {
+                    "at_least_q_minus_1_weak_yes": "no for both types; proposal passes without H",
+                    "exactly_q_minus_2_weak_yes": "type theta votes yes iff y>=t_theta",
+                    "at_most_q_minus_3_weak_yes": "yes for both types by T^Y; proposal still fails"
+                  },
+                  "candidate_families": {
+                    "exclusion": "choose q-1 responders, pay each w, set y=0 and retain E",
+                    "screening": "choose q-2 responders, pay each w, set y=t_0 and retain L when feasible",
+                    "pooling": "choose q-2 responders, pay each w, set y=t_1 and retain P when feasible"
+                  },
+                  "atomic_family_binder": "All strategy, payoff, and outcome fields in this record use the same identity-indexed family F=(F_i)_{i in W}, with each F_i supported on the feasible lexicographic argmax A_i_star(nu).",
+                  "outcome_indicators": {
+                    "I_H(s,theta)": "one iff proposal s passes with H for type theta",
+                    "I_X(s,theta)": "one iff proposal s passes without H for type theta",
+                    "I_D(s,theta)": "one iff proposal s fails in R1 and reaches N1 for type theta",
+                    "partition": "I_H+I_X+I_D=1 proposal-by-proposal and type-by-type"
+                  },
+                  "selection": "for each proposer identity, any distribution supported on the feasible lexicographic argmax of {E,S(nu),P}; coalition-identity multiplicity is preserved",
+                  "frontiers": {
+                    "nu_SE": "beta*(1/m-o_0)/[beta*(1/m-o_0)+1-beta*q/m], used only when o_0<1/m",
+                    "nu_SP": "beta*(o_1-o_0)/[1-beta*o_0-beta*(q-1)/m], used only when o_1<1/m",
+                    "pooling_exclusion_tie": "o_1=1/m; above screening, compare expected H payoffs h_E and h_P"
+                  }
+                },
+                "belief_system": {
+                  "after_every_weak_proposal": "nu",
+                  "after_weak_votes": "unchanged from the belief before the ballot",
+                  "after_prescribed_H_vote": "Bayes using H's type-contingent strategy whenever the denominator is positive; weak-vote factors cancel",
+                  "zero_total_probability_H_action": "support-restricted: posterior zero throughout the tree at nu=0 and one throughout the tree at nu=1; when 0<nu<1, an out-of-profile H action may induce any posterior in [0,1]",
+                  "after_H_action_outside_profile": "free in [0,1] only for 0<nu<1; fixed at zero when nu=0 and at one when nu=1",
+                  "continuation_effect": "all resulting beliefs consume posterior-invariant N1-EQ-01"
+                },
+                "source_continuation_record_ids": [
+                  "N1-EQ-01"
+                ],
+                "source_interface_hashes": {
+                  "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+                },
+                "existence_uniqueness_status": "exists for every admissible primitive and nu; generally strategy-multiple through coalition identities and the residual exclusion-pooling tie",
+                "selection_status": "all lexicographically optimal proposer distributions preserved; no symmetry, belief, or equilibrium selection added",
+                "assumptions_used": [
+                  "fixed unit pie and full implementation",
+                  "majority quota",
+                  "no exit action",
+                  "N1 only",
+                  "new solution-concept package of 2026-08-21 plus the subsequent endpoint support restriction"
+                ],
+                "checks_performed": [
+                  "complete proposal-by-proposal payoff formula",
+                  "screening and pooling feasibility implication",
+                  "nu_SP domain and denominator",
+                  "expected-H tie-breaks",
+                  "current versus delayed o_theta timing",
+                  "belief transport under no-signaling and endpoint support restriction",
+                  "strict exclusion gain over deliberate rejection",
+                  "atomic binding of every payoff and outcome to the same F=(F_i)_i"
+                ],
+                "recognized_proposer_payoff": "For every recognized i, E_{s~F_i,theta~nu}[r_i(s)*(I_H(s,theta)+I_X(s,theta))+w*I_D(s,theta)]=V_star(nu)=max{E,S(nu),P} after feasibility and the authorized tie-break; the same F_i is used in every field.",
+                "weak_nonproposer_pre_recognition_expected_value": {
+                  "atomic_family": "the same F=(F_i)_i used by strategy_profile, H payoffs, and outcomes",
+                  "by_weak_state_l": "C_l(F)=V_star/m+(1/m)*sum_{i!=l} E_{s~F_i,theta~nu}[x_l(s)*(I_H(s,theta)+I_X(s,theta))+w*I_D(s,theta)]",
+                  "recognition_accounting": "the first term is l's probability 1/m of being proposer; each term in the sum is probability 1/m that another identity i proposes"
+                },
+                "hegemon_payoff_by_type": {
+                  "theta_0": "C_H(0;F)=(1/m)*sum_i E_{s~F_i}[y(s)*I_H(s,0)+(y(s)+o_0)*I_X(s,0)+t_0*I_D(s,0)]",
+                  "theta_1": "C_H(1;F)=(1/m)*sum_i E_{s~F_i}[y(s)*I_H(s,1)+(y(s)+o_1)*I_X(s,1)+t_1*I_D(s,1)]"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+                  "pass_without_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+                  "failure": 0,
+                  "delay": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]"
+                },
+                "payoff_date": "R1 current units; N1 values multiplied by beta exactly once"
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ]
+      },
+      "artifact_path": "essential_input_solution_concept/n3_r1_majority_candidate.json",
+      "artifact_hash": "sha256:ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d",
+      "dependency_hashes": {
+        "N1": "sha256:1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5"
+      },
+      "started_order": 5,
+      "passed_order": 7,
+      "frozen": true,
+      "reviews": [
+        {
+          "reviewer_role": "formal_design",
+          "reviewer_id": "codex-formal-design-n3-final-20260821",
+          "verdict": "PASS",
+          "artifact_hash": "sha256:ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d",
+          "finding_counts": {
+            "critical": 0,
+            "major": 0,
+            "minor": 0
+          }
+        },
+        {
+          "reviewer_role": "game_theory",
+          "reviewer_id": "codex-game-theory-n3-final-20260821",
+          "verdict": "PASS",
+          "artifact_hash": "sha256:ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d",
+          "finding_counts": {
+            "critical": 0,
+            "major": 0,
+            "minor": 0
+          }
+        }
+      ]
     },
     {
       "id": "N4",
       "name": "r1_unanimity",
       "round": "R1",
       "institution": "unanimity",
-      "depends_on": ["N2"],
-      "status": "pending",
+      "depends_on": [
+        "N2"
+      ],
+      "status": "pass",
       "interface": {
         "schema_ref": "equilibrium_correspondence_v1",
         "function_of": {
           "name": "entry_belief",
           "domain": "[0,1]"
         },
-        "correspondence_cells": null
-      }
+        "correspondence_cells": [
+          {
+            "cell_id": "N4-SC-CELL-NU-ZERO",
+            "domain_conditions": [
+              "nu=0",
+              "nu_star=(o_1-o_0)/(1-o_0); ell=beta*o_0; h=beta*o_1; A=beta*(1-o_0)/m; B=beta*(1-o_1)/m; Q_L=1-ell-(m-1)*A=A+1-beta",
+              "all primitive restrictions hold",
+              "frozen N2 interface hash is sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2",
+              "N2 endpoint-support erratum hash is sha256:94062c0803d9ed455fbec3b9508fabd2eb4cb86018fbe036b618671f452f7a69"
+            ],
+            "existence_status": "exists",
+            "equilibrium_records": [
+              {
+                "equilibrium_id": "N4-SC-EQ-L-STAR",
+                "admissibility_conditions": [
+                  "ballot strategies are pure",
+                  "weak voters use as-if-pivotal comparison",
+                  "T^Y selects yes at equality",
+                  "no-signaling, structural consistency, and endpoint support restriction govern beliefs"
+                ],
+                "branch_classification": "unique low-type-only immediate agreement at the zero-prior endpoint",
+                "strategy_profile": {
+                  "definitions": "nu_star=(o_1-o_0)/(1-o_0); ell=beta*o_0; h=beta*o_1; A=beta*(1-o_0)/m; B=beta*(1-o_1)/m; C=A at nu=0; Q_L=A+1-beta",
+                  "recognized_weak_proposer": "Y=ell, every x_j=A, r_i=Q_L",
+                  "weak_nonproposers": "yes",
+                  "hegemon": {
+                    "theta_0": "yes",
+                    "theta_1": "no"
+                  },
+                  "complete_off_path_ballot_correspondence": {
+                    "notation": "u=min_j x_j and W(eta)=(1-eta)*A for eta<=nu_star, B otherwise",
+                    "H_yes_yes": "admissible iff u<A or [u>=A and Y>=h]; posterior is zero after both H actions, and weak j votes yes iff x_j>=A",
+                    "H_no_no": "admissible iff u>=A and Y<ell; posterior is zero and all weak voters vote yes",
+                    "H_yes_no": "admissible iff u>=A and ell<=Y<h; posterior is zero after both H actions and all weak voters vote yes",
+                    "H_no_yes": "never admissible",
+                    "strategy_overlap": "none; exactly one pure H profile is admissible after each feasible proposal; if B<=u<A and Y<ell, only H=(yes,yes) with weak veto survives"
+                  }
+                },
+                "belief_system": {
+                  "after_weak_actions": "nu remains zero",
+                  "endpoint_support_restriction": "eta_Y=eta_N=0 after every H action, including zero-denominator and out-of-profile actions",
+                  "positive_probability_prescribed_H_action": "Bayes gives posterior zero",
+                  "H_yes_yes_with_weak_veto": "the out-of-profile eta_N is zero",
+                  "H_no_no": "the out-of-profile eta_Y is zero, so W(eta_Y)=A and u>=A is necessary",
+                  "H_yes_no": "the prescribed H1 no has zero total probability but support restriction fixes eta_N=0",
+                  "other_histories": "posterior zero throughout the tree"
+                },
+                "source_continuation_record_ids": [
+                  "N2-EQ-LOW-TYPE-ONLY"
+                ],
+                "source_interface_hashes": {
+                  "N2": "sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2",
+                  "N2_endpoint_support_erratum": "sha256:94062c0803d9ed455fbec3b9508fabd2eb4cb86018fbe036b618671f452f7a69"
+                },
+                "existence_uniqueness_status": "exists; the on-path proposal, outcome, and payoff are unique, and endpoint support restriction makes the pure ballot profile and belief unique after every feasible proposal",
+                "selection_status": "no additional selection; Q_L exceeds delay by 1-beta and exceeds every pooling proposal; the unique admissible off-path ballot profile is retained proposal-by-proposal",
+                "assumptions_used": [
+                  "N2 only",
+                  "beta in (0,1)",
+                  "pure ballots",
+                  "new solution-concept package of 2026-08-21 plus the subsequent endpoint support restriction"
+                ],
+                "checks_performed": [
+                  "agreement floor A",
+                  "full-pie feasibility",
+                  "four-profile H enumeration",
+                  "Q_L-A=1-beta",
+                  "no on-path delay or mixture",
+                  "complete pure sequential correspondence after every feasible proposal",
+                  "endpoint support fixed at zero and no off-path strategy overlap"
+                ],
+                "recognized_proposer_payoff": "Q_L=A+1-beta",
+                "weak_nonproposer_pre_recognition_expected_value": {
+                  "entry_prior_value": "(Q_L+(m-1)*A)/m=(1-ell)/m because nu=0",
+                  "theta_0_realized_vector": "recognized R1 proposer Q_L; every R1 weak nonproposer A; representative weak before R1 recognition (1-ell)/m",
+                  "theta_1_realized_vector": "every weak state 0 after the failed R1 proposal and N2 screening; theta_1 has zero prior probability in this cell"
+                },
+                "hegemon_payoff_by_type": {
+                  "theta_0": "ell",
+                  "theta_1": "h"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "R1 current units"
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N4-SC-CELL-NO-PURE-PBE",
+            "domain_conditions": [
+              "0<nu<=nu_star",
+              "nu_star=(o_1-o_0)/(1-o_0); ell=beta*o_0; h=beta*o_1; A=beta*(1-o_0)/m; B=beta*(1-o_1)/m; Q_L=1-ell-(m-1)*A=A+1-beta",
+              "all primitive restrictions hold",
+              "ballot strategies must be pure"
+            ],
+            "existence_status": "none",
+            "equilibrium_records": [],
+            "nonexistence_certificate": {
+              "ledger_claim_ids": [
+                "N4-C08"
+              ],
+              "assumptions_used": [
+                "nu_star=(o_1-o_0)/(1-o_0), ell=beta*o_0, h=beta*o_1, A=beta*(1-o_0)/m, B=beta*(1-o_1)/m, and Q_L=A+1-beta",
+                "feasible forcing proposal s_dagger=(ell,A,...,A,Q_L)",
+                "weak pivotal continuation values lie in [B,A]",
+                "T^Y selects yes at expected-value equality",
+                "structural Bayes for prescribed H actions"
+              ],
+              "checks_performed": [
+                "all weak voters must vote yes after s_dagger for each of the four pure H profiles",
+                "(yes,yes) fails by H1 deviation",
+                "(no,no) fails by H0 and T^Y",
+                "(yes,no) fails by H0 imitation",
+                "(no,yes) fails by H1 imitation",
+                "PBE requires a sequentially rational pure ballot response after every feasible proposal"
+              ]
+            }
+          },
+          {
+            "cell_id": "N4-SC-CELL-HIGH-PRIOR",
+            "domain_conditions": [
+              "nu_star<nu<=1",
+              "nu_star=(o_1-o_0)/(1-o_0); ell=beta*o_0; h=beta*o_1; A=beta*(1-o_0)/m; B=beta*(1-o_1)/m; Q_P=1-h-(m-1)*B=B+1-beta",
+              "all primitive restrictions hold",
+              "frozen N2 interface hash is sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2",
+              "N2 endpoint-support erratum hash is sha256:94062c0803d9ed455fbec3b9508fabd2eb4cb86018fbe036b618671f452f7a69"
+            ],
+            "existence_status": "exists",
+            "equilibrium_records": [
+              {
+                "equilibrium_id": "N4-SC-EQ-P-STAR",
+                "admissibility_conditions": [
+                  "ballot strategies are pure",
+                  "weak voters use as-if-pivotal comparison",
+                  "T^Y selects yes at equality",
+                  "no-signaling, structural consistency, and endpoint support restriction govern beliefs"
+                ],
+                "branch_classification": "unique immediate pooling agreement",
+                "strategy_profile": {
+                  "definitions": "nu_star=(o_1-o_0)/(1-o_0); ell=beta*o_0; h=beta*o_1; A=beta*(1-o_0)/m; B=beta*(1-o_1)/m; C=B at nu>nu_star; Q_P=B+1-beta",
+                  "recognized_weak_proposer": "Y=h, every x_j=B, r_i=Q_P",
+                  "weak_nonproposers": "yes",
+                  "hegemon": {
+                    "theta_0": "yes",
+                    "theta_1": "yes"
+                  },
+                  "complete_off_path_ballot_correspondence": {
+                    "notation": "u=min_j x_j and W(eta)=(1-eta)*A for eta<=nu_star, B otherwise",
+                    "H_yes_yes": "admissible iff u<B or [u>=B and Y>=h]; Bayes gives eta_Y=nu and weak j votes yes iff x_j>=B; eta_N may be IC-compatible and free only when nu<1, while eta_N=1 at nu=1",
+                    "H_no_no": "admissible iff u>=B and Y<h; all weak voters vote yes and Bayes gives eta_N=nu; when nu<1, out-of-profile eta_Y must satisfy W(eta_Y)<=u, while eta_Y=1 at nu=1",
+                    "separating_profiles": "H=(yes,no) and H=(no,yes) are never admissible, including at nu=1 by expected-value T^Y",
+                    "strategy_overlap": "none; exactly one pure H profile is admissible after each feasible proposal"
+                  }
+                },
+                "belief_system": {
+                  "after_weak_actions": "nu is unchanged",
+                  "positive_probability_pooling_H_action": "nu by Bayes",
+                  "H_yes_yes": "for nu<1, eta_N may be any value in [0,1] because every such value sustains the prescribed votes in its admissible regions; at nu=1, eta_N=1",
+                  "H_no_no": "for nu<1, eta_Y is restricted by W(eta_Y)<=u, equivalently eta_Y>=1-u/A when B<=u<A and any eta_Y when u>=A; at nu=1, eta_Y=1",
+                  "zero_prior_endpoint": "at nu=1, support restriction fixes posterior one after every H action, including actions used only by H0 or outside the profile",
+                  "other_histories": "no unrestricted belief class is exported independently of the strategy ICs"
+                },
+                "source_continuation_record_ids": [
+                  "N2-EQ-LOW-TYPE-ONLY",
+                  "N2-EQ-POOLING"
+                ],
+                "source_interface_hashes": {
+                  "N2": "sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2",
+                  "N2_endpoint_support_erratum": "sha256:94062c0803d9ed455fbec3b9508fabd2eb4cb86018fbe036b618671f452f7a69"
+                },
+                "existence_uniqueness_status": "exists; the on-path proposal, pure ballot profile, outcome, and payoff are unique; the pure off-path H profile is unique proposal-by-proposal, belief multiplicity is preserved only for nu<1 subject to the stated IC constraints, and the belief is unique at nu=1",
+                "selection_status": "no additional selection; Q_P exceeds every delay payoff by 1-beta; no belief outside the prior support is included",
+                "assumptions_used": [
+                  "N2 only",
+                  "beta in (0,1)",
+                  "pure ballots",
+                  "new solution-concept package of 2026-08-21 plus the subsequent endpoint support restriction"
+                ],
+                "checks_performed": [
+                  "agreement floor B",
+                  "open weak-veto boundary",
+                  "full-pie feasibility",
+                  "four-profile H fixed-point enumeration",
+                  "Q_P-B=1-beta",
+                  "no separating, delay, or mixture",
+                  "complete pure sequential correspondence after every feasible proposal",
+                  "separate support-restricted posterior-one check at nu=1"
+                ],
+                "recognized_proposer_payoff": "Q_P=B+1-beta",
+                "weak_nonproposer_pre_recognition_expected_value": {
+                  "entry_prior_value": "(Q_P+(m-1)*B)/m=(1-h)/m",
+                  "theta_0_realized_vector": "recognized R1 proposer Q_P; every R1 weak nonproposer B; representative weak before R1 recognition (1-h)/m",
+                  "theta_1_realized_vector": "recognized R1 proposer Q_P; every R1 weak nonproposer B; representative weak before R1 recognition (1-h)/m"
+                },
+                "hegemon_payoff_by_type": {
+                  "theta_0": "h",
+                  "theta_1": "h"
+                },
+                "outcome_distribution": {
+                  "pass_with_hegemon": 1,
+                  "pass_without_hegemon": 0,
+                  "failure": 0,
+                  "delay": 0
+                },
+                "payoff_date": "R1 current units"
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ]
+      },
+      "artifact_path": "essential_input_solution_concept/n4_r1_unanimity_candidate.json",
+      "artifact_hash": "sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+      "dependency_hashes": {
+        "N2": "sha256:c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2"
+      },
+      "started_order": 6,
+      "passed_order": 8,
+      "frozen": true,
+      "reviews": [
+        {
+          "reviewer_role": "formal_design",
+          "reviewer_id": "codex-formal-design-n4-final-exclusive-20260821",
+          "verdict": "PASS",
+          "artifact_hash": "sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+          "finding_counts": {
+            "critical": 0,
+            "major": 0,
+            "minor": 0
+          }
+        },
+        {
+          "reviewer_role": "game_theory",
+          "reviewer_id": "codex-game-theory-n4-final-20260821",
+          "verdict": "PASS",
+          "artifact_hash": "sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+          "finding_counts": {
+            "critical": 0,
+            "major": 0,
+            "minor": 0
+          }
+        }
+      ]
     },
     {
       "id": "N6",
       "name": "private_information_comparison",
       "round": "comparison",
       "institution": "majority_vs_unanimity",
-      "depends_on": ["N3", "N4"],
-      "status": "pending",
+      "depends_on": [
+        "N3",
+        "N4"
+      ],
+      "status": "pass",
       "interface": {
         "schema_ref": "private_information_comparison_v1",
         "function_of": {
@@ -306,19 +1051,493 @@
           "domain": "[0,1]"
         },
         "private_rule_cells": {
-          "majority": null,
-          "unanimity": null
+          "majority": [
+            {
+              "cell_id": "N6-PR-M-CELL-ALL",
+              "domain_conditions": [
+                "nu in [0,1]",
+                "m=N-1 is an integer and m>=3",
+                "q=floor(N/2)+1",
+                "beta in (0,1)",
+                "0<o_0<o_1<1 and o_1<=y_bar<=1",
+                "N3 source hash is sha256:ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d"
+              ],
+              "existence_status": "exists",
+              "private_rule_records": [
+                {
+                  "private_rule_record_id": "N6-PR-M-N3-SC-EQ-COMPLETE",
+                  "institution": "majority",
+                  "admissibility_conditions": [
+                    "the N3 pure-ballot equilibrium family is admissible at the same parameter point",
+                    "the identity-indexed family F=(F_i)_{i in W} is preserved without symmetry selection",
+                    "m>=3"
+                  ],
+                  "source_equilibrium_cell_id": "N3-SC-CELL-ALL",
+                  "source_equilibrium_id": "N3-SC-EQ-COMPLETE",
+                  "source_interface_hash": "sha256:ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d",
+                  "private_payoff_vector": {
+                    "theta_0": "C_H(0;F)=(1/m)*sum_i E_{s~F_i}[y(s)*I_H(s,0)+(y(s)+o_0)*I_X(s,0)+beta*o_0*I_D(s,0)]",
+                    "theta_1": "C_H(1;F)=(1/m)*sum_i E_{s~F_i}[y(s)*I_H(s,1)+(y(s)+o_1)*I_X(s,1)+beta*o_1*I_D(s,1)]"
+                  },
+                  "private_outcome_distribution": {
+                    "pass_with_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+                    "pass_without_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+                    "failure": 0,
+                    "delay": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]"
+                  },
+                  "selection_status": "lossless passthrough of every lexicographically optimal N3 distribution F_i; coalition identities and the residual exclusion-pooling proposal tie are not selected away",
+                  "checks_performed": [
+                    "source hash equality",
+                    "source cell and equilibrium ID traceability",
+                    "same F binder in both type payoffs and all four outcomes",
+                    "restriction to m>=3 without altering the source correspondence"
+                  ]
+                }
+              ],
+              "nonexistence_certificate": null
+            }
+          ],
+          "unanimity": [
+            {
+              "cell_id": "N6-PR-U-CELL-NU-ZERO",
+              "domain_conditions": [
+                "nu=0",
+                "m=N-1 is an integer and m>=3",
+                "nu_star=(o_1-o_0)/(1-o_0)",
+                "ell=beta*o_0 and h=beta*o_1",
+                "all primitive restrictions hold",
+                "N4 source hash is sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b"
+              ],
+              "existence_status": "exists",
+              "private_rule_records": [
+                {
+                  "private_rule_record_id": "N6-PR-U-N4-SC-EQ-L-STAR",
+                  "institution": "unanimity",
+                  "admissibility_conditions": [
+                    "nu=0",
+                    "the N4 pure-ballot L_star equilibrium is admissible at the same parameter point",
+                    "m>=3"
+                  ],
+                  "source_equilibrium_cell_id": "N4-SC-CELL-NU-ZERO",
+                  "source_equilibrium_id": "N4-SC-EQ-L-STAR",
+                  "source_interface_hash": "sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+                  "private_payoff_vector": {
+                    "theta_0": "ell=beta*o_0",
+                    "theta_1": "h=beta*o_1"
+                  },
+                  "private_outcome_distribution": {
+                    "pass_with_hegemon": 1,
+                    "pass_without_hegemon": 0,
+                    "failure": 0,
+                    "delay": 0
+                  },
+                  "selection_status": "lossless passthrough of the unique N4 on-path proposal, pure ballot profile, outcome, and payoff at nu=0; no additional selection",
+                  "checks_performed": [
+                    "source hash equality",
+                    "source cell and equilibrium ID traceability",
+                    "endpoint support restriction retained",
+                    "restriction to m>=3"
+                  ]
+                }
+              ],
+              "nonexistence_certificate": null
+            },
+            {
+              "cell_id": "N6-PR-U-CELL-NO-PURE-PBE",
+              "domain_conditions": [
+                "0<nu<=nu_star",
+                "nu_star=(o_1-o_0)/(1-o_0)",
+                "m=N-1 is an integer and m>=3",
+                "all primitive restrictions hold",
+                "ballot strategies must be pure",
+                "N4 source hash is sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b"
+              ],
+              "existence_status": "none",
+              "private_rule_records": [],
+              "nonexistence_certificate": {
+                "ledger_claim_ids": [
+                  "N6-C04",
+                  "N4-C08"
+                ],
+                "assumptions_used": [
+                  "pure ballot strategies only",
+                  "the frozen N4 forcing proposal s_dagger=(ell,A,...,A,Q_L)",
+                  "weak as-if-pivotal continuation values lie in [B,A]",
+                  "T^Y selects yes at expected-value equality",
+                  "structural Bayes for prescribed H actions"
+                ],
+                "checks_performed": [
+                  "transported N4-C08 without assigning a sentinel equilibrium",
+                  "all weak voters vote yes after s_dagger for each of the four pure H profiles",
+                  "YY fails by H1 deviation",
+                  "NN fails by H0 indifference and T^Y",
+                  "YN fails by H0 imitation",
+                  "NY fails by H1 imitation"
+                ]
+              }
+            },
+            {
+              "cell_id": "N6-PR-U-CELL-HIGH-PRIOR",
+              "domain_conditions": [
+                "nu_star<nu<=1",
+                "nu_star=(o_1-o_0)/(1-o_0)",
+                "m=N-1 is an integer and m>=3",
+                "ell=beta*o_0 and h=beta*o_1",
+                "all primitive restrictions hold",
+                "N4 source hash is sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b"
+              ],
+              "existence_status": "exists",
+              "private_rule_records": [
+                {
+                  "private_rule_record_id": "N6-PR-U-N4-SC-EQ-P-STAR",
+                  "institution": "unanimity",
+                  "admissibility_conditions": [
+                    "nu_star<nu<=1",
+                    "the N4 pure-ballot P_star equilibrium is admissible at the same parameter point",
+                    "m>=3"
+                  ],
+                  "source_equilibrium_cell_id": "N4-SC-CELL-HIGH-PRIOR",
+                  "source_equilibrium_id": "N4-SC-EQ-P-STAR",
+                  "source_interface_hash": "sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+                  "private_payoff_vector": {
+                    "theta_0": "h=beta*o_1",
+                    "theta_1": "h=beta*o_1"
+                  },
+                  "private_outcome_distribution": {
+                    "pass_with_hegemon": 1,
+                    "pass_without_hegemon": 0,
+                    "failure": 0,
+                    "delay": 0
+                  },
+                  "selection_status": "lossless passthrough of the unique N4 on-path proposal, pure ballot profile, outcome, and payoff for nu_star<nu<=1; admissible off-path belief multiplicity is not used as an additional selection",
+                  "checks_performed": [
+                    "source hash equality",
+                    "source cell and equilibrium ID traceability",
+                    "nu=1 endpoint support restriction retained",
+                    "restriction to m>=3"
+                  ]
+                }
+              ],
+              "nonexistence_certificate": null
+            }
+          ]
         },
-        "comparison_cells": null
-      }
+        "comparison_cells": [
+          {
+            "cell_id": "N6-CMP-NU-ZERO",
+            "domain_conditions": [
+              "nu=0",
+              "m=N-1 is an integer and m>=3",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "beta in (0,1)",
+              "N3 and N4 source hashes equal the frozen hashes declared in this artifact"
+            ],
+            "existence_status": "exists",
+            "comparison_records": [
+              {
+                "comparison_id": "N6-CMP-NU-ZERO-N3-COMPLETE-N4-L-STAR",
+                "admissibility_conditions": [
+                  "nu=0",
+                  "m>=3",
+                  "both cited source equilibrium records exist at the same parameter point"
+                ],
+                "source_equilibrium_ids": {
+                  "majority": "N3-SC-EQ-COMPLETE",
+                  "unanimity": "N4-SC-EQ-L-STAR"
+                },
+                "source_interface_hashes": {
+                  "N3": "sha256:ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d",
+                  "N4": "sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b"
+                },
+                "private_payoff_vectors_by_rule": {
+                  "majority": {
+                    "theta_0": "C_H(0;F)=(1/m)*sum_i E_{s~F_i}[y(s)*I_H(s,0)+(y(s)+o_0)*I_X(s,0)+beta*o_0*I_D(s,0)]",
+                    "theta_1": "C_H(1;F)=(1/m)*sum_i E_{s~F_i}[y(s)*I_H(s,1)+(y(s)+o_1)*I_X(s,1)+beta*o_1*I_D(s,1)]"
+                  },
+                  "unanimity": {
+                    "theta_0": "ell=beta*o_0",
+                    "theta_1": "h=beta*o_1"
+                  }
+                },
+                "private_outcome_distributions_by_rule": {
+                  "majority": {
+                    "pass_with_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+                    "pass_without_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+                    "failure": 0,
+                    "delay": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]"
+                  },
+                  "unanimity": {
+                    "pass_with_hegemon": 1,
+                    "pass_without_hegemon": 0,
+                    "failure": 0,
+                    "delay": 0
+                  }
+                },
+                "private_rule_contrasts": {
+                  "orientation": "unanimity_minus_majority",
+                  "economic_subcells": [
+                    "C0-S: nu=0 and o_0<=1/m",
+                    "C0-E: nu=0 and o_0>1/m"
+                  ],
+                  "exact_majority_selection": [
+                    "A_M(0)={screening} when o_0<=1/m; equality is resolved toward screening by the authorized expected-H tie-break",
+                    "A_M(0)={exclusion} when o_0>1/m"
+                  ],
+                  "exact_joint_contrast_set": "singleton at every parameter point: screening gives payoff (0,0) and outcome (0,0,0,0); exclusion gives payoff (-(1-beta)*o_0,-(1-beta)*o_1) and outcome (1,-1,0,0)",
+                  "payoff_contrast_by_majority_class": {
+                    "screening": {
+                      "theta_0": "0",
+                      "theta_1": "0"
+                    },
+                    "exclusion": {
+                      "theta_0": "-(1-beta)*o_0",
+                      "theta_1": "-(1-beta)*o_1"
+                    }
+                  },
+                  "outcome_contrast_by_majority_class": {
+                    "screening": {
+                      "pass_with_hegemon": "0",
+                      "pass_without_hegemon": "0",
+                      "failure": "0",
+                      "delay": "0"
+                    },
+                    "exclusion": {
+                      "pass_with_hegemon": "1",
+                      "pass_without_hegemon": "-1",
+                      "failure": "0",
+                      "delay": "0"
+                    }
+                  },
+                  "derived_envelopes": "lower=upper coordinatewise because the selected economic class is unique at each parameter point; coalition-label multiplicity leaves H payoffs and outcomes invariant",
+                  "atomic_coupling": "the payoff and outcome in the exact set come from the same N3 family F; no marginal recombination"
+                },
+                "selection_status": "no N6 selection; N3's authorized lexicographic selection and every identity-labeled equilibrium represented by F are preserved",
+                "checks_performed": [
+                  "common-cell intersection at nu=0",
+                  "same-point parameter comparison",
+                  "type-by-type payoff subtraction",
+                  "four-coordinate outcome subtraction",
+                  "boundary o_0=1/m assigned to screening",
+                  "symmetry invariance after retaining atomic source IDs"
+                ]
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N6-CMP-NO-PURE-PBE",
+            "domain_conditions": [
+              "0<nu<=nu_star",
+              "nu_star=(o_1-o_0)/(1-o_0)",
+              "m=N-1 is an integer and m>=3",
+              "majority has the N3 pure-ballot equilibrium family",
+              "unanimity has no pure-ballot PBE"
+            ],
+            "existence_status": "none",
+            "comparison_records": [],
+            "nonexistence_certificate": {
+              "ledger_claim_ids": [
+                "N6-C04",
+                "N6-C11",
+                "N4-C08"
+              ],
+              "assumptions_used": [
+                "comparison requires one existing pure-ballot PBE record from each rule at the same parameter point",
+                "pure ballot strategies only",
+                "the frozen N4 s_dagger certificate and its four-profile enumeration"
+              ],
+              "checks_performed": [
+                "majority private-rule record preserved in its separate collection",
+                "unanimity private-rule cell retained with existence_status none and no payoff",
+                "no comparison sentinel or partial record created",
+                "the H-vote and weak as-if-pivotal fixed-point cycle is cited through N4-C08 and N6-C04"
+              ]
+            }
+          },
+          {
+            "cell_id": "N6-CMP-HIGH-PRIOR",
+            "domain_conditions": [
+              "nu_star<nu<=1",
+              "nu_star=(o_1-o_0)/(1-o_0)",
+              "m=N-1 is an integer and m>=3",
+              "0<o_0<o_1<1 and o_1<=y_bar<=1",
+              "beta in (0,1)",
+              "N3 and N4 source hashes equal the frozen hashes declared in this artifact"
+            ],
+            "existence_status": "exists",
+            "comparison_records": [
+              {
+                "comparison_id": "N6-CMP-HIGH-N3-COMPLETE-N4-P-STAR",
+                "admissibility_conditions": [
+                  "nu_star<nu<=1",
+                  "m>=3",
+                  "both cited source equilibrium records exist at the same parameter point"
+                ],
+                "source_equilibrium_ids": {
+                  "majority": "N3-SC-EQ-COMPLETE",
+                  "unanimity": "N4-SC-EQ-P-STAR"
+                },
+                "source_interface_hashes": {
+                  "N3": "sha256:ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d",
+                  "N4": "sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b"
+                },
+                "private_payoff_vectors_by_rule": {
+                  "majority": {
+                    "theta_0": "C_H(0;F)=(1/m)*sum_i E_{s~F_i}[y(s)*I_H(s,0)+(y(s)+o_0)*I_X(s,0)+beta*o_0*I_D(s,0)]",
+                    "theta_1": "C_H(1;F)=(1/m)*sum_i E_{s~F_i}[y(s)*I_H(s,1)+(y(s)+o_1)*I_X(s,1)+beta*o_1*I_D(s,1)]"
+                  },
+                  "unanimity": {
+                    "theta_0": "h=beta*o_1",
+                    "theta_1": "h=beta*o_1"
+                  }
+                },
+                "private_outcome_distributions_by_rule": {
+                  "majority": {
+                    "pass_with_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_H(s,theta)]",
+                    "pass_without_hegemon": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_X(s,theta)]",
+                    "failure": 0,
+                    "delay": "(1/m)*sum_i E_{s~F_i,theta~nu}[I_D(s,theta)]"
+                  },
+                  "unanimity": {
+                    "pass_with_hegemon": 1,
+                    "pass_without_hegemon": 0,
+                    "failure": 0,
+                    "delay": 0
+                  }
+                },
+                "private_rule_contrasts": {
+                  "orientation": "unanimity_minus_majority",
+                  "economic_subcells": [
+                    "CH-S: nu_star<nu<=1 and majority selects screening",
+                    "CH-P: nu_star<nu<=1 and majority selects pooling",
+                    "CH-E: nu_star<nu<=1 and majority selects exclusion",
+                    "CH-EP: nu_star<nu<=1 and N3 preserves the residual exclusion-pooling tie"
+                  ],
+                  "majority_class_definitions": {
+                    "exclusion": "H=(o_0,o_1); outcome=(0,1,0,0)",
+                    "screening": "H=(beta*o_0,beta*o_1); outcome=(1-nu,0,0,nu)",
+                    "pooling": "H=(beta*o_1,beta*o_1); outcome=(1,0,0,0)"
+                  },
+                  "exact_majority_selected_class_set": [
+                    "if o_1<1/m: {screening} for nu<=nu_SP and {pooling} for nu>nu_SP",
+                    "if o_0<1/m<o_1: {screening} for nu<=nu_SE and {exclusion} for nu>nu_SE",
+                    "if 1/m<o_0<o_1: {exclusion}",
+                    "if o_0=1/m<o_1: {exclusion} for every nu>0",
+                    "if o_0<o_1=1/m: {screening} for nu<=nu_SE; above nu_SE choose {exclusion}, {pooling}, or {exclusion,pooling} according as Hbar_E is less than, greater than, or equal to Hbar_P"
+                  ],
+                  "frontiers": {
+                    "nu_SP": "beta*(o_1-o_0)/[1-beta*o_0-beta*(q-1)/m], used only when o_1<1/m",
+                    "nu_SE": "beta*(1/m-o_0)/[beta*(1/m-o_0)+1-beta*q/m], used only when o_0<1/m",
+                    "residual_expected_H_tie": "Hbar_E=(1-nu)*o_0+nu*o_1 equals Hbar_P=beta*o_1"
+                  },
+                  "exact_joint_contrast_set": "{(sum_c lambda_c*DeltaH_c,sum_c lambda_c*DeltaO_c): lambda>=0, sum lambda=1, support(lambda) subset A_M(nu)} with the same lambda in payoffs and outcomes; the only cross-class distribution occurs when N3 itself preserves the exclusion-pooling tie",
+                  "residual_tie_exact_parameterization": "in CH-EP, if lambda=(1/m)*sum_i lambda_i is aggregate exclusion mass, majority H=lambda*(o_0,o_1)+(1-lambda)*(beta*o_1,beta*o_1), majority outcome=(1-lambda,lambda,0,0), payoff contrast=lambda*(beta*o_1-o_0,-(1-beta)*o_1), and outcome contrast=(lambda,-lambda,0,0) for lambda in [0,1]",
+                  "payoff_contrast_by_majority_class": {
+                    "exclusion": {
+                      "theta_0": "beta*o_1-o_0",
+                      "theta_1": "-(1-beta)*o_1"
+                    },
+                    "screening": {
+                      "theta_0": "beta*(o_1-o_0)",
+                      "theta_1": "0"
+                    },
+                    "pooling": {
+                      "theta_0": "0",
+                      "theta_1": "0"
+                    }
+                  },
+                  "outcome_contrast_by_majority_class": {
+                    "exclusion": {
+                      "pass_with_hegemon": "1",
+                      "pass_without_hegemon": "-1",
+                      "failure": "0",
+                      "delay": "0"
+                    },
+                    "screening": {
+                      "pass_with_hegemon": "nu",
+                      "pass_without_hegemon": "0",
+                      "failure": "0",
+                      "delay": "-nu"
+                    },
+                    "pooling": {
+                      "pass_with_hegemon": "0",
+                      "pass_without_hegemon": "0",
+                      "failure": "0",
+                      "delay": "0"
+                    }
+                  },
+                  "derived_payoff_envelope": {
+                    "theta_0": "[min_{c in A_M} DeltaH_c(theta_0), max_{c in A_M} DeltaH_c(theta_0)]",
+                    "theta_1": "[min_{c in A_M} DeltaH_c(theta_1), max_{c in A_M} DeltaH_c(theta_1)]"
+                  },
+                  "derived_outcome_envelope": {
+                    "pass_with_hegemon": "[min_{c in A_M} DeltaO_c(pass_with_hegemon), max_{c in A_M} DeltaO_c(pass_with_hegemon)]",
+                    "pass_without_hegemon": "[min_{c in A_M} DeltaO_c(pass_without_hegemon), max_{c in A_M} DeltaO_c(pass_without_hegemon)]",
+                    "failure": "[0,0]",
+                    "delay": "[min_{c in A_M} DeltaO_c(delay), max_{c in A_M} DeltaO_c(delay)]"
+                  },
+                  "envelope_rule": "the envelope is a derived coordinate projection only; it does not replace the exact joint set, take a Cartesian product, convexify a gap, or add a class outside A_M",
+                  "atomic_coupling": "the same identity-indexed N3 family F and the same aggregate class masses lambda generate both H payoffs and outcomes"
+                },
+                "selection_status": "no N6 selection; all N3 lexicographically optimal proposal distributions and N4's unique on-path P_star record are compared",
+                "checks_performed": [
+                  "common-cell intersection with the open lower and closed upper boundary",
+                  "same-point parameter comparison",
+                  "type-by-type classwise payoff subtraction",
+                  "four-coordinate classwise outcome subtraction",
+                  "exact preservation of the residual exclusion-pooling tie",
+                  "coordinate envelopes derived only after the joint set",
+                  "symmetry quotient limited to weak-identity permutations"
+                ]
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ]
+      },
+      "artifact_path": "essential_input_n6_private_comparison_candidate.json",
+      "artifact_hash": "sha256:a9cfd5935377197b51637a525f26627c296eed1e21bfe8cfcf6906b4d90a5a92",
+      "dependency_hashes": {
+        "N3": "sha256:ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d",
+        "N4": "sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b"
+      },
+      "started_order": 9,
+      "passed_order": 10,
+      "frozen": true,
+      "reviews": [
+        {
+          "reviewer_role": "formal_design",
+          "reviewer_id": "codex-formal-design-n6-private-final-20260821",
+          "verdict": "PASS",
+          "artifact_hash": "sha256:a9cfd5935377197b51637a525f26627c296eed1e21bfe8cfcf6906b4d90a5a92",
+          "finding_counts": {
+            "critical": 0,
+            "major": 0,
+            "minor": 0
+          }
+        },
+        {
+          "reviewer_role": "game_theory",
+          "reviewer_id": "codex-game-theory-n6-pure-final-20260821",
+          "verdict": "PASS",
+          "artifact_hash": "sha256:a9cfd5935377197b51637a525f26627c296eed1e21bfe8cfcf6906b4d90a5a92",
+          "finding_counts": {
+            "critical": 0,
+            "major": 0,
+            "minor": 0
+          }
+        }
+      ]
     },
     {
       "id": "N7",
       "name": "complete_information_benchmark",
       "round": "post_model_benchmark",
       "institution": "majority_vs_unanimity",
-      "depends_on": ["N6"],
-      "status": "pending",
+      "depends_on": [
+        "N6"
+      ],
+      "status": "pass",
       "interface": {
         "schema_ref": "complete_information_benchmark_v1",
         "function_of": {
@@ -328,31 +1547,1337 @@
         "public_equilibrium_cells": {
           "majority": {
             "R2": {
-              "theta_0": null,
-              "theta_1": null
+              "theta_0": [
+                {
+                  "cell_id": "N7-PUB-M-R2-T0-CELL",
+                  "domain_conditions": [
+                    "prior_mu=nu in [0,1] is irrelevant to the complete-information strategy but is retained for ex ante objects",
+                    "theta=theta_0 is public from t=0",
+                    "m=N-1 is an integer and m>=3; q=floor(N/2)+1",
+                    "beta in (0,1) is payoff-irrelevant inside terminal R2",
+                    "0<o_0<o_1<1 and o_1<=y_bar<=1"
+                  ],
+                  "existence_status": "exists",
+                  "public_equilibrium_records": [
+                    {
+                      "public_equilibrium_id": "N7-PUB-M-R2-T0",
+                      "institution": "majority",
+                      "round": "R2",
+                      "theta": "theta_0",
+                      "admissibility_conditions": [
+                        "ballot strategies are pure",
+                        "weak voters use as-if-pivotal comparison",
+                        "T^Y selects yes at equality"
+                      ],
+                      "branch_classification": "terminal passage without H",
+                      "strategy_profile": {
+                        "recognized_weak_proposer": "choose y=0, x_j=0 for every weak nonproposer, and r_i=1",
+                        "weak_nonproposers": "yes after every feasible proposal",
+                        "hegemon": "no after every feasible proposal because all m weak votes already meet q and no yields y+o_0>y"
+                      },
+                      "belief_system": {
+                        "type_information": "theta_0 is common knowledge",
+                        "after_every_history": "posterior mass one on theta_0 and zero on theta_1; no free type belief"
+                      },
+                      "source_public_continuation_ids": [],
+                      "existence_uniqueness_status": "exists; unique strategy profile, proposal, outcome, and payoff",
+                      "selection_status": "complete public equilibrium; no additional selection and proposal tie-break inactive",
+                      "assumptions_used": [
+                        "fixed unit pie and full implementation",
+                        "majority quota",
+                        "public theta_0",
+                        "terminal R2 with no internal beta"
+                      ],
+                      "checks_performed": [
+                        "weak pivotal payoff x_j versus zero",
+                        "q<=m",
+                        "strictly nonpivotal H no",
+                        "unique full-pie proposer argmax"
+                      ],
+                      "payoff_vector": {
+                        "recognized_proposer_payoff": "1",
+                        "weak_nonproposer_pre_recognition_expected_value": "1/m for every weak state",
+                        "hegemon_payoff": "o_0"
+                      },
+                      "outcome_distribution": {
+                        "pass_with_hegemon": 0,
+                        "pass_without_hegemon": 1,
+                        "failure": 0,
+                        "delay": 0
+                      },
+                      "payoff_date": "R2 current units; beta absent"
+                    }
+                  ],
+                  "nonexistence_certificate": null
+                }
+              ],
+              "theta_1": [
+                {
+                  "cell_id": "N7-PUB-M-R2-T1-CELL",
+                  "domain_conditions": [
+                    "prior_mu=nu in [0,1] is irrelevant to the complete-information strategy but is retained for ex ante objects",
+                    "theta=theta_1 is public from t=0",
+                    "m=N-1 is an integer and m>=3; q=floor(N/2)+1",
+                    "beta in (0,1) is payoff-irrelevant inside terminal R2",
+                    "0<o_0<o_1<1 and o_1<=y_bar<=1"
+                  ],
+                  "existence_status": "exists",
+                  "public_equilibrium_records": [
+                    {
+                      "public_equilibrium_id": "N7-PUB-M-R2-T1",
+                      "institution": "majority",
+                      "round": "R2",
+                      "theta": "theta_1",
+                      "admissibility_conditions": [
+                        "ballot strategies are pure",
+                        "weak voters use as-if-pivotal comparison",
+                        "T^Y selects yes at equality"
+                      ],
+                      "branch_classification": "terminal passage without H",
+                      "strategy_profile": {
+                        "recognized_weak_proposer": "choose y=0, x_j=0 for every weak nonproposer, and r_i=1",
+                        "weak_nonproposers": "yes after every feasible proposal",
+                        "hegemon": "no after every feasible proposal because all m weak votes already meet q and no yields y+o_1>y"
+                      },
+                      "belief_system": {
+                        "type_information": "theta_1 is common knowledge",
+                        "after_every_history": "posterior mass one on theta_1 and zero on theta_0; no free type belief"
+                      },
+                      "source_public_continuation_ids": [],
+                      "existence_uniqueness_status": "exists; unique strategy profile, proposal, outcome, and payoff",
+                      "selection_status": "complete public equilibrium; no additional selection and proposal tie-break inactive",
+                      "assumptions_used": [
+                        "fixed unit pie and full implementation",
+                        "majority quota",
+                        "public theta_1",
+                        "terminal R2 with no internal beta"
+                      ],
+                      "checks_performed": [
+                        "weak pivotal payoff x_j versus zero",
+                        "q<=m",
+                        "strictly nonpivotal H no",
+                        "unique full-pie proposer argmax"
+                      ],
+                      "payoff_vector": {
+                        "recognized_proposer_payoff": "1",
+                        "weak_nonproposer_pre_recognition_expected_value": "1/m for every weak state",
+                        "hegemon_payoff": "o_1"
+                      },
+                      "outcome_distribution": {
+                        "pass_with_hegemon": 0,
+                        "pass_without_hegemon": 1,
+                        "failure": 0,
+                        "delay": 0
+                      },
+                      "payoff_date": "R2 current units; beta absent"
+                    }
+                  ],
+                  "nonexistence_certificate": null
+                }
+              ]
             },
             "R1": {
-              "theta_0": null,
-              "theta_1": null
+              "theta_0": [
+                {
+                  "cell_id": "N7-PUB-M-R1-T0-INCLUDE-CELL",
+                  "domain_conditions": [
+                    "theta=theta_0 is public from t=0",
+                    "o_0<=1/m",
+                    "m>=3, beta in (0,1), and all primitive restrictions hold",
+                    "public R2 continuation N7-PUB-M-R2-T0 is closed"
+                  ],
+                  "existence_status": "exists",
+                  "public_equilibrium_records": [
+                    {
+                      "public_equilibrium_id": "N7-PUB-M-R1-T0-INCLUDE",
+                      "institution": "majority",
+                      "round": "R1",
+                      "theta": "theta_0",
+                      "admissibility_conditions": [
+                        "ballot strategies are pure",
+                        "weak voters use as-if-pivotal comparison with w=beta/m",
+                        "T^Y selects yes at equality",
+                        "proposal tie at o_0=1/m is resolved against H"
+                      ],
+                      "branch_classification": "immediate inclusion of public low type",
+                      "strategy_profile": {
+                        "definitions": "w=beta/m; t_0=beta*o_0; J_0=1-(q-2)*w-t_0",
+                        "recognized_weak_proposer": "choose any identity-labeled K_i subset W\\{i} with |K_i|=q-2, pay x_j=w iff j in K_i, set y=t_0, and retain J_0",
+                        "atomic_family_binder": "F=(F_i)_i preserves every distribution over the payoff-tied identity-labeled coalitions K_i",
+                        "weak_nonproposers": "yes iff x_j>=w",
+                        "hegemon": "no if at least q-1 weak nonproposers vote yes; yes iff y>=t_0 when exactly q-2 do; yes by T^Y when at most q-3 do"
+                      },
+                      "belief_system": {
+                        "type_information": "theta_0 is common knowledge",
+                        "after_every_proposal_and_vote_vector": "posterior mass one on theta_0; public continuation is belief-free"
+                      },
+                      "source_public_continuation_ids": [
+                        "N7-PUB-M-R2-T0"
+                      ],
+                      "existence_uniqueness_status": "exists; inclusion class, H payoff, proposer payoff, and outcome are unique; strategies and individual weak pre-recognition payoffs may vary only with identity-labeled coalition family F",
+                      "selection_status": "all coalition identities and their proposal mixtures are preserved; at o_0=1/m inclusion is selected because beta*o_0<o_0",
+                      "assumptions_used": [
+                        "public N7-PUB-M-R2-T0 only",
+                        "beta applied exactly once",
+                        "majority quota and full implementation",
+                        "anti-H proposal tie-break"
+                      ],
+                      "checks_performed": [
+                        "weak threshold w",
+                        "complete H pivotality cases",
+                        "J_0-E=beta*(1/m-o_0)>=0",
+                        "strict exclusion gain over rejection",
+                        "full-pie use and coalition feasibility"
+                      ],
+                      "payoff_vector": {
+                        "recognized_proposer_payoff": "J_0=1-(q-2)*beta/m-beta*o_0",
+                        "weak_nonproposer_pre_recognition_expected_value": {
+                          "by_weak_state_l": "C_l(F)=J_0/m+(beta/m^2)*sum_{i!=l} Pr_{K~F_i}(l in K)",
+                          "aggregate_mean_across_weak_states": "(1-beta*o_0)/m"
+                        },
+                        "hegemon_payoff": "beta*o_0"
+                      },
+                      "outcome_distribution": {
+                        "pass_with_hegemon": 1,
+                        "pass_without_hegemon": 0,
+                        "failure": 0,
+                        "delay": 0
+                      },
+                      "payoff_date": "R1 current units; R2 values multiplied by beta exactly once"
+                    }
+                  ],
+                  "nonexistence_certificate": null
+                },
+                {
+                  "cell_id": "N7-PUB-M-R1-T0-EXCLUDE-CELL",
+                  "domain_conditions": [
+                    "theta=theta_0 is public from t=0",
+                    "1/m<o_0",
+                    "m>=3, beta in (0,1), and all primitive restrictions hold",
+                    "public R2 continuation N7-PUB-M-R2-T0 is closed"
+                  ],
+                  "existence_status": "exists",
+                  "public_equilibrium_records": [
+                    {
+                      "public_equilibrium_id": "N7-PUB-M-R1-T0-EXCLUDE",
+                      "institution": "majority",
+                      "round": "R1",
+                      "theta": "theta_0",
+                      "admissibility_conditions": [
+                        "ballot strategies are pure",
+                        "weak voters use as-if-pivotal comparison with w=beta/m",
+                        "T^Y selects yes at equality"
+                      ],
+                      "branch_classification": "immediate exclusion of public low type",
+                      "strategy_profile": {
+                        "definitions": "w=beta/m; E=1-(q-1)*w",
+                        "recognized_weak_proposer": "choose any identity-labeled K_i subset W\\{i} with |K_i|=q-1, pay x_j=w iff j in K_i, set y=0, and retain E",
+                        "atomic_family_binder": "F=(F_i)_i preserves every distribution over the payoff-tied identity-labeled coalitions K_i",
+                        "weak_nonproposers": "yes iff x_j>=w",
+                        "hegemon": "no if at least q-1 weak nonproposers vote yes; yes iff y>=beta*o_0 when exactly q-2 do; yes by T^Y when at most q-3 do"
+                      },
+                      "belief_system": {
+                        "type_information": "theta_0 is common knowledge",
+                        "after_every_proposal_and_vote_vector": "posterior mass one on theta_0; public continuation is belief-free"
+                      },
+                      "source_public_continuation_ids": [
+                        "N7-PUB-M-R2-T0"
+                      ],
+                      "existence_uniqueness_status": "exists; exclusion class, H payoff, proposer payoff, and outcome are unique; strategies and individual weak pre-recognition payoffs may vary only with identity-labeled coalition family F",
+                      "selection_status": "all coalition identities and their proposal mixtures are preserved; no cross-class tie in this open cell",
+                      "assumptions_used": [
+                        "public N7-PUB-M-R2-T0 only",
+                        "beta applied exactly once",
+                        "majority quota and full implementation"
+                      ],
+                      "checks_performed": [
+                        "weak threshold w",
+                        "strictly nonpivotal H no",
+                        "E-J_0=beta*(o_0-1/m)>0",
+                        "strict exclusion gain over rejection",
+                        "y=0 hedge and full-pie use"
+                      ],
+                      "payoff_vector": {
+                        "recognized_proposer_payoff": "E=1-(q-1)*beta/m",
+                        "weak_nonproposer_pre_recognition_expected_value": {
+                          "by_weak_state_l": "C_l(F)=E/m+(beta/m^2)*sum_{i!=l} Pr_{K~F_i}(l in K)",
+                          "aggregate_mean_across_weak_states": "1/m"
+                        },
+                        "hegemon_payoff": "o_0"
+                      },
+                      "outcome_distribution": {
+                        "pass_with_hegemon": 0,
+                        "pass_without_hegemon": 1,
+                        "failure": 0,
+                        "delay": 0
+                      },
+                      "payoff_date": "R1 current units; R2 values multiplied by beta exactly once"
+                    }
+                  ],
+                  "nonexistence_certificate": null
+                }
+              ],
+              "theta_1": [
+                {
+                  "cell_id": "N7-PUB-M-R1-T1-INCLUDE-CELL",
+                  "domain_conditions": [
+                    "theta=theta_1 is public from t=0",
+                    "o_1<=1/m",
+                    "m>=3, beta in (0,1), and all primitive restrictions hold",
+                    "public R2 continuation N7-PUB-M-R2-T1 is closed"
+                  ],
+                  "existence_status": "exists",
+                  "public_equilibrium_records": [
+                    {
+                      "public_equilibrium_id": "N7-PUB-M-R1-T1-INCLUDE",
+                      "institution": "majority",
+                      "round": "R1",
+                      "theta": "theta_1",
+                      "admissibility_conditions": [
+                        "ballot strategies are pure",
+                        "weak voters use as-if-pivotal comparison with w=beta/m",
+                        "T^Y selects yes at equality",
+                        "proposal tie at o_1=1/m is resolved against H"
+                      ],
+                      "branch_classification": "immediate inclusion of public high type",
+                      "strategy_profile": {
+                        "definitions": "w=beta/m; t_1=beta*o_1; J_1=1-(q-2)*w-t_1",
+                        "recognized_weak_proposer": "choose any identity-labeled K_i subset W\\{i} with |K_i|=q-2, pay x_j=w iff j in K_i, set y=t_1, and retain J_1",
+                        "atomic_family_binder": "F=(F_i)_i preserves every distribution over the payoff-tied identity-labeled coalitions K_i",
+                        "weak_nonproposers": "yes iff x_j>=w",
+                        "hegemon": "no if at least q-1 weak nonproposers vote yes; yes iff y>=t_1 when exactly q-2 do; yes by T^Y when at most q-3 do"
+                      },
+                      "belief_system": {
+                        "type_information": "theta_1 is common knowledge",
+                        "after_every_proposal_and_vote_vector": "posterior mass one on theta_1; public continuation is belief-free"
+                      },
+                      "source_public_continuation_ids": [
+                        "N7-PUB-M-R2-T1"
+                      ],
+                      "existence_uniqueness_status": "exists; inclusion class, H payoff, proposer payoff, and outcome are unique; strategies and individual weak pre-recognition payoffs may vary only with identity-labeled coalition family F",
+                      "selection_status": "all coalition identities and their proposal mixtures are preserved; at o_1=1/m inclusion is selected because beta*o_1<o_1",
+                      "assumptions_used": [
+                        "public N7-PUB-M-R2-T1 only",
+                        "beta applied exactly once",
+                        "majority quota and full implementation",
+                        "anti-H proposal tie-break"
+                      ],
+                      "checks_performed": [
+                        "weak threshold w",
+                        "complete H pivotality cases",
+                        "J_1-E=beta*(1/m-o_1)>=0",
+                        "strict exclusion gain over rejection",
+                        "full-pie use and coalition feasibility"
+                      ],
+                      "payoff_vector": {
+                        "recognized_proposer_payoff": "J_1=1-(q-2)*beta/m-beta*o_1",
+                        "weak_nonproposer_pre_recognition_expected_value": {
+                          "by_weak_state_l": "C_l(F)=J_1/m+(beta/m^2)*sum_{i!=l} Pr_{K~F_i}(l in K)",
+                          "aggregate_mean_across_weak_states": "(1-beta*o_1)/m"
+                        },
+                        "hegemon_payoff": "beta*o_1"
+                      },
+                      "outcome_distribution": {
+                        "pass_with_hegemon": 1,
+                        "pass_without_hegemon": 0,
+                        "failure": 0,
+                        "delay": 0
+                      },
+                      "payoff_date": "R1 current units; R2 values multiplied by beta exactly once"
+                    }
+                  ],
+                  "nonexistence_certificate": null
+                },
+                {
+                  "cell_id": "N7-PUB-M-R1-T1-EXCLUDE-CELL",
+                  "domain_conditions": [
+                    "theta=theta_1 is public from t=0",
+                    "1/m<o_1",
+                    "m>=3, beta in (0,1), and all primitive restrictions hold",
+                    "public R2 continuation N7-PUB-M-R2-T1 is closed"
+                  ],
+                  "existence_status": "exists",
+                  "public_equilibrium_records": [
+                    {
+                      "public_equilibrium_id": "N7-PUB-M-R1-T1-EXCLUDE",
+                      "institution": "majority",
+                      "round": "R1",
+                      "theta": "theta_1",
+                      "admissibility_conditions": [
+                        "ballot strategies are pure",
+                        "weak voters use as-if-pivotal comparison with w=beta/m",
+                        "T^Y selects yes at equality"
+                      ],
+                      "branch_classification": "immediate exclusion of public high type",
+                      "strategy_profile": {
+                        "definitions": "w=beta/m; E=1-(q-1)*w",
+                        "recognized_weak_proposer": "choose any identity-labeled K_i subset W\\{i} with |K_i|=q-1, pay x_j=w iff j in K_i, set y=0, and retain E",
+                        "atomic_family_binder": "F=(F_i)_i preserves every distribution over the payoff-tied identity-labeled coalitions K_i",
+                        "weak_nonproposers": "yes iff x_j>=w",
+                        "hegemon": "no if at least q-1 weak nonproposers vote yes; yes iff y>=beta*o_1 when exactly q-2 do; yes by T^Y when at most q-3 do"
+                      },
+                      "belief_system": {
+                        "type_information": "theta_1 is common knowledge",
+                        "after_every_proposal_and_vote_vector": "posterior mass one on theta_1; public continuation is belief-free"
+                      },
+                      "source_public_continuation_ids": [
+                        "N7-PUB-M-R2-T1"
+                      ],
+                      "existence_uniqueness_status": "exists; exclusion class, H payoff, proposer payoff, and outcome are unique; strategies and individual weak pre-recognition payoffs may vary only with identity-labeled coalition family F",
+                      "selection_status": "all coalition identities and their proposal mixtures are preserved; no cross-class tie in this open cell",
+                      "assumptions_used": [
+                        "public N7-PUB-M-R2-T1 only",
+                        "beta applied exactly once",
+                        "majority quota and full implementation"
+                      ],
+                      "checks_performed": [
+                        "weak threshold w",
+                        "strictly nonpivotal H no",
+                        "E-J_1=beta*(o_1-1/m)>0",
+                        "strict exclusion gain over rejection",
+                        "y=0 hedge and full-pie use"
+                      ],
+                      "payoff_vector": {
+                        "recognized_proposer_payoff": "E=1-(q-1)*beta/m",
+                        "weak_nonproposer_pre_recognition_expected_value": {
+                          "by_weak_state_l": "C_l(F)=E/m+(beta/m^2)*sum_{i!=l} Pr_{K~F_i}(l in K)",
+                          "aggregate_mean_across_weak_states": "1/m"
+                        },
+                        "hegemon_payoff": "o_1"
+                      },
+                      "outcome_distribution": {
+                        "pass_with_hegemon": 0,
+                        "pass_without_hegemon": 1,
+                        "failure": 0,
+                        "delay": 0
+                      },
+                      "payoff_date": "R1 current units; R2 values multiplied by beta exactly once"
+                    }
+                  ],
+                  "nonexistence_certificate": null
+                }
+              ]
             }
           },
           "unanimity": {
             "R2": {
-              "theta_0": null,
-              "theta_1": null
+              "theta_0": [
+                {
+                  "cell_id": "N7-PUB-U-R2-T0-CELL",
+                  "domain_conditions": [
+                    "theta=theta_0 is public from t=0",
+                    "m>=3 and all primitive restrictions hold",
+                    "beta is payoff-irrelevant inside terminal R2"
+                  ],
+                  "existence_status": "exists",
+                  "public_equilibrium_records": [
+                    {
+                      "public_equilibrium_id": "N7-PUB-U-R2-T0",
+                      "institution": "unanimity",
+                      "round": "R2",
+                      "theta": "theta_0",
+                      "admissibility_conditions": [
+                        "ballot strategies are pure",
+                        "weak voters use as-if-pivotal comparison",
+                        "T^Y selects yes at equality"
+                      ],
+                      "branch_classification": "terminal inclusion of public low type",
+                      "strategy_profile": {
+                        "recognized_weak_proposer": "choose y=o_0, x_j=0 for every weak nonproposer, and r_i=1-o_0",
+                        "weak_nonproposers": "yes after every feasible proposal",
+                        "hegemon": "yes iff y>=o_0"
+                      },
+                      "belief_system": {
+                        "type_information": "theta_0 is common knowledge",
+                        "after_every_history": "posterior mass one on theta_0 and zero on theta_1"
+                      },
+                      "source_public_continuation_ids": [],
+                      "existence_uniqueness_status": "exists; unique strategy profile, proposal, outcome, and payoff",
+                      "selection_status": "T^Y closes y=o_0; no proposal-level tie",
+                      "assumptions_used": [
+                        "fixed unit pie",
+                        "unanimity quota",
+                        "public theta_0",
+                        "terminal R2 with no internal beta"
+                      ],
+                      "checks_performed": [
+                        "weak pivotal payoff x_j versus zero",
+                        "H threshold y=o_0",
+                        "strict proposer gain 1-o_0>0",
+                        "full-pie use"
+                      ],
+                      "payoff_vector": {
+                        "recognized_proposer_payoff": "1-o_0",
+                        "weak_nonproposer_pre_recognition_expected_value": "(1-o_0)/m for every weak state",
+                        "hegemon_payoff": "o_0"
+                      },
+                      "outcome_distribution": {
+                        "pass_with_hegemon": 1,
+                        "pass_without_hegemon": 0,
+                        "failure": 0,
+                        "delay": 0
+                      },
+                      "payoff_date": "R2 current units; beta absent"
+                    }
+                  ],
+                  "nonexistence_certificate": null
+                }
+              ],
+              "theta_1": [
+                {
+                  "cell_id": "N7-PUB-U-R2-T1-CELL",
+                  "domain_conditions": [
+                    "theta=theta_1 is public from t=0",
+                    "m>=3 and all primitive restrictions hold",
+                    "beta is payoff-irrelevant inside terminal R2"
+                  ],
+                  "existence_status": "exists",
+                  "public_equilibrium_records": [
+                    {
+                      "public_equilibrium_id": "N7-PUB-U-R2-T1",
+                      "institution": "unanimity",
+                      "round": "R2",
+                      "theta": "theta_1",
+                      "admissibility_conditions": [
+                        "ballot strategies are pure",
+                        "weak voters use as-if-pivotal comparison",
+                        "T^Y selects yes at equality"
+                      ],
+                      "branch_classification": "terminal inclusion of public high type",
+                      "strategy_profile": {
+                        "recognized_weak_proposer": "choose y=o_1, x_j=0 for every weak nonproposer, and r_i=1-o_1",
+                        "weak_nonproposers": "yes after every feasible proposal",
+                        "hegemon": "yes iff y>=o_1"
+                      },
+                      "belief_system": {
+                        "type_information": "theta_1 is common knowledge",
+                        "after_every_history": "posterior mass one on theta_1 and zero on theta_0"
+                      },
+                      "source_public_continuation_ids": [],
+                      "existence_uniqueness_status": "exists; unique strategy profile, proposal, outcome, and payoff",
+                      "selection_status": "T^Y closes y=o_1; no proposal-level tie",
+                      "assumptions_used": [
+                        "fixed unit pie",
+                        "unanimity quota",
+                        "public theta_1",
+                        "terminal R2 with no internal beta"
+                      ],
+                      "checks_performed": [
+                        "weak pivotal payoff x_j versus zero",
+                        "H threshold y=o_1",
+                        "strict proposer gain 1-o_1>0",
+                        "full-pie use"
+                      ],
+                      "payoff_vector": {
+                        "recognized_proposer_payoff": "1-o_1",
+                        "weak_nonproposer_pre_recognition_expected_value": "(1-o_1)/m for every weak state",
+                        "hegemon_payoff": "o_1"
+                      },
+                      "outcome_distribution": {
+                        "pass_with_hegemon": 1,
+                        "pass_without_hegemon": 0,
+                        "failure": 0,
+                        "delay": 0
+                      },
+                      "payoff_date": "R2 current units; beta absent"
+                    }
+                  ],
+                  "nonexistence_certificate": null
+                }
+              ]
             },
             "R1": {
-              "theta_0": null,
-              "theta_1": null
+              "theta_0": [
+                {
+                  "cell_id": "N7-PUB-U-R1-T0-CELL",
+                  "domain_conditions": [
+                    "theta=theta_0 is public from t=0",
+                    "m>=3, beta in (0,1), and all primitive restrictions hold",
+                    "public R2 continuation N7-PUB-U-R2-T0 is closed"
+                  ],
+                  "existence_status": "exists",
+                  "public_equilibrium_records": [
+                    {
+                      "public_equilibrium_id": "N7-PUB-U-R1-T0",
+                      "institution": "unanimity",
+                      "round": "R1",
+                      "theta": "theta_0",
+                      "admissibility_conditions": [
+                        "ballot strategies are pure",
+                        "weak voters use as-if-pivotal comparison",
+                        "T^Y selects yes at equality"
+                      ],
+                      "branch_classification": "unique immediate inclusion of public low type",
+                      "strategy_profile": {
+                        "definitions": "C_0=beta*(1-o_0)/m; t_0=beta*o_0; Q_0=C_0+1-beta",
+                        "recognized_weak_proposer": "choose y=t_0, x_j=C_0 for every weak nonproposer, and r_i=Q_0",
+                        "weak_nonproposers": "yes iff x_j>=C_0",
+                        "hegemon": "yes iff y>=t_0 when all weak states approve; yes by T^Y when a weak veto makes failure inevitable"
+                      },
+                      "belief_system": {
+                        "type_information": "theta_0 is common knowledge",
+                        "after_every_proposal_and_vote_vector": "posterior mass one on theta_0; the R2 continuation is unique"
+                      },
+                      "source_public_continuation_ids": [
+                        "N7-PUB-U-R2-T0"
+                      ],
+                      "existence_uniqueness_status": "exists; unique strategy profile after every feasible proposal, unique proposal, outcome, and payoff",
+                      "selection_status": "T^Y closes all reservation boundaries; Q_0-C_0=1-beta>0 removes delay",
+                      "assumptions_used": [
+                        "public N7-PUB-U-R2-T0 only",
+                        "beta applied exactly once",
+                        "unanimity quota and full implementation"
+                      ],
+                      "checks_performed": [
+                        "weak threshold C_0",
+                        "H threshold t_0",
+                        "Q_0=C_0+1-beta",
+                        "full-pie use",
+                        "strict immediate-agreement gain"
+                      ],
+                      "payoff_vector": {
+                        "recognized_proposer_payoff": "Q_0=beta*(1-o_0)/m+1-beta",
+                        "weak_nonproposer_pre_recognition_expected_value": {
+                          "each_responder": "C_0=beta*(1-o_0)/m",
+                          "every_weak_state_before_recognition": "(1-beta*o_0)/m"
+                        },
+                        "hegemon_payoff": "beta*o_0"
+                      },
+                      "outcome_distribution": {
+                        "pass_with_hegemon": 1,
+                        "pass_without_hegemon": 0,
+                        "failure": 0,
+                        "delay": 0
+                      },
+                      "payoff_date": "R1 current units; R2 values multiplied by beta exactly once"
+                    }
+                  ],
+                  "nonexistence_certificate": null
+                }
+              ],
+              "theta_1": [
+                {
+                  "cell_id": "N7-PUB-U-R1-T1-CELL",
+                  "domain_conditions": [
+                    "theta=theta_1 is public from t=0",
+                    "m>=3, beta in (0,1), and all primitive restrictions hold",
+                    "public R2 continuation N7-PUB-U-R2-T1 is closed"
+                  ],
+                  "existence_status": "exists",
+                  "public_equilibrium_records": [
+                    {
+                      "public_equilibrium_id": "N7-PUB-U-R1-T1",
+                      "institution": "unanimity",
+                      "round": "R1",
+                      "theta": "theta_1",
+                      "admissibility_conditions": [
+                        "ballot strategies are pure",
+                        "weak voters use as-if-pivotal comparison",
+                        "T^Y selects yes at equality"
+                      ],
+                      "branch_classification": "unique immediate inclusion of public high type",
+                      "strategy_profile": {
+                        "definitions": "C_1=beta*(1-o_1)/m; t_1=beta*o_1; Q_1=C_1+1-beta",
+                        "recognized_weak_proposer": "choose y=t_1, x_j=C_1 for every weak nonproposer, and r_i=Q_1",
+                        "weak_nonproposers": "yes iff x_j>=C_1",
+                        "hegemon": "yes iff y>=t_1 when all weak states approve; yes by T^Y when a weak veto makes failure inevitable"
+                      },
+                      "belief_system": {
+                        "type_information": "theta_1 is common knowledge",
+                        "after_every_proposal_and_vote_vector": "posterior mass one on theta_1; the R2 continuation is unique"
+                      },
+                      "source_public_continuation_ids": [
+                        "N7-PUB-U-R2-T1"
+                      ],
+                      "existence_uniqueness_status": "exists; unique strategy profile after every feasible proposal, unique proposal, outcome, and payoff",
+                      "selection_status": "T^Y closes all reservation boundaries; Q_1-C_1=1-beta>0 removes delay",
+                      "assumptions_used": [
+                        "public N7-PUB-U-R2-T1 only",
+                        "beta applied exactly once",
+                        "unanimity quota and full implementation"
+                      ],
+                      "checks_performed": [
+                        "weak threshold C_1",
+                        "H threshold t_1",
+                        "Q_1=C_1+1-beta",
+                        "full-pie use",
+                        "strict immediate-agreement gain"
+                      ],
+                      "payoff_vector": {
+                        "recognized_proposer_payoff": "Q_1=beta*(1-o_1)/m+1-beta",
+                        "weak_nonproposer_pre_recognition_expected_value": {
+                          "each_responder": "C_1=beta*(1-o_1)/m",
+                          "every_weak_state_before_recognition": "(1-beta*o_1)/m"
+                        },
+                        "hegemon_payoff": "beta*o_1"
+                      },
+                      "outcome_distribution": {
+                        "pass_with_hegemon": 1,
+                        "pass_without_hegemon": 0,
+                        "failure": 0,
+                        "delay": 0
+                      },
+                      "payoff_date": "R1 current units; R2 values multiplied by beta exactly once"
+                    }
+                  ],
+                  "nonexistence_certificate": null
+                }
+              ]
             }
           }
         },
         "informational_rent_cells": {
-          "majority": null,
-          "unanimity": null
+          "majority": [
+            {
+              "cell_id": "N7-RI-M-CELL-II",
+              "domain_conditions": [
+                "o_1<=1/m, hence both public majority games include H",
+                "prior_mu=nu in [0,1]",
+                "m>=3 and all primitive restrictions hold",
+                "frozen N6 majority record and both cited public R1 records exist at the same parameter point"
+              ],
+              "existence_status": "exists",
+              "informational_rent_records": [
+                {
+                  "rent_record_id": "N7-RI-M-II",
+                  "institution": "majority",
+                  "admissibility_conditions": [
+                    "public payoff vector is (beta*o_0,beta*o_1)",
+                    "the exact N3 class set A_M(nu) transported by N6 is preserved"
+                  ],
+                  "private_source_rule_record_id": "N6-PR-M-N3-SC-EQ-COMPLETE",
+                  "public_source_equilibrium_ids": {
+                    "theta_0": "N7-PUB-M-R1-T0-INCLUDE",
+                    "theta_1": "N7-PUB-M-R1-T1-INCLUDE"
+                  },
+                  "source_N6_interface_hash": "sha256:a9cfd5935377197b51637a525f26627c296eed1e21bfe8cfcf6906b4d90a5a92",
+                  "RI": {
+                    "theta_0": "C_H(0;F)-beta*o_0; S=0, P=d, E=a_0, EP=lambda*a_0+(1-lambda)*d",
+                    "theta_1": "C_H(1;F)-beta*o_1; S=0, P=0, E=a_1, EP=lambda*a_1"
+                  },
+                  "ex_ante_images": {
+                    "definition": "Phi_mu=(1-mu)*RI(theta_0)+mu*RI(theta_1), with mu=nu",
+                    "S": "0",
+                    "P": "(1-mu)*d",
+                    "E": "(1-mu)*a_0+mu*a_1",
+                    "EP": "lambda*((1-mu)*a_0+mu*a_1)+(1-lambda)*(1-mu)*d, lambda in [0,1]"
+                  },
+                  "envelopes": {
+                    "exact_selected_class_conditions": [
+                      "if o_1<1/m: S for nu<=nu_SP and P for nu>nu_SP",
+                      "if o_0<o_1=1/m: S for nu<=nu_SE; above, E if Hbar_E<Hbar_P, P if Hbar_P<Hbar_E, and EP if equal"
+                    ],
+                    "EP_exact_set": "{(lambda*a_0+(1-lambda)*d,lambda*a_1): lambda in [0,1]}",
+                    "EP_coordinate_envelope": {
+                      "theta_0": "[min(a_0,d),max(a_0,d)]",
+                      "theta_1": "[0,a_1]"
+                    },
+                    "no_cartesian_rule": "the same lambda binds both coordinates; the envelope does not replace the exact line"
+                  },
+                  "selection_status": "no N7 selection; every N6-admissible F and the residual EP segment are retained atomically",
+                  "robustness_indicators": {
+                    "S": "both coordinates zero",
+                    "P": "theta_0 positive and theta_1 zero",
+                    "E": "both coordinates positive",
+                    "EP": "theta_0 positive; theta_1 ranges from zero to positive, with exact coupling"
+                  }
+                }
+              ],
+              "nonexistence_certificate": null
+            },
+            {
+              "cell_id": "N7-RI-M-CELL-IX",
+              "domain_conditions": [
+                "o_0<=1/m<o_1, hence public majority includes theta_0 and excludes theta_1",
+                "prior_mu=nu in [0,1]",
+                "m>=3 and all primitive restrictions hold",
+                "frozen N6 majority record and both cited public R1 records exist at the same parameter point"
+              ],
+              "existence_status": "exists",
+              "informational_rent_records": [
+                {
+                  "rent_record_id": "N7-RI-M-IX",
+                  "institution": "majority",
+                  "admissibility_conditions": [
+                    "public payoff vector is (beta*o_0,o_1)",
+                    "the exact N3 class set is S or E as selected by N6"
+                  ],
+                  "private_source_rule_record_id": "N6-PR-M-N3-SC-EQ-COMPLETE",
+                  "public_source_equilibrium_ids": {
+                    "theta_0": "N7-PUB-M-R1-T0-INCLUDE",
+                    "theta_1": "N7-PUB-M-R1-T1-EXCLUDE"
+                  },
+                  "source_N6_interface_hash": "sha256:a9cfd5935377197b51637a525f26627c296eed1e21bfe8cfcf6906b4d90a5a92",
+                  "RI": {
+                    "theta_0": "C_H(0;F)-beta*o_0; S=0 and E=a_0",
+                    "theta_1": "C_H(1;F)-o_1; S=-a_1 and E=0"
+                  },
+                  "ex_ante_images": {
+                    "definition": "Phi_mu=(1-mu)*RI(theta_0)+mu*RI(theta_1), with mu=nu",
+                    "S": "-mu*a_1",
+                    "E": "(1-mu)*a_0"
+                  },
+                  "envelopes": {
+                    "exact_selected_class_conditions": [
+                      "if o_0<1/m<o_1: S for nu<=nu_SE and E for nu>nu_SE",
+                      "if o_0=1/m<o_1: S at nu=0 and E for every nu>0"
+                    ],
+                    "coordinate_envelope": "singleton at every parameter point; the cutoff equality belongs to S"
+                  },
+                  "selection_status": "no N7 selection; the unique N6-selected class at each parameter point is retained",
+                  "robustness_indicators": {
+                    "S": "theta_0 zero and theta_1 negative",
+                    "E": "theta_0 positive and theta_1 zero"
+                  }
+                }
+              ],
+              "nonexistence_certificate": null
+            },
+            {
+              "cell_id": "N7-RI-M-CELL-XX",
+              "domain_conditions": [
+                "1/m<o_0<o_1, hence both public majority games exclude H",
+                "prior_mu=nu in [0,1]",
+                "m>=3 and all primitive restrictions hold",
+                "frozen N6 majority record and both cited public R1 records exist at the same parameter point"
+              ],
+              "existence_status": "exists",
+              "informational_rent_records": [
+                {
+                  "rent_record_id": "N7-RI-M-XX",
+                  "institution": "majority",
+                  "admissibility_conditions": [
+                    "public payoff vector is (o_0,o_1)",
+                    "N6 selects private exclusion E for every nu"
+                  ],
+                  "private_source_rule_record_id": "N6-PR-M-N3-SC-EQ-COMPLETE",
+                  "public_source_equilibrium_ids": {
+                    "theta_0": "N7-PUB-M-R1-T0-EXCLUDE",
+                    "theta_1": "N7-PUB-M-R1-T1-EXCLUDE"
+                  },
+                  "source_N6_interface_hash": "sha256:a9cfd5935377197b51637a525f26627c296eed1e21bfe8cfcf6906b4d90a5a92",
+                  "RI": {
+                    "theta_0": "0",
+                    "theta_1": "0"
+                  },
+                  "ex_ante_images": {
+                    "exact": "{0} for every mu=nu"
+                  },
+                  "envelopes": {
+                    "theta_0": "[0,0]",
+                    "theta_1": "[0,0]"
+                  },
+                  "selection_status": "no N7 selection; private and public exclusion coincide",
+                  "robustness_indicators": {
+                    "theta_0": "zero",
+                    "theta_1": "zero",
+                    "ex_ante": "zero"
+                  }
+                }
+              ],
+              "nonexistence_certificate": null
+            }
+          ],
+          "unanimity": [
+            {
+              "cell_id": "N7-RI-U-CELL-NU-ZERO",
+              "domain_conditions": [
+                "nu=prior_mu=0",
+                "m>=3 and all primitive restrictions hold",
+                "N6 unanimity record N6-PR-U-N4-SC-EQ-L-STAR exists"
+              ],
+              "existence_status": "exists",
+              "informational_rent_records": [
+                {
+                  "rent_record_id": "N7-RI-U-NU-ZERO",
+                  "institution": "unanimity",
+                  "admissibility_conditions": [
+                    "private vector is (beta*o_0,beta*o_1)",
+                    "public vector is (beta*o_0,beta*o_1)"
+                  ],
+                  "private_source_rule_record_id": "N6-PR-U-N4-SC-EQ-L-STAR",
+                  "public_source_equilibrium_ids": {
+                    "theta_0": "N7-PUB-U-R1-T0",
+                    "theta_1": "N7-PUB-U-R1-T1"
+                  },
+                  "source_N6_interface_hash": "sha256:a9cfd5935377197b51637a525f26627c296eed1e21bfe8cfcf6906b4d90a5a92",
+                  "RI": {
+                    "theta_0": "0",
+                    "theta_1": "0"
+                  },
+                  "ex_ante_images": {
+                    "exact": "{0}"
+                  },
+                  "envelopes": {
+                    "theta_0": "[0,0]",
+                    "theta_1": "[0,0]"
+                  },
+                  "selection_status": "singleton private and public vectors; no selection",
+                  "robustness_indicators": {
+                    "theta_0": "zero",
+                    "theta_1": "zero",
+                    "ex_ante": "zero"
+                  }
+                }
+              ],
+              "nonexistence_certificate": null
+            },
+            {
+              "cell_id": "N7-RI-U-CELL-NO-PURE-PBE",
+              "domain_conditions": [
+                "0<nu=prior_mu<=nu_star",
+                "m>=3 and all primitive restrictions hold",
+                "N6 unanimity private rule is none under pure ballots"
+              ],
+              "existence_status": "none",
+              "informational_rent_records": [],
+              "nonexistence_certificate": {
+                "ledger_claim_ids": [
+                  "N7-C12",
+                  "N6-C04",
+                  "N4-C08"
+                ],
+                "assumptions_used": [
+                  "RI_U requires a nonempty V_U^priv and V_U^pub",
+                  "N6 transports the frozen N4 no-pure-PBE certificate in this closed interval",
+                  "ballot strategies are pure"
+                ],
+                "checks_performed": [
+                  "public unanimity games exist for both types",
+                  "private unanimity source collection is none",
+                  "no sentinel payoff or partial rent record is created",
+                  "majority rent collection remains intact"
+                ]
+              }
+            },
+            {
+              "cell_id": "N7-RI-U-CELL-HIGH",
+              "domain_conditions": [
+                "nu_star<nu=prior_mu<=1",
+                "m>=3 and all primitive restrictions hold",
+                "N6 unanimity record N6-PR-U-N4-SC-EQ-P-STAR exists"
+              ],
+              "existence_status": "exists",
+              "informational_rent_records": [
+                {
+                  "rent_record_id": "N7-RI-U-HIGH",
+                  "institution": "unanimity",
+                  "admissibility_conditions": [
+                    "private vector is (beta*o_1,beta*o_1)",
+                    "public vector is (beta*o_0,beta*o_1)"
+                  ],
+                  "private_source_rule_record_id": "N6-PR-U-N4-SC-EQ-P-STAR",
+                  "public_source_equilibrium_ids": {
+                    "theta_0": "N7-PUB-U-R1-T0",
+                    "theta_1": "N7-PUB-U-R1-T1"
+                  },
+                  "source_N6_interface_hash": "sha256:a9cfd5935377197b51637a525f26627c296eed1e21bfe8cfcf6906b4d90a5a92",
+                  "RI": {
+                    "theta_0": "d=beta*(o_1-o_0)",
+                    "theta_1": "0"
+                  },
+                  "ex_ante_images": {
+                    "exact": "{(1-mu)*d}, with mu=nu",
+                    "sign": "positive for mu<1 and zero at mu=1"
+                  },
+                  "envelopes": {
+                    "theta_0": "[d,d]",
+                    "theta_1": "[0,0]"
+                  },
+                  "selection_status": "singleton private and public vectors; no selection",
+                  "robustness_indicators": {
+                    "theta_0": "strictly positive",
+                    "theta_1": "zero",
+                    "ex_ante": "positive for mu<1; zero at mu=1"
+                  }
+                }
+              ],
+              "nonexistence_certificate": null
+            }
+          ]
         },
-        "informational_rent_contrast_cells": null
-      }
+        "informational_rent_contrast_cells": [
+          {
+            "cell_id": "N7-DRI-CELL-II-NU-ZERO",
+            "domain_conditions": [
+              "nu=prior_mu=0",
+              "o_1<=1/m",
+              "m>=3 and all primitive restrictions hold"
+            ],
+            "existence_status": "exists",
+            "informational_rent_contrast_records": [
+              {
+                "contrast_record_id": "N7-DRI-II-NU-ZERO",
+                "admissibility_conditions": [
+                  "N6 majority selects S at nu=0",
+                  "both rent source records exist"
+                ],
+                "source_rent_record_ids": {
+                  "majority": "N7-RI-M-II",
+                  "unanimity": "N7-RI-U-NU-ZERO"
+                },
+                "DeltaRI": {
+                  "theta_0": "0",
+                  "theta_1": "0"
+                },
+                "ex_ante_images": {
+                  "exact": "{0}"
+                },
+                "envelopes": {
+                  "theta_0": "[0,0]",
+                  "theta_1": "[0,0]"
+                },
+                "selection_status": "singleton contrast; no N7 selection",
+                "robustness_indicators": {
+                  "theta_0": "zero",
+                  "theta_1": "zero",
+                  "ex_ante": "zero"
+                }
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7-DRI-CELL-II-NONE",
+            "domain_conditions": [
+              "0<nu=prior_mu<=nu_star",
+              "o_1<=1/m",
+              "m>=3 and all primitive restrictions hold"
+            ],
+            "existence_status": "none",
+            "informational_rent_contrast_records": [],
+            "nonexistence_certificate": {
+              "ledger_claim_ids": [
+                "N7-C13",
+                "N7-C12",
+                "N6-C04"
+              ],
+              "assumptions_used": [
+                "DeltaRI requires both RI_M and RI_U",
+                "RI_U is empty in this interval"
+              ],
+              "checks_performed": [
+                "RI_M remains nonempty",
+                "RI_U source cell is none",
+                "no partial contrast record or robust ordering is created"
+              ]
+            }
+          },
+          {
+            "cell_id": "N7-DRI-CELL-II-HIGH",
+            "domain_conditions": [
+              "nu_star<nu=prior_mu<=1",
+              "o_1<=1/m",
+              "m>=3 and all primitive restrictions hold"
+            ],
+            "existence_status": "exists",
+            "informational_rent_contrast_records": [
+              {
+                "contrast_record_id": "N7-DRI-II-HIGH",
+                "admissibility_conditions": [
+                  "both rent source records exist",
+                  "the N6-selected majority class is retained without N7 selection"
+                ],
+                "source_rent_record_ids": {
+                  "majority": "N7-RI-M-II",
+                  "unanimity": "N7-RI-U-HIGH"
+                },
+                "DeltaRI": {
+                  "theta_0": "S=d; P=0; E=k; EP=lambda*k for lambda in [0,1]",
+                  "theta_1": "S=0; P=0; E=-a_1; EP=-lambda*a_1 for lambda in [0,1]"
+                },
+                "ex_ante_images": {
+                  "S": "(1-mu)*d",
+                  "P": "0",
+                  "E": "(1-mu)*k-mu*a_1",
+                  "EP": "{lambda*((1-mu)*k-mu*a_1): lambda in [0,1]}"
+                },
+                "envelopes": {
+                  "S": {
+                    "theta_0": "[d,d]",
+                    "theta_1": "[0,0]"
+                  },
+                  "P": {
+                    "theta_0": "[0,0]",
+                    "theta_1": "[0,0]"
+                  },
+                  "E": {
+                    "theta_0": "[k,k]",
+                    "theta_1": "[-a_1,-a_1]"
+                  },
+                  "EP": {
+                    "exact_set": "{lambda*(k,-a_1): lambda in [0,1]}",
+                    "theta_0": "[min(0,k),max(0,k)]",
+                    "theta_1": "[-a_1,0]",
+                    "no_cartesian_rule": "the same lambda binds both coordinates"
+                  }
+                },
+                "selection_status": "no N7 selection; S/P/E or the exact EP segment follows the frozen N6 class conditions",
+                "robustness_indicators": {
+                  "S": "theta_0 positive; theta_1 zero",
+                  "P": "both zero",
+                  "E": "theta_0 has sign of k=beta*o_1-o_0; theta_1 negative",
+                  "EP": "lambda=0 is zero; for lambda>0 theta_0 has sign of k and theta_1 is negative; no strict robust sign over the full segment",
+                  "ex_ante_EP": "zero always belongs to the image, so no strict ex ante ordering is robust"
+                }
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7-DRI-CELL-IX-NU-ZERO",
+            "domain_conditions": [
+              "nu=prior_mu=0",
+              "o_0<=1/m<o_1",
+              "m>=3 and all primitive restrictions hold"
+            ],
+            "existence_status": "exists",
+            "informational_rent_contrast_records": [
+              {
+                "contrast_record_id": "N7-DRI-IX-NU-ZERO",
+                "admissibility_conditions": [
+                  "N6 majority selects S at nu=0",
+                  "both rent source records exist"
+                ],
+                "source_rent_record_ids": {
+                  "majority": "N7-RI-M-IX",
+                  "unanimity": "N7-RI-U-NU-ZERO"
+                },
+                "DeltaRI": {
+                  "theta_0": "0",
+                  "theta_1": "a_1=(1-beta)*o_1"
+                },
+                "ex_ante_images": {
+                  "exact": "{mu*a_1}={0} because mu=nu=0"
+                },
+                "envelopes": {
+                  "theta_0": "[0,0]",
+                  "theta_1": "[a_1,a_1]"
+                },
+                "selection_status": "singleton contrast; no N7 selection",
+                "robustness_indicators": {
+                  "theta_0": "zero",
+                  "theta_1": "strictly positive",
+                  "ex_ante": "zero because the positive coordinate has zero prior mass"
+                }
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7-DRI-CELL-IX-NONE",
+            "domain_conditions": [
+              "0<nu=prior_mu<=nu_star",
+              "o_0<=1/m<o_1",
+              "m>=3 and all primitive restrictions hold"
+            ],
+            "existence_status": "none",
+            "informational_rent_contrast_records": [],
+            "nonexistence_certificate": {
+              "ledger_claim_ids": [
+                "N7-C13",
+                "N7-C12",
+                "N6-C04"
+              ],
+              "assumptions_used": [
+                "DeltaRI requires both RI_M and RI_U",
+                "RI_U is empty in this interval"
+              ],
+              "checks_performed": [
+                "RI_M remains nonempty",
+                "RI_U source cell is none",
+                "no partial contrast record or robust ordering is created"
+              ]
+            }
+          },
+          {
+            "cell_id": "N7-DRI-CELL-IX-HIGH",
+            "domain_conditions": [
+              "nu_star<nu=prior_mu<=1",
+              "o_0<=1/m<o_1",
+              "m>=3 and all primitive restrictions hold"
+            ],
+            "existence_status": "exists",
+            "informational_rent_contrast_records": [
+              {
+                "contrast_record_id": "N7-DRI-IX-HIGH",
+                "admissibility_conditions": [
+                  "both rent source records exist",
+                  "majority class is S or E according to the frozen N6 cutoff"
+                ],
+                "source_rent_record_ids": {
+                  "majority": "N7-RI-M-IX",
+                  "unanimity": "N7-RI-U-HIGH"
+                },
+                "DeltaRI": {
+                  "theta_0": "S=d; E=k=beta*o_1-o_0",
+                  "theta_1": "S=a_1; E=0"
+                },
+                "ex_ante_images": {
+                  "S": "(1-mu)*d+mu*a_1, strictly positive",
+                  "E": "(1-mu)*k; sign of k when mu<1 and zero at mu=1"
+                },
+                "envelopes": {
+                  "S": {
+                    "theta_0": "[d,d]",
+                    "theta_1": "[a_1,a_1]"
+                  },
+                  "E": {
+                    "theta_0": "[k,k]",
+                    "theta_1": "[0,0]"
+                  },
+                  "pointwise_rule": "the selected class is a singleton; no cross-class interval is formed"
+                },
+                "selection_status": "no N7 selection; S applies through the closed N6 cutoff and E above it",
+                "robustness_indicators": {
+                  "S": "both type coordinates strictly positive and ex ante strictly positive",
+                  "E": "theta_0 is positive, zero, or negative exactly as beta*o_1 is greater than, equal to, or less than o_0; theta_1 is zero; ex ante has the same sign for mu<1 and is zero at mu=1"
+                }
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7-DRI-CELL-XX-NU-ZERO",
+            "domain_conditions": [
+              "nu=prior_mu=0",
+              "1/m<o_0<o_1",
+              "m>=3 and all primitive restrictions hold"
+            ],
+            "existence_status": "exists",
+            "informational_rent_contrast_records": [
+              {
+                "contrast_record_id": "N7-DRI-XX-NU-ZERO",
+                "admissibility_conditions": [
+                  "N6 majority selects E at nu=0",
+                  "both rent source records exist"
+                ],
+                "source_rent_record_ids": {
+                  "majority": "N7-RI-M-XX",
+                  "unanimity": "N7-RI-U-NU-ZERO"
+                },
+                "DeltaRI": {
+                  "theta_0": "0",
+                  "theta_1": "0"
+                },
+                "ex_ante_images": {
+                  "exact": "{0}"
+                },
+                "envelopes": {
+                  "theta_0": "[0,0]",
+                  "theta_1": "[0,0]"
+                },
+                "selection_status": "singleton contrast; no N7 selection",
+                "robustness_indicators": {
+                  "theta_0": "zero",
+                  "theta_1": "zero",
+                  "ex_ante": "zero"
+                }
+              }
+            ],
+            "nonexistence_certificate": null
+          },
+          {
+            "cell_id": "N7-DRI-CELL-XX-NONE",
+            "domain_conditions": [
+              "0<nu=prior_mu<=nu_star",
+              "1/m<o_0<o_1",
+              "m>=3 and all primitive restrictions hold"
+            ],
+            "existence_status": "none",
+            "informational_rent_contrast_records": [],
+            "nonexistence_certificate": {
+              "ledger_claim_ids": [
+                "N7-C13",
+                "N7-C12",
+                "N6-C04"
+              ],
+              "assumptions_used": [
+                "DeltaRI requires both RI_M and RI_U",
+                "RI_U is empty in this interval"
+              ],
+              "checks_performed": [
+                "RI_M remains nonempty",
+                "RI_U source cell is none",
+                "no partial contrast record or robust ordering is created"
+              ]
+            }
+          },
+          {
+            "cell_id": "N7-DRI-CELL-XX-HIGH",
+            "domain_conditions": [
+              "nu_star<nu=prior_mu<=1",
+              "1/m<o_0<o_1",
+              "m>=3 and all primitive restrictions hold"
+            ],
+            "existence_status": "exists",
+            "informational_rent_contrast_records": [
+              {
+                "contrast_record_id": "N7-DRI-XX-HIGH",
+                "admissibility_conditions": [
+                  "both rent source records exist",
+                  "N6 majority and public majority both select E"
+                ],
+                "source_rent_record_ids": {
+                  "majority": "N7-RI-M-XX",
+                  "unanimity": "N7-RI-U-HIGH"
+                },
+                "DeltaRI": {
+                  "theta_0": "d=beta*(o_1-o_0)",
+                  "theta_1": "0"
+                },
+                "ex_ante_images": {
+                  "exact": "{(1-mu)*d}",
+                  "sign": "positive for mu<1 and zero at mu=1"
+                },
+                "envelopes": {
+                  "theta_0": "[d,d]",
+                  "theta_1": "[0,0]"
+                },
+                "selection_status": "singleton contrast; no N7 selection",
+                "robustness_indicators": {
+                  "theta_0": "strictly positive",
+                  "theta_1": "zero",
+                  "ex_ante": "positive for mu<1; zero at mu=1"
+                }
+              }
+            ],
+            "nonexistence_certificate": null
+          }
+        ]
+      },
+      "artifact_path": "essential_input_n7_complete_information_benchmark_candidate.json",
+      "artifact_hash": "sha256:4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45",
+      "dependency_hashes": {
+        "N6": "sha256:a9cfd5935377197b51637a525f26627c296eed1e21bfe8cfcf6906b4d90a5a92"
+      },
+      "started_order": 11,
+      "passed_order": 12,
+      "frozen": true,
+      "reviews": [
+        {
+          "reviewer_role": "formal_design",
+          "reviewer_id": "codex-formal-design-n7-final-20260821",
+          "verdict": "PASS",
+          "artifact_hash": "sha256:4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45",
+          "finding_counts": {
+            "critical": 0,
+            "major": 0,
+            "minor": 0
+          }
+        },
+        {
+          "reviewer_role": "game_theory",
+          "reviewer_id": "codex-game-theory-n7-final-20260821",
+          "verdict": "PASS",
+          "artifact_hash": "sha256:4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45",
+          "finding_counts": {
+            "critical": 0,
+            "major": 0,
+            "minor": 0
+          }
+        }
+      ]
     }
   ]
 }

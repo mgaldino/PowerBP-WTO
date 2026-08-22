@@ -1,0 +1,93 @@
+{
+  "schema_ref": "equilibrium_correspondence_v1",
+  "function_of": {
+    "name": "entry_belief",
+    "domain": "[0,1]"
+  },
+  "correspondence_cells": [
+    {
+      "cell_id": "N1-CELL-ALL-NU",
+      "domain_conditions": [
+        "nu in [0,1]",
+        "N is an integer and N >= 3",
+        "m = N-1",
+        "q = floor(N/2)+1",
+        "beta in (0,1) and is payoff-irrelevant inside terminal R2",
+        "0 < o_0 < o_1 < 1 and o_1 <= y_bar <= 1",
+        "the proposal is feasible under y + sum_j x_j + r_i <= 1"
+      ],
+      "existence_status": "exists",
+      "equilibrium_records": [
+        {
+          "equilibrium_id": "N1-EQ-01",
+          "admissibility_conditions": [
+            "all primitive restrictions in N1-CELL-ALL-NU hold",
+            "ballot strategies are pure",
+            "weak nonproposer strategies satisfy stage-undominated voting",
+            "T^Y selects yes only at genuine indifference"
+          ],
+          "branch_classification": "terminal approval without H",
+          "strategy_profile": {
+            "recognized_weak_proposer": {
+              "proposal": {
+                "y": "0",
+                "x_j_for_each_weak_nonproposer": "0",
+                "r_i": "1"
+              },
+              "proposal_is_unique_argmax": true
+            },
+            "weak_nonproposer_vote_after_every_feasible_proposal": "yes",
+            "hegemon_vote_after_every_feasible_proposal": {
+              "theta_0": "no",
+              "theta_1": "no"
+            }
+          },
+          "belief_system": {
+            "entry_belief": "Pr(theta=1)=nu",
+            "on_path_after_proposal": "Pr(theta=1 | y=0, every x_j=0, r_i=1)=nu by Bayes",
+            "off_path_after_zero_probability_proposal": "arbitrary kappa(s) in [0,1]",
+            "off_path_belief_effect": "none on strategies, outcomes, or payoffs"
+          },
+          "source_continuation_record_ids": [],
+          "source_interface_hashes": [],
+          "existence_uniqueness_status": "exists; unique strategy profile, outcome, and payoff; multiplicity only in arbitrary payoff-irrelevant off-path beliefs",
+          "selection_status": "full assessment class preserved; no ad hoc equilibrium selection; proposal tie-break inactive because the argmax is unique",
+          "assumptions_used": [
+            "fixed unit pie and package feasibility from Section 2",
+            "majority quota and terminal transition/payoffs from Section 4",
+            "PBE with pure ballot strategies, weak-only stage-undominated voting, and T^Y from Section 5",
+            "R2 native current units from Section 6",
+            "iid uniform recognition with replacement"
+          ],
+          "checks_performed": [
+            "N1-C01 weak yes weakly dominates no when x_j>0",
+            "N1-C02 T^Y selects weak yes when x_j=0",
+            "N1-C03 H strictly votes no when nonpivotal while y is fully executed",
+            "N1-C04 P0 unique full-pie proposer optimum",
+            "N1-C05 sequential rationality after every feasible proposal",
+            "N1-C06 exhaustive correspondence with off-path belief multiplicity preserved",
+            "N1-C07 no internal discount in R2 payoffs",
+            "N1-C08 P5 posterior sufficiency",
+            "N1-C09 P6 on-path refinement effect",
+            "N1-C10 strict o_1<1 domain restriction leaves the N1 correspondence invariant",
+            "N1-C11 strict beta<1 domain restriction leaves the N1 correspondence invariant and beta absent from terminal R2 incentives"
+          ],
+          "recognized_proposer_payoff": "1",
+          "weak_nonproposer_pre_recognition_expected_value": "1/m",
+          "hegemon_payoff_by_type": {
+            "theta_0": "o_0",
+            "theta_1": "o_1"
+          },
+          "outcome_distribution": {
+            "pass_with_hegemon": 0,
+            "pass_without_hegemon": 1,
+            "failure": 0,
+            "delay": 0
+          },
+          "payoff_date": "R2 current units"
+        }
+      ],
+      "nonexistence_certificate": null
+    }
+  ]
+}

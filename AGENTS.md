@@ -6,6 +6,22 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 
 ## Current Status
 
+- **Essential-input chain (2026-08-21):** N1--N4, N6, and terminal N7 are
+  `pass/frozen`, each on a final hash with two independent PASS 0/0/0 reviews;
+  N5 is absent from the DAG. The author explicitly approved frozen N7 and
+  closed Goal 4. Goal 5 was authorized, migrated, and independently reviewed.
+- **Goal 5 reviewed snapshot (2026-08-22):** the two independent PASS 0/0/0
+  reviews cover only commit `b5fdefb1f80090b8da893bf19e754915d557502a`
+  and the exact reviewed bytes of `formal_model_v6.Rmd` (SHA-256
+  `32b49f7503caac34cdf225f73d7e76ab60d1340937b095e3e611f009030f8744`)
+  and `formal_model_v6.pdf` (SHA-256
+  `85d24122008af9ad484a6df53679c3f455f75fb94fffc70aa9ccbd8ffb62fe17`).
+  Any later edit, including a manual RStudio edit, creates a new unreviewed
+  candidate. It does not alter or invalidate the reviewed historical snapshot,
+  which remains recoverable at `b5fdefb`, but the edited bytes must not be
+  described as covered by those PASS reviews until they are rendered and
+  independently reviewed again.
+
 > ## CURRENT ARCHITECTURE — essential-input (2026-08-12)
 >
 > **The governing contract is
@@ -80,13 +96,14 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 >    pinning to the prescribed type (an action cannot identify a nonexistent
 >    type); free in [0,1] at endpoints (would resurrect the impossible type
 >    off-path). Before any N4 PASS, verify that no off-path endpoint record uses
->    positive posterior on the zero-prior type. **N2 erratum registered (option
->    A, Codex's canonical text accepted)**: N2's effective interface is the
+>    positive posterior on the zero-prior type. **N2 erratum registered (erratum
+>    option, Codex's canonical text accepted)**: N2's effective interface is the
 >    frozen artifact (`c6a65dc8...a85a2`, byte-identical) read jointly with
 >    Amendment 1a — no belief multiplicity at endpoints; interior unchanged.
 >    It touches `belief_system.off_path_ballot` and `existence_uniqueness_status`
->    in both cells, the matching derivation passages, and the ledger's
->    multiplicity claims; no payoff changes. Do NOT edit N2 artifacts — full
+>    in both cells, the matching derivation passages, claim `N2-CLM-012`, and
+>    the belief-class portion of claim `N2-CLM-013`; no payoff changes. Do NOT
+>    edit N2 artifacts — full
 >    text in the decision record.
 > 2. **Weak-state voting: as-if-pivotal.** Expected-value comparison conditional on
 >    the pivotal event; when strict, it decides the vote. Pure admissibility (only
@@ -108,7 +125,8 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 > package. N1/N2 untouched; N3 needs only the audit's minor repairs (majority
 > continuation is belief-free).
 
-- **Phase**: essential-input Gate 0 approved; Goal 0 authorized, no derivation started.
+- **Phase**: N1--N4, N6, and N7 are `pass/frozen`; the author has closed Goal
+  4. Goal 5 remains unauthorized.
 - **Target paper for the next manuscript pass**: `formal_model_v6.Rmd`.
 - **Target compiled PDF**: `formal_model_v6.pdf`.
 - **Previous manuscript baseline (2026-05-15, v5)**: `formal_model_v5.Rmd` carries the fixed-pie relative-package `pi_H=0` baseline and remains the reference history for the post-referee proof repair. The next clean-baseline reset should be derived in `model_redesign/power_architecture_derivations.Rmd` first, then transported into `formal_model_v6.Rmd`, not v5. The v5 paper frames the result as a conditional institutional comparison: consensus can benefit a hegemon through pivotality-based screening, but the model does **not** contain an endogenous rule-choice/signaling stage. The R1 result is stated under a **weak-vote-passive assessment**: weak-state vote deviations are not treated as signals about `H`'s type because weak states do not observe `theta`. Do not describe this assessment as a refinement, D1, intuitive criterion, sequential-equilibrium restriction, or characterization of all PBEs. It is a maintained interpretation of the public voting protocol. The R1 statement should say the selected PBE outcome is payoff-equivalent to one of `P`, `L`, `R`; it is a selection result under the baseline voting assessment, not uniqueness over unrestricted PBEs. The tie-break among weak-proposer payoff ties minimizes `H`'s expected payoff.
@@ -532,8 +550,10 @@ The wrapper validates `OPENROUTER_API_KEY` against the OpenRouter `/api/v1/key` 
 
 The canonical executable specification is
 `quality_reports/plans/2026-08-12_essential_input_gate0.md`, status APPROVED.
-It authorizes Goal 0 only. Its opening prompt is in its Section 14 and controls
-over everything below.
+Its Section 14 opening prompt governed the original Gate 0 opening. Later
+explicit authorial decisions authorized and closed Goal 4 through frozen N7;
+see `quality_reports/2026-08-21_fechamento_autoral_goal4_n7.md`. Goal 5 remains
+unauthorized and requires a new explicit authorial decision.
 
 `quality_reports/plans/2026-08-03-clean-baseline-goal.md` and the prompt below
 are **historical**. They specify the immediate-opt-out architecture that was

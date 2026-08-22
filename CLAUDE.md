@@ -15,6 +15,24 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 
 ## Status
 
+- **Cadeia essential-input (2026-08-21):** N1--N4, N6 e o nó terminal N7 estão
+  `pass/frozen`, cada um no hash final com dois pareceres independentes PASS
+  0/0/0; N5 não integra o DAG. O autor aprovou explicitamente N7 congelado e
+  encerrou o Goal 4. O Goal 5 foi autorizado, migrado e revisado de forma
+  independente.
+- **Snapshot revisado do Goal 5 (2026-08-22):** os dois pareceres independentes
+  PASS 0/0/0 cobrem somente o commit
+  `b5fdefb1f80090b8da893bf19e754915d557502a` e os bytes exatos revisados de
+  `formal_model_v6.Rmd` (SHA-256
+  `32b49f7503caac34cdf225f73d7e76ab60d1340937b095e3e611f009030f8744`) e
+  `formal_model_v6.pdf` (SHA-256
+  `85d24122008af9ad484a6df53679c3f455f75fb94fffc70aa9ccbd8ffb62fe17`).
+  Qualquer edição posterior, inclusive uma edição manual no RStudio, cria um
+  candidato novo ainda não revisado. Ela não altera nem invalida o snapshot
+  histórico revisado, que continua recuperável em `b5fdefb`, mas os novos bytes
+  não podem ser descritos como cobertos por aqueles pareceres até nova
+  compilação e nova revisão independente.
+
 > ## ARQUITETURA CORRENTE — essential-input (2026-08-12)
 >
 > **O contrato normativo é
@@ -82,12 +100,13 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 >    tipo prescrito (ação não identifica tipo inexistente); livre em [0,1] no
 >    endpoint (ressuscitaria tipo impossível off-path). Antes de PASS de N4,
 >    verificar que nenhum registro off-path de endpoint usa posterior positivo
->    no tipo de prior zero. **Errata N2 registrada (opção A, texto canônico do
->    Codex aceito)**: a interface efetiva de N2 é o artefato congelado
+>    no tipo de prior zero. **Errata N2 registrada (opção errata, texto canônico
+>    do Codex aceito)**: a interface efetiva de N2 é o artefato congelado
 >    (`c6a65dc8...a85a2`, intacto byte a byte) lido conjuntamente com a Emenda
 >    1a — endpoints sem multiplicidade de crenças; interior inalterado. Incide
 >    em `belief_system.off_path_ballot` e `existence_uniqueness_status` das duas
->    células, na derivação e no ledger; nenhum payoff muda. NÃO editar artefatos
+>    células, na derivação, no claim `N2-CLM-012` e na parcela sobre a classe de
+>    crenças do claim `N2-CLM-013`; nenhum payoff muda. NÃO editar artefatos
 >    de N2 — texto integral no registro de decisão.
 > 2. **Votação dos fracos: as-if-pivotal.** Comparação por valor esperado condicional
 >    ao evento pivotal; se estrita, decide o voto. Admissibilidade pura (só proibir
@@ -106,7 +125,8 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 > relatório de provas de 2026-08-21 devem ser rederivados sob este pacote.
 > N1/N2 intactos; N3 só reparos menores (belief-free sob maioria).
 
-- **Fase**: Gate 0 essential-input aprovado; Goal 0 autorizado, sem derivação iniciada.
+- **Fase**: N1--N4, N6 e N7 estão `pass/frozen`; o autor encerrou o Goal 4.
+  Goal 5 não está autorizado.
 - **Paper v6** (ALVO CORRETO): `formal_model_v6.Rmd` — alvo do próximo manuscript pass. `formal_model_v6.pdf` existe como PDF compilado atual.
 - **Paper v5** (REFERÊNCIA HISTÓRICA): `formal_model_v5.Rmd` — baseline fixed-pie relative-package com `pi_H=0`, weak-state agenda e weak-vote-passive assessment. `formal_model_v5.pdf` recompilado em 2026-05-15. Não usar v5 como alvo do clean-baseline reset.
 - **Atualização do baseline v5 (2026-05-15)**: v5 usa a arquitetura fixed-pie relative-package com `pi_H=0` no corpo. A avaliação de crenças deve ser chamada **weak-vote-passive assessment**, não refinement. A defesa é informacional: weak states não observam `theta`, então desvios unilaterais de voto dos fracos não sinalizam diretamente o tipo de `H`; votos separadores de `H` podem atualizar crenças; crenças on-path seguem Bayes. O resultado R1 deve ser formulado como selected PBE outcome payoff-equivalente a `P`, `L` ou `R` sob a avaliação mantida, não como unicidade nem caracterização de todos os PBEs.
@@ -346,7 +366,10 @@ Motivo: o erro anterior veio em parte de manter fórmulas de uma arquitetura ant
 
 A especificação canônica e executável é
 `quality_reports/plans/2026-08-12_essential_input_gate0.md`, status APPROVED,
-e o prompt de abertura está na Seção 14 dele. Ele autoriza o Goal 0 e só ele.
+e seu prompt na Seção 14 governou a abertura original do Gate 0. Decisões
+autorais explícitas posteriores autorizaram e encerraram o Goal 4 com N7
+congelado; ver `quality_reports/2026-08-21_fechamento_autoral_goal4_n7.md`.
+Goal 5 não está autorizado e exige nova decisão autoral explícita.
 
 O plano `2026-08-03-clean-baseline-goal.md` e o prompt abaixo são **históricos**:
 especificam a arquitetura com opt-out imediato, removida em 2026-08-12. Não
