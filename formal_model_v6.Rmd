@@ -1,7 +1,7 @@
 ---
 title: "Informational Power Through Pivotality: How Consensus Can Benefit a Hegemon"
 author: "Manoel Galdino (University of São Paulo; mgaldino@usp.br)"
-date: "`r Sys.Date()`"
+date: "2026-08-22"
 output:
   bookdown::pdf_document2:
     number_sections: TRUE
@@ -15,1371 +15,998 @@ header-includes:
   - \setlength{\parindent}{0pt}
   - \usepackage{float}
   - \usepackage{amsmath,amssymb,amsthm}
-  - \newtheorem{definition}{Definition}
-  - \newtheorem{lemma}{Lemma}
-  - \newtheorem{proposition}{Proposition}
-  - \newtheorem{theorem}{Theorem}
-  - \newtheorem{corollary}{Corollary}
-  - \newtheorem{remark}{Remark}
-  - \newtheorem{example}{Example}
   - \usepackage{tikz}
   - \usetikzlibrary{arrows.meta,positioning,calc}
   - \usepackage{booktabs}
   - \usepackage{longtable}
-  - \usepackage{pdflscape}
   - \usepackage{array}
+  - \usepackage{graphicx}
+  - \usepackage{caption}
 fontsize: 12pt
 geometry: margin=2.5cm
 mainfont: Times New Roman
 bibliography: references.bib
 link-citations: true
-keywords: "International Organizations, Bargaining, Hegemon, Informational Power, Screening, Consensus"
+keywords: "International organizations, unanimity rule, legislative bargaining, private information, hegemonic power, informational rents"
 abstract: |
-  When can consensus benefit a powerful state even without granting it proposal power? I study a two-round bargaining game in which only weak states propose, the hegemon privately knows its outside payoff, and a no vote by the hegemon is an immediate and irreversible opt-out. Under unanimity, weak proposers must satisfy the hegemon's private participation constraint. In the regular interior domain, a unanimity PBE exists only under derived incentive and belief conditions; whenever it exists, every regular on-path equilibrium pools at the high outside payoff. Under majority rule, equilibrium is generally set-valued: weak coalitions can exclude the hegemon, but larger groups can also sustain separating current passage. Institutional comparisons are therefore conditional on the common PBE-existence domain. On that domain, weak-state formation under unanimity is nested in formation under majority, while unanimity weakly raises the hegemon's payoff whenever both institutions form, with equality under majority pooling. Consensus can thus create informational power through pivotality even when agenda power is deliberately assigned to weaker states.
+  Why do hegemons build international organizations that decide by consensus,
+  a rule that formally equalizes votes and grants them no agenda power? We
+  study two-round bargaining in which only weak states propose and a hegemon
+  holds private information about its outside option, comparing unanimity and
+  majority rule under identical primitives. Under majority rule, proposers can
+  buy uninformed weak-state votes instead of the hegemon's, and this substitute
+  caps its price. Under unanimity, the hegemon is an essential input: the
+  substitute disappears and its private threshold shapes the proposal.
+  Relative to complete information, the institutional informational-rent
+  contrast depends on the hegemon's type, the majority equilibrium class, and
+  the parameter region. It is positive for the low type when majority screens
+  and can also be positive for the high type when public majority would exclude
+  it; it vanishes when majority already pays the pooling price and may reverse
+  under private exclusion. For an intermediate range of beliefs, unanimity has
+  no perfect Bayesian equilibrium in pure ballot strategies, so the comparison
+  is undefined there. Consensus can therefore convert pivotality into
+  informational power, but only under conditions that the equilibrium
+  correspondence makes explicit.
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
-history_path <- "tables/clean_optout_gate0_histories_piH0.tsv"
-gate0_histories <- utils::read.delim(
-  history_path,
-  check.names = FALSE,
-  quote = "",
-  comment.char = "",
-  stringsAsFactors = FALSE
-)
-```
 
 \newpage
 
 # Introduction
 
-When can consensus benefit a powerful state? A control-based intuition says
-that majority rule should be more attractive to powerful actors because a
-winning coalition can act without unanimous consent. Consensus seems to move
-power in the opposite direction by giving every participant a veto.
+Saudi Arabia is not formally entitled to write OPEC's production agreements,
+yet an agreement that ignored its spare capacity and outside opportunities
+would be difficult to sustain [@fattouh2013opec; @nakov2013saudi]. The World
+Trade Organization presents the
+mirror image: the United States accepted a consensus rule that formally gives
+every member an equal vote [@steinberg2002shadow]. These cases sharpen a
+three-part puzzle. Why would
+a hegemon accept no agenda control, why accept a rule stricter than majority,
+and why insist on consensus^[For the model, *consensus* and *unanimity* denote
+the same voting rule: every state must approve. The distinction between the
+terms does not affect the analysis.] when that rule appears to equalize formal
+power?
 
-This paper identifies a different source of power. Consensus can favor a
-privately informed hegemon because it makes that actor's approval an
-informational constraint on weaker states. Weak states know the institutional
-package they can offer but not the hegemon's privately known outside payoff.
-When the hegemon is pivotal, the weak proposer must decide whether and how to
-insure agreement against that hidden participation constraint.
+The complete-information benchmark isolates the familiar answer. When the
+hegemon's strength is publicly known, unanimity makes its approval necessary
+and therefore adds veto power. Majority can instead leave the hegemon outside
+the agreement whenever buying weak-state votes is cheaper. The informational
+puzzle begins after this benchmark: what additional advantage arises because
+the other states do not know the hegemon's reservation value?
 
-The model separates outside-option power, pivotality, and agenda power. The
-hegemon \(H\) is never recognized as proposer: \(\pi_H=0\) in both bargaining
-rounds. Only weak states propose. A proposal is a relative institutional
-package \(y\), such as a quota share, production flexibility, an exception, or
-an enforcement advantage. It is feasible in every state and reduces the unit
-surplus left to the weak coalition one-for-one. If \(H\) votes no in Round 1,
-it opts out immediately and irreversibly, receives \(o_\theta\) without
-discounting, and cannot re-enter. If \(H\) votes yes but simultaneous weak
-votes make the ballot fail, \(H\) remains active and the game can continue.
+We study a two-round bargaining game with one hegemon and at least three weak
+states. Only weak states make proposals. The hegemon privately knows whether
+its terminal disagreement payoff is low or high. Proposals and simultaneous
+ballots are public, the institutional surplus is fixed, and a failed first
+round leads to a discounted terminal round. Majority and unanimity change only
+the number of votes required.
 
-The clean timing changes the equilibrium architecture. First, terminal
-unanimity retains the familiar screening choice between a low-only package and
-pooling. Second, in the regular interior domain, Round-1 unanimity does not
-admit a global pooling/low-only/delay reduction. A global PBE exists only if
-\(\beta o_1\geq o_0\) and a strict security-value condition holds; whenever
-it exists, every regular on-path equilibrium pools at \(y=o_1\). Third,
-majority is not a unique no-screening benchmark. Its exact security value is
-the maximum of exclusion, low-only, and pooling guarantees, and its equilibrium
-correspondence depends on group size. Finally, institutional comparisons are
-made only on the common PBE-existence domain. There, weak-state entry under
-unanimity is nested in entry under majority, and unanimity weakly benefits
-\(H\) whenever both institutions form.
+The mechanism is the difference between a substitute and an essential input.
+Under majority, a proposer can buy enough uninformed weak-state votes to pass
+without the hegemon. That outside coalition caps what the hegemon can command.
+Under unanimity, no such substitute exists: every agreement requires the
+hegemon's vote, so the proposal must respond to a privately known threshold.
+The resulting rent is frequently attached to pooling rather than to
+separation. A hegemon whose strength is overestimated receives the concession
+needed by the high type even when its own type is low.
 
-These are conditional results, not claims that unanimity always dominates
-majority or that the model characterizes all PBEs under unrestricted beliefs.
-The analysis uses perfect Bayesian equilibrium together with a
-weak-vote-passive assessment: an uninformed weak voter's unexpected ballot is
-not treated as direct evidence about \(H\)'s type. The assessment does not
-impose sequential-equilibrium consistency across globally off-path
-information sets.
+The exact result is conditional. Majority has pure equilibria featuring
+exclusion, type-contingent delay, or pooling, depending on outside options and
+beliefs. Unanimity has an immediate low-type agreement when the low type is
+certain, an immediate pooling agreement when the high type is sufficiently
+likely, and no perfect Bayesian equilibrium in pure ballot strategies in
+between. Against the public benchmark, unanimity's informational-rent advantage
+is therefore type- and region-specific. It is positive for the low type when
+majority screens, also benefits the high type when public majority would
+exclude it, is zero when majority already pools, and can have either sign when
+private majority excludes. Where private unanimity has no pure-strategy
+equilibrium, the institutional contrast is empty rather than assigned a
+counterfactual payoff.
 
-# Consensus, Information, and Institutional Design {#literature}
+Our analysis builds directly on work showing how voting rules organize
+legislative bargaining and information aggregation
+[@baron1989bargaining; @winter1996voting; @feddersenPesendorfer1998convicting;
+@eraslan2019legislative]. @miller2018heterogeneous provide a useful
+complete-information benchmark for bargaining under heterogeneous voting
+rules. Closest to our informational setting, @piazolo2025legislative analyze
+private information, rejection, and refinements in legislative bargaining,
+while @glynia2026unanimity study the choice between insuring unanimity and
+gambling on a majority coalition in a one-shot setting. Their mechanisms and
+results receive full priority as the nearest points of comparison.
 
-The argument contributes first to rational-design accounts of international
-institutions. Existing work emphasizes how institutional rules help states
-manage uncertainty, commitment, and distributional conflict
-[@koremenos2001rational]. Consensus is often interpreted as a device for
-protecting participants from unfavorable outcomes or encouraging broad
-participation [@gould2016consensus]. The mechanism here reverses the usual
-direction of the informational benefit: uncertainty can make consensus
-valuable to the privately informed pivotal actor.
+Our narrower contribution is to isolate a different margin: a privately
+informed actor that never proposes can gain because a voting rule either
+preserves or removes uninformed substitutes for its vote. Comparing each
+private-information game with its own complete-information counterpart then
+separates the familiar power of a necessary vote from the additional
+informational component. This distinction complements rational-design and
+informal-power accounts of international institutions
+[@koremenos2001rational; @steinberg2002shadow; @stone2011controlling].
 
-Second, the paper qualifies self-binding and informal-power accounts.
-Self-binding theories explain why powerful states may accept constraints to
-make cooperation credible [@keohane1984after; @ikenberry2001after].
-Informal-power accounts show how powerful states can dominate outcomes even
-under formally egalitarian rules [@steinberg2002shadow; @stone2011controlling;
-@gruber2000ruling]. Here the hegemon neither proposes nor needs to control
-drafting. Its leverage comes from a private outside payoff that becomes
-politically productive when its approval is necessary.
+The paper proceeds as follows. Section \ref{model} defines the game and
+solution concept. Section \ref{results} first solves the four public
+benchmarks, then the private games, and finally informational rents and their
+difference across voting rules. Section \ref{discussion} interprets the
+essential-input mechanism and its limits. The appendix gives the proofs,
+endpoint discipline, exact correspondence tables, and a worked numerical
+illustration.
 
-Third, the model builds on bargaining theories in which recognition and voting
-rules determine distribution [@baron1989bargaining; @kalandrakis2006proposal;
-@eraslan2019legislative]. Setting \(\pi_H=0\) removes formal proposal power
-from the hegemon and isolates pivotality. The informational problem is related
-to veto bargaining [@bardhi2018modes; @kim2025persuasion], but there is no
-information designer or commitment to an experiment. Information matters
-because an institutional quota determines whether a privately informed vote
-is necessary for implementation.
+# A working numerical illustration {#example}
 
-Two recent papers provide close but distinct comparisons. @piazolo2025legislative
-study a setting in which privately informed responders can signal through
-rejection and bargaining may break down. @glynia2026unanimity analyze a
-one-shot ultimatum environment with a fixed proposer and a trade-off between
-insuring unanimity and gambling on a majority coalition. The present paper
-asks whether consensus can benefit a powerful non-proposer. Its distinctive
-features are weak-state agenda control, an immediate and irreversible opt-out
-by the hegemon, and an explicitly conditional comparison over equilibrium
-correspondences.
-
-# A Motivating Terminal Example {#example}
-
-Consider a terminal bargaining round with one hegemon and two weak states.
-The weak coalition has a unit surplus. A higher package \(y\) benefits \(H\)
-and reduces the weak residual one-for-one. The low type has outside payoff
-\(o_0\), the high type has outside payoff \(o_1\), and
-\(0<o_0<o_1<1\). Because implementation is certain if \(H\) votes yes, type
-\(\theta\) accepts exactly when \(y\geq o_\theta\).
-
-Under unanimity, a weak proposer compares a low-only package \(y=o_0\), worth
-\((1-\mu)(1-o_0)\), with a pooling package \(y=o_1\), worth \(1-o_1\). It
-pools when
+Consider one hegemon and four weak states. The unit pie is bargained over with
+discount factor \(0.9\). The two disagreement payoffs are \(0.10\) and
+\(0.35\). In the terminal unanimity round, a proposer chooses between an offer
+accepted only by the low type and an offer accepted by both types. The cutoff
+probability of the high type is
 \[
-\mu>\frac{o_1-o_0}{1-o_0}.
+\nu^*=\frac{0.35-0.10}{1-0.10}=0.2778.
 \]
-Pooling gives the low type an informational rent \(o_1-o_0\).
+At a belief of \(0.20\), the proposer offers \(0.10\) and accepts the risk of
+failure when the type is high. At a belief of \(0.35\), it offers \(0.35\) and
+both types accept. This is a working numerical illustration, not an empirical
+calibration. The full two-round game adds the option to buy weak-state votes
+and the continuation created by a failed first ballot.
 
-This terminal example is deliberately limited. In Round 1, ballots are
-simultaneous, a no vote by \(H\) is an immediate opt-out, and a yes vote
-followed by weak-caused failure leads to a distinct continuation. The direct
-cutoff \(y=o_\theta\) therefore applies only when current implementation after
-\(H\)-yes is certain. The full model derives the expected voting incentive
-constraint rather than treating the terminal cutoff as a global rule.
+# The model {#model}
 
-# The Model {#model}
+## Players, information, and proposals
 
-\begin{definition}[Clean immediate-opt-out game]\label{def:game}
-There are \(N\geq3\) states: one hegemon \(H\) and \(m=N-1\) weak states.
-Nature draws a persistent type \(\theta\in\{0,1\}\). Only \(H\) observes its
-type; weak states share prior \(\mu=\Pr(\theta=1)\). The weak coalition has a
-fixed institutional surplus normalized to one, and weak outside payoffs are
-zero. The primitive domain is
+There is one hegemon, \(H\), and \(m\geq3\) weak states,
+\(W=\{1,\ldots,m\}\). Thus \(N=m+1\). Nature selects
+\(\theta\in\{0,1\}\), observed only by \(H\), with
+\(\Pr(\theta=1)=\nu\in[0,1]\). The terminal disagreement payoffs satisfy
 \[
-0\leq o_0<o_1\leq\bar y\leq1,
-\qquad \beta\in(0,1].
-\tag{1}\label{eq:primitive-domain}
+0<o_0<o_1<1.
 \]
-If a current agreement includes \(H\), its payoff is \(y\); hence
-\(b_0=b_1=0\). The outside payoff \(o_\theta\) is external to the
-institutional pie.
 
-The game has two rounds. In every reached round, a new weak proposer is drawn
-uniformly and independently; \(\pi_H=0\) in both rounds. If weak state \(i\)
-proposes while \(H\) is active, its contract is
+The game has two rounds. In each round, one weak state is recognized
+uniformly to propose; \(H\) is never a proposer. A proposal by weak state
+\(i\) is
 \[
-s_i=(y,(x_j)_{j\ne i}),\qquad
-y\in[0,\bar y],\quad x_j\geq0.
+s=(y,(x_j)_{j\in W\setminus\{i\}},r_i),
+\qquad
+y+\sum_{j\neq i}x_j+r_i\leq1.
 \]
-If \(H\) participates, the proposer receives
+Here \(y\) is the institutional concession assigned to \(H\), \(x_j\) is the
+share assigned to responding weak state \(j\), and \(r_i\) is the proposer's
+residual. The fixed unit pie is exhausted on the equilibrium path.
+
+The payoff from agreement for \(H\) is \(y+b_\theta\). We normalize
+\(b_\theta=0\), so an included hegemon receives the concession \(y\).
+[AUTHOR: P2] This normalization isolates informational concessions and
+pivotality from any intrinsic benefit that an agreement might itself provide.
+
+## Ballots, timing, and payoffs
+
+The proposer is counted as voting yes. All other states vote simultaneously;
+the complete vote vector and outcome become public only after all votes have
+been cast. Majority requires
 \[
-x_i^H=1-y-\sum_{j\ne i}x_j\geq0.
-\tag{2}\label{eq:h-budget}
+q=\left\lfloor\frac{N}{2}\right\rfloor+1
 \]
-If majority passage excludes \(H\), the conditional component \(y\) is
-reabsorbed and the proposer receives
-\[
-x_i^{WO}=1-\sum_{j\ne i}x_j=x_i^H+y.
-\tag{3}\label{eq:weak-only-budget}
-\]
-Thus \(H\)'s outside payoff is never charged to weak surplus, and \(H\) never
-receives both \(y\) and \(o_\theta\) in the same history.
+yes votes, while unanimity requires every state's yes vote. The ballot
+protocol is otherwise identical across rules.
 
-The proposer is counted as voting yes. Every other active player observes the
-proposal and votes simultaneously; individual votes become public only after
-the ballot closes. Unanimity requires \(N\) yes votes. Majority requires
-\[
-q=\left\lfloor\frac N2\right\rfloor+1.
-\tag{4}\label{eq:quota}
-\]
-The protocol is identical across rules except for the quota and is not a
-sequential roll call.
+If a proposal passes, every stated weak-state allocation is implemented. If
+\(H\) votes yes, it receives \(y\). If \(H\) votes no but a majority passes
+the proposal without it, its general payoff is \(y+o_\theta\). This formula is
+part of the complete game because the proposed institutional term \(y\) is
+implemented even without \(H\)'s approval. In every equilibrium exclusion
+derived below, however, the proposer chooses \(y=0\); the hegemon therefore
+receives exactly \(o_\theta\), never a positive concession on top of it.
 
-A no vote by type \(\theta\) of \(H\) is an immediate and irreversible
-opt-out. In Round 1 it pays \(o_\theta\) immediately and without discounting.
-No current or future agreement can then include \(H\). Under unanimity the
-branch ends because the original quota \(N\) is impossible. Under majority, a
-current weak-only agreement passes if the weak yes votes already reach \(q\);
-otherwise the game proceeds to a weak-only Round 2 with the original quota
-\(q\). After opt-out, every proposal fixes \(y=0\) and uses the weak-only
-budget in \eqref{eq:weak-only-budget}. If \(H\) votes yes and the Round-1
-ballot fails only because weak votes do not reach the quota, \(H\) remains
-active and the game proceeds to Round 2.
-
-Round 2 is terminal, and all Round-2 payoffs are multiplied by \(\beta\) in
-Round-1 units. If \(H\) is still active and a Round-2 ballot fails, \(H\)
-receives \(o_\theta\) at the Round-2 date regardless of whether it voted yes
-or no, while weak states receive zero. If \(H\) opted out in Round 1, it
-receives no additional Round-2 flow.
-
-Before Round-1 recognition, weak states make one collective, all-or-nothing
-formation decision and pay an external sunk cost \(\chi\) each if the
-institution forms. For rule \(R\), define
-\[
-V_W^R(\mu)=\frac1m
-\mathbb E\!\left[\sum_{j=1}^m u_j^R\mid\text{formation}\right].
-\tag{5}\label{eq:entry-value}
-\]
-Formation occurs iff \(V_W^R(\mu)\geq\chi\), with formation at equality.
-If the institution does not form, every weak state receives zero and type
-\(\theta\) of \(H\) receives \(o_\theta\).
-\end{definition}
-
-The immediate-opt-out timing is summarized in Figure
-\ref{fig:timing}. The distinction between an \(H\)-no and an \(H\)-yes
-followed by weak rejection is the core protocol distinction.
+If nothing passes in Round 1, no payoff is realized then and the game proceeds
+to Round 2. Round-2 payoffs are multiplied by
+\(\beta\in(0,1)\) when evaluated in Round-1 units. If nothing passes in Round
+2, each weak state receives zero and \(H\) receives \(o_\theta\) in Round-2
+units. A no vote is only a ballot action; it does not remove a player or
+trigger disagreement by itself. [AUTHOR: P1] The delayed terminal disagreement
+payoff represents the cost of prolonging international negotiations.
 
 \begin{figure}[H]
 \centering
-\resizebox{\textwidth}{!}{%
 \begin{tikzpicture}[
-  node distance=1.15cm and 1.05cm,
-  box/.style={draw, rounded corners=1pt, align=center, inner sep=5pt, minimum width=2.45cm},
-  branch/.style={draw, rounded corners=1pt, align=left, inner sep=5pt, minimum width=4.0cm},
-  arrow/.style={-{Latex[length=2.1mm]}, thick}
+  node distance=8mm and 10mm,
+  box/.style={draw, rounded corners, align=center, inner sep=5pt},
+  arr/.style={-{Latex[length=2mm]}, thick}
 ]
-\node[box] (nature) {Nature draws \(\theta\)\\\(H\) observes};
-\node[box, right=of nature] (entry) {Collective weak\\formation};
-\node[box, right=of entry] (proposal) {R1 weak proposer\\chooses \(s_i\)};
-\node[box, right=of proposal] (ballot) {Simultaneous ballot\\votes later revealed};
-
-\node[branch, right=1.4cm of ballot, yshift=1.45cm] (pass) {Quota reached with \(H\)-yes:\\current agreement includes \(H\)};
-\node[branch, right=1.4cm of ballot] (optout) {\(H\)-no: immediate \(o_\theta\), no re-entry;\\\(U\) ends, \(M\) may pass or continue weak-only};
-\node[branch, right=1.4cm of ballot, yshift=-1.45cm] (continue) {\(H\)-yes but weak-caused failure:\\\(H\) remains active and R2 follows};
-
-\draw[arrow] (nature) -- (entry);
-\draw[arrow] (entry) -- (proposal);
-\draw[arrow] (proposal) -- (ballot);
-\draw[arrow] (ballot) -- (pass);
-\draw[arrow] (ballot) -- (optout);
-\draw[arrow] (ballot) -- (continue);
+\node[box] (p1) {Weak proposer\\chooses a Round-1 package};
+\node[box, right=of p1] (b1) {Simultaneous ballot\\vote vector becomes public};
+\node[box, above right=7mm and 10mm of b1] (a1) {Quota met\\package implemented};
+\node[box, below right=7mm and 10mm of b1] (p2) {Quota not met\\Round 2 begins};
+\node[box, right=of p2] (b2) {Weak proposer chooses\\terminal package; ballot};
+\node[box, above right=7mm and 10mm of b2] (a2) {Quota met\\package implemented};
+\node[box, below right=7mm and 10mm of b2] (d2) {Quota not met\\terminal disagreement};
+\draw[arr] (p1) -- (b1);
+\draw[arr] (b1) -- (a1);
+\draw[arr] (b1) -- (p2);
+\draw[arr] (p2) -- (b2);
+\draw[arr] (b2) -- (a2);
+\draw[arr] (b2) -- (d2);
 \end{tikzpicture}
-}
-\caption{Timing of the clean immediate-opt-out baseline. Ballots are simultaneous. A no vote by \(H\) is an immediate and irreversible opt-out; a yes vote followed by weak-caused failure leaves \(H\) active for Round 2.}
+\caption{Sequence of proposals and ballots. Within each ballot, responding
+states vote simultaneously. A failed first-round proposal continues to the
+terminal round; a no vote alone does not end the game.}
 \label{fig:timing}
 \end{figure}
 
-\begin{definition}[Weak-vote-passive assessment]\label{def:passive}
-The primitives, type distribution, recognition rule, contract space, ballot
-protocol, quotas, implementation rules, payoff consequences, and tie-breaks
-are common knowledge. The solution concept is PBE. An assessment specifies
-the collective formation strategy; every weak proposer's proposal strategy at
-each public history where it is recognized; every active non-proposer's
-behavioral voting strategy; \(H\)'s type-contingent behavioral voting strategy;
-and beliefs at every information set where \(\theta\) remains payoff-relevant.
-Strategies are sequentially rational given those beliefs, and beliefs obey
-Bayes' rule wherever possible.
+## Solution concept
 
-A unilateral vote deviation by an uninformed weak state is not treated as
-direct evidence about \(\theta\); beliefs instead follow the public proposal
-and \(H\)'s simultaneous type-contingent strategy and revealed vote. A
-separating vote by \(H\) can update beliefs when \(H\) remains active.
+We use perfect Bayesian equilibrium with pure ballot strategies and three
+declared disciplines. First, an action by a player who does not know
+\(\theta\) does not change beliefs about \(\theta\). After an action by \(H\),
+beliefs follow Bayes' rule whenever possible and otherwise satisfy structural
+consistency. Second, a weak responder evaluates yes and no as if its own vote
+were pivotal. Third, exact expected indifference is resolved in favor of yes,
+denoted \(T^Y\). Among proposal choices that give the proposer the same
+expected payoff, the selected proposal minimizes \(H\)'s expected payoff.
 
-Every zero-probability continuation in which \(H\) remains active must state
-its off-path posterior. Globally off-path ballot beliefs and later
-zero-probability continuation beliefs are components of weak PBE and need not
-be linked by Bayes' rule. The assessment is not a refinement, D1, the
-Intuitive Criterion, a sequential-equilibrium restriction, or a
-characterization of all PBEs.
-
-Payoffs from a proposal deviation are evaluated under the true prior \(\mu\),
-even when voters at its globally off-path ballot hold a different declared
-belief. Each result states whether it concerns all PBEs, a pure on-path
-proposal class, a constructed weak PBE, or a selection-free bound.
-
-Players vote yes when indifferent. If a weak proposer is indifferent among
-payoff-maximizing proposals, the selected proposal minimizes \(H\)'s expected
-payoff. No third tie-break is imposed.
-\end{definition}
-
-For an R1 ballot information set \(I=(h,s_i)\), let \(v_W\) denote the
-simultaneous weak-vote vector, let
-\(\sigma_W(v_W\mid I)\) be the proposal-indexed distribution induced by the
-weak voting strategies, and let \(A_R^Y(v_W)\) indicate implementation when
-\(H\) votes yes. The continuation history
-\(h_2=h_2(h,s_i,Y,v_W)\) includes the proposal, complete revealed vote vector,
-quota outcome, and opt-out status. The correct incentive constraint is
-\[
-\sum_{v_W}\sigma_W(v_W\mid I)
-\left[
-A_R^Y(v_W)y+
-\{1-A_R^Y(v_W)\}\beta C_{H,2}^R(\theta,h_2)
-\right]\geq o_\theta.
-\tag{6}\label{eq:h-ic-r1}
-\]
-The right-hand side is always the immediate opt-out payoff. Only when
-\(A_R^Y(v_W)=1\) with probability one does this reduce to
-\[
-y\geq o_\theta.
-\tag{7}\label{eq:direct-cutoff}
-\]
-Appendix A states the corresponding weak-voter IC and records every voting
-history.
-
-The main theorems use the regular interior domain
-\[
-\mu\in(0,1),\qquad \beta\in(0,1),\qquad 0<o_0<o_1<1.
-\tag{8}\label{eq:regular-domain}
-\]
-The boundaries \(o_0=0\), \(o_1=1\), \(\beta=1\), and degenerate priors are
-separated in Appendix C rather than imported by continuity.
+Endpoint beliefs preserve the support of the prior. If \(\nu=0\), the posterior
+is zero at every history; if \(\nu=1\), it is one at every history. For
+\(0<\nu<1\), an action by \(H\) that has zero probability under both types may
+support any posterior in \([0,1]\). This is a condition of our solution
+concept. It follows the no-signaling logic used in multistage games
+[@fudenberg1991game]; support preservation is analogous to, but narrower than,
+the never-dissuaded discipline discussed by @osborneRubinstein1990. Tremble
+consistency motivates the restriction but is not invoked as a theorem for
+degenerate priors [@kreps1982sequential].
 
 \begin{table}[H]
 \centering
-\small
-\begin{tabular}{p{0.28\textwidth}p{0.62\textwidth}}
+\caption{Scope of the formal results}
+\label{tab:scope}
+\begin{tabular}{p{0.29\linewidth}p{0.62\linewidth}}
 \toprule
-Object & Scope \\
+Element & Maintained scope \\
 \midrule
-Terminal unanimity payoff & All-PBE payoff result in the terminal subgame. \\
-Regular R1 unanimity & Global PBE existence and on-path payoff characterization under weak PBE and the declared completion beliefs. \\
-Regular R1 majority & Pure on-path proposal characterization; tied mixtures inherit the stated payoff bounds. \\
-Institutional comparison & Selection-free only on the derived common PBE-existence domain. \\
-Boundaries and endpoints & Separate propositions or one-sided equilibrium-outcome limits; not continuations of the regular theorem by assumption. \\
+Players and horizon & One hegemon, \(m\geq3\) weak states, two rounds \\
+Agenda & Only weak states propose in both rounds \\
+Voting & Simultaneous public ballots; majority or unanimity \\
+Information & Binary private type of \(H\); support-preserving endpoints \\
+Payoffs & Unit pie, \(0<o_0<o_1<1\), \(0<\beta<1\), \(b_\theta=0\) \\
+Equilibrium & Perfect Bayesian equilibrium in pure ballot strategies with the
+declared voting and proposal tie-break rules \\
 \bottomrule
 \end{tabular}
-\caption{Scope of the clean baseline results.}
-\label{tab:result-scope}
 \end{table}
 
-# Backward Induction {#results}
+# Results {#results}
 
-## Terminal Round
+The solution proceeds by backward induction. We begin with public types because
+that benchmark separates the value of a necessary vote from the value of
+private information. We then solve the private terminal games, the private
+first-round games, and finally subtract the public benchmark component by
+component.
 
-\begin{lemma}[Terminal unanimity]\label{lem:r2-unanimity}
-At posterior \(\nu\), define
-\[
-P=1-o_1,\qquad
-L(\nu)=(1-\nu)(1-o_0),\qquad
-S(\nu)=\max\{P,L(\nu)\}.
-\tag{9}\label{eq:r2-u-value}
-\]
-Every terminal unanimity PBE gives the weak coalition total payoff \(S(\nu)\).
-The proposer offers \(y=o_0\) when
-\[
-\nu\leq\nu_2^*=\frac{o_1-o_0}{1-o_0}
-\tag{10}\label{eq:r2-cutoff}
-\]
-and \(y=o_1\) above the cutoff. At equality, the proposal tie-break selects
-low-only. Each weak state's ex ante Round-2 value is \(S(\nu)/m\).
-\end{lemma}
+## Complete-information benchmark
 
-\begin{proposition}[Terminal majority]\label{prop:r2-majority}
-In terminal majority bargaining, all weak states approve. A weak proposer
-sets named weak offers to zero and retains the unit pie whether \(H\) is active
-or has already opted out. Therefore
+With a public type, no belief or signaling issue remains. The proposer compares
+the price of \(H\)'s vote with the price of enough weak-state votes. In the
+terminal round, the relevant price of \(H\) is \(o_\theta\). In the first
+round, it is \(\beta o_\theta\), because rejection leads to the terminal
+round. A weak-state vote costs \(\beta/m\) in first-round units.
+
+\begin{proposition}[Public-type benchmark]\label{prop:public}
+Fix a public type with disagreement payoff \(o\). In the terminal round,
+majority passes a proposal without \(H\), assigns \(y=0\), and gives the weak
+proposer the whole unit pie; \(H\) receives \(o\). Terminal unanimity passes
+with \(y=o\), and the weak proposer retains \(1-o\).
+
+In Round 1, unanimity passes immediately with \(y=\beta o\). Majority includes
+\(H\) if \(o\leq1/m\) and excludes it if \(o>1/m\). At equality the proposal
+including \(H\) is selected. Consequently, the public Round-1 payoff of \(H\)
+is
 \[
-C_{W,2}^M=\frac1m,\qquad
-c=\frac{\beta}{m},\qquad
-C_{H,2}^M(\theta)=o_\theta.
-\tag{11}\label{eq:r2-m-values}
+p_M(o)=
+\begin{cases}
+\beta o,&o\leq1/m,\\
+o,&o>1/m,
+\end{cases}
+\qquad
+p_U(o)=\beta o.
 \]
-This result is selection-free, and \(H\)'s outside payoff remains external to
-the weak pie.
 \end{proposition}
 
-The terminal screening result is the clean one-shot bridge. It does not imply
-that Round-1 acceptance follows a global cutoff: equation
-\eqref{eq:h-ic-r1} still integrates simultaneous weak votes and the
-continuation after \(H\)-yes.
+At \(o=1/m\), buying \(H\)'s vote and buying the substitute weak-state vote
+cost the proposer the same amount. The proposal tie-break selects inclusion
+because it gives \(H\) the lower payoff \(\beta o<o\).
 
-## Round 1 Under Unanimity
+## Private information in the terminal round
 
-For the regular domain, write
+Let
 \[
-D_0=1-o_0,\quad L=(1-\mu)D_0,\quad
-\delta=\frac{\beta(m-1)}m,\quad a=1-\delta,\quad
-d=\frac{\beta P}{m}.
-\tag{12}\label{eq:u-notation}
+\nu^*=\frac{o_1-o_0}{1-o_0}.
 \]
-If pooling is on path, Bayes' rule prices a weak-voter deviation at
-\(\beta S(\mu)/m\), and the maximal proposer payoff is
-\[
-\pi_P=P-\delta S(\mu).
-\tag{13}\label{eq:onpath-pooling}
-\]
-If low-only is on path, \(H\)-yes reveals the low type, so the maximal
-proposer payoff is
-\[
-\pi_L=aL.
-\tag{14}\label{eq:onpath-low}
-\]
+Under terminal majority, \(H\)'s vote is unnecessary and the belief never
+enters the proposer's choice. Under terminal unanimity, the proposer compares a
+low offer that succeeds only when the type is low with a high offer that both
+types accept.
 
-Globally off path, the proposer can guarantee two different security values:
-\[
-G_L=(1-\mu)(D_0-\delta P),
-\qquad
-G_P=aP.
-\tag{15}\label{eq:u-security}
-\]
-The gap between the off-path low-only guarantee and its on-path payoff is
-strict:
-\[
-G_L-\pi_L=(1-\mu)\delta(D_0-P)>0.
-\tag{16}\label{eq:shaving-gap}
-\]
-This discontinuity is why the old global pooling/low-only/delay reduction does
-not survive the clean game.
+\begin{proposition}[Private terminal games]\label{prop:terminal}
+Under majority, the unique equilibrium outcome assigns \(y=0\), pays no
+responding weak state, and gives the full pie to the proposer. The proposal
+passes without \(H\); type \(\theta\) receives \(o_\theta\), and a weak state
+receives \(1/m\) before recognition.
 
-\begin{lemma}[Off-path completion and guarantees]\label{lem:completion}
-Suppose the regular domain holds and \(\beta o_1\geq o_0\). There is a weak-PBE
-completion that holds every globally off-path proposal to at most
-\(\max\{G_L,G_P\}\). Conversely, the proposer can guarantee \(G_L\) with
-\(y=o_0\) and \(x_j=d\) for every non-proposer, and can guarantee \(G_P\)
-with \(y=o_1\) and the same named offers. If \(\beta o_1<o_0\), the feasible
-proposal \(y=o_1,x_j=0\) has no sequentially rational ballot completion, so
-the full game has no PBE.
-\end{lemma}
+Under unanimity, if \(\nu\leq\nu^*\), the proposer offers \(y=o_0\). The low
+type accepts and the high type rejects, so the proposal succeeds with
+probability \(1-\nu\). If \(\nu>\nu^*\), the proposer offers \(y=o_1\) and both
+types accept. At \(\nu=\nu^*\), the low offer is selected.
+\end{proposition}
+
+The cutoff equates \((1-\nu)(1-o_0)\), the proposer's payoff from the low
+offer, with \(1-o_1\), its payoff from pooling. Notice that no discount factor
+appears inside this terminal comparison.
+
+## Private majority in Round 1
 
 Define
 \[
-D_U=D_0-\delta P>0,
-\qquad
-\mu_E=1-\frac{aP}{D_U}.
-\tag{17}\label{eq:u-existence-cutoff}
+w=\frac{\beta}{m},\quad t_\theta=\beta o_\theta,
 \]
-
-\begin{theorem}[Regular unanimity existence and payoff]\label{thm:u-regular}
-On the regular interior domain, a global unanimity PBE exists if and only if
+and the proposer's payoffs from the three undominated outcome classes:
 \[
-\boxed{\beta o_1\geq o_0\quad\text{and}\quad G_P>G_L,}
-\tag{18}\label{eq:u-existence}
+\begin{aligned}
+E&=1-(q-1)w,\\
+L&=1-(q-2)w-t_0,\\
+S(\nu)&=(1-\nu)L+\nu w,\\
+P&=1-(q-2)w-t_1.
+\end{aligned}
 \]
-equivalently, \(\beta o_1\geq o_0\) and \(\mu>\mu_E\). At equality
-\(G_P=G_L\), the proposal tie-break selects a lower-\(H\)-payoff deviation
-whose on-path approval price jumps, so no fixed point exists.
+Exclusion buys \(q-1\) weak responders at price \(w\) each and sets \(y=0\).
+Screening buys \(q-2\) weak responders and offers \(t_0\): the low type accepts
+and the high type delays. Pooling buys \(q-2\) weak responders and offers
+\(t_1\), which both types accept. Deliberate delay is strictly worse than
+exclusion because \(1-\beta q/m>0\).
 
-Every regular unanimity PBE in the existence domain has the same on-path
-outcome:
+When \(o_0<1/m\), define
 \[
-y=o_1,\qquad
-T_W^U=P,\qquad
-V_W^U=\frac{P}{m},\qquad
-E[u_H^U]=o_1.
-\tag{19}\label{eq:u-regular-payoffs}
+\nu_{SE}=
+\frac{\beta(1/m-o_0)}
+{\beta(1/m-o_0)+1-\beta q/m}.
 \]
-\end{theorem}
+When \(o_1<1/m\), define
+\[
+\nu_{SP}=
+\frac{\beta(o_1-o_0)}
+{1-\beta o_0-\beta(q-1)/m}.
+\]
 
-Theorem \ref{thm:u-regular} is a pooling result under the clean immediate
-opt-out contract. Low-only and rejection are not regular on-path equilibrium
-classes. Rejection can reappear when \(\beta=1\), and low-only can reappear
-when \(o_0=0\); Appendix C gives the exact boundary statements. Nothing in the
-theorem asserts uniqueness of strategies or characterizes all PBEs under a
-stronger consistency concept.
+\begin{proposition}[Private majority correspondence]\label{prop:majority}
+For \(m\geq3\), the equilibrium outcome class is:
 
-## Round 1 Under Majority
+\begin{enumerate}
+\item If \(o_1<1/m\), screening for \(\nu\leq\nu_{SP}\) and pooling above it.
+\item If \(o_0<1/m<o_1\), screening for \(\nu\leq\nu_{SE}\) and exclusion
+above it.
+\item If \(1/m<o_0<o_1\), exclusion for every \(\nu\).
+\item If \(o_0=1/m<o_1\), screening at \(\nu=0\) and exclusion for
+\(\nu>0\).
+\item If \(o_0<o_1=1/m\), screening for \(\nu\leq\nu_{SE}\). Above that
+cutoff, exclusion is selected when
+\((1-\nu)o_0+\nu o_1<\beta o_1\), pooling is selected when the inequality is
+reversed, and the entire proposal segment joining the two survives when the
+two expressions are equal.
+\end{enumerate}
+
+At every cutoff involving screening, screening is selected. Permuting the
+identities of identically paid weak responders generates additional
+equilibria but does not change the payoff vector or outcome class.
+\end{proposition}
+
+The last segment is genuine multiplicity. Its mixing weight is a probability
+over pure proposals in the proposer's strategy, and the same weight must be
+used jointly for payoffs and outcomes. It is not a license to combine
+componentwise minima and maxima into an unattained rectangle.
+
+## Private unanimity in Round 1
 
 Let
 \[
-k=q-1,\qquad c=\frac\beta m,
-\qquad
-E=1-kc,
-\qquad
-B_M=(1-\mu)(1-o_0)+\mu c,
-\qquad
-F_M=\max\{E,B_M,P\}.
-\tag{20}\label{eq:m-security}
+\ell=\beta o_0,\qquad h=\beta o_1,\qquad
+A=\frac{\beta(1-o_0)}{m},\qquad
+B=\frac{\beta(1-o_1)}{m}.
 \]
-The three guarantees correspond to exclusion, a low-only offer, and pooling.
-For a non-proposing weak voter,
+At \(\nu=0\), support preservation prevents an impossible high type from being
+reintroduced by an off-path belief. The proposer can therefore offer the low
+threshold \(\ell\), pay each responding weak state its continuation \(A\), and
+keep \(A+1-\beta\). When \(\nu>\nu^*\), the continuation itself pools, so the
+proposer offers \(h\), pays each responder \(B\), and keeps \(B+1-\beta\).
+
+The intermediate cell fails for a different reason. A feasible deviation can
+pay every weak responder enough to force a yes vote. Once all weak votes are
+yes, no pure contingent voting profile for the two possible types of \(H\)
+survives: pooling yes is rejected by the high type, pooling no is overturned
+by the low type at equality, and either separating profile gives one type a
+profitable imitation.
+
+\begin{proposition}[Private unanimity correspondence]\label{prop:unanimity}
+Under unanimity:
 \[
-EU_j(Y)-EU_j(N)
-=(x_j-c)\Pr(j\text{ is pivotal}).
-\tag{21}\label{eq:m-weak-ic}
+\begin{array}{ccl}
+\nu=0
+&:& \text{immediate low-type agreement with }
+ y=\ell,\ x_j=A,\ r_i=A+1-\beta;\\[2mm]
+0<\nu\leq\nu^*
+&:& \text{no perfect Bayesian equilibrium in pure ballot strategies};\\[2mm]
+\nu^*<\nu\leq1
+&:& \text{immediate pooling agreement with }
+ y=h,\ x_j=B,\ r_i=B+1-\beta.
+\end{array}
 \]
-The exact security value is \(F_M\), but implementability at that value
-depends on group size.
-
-\begin{proposition}[Regular majority correspondence]\label{prop:majority}
-On the regular interior domain:
-
-1. If \(N=3\), the proposer payoff is exactly \(F_M\). Exclusion is selected
-   when \(E\) maximizes; low-only is selected when \(B_M\) maximizes; pooling
-   requires \(P>\max\{E,B_M\}\). A tie \(E=B_M\) remains set-valued.
-2. If \(N=4\), a majority PBE exists if and only if
-   \[
-   E\geq B_M\quad\text{or}\quad P>B_M.
-   \tag{22}\label{eq:m-n4-existence}
-   \]
-   Exclusion obtains when \(E\geq\max\{B_M,P\}\), and pooling obtains when
-   \(P>\max\{B_M,E\}\). The boundary \(B_M=P>E\) has no PBE.
-3. If \(N\geq5\), a majority PBE always exists and the exact proposer-payoff
-   set is
-   \[
-   V_{\mathrm{prop}}^M\in[F_M,1].
-   \tag{23}\label{eq:m-large-value}
-   \]
-   Every regular pure on-path proposal is exclusion, separating current
-   passage, or pooling. A separating proposal
-   \(o_0\leq y<o_1\) has
-   \[
-   T_W^M=1-(1-\mu)y,\qquad
-   E[u_H^M]=(1-\mu)y+\mu o_1.
-   \tag{24}\label{eq:m-separating}
-   \]
-
-Across all existing regular majority PBEs,
-\[
-F_M\leq T_W^M\leq1,
-\qquad
-\frac{F_M}{m}\leq V_W^M\leq\frac1m.
-\tag{25}\label{eq:m-weak-bounds}
-\]
+The corresponding payoff vectors for \(H\), ordered as low and high type, are
+\((\ell,h)\) at \(\nu=0\) and \((h,h)\) above \(\nu^*\).
 \end{proposition}
 
-The historical No-Cheap-H condition also changes. Since
+\begin{remark}[Pure-strategy scope]
+The middle cell establishes nonexistence only within the paper's maintained
+space of pure ballot strategies. We do not derive, characterize, select, or
+compare equilibria involving mixed ballot strategies, and make no claim about
+existence under such strategies.
+\end{remark}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\linewidth]{figures/essential_input/figure_f2_prices_coalitions.pdf}
+\caption{The price and coalition anatomy of the private games. Majority can
+replace the hegemon's vote with an additional weak-state vote; unanimity
+cannot. Labels report first-round prices and preserve the distinct low-type,
+pooling, and exclusion outcomes.}
+\label{fig:prices}
+\end{figure}
+
+## Comparing the private games
+
+The comparison below uses the same parameter point under both institutions and
+only cells in which both games have a pure-strategy equilibrium. Let
 \[
-B_M-E=kc-o_0+\mu(o_0+c-1),
-\tag{26}\label{eq:no-cheap-gap}
+a_\theta=(1-\beta)o_\theta,\qquad
+d=\beta(o_1-o_0),\qquad
+k=\beta o_1-o_0.
 \]
-the uniform sufficient condition is
-\[
-o_0\geq kc=(q-1)\frac{\beta}{m}.
-\tag{27}\label{eq:no-cheap}
-\]
-It selects exclusion for \(N=3\) and guarantees an exclusion equilibrium for
-\(N=4\). For \(N\geq5\), it does not eliminate separating current passage.
-Majority no-screening is therefore not an all-PBE result.
+The terms \(a_\theta\) are timing wedges: exclusion realizes the disagreement
+payoff now, whereas inclusion can price a continuation that is discounted in
+Round-1 units. They are distinct from the type gap \(d\) and the cross-date
+quantity \(k\).
 
-# Entry and Conditional Institutional Comparison {#entry}
+\begin{proposition}[Private institutional payoff contrast]\label{prop:privatecompare}
+Write \(V_U^{priv}-V_M^{priv}\) as a low-type/high-type vector.
 
-The comparison is restricted to the common regular PBE domain. Conditions
-\eqref{eq:u-existence} are required for unanimity. For \(N=4\), condition
-\eqref{eq:m-n4-existence} is also required; for \(N=3\) and \(N\geq5\),
-majority existence is automatic once the regular domain holds. These are
-derived existence conditions rather than additional primitive assumptions.
-
-\begin{proposition}[Entry nesting]\label{prop:nesting}
-On the common PBE domain, every majority equilibrium satisfies
-\[
-V_W^M\geq\frac{F_M}{m}
-\geq\frac{P}{m}
-=V_W^U.
-\tag{28}\label{eq:entry-nesting}
-\]
-Consequently, collective formation sets satisfy
-\[
-\mathcal F_U\subseteq\mathcal F_M
-\tag{29}\label{eq:formation-nesting}
-\]
-selection-free. Given a selected majority payoff \(v_M=V_W^M\):
-
-1. both institutions form if \(\chi\leq P/m\);
-2. only majority forms if \(P/m<\chi\leq v_M\);
-3. neither forms if \(\chi>v_M\).
-
-There is no region in which only unanimity forms.
+\begin{enumerate}
+\item At \(\nu=0\), the vector is \((0,0)\) if majority screens and
+\((-a_0,-a_1)\) if majority excludes.
+\item For \(0<\nu\leq\nu^*\), the contrast is empty because private unanimity
+has no pure-strategy equilibrium.
+\item For \(\nu>\nu^*\), the vector is \((d,0)\) if majority screens,
+\((0,0)\) if majority pools, and \((k,-a_1)\) if majority excludes.
+\end{enumerate}
 \end{proposition}
 
-\begin{proposition}[Hegemon payoff bounds]\label{prop:h-comparison}
-Let
+Thus unanimity does not have a single unconditional payoff effect. Its effect
+depends on which substitute coalition disciplines the majority proposer and
+on which type is evaluated. Figure \ref{fig:privatecompare} maps these exact
+classes without averaging types.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\linewidth]{figures/essential_input/figure_f1_private_comparison.pdf}
+\caption{Private-game payoff contrast, unanimity minus majority, by hegemon
+type. Each cell is evaluated at the same parameter point. The hatched band
+marks parameter values for which private unanimity has no pure-strategy
+equilibrium and the contrast is therefore empty.}
+\label{fig:privatecompare}
+\end{figure}
+
+## Informational rents and the difference of differences
+
+For rule \(g\in\{M,U\}\), define the type-contingent informational-rent
+correspondence
 \[
-\bar o=(1-\mu)o_0+\mu o_1.
+RI_g=V_g^{priv}-V_g^{pub},
 \]
-On the common PBE domain, every regular majority equilibrium satisfies
+where the public benchmark is evaluated at the same type and the same remaining
+parameters. The institutional informational-rent contrast is
 \[
-\bar o\leq E[u_H^M]\leq o_1=E[u_H^U].
-\tag{30}\label{eq:h-payoff-bounds}
+\Delta RI=RI_U-RI_M.
 \]
-Thus, conditional on both institutions forming, unanimity weakly benefits
-\(H\), with equality under majority pooling. If only majority forms,
-majority weakly benefits \(H\) relative to nonformation under unanimity. If
-neither forms, \(H\) receives \(\bar o\) under both rules.
+These are differences between correspondences. If a source correspondence is
+empty, so is the difference. Under multiplicity, subtraction preserves the
+entire attainable set and its common proposal weight.
+
+For compactness, call the public outside-option regions
+\[
+\mathrm{II}: o_1\leq1/m,\qquad
+\mathrm{IX}: o_0\leq1/m<o_1,\qquad
+\mathrm{XX}: 1/m<o_0.
+\]
+The labels only record whether each public type is included by majority.
+
+\begin{proposition}[Informational rents by voting rule]\label{prop:rents}
+Under unanimity,
+\[
+RI_U=
+\begin{cases}
+\{(0,0)\},&\nu=0,\\
+\varnothing,&0<\nu\leq\nu^*,\\
+\{(d,0)\},&\nu>\nu^*.
+\end{cases}
+\]
+
+Under majority, the informational rent depends jointly on the public region
+and the private equilibrium class:
+\[
+\begin{array}{ccl}
+\mathrm{II},\ \text{screening}&:&(0,0),\\
+\mathrm{II},\ \text{pooling}&:&(d,0),\\
+\mathrm{II},\ \text{exclusion}&:&(a_0,a_1),\\
+\mathrm{IX},\ \text{screening}&:&(0,-a_1),\\
+\mathrm{IX},\ \text{exclusion}&:&(a_0,0),\\
+\mathrm{XX},\ \text{exclusion}&:&(0,0).
+\end{array}
+\]
+On the residual exclusion--pooling segment at \(o_1=1/m\), the exact set is
+\(\{\lambda(a_0,a_1)+(1-\lambda)(d,0):\lambda\in[0,1]\}\), restricted to the
+segment that survives the proposal tie-break.
 \end{proposition}
 
-Propositions \ref{prop:nesting} and \ref{prop:h-comparison} provide an
-institutional classification, not global dominance. They do not collapse the
-majority correspondence to a scalar payoff and do not compare rules at
-parameter vectors where one of the required PBEs does not exist.
+\begin{proposition}[Institutional informational-rent contrast]\label{prop:deltari}
+At \(\nu=0\), \(\Delta RI=(0,0)\) in regions II and XX, while
+\(\Delta RI=(0,a_1)\) in region IX; the high-type component there is
+off support but remains part of the type-contingent vector.
+
+For \(0<\nu\leq\nu^*\), \(\Delta RI=\varnothing\).
+
+For \(\nu>\nu^*\), the exact vectors are
+\[
+\begin{array}{ccl}
+\mathrm{II},\ \text{screening}&:&(d,0),\\
+\mathrm{II},\ \text{pooling}&:&(0,0),\\
+\mathrm{II},\ \text{exclusion}&:&(k,-a_1),\\
+\mathrm{IX},\ \text{screening}&:&(d,a_1),\\
+\mathrm{IX},\ \text{exclusion}&:&(k,0),\\
+\mathrm{XX},\ \text{exclusion}&:&(d,0).
+\end{array}
+\]
+On the residual segment, the exact attainable set is
+\(\{\lambda(k,-a_1):\lambda\in[0,1]\}\) over the surviving proposal weights.
+\end{proposition}
+
+The sign pattern is transparent once each component is kept separate. The
+low type gains \(d>0\) when majority screens because unanimity pools and pays
+the high threshold. When majority excludes, its gain is \(k\), which is
+positive, zero, or negative according as \(\beta o_1\) is above, equal to, or
+below \(o_0\). The high type gains \(a_1>0\) only when private majority screens
+even though public majority would exclude it; it loses \(a_1\) when public
+majority includes it but private majority excludes. When both private rules
+pool, the informational-rent contrast is exactly zero.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\linewidth]{figures/essential_input/figure_f3_power_information.pdf}
+\caption{Power and information in the hegemon's payoff. The public benchmark
+captures the effect of making the hegemon's vote necessary when its type is
+known. Informational rent compares the private game with that benchmark, and
+\(\Delta RI\) compares this rent across unanimity and majority without
+recombining types or selecting among multiple equilibria.}
+\label{fig:rents}
+\end{figure}
 
 # Discussion {#discussion}
 
-## OPEC and pivotal participation {#opec}
+## Pivotality, substitutes, and contested strength
 
-The OPEC interpretation is institutional rather than monetary. The package
-\(y\) can represent a quota share, production flexibility, an exception, or
-an enforcement arrangement that benefits a pivotal producer and reduces the
-residual institutional surplus available to other members. The private object
-\(o_\theta\) is the producer's outside payoff from opting out: it can summarize
-opportunity costs, alternative production strategies, spare capacity, and
-other privately known advantages of nonparticipation.
+The model's central distinction is technological. Under majority, the
+proposer can replace the hegemon with another uninformed weak-state vote.
+Under unanimity, the hegemon's approval is an essential input. Removing the
+substitute changes both bargaining power and the way private information
+enters proposals.
 
-The model does not claim that a literal OPEC meeting implements the exact
-two-round protocol. It isolates a mechanism: when every agreement needs the
-pivotal producer's approval, weaker members must insure against a private
-participation constraint. In the regular existence region, this pressure
-produces pooling at the high outside payoff even though the hegemon never
-proposes. Under majority, weak coalitions can exclude \(H\), but the
-equilibrium correspondence can also include separating current passage when
-the group is large enough. The empirical implication is therefore not that
-majority mechanically removes information rents; it is that institutional
-rules change whether and how a private participation constraint enters the
-coalition problem.
+The complete-information benchmark shows the power component. If the known
+hegemon is cheap enough, majority includes it and both rules pay the same
+discounted threshold. If it is expensive, majority excludes it while
+unanimity must still buy its vote. The informational comparison asks a
+different question: after netting out that public-type difference, how much
+does private information change each rule's payoff?
 
-## Observable implications and neighboring mechanisms {-}
+The answer is not simply that private information always benefits a hegemon.
+Pooling under unanimity benefits the low type because weak states price it as
+high. Screening under majority can remove that rent, while exclusion can make
+the comparison depend on whether the high threshold discounted to the present
+exceeds the low current disagreement payoff. The high type's rent changes only
+when its treatment differs across the private and public majority games.
 
-Four implications follow directly from the clean results. First, terminal
-unanimity switches from low-only to pooling as the posterior probability of
-the high outside-payoff type rises. Second, regular Round-1 unanimity is more
-demanding: equilibrium may fail to exist, but every existing on-path outcome
-pools at \(o_1\). Third, majority outcomes are group-size dependent and
-set-valued; for \(N\geq5\), exclusion and separating current passage can both
-survive. Fourth, entry nesting is selection-free only on the common
-PBE-existence domain.
+The empty middle-belief cell is equally important for scope. It records the
+failure of every pure voting pattern under the declared belief and pivotality
+conditions. It does not supply a payoff for institutional comparison and does
+not justify filling the gap by interpolation.
 
-These implications differ from agenda power and endogenous institutional
-choice. A positive recognition probability for \(H\) would give the informed
-actor proposal power and introduce a signaling subgame. Allowing \(H\) to
-choose the voting rule after observing its type could make the rule itself a
-signal. Neither channel is part of the baseline.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\linewidth]{figures/essential_input/figure_f4_hegemonic_decline.pdf}
+\caption{A schematic movement in beliefs about hegemonic strength. The
+hatched region is the set in which the unanimity game has no equilibrium in
+pure ballot strategies under the maintained concept. Historical annotations,
+if used, are illustrations rather than empirical tests or calibration.}
+\label{fig:decline}
+\end{figure}
 
-## Scope {#scope}
+## OPEC, the WTO, and observable implications
 
-The baseline fixes \(\pi_H=0\), \(b_\theta=0\), a unit weak pie, binary
-private information, simultaneous ballots, and exogenous voting rules. A no
-vote by \(H\) is an immediate opt-out; it is not a choice of
-\(\beta C_\theta\), a hybrid \(\max\{o_\theta,\beta C_\theta\}\), or a
-delayed-continuation threshold. The package space is always feasible and does
-not revive the archived feasibility/C-B-R architecture.
+In the OPEC interpretation, a proposed package can represent quota flexibility,
+an exception, or enforcement discretion. Saudi Arabia may know more than other
+members about the opportunity cost of accepting it. The model predicts that
+making its approval necessary removes a coalition substitute and can induce an
+offer calibrated to the higher possible reservation value. This is a mechanism
+illustration, not an estimate of OPEC bargaining.
 
-The weak-vote-passive assessment is also a substantive scope condition. It is
-informationally natural because weak states do not observe \(\theta\), but weak
-PBE leaves globally off-path beliefs freer than sequential equilibrium.
-Theorem \ref{thm:u-regular} states exactly where this freedom is used, and no
-claim of uniqueness over all PBEs is made.
+For the WTO, consensus similarly makes a major state's vote necessary despite
+formally equal voting rights and the absence of exclusive proposal power. The
+model suggests looking for institutional concessions that arise because
+partners cannot confidently price the major state's willingness to accept.
+The relevant observable contrast is not merely whether the hegemon is included,
+but whether majority would provide a cheaper coalition of uninformed votes.
 
-Boundary parameters matter. Low-only and rejection can reappear at
-\(o_0=0\) or \(\beta=1\), and majority needs separate boundary bounds. These
-cases are recorded in Appendix C rather than treated as if they belonged to
-the regular interior theorem. Continuous types, heterogeneous weak states,
-\(\pi_H>0\), endogenous rule choice, and sequential roll-call voting require
-new derivations.
+These implications differ from informational voting models in which individual
+votes aggregate dispersed signals [@feddersenPesendorfer1998convicting]. Here
+weak states do not possess private signals about \(H\)'s type. They respond to
+a public proposal and to the continuation induced by the publicly revealed
+vote vector. The nearby legislative-bargaining literature analyzes additional
+equilibrium concepts and strategic forms [@piazolo2025legislative;
+@glynia2026unanimity]; our comparison deliberately remains within the pure
+ballot strategies stated above.
+
+## Limits
+
+The analysis fixes the voting rule, keeps the institutional pie at one, gives
+proposal power only to weak states, and uses two types and two rounds. It does
+not analyze endogenous rule choice, agenda power for \(H\), more than two
+types, sequential roll-call voting, or intrinsic agreement benefits. The
+restriction \(m\geq3\) excludes the three-player case. The strict discounting
+assumption excludes the corner \(\beta=1\), where additional indifferences
+would require a separate analysis.
+
+The endpoint-support condition also matters. A type assigned zero probability
+by the prior cannot be resurrected after an off-path action. This makes the
+degenerate-prior cells coincide with their complete-information games. In the
+interior, both types remain in the prior's support and off-path actions by
+\(H\) can sustain a range of posterior beliefs.
 
 # Conclusion
 
-Consensus is often described only as a constraint on power. The clean
-immediate-opt-out model shows another possibility. When a powerful actor is
-privately informed and pivotal, its approval becomes an informational
-constraint on weaker proposers. This creates informational power even when
-the hegemon has no agenda power.
+Consensus can benefit a hegemon even when weak states control the agenda
+because unanimity removes substitutes for the hegemon's vote. Complete
+information reveals the familiar veto-power component. Private information
+adds a distinct component: when unanimity pools at the high threshold, a low
+type can earn rent; whether this exceeds its majority rent depends on the
+majority equilibrium and the outside-option region.
 
-The result is conditional. Regular unanimity equilibrium exists only on a
-derived domain and pools whenever it exists. Majority equilibrium is generally
-a correspondence rather than a unique no-screening benchmark. On their common
-existence domain, weak-state formation under unanimity is nested in formation
-under majority, while unanimity weakly raises the hegemon's payoff whenever
-both institutions form. The institutional ranking therefore follows from
-existence, formation, and equilibrium selection—not from a blanket claim that
-one voting rule dominates.
+The decomposition disciplines the claim. The institutional informational-rent
+contrast is positive in some regions, zero when majority already pays the
+pooling price, sign-indeterminate through \(k=\beta o_1-o_0\) under exclusion,
+and empty where unanimity has no pure-strategy equilibrium. Formal equality of
+votes can therefore coexist with asymmetric informational power, but the
+effect is neither universal nor separable from the coalition alternatives
+created by the voting rule.
 
-The broader implication is that formal equality and asymmetric power can
-coexist through information. Consensus can make a privately known outside
-payoff politically valuable by turning a veto into a participation constraint.
-That mechanism is distinct from both proposal power and constitutional choice,
-and it survives precisely because the baseline keeps those channels separate.
+\newpage
 
 # (APPENDIX) Appendix {-}
 
-# Appendix A: Protocol and Histories {-}
+# Appendix A: Protocol, beliefs, and incentives {-}
 
-## A.1 Public histories, beliefs, and voting incentives {-}
+## A.1 Complete transition and payoff rules {-}
 
-Let \(h\) denote the public history before a proposal and let
-\(I=(h,s_i)\) denote a ballot information set. Once all simultaneous votes
-are revealed, the public history is
-\[
-h_2=(h,s_i,a_H,v_W,\text{quota outcome},\text{opt-out status}).
-\tag{A1}\label{eq:public-history}
-\]
-Continuation strategies can therefore condition on the proposal and complete
-vote vector, not only on a posterior. Whenever Bayes' denominator is positive,
-\[
-\nu(h_2)=
-\frac{\mu(h)\Pr(h_2\mid\theta=1,h)}
-{\mu(h)\Pr(h_2\mid\theta=1,h)
-+\{1-\mu(h)\}\Pr(h_2\mid\theta=0,h)}.
-\tag{A2}\label{eq:bayes}
-\]
-The posterior \(\nu(h_2)\) and the continuation payoff
-\(C_{H,2}^R(\theta,h_2)\) are distinct objects.
+For a proposal \(s=(y,(x_j),r_i)\), let \(a_H\in\{Y,N\}\) and let the weak
+responders' votes be \(a_{-i}\). The proposer votes yes. If the quota is met,
+the proposal is implemented in full. Each weak respondent receives \(x_j\),
+the proposer receives \(r_i\), and \(H\) receives \(y\) after yes and
+\(y+o_\theta\) after no. If the quota is not met in Round 1, the public vote
+vector leads to Round 2; every continuation payoff is then multiplied by
+\(\beta\). If the quota is not met in Round 2, weak states receive zero and
+\(H\) receives \(o_\theta\).
 
-At an R2 information set \(I_2\), let \(p_R(I_2)\) be the probability that
-\(H\)-yes implements the current proposal, given simultaneous weak strategies.
-Then
-\[
-EU_H^R(Y\mid\theta,I_2)-EU_H^R(N\mid\theta,I_2)
-=\beta p_R(I_2)(y-o_\theta).
-\tag{A3}\label{eq:h-r2-difference}
-\]
-If \(p_R(I_2)>0\), the sign is that of \(y-o_\theta\). If
-\(p_R(I_2)=0\), \(H\) is indifferent for every \(y\) and votes yes by the
-tie rule. This terminal identity does not replace the Round-1 expected IC in
-\eqref{eq:h-ic-r1}.
+The \(y+o_\theta\) branch is necessary for a complete strategy specification.
+It is not an equilibrium description. Whenever majority passes without \(H\),
+a proposer strictly prefers to move any positive \(y\) into its own residual,
+holding all votes fixed. Hence all equilibrium exclusions set \(y=0\) and pay
+\(H\) exactly \(o_\theta\).
 
-For a non-proposing weak voter \(j\), let
-\(u_j(a_j,v_{-j};I)\) denote the payoff determined by the history table.
-Approval requires
-\[
-\sum_{v_{-j}}\Pr(v_{-j}\mid I)u_j(Y,v_{-j};I)
-\geq
-\sum_{v_{-j}}\Pr(v_{-j}\mid I)u_j(N,v_{-j};I).
-\tag{A4}\label{eq:weak-ic}
-\]
-The expectation includes \(H\)'s simultaneous type-contingent vote. Named
-offers are paid whenever an agreement passes, even if the named recipient
-voted no.
+## A.2 Beliefs and ballot restrictions {-}
 
-## A.2 Exhaustive history contract {-}
+Uninformed weak-state proposals and votes preserve the current belief. A vote
+by \(H\) updates by Bayes' rule when its denominator is positive. At a
+zero-denominator action in an interior-prior game, the posterior may range over
+\([0,1]\), subject to structural consistency across histories that encode the
+same information. At \(\nu=0\) or \(\nu=1\), posterior support never expands.
 
-Table panels \ref{tab:gate0-timing}--\ref{tab:gate0-continuations} are
-generated from a versioned TSV file. Its repository path is
+A weak responder compares its allocation with the continuation that would
+follow if its vote switched passage into failure. It votes yes at equality.
+\(H\) maximizes its type-contingent continuation payoff and votes yes at exact
+indifference. These restrictions apply at every proposal, including
+off-path proposals.
 
-\begin{center}
-\small\texttt{tables/clean\_optout\_gate0\_histories\_piH0.tsv}
-\end{center}
+# Appendix B: Proofs {-}
 
-Together the panels cover the twenty-one history classes used by the proofs.
+## B.1 Proof of Proposition \ref{prop:public} {-}
 
-```{r gate0-history-timing, results='asis'}
-history_timing <- dplyr::select(
-  gate0_histories,
-  history_id,
-  round,
-  rule,
-  `active players`,
-  quota,
-  `quota reached?`,
-  `H vote`
-)
-kableExtra::kbl(
-  history_timing,
-  format = "latex",
-  booktabs = TRUE,
-  longtable = TRUE,
-  escape = TRUE,
-  caption = "Gate 0 histories, panel A: timing, electorate, quota, and votes.",
-  label = "gate0-timing"
-) |>
-  kableExtra::kable_styling(
-    latex_options = "repeat_header",
-    font_size = 7
-  ) |>
-  kableExtra::column_spec(1, width = "0.55in") |>
-  kableExtra::column_spec(2, width = "0.45in") |>
-  kableExtra::column_spec(3, width = "0.35in") |>
-  kableExtra::column_spec(4, width = "1.55in") |>
-  kableExtra::column_spec(5, width = "0.75in") |>
-  kableExtra::column_spec(6, width = "1.55in") |>
-  kableExtra::column_spec(7, width = "0.85in") |>
-  kableExtra::landscape()
-```
+In terminal majority, a weak responder's disagreement value is zero, so any
+nonnegative allocation induces yes under \(T^Y\). Because \(q\leq m\), the
+proposer can pass without \(H\), set every payment to zero, and keep one.
+\(H\) is nonpivotal and strictly votes no because no yields \(y+o\) rather
+than \(y\). Moving any positive \(y\) to the proposer leaves passage unchanged,
+so equilibrium exclusion has \(y=0\) and \(H\) receives \(o\).
 
-```{r gate0-history-implementation, results='asis'}
-history_implementation <- dplyr::select(
-  gate0_histories,
-  history_id,
-  `participation offer to H?`,
-  `failure cause`,
-  `H included?`,
-  `H remains?`,
-  `y implemented?`,
-  `destination of y`
-)
-kableExtra::kbl(
-  history_implementation,
-  format = "latex",
-  booktabs = TRUE,
-  longtable = TRUE,
-  escape = TRUE,
-  caption = "Gate 0 histories, panel B: implementation and the disposition of the participation package.",
-  label = "gate0-implementation"
-) |>
-  kableExtra::kable_styling(
-    latex_options = "repeat_header",
-    font_size = 7
-  ) |>
-  kableExtra::column_spec(1, width = "0.55in") |>
-  kableExtra::column_spec(2, width = "1.25in") |>
-  kableExtra::column_spec(3, width = "1.8in") |>
-  kableExtra::column_spec(4, width = "0.8in") |>
-  kableExtra::column_spec(5, width = "0.95in") |>
-  kableExtra::column_spec(6, width = "1.15in") |>
-  kableExtra::column_spec(7, width = "1.65in") |>
-  kableExtra::landscape()
-```
+In terminal unanimity, every weak responder accepts zero and \(H\) accepts
+exactly when \(y\geq o\). The proposer therefore sets \(y=o\).
 
-```{r gate0-history-payoffs, results='asis'}
-history_payoffs <- dplyr::select(
-  gate0_histories,
-  history_id,
-  `H payoff`,
-  `weak payoffs`,
-  `discount factor`
-)
-kableExtra::kbl(
-  history_payoffs,
-  format = "latex",
-  booktabs = TRUE,
-  longtable = TRUE,
-  escape = TRUE,
-  caption = "Gate 0 histories, panel C: payoffs and time units.",
-  label = "gate0-payoffs"
-) |>
-  kableExtra::kable_styling(
-    latex_options = "repeat_header",
-    font_size = 8
-  ) |>
-  kableExtra::column_spec(1, width = "0.65in") |>
-  kableExtra::column_spec(2, width = "1.75in") |>
-  kableExtra::column_spec(3, width = "3.7in") |>
-  kableExtra::column_spec(4, width = "2.1in") |>
-  kableExtra::landscape()
-```
+Move to Round 1. The terminal continuation of a weak state before recognition
+under majority is \(1/m\), hence \(w=\beta/m\). The continuation of \(H\) is
+\(\beta o\). Under unanimity, paying \(H\) exactly \(\beta o\) and each weak
+responder its continuation implements immediate agreement and leaves the
+proposer strictly more than delay because \(\beta<1\).
 
-```{r gate0-history-continuations, results='asis'}
-history_continuations <- dplyr::select(
-  gate0_histories,
-  history_id,
-  `relevant posterior`,
-  `terminal or continuation`,
-  `next subgame`
-)
-kableExtra::kbl(
-  history_continuations,
-  format = "latex",
-  booktabs = TRUE,
-  longtable = TRUE,
-  escape = TRUE,
-  caption = "Gate 0 histories, panel D: beliefs and continuation subgames.",
-  label = "gate0-continuations"
-) |>
-  kableExtra::kable_styling(
-    latex_options = "repeat_header",
-    font_size = 8
-  ) |>
-  kableExtra::column_spec(1, width = "0.65in") |>
-  kableExtra::column_spec(2, width = "4.1in") |>
-  kableExtra::column_spec(3, width = "2.05in") |>
-  kableExtra::column_spec(4, width = "1.8in") |>
-  kableExtra::landscape()
-```
-
-The R2-unanimity row with \(H\) already absent documents a structurally
-unreachable class. Once \(H\) opts out, the original unanimity quota cannot be
-met and that branch has already ended.
-
-# Appendix B: Proofs of Regular Results {-}
-
-## B.1 Terminal rounds {-}
-
-\textit{Proof of Lemma \ref{lem:r2-unanimity}.}
-In terminal unanimity bargaining, every non-proposing weak voter approves: a
-no vote either leaves failure unchanged or changes failure into an agreement
-paying a nonnegative named offer, and ties go to yes. Hence \(H\) is pivotal,
-and equation \eqref{eq:h-r2-difference} gives the cutoff
-\(y\geq o_\theta\).
-
-A package below \(o_0\) fails for both types. Within
-\([o_0,o_1)\), \(y=o_0\) maximizes weak surplus and is accepted only by the
-low type, giving \(L(\nu)\). At or above \(o_1\), \(y=o_1\) maximizes weak
-surplus and pools, giving \(P\). Comparing these values yields
-\eqref{eq:r2-cutoff}. At equality the weak proposer is indifferent and the
-proposal tie-break selects the smaller transfer to \(H\). Uniform recognition
-divides the total weak value by \(m\). \(\square\)
-
-\textit{Proof of Proposition \ref{prop:r2-majority}.}
-Terminal failure gives weak states zero, so weak approval is weakly dominant.
-All weak states approve. Because \(q\leq m\), a weak proposer can set every
-named offer to zero, pass with weak votes alone, and retain the unit pie. This
-construction is valid whether \(H\) is active or has opted out. If \(H\) is
-active and votes no, it receives \(o_\theta\) externally; if it votes yes,
-the proposal can set \(y=0\). Uniform recognition gives the representative
-weak payoff \(1/m\), and discounting gives \(c=\beta/m\) in Round-1 units.
+Under majority, inclusion costs \((q-2)w+\beta o\); exclusion costs
+\((q-1)w\). Inclusion is weakly cheaper exactly when \(o\leq1/m\). At equality
+the proposer is indifferent, and the proposal tie-break selects inclusion
+because \(H\) receives \(\beta o<o\). This gives the stated payoffs.
 \(\square\)
 
-## B.2 Unanimity completion and existence {-}
+## B.2 Proof of Proposition \ref{prop:terminal} {-}
 
-\textit{Proof of Lemma \ref{lem:completion}.}
-First suppose \(\beta o_1\geq o_0\). For each globally off-path proposal in
-the upper-bound construction, retain a ballot belief assigning probability
-\(1-\mu\in(0,1)\) to the low type. After a history with low-type
-\(H\)-yes and exactly one weak no, declare a continuation posterior
-\(\nu=1>\nu_2^*\), so terminal R2 selects pooling. Because the proposal itself
-has probability zero, weak PBE does not link these two beliefs by Bayes' rule.
-The low type then obtains \(\beta o_1\) after weak-caused failure and is
-willing to vote yes; the high type opts out.
+The majority argument is the terminal-majority part of the preceding proof.
+Before recognition, symmetry gives each weak state expected payoff \(1/m\).
 
-Complete globally off-path proposals as follows.
-
-1. If \(y<o_0\), prescribe all weak voters yes and both types of \(H\) no.
-   The proposer obtains zero.
-2. If \(o_0\leq y<o_1\) and every named weak offer is at least
-   \(d=\beta P/m\), prescribe all weak voters yes, low-type \(H\) yes, and
-   high-type \(H\) no. The best such proposal gives at most \(G_L\).
-3. If \(y\geq o_1\) and every named weak offer is at least \(d\), prescribe
-   all weak voters and both types of \(H\) yes. The best such proposal gives
-   at most \(G_P\).
-4. If some \(x_j<d\), designate one underpaid weak rejector, prescribe
-   low-type \(H\) yes and high-type \(H\) no, and use the pooling
-   continuation. The rejector strictly prefers continuation, and the
-   proposer's payoff is at most
-   \((1-\mu)\beta P/m<G_L\).
-
-Two or more weak no votes cannot occur because each rejector would be
-nonpivotal and would have to vote yes by the tie rule. A nondegenerate ballot
-mixture cannot enlarge the set because indifference also selects yes.
-
-For the reverse direction, consider \(y=o_0\) and \(x_j=d\) for every
-non-proposer. In any sequentially rational completion, all weak voters vote
-yes. Two no votes violate the tie rule. With exactly one weak no, that voter
-can strictly prefer rejection only if terminal continuation exceeds \(d\),
-which requires R2 low-only. But low-only pays low-type \(H\)
-\(\beta o_0<o_0\) after \(H\)-yes, so the low type opts out and makes the
-weak rejector nonpivotal. With all weak voters yes, low-type \(H\) votes yes,
-high-type \(H\) votes no, and the proposer receives exactly \(G_L\).
-
-The same argument applies to \(y=o_1\) with \(x_j=d\). A lone weak rejector
-again needs low-only continuation. Both types then prefer immediate opt-out
-to the discounted terminal outside payoff after \(H\)-yes. The rejector
-becomes nonpivotal, all weak voters vote yes, both types of \(H\) approve, and
-the proposer obtains \(G_P\). Thus \(G_L\) and \(G_P\) are genuine
-guarantees and the construction gives the matching upper bound.
-
-If \(\beta o_1<o_0\), the feasible proposal \(y=o_1,x_j=0\) has no
-sequentially rational ballot completion. All weak yes makes each weak voter
-prefer a positive R2 continuation; two weak no votes violate the tie rule; and
-with exactly one weak no both types of \(H\) opt out. Hence no PBE exists on
-that open subdomain. \(\square\)
-
-\textit{Proof of Theorem \ref{thm:u-regular}.}
-Lemma \ref{lem:completion} shows that the proposer can force both \(G_L\) and
-\(G_P\), and that every proposal can be completed at no more than their
-maximum. Yet an on-path low-only proposal must pay each non-proposer
-\(\beta D_0/m>d\), because \(H\)-yes reveals the low type. Therefore
+Under unanimity, weak responders accept zero. Any accepted offer to \(H\) can
+be reduced to the lowest threshold consistent with its acceptance set. The
+only nonempty acceptance sets are the low type alone, implemented by
+\(y=o_0\), and both types, implemented by \(y=o_1\). The first gives the
+proposer \((1-\nu)(1-o_0)\); the second gives \(1-o_1\). The low offer is weakly
+preferred exactly when
 \[
-G_L-\pi_L=(1-\mu)\delta(D_0-P)>0.
+\nu\leq\frac{o_1-o_0}{1-o_0}=\nu^*.
 \]
-Low-only cannot be a regular PBE: off path the proposer shaves named weak
-offers to \(d\), but once that proposal becomes on path Bayes' rule restores
-the higher approval price.
-
-Pooling attains its security value only when \(P>L\), in which case
-\(\pi_P=aP=G_P\). Direct algebra gives
-\[
-\mu_E-\nu_2^*
-=\frac{\delta P(D_0-P)}{D_0D_U}>0,
-\tag{B1}\label{eq:cutoff-order}
-\]
-so \(G_P>G_L\) implies \(P>L\). At \(G_P=G_L\), the intermediate deviation
-ties the proposer payoff and pays less to \(H\), so the proposal tie-break
-selects it; once on path, its approval price jumps and the proposed fixed point
-fails. Under the strict inequality, pooling strictly dominates every
-completed deviation and Lemma \ref{lem:completion} constructs a global PBE.
-The pooling package gives the payoff vector in
-\eqref{eq:u-regular-payoffs}. \(\square\)
-
-## B.3 Majority security and group-size characterization {-}
-
-\textit{Proof of Proposition \ref{prop:majority}.}
-Let \(X=\sum_{j\ne i}x_j\), and let \(r\) count non-proposers offered at least
-\(c\). If at least \(q-1\) weak states vote yes, \(H\)-yes implements and type
-\(\theta\) approves iff \(y\geq o_\theta\). If fewer than \(q-1\) weak
-states vote yes, \(H\)-yes still fails and pays only
-\(\beta o_\theta<o_\theta\), so both types opt out. Outside the all-weak-yes
-profile, the only regular pure ballot size is therefore \(q-1\).
-
-The upper-bound completion has three cases. If \(y<o_0\) and \(r\leq k-1\),
-a \(q-1\)-weak-yes rejection completion pays the proposer \(c\); if
-\(r\geq k\), weak-only passage gives at most \(1-X\leq E\). If
-\(o_0\leq y<o_1\), declare the globally off-path ballot belief
-\(\nu=1\). With \(r\leq k-1\), choose \(q-1\) weak yes votes; the true low
-state passes, the true high state continues, and the proposer obtains at most
-\(B_M\). With \(r\geq k\), weak-only passage is forced and yields less than
-\(E\). If \(y\geq o_1\), all weak voters are nonpivotal when they all vote
-yes, and the proposer receives at most \(P\).
-
-Conversely, paying \(c\) to \(k\) weak partners guarantees \(E\);
-\(y=o_0,x=0\) guarantees at least \(B_M\); and \(y=o_1,x=0\) guarantees
-\(P\). Hence \(F_M\) is the exact security value.
-
-For \(N=3\), all-weak-yes is a minimum winning coalition. Each of the three
-security constructions is implementable when it maximizes, so proposer payoff
-is \(F_M\). Exclusion and low-only remain set-valued when \(E=B_M\) because
-both give \(H\) its outside payoff; pooling survives only under the stated
-strict inequality. Their respective weak totals are
-\[
-T_W^E=1,\qquad
-T_W^B=(1-\mu)(1-o_0)+\mu\beta,\qquad
-T_W^P=P.
-\tag{B2}\label{eq:m-n3-totals}
-\]
-
-For \(N=4\), the low-only proposal guarantees \(B_M\) off path but has no
-Bayes-consistent pure on-path ballot. Only exclusion and pooling can attain the
-security value. This gives condition \eqref{eq:m-n4-existence} and the two
-selection regions. When \(B_M=P>E\), the unattainable deviation ties pooling
-in proposer payoff and gives \(H\) less, so the proposal tie-break destroys
-the pooling fixed point.
-
-For \(N\geq5\), all-weak-yes is oversized because \(q\leq m-1\). For any
-\(v\in[F_M,1]\), select an exclusion proposal with \(y=0\) and total named
-weak offers \(X=1-v\). Every non-proposer is nonpivotal at all-weak-yes and
-votes yes by the tie rule; the weak-only proposal passes and gives the proposer
-\(v\). Complete every deviation with the security construction at no more
-than \(F_M\). This proves sufficiency throughout the interval, including its
-floor.
-
-Any regular pure on-path proposal is then one of three classes. Exclusion has
-\(y<o_0\), weak total one, and pays \(H\) its outside payoff. Separating
-current passage has \(o_0\leq y<o_1\): low-type \(H\) votes yes, high-type
-\(H\) votes no, and the oversized weak coalition passes in both states. With
-named offers \(X\), proposer payoff and total weak payoff are
-\[
-v=1-X-(1-\mu)y,\qquad
-T_W^M=1-(1-\mu)y.
-\]
-The canonical \(y=o_0,X=0\) class exists iff
-\(1-(1-\mu)o_0\geq E\). Pooling uses \(y=o_1,X=0\) and exists iff
-\(P>\max\{E,B_M\}\). These classes and their mixtures imply
-\eqref{eq:m-weak-bounds}. \(\square\)
-
-Equation \eqref{eq:no-cheap-gap} is affine in \(\mu\). Its endpoint gaps are
-\(kc-o_0\) and \(qc-1\leq0\), giving condition
-\eqref{eq:no-cheap}. The group-size implications follow directly from
-Proposition \ref{prop:majority}.
-
-## B.4 Institutional comparison {-}
-
-\textit{Proof of Proposition \ref{prop:nesting}.}
-On the common PBE domain, Theorem \ref{thm:u-regular} gives
-\(V_W^U=P/m\). Proposition \ref{prop:majority} gives
-\(V_W^M\geq F_M/m\), and \(F_M\geq P\) by definition. This proves
-\eqref{eq:entry-nesting}, formation-set inclusion, and the three cost regions.
+At equality the low offer gives \(H\) the lower expected payoff and is selected.
 \(\square\)
 
-\textit{Proof of Proposition \ref{prop:h-comparison}.}
-Exclusion pays \(H\) exactly \(\bar o\). Separating current passage pays
+## B.3 Proof of Proposition \ref{prop:majority} {-}
+
+A responding weak state votes yes exactly when \(x_j\geq w=\beta/m\).
+Let \(k\) be the number of such responders. If \(k\geq q-1\), the weak votes
+pass the proposal without \(H\); both types of \(H\) vote no and receive
+\(y+o_\theta\). If \(k=q-2\), \(H\) is pivotal and type \(\theta\) votes yes
+exactly when \(y\geq t_\theta=\beta o_\theta\). If \(k\leq q-3\), the proposal
+fails regardless of \(H\)'s vote.
+
+Within each acceptance class, reducing weak payments to \(w\), reducing \(y\)
+to the relevant type threshold, and assigning the remaining pie to the
+proposer weakly increases its payoff. This leaves four candidates: exclusion
+with payoff \(E\), screening with payoff \(S(\nu)\), pooling with payoff \(P\),
+and deliberate delay with payoff \(w\). Exclusion is always feasible and
 \[
-(1-\mu)y+\mu o_1\in[\bar o,o_1)
+E-w=1-\frac{\beta q}{m}>0,
 \]
-because \(y\in[o_0,o_1)\). Pooling pays \(o_1\). Convex combinations of
-payoff-tied majority classes preserve these bounds. Unanimity pays \(o_1\) on
-the common domain by Theorem \ref{thm:u-regular}. This proves
-\eqref{eq:h-payoff-bounds} and the conditional classification. \(\square\)
+so delay is never selected. A screening or pooling candidate that could beat
+exclusion is automatically feasible.
 
-# Appendix C: Boundaries and Endpoint Limits {-}
-
-## C.1 Zero low outside payoff {-}
-
-Let \(\beta<1\), \(o_0=0\), \(0<o_1\leq1\), and
-\(\mu\in(0,1)\). Retain
+The decisive payoff differences are
 \[
-P=1-o_1,\qquad L=1-\mu,\qquad
-\delta=\frac{\beta(m-1)}m,\qquad a=1-\delta,
-\]
-and define
-\[
-K_0=\max\{aL,P-\delta\}.
-\tag{C1}\label{eq:k0}
-\]
-The second term is inactive when negative.
-
-\begin{proposition}[Unanimity when \(o_0=0\)]\label{prop:u-o0-boundary}
-A global PBE always exists. If \(L\geq P\), low-only is the selected accepted
-class and gives \(T_W^U=L\). If \(P>L\), canonical pooling exists and gives
-\(T_W^U=P\); low-only also exists if and only if
-\[
-P-\delta\leq aL.
-\tag{C2}\label{eq:o0-multiplicity}
-\]
-At equality the proposal tie-break favors low-only. If \(P>L\), an overpaid
-pooling class with \(o_1<y\leq\bar y\) and \(T=1-y\) exists exactly when
-\[
-T\in[1-\bar y,P),
-\qquad
-T-\delta P>K_0.
-\tag{C3}\label{eq:o0-overpay}
-\]
-Rejection is never on path on this boundary.
-\end{proposition}
-
-\textit{Proof.}
-Terminal low-only gives each weak state \(1/m\), so after a globally off-path
-proposal it can make the approval price \(\beta/m\). On-path low-only gives
-the proposer \(aL\). A pooling proposal that pays \(\beta/m\) to every
-non-proposer forces approval and gives \(P-\delta\). These two constructions
-give the exact security value \(K_0\). Deliberate R1 rejection gives its
-original proposer only \((1-\mu)\beta/m<aL\).
-
-If \(L\geq P\), low-only attains the security value. If \(P>L\), canonical
-pooling gives \(aP>K_0\), while low-only remains optimal under another
-off-path completion exactly under \eqref{eq:o0-multiplicity}. At \(L=P\),
-the tie-break selects low-only because it pays less to \(H\). An overpaid
-pooling proposal gives proposer payoff \(T-\delta P\) and survives precisely
-when it strictly exceeds both security components. \(\square\)
-
-Low-only gives \(H\) expected payoff \(\mu o_1\), canonical pooling gives
-\(o_1\), and overpaid pooling gives \(1-T\).
-
-## C.2 No terminal weak surplus {-}
-
-\begin{proposition}[Unanimity when \(o_1=1\)]\label{prop:u-o1-boundary}
-If \(\beta<1\), \(o_0>0\), \(o_1=1\), and \(\mu\in(0,1)\), no unanimity
-PBE exists.
-\end{proposition}
-
-\textit{Proof.}
-Here \(P=0\). The proposal \(y=o_0,x_j=0\) forces weak approval. Two weak no
-votes make each rejector nonpivotal. With exactly one weak no, a positive
-continuation requires terminal low-only, but low-type \(H\) then receives only
-\(\beta o_0<o_0\) after voting yes and opts out, again making the rejector
-nonpivotal. With zero continuation, the weak yes tie rule applies. Low-type
-\(H\) therefore approves, high-type \(H\) opts out, and the deviation
-guarantees the proposer \(L=(1-\mu)(1-o_0)\). On-path low-only yields only
-\(aL<L\), pooling leaves zero weak surplus, and rejection gives the original
-proposer at most \(\beta L/m<L\). No on-path class attains the guarantee.
-\(\square\)
-
-## C.3 No discounting {-}
-
-Let \(\beta=1\), \(0\leq o_0<o_1\leq1\), and
-\(\mu\in(0,1)\). Define
-\[
-K_1=\max\left\{\frac Lm,
-P-\frac{(m-1)(1-o_0)}m\right\}.
-\tag{C4}\label{eq:k1}
-\]
-
-\begin{proposition}[Unanimity when \(\beta=1\)]\label{prop:u-beta1-boundary}
-Rejection or continuation is admissible and gives the R1 proposer
-\(S(\mu)/m\). If \(L\geq P\), low-only and rejection survive and pooling is
-selected against. If \(P>L\), pooling and rejection survive; low-only also
-survives if and only if
-\[
-P-\frac{(m-1)(1-o_0)}m\leq\frac Lm.
-\tag{C5}\label{eq:beta1-low}
-\]
-For \(P>L\), an overpaid pooling class with \(o_1<y\leq\bar y\) and
-\(T=1-y\) exists exactly when
-\[
-T-\frac{m-1}{m}P>K_1.
-\tag{C6}\label{eq:beta1-overpay}
-\]
-\end{proposition}
-
-\textit{Proof.}
-With no discounting, after weak-caused failure low-type \(H\) is indifferent
-between terminal low-only and immediate opt-out, and high-type \(H\) is
-indifferent between terminal and immediate opt-out. The yes tie rule sustains
-the punitive continuation. Low-only therefore gives and can guarantee
-\(L/m\), while a pooling proposal that pays
-\((1-o_0)/m\) to every non-proposer guarantees the second component of
-\(K_1\) when feasible. A deliberately rejected proposal gives
-\(S(\mu)/m\). The comparisons in \eqref{eq:beta1-low} and
-\eqref{eq:beta1-overpay} then give the stated classes; equality is selected
-against the proposal that pays \(H\) more. Mixtures over payoff- and
-\(H\)-payoff-equivalent classes can survive. \(\square\)
-
-This is the only baseline locus on which the historical rejection or delay
-label survives on path. The intersections \(o_0=0\) and \(o_1=1\) are
-included in Proposition \ref{prop:u-beta1-boundary}.
-
-## C.4 Majority boundary bounds {-}
-
-At \(\beta=1\), or at \(o_0=0\) with \(\beta<1\), \(H\)-yes can be optimal
-even when only \(q-2\) weak states vote yes and the current ballot still fails.
-Rejection classes can therefore reappear. For \(N\geq4\), the corresponding
-algebraic floors are
-\[
-F_{M,1}=\max\left\{
-1-kc,\,
-(1-\mu)[1-o_0-(k-1)c]+\mu c,\,
-1-o_1-(k-1)c
-\right\},
-\tag{C7}\label{eq:m-beta1-floor}
+P-E=\beta(1/m-o_1)
 \]
 and
 \[
-F_{M,0}=\max\left\{
-1-kc,\,
-(1-\mu)[1-(k-1)c]+\mu c,\,
-1-o_1-(k-1)c
-\right\}.
-\tag{C8}\label{eq:m-o0-floor}
+S(\nu)-E=(1-\nu)\beta(1/m-o_0)
+            -\nu(1-\beta q/m).
 \]
-These are boundary bounds, not complete equilibrium characterizations and not
-substitutes for Proposition \ref{prop:majority}. No institutional comparison
-in the paper extrapolates the regular theorem to these loci.
+Where pooling can beat exclusion, comparing screening with pooling yields
+\(\nu_{SP}\); comparing screening with exclusion yields \(\nu_{SE}\).
+Substituting the signs of \(o_0-1/m\) and \(o_1-1/m\) produces the five cases
+in Proposition \ref{prop:majority}.
 
-## C.5 Degenerate priors as one-sided limits {-}
+At screening ties, its expected payoff to \(H\) is strictly smaller than that
+of the tied alternative, so the proposal tie-break selects screening. When
+\(o_1=1/m\), exclusion and pooling give the proposer the same payoff. Their
+payoffs to \(H\) determine the stated selection; exact equality leaves their
+entire proposal segment. All selected proposals exhaust the pie. Finally,
+permuting the identities of weak responders does not change any comparison,
+which establishes the reported identity multiplicity. \(\square\)
 
-Literal games with \(\mu=0\) or \(\mu=1\) require an extra convention about
-zero-probability types. The paper instead reports one-sided limits of regular
-equilibrium outcomes. Let
-\[
-z=(v_{\mathrm{prop}},T_W,V_W,E[u_H]),\qquad V_W=T_W/m,
-\]
-and let \(\mathcal E_R(\mu)\) be the regular on-path PBE-outcome
-correspondence. For \(e\in\{0,1\}\), define
-\[
-\mathcal L_e^R=
-\left\{
-\lim_{n\to\infty}z_n:
-\mu_n\in(0,1),\ \mu_n\to e,\
-z_n\in\mathcal E_R(\mu_n)
-\right\}.
-\tag{C9}\label{eq:endpoint-limit}
-\]
-An empty correspondence means that no sequence of regular PBEs approaches the
-endpoint, not that a separately specified degenerate game lacks a PBE.
+## B.4 Proof of Proposition \ref{prop:unanimity} {-}
 
-For unanimity,
+Transport the terminal unanimity continuation into Round-1 units. If the
+posterior is \(\eta\), a weak state's continuation is
 \[
-\mathcal L_0^U=\varnothing,\qquad
-\mathcal L_1^U=
+W(\eta)=
 \begin{cases}
-\{(aP,P,P/m,o_1)\},&\beta o_1\geq o_0,\\
-\varnothing,&\beta o_1<o_0.
+(1-\eta)A,&\eta\leq\nu^*,\\
+B,&\eta>\nu^*.
 \end{cases}
-\tag{C10}\label{eq:u-endpoint-limits}
 \]
+Thus \(W(\eta)\in[B,A]\), and \(x_j=A\) forces every weak responder to vote
+yes under any admissible posterior.
 
-For majority, write
+At \(\nu=0\), support preservation fixes every posterior at zero. The proposal
 \[
-B_0^+=D_0,\qquad B_1^-=c,\qquad
-F_0^+=\max\{E,D_0\},\qquad F_1^-=\max\{E,P\}.
-\tag{C11}\label{eq:m-endpoint-floors}
+y=\ell,\qquad x_j=A,\qquad r_i=1-\ell-(m-1)A=A+1-\beta
 \]
+is accepted. Each responder and \(H\) is exactly indifferent and votes yes.
+Any lower payment loses a required vote; any higher payment reduces the
+proposer's residual. A delay gives the proposer \(A\), so immediate agreement
+is strictly better by \(1-\beta\).
 
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{p{0.12\textwidth}p{0.39\textwidth}p{0.39\textwidth}}
-\toprule
-Group & \(\mu\to0^+\) & \(\mu\to1^-\) \\
-\midrule
-\(N=3\) &
-Low-only \((D_0,D_0,D_0/m,o_0)\) if \(D_0>E\); otherwise exclusion
-\((E,1,1/m,o_0)\). &
-Pooling \((P,P,P/m,o_1)\) if \(P>E\); otherwise exclusion
-\((E,1,1/m,o_1)\). \\
-\(N=4\) &
-Empty if \(D_0>E\); otherwise exclusion \((E,1,1/m,o_0)\). &
-Pooling \((P,P,P/m,o_1)\) if \(P>E\); otherwise exclusion
-\((E,1,1/m,o_1)\). \\
-\bottomrule
-\end{tabular}
-\caption{One-sided majority equilibrium-outcome limits for \(N=3\) and \(N=4\).}
-\label{tab:majority-endpoint-limits}
-\end{table}
-
-At \(D_0=E\), the lower lateral tie belongs to exclusion; at \(P=E\), the
-upper lateral tie also belongs to exclusion. For \(N\geq5\),
+For \(\nu>\nu^*\), the analogous pooling proposal is
 \[
-\mathcal L_0^M=
-\begin{cases}
-\{(v,1,1/m,o_0):v\in[E,1]\},&D_0<E,\\
-\{(v,1,1/m,o_0):v\in[D_0,1]\}
-\cup
-\{(D_0,t,t/m,o_0):t\in[D_0,1]\},&D_0\geq E,
-\end{cases}
-\tag{C12}\label{eq:m-lower-limit}
+y=h,\qquad x_j=B,\qquad r_i=1-h-(m-1)B=B+1-\beta.
 \]
-and
-\[
-\mathcal L_1^M=
-\{(v,1,1/m,o_1):v\in[F_1^-,1]\}
-\cup
-\begin{cases}
-\{(P,P,P/m,o_1)\},&P>E,\\
-\varnothing,&P\leq E.
-\end{cases}
-\tag{C13}\label{eq:m-upper-limit}
-\]
+Both types of \(H\) and every weak responder accept, and immediate agreement
+again exceeds delay by \(1-\beta\).
 
-\textit{Derivation.}
-The affine guarantee satisfies \(B_M(\mu)\to D_0\) at \(0^+\) and
-\(B_M(\mu)\to c\) at \(1^-\). Substitution into the exact small-group
-characterizations gives Table \ref{tab:majority-endpoint-limits}. For
-\(N\geq5\), exclusion supplies the proposer intervals. Near zero, a
-separating class has weak total \(1-(1-\mu)y\); attaining the floor forces
-\(y\to o_0\) when \(D_0\geq E\). Near one, exclusion and separation converge
-to weak total one and \(H\) payoff \(o_1\), while canonical pooling adds a
-distinct limit exactly when \(P>E\). These exhaust the regular classes.
+For completeness, write \(u=\min_j x_j\) after an arbitrary proposal and order
+the strategy of \(H\) as low-type/high-type. At \(\nu=0\), posterior support is
+always the low type. The profile \((Y,Y)\) is sequentially rational if
+\(u<A\), or if \(u\geq A\) and \(y\geq h\); \((N,N)\) is rational if
+\(u\geq A\) and \(y<\ell\); and \((Y,N)\) is rational if
+\(u\geq A\) and \(\ell\leq y<h\). The profile \((N,Y)\) is never rational.
+These cases are mutually exclusive and exhaustive.
+
+For \(\nu^*<\nu<1\), the profile \((Y,Y)\) is rational if \(u<B\), or if
+\(u\geq B\) and \(y\geq h\); \((N,N)\) is rational if \(u\geq B\) and
+\(y<h\); and neither separating profile is rational. Bayes gives the current
+prior after an on-profile pooled action. When yes is a zero-probability action,
+an admissible posterior \(\eta_Y\) supports all weak yes votes exactly when
+\(W(\eta_Y)\leq u\), which is possible in the stated no profile because
+\(u\geq B\). At \(\nu=1\), support preservation fixes the posterior at one
+and the same two pooled-profile conditions apply. Thus every proposal in both
+existence domains has a pure, sequentially rational response completion.
+
+It remains to show the empty cell. For \(0<\nu\leq\nu^*\), consider
+\[
+s^\dagger:\quad
+y=\ell,\quad x_j=A\ \text{for every weak responder},\quad
+r_i=1-\ell-(m-1)A.
+\]
+All weak responders must vote yes. Enumerate the four pure type-contingent
+profiles for \(H\), ordered low/high:
+
+\begin{enumerate}
+\item Under \((Y,Y)\), the high type receives \(\ell<h\) and profitably votes
+no to obtain continuation \(h\).
+\item Under \((N,N)\), the low type's no gives \(\ell\), so \(T^Y\) requires
+yes at equality.
+\item Under \((Y,N)\), the low type can imitate the high type's no. That action
+reveals the high type and yields continuation \(h>\ell\).
+\item Under \((N,Y)\), the high type can imitate the low type's no and obtain
+continuation \(h\), while the prescribed comparison cannot support strict no
+against yes at the offer.
+\end{enumerate}
+
+No pure profile is sequentially rational after \(s^\dagger\). Because a PBE
+must specify a valid pure response after every feasible proposal, no
+pure-ballot PBE exists in this cell. This also explains the discontinuity:
+at \(\nu=0\), support preservation rules out the posterior that drives the
+imitation argument; for every positive \(\nu\), both types are possible.
 \(\square\)
 
-There is no common lower-endpoint comparison because
-\(\mathcal L_0^U\) is empty. At the upper endpoint, a common limit exists iff
-\(\beta o_1\geq o_0\); entry nesting carries to every common selection, and
-all corresponding \(H\)-payoff limits equal \(o_1\).
+## B.5 Proof of Proposition \ref{prop:privatecompare} {-}
 
-## C.6 One-shot bridge {-}
+The private majority payoff vectors for \(H\) are
+\[
+V_M^S=(\beta o_0,\beta o_1),\quad
+V_M^P=(\beta o_1,\beta o_1),\quad
+V_M^E=(o_0,o_1).
+\]
+The private unanimity vectors are \((\beta o_0,\beta o_1)\) at \(\nu=0\),
+empty for \(0<\nu\leq\nu^*\), and
+\((\beta o_1,\beta o_1)\) for \(\nu>\nu^*\). Componentwise subtraction gives
+the proposition. On any proposal segment, subtraction is affine in the common
+proposal weight, so the payoff set and outcome set remain atomic. \(\square\)
 
-Suppressing Round 2 leaves exactly the terminal subgame in Lemma
-\ref{lem:r2-unanimity}. The weak proposer compares
-\((1-\mu)(1-o_0)\) with \(1-o_1\), so the low-only and pooling regions are
-separated by \(\nu_2^*\). This is an interpretation of the proved terminal
-subgame, not a new complete-information benchmark and not a second baseline
-game.
+## B.6 Proofs of Propositions \ref{prop:rents} and \ref{prop:deltari} {-}
+
+From Proposition \ref{prop:public}, the public payoff vectors are
+\[
+V_M^{pub}=(p_M(o_0),p_M(o_1)),\qquad
+V_U^{pub}=(\beta o_0,\beta o_1).
+\]
+Subtracting these from each private vector gives the table in Proposition
+\ref{prop:rents}. In particular, unanimity is payoff-equivalent to its public
+endpoint at \(\nu=0\), is empty in the middle cell, and pools above the cutoff,
+which yields \((d,0)\).
+
+Subtract \(RI_M\) from \(RI_U\). In the high-belief cell, screening gives
+\((d,0)\) in region II and \((d,a_1)\) in region IX; pooling gives zero;
+exclusion gives \((k,-a_1)\), \((k,0)\), or \((d,0)\) in regions II, IX, or XX.
+The endpoint follows by the same calculation. An empty source set remains
+empty. For the residual segment, affine subtraction with its common weight
+\(\lambda\) yields the one-dimensional segment stated in the propositions,
+not the Cartesian product of marginal envelopes. \(\square\)
+
+# Appendix C: Endpoints, exact sets, and illustration {-}
+
+## C.1 Endpoint equivalence {-}
+
+At \(\nu=0\), posterior support is the singleton low type. The private
+unanimity proposal and payoff coincide with the public low-type game. At
+\(\nu=1\), posterior support is the singleton high type, and the private
+pooling proposal and payoff coincide with the public high-type game. The same
+equivalence holds under majority: applying the relevant private class at each
+endpoint reproduces public inclusion or exclusion, including the
+\(o_\theta=1/m\) tie-break. Thus the endpoints are literal complete-information
+games, not one-sided limits.
+
+## C.2 Exact correspondence and envelopes {-}
+
+Most parameter cells are singleton payoff vectors. At \(o_1=1/m\), exact
+indifference between exclusion and pooling can leave a proposal segment. If
+\(\lambda\) is the exclusion weight, every reported object uses that same
+\(\lambda\). The lower and upper envelope of any component may summarize the
+segment, but coordinated marginal envelopes do not imply that all pairwise
+combinations are attainable.
+
+Where \(0<\nu\leq\nu^*\), the private unanimity correspondence is empty.
+Accordingly, \(V_U^{priv}\), \(RI_U\), and \(\Delta RI\) are empty. No payoff,
+sign, institutional ranking, or interpolation is assigned to that cell.
+
+## C.3 Worked values {-}
+
+Return to \(m=4\), \(q=3\), \(\beta=0.9\), \(o_0=0.10\), and
+\(o_1=0.35\). Besides \(\nu^*=0.2778\), the majority screening--exclusion
+cutoff is
+\[
+\nu_{SE}
+=\frac{0.9(0.25-0.10)}
+{0.9(0.25-0.10)+1-0.9(3/4)}
+=0.2935.
+\]
+At \(\nu=0.80\), majority excludes and unanimity pools. The public payoff
+vectors are
+\[
+V_M^{pub}=(0.09,0.35),\qquad V_U^{pub}=(0.09,0.315),
+\]
+while the private payoff vectors are
+\[
+V_M^{priv}=(0.10,0.35),\qquad V_U^{priv}=(0.315,0.315).
+\]
+Therefore
+\[
+RI_M=(0.01,0),\qquad RI_U=(0.225,0),\qquad
+\Delta RI=(0.215,0).
+\]
+These numbers illustrate one point in region IX; they do not average over
+parameter values or estimate a real institution.
 
 # Appendix D: Notation {-}
 
-\scriptsize
-\begin{longtable}{p{0.14\textwidth}p{0.16\textwidth}p{0.47\textwidth}p{0.16\textwidth}}
-\caption{Notation for the clean immediate-opt-out \(\pi_H=0\) baseline.}
-\label{tab:notation}\\
+\begin{longtable}{p{0.18\linewidth}p{0.72\linewidth}}
+\caption{Notation for the essential-input bargaining game}\\
 \toprule
-Symbol & Type & Meaning & First use \\
+Symbol & Meaning \\
 \midrule
 \endfirsthead
 \toprule
-Symbol & Type & Meaning & First use \\
+Symbol & Meaning \\
 \midrule
 \endhead
-\(N\) & Primitive & Total number of states & Definition \ref{def:game} \\
-\(m=N-1\) & Derived & Number of weak states & Definition \ref{def:game} \\
-\(q\) & Rule parameter & Original strict-majority quota & Equation \eqref{eq:quota} \\
-\(k=q-1\) & Derived & Additional yes votes required by a weak proposer under majority & Equation \eqref{eq:m-security} \\
-\(\theta\) & Type & Persistent hegemon type, low \(0\) or high \(1\) & Definition \ref{def:game} \\
-\(\mu\) & Belief & Prior probability of the high type & Definition \ref{def:game} \\
-\(o_\theta\) & Primitive payoff & Immediate outside payoff after \(H\)-no; direct cutoff under certain implementation & Definition \ref{def:game} \\
-\(y\) & Contract component & Participation package paid to \(H\) only when included & Definition \ref{def:game} \\
-\(\bar y\) & Primitive bound & Maximum participation package & Equation \eqref{eq:primitive-domain} \\
-\(x_j\) & Contract component & Named weak-state offer & Definition \ref{def:game} \\
-\(\beta\) & Primitive & Discount factor for Round-2 payoffs in Round-1 units & Definition \ref{def:game} \\
-\(\pi_H\) & Recognition parameter & Hegemon recognition probability, fixed at zero in the baseline & Introduction \\
-\(\chi\) & Entry cost & External sunk cost per weak state & Equation \eqref{eq:entry-value} \\
-\(P\) & Derived value & Terminal pooling weak total, \(1-o_1\) & Equation \eqref{eq:r2-u-value} \\
-\(L(\nu)\) & Derived value & Terminal low-only weak total & Equation \eqref{eq:r2-u-value} \\
-\(S(\nu)\) & Derived value & Terminal unanimity weak security value & Equation \eqref{eq:r2-u-value} \\
-\(D_0\) & Derived value & Low-type weak residual, \(1-o_0\) & Equation \eqref{eq:u-notation} \\
-\(\delta\) & Derived value & Aggregate discounted approval weight, \(\beta(m-1)/m\) & Equation \eqref{eq:u-notation} \\
-\(a\) & Derived value & \(1-\delta\) & Equation \eqref{eq:u-notation} \\
-\(G_L,G_P\) & Security values & Exact unanimity low-only and pooling guarantees & Equation \eqref{eq:u-security} \\
-\(\mu_E\) & Existence cutoff & Regular unanimity existence threshold & Equation \eqref{eq:u-existence-cutoff} \\
-\(c\) & Continuation value & Weak voter's discounted majority continuation, \(\beta/m\) & Equation \eqref{eq:r2-m-values} \\
-\(E\) & Security value & Majority exclusion guarantee, \(1-kc\) & Equation \eqref{eq:m-security} \\
-\(B_M\) & Security value & Majority low-only guarantee & Equation \eqref{eq:m-security} \\
-\(F_M\) & Security value & Exact majority proposer security value & Equation \eqref{eq:m-security} \\
-\(\bar o\) & Derived payoff & Prior expected outside payoff of \(H\) & Proposition \ref{prop:h-comparison} \\
-\(\mathcal F_R\) & Formation set & Beliefs or selections for which rule \(R\) forms at cost \(\chi\) & Proposition \ref{prop:nesting} \\
-\(K_0,K_1\) & Boundary values & Unanimity security values at \(o_0=0\) and \(\beta=1\) & Appendix C \\
-\(\mathcal L_e^R\) & Limit correspondence & One-sided cluster set of regular equilibrium outcomes & Equation \eqref{eq:endpoint-limit} \\
+\(H\) & Privately informed hegemon \\
+\(W\), \(m\) & Set and number of weak states; \(m\geq3\) \\
+\(N=m+1\) & Total number of states \\
+\(q\) & Majority quota, \(\lfloor N/2\rfloor+1\) \\
+\(\theta\) & Hegemon type, low \(0\) or high \(1\) \\
+\(\nu\) & Prior probability of the high type \\
+\(o_\theta\) & Type-\(\theta\) terminal disagreement payoff \\
+\(\beta\) & One-round discount factor, strictly between zero and one \\
+\(y\) & Institutional concession assigned to \(H\) \\
+\(x_j\) & Allocation assigned to weak responder \(j\) \\
+\(r_i\) & Residual assigned to weak proposer \(i\) \\
+\(w=\beta/m\) & First-round continuation value of a weak state under majority \\
+\(t_\theta=\beta o_\theta\) & First-round threshold of type \(\theta\) when pivotal \\
+\(\nu^*\) & Terminal unanimity cutoff, \((o_1-o_0)/(1-o_0)\) \\
+\(a_\theta\) & Timing wedge, \((1-\beta)o_\theta\) \\
+\(d\) & Discounted type gap, \(\beta(o_1-o_0)\) \\
+\(k\) & Cross-date quantity, \(\beta o_1-o_0\) \\
+\(V_g^{priv}\), \(V_g^{pub}\) & Private- and public-information payoff
+correspondences under rule \(g\) \\
+\(RI_g\) & Informational-rent correspondence \(V_g^{priv}-V_g^{pub}\) \\
+\(\Delta RI\) & Unanimity-minus-majority informational-rent contrast \\
 \bottomrule
 \end{longtable}
-\normalsize
 
 # References {-}

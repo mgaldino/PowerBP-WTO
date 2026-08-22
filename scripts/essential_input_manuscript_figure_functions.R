@@ -563,7 +563,7 @@ plot_essential_input_f1 <- function(data_object, figure_label = "Figure F1") {
         "Outside-option slice o0 = %.3f x o1; m = %d weak states; beta = %.2f",
         constants$kappa, constants$m, constants$beta
       ),
-      x = "Prior probability of the strong type, nu",
+      x = "Prior probability of the high type, nu",
       y = y_label,
       fill = "H's payoff comparison (private information)",
       linetype = "Analytical boundary",
@@ -921,7 +921,7 @@ plot_essential_input_f2 <- function(data_object) {
     ggplot2::coord_cartesian(clip = "off") +
     ggplot2::labs(
       title = "A. Prices paid to the hegemon",
-      x = "Prior probability of the strong type, nu",
+      x = "Prior probability of the high type, nu",
       y = "Hegemon payoff in round 1",
       colour = "Hegemon type", linetype = "Hegemon type"
     ) +
@@ -1198,7 +1198,7 @@ essential_input_f4_data <- function(
     )
   )
   regions <- data.frame(
-    region = c("Instability", "Pooling"),
+    region = c("No pure-strategy PBE", "Pooling"),
     xmin = c(0, constants$nu_star), xmax = c(constants$nu_star, 1),
     ymin = 0, ymax = 0.40,
     stringsAsFactors = FALSE
@@ -1256,7 +1256,7 @@ plot_essential_input_f4 <- function(data_object) {
     ) +
     ggplot2::annotate(
       "label", x = constants$nu_star / 2, y = 0.205,
-      label = "no stable pure voting\npattern (instability)",
+      label = "no pure-strategy PBE",
       size = 3.0, linewidth = 0.18,
       fill = grDevices::adjustcolor("white", alpha.f = 0.84)
     ) +
@@ -1286,9 +1286,9 @@ plot_essential_input_f4 <- function(data_object) {
       label = "pooling rent h - ell", hjust = 0, size = 2.8, colour = "#6F5700"
     ) +
     ggplot2::scale_fill_manual(
-      values = c(Instability = "#D9D9D9", Pooling = "#E69F00"),
+      values = c("No pure-strategy PBE" = "#D9D9D9", Pooling = "#E69F00"),
       labels = c(
-        Instability = "No stable pure voting pattern",
+        "No pure-strategy PBE" = "No pure-strategy PBE",
         Pooling = "Pooling under unanimity"
       )
     ) +
@@ -1300,19 +1300,19 @@ plot_essential_input_f4 <- function(data_object) {
     ) +
     ggplot2::coord_cartesian(clip = "off") +
     ggplot2::labs(
-      title = "Figure F4. Hegemonic decline moves from pooling through instability to an isolated endpoint",
+      title = "Figure F4. Hegemonic decline across pooling, an empty pure-strategy cell, and the endpoint",
       subtitle = sprintf(
         "o0 = %.3f; o1 = %.3f; m = %d weak states; beta = %.2f",
         parameters$o_0, parameters$o_1, parameters$m, parameters$beta
       ),
-      x = "Prior probability of the strong type, nu",
+      x = "Prior probability of the high type, nu",
       y = "Low type's payoff under unanimity",
       fill = "Region",
       caption = ei_wrap_text(paste0(
         "The figure should be read from high to low nu. Above nu*, pooling pays the low type h = beta x o1, creating the rent h - ell relative to its reservation price ell = beta x o0. ",
         "The light orange field identifies the pooling region; the darker band isolates the payoff-relevant rent between ell and h. ",
-        "For 0 < nu <= nu*, the hatched area records the absence of a stable pure voting pattern; nu = 0 is an isolated complete-information endpoint, not an interval, and the low type is bought at reservation. ",
-        "This is a qualitative interpretation analogous to Edgeworth-cycle instability, not a theorem that the game cycles. ",
+        "For 0 < nu <= nu*, the hatched area records the absence of a perfect Bayesian equilibrium in pure ballot strategies; nu = 0 is an isolated complete-information endpoint, not an interval, and the low type is bought at reservation. ",
+        "The figure makes no claim about equilibria involving mixed ballot strategies. ",
         "Note: Model-generated regions; all boundaries closed-form."
       ), width = 145L)
     ) +
@@ -1615,4 +1615,265 @@ plot_essential_input_appendix_c1 <- function(data_object) {
   ))
   attr(plot, "figure_data") <- export
   plot
+}
+
+# Final Goal-5 display: retain only the two type-contingent panels.  The
+# prior-weighted image remains outside the manuscript while authorial item P3
+# is unresolved.
+essential_input_f1_final_data <- function(
+    kappa = 0.50, m = 4L, beta = 0.90,
+    vertical_scale = c("normalized", "raw")) {
+  vertical_scale <- match.arg(vertical_scale)
+  object <- essential_input_f1_data(
+    kappa = kappa, m = m, beta = beta,
+    vertical_scale = vertical_scale, example = NULL
+  )
+  views <- c("Low type", "High type")
+  object$regions <- object$regions[object$regions$hegemon_type %in% views, , drop = FALSE]
+  object$frontiers <- object$frontiers[object$frontiers$hegemon_type %in% views, , drop = FALSE]
+  object$endpoint <- object$endpoint[object$endpoint$hegemon_type %in% views, , drop = FALSE]
+  object$hatch <- object$hatch[object$hatch$hegemon_type %in% views, , drop = FALSE]
+  object$example <- object$example[object$example$hegemon_type %in% views, , drop = FALSE]
+  object$constants$comparison_views <- views
+  object
+}
+
+plot_essential_input_f1_final <- function(data_object) {
+  constants <- data_object$constants
+  y_max <- constants$multiplier
+  y_label <- if (constants$vertical_scale == "raw") {
+    "High type's disagreement payoff, o1"
+  } else {
+    "Relative hegemonic strength, m x o1"
+  }
+  plot <- ggplot2::ggplot() +
+    ggplot2::geom_polygon(
+      data = data_object$regions,
+      ggplot2::aes(x = nu, y = vertical_value, group = polygon_id, fill = region),
+      colour = NA
+    ) +
+    ggplot2::geom_segment(
+      data = data_object$hatch,
+      ggplot2::aes(x = x, xend = xend, y = y, yend = yend),
+      colour = "#6D6D6D", linewidth = 0.28, inherit.aes = FALSE
+    ) +
+    ggplot2::geom_line(
+      data = data_object$frontiers[data_object$frontiers$region != "substitute_cost", ],
+      ggplot2::aes(
+        x = nu, y = vertical_value,
+        group = interaction(hegemon_type, region), linetype = region
+      ),
+      colour = "#1D2630", linewidth = 0.58
+    ) +
+    ggplot2::geom_line(
+      data = data_object$frontiers[data_object$frontiers$region == "substitute_cost", ],
+      ggplot2::aes(x = nu, y = vertical_value, group = hegemon_type),
+      colour = "#1D2630", linewidth = 0.62, linetype = "longdash"
+    ) +
+    ggplot2::geom_line(
+      data = data_object$endpoint,
+      ggplot2::aes(x = nu, y = vertical_value, group = polygon_id, colour = region),
+      linewidth = 2.0, show.legend = FALSE
+    ) +
+    ggplot2::facet_wrap(
+      ~factor(hegemon_type, levels = constants$comparison_views), nrow = 1
+    ) +
+    ggplot2::scale_fill_manual(values = ei_response_palette, drop = FALSE) +
+    ggplot2::scale_colour_manual(values = ei_response_palette, drop = FALSE) +
+    ggplot2::scale_linetype_manual(
+      values = c(nu_star = "solid", nu_SP = "22", nu_SE = "42"),
+      breaks = c("nu_star", "nu_SP", "nu_SE"),
+      labels = expression(nu^"*", nu[SP], nu[SE])
+    ) +
+    ggplot2::scale_x_continuous(
+      limits = c(0, 1), breaks = seq(0, 1, by = 0.2), expand = c(0, 0)
+    ) +
+    ggplot2::scale_y_continuous(
+      limits = c(0, y_max),
+      breaks = if (constants$vertical_scale == "raw") seq(0, 1, by = 0.2) else 0:constants$m,
+      expand = c(0, 0)
+    ) +
+    ggplot2::labs(
+      title = "Figure F1. The private-rule payoff contrast is type-specific",
+      subtitle = sprintf(
+        "Closed-form slice o0 = %.2f x o1; m = %d weak states; beta = %.2f",
+        constants$kappa, constants$m, constants$beta
+      ),
+      x = "Prior probability of the high type, nu",
+      y = y_label,
+      fill = "Unanimity minus majority",
+      linetype = "Analytical boundary",
+      caption = ei_wrap_text(paste0(
+        "Colored regions compare the hegemon's private-information payoff under unanimity and majority at the same parameter point. ",
+        "The hatched region is empty because unanimity has no perfect Bayesian equilibrium in pure ballot strategies. ",
+        "The left-edge segment is the literal nu = 0 endpoint. ",
+        "The horizontal threshold m x o1 = 1 is the cost at which majority switches between buying the hegemon and buying an additional weak-state vote. ",
+        "No prior-weighted or ex ante image is displayed. Note: model-generated closed-form regions."
+      ), width = 155L)
+    ) +
+    ei_manuscript_theme(10.4) +
+    ggplot2::theme(
+      panel.spacing.x = grid::unit(1.5, "lines"),
+      legend.box = "vertical",
+      plot.caption = ggplot2::element_text(hjust = 0, size = 7.7)
+    )
+  attr(plot, "figure_data") <- ei_safe_rbind(list(
+    data_object$regions, data_object$frontiers,
+    data_object$endpoint, data_object$example
+  ))
+  plot
+}
+
+essential_input_f3_final_data <- function(
+    o_0 = 0.10, o_1 = 0.35, m = 4L, beta = 0.90, nu = 0.80) {
+  majority <- n3_closed_form(m + 1L, o_0, o_1, beta, nu)
+  unanimity <- n4_closed_form(m + 1L, o_0, o_1, beta, nu)
+  if (!identical(majority$selected_classes, "E")) {
+    stop("The F3 worked point must lie in the majority-exclusion class.", call. = FALSE)
+  }
+  if (!identical(unanimity$existence_status, "exists") ||
+      !identical(unanimity$class, "P")) {
+    stop("The F3 worked point must lie in the unanimity-pooling class.", call. = FALSE)
+  }
+  private_majority <- as.numeric(
+    majority$selected_table[1L, c("H_theta_0", "H_theta_1")]
+  )
+  private_unanimity <- unname(unanimity$hegemon_payoff[c("theta_0", "theta_1")])
+  public_majority <- c(
+    if (o_0 <= 1 / m) beta * o_0 else o_0,
+    if (o_1 <= 1 / m) beta * o_1 else o_1
+  )
+  public_unanimity <- beta * c(o_0, o_1)
+  points <- rbind(
+    data.frame(type = c("Low type", "High type"), rule = "Majority",
+               information = "Public", payoff = public_majority),
+    data.frame(type = c("Low type", "High type"), rule = "Majority",
+               information = "Private", payoff = private_majority),
+    data.frame(type = c("Low type", "High type"), rule = "Unanimity",
+               information = "Public", payoff = public_unanimity),
+    data.frame(type = c("Low type", "High type"), rule = "Unanimity",
+               information = "Private", payoff = private_unanimity)
+  )
+  rent_majority <- private_majority - public_majority
+  rent_unanimity <- private_unanimity - public_unanimity
+  rents <- rbind(
+    data.frame(type = c("Low type", "High type"), estimand = "RI_M",
+               value = rent_majority),
+    data.frame(type = c("Low type", "High type"), estimand = "RI_U",
+               value = rent_unanimity),
+    data.frame(type = c("Low type", "High type"), estimand = "DeltaRI",
+               value = rent_unanimity - rent_majority)
+  )
+  list(
+    points = points, rents = rents,
+    parameters = list(o_0 = o_0, o_1 = o_1, m = m, beta = beta, nu = nu)
+  )
+}
+
+plot_essential_input_f3_final <- function(data_object) {
+  points <- data_object$points
+  parameters <- data_object$parameters
+  points$type <- factor(points$type, levels = c("Low type", "High type"))
+  points$rule <- factor(points$rule, levels = c("Majority", "Unanimity"))
+  points$information <- factor(points$information, levels = c("Public", "Private"))
+  points$x <- as.numeric(points$rule) +
+    ifelse(points$information == "Public", -0.10, 0.10)
+  split_key <- interaction(points$type, points$rule, drop = TRUE)
+  segments <- do.call(rbind, lapply(split(points, split_key), function(block) {
+    block <- block[order(block$information), ]
+    data.frame(
+      type = block$type[[1L]], rule = block$rule[[1L]],
+      x = block$x[block$information == "Public"],
+      xend = block$x[block$information == "Private"],
+      y = block$payoff[block$information == "Public"],
+      yend = block$payoff[block$information == "Private"]
+    )
+  }))
+  panel_a <- ggplot2::ggplot(points, ggplot2::aes(x = x, y = payoff)) +
+    ggplot2::geom_segment(
+      data = segments,
+      ggplot2::aes(x = x, xend = xend, y = y, yend = yend),
+      inherit.aes = FALSE, colour = "#6D7882", linewidth = 0.75
+    ) +
+    ggplot2::geom_point(
+      ggplot2::aes(shape = information, fill = rule),
+      size = 3.5, colour = "#1D2630", stroke = 0.75
+    ) +
+    ggplot2::facet_wrap(~type, nrow = 1) +
+    ggplot2::scale_x_continuous(
+      breaks = c(1, 2), labels = c("Majority", "Unanimity"),
+      limits = c(0.72, 2.28)
+    ) +
+    ggplot2::scale_shape_manual(values = c(Public = 21, Private = 24)) +
+    ggplot2::scale_fill_manual(values = c(Majority = "#56B4E9", Unanimity = "#CC79A7")) +
+    ggplot2::guides(
+      fill = ggplot2::guide_legend(
+        override.aes = list(shape = 22, colour = "#1D2630")
+      ),
+      shape = ggplot2::guide_legend(override.aes = list(fill = "white"))
+    ) +
+    ggplot2::labs(
+      title = "A. Public and private-information payoffs",
+      x = NULL, y = "Hegemon payoff",
+      shape = "Information", fill = "Voting rule"
+    ) +
+    ei_manuscript_theme(9.8)
+
+  rents <- data_object$rents
+  rents$type <- factor(rents$type, levels = c("Low type", "High type"))
+  rents$estimand <- factor(rents$estimand, levels = c("RI_M", "RI_U", "DeltaRI"))
+  rents$label <- sprintf("%.3f", rents$value)
+  panel_b <- ggplot2::ggplot(
+    rents, ggplot2::aes(x = estimand, y = value, fill = type)
+  ) +
+    ggplot2::geom_hline(yintercept = 0, colour = "#1D2630", linewidth = 0.35) +
+    ggplot2::geom_col(
+      position = ggplot2::position_dodge(width = 0.72),
+      width = 0.64, colour = "white", linewidth = 0.30
+    ) +
+    ggplot2::geom_text(
+      ggplot2::aes(label = label),
+      position = ggplot2::position_dodge(width = 0.72),
+      vjust = -0.45, size = 2.8
+    ) +
+    ggplot2::scale_fill_manual(values = ei_type_palette) +
+    ggplot2::scale_y_continuous(
+      limits = c(-0.02, 0.25), breaks = seq(0, 0.25, by = 0.05)
+    ) +
+    ggplot2::labs(
+      title = "B. Informational rents and their institutional contrast",
+      x = NULL, y = "Payoff difference", fill = "Hegemon type"
+    ) +
+    ei_manuscript_theme(9.8)
+
+  caption <- sprintf(
+    paste0(
+      "Figure F3. Exact power-information decomposition at the working illustration ",
+      "(o0 = %.2f, o1 = %.2f, m = %d, beta = %.2f, nu = %.2f). ",
+      "Panel A compares each rule under public and private information. ",
+      "Panel B reports RI_M, RI_U, and DeltaRI = RI_U - RI_M component by component. ",
+      "At this point majority excludes and unanimity pools: the low-type values are ",
+      "0.010, 0.225, and 0.215, while all high-type informational-rent values are zero. ",
+      "This is a working numerical illustration of the exact N7 formulas, not a calibration."
+    ),
+    parameters$o_0, parameters$o_1, parameters$m,
+    parameters$beta, parameters$nu
+  )
+  combined <- ei_compose_vertical(
+    list(panel_a, panel_b), heights = c(1.15, 1),
+    title = "Figure F3. Power versus information",
+    caption = caption
+  )
+  export_points <- transform(points, record_type = "public_private_payoff")
+  export_rents <- data.frame(
+    type = as.character(rents$type), rule = NA_character_,
+    information = as.character(rents$estimand), payoff = rents$value,
+    x = NA_real_, record_type = "informational_rent",
+    stringsAsFactors = FALSE
+  )
+  attr(combined, "figure_data") <- rbind(
+    export_points[, names(export_rents)],
+    export_rents
+  )
+  combined
 }
