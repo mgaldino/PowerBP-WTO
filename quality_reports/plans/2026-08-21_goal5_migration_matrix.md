@@ -1,9 +1,14 @@
 # Goal 5 — matriz de migração para `formal_model_v6.Rmd`
 
-**Data:** 2026-08-21
-**Status:** `DRAFT — AGUARDA APROVAÇÃO EXPLÍCITA DO AUTOR`
-**Efeito deste documento:** planejamento apenas. `formal_model_v6.Rmd` não foi
-editado nem compilado.
+**Data:** 2026-08-21; revisão autoral incorporada em 2026-08-22
+**Status:** `APPROVED — AUTOR, 2026-08-22`
+**Hash da DRAFT aprovada:**
+`6a8aabb60ad5148017297b1cf5360b7f138eed9cf8a373f4655e7e4bfa321360`
+**Decisão autoral:**
+`quality_reports/2026-08-22_aprovacao_matriz_goal5.md`.
+**Efeito até a aprovação:** planejamento apenas; `formal_model_v6.Rmd` não
+havia sido editado nem compilado. A aprovação autoriza a sequência da Seção 10
+a partir do item 2.
 **Snapshot de origem:**
 `e0ff1aceb3d8b9ebeeea56feb65c019dafd32854`
 **Tag de fronteira:** `pre-goal5-essential-input-2026-08-21`, anotada e
@@ -25,15 +30,26 @@ substantiva dentro do mesmo arquivo, preservando apenas a infraestrutura
 editorial útil: YAML/bookdown, estilo tipográfico, organização com provas no
 apêndice e a intuição geral que continue verdadeira sob o jogo congelado.
 
-O paper migrado ficará organizado em ordem **benchmark primeiro**:
+Há três ordens editoriais distintas:
 
-1. informação completa: o poder que existe sem assimetria informacional;
-2. jogo privado: como cada regra transforma a informação em payoff;
-3. renda informacional por regra e diferença das diferenças;
-4. interpretação, limites e implicações.
+1. **Abstract:** puzzle; abordagem; mecanismo; achado principal; escopo e
+   implicação.
+2. **Introdução:** hook OPEC/OMC; puzzle em três camadas; benchmark de
+   informação completa imediatamente depois do puzzle; mecanismo e resultados;
+   contribuição; roadmap.
+3. **Resultados:** benchmark público; jogos privados; renda informacional por
+   regra e diferença das diferenças; interpretação, limites e implicações.
+
+O benchmark público, portanto, entra cedo na introdução e abre a seção de
+resultados, mas não abre o abstract. O título corrente, **Informational Power
+Through Pivotality: How Consensus Can Benefit a Hegemon**, será preservado. No
+primeiro uso, uma nota de rodapé equipara *consensus* e *unanimity* para os fins
+do modelo, sem abrir uma discussão terminológica.
 
 O corpo usa `m>=3`, equivalente a `N>=4`, e somente PBE com estratégias puras
-nos ballots. Não há seção, remark ou agenda futura sobre equilíbrios mistos.
+nos ballots. Um remark de escopo esclarecerá que a inexistência demonstrada não
+é uma afirmação sobre equilíbrios mistos; o paper não os deriva, caracteriza,
+compara nem os inclui em agenda futura.
 
 ## 2. Fontes congeladas e rastreabilidade
 
@@ -56,8 +72,8 @@ As primitivas matemáticas abaixo já estão congeladas. O que permanece pendent
 
 | Marcador | Passagem que dependerá da decisão | Tratamento enquanto pendente |
 |---|---|---|
-| `[AUTHOR: P1]` | Interpretação do timing de `o_theta`: é payoff de desacordo terminal; um voto `não` não o dispara. Se uma proposta passa sem `H` em R1, `H` recebe `y+o_theta` naquela data porque o jogo terminou, não porque saiu antes. | Declarar a primitiva sem qualificação; marcar apenas a frase substantiva que explica por que esse relógio representa negociações internacionais. |
-| `[AUTHOR: P2]` | Interpretação de `b_theta=0`: quando incluído, `H` recebe somente `y`. | Declarar a normalização; marcar a justificativa de que ela isola renda informacional e poder de pivotalidade, sem sugerir que acordos reais não têm benefício intrínseco. |
+| `[AUTHOR: P1]` | Interpretação do timing de `o_theta`: é payoff de desacordo terminal; um voto `não` não o dispara. Se a proposta falha em R1, ninguém recebe `o_theta` naquela data e o jogo continua. A fórmula geral `y+o_theta` aplica-se somente à história — em geral fora do caminho — na qual foi proposto `y>0`, `H` votou `não` e a maioria aprovou apesar disso. Nos equilíbrios de exclusão congelados, o proponente escolhe `y=0`; portanto, `H` recebe apenas `o_theta`. | No texto de resultados, reportar somente o payoff de equilíbrio `o_theta`. Manter a fórmula geral na definição completa de payoffs e, quando necessária, na prova de incentivos fora do caminho. Marcar apenas a frase substantiva que explica por que esse relógio representa negociações internacionais. Explicitar que `beta` converte em R1 apenas payoffs realizados em R2. |
+| `[AUTHOR: P2]` | Interpretação de `b_theta=0`: o payoff de acordo de `H` é `y+b_theta`; no baseline, portanto, um `H` incluído recebe somente `y`. O tipo altera o payoff de desacordo `o_theta`, não o valor intrínseco do acordo. | Declarar a normalização; marcar a justificativa de que ela isola concessões informacionais e poder de pivotalidade, sem sugerir que acordos reais não tenham benefícios intrínsecos. |
 | `[AUTHOR: P3]` | Janela ex ante: imagem pelo prior dos vetores de renda e de `DeltaRI`. | Planejar como `remark` e faceta de F1, nunca proposição. A redação e a figura não entram no manuscrito até a decisão. |
 
 ## 4. Mapa de seções do v6 corrente
@@ -69,10 +85,10 @@ conteúdo é reconciliado com as fontes congeladas.
 
 | Bloco atual do v6 | Ação | Destino no manuscrito migrado | Fonte congelada / observação |
 |---|---|---|---|
-| YAML, bookdown, tipografia e metadados | **permanece** | Manter `bookdown::pdf_document2`, XeLaTeX e estrutura de referências; atualizar somente título, abstract e keywords se o novo texto exigir. | Infraestrutura editorial, sem claim formal. |
-| Abstract | **reescrito** | Abrir pelo benchmark público, identificar o canal dos substitutos não informados, declarar a região sem PBE puro e resumir `RI_M`, `RI_U` e `DeltaRI` sem overclaim. | `N6`, `N7`; hashes acima. |
+| YAML, bookdown, tipografia e metadados | **permanece** | Manter `bookdown::pdf_document2`, XeLaTeX, estrutura de referências e o título corrente. Acrescentar às keywords *unanimity rule*, *legislative bargaining* e *private information*. | Infraestrutura editorial, sem claim formal. |
+| Abstract | **reescrito** | Ordem obrigatória: puzzle; abordagem; mecanismo; achado principal; escopo e implicação. O benchmark público disciplina o achado, mas não abre o abstract. A inexistência em estratégias puras aparece como delimitação de escopo, nunca como resultado de abertura ou como “instabilidade” já estabelecida. | `N6`, `N7`; hashes acima; arquitetura autoral de 2026-08-22. |
 | Chunk `setup` e leitura de `clean_optout_gate0_histories_piH0.tsv` | **substituído** | Remover a dependência da tabela de opt-out; carregar apenas scripts/dados permanentes das figuras e tabelas essential-input. | Contrato; gerador de figuras; nenhum resultado novo. |
-| `Introduction` | **reescrito** | Arquitetura benchmark-primeiro: poder puro sob informação completa; literatura de preços/sinalização; contribuição dos substitutos não informados e da decomposição `DeltaRI`. | `N7`, honest assessment v2/adendo; `[AUTHOR: P1]`, `[AUTHOR: P2]` apenas nas interpretações. |
+| `Introduction` | **reescrito** | Preservar o hook OPEC/OMC, o puzzle em três camadas e o roadmap. Inserir o benchmark de informação completa imediatamente depois do puzzle; então apresentar o mecanismo de insumo essencial versus substitutos não informados, os resultados qualificados por tipo e região, a literatura vizinha com crédito integral e a contribuição estreita. No primeiro uso no texto, uma nota equipara *consensus* e *unanimity* para os fins da análise. | `N6`, `N7`, honest assessment v2/adendo; `[AUTHOR: P1]`, `[AUTHOR: P2]` apenas nas interpretações. |
 | `Consensus, Information, and Institutional Design` | **reescrito** | Creditar integralmente Piazolo–Vanberg e Glynia–Thum–Xefteris; posicionar Miller et al. como benchmark; distinguir Feddersen–Pesendorfer; apresentar a novidade estreita do paper. | Honest assessment; bibliografia auditada na Seção 9 desta matriz. |
 | `A Motivating Terminal Example` com três jogadores | **substituído** | Exemplo motivador com `N=5` (`m=4`), usando o cutoff terminal de N2 e as primitivas correntes. Linguagem de “working numerical illustration”, não calibração. | `N2`; `c6a65d...a85a2`. |
 | `The Model` | **reescrito** | Modelo em cerca de uma página: dois rounds, só fracos propõem, ballots simultâneos, nenhuma saída, pie fixa, `0<o_0<o_1<1`, `beta in (0,1)`, `m>=3`, `b_theta=0`, `pi_H=0`. | Contrato Seções 2, 4 e 6; `[AUTHOR: P1]`, `[AUTHOR: P2]`. |
@@ -84,7 +100,7 @@ conteúdo é reconciliado com as fontes congeladas.
 | Tabela `Scope of the clean baseline results` | **substituído** | Tabela curta de escopo dos resultados congelados: público, privado, inexistência, renda e multiplicidade. | `N1`–`N7`. |
 | `Backward Induction` | **reescrito** | Substituir por `Results`: benchmark público primeiro; depois indução retroativa dos jogos privados — terminais, R1 maioria e R1 unanimidade —; por fim rendas. Intuição sempre antes do enunciado formal. | `N1`–`N4`, `N7`. |
 | `Terminal Round` | **reescrito** | Maioria primeiro como benchmark belief-free; unanimidade com low-only/pooling e cutoff `nu_star`; exemplo `N=5`. | `N1`, `N2`. |
-| `Round 1 Under Unanimity` atual | **substituído** | Correspondência de três células: acordo low-only em `nu=0`; nenhum PBE puro em `0<nu<=nu_star`; pooling em `nu>nu_star`. | `N4`; `f1c823...6408b`. |
+| `Round 1 Under Unanimity` atual | **substituído** | Correspondência de três células: acordo low-only em `nu=0`; nenhum PBE puro em `0<nu<=nu_star`; pooling em `nu>nu_star`. O remark sobre mistos vem imediatamente depois da proposition de inexistência. | `N4`; `f1c823...6408b`. |
 | `Round 1 Under Majority` atual | **substituído** | Correspondência completa com exclusão, screening com atraso do tipo alto e pooling; domínio `m>=3`; quociente apenas por permutações de fracos. | `N3`; `ff0537...330d`. |
 | `Entry and Conditional Institutional Comparison` | **removido** | Entry/formation não integra o jogo corrente nem o estimando. Sua função comparativa passa a N6/N7. | Contrato Seções 1, 2 e 10. |
 | `Discussion` | **reescrito** | Interpretar substituição/essencialidade, região sem PBE puro, descontinuidade em `nu=0+`, escopo e implicações de policy. Instabilidade sob declínio contestado: qualitativa, análoga a ciclos de Edgeworth, nunca teorema. | `N4`, `N6`, `N7`; guardrail autoral. |
@@ -97,6 +113,55 @@ conteúdo é reconciliado com as fontes congeladas.
 | `Appendix C: Boundaries and Endpoint Limits` | **substituído** | Endpoints exatos, descontinuidade em `nu=0+`, regiões de renda, envelopes e ilustração numérica corrente. Remover limites laterais da arquitetura antiga. | Emenda 1a, `N4`, `N7`. |
 | `Appendix D: Notation` | **reescrito** | Dicionário apenas da arquitetura essential-input; remover símbolos de opt-out, entry e resultados antigos. | Contrato + `N1`–`N7`. |
 | `References` | **permanece** | Manter seção; acrescentar apenas as entradas necessárias já identificadas e usar citações com a disciplina da autorização. | Ver Seção 9. |
+
+### 4.1 Arquitetura do abstract
+
+O abstract será escrito nesta sequência:
+
+1. **Puzzle:** por que hegemons constroem e aceitam instituições por consenso,
+   se a regra iguala formalmente os votos e não lhes concede agenda?
+2. **Abordagem:** barganha em dois rounds; somente Estados fracos propõem; o
+   hegemon conhece privadamente sua opção externa; maioria e unanimidade usam
+   as mesmas primitivas.
+3. **Mecanismo:** sob maioria, votos de fracos não informados substituem o voto
+   do hegemon e limitam o preço pago a ele; sob unanimidade, o hegemon é insumo
+   essencial e a proposta precisa satisfazer um limiar privado.
+4. **Achado:** decompor a diferença entre regras em poder de veto sob
+   informação completa e efeito adicional da informação privada. Reportar o
+   resultado exato: quando a maioria privada faz screening, a unanimidade
+   acrescenta renda ao tipo baixo e também ao tipo alto se a maioria pública o
+   excluiria; quando a maioria já faz pooling, o acréscimo é zero; sob exclusão
+   privada, o sinal depende da região e de `beta*o_1-o_0`; na região sem PBE
+   puro de unanimidade, a comparação é vazia.
+5. **Escopo e implicação:** delimitar explicitamente a análise a PBE em
+   estratégias puras. A interpretação da célula vazia como “instabilidade” ou
+   “tensão da hegemonia contestada” só entrará se for promovida por decisão
+   autoral posterior.
+
+A formulação “o componente informacional existe somente sob unanimidade” não
+será usada literalmente: `N7` mostra que `RI_M` também pode ser não nula. O
+claim correto é comparativo e condicional à classe de equilíbrio de maioria.
+O abstract evitará tanto as interpretações pendentes P1--P3 quanto a construção
+retórica “não é X, é Y”.
+
+### 4.2 Arquitetura da introdução
+
+Sobrevivem o hook OPEC/OMC, a Arábia Saudita como ator pivotal informado, os
+Estados Unidos aceitando consenso, o puzzle em três camadas e o roadmap. As
+mudanças obrigatórias são:
+
+1. o benchmark de informação completa entra logo depois do puzzle para separar
+   poder de veto conhecido de renda gerada por informação privada;
+2. *screening* deixa de nomear o mecanismo central; o mecanismo passa a ser
+   insumo essencial versus substitutos não informados, e a renda de unanimidade
+   é de pooling;
+3. todo preview de resultados é qualificado por tipo, classe de equilíbrio e
+   região de parâmetros; o qualificador de tipo, sozinho, não autoriza um claim
+   global de que “unanimidade beneficia o hegemon”;
+4. Piazolo--Vanberg e Glynia--Thum--Xefteris recebem crédito integral antes da
+   declaração da contribuição;
+5. o roadmap segue a ordem da matriz: benchmark público, correspondências
+   privadas, rendas e Discussion.
 
 ## 5. Mapa de lemas, proposições e teoremas atuais
 
@@ -131,6 +196,9 @@ conteúdo é reconciliado com as fontes congeladas.
 5. **Proposition — institutional informational-rent contrast.** `DeltaRI` por
    tipo, sinais, vazios e segmentos exatos; nenhuma seleção ad hoc. Fonte: `N7`.
 6. **Remark — ex ante image.** Somente se P3 for aprovado; nunca proposição.
+7. **Remark — pure-strategy scope.** A célula vazia demonstra inexistência
+   apenas no espaço de estratégias puras adotado pelo paper. Ela não demonstra
+   inexistência de todo PBE, e o paper não deriva, seleciona ou compara mistos.
 
 ## 6. Mapa das provas atuais
 
@@ -154,19 +222,24 @@ as dependências e evita usar o benchmark público como premissa do jogo privado
 
 ### Figuras
 
-| Figura | Ação | Destino e regra de conteúdo | Fonte |
-|---|---|---|---|
-| Timing atual do v6 | **substituído** | Figura de sequência essential-input, sem estágios triviais e sem opt-out | Contrato Seção 4. |
-| `F1` mapa institucional | **reescrito** | Versão permanente recolorida pelo sinal real de `DeltaRI`; manter faceta por tipo e preparar faceta ex ante sob `[AUTHOR: P3]` | `N6`, `N7`; `a9cfd5...`, `4e0169...`. |
-| `F2` preços e anatomia da coalizão | **reescrito** | Preservar narrativa Round 4; confirmar todos os rótulos com N1–N4/N7 e caption integral em inglês | `N1`–`N4`, `N7`. |
-| `F3` poder versus informação | **substituído** | Remover placeholder e gerar com payoffs públicos e rendas reais de N7; versão normalizada no corpo e raw apenas se necessária no apêndice | `N7`, `4e0169...9c45`. |
-| `F4` declínio hegemônico | **reescrito** | Manter estática; região sem PBE puro hachurada; leitura de instabilidade somente na Discussion e nunca como resultado formal | `N4`, `N7`; guardrail autoral. |
-| `C1` plano de opções externas | **removido** | Não integra o conjunto de figuras permanentes. Pode ser regenerado depois apenas como working numerical illustration se a matriz for emendada e aprovada | Não migrar nesta rodada. |
+| Figura | Ação | Destino e regra de conteúdo | Colocação | Fonte |
+|---|---|---|---|---|
+| Timing atual do v6 | **substituído** | Figura de sequência essential-input, sem estágios triviais e sem opt-out | Junto da descrição do timing no modelo | Contrato Seção 4. |
+| `F1` mapa institucional | **reescrito** | Versão permanente recolorida pelo sinal real de `DeltaRI`; manter faceta por tipo e preparar faceta ex ante sob `[AUTHOR: P3]` | Junto da proposition de comparação privada (`N6`) | `N6`, `N7`; `a9cfd5...`, `4e0169...`. |
+| `F2` preços e anatomia da coalizão | **reescrito** | Preservar narrativa Round 4; confirmar todos os rótulos com N1--N4/N7 e caption integral em inglês | Junto do mecanismo e dos preços derivados em `N3`--`N4` | `N1`--`N4`, `N7`. |
+| `F3` poder versus informação | **substituído** | Remover placeholder e gerar com payoffs públicos e rendas reais de N7; versão normalizada no corpo e raw apenas se necessária no apêndice | Junto da proposition de rendas (`N7`) | `N7`, `4e0169...9c45`. |
+| `F4` declínio hegemônico | **reescrito** | Manter estática; região sem PBE puro hachurada; leitura de instabilidade somente se aprovada, nunca como resultado formal | Somente na `Discussion` | `N4`, `N7`; guardrail autoral. |
+| `C1` plano de opções externas | **removido** | Não integra o conjunto de figuras permanentes. Pode ser regenerado depois apenas como *working numerical illustration* de apêndice se a matriz for emendada e aprovada | Fora do corpo nesta rodada | Não migrar nesta rodada. |
 
 Os manifestos atualmente contêm caminhos absolutos da worktree de figuras.
 Durante a implementação aprovada, o gerador deverá ser executado na worktree do
 Goal 5 para gravar caminhos reproduzíveis da árvore corrente; isso é reparo de
-empacotamento, não alteração matemática.
+empacotamento, não alteração matemática. Cada figura ficará ao lado da frase ou
+proposition cujo takeaway deve tornar visualmente imediato.
+
+A pendência RIO “figuras conectadas à realidade” permanece aberta e não
+bloqueia o Goal 5. Na `Discussion`, episódios históricos podem ser anotados em
+F4 somente como ilustrações explícitas, não como teste empírico ou calibração.
 
 ### Tabelas atuais e planejadas
 
@@ -202,9 +275,12 @@ empacotamento, não alteração matemática.
 - Os termos `a_theta=(1-beta)o_theta` serão chamados de **timing wedge**. Eles
   não serão confundidos com `d=beta(o_1-o_0)` nem com
   `k=beta o_1-o_0`.
-- Não entram: equilíbrio misto, `beta=1`, `o_1=1`, `o_0=0`, entry, escolha
-  endógena de regra, `pi_H>0`, calibração OPEC antiga, opt-out ou rótulos
-  históricos A/C/R e C-B-R.
+- Equilíbrios mistos não são derivados nem comparados. Entra somente um remark
+  de escopo: a célula `none` exclui PBE puro, mas não permite inferir
+  inexistência de todo equilíbrio.
+- Não entram: `beta=1`, `o_1=1`, `o_0=0`, entry, escolha endógena de regra,
+  `pi_H>0`, calibração OPEC antiga, opt-out ou rótulos históricos A/C/R e
+  C-B-R.
 
 ## 9. Literatura e bibliografia
 
@@ -241,7 +317,8 @@ matriz aprovada. A redação observará:
 4. Migrar resultados públicos e privados, sempre com intuição antes da
    proposition e prova no apêndice.
 5. Construir tabelas de rendas diretamente da interface N7.
-6. Regenerar F1–F4; F3 deixa de ser placeholder; criar a figura de sequência.
+6. Regenerar F1–F4; F3 deixa de ser placeholder; criar a figura de sequência e
+   verificar a colocação editorial fixada na Seção 7.
 7. Fazer busca negativa por linguagem e rótulos proibidos.
 8. Compilar somente com `rmarkdown::render("formal_model_v6.Rmd")`.
 9. Renderizar o PDF para imagens e inspecionar texto, equações, tabelas,
@@ -256,20 +333,23 @@ matriz aprovada. A redação observará:
 O readability audit não usará Pangram. Pangram continua proibido sem duas
 autorizações explícitas separadas. Não haverá push.
 
-## 11. Gates de aceitação da matriz
+## 11. Gates de aceitação da matriz — satisfeitos
 
-Antes de editar `formal_model_v6.Rmd`, o autor precisa confirmar:
+Em 2026-08-22, o autor confirmou:
 
 1. que aprova esta matriz e a substituição da arquitetura substantiva dentro do
    mesmo arquivo v6;
-2. a interpretação editorial P1 do timing de `o_theta`;
-3. a interpretação editorial P2 da normalização `b_theta=0`;
-4. se aprova P3: imagem ex ante como remark e faceta de F1, nunca proposition.
+2. o tratamento editorial de P1, sem decidir sua interpretação substantiva;
+3. o tratamento editorial de P2, sem decidir sua interpretação substantiva;
+4. o tratamento de P3: imagem ex ante somente como remark e faceta planejada de
+   F1, nunca proposition, e fora do manuscrito até decisão autoral.
 
-Até essas quatro confirmações, o estado permanece `DRAFT` e o manuscrito fica
-byte a byte intocado.
+O autor aprovou o **tratamento** de P1--P3, sem resolver as três interpretações
+substantivas. P1, P2 e P3 permanecem pendentes; qualquer frase que as pressuponha
+deve manter o marcador correspondente. Com esses gates satisfeitos, a edição
+controlada do manuscrito está autorizada.
 
-## 12. Validação desta fronteira DRAFT
+## 12. Validação da fronteira aprovada
 
 - `formal_model_v6.Rmd` permanece com SHA-256
   `131cc2356cd6318211fdbb9304ac8d7c8a99356837b6e71097011c36ae9c270d`,
