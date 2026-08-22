@@ -492,7 +492,7 @@ essential_input_f1_data <- function(
   )
 }
 
-plot_essential_input_f1 <- function(data_object, figure_label = "Figure F1") {
+plot_essential_input_f1 <- function(data_object, figure_label = "Private-rule payoff contrast") {
   constants <- data_object$constants
   functions <- ei_f1_cutoff_functions(constants$kappa, constants$m, constants$beta)
   y_max <- constants$multiplier
@@ -981,7 +981,7 @@ plot_essential_input_f2 <- function(data_object) {
 
   caption <- sprintf(
     paste0(
-      "Figure F2. Majority caps the hegemon's price by buying substitute votes; unanimity pays the hegemon directly. ",
+      "Majority caps the hegemon's price by buying substitute votes; unanimity pays the hegemon directly. ",
       "Panel A plots type-specific round-1 payoffs. Majority pays beta x o0 and beta x o1 through nu_SE, then exclusion leaves H with its outside option; unanimity has no pure-vote PBE for 0 < nu <= nu* and pools at h = beta x o1 above nu*. ",
       "Under unanimity both types receive h; the dashed high-type line is drawn over the solid low-type line where they coincide. The yellow span is the low type's pooling rent h - ell, not the public-benchmark rent estimand. ",
       "Panel B decomposes the unit surplus at nu = %.2f: majority buys q-1 substitutes at beta/m, while the adjacent markers show the excluded H collecting o_theta outside the pie; unanimity pays m-1 weak-state floors, h, and the proposer residual. ",
@@ -991,7 +991,7 @@ plot_essential_input_f2 <- function(data_object) {
   )
   combined <- ei_compose_vertical(
     list(panel_a, panel_b), heights = c(1.45, 1),
-    title = "Figure F2. Prices and coalition anatomy",
+    title = "Prices and coalition anatomy",
     caption = caption
   )
   figure_data <- rbind(
@@ -1163,7 +1163,7 @@ plot_essential_input_f3 <- function(
   }
 
   caption <- paste0(
-    "Figure F3. Placeholder architecture for separating institutional power from informational power. ",
+    "Placeholder architecture for separating institutional power from informational power. ",
     "Panel A shows the intended four-point comparison of public and private information under majority and unanimity for each hegemon type; vertical brackets define RI_M and RI_U, and their difference defines DeltaRI. ",
     "Panel B shows the intended discontinuity-style display of DeltaRI against hegemonic power at a prior above nu*. ",
     "All displayed values are synthetic and carry no substantive interpretation; the plotting function accepts real public/private and contrast data as arguments once the public benchmark is available. ",
@@ -1171,7 +1171,7 @@ plot_essential_input_f3 <- function(
   )
   combined <- ei_compose_vertical(
     list(panel_a, panel_b), heights = c(1.15, 1),
-    title = "Figure F3. Power versus information decomposition",
+    title = "Power versus information decomposition",
     caption = caption
   )
   point_export <- transform(point_data, dataset = "panel_a_synthetic_points")
@@ -1300,7 +1300,7 @@ plot_essential_input_f4 <- function(data_object) {
     ) +
     ggplot2::coord_cartesian(clip = "off") +
     ggplot2::labs(
-      title = "Figure F4. Hegemonic decline across pooling, an empty pure-strategy cell, and the endpoint",
+      title = "Hegemonic decline across pooling, an empty pure-strategy cell, and the endpoint",
       subtitle = sprintf(
         "o0 = %.3f; o1 = %.3f; m = %d weak states; beta = %.2f",
         parameters$o_0, parameters$o_1, parameters$m, parameters$beta
@@ -1694,7 +1694,7 @@ plot_essential_input_f1_final <- function(data_object) {
       expand = c(0, 0)
     ) +
     ggplot2::labs(
-      title = "Figure F1. The private-rule payoff contrast is type-specific",
+      title = "The private-rule payoff contrast is type-specific",
       subtitle = sprintf(
         "Closed-form slice o0 = %.2f x o1; m = %d weak states; beta = %.2f",
         constants$kappa, constants$m, constants$beta
@@ -1848,7 +1848,7 @@ plot_essential_input_f3_final <- function(data_object) {
 
   caption <- sprintf(
     paste0(
-      "Figure F3. Exact power-information decomposition at the working illustration ",
+      "Exact power-information decomposition at the working illustration ",
       "(o0 = %.2f, o1 = %.2f, m = %d, beta = %.2f, nu = %.2f). ",
       "Panel A compares each rule under public and private information. ",
       "Panel B reports RI_M, RI_U, and DeltaRI = RI_U - RI_M component by component. ",
@@ -1861,7 +1861,7 @@ plot_essential_input_f3_final <- function(data_object) {
   )
   combined <- ei_compose_vertical(
     list(panel_a, panel_b), heights = c(1.15, 1),
-    title = "Figure F3. Power versus information",
+    title = "Power versus information",
     caption = caption
   )
   export_points <- transform(points, record_type = "public_private_payoff")
