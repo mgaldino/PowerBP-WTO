@@ -13,9 +13,11 @@ uma sequência de reparo.
 ## 1. Resumo
 
 O cabeçalho do contrato `essential-input` declara que a autorização autoral não
-alcança `N4`, `N6`, `N7`, o Goal 2 nem qualquer migração para o manuscrito. Os
-cinco itens dessa lista de exclusões já ocorreram e foram aprovados por decisão
-autoral registrada. O contrato se declara fonte normativa única e designa esse
+alcança `N4`, `N6`, `N7`, o Goal 2 nem qualquer migração para o manuscrito.
+Essa lista caducou, mas não uniformemente: `N4`, `N6` e `N7` estão congelados e
+os quatro goals anteriores foram concluídos, enquanto a proibição de migrar foi
+superada apenas por uma autorização de **execução** — o Goal 5 permanece aberto,
+sem aval autoral terminal. O contrato se declara fonte normativa única e designa esse
 mesmo cabeçalho como fonte canônica do status da fase, de modo que a leitura
 literal da fonte canônica contradiz o estado real do projeto.
 
@@ -192,6 +194,16 @@ Exige autorização autoral explícita. A ordem interna é:
   ampliação que autorize a extensão de agenda ou `beta=1`, e não mais contra
   uma que autorize `N4` ou o Goal 2. A mensagem final deve deixar de afirmar
   que o Goal 5 e a migração estão não autorizados.
+
+  A fronteira autoral mais imediata hoje é o próprio Goal 5, e o guarda novo
+  precisa protegê-la. Além das mutações acima, devem falhar as que:
+
+  - declarem o Goal 5 encerrado;
+  - estendam os dois `PASS 0/0/0` de `b5fdefb` aos bytes atuais do manuscrito;
+  - autorizem a criação da tag final sem aval autoral explícito.
+
+  Sem isso, a correção fecharia a fronteira morta e deixaria a viva
+  desprotegida.
 - **A4.** Executar `scripts/verify_essential_input_gate0.R` até `PASS`.
 - **A5.** **Dois** pareceres independentes e read-only, por quem não editou,
   sobre os mesmos hashes novos do contrato e do verificador — o mesmo padrão do
@@ -207,10 +219,16 @@ factibilidade, ações, transições, informação ou payoffs, conceito de solu�
 desconto, topologia ou schema, obrigações de prova (item 1) e o protocolo de
 revisão da Seção 11 (item 3). Uma linha de status de fase não é nenhum deles, e
 as alterações no verificador são constantes do guarda, não o protocolo de
-revisão. A decisão, porém, é do autor: o cabeçalho é a fonte canônica de
-autorização e o autor é a parte autorizante. A emenda deve declarar
-explicitamente que é status-only e que não altera nenhuma regra normativa, para
-que o próximo agente não precise refazer esse raciocínio.
+revisão. A emenda deve declarar seu alcance com precisão, e "não altera nenhuma regra
+normativa" seria impreciso: o cabeçalho **é** fonte normativa de status. A
+formulação correta é que a emenda altera apenas o status e a autorização
+normativos do cabeçalho, e não altera primitivas, jogo, estimando, conceito de
+solução, desconto, schemas, obrigações de prova ou protocolo de revisão.
+
+A decisão, porém, é do autor: o cabeçalho é a fonte canônica de
+autorização e o autor é a parte autorizante. A emenda deve registrar esse
+alcance explicitamente, para que o próximo agente não precise refazer o
+raciocínio.
 
 Alternativa considerada e descartada: apenas acrescentar ao cabeçalho um
 ponteiro para a cadeia de autorizações avulsas. O contrato proíbe que menções
@@ -319,3 +337,22 @@ O que permanece obsoleto é o cabeçalho, seus guards de mutação e a mensagem
 final de `PASS`. §2.4, §2.5 e A3 foram corrigidos. A consequência colateral é
 que o valor da worktree como roteiro cai, e a razão para não removê-la passa a
 ser exclusivamente os quatro arquivos não rastreados do Passo B.
+
+**Revisão 3 — 2026-08-23.** Segundo parecer do Codex, veredicto `diagnóstico
+PASS; plano MINOR REVISION`. Três ajustes residuais aceitos:
+
+1. **A fronteira nova do verificador precisa proteger o Goal 5.** A3 passou a
+   exigir que o guarda rejeite também mutações que declarem o Goal 5 encerrado,
+   que estendam os `PASS` de `b5fdefb` aos bytes atuais ou que autorizem a tag
+   final sem aval autoral. Sem isso, a correção fecharia a fronteira morta e
+   deixaria a viva desprotegida.
+2. **Ambiguidade no resumo.** A §1 dizia que os itens caducados "foram
+   aprovados por decisão autoral", o que podia ser lido como aprovação terminal
+   da migração. Reformulada para distinguir os quatro goals concluídos da
+   autorização de execução do Goal 5, que segue aberto.
+3. **Precisão sobre "regra normativa".** Como o próprio documento estabelece
+   que o cabeçalho é fonte normativa de status, a emenda não pode dizer que
+   "não altera nenhuma regra normativa". A formulação passou a ser: altera
+   apenas o status e a autorização normativos do cabeçalho, sem tocar
+   primitivas, jogo, estimando, conceito de solução, desconto, schemas,
+   obrigações de prova ou protocolo de revisão.

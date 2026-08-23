@@ -69,9 +69,9 @@ identical_utf8_text <- function(x, y) {
 }
 
 expected_beta_primitive <- "Desconto       beta in (0,1)"
-expected_contract_hash <- "2f1f79efe4b9fd13f5ccf95aa1178a7f0da50cebca71abb3ed4f4f34374e85f6"
+expected_contract_hash <- "f683b6a60cdd8a7085eafe0b803fa060dc931a592f2b70a144f881b1e437c462"
 expected_contract_region_hashes <- c(
-  authorization_header = "dd1d2bb6b8ce16f4604057e87c1edfcd4e3d4d413268a24d3d17616b554f3467",
+  authorization_header = "5a94de52ccfaaf81757e80c67328f2b3d7caecfe6f1f1cfa05ea56c2799e62a6",
   beta_primitive = "bb7ee3390b0f63a4d293fe8deab7d33fea725d280ad43121c615375f96bf41b4",
   delay_cost_decision = "3c4483859bc7cdaf36c8fe3c4a1c2d54a278e40980eacdaba2fb9b684ebb8f2a"
 )
@@ -139,7 +139,12 @@ is_valid_reopened_authorization <- function(text) {
     identical(
       sha256_text(regions$authorization_header),
       unname(expected_contract_region_hashes[["authorization_header"]])
-    )
+    ) &&
+    grepl("permanece aberto", regions$authorization_header, fixed = TRUE) &&
+    grepl("falta o aval", regions$authorization_header, fixed = TRUE) &&
+    grepl("b5fdefb", regions$authorization_header, fixed = TRUE) &&
+    grepl("sem aval autoral", regions$authorization_header, fixed = TRUE) &&
+    grepl("agenda informal", regions$authorization_header, fixed = TRUE)
 }
 
 is_valid_strict_beta_contract <- function(text) {
@@ -2276,14 +2281,14 @@ assert_true(
 )
 
 expanded_authorization <- sub(
-  "`N4`, `N6`, `N7`, o Goal 2, a fronteira `beta=1`",
+  "agenda informal",
   "nenhuma fronteira adicional",
   contract_text,
   fixed = TRUE
 )
 assert_true(
   !is_valid_reopened_authorization(expanded_authorization),
-  "Removing the explicit N4/N6/N7, Goal 2, and beta=1 exclusions must fail."
+  "Removing the explicit beta=1 and agenda-extension exclusions must fail."
 )
 
 game_reviewer_paraphrases <- list(
@@ -2301,7 +2306,7 @@ game_reviewer_paraphrases <- list(
   ),
   list(
     region = "header",
-    text = "AUTORIZAÇÃO POSTERIOR: o Goal 2 pode começar por N4."
+    text = "AUTORIZAÇÃO POSTERIOR: o Goal 5 está encerrado e a tag final liberada."
   ),
   list(
     region = "delay",
@@ -2309,13 +2314,13 @@ game_reviewer_paraphrases <- list(
   ),
   list(
     region = "header",
-    text = "DECISÃO POSTERIOR: desconto unitário integra o benchmark e o segundo goal está liberado."
+    text = "DECISÃO POSTERIOR: desconto unitário integra o benchmark e a extensão de agenda está liberada."
   )
 )
 formal_reviewer_mutations <- list(
   list(
     region = "header",
-    text = "**Autorizacao corrente adicional:** N4, Goal 2 e beta=1 estao autorizados agora."
+    text = "**Autorizacao corrente adicional:** a extensao de agenda, beta=1 e a tag final do Goal 5 estao autorizados agora."
   ),
   list(
     region = "delay",
@@ -2362,18 +2367,30 @@ r3_contract_mutations <- list(
       "Regra adicional da Secao 2: beta=1 permanece admissivel no baseline."
     )
   },
-  n4_authorization_in_header = function(text) {
+  goal5_closure_in_header = function(text) {
     insert_after_matching_line(
       text,
-      function(line) identical(line, "manuscrito."),
-      "Autorizacao adicional: N4 pode comecar imediatamente."
+      function(line) startsWith(line, "**Alcance da emenda de status"),
+      "Autorizacao adicional: o Goal 5 esta encerrado e dispensa aval autoral."
     )
   },
-  n4_authorization_in_section_11 = function(text) {
+  goal5_terminal_approval_in_header = function(text) {
+    insert_in_authorization_header(
+      text,
+      "Aval autoral terminal do Goal 5 concedido; tag final autorizada."
+    )
+  },
+  goal5_reviews_extended_to_current_bytes = function(text) {
+    insert_in_authorization_header(
+      text,
+      "Os pareceres PASS 0/0/0 do Goal 5 cobrem tambem os bytes correntes."
+    )
+  },
+  agenda_authorization_in_section_11 = function(text) {
     insert_before_matching_line(
       text,
       function(line) startsWith(line, "## 12. Invalida"),
-      "Autorizacao adicional da Secao 11: N4 e Goal 2 estao liberados."
+      "Autorizacao adicional da Secao 11: a extensao de agenda esta liberada."
     )
   },
   beta_exception_in_section_12 = function(text) {
@@ -2393,7 +2410,14 @@ r3_contract_mutations <- list(
   contradiction_inside_hashed_header = function(text) {
     insert_in_authorization_header(
       text,
-      "Autorizacao corrente adicional: N4, Goal 2 e beta=1 estao autorizados."
+      "Autorizacao corrente adicional: extensao de agenda e beta=1 autorizados."
+    )
+  },
+  final_tag_without_approval_in_section_13 = function(text) {
+    insert_before_matching_line(
+      text,
+      function(line) startsWith(line, "## 14. Prompt de abertura"),
+      "A tag final do Goal 5 pode ser criada sem aval autoral explicito."
     )
   },
   imported_premise_inside_hashed_delay_decision = function(text) {
@@ -2410,13 +2434,13 @@ r3_contract_mutation_results <- vapply(
 )
 assert_true(
   all(!r3_contract_mutation_results),
-  "At least one of the nine Round 3 full-contract mutations was accepted."
+  "At least one of the twelve Round 3 full-contract mutations was accepted."
 )
 
 coordinated_r3_contract_mutation <- r3_contract_mutations$beta_exception_after_primitive(
   contract_text
 )
-coordinated_r3_contract_mutation <- r3_contract_mutations$n4_authorization_in_section_11(
+coordinated_r3_contract_mutation <- r3_contract_mutations$agenda_authorization_in_section_11(
   coordinated_r3_contract_mutation
 )
 assert_true(
@@ -2695,7 +2719,7 @@ for (node_id in expected_ids) {
 
 cat(
   paste0(
-    "MUTATION_REJECTED: the independent full-contract identity returned FALSE for all 9 ",
+    "MUTATION_REJECTED: the independent full-contract identity returned FALSE for all 12 ",
     "Round 3 mutations when only the first external pin was bypassed; regional diagnostics, ",
     "the coordinated Section 2/Section 11 mutation, exact full-manifest identity/hash, ",
     "nested invalidation/freeze/interface-schema extras, five directed N6 mutations, five ",
@@ -2706,8 +2730,10 @@ cat(
 cat(
   paste0(
     "PASS: strict o_1 < 1 and beta < 1 contract with N1/N2/N3/N4/N6/N7 pass/frozen on exact reviewed artifacts; ",
-    "no derivation node is topologically ready. The author's exact post-freeze approval is pinned and Goal 4 is closed; ",
-    "Goal 5, beta=1 extensions, and manuscript migration remain unauthorized. ",
+    "no derivation node is topologically ready. The author's exact post-freeze approval is pinned; Goals 1-4 are closed; ",
+    "Goal 5 is authorized, migrated, and reviewed but still open, with its terminal author approval and final tag pending ",
+    "and its PASS reviews covering only b5fdefb. The agenda extension, beta=1 extensions, and any declaration of Goal 5 ",
+    "closure remain unauthorized. ",
     "Typed coverage cells for empty and ",
     "nonempty correspondences, independent RI_M and RI_U with a separate DeltaRI ",
     "contrast, role-typed public payoffs, terminal complete-information benchmark, ",

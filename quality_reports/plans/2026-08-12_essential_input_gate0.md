@@ -12,10 +12,31 @@ Decisão autoral posterior prevalece sobre registro histórico incompatível. A
 mudança do domínio de `beta` é mudança de primitiva: reabre o Gate 0 e devolve
 todos os nós a `pending`, conforme a Seção 12. Depois de dois novos pareceres
 independentes `PASS 0/0/0` sobre este mesmo contrato, a autorização autoral
-posterior permite reavaliar o Goal 1 exclusivamente para `N1`, `N2` e `N3`,
-seguindo integralmente os gates da Seção 11. Esta autorização não alcança
-`N4`, `N6`, `N7`, o Goal 2, a fronteira `beta=1` nem qualquer migração para
-manuscrito.
+posterior permitiu reavaliar o Goal 1 exclusivamente para `N1`, `N2` e `N3`,
+seguindo integralmente os gates da Seção 11; decisões autorais posteriores
+abriram e encerraram os Goals 2, 3 e 4.
+
+**Estado corrente em 2026-08-23.** `N1`, `N2`, `N3`, `N4`, `N6` e `N7` estão
+`pass/frozen`, cada um com dois pareceres independentes `PASS 0/0/0` no mesmo
+hash, e nenhum nó de derivação está topologicamente pronto. Os Goals 1 a 4
+estão encerrados. O Goal 5, migração para `formal_model_v6.Rmd`, foi autorizado
+em 2026-08-21, executado e revisado, e **permanece aberto**: falta o aval
+autoral terminal, sem o qual a tag final pelo workflow `paper-version` não pode
+ser criada. Os dois pareceres `PASS 0/0/0` do Goal 5 cobrem exclusivamente os
+bytes do commit `b5fdefb`; os bytes correntes do manuscrito são posteriores e
+não estão cobertos por eles.
+
+**Não autorizado.** A fronteira `beta=1`; a extensão de agenda informal, cujo
+Gate 0 não foi aberto; a criação da tag final do Goal 5 sem aval autoral
+explícito; qualquer declaração de encerramento do Goal 5; e qualquer extensão
+daqueles pareceres aos bytes correntes do manuscrito.
+
+**Alcance da emenda de status de 2026-08-23.** Ela altera apenas o status e a
+autorização normativos deste cabeçalho, alinhando-os aos registros autorais já
+existentes. Não altera primitivas, jogo, estimando, conceito de solução,
+desconto, schemas, obrigações de prova nem o protocolo de revisão da Seção 11.
+Diagnóstico e roteiro em
+`quality_reports/2026-08-23_inconsistencia_cabecalho_contrato_gate0.md`.
 **Substitui:** a cadeia `pivotal-response` (12 nós, commit `19c431a`) como arquitetura corrente.
 **Alvo eventual:** `formal_model_v6.Rmd`, somente após derivação, revisão independente e migração controlada.
 
