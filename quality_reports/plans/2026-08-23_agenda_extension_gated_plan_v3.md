@@ -52,8 +52,9 @@ plano v2 ou do parecer.
 5. **Robustez por trembling simétrico, se necessária.** Se uma proposição
    substantiva ou comparação institucional variar dentro da correspondência
    baseline, aplica-se o protocolo pré-especificado de trembling simétrico do
-   §2.3. Se o limite induzir crenças passivas, elas serão reportadas como
-   consequência da perturbação, não impostas como crença primitiva.
+   §2.3, com medida de Lebesgue normalizada na dimensão afim do espaço factível
+   de propostas. Se o limite induzir crenças passivas, elas serão reportadas
+   como consequência da perturbação, não impostas como crença primitiva.
 6. **D1 e Critério Intuitivo são diagnósticos de robustez, não baseline.** Sua
    aplicação não é presumida capaz de selecionar. A previsão de que sejam
    silenciosos em pooling é conjectura a verificar, sobretudo quando houver
@@ -174,43 +175,94 @@ O trembling simétrico é uma camada de robustez da proposta de `H`, acionada
 somente pelo gatilho objetivo do §2.4. Antes de qualquer derivação, o Gate 0
 deve formalizá-lo como uma família de jogos perturbados.
 
-Requisitos mínimos:
+Construção canônica adotada:
 
-1. o espaço de propostas `Y` deve ser um espaço compacto mensurável, com uma
-   medida ou distribuição de referência `lambda` de suporte completo;
-2. para cada `epsilon > 0` e cada tipo `theta`, a estratégia de proposta é
-   perturbada pela **mesma** intensidade e pela **mesma** distribuição de erro:
+1. o espaço factível de propostas `Y` deve ser um subconjunto compacto e
+   Boreliano de um espaço euclidiano finito, escrito nas coordenadas econômicas
+   primitivas do pacote. Se sua dimensão afim for `k`, exige-se
+   `0 < L_k(Y) < ∞` e `Y` igual ao suporte relativo da medida;
+2. `lambda` é fixada como a medida de Lebesgue `k`-dimensional normalizada em
+   `Y`:
+
+   ```text
+   lambda(B) = L_k(B ∩ Y) / L_k(Y).
+   ```
+
+   Portanto, `lambda` é atomless e tem suporte completo na topologia relativa
+   de `Y`. No caso unidimensional, ela é simplesmente a distribuição uniforme
+   no intervalo factível;
+3. para cada `epsilon > 0` e cada tipo `theta`, a estratégia de proposta é
+   perturbada pela **mesma** intensidade e pela mesma `lambda`:
 
    ```text
    sigma_theta^epsilon = (1-epsilon) sigma_theta + epsilon lambda;
    ```
 
-3. taxas, densidades ou kernels específicos por tipo são proibidos no teste
+4. taxas, densidades ou kernels específicos por tipo são proibidos no teste
    principal, pois devolveriam liberdade arbitrária às crenças;
-4. Bayes é aplicado nos jogos perturbados. Em proposta produzida apenas pelo
-   componente comum de erro, o posterior é passivo, igual ao prior, respeitado
-   o suporte nos endpoints;
-5. se `Y` for contínuo, o contrato deve definir densidades, versões de crenças,
-   topologia de convergência e tratamento de átomos. O harness em grade não
-   substitui essa definição analítica;
-6. a votação as-if-pivotal continua sendo uma restrição separada. O plano não a
+5. para prior `nu`, a distribuição pública de propostas no jogo perturbado é
+
+   ```text
+   m^epsilon = (1-nu) sigma_0^epsilon + nu sigma_1^epsilon.
+   ```
+
+   O posterior do tipo alto é a versão pré-especificada de Bayes dada por
+
+   ```text
+   nu^epsilon(y)
+     = nu * d sigma_1^epsilon / d m^epsilon (y).
+   ```
+
+6. para cada tipo, escreve-se a decomposição
+
+   ```text
+   sigma_theta = sigma_theta^at + f_theta lambda,
+   ```
+
+   onde `sigma_theta^at` é a parte atômica e `f_theta` é uma versão Boreliana
+   pontualmente especificada da densidade. Em um átomo, Bayes usa a razão das
+   massas. Fora dos átomos, o posterior é fixado ponto a ponto por
+
+   ```text
+   nu^epsilon(y)
+     = nu[(1-epsilon)f_1(y)+epsilon]
+       / {(1-nu)[(1-epsilon)f_0(y)+epsilon]
+          + nu[(1-epsilon)f_1(y)+epsilon]}.
+   ```
+
+   Onde `f_0(y)=f_1(y)=0`, a proposta é produzida apenas pelo erro comum e o
+   posterior é passivo, `nu^epsilon(y)=nu`. Os endpoints continuam sujeitos à
+   preservação de suporte;
+7. se uma estratégia candidata contiver componente singular contínuo que não
+   seja coberto pela decomposição em átomos e parte absolutamente contínua em
+   relação a `lambda`, o protocolo para e escala essa ocorrência. Não se escolhe
+   uma versão de crenças dentro da prova;
+8. a votação as-if-pivotal continua sendo uma restrição separada. O plano não a
    declara equivalente a uma sequência formal de trembles no ballot;
-7. só sobrevivem à seleção simétrica os limites de equilíbrios dos jogos
-   perturbados quando `epsilon` tende a zero;
-8. inexistência de limite, dependência substantiva de `lambda`, ou passagem por
-   uma continuação `none` é resultado de não robustez, nunca licença para
-   escolher outro posterior;
-9. a correspondência baseline permanece publicada ao lado do subconjunto
+9. a correspondência sobrevivente é o conjunto de todos os limites obtidos ao
+   longo de sequências `epsilon_n -> 0` de equilíbrios dos jogos perturbados,
+   exigindo convergência fraca das medidas de estratégia e convergência pontual
+   de `nu^epsilon_n(y)` para todo `y in Y`. Convergência apenas quase em toda
+   parte não basta para fechar crenças em histórias off-path;
+10. existe uma única passagem ao limite, `epsilon -> 0`. Grades finitas podem
+    aproximar numericamente o problema, mas o tamanho da malha não integra a
+    definição do conceito e não cria um segundo limite;
+11. inexistência de qualquer subsequência convergente ou passagem por uma
+    continuação `none` é resultado de não robustez, nunca licença para escolher
+    outro posterior. Se houver vários limites, todos permanecem na
+    correspondência selecionada;
+12. a correspondência baseline permanece publicada ao lado do subconjunto
    sobrevivente. O subconjunto não reescreve retroativamente o baseline.
 
 Esse protocolo é uma seleção por perturbação no estágio de proposta. Ele não
 será chamado de equilíbrio sequencial ou trembling-hand perfection sem prova
 de equivalência ao conceito correspondente no jogo completo.
 
-O Gate 0 deve incluir pelo menos uma análise de sensibilidade dentro de uma
-classe pré-registrada de distribuições simétricas `lambda`. Se diferentes
-`lambda` admissíveis selecionarem resultados substantivamente distintos, a
-conclusão correta é dependência da perturbação.
+Não há análise de sensibilidade obrigatória a outras distribuições de erro. Uma
+`lambda` diferente da Lebesgue normalizada é diagnóstico opcional posterior,
+fora do critério de PASS do núcleo, e exige autorização própria. Ela não pode
+substituir retroativamente a construção canônica após os resultados serem
+conhecidos.
 
 ### 2.4 Gatilho e ordem dos testes de robustez
 
@@ -414,8 +466,9 @@ Goal separado.
 
 Para claims sensíveis à seleção, construir os jogos perturbados, provar ou
 refutar existência de equilíbrios, caracterizar seus limites, verificar a
-indução de crenças passivas e testar dependência de `lambda`. D1 e Critério
-Intuitivo recebem ledger próprio e não substituem esse exercício.
+indução de crenças passivas e aplicar a construção canônica com Lebesgue
+normalizada. D1 e Critério Intuitivo recebem ledger próprio e não substituem
+esse exercício. Uma grade finita é apenas aproximação numérica.
 
 ---
 
@@ -443,7 +496,9 @@ Invariantes mínimos:
 - endpoints e cutoffs usam comparações exatas;
 - células `none` não recebem sentinela de payoff;
 - cada registro cita IDs e hashes existentes;
-- trembles principais usam a mesma taxa e o mesmo kernel por tipo;
+- trembles principais usam a mesma taxa e a mesma Lebesgue normalizada por tipo;
+- átomos usam razões de massas e a parte não atômica usa razões de densidades;
+- a grade numérica não altera a definição analítica nem introduz limite duplo;
 - fórmulas falham fora de seus domínios.
 
 Alvos prioritários de contraexemplo:
@@ -455,7 +510,7 @@ Alvos prioritários de contraexemplo:
 - atraso sob unanimidade, incluindo como candidato a região
   `1-beta < beta^2*(o_1-o_0)`, sem presumir que a desigualdade seja suficiente;
 - mudança de ranking quando o posterior entra em célula distinta de `C_U`;
-- dependência da distribuição simétrica `lambda`.
+- inexistência ou não unicidade do limite quando `epsilon` tende a zero.
 
 O implementador salva o script antes de executá-lo. Revisão `review-r`
 independente é obrigatória, sem substituir os pareceres matemáticos.
@@ -473,7 +528,8 @@ worktree, tag, commit ou artefato derivado sem autorização.
 ### Goal 0 — contrato executável da extensão
 
 **Entregas:** forma extensiva, informação, primitivas do §2.5, protocolo de
-trembling, estimandos, schema, DAG, ledger vazio, verifier e invalidação.
+trembling com Lebesgue normalizada, Bayes para átomos e densidades, topologia
+do limite, estimandos, schema, DAG, ledger vazio, verifier e invalidação.
 
 **Gate:** dois pareceres independentes read-only `PASS 0/0/0` no mesmo hash,
 um de desenho formal e outro de teoria dos jogos; depois, GO explícito do autor
