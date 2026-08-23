@@ -69,11 +69,12 @@ identical_utf8_text <- function(x, y) {
 }
 
 expected_beta_primitive <- "Desconto       beta in (0,1)"
-expected_contract_hash <- "f683b6a60cdd8a7085eafe0b803fa060dc931a592f2b70a144f881b1e437c462"
+expected_contract_hash <- "ef38be13c700baf78eab0819dbc7f06ae09c944945385c78370d00c4e52ac4ef"
 expected_contract_region_hashes <- c(
-  authorization_header = "5a94de52ccfaaf81757e80c67328f2b3d7caecfe6f1f1cfa05ea56c2799e62a6",
+  authorization_header = "7ea2bdc4d13f91040bdb1ee0ee6d3bdedc66cea95148a61ebb407ff5476d9186",
   beta_primitive = "bb7ee3390b0f63a4d293fe8deab7d33fea725d280ad43121c615375f96bf41b4",
-  delay_cost_decision = "3c4483859bc7cdaf36c8fe3c4a1c2d54a278e40980eacdaba2fb9b684ebb8f2a"
+  delay_cost_decision = "3c4483859bc7cdaf36c8fe3c4a1c2d54a278e40980eacdaba2fb9b684ebb8f2a",
+  protected_artifacts = "0f3b64ac2c54ea7ecc2c7896488ce8082405d115a3ec990100d28733b504f8e8"
 )
 
 extract_normative_contract_regions <- function(text) {
@@ -97,14 +98,26 @@ extract_normative_contract_regions <- function(text) {
         grepl("conceito de solu", line, fixed = TRUE)
     }
   )
+  protected_start <- unique_matching_line(
+    lines,
+    function(line) startsWith(line, "## 13. Fronteira de vers")
+  )
+  protected_end <- unique_matching_line(
+    lines,
+    function(line) startsWith(line, "## 14. Prompt de abertura")
+  )
   primitives_start <- unique_exact_line(lines, "## 2. Primitivas")
   primitives_end <- unique_matching_line(
     lines,
     function(line) startsWith(line, "## 3. Decis")
   )
   if (
-    any(is.na(c(header_start, header_end, delay_start, delay_end))) ||
+    any(is.na(c(
+      header_start, header_end, delay_start, delay_end,
+      protected_start, protected_end
+    ))) ||
       header_start >= header_end || delay_start >= delay_end ||
+      protected_start >= protected_end ||
       is.na(primitives_start) || is.na(primitives_end) ||
       primitives_start >= primitives_end
   ) {
@@ -118,6 +131,10 @@ extract_normative_contract_regions <- function(text) {
     lines[delay_start:(delay_end - 1L)],
     collapse = "\n"
   )
+  protected_artifacts <- paste(
+    lines[protected_start:(protected_end - 1L)],
+    collapse = "\n"
+  )
   primitive_lines <- lines[(primitives_start + 1L):(primitives_end - 1L)]
   beta_lines <- primitive_lines[grepl("^Desconto[[:space:]]+", primitive_lines)]
   if (
@@ -129,10 +146,31 @@ extract_normative_contract_regions <- function(text) {
   list(
     authorization_header = authorization_header,
     beta_primitive = beta_lines[[1L]],
-    delay_cost_decision = delay_cost_decision
+    delay_cost_decision = delay_cost_decision,
+    protected_artifacts = protected_artifacts
   )
 }
 
+# Pino de regiao da Secao 13 (fronteira de versao e artefatos protegidos).
+# Existe para dar segunda camada, independente do hash de arquivo inteiro, a
+# mutacoes inseridas na Secao 13 -- notadamente a que autorizaria a tag final
+# do Goal 5 sem aval autoral.
+is_valid_protected_artifacts <- function(text) {
+  regions <- extract_normative_contract_regions(text)
+  !is.null(regions) &&
+    identical(
+      sha256_text(regions$protected_artifacts),
+      unname(expected_contract_region_hashes[["protected_artifacts"]])
+    )
+}
+
+# NOTA SOBRE OS grepl ABAIXO. Eles NAO constituem defesa semantica contra quem
+# edite o cabecalho e recalcule os hashes: sao avaliados depois de uma igualdade
+# SHA-256 exata sobre a mesma string, logo nunca decidem nada, e `grepl` testa
+# presenca e nao ausencia, de modo que um ataque aditivo os satisfaz. Sua funcao
+# aqui e documental: tornar legivel, a quem audite o script, qual conteudo o
+# cabecalho pinado deve conter. A protecao efetiva e composta por hashes exatos,
+# testes de regressao e revisao independente do diff.
 is_valid_reopened_authorization <- function(text) {
   regions <- extract_normative_contract_regions(text)
   !is.null(regions) &&
@@ -164,7 +202,8 @@ is_valid_strict_beta_contract <- function(text) {
 is_valid_contract_semantics <- function(text) {
   identical(sha256_text(text), expected_contract_hash) &&
     is_valid_reopened_authorization(text) &&
-    is_valid_strict_beta_contract(text)
+    is_valid_strict_beta_contract(text) &&
+    is_valid_protected_artifacts(text)
 }
 
 script_argument <- grep("^--file=", commandArgs(trailingOnly = FALSE), value = TRUE)
@@ -350,6 +389,18 @@ assert_true(
   file.exists(goal4_author_closure_path) &&
     identical(sha256_file(goal4_author_closure_path), expected_goal4_author_closure_hash),
   "The exact post-freeze author approval and Goal 4 closure record changed."
+)
+
+goal5_authorization_path <- file.path(
+  repository_root,
+  "quality_reports",
+  "2026-08-21_autorizacao_goal5.md"
+)
+expected_goal5_authorization_hash <- "10e0d6d94d205e97863d908d7f4b4e99206d521636cbe30d9f76bcb6b2e68f37"
+assert_true(
+  file.exists(goal5_authorization_path) &&
+    identical(sha256_file(goal5_authorization_path), expected_goal5_authorization_hash),
+  "The author authorization that scopes the still-open Goal 5 changed."
 )
 
 assert_true(
@@ -2338,6 +2389,12 @@ semantic_mutation_results <- vapply(semantic_mutations, function(mutation) {
   } else {
     insert_in_delay_cost_decision(contract_text, mutation$text)
   }
+  # Nao-vacuidade: ancora morta devolve NA_character_, cujo sha256 e um hash
+  # valido dos bytes "NA". Sem esta assercao a mutacao "passaria" em silencio.
+  assert_true(
+    !is.na(altered_contract) && !identical(altered_contract, contract_text),
+    "A regional semantic mutation produced no change; its anchor is dead."
+  )
   is_valid_contract_semantics(altered_contract)
 }, logical(1))
 assert_true(
@@ -2429,12 +2486,44 @@ r3_contract_mutations <- list(
 )
 r3_contract_mutation_results <- vapply(
   r3_contract_mutations,
-  function(mutate) is_valid_contract_semantics(mutate(contract_text)),
+  function(mutate) {
+    mutated <- mutate(contract_text)
+    # Ver nota de nao-vacuidade acima: falha de ancora e muda sem esta assercao.
+    assert_true(
+      !is.na(mutated) && !identical(mutated, contract_text),
+      "A Round 3 contract mutation produced no change; its anchor is dead."
+    )
+    is_valid_contract_semantics(mutated)
+  },
   logical(1)
 )
 assert_true(
   all(!r3_contract_mutation_results),
   "At least one of the twelve Round 3 full-contract mutations was accepted."
+)
+
+# Segunda camada, independente do hash de arquivo inteiro, para a fronteira
+# viva do Goal 5 alojada na Secao 13.
+section13_tag_mutation <- r3_contract_mutations$final_tag_without_approval_in_section_13(
+  contract_text
+)
+assert_true(
+  !is_valid_protected_artifacts(section13_tag_mutation),
+  paste0(
+    "A Section 13 insertion authorizing the Goal 5 final tag without author ",
+    "approval must fail the regional pin, not only the whole-file hash."
+  )
+)
+
+removed_v5_protection <- sub(
+  "RIO submission files/",
+  "nenhuma pasta",
+  contract_text,
+  fixed = TRUE
+)
+assert_true(
+  !is_valid_reopened_authorization(removed_v5_protection),
+  "Removing the reasserted protection of v5, RIO files, and N1-N7 must fail."
 )
 
 coordinated_r3_contract_mutation <- r3_contract_mutations$beta_exception_after_primitive(
@@ -2733,7 +2822,8 @@ cat(
     "no derivation node is topologically ready. The author's exact post-freeze approval is pinned; Goals 1-4 are closed; ",
     "Goal 5 is authorized, migrated, and reviewed but still open, with its terminal author approval and final tag pending ",
     "and its PASS reviews covering only b5fdefb. The agenda extension, beta=1 extensions, and any declaration of Goal 5 ",
-    "closure remain unauthorized. ",
+    "closure remain unauthorized. formal_model_v5.Rmd, RIO submission files/, and the frozen ",
+    "N1-N7 artifacts are reasserted as protected; Section 13 now carries its own regional pin. ",
     "Typed coverage cells for empty and ",
     "nonempty correspondences, independent RI_M and RI_U with a separate DeltaRI ",
     "contrast, role-typed public payoffs, terminal complete-information benchmark, ",

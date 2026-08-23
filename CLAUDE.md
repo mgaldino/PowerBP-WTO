@@ -126,7 +126,11 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 > N1/N2 intactos; N3 só reparos menores (belief-free sob maioria).
 
 - **Fase**: N1--N4, N6 e N7 estão `pass/frozen`; o autor encerrou o Goal 4.
-  Goal 5 não está autorizado.
+  O Goal 5 foi autorizado em 2026-08-21, migrado e revisado, e **permanece
+  aberto**: falta o aval autoral terminal, sem o qual a tag final pelo workflow
+  `paper-version` não pode ser criada. Os dois pareceres `PASS 0/0/0` do Goal 5
+  cobrem exclusivamente os bytes do commit `b5fdefb`; os bytes correntes do
+  manuscrito são posteriores e não estão cobertos por eles.
 - **Paper v6** (ALVO CORRETO): `formal_model_v6.Rmd` — alvo do próximo manuscript pass. `formal_model_v6.pdf` existe como PDF compilado atual.
 - **Paper v5** (REFERÊNCIA HISTÓRICA): `formal_model_v5.Rmd` — baseline fixed-pie relative-package com `pi_H=0`, weak-state agenda e weak-vote-passive assessment. `formal_model_v5.pdf` recompilado em 2026-05-15. Não usar v5 como alvo do clean-baseline reset.
 - **Atualização do baseline v5 (2026-05-15)**: v5 usa a arquitetura fixed-pie relative-package com `pi_H=0` no corpo. A avaliação de crenças deve ser chamada **weak-vote-passive assessment**, não refinement. A defesa é informacional: weak states não observam `theta`, então desvios unilaterais de voto dos fracos não sinalizam diretamente o tipo de `H`; votos separadores de `H` podem atualizar crenças; crenças on-path seguem Bayes. O resultado R1 deve ser formulado como selected PBE outcome payoff-equivalente a `P`, `L` ou `R` sob a avaliação mantida, não como unicidade nem caracterização de todos os PBEs.
@@ -369,7 +373,9 @@ A especificação canônica e executável é
 e seu prompt na Seção 14 governou a abertura original do Gate 0. Decisões
 autorais explícitas posteriores autorizaram e encerraram o Goal 4 com N7
 congelado; ver `quality_reports/2026-08-21_fechamento_autoral_goal4_n7.md`.
-Goal 5 não está autorizado e exige nova decisão autoral explícita.
+O Goal 5 foi autorizado em 2026-08-21 e continua aberto, à espera do aval
+autoral terminal; ver `quality_reports/2026-08-21_autorizacao_goal5.md`. A
+fonte canônica do status da fase é o cabeçalho do contrato Gate 0.
 
 O plano `2026-08-03-clean-baseline-goal.md` e o prompt abaixo são **históricos**:
 especificam a arquitetura com opt-out imediato, removida em 2026-08-12. Não

@@ -195,6 +195,14 @@ Exige autorização autoral explícita. A ordem interna é:
   uma que autorize `N4` ou o Goal 2. A mensagem final deve deixar de afirmar
   que o Goal 5 e a migração estão não autorizados.
 
+  **Sobre a natureza do guarda.** A proteção é composta por hashes exatos,
+  testes de regressão e revisão independente do diff. Checagens de conteúdo por
+  `grepl` não são defesa semântica contra quem edite o cabeçalho e recalcule os
+  hashes: elas são avaliadas depois de uma igualdade SHA-256 sobre a mesma
+  string, e `grepl` testa presença e não ausência, de modo que um ataque
+  aditivo as satisfaz. Sua função é documental. Não descrever essa camada como
+  defesa em profundidade.
+
   A fronteira autoral mais imediata hoje é o próprio Goal 5, e o guarda novo
   precisa protegê-la. Além das mutações acima, devem falhar as que:
 
@@ -356,3 +364,44 @@ PASS; plano MINOR REVISION`. Três ajustes residuais aceitos:
    apenas o status e a autorização normativos do cabeçalho, sem tocar
    primitivas, jogo, estimando, conceito de solução, desconto, schemas,
    obrigações de prova ou protocolo de revisão.
+
+**Revisão 4 — 2026-08-23.** O Passo A foi executado e submetido a A5. Os dois
+revisores independentes read-only devolveram **FAIL**:
+`formal_design` com `S/T/A 1/0/5`
+(`quality_reports/2026-08-23_parecer_formal_design_emenda_cabecalho_gate0.md`)
+e `game_theory` com `S/T/A 4/1/4`
+(`quality_reports/2026-08-23_parecer_game_theory_guarda_gate0.md`). Nenhum pediu
+reversão; ambos confirmaram hashes, confinamento do diff e ausência de
+enfraquecimento. Decisões autorais de 2026-08-23 e reparos aplicados:
+
+1. **Proteção de `v5`, RIO e N1–N7 reasserida.** O autor reafirmou que
+   `formal_model_v5.Rmd`, `RIO submission files/` e os artefatos congelados de
+   `N1` a `N7` permanecem protegidos e não autorizados para edição. Cláusula
+   acrescentada ao bloco `**Não autorizado.**` do cabeçalho, dentro da região
+   pinada, com teste de regressão que falha se ela for removida.
+2. **Camada `grepl` não é defesa semântica.** Determinação autoral: a proteção
+   é formada por hashes exatos, testes de regressão e revisão independente do
+   diff. A camada foi mantida com função declaradamente documental, anotada
+   como tal no próprio script, e A3 acima foi corrigido.
+3. **Seção 13 ganhou pino regional próprio.** Era a fronteira de camada única
+   apontada pelo parecer adversarial: recalcular uma só constante bastava para
+   produzir `PASS` sobre um contrato que autorizasse a tag final. Agora há
+   asserção regional independente do hash de arquivo inteiro.
+4. **Autorização do Goal 5 pinada** com SHA-256
+   `10e0d6d94d205e97863d908d7f4b4e99206d521636cbe30d9f76bcb6b2e68f37`,
+   fechando a assimetria em relação aos Goals 3 e 4.
+5. **Não-vacuidade das mutações.** Âncora morta devolvia `NA_character_`, cujo
+   SHA-256 é um hash válido dos bytes `"NA"`, produzindo `PASS` silencioso.
+   Asserção acrescentada nos dois laços de mutação.
+6. **Escopo ampliado por autorização expressa**, exclusivamente para alinhar as
+   afirmações de status do Goal 5 em `AGENTS.md` e `CLAUDE.md`, que ainda
+   carregavam a contradição original no ponto de entrada dos agentes.
+
+O finding O-1 do parecer `formal_design` — divergência commitada em
+`quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md`, com
+cinco verificadores numéricos abortando — permanece **item separado**. A decisão
+autoral não autoriza restaurar arquivos, atualizar pinos nem alterar artefatos
+congelados por causa dele.
+
+Todos os bytes alterados nesta revisão exigem nova rodada de revisão
+independente antes de qualquer congelamento.

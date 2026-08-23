@@ -126,7 +126,11 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 > continuation is belief-free).
 
 - **Phase**: N1--N4, N6, and N7 are `pass/frozen`; the author has closed Goal
-  4. Goal 5 remains unauthorized.
+  4. Goal 5 was authorized on 2026-08-21, migrated, and reviewed, and **remains
+  open**: its terminal author approval is pending, and without it the final tag
+  under the `paper-version` workflow cannot be created. The two `PASS 0/0/0`
+  reviews of Goal 5 cover only the bytes of commit `b5fdefb`; the current
+  manuscript bytes are later and are not covered by them.
 - **Target paper for the next manuscript pass**: `formal_model_v6.Rmd`.
 - **Target compiled PDF**: `formal_model_v6.pdf`.
 - **Previous manuscript baseline (2026-05-15, v5)**: `formal_model_v5.Rmd` carries the fixed-pie relative-package `pi_H=0` baseline and remains the reference history for the post-referee proof repair. The next clean-baseline reset should be derived in `model_redesign/power_architecture_derivations.Rmd` first, then transported into `formal_model_v6.Rmd`, not v5. The v5 paper frames the result as a conditional institutional comparison: consensus can benefit a hegemon through pivotality-based screening, but the model does **not** contain an endogenous rule-choice/signaling stage. The R1 result is stated under a **weak-vote-passive assessment**: weak-state vote deviations are not treated as signals about `H`'s type because weak states do not observe `theta`. Do not describe this assessment as a refinement, D1, intuitive criterion, sequential-equilibrium restriction, or characterization of all PBEs. It is a maintained interpretation of the public voting protocol. The R1 statement should say the selected PBE outcome is payoff-equivalent to one of `P`, `L`, `R`; it is a selection result under the baseline voting assessment, not uniqueness over unrestricted PBEs. The tie-break among weak-proposer payoff ties minimizes `H`'s expected payoff.
@@ -552,8 +556,10 @@ The canonical executable specification is
 `quality_reports/plans/2026-08-12_essential_input_gate0.md`, status APPROVED.
 Its Section 14 opening prompt governed the original Gate 0 opening. Later
 explicit authorial decisions authorized and closed Goal 4 through frozen N7;
-see `quality_reports/2026-08-21_fechamento_autoral_goal4_n7.md`. Goal 5 remains
-unauthorized and requires a new explicit authorial decision.
+see `quality_reports/2026-08-21_fechamento_autoral_goal4_n7.md`. Goal 5 was
+authorized on 2026-08-21 and remains open, awaiting terminal author approval;
+see `quality_reports/2026-08-21_autorizacao_goal5.md`. The canonical source for
+phase status is the Gate 0 contract header.
 
 `quality_reports/plans/2026-08-03-clean-baseline-goal.md` and the prompt below
 are **historical**. They specify the immediate-opt-out architecture that was

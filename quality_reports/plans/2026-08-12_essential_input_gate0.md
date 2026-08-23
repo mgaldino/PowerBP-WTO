@@ -31,6 +31,13 @@ Gate 0 não foi aberto; a criação da tag final do Goal 5 sem aval autoral
 explícito; qualquer declaração de encerramento do Goal 5; e qualquer extensão
 daqueles pareceres aos bytes correntes do manuscrito.
 
+**Artefatos protegidos, reasserção de 2026-08-23.** `formal_model_v5.Rmd`, a
+pasta `RIO submission files/` e os artefatos congelados de `N1` a `N7`
+permanecem protegidos e não autorizados para edição, por decisão autoral desta
+data. A cláusula da Seção 13 limitava essa proteção ao gate do Goal 5, que já
+passou; esta reasserção a restabelece na fonte canônica, sem depender daquela
+limitação temporal.
+
 **Alcance da emenda de status de 2026-08-23.** Ela altera apenas o status e a
 autorização normativos deste cabeçalho, alinhando-os aos registros autorais já
 existentes. Não altera primitivas, jogo, estimando, conceito de solução,
