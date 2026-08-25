@@ -27,19 +27,20 @@ bytes do commit `b5fdefb`; os bytes correntes do manuscrito são posteriores e
 não estão cobertos por eles.
 
 **Não autorizado.** A fronteira `beta=1`; a aprovação do Gate 0 da extensão de
-agenda informal e tudo o que a suceda nessa cadeia — scripts, derivações,
-comparação e migração —, ressalvado o Goal 0 tratado abaixo; a criação da tag
-final do Goal 5 sem aval autoral explícito; qualquer declaração de encerramento
-do Goal 5; qualquer extensão daqueles pareceres aos bytes correntes do
-manuscrito; e a edição de `formal_model_v5.Rmd`, da pasta
+agenda informal, as derivações, a comparação e a migração dessa cadeia; a
+escrita de qualquer script dessa cadeia, inclusive o verificador do respectivo
+Gate 0; a criação da tag final do Goal 5 sem aval autoral explícito; qualquer
+declaração de encerramento do Goal 5; qualquer extensão daqueles pareceres aos
+bytes correntes do manuscrito; e a edição de `formal_model_v5.Rmd`, da pasta
 `RIO submission files/` e dos artefatos congelados de `N1`, `N2`, `N3`, `N4`,
-`N6` e `N7`, que permanecem protegidos nos termos da Seção 13, cuja limitação
-temporal ao gate do Goal 5 fica sem efeito por decisão autoral desta data.
+`N6` e `N7`.
 
 **Goal 0 da extensão de agenda.** O autor deu GO explícito em 2026-08-23 para o
-Goal 0 do plano v3, limitado à redação do contrato executável do respectivo
-Gate 0. O GO não alcança a aprovação desse contrato, os Goals seguintes da
-extensão nem qualquer artefato matemático.
+Goal 0 do plano v3, limitado à redação, em documento, do contrato executável do
+respectivo Gate 0. A entrega é o documento. O GO não autoriza escrever script
+algum: a especificação do que o verificador deverá checar pertence ao documento,
+mas o próprio verificador é Goal 1. O GO também não alcança a aprovação do
+contrato, os Goals seguintes da extensão nem qualquer resultado derivado.
 
 **Alcance da emenda de status de 2026-08-23.** Ela altera apenas o status e a
 autorização normativos deste cabeçalho, alinhando-os aos registros autorais já

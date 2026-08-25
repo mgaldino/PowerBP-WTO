@@ -464,3 +464,68 @@ continua sem autorização para restaurar arquivos, atualizar pinos ou alterar
 artefatos congelados.
 
 Todos os bytes desta revisão exigem nova rodada de revisão independente.
+
+**Revisão 6 — 2026-08-23.** Terceira rodada de revisão independente. Ambos
+`FAIL`: `formal_design` `S/T/A 5/1/7`
+(`quality_reports/2026-08-23_parecer_formal_design_rodada3.md`) e `game_theory`
+`S/T/A 4/1/7` (`quality_reports/2026-08-23_parecer_game_theory_rodada3.md`).
+Os dois convergiram outra vez, e a convergência apontou para uma única oração.
+
+O reparo da Revisão 5 dizia que os artefatos "permanecem protegidos nos termos
+da Seção 13, cuja limitação temporal ao gate do Goal 5 fica sem efeito". Dois
+defeitos, medidos por ambos:
+
+- a Seção 13 protege o registro de decisões, `formal_model_v5.Rmd` **e**
+  `formal_model_v6.Rmd` até o gate do Goal 5, e os artefatos da cadeia
+  `pivotal-response`. Não menciona `RIO submission files/` nem os artefatos
+  congelados da cadeia essential-input — `pivotal-response` é a cadeia
+  substituída, conjunto disjunto. A remissão era **falsa para dois dos três
+  conjuntos**, e o revisor adversarial mediu o custo de ataque contra eles em
+  **zero**;
+- a limitação temporal que a oração anulava governa `v5` **e `v6` no mesmo
+  bullet**. Na leitura natural, anulá-la tornava `formal_model_v6.Rmd` protegido
+  sem prazo — proibindo o que o Goal 5 ainda exige, num arquivo editado dentro
+  desta mesma janela.
+
+Decisão autoral de 2026-08-23: **suprimir a oração**. O bloco passou a ser
+não-autorização pura, que é competência canônica do cabeçalho, sem invocar a
+Seção 13 nem qualificá-la. Isso fecha os dois findings de uma vez, devolve `v6`
+ao regime original sem ambiguidade e não toca a Seção 13 nem a tabela de fonte
+única — o pino `protected_artifacts` permanece `0f3b64ac…`.
+
+Também aplicados:
+
+1. **T-1** — a ressalva "ressalvado o Goal 0 tratado abaixo" estava presa, pelo
+   pronome, ao conjunto do que *sucede* a aprovação, do qual o Goal 0 não é
+   membro. Suprimida; o bloco do Goal 0 já enuncia o escopo de forma positiva.
+2. **S-3** — "contrato executável" é termo que o plano v3 define incluindo um
+   `verifier`, enquanto o mesmo bloco listava "scripts" como não autorizados. O
+   cabeçalho passou a dizer explicitamente que a entrega do Goal 0 é o
+   documento, que a especificação do verificador pertence a ele, e que o próprio
+   verificador é Goal 1. A escrita de qualquer script da cadeia entrou na lista
+   de não-autorizações.
+3. **Mensagem final** — deixou de afirmar "unauthorized under Section 13", base
+   normativa falsa para dois dos três objetos, e passou a atribuir a
+   não-autorização ao próprio cabeçalho.
+4. **Canários** — anotados no script com a mesma honestidade já aplicada aos
+   `grepl`: eles verificam apenas que a âncora ocorre na região, propriedade já
+   implicada pelo pino, e uma linha isca os anula em silêncio. O redesenho que o
+   parecer `game_theory` propõe (S-2 da rodada 3) **permanece aberto** e não foi
+   executado, por depender de decisão autoral entre três alternativas.
+5. **Item O-1 reescrito.** A versão anterior contava duas edições pós-pino e
+   omitia `fa803b2`, o merge que produziu os bytes correntes. Foram três. A
+   auditoria de conteúdo mostra que `e29a519` regrediu o texto da errata de N2 e
+   que `fa803b2` o **restaurou**: o estado corrente é `1a12b74` mais dois blocos
+   aditivos, não deriva não revisada. Acrescentado o custo real da opção 2 —
+   das 16 referências ao pino morto, três são artefatos congelados e dez são
+   pareceres e manifestos congelados, de modo que recomputá-los aciona a cascata
+   da Seção 12 item 2 até `N6` e `N7` — e uma opção 3, de repin parcial com
+   errata, que respeita a fronteira.
+
+**Correção de registro.** A mensagem do commit `ee0c8d5` afirma que duas rodadas
+de revisão independente correram sobre aqueles bytes. É falso: as rodadas 1 e 2
+cobriram bytes anteriores (`a315f59` e o que veio a ser `a490a7a`), e os bytes
+de `ee0c8d5` tinham zero revisões concluídas quando foram commitados. Emendar
+mensagem de commit reescreveria história; a correção fica registrada aqui.
+
+Os bytes desta revisão exigem nova rodada de revisão independente.

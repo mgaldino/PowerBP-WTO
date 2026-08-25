@@ -69,9 +69,9 @@ identical_utf8_text <- function(x, y) {
 }
 
 expected_beta_primitive <- "Desconto       beta in (0,1)"
-expected_contract_hash <- "20c331dff3d67a759bf3408f9037a841594e9b3e4721d6a83c31f452dede1d0d"
+expected_contract_hash <- "5c013e55b2c619b02975aaa47b0623ed86355ae652c094430d876fcf8cd86c0e"
 expected_contract_region_hashes <- c(
-  authorization_header = "7b7c601edebc7134d2fec37f70406c6fbc89efa8d87fa0c6438b4b5651bbad04",
+  authorization_header = "1be8f7dfeb46d86ec5f845c70ea8398130d372430129687597a317df8d59925e",
   beta_primitive = "bb7ee3390b0f63a4d293fe8deab7d33fea725d280ad43121c615375f96bf41b4",
   delay_cost_decision = "3c4483859bc7cdaf36c8fe3c4a1c2d54a278e40980eacdaba2fb9b684ebb8f2a",
   protected_artifacts = "0f3b64ac2c54ea7ecc2c7896488ce8082405d115a3ec990100d28733b504f8e8"
@@ -2525,6 +2525,17 @@ assert_true(
   )
 )
 
+# NOTA SOBRE OS TRES CANARIOS ABAIXO. Eles mutam o texto integral e avaliam
+# `is_valid_reopened_authorization`, que decide por igualdade SHA-256 exata da
+# regiao do cabecalho. Portanto verificam apenas que a string-ancora ocorre em
+# algum ponto dessa regiao -- propriedade ja implicada pelo pino que os precede.
+# Nao sao defesa contra quem edite o cabecalho e recalcule os hashes: uma linha
+# isca contendo as ancoras permite apagar a clausula com os tres passando em
+# silencio. Sua funcao e a mesma dos grepl: documentar qual conteudo o cabecalho
+# pinado deve conter. A protecao efetiva continua sendo hashes exatos, testes de
+# regressao e revisao independente do diff. Finding S-2 da rodada 3
+# (`quality_reports/2026-08-23_parecer_game_theory_rodada3.md`) permanece aberto
+# quanto a um redesenho; nao redesenhar sem decisao autoral.
 removed_v5_protection <- sub(
   "RIO submission files/",
   "nenhuma pasta",
@@ -2544,7 +2555,7 @@ removed_v5_manuscript_protection <- sub(
 )
 assert_true(
   !is_valid_reopened_authorization(removed_v5_manuscript_protection),
-  "Removing formal_model_v5.Rmd from the reasserted protection must fail."
+  "Removing formal_model_v5.Rmd from the header protection clause must fail."
 )
 
 removed_frozen_artifact_protection <- sub(
@@ -2555,7 +2566,7 @@ removed_frozen_artifact_protection <- sub(
 )
 assert_true(
   !is_valid_reopened_authorization(removed_frozen_artifact_protection),
-  "Removing the frozen artifacts clause from the reasserted protection must fail."
+  "Removing the frozen artifacts clause from the header protection must fail."
 )
 
 coordinated_r3_contract_mutation <- r3_contract_mutations$beta_exception_after_primitive(
@@ -2857,8 +2868,9 @@ cat(
     "closure remain unauthorized, as is approval of the agenda-extension Gate 0 contract and every ",
     "later goal in that chain; the author's 2026-08-23 GO covers only drafting that contract. Editing ",
     "formal_model_v5.Rmd, RIO submission files/, or the frozen N1/N2/N3/N4/N6/N7 artifacts is ",
-    "unauthorized under Section 13, whose Goal 5 time limit the author set aside. Four contract ",
-    "regions are pinned, Section 13 among them. ",
+    "unauthorized by the header itself. Writing any script of the agenda-extension chain, including ",
+    "that chain's Gate 0 verifier, is unauthorized; the 2026-08-23 GO covers only drafting the ",
+    "contract document. Four contract regions are pinned, Section 13 among them. ",
     "Typed coverage cells for empty and ",
     "nonempty correspondences, independent RI_M and RI_U with a separate DeltaRI ",
     "contrast, role-typed public payoffs, terminal complete-information benchmark, ",
