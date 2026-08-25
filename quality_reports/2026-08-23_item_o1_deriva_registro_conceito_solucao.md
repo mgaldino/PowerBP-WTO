@@ -4,7 +4,7 @@
 **Origem:** finding O-1 do parecer `formal_design` da rodada 1
 (`quality_reports/2026-08-23_parecer_formal_design_emenda_cabecalho_gate0.md`),
 confirmado de forma independente.
-**Status:** `ABERTO` — diagnóstico feito, reparo **não autorizado**.
+**Status:** `RESOLVIDO` em 2026-08-25 — ver Seção 6.
 **Autorização vigente:** o autor autorizou abrir este item como investigação
 separada, com autorização e revisores próprios. Nenhuma autorização foi dada
 para restaurar arquivos, atualizar pinos ou alterar artefatos congelados.
@@ -138,3 +138,27 @@ autorizar a cascata de invalidação correspondente.
 
 A opção 3 foi acrescentada precisamente para oferecer uma saída que respeite a
 fronteira.
+
+---
+
+## 6. Resolução, 2026-08-25
+
+A auditoria da Seção 3 mostrou que o conteúdo corrente é o conteúdo aprovado
+mais dois blocos aditivos, sem deriva indevida. Restava alinhar os pinos.
+
+A investigação de qual arquivo de fato **impunha** o hash devolveu **um só**:
+`scripts/essential_input_formulas.R`, que aborta com
+`Frozen formula source hash mismatch`. Ele não é artefato congelado; é script.
+As outras quinze ocorrências do hash antigo estão em pareceres e manifestos que
+apenas **anotam** o hash que os revisores viram, sem impor nada.
+
+Reparo aplicado: atualizar o pino nesse único script para `91892997…`, com
+comentário no local registrando o motivo e apontando para este documento. Os
+quinze registros históricos ficaram intactos, porque são fotografias.
+
+Isso é a opção 3 da Seção 4 na sua forma mínima, e evita integralmente a cascata
+da Seção 12: nenhum artefato congelado foi tocado, nenhum nó voltou a `pending`.
+
+Resultado verificado: os cinco verificadores numéricos voltaram a passar
+(`numeric_boundaries`, `n1_numeric`, `n2_numeric`, `n3_numeric`, `n4_numeric`),
+e `verify_essential_input_gate0.R` continua passando.
