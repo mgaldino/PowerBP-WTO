@@ -69,9 +69,9 @@ identical_utf8_text <- function(x, y) {
 }
 
 expected_beta_primitive <- "Desconto       beta in (0,1)"
-expected_contract_hash <- "ef38be13c700baf78eab0819dbc7f06ae09c944945385c78370d00c4e52ac4ef"
+expected_contract_hash <- "20c331dff3d67a759bf3408f9037a841594e9b3e4721d6a83c31f452dede1d0d"
 expected_contract_region_hashes <- c(
-  authorization_header = "7ea2bdc4d13f91040bdb1ee0ee6d3bdedc66cea95148a61ebb407ff5476d9186",
+  authorization_header = "7b7c601edebc7134d2fec37f70406c6fbc89efa8d87fa0c6438b4b5651bbad04",
   beta_primitive = "bb7ee3390b0f63a4d293fe8deab7d33fea725d280ad43121c615375f96bf41b4",
   delay_cost_decision = "3c4483859bc7cdaf36c8fe3c4a1c2d54a278e40980eacdaba2fb9b684ebb8f2a",
   protected_artifacts = "0f3b64ac2c54ea7ecc2c7896488ce8082405d115a3ec990100d28733b504f8e8"
@@ -150,6 +150,15 @@ extract_normative_contract_regions <- function(text) {
     protected_artifacts = protected_artifacts
   )
 }
+
+# DECISAO AUTORAL 2026-08-23 sobre a fronteira beta=1 (finding S-2, rodada 2).
+# A Secao 12 (invalidacao) NAO recebe pino regional. A cobertura de beta=1 por
+# `beta_primitive`, por `delay_cost_decision` e pelo hash de arquivo inteiro foi
+# julgada suficiente, e a rota de insercao pela Secao 12 e aceita como risco
+# conhecido. Motivo: um pino regional compra legibilidade do diff, nao uma
+# fronteira de seguranca nova -- o hash integral ja rejeita a mutacao --, e
+# acrescentar pinos caso a caso gera regresso sem ganho. Nao repropor sem nova
+# decisao autoral.
 
 # Pino de regiao da Secao 13 (fronteira de versao e artefatos protegidos).
 # Existe para dar segunda camada, independente do hash de arquivo inteiro, a
@@ -278,8 +287,9 @@ contract_text <- paste0(
 assert_true(
   is_valid_contract_semantics(contract_text),
   paste0(
-    "The canonical authorization header, beta primitive, or complete strict-delay ",
-    "decision differs from its exact author-approved regional object/hash."
+    "One of the four pinned regions -- authorization header, beta primitive, ",
+    "complete strict-delay decision, or Section 13 protected artifacts -- differs ",
+    "from its exact author-approved regional object/hash."
   )
 )
 
@@ -2248,8 +2258,8 @@ assert_true(
 assert_true(
   is_valid_contract_semantics(contract_text),
   paste0(
-    "The governing contract must retain strict beta<1; the separate posterior ",
-    "authorization pinned above remains limited to N6."
+    "The governing contract must retain strict beta<1 across all four pinned ",
+    "regions, including the Section 13 protected artifacts."
   )
 )
 
@@ -2523,7 +2533,29 @@ removed_v5_protection <- sub(
 )
 assert_true(
   !is_valid_reopened_authorization(removed_v5_protection),
-  "Removing the reasserted protection of v5, RIO files, and N1-N7 must fail."
+  "Removing the RIO submission files clause from the protection must fail."
+)
+
+removed_v5_manuscript_protection <- sub(
+  "formal_model_v5.Rmd",
+  "nenhum manuscrito",
+  contract_text,
+  fixed = TRUE
+)
+assert_true(
+  !is_valid_reopened_authorization(removed_v5_manuscript_protection),
+  "Removing formal_model_v5.Rmd from the reasserted protection must fail."
+)
+
+removed_frozen_artifact_protection <- sub(
+  "artefatos congelados de",
+  "nenhum artefato de",
+  contract_text,
+  fixed = TRUE
+)
+assert_true(
+  !is_valid_reopened_authorization(removed_frozen_artifact_protection),
+  "Removing the frozen artifacts clause from the reasserted protection must fail."
 )
 
 coordinated_r3_contract_mutation <- r3_contract_mutations$beta_exception_after_primitive(
@@ -2821,9 +2853,12 @@ cat(
     "PASS: strict o_1 < 1 and beta < 1 contract with N1/N2/N3/N4/N6/N7 pass/frozen on exact reviewed artifacts; ",
     "no derivation node is topologically ready. The author's exact post-freeze approval is pinned; Goals 1-4 are closed; ",
     "Goal 5 is authorized, migrated, and reviewed but still open, with its terminal author approval and final tag pending ",
-    "and its PASS reviews covering only b5fdefb. The agenda extension, beta=1 extensions, and any declaration of Goal 5 ",
-    "closure remain unauthorized. formal_model_v5.Rmd, RIO submission files/, and the frozen ",
-    "N1-N7 artifacts are reasserted as protected; Section 13 now carries its own regional pin. ",
+    "and its PASS reviews covering only b5fdefb. Beta=1 extensions and any declaration of Goal 5 ",
+    "closure remain unauthorized, as is approval of the agenda-extension Gate 0 contract and every ",
+    "later goal in that chain; the author's 2026-08-23 GO covers only drafting that contract. Editing ",
+    "formal_model_v5.Rmd, RIO submission files/, or the frozen N1/N2/N3/N4/N6/N7 artifacts is ",
+    "unauthorized under Section 13, whose Goal 5 time limit the author set aside. Four contract ",
+    "regions are pinned, Section 13 among them. ",
     "Typed coverage cells for empty and ",
     "nonempty correspondences, independent RI_M and RI_U with a separate DeltaRI ",
     "contrast, role-typed public payoffs, terminal complete-information benchmark, ",

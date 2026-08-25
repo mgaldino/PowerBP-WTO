@@ -375,10 +375,10 @@ reversão; ambos confirmaram hashes, confinamento do diff e ausência de
 enfraquecimento. Decisões autorais de 2026-08-23 e reparos aplicados:
 
 1. **Proteção de `v5`, RIO e N1–N7 reasserida.** O autor reafirmou que
-   `formal_model_v5.Rmd`, `RIO submission files/` e os artefatos congelados de
-   `N1` a `N7` permanecem protegidos e não autorizados para edição. Cláusula
-   acrescentada ao bloco `**Não autorizado.**` do cabeçalho, dentro da região
-   pinada, com teste de regressão que falha se ela for removida.
+   `formal_model_v5.Rmd`, `RIO submission files/` e os artefatos congelados
+   permanecem protegidos e não autorizados para edição. Na primeira tentativa a
+   cláusula foi escrita como bloco autônomo, fora do bloco
+   `**Não autorizado.**`; a Revisão 5 corrigiu essa colocação.
 2. **Camada `grepl` não é defesa semântica.** Determinação autoral: a proteção
    é formada por hashes exatos, testes de regressão e revisão independente do
    diff. A camada foi mantida com função declaradamente documental, anotada
@@ -405,3 +405,62 @@ congelados por causa dele.
 
 Todos os bytes alterados nesta revisão exigem nova rodada de revisão
 independente antes de qualquer congelamento.
+
+**Revisão 5 — 2026-08-23.** Segunda rodada de revisão independente sobre os
+reparos. Ambos os pareceres voltaram **FAIL**: `formal_design` `S/T/A 3/1/5`
+(`quality_reports/2026-08-23_parecer_formal_design_rodada2.md`) e `game_theory`
+`S/T/A 2/2/7` (`quality_reports/2026-08-23_parecer_game_theory_rodada2.md`).
+Nenhum pediu reversão, e ambos confirmaram fechados os findings da rodada 1: o
+pino da Seção 13 rejeita sozinho a mutação da tag final, a não-vacuidade dispara
+com âncora morta e com âncora duplicada, a autorização do Goal 5 está pinada, e
+`CLAUDE.md`/`AGENTS.md` não têm contradição residual.
+
+Os dois revisores convergiram, de ângulos independentes, no mesmo defeito: a
+cláusula de proteção fora escrita como bloco autônomo intitulado "Artefatos
+protegidos" — o termo que a tabela de fonte única atribui à Seção 13 — e
+afirmava restabelecer a proteção "na fonte canônica, sem depender daquela
+limitação temporal". Isso ampliava a lista canônica e criava exceção a ela, o
+que a Regra de fonte normativa única veda fora da fonte. O contraste estava no
+próprio cabeçalho: sobre invalidação ele remete ("conforme a Seção 12"); sobre
+artefatos protegidos ele deslocava.
+
+Decisões autorais de 2026-08-23 e reparos aplicados:
+
+1. **S-1 — remissão.** A cláusula foi reescrita dentro do bloco
+   `**Não autorizado.**` e passou a remeter: os artefatos "permanecem
+   protegidos nos termos da Seção 13, cuja limitação temporal ao gate do Goal 5
+   fica sem efeito por decisão autoral desta data". Deixa de legislar e vira
+   aviso; a Seção 13 e a tabela de fonte única permanecem byte-idênticas, e o
+   pino `protected_artifacts` não precisou ser recomputado.
+2. **S-2 — cobertura de `beta=1` aceita como suficiente.** A Seção 12 não
+   recebe pino regional. A decisão e seu motivo estão registrados como
+   comentário no próprio verificador, para que nenhum revisor futuro a
+   reproponha: pino regional compra legibilidade de diff, não fronteira de
+   segurança nova, e acrescentar pinos caso a caso gera regresso sem ganho.
+3. **T-1 — canários completos.** Havia canário apenas para
+   `RIO submission files/`. Foram acrescentados canários para
+   `formal_model_v5.Rmd` e para a cláusula dos artefatos congelados, cobrindo os
+   três itens que a mensagem nomeia.
+4. **T-2 — diagnóstico das quatro regiões.** As duas asserções vivas
+   enumeravam três regiões; uma deriva só na Seção 13 mandava o operador
+   investigar as três que passaram. Agora nomeiam as quatro.
+5. **Goal 0 da extensão de agenda.** O autor confirmou ter dado GO explícito em
+   2026-08-23, na sessão Codex, limitado à redação do contrato executável do
+   Gate 0 da extensão. O cabeçalho afirmava o contrário e foi corrigido: o
+   bloco de não-autorizações passou a excluir a aprovação daquele contrato e os
+   goals seguintes da cadeia, ressalvando o Goal 0, e um bloco próprio registra
+   o alcance do GO. A mensagem final do verificador acompanha.
+6. **T-1 do outro parecer.** A notação "artefatos congelados de `N1` a `N7``"
+   sugeria sete nós; passou à enumeração dos seis, sem `N5`.
+
+Também corrigido o item 1 da Revisão 4, que descrevia a cláusula como
+acrescentada ao bloco `**Não autorizado.**` quando ela estava em bloco
+separado. O registro agora descreve o artefato como ele é.
+
+O finding O-1 deixou de estar parado: por decisão autoral desta data foi aberto
+como item próprio em
+`quality_reports/2026-08-23_item_o1_deriva_registro_conceito_solucao.md`. Ele
+continua sem autorização para restaurar arquivos, atualizar pinos ou alterar
+artefatos congelados.
+
+Todos os bytes desta revisão exigem nova rodada de revisão independente.
