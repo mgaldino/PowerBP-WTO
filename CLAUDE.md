@@ -32,6 +32,16 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
   histórico revisado, que continua recuperável em `b5fdefb`, mas os novos bytes
   não podem ser descritos como cobertos por aqueles pareceres até nova
   compilação e nova revisão independente.
+- **Fechamento do Goal 5 (2026-08-25):** o autor concedeu o aval terminal e a
+  versão foi fixada pela tag anotada `v6-essential-input-2026-08-25`. Os bytes
+  tagueados são `00bbaa3a5768348fede3f6584bab915b7c1dbf1fd1cccbf723bb64a90188e4a6`
+  para `formal_model_v6.Rmd` e
+  `3602b0753a8a61ddcb2450f7181ba2f8fc53b9f73ad16cdfbb46e337019182be`
+  para `formal_model_v6.pdf`. Os pareceres `PASS 0/0/0` continuam limitados a
+  `b5fdefb`; a abertura posterior é redação autoral aprovada pelo autor com
+  proofread independente read-only em
+  `quality_reports/2026-08-25_proofread_introducao_v6.md`, não uma extensão
+  retroativa daqueles pareceres.
 
 > ## ARQUITETURA CORRENTE — essential-input (2026-08-12)
 >
@@ -125,12 +135,11 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 > relatório de provas de 2026-08-21 devem ser rederivados sob este pacote.
 > N1/N2 intactos; N3 só reparos menores (belief-free sob maioria).
 
-- **Fase**: N1--N4, N6 e N7 estão `pass/frozen`; o autor encerrou o Goal 4.
-  O Goal 5 foi autorizado em 2026-08-21, migrado e revisado, e **permanece
-  aberto**: falta o aval autoral terminal, sem o qual a tag final pelo workflow
-  `paper-version` não pode ser criada. Os dois pareceres `PASS 0/0/0` do Goal 5
-  cobrem exclusivamente os bytes do commit `b5fdefb`; os bytes correntes do
-  manuscrito são posteriores e não estão cobertos por eles.
+- **Fase**: N1--N4, N6 e N7 estão `pass/frozen`; os Goals 1 a 5 estão
+  encerrados. O autor concedeu o aval terminal do Goal 5 em 2026-08-25 e a tag
+  `v6-essential-input-2026-08-25` fixa os bytes finais. Os dois pareceres
+  `PASS 0/0/0` do Goal 5 cobrem exclusivamente os bytes do commit `b5fdefb`;
+  não cobrem os bytes tagueados posteriores.
 - **Paper v6** (ALVO CORRETO): `formal_model_v6.Rmd` — alvo do próximo manuscript pass. `formal_model_v6.pdf` existe como PDF compilado atual.
 - **Paper v5** (REFERÊNCIA HISTÓRICA): `formal_model_v5.Rmd` — baseline fixed-pie relative-package com `pi_H=0`, weak-state agenda e weak-vote-passive assessment. `formal_model_v5.pdf` recompilado em 2026-05-15. Não usar v5 como alvo do clean-baseline reset.
 - **Atualização do baseline v5 (2026-05-15)**: v5 usa a arquitetura fixed-pie relative-package com `pi_H=0` no corpo. A avaliação de crenças deve ser chamada **weak-vote-passive assessment**, não refinement. A defesa é informacional: weak states não observam `theta`, então desvios unilaterais de voto dos fracos não sinalizam diretamente o tipo de `H`; votos separadores de `H` podem atualizar crenças; crenças on-path seguem Bayes. O resultado R1 deve ser formulado como selected PBE outcome payoff-equivalente a `P`, `L` ou `R` sob a avaliação mantida, não como unicidade nem caracterização de todos os PBEs.
@@ -373,9 +382,10 @@ A especificação canônica e executável é
 e seu prompt na Seção 14 governou a abertura original do Gate 0. Decisões
 autorais explícitas posteriores autorizaram e encerraram o Goal 4 com N7
 congelado; ver `quality_reports/2026-08-21_fechamento_autoral_goal4_n7.md`.
-O Goal 5 foi autorizado em 2026-08-21 e continua aberto, à espera do aval
-autoral terminal; ver `quality_reports/2026-08-21_autorizacao_goal5.md`. A
-fonte canônica do status da fase é o cabeçalho do contrato Gate 0.
+O Goal 5 foi autorizado em 2026-08-21 e encerrado pelo aval autoral terminal de
+2026-08-25; a tag `v6-essential-input-2026-08-25` fixa a versão final. Ver
+`quality_reports/2026-08-21_autorizacao_goal5.md` para a abertura e o cabeçalho
+do contrato Gate 0 para o status canônico da fase.
 
 O plano `2026-08-03-clean-baseline-goal.md` e o prompt abaixo são **históricos**:
 especificam a arquitetura com opt-out imediato, removida em 2026-08-12. Não
@@ -577,9 +587,10 @@ Roadmap detalhado em `quality_reports/2026-04-29_lean_v5_roadmap.md`. Resumo:
 - Idioma: português para notas; inglês para o paper
 - N genérico sempre. Exemplo motivador (Seção 2): usar **N=5** (decisão do autor,
   2026-08-21 — ímpar evita empates de maioria e fica dentro do domínio m≥3 da
-  comparação; N=3 era a versão antiga). O exemplo atual em `formal_model_v6.Rmd`
-  ainda usa N=3 e linguagem de opt-out imediato, ambos superados; reescrever na
-  migração Goal 5 a partir das interfaces congeladas.
+  comparação; N=3 era a versão antiga). O exemplo corrente em
+  `formal_model_v6.Rmd` usa um hegemon e quatro weak states, isto é, N=5, e a
+  migração do Goal 5 removeu o opt-out imediato. Não reintroduzir N=3 nem
+  linguagem de opt-out.
 - Sob maioria no clean reset: W **pode** excluir H, mas exclusão/no-screening é
   um resultado a rederivar, não uma convenção. A frase histórica “W exclui H”
   vale apenas no branch no-H das provas corrigidas anteriores. Em qualquer

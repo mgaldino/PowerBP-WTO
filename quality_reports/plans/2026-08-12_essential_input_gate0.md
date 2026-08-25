@@ -16,24 +16,31 @@ posterior permitiu reavaliar o Goal 1 exclusivamente para `N1`, `N2` e `N3`,
 seguindo integralmente os gates da Seção 11; decisões autorais posteriores
 abriram e encerraram os Goals 2, 3 e 4.
 
-**Estado corrente em 2026-08-23.** `N1`, `N2`, `N3`, `N4`, `N6` e `N7` estão
+**Estado corrente em 2026-08-25.** `N1`, `N2`, `N3`, `N4`, `N6` e `N7` estão
 `pass/frozen`, cada um com dois pareceres independentes `PASS 0/0/0` no mesmo
 hash, e nenhum nó de derivação está topologicamente pronto. Os Goals 1 a 4
 estão encerrados. O Goal 5, migração para `formal_model_v6.Rmd`, foi autorizado
-em 2026-08-21, executado e revisado, e **permanece aberto**: falta o aval
-autoral terminal, sem o qual a tag final pelo workflow `paper-version` não pode
-ser criada. Os dois pareceres `PASS 0/0/0` do Goal 5 cobrem exclusivamente os
-bytes do commit `b5fdefb`; os bytes correntes do manuscrito são posteriores e
-não estão cobertos por eles.
+em 2026-08-21, executado e revisado; o autor concedeu o aval terminal em
+2026-08-25, e os Goals 1 a 5 estão encerrados. A versão final do Goal 5 fica
+fixada pela tag anotada `v6-essential-input-2026-08-25`, com os bytes correntes
+de `formal_model_v6.Rmd` (SHA-256
+`00bbaa3a5768348fede3f6584bab915b7c1dbf1fd1cccbf723bb64a90188e4a6`) e
+`formal_model_v6.pdf` (SHA-256
+`3602b0753a8a61ddcb2450f7181ba2f8fc53b9f73ad16cdfbb46e337019182be`). Os dois
+pareceres `PASS 0/0/0` do Goal 5 cobrem exclusivamente o commit `b5fdefb` e os
+hashes de manuscrito registrados naquele snapshot; não cobrem os bytes finais
+tagueados. A abertura posterior é redação autoral aprovada pelo autor e recebeu
+proofread independente read-only, registrado em
+`quality_reports/2026-08-25_proofread_introducao_v6.md`; isso não estende o
+escopo dos dois pareceres do Goal 5.
 
 **Não autorizado.** A fronteira `beta=1`; a aprovação do Gate 0 da extensão de
 agenda informal, as derivações, a comparação e a migração dessa cadeia; a
 escrita de qualquer script dessa cadeia, inclusive o verificador do respectivo
-Gate 0; a criação da tag final do Goal 5 sem aval autoral explícito; qualquer
-declaração de encerramento do Goal 5; qualquer extensão daqueles pareceres aos
-bytes correntes do manuscrito; e a edição de `formal_model_v5.Rmd`, da pasta
-`RIO submission files/` e dos artefatos congelados de `N1`, `N2`, `N3`, `N4`,
-`N6` e `N7`.
+Gate 0; mover, apagar ou recriar a tag final do Goal 5 sobre outros bytes sem
+nova decisão autoral; qualquer extensão daqueles pareceres aos bytes finais do
+manuscrito; e a edição de `formal_model_v5.Rmd`, da pasta `RIO submission files/`
+e dos artefatos congelados de `N1`, `N2`, `N3`, `N4`, `N6` e `N7`.
 
 **Goal 0 da extensão de agenda.** O autor deu GO explícito em 2026-08-23 para o
 Goal 0 do plano v3, limitado à redação, em documento, do contrato executável do
@@ -42,9 +49,10 @@ algum: a especificação do que o verificador deverá checar pertence ao documen
 mas o próprio verificador é Goal 1. O GO também não alcança a aprovação do
 contrato, os Goals seguintes da extensão nem qualquer resultado derivado.
 
-**Alcance da emenda de status de 2026-08-23.** Ela altera apenas o status e a
-autorização normativos deste cabeçalho, alinhando-os aos registros autorais já
-existentes. Não altera primitivas, jogo, estimando, conceito de solução,
+**Alcance das atualizações de status de 2026-08-23 e 2026-08-25.** Elas alteram
+apenas o status e a autorização normativos deste cabeçalho, alinhando-os às
+decisões autorais já existentes. Não alteram primitivas, jogo, estimando,
+conceito de solução,
 desconto, schemas, obrigações de prova nem o protocolo de revisão da Seção 11.
 Diagnóstico e roteiro em
 `quality_reports/2026-08-23_inconsistencia_cabecalho_contrato_gate0.md`.

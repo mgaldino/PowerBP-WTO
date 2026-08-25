@@ -21,6 +21,16 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
   which remains recoverable at `b5fdefb`, but the edited bytes must not be
   described as covered by those PASS reviews until they are rendered and
   independently reviewed again.
+- **Goal 5 closure (2026-08-25):** the author granted terminal approval and the
+  version was fixed by annotated tag `v6-essential-input-2026-08-25`. The
+  tagged bytes are
+  `00bbaa3a5768348fede3f6584bab915b7c1dbf1fd1cccbf723bb64a90188e4a6` for
+  `formal_model_v6.Rmd` and
+  `3602b0753a8a61ddcb2450f7181ba2f8fc53b9f73ad16cdfbb46e337019182be` for
+  `formal_model_v6.pdf`. The PASS 0/0/0 reviews remain limited to `b5fdefb`;
+  the later opening is author-approved prose with an independent read-only
+  proofread in `quality_reports/2026-08-25_proofread_introducao_v6.md`, not a
+  retroactive extension of those reviews.
 
 > ## CURRENT ARCHITECTURE — essential-input (2026-08-12)
 >
@@ -125,16 +135,20 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 > package. N1/N2 untouched; N3 needs only the audit's minor repairs (majority
 > continuation is belief-free).
 
-- **Phase**: N1--N4, N6, and N7 are `pass/frozen`; the author has closed Goal
-  4. Goal 5 was authorized on 2026-08-21, migrated, and reviewed, and **remains
-  open**: its terminal author approval is pending, and without it the final tag
-  under the `paper-version` workflow cannot be created. The two `PASS 0/0/0`
-  reviews of Goal 5 cover only the bytes of commit `b5fdefb`; the current
-  manuscript bytes are later and are not covered by them.
+- **Phase**: N1--N4, N6, and N7 are `pass/frozen`; Goals 1 through 5 are
+  closed. The author granted terminal approval for Goal 5 on 2026-08-25, and
+  tag `v6-essential-input-2026-08-25` fixes the final bytes. The two Goal 5
+  `PASS 0/0/0` reviews cover only commit `b5fdefb`; they do not cover the later
+  tagged bytes.
 - **Target paper for the next manuscript pass**: `formal_model_v6.Rmd`.
 - **Target compiled PDF**: `formal_model_v6.pdf`.
 - **Previous manuscript baseline (2026-05-15, v5)**: `formal_model_v5.Rmd` carries the fixed-pie relative-package `pi_H=0` baseline and remains the reference history for the post-referee proof repair. The next clean-baseline reset should be derived in `model_redesign/power_architecture_derivations.Rmd` first, then transported into `formal_model_v6.Rmd`, not v5. The v5 paper frames the result as a conditional institutional comparison: consensus can benefit a hegemon through pivotality-based screening, but the model does **not** contain an endogenous rule-choice/signaling stage. The R1 result is stated under a **weak-vote-passive assessment**: weak-state vote deviations are not treated as signals about `H`'s type because weak states do not observe `theta`. Do not describe this assessment as a refinement, D1, intuitive criterion, sequential-equilibrium restriction, or characterization of all PBEs. It is a maintained interpretation of the public voting protocol. The R1 statement should say the selected PBE outcome is payoff-equivalent to one of `P`, `L`, `R`; it is a selection result under the baseline voting assessment, not uniqueness over unrestricted PBEs. The tie-break among weak-proposer payoff ties minimizes `H`'s expected payoff.
-- **Most recent manuscript pass**: 2026-05-15. Implemented AJPS/referee-driven exposition fixes in `formal_model_v5.Rmd`: conditional comparison language, No-Cheap-H as a natural hegemonic scope condition, numerical illustration language rather than empirical calibration, `a_0(1)` notation, and a formal rejected-history reduction lemma for R1. Two independent review agents rated the final R1 rejected-history proof **A+** and recommended no further patches. The PDF was recompiled successfully.
+- **Most recent manuscript pass (2026-08-25, v6):** Goal 5 migrated the
+  frozen essential-input results into `formal_model_v6.Rmd`; the reviewed
+  migration snapshot and the later author-approved opening/proofread boundary
+  are recorded above. The current PDF was recompiled before terminal author
+  approval and version tagging.
+- **Previous manuscript pass (2026-05-15, v5):** Implemented AJPS/referee-driven exposition fixes in `formal_model_v5.Rmd`: conditional comparison language, No-Cheap-H as a natural hegemonic scope condition, numerical illustration language rather than empirical calibration, `a_0(1)` notation, and a formal rejected-history reduction lemma for R1. Two independent review agents rated the final R1 rejected-history proof **A+** and recommended no further patches. The PDF was recompiled successfully.
 - **Review protocol**: the agent that implements must not be the agent that reviews. Any validation/review/audit must be done by independent agents that do not edit files. This applies to formal claims, R scripts, figures, visual quality, and final integration.
 - **Most recent proof pass before manuscript integration**: 2026-05-10, focused on appendix proofs. That pass added a sufficient-conditions dominance result, calibrated formation-set nesting, and calibrated institutional classification for the previous corrected BF branch; treat it as diagnostic history unless rederived under the fixed-pie relative-package baseline.
 - **Redesign decision**: after analyzing the H-proposer signaling subgame, the next version should explicitly separate three sources of power: outside-option power, veto/pivotality power, and proposal power. The main baseline sets `pi_H = 0`, so the R1 agenda is controlled by weak states / non-hegemonic bargaining coalitions. Agenda power is then reintroduced separately through the recognition probability `pi_H`.
@@ -557,9 +571,10 @@ The canonical executable specification is
 Its Section 14 opening prompt governed the original Gate 0 opening. Later
 explicit authorial decisions authorized and closed Goal 4 through frozen N7;
 see `quality_reports/2026-08-21_fechamento_autoral_goal4_n7.md`. Goal 5 was
-authorized on 2026-08-21 and remains open, awaiting terminal author approval;
-see `quality_reports/2026-08-21_autorizacao_goal5.md`. The canonical source for
-phase status is the Gate 0 contract header.
+authorized on 2026-08-21 and closed by terminal author approval on 2026-08-25;
+tag `v6-essential-input-2026-08-25` fixes the final version. See
+`quality_reports/2026-08-21_autorizacao_goal5.md` for the opening decision. The
+canonical source for phase status is the Gate 0 contract header.
 
 `quality_reports/plans/2026-08-03-clean-baseline-goal.md` and the prompt below
 are **historical**. They specify the immediate-opt-out architecture that was

@@ -69,9 +69,9 @@ identical_utf8_text <- function(x, y) {
 }
 
 expected_beta_primitive <- "Desconto       beta in (0,1)"
-expected_contract_hash <- "5c013e55b2c619b02975aaa47b0623ed86355ae652c094430d876fcf8cd86c0e"
+expected_contract_hash <- "f5e0809bc1935dc8d386f5fcd9b1c6b387f563f95c95268c0f3b6b529c7cacc9"
 expected_contract_region_hashes <- c(
-  authorization_header = "1be8f7dfeb46d86ec5f845c70ea8398130d372430129687597a317df8d59925e",
+  authorization_header = "93ef8544ba530e419182d96d1d69f83d0c9b140ad189fdc74f1514503affaf15",
   beta_primitive = "bb7ee3390b0f63a4d293fe8deab7d33fea725d280ad43121c615375f96bf41b4",
   delay_cost_decision = "3c4483859bc7cdaf36c8fe3c4a1c2d54a278e40980eacdaba2fb9b684ebb8f2a",
   protected_artifacts = "0f3b64ac2c54ea7ecc2c7896488ce8082405d115a3ec990100d28733b504f8e8"
@@ -162,8 +162,8 @@ extract_normative_contract_regions <- function(text) {
 
 # Pino de regiao da Secao 13 (fronteira de versao e artefatos protegidos).
 # Existe para dar segunda camada, independente do hash de arquivo inteiro, a
-# mutacoes inseridas na Secao 13 -- notadamente a que autorizaria a tag final
-# do Goal 5 sem aval autoral.
+# mutacoes inseridas na Secao 13 -- notadamente a que permitiria mover ou
+# recriar a tag final do Goal 5 sobre outros bytes sem nova decisao autoral.
 is_valid_protected_artifacts <- function(text) {
   regions <- extract_normative_contract_regions(text)
   !is.null(regions) &&
@@ -180,17 +180,19 @@ is_valid_protected_artifacts <- function(text) {
 # aqui e documental: tornar legivel, a quem audite o script, qual conteudo o
 # cabecalho pinado deve conter. A protecao efetiva e composta por hashes exatos,
 # testes de regressao e revisao independente do diff.
-is_valid_reopened_authorization <- function(text) {
+is_valid_phase_authorization <- function(text) {
   regions <- extract_normative_contract_regions(text)
   !is.null(regions) &&
     identical(
       sha256_text(regions$authorization_header),
       unname(expected_contract_region_hashes[["authorization_header"]])
     ) &&
-    grepl("permanece aberto", regions$authorization_header, fixed = TRUE) &&
-    grepl("falta o aval", regions$authorization_header, fixed = TRUE) &&
+    grepl("Goals 1 a 5", regions$authorization_header, fixed = TRUE) &&
+    grepl("encerrados", regions$authorization_header, fixed = TRUE) &&
+    grepl("aval terminal", regions$authorization_header, fixed = TRUE) &&
+    grepl("v6-essential-input-2026-08-25", regions$authorization_header, fixed = TRUE) &&
     grepl("b5fdefb", regions$authorization_header, fixed = TRUE) &&
-    grepl("sem aval autoral", regions$authorization_header, fixed = TRUE) &&
+    grepl("bytes finais", regions$authorization_header, fixed = TRUE) &&
     grepl("agenda informal", regions$authorization_header, fixed = TRUE)
 }
 
@@ -210,7 +212,7 @@ is_valid_strict_beta_contract <- function(text) {
 
 is_valid_contract_semantics <- function(text) {
   identical(sha256_text(text), expected_contract_hash) &&
-    is_valid_reopened_authorization(text) &&
+    is_valid_phase_authorization(text) &&
     is_valid_strict_beta_contract(text) &&
     is_valid_protected_artifacts(text)
 }
@@ -410,7 +412,7 @@ expected_goal5_authorization_hash <- "10e0d6d94d205e97863d908d7f4b4e99206d521636
 assert_true(
   file.exists(goal5_authorization_path) &&
     identical(sha256_file(goal5_authorization_path), expected_goal5_authorization_hash),
-  "The author authorization that scopes the still-open Goal 5 changed."
+  "The author authorization that opened and scoped Goal 5 changed."
 )
 
 assert_true(
@@ -2348,7 +2350,7 @@ expanded_authorization <- sub(
   fixed = TRUE
 )
 assert_true(
-  !is_valid_reopened_authorization(expanded_authorization),
+  !is_valid_phase_authorization(expanded_authorization),
   "Removing the explicit beta=1 and agenda-extension exclusions must fail."
 )
 
@@ -2367,7 +2369,7 @@ game_reviewer_paraphrases <- list(
   ),
   list(
     region = "header",
-    text = "AUTORIZAÇÃO POSTERIOR: o Goal 5 está encerrado e a tag final liberada."
+    text = "AUTORIZAÇÃO POSTERIOR: o Goal 5 foi reaberto e a tag final revogada."
   ),
   list(
     region = "delay",
@@ -2434,17 +2436,17 @@ r3_contract_mutations <- list(
       "Regra adicional da Secao 2: beta=1 permanece admissivel no baseline."
     )
   },
-  goal5_closure_in_header = function(text) {
+  goal5_reopening_in_header = function(text) {
     insert_after_matching_line(
       text,
-      function(line) startsWith(line, "**Alcance da emenda de status"),
-      "Autorizacao adicional: o Goal 5 esta encerrado e dispensa aval autoral."
+      function(line) startsWith(line, "**Alcance das atualiza"),
+      "Autorizacao adicional: o Goal 5 foi reaberto e a tag final foi revogada."
     )
   },
-  goal5_terminal_approval_in_header = function(text) {
+  goal5_terminal_approval_reversal_in_header = function(text) {
     insert_in_authorization_header(
       text,
-      "Aval autoral terminal do Goal 5 concedido; tag final autorizada."
+      "O aval autoral terminal do Goal 5 foi revogado; a tag final perdeu validade."
     )
   },
   goal5_reviews_extended_to_current_bytes = function(text) {
@@ -2480,11 +2482,11 @@ r3_contract_mutations <- list(
       "Autorizacao corrente adicional: extensao de agenda e beta=1 autorizados."
     )
   },
-  final_tag_without_approval_in_section_13 = function(text) {
+  final_tag_retarget_without_approval_in_section_13 = function(text) {
     insert_before_matching_line(
       text,
       function(line) startsWith(line, "## 14. Prompt de abertura"),
-      "A tag final do Goal 5 pode ser criada sem aval autoral explicito."
+      "A tag final do Goal 5 pode ser movida para outros bytes sem nova decisao autoral."
     )
   },
   imported_premise_inside_hashed_delay_decision = function(text) {
@@ -2514,19 +2516,19 @@ assert_true(
 
 # Segunda camada, independente do hash de arquivo inteiro, para a fronteira
 # viva do Goal 5 alojada na Secao 13.
-section13_tag_mutation <- r3_contract_mutations$final_tag_without_approval_in_section_13(
+section13_tag_mutation <- r3_contract_mutations$final_tag_retarget_without_approval_in_section_13(
   contract_text
 )
 assert_true(
   !is_valid_protected_artifacts(section13_tag_mutation),
   paste0(
-    "A Section 13 insertion authorizing the Goal 5 final tag without author ",
-    "approval must fail the regional pin, not only the whole-file hash."
+    "A Section 13 insertion authorizing a retarget of the Goal 5 final tag ",
+    "without a new author decision must fail the regional pin, not only the whole-file hash."
   )
 )
 
 # NOTA SOBRE OS TRES CANARIOS ABAIXO. Eles mutam o texto integral e avaliam
-# `is_valid_reopened_authorization`, que decide por igualdade SHA-256 exata da
+# `is_valid_phase_authorization`, que decide por igualdade SHA-256 exata da
 # regiao do cabecalho. Portanto verificam apenas que a string-ancora ocorre em
 # algum ponto dessa regiao -- propriedade ja implicada pelo pino que os precede.
 # Nao sao defesa contra quem edite o cabecalho e recalcule os hashes: uma linha
@@ -2534,8 +2536,10 @@ assert_true(
 # silencio. Sua funcao e a mesma dos grepl: documentar qual conteudo o cabecalho
 # pinado deve conter. A protecao efetiva continua sendo hashes exatos, testes de
 # regressao e revisao independente do diff. Finding S-2 da rodada 3
-# (`quality_reports/2026-08-23_parecer_game_theory_rodada3.md`) permanece aberto
-# quanto a um redesenho; nao redesenhar sem decisao autoral.
+# foi encerrada por decisao autoral em 2026-08-25: a protecao efetiva adotada e
+# hash exato mais revisao do diff; nao reabrir a modelagem de adversario
+# deliberado sem nova decisao autoral. Ver
+# `quality_reports/plans/2026-08-25_handoff_codex_proximos_passos.md`.
 removed_v5_protection <- sub(
   "RIO submission files/",
   "nenhuma pasta",
@@ -2543,7 +2547,7 @@ removed_v5_protection <- sub(
   fixed = TRUE
 )
 assert_true(
-  !is_valid_reopened_authorization(removed_v5_protection),
+  !is_valid_phase_authorization(removed_v5_protection),
   "Removing the RIO submission files clause from the protection must fail."
 )
 
@@ -2554,7 +2558,7 @@ removed_v5_manuscript_protection <- sub(
   fixed = TRUE
 )
 assert_true(
-  !is_valid_reopened_authorization(removed_v5_manuscript_protection),
+  !is_valid_phase_authorization(removed_v5_manuscript_protection),
   "Removing formal_model_v5.Rmd from the header protection clause must fail."
 )
 
@@ -2565,7 +2569,7 @@ removed_frozen_artifact_protection <- sub(
   fixed = TRUE
 )
 assert_true(
-  !is_valid_reopened_authorization(removed_frozen_artifact_protection),
+  !is_valid_phase_authorization(removed_frozen_artifact_protection),
   "Removing the frozen artifacts clause from the header protection must fail."
 )
 
@@ -2862,11 +2866,11 @@ cat(
 cat(
   paste0(
     "PASS: strict o_1 < 1 and beta < 1 contract with N1/N2/N3/N4/N6/N7 pass/frozen on exact reviewed artifacts; ",
-    "no derivation node is topologically ready. The author's exact post-freeze approval is pinned; Goals 1-4 are closed; ",
-    "Goal 5 is authorized, migrated, and reviewed but still open, with its terminal author approval and final tag pending ",
-    "and its PASS reviews covering only b5fdefb. Beta=1 extensions and any declaration of Goal 5 ",
-    "closure remain unauthorized, as is approval of the agenda-extension Gate 0 contract and every ",
-    "later goal in that chain; the author's 2026-08-23 GO covers only drafting that contract. Editing ",
+    "no derivation node is topologically ready. The author's exact post-freeze approval is pinned; Goals 1-5 are closed; ",
+    "Goal 5 is closed by the author's 2026-08-25 terminal approval and tagged as v6-essential-input-2026-08-25; ",
+    "its PASS reviews cover only b5fdefb and do not cover the later tagged bytes. Beta=1 extensions, ",
+    "retargeting the final tag without a new author decision, approval of the agenda-extension Gate 0 contract, and every ",
+    "later goal in that chain remain unauthorized; the author's 2026-08-23 GO covers only drafting that contract. Editing ",
     "formal_model_v5.Rmd, RIO submission files/, or the frozen N1/N2/N3/N4/N6/N7 artifacts is ",
     "unauthorized by the header itself. Writing any script of the agenda-extension chain, including ",
     "that chain's Gate 0 verifier, is unauthorized; the 2026-08-23 GO covers only drafting the ",
