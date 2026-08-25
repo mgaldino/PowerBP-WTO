@@ -29,7 +29,7 @@ VERIFICAÇÃO INICIAL — pare e reporte se qualquer uma falhar:
    coordenação não rastreados são aceitáveis; liste-os no relatório final.
 2. shasum -a 256 quality_reports/plans/2026-08-23_agenda_extension_gated_plan_v3.md
    deve retornar
-   1706cda1b6902cbca4f368e5ad61f567cb0eb40f8f4850169cd595bbcf0ab17e.
+   56a933dc25532633d030ecba370a1d132ceb480e75cbf8ea4c4b48104ccb033a.
 
 LEITURAS OBRIGATÓRIAS, integrais, nesta ordem:
 1. quality_reports/plans/2026-08-23_agenda_extension_gated_plan_v3.md — o
@@ -42,7 +42,12 @@ LEITURAS OBRIGATÓRIAS, integrais, nesta ordem:
    de H, preservação de suporte nos endpoints).
 3. quality_reports/plans/2026-08-12_essential_input_gate0.md — precedente de
    formato de contrato Gate 0 neste repositório. Referência de FORMA; o
-   conteúdo da extensão vem exclusivamente do v3.
+   conteúdo da extensão vem exclusivamente do v3. ATENÇÃO: o cabeçalho desse
+   contrato foi emendado em 2026-08-23 e é a fonte canônica do alcance do seu
+   GO. Ele diz que a entrega do Goal 0 é o documento; que a especificação do
+   verificador pertence a esse documento mas o verificador em si é Goal 1; e
+   que escrever qualquer script desta cadeia não está autorizado. Em conflito
+   com este prompt, o cabeçalho prevalece.
 4. CLAUDE.md e AGENTS.md do repositório.
 5. Localize por ls, somente leitura, os artefatos congelados dos nós N3, N4 e
    N7 em model_redesign/essential_input_* — o contrato os cita por caminho; o
@@ -118,9 +123,11 @@ REGRAS INVIOLÁVEIS:
    admissíveis são as qualitativas do §1 do v3, citadas por referência ao
    plano.
 2. Congelados byte a byte, nenhuma edição: nós N1-N4, N6, N7 e o contrato
-   essential-input; formal_model_v6.Rmd e .pdf do snapshot revisado (commit
-   b5fdefb); quality_reports/2026-08-23_parecer_fable_agenda_extension_plan_v2.md
-   (hash f4d8a185...); o próprio plano v3.
+   essential-input; quality_reports/2026-08-23_parecer_fable_agenda_extension_plan_v2.md
+   (hash f4d8a185...); o próprio plano v3. O manuscrito está integralmente fora
+   de escopo: não leia, não cite e não edite formal_model_v6.Rmd nem o .pdf. Eles
+   estão em reescrita autoral e seus bytes mudam; qualquer hash de manuscrito que
+   você encontre em documento antigo é histórico, não estado corrente.
 3. Fidelidade ao v3: onde o v3 decidiu (§0, §2.2, §2.3, §2.4), transcreva sem
    reabrir nem melhorar. Se julgar uma divergência necessária, ela vira
    finding escalado no relatório final, nunca alteração silenciosa.
@@ -143,4 +150,9 @@ ENCERRAMENTO DA SESSÃO:
 4. PARE. Não abra o Goal 1, não escreva scripts, não commite. As duas
    revisões independentes acontecem em sessões separadas sobre o hash final,
    e o GO para o Goal 1 é decisão posterior do autor.
+5. AVISO SOBRE COMMITS AUTOMÁTICOS: este repositório tem um hook de
+   session-stop que commita e faz push por conta própria ao fim da sessão.
+   Você não deve commitar, mas o hook o fará de qualquer modo. Isso não é
+   falha sua e não invalida nada; apenas registre no relatório final os hashes
+   que você calculou, para que a revisão saiba sobre quais bytes se pronuncia.
 ```

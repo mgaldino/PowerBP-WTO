@@ -46,7 +46,15 @@ essential_input_formula_sources <- function() {
     "model_redesign/essential_input_solution_concept/n4_r1_unanimity_rederivation_candidate.md" =
       "4cc246d1fadaeb18b90ae9956fa08e96d576f6e0821b521493a3ba47074dab1e",
     "quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md" =
-      "94062c0803d9ed455fbec3b9508fabd2eb4cb86018fbe036b618671f452f7a69"
+      # Pino atualizado em 2026-08-23. O registro normativo recebeu, depois de
+      # congelado, dois blocos aditivos de decisao autoral; uma alteracao ruim
+      # intermediaria foi desfeita pelo merge fa803b2, de modo que o conteudo
+      # corrente e o conteudo aprovado mais esses dois blocos. Diagnostico em
+      # quality_reports/2026-08-23_item_o1_deriva_registro_conceito_solucao.md.
+      # O hash anterior, 94062c08...f452f7a69, permanece anotado nos pareceres e
+      # manifestos congelados, que sao fotografias do que os revisores viram e
+      # nao foram alterados.
+      "9189299798a65cad1408e68888e60907474e96bb66c700d8ca3b3329aa326f4f"
   )
 }
 
