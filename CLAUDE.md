@@ -566,6 +566,8 @@ Roadmap detalhado em `quality_reports/2026-04-29_lean_v5_roadmap.md`. Resumo:
 
 ## Convenções
 
+- **Frase parqueada da introdução**: quando a extensão de agenda fechar, a introdução ganha a formulação dos dois cenários (com e sem direito de proposta). Texto exato e o que revisar junto em `notes/2026-08-25_frase_introducao_apos_extensao_agenda.md`. Não inserir antes: o corpo afirma em quatro lugares que o hegemon nunca propõe, e a contribuição depende disso.
+
 - **AGENTS.md é a fonte operacional principal para Codex**. Atualizar `AGENTS.md` e `CLAUDE.md` quando o status das provas mudar.
 - **Não confiar no corpo principal para status das provas** até a próxima rodada de revisão textual; o appendix corrigido é a referência atual.
 - **REGRA CRÍTICA — Pareceres completos**: Ao rodar QUALQUER skill de review, o output COMPLETO DEVE ser salvo em `quality_reports/YYYY-MM-DD_nome-do-review.md`. NUNCA truncar. NUNCA salvar apenas resumo.
