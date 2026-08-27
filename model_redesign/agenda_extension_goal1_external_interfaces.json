@@ -1,0 +1,135 @@
+{
+  "schema_version": "agenda_extension_goal1_external_interfaces_v1",
+  "goal_id": "agenda_extension_goal_1",
+  "status": "hashes_pinned_and_consumability_audited",
+  "date": "2026-08-27",
+  "hash_algorithm": "sha256",
+  "authorization_scope": "Goal 1 infrastructure only; no A_M, A_U, AC, AR, private package, derivation, calculation, or manuscript edit",
+  "approved_gate_0_snapshot": [
+    {
+      "artifact_id": "simplified_contract",
+      "path": "quality_reports/plans/2026-08-26_agenda_extension_gate0_simplified.md",
+      "sha256": "fb2cd323a74b30432746dc37d622014cd7768e6d5442877ed3a8e043df546dc4"
+    },
+    {
+      "artifact_id": "simplified_dag",
+      "path": "model_redesign/agenda_extension_game_dag_simplified.json",
+      "sha256": "a2572dc8954d63535d4edcbf04158e9524d11ed4537a822713e534df580ee9e0"
+    },
+    {
+      "artifact_id": "A_M_empty_ledger",
+      "path": "model_redesign/agenda_extension_A_M_claim_ledger_simplified.tsv",
+      "sha256": "3bd87820cd88b1ffe25f562c4e7952d91a028813a610c8ab728389eed1e6e580"
+    },
+    {
+      "artifact_id": "A_U_empty_ledger",
+      "path": "model_redesign/agenda_extension_A_U_claim_ledger_simplified.tsv",
+      "sha256": "3bd87820cd88b1ffe25f562c4e7952d91a028813a610c8ab728389eed1e6e580"
+    },
+    {
+      "artifact_id": "AC_empty_ledger",
+      "path": "model_redesign/agenda_extension_AC_claim_ledger_simplified.tsv",
+      "sha256": "3bd87820cd88b1ffe25f562c4e7952d91a028813a610c8ab728389eed1e6e580"
+    },
+    {
+      "artifact_id": "AR_empty_ledger",
+      "path": "model_redesign/agenda_extension_AR_claim_ledger_simplified.tsv",
+      "sha256": "3bd87820cd88b1ffe25f562c4e7952d91a028813a610c8ab728389eed1e6e580"
+    }
+  ],
+  "normative_sources": [
+    {
+      "source_id": "agenda_extension_plan_v3",
+      "path": "quality_reports/plans/2026-08-23_agenda_extension_gated_plan_v3.md",
+      "sha256": "56a933dc25532633d030ecba370a1d132ceb480e75cbf8ea4c4b48104ccb033a"
+    },
+    {
+      "source_id": "solution_concept_current",
+      "path": "quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md",
+      "sha256": "9189299798a65cad1408e68888e60907474e96bb66c700d8ca3b3329aa326f4f"
+    },
+    {
+      "source_id": "essential_input_contract",
+      "path": "quality_reports/plans/2026-08-12_essential_input_gate0.md",
+      "sha256": "f5e0809bc1935dc8d386f5fcd9b1c6b387f563f95c95268c0f3b6b529c7cacc9"
+    },
+    {
+      "source_id": "essential_input_dag",
+      "path": "model_redesign/essential_input_game_dag.json",
+      "sha256": "36155405a635bf6842c09dcde127907ec1f6fe61bb86ec06d932d7e472abf9ab"
+    }
+  ],
+  "upstream_dependency_snapshots": [
+    {
+      "source_id": "N1",
+      "path": "model_redesign/essential_input_interfaces/n1_r2_majority_candidate_v1.json",
+      "sha256": "1a171791ebd329ac325410038d92dae719fa9edc053aa068772bc6564ed981b5",
+      "resolution": "working_tree"
+    },
+    {
+      "source_id": "N2",
+      "path": "model_redesign/essential_input_n2_r2_unanimity_interface.json",
+      "sha256": "c6a65dc8d15f3c8e7e5b8d475bf6925a0b6028421adf84f927da361349da85a2",
+      "resolution": "working_tree"
+    },
+    {
+      "source_id": "N2_endpoint_support_erratum",
+      "path": "quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md",
+      "sha256": "94062c0803d9ed455fbec3b9508fabd2eb4cb86018fbe036b618671f452f7a69",
+      "resolution": "git_snapshot",
+      "git_commit": "1a12b749f967d460f819d8732634992ba75fdcf8"
+    },
+    {
+      "source_id": "N6",
+      "path": "model_redesign/essential_input_n6_private_comparison_candidate.json",
+      "sha256": "a9cfd5935377197b51637a525f26627c296eed1e21bfe8cfcf6906b4d90a5a92",
+      "resolution": "working_tree"
+    }
+  ],
+  "external_interfaces": [
+    {
+      "input_id": "C_M",
+      "producer_node": "N3",
+      "path": "model_redesign/essential_input_solution_concept/n3_r1_majority_candidate.json",
+      "sha256": "ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d",
+      "schema_ref": "equilibrium_correspondence_v1",
+      "function_of": "entry_belief",
+      "cell_collection": "correspondence_cells",
+      "record_collection": "equilibrium_records",
+      "record_id_field": "equilibrium_id",
+      "audit_status": "consumable_without_edit",
+      "audit_note": "The interface distinguishes existing and empty cells and exposes complete strategy, belief, source, type-payoff, outcome, and payoff-date coordinates for every recorded continuation member."
+    },
+    {
+      "input_id": "C_U",
+      "producer_node": "N4",
+      "path": "model_redesign/essential_input_solution_concept/n4_r1_unanimity_candidate.json",
+      "sha256": "f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+      "schema_ref": "equilibrium_correspondence_v1",
+      "function_of": "entry_belief",
+      "cell_collection": "correspondence_cells",
+      "record_collection": "equilibrium_records",
+      "record_id_field": "equilibrium_id",
+      "audit_status": "consumable_without_edit",
+      "audit_note": "The interface exposes complete members in exists cells and an explicit nonexistence certificate in its none cell. The none cell is substantive content, not a missing field or a payoff sentinel."
+    },
+    {
+      "input_id": "N7_public",
+      "producer_node": "N7",
+      "path": "model_redesign/essential_input_n7_complete_information_benchmark_candidate.json",
+      "sha256": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45",
+      "schema_ref": "complete_information_benchmark_v1",
+      "function_of": "prior_mu_and_public_theta",
+      "cell_collection": "public_equilibrium_cells",
+      "record_collection": "public_equilibrium_records",
+      "record_id_field": "public_equilibrium_id",
+      "audit_status": "consumable_without_edit",
+      "audit_note": "The interface exposes public-type cells by institution, round, and type, with complete strategy, belief, continuation-ID, payoff-vector, outcome, and payoff-date coordinates. It remains optional until AR receives separate authorization."
+    }
+  ],
+  "scope_limits": [
+    "The verifier checks structure, provenance, finite examples, and representative negative cases only.",
+    "The verifier does not prove PBE existence or completeness, profitable-deviation absence over continuous Y, mixed-support optimality, local Bayes limits, arbitrary measurability, generator necessity or sufficiency, family coverage, or family-wide invariance.",
+    "No extension node is derived or populated by this manifest."
+  ]
+}
