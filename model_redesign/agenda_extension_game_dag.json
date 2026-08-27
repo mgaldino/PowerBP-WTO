@@ -1,0 +1,295 @@
+{
+  "schema_version": "agenda_extension_dag_v4",
+  "namespace": "agenda_extension",
+  "contract_path": "quality_reports/plans/2026-08-23_agenda_extension_gate0.md",
+  "gate_status": "candidate_awaiting_independent_reviews",
+  "protocol_decisions_status": "approved_2026-08-25_and_2026-08-26",
+  "candidate_review_status": "awaiting_two_new_independent_read_only_reviews_on_same_hash",
+  "authorization_status": "goal_0_repaired_candidate_no_goal_1_authorization",
+  "immutable_gate_0_structure": {
+    "fields": [
+      "game",
+      "substantive_schemas",
+      "namespace",
+      "produced_nodes",
+      "depends_on_edges",
+      "external_inputs",
+      "execution_gate_order",
+      "proof_obligations",
+      "review_policy"
+    ],
+    "change_reopens_gate_0": true
+  },
+  "lifecycle_field_schema": {
+    "pending_convention": "status_pending_and_omit_all_future_optional_lifecycle_fields",
+    "null_or_empty_future_fields_in_pending_allowed": false,
+    "future_fields_added_only_on_pass_freeze": [
+      "artifact_paths",
+      "artifact_hash",
+      "dependency_hashes",
+      "started_order",
+      "passed_order",
+      "frozen",
+      "reviews"
+    ],
+    "frozen_status_value": "pass",
+    "frozen_value": true,
+    "required_review_count": 2,
+    "reviews_item_fields": [
+      "reviewer_id",
+      "reviewer_role",
+      "verdict",
+      "finding_counts",
+      "covered_hash",
+      "review_path"
+    ],
+    "reviewers_must_be_distinct": true,
+    "required_review_roles": [
+      "formal_design",
+      "game_theory"
+    ],
+    "required_verdict": "PASS",
+    "required_finding_counts": {
+      "critical": 0,
+      "major": 0,
+      "minor": 0
+    },
+    "both_reviews_cover_same_artifact_hash": true,
+    "lifecycle_only_update_reopens_gate_0": false,
+    "author_go_is_separate_external_record": true,
+    "author_go_present_now": false,
+    "topological_readiness_is_authorization": false
+  },
+  "produced_nodes": [
+    {
+      "node_id": "A_M",
+      "object": "private_agenda_majority",
+      "status": "pending",
+      "depends_on": [
+        "essential_input:C_M"
+      ],
+      "execution_precondition": "goal_1_frozen_and_author_go_goal_2",
+      "required_outputs": [
+        "symbolic_equilibrium_family_records",
+        "source_continuation_complete_view",
+        "ex_ante_image_collection_E_02",
+        "exists_none_cells_and_coverage_certificates"
+      ],
+      "claim_ledger": "model_redesign/agenda_extension_A_M_claim_ledger.tsv"
+    },
+    {
+      "node_id": "A_U",
+      "object": "private_agenda_unanimity",
+      "status": "pending",
+      "depends_on": [
+        "essential_input:C_U"
+      ],
+      "execution_precondition": "A_M_frozen_and_author_go_goal_3_sequential_exclusive_cycle",
+      "required_outputs": [
+        "symbolic_equilibrium_family_records",
+        "source_continuation_complete_view",
+        "ex_ante_image_collection_E_02",
+        "exists_none_cells_and_coverage_certificates"
+      ],
+      "claim_ledger": "model_redesign/agenda_extension_A_U_claim_ledger.tsv"
+    },
+    {
+      "node_id": "AC",
+      "object": "private_agenda_comparison",
+      "status": "pending",
+      "depends_on": [
+        "agenda_extension:A_M",
+        "agenda_extension:A_U"
+      ],
+      "execution_precondition": "A_M_and_A_U_frozen_and_author_go_goal_4",
+      "required_outputs": [
+        "independent_payload_by_rule",
+        "transported_complete_views_with_unchanged_complete_view_ids",
+        "transported_ex_ante_image_collections_E_02",
+        "symbolic_exact_joint_family_products_before_envelopes",
+        "exists_none_cells_and_coverage_certificates"
+      ],
+      "claim_ledger": "model_redesign/agenda_extension_AC_claim_ledger.tsv"
+    },
+    {
+      "node_id": "AR",
+      "object": "public_benchmarks_rents_and_interaction",
+      "status": "pending",
+      "depends_on": [
+        "agenda_extension:AC",
+        "essential_input:N7_public"
+      ],
+      "execution_precondition": "AC_frozen_and_author_go_goal_5_exclusive_cycle",
+      "required_outputs": [
+        "public_agenda_symbolic_equilibrium_family_records",
+        "independent_analysis_payload_by_rule",
+        "transported_complete_views_with_unchanged_complete_view_ids",
+        "transported_ex_ante_image_collections_E_02",
+        "symbolic_exact_joint_rent_and_interaction_collections_before_envelopes",
+        "exists_none_cells_and_coverage_certificates"
+      ],
+      "claim_ledger": "model_redesign/agenda_extension_AR_claim_ledger.tsv"
+    }
+  ],
+  "external_inputs": [
+    {
+      "input_id": "C_M",
+      "namespace": "essential_input",
+      "producer_node": "N3",
+      "path": "model_redesign/essential_input_solution_concept/n3_r1_majority_candidate.json",
+      "hash_pinning_status": "goal_1_pending"
+    },
+    {
+      "input_id": "C_U",
+      "namespace": "essential_input",
+      "producer_node": "N4",
+      "path": "model_redesign/essential_input_solution_concept/n4_r1_unanimity_candidate.json",
+      "hash_pinning_status": "goal_1_pending"
+    },
+    {
+      "input_id": "N7_public",
+      "namespace": "essential_input",
+      "producer_node": "N7",
+      "path": "model_redesign/essential_input_n7_complete_information_benchmark_candidate.json",
+      "hash_pinning_status": "goal_1_pending"
+    }
+  ],
+  "depends_on_edges": [
+    {
+      "from": "essential_input:C_M",
+      "to": "agenda_extension:A_M"
+    },
+    {
+      "from": "essential_input:C_U",
+      "to": "agenda_extension:A_U"
+    },
+    {
+      "from": "agenda_extension:A_M",
+      "to": "agenda_extension:AC"
+    },
+    {
+      "from": "agenda_extension:A_U",
+      "to": "agenda_extension:AC"
+    },
+    {
+      "from": "agenda_extension:AC",
+      "to": "agenda_extension:AR"
+    },
+    {
+      "from": "essential_input:N7_public",
+      "to": "agenda_extension:AR"
+    }
+  ],
+  "chronology": [
+    "A_M -> C_M",
+    "A_U -> C_U"
+  ],
+  "source_transport": {
+    "origin_views": {
+      "agenda_extension:A_M": "complete_hash_pinned_consumable_view_of_essential_input:C_M",
+      "agenda_extension:A_U": "complete_hash_pinned_consumable_view_of_essential_input:C_U"
+    },
+    "carrier_node": "AC",
+    "transported_inputs": [
+      "essential_input:C_M",
+      "essential_input:C_U"
+    ],
+    "required_payload": [
+      "source_continuation_complete_view_id",
+      "source_collection_and_cell_ids",
+      "source_family_record_ids",
+      "source_atomic_family_binders",
+      "complete_member_parameter_spaces",
+      "necessary_and_sufficient_membership_rules",
+      "ex_ante_image_collection_ids",
+      "source_artifact_hashes",
+      "source_payoff_coordinates",
+      "source_payoff_values",
+      "source_payoff_dates",
+      "source_value_transport_records"
+    ],
+    "payloads_independent_by_rule": true,
+    "empty_rule_erases_existing_other_rule": false,
+    "consumer_node": "AR",
+    "purpose": "private_without_agenda_provenance_for_interaction",
+    "creates_additional_edge": false
+  },
+  "family_and_complete_member_schema": {
+    "finite_symbolic_family_record_ids_only": true,
+    "material_equilibrium_id_per_continuous_member_required": false,
+    "singleton_is_degenerate_family": true,
+    "required_family_fields": [
+      "family_record_id",
+      "admissibility_conditions",
+      "member_parameter_space",
+      "member_generator",
+      "necessary_and_sufficient_membership_rule",
+      "atomic_family_binder",
+      "complete_strategy_belief_continuation_payoff_outcome_formulas",
+      "existence_multiplicity_selection_status",
+      "proof_check_paths",
+      "coverage_exclusivity_certificate"
+    ],
+    "same_binder_across_all_member_coordinates": true,
+    "coordinate_splicing_allowed": false,
+    "exact_joint_set_precedes_envelopes": true,
+    "marginal_envelope_cartesian_recombination_allowed": false,
+    "scalar_projection_requires_family_wide_invariance_proof": true
+  },
+  "continuation_selection_schema": {
+    "kappa_is_public_type_blind_borel_measurable": true,
+    "one_selection_per_complete_rejected_public_history": true,
+    "same_history_same_selection_for_all_compatible_types": true,
+    "distinct_histories_may_select_distinct_members": true,
+    "equal_posterior_merges_histories": false,
+    "selection_returns_literal_complete_continuation_member": true,
+    "family_source_selection_requires_family_record_id_and_complete_member_binding_or_selector": true,
+    "scalar_or_partial_continuation_allowed": false,
+    "complete_view_id_preserved_unchanged_through_A_AC_AR": true,
+    "borel_measurability_required_for_votes_kappa_member_selectors_bindings_and_expectation_kernels": true
+  },
+  "proof_obligations": {
+    "complete_strategy_after_every_feasible_proposal_and_history": true,
+    "literal_complete_continuation_element_never_scalarized": true,
+    "same_F_economic_lambda_or_atomic_binder_across_strategy_belief_vote_continuation_payoff_outcome": true,
+    "exact_joint_set_before_envelopes": true,
+    "marginal_recombination_forbidden": true,
+    "added_symmetry_minimum_coalition_zero_gifts_or_selection_without_primitive_forbidden": true,
+    "one_shared_selection_across_distinct_histories_forbidden": true,
+    "baseline_local_bayes_includes_arbitrary_borel_measures_and_singular_supports": true,
+    "disciplined_point_has_positive_public_mass_in_every_relative_neighborhood": true,
+    "missing_required_local_probability_ratio_limit_stops_and_escalates": true,
+    "free_belief_within_prior_support_allowed_only_on_genuinely_undisciplined_complement": true,
+    "weak_votes_as_if_pivotal_with_TY": true,
+    "H_no_profitable_deviation_over_all_Y": true,
+    "every_supported_action_optimal": true,
+    "all_pooling_separating_semi_pooling_mixed_and_other_admissible_forms_covered_without_imposed_taxonomy": true,
+    "E_02_ex_ante_image_preserves_source_binder_prior_type_values_transport_and_date": true,
+    "verification_uses_identities_proofs_small_finite_enumerations_and_representative_negative_tests": true,
+    "continuous_family_member_enumeration_required": false
+  },
+  "ar_internal_record_hash_policy": {
+    "public_agenda_family_records_receive_stable_record_ids_inside_AR": true,
+    "AR_artifact_hash_before_serialization": null,
+    "self_referential_source_hashes_allowed": false,
+    "source_hashes_must_reference_frozen_external_inputs_only": true
+  },
+  "execution_gate_order": [
+    "gate_0_two_independent_pass_0_0_0_same_hash_then_author_go_goal_1",
+    "goal_1_consumability_and_harness_two_independent_pass_0_0_0_same_hash_freeze_then_author_go_goal_2",
+    "goal_2_A_M_two_independent_pass_0_0_0_same_hash_freeze_then_author_go_goal_3",
+    "goal_3_A_U_exclusive_cycle_blind_reconstruction_two_independent_pass_0_0_0_same_hash_freeze_then_author_go_goal_4",
+    "goal_4_AC_two_independent_pass_0_0_0_same_hash_including_source_hash_integration_freeze_then_author_go_goal_5",
+    "goal_5_AR_exclusive_cycle_two_independent_pass_0_0_0_same_hash_freeze_then_author_results_decision",
+    "goal_Q_only_if_separately_authorized_then_two_independent_pass_0_0_0_same_hash_and_closed_before_migration_when_required",
+    "goal_6_migration_only_after_all_applicable_prior_gates_author_go_and_two_independent_pass_0_0_0_same_final_hash"
+  ],
+  "review_policy": {
+    "implementer_may_review": false,
+    "reviewers_may_edit": false,
+    "byte_change_requires_new_reviews": true,
+    "topological_readiness_grants_authorization": false
+  },
+  "topological_readiness_is_authorization": false,
+  "essential_input_dag_mutated": false
+}
