@@ -1,0 +1,512 @@
+{
+  "schema_version": "agenda_extension_private_equilibrium_family_v1_simplified",
+  "artifact_id": "AGENDA-EXTENSION-A-U-CANDIDATE-2026-08-27",
+  "node_id": "A_U",
+  "institution": "U",
+  "lifecycle_status": "candidate_complete_unreviewed_DAG_pending",
+  "blind_reconstruction": {
+    "status": "performed",
+    "source_boundary": "Only the approved contracts, the Goal 1 closure and manifest, and C_U were consumed.",
+    "excluded_source_boundary": "No A_M candidate, derivation, ledger, formula, commit, conversation, or result was accessed or inferred."
+  },
+  "primitive_domain": {
+    "m": "integer m=N-1>=2",
+    "beta": "0<beta<1",
+    "outside_options": "0<o_0<o_1<1",
+    "prior": "nu in [0,1]",
+    "proposal_space": "Y={(z,(x_j)_{j=1}^m): z>=0, x_j>=0, z+sum_j x_j<=1}"
+  },
+  "derived_notation": {
+    "nu_star": "(o_1-o_0)/(1-o_0)",
+    "E_U": "{0} union (nu_star,1]",
+    "w_0": "beta*(1-beta*o_0)/m",
+    "w_1": "beta*(1-beta*o_1)/m",
+    "d_0": "beta^2*o_0",
+    "d_1": "beta^2*o_1",
+    "p_0": "1-m*w_0=1-beta+beta^2*o_0",
+    "p_1": "1-m*w_1=1-beta+beta^2*o_1",
+    "Delta": "p_0-d_1=1-beta-beta^2*(o_1-o_0)",
+    "u_min": "max{p_0,d_1}",
+    "q_0": "(p_0,w_0,...,w_0)",
+    "q_1": "(p_1,w_1,...,w_1)"
+  },
+  "source_complete_view_reference": {
+    "complete_view_id": "C-U-COMPLETE-VIEW-F1C823123A9B",
+    "source_node_id": "N4",
+    "source_artifact_path": "model_redesign/essential_input_solution_concept/n4_r1_unanimity_candidate.json",
+    "source_artifact_hash": "f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+    "domain": "entry_belief mu in [0,1]",
+    "source_cells_and_family_schemas": {
+      "schema_ref": "equilibrium_correspondence_v1",
+      "exists_cells": [
+        "N4-SC-CELL-NU-ZERO",
+        "N4-SC-CELL-HIGH-PRIOR"
+      ],
+      "none_cells": [
+        "N4-SC-CELL-NO-PURE-PBE"
+      ],
+      "literal_member_binding": "A selector identifies the source equilibrium record and every admissible internal belief-function parameter of that record; coordinates cannot be spliced."
+    },
+    "payoff_and_outcome_coordinates": {
+      "mu_zero": {
+        "source_equilibrium_id": "N4-SC-EQ-L-STAR",
+        "weak_pre_recognition_native_value": "(1-beta*o_0)/m",
+        "hegemon_native_values_by_type": {
+          "theta_0": "beta*o_0",
+          "theta_1": "beta*o_1"
+        },
+        "outcomes": "All strategy, belief, vote, payoff and outcome coordinates remain in the selected literal N4-SC-EQ-L-STAR member."
+      },
+      "mu_high": {
+        "source_equilibrium_id": "N4-SC-EQ-P-STAR",
+        "weak_pre_recognition_native_value": "(1-beta*o_1)/m",
+        "hegemon_native_values_by_type": {
+          "theta_0": "beta*o_1",
+          "theta_1": "beta*o_1"
+        },
+        "outcomes": "All strategy, belief, vote, payoff and outcome coordinates remain in the selected literal N4-SC-EQ-P-STAR member."
+      }
+    },
+    "native_dates": {
+      "source_label": "R1 current units in C_U",
+      "consumer_alias": "C native date",
+      "transport_to_A": "multiply by beta exactly once"
+    },
+    "source_value_transport_records": [
+      {
+        "source_record_id": "N4-SC-EQ-L-STAR:weak-pre-recognition",
+        "source_artifact_hash_if_external": "f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+        "native_value": "(1-beta*o_0)/m",
+        "native_date": "C",
+        "transport_factor_to_A": "beta",
+        "beta_application_count": 1,
+        "transported_value_at_A": "w_0=beta*(1-beta*o_0)/m"
+      },
+      {
+        "source_record_id": "N4-SC-EQ-P-STAR:weak-pre-recognition",
+        "source_artifact_hash_if_external": "f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+        "native_value": "(1-beta*o_1)/m",
+        "native_date": "C",
+        "transport_factor_to_A": "beta",
+        "beta_application_count": 1,
+        "transported_value_at_A": "w_1=beta*(1-beta*o_1)/m"
+      },
+      {
+        "source_record_id": "N4-SC-EQ-L-STAR:hegemon-by-type",
+        "source_artifact_hash_if_external": "f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+        "native_value": "(beta*o_0,beta*o_1)",
+        "native_date": "C",
+        "transport_factor_to_A": "beta",
+        "beta_application_count": 1,
+        "transported_value_at_A": "(d_0,d_1)=(beta^2*o_0,beta^2*o_1)"
+      },
+      {
+        "source_record_id": "N4-SC-EQ-P-STAR:hegemon-by-type",
+        "source_artifact_hash_if_external": "f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+        "native_value": "(beta*o_1,beta*o_1)",
+        "native_date": "C",
+        "transport_factor_to_A": "beta",
+        "beta_application_count": 1,
+        "transported_value_at_A": "(d_1,d_1)=(beta^2*o_1,beta^2*o_1)"
+      }
+    ],
+    "status": "consumable_without_edit",
+    "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#3-transporte-de-c_u-para-a-uma-aplicação-de-beta"
+  },
+  "equilibrium_family_collection": {
+    "collection_id": "A-U-PBE-FAMILY-COLLECTION-V1",
+    "node_id": "A_U",
+    "institution": "U",
+    "domain": "m>=2, 0<beta<1, 0<o_0<o_1<1, nu in [0,1]",
+    "status": "exists",
+    "family_record_ids": [
+      "A-U-FAM-NU-ZERO",
+      "A-U-FAM-LOW-PRIOR",
+      "A-U-FAM-HIGH-PRIOR-INTERIOR",
+      "A-U-FAM-NU-ONE"
+    ],
+    "source_complete_view_id": "C-U-COMPLETE-VIEW-F1C823123A9B",
+    "cells": [
+      {
+        "cell_id": "A-U-CELL-NU-ZERO",
+        "domain": "nu=0",
+        "status": "exists",
+        "family_record_ids": [
+          "A-U-FAM-NU-ZERO"
+        ],
+        "none_reason": null,
+        "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#101-endpoint-nu0"
+      },
+      {
+        "cell_id": "A-U-CELL-LOW-PRIOR-DELTA-NEGATIVE",
+        "domain": "0<nu<=nu_star and Delta<0",
+        "status": "none",
+        "family_record_ids": [],
+        "none_reason": {
+          "certificate": "Interior type imitation forces a common payoff u>=d_1>p_0; then every on-path posterior must exceed nu_star, contradicting Bayes plausibility at nu<=nu_star.",
+          "payoff_sentinel_used": false
+        },
+        "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#102-0nunu_star"
+      },
+      {
+        "cell_id": "A-U-CELL-LOW-PRIOR-DELTA-NONNEGATIVE",
+        "domain": "0<nu<=nu_star and Delta>=0",
+        "status": "exists",
+        "family_record_ids": [
+          "A-U-FAM-LOW-PRIOR"
+        ],
+        "none_reason": null,
+        "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#102-0nunu_star"
+      },
+      {
+        "cell_id": "A-U-CELL-HIGH-PRIOR-INTERIOR",
+        "domain": "nu_star<nu<1",
+        "status": "exists",
+        "family_record_ids": [
+          "A-U-FAM-HIGH-PRIOR-INTERIOR"
+        ],
+        "none_reason": null,
+        "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#103-nu_starnu1"
+      },
+      {
+        "cell_id": "A-U-CELL-NU-ONE",
+        "domain": "nu=1",
+        "status": "exists",
+        "family_record_ids": [
+          "A-U-FAM-NU-ONE"
+        ],
+        "none_reason": null,
+        "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#104-endpoint-nu1"
+      }
+    ],
+    "family_records": [
+      {
+        "family_record_id": "A-U-FAM-NU-ZERO",
+        "institution": "U",
+        "cell_id": "A-U-CELL-NU-ZERO",
+        "parameter_domain": "nu=0; m>=2; 0<beta<1; 0<o_0<o_1<1",
+        "member_parameter_or_selector": "A Borel probability sigma_1 over the zero-prior type's best-response set; sigma_0 is degenerate at q_0; kappa_U selects literal low-cell C_U members.",
+        "member_generator": {
+          "sigma_0": "delta_{q_0}",
+          "sigma_1_if_Delta_positive": "delta_{q_0}",
+          "sigma_1_if_Delta_zero": "any Borel probability supported on {q_0} union R_0, R_0={s:min_j x_j<w_0}",
+          "sigma_1_if_Delta_negative": "any Borel probability supported on R_0",
+          "belief": "mu(s)=0 for every s in Y",
+          "continuation": "kappa_U(r) is a complete N4-SC-EQ-L-STAR member for every rejected history r"
+        },
+        "necessary_and_sufficient_membership_rule": "The displayed support rule is necessary and sufficient: q_0 uniquely maximizes the low type's payoff; the zero-prior high type maximizes max{p_0,d_1} under the support-restricted belief zero.",
+        "strategy_by_type": {
+          "theta_0": "sigma_0=delta_{q_0}",
+          "theta_1": "sigma_1 as generated by the sign of Delta"
+        },
+        "weak_vote_strategy": "For every proposal and every weak identity j, vote yes iff x_j>=w_0; at equality T^Y selects yes.",
+        "belief_system": {
+          "proposal": "posterior identically zero, including proposals used only by the zero-prior type",
+          "after_weak_votes": "posterior remains zero",
+          "inside_continuation": "the complete source-member belief system selected by kappa_U"
+        },
+        "continuation_rule": {
+          "domain": "every rejected public history",
+          "range": "literal complete members of C_U(0)",
+          "properties": "public, common to compatible types, total, single-valued per history and Borel-measurable"
+        },
+        "payoff_by_type_and_identity": {
+          "hegemon": {
+            "theta_0": "p_0",
+            "theta_1": "max{p_0,d_1}"
+          },
+          "weak_identity_j": "For theta_0, x_j=w_0 at immediate q_0 agreement. For the zero-prior theta_1, integrate x_j on accepted proposals and w_0 on rejected proposals under the same sigma_1 binder."
+        },
+        "outcome_distribution": {
+          "theta_0": "immediate unanimous agreement at q_0 with probability one",
+          "theta_1": "immediate agreement if q_0 is drawn and rejection followed by the literal low-cell continuation if R_0 is drawn",
+          "ex_ante": "immediate unanimous agreement at q_0 with probability one because nu=0"
+        },
+        "atomic_binder": "b_U0=(nu=0,sigma_0=delta_q0,sigma_1,mu=0,kappa_U); this same b_U0 determines strategies, beliefs, votes, continuation, payoffs and outcomes.",
+        "source_ids_and_hashes": {
+          "source_complete_view_id": "C-U-COMPLETE-VIEW-F1C823123A9B",
+          "source_record_ids": [
+            "N4-SC-EQ-L-STAR"
+          ],
+          "source_hash": "f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b"
+        },
+        "selection_status": "complete endpoint correspondence; no proposal or continuation member selected beyond the member binder",
+        "refinement_status": "baseline PBE with pure as-if-pivotal weak votes, T^Y and prior-support preservation; no D1, intuitive criterion or tremble",
+        "payoff_date": "A",
+        "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#101-endpoint-nu0"
+      },
+      {
+        "family_record_id": "A-U-FAM-LOW-PRIOR",
+        "institution": "U",
+        "cell_id": "A-U-CELL-LOW-PRIOR-DELTA-NONNEGATIVE",
+        "parameter_domain": "0<nu<=nu_star and Delta>=0",
+        "member_parameter_or_selector": "b=(nu,u=p_0,sigma_0,sigma_1,mu,kappa_U) satisfying the complete interior generator",
+        "member_generator": {
+          "common_payoff": "u=p_0",
+          "proposal_support": "Each type's measure assigns probability one to L_0 union H_A(p_0), plus H_R only when Delta=0; topological limit points of measure zero are governed by the global belief and deviation conditions.",
+          "L_0": "q_0 with posterior zero; public mass at L_0 can come only from theta_0",
+          "H_A": "posterior strictly above nu_star, all x_j>=w_1 and z=p_0",
+          "H_R": "posterior strictly above nu_star and some x_j<w_1; allowed only when p_0=d_1",
+          "off_support_cap": "Every high-belief proposal that would pass has z<=p_0",
+          "belief_and_continuation": "Local Bayes at every disciplined point; beliefs in E_U everywhere; Borel literal-member kappa_U on every rejection."
+        },
+        "necessary_and_sufficient_membership_rule": "All and only binders satisfying items 1-6 of Section 9 of the proof with u=p_0. The rule includes separating, semi-pooling, pooling where Bayes-compatible, continuous measures and mixtures; it excludes any local posterior in the C_U none cell.",
+        "strategy_by_type": {
+          "theta_0": "Any Borel sigma_0 satisfying the generator and local Bayes rule",
+          "theta_1": "Any Borel sigma_1 satisfying the generator and local Bayes rule"
+        },
+        "weak_vote_strategy": "At each proposal s and for each j: if mu(s)=0 vote yes iff x_j>=w_0; if mu(s)>nu_star vote yes iff x_j>=w_1; T^Y selects yes at equality.",
+        "belief_system": {
+          "disciplined_points": "the contract's local relative-neighborhood Bayes limit, which must exist",
+          "zero_public_mass_points": "free in E_U within prior support, subject to the no-profitable-deviation cap",
+          "after_weak_votes": "unchanged from the proposal posterior",
+          "inside_continuation": "the complete source-member belief system selected by kappa_U"
+        },
+        "continuation_rule": {
+          "mapping": "kappa_U:H_U^R -> union_{eta in E_U} C_U(eta)",
+          "binding": "kappa_U(r) lies in C_U(mu(s_r)) and selects one complete source member",
+          "properties": "public, common to compatible types, total, single-valued per rejected history and Borel-measurable"
+        },
+        "payoff_by_type_and_identity": {
+          "hegemon": {
+            "theta_0": "p_0",
+            "theta_1": "p_0"
+          },
+          "weak_identity_j": "U_j(theta;b)=integral[a_b(s)*x_j+(1-a_b(s))*w(mu_b(s))]d sigma_theta(s), with w(0)=w_0 and w(eta)=w_1 for eta>nu_star."
+        },
+        "outcome_distribution": {
+          "immediate_agreement_by_type": "sigma_theta({s:a_b(s)=1})",
+          "rejection_and_entry_C_U_by_type": "sigma_theta({s:a_b(s)=0})",
+          "full_outcome_law": "The pushforward of the same binder through immediate implementation or the literal continuation outcome kernel; rejection on path is possible only when Delta=0 and u=d_1=p_0."
+        },
+        "atomic_binder": "b_UL=(nu,u=p_0,sigma_0,sigma_1,mu,kappa_U); this same b_UL determines strategies, beliefs, votes, continuation, payoffs and outcomes.",
+        "source_ids_and_hashes": {
+          "source_complete_view_id": "C-U-COMPLETE-VIEW-F1C823123A9B",
+          "source_record_ids": [
+            "N4-SC-EQ-L-STAR",
+            "N4-SC-EQ-P-STAR"
+          ],
+          "source_hash": "f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b"
+        },
+        "selection_status": "complete baseline family; no equilibrium selected",
+        "refinement_status": "baseline PBE with pure as-if-pivotal weak votes, T^Y, local Bayes and prior-support preservation; no D1, intuitive criterion or tremble",
+        "payoff_date": "A",
+        "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#9-gerador-necessário-e-suficiente-dos-membros-interiores"
+      },
+      {
+        "family_record_id": "A-U-FAM-HIGH-PRIOR-INTERIOR",
+        "institution": "U",
+        "cell_id": "A-U-CELL-HIGH-PRIOR-INTERIOR",
+        "parameter_domain": "nu_star<nu<1",
+        "member_parameter_or_selector": "b=(nu,u,sigma_0,sigma_1,mu,kappa_U), with u in [max{p_0,d_1},p_1], satisfying the complete interior generator",
+        "member_generator": {
+          "common_payoff": "u in [max{p_0,d_1},p_1]",
+          "proposal_support": "Each type's measure assigns probability one to L_0 union H_A(u), plus H_R only when u=d_1; topological limit points of measure zero are governed by the global belief and deviation conditions.",
+          "L_0": "q_0 with posterior zero; available only when u=p_0 and only from theta_0 public mass",
+          "H_A": "posterior strictly above nu_star, all x_j>=w_1 and z=u",
+          "H_R": "posterior strictly above nu_star and some x_j<w_1; available only when u=d_1",
+          "off_support_cap": "Every high-belief proposal that would pass has z<=u",
+          "belief_and_continuation": "Local Bayes at every disciplined point; beliefs in E_U everywhere; Borel literal-member kappa_U on every rejection."
+        },
+        "necessary_and_sufficient_membership_rule": "All and only binders satisfying items 1-6 of Section 9 of the proof. This symbolic family is the complete joint correspondence and preserves continuous, singular-when-the-local-limit-exists, atomic, pooling, separating, semi-pooling and delay members.",
+        "strategy_by_type": {
+          "theta_0": "Any Borel sigma_0 satisfying the generator, support conditions and local Bayes rule",
+          "theta_1": "Any Borel sigma_1 satisfying the generator, support conditions and local Bayes rule"
+        },
+        "weak_vote_strategy": "At each proposal s and for each j: if mu(s)=0 vote yes iff x_j>=w_0; if mu(s)>nu_star vote yes iff x_j>=w_1; T^Y selects yes at equality.",
+        "belief_system": {
+          "disciplined_points": "the contract's local relative-neighborhood Bayes limit, which must exist",
+          "zero_public_mass_points": "free in E_U within prior support, subject to the no-profitable-deviation cap",
+          "after_weak_votes": "unchanged from the proposal posterior",
+          "inside_continuation": "the complete source-member belief system selected by kappa_U"
+        },
+        "continuation_rule": {
+          "mapping": "kappa_U:H_U^R -> union_{eta in E_U} C_U(eta)",
+          "binding": "kappa_U(r) lies in C_U(mu(s_r)) and selects one complete source member",
+          "properties": "public, common to compatible types, total, single-valued per rejected history and Borel-measurable"
+        },
+        "payoff_by_type_and_identity": {
+          "hegemon": {
+            "theta_0": "u",
+            "theta_1": "u"
+          },
+          "weak_identity_j": "U_j(theta;b)=integral[a_b(s)*x_j+(1-a_b(s))*w(mu_b(s))]d sigma_theta(s), with w(0)=w_0 and w(eta)=w_1 for eta>nu_star."
+        },
+        "outcome_distribution": {
+          "immediate_agreement_by_type": "sigma_theta({s:a_b(s)=1})",
+          "rejection_and_entry_C_U_by_type": "sigma_theta({s:a_b(s)=0})",
+          "full_outcome_law": "The pushforward of the same binder through immediate implementation or the literal continuation outcome kernel. On-path rejection is possible exactly in members with u=d_1>=p_0 and positive mass on H_R."
+        },
+        "atomic_binder": "b_UH=(nu,u,sigma_0,sigma_1,mu,kappa_U); this same b_UH determines strategies, beliefs, votes, continuation, payoffs and outcomes.",
+        "source_ids_and_hashes": {
+          "source_complete_view_id": "C-U-COMPLETE-VIEW-F1C823123A9B",
+          "source_record_ids": [
+            "N4-SC-EQ-L-STAR",
+            "N4-SC-EQ-P-STAR"
+          ],
+          "source_hash": "f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b"
+        },
+        "selection_status": "complete baseline family; the payoff interval and all binder-compatible outcomes are preserved without selection",
+        "refinement_status": "baseline PBE with pure as-if-pivotal weak votes, T^Y, local Bayes and prior-support preservation; no D1, intuitive criterion or tremble",
+        "payoff_date": "A",
+        "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#9-gerador-necessário-e-suficiente-dos-membros-interiores"
+      },
+      {
+        "family_record_id": "A-U-FAM-NU-ONE",
+        "institution": "U",
+        "cell_id": "A-U-CELL-NU-ONE",
+        "parameter_domain": "nu=1; m>=2; 0<beta<1; 0<o_0<o_1<1",
+        "member_parameter_or_selector": "The proposal and payoff coordinates are singleton; kappa_U may select any literal complete high-cell member compatible with the fixed endpoint belief one.",
+        "member_generator": {
+          "sigma_0": "delta_{q_1}",
+          "sigma_1": "delta_{q_1}",
+          "belief": "mu(s)=1 for every s in Y",
+          "continuation": "kappa_U(r) is a complete N4-SC-EQ-P-STAR member at entry belief one for every rejected history r"
+        },
+        "necessary_and_sufficient_membership_rule": "Both types have the unique proposal best response q_1 under belief one because p_1>d_1; all continuation coordinates remain bound to a complete source member.",
+        "strategy_by_type": {
+          "theta_0": "sigma_0=delta_{q_1}",
+          "theta_1": "sigma_1=delta_{q_1}"
+        },
+        "weak_vote_strategy": "For every proposal and each j, vote yes iff x_j>=w_1; at equality T^Y selects yes.",
+        "belief_system": {
+          "proposal": "posterior identically one, including proposals used only by the zero-prior type",
+          "after_weak_votes": "posterior remains one",
+          "inside_continuation": "the complete source-member belief system selected by kappa_U"
+        },
+        "continuation_rule": {
+          "domain": "every rejected public history",
+          "range": "literal complete members of C_U(1)",
+          "properties": "public, common to compatible types, total, single-valued per history and Borel-measurable"
+        },
+        "payoff_by_type_and_identity": {
+          "hegemon": {
+            "theta_0": "p_1",
+            "theta_1": "p_1"
+          },
+          "weak_identity_j": "x_j=w_1 at immediate q_1 agreement for either realized type"
+        },
+        "outcome_distribution": {
+          "theta_0": "immediate unanimous agreement at q_1 with probability one",
+          "theta_1": "immediate unanimous agreement at q_1 with probability one",
+          "ex_ante": "immediate unanimous agreement at q_1 with probability one"
+        },
+        "atomic_binder": "b_U1=(nu=1,sigma_0=delta_q1,sigma_1=delta_q1,mu=1,kappa_U); this same b_U1 determines strategies, beliefs, votes, continuation, payoffs and outcomes.",
+        "source_ids_and_hashes": {
+          "source_complete_view_id": "C-U-COMPLETE-VIEW-F1C823123A9B",
+          "source_record_ids": [
+            "N4-SC-EQ-P-STAR"
+          ],
+          "source_hash": "f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b"
+        },
+        "selection_status": "unique proposal, payoff and immediate outcome; complete continuation-member multiplicity remains bound where payoff-irrelevant",
+        "refinement_status": "baseline PBE with pure as-if-pivotal weak votes, T^Y and prior-support preservation; no D1, intuitive criterion or tremble",
+        "payoff_date": "A",
+        "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#104-endpoint-nu1"
+      }
+    ],
+    "proof_paths": [
+      "model_redesign/agenda_extension_A_U_derivation_simplified.md#4-votação-fraca-sob-unanimidade",
+      "model_redesign/agenda_extension_A_U_derivation_simplified.md#7-lema-de-equalização-no-interior",
+      "model_redesign/agenda_extension_A_U_derivation_simplified.md#9-gerador-necessário-e-suficiente-dos-membros-interiores",
+      "model_redesign/agenda_extension_A_U_derivation_simplified.md#10-existência-por-célula-e-testemunhas",
+      "model_redesign/agenda_extension_A_U_derivation_simplified.md#13-cobertura-necessidade-suficiência-e-invalidação"
+    ]
+  },
+  "ex_ante_image": {
+    "image_collection_id": "A-U-HEGEMON-EX-ANTE-IMAGE-V1",
+    "domain": "nu in [0,1] and all primitive restrictions",
+    "cells": [
+      {
+        "cell_id": "A-U-IMAGE-NU-ZERO",
+        "domain": "nu=0",
+        "status": "exists",
+        "image_records": [
+          {
+            "image_id": "A-U-IMG-NU-ZERO",
+            "source_family_record_id": "A-U-FAM-NU-ZERO",
+            "source_atomic_binder": "b_U0=(nu=0,sigma_0=delta_q0,sigma_1,mu=0,kappa_U); this same b_U0 determines strategies, beliefs, votes, continuation, payoffs and outcomes.",
+            "prior_and_type_weights": "(1-nu,nu)=(1,0)",
+            "type_values_at_A": "(p_0,max{p_0,d_1})",
+            "ex_ante_value_formula": "(1-nu)*U_0+nu*U_1=p_0",
+            "exact_image_set": "{p_0}",
+            "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#101-endpoint-nu0"
+          }
+        ],
+        "none_reason": null
+      },
+      {
+        "cell_id": "A-U-IMAGE-LOW-PRIOR-DELTA-NEGATIVE",
+        "domain": "0<nu<=nu_star and Delta<0",
+        "status": "none",
+        "image_records": [],
+        "none_reason": "A_U has no PBE in this cell; no payoff is imputed."
+      },
+      {
+        "cell_id": "A-U-IMAGE-LOW-PRIOR-DELTA-NONNEGATIVE",
+        "domain": "0<nu<=nu_star and Delta>=0",
+        "status": "exists",
+        "image_records": [
+          {
+            "image_id": "A-U-IMG-LOW-PRIOR",
+            "source_family_record_id": "A-U-FAM-LOW-PRIOR",
+            "source_atomic_binder": "b_UL=(nu,u=p_0,sigma_0,sigma_1,mu,kappa_U); this same b_UL determines strategies, beliefs, votes, continuation, payoffs and outcomes.",
+            "prior_and_type_weights": "(1-nu,nu)",
+            "type_values_at_A": "(p_0,p_0)",
+            "ex_ante_value_formula": "(1-nu)*p_0+nu*p_0=p_0",
+            "exact_image_set": "{p_0}",
+            "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#102-0nunu_star"
+          }
+        ],
+        "none_reason": null
+      },
+      {
+        "cell_id": "A-U-IMAGE-HIGH-PRIOR-INTERIOR",
+        "domain": "nu_star<nu<1",
+        "status": "exists",
+        "image_records": [
+          {
+            "image_id": "A-U-IMG-HIGH-PRIOR-INTERIOR",
+            "source_family_record_id": "A-U-FAM-HIGH-PRIOR-INTERIOR",
+            "source_atomic_binder": "b_UH=(nu,u,sigma_0,sigma_1,mu,kappa_U); this same b_UH determines strategies, beliefs, votes, continuation, payoffs and outcomes.",
+            "prior_and_type_weights": "(1-nu,nu)",
+            "type_values_at_A": "(u,u), u in [max{p_0,d_1},p_1]",
+            "ex_ante_value_formula": "(1-nu)*u+nu*u=u",
+            "exact_image_set": "[max{p_0,d_1},p_1]",
+            "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#103-nu_starnu1"
+          }
+        ],
+        "none_reason": null
+      },
+      {
+        "cell_id": "A-U-IMAGE-NU-ONE",
+        "domain": "nu=1",
+        "status": "exists",
+        "image_records": [
+          {
+            "image_id": "A-U-IMG-NU-ONE",
+            "source_family_record_id": "A-U-FAM-NU-ONE",
+            "source_atomic_binder": "b_U1=(nu=1,sigma_0=delta_q1,sigma_1=delta_q1,mu=1,kappa_U); this same b_U1 determines strategies, beliefs, votes, continuation, payoffs and outcomes.",
+            "prior_and_type_weights": "(1-nu,nu)=(0,1)",
+            "type_values_at_A": "(p_1,p_1)",
+            "ex_ante_value_formula": "(1-nu)*U_0+nu*U_1=p_1",
+            "exact_image_set": "{p_1}",
+            "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#104-endpoint-nu1"
+          }
+        ],
+        "none_reason": null
+      }
+    ],
+    "proof_path": "model_redesign/agenda_extension_A_U_derivation_simplified.md#12-payoffs-fracos-outcomes-e-imagem-ex-ante"
+  },
+  "proof_paths": {
+    "main_derivation": "model_redesign/agenda_extension_A_U_derivation_simplified.md",
+    "pivotal_voting": "model_redesign/agenda_extension_A_U_derivation_simplified.md#4-votação-fraca-sob-unanimidade",
+    "beliefs_and_literal_continuation": "model_redesign/agenda_extension_A_U_derivation_simplified.md#5-crenças-e-continuação-literal",
+    "no_profitable_deviation_all_Y": "model_redesign/agenda_extension_A_U_derivation_simplified.md#9-gerador-necessário-e-suficiente-dos-membros-interiores",
+    "coverage": "model_redesign/agenda_extension_A_U_derivation_simplified.md#13-cobertura-necessidade-suficiência-e-invalidação",
+    "mechanical_checks_only": "scripts/verify_agenda_extension_A_U_mechanical.R"
+  },
+  "selection_status": "No equilibrium selected; exact family binders and exact ex ante image are primary.",
+  "review_status": "Not yet independently reviewed; final private-package review occurs only after AC."
+}
