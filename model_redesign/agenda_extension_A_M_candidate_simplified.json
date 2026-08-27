@@ -1,0 +1,218 @@
+{
+  "schema_version": "agenda_extension_private_equilibrium_collection_v1_simplified",
+  "collection_id": "AGENDA-EXT-A-M-COLLECTION-V1",
+  "node_id": "A_M",
+  "institution": "M",
+  "domain": {
+    "primitive_domain": [
+      "N is an integer and N>=3",
+      "m=N-1",
+      "q=floor(N/2)+1",
+      "k=q-1 weak yes votes are required because H's proposal is H's automatic yes vote",
+      "nu in [0,1]",
+      "beta in (0,1)",
+      "0<o_0<o_1<1",
+      "Y={(z_H,(x_j)_j): z_H>=0, x_j>=0, z_H+sum_j x_j<=1}",
+      "C_M is pinned at sha256:ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d"
+    ],
+    "existence_partition": {
+      "D_M_plus": "{d in D_M: E_M(d) is nonempty}",
+      "D_M_zero": "{d in D_M: E_M(d) is empty}",
+      "coverage": "D_M_plus and D_M_zero are disjoint and their union is D_M"
+    }
+  },
+  "status": "candidate_correspondence_derived_dag_still_pending_private_package_reviews_pending",
+  "family_record_ids": [
+    "AGENDA-EXT-A-M-FAMILY-ALL-PBE-V1"
+  ],
+  "source_complete_view_id": "C-M-COMPLETE-VIEW-FF053798-V1",
+  "cells": [
+    {
+      "cell_id": "A-M-CELL-EXISTS",
+      "domain": "D_M_plus={d in D_M: E_M(d) is nonempty}",
+      "status": "exists",
+      "family_record_ids": [
+        "AGENDA-EXT-A-M-FAMILY-ALL-PBE-V1"
+      ],
+      "none_reason": null,
+      "proof_path": "model_redesign/agenda_extension_A_M_derivation_simplified.md#7-gerador-exato-da-correspondencia"
+    },
+    {
+      "cell_id": "A-M-CELL-NONE",
+      "domain": "D_M_zero={d in D_M: E_M(d) is empty}",
+      "status": "none",
+      "family_record_ids": [],
+      "none_reason": "No Borel atomic binder satisfies simultaneously local Bayes, a total literal C_M selector, pointwise pure pivotal compatibility at every feasible proposal, and both H-type global best-response conditions. No payoff is imputed.",
+      "proof_path": "model_redesign/agenda_extension_A_M_derivation_simplified.md#7-gerador-exato-da-correspondencia"
+    }
+  ],
+  "proof_paths": {
+    "derivation": "model_redesign/agenda_extension_A_M_derivation_simplified.md",
+    "claim_ledger": "model_redesign/agenda_extension_A_M_claim_ledger_simplified.tsv",
+    "mechanical_check": "scripts/verify_agenda_extension_A_M_mechanical.R",
+    "execution_record": "quality_reports/2026-08-27_agenda_extension_A_M_execution_preflight.md"
+  },
+  "source_complete_view_reference": {
+    "complete_view_id": "C-M-COMPLETE-VIEW-FF053798-V1",
+    "source_node_id": "N3",
+    "source_artifact_path": "model_redesign/essential_input_solution_concept/n3_r1_majority_candidate.json",
+    "source_artifact_hash": "ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d",
+    "domain": "entry belief mu in [0,1], N>=3, beta in (0,1), and the primitive restrictions recorded by N3-SC-CELL-ALL",
+    "source_cells_and_family_schemas": {
+      "source_cell_id": "N3-SC-CELL-ALL",
+      "source_equilibrium_record_id": "N3-SC-EQ-COMPLETE",
+      "source_schema_ref": "equilibrium_correspondence_v1",
+      "literal_member_selector": "a complete identity-indexed binder F=(F_i)_{i in W} satisfying the source record's lexicographic-argmax support rule"
+    },
+    "payoff_and_outcome_coordinates": [
+      "C^I_{M,j}(c): weak voter j's own interim payoff with theta and source recognition lotteries internal to c",
+      "C^theta_{M,H}(c): H payoff conditional on theta",
+      "C^theta_{M,j}(c): weak j payoff conditional on theta, induced by the complete source strategy and outcome",
+      "Omega^theta_M(c): source outcome distribution conditional on theta"
+    ],
+    "native_dates": {
+      "source_payoff_date": "C_M native R1 current units",
+      "consumer_payoff_date": "A date zero",
+      "transport": "multiply a C_M payoff by beta exactly once upon rejection in A_M"
+    },
+    "status": "hash_verified_consumable_without_edit",
+    "proof_path": "model_redesign/agenda_extension_A_M_derivation_simplified.md#3-visao-completa-e-seletor-de-continuacao"
+  },
+  "equilibrium_family_collection": [
+    {
+      "family_record_id": "AGENDA-EXT-A-M-FAMILY-ALL-PBE-V1",
+      "institution": "M",
+      "cell_id": "A-M-CELL-EXISTS",
+      "parameter_domain": "d in D_M_plus and b in E_M(d)",
+      "member_parameter_or_selector": "one atomic binder b=(sigma_0,sigma_1,mu,v,kappa_M); sigma_theta may be any Borel probability measure satisfying the support condition",
+      "member_generator": {
+        "binder_space": "Borel proposal measures by type, a Borel posterior system, a Borel pure weak-vote map, and a total Borel selector of literal C_M members",
+        "E_M_of_d": "the subset satisfying B1-B5 below",
+        "B1_proposals": "sigma_0 and sigma_1 are Borel probability measures on compact relative-Borel Y",
+        "B2_beliefs": "mu obeys the approved local-Bayes limit at every disciplined proposal, is Borel, is free only inside prior support at undisciplined proposals, and is identically 0 or 1 at the respective endpoints",
+        "B3_continuation": "kappa_M maps every rejected public history to exactly one complete N3-SC-EQ-COMPLETE member at entry belief mu(s)",
+        "B4_weak_votes": "for every feasible proposal and weak identity, the same pure action satisfies every pointwise pivotal comparison",
+        "B5_H_optimality": "for each theta, BR_theta(b)=argmax_{s in Y} g_theta(s;b) is nonempty and sigma_theta(BR_theta(b))=1"
+      },
+      "necessary_and_sufficient_membership_rule": "assessment(b) is a PBE of A_M under the approved pointwise as-if-pivotal rule if and only if b belongs to E_M(d), i.e. B1-B5 all hold; this is proved in Theorem 1",
+      "strategy_by_type": {
+        "theta_0": "sigma_0, an arbitrary Borel probability on Y supported on BR_0(b)",
+        "theta_1": "sigma_1, an arbitrary Borel probability on Y supported on BR_1(b)",
+        "mixed_and_continuous_families": "preserved symbolically; no finite grid or density assumption is imposed",
+        "no_wait_action": "rejection or delay can arise only from a feasible proposal whose prescribed ballot fails"
+      },
+      "weak_vote_strategy": {
+        "pivotal_profiles_for_j": "P_j={a_-j in {0,1}^{m-1}: sum_{l!=j} a_l=q-2}",
+        "pointwise_reservation": "r_{j,a}(s;b)=beta*C^I_{M,j}(kappa_M(M,s,H,(0,a_-j),rejected,mu(s)))",
+        "lower_reservation": "r_lower_j(s;b)=min_{a_-j in P_j} r_{j,a}(s;b)",
+        "upper_reservation": "r_upper_j(s;b)=max_{a_-j in P_j} r_{j,a}(s;b)",
+        "yes_rule": "v_j(s)=1 if and only if x_j>=r_upper_j(s;b)",
+        "no_rule": "v_j(s)=0 if and only if x_j<r_lower_j(s;b)",
+        "pure_conflict_certificate": "if r_lower_j(s;b)<=x_j<r_upper_j(s;b), the candidate binder is inadmissible because no single unobserved-v_-j pure action satisfies all histories",
+        "clarification_boundary": "no kernel, no average over pivotal vectors, no tremble, and no invariance of the complete C_M member is introduced"
+      },
+      "belief_system": {
+        "public_proposal_measure": "q_nu=(1-nu)*sigma_0+nu*sigma_1",
+        "disciplined_points": "the approved relative-neighborhood local-Bayes limit exists and defines mu(s)",
+        "undisciplined_points": "mu(s) is free only within the support of the prior",
+        "endpoint_support": "mu(s)=0 everywhere at nu=0 and mu(s)=1 everywhere at nu=1",
+        "weak_votes": "no signaling what you do not know: weak votes do not change mu(s)",
+        "measurability": "mu and every expectation-relevant source kernel internal to the literal continuation member are Borel-measurable"
+      },
+      "continuation_rule": {
+        "domain": "all public rejected histories (M,s,H,a,rejected,mu(s)) with sum_j a_j<q-1",
+        "codomain": "literal complete members of C_M(mu(s))",
+        "selector": "kappa_M is total, single-valued, public, type-blind among compatible types, and Borel-measurable",
+        "history_dependence": "distinct proposals or vote vectors may select distinct complete members",
+        "atomicity": "strategy, beliefs, recognition lottery, payoffs and outcomes of the selected F remain together",
+        "missing_member": "a binder requiring a nonexistent source member is inadmissible; no sentinel is supplied"
+      },
+      "payoff_by_type_and_identity": {
+        "actual_pass_indicator": "p_b(s)=1{sum_j v_j(s)>=q-1}",
+        "actual_rejection_member": "c_b(s)=kappa_M(M,s,H,v(s),rejected,mu(s)) whenever p_b(s)=0",
+        "H_action_value_theta": "g_theta(s;b)=p_b(s)*z_H+(1-p_b(s))*beta*C^theta_{M,H}(c_b(s))",
+        "H_type_value": "V_H^theta(b)=integral_Y g_theta(s;b) d sigma_theta(s)=max_{s in Y} g_theta(s;b)",
+        "weak_identity_value_theta": "V_j^theta(b)=integral_Y [p_b(s)*x_j+(1-p_b(s))*beta*C^theta_{M,j}(c_b(s))] d sigma_theta(s)",
+        "type_pair_set": "P_H^M(d)={(V_H^0(b),V_H^1(b)): b in E_M(d)}"
+      },
+      "outcome_distribution": {
+        "conditional_theta": "Omega_b^theta=integral_Y [p_b(s)*delta_immediate_agreement_at_s+(1-p_b(s))*Omega_M^theta(c_b(s))] d sigma_theta(s)",
+        "immediate_agreement_probability_theta": "integral_Y p_b(s) d sigma_theta(s)",
+        "rejection_to_C_M_probability_theta": "1-integral_Y p_b(s) d sigma_theta(s)",
+        "ex_ante": "(1-nu)*Omega_b^0+nu*Omega_b^1, formed only after the type-conditional distributions",
+        "same_binder_requirement": "all probabilities and payoffs in this object use the same b"
+      },
+      "atomic_binder": {
+        "binder_id_expression": "A_M_BINDER(d;b)",
+        "coordinates_bound": [
+          "sigma_0",
+          "sigma_1",
+          "mu",
+          "v",
+          "kappa_M",
+          "source member F at every rejection history",
+          "type-conditioned payoffs",
+          "outcome distributions"
+        ],
+        "coordinate_splicing": "forbidden"
+      },
+      "source_ids_and_hashes": {
+        "C_M_complete_view_id": "C-M-COMPLETE-VIEW-FF053798-V1",
+        "C_M_record_id": "N3-SC-EQ-COMPLETE",
+        "C_M_sha256": "ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d",
+        "simplified_contract_sha256": "fb2cd323a74b30432746dc37d622014cd7768e6d5442877ed3a8e043df546dc4",
+        "goal1_manifest_sha256": "588e7da2ec7df2f208ccaf082d3bc30834ea12625484b04b25d3eae7fce20a86",
+        "solution_concept_current_sha256": "9189299798a65cad1408e68888e60907474e96bb66c700d8ca3b3329aa326f4f",
+        "author_protocol_clarification": "2026-08-27 pointwise pivotal comparison; same pure action must satisfy every relevant pivotal history"
+      },
+      "selection_status": "full correspondence: no equilibrium, coalition, belief, continuation, proposal, or identity symmetry selection is added",
+      "refinement_status": "PBE under the approved as-if-pivotal weak voting rule, yes at equality, local Bayes, no-signaling by weak actions, and the 2026-08-27 pointwise clarification",
+      "payoff_date": "A date zero; immediate agreements undiscounted; C_M native values transported by beta once",
+      "proof_path": "model_redesign/agenda_extension_A_M_derivation_simplified.md#7-gerador-exato-da-correspondencia"
+    }
+  ],
+  "ex_ante_image": {
+    "image_id": "AGENDA-EXT-A-M-H-EX-ANTE-IMAGE-V1",
+    "source_family_record_id": "AGENDA-EXT-A-M-FAMILY-ALL-PBE-V1",
+    "source_atomic_binder": "A_M_BINDER(d;b), with the identical b used for both type values and the ex-ante projection",
+    "prior_and_type_weights": {
+      "theta_0": "1-nu",
+      "theta_1": "nu"
+    },
+    "type_values_at_A": {
+      "theta_0": "V_H^0(b)=max_{s in Y} g_0(s;b)",
+      "theta_1": "V_H^1(b)=max_{s in Y} g_1(s;b)"
+    },
+    "ex_ante_value_formula": "V_H,exante(b)=(1-nu)*V_H^0(b)+nu*V_H^1(b)",
+    "exact_image_set": "{(1-nu)*V_H^0(b)+nu*V_H^1(b): b in E_M(d)}; empty exactly when E_M(d) is empty, without a sentinel",
+    "exact_type_payoff_pair_set": "{(V_H^0(b),V_H^1(b)): b in E_M(d)}",
+    "marginal_recombination": "forbidden: both type coordinates must come from the same atomic binder",
+    "proof_path": "model_redesign/agenda_extension_A_M_derivation_simplified.md#8-payoffs-por-tipo-imagem-ex-ante-e-outcomes"
+  },
+  "source_value_transport_records": [
+    {
+      "source_record_id": "N3-SC-EQ-COMPLETE via C-M-COMPLETE-VIEW-FF053798-V1",
+      "source_artifact_hash_if_external": "ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d",
+      "native_value": "C^coordinate_M(c), with the coordinate selected by player, identity and realized type before expectation",
+      "native_date": "C_M native R1 current units",
+      "transport_factor_to_A": "beta",
+      "beta_application_count": 1,
+      "transported_value_at_A": "beta*C^coordinate_M(c)"
+    },
+    {
+      "source_record_id": "A_M immediate agreement",
+      "source_artifact_hash_if_external": null,
+      "native_value": "z_H for H and x_j for weak identity j",
+      "native_date": "A date zero",
+      "transport_factor_to_A": "1",
+      "beta_application_count": 0,
+      "transported_value_at_A": "the immediate package coordinate itself"
+    }
+  ],
+  "scope_and_invalidation": {
+    "dag_status_after_this_artifact": "A_M remains pending; pass fields are intentionally untouched",
+    "private_package_reviews": "two final independent mathematical reviews occur only after the authorized A_M then blind reconstruction then integration sequence",
+    "invalidation": "any byte change in C_M invalidates this artifact and every later consumer; a byte change here invalidates later private integration",
+    "excluded_work": "no other extension node, public analysis, manuscript, frozen essential-input artifact, push, merge, or tag"
+  }
+}
