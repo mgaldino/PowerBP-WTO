@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "agenda-extension-A-M-explicit:19881e9aa680:round1",
+  "source": {
+    "reviewed_artifact": "model_redesign/agenda_extension_A_M_explicit_majority_results.md",
+    "sha256": "19881e9aa680784c93251f8b1c09921f28152ed36941661a6d351697e9dc6885",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-08-28_agenda_extension_A_M_explicit_independent_review.md",
+      "sha256": "1e2fc2bf9d48688135bc75b8cea5232c18a78780fdbe09ef4d234135e26404f1"
+    }
+  ],
+  "findings": [],
+  "summary": {
+    "total": 0,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "NO_CONFIRMED_DEFECTS",
+    "checked_at": "2026-08-28T18:51:28-03:00",
+    "reasons": [
+      "The independent read-only review reported PASS with zero critical, important, or minor findings on the exact reviewed bytes.",
+      "The current artifact hash matches the reviewed manifest.",
+      "The governing simplified Gate 0 and author technical amendment were checked as source constraints even though no argument-fidelity contract was required for this bounded derivation audit."
+    ]
+  }
+}

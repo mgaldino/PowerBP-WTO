@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "agenda-extension-A-M-explicit:19881e9aa680:round2",
+  "source": {
+    "reviewed_artifact": "quality_reports/adjudication/agenda_extension_A_M_explicit/19881e9aa680/round1_reviewed_artifact.md",
+    "sha256": "19881e9aa680784c93251f8b1c09921f28152ed36941661a6d351697e9dc6885",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "EXT-R1",
+      "path": "quality_reports/external_reviews/2026-08-28_auditoria_equilibrios_AM_original.md",
+      "sha256": "d8b5654f1ab9c8a78ecc6efe071d7e7537c61c39fb648e64ed3103e6e009c70c"
+    },
+    {
+      "review_id": "INT-R1",
+      "path": "quality_reports/2026-08-28_agenda_extension_A_M_explicit_independent_review.md",
+      "sha256": "1e2fc2bf9d48688135bc75b8cea5232c18a78780fdbe09ef4d234135e26404f1"
+    },
+    {
+      "review_id": "PACKET-R1",
+      "path": "quality_reports/2026-08-28_A_M_chatgpt_pro_packet_independent_review.md",
+      "sha256": "6a6714eb519226bcef5db7effb0f8fcc632cbd4391394edeb5b94e23231df60a"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "EXT-AM-L2",
+      "source_review": "EXT-R1",
+      "quoted_finding": "A parte de atingibilidade de AM-L2 é falsa para seletores dependentes da proposta.",
+      "type": "overclaim",
+      "severity": "major",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": ["external opinion §2 finding 1", "external opinion §7 AM-L2"],
+      "defect_evidence": ["The old AM-L2 sentence changes the proposal after computing prices and still states that the pointwise prices are attainable."],
+      "refuting_evidence": [],
+      "mechanical_checks": [],
+      "reasoning": "For a proposal-dependent selector, changing x can change the selected incidence and therefore the prices. A pointwise ceiling does not supply a fixed point.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Separate the pointwise upper bound from an attainability statement and require self-consistency for the latter."
+    },
+    {
+      "finding_id": "EXT-AMX-009",
+      "source_review": "EXT-R1",
+      "quoted_finding": "AMX-009 é verdadeiro se ‘plano’ significa globalmente constante em propostas e vetores; é falso sob a leitura apenas ‘constante nos vetores, dada a proposta’. ",
+      "type": "scope_or_consistency",
+      "severity": "major",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": ["external opinion §2 finding 2", "external opinion §7 AMX-009"],
+      "defect_evidence": ["The old heading and proof do not state that the flat selector is invariant across proposals."],
+      "refuting_evidence": [],
+      "mechanical_checks": [],
+      "reasoning": "Proposal dependence is enough to invalidate the alleged exact family, while global constancy supports the construction.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Define AMX-009 only for the globally constant continuation subfamily and preserve the general selector model outside the claim."
+    },
+    {
+      "finding_id": "EXT-FAMILY",
+      "source_review": "EXT-R1",
+      "quoted_finding": "‘Mesmo membro’ em posteriores diferentes deve ser escrito como a mesma família de incidência F, produzindo o membro posterior-compatível E_F(mu).",
+      "type": "scope_or_consistency",
+      "severity": "minor",
+      "scientific_dimension": "fidelity_of_implementation",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": ["external opinion §2 minor finding 2", "external opinion §7 AMX-008 e AMX-009"],
+      "defect_evidence": ["The literal wording can identify the same numerical member across posteriors even when the posterior-dependent payoff coordinates differ."],
+      "refuting_evidence": [],
+      "mechanical_checks": [],
+      "reasoning": "The incidence family can remain fixed while the compatible member changes with the posterior. AMX-008 also needs its arbitrary selector explicitly confined to a fixed pure branch.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Use a fixed family F and write E_F(mu); keep arbitrary selectors inside fixed branch B."
+    },
+    {
+      "finding_id": "EXT-K",
+      "source_review": "EXT-R1",
+      "quoted_finding": "AM-L2 não demonstra explicitamente K(s)<1.",
+      "type": "logic_or_proof",
+      "severity": "minor",
+      "scientific_dimension": "mechanism",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": ["external opinion §2 minor finding 1", "external opinion §7 AM-L2"],
+      "defect_evidence": ["The prior lemma asserted feasibility without displaying the uniform bound that makes the price sum strictly below one."],
+      "refuting_evidence": [],
+      "mechanical_checks": [],
+      "reasoning": "A short bound through the already defined uniform weak payoff cap gives K<1 and should be shown where the lemma is used.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Add the explicit C-bar/A-g calculation without adding an economic assumption."
+    },
+    {
+      "finding_id": "EXT-CE",
+      "source_review": "EXT-R1",
+      "quoted_finding": "O cálculo pontual ingênuo dá 17/25, mas a parcela máxima realmente atingível é 13/25, com transferências mínimas totais 12/25.",
+      "type": "logic_or_proof",
+      "severity": "minor",
+      "scientific_dimension": "reproducibility",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": ["external opinion §5 counterexample", "external opinion §7 AM-L2"],
+      "defect_evidence": ["The proposal-dependent ranking changes when the pointwise cheapest voters are paid, so the old 17/25 attainability sentence fails the supplied N=5 counterexample."],
+      "refuting_evidence": [],
+      "mechanical_checks": [],
+      "reasoning": "The two highest offers receive degree 3 and cost 6/25 each. Every passing proposal costs at least 12/25, while 6/25 to each of the two highest offers attains 13/25.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Add an exact rational R test that rejects the naive 17/25 proposal and certifies the 13/25 candidate."
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "confirmed": 5,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "READY_FOR_IMPLEMENTATION",
+    "checked_at": "2026-08-28T20:59:28-03:00",
+    "reasons": [
+      "The preserved external opinion is intact and its five bounded findings are confirmed against the exact round-1 artifact.",
+      "The author explicitly authorized repairs 1--6 and prohibited a new independent review or PASS in this round.",
+      "The previous internal PASS is superseded only for AM-L2, AMX-009, and correlated scope/attainability language; central results not overturned by the external opinion remain historical candidates."
+    ]
+  },
+  "supersession": {
+    "current_repaired_artifact": "model_redesign/agenda_extension_A_M_explicit_majority_results.md",
+    "previous_target_sha256": "19881e9aa680784c93251f8b1c09921f28152ed36941661a6d351697e9dc6885",
+    "review_boundary": "The prior internal PASS is superseded only for AM-L2, AMX-009, and correlated points; no new PASS is issued."
+  }
+}

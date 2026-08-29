@@ -1,0 +1,185 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "agenda-extension-A-M-explicit:158ea83e6b89:dual-review",
+  "source": {
+    "reviewed_artifact": "model_redesign/agenda_extension_A_M_explicit_majority_results.md",
+    "sha256": "158ea83e6b896a6c3318643c948164757761128e7c2522b94c145a6e5547fce3",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "contract_reference": {
+    "path": "quality_reports/plans/2026-08-26_agenda_extension_gate0_simplified.md",
+    "sha256": "fb2cd323a74b30432746dc37d622014cd7768e6d5442877ed3a8e043df546dc4",
+    "status": "APPROVED",
+    "validation_note": "The governing contract is Markdown. Schema 1.0 validator contract-file verification parses JSON only; this record was validated with --artifact and records the contract identity without claiming machine verification of the Markdown."
+  },
+  "governing_inputs": [
+    {
+      "path": "model_redesign/essential_input_solution_concept/n3_r1_majority_candidate.json",
+      "sha256": "ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d",
+      "role": "frozen C_M continuation"
+    },
+    {
+      "path": "quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md",
+      "sha256": "9189299798a65cad1408e68888e60907474e96bb66c700d8ca3b3329aa326f4f",
+      "role": "solution concept decision"
+    },
+    {
+      "path": "/private/tmp/PowerBayesianPersuasion-agenda-private-repair/quality_reports/2026-08-28_decisao_autoral_e_emenda_tecnica_agenda_extension.md",
+      "sha256": "e841b9d3e56864fec29742a79ebfd1b963519ef65ddfa3882508a802fa94a935",
+      "role": "authorial/technical amendment"
+    }
+  ],
+  "review_sources": [
+    {
+      "review_id": "COLD",
+      "path": "quality_reports/2026-08-28_A_M_cold_counterexample_review.md",
+      "sha256": "e6c24e06a73e70f87167606fb7383de3e7d474131dff4dbd22cebae9a09e6063"
+    },
+    {
+      "review_id": "GUIDED",
+      "path": "quality_reports/2026-08-28_A_M_guided_proof_review.md",
+      "sha256": "f23e5dd9b69c4cbd26db290fbc839c38f1e9e614309b59a75132a1bf0f10cc61"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "COLD-C1",
+      "source_review": "COLD",
+      "quoted_finding": "AMX-014–016 deixam abertas correspondência pura geral, misturas/semipooling gerais e payoff set conjunto, bloqueando fechamento/consumo de A_M sob o contrato, sem invalidar resultados parciais.",
+      "type": "scope_or_consistency",
+      "severity": "critical",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "COLD §Findings COLD-C1",
+        "COLD §Matriz resumida de sobrevivência",
+        "Derivação §8 (estado de AMX-014–016)"
+      ],
+      "defect_evidence": [
+        "AMX-014–016 continuam marcados como abertos para classificação pura geral, classificação mista geral e conjunto completo de payoffs.",
+        "Sem esses objetos, o candidato não fornece fechamento/consumo completo de A_M sob o contrato."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [],
+      "reasoning": "O finding limita o alcance do resultado: os resultados parciais sobrevivem, mas a correspondência geral exigida para fechar e consumir A_M não foi produzida.",
+      "proposed_fix_assessment": "needs_design",
+      "disposition": "Manter o candidato bloqueado para fechamento. Continuar a derivação para AMX-014–016; restringir kappa, privilegiar uma família ou relaxar a correspondência exige decisão autoral/alteração do contrato."
+    },
+    {
+      "finding_id": "COLD-I1",
+      "source_review": "COLD",
+      "quoted_finding": "O dossier frio restrito não definia T, Z_E, Zbar_E, A_g e desigualdades completas, mas o pacote completo contém essas definições; é limitação do protocolo frio, não defeito do pacote completo.",
+      "type": "artifact/review_protocol",
+      "severity": "important",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "COLD §Findings COLD-I1",
+        "COLD §Escopo, cegamento e bytes permitidos",
+        "GUIDED §Bytes auditados e método"
+      ],
+      "defect_evidence": [
+        "Os insumos deliberadamente permitidos à revisão fria não continham as definições completas de T, Z_E, Zbar_E, A_g e das desigualdades necessárias para certificar todos os claims."
+      ],
+      "refuting_evidence": [
+        "A revisão guiada e o pacote completo contêm essas definições; portanto a insuficiência não caracteriza defeito do pacote integral."
+      ],
+      "mechanical_checks": [],
+      "reasoning": "Há uma limitação real do dossier frio, mas sua extensão não é um defeito do artefato completo. Só há desenho adicional a decidir se o protocolo frio precisar certificar sozinho todos os claims.",
+      "proposed_fix_assessment": "needs_design",
+      "disposition": "Registrar a limitação do protocolo; não alterar o pacote nem ampliar retroativamente o escopo da revisão fria."
+    },
+    {
+      "finding_id": "GUIDED-I1",
+      "source_review": "GUIDED",
+      "quoted_finding": "AMX-003 e AMX-007 omitem 0<nu<1 na derivação/ledger, embora o pacote tenha escopo correto; os endpoints produzem contraexemplos.",
+      "type": "scope_or_consistency",
+      "severity": "important",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "GUIDED §GUIDED-I1",
+        "Derivação §3.3 e §4.2",
+        "Ledger linhas AMX-003 e AMX-007"
+      ],
+      "defect_evidence": [
+        "A derivação e o ledger não registram 0<nu<1 como condição para AMX-003 e AMX-007.",
+        "No endpoint AMX-003, com N=5,m=4,k=2,beta=.9,o0=.1,o1=.7,nu=0, ZE=.55, T=.6111 e B(0)=S, a rejeição do alto é beta^2 o1=.567 e ZS(0)=.5905>.567; o alto prefere acordo.",
+        "No endpoint AMX-007, com N=5,m=4,k=2,beta=.8,o0=.1,o1=T=.75,nu=0, ZE=.6 e rejeição S=.48, o alto não mistura."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "Os dois contraexemplos numéricos foram registrados na revisão guiada; a execução geral do script do candidato produziu 567 PASS/0 FAIL."
+      ],
+      "reasoning": "O problema é de domínio nos artefatos guiados. O pacote textual contém o escopo interior, mas a derivação e o ledger precisam ser consistentes com ele para que os claims tenham o domínio alegado.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Proposta segura do revisor: restringir AMX-003 e as construções gerais de AMX-007 a 0<nu<1 e deixar endpoints em AMX-005, com mistura iff Z_B(nu)=D_B(nu)(theta). Não implementar nesta etapa."
+    },
+    {
+      "finding_id": "GUIDED-M1",
+      "source_review": "GUIDED",
+      "quoted_finding": "O ledger de AMX-011 aponta Sections 5.3 and 6, mas a prova está na Section 5.4, linhas 674–678.",
+      "type": "artifact",
+      "severity": "minor",
+      "scientific_dimension": "fidelity_of_implementation",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "GUIDED §GUIDED-M1",
+        "Ledger linha AMX-011",
+        "Derivação Section 5.4, linhas 674–678"
+      ],
+      "defect_evidence": [
+        "O campo evidence do ledger aponta Sections 5.3 and 6, enquanto a prova correspondente está na Section 5.4, linhas 674–678."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [],
+      "reasoning": "É um erro de localização do artefato, não uma contradição matemática do claim.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Corrigir o apontador em etapa autorizada; não alterar agora."
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "confirmed": 3,
+    "partial": 1,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "BLOCKED",
+    "checked_at": "2026-08-28T22:14:07-03:00",
+    "reasons": [
+      "COLD-C1 confirma um bloqueio crítico: AMX-014–016 ainda impedem fechamento e consumo de A_M.",
+      "COLD-I1 é parcial: a insuficiência pertence ao dossier frio deliberadamente restrito, não ao pacote completo.",
+      "GUIDED-I1 confirma a omissão do domínio interior em AMX-003/AMX-007; GUIDED-M1 confirma o localizador incorreto de AMX-011.",
+      "O candidato permanece exploratório; não pode receber PASS/freeze nem ser consumido por AC."
+    ]
+  },
+  "disposition_boundary": {
+    "no_new_economic_decision_needed_for": [
+      "the local scope correction proposed for AMX-003/AMX-007",
+      "the local evidence-pointer correction for AMX-011"
+    ],
+    "author_decision_or_contract_change_needed_for": [
+      "closing AMX-014–016",
+      "restricting kappa",
+      "privileging a continuation family",
+      "relaxing complete correspondence"
+    ],
+    "implementation_status": "No substantive repair was made in this record."
+  }
+}
