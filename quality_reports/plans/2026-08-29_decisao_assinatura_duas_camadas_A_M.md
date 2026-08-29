@@ -1,7 +1,8 @@
 # Decisão autoral — assinatura de A_M em duas camadas (órbita diagonal exata + resumo anônimo por Z/G)
 
 **Data:** 2026-08-29
-**Status:** PROPOSED — aguardando aval autoral.
+**Status:** APPROVED — aval autoral concedido em 2026-08-29 ("aprovo"), sobre
+o texto integral deste registro.
 **Objeto:** resolver o defeito `important` adjudicado dos dois pareceres
 formais de `A_M` sob M/S/B — a anonimização por Reynolds componentwise não é
 um quociente diagonal exato — e destravar a reimplementação de `AMX-016` e da
@@ -151,4 +152,4 @@ revisões formais.
    liberação de `A_M` para consumo por `AC`, condicionada também aos claims de
    suficiência e à auditoria própria de `A_U`.
 
-**Aprovação autoral:** pendente.
+**Aprovação autoral:** concedida em 2026-08-29 ("aprovo").
