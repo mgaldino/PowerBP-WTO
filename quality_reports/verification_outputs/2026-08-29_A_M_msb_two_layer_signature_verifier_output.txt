@@ -1,0 +1,32 @@
+A_M M/S/B two-layer signature verifier
+Date: 2026-08-29
+Worktree: /private/tmp/PBP-am-msb
+Branch: agenda-extension-am-msb
+Pre-implementation HEAD: 9ff11e4c0f41b95dadc026efb77072197ce487ec
+
+Command:
+env LC_ALL=C LANG=C Rscript scripts/verify_agenda_extension_A_M_msb.R
+
+Script SHA-256:
+b3133ab97870cf9c5730c57da40c2c9f4d68912226bb8d8f080022653e2a8391
+
+Exit status:
+0
+
+Standard output:
+SUMMARY | 3954 PASS | 0 FAIL
+
+Added two-layer regression scope:
+- distinct exact orbit signatures and equal economic summaries for x^P/x^Q;
+- invariance of Lambda under a common diagonal S_4 relabeling;
+- invariance of the q_Z pushforward under record relabeling;
+- equal summaries but distinct exact signatures for weights (.9,.1) and
+  (.5,.5) on identity labels with disjoint type supports;
+- preservation of posterior laws, conditionally by type and under the prior.
+
+Scope limit:
+Mechanical evidence only. The finite fixtures do not prove Borel
+measurability, general completeness of Lambda, PBE existence or membership,
+Bayes consistency, realizability of a barycenter, the general factorization
+lemma, or sufficiency for any AC/AR operation. They are regressions, not a
+formal mathematical review.

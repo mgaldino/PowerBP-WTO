@@ -1,12 +1,11 @@
 # `A_M` sob as cláusulas M/S/B — existência, membership e classes de assinatura
 
 **Data:** 2026-08-29  
-**Status:** `POST-EXTERNAL-REVIEW REPAIR CANDIDATE — FRESH FORMAL REVIEWS PENDING`
+**Status:** `TWO-LAYER SIGNATURE IMPLEMENTATION CANDIDATE — FRESH FORMAL REVIEWS PENDING`
 **Branch:** `agenda-extension-am-msb`  
 **Base histórica da rederivação:** `b675a372d7c92703335e5c70a18077e9151f254d`  
-**Commit normativo consumido:** `4bda7b71e1e6d4e836912b533fef8b28ee044c71`  
-**Snapshot substantivo pré-reparo:** `6fa852c52cd3a277735697b78a42d5f1774c6320`
-**HEAD operacional de abertura:** `bfd149898cdf1915b453f95d7d4401c4d2de5682`
+**Snapshot substantivo revisado:** `6b94f2f57aaf8615972e27479435be1db7d44d7f`
+**Snapshot pré-implementação:** `9ff11e4c0f41b95dadc026efb77072197ce487ec`
 **Escopo:** somente `A_M`. `A_U`, `AC`, `AR`, N1–N7 e o manuscrito não são
 consumidos nem alterados.
 
@@ -19,29 +18,43 @@ mecânicas estão em `scripts/verify_agenda_extension_A_M_msb.R`.
 
 A ordem normativa aplicada neste passe é:
 
-1. emenda M/S/B aprovada,
+1. decisão autoral aprovada sobre a assinatura em duas camadas,
+   `quality_reports/plans/2026-08-29_decisao_assinatura_duas_camadas_A_M.md`,
+   SHA-256 `cd9650715442dc0beae2fa6af450c509c0ad871d51dc5d54b0a6a826d1fc86e8`;
+2. consultas externas não formais que fornecem as provas e os
+   contraexemplos incorporados, sem estatuto de parecer formal:
+   `quality_reports/external_reviews/2026-08-29_consulta_fable_anonimato_reynolds_A_M.md`,
+   SHA-256 `608b9459d26063c6e45f895ba70bd00c2f73bf12cdff3dac854a9b62746e10d7`,
+   e
+   `quality_reports/external_reviews/2026-08-29_consulta_tecnica_externa_nao_formal_chatgpt_simetria_AM.md`,
+   SHA-256 `142a39ed2124aca50743e92ef67f505192eb6d159f546b3d8b0c42a274804d0b`;
+3. os dois pareceres formais, a adjudicação e o manifesto do gate fixados nos
+   commits `6b94f2f` e `a3f7f7f`, usados para delimitar os findings, não como
+   aprovação destes novos bytes;
+4. emenda M/S/B aprovada,
    `quality_reports/plans/2026-08-29_emenda_extensao_agenda_markov_crencas.md`,
    SHA-256 `8f0f3a0e430e8005bd7a1da99477a7b0e27e163b85aa87c2ad349d9578aab21b`;
-2. clarificação aprovada sobre anonimato e kernel uniforme,
+5. clarificação aprovada sobre anonimato e kernel uniforme,
    `quality_reports/plans/2026-08-29_clarificacao_assinatura_anonimato.md`,
    SHA-256 `6c73fa57c34eb1529259e7c56ef8e6ddbf906fa1977aacf551c429aa29b248c3`;
-3. decisões pós-parecer aprovadas,
+6. decisões pós-parecer aprovadas,
    `quality_reports/plans/2026-08-29_decisoes_pos_parecer_chatgpt_A_M.md`,
    SHA-256 `3000a25c89510f3e0ea471d4406c0c59282f41fd07662b5c077fa81f281e1471`;
-4. consulta técnica externa não formal, usada como checklist de reparos e não
+7. consulta técnica externa não formal do passe anterior, usada como
+   checklist de reparos e não
    como gate,
    `quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md`,
    SHA-256 `d4928d7cf90ae01b37848d43b6d38d32498332822b1f73d955eebb7f1dabc47c`;
-5. Gate 0 simplificado no que não foi emendado,
+8. Gate 0 simplificado no que não foi emendado,
    `quality_reports/plans/2026-08-26_agenda_extension_gate0_simplified.md`,
    SHA-256 `fb2cd323a74b30432746dc37d622014cd7768e6d5442877ed3a8e043df546dc4`;
-6. certificado exploratório histórico,
+9. certificado exploratório histórico,
    `model_redesign/agenda_extension_A_M_explicit_majority_results.md`,
    SHA-256 `1e385fabd2e25a5b72344d22982d9648e28be92eb68665d484cd8116aaa7772f`;
-7. memória do resultado negativo,
+10. memória do resultado negativo,
    `quality_reports/2026-08-29_memoria_resultado_extensao_agenda_maioria.md`,
    SHA-256 `4db9a6692e0cafeafcc5f9bc7ada8a255a3e98a424fa5c90119b2d6470a9a732`;
-8. registro externo Sol 5.6,
+11. registro externo Sol 5.6,
    `quality_reports/2026-08-29_review_sol56_emenda_extensao_agenda.md`,
    SHA-256 `a1b89479a44d7cef148859d8219701ce370cbcedcfe994d5436bc565980bc25a`.
 
@@ -475,10 +488,12 @@ necessário.
 
    Todo `z in [O_1(rho),min{A_0,A_1}]` é admissível. As mensagens podem ser
    distintas mesmo com a mesma parcela: isso é separação de mensagens em um
-   ponto de indiferença, não separação de payoffs. Sob o quociente anônimo da
-   Seção 9, trocar apenas os nomes dos fracos não cria nova assinatura; para
-   permanecer distinta, a mensagem precisa mudar alguma coordenada não
-   eliminada pelo quociente, como a distribuição revelada de pacotes.
+   ponto de indiferença, não separação de payoffs. Na camada exata, só uma
+   permutação comum do perfil inteiro identifica dois assessments. No resumo
+   da Seção 9, o nome da coalizão é apagado registro a registro, mas o
+   posterior é preservado; por isso pooling e separating continuam distintos.
+   Dois perfis separating com as mesmas leis anônimas por tipo podem coincidir
+   no resumo sem serem a mesma órbita exata.
 
 2. **Acordo do tipo baixo e atraso do alto.** Existe se e somente se
 
@@ -634,7 +649,7 @@ A_nu=D_theta_nu  -> qualquer mistura entre propostas canônicas.
 
 As escolhas dos dois tipos podem coincidir ou separar sem alterar a crença.
 Isso é a classificação endpoint completa em outcomes puros; as medidas e
-assinaturas endpoint completas são formalizadas na Seção 9.2.
+assinaturas endpoint completas são formalizadas na Seção 9.3.
 
 ## 7. Prova construtiva da existência por região
 
@@ -802,28 +817,101 @@ uma família contínua de sinais em uma lista finita.
 
 ### 8.3 Restrições locais úteis
 
-- Se `0<pi(y)<1` e `y` passa, ambos os tipos usam o sinal e
-  `V_0=V_1=z_H(y)`.
-- Se `0<pi(y)<1` e `y` é rejeitado, ambos os tipos usam o sinal e
-  `V_theta=D_theta(pi(y))`.
-- Se `pi(y)=0` ou `1`, somente o tipo correspondente pode usar o sinal, mas o
-  outro tipo ainda precisa preferir seu próprio valor a imitá-lo.
-- Se o tipo alto usa uma proposta aprovada com probabilidade positiva, então
-  `V_0=V_1`.
+O Teorema T4 distingue duas quantificações que não podem ser confundidas:
 
-## 9. Lei conjunta downstream e cardinalidade da correspondência
+```text
+u_theta(y)<=V_theta para todo y in supp(lambda),
+u_theta(y)=V_theta para sigma_theta-quase todo y.
+```
 
-Seja `Omega_D` o espaço Borel dos outcomes literais de `C_M` e forme o espaço
-terminal disjunto
+Pertencer ao suporte não significa receber massa positiva. Em particular, num
+suporte atomless não há conclusão *pointwise* de igualdade num ponto isolado;
+a igualdade de melhor resposta permanece quase-certamente.
+
+Há uma conclusão pontual quando `y` é um átomo público. Se
+`lambda({y})>0`, o prior é interior e `0<pi(y)<1`, Bayes no átomo dá
+
+```text
+pi(y)=nu*sigma_1({y})/
+      [(1-nu)*sigma_0({y})+nu*sigma_1({y})].
+```
+
+Numerador e parcela do denominador atribuída ao tipo baixo são positivos.
+Logo `sigma_0({y})>0` e `sigma_1({y})>0`; uma igualdade que vale
+`sigma_theta`-quase certamente não pode falhar nesse singleton. Portanto:
+
+- se esse átomo passa, `V_0=V_1=z_H(y)`;
+- se esse átomo é rejeitado,
+  `V_theta=D_theta(pi(y))`, para `theta=0,1`.
+
+Nos pontos de massa zero essas duas frases não são promovidas a afirmações
+pontuais. A versão correta nos extremos do posterior é setwise:
+
+```text
+sigma_1({y:pi(y)=0})=0,
+sigma_0({y:pi(y)=1})=0.
+```
+
+Com efeito, a consistência bayesiana implica, para todo Borel `A subseteq Y`,
+
+```text
+integral_A pi(y) lambda(dy)=nu*sigma_1(A),
+integral_A [1-pi(y)] lambda(dy)=(1-nu)*sigma_0(A).
+```
+
+Tomar `A={pi=0}` na primeira identidade e `A={pi=1}` na segunda prova as
+duas igualdades. Isso não diz que um ponto individual de posterior extremo é
+usado; diz que o tipo incompatível não usa o conjunto, salvo num conjunto
+nulo. A desigualdade de imitação do outro tipo continua válida ponto a ponto
+em todo `supp(lambda)` pela primeira condição de T4.
+
+Por fim, se o tipo alto usa o conjunto de propostas aprovadas com probabilidade
+positiva, então `V_0=V_1` (AMX-011). Em quase toda proposta aprovada usada
+pelo alto, `z_H=V_1`, e a possibilidade de imitação pelo baixo dá
+`V_1<=V_0`. Em quase todo sinal usado pelo baixo, `u_0=V_0`, enquanto
+`u_1>=u_0` ponto a ponto — igualdade no acordo e payoff de atraso fracamente
+maior para o tipo alto. A restrição de suporte do alto dá então `V_0<=V_1`.
+As duas desigualdades fecham a prova sem supor átomos. A correção desta seção
+não altera T4/AMX-015 nem AMX-011; corrige apenas as antigas glosas
+*pointwise*.
+
+## 9. Lei conjunta, assinatura exata e resumo econômico
+
+### 9.1 Espaços Borel-padrão, lei conjunta e ação de `S_m`
+
+O espaço de propostas `Y` é o simplex compacto da Seção 2, portanto é
+compacto polonês. O espaço canônico da continuação
+
+```text
+X_M={E,S,P} uniao_disjunta ({EP} x [0,1])
+```
+
+é uma soma topológica finita de três singletons e uma cópia compacta de
+`[0,1]`; logo é compacto polonês e, em particular, Borel-padrão.
+
+Nos bytes anteriores, `Omega_D` era apenas chamado de “espaço Borel”. Aqui
+fica construída a versão efetivamente usada por `A_M`. Para `N` e primitivas
+fixos, `Omega_D` é o conjunto tagueado de todos os registros terminais
+literais que aparecem nos suportes dos kernels uniformes `E`, `S` e `P` da
+Seção 3.2: identidade do proponente, coalizão, proposta/votos e outcome da
+continuação N1. Há finitas identidades, coalizões, vetores de votos e propostas
+canônicas. O kernel `(EP,alpha)` usa
+`alpha*K_E+(1-alpha)*K_P` e não acrescenta átomos. Portanto `Omega_D` é um
+conjunto finito, equipado com a topologia discreta. Essa construção não
+reduz `C_M`: ela tipa exatamente os representantes literais que a cláusula S
+selecionou para esta extensão.
+
+Forme a soma disjunta
 
 ```text
 Omega_T=({A} x Y) uniao_disjunta ({D} x Omega_D).
 ```
 
-Para `x in X_M`, denote por `K^D_{theta,x}` o kernel Borel do representante
-uniforme literal sobre `Omega_D` e por `tilde K_{theta,x}` seu pushforward
-para o componente `{D} x Omega_D`. Condicionalmente ao sinal `y`, o kernel
-terminal de `R` é
+Ela é compacta polonesa. Para `x in X_M`, denote por
+`K^D_{theta,x}` o kernel Borel literal sobre `Omega_D` e por
+`tilde K_{theta,x}` seu pushforward para `{D} x Omega_D`. Sua Borelidade é
+imediata nos rótulos `E/S/P` e afim em `alpha` no componente `EP`.
+Condicionalmente ao sinal `y`, ponha
 
 ```text
 L_theta^R(d omega_T | y)
@@ -831,43 +919,28 @@ L_theta^R(d omega_T | y)
   +(1-a(y))*tilde K_{theta,chi(pi(y))}(d omega_T).
 ```
 
-No espaço conjunto
+O espaço do registro realizado inteiro é
 
 ```text
-Z=Y x [0,1] x {0,1} x X_M x Omega_T,
+Z=Y x [0,1] x {0,1} x X_M x Omega_T.
 ```
 
-defina a lei conjunta por tipo
+Produtos finitos preservam a propriedade compacta polonesa; assim `Z` é
+Borel-padrão. A lei conjunta por tipo é
 
 ```text
 Gamma_theta^R(C)
  =integral_Y integral_Omega_T
     1_C(y,pi(y),a(y),chi(pi(y)),omega_T)
-    L_theta^R(d omega_T | y) sigma_theta(dy).
-```
+    L_theta^R(d omega_T | y) sigma_theta(dy),
 
-Assim,
-
-```text
 Gamma_theta^R
  =Law_theta^R(y,pi(y),a(y),chi(pi(y)),omega_T).
 ```
 
-Essa lei mantém, no mesmo objeto, sinal, posterior, timing, seleção literal e
-outcome terminal. A assinatura atômica de `A_M` é
-
-```text
-Sig_M(R)=(rho,nu_off,[(Gamma_0^R,Gamma_1^R)]_anon),
-```
-
-onde o quociente anônimo é definido abaixo. No prior interior,
-`nu_off=b_rho(nu)`; as duas coordenadas são mantidas juntas apenas para tornar
-a interface e sua auditoria explícitas.
-
-Escreva `zeta=(y,p,a,x,omega_T) in Z`. Se `h_theta(omega_T)` e
-`w_j(omega_T)` denotam os payoffs de `A_M` realizados no outcome terminal,
-todos os resumos antes listados são marginais ou integrais **da mesma dupla**
-`(Gamma_0^R,Gamma_1^R)`:
+Ela vincula no mesmo objeto sinal, posterior, timing, seleção literal e
+outcome terminal. Escreva `zeta=(y,p,a,xi,omega_T)`, com `xi in X_M`. Antes de qualquer
+quociente, as marginais e integrais nomeadas continuam sendo
 
 ```text
 V_H^theta = integral_Z h_theta(omega_T) Gamma_theta^R(dzeta)
@@ -897,14 +970,13 @@ G_pi
 Aqui
 
 ```text
-bar_w_j_theta(p,x)
- =integral_Omega_D w_j(D,omega_D) K^D_{theta,x}(d omega_D)
+bar_w_j_theta(p,xi)
+ =integral_Omega_D w_j(D,omega_D) K^D_{theta,xi}(d omega_D).
 ```
 
-é o payoff fraco realizado condicional ao tipo. Em geral ele **não** é o
-preço interino `r_chi(p)`: no ramo `S`, por exemplo, os dois valores
-condicionais transportados são `beta*(1-beta*o_0)/m` e `beta^2/m`.
-Bayes implica somente a identidade agregada
+Esse payoff realizado condicional ao tipo em geral não é o preço interino
+`r_chi(p)`. No ramo `S`, por exemplo, os valores condicionais são
+`beta*(1-beta*o_0)/m` e `beta^2/m`. Bayes dá somente a identidade agregada
 
 ```text
 W_j
@@ -913,22 +985,13 @@ W_j
    ] lambda(dy).
 ```
 
-Em particular, `Q_theta` é a marginal em `Omega_T`, e `G_pi` é a marginal
-conjunta de sinal e posterior. Nenhum consumidor pode escolher `V` de um
-objeto, `Q` de outro e `G_pi` de um terceiro.
+Nenhum consumidor pode escolher `V` de um assessment, `Q` de outro e `G_pi`
+de um terceiro.
 
-### 9.1 Quociente por anonimato e fechamento por permutações
-
-Seja `G=S_m` o grupo das permutações dos fracos. Para `g in G`,
-
-```text
-g.(z_H,x_1,...,x_m)
- =(z_H,x_{g^{-1}(1)},...,x_{g^{-1}(m)}),
-```
-
-e aplique a mesma permutação às identidades fracas nos votos e em
-`omega_T`. A ação é trivial em `rho`, `nu_off`, posterior, indicador de
-acordo e rótulo anônimo `chi`. Sobre um assessment,
+Seja `G=S_m`. Para `g in G`, a aplicação `T_g:Z->Z` permuta simultaneamente
+as coordenadas fracas de `y`, votos, coalizões e outcomes terminais, e fixa
+posterior `p`, indicador `a` e rótulo canônico `xi in X_M`. Ela é um
+homeomorfismo. Sobre um assessment,
 
 ```text
 sigma_theta^g=g#sigma_theta,
@@ -941,44 +1004,232 @@ u_theta^g(y)=u_theta(g^{-1}.y).
 **Lema de fechamento por permutação.** Se `R` gera PBE sob M/S/B, então
 `g.R` também gera PBE para todo `g in G`.
 
-**Prova.** A permutação é uma isometria Borel de `Y`, portanto transporta
-suportes e bolas relativas e faz o limite local de Bayes comutar com a ação.
-Os kernels uniformes são equivariantes, o preço de voto é comum e a
-permutação estabelece uma bijeção payoff-preservante entre todas as propostas,
-votos e desvios. Logo admissibilidade, Bayes e melhor resposta são
-preservados.
+**Prova.** A permutação é uma isometria de `Y`, transporta suportes e bolas
+relativas e faz o limite local de Bayes comutar com a ação. Os kernels
+uniformes são equivariantes, o preço de voto é comum e a permutação estabelece
+uma bijeção payoff-preservante entre propostas, votos e desvios. Logo
+admissibilidade, Bayes e melhor resposta são preservados. QED.
 
-Para colapsar também pesos diferentes sobre rotulações da mesma órbita, defina
-o operador de Reynolds sobre a **dupla inteira**:
+Como `Z` é polonês, `P(Z)` com a topologia fraca é polonês. Defina
 
 ```text
-Anon(Gamma_0,Gamma_1)
- =|G|^{-1} sum_{g in G} (g#Gamma_0,g#Gamma_1).
+X=P(Z)^2,
+g.(Gamma_0,Gamma_1)=((T_g)#Gamma_0,(T_g)#Gamma_1).
 ```
 
-Em cada parcela da soma, o **mesmo** `g` atua nos dois tipos e
-simultaneamente em proposta, votos e outcome terminal. Duas duplas pertencem
-à mesma classe, denotada `[(Gamma_0,Gamma_1)]_anon`, se seus valores sob
-`Anon` coincidem. A média de grupo torna uniforme qualquer redistribuição de
-probabilidade dentro de uma única órbita, mas preserva os pesos entre órbitas
-economicamente distintas; seu suporte registra a órbita relevante.
+O pushforward por cada homeomorfismo `T_g` é contínuo em `P(Z)`; portanto
+`X` é polonês e a ação diagonal de `G` é por automorfismos Borel.
 
-`Anon` é o representante simétrico da **assinatura**, não uma alegação de que
-a média das estratégias seja PBE. O lema de fechamento não afirma convexidade
-do conjunto de PBEs. A coordenada pública `(y,pi(y))` é permutada como um
-bloco e `pi(y)` permanece na lei; por isso pooling na mesma mensagem e
-separação por coalizões distintas com a mesma parcela `z_0=z_1` não se
-confundem. No segundo caso, os posteriores `0` e `1` continuam distintos
-depois da anonimização.
+### 9.2 As duas camadas de anonimato
 
-Downstream, `Q_theta` e os payoffs fracos são as projeções e integrais
-anônimas de `Anon(Gamma_0,Gamma_1)`; vetores nomeados ficam apenas no
-representante interno. `V_H^theta`, `p_A^theta` e a lei de posteriores são
-invariantes à ação e coincidem antes e depois da anonimização.
+#### 9.2.1 Camada formal exata
 
-### 9.2 Objetos e assinaturas nos endpoints
+Para `x=(Gamma_0,Gamma_1) in X`, defina a lei uniforme de sua órbita
 
-Para `nu in {0,1}`, defina o objeto reduzido endpoint
+```text
+Lambda_x=|G|^{-1} sum_(g in G) delta_(g.x) in P(X),
+OrbLaw_G(X)={Lambda_x:x in X}.
+```
+
+**Proposição AM-MSB-T5 (Borelidade, invariância e completude de `Lambda`).**
+O mapa `x -> Lambda_x` é Borel, é `G`-invariante e
+
+```text
+Lambda_x=Lambda_{x'}  sse  x' in G.x.
+```
+
+**Prova.** Para todo Borel `B subseteq X`,
+
+```text
+Lambda_x(B)=|G|^{-1} sum_g 1_B(g.x),
+```
+
+uma função Borel de `x`. Como a σ-álgebra de `P(X)` é gerada pelos mapas de
+avaliação `mu -> mu(B)`, `Lambda` é Borel. Para `h in G`, a aplicação
+`g -> gh` apenas reordena a soma, logo `Lambda_(h.x)=Lambda_x`. Se
+`x'=h.x`, segue a igualdade. Reciprocamente, se as medidas são iguais, o
+singleton Borel `{x'}` satisfaz
+
+```text
+Lambda_{x'}({x'})=|Stab_G(x')|/|G|>0.
+```
+
+Então `Lambda_x({x'})>0`, de modo que algum `g` obedece `g.x=x'`. QED.
+
+Para um objeto reduzido `R`, ponha `x(R)=(Gamma_0^R,Gamma_1^R)`. A
+assinatura formal exata é
+
+```text
+Sig_ex_M(R)=(rho(R),nu_off(R),Lambda_{x(R)}).
+```
+
+Assim, igualdade de assinaturas equivale a igualdade de `(rho,nu_off)` e a
+uma única permutação comum aplicada ao par inteiro. Essa camada retém a
+relação entre os planos contrafactuais dos dois tipos.
+
+Quando a exposição exigir um representante, fixe uma enumeração de `G` e um
+isomorfismo Borel `iota_X:X->B_X subseteq [0,1]`. Defina `rep_X(x)` como o
+ponto `g.x` de menor `iota_X(g.x)`, usando o primeiro `g` da enumeração apenas
+para desempatar elementos do estabilizador. Como há finitas comparações de
+funções Borel, `rep_X` é Borel, constante em cada órbita e pertence
+literalmente a `G.x`. A órbita permanece registrada por `Lambda_x`. A média
+de Reynolds nunca é usada como representante. Se `x=x(R)`, o lema de
+fechamento garante que esse par de leis é realizado pelo PBE relabelado
+`g.R` correspondente. Não se afirma aqui um seletor Borel no espaço bruto de
+funções que compõem `R`; a seleção mensurável é no espaço polonês `X` das
+duplas de leis.
+
+#### 9.2.2 Camada de resumo econômico
+
+Fixe também um isomorfismo Borel `iota_Z:Z->B_Z subseteq [0,1]` e identifique
+`Z/G` com a transversal Borel
+
+```text
+Z_bar={z in Z:iota_Z(z)<=iota_Z(T_g z) para todo g in G}.
+```
+
+O mapa `q_Z:Z->Z_bar`, que leva cada registro ao único ponto de mínimo de sua
+órbita, é Borel, constante exatamente em órbitas e satisfaz
+
+```text
+q_Z compose T_g=q_Z.
+```
+
+Logo `Z/G`, nessa realização, é Borel-padrão. Defina
+
+```text
+Gamma_bar_theta^R=(q_Z)#Gamma_theta^R,
+
+Sum_econ_M(R)
+ =(rho(R),nu_off(R),Gamma_bar_0^R,Gamma_bar_1^R).
+```
+
+Esse resumo apaga nomes dentro de cada registro realizado. Ele não é uma
+assinatura formal exata, um novo assessment ou, por si só, uma prova de
+Bayes, melhor resposta ou existência.
+
+**Lema de fatorização anônima.** Se `f:Z->E` é Borel e `G`-invariante, com
+`E` Borel-padrão, existe uma única Borel `f_bar:Z/G->E` tal que
+`f=f_bar compose q_Z`. Para toda função real integrável desse tipo,
+
+```text
+integral_Z f dGamma_theta
+ =integral_(Z/G) f_bar dGamma_bar_theta.
+```
+
+**Prova.** Na transversal acima, ponha `f_bar(z_bar)=f(z_bar)`. A definição é
+Borel e, pela invariância, dá o mesmo valor em todo representante da órbita;
+portanto `f=f_bar compose q_Z`. A unicidade vale porque `q_Z` é sobrejetivo.
+A identidade de integrais é a definição de pushforward. QED.
+
+Aplicando o lema ao registro inteiro:
+
+- `h_theta`, `a` e `1-a` dão `V_H^theta`, `p_A^theta` e `p_D^theta`;
+- a projeção `p` dá a lei do posterior por tipo;
+- os mapas quociente induzidos `q_Y:Y->Y/G` e
+  `q_Omega:Omega_T->Omega_T/G` são Borel; o segundo dá a lei do outcome
+  terminal anônimo `Q_bar_theta=(q_Omega)#Q_theta`;
+- a seleção anônima `xi in X_M` e o timing `a` sobrevivem literalmente, pois
+  `G` os fixa;
+- a lei do vetor ordenado
+  `sort(w_1(omega_T),...,w_m(omega_T))` é a lei anônima do multiconjunto de
+  payoffs fracos; como marginal adicional, também se recupera a lei do payoff
+  de uma identidade fraca sorteada uniformemente. Ambas são
+  `G`-invariantes.
+
+Já `G_pi` com a proposta **nomeada**, um payoff de uma identidade `W_j`, o
+suporte estratégico nomeado e o mapa público `pi:Y->[0,1]` não são objetos do
+resumo. A camada econômica recupera a lei de `(q_Y(y),p)`, a lei do posterior
+e as versões anônimas; as coordenadas nomeadas permanecem na camada exata.
+
+Para quaisquer pesos probabilísticos `(q_g)`, a linearidade e
+`q_Z compose T_g=q_Z` dão
+
+```text
+(q_Z)# [sum_g q_g (T_g)#Gamma_theta]
+ =(q_Z)#Gamma_theta.
+```
+
+Portanto baricentros sobre identidades, inclusive com pesos `(.9,.1)` e
+`(.5,.5)` numa órbita de dois registros, têm o mesmo resumo marginal. Isso
+não os torna o mesmo elemento da camada exata nem presume que o baricentro
+seja um PBE.
+
+#### 9.2.3 Reynolds rebaixado e certificado permanente `P/Q`
+
+O operador componentwise de Reynolds é apenas
+
+```text
+Rey_cw(x)
+ =(|G|^{-1} sum_g (T_g)#Gamma_0,
+   |G|^{-1} sum_g (T_g)#Gamma_1).
+```
+
+Ele pode servir como codificação computacional das duas marginais anônimas,
+mas tem quatro limites explícitos: não é invariante completo da órbita
+diagonal; não retém a relação entre os planos dos tipos; pode não pertencer à
+imagem de assessment algum; e sua igualdade significa apenas igualdade de um
+resumo marginal.
+
+O contraexemplo `P/Q` permanece como certificado. Na instância
+`N=5`, `beta=.9`, `o_0=.7`, `o_1=.8`, `nu=.5`, `rho=1`, tome propostas
+rejeitadas que pagam `.1` a coalizões de dois fracos. Em `x^P`, os tipos
+planejam `{1,2}` e `{3,4}`; em `x^Q`, planejam `{1,2}` e `{1,3}`. Uma
+permutação comum preserva a cardinalidade da interseção, zero em `P` e um em
+`Q`, logo
+
+```text
+Lambda_xP != Lambda_xQ.
+```
+
+Por tipo isolado, porém, Reynolds distribui massa uniformemente sobre as seis
+coalizões de tamanho dois, de modo que `Rey_cw(x^P)=Rey_cw(x^Q)`. Também
+
+```text
+Sum_econ_M(x^P)=Sum_econ_M(x^Q),
+```
+
+deliberadamente: a relação entre planos contrafactuais foi descartada apenas
+no resumo.
+
+Reynolds tampouco é representante implementável em geral. Num separating
+puro com o tipo baixo em `y_A` e posterior zero e o alto em
+`y_B=g.y_A` e posterior um, a simetrização dá massa positiva de ambos os
+tipos a `y_A`, mas conserva posterior zero na componente baixa e um na alta.
+Um único assessment exigiria simultaneamente `pi(y_A)=0` e `pi(y_A)=1`; com
+prior interior, Bayes exigiria um posterior interior. A contradição impede
+chamar `Rey_cw(x)` de assessment ou PBE representativo. O objeto
+`Lambda_x`, por contraste, é assumidamente um código no metaespaço e não
+pretende ser assessment.
+
+#### 9.2.4 Escopo exato das misturas
+
+A identidade formal ocorre somente quando uma permutação comum transforma o
+perfil inteiro. Dois objetos têm o mesmo resumo se e somente se, mantendo a
+mesma fibra `(rho,nu_off)`, suas leis anônimas de registros realizados por
+tipo coincidem:
+
+```text
+(q_Z)#Gamma_theta=(q_Z)#Gamma'_theta, theta=0,1.
+```
+
+Isso separa três casos:
+
+1. Se o tipo baixo mistura, com pesos quaisquer, entre propostas como
+   `y_{12}` e `y_{13}`, enquanto o alto usa `y_{34}`, os suportes dos tipos
+   permanecem disjuntos e Bayes continua dando posteriores zero e um.
+   Alterar pesos apenas dentro das órbitas dos registros realizados deixa o
+   resumo igual, mas em geral produz órbitas exatas distintas.
+2. Se ambos os tipos passam a misturar sobre o mesmo suporte, a mistura
+   realizada muda a revelação: Bayes atribui posteriores interiores segundo
+   as razões de verossimilhança. Trata-se de outro experimento, com outra lei
+   de posterior, distinto nas camadas exata e econômica.
+3. `x^P` e `x^Q` são distintos na camada exata e iguais, por decisão
+   declarada, no resumo econômico.
+
+### 9.3 Endpoints, correspondências e regra de consumo downstream
+
+Para `nu in {0,1}`, defina
 
 ```text
 R_boundary=(*,nu,sigma_0,sigma_1,lambda,pi_nu,
@@ -986,74 +1237,85 @@ R_boundary=(*,nu,sigma_0,sigma_1,lambda,pi_nu,
 ```
 
 onde `sigma_0,sigma_1 in P(Y)`, `pi_nu(y)=nu_off=nu` em todo `Y`,
-`lambda=sigma_0` se `nu=0` e `lambda=sigma_1` se `nu=1`,
-`chi_nu` é o representante canônico admissível de `C_M(nu)`, e
-`a_nu,u_0,u_1` seguem as fórmulas da Seção 8 com posterior constante. O
-símbolo `*` substitui `rho`: como todo `rho` induz a mesma crença no endpoint,
-esses valores não são economicamente identificados e pertencem a uma única
-fibra. Ponha
+`lambda=sigma_0` se `nu=0` e `lambda=sigma_1` se `nu=1`, e os demais mapas
+seguem a Seção 8. O símbolo `*` substitui `rho`, pois todos os seus valores
+induzem a mesma crença no endpoint. Com
 
 ```text
-M_theta=max{A_nu,D_theta_nu}.
+M_theta=max{A_nu,D_theta_nu},
 ```
 
-O objeto gera um PBE endpoint se e somente se
+o objeto é PBE endpoint se e somente se
 
 ```text
 sigma_theta({y:u_theta(y)=M_theta})=1, theta=0,1.
 ```
 
-Essa condição inclui qualquer mistura Borel sobre propostas aprovadas
-canônicas, propostas rejeitadas ou ambas na igualdade, inclusive a estratégia
-contrafactual do tipo de probabilidade zero. Defina
-`Gamma_theta^boundary` pela mesma fórmula conjunta da Seção 9, agora com
-posterior constante, e use
+Isso inclui toda medida Borel no argmax, inclusive a estratégia contrafactual
+do tipo de probabilidade zero. Construa `Gamma_theta^boundary` pela mesma lei
+conjunta e defina, sem Reynolds,
 
 ```text
-Sig_boundary(R_boundary)
- =(*,nu,[(Gamma_0^boundary,Gamma_1^boundary)]_anon).
+Sig_ex_boundary(R_boundary)
+ =(*,nu,Lambda_(Gamma_0^boundary,Gamma_1^boundary)),
+
+Sum_econ_boundary(R_boundary)
+ =(*,nu,(q_Z)#Gamma_0^boundary,(q_Z)#Gamma_1^boundary).
 ```
 
-As marginais satisfazem `V_H^theta=M_theta` e
-`G_pi=(y,nu)#lambda`, e `p_A^theta,p_D^theta,Q_theta` são calculados
-separadamente sob cada `sigma_theta`.
-O payoff interino fraco `W_j` usa `lambda`, pois só o tipo de probabilidade
-positiva entra na expectativa anterior ao sinal. Assim, sinais distintos que
-produzem a mesma rejeição continuam distintos em `G_pi` e em `Q_theta` quando
-apropriado.
-
-Nenhuma identidade de Radon–Nikodym com divisão por `nu` ou `1-nu` é usada
+Nenhuma identidade de Radon--Nikodym com divisão por `nu` ou `1-nu` é usada
 nos endpoints.
 
-### 9.3 Correspondência conjunta e fibra institucional
-
-Para prior interior, defina
+No interior, ponha
 
 ```text
 E_M(nu,rho)
  ={R:R satisfaz a Seção 8 e nu_off=b_rho(nu)},
 
-S_M(nu,rho)
- ={Sig_M(R):R in E_M(nu,rho)}.
+S_ex_M(nu,rho)
+ ={Sig_ex_M(R):R in E_M(nu,rho)},
+
+S_econ_M(nu,rho)
+ ={Sum_econ_M(R):R in E_M(nu,rho)}.
 ```
 
-A correspondência interior completa é a união disjunta das fibras
-`S_M(nu,rho)` em `rho in [0,infinity]`. Nos endpoints, ela é a imagem dos
-`R_boundary` na fibra única `*`. Cada elemento é construído como a imagem
-vinculada de alguma tupla reduzida completa; não se exige unicidade da
-pré-imagem, mas não há envelope cartesiano nem recombinação de marginais.
+A correspondência formal interior completa é a união disjunta de
+`S_ex_M(nu,rho)`; o resumo é sua imagem muitos-para-um. Nos endpoints, as
+correspondências são as imagens de `R_boundary` pelas duas fórmulas acima, na
+fibra `(*,nu)`. Cada elemento é produzido integralmente por uma só tupla
+reduzida completa; não se exige unicidade da pré-imagem. Não há envelope
+cartesiano nem recombinação de marginais.
 
-Se `A_U` vier a ser rederivada com a mesma coordenada, a comparação `AC`
-admissível será o produto fibrado
+Qualquer comparação futura com `A_U` deve primeiro formar o produto fibrado
+na mesma dupla `(rho,nu_off)` **na camada exata**:
 
 ```text
-S_M(nu) x_rho S_U(nu)
- ={(s_M,s_U):rho(s_M)=rho(s_U)},
+S_ex_M(nu) x_(rho,nu_off) S_ex_U(nu).
 ```
 
-e nunca o produto cartesiano das duas correspondências marginais. Nos
-endpoints, ambas usam a fibra `*`. Esta linha apenas fixa a interface futura:
-`A_U` e `AC` não são derivados nem consumidos aqui.
+Somente depois uma operação declarada de `AC` ou `AR` pode consumir
+`Sum_econ`. Para cada função `C`, é necessário provar na fibra
+
+```text
+Sum_econ(R)=Sum_econ(R')  =>  C(R)=C(R')
+```
+
+e uma fatorização mensurável `C=C_bar compose Sum_econ`. Para uma
+correspondência, a prova deve ser setwise e preservar a mensurabilidade ou o
+fechamento do gráfico e as seleções usadas; é proibido emparelhar coordenadas
+de elementos diferentes. Igualdades escalares em exemplos não bastam.
+
+Usam obrigatoriamente `Sig_ex`: identidade formal, suportes estratégicos,
+coincidência de mensagens entre tipos, mapa público `pi`, Bayes e crenças,
+relação entre planos contingentes, contagem de classes, seleção de
+representante e qualquer composição que possa recombinar coordenadas. Podem
+usar `Sum_econ`, depois da fatorização pertinente: payoffs por tipo,
+probabilidades de acordo e atraso, lei do posterior, continuação e outcomes
+anônimos, lei exchangeable dos payoffs fracos e demais estatísticas Borel
+`G`-invariantes.
+
+Esta seção fixa apenas a interface. `A_U` continua pendente de auditoria e
+`AC/AR` não consomem `A_M` neste passe.
 
 ### 9.4 Teorema cardinal de incontabilidade
 
@@ -1081,11 +1343,13 @@ exatamente `pi_epsilon(t)`. M usa o mesmo representante uniforme `E`, B fixa
 `.5` fora do suporte, e todo sinal usado é uma melhor resposta rejeitada.
 Para `epsilon` distintos, as leis `Gamma_theta` diferem na coordenada
 `(y,pi(y))` em conjunto de medida positiva. Permutações dos fracos deixam a
-linha `s(t)` fixa, de modo que o quociente anônimo não identifica essas leis.
+linha `s(t)` fixa, de modo que suas leis de órbita `Lambda_x` são distintas.
 
-Há, portanto, um contínuo de assinaturas exatas na mesma fibra. A primeira
-fonte antes cogitada — variar apenas pesos sobre identidades de coalizão — é
-apagada pelo quociente aprovado e não sustenta este teorema. O resultado é
+Há, portanto, um contínuo de assinaturas exatas na mesma fibra. A fonte antes
+cogitada — variar apenas pesos sobre identidades de coalizão — pode ser
+apagada pelo resumo econômico, mas não é usada como fundamento deste teorema;
+a prova atomless acima permanece suficiente sob a equivalência formal
+aprovada. O resultado é
 somente cardinal: a própria subfamília acima é parametrizada pelo escalar
 `epsilon`, logo nada aqui prova inexistência de parametrização finita ou de
 algum resumo finito para outra finalidade.
@@ -1147,7 +1411,7 @@ As misturas de fronteira, sempre para `0<nu<1`, são explícitas:
 
 Aqui `s_A` é a proposta canônica aceita por `Z_E` e `s_D` uma proposta
 claramente rejeitada distinta. Misturas em priors degenerados não são obtidas
-por “continuidade” dessas fórmulas; obedecem diretamente à Seção 9.2.
+por “continuidade” dessas fórmulas; obedecem diretamente à Seção 9.3.
 
 | fonte histórica | estatuto sob M/S/B | escopo revalidado |
 |---|---|---|
@@ -1243,7 +1507,7 @@ histórico permanente e motivação das cláusulas; não é um resultado de
 não-existência sob M/S/B. O script corrente confere somente a aritmética
 numérica exibida; não revalida `kappa_old`, as crenças ou a prova histórica.
 
-## 13. Estatuto de AMX-014–016
+## 13. Estatuto de AMX-014, AMX-015 e AMX-016a/b
 
 - **AMX-014:** reaberto e classificado para estratégias puras pelas condições
   necessárias e suficientes da Seção 6, indexadas por
@@ -1252,11 +1516,18 @@ numérica exibida; não revalida `kappa_old`, as crenças ou a prova histórica.
   `R=(rho,nu_off,sigma_0,sigma_1,lambda,pi,chi,a,u_0,u_1)` e pelo teste
   necessário e suficiente da Seção 8, incluindo Bayes pointwise e mapas
   Borel bem tipados.
-- **AMX-016:** a correspondência conjunta exata é a imagem vinculada das leis
-  `Gamma_theta` da Seção 9, quocientada anonimamente, em união disjunta por
-  fibras `rho` no interior e pela fibra `*` nos endpoints. `AC` futuro só
-  poderá usar o produto fibrado na mesma coordenada. Nenhum envelope
-  cartesiano ou recombinação de marginais é permitido.
+- **AMX-016a:** a assinatura formal exata é
+  `Sig_ex_M=(rho,nu_off,Lambda_x)`, com
+  `x=(Gamma_0,Gamma_1)`. A Proposição T5 prova que `Lambda` é Borel,
+  `G`-invariante e completo para a órbita diagonal. O representante
+  expositivo é um par real de leis de um PBE relabelado na órbita, nunca o
+  baricentro de Reynolds.
+- **AMX-016b:** o resumo econômico é
+  `Sum_econ_M=(rho,nu_off,(q_Z)#Gamma_0,(q_Z)#Gamma_1)`. O lema de
+  fatorização prova sua suficiência para as estatísticas `G`-invariantes
+  listadas na Seção 9.2.2. Isso não autoriza consumo por `AC/AR`: cada operação
+  futura ainda exige constância setwise na fibra do resumo e fatorização
+  mensurável própria.
 
 O Teorema 9.4 acrescenta apenas que uma fibra pode ser incontável e, por isso,
 não admite enumeração por lista finita. Não afirma impossibilidade de
@@ -1277,8 +1548,9 @@ independente sobre os mesmos bytes antes de qualquer consumo downstream.
 ## 14. Invalidação
 
 Qualquer mudança em M, S, B, na coordenada `rho`, no limite local de Bayes,
-nos desempates, no kernel uniforme, no quociente anônimo, na interface
+nos desempates, no kernel uniforme, na assinatura exata, no resumo econômico,
+na interface
 congelada `C_M` ou na lei conjunta `Gamma_theta` invalida toda esta
 rederivação. Alterar apenas `A_U` não muda estes claims, mas `AC` não pode
 consumi-los antes das revisões independentes e deverá manter a mesma fibra
-`rho`.
+`(rho,nu_off)`.

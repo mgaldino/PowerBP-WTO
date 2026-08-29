@@ -3,9 +3,9 @@
 # Verificação mecânica de A_M sob M/S/B.
 # Escopo: identidades algébricas, membership combinatório, testemunhas,
 # coordenada rho, sensibilidade de classes puras, misturas de fronteira,
-# invariância por permutação e exemplos numéricos. Não prova
-# existência/completude de PBE, Bayes pointwise, Borelidade ou
-# necessidade/suficiência dos teoremas.
+# invariância por permutação, assinatura finita em duas camadas e exemplos
+# numéricos. Não prova existência/completude de PBE, Bayes pointwise,
+# Borelidade, completude geral da lei de órbita ou fatorização downstream.
 
 options(stringsAsFactors = FALSE)
 
@@ -688,12 +688,441 @@ reynolds <- Reduce(
   lapply(0:2, function(shift) rotate_weights(orbit_weights, shift))
 ) / 3
 check(
-  "Reynolds operator removes within-orbit weights",
+  "Reynolds marginal statistic removes within-orbit weights",
   max(abs(reynolds - rep(1 / 3, 3))) < 1e-12
 )
 check(
-  "Reynolds operator preserves revelation coordinates",
+  "Reynolds marginal statistic preserves revelation coordinates",
   !identical(c(reynolds, posterior = 0), c(reynolds, posterior = 1))
+)
+
+# 16. Regressões finitas da assinatura em duas camadas.
+# Estas fixtures verificam somente identidades em um subespaço finito de Z.
+# Não provam Borelidade, completude geral de Lambda, realizabilidade como PBE
+# nem suficiência de Sum_econ para qualquer operação downstream.
+
+tl_all_permutations <- function(v) {
+  if (length(v) <= 1L) return(list(v))
+  out <- list()
+  for (i in seq_along(v)) {
+    for (suffix in tl_all_permutations(v[-i])) {
+      out[[length(out) + 1L]] <- c(v[i], suffix)
+    }
+  }
+  out
+}
+
+tl_fmt <- function(x) sprintf("%.12f", x)
+
+tl_permute_labeled <- function(v, perm) {
+  out <- v
+  out[perm] <- v
+  unname(out)
+}
+
+tl_make_record <- function(coalition, posterior, terminal_proposer, m = 4L) {
+  stopifnot(
+    all(coalition %in% seq_len(m)),
+    posterior %in% c(0, 1),
+    terminal_proposer %in% seq_len(m)
+  )
+  y_weak <- numeric(m)
+  y_weak[coalition] <- 0.1
+  list(
+    y_hegemon = 0.8,
+    y_weak = y_weak,
+    posterior = posterior,
+    agreement = 0L,
+    continuation = "E",
+    terminal_branch = "D_E",
+    terminal_proposer = as.integer(terminal_proposer)
+  )
+}
+
+tl_act_record <- function(z, perm) {
+  z$y_weak <- tl_permute_labeled(z$y_weak, perm)
+  z$terminal_proposer <- as.integer(perm[z$terminal_proposer])
+  z
+}
+
+tl_record_key <- function(z) {
+  paste(
+    tl_fmt(z$y_hegemon),
+    paste(tl_fmt(z$y_weak), collapse = ","),
+    tl_fmt(z$posterior),
+    z$agreement,
+    z$continuation,
+    z$terminal_branch,
+    z$terminal_proposer,
+    sep = "|"
+  )
+}
+
+tl_signal_key <- function(z) {
+  paste(
+    tl_fmt(z$y_hegemon),
+    paste(tl_fmt(z$y_weak), collapse = ","),
+    sep = "|"
+  )
+}
+
+tl_finite_law <- function(atoms, weights) {
+  stopifnot(
+    length(atoms) == length(weights),
+    length(atoms) > 0L,
+    all(is.finite(weights)),
+    all(weights >= 0),
+    abs(sum(weights) - 1) <= 1e-12
+  )
+  list(atoms = atoms, weights = as.numeric(weights))
+}
+
+tl_act_law <- function(gamma, perm) {
+  tl_finite_law(
+    lapply(gamma$atoms, tl_act_record, perm = perm),
+    gamma$weights
+  )
+}
+
+tl_aggregate_keys <- function(keys, weights) {
+  support <- sort(unique(keys))
+  out <- vapply(
+    support,
+    function(k) sum(weights[keys == k]),
+    numeric(1)
+  )
+  names(out) <- support
+  out[out > 1e-14]
+}
+
+tl_push_law <- function(gamma, key_fun) {
+  tl_aggregate_keys(
+    vapply(gamma$atoms, key_fun, character(1)),
+    gamma$weights
+  )
+}
+
+tl_law_equal <- function(a, b, tol = 1e-12) {
+  support <- union(names(a), names(b))
+  av <- setNames(rep(0, length(support)), support)
+  bv <- av
+  av[names(a)] <- a
+  bv[names(b)] <- b
+  max(c(abs(av - bv), 0)) <= tol
+}
+
+tl_law_key <- function(gamma, key_fun = tl_record_key) {
+  law <- tl_push_law(gamma, key_fun)
+  paste(
+    sprintf("%s@%.12f", names(law), unname(law)),
+    collapse = ";"
+  )
+}
+
+tl_mix_laws <- function(laws, mix_weights) {
+  stopifnot(
+    length(laws) == length(mix_weights),
+    all(mix_weights >= 0),
+    abs(sum(mix_weights) - 1) <= 1e-12
+  )
+  atoms <- do.call(c, lapply(laws, function(gamma) gamma$atoms))
+  weights <- unlist(
+    Map(
+      function(gamma, weight) weight * gamma$weights,
+      laws,
+      mix_weights
+    ),
+    use.names = FALSE
+  )
+  tl_finite_law(atoms, weights)
+}
+
+tl_gamma_coalition <- function(coalition, posterior, m = 4L) {
+  tl_finite_law(
+    lapply(
+      seq_len(m),
+      function(j) tl_make_record(coalition, posterior, j, m)
+    ),
+    rep(1 / m, m)
+  )
+}
+
+tl_x_key <- function(x) {
+  paste(
+    tl_law_key(x$Gamma0),
+    tl_law_key(x$Gamma1),
+    sep = "||"
+  )
+}
+
+tl_act_x <- function(x, perm) {
+  list(
+    Gamma0 = tl_act_law(x$Gamma0, perm),
+    Gamma1 = tl_act_law(x$Gamma1, perm)
+  )
+}
+
+tl_lambda_x <- function(x, group) {
+  orbit_keys <- vapply(
+    group,
+    function(perm) tl_x_key(tl_act_x(x, perm)),
+    character(1)
+  )
+  tl_aggregate_keys(
+    orbit_keys,
+    rep(1 / length(group), length(group))
+  )
+}
+
+tl_qz_representative <- function(z, group) {
+  orbit <- lapply(group, function(perm) tl_act_record(z, perm))
+  orbit_keys <- vapply(orbit, tl_record_key, character(1))
+  orbit[[order(orbit_keys)[1L]]]
+}
+
+tl_qz_push <- function(gamma, group) {
+  tl_push_law(
+    gamma,
+    function(z) tl_record_key(tl_qz_representative(z, group))
+  )
+}
+
+tl_make_assessment <- function(Gamma0, Gamma1, rho = 1, nu_off = 0.5) {
+  list(
+    rho = rho,
+    nu_off = nu_off,
+    x = list(Gamma0 = Gamma0, Gamma1 = Gamma1)
+  )
+}
+
+tl_exact_signature <- function(R, group) {
+  list(
+    rho = R$rho,
+    nu_off = R$nu_off,
+    Lambda = tl_lambda_x(R$x, group)
+  )
+}
+
+tl_exact_equal <- function(a, b) {
+  identical(a$rho, b$rho) &&
+    identical(a$nu_off, b$nu_off) &&
+    tl_law_equal(a$Lambda, b$Lambda)
+}
+
+tl_econ_summary <- function(R, group) {
+  list(
+    rho = R$rho,
+    nu_off = R$nu_off,
+    Gamma0 = tl_qz_push(R$x$Gamma0, group),
+    Gamma1 = tl_qz_push(R$x$Gamma1, group)
+  )
+}
+
+tl_summary_equal <- function(a, b) {
+  identical(a$rho, b$rho) &&
+    identical(a$nu_off, b$nu_off) &&
+    tl_law_equal(a$Gamma0, b$Gamma0) &&
+    tl_law_equal(a$Gamma1, b$Gamma1)
+}
+
+tl_signal_support <- function(gamma) {
+  names(tl_push_law(gamma, tl_signal_key))
+}
+
+tl_type_supports_disjoint <- function(R) {
+  length(intersect(
+    tl_signal_support(R$x$Gamma0),
+    tl_signal_support(R$x$Gamma1)
+  )) == 0L
+}
+
+tl_posterior_law <- function(gamma) {
+  tl_push_law(
+    gamma,
+    function(z) tl_fmt(z$posterior)
+  )
+}
+
+tl_posterior_law_after_qz <- function(gamma, group) {
+  tl_push_law(
+    gamma,
+    function(z) {
+      tl_fmt(tl_qz_representative(z, group)$posterior)
+    }
+  )
+}
+
+tl_m <- 4L
+tl_group <- tl_all_permutations(seq_len(tl_m))
+
+tl_gamma_12_0 <- tl_gamma_coalition(c(1L, 2L), 0, tl_m)
+tl_gamma_13_0 <- tl_gamma_coalition(c(1L, 3L), 0, tl_m)
+tl_gamma_34_1 <- tl_gamma_coalition(c(3L, 4L), 1, tl_m)
+tl_gamma_13_1 <- tl_gamma_coalition(c(1L, 3L), 1, tl_m)
+
+tl_R_P <- tl_make_assessment(
+  tl_gamma_12_0,
+  tl_gamma_34_1
+)
+tl_R_Q <- tl_make_assessment(
+  tl_gamma_12_0,
+  tl_gamma_13_1
+)
+tl_R_90 <- tl_make_assessment(
+  tl_mix_laws(
+    list(tl_gamma_12_0, tl_gamma_13_0),
+    c(0.9, 0.1)
+  ),
+  tl_gamma_34_1
+)
+tl_R_50 <- tl_make_assessment(
+  tl_mix_laws(
+    list(tl_gamma_12_0, tl_gamma_13_0),
+    c(0.5, 0.5)
+  ),
+  tl_gamma_34_1
+)
+
+tl_assessments <- list(tl_R_P, tl_R_Q, tl_R_90, tl_R_50)
+tl_x_fixtures <- lapply(tl_assessments, function(R) R$x)
+tl_gamma_fixtures <- list(
+  tl_R_P$x$Gamma0,
+  tl_R_P$x$Gamma1,
+  tl_R_Q$x$Gamma0,
+  tl_R_Q$x$Gamma1,
+  tl_R_90$x$Gamma0,
+  tl_R_90$x$Gamma1,
+  tl_R_50$x$Gamma0,
+  tl_R_50$x$Gamma1
+)
+
+tl_signature_P <- tl_exact_signature(tl_R_P, tl_group)
+tl_signature_Q <- tl_exact_signature(tl_R_Q, tl_group)
+tl_signature_90 <- tl_exact_signature(tl_R_90, tl_group)
+tl_signature_50 <- tl_exact_signature(tl_R_50, tl_group)
+
+tl_summary_P <- tl_econ_summary(tl_R_P, tl_group)
+tl_summary_Q <- tl_econ_summary(tl_R_Q, tl_group)
+tl_summary_90 <- tl_econ_summary(tl_R_90, tl_group)
+tl_summary_50 <- tl_econ_summary(tl_R_50, tl_group)
+
+check(
+  "two-layer S4 enumeration",
+  length(tl_group) == factorial(tl_m) &&
+    length(unique(vapply(
+      tl_group,
+      paste,
+      collapse = ",",
+      FUN.VALUE = ""
+    ))) == factorial(tl_m),
+  sprintf("generated=%d expected=%d", length(tl_group), factorial(tl_m))
+)
+
+check(
+  "two-layer P/Q exact signatures distinct",
+  !tl_exact_equal(tl_signature_P, tl_signature_Q),
+  sprintf(
+    "Lambda supports P=%d Q=%d",
+    length(tl_signature_P$Lambda),
+    length(tl_signature_Q$Lambda)
+  )
+)
+
+check(
+  "two-layer P/Q economic summaries equal",
+  tl_summary_equal(tl_summary_P, tl_summary_Q)
+)
+
+check(
+  "two-layer Lambda invariant on diagonal orbits",
+  all(vapply(
+    tl_x_fixtures,
+    function(x) {
+      lambda_base <- tl_lambda_x(x, tl_group)
+      all(vapply(
+        tl_group,
+        function(perm) {
+          tl_law_equal(
+            tl_lambda_x(tl_act_x(x, perm), tl_group),
+            lambda_base
+          )
+        },
+        logical(1)
+      ))
+    },
+    logical(1)
+  ))
+)
+
+check(
+  "two-layer quotient pushforward invariant",
+  all(vapply(
+    tl_gamma_fixtures,
+    function(gamma) {
+      q_base <- tl_qz_push(gamma, tl_group)
+      all(vapply(
+        tl_group,
+        function(perm) {
+          tl_law_equal(
+            tl_qz_push(tl_act_law(gamma, perm), tl_group),
+            q_base
+          )
+        },
+        logical(1)
+      ))
+    },
+    logical(1)
+  ))
+)
+
+check(
+  "two-layer mixture signal supports disjoint",
+  tl_type_supports_disjoint(tl_R_90) &&
+    tl_type_supports_disjoint(tl_R_50)
+)
+
+check(
+  "two-layer mixture summaries equal",
+  tl_summary_equal(tl_summary_90, tl_summary_50)
+)
+
+check(
+  "two-layer mixture exact signatures distinct",
+  !tl_exact_equal(tl_signature_90, tl_signature_50)
+)
+
+check(
+  "two-layer posterior laws preserved conditionally",
+  all(vapply(
+    tl_gamma_fixtures,
+    function(gamma) {
+      tl_law_equal(
+        tl_posterior_law(gamma),
+        tl_posterior_law_after_qz(gamma, tl_group)
+      )
+    },
+    logical(1)
+  ))
+)
+
+tl_prior_law_90 <- tl_mix_laws(
+  list(tl_R_90$x$Gamma0, tl_R_90$x$Gamma1),
+  c(0.5, 0.5)
+)
+tl_prior_posterior_target <- setNames(
+  c(0.5, 0.5),
+  tl_fmt(c(0, 1))
+)
+check(
+  "two-layer prior posterior law preserved",
+  tl_law_equal(
+    tl_posterior_law(tl_prior_law_90),
+    tl_prior_posterior_target
+  ) &&
+    tl_law_equal(
+      tl_posterior_law_after_qz(tl_prior_law_90, tl_group),
+      tl_prior_posterior_target
+    )
 )
 
 cat(sprintf("SUMMARY | %d PASS | %d FAIL\n", n_pass, n_fail))
