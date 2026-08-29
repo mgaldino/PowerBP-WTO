@@ -1,43 +1,65 @@
 # Prompt de rederivação de A_M sob a emenda M/S/B
 
-**Data:** 2026-08-29
+**Data:** 2026-08-29 (v2 — derivador ajustado para Codex)
 **Emenda governante:**
 `quality_reports/plans/2026-08-29_emenda_extensao_agenda_markov_crencas.md`,
 status APPROVED (aval autoral de 2026-08-29), SHA-256
 `8f0f3a0e430e8005bd7a1da99477a7b0e27e163b85aa87c2ad349d9578aab21b`.
-**Alocação (decisão autoral de 2026-08-23):** `A_M` preferencialmente Fable,
-Opus defensável. Revisores dos gates: nunca quem redigiu, nunca Fable.
-**Regra de sessão:** a derivação ocorre em sessão NOVA e worktree dedicado. A
-sessão autoral de 2026-08-29 (que redigiu a emenda) não deriva nem revisa.
+**Derivador:** sessão Codex NOVA em worktree dedicado. Decisão autoral de
+2026-08-29: a preferência registrada em 2026-08-23 era Fable (Opus defensável),
+mas a derivação será executada pelo Codex por restrição de tokens no Fable — 
+desvio operacional autorizado pelo autor, sem efeito sobre as regras de
+revisão.
+**Revisores:** nunca quem redigiu, nunca Fable. Com Codex derivando, os dois
+pareceres independentes devem vir de sessões com contexto limpo (outras
+sessões Codex em worktrees próprios, Opus ou revisor externo), sem acesso à
+sessão do derivador.
+**Regra de sessão:** a sessão autoral de 2026-08-29 (que redigiu a emenda) não
+deriva nem revisa.
 
 ## Pré-condições operacionais (autor executa antes de colar o prompt)
 
-1. Criar o worktree da derivação a partir do snapshot que contém contrato,
-   resultados exploratórios e certificado:
+1. Commitar os três documentos novos em `codex/essential-input` (checkout
+   principal), se ainda não commitados:
 
    ```bash
-   git worktree add /private/tmp/PBP-am-msb -b agenda-extension-am-msb b675a37
+   git add quality_reports/plans/2026-08-29_emenda_extensao_agenda_markov_crencas.md quality_reports/2026-08-29_review_sol56_emenda_extensao_agenda.md quality_reports/plans/2026-08-29_prompt_rederivacao_A_M_emenda_msb.md && git commit -m "Approve the M/S/B amendment and stage the A_M rederivation prompt" -m "Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
    ```
 
-2. Garantir que o derivador alcance os dois documentos novos — pelo caminho
-   absoluto do checkout principal
-   (`/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion`) ou por
-   commit — e que os hashes confiram:
-   - emenda: SHA-256
-     `8f0f3a0e430e8005bd7a1da99477a7b0e27e163b85aa87c2ad349d9578aab21b`;
-   - registro da revisão Sol 5.6
-     (`quality_reports/2026-08-29_review_sol56_emenda_extensao_agenda.md`):
-     SHA-256
-     `a1b89479a44d7cef148859d8219701ce370cbcedcfe994d5436bc565980bc25a`.
-3. Nenhuma edição nos artefatos do snapshot `b675a37`.
+2. Criar o worktree da derivação a partir do snapshot `b675a37` (que contém
+   contrato, resultados exploratórios e certificado) e trazer os documentos
+   para dentro da árvore via cherry-pick, para que a sessão Codex os leia sem
+   sair do worktree:
 
-## Prompt — colar integralmente na sessão do derivador
+   ```bash
+   DOCS=$(git rev-parse codex/essential-input) && git worktree add /private/tmp/PBP-am-msb -b agenda-extension-am-msb b675a37 && git -C /private/tmp/PBP-am-msb cherry-pick "$DOCS"
+   ```
+
+3. Conferir os hashes dentro do worktree novo:
+
+   ```bash
+   shasum -a 256 /private/tmp/PBP-am-msb/quality_reports/plans/2026-08-29_emenda_extensao_agenda_markov_crencas.md /private/tmp/PBP-am-msb/quality_reports/2026-08-29_review_sol56_emenda_extensao_agenda.md
+   ```
+
+   Valores esperados:
+   - emenda: `8f0f3a0e430e8005bd7a1da99477a7b0e27e163b85aa87c2ad349d9578aab21b`
+   - registro Sol 5.6: `a1b89479a44d7cef148859d8219701ce370cbcedcfe994d5436bc565980bc25a`
+
+4. Nenhuma edição nos artefatos herdados do snapshot `b675a37`.
+
+## Prompt — colar integralmente na sessão Codex do derivador
 
 ```text
-Estamos no repo PowerBayesianPersuasion, em um worktree dedicado criado a
-partir do snapshot b675a37 do branch codex/agenda-extension-am-exploratory.
-Você é o derivador de A_M (extensão de agenda sob maioria) sob o contrato
-emendado; você não revisará o próprio trabalho.
+Estamos no repo PowerBayesianPersuasion, no worktree /private/tmp/PBP-am-msb,
+branch agenda-extension-am-msb, criado a partir do snapshot b675a37 do branch
+codex/agenda-extension-am-exploratory, com um commit adicional de documentos
+normativos. Você é o derivador de A_M (extensão de agenda sob maioria) sob o
+contrato emendado; você não revisará o próprio trabalho.
+
+Atenção à precedência de documentos: o AGENTS.md e o CLAUDE.md presentes neste
+snapshot são anteriores a 2026-08-29 e não conhecem a emenda. A emenda
+APROVADA em quality_reports/plans/2026-08-29_emenda_extensao_agenda_markov_crencas.md
+prevalece sobre eles e sobre o contrato original em tudo que conflitar.
 
 Contexto em uma frase: a exploração de A_M terminou em certificado negativo —
 sob o contrato original, a liberdade de kappa_M (seleção de continuação
@@ -47,25 +69,23 @@ qualquer classificação informativa (AMX-014/015/016 BLOCKED). Em 2026-08-29 o
 autor aprovou uma emenda ao Gate 0 (cláusulas M/S/B) que remove exatamente
 essas duas liberdades. Sua tarefa é rederivar A_M sob a emenda.
 
-Leia nesta ordem antes de derivar:
+Leia nesta ordem antes de derivar (todos os caminhos são deste worktree):
 1. A emenda aprovada:
-   quality_reports/plans/2026-08-29_emenda_extensao_agenda_markov_crencas.md,
-   no checkout principal
-   (/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion),
-   SHA-256 8f0f3a0e430e8005bd7a1da99477a7b0e27e163b85aa87c2ad349d9578aab21b.
-   Verifique o hash. Ela prevalece sobre o contrato original onde conflitarem.
+   quality_reports/plans/2026-08-29_emenda_extensao_agenda_markov_crencas.md.
+   Verifique o SHA-256:
+   8f0f3a0e430e8005bd7a1da99477a7b0e27e163b85aa87c2ad349d9578aab21b.
 2. O contrato base:
-   quality_reports/plans/2026-08-26_agenda_extension_gate0_simplified.md
-   (neste worktree). Tudo que a emenda não toca permanece válido — inclusive a
-   regra local de Bayes por vizinhanças (§3.1), os desempates (§3, itens 1–2)
-   e a exclusão de D1/Critério Intuitivo do baseline (§3.2).
+   quality_reports/plans/2026-08-26_agenda_extension_gate0_simplified.md.
+   Tudo que a emenda não toca permanece válido — inclusive a regra local de
+   Bayes por vizinhanças (§3.1), os desempates (§3, itens 1–2) e a exclusão de
+   D1/Critério Intuitivo do baseline (§3.2).
 3. O certificado e as testemunhas:
    model_redesign/agenda_extension_A_M_explicit_majority_results.md
    (Seções 2–6) e
    quality_reports/2026-08-29_memoria_resultado_extensao_agenda_maioria.md.
 4. O registro da revisão incorporada:
    quality_reports/2026-08-29_review_sol56_emenda_extensao_agenda.md
-   (checkout principal, SHA-256
+   (SHA-256
    a1b89479a44d7cef148859d8219701ce370cbcedcfe994d5436bc565980bc25a).
 
 Resumo operacional das cláusulas; o texto integral da emenda prevalece:
@@ -114,14 +134,14 @@ Disciplina:
   escalam. Se uma prova exigir protocolo novo não coberto pela emenda, marque
   pending protocol decision, explique as consequências e pare o ramo.
 - Não edite artefatos congelados: baseline N1–N7, tag
-  v6-essential-input-2026-08-25, artefatos do snapshot b675a37. AC e AR estão
-  reabertos e não devem ser consumidos; A_U precisa de auditoria própria pela
-  mesma liberdade antes de qualquer consumo.
+  v6-essential-input-2026-08-25, artefatos herdados do snapshot b675a37. AC e
+  AR estão reabertos e não devem ser consumidos; A_U precisa de auditoria
+  própria pela mesma liberdade antes de qualquer consumo.
 - Salve scripts R em arquivo antes de rodar; verificação mecânica não
   substitui prova; relatórios completos em quality_reports/ com data no nome.
 - Você não revisa o próprio trabalho. Ao final, o pacote vai para dois
   revisores independentes sem edição de arquivos; Fable é inelegível como
   revisor desta cadeia.
-- Sem tag. Commit apenas do trabalho novo no branch dedicado, com preflight e
-  manifesto de hashes no padrão dos snapshots anteriores.
+- Sem tag. Commit apenas do trabalho novo neste branch dedicado, com preflight
+  e manifesto de hashes no padrão dos snapshots anteriores.
 ```
