@@ -1,7 +1,8 @@
 # Decisões pós-parecer externo — pacote A_M sob M/S/B
 
 **Data:** 2026-08-29
-**Status:** PROPOSED — aguardando aval autoral.
+**Status:** APPROVED — aval autoral concedido em 2026-08-29 ("aprovo tudo"),
+cobrindo as quatro decisões integrais.
 **Objeto:** o parecer técnico externo não formal
 `quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md`
 (SHA-256 `d4928d7cf90ae01b37848d43b6d38d32498332822b1f73d955eebb7f1dabc47c`)
@@ -107,4 +108,4 @@ rodarão sobre os bytes reparados.
   reparo, seguem os dois pareceres independentes formais do protocolo
   (nunca quem redigiu, nunca Fable).
 
-**Aprovação autoral:** pendente.
+**Aprovação autoral:** concedida em 2026-08-29 ("aprovo tudo").
