@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a_m_msb_formal_reviews:7905d48837f6:round1",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-08-29_A_M_msb_post_review_repair_manifest.sha256",
+    "sha256": "7905d48837f64f7ff89d661c3458462d24e6296ae44c047710786343e1e51bd6",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-08-29_A_M_msb_formal_review_1.md",
+      "sha256": "29e2db70cffc0931f2c5838f48113cf5d21cfcd60b1a3a361c38c1967fb49187"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-08-29_A_M_msb_formal_review_2.md",
+      "sha256": "a072d86ecbdecbda26b9197a4523e49c35bec14f0d1faf34dfdd4da8ea5bc1ce"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "R1-AM-FR1-ANON",
+      "source_review": "R1",
+      "quoted_finding": "O operador de Reynolds definido sobre a dupla de leis não é um invariante completo do quociente pela ação diagonal exigida pela clarificação; ele pode identificar órbitas diagonais distintas.",
+      "type": "false_statement",
+      "severity": "important",
+      "scientific_dimension": "fidelidade de implementação e escopo da assinatura downstream; Cluster A",
+      "held_decision": true,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/2026-08-29_A_M_msb_formal_review_1.md:180-229",
+        "quality_reports/plans/2026-08-29_clarificacao_assinatura_anonimato.md:59-68,79-95,116-118",
+        "model_redesign/agenda_extension_A_M_msb_results.md:856-865,920-977,1246-1259",
+        "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv:26,28"
+      ],
+      "defect_evidence": [
+        "A soma de pares de medidas nas linhas 955-957 é componentwise e elimina o índice comum g, retendo apenas as duas médias marginais.",
+        "No exemplo R1, pares de coalizões com interseção 0 e 1 têm órbitas diagonais disjuntas, mas as duas marginais de Reynolds são uniformes sobre as seis coalizões.",
+        "A enumeração de S4 produziu órbitas de tamanhos 6 e 24 com interseção vazia, enquanto cada coalizão apareceu quatro vezes em cada média marginal."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "Rscript inline: N=5,m=4,k=2,beta=.9,o=(.7,.8) reproduziu r=.225,A=.55,D0=.63,D1=.72.",
+        "Rscript inline: orbit_size(P)=6, orbit_size(Q)=24, overlap=0; contagens marginais C12/C34/C13 iguais a 4 para cada uma das seis coalizões.",
+        "shasum -a 256 -c no manifesto: 21/21 OK."
+      ],
+      "reasoning": "Este é o registro R1 do Cluster A. O contraexemplo pertence ao domínio e os perfis são PBEs de atraso-atraso, pois rejeição domina o melhor acordo para ambos os tipos. A igualdade das médias componentwise não implica igualdade de órbita sob uma permutação comum. Gamma_theta e o lema de fechamento sobrevivem, mas a exatidão de AMX-016 e a segunda metade de AMX-MSB-010 falham. A proposta abstrata de guardar a órbita completa é correta para o quociente diagonal ordinário, porém o contrato também identifica misturas sobre rótulos; a extensão para medidas mistas não está definida.",
+      "proposed_fix_assessment": "needs_design",
+      "disposition": "Não implementar. Escalar a definição da equivalência mista; uma equivalência marginal mais grossa exigiria owner_decision e alteração normativa."
+    },
+    {
+      "finding_id": "R2-AM2-I001",
+      "source_review": "R2",
+      "quoted_finding": "O Reynolds componentwise não implementa o quociente diagonal aprovado.",
+      "type": "false_statement",
+      "severity": "important",
+      "scientific_dimension": "fidelidade de implementação e escopo da assinatura downstream; Cluster A",
+      "held_decision": true,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/2026-08-29_A_M_msb_formal_review_2.md:325-378",
+        "quality_reports/plans/2026-08-29_clarificacao_assinatura_anonimato.md:59-68,79-95,116-118",
+        "model_redesign/agenda_extension_A_M_msb_results.md:856-865,920-977,1246-1259",
+        "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv:26,28"
+      ],
+      "defect_evidence": [
+        "No exemplo R2, em rho=0 existem PBEs separating acordo-acordo com parcela comum .5905 e coalizões de interseção 0 ou 1.",
+        "Os cálculos reproduzidos deram r_S(0)=.20475, A_S(0)=.5905, r_P(1)=.1845, A_P(1)=.631 e O1(off)=.5905.",
+        "As órbitas diagonais continuam distintas pelo tamanho da interseção, enquanto a média marginal de cada tipo é uniforme."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "Rscript inline reproduziu as capacidades e o valor off-path do exemplo acordo-acordo de R2.",
+        "A enumeração de S4 usada no exemplo R1 é puramente combinatória e se aplica ao par de coalizões de R2."
+      ],
+      "reasoning": "Este é o registro R2 do mesmo Cluster A, não um segundo defeito. A testemunha usa região de payoffs diferente da de R1 e confirma a perda do invariante relacional. A lei uniforme da órbita no espaço de pares seria um invariante completo da ação diagonal ordinária, mas separaria uma lei pura de misturas não degeneradas sobre seus rótulos, enquanto a clarificação manda colapsar essas misturas. Por isso a solução não é um reparo técnico forçado no domínio misto sem decisão adicional.",
+      "proposed_fix_assessment": "needs_design",
+      "disposition": "Não implementar a lei de órbita como solução geral sem reconciliar a cláusula de misturas; requer desenho e owner_decision."
+    },
+    {
+      "finding_id": "R1-AM-FR2-POINTWISE",
+      "source_review": "R1",
+      "quoted_finding": "As três primeiras afirmações locais da Seção 8.3 são escritas ponto a ponto, mas T4 garante igualdade de payoff somente sigma_theta-quase em toda parte.",
+      "type": "overclaim",
+      "severity": "minor",
+      "scientific_dimension": "lógica da prova e escopo measure-theoretic; Cluster B",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/2026-08-29_A_M_msb_formal_review_1.md:231-260",
+        "model_redesign/agenda_extension_A_M_msb_results.md:744-753,755-812",
+        "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv:20,24"
+      ],
+      "defect_evidence": [
+        "T4 exige u_theta<=V_theta em todo o suporte, mas igualdade apenas sigma_theta-quase certamente.",
+        "Na curva atomless y(t)=(.55,.225,.225-t,t,0), t=0 pertence ao suporte, passa e dá .55, mas V0=.63 e V1=.72; o ponto tem massa zero.",
+        "Uma construção adicional no cutoff S/P produz um ponto rejeitado nulo com payoffs .081/.162 abaixo do valor comum .591380435, confirmando o mesmo defeito na segunda bullet."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "Rscript inline reproduziu pass=TRUE somente em t=0 na primeira curva, com V0=.63,V1=.72 e u(t0)=.55.",
+        "Rscript inline reproduziu p_SP=.195652174, r_S=.204309783, r_P=.1845, V=.591380435, folga=.039619565 e rejeição somente no ponto nulo t=0 da segunda curva."
+      ],
+      "reasoning": "Este é o registro R1 do Cluster B. Os exemplos satisfazem as próprias três condições de T4: desigualdade em todo o suporte, igualdade quase certamente e ausência de desvio off-support. Logo o defeito está na prosa auxiliar pointwise, não no iff de T4, em AMX-015 ou no antecedente de probabilidade positiva de AMX-011.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Em implementação futura separada, usar versões lambda-quase certamente nos conjuntos de posterior interior, versões pontuais apenas para átomos de massa positiva e relações setwise nos posteriores 0/1."
+    },
+    {
+      "finding_id": "R2-AM2-M001",
+      "source_review": "R2",
+      "quoted_finding": "As restrições da Seção 8.3 precisam de qualificador quase certamente ou uso com massa positiva.",
+      "type": "overclaim",
+      "severity": "minor",
+      "scientific_dimension": "lógica da prova e escopo measure-theoretic; Cluster B",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/2026-08-29_A_M_msb_formal_review_2.md:380-408",
+        "model_redesign/agenda_extension_A_M_msb_results.md:744-753,755-812",
+        "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv:20,24"
+      ],
+      "defect_evidence": [
+        "No exemplo R2, a mesma lei atomless dos dois tipos tem pi=.5 em todo o suporte; t=0 passa por T^Y com z_H=0, mas tem massa zero e payoff abaixo de V0=.63,V1=.72.",
+        "Em suportes atomless, pertencer ao suporte não implica massa positiva de nenhum ponto individual.",
+        "Com sigma0(dt)=dt e sigma1(dt)=2t dt, t=0 pertence ao suporte de ambas as medidas mas pi(0)=0, mostrando que a terceira bullet precisa de formulação setwise e não de linguagem pointwise de uso."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "A aritmética do exemplo cardinal foi reproduzida: r=.225,A=.55,D0=.63,D1=.72.",
+        "A identidade sigma1([0,e])=e^2>0 para todo e>0 confirma que 0 está no suporte de sigma1 embora sigma1({0})=0 e pi(0)=0."
+      ],
+      "reasoning": "Este é o registro R2 do mesmo Cluster B. A construção é compatível com Bayes pointwise e com T4. O reparo seguro não é um sufixo genérico: para posterior interior usa-se igualdade lambda-quase certamente ou um átomo de massa positiva; para posterior 0/1 usam-se sigma1({pi=0})=0 e sigma0({pi=1})=0, mantendo a desigualdade de imitação ponto a ponto.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Reparar somente a prosa local da Seção 8.3; não alterar T4, AMX-015, AMX-011, Bayes pointwise ou o kernel."
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "confirmed": 4,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 2
+  },
+  "adjudication": {
+    "verdict": "BLOCKED",
+    "checked_at": "2026-08-29T17:52:24-03:00",
+    "reasons": [
+      "Os quatro source findings foram confirmados e normalizados em dois clusters independentes; a convergência dos revisores não foi usada como prova.",
+      "O Cluster A é material para AMX-016 e AMX-MSB-010, e nenhuma proposta geral resolve sem desenho adicional a tensão entre ação diagonal comum e colapso de misturas sobre identidades.",
+      "O Cluster B tem reparo local seguro e não invalida T4, AMX-015, AMX-011 nem o teorema cardinal.",
+      "Sem equivalência mista autorizada e suficientemente definida, o pacote não está pronto para implementação nem consumo downstream."
+    ]
+  }
+}
