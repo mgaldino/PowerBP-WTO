@@ -1,0 +1,24 @@
+A_M M/S/B post-review repair verifier
+Date: 2026-08-29
+Worktree: /private/tmp/PBP-am-msb
+Branch: agenda-extension-am-msb
+Pre-repair substantive snapshot: 6fa852c52cd3a277735697b78a42d5f1774c6320
+Operational opening HEAD: bfd149898cdf1915b453f95d7d4401c4d2de5682
+
+Command:
+env LC_ALL=C LANG=C Rscript scripts/verify_agenda_extension_A_M_msb.R
+
+Script SHA-256:
+0e460d286b2647ef5ed17485339ad69e3e332346494e22b9ffdca362b7c7374f
+
+Exit status:
+0
+
+Standard output:
+SUMMARY | 3944 PASS | 0 FAIL
+
+Scope:
+Mechanical evidence only. The script checks finite algebra, enumerations,
+displayed examples, rho transformations and regression conditions. It does
+not prove PBE existence or completeness, pointwise Bayes, Borel measurability,
+the joint-law theorem, or the formal-review verdict.

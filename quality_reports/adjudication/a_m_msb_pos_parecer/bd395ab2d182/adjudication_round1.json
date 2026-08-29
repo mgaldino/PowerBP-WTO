@@ -1,0 +1,566 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a-m-msb-pos-parecer:bd395ab2d182:round1",
+  "source": {
+    "reviewed_artifact": "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md",
+    "sha256": "bd395ab2d1824b660e72ad53fce6efb574484272bcaf40840771386fb2f7b867",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "snapshot": {
+    "worktree": "/private/tmp/PBP-am-msb",
+    "branch": "agenda-extension-am-msb",
+    "head": "bfd149898cdf1915b453f95d7d4401c4d2de5682",
+    "pre_repair_packet_commit": "6fa852c",
+    "substantive_candidate_commit": "38a3939f1796e85459bddca1356bbc8bc1c61d6e",
+    "committed_package_unchanged_since_pre_repair_packet_commit": true,
+    "working_tree_at_initial_preflight": "clean",
+    "identity_note": "git diff --exit-code 6fa852c..HEAD over packet, sidecar, results, ledger, verifier and review manifest returned 0; HEAD only imports the external review and later governing records.",
+    "post_adjudication_concurrency_note": "After the substantive disposition was sent and the records were written, a concurrent modification to model_redesign/agenda_extension_A_M_msb_results.md appeared. This adjudication did not create, inspect as repaired evidence, or revert that modification; all source hashes in this record remain the pre-repair hashes."
+  },
+  "governing_inputs": [
+    {
+      "path": "quality_reports/plans/2026-08-29_emenda_extensao_agenda_markov_crencas.md",
+      "sha256": "8f0f3a0e430e8005bd7a1da99477a7b0e27e163b85aa87c2ad349d9578aab21b",
+      "status": "APPROVED",
+      "role": "M/S/B amendment"
+    },
+    {
+      "path": "quality_reports/plans/2026-08-29_clarificacao_assinatura_anonimato.md",
+      "sha256": "6c73fa57c34eb1529259e7c56ef8e6ddbf906fa1977aacf551c429aa29b248c3",
+      "status": "APPROVED",
+      "role": "anonymous-signature and uniform-kernel clarification"
+    },
+    {
+      "path": "quality_reports/plans/2026-08-29_decisoes_pos_parecer_chatgpt_A_M.md",
+      "sha256": "3000a25c89510f3e0ea471d4406c0c59282f41fd07662b5c077fa81f281e1471",
+      "status": "APPROVED",
+      "role": "four post-review author decisions"
+    },
+    {
+      "path": "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md",
+      "sha256": "d4928d7cf90ae01b37848d43b6d38d32498332822b1f73d955eebb7f1dabc47c",
+      "status": "INFORMAL CONSULTATIVE REVIEW",
+      "role": "source of findings and repair checklist"
+    },
+    {
+      "path": "quality_reports/plans/2026-08-26_agenda_extension_gate0_simplified.md",
+      "sha256": "fb2cd323a74b30432746dc37d622014cd7768e6d5442877ed3a8e043df546dc4",
+      "status": "APPROVED, AS AMENDED",
+      "role": "base protocol for provisions not superseded by M/S/B"
+    }
+  ],
+  "package_sources": [
+    {
+      "path": "model_redesign/agenda_extension_A_M_msb_results.md",
+      "sha256": "eea6c603c1f43f23df7995d55912991624207d17624975ea40cccd12583c4cf0"
+    },
+    {
+      "path": "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv",
+      "sha256": "5d42bf5a113716687e95785bffc572cc5e874674c0bd61e6338f7f6832f7cc4e"
+    },
+    {
+      "path": "scripts/verify_agenda_extension_A_M_msb.R",
+      "sha256": "794fc08d5459b840237325e1f18f7c0431a52b82b2f8efa3b4ae011e1b0d250a"
+    },
+    {
+      "path": "quality_reports/2026-08-29_A_M_msb_review_manifest.sha256",
+      "sha256": "1f2cf9bebc4ab9ac82748df5a4a9aeac7bd5d05576100cdb58eb11eb18d8d773"
+    },
+    {
+      "path": "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.sha256",
+      "sha256": "243ec6c460d84d142fc30639c55fd76b5384acf5a2bb1ce27a604f9a614f9a75"
+    }
+  ],
+  "review_sources": [
+    {
+      "review_id": "WEB-R1",
+      "path": "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md",
+      "sha256": "d4928d7cf90ae01b37848d43b6d38d32498332822b1f73d955eebb7f1dabc47c"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "WEB-I01-BAYES-LOCAL",
+      "source_review": "WEB-R1",
+      "quoted_finding": "Bayes local não está definido: faltam métrica, base de diferenciação e fórmula; por isso B e o Teorema 4 não determinam literalmente pi.",
+      "type": "method",
+      "severity": "important",
+      "scientific_dimension": "fidelity_of_implementation",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:395-399",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:366-384",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:811-859",
+        "quality_reports/plans/2026-08-26_agenda_extension_gate0_simplified.md:230-261"
+      ],
+      "defect_evidence": [
+        "O packet e o cabeçalho local do Teorema 4 usam apenas a expressão limite local de Bayes, sem repetir a bola relativa nem a razão; isso quebra a autocontenção prometida pelo packet.",
+        "O Teorema 4 não invoca no próprio enunciado a identificação quase certamente por diferenciação de medidas."
+      ],
+      "refuting_evidence": [
+        "O contrato-base hash-pinned já fixa B_delta^Y(y), a fórmula da razão local, o critério pointwise, a parada quando o limite falha e a mensurabilidade Borel.",
+        "O packet identifica esse contrato-base e seu hash em 1253-1254; portanto a alegação ampla de ausência total de definição não vale para o pacote referenciado completo."
+      ],
+      "mechanical_checks": [
+        "SHA-256 do contrato-base confirmado como fb2cd323a74b30432746dc37d622014cd7768e6d5442877ed3a8e043df546dc4."
+      ],
+      "reasoning": "Há um defeito real de autocontenção e de localização no Teorema 4, mas não a ausência substantiva total alegada: o contrato-base exato já contém a métrica e a fórmula.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Repetir no pacote a definição métrica/fórmula e registrar Besicovitch, sem tratar isso como nova primitiva; a Decisão 4.1 já autorizou esse reparo."
+    },
+    {
+      "finding_id": "WEB-I02-THEOREM4-WELLFORMED",
+      "source_review": "WEB-R1",
+      "quoted_finding": "O Teorema 4 não está bem formado: sigma_theta não é exigida ser probabilidade, nu_off está ausente de R e pi não é declarada Borel.",
+      "type": "logic_or_proof",
+      "severity": "important",
+      "scientific_dimension": "fidelity_of_implementation",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:401-405",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:811-895",
+        "model_redesign/agenda_extension_A_M_msb_results.md:437-502",
+        "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv:24"
+      ],
+      "defect_evidence": [
+        "O enunciado diz somente medidas Borel de propostas, e a tupla R não contém nu_off embora a condição 2 o use.",
+        "Sem normalização, sigma_0=0 é admitida literalmente como medida Borel, mas não é estratégia mista; logo o iff escrito é falso.",
+        "A mensurabilidade global do sistema no contrato-base não corrige a tipagem incompleta do objeto R tal como enunciado."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [],
+      "reasoning": "A falha de normalização é decisiva, e a variável livre nu_off torna a interface incompleta. O núcleo do iff pode sobreviver após a boa formação, mas o teorema literal não.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Exigir sigma_0,sigma_1 em P(Y), fixar/incluir nu_off ou rho em R e exigir/provar que pi, a, u_0 e u_1 são Borel, conforme Decisão 4.2."
+    },
+    {
+      "finding_id": "WEB-I03-DOWNSTREAM-SIGNATURE",
+      "source_review": "WEB-R1",
+      "quoted_finding": "A assinatura downstream não é completa: descarta nu_off e não preserva explicitamente a lei conjunta de timing, sinal, posterior e outcome terminal.",
+      "type": "scope_or_consistency",
+      "severity": "important",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:407-411",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:915-962",
+        "model_redesign/agenda_extension_A_M_msb_results.md:529-596",
+        "quality_reports/plans/2026-08-29_emenda_extensao_agenda_markov_crencas.md:216-237",
+        "quality_reports/plans/2026-08-29_decisoes_pos_parecer_chatgpt_A_M.md:41-51"
+      ],
+      "defect_evidence": [
+        "Sig(R) omite nu_off, embora a emenda imponha a mesma fibra de nu_off na comparação AC.",
+        "Q_theta e G_pi são marginais separadas; a tupla não registra a correlação entre sinal/posterior, acordo ou atraso, seleção de continuação e outcome terminal.",
+        "Na família atomless com suporte público pleno e ramo E único, a mesma assinatura escrita é compatível com qualquer nu_off."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [],
+      "reasoning": "A construção de cada assinatura a partir de um único R impede recombinação dentro do candidato, mas não preserva as coordenadas ocultas necessárias para casar maioria e unanimidade downstream.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Adicionar rho/nu_off e a lei conjunta Gamma_theta, derivando V, W, p_A, Q e G_pi como marginais e impondo produto fibrado no mesmo rho; a Decisão 2 já fixou essa solução."
+    },
+    {
+      "finding_id": "WEB-I04-UNIFORM-VERSUS-CYCLE",
+      "source_review": "WEB-R1",
+      "quoted_finding": "Uniforme e ciclo têm estatutos ambíguos: implementação permitida pode autorizar o ciclo enquanto os teoremas usam apenas o kernel uniforme.",
+      "type": "scope_or_consistency",
+      "severity": "important",
+      "scientific_dimension": "fidelity_of_implementation",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:413-417",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:357-364",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:445-481",
+        "model_redesign/agenda_extension_A_M_msb_results.md:165-184",
+        "quality_reports/plans/2026-08-29_clarificacao_assinatura_anonimato.md:99-118"
+      ],
+      "defect_evidence": [
+        "A formulação resumida de S no packet chama o ciclo de implementação permitida, expressão que pode ser lida como membro terminal admissível."
+      ],
+      "refuting_evidence": [
+        "Os resultados exatos já dizem que as distribuições terminais diferem, que a rederivação usa literalmente o representante uniforme e que o ciclo serve apenas à implementação mecânica de payoffs.",
+        "A clarificação aprovada agora fixa inequivocamente o kernel uniforme literal e proíbe o ciclo como kernel terminal ou membro adicional da assinatura."
+      ],
+      "mechanical_checks": [
+        "O verificador reproduziu a igualdade de incidências/payoffs para N=3,...,20, sem testar igualdade de leis terminais."
+      ],
+      "reasoning": "A ambiguidade existe na frase governante resumida, mas não contamina por inteiro os resultados operativos, que já escolhem o uniforme literal.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Substituir a frase pela redação da clarificação §4; não ampliar X_M nem a assinatura com kernels cíclicos."
+    },
+    {
+      "finding_id": "WEB-I05-THEOREM6-OVERCLAIM",
+      "source_review": "WEB-R1",
+      "quoted_finding": "O Teorema 6 excede sua prova: incontabilidade não exclui parametrização finita nem todo resumo finito.",
+      "type": "overclaim",
+      "severity": "important",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:419-423",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:964-1005",
+        "model_redesign/agenda_extension_A_M_msb_results.md:601-626",
+        "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv:25"
+      ],
+      "defect_evidence": [
+        "O título não existe redução finita geral e o mapa do claim permitem leitura mais forte que a prova cardinal."
+      ],
+      "refuting_evidence": [
+        "O corpo do teorema afirma apenas que pode haver incontavelmente muitas assinaturas e conclui que não há lista finita; o ledger usa exatamente essa versão cardinal.",
+        "Os exemplos sustentam incontabilidade, mas não impossibilidade de parametrização por número finito de escalares ou funções."
+      ],
+      "mechanical_checks": [],
+      "reasoning": "Há sobrealcance no título/atalho, mas o conteúdo formal e o claim do ledger já são cardinais e corretos.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Retitular e reenunciar como correspondência possivelmente incontável e impossibilidade de lista finita, conforme Decisão 4.4."
+    },
+    {
+      "finding_id": "WEB-M01-OFFSUPPORT-SUPREMUM-ORDER",
+      "source_review": "WEB-R1",
+      "quoted_finding": "O lema do supremo off-path em suporte puro finito deve preceder a classificação pura.",
+      "type": "logic_or_proof",
+      "severity": "minor",
+      "scientific_dimension": "fidelity_of_implementation",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:175-186",
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:425-427",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:667-790",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:861-876"
+      ],
+      "defect_evidence": [
+        "O Teorema 2 usa O_theta=max{A_off,D_theta,off} e sua suficiência antes de apresentar a justificativa de densidade/aproximação, que aparece apenas dentro do Teorema 4."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [],
+      "reasoning": "A identidade é correta, mas a prova está em ordem dependencial inadequada e não é autocontida no ponto em que o Teorema 2 a consome.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Antecipar o lema, incluindo aproximação epsilon de acordos e o contínuo de propostas rejeitadas."
+    },
+    {
+      "finding_id": "WEB-M02-RESIDUAL-EP",
+      "source_review": "WEB-R1",
+      "quoted_finding": "A prova regional de existência deveria mencionar explicitamente o empate residual E/P e a preservação das desigualdades por convexidade.",
+      "type": "exposition",
+      "severity": "minor",
+      "scientific_dimension": "mechanism",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:94-99",
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:159-173",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:606-665"
+      ],
+      "defect_evidence": [
+        "A prova separa E, S e P, mas não fecha por escrito o único caso residual EP, embora o axioma permita uma mistura conjunta na igualdade."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "O script verificou que os payoffs EP são afins no peso comum para c, h_0 e h_1 e retornou 2891 PASS/0 FAIL."
+      ],
+      "reasoning": "A convexidade torna o reparo curto e não muda o resultado, mas a passagem faltante é real.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Adicionar uma linha explícita de convexidade no caso EP, preservando o mesmo peso em todas as coordenadas."
+    },
+    {
+      "finding_id": "WEB-M03-FEASIBILITY-BOUNDS",
+      "source_review": "WEB-R1",
+      "quoted_finding": "O Lema 2 deve enunciar e provar 0<r_chi(mu)<=beta/m e k r_chi(mu)<1.",
+      "type": "logic_or_proof",
+      "severity": "minor",
+      "scientific_dimension": "mechanism",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:117-129",
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:425-427",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:483-524",
+        "model_redesign/agenda_extension_A_M_msb_results.md:186-224"
+      ],
+      "defect_evidence": [
+        "O texto afirma positividade/atingimento e usa factibilidade, mas não exibe no Lema 2 a cota c_chi<=1/m nem a cadeia que implica k r<1."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "O bloco 2 do script testa cutoff positivo, k*r<1 e A>=Z_E em grades; execução independente: SUMMARY | 2891 PASS | 0 FAIL."
+      ],
+      "reasoning": "As fórmulas dos ramos tornam a prova imediata, mas o teste numérico não substitui a demonstração simbólica ausente.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Inserir a prova simbólica ramo a ramo e manter o script apenas como regressão mecânica."
+    },
+    {
+      "finding_id": "WEB-M04-FINDING1-CALCULATIONS",
+      "source_review": "WEB-R1",
+      "quoted_finding": "Os cálculos do Finding 1 precisam explicitar D_0(0), D_1(0), O_0 e O_1.",
+      "type": "exposition",
+      "severity": "minor",
+      "scientific_dimension": "reproducibility",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:131-157",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:526-575",
+        "model_redesign/agenda_extension_A_M_msb_results.md:226-266"
+      ],
+      "defect_evidence": [
+        "O packet mostra r(0), A(0), r(1), D_0(1) e D_1(1), mas usa 0.729 sem identificar D_1(0), e não escreve D_0(0), O_0 ou O_1."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "O script confirma o ramo S em mu=0, E em mu=1, A(0)=0.5905 e as três desigualdades de IC; execução independente: 2891 PASS/0 FAIL."
+      ],
+      "reasoning": "A aritmética e o PBE passam, mas a apresentação não permite reconstruir todas as comparações sem cálculo externo.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Adicionar D_0(0)=0.081, D_1(0)=0.729, O_0=0.5905 e O_1=0.729, preservando o finding."
+    },
+    {
+      "finding_id": "WEB-M05-BOUNDARY-MIXTURES",
+      "source_review": "WEB-R1",
+      "quoted_finding": "As misturas de fronteira precisam ser construídas por escrito, e qualquer testemunha adjacente deve ser restrito a priors interiores.",
+      "type": "exposition",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:73-75",
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:159-173",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:593-605",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:1043-1045",
+        "model_redesign/agenda_extension_A_M_msb_results.md:653-670"
+      ],
+      "defect_evidence": [
+        "O packet afirma que famílias adjacentes sobrevivem, mas não fornece as medidas de mistura em o_1=T e dá apenas descrição parcial em o_0=T<o_1.",
+        "A frase irrestrita sobre testemunhas adjacentes aparece em teorema para todo prior, embora os endpoints devam ser tratados diretamente pelo teorema endpoint."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [],
+      "reasoning": "O review considerou as construções corretas no interior; o defeito é de construção explícita e de domínio da frase de borda.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Escrever sigma_0 e sigma_1 das misturas nas duas fronteiras e limitar a regra de testemunhas adjacentes a 0<nu<1; endpoints ficam no Teorema 3."
+    },
+    {
+      "finding_id": "WEB-M06-HISTORICAL-SELFCONTAINMENT",
+      "source_review": "WEB-R1",
+      "quoted_finding": "Os claims históricos não são autocontidos: faltam o seletor antigo, g_theta completo e o objeto exato chamado de antigo intervalo.",
+      "type": "artifact",
+      "severity": "minor",
+      "scientific_dimension": "reproducibility",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:429-431",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:1086-1128",
+        "model_redesign/agenda_extension_A_M_msb_results.md:703-727",
+        "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv:18,27"
+      ],
+      "defect_evidence": [
+        "O packet se apresenta como autocontido, mas AMX-009 não define Zbar_E e AMX-NEG-001 resume o seletor e g_theta apenas por valores/bounds, remetendo a uma fonte histórica externa."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "O manifesto fixa e valida a fonte histórica SHA-256 1e385fabd2e25a5b72344d22982d9648e28be92eb68665d484cd8116aaa7772f; isso permite auditoria por referência, mas não torna o packet autocontido."
+      ],
+      "reasoning": "A verdade substantiva pode ser checada na fonte pinada, mas a promessa de autocontenção do packet falha.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Definir o objeto antigo ou rebaixar AMX-009; declarar AMX-NEG-001 como lema histórico importado, conforme Decisão 4.5."
+    },
+    {
+      "finding_id": "WEB-C01-AMX-009",
+      "source_review": "WEB-R1",
+      "quoted_finding": "AMX-009: UNRESOLVED porque o antigo intervalo não é definido no pacote.",
+      "type": "artifact",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:77",
+        "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv:18",
+        "model_redesign/agenda_extension_A_M_msb_results.md:703-706",
+        "model_redesign/agenda_extension_A_M_explicit_majority_results.md:505-506",
+        "model_redesign/agenda_extension_A_M_explicit_majority_results.md:532-593"
+      ],
+      "defect_evidence": [
+        "O packet/resultados correntes usam [Z_E,Zbar_E] sem definir Zbar_E nem reproduzir a subfamília histórica."
+      ],
+      "refuting_evidence": [
+        "A fonte histórica exata, hash-pinned pelo manifesto e citada pelo ledger, define Zbar_B=1-beta*M_B e o intervalo compacto da subfamília globalmente constante, inclusive extremos e loterias internas.",
+        "Sob S, o pacote corrente seleciona o representante uniforme literal; logo a família assimétrica histórica não pertence ao domínio corrente."
+      ],
+      "mechanical_checks": [],
+      "reasoning": "UNRESOLVED é adequado se o universo for somente o texto autocontido do packet, mas excessivo diante da fonte histórica exata fixada no pacote. Há defeito de autocontenção, não indeterminação substantiva total.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Definir e citar o objeto exato ou rebaixar o claim à comparação efetivamente demonstrada."
+    },
+    {
+      "finding_id": "WEB-C02-AMX-015",
+      "source_review": "WEB-R1",
+      "quoted_finding": "AMX-015: FAIL porque o objeto misto admite medidas que não são estratégias, deixa nu_off livre e não fecha Bayes local/mensurabilidade.",
+      "type": "logic_or_proof",
+      "severity": "important",
+      "scientific_dimension": "fidelity_of_implementation",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:83",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:811-913",
+        "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv:24"
+      ],
+      "defect_evidence": [
+        "O ledger marca a caracterização como proved, mas R não exige probabilidades e omite nu_off; portanto a equivalência não vale para todos os objetos admitidos pelo enunciado."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [],
+      "reasoning": "É a consequência claim-level de WEB-I02; o núcleo condicional pode ser preservado, mas AMX-015 não está provado como escrito.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Reenunciar AMX-015 sobre o R bem formado aprovado e manter revisão matemática dos bytes reparados pendente."
+    },
+    {
+      "finding_id": "WEB-C03-AMX-MSB-009",
+      "source_review": "WEB-R1",
+      "quoted_finding": "AMX-MSB-009: FAIL como enunciado amplo, PASS para a versão cardinal.",
+      "type": "overclaim",
+      "severity": "important",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:84",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:964-1005",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:1159",
+        "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv:25"
+      ],
+      "defect_evidence": [
+        "O título e o mapa do packet usam não existe redução finita geral, formulação que pode exceder o resultado cardinal."
+      ],
+      "refuting_evidence": [
+        "O claim_text do ledger já diz apenas que pode haver incontavelmente muitas assinaturas para um par fixo, e o corpo conclui apenas que nenhuma lista finita basta.",
+        "As famílias exibidas provam exatamente a versão cardinal."
+      ],
+      "mechanical_checks": [],
+      "reasoning": "O FAIL integral não se sustenta contra o ledger e o corpo; o defeito é o atalho amplo em título/mapa.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Alinhar título, mapa e ledger na versão cardinal aprovada."
+    },
+    {
+      "finding_id": "WEB-C04-AMX-016",
+      "source_review": "WEB-R1",
+      "quoted_finding": "AMX-016: FAIL porque a assinatura omite nu_off e não define lei conjunta terminal suficiente para a compatibilidade por fibra de AC.",
+      "type": "scope_or_consistency",
+      "severity": "important",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:85",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:915-962",
+        "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv:26",
+        "quality_reports/plans/2026-08-29_decisoes_pos_parecer_chatgpt_A_M.md:41-51"
+      ],
+      "defect_evidence": [
+        "O ledger chama a correspondência de exata e conjunta, mas Sig não carrega a coordenada necessária para o produto fibrado e mantém apenas marginais da lei terminal/sinal."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [],
+      "reasoning": "É a consequência claim-level de WEB-I03. A atomicidade do binder de origem não substitui as coordenadas omitidas na interface consumida.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Reenunciar AMX-016 sobre Gamma_0,Gamma_1 e a mesma fibra rho/nu_off, sem consumo por AC antes de auditoria própria de A_U."
+    },
+    {
+      "finding_id": "WEB-C05-AMX-NEG-001",
+      "source_review": "WEB-R1",
+      "quoted_finding": "AMX-NEG-001: UNRESOLVED porque o seletor antigo e g_theta fora da sequência s_n não constam do pacote autocontido.",
+      "type": "artifact",
+      "severity": "minor",
+      "scientific_dimension": "reproducibility",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "quality_reports/external_reviews/2026-08-29_consulta_tecnica_chatgpt_web_A_M_msb.md:86",
+        "reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.md:1086-1128",
+        "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv:27",
+        "model_redesign/agenda_extension_A_M_explicit_majority_results.md:770-819"
+      ],
+      "defect_evidence": [
+        "O packet resume a construção e a desigualdade integral sem anexar as matrizes/membros e a definição completa por casos do seletor antigo; isoladamente, ele não revalida o certificado."
+      ],
+      "refuting_evidence": [
+        "A fonte histórica exata está no manifesto e define o seletor Borel por A_seq, os membros dentro/fora, os limites globais de g_theta, os payoffs de rejeição e a prova de ausência de melhor resposta pura ou mista.",
+        "O script corrente reproduz a aritmética da sequência e dos caps, embora não substitua a prova histórica."
+      ],
+      "mechanical_checks": [
+        "scripts/verify_agenda_extension_A_M_msb.R:300-307; execução independente: SUMMARY | 2891 PASS | 0 FAIL."
+      ],
+      "reasoning": "O defeito de autocontenção é real, mas o núcleo histórico deixa de ser UNRESOLVED quando a fonte hash-pinned do próprio manifesto é consultada.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Rotular AMX-NEG-001 como lema histórico importado, com caminho/hash, e não como resultado revalidável apenas pelo novo packet."
+    }
+  ],
+  "summary": {
+    "total": 16,
+    "confirmed": 10,
+    "partial": 6,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0,
+    "normalized_groups": {
+      "review_issue_findings": {
+        "total": 11,
+        "important": 5,
+        "minor": 6
+      },
+      "claim_status_findings": {
+        "total": 5,
+        "source_fail": 3,
+        "source_unresolved": 2
+      },
+      "overlap_note": "Os cinco claim-status findings foram preservados separadamente porque solicitados, mas sobrepõem diagnósticos dos onze achados por gravidade."
+    }
+  },
+  "mechanical_validation": {
+    "manifest_command": "shasum -a 256 -c quality_reports/2026-08-29_A_M_msb_review_manifest.sha256",
+    "manifest_result": "18 OK, exit 0",
+    "packet_command": "shasum -a 256 -c reports/chatgpt_pro_packets/2026-08-29_A_M_msb_external_review_packet.sha256",
+    "packet_result": "packet OK, exit 0",
+    "verifier_command": "Rscript scripts/verify_agenda_extension_A_M_msb.R",
+    "verifier_result": "SUMMARY | 2891 PASS | 0 FAIL, exit 0",
+    "scope_limit": "A execução mecânica não prova PBE, completude, limite local pointwise, mensurabilidade simbólica ou ausência de todos os desvios."
+  },
+  "adjudication": {
+    "verdict": "READY_FOR_IMPLEMENTATION",
+    "checked_at": "2026-08-29T16:12:31-03:00",
+    "reasons": [
+      "O artefato principal bd395ab2... está íntegro, os bytes substantivos coincidem com o snapshot pré-reparo e todos os hashes do manifesto conferem.",
+      "Há defeitos confirmados/parciais com correções delimitadas; nenhum item material permanece UNRESOLVED após consulta às fontes hash-pinned.",
+      "As decisões autorais pós-parecer e a clarificação aprovam explicitamente as correções e eliminam escolhas de desenho pendentes neste passe.",
+      "READY_FOR_IMPLEMENTATION autoriza apenas encaminhar os findings adjudicados ao implementador; não é PASS matemático, aprovação dos novos bytes nem uma das duas revisões formais futuras."
+    ]
+  },
+  "implementation_boundary": {
+    "authorized_scope": "Somente a parte CONFIRMED de cada finding e a parte confirmada dos PARTIAL, conforme as decisões autorais aprovadas.",
+    "prohibited_in_this_record": [
+      "editar qualquer artefato do pacote pré-reparo",
+      "executar o reparo",
+      "consumir A_M em AC",
+      "apresentar esta adjudicação como parecer formal ou como uma das duas revisões futuras"
+    ],
+    "nonblocking_future_item": "IC/D1-BENCHMARK permanece futuro e separado; não bloqueia este passe.",
+    "downstream_gate": "AC continua bloqueado até a interface reparada, dois pareceres formais sobre os novos bytes e auditoria própria de A_U."
+  }
+}
