@@ -7,8 +7,11 @@ degradada, sessão nova no mesmo worktree com este prompt executa sem perda —
 ele é autossuficiente). Implementação é papel de implementador; quem
 implementa não revisa. Os dois pareceres formais novos virão depois, de
 sessões frescas, nunca do implementador e nunca do Fable.
-**Snapshot pré-implementação:** `0eef332`. O worktree está limpo; a
-implementação entra como commits novos no mesmo branch.
+**Snapshot pré-implementação:** o HEAD corrente do branch no momento de
+iniciar, a registrar no relatório do passe. Linhagem: `6b94f2f` é o candidato
+substantivo revisado pelos pareceres formais; `0eef332` acrescentou o pacote
+de consulta; commits posteriores importam apenas documentos governantes. O
+worktree está limpo; a implementação entra como commits novos no mesmo branch.
 **Documentos governantes (hashes a verificar antes de usar):**
 
 | Documento | Caminho | SHA-256 |
@@ -27,7 +30,11 @@ de consulta.
 
 ```text
 Estamos no worktree /private/tmp/PBP-am-msb, branch agenda-extension-am-msb,
-snapshot limpo 0eef332. Você é o implementador da decisão autoral APROVADA
+com a árvore limpa. Registre no relatório o HEAD corrente como snapshot
+pré-implementação; a linhagem relevante é: 6b94f2f = candidato substantivo
+revisado pelos pareceres formais; 0eef332 = pacote de consulta; commits
+posteriores importam apenas documentos governantes, sem conteúdo substantivo.
+Você é o implementador da decisão autoral APROVADA
 "assinatura de A_M em duas camadas". Você não revisará o próprio trabalho: ao
 final, o pacote vai a dois pareceres formais independentes novos, de sessões
 frescas, sobre exatamente os bytes que você produzir.
@@ -55,7 +62,7 @@ fechamento por permutação comum, teorema cardinal, AMX-011).
 
 TAREFAS, nesta ordem:
 
-1. Registro pré-implementação: anote o commit 0eef332 e os arquivos a alterar.
+1. Registro pré-implementação: anote o HEAD corrente e os arquivos a alterar.
 
 2. Camada exata. Defina a ação diagonal de G = S_m sobre X = P(Z)^2 e a
    assinatura exata Sig_ex_M(R) = (rho, nu_off, Lambda_{x(R)}), com
