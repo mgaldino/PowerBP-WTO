@@ -1,0 +1,424 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a-t-msb-external-chatgpt:ca3248fb8ef6:round1",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-08-30_AT_msb_candidate_manifest.sha256",
+    "sha256": "ca3248fb8ef63a2dcc008b5e30ffda1a8e170806ea172969e069daef1e9629cd",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "WEB-CHATGPT",
+      "path": "quality_reports/external_reviews/2026-08-30_consulta_tecnica_externa_nao_formal_chatgpt_AT_msb.md",
+      "sha256": "be8831a5ec593481032b93079d19eea6ed0fcb59bcf96139a3d69e30106a303a"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "WEB-AT-F001",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "A prova de T3 deve explicitar o lema tau_M>1/m para ordenar os ramos.",
+      "type": "logic_or_proof",
+      "severity": "minor",
+      "scientific_dimension": "formalization",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:117-128",
+        "model_redesign/agenda_extension_AR_msb_results.md:115-129"
+      ],
+      "defect_evidence": [
+        "A_T usa a ordenação para enunciar D_M(o)>0 iff o<tau_M, mas não repete o lema na prova local."
+      ],
+      "refuting_evidence": [
+        "A fonte congelada A_R já prova literalmente tau_M>1/m a partir de q=k+1<=m e beta<1."
+      ],
+      "mechanical_checks": [
+        "Manifesto A_T 11/11 OK",
+        "200000 sorteios R confirmaram tau_M>1/m"
+      ],
+      "reasoning": "Não há lacuna na cadeia de fontes, mas A_T não é localmente autocontido nesse passo.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Repetir o lema e sua prova curta em T3."
+    },
+    {
+      "finding_id": "WEB-AT-F002",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "tau_M pode estar fora do domínio o in (0,1), deixando vazio o ramo D_M=0.",
+      "type": "scope_or_consistency",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:117-134",
+        "model_redesign/agenda_extension_AR_msb_results.md:121-132"
+      ],
+      "defect_evidence": [
+        "A_T não explicita que tau_M>=1 torna vazio o ramo o>=tau_M no domínio admissível."
+      ],
+      "refuting_evidence": [
+        "O enunciado por ramos continua formalmente verdadeiro; a fonte A_R já registra a vacuidade."
+      ],
+      "mechanical_checks": [
+        "Derivação tau_M<1 iff beta>m/(m+k)"
+      ],
+      "reasoning": "É qualificação de domínio, não erro na fórmula.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Acrescentar a condição de admissibilidade do limiar."
+    },
+    {
+      "finding_id": "WEB-AT-F003",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "Os ramos de DeltaD deveriam ser escritos como domínios disjuntos.",
+      "type": "exposition",
+      "severity": "minor",
+      "scientific_dimension": "exposition",
+      "held_decision": false,
+      "status": "REFUTED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:138-156"
+      ],
+      "defect_evidence": [],
+      "refuting_evidence": [
+        "O único overlap ocorre em o=tau_M e o texto prova que as duas fórmulas coincidem nesse ponto."
+      ],
+      "mechanical_checks": [
+        "Simplificação beta*(tau_M-c/m)=1-beta"
+      ],
+      "reasoning": "Não há ambiguidade de valor; domínios disjuntos seriam opção estilística.",
+      "proposed_fix_assessment": "not_provided",
+      "disposition": "Nenhuma correção exigida."
+    },
+    {
+      "finding_id": "WEB-AT-F004",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "D_M e DeltaD têm descontinuidade em o=1/m induzida pela seleção congelada.",
+      "type": "scope_or_consistency",
+      "severity": "minor",
+      "scientific_dimension": "exposition",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:93-156"
+      ],
+      "defect_evidence": [
+        "O texto registra a seleção da igualdade, mas não anuncia o salto entre o valor no ponto e o limite pela direita."
+      ],
+      "refuting_evidence": [
+        "As fórmulas e a atribuição de o=1/m ao ramo de inclusão estão corretas."
+      ],
+      "mechanical_checks": [
+        "Diferença reproduzida: beta/m*(1-c*beta/m)>0"
+      ],
+      "reasoning": "É implicação substantiva da fronteira e merece exposição, sem alterar resultados.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Acrescentar nota sobre a descontinuidade."
+    },
+    {
+      "finding_id": "WEB-AT-F005",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "A condição institucional iff deve ser qualificada membro a membro, com versões robustas separadas.",
+      "type": "overclaim",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:302-324",
+        "model_redesign/agenda_extension_AT_msb_contract.md:134-148"
+      ],
+      "defect_evidence": [
+        "A frase local 'agenda beneficia mais' pode ser lida como ranking escalar da correspondência."
+      ],
+      "refuting_evidence": [
+        "O teorema começa em todo produto completo e a seção termina exigindo tuplas completas e preservando set-valuedness."
+      ],
+      "mechanical_checks": [
+        "Leitura conjunta de T6 e das regras de pareamento"
+      ],
+      "reasoning": "A matemática já é membro a membro; a qualificação deve ser tornada literal na frase de interpretação.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Inserir 'em cada tupla admissível'; tratar critérios robustos como corolário opcional."
+    },
+    {
+      "finding_id": "WEB-AT-F006",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "A notação deveria reservar T_M para um membro e usar uma letra caligráfica para a correspondência.",
+      "type": "exposition",
+      "severity": "minor",
+      "scientific_dimension": "exposition",
+      "held_decision": false,
+      "status": "REFUTED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:249-290",
+        "model_redesign/agenda_extension_AT_msb_results.md:323-324"
+      ],
+      "defect_evidence": [],
+      "refuting_evidence": [
+        "O texto chama T_M de conjunto exato e set-valued e condiciona sinais à imagem inteira."
+      ],
+      "mechanical_checks": [
+        "Busca de todos os usos de T_M e DeltaT"
+      ],
+      "reasoning": "Não há seleção implícita; a mudança é preferência tipográfica.",
+      "proposed_fix_assessment": "not_provided",
+      "disposition": "Nenhuma correção exigida."
+    },
+    {
+      "finding_id": "WEB-AT-F007",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "none deve ser definido como correspondência vazia do contraste em PBE puro sob M/S/B.",
+      "type": "scope_or_consistency",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:183-193",
+        "model_redesign/agenda_extension_AT_msb_results.md:238-247",
+        "model_redesign/agenda_extension_AT_msb_contract.md:134-148"
+      ],
+      "defect_evidence": [
+        "A expressão 'efeito indefinido' pode ser lida além do conceito mantido."
+      ],
+      "refuting_evidence": [
+        "O texto já menciona votos puros, conceito mantido e proíbe recodificação como zero."
+      ],
+      "mechanical_checks": [
+        "Rastreamento de todas as células none em resultados e interface"
+      ],
+      "reasoning": "A crítica exige qualificação de escopo, não muda qualquer célula.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Definir none como correspondência vazia no conceito mantido de PBE puro M/S/B."
+    },
+    {
+      "finding_id": "WEB-AT-F008",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "Na família baixa o controle é sempre none, mas o tratamento pode existir ou também ser none.",
+      "type": "exposition",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:183-193",
+        "model_redesign/agenda_extension_AT_msb_interface.json:95-129"
+      ],
+      "defect_evidence": [
+        "A frase sobre não apagar uma célula existente pode sugerir que o tratamento existe em toda fibra baixa."
+      ],
+      "refuting_evidence": [
+        "O resultado total T_U=none está correto em toda a região porque o controle é sempre vazio."
+      ],
+      "mechanical_checks": [
+        "Comparação da partição A_U com a célula total AT-T-U-LOW-NONE"
+      ],
+      "reasoning": "Só a descrição dos braços sobreviventes precisa ser mais precisa.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Dizer que o tratamento existe em algumas subfibras e é none nas demais."
+    },
+    {
+      "finding_id": "WEB-AT-F009",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "O texto poderia contrastar o tratamento atual com um controle que redatasse R1 para A.",
+      "type": "method",
+      "severity": "minor",
+      "scientific_dimension": "estimand",
+      "held_decision": true,
+      "status": "REFUTED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_contract.md:33-52"
+      ],
+      "defect_evidence": [],
+      "refuting_evidence": [
+        "O contrato já diz que remover beta responde a outra pergunta e explicita que não é substituição do proponente na mesma data."
+      ],
+      "mechanical_checks": [
+        "Leitura literal da seção Data e tratamento"
+      ],
+      "reasoning": "A escolha temporal está explícita e governada; o objeto alternativo é outra extensão.",
+      "proposed_fix_assessment": "owner_decision",
+      "disposition": "Nenhuma implementação; preservar o estimando aprovado."
+    },
+    {
+      "finding_id": "WEB-AT-F010",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "Sempre 1/m<tau_M, c/m<tau_M e tau_M<1 iff beta>m/(m+k).",
+      "type": "logic_or_proof",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": true,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:64-72",
+        "model_redesign/agenda_extension_AR_msb_results.md:115-129"
+      ],
+      "defect_evidence": [
+        "As três relações seguem algebricamente das definições e primitivas."
+      ],
+      "refuting_evidence": [
+        "O resultado atual não precisa delas para estar correto."
+      ],
+      "mechanical_checks": [
+        "200000 sorteios R confirmaram as três relações"
+      ],
+      "reasoning": "É corolário novo que organiza os domínios dos ramos.",
+      "proposed_fix_assessment": "owner_decision",
+      "disposition": "Incluir apenas se o autor autorizar fortalecimento."
+    },
+    {
+      "finding_id": "WEB-AT-F011",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "DeltaD admite classificação global por sinal, com caso separado c=1.",
+      "type": "logic_or_proof",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": true,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:136-156"
+      ],
+      "defect_evidence": [
+        "Os ramos e c/m<tau_M implicam a classificação declarada; c=1 salta sobre zero."
+      ],
+      "refuting_evidence": [
+        "A forma por ramos atual já é correta e suficiente."
+      ],
+      "mechanical_checks": [
+        "200000 sorteios R confirmaram a classificação de sinais"
+      ],
+      "reasoning": "É corolário global mais intuitivo que a enumeração por ramos.",
+      "proposed_fix_assessment": "owner_decision",
+      "disposition": "Incluir apenas com autorização autoral."
+    },
+    {
+      "finding_id": "WEB-AT-F012",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "T_U é estritamente positivo uniformemente em células existentes iff Delta_U>0.",
+      "type": "logic_or_proof",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": true,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:158-247"
+      ],
+      "defect_evidence": [
+        "O menor membro existente é max{Delta_U,0}; se Delta_U<=0, há membro zero."
+      ],
+      "refuting_evidence": [
+        "T4 atual reivindica apenas não negatividade e permanece correto."
+      ],
+      "mechanical_checks": [
+        "200000 sorteios R confirmaram a equivalência"
+      ],
+      "reasoning": "É condição necessária e suficiente adicional, sem seleção.",
+      "proposed_fix_assessment": "owner_decision",
+      "disposition": "Incluir apenas com autorização autoral."
+    },
+    {
+      "finding_id": "WEB-AT-F013",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "A imagem ex ante completa de T_U pode ser escrita célula por célula.",
+      "type": "logic_or_proof",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": true,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:174-247"
+      ],
+      "defect_evidence": [
+        "Na família rho=0 os vetores são diagonais, então a média é o próprio membro; as demais células são fixas ou none."
+      ],
+      "refuting_evidence": [
+        "A ausência desse resumo não invalida a classificação vetorial atual."
+      ],
+      "mechanical_checks": [
+        "Aplicação afim direta aos vetores ligados"
+      ],
+      "reasoning": "É resumo fechado adicional útil para interpretação ex ante.",
+      "proposed_fix_assessment": "owner_decision",
+      "disposition": "Incluir apenas com autorização autoral."
+    },
+    {
+      "finding_id": "WEB-AT-F014",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "Há critérios selection-free de sinal uniforme para T_M e DeltaT.",
+      "type": "logic_or_proof",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": true,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:249-324"
+      ],
+      "defect_evidence": [
+        "A translação por D_M e a identidade de T6 convertem robustez de sinal em inclusões de conjuntos."
+      ],
+      "refuting_evidence": [
+        "Os critérios não fornecem sinal sem informação adicional sobre as correspondências."
+      ],
+      "mechanical_checks": [
+        "Derivação setwise por translação e preimagem de semirretas"
+      ],
+      "reasoning": "É formulação robusta adicional que não seleciona equilíbrios.",
+      "proposed_fix_assessment": "owner_decision",
+      "disposition": "Incluir apenas com autorização autoral."
+    },
+    {
+      "finding_id": "WEB-AT-F015",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "Sempre que os braços privados existem, Q_g=T_g-RI_g^A.",
+      "type": "logic_or_proof",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": true,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AT_msb_results.md:326-362"
+      ],
+      "defect_evidence": [
+        "Substituir RI_g^A=V_g^A-h_g^A em T_g-RI_g^A produz Q_g."
+      ],
+      "refuting_evidence": [
+        "A identidade só vale onde T_g existe e não transforma Q em efeito causal puro."
+      ],
+      "mechanical_checks": [
+        "Cancelamento algébrico direto"
+      ],
+      "reasoning": "É identidade adicional que esclarece a distância entre o diagonal e o efeito total.",
+      "proposed_fix_assessment": "owner_decision",
+      "disposition": "Incluir apenas com autorização autoral."
+    }
+  ],
+  "summary": {
+    "total": 15,
+    "confirmed": 9,
+    "partial": 3,
+    "refuted": 3,
+    "unresolved": 0,
+    "held_decisions": 7
+  },
+  "adjudication": {
+    "verdict": "READY_FOR_IMPLEMENTATION",
+    "checked_at": "2026-08-30T20:05:33-03:00",
+    "reasons": [
+      "A consulta externa não encontrou defeito matemático em T1-T6, C1-C2 ou Q.",
+      "Quatro precisões locais de exposição estão tecnicamente determinadas e não mudam o estimando.",
+      "Seis resultados adicionais foram confirmados, mas ampliam a apresentação e exigem decisão autoral.",
+      "Três sugestões não identificam defeito atual e foram refutadas como correções necessárias.",
+      "Nenhum item material permanece não resolvido."
+    ]
+  }
+}
