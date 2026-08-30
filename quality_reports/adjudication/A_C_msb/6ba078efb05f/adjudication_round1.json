@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a-c-msb:6ba078efb05f:round1",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-08-30_AC_msb_candidate_manifest.sha256",
+    "sha256": "6ba078efb05f7aea628f73644e26a05e26dd6de592237a239855a365e6389d9a",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-08-30_AC_msb_formal_review_1.md",
+      "sha256": "a7132ae08a123bee597acfc72674be625b8d98ca4810c5891f945cf8aa9d7674"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-08-30_AC_msb_formal_review_2.md",
+      "sha256": "c721cb83682c2d2db7aa711f4c38b3f0399e864602d40d72c888b11639a2250d"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "AC-R1-MIN-1",
+      "source_review": "R1",
+      "quoted_finding": "Several source_record_ids in the governed AC ledger are semantically misaligned or incomplete even though the source hashes and mathematical proof paths are correct.",
+      "type": "artifact",
+      "severity": "minor",
+      "scientific_dimension": "reproducibility",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv: AC-MSB-003",
+        "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv: AC-MSB-006",
+        "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv: AC-MSB-007",
+        "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv: AC-MSB-010",
+        "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv: AC-MSB-011",
+        "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv: AC-MSB-012",
+        "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv: AC-MSB-017",
+        "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv: AC-MSB-018"
+      ],
+      "defect_evidence": [
+        "AMX-012 is a pure-pattern impossibility claim, not a general type-first or payoff-date claim.",
+        "AUX-MSB-021 is the nu=0 endpoint, while AUX-MSB-020 is the general type-before-prior record.",
+        "AUX-MSB-025 is atomic-binder preservation, while AUX-MSB-031 is the same-prior and same-(rho,nu_off)-fiber downstream rule.",
+        "The complete A_U partition requires cells AUX-MSB-010 through AUX-MSB-014, interior exhaustion AUX-MSB-015 and endpoints AUX-MSB-021 and AUX-MSB-022.",
+        "The A_U upper bound in T5 follows from the complete payoff partition, not AUX-MSB-020."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "Direct exact-ID lookup in the frozen A_M and A_U claim ledgers",
+        "6/6 candidate manifest entries verified before adjudication"
+      ],
+      "reasoning": "The mathematical proofs and source hashes are correct, but the literal record IDs route an auditor to unrelated or incomplete source claims. This is a bounded traceability defect rather than a theorem defect.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Change only the eight affected source_record_ids fields to the exact source claims listed in the Markdown adjudication; repin the ledger, rerun the verifier, issue a new manifest and obtain fresh independent review."
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "confirmed": 1,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "READY_FOR_IMPLEMENTATION",
+    "checked_at": "2026-08-30T10:37:49-03:00",
+    "reasons": [
+      "One minor source-record traceability defect is confirmed by direct lookup in the frozen ledgers.",
+      "Both reviewers independently found T1 through T5 mathematically correct; no theorem, formula, cell, interface or verifier change is warranted.",
+      "The repair is unique, local and safe, and no material item remains unresolved."
+    ]
+  }
+}
