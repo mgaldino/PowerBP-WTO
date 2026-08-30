@@ -1,0 +1,150 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a-c-msb-strengthened:509cc3540135:round1",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-08-30_AC_msb_strengthened_candidate_manifest.sha256",
+    "sha256": "509cc3540135721011f979ffd63ff1413b364fd8065b8c7a1ae581a572605e0e",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-08-30_AC_msb_strengthened_formal_review_1.md",
+      "sha256": "4e713e987005d5720e837544fbed9a1412578b514a45d7bea0291341507622db"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-08-30_AC_msb_strengthened_formal_review_2.md",
+      "sha256": "1551d53032e56efa55df5f29401e75dcd02ae59a128c26418b91d79696f51976"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "AC-STRENGTH-R1-MIN-1",
+      "source_review": "R1",
+      "quoted_finding": "Os sidecars canônicos de lifecycle ainda descrevem o candidato anterior: manifesto fc9788..., 941 PASS / 0 FAIL e o gate terminal antigo, em vez do candidato fortalecido 509cc... e de sua nova rodada de revisão.",
+      "type": "artifact",
+      "severity": "minor",
+      "scientific_dimension": "reproducibility",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_status_current.json:197-275",
+        "model_redesign/agenda_extension_STATUS.md:11-90",
+        "scripts/verify_agenda_extension_status_current.R:129-158",
+        "quality_reports/plans/2026-08-30_autorizacao_fortalecimento_A_C_pos_consulta.md:37-38"
+      ],
+      "defect_evidence": [
+        "O JSON corrente ainda pina o manifesto fc9788a0..., o resultado mecânico 941 PASS / 0 FAIL, as revisões anteriores e o manifesto terminal 68eeefe8..., enquanto o artefato revisado é o manifesto fortalecido 509cc354... com 1197 PASS / 0 FAIL.",
+        "O status humano ainda declara que os 12 hashes do gate anterior estão prontos para decisão terminal.",
+        "A autorização fortalecida exige sincronizar os sidecars correntes.",
+        "A reexecução do checker central contra os bytes fortalecidos produziu 90 PASS / 7 FAIL."
+      ],
+      "refuting_evidence": [
+        "Os sidecars preservam A_C como pending/unfrozen e mantêm A_R e downstream sem autorização; o defeito é de identidade, não liberação indevida já consumada."
+      ],
+      "mechanical_checks": [
+        "Manifesto fortalecido: 8/8 OK",
+        "Checker central atual: SUMMARY | 90 PASS | 7 FAIL",
+        "A diferença do candidato ao HEAD de materialização contém somente os dois pareceres"
+      ],
+      "reasoning": "O lifecycle corrente não identifica os bytes submetidos aos pareceres fortalecidos e pode direcionar decisão terminal ao pacote anterior. A falha não alcança as provas nem abriu downstream.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Repinar os sidecars ao candidato fortalecido, às revisões e à adjudicação efetivas; atualizar checker e output; formar novo manifesto terminal sem alterar blobs matemáticos."
+    },
+    {
+      "finding_id": "AC-STRENGTH-R2-MIN-1",
+      "source_review": "R2",
+      "quoted_finding": "A linguagem de que A_C não identifica uma lei conjunta e de que qualquer acoplamento acrescenta uma convenção é absoluta demais em casos degenerados nos quais as marginais determinam um único acoplamento.",
+      "type": "overclaim",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "model_redesign/agenda_extension_AC_msb_contract.md:169-175",
+        "model_redesign/agenda_extension_AC_msb_results.md:576-590",
+        "model_redesign/agenda_extension_AC_msb_interface.json:193-198",
+        "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv:20",
+        "quality_reports/plans/2026-08-30_autorizacao_fortalecimento_A_C_pos_consulta.md:23-25"
+      ],
+      "defect_evidence": [
+        "Contrato e resultados usam formulação universal sobre não identificação e sobre qualquer acoplamento acrescentar convenção.",
+        "Se uma marginal é Dirac, toda conjunta com as marginais dadas é unicamente delta_x vezes mu_U."
+      ],
+      "refuting_evidence": [
+        "A interface mantém joint_probability_between_rules como not_defined.",
+        "O game form não introduz dispositivo de correlação nem interpretação substantiva de realizações pareadas.",
+        "A autorização proíbe introduzir acoplamento ou ranking de bem-estar."
+      ],
+      "mechanical_checks": [
+        "Construção adversarial do caso de uma marginal Dirac",
+        "Busca direta das formulações em contrato, resultados, interface e AC-MSB-019"
+      ],
+      "reasoning": "Há overclaim somente na generalização a todas as marginais. Unicidade matemática degenerada não cria choque comum, interpretação causal ou operação autorizada; T1-T5 e O_AC permanecem corretos.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Dizer que em geral as marginais não identificam acoplamento único e que unicidade degenerada não autoriza interpretação substantiva. Preservar not_defined e não introduzir dispositivo cross-world."
+    },
+    {
+      "finding_id": "AC-STRENGTH-R2-MIN-2",
+      "source_review": "R2",
+      "quoted_finding": "A autorização específica do fortalecimento está no manifesto e no topo do DAG, mas não percorre o contrato, a interface, as dependências dos nós do DAG e os claims do ledger que dependem da decisão nova.",
+      "type": "artifact",
+      "severity": "minor",
+      "scientific_dimension": "implementation_fidelity",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/plans/2026-08-30_autorizacao_fortalecimento_A_C_pos_consulta.md:16-38",
+        "model_redesign/agenda_extension_AC_msb_contract.md:9-22",
+        "model_redesign/agenda_extension_AC_msb_interface.json:10-14",
+        "model_redesign/agenda_extension_AC_msb_game_dag.json:4-8,35-80",
+        "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv:2,22,25"
+      ],
+      "defect_evidence": [
+        "Contrato e interface pinam apenas a autorização inicial ea4e2e9b....",
+        "O DAG registra strengthening_authorization fora de nodes e não a torna dependência do contrato/candidato.",
+        "AC-MSB-024 registra como autoridade o hash da autorização inicial, não o documento adicional 67e5b948....",
+        "A autorização adicional exige sincronização de contrato, interface, ledger e DAG."
+      ],
+      "refuting_evidence": [
+        "A primeira entrada do manifesto e o campo superior do DAG preservam caminho e hash corretos; a autorização não está ausente, mas sua propagação é incompleta."
+      ],
+      "mechanical_checks": [
+        "Hash 67e5b948... da autorização adicional confirmado",
+        "Inspeção de authorization, nodes/depends_on e source_hashes",
+        "Interface/DAG válidos; ledger com 24 claims e 16 campos"
+      ],
+      "reasoning": "Um consumidor do manifesto encontra a decisão nova, mas um consumidor da interface ou subárvore de dependências não reconstrói a autoridade específica. É falha de rastreabilidade, não de autorização ou matemática.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Pinar a autorização adicional no contrato e interface; modelá-la como nó/dependência no DAG; corrigir claims novos; atualizar hashes, verificador, output e manifesto sem alterar resultados."
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "confirmed": 2,
+    "partial": 1,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "READY_FOR_IMPLEMENTATION",
+    "checked_at": "2026-08-30T13:08:53-03:00",
+    "reasons": [
+      "O manifesto fortalecido passou 8/8 e permaneceu byte-idêntico entre o candidato e o HEAD de materialização dos pareceres.",
+      "Há dois defeitos administrativos confirmados e um overclaim parcial, todos locais e com reparos seguros; nada material permanece não resolvido.",
+      "As fórmulas foram sustentadas por ambos os pareceres e inspeção direta; 1197 PASS / 0 FAIL foi tratado apenas como evidência mecânica.",
+      "A_C continua pending/unfrozen e todo downstream permanece sem autorização."
+    ]
+  }
+}
