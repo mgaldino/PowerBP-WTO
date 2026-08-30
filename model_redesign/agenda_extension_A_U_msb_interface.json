@@ -1,12 +1,17 @@
 {
-  "schema_ref": "agenda_extension_A_U_msb_blind_candidate_v1",
+  "schema_ref": "agenda_extension_A_U_msb_two_layer_candidate_v2",
   "node_id": "A_U",
-  "candidate_status": "implementer_complete_pending_external_review_unfrozen",
-  "blind_declaration": "esta solução foi fechada sem acesso ao candidato antigo",
+  "candidate_status": "two_layer_reimplemented_pending_two_independent_reviews_unfrozen",
+  "provenance": "strategic correspondence reconstructed blind on 2026-08-29 and preserved; only identity and downstream-consumption architecture changed on 2026-08-30",
   "governing_skills": [
     "solve-dynamic-games",
     "formal-game-theory-polisci"
   ],
+  "author_decision": {
+    "path": "quality_reports/plans/2026-08-30_decisao_assinatura_duas_camadas_A_U.md",
+    "sha256": "5f2e3e99c9d14a88097fca3f249ce4212564a31b1cd80902bdb4b11cca2d73ae",
+    "scope": "extend the exact-signature plus anonymous-economic-summary architecture to A_U without reopening its strategic correspondence"
+  },
   "institution": "U",
   "function_of": {
     "parameters": ["N", "beta", "o_0", "o_1", "nu", "nu_off"],
@@ -38,6 +43,7 @@
     "z_L": "1-m*a=1-beta+d_0",
     "z_H": "1-m*b=1-beta+d",
     "Delta": "z_L-d=1-beta-beta^2*(o_1-o_0)",
+    "rho_interior": "nu_off=b_rho(nu)=nu*rho/(1-nu+nu*rho), with b_0(nu)=0 and b_infinity(nu)=1; rho is only a reparameterization of nu_off",
     "y_L": "(z_L,a,...,a) in Y",
     "y_bar": "y_H=(z_H,b,...,b) in Y"
   },
@@ -61,7 +67,9 @@
     "Gamma_0",
     "Gamma_1",
     "payoff_vectors_by_type_and_identity",
-    "common_weak_permutation_orbit"
+    "exact_realized_law_pair",
+    "economic_quotient_pushforwards",
+    "complete_underlying_off_path_binder"
   ],
   "payoff_by_type_and_identity_rule": {
     "hegemon_if_pass": "z for either type",
@@ -84,11 +92,20 @@
     },
     "typing_note": "The theta_1,mu=0 weak payoff is the counterfactual realized coordinate of the literal C_U low record; it is zero, not the posterior-expected voting price a."
   },
-  "exact_signature_rule": {
-    "equivalence": "same nu_off and same orbit under one common permutation of weak identities applied to the entire atomic binder",
-    "current_H_strategy_symmetry_imposed": false,
-    "anonymous_summary": "derived statistic only; no A_U-to-AC sufficiency claim",
-    "downstream_default": "consume the exact binder/orbit unless AC proves measurable factorization"
+  "two_layer_signature": {
+    "realized_record_space": "Z_U=Y x [0,1] x {pass,reject} x {L,P} x Omega_T^U, compact Polish, with Omega_T^U the disjoint union of immediate allocations and literal delayed terminal records",
+    "type_conditioned_laws": "Gamma_theta^{U,R}=Law_theta(y,mu(y),pass/reject,xi_U,omega_T)",
+    "group_action": "G=S_m acts by one common weak-state permutation on the entire realized record and diagonally on x_U=(Gamma_0,Gamma_1); posterior, timing and L/P label are fixed",
+    "exact_signature": "Sig_ex_U(R)=(rho(R),nu_off(R),Lambda_x_U(R)) for interior priors and (*,nu,Lambda_x_U(R)) at endpoints, where Lambda_x=|G|^{-1} sum_g delta_(g.x)",
+    "exact_equivalence": "same fiber and one common permutation applied to the full pair of type-conditioned realized laws; Lambda is Borel, invariant and complete for this diagonal orbit",
+    "exact_scope_limit": "exact qualifies the approved enriched realized-law signature, not recovery of every raw off-path function; the complete binder remains mandatory when a downstream operation depends on off-path behavior",
+    "representative": "Borel minimum of the finite orbit in P(Z_U)^2; always a real relabeled-PBE law pair and never the Reynolds barycenter",
+    "economic_summary": "Sum_econ_U(R)=(rho(R),nu_off(R),(q_U)#Gamma_0^{U,R},(q_U)#Gamma_1^{U,R}), with rho replaced by * at endpoints",
+    "economic_summary_recovers": "type payoffs; agreement-delay probabilities; posterior law; L/P branch; anonymous current and terminal outcomes; sorted weak-payoff multiset; uniformly sampled weak-identity payoff law",
+    "economic_summary_discards": "named proposals; payoff of a named W_j; named supports; the public posterior map pointwise; message coincidence; relation between counterfactual type plans; raw off-path functions",
+    "mixture_rule": "different weights over relabelings may have distinct Sig_ex_U and equal Sum_econ_U when Bayes and anonymous outcomes are unchanged; if likelihood ratios and posterior laws change, both layers distinguish the experiment",
+    "reynolds_status": "componentwise marginal statistic only; not orbit-complete, not plan-relation preserving, not necessarily assessment-realizable, and never a PBE representative",
+    "downstream_gate": "AC must first combine exact layers on the same prior and (rho,nu_off) fiber; any substitution by Sum_econ requires an operation-specific same-fiber setwise measurable-factorization proof and must not recombine coordinates"
   },
   "cells": [
     {
@@ -200,6 +217,6 @@
     "model_redesign/agenda_extension_A_U_msb_contract.md",
     "model_redesign/agenda_extension_A_U_msb_results.md"
   ],
-  "mechanical_evidence_path": "quality_reports/verification_outputs/2026-08-29_A_U_msb_blind_verifier_output.txt",
-  "review_status": "two independent external reviews pending"
+  "mechanical_evidence_path": "quality_reports/verification_outputs/2026-08-30_A_U_msb_two_layer_verifier_output.txt",
+  "review_status": "two new independent formal reviews on the same hashes pending; historical reviews do not cover these bytes"
 }

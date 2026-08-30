@@ -1,8 +1,9 @@
 # Contrato extensivo de `A_U` sob M/S/B — reconstrução cega
 
-**Data:** 2026-08-29  
+**Data:** 2026-08-30
 **Nó:** `A_U`  
-**Status:** candidato do implementador; `pending/unfrozen`; sem parecer independente  
+**Status:** candidato reimplementado após decisão autoral; `pending/unfrozen`;
+nova revisão independente requerida
 **Método:** `solve-dynamic-games` e `formal-game-theory-polisci` governaram este
 contrato, o DAG, a ordem reversa e os gates.  
 **Declaração cega:** esta solução foi fechada sem acesso ao candidato antigo.
@@ -14,6 +15,7 @@ contrato, o DAG, a ordem reversa e os gates.
 | Gate 0 simplificado | contrato-base | `fb2cd323a74b30432746dc37d622014cd7768e6d5442877ed3a8e043df546dc4` |
 | Emenda M/S/B v2 | seleção markoviana, anonimidade da continuação, crença off-path constante | `8f0f3a0e430e8005bd7a1da99477a7b0e27e163b85aa87c2ad349d9578aab21b` |
 | Clarificação de anonimato | simetria só na continuação; estratégia corrente não é forçada a ser simétrica | `6c73fa57c34eb1529259e7c56ef8e6ddbf906fa1977aacf551c429aa29b248c3` |
+| Decisão em duas camadas de `A_U` | identidade formal exata e resumo econômico anônimo | `5f2e3e99c9d14a88097fca3f249ce4212564a31b1cd80902bdb4b11cca2d73ae` |
 | `C_U` congelado | única continuação consumida | `f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b` |
 
 O manifesto e os dois pareceres finais de N4 citam exatamente o mesmo hash de
@@ -124,8 +126,11 @@ domínio; não é ação sentinela nem ponto acrescentado ao espaço.
 | `CU-NONE` | `mu in (0,nu_star]` | célula `none`, não estado consumível | impedir payoff fictício |
 
 A compressão de histórias rejeitadas para `(U,C,mu)` é primitiva autoral da
-cláusula M. Nenhuma compressão adicional de estratégias, crenças ou leis de
-outcomes é presumida.
+cláusula M. A única compressão adicional autorizada é a arquitetura em duas
+camadas: `Sig_ex_U` codifica a órbita diagonal do par de leis realizadas e
+`Sum_econ_U` quocienta cada registro por nomes dos fracos. O binder completo
+continua subjacente; nenhuma operação pode recombinar estratégias, crenças,
+continuações ou leis de outcomes de assessments distintos.
 
 ## 6. Crenças e votos completos
 
@@ -157,18 +162,46 @@ D_0(0)=d_0,     D_1(0)=d,
 D_0(mu)=D_1(mu)=d  para mu>nu_star.
 ```
 
-## 7. Estado do contrato
+## 7. Contrato da assinatura em duas camadas
+
+Para cada binder completo `R`, a lei realizada por tipo é construída no espaço
+
+```text
+Z_U=Y x [0,1] x {0,1} x X_U x Omega_T^U,
+X_U={L,P},
+Omega_T^U=({A} x Y) union_disjunta ({D} x Omega_D^U),
+```
+
+onde `Omega_D^U` contém os registros terminais literais alcançáveis nos dois
+representantes de `C_U`. O rótulo `L/P` identifica a célula consumida; a
+multiplicidade interna de funções off-path permanece no binder e não é
+rebatizada como outcome realizado.
+
+Com `G=S_m`, a mesma permutação age sobre todas as coordenadas fracas do
+registro e sobre o par inteiro `(Gamma_0^U,Gamma_1^U)`. No prior interior,
+
+```text
+Sig_ex_U(R)=(rho(R),nu_off(R),Lambda_(Gamma_0^U,Gamma_1^U)),
+Sum_econ_U(R)=(rho(R),nu_off(R),(q_U)#Gamma_0^U,(q_U)#Gamma_1^U).
+```
+
+Nos endpoints, `rho` é substituído por `*`. A primeira camada preserva a
+identidade formal da assinatura realizada; a segunda preserva apenas
+estatísticas anônimas fatoráveis. A decisão autoral não altera o membership de
+PBE do binder `R`.
+
+## 8. Estado do contrato
 
 ```text
 GAME CLASS: finito, acíclico, Bayesiano e de informação imperfeita
 SOLUTION CONCEPT: PBE + voto as-if-pivotal + T^Y + M/S/B
-CONTRACT STATUS: PASS para derivação do candidato; nenhuma decisão adicional de assinatura foi imposta
+CONTRACT STATUS: PASS para reimplementação da assinatura em duas camadas autorizada em 2026-08-30
 GRAPH STATUS: ACYCLIC
 TERMINAL/CONTINUATION STATES CLOSED: C_U somente, no hash declarado
 ILLEGAL OR PREMATURE WORK: nenhum
 NATIVE-TIME AND DISCOUNT CHECK: exatamente uma aplicação de beta ao importar C_U
 BELIEF/INFORMATION-SET CHECK: posterior local; nu_off único; célula none proibida
-OVERALL STATUS: candidato do implementador, pending/unfrozen até revisão externa
+OVERALL STATUS: candidato reimplementado, pending/unfrozen até duas novas revisões e aprovação terminal
 ```
 
 Se o hash de `C_U`, o contrato-base ou qualquer cláusula M/S/B mudar, toda a

@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# Mechanical falsification harness for the blind A_U M/S/B reconstruction.
+# Mechanical falsification harness for the A_U M/S/B two-layer candidate.
 # It checks algebra, domains, quota logic, endpoint choices and constructive
 # witnesses. It does NOT prove PBE completeness, pointwise local-Bayes limits,
 # or absence of deviations over the full continuous proposal space.
@@ -34,8 +34,8 @@ close_num <- function(x, y, tol = 1e-11) {
   isTRUE(all(abs(x - y) <= tol))
 }
 
-cat("A_U M/S/B blind reconstruction mechanical verifier\n")
-cat("Snapshot date: 2026-08-29\n")
+cat("A_U M/S/B two-layer architecture mechanical verifier\n")
+cat("Snapshot date: 2026-08-30\n")
 cat("Frozen C_U SHA-256: f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b\n")
 cat("Claim boundary: mechanical checks only; no PBE-completeness claim\n\n")
 
@@ -156,11 +156,84 @@ for (nu in c(0, 0.1, 0.5, 0.9, 1)) {
         close_num(ex_ante, V_0 + nu * (V_1 - V_0)))
 }
 
+# Authorized two-layer interface: finite P/Q certificates.
+decision_path <- "quality_reports/plans/2026-08-30_decisao_assinatura_duas_camadas_A_U.md"
+results_path <- "model_redesign/agenda_extension_A_U_msb_results.md"
+interface_path <- "model_redesign/agenda_extension_A_U_msb_interface.json"
+decision_text <- paste(readLines(decision_path, warn = FALSE, encoding = "UTF-8"), collapse = "\n")
+results_text <- paste(readLines(results_path, warn = FALSE, encoding = "UTF-8"), collapse = "\n")
+interface_text <- paste(readLines(interface_path, warn = FALSE, encoding = "UTF-8"), collapse = "\n")
+
+check("A_U-specific author decision is APPROVED",
+      grepl("Status:** `APPROVED`", decision_text, fixed = TRUE))
+check("exact signature is present in results and interface",
+      grepl("Sig_ex_U(R)=(rho(R),nu_off(R),Lambda_(x_U(R)))", results_text, fixed = TRUE) &&
+        grepl("Sig_ex_U(R)=(rho(R),nu_off(R),Lambda_x_U(R))", interface_text, fixed = TRUE))
+check("economic summary is present in results and interface",
+      grepl("Sum_econ_U(R)", results_text, fixed = TRUE) &&
+        grepl("Sum_econ_U(R)=", interface_text, fixed = TRUE))
+check("Reynolds is explicitly barred as representative",
+      grepl("chamado de representante de PBE", results_text, fixed = TRUE) &&
+        grepl("never a PBE representative", interface_text, fixed = TRUE))
+check("downstream factorization gate is explicit",
+      grepl("Sum_econ(R)=Sum_econ(R')  =>  C(R)=C(R')", results_text, fixed = TRUE) &&
+        grepl("operation-specific same-fiber setwise measurable-factorization proof", interface_text, fixed = TRUE))
+
+N <- 3
+m <- N - 1
+beta <- 0.9
+o_0 <- 0.2
+o_1 <- 0.5
+nu_star <- (o_1 - o_0) / (1 - o_0)
+a <- beta * (1 - beta * o_0) / m
+b <- beta * (1 - beta * o_1) / m
+d <- beta^2 * o_1
+z_L <- 1 - beta + beta^2 * o_0
+z_H <- 1 - beta + beta^2 * o_1
+Delta <- z_L - d
+V <- 0.45
+P <- c(V, 0.3025, 0.2475)
+Q <- c(V, 0.2475, 0.3025)
+
+check("P/Q fixture arithmetic",
+      close_num(nu_star, 0.375) && close_num(a, 0.369) &&
+        close_num(b, 0.2475) && close_num(d, 0.405) &&
+        close_num(z_L, 0.262) && close_num(z_H, 0.505) &&
+        close_num(Delta, -0.143))
+check("P/Q proposals exhaust the pie and pass at the high price",
+      close_num(sum(P), 1) && close_num(sum(Q), 1) &&
+        min(P[-1]) >= b - 1e-12 && min(Q[-1]) >= b - 1e-12)
+check("P/Q payoff belongs to AU-MSB-H0 interval",
+      V >= max(z_L, d) && V <= z_H)
+check("P and Q are weak-identity relabelings",
+      identical(P, Q[c(1, 3, 2)]))
+
+orbit_weight_signature <- function(p) sort(c(p, 1 - p))
+check("exact orbit identifies p only with 1-p",
+      close_num(orbit_weight_signature(0.9), orbit_weight_signature(0.1)) &&
+        !close_num(orbit_weight_signature(0.9), orbit_weight_signature(0.5)))
+check("recordwise quotient collapses all common P/Q mixture weights",
+      close_num(sum(c(0.9, 0.1)), 1) && close_num(sum(c(0.5, 0.5)), 1))
+
+nu_high <- 0.9
+sigma_0 <- c(P = 0.9, Q = 0.1)
+sigma_1 <- c(P = 0.1, Q = 0.9)
+posterior <- nu_high * sigma_1 /
+  ((1 - nu_high) * sigma_0 + nu_high * sigma_1)
+check("unequal-weight P/Q Bayes posteriors equal .5 and 81/82",
+      close_num(posterior[["P"]], 0.5) && close_num(posterior[["Q"]], 81 / 82))
+check("both unequal-weight posteriors remain in the high C_U domain",
+      all(posterior > nu_star))
+check("componentwise Reynolds puts two posterior labels at physical P",
+      length(unique(round(c(posterior[["P"]], posterior[["Q"]]), 12))) == 2L)
+check("one public posterior map cannot assign both Reynolds labels at P",
+      !close_num(posterior[["P"]], posterior[["Q"]]))
+
 cat("\n")
 cat(sprintf("MECHANICAL RESULT: %s | %d PASS | %d FAIL\n",
             if (fail_count == 0L) "PASS" else "FAIL",
             pass_count, fail_count))
-cat("UNTESTED GATES: PBE completeness; all continuous deviations; pointwise local-Bayes existence; Borel totality of symbolic binders; literal-member review of every continuation selector.\n")
+cat("UNTESTED GATES: PBE completeness; all continuous deviations; pointwise local-Bayes existence; abstract Borel and orbit-completeness proofs; literal-member review of every continuation selector; operation-specific downstream factorization.\n")
 
 if (fail_count > 0L) {
   quit(save = "no", status = 1L)

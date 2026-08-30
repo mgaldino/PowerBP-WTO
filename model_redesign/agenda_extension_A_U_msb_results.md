@@ -1,11 +1,14 @@
-# Correspondência de `A_U` sob M/S/B — reconstrução cega do implementador
+# Correspondência de `A_U` sob M/S/B — arquitetura em duas camadas
 
-**Data:** 2026-08-29  
-**Status:** candidato completo do implementador; `pending/unfrozen`; dois
-pareceres independentes ainda necessários  
+**Data:** 2026-08-30
+**Status:** reimplementação autorizada concluída pelo implementador;
+`pending/unfrozen`; dois novos pareceres independentes e aprovação autoral
+terminal ainda necessários
 **Dependência única:** `C_U`, SHA-256
 `f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b`  
-**Declaração cega:** esta solução foi fechada sem acesso ao candidato antigo.
+**Proveniência:** a correspondência estratégica foi reconstruída cegamente em
+2026-08-29 e preservada nesta reimplementação. A decisão autoral específica de
+2026-08-30 altera somente a arquitetura de identidade e consumo downstream.
 
 As skills `solve-dynamic-games` e `formal-game-theory-polisci` governaram o
 contrato, o DAG, a ordem reversa, a racionalidade sequencial e os gates. O R
@@ -92,13 +95,14 @@ oferecer desvio lucrativo; essa condição pointwise inclui pontos-limite com
 massa pontual zero. Nos pontos não disciplinados vale o mesmo teste usando o
 único `nu_off`.
 
-As classes exatas são órbitas da mesma permutação dos fracos aplicada ao
-binder inteiro, como exige a clarificação autoral. Estratégia corrente de `H`
-não é forçada a ser simétrica. O pacote preserva `Gamma_0,Gamma_1` e a órbita
-diagonal exata. Um resumo anônimo por pushforward pode ser calculado, mas não é
-declarado suficiente para `AC`: a decisão de assinatura em duas camadas de
-`A_M` não é convertida silenciosamente em decisão nova para `A_U`. `AC` deve
-consumir a camada exata de `A_U` até provar uma fatoração própria.
+O binder completo continua indivisível: estratégias, crenças, votos,
+continuações e leis terminais não podem ser recombinados entre assessments.
+Por decisão autoral específica de 2026-08-30, sua imagem realizada admite duas
+camadas. `Sig_ex_U` codifica exatamente a órbita diagonal do par
+`(Gamma_0,Gamma_1)`; `Sum_econ_U` apaga nomes registro a registro e preserva
+somente estatísticas econômicas anônimas. Nenhuma delas impõe simetria à
+estratégia corrente de `H`, e operações sensíveis a funções off-path continuam
+a consumir o binder subjacente.
 
 ## 3. Lemas de redução
 
@@ -333,13 +337,14 @@ zero também é preservada, apesar de contrafactual.
   Na família com massa zero isso requer `Delta=0`; na família high-only requer
   `V=d`, possível sse `d>=z_L`.
 - **Identidades:** não se impõe simetria à proposta corrente. Relabelings pela
-  mesma permutação formam a órbita exata; misturas sobre relabelings não são
-  automaticamente o mesmo assessment.
+  mesma permutação comum formam uma órbita exata. Misturas com pesos diferentes
+  sobre relabelings podem ter assinaturas exatas distintas e, quando não mudam
+  Bayes nem outcomes anônimos, o mesmo resumo econômico.
 - **Continuação:** multiplicidade interna de crenças/estratégias do membro
   literal de `C_U` é preservada por `hat{kappa}_U`; ela não altera os preços
   `a,b`, mas não pode ser desmontada em coordenadas independentes.
 
-## 7. Ex ante, assinatura e interface downstream
+## 7. Ex ante e arquitetura de assinatura em duas camadas
 
 Para todo binder `R`, a imagem ex ante de `H` é calculada somente depois dos
 payoffs por tipo:
@@ -349,20 +354,244 @@ V_H^A(R;nu)=(1-nu)V_0(R)+nu V_1(R).
 ```
 
 No interior `V_0=V_1=V`, então a média é `V`; nos endpoints, as coordenadas
-contrafactuais continuam registradas antes da média. A interface exporta:
+contrafactuais continuam registradas antes da média.
 
-1. `V_0,V_1` na data `A`;
-2. payoff interino de cada fraco por tipo e identidade;
-3. `Gamma_0,Gamma_1`, incluindo acordo/atraso, alocação terminal e posterior;
-4. `nu_off` e a lei do posterior alcançado;
-5. o binder literal completo de `hat{kappa}_U`;
-6. a órbita diagonal exata sob permutações comuns dos fracos;
-7. o resumo anônimo apenas como estatística derivada, sem claim de suficiência
-   para `AC`.
+### 7.1 Lei conjunta realizada e ação dos nomes
 
-Nenhum envelope marginal é produto cartesiano de escolhas independentes.
-`AC` deverá formar o produto fibrado no mesmo `nu_off` e usar binders inteiros;
-provar fatoração por resumo é trabalho de `AC`, não deste nó.
+Seja `Y` a simplex compacta de propostas. Tome `X_U={L,P}` com topologia
+discreta: `L` identifica o membro literal `N4-SC-EQ-L-STAR` e `P`, o membro
+literal `N4-SC-EQ-P-STAR`. Seja `Omega_D^U` o espaço compacto dos registros
+terminais gerados por esses dois membros — identidade do fraco reconhecido,
+alocação, vetor de votos, resultado e vetor de payoffs — e defina a união
+disjunta
+
+```text
+Omega_T^U=({A} x Y) union_disjunta ({D} x Omega_D^U),
+Z_U=Y x [0,1] x {0,1} x X_U x Omega_T^U.
+```
+
+Os fatores são compactos poloneses; logo `Z_U` é compacto polonês. Para cada
+binder completo `R`, cada tipo `theta` induz
+
+```text
+Gamma_theta^{U,R}
+ =Law_theta(y,mu(y),pass/reject,xi_U,omega_T) in P(Z_U).
+```
+
+O registro conserva conjuntamente proposta, posterior, timing, célula literal
+e outcome terminal. Ele não desmonta `hat{kappa}_U`: toda multiplicidade de
+funções e crenças off-path continua no binder que gera `Gamma_theta^{U,R}`.
+
+Seja `G=S_m`. Para `g in G`, `T_g:Z_U->Z_U` aplica a mesma permutação às
+coordenadas fracas da proposta, aos votos, à identidade reconhecida, à alocação
+terminal e aos payoffs, e fixa `mu`, `pass/reject` e `xi_U`. Cada `T_g` é um
+homeomorfismo. Se `R` é PBE sob M/S/B, então `g.R` também é: relabeling comuta
+com o limite local de Bayes, o kernel literal é equivariante, o preço de voto é
+comum e propostas, votos e desvios são levados bijetivamente a objetos com o
+mesmo payoff.
+
+Com
+
+```text
+X_U^law=P(Z_U)^2,
+x_U(R)=(Gamma_0^{U,R},Gamma_1^{U,R}),
+g.(Gamma_0,Gamma_1)=((T_g)#Gamma_0,(T_g)#Gamma_1),
+```
+
+`X_U^law` é polonês e a ação diagonal finita é Borel (na verdade, contínua).
+
+### 7.2 Camada formal exata
+
+Para `x in X_U^law`, defina
+
+```text
+Lambda_x=|G|^{-1} sum_(g in G) delta_(g.x) in P(X_U^law).
+```
+
+**Proposição AU-MSB-T5 (Borelidade, invariância e completude).** O mapa
+`x -> Lambda_x` é Borel, `Lambda_(h.x)=Lambda_x` para todo `h in G`, e
+
+```text
+Lambda_x=Lambda_x'  sse  x' in G.x.
+```
+
+**Prova.** Para todo Borel `B subseteq X_U^law`,
+
+```text
+Lambda_x(B)=|G|^{-1} sum_g 1_B(g.x),
+```
+
+que é Borel em `x`. A translação `g -> gh` reordena a soma e prova
+invariância. Se `x'=h.x`, as leis de órbita coincidem. Reciprocamente,
+`{x'}` é Borel e
+
+```text
+Lambda_x'({x'})=|Stab_G(x')|/|G|>0.
+```
+
+Igualdade das medidas implica `Lambda_x({x'})>0`; portanto `g.x=x'` para
+algum `g`. QED.
+
+Para `0<nu<1`, reparametrize a crença off-path por
+
+```text
+nu_off=b_rho(nu)=nu rho/(1-nu+nu rho),  rho in [0,infinity],
+```
+
+com as extensões usuais `b_0(nu)=0` e `b_infinity(nu)=1`. Isso é apenas um
+homeomorfismo da coordenada já existente `nu_off`, não uma crença adicional.
+A assinatura formal exata é
+
+```text
+Sig_ex_U(R)=(rho(R),nu_off(R),Lambda_(x_U(R))).
+```
+
+Igualdade de `Sig_ex_U` exige a mesma fibra `(rho,nu_off)` e uma única
+permutação comum aplicada ao par inteiro de leis. Quando a exposição precisar
+de representante, fixe um isomorfismo Borel
+`iota:X_U^law->B subseteq [0,1]` e escolha o elemento de `G.x` que minimiza
+`iota`. O mínimo de uma órbita finita é Borel, pertence realmente à órbita e,
+pelo fechamento acima, vem de um PBE relabelado. Não se seleciona no espaço
+bruto de funções off-path e não se usa média de Reynolds como representante.
+
+### 7.3 Camada de resumo econômico
+
+Fixe um isomorfismo Borel `iota_U:Z_U->B_U subseteq [0,1]`. O mínimo de cada
+órbita finita define uma transversal Borel `Z_U/G` e o quociente Borel
+`q_U:Z_U->Z_U/G`, que satisfaz
+
+```text
+q_U compose T_g=q_U.
+```
+
+Defina
+
+```text
+Gamma_bar_theta^{U,R}=(q_U)#Gamma_theta^{U,R},
+Sum_econ_U(R)
+ =(rho(R),nu_off(R),Gamma_bar_0^{U,R},Gamma_bar_1^{U,R}).
+```
+
+O resumo é muitos-para-um. Não é assessment, não prova Bayes ou melhor resposta
+e não substitui o binder.
+
+**Lema de fatorização anônima.** Para todo espaço Borel-padrão `E` e toda
+`f:Z_U->E` Borel e `G`-invariante, existe uma única Borel
+`f_bar:Z_U/G->E` com `f=f_bar compose q_U`. Se `f` é real e integrável,
+
+```text
+integral f dGamma_theta
+ =integral f_bar dGamma_bar_theta.
+```
+
+**Prova.** Defina `f_bar` na transversal pelo valor de `f` no representante
+mínimo. Borelidade segue da transversal finita; invariância garante que a
+definição independe do representante, e sobrejetividade de `q_U` dá unicidade.
+A identidade de integrais é a definição de pushforward. QED.
+
+Consequentemente, `Sum_econ_U` recupera, por tipo: payoff de `H`;
+probabilidades de acordo e atraso; lei do posterior; célula `L/P`; lei da
+proposta e do outcome terminal no quociente anônimo; multiconjunto ordenado dos
+payoffs fracos; e a lei do payoff de uma identidade fraca sorteada
+uniformemente. Proposta nomeada, payoff de um `W_j` específico, suporte
+estratégico nomeado, mapa público `mu:Y->[0,1]`, coincidência de mensagens e
+relação entre os planos contrafactuais permanecem fora do resumo.
+
+Para pesos probabilísticos quaisquer `(q_g)`,
+
+```text
+(q_U)# [sum_g q_g (T_g)#Gamma_theta]
+ =(q_U)#Gamma_theta.
+```
+
+Assim, alterar apenas os pesos sobre relabelings pode deixar `Sum_econ_U`
+inalterado, embora a órbita exata mude.
+
+### 7.4 Misturas, revelação e o certificado `P/Q`
+
+O finding `R2-I-1` é resolvido pelas duas camadas. Considere
+
+```text
+N=3, beta=.9, o_0=.2, o_1=.5, nu=.6,
+nu_star=.375, a=.369, b=.2475, d=.405,
+z_L=.262, z_H=.505, Delta=-.143.
+```
+
+Na família `AU-MSB-H0`, com `nu_off=0` e `V=.45`, as propostas
+
+```text
+P=(.45,.3025,.2475),
+Q=(.45,.2475,.3025)
+```
+
+passam, dão o mesmo payoff e são relabelings. Pooling puro em `P`, pooling puro
+em `Q` e toda mistura comum
+`p delta_P+(1-p)delta_Q` por ambos os tipos são PBEs e mantêm posterior `.6`.
+A órbita diagonal identifica `p` somente com `1-p`; por exemplo, pesos
+`(.9,.1)` e `(.5,.5)` dão `Sig_ex_U` distintos. Como `q_U(P)=q_U(Q)`, dão o
+mesmo `Sum_econ_U`. O que a clarificação chamava de mesma classe econômica
+fica no resumo sem apagar a diferença formal entre experimentos.
+
+Se, ao contrário, os tipos atribuem pesos diferentes a mensagens comuns, as
+razões de verossimilhança e os posteriores locais mudam. A lei do posterior
+em `Gamma_bar_theta` também muda; nesse caso tanto `Sig_ex_U` quanto
+`Sum_econ_U` distinguem o novo experimento.
+
+O operador componentwise de Reynolds,
+
+```text
+Rey_cw(x)
+ =(|G|^{-1} sum_g (T_g)#Gamma_0,
+   |G|^{-1} sum_g (T_g)#Gamma_1),
+```
+
+é apenas estatística marginal. Ele não é invariante completo da órbita
+diagonal, pode apagar a relação entre planos dos tipos, pode não pertencer à
+imagem de nenhum assessment e sua igualdade implica apenas igualdade do
+resumo marginal. Para ver a terceira limitação dentro de `A_U`, mantenha os
+parâmetros e as propostas `P/Q` acima, mude o prior para `nu=.9` e use
+
+```text
+sigma_0=(.9 em P,.1 em Q),
+sigma_1=(.1 em P,.9 em Q).
+```
+
+Bayes dá `mu(P)=.5` e `mu(Q)=81/82`, ambos acima de `nu_star=.375`; portanto o
+binder pertence à mesma família high-only e as duas propostas passam com
+payoff `.45`. A simetrização componentwise leva para a mesma proposta física
+registros com os dois rótulos posteriores `.5` e `81/82`, porque `T_g` permuta
+nomes, mas fixa o posterior. Isso não pode ser gerado por um único mapa público
+`mu(y)`. Portanto Reynolds jamais é chamado de representante de PBE;
+`Lambda_x` é um código explícito no metaespaço, não um assessment médio.
+
+### 7.5 Endpoints e regra downstream
+
+Nos endpoints, `nu_off=nu` em todo `Y` e todos os valores formais de `rho`
+induzem a mesma crença. Defina, sem dividir por `nu` ou `1-nu`,
+
+```text
+Sig_ex_U(R)=(*,nu,Lambda_(x_U(R))),
+Sum_econ_U(R)=(*,nu,(q_U)#Gamma_0^{U,R},(q_U)#Gamma_1^{U,R}).
+```
+
+A estratégia contrafactual do tipo de prior zero continua na lei por tipo.
+Nenhum envelope marginal vira produto cartesiano.
+
+Uma comparação futura deve primeiro formar, na mesma fibra de prior e
+`(rho,nu_off)`, o produto das camadas exatas de `A_M` e `A_U`. Uma operação
+`C` só pode substituir `Sig_ex` por `Sum_econ` depois de provar, na própria
+fibra,
+
+```text
+Sum_econ(R)=Sum_econ(R')  =>  C(R)=C(R')
+```
+
+e uma fatorização mensurável `C=C_bar compose Sum_econ`. Para
+correspondências, a prova deve ser setwise e preservar a regularidade usada;
+ela não pode combinar coordenadas de assessments diferentes. Identidade
+formal, Bayes, suportes, mensagens, mapa público, relação entre planos e toda
+operação sensível a off-path usam `Sig_ex` e, quando necessário, o binder
+completo. Esta seção fixa a interface de `A_U`; não inicia nem autoriza `AC`.
 
 ## 8. Prova de existência e limites
 
@@ -372,12 +601,13 @@ os máximos declarados. Não se invoca semicontinuidade superior global do payof
 
 O resultado não afirma que o verificador R provou ausência de todo desvio,
 existência do limite local para toda medida ou completude das famílias. Essas
-são as provas textuais acima e os pontos prioritários dos dois pareceres
+são as provas textuais acima e os pontos prioritários dos dois novos pareceres
 independentes. A classificação permanece `pending/unfrozen` até esses pareceres
-e eventual aprovação autoral terminal.
+sobre os mesmos hashes, adjudicação e aprovação autoral terminal.
 
 ## 9. Invalidação
 
 Mudança em `C_U`, no domínio `D_C`, no transporte temporal, em M/S/B, no voto
-as-if-pivotal, em `T^Y` ou na clarificação de anonimato invalida todos os claims
-deste arquivo, o ledger, o verificador e qualquer consumidor `AC/AR`.
+as-if-pivotal, em `T^Y`, na clarificação de anonimato ou na decisão autoral de
+duas camadas de 2026-08-30 invalida todos os claims deste arquivo, o ledger, o
+verificador e qualquer consumidor `AC/AR`.
