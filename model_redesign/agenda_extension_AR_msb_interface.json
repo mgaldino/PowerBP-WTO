@@ -69,7 +69,9 @@
     "public_continuation_source": "N7 R1 current units",
     "transport_A_from_R1": "multiply by beta exactly once",
     "private_source": "AC values already at A",
-    "new_beta_applications_in_rent_subtraction": 0
+    "new_beta_applications_in_agenda_rent_subtraction": 0,
+    "no_agenda_rent_native_date": "N7 R1",
+    "no_agenda_rent_transport_to_A": "multiply the complete N7 rent vector by beta exactly once before forming an interaction"
   },
   "solution_concept": {
     "assessment": "PBE",
@@ -223,8 +225,9 @@
     }
   ],
   "interaction_operator": {
-    "rule_level": "I_g^{01}=RI_g^{A,01}-RI_g^{N,01}",
-    "institutional": "DeltaI^{01}=DeltaRI_A^{01}-DeltaRI_N^{01}",
+    "no_agenda_transport": "RI_g^{N,A,01}=beta*RI_g^{N,R1,01}",
+    "rule_level": "I_g^{01}=RI_g^{A,01}-beta*RI_g^{N,R1,01}",
+    "institutional": "DeltaI^{01}=DeltaRI_A^{01}-beta*DeltaRI_N^{R1,01}",
     "exact_set_rule": "form products of complete records at the same primitives before taking vector differences; no cross-world coupling or selector",
     "none_rule": "if either required source is none, the composed interaction is none and the surviving source remains separately recorded"
   },
@@ -249,24 +252,24 @@
       "cell_id": "AR-INT-U-HIGH-RHO-ZERO",
       "domain": "nu_star<nu<1, rho=0",
       "status": "exists",
-      "interaction_vector": "{(u-z_L-d,u-z_H):u in [max{z_L,d_H},z_H]}, d=beta*(o_1-o_0)",
-      "sign": "low strictly negative; high weakly negative",
+      "interaction_vector": "{(u-z_H,u-z_H):u in [max{z_L,d_H},z_H]}",
+      "sign": "both coordinates weakly negative; both strictly negative iff u<z_H; both zero at u=z_H",
       "N7_source_record_id": "N7-RI-U-HIGH"
     },
     {
       "cell_id": "AR-INT-U-HIGH-OFFPATH-HIGH",
       "domain": "nu_star<nu<1, nu_off in (nu_star,1]",
       "status": "exists",
-      "interaction_vector": "(-beta*(1-beta)*(o_1-o_0),0)",
-      "sign": "low strictly negative; high zero",
+      "interaction_vector": "(0,0)",
+      "sign": "both zero after transporting the N7 rent from R1 to A",
       "N7_source_record_id": "N7-RI-U-HIGH"
     },
     {
       "cell_id": "AR-INT-U-NU-ONE",
       "domain": "nu=1",
       "status": "exists",
-      "interaction_vector": "(-beta*(1-beta)*(o_1-o_0),0)",
-      "sign": "counterfactual low strictly negative; high zero; ex ante zero",
+      "interaction_vector": "(0,0)",
+      "sign": "both zero; ex ante zero",
       "N7_source_record_id": "N7-RI-U-HIGH"
     }
   ],
@@ -277,7 +280,7 @@
       "N7-RI-M-IX",
       "N7-RI-M-XX"
     ],
-    "interaction": "exact vector difference RI_M^A-RI_M^N with full source records retained",
+    "interaction": "exact vector difference RI_M^A-beta*RI_M^{N,R1} with full source records retained",
     "sign_status": "set-valued; no general sign claimed"
   },
   "two_layer_signature": {

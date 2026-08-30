@@ -46,7 +46,8 @@ PASS | external-option accounting is not subtracted from the weak pie
 PASS | public majority delay and pass-delay tie are retained
 PASS | no current-proposal symmetry or new proposal tie-break is imposed
 PASS | linked type vectors precede ex-ante images
-PASS | rent subtraction applies zero new beta factors
+PASS | agenda-rent subtraction applies zero new beta factors
+PASS | N7 no-agenda rent is transported once from R1 to A
 PASS | none cells use null and never numeric sentinels
 PASS | quota identities N=4
 PASS | tau_M exceeds 1/m N=4 beta=0.10
@@ -3722,6 +3723,7 @@ PASS | U H0 rent signs beta=0.20 pair=1 u=0.805600
 PASS | U H0 interaction signs beta=0.20 pair=1 u=0.805600
 PASS | U H0 rent signs beta=0.20 pair=1 u=0.806000
 PASS | U H0 interaction signs beta=0.20 pair=1 u=0.806000
+PASS | N7 U rent transport beta*d=D_2 beta=0.20 pair=1
 PASS | U HB interaction identity beta=0.20 pair=1
 PASS | U H0 ex-ante bounds ordered beta=0.20 pair=1 nu=0.01
 PASS | U HB ex-ante rent beta=0.20 pair=1 nu=0.01
@@ -3758,6 +3760,7 @@ PASS | U H0 rent signs beta=0.20 pair=2 u=0.820400
 PASS | U H0 interaction signs beta=0.20 pair=2 u=0.820400
 PASS | U H0 rent signs beta=0.20 pair=2 u=0.822000
 PASS | U H0 interaction signs beta=0.20 pair=2 u=0.822000
+PASS | N7 U rent transport beta*d=D_2 beta=0.20 pair=2
 PASS | U HB interaction identity beta=0.20 pair=2
 PASS | U H0 ex-ante bounds ordered beta=0.20 pair=2 nu=0.01
 PASS | U HB ex-ante rent beta=0.20 pair=2 nu=0.01
@@ -3794,6 +3797,7 @@ PASS | U H0 rent signs beta=0.20 pair=3 u=0.833800
 PASS | U H0 interaction signs beta=0.20 pair=3 u=0.833800
 PASS | U H0 rent signs beta=0.20 pair=3 u=0.836000
 PASS | U H0 interaction signs beta=0.20 pair=3 u=0.836000
+PASS | N7 U rent transport beta*d=D_2 beta=0.20 pair=3
 PASS | U HB interaction identity beta=0.20 pair=3
 PASS | U H0 ex-ante bounds ordered beta=0.20 pair=3 nu=0.01
 PASS | U HB ex-ante rent beta=0.20 pair=3 nu=0.01
@@ -3830,6 +3834,7 @@ PASS | U H0 rent signs beta=0.20 pair=4 u=0.837000
 PASS | U H0 interaction signs beta=0.20 pair=4 u=0.837000
 PASS | U H0 rent signs beta=0.20 pair=4 u=0.838000
 PASS | U H0 interaction signs beta=0.20 pair=4 u=0.838000
+PASS | N7 U rent transport beta*d=D_2 beta=0.20 pair=4
 PASS | U HB interaction identity beta=0.20 pair=4
 PASS | U H0 ex-ante bounds ordered beta=0.20 pair=4 nu=0.01
 PASS | U HB ex-ante rent beta=0.20 pair=4 nu=0.01
@@ -3866,6 +3871,7 @@ PASS | U H0 rent signs beta=0.50 pair=1 u=0.535000
 PASS | U H0 interaction signs beta=0.50 pair=1 u=0.535000
 PASS | U H0 rent signs beta=0.50 pair=1 u=0.537500
 PASS | U H0 interaction signs beta=0.50 pair=1 u=0.537500
+PASS | N7 U rent transport beta*d=D_2 beta=0.50 pair=1
 PASS | U HB interaction identity beta=0.50 pair=1
 PASS | U H0 ex-ante bounds ordered beta=0.50 pair=1 nu=0.01
 PASS | U HB ex-ante rent beta=0.50 pair=1 nu=0.01
@@ -3902,6 +3908,7 @@ PASS | U H0 rent signs beta=0.50 pair=2 u=0.627500
 PASS | U H0 interaction signs beta=0.50 pair=2 u=0.627500
 PASS | U H0 rent signs beta=0.50 pair=2 u=0.637500
 PASS | U H0 interaction signs beta=0.50 pair=2 u=0.637500
+PASS | N7 U rent transport beta*d=D_2 beta=0.50 pair=2
 PASS | U HB interaction identity beta=0.50 pair=2
 PASS | U H0 ex-ante bounds ordered beta=0.50 pair=2 nu=0.01
 PASS | U HB ex-ante rent beta=0.50 pair=2 nu=0.01
@@ -3938,6 +3945,7 @@ PASS | U H0 rent signs beta=0.50 pair=3 u=0.711250
 PASS | U H0 interaction signs beta=0.50 pair=3 u=0.711250
 PASS | U H0 rent signs beta=0.50 pair=3 u=0.725000
 PASS | U H0 interaction signs beta=0.50 pair=3 u=0.725000
+PASS | N7 U rent transport beta*d=D_2 beta=0.50 pair=3
 PASS | U HB interaction identity beta=0.50 pair=3
 PASS | U H0 ex-ante bounds ordered beta=0.50 pair=3 nu=0.01
 PASS | U HB ex-ante rent beta=0.50 pair=3 nu=0.01
@@ -3974,6 +3982,7 @@ PASS | U H0 rent signs beta=0.50 pair=4 u=0.731250
 PASS | U H0 interaction signs beta=0.50 pair=4 u=0.731250
 PASS | U H0 rent signs beta=0.50 pair=4 u=0.737500
 PASS | U H0 interaction signs beta=0.50 pair=4 u=0.737500
+PASS | N7 U rent transport beta*d=D_2 beta=0.50 pair=4
 PASS | U HB interaction identity beta=0.50 pair=4
 PASS | U H0 ex-ante bounds ordered beta=0.50 pair=4 nu=0.01
 PASS | U HB ex-ante rent beta=0.50 pair=4 nu=0.01
@@ -4010,6 +4019,7 @@ PASS | U H0 rent signs beta=0.80 pair=1 u=0.289600
 PASS | U H0 interaction signs beta=0.80 pair=1 u=0.289600
 PASS | U H0 rent signs beta=0.80 pair=1 u=0.296000
 PASS | U H0 interaction signs beta=0.80 pair=1 u=0.296000
+PASS | N7 U rent transport beta*d=D_2 beta=0.80 pair=1
 PASS | U HB interaction identity beta=0.80 pair=1
 PASS | U H0 ex-ante bounds ordered beta=0.80 pair=1 nu=0.01
 PASS | U HB ex-ante rent beta=0.80 pair=1 nu=0.01
@@ -4046,6 +4056,7 @@ PASS | U H0 rent signs beta=0.80 pair=2 u=0.532000
 PASS | U H0 interaction signs beta=0.80 pair=2 u=0.532000
 PASS | U H0 rent signs beta=0.80 pair=2 u=0.552000
 PASS | U H0 interaction signs beta=0.80 pair=2 u=0.552000
+PASS | N7 U rent transport beta*d=D_2 beta=0.80 pair=2
 PASS | U HB interaction identity beta=0.80 pair=2
 PASS | U H0 ex-ante bounds ordered beta=0.80 pair=2 nu=0.01
 PASS | U HB ex-ante rent beta=0.80 pair=2 nu=0.01
@@ -4082,6 +4093,7 @@ PASS | U H0 rent signs beta=0.80 pair=3 u=0.756000
 PASS | U H0 interaction signs beta=0.80 pair=3 u=0.756000
 PASS | U H0 rent signs beta=0.80 pair=3 u=0.776000
 PASS | U H0 interaction signs beta=0.80 pair=3 u=0.776000
+PASS | N7 U rent transport beta*d=D_2 beta=0.80 pair=3
 PASS | U HB interaction identity beta=0.80 pair=3
 PASS | U H0 ex-ante bounds ordered beta=0.80 pair=3 nu=0.01
 PASS | U HB ex-ante rent beta=0.80 pair=3 nu=0.01
@@ -4118,6 +4130,7 @@ PASS | U H0 rent signs beta=0.80 pair=4 u=0.792000
 PASS | U H0 interaction signs beta=0.80 pair=4 u=0.792000
 PASS | U H0 rent signs beta=0.80 pair=4 u=0.808000
 PASS | U H0 interaction signs beta=0.80 pair=4 u=0.808000
+PASS | N7 U rent transport beta*d=D_2 beta=0.80 pair=4
 PASS | U HB interaction identity beta=0.80 pair=4
 PASS | U H0 ex-ante bounds ordered beta=0.80 pair=4 nu=0.01
 PASS | U HB ex-ante rent beta=0.80 pair=4 nu=0.01
@@ -4154,6 +4167,7 @@ PASS | U H0 rent signs beta=0.95 pair=1 u=0.180375
 PASS | U H0 interaction signs beta=0.95 pair=1 u=0.180375
 PASS | U H0 rent signs beta=0.95 pair=1 u=0.185375
 PASS | U H0 interaction signs beta=0.95 pair=1 u=0.185375
+PASS | N7 U rent transport beta*d=D_2 beta=0.95 pair=1
 PASS | U HB interaction identity beta=0.95 pair=1
 PASS | U H0 ex-ante bounds ordered beta=0.95 pair=1 nu=0.01
 PASS | U HB ex-ante rent beta=0.95 pair=1 nu=0.01
@@ -4190,6 +4204,7 @@ PASS | U H0 rent signs beta=0.95 pair=2 u=0.541375
 PASS | U H0 interaction signs beta=0.95 pair=2 u=0.541375
 PASS | U H0 rent signs beta=0.95 pair=2 u=0.546375
 PASS | U H0 interaction signs beta=0.95 pair=2 u=0.546375
+PASS | N7 U rent transport beta*d=D_2 beta=0.95 pair=2
 PASS | U HB interaction identity beta=0.95 pair=2
 PASS | U H0 ex-ante bounds ordered beta=0.95 pair=2 nu=0.01
 PASS | U HB ex-ante rent beta=0.95 pair=2 nu=0.01
@@ -4226,6 +4241,7 @@ PASS | U H0 rent signs beta=0.95 pair=3 u=0.857250
 PASS | U H0 interaction signs beta=0.95 pair=3 u=0.857250
 PASS | U H0 rent signs beta=0.95 pair=3 u=0.862250
 PASS | U H0 interaction signs beta=0.95 pair=3 u=0.862250
+PASS | N7 U rent transport beta*d=D_2 beta=0.95 pair=3
 PASS | U HB interaction identity beta=0.95 pair=3
 PASS | U H0 ex-ante bounds ordered beta=0.95 pair=3 nu=0.01
 PASS | U HB ex-ante rent beta=0.95 pair=3 nu=0.01
@@ -4262,6 +4278,7 @@ PASS | U H0 rent signs beta=0.95 pair=4 u=0.902375
 PASS | U H0 interaction signs beta=0.95 pair=4 u=0.902375
 PASS | U H0 rent signs beta=0.95 pair=4 u=0.907375
 PASS | U H0 interaction signs beta=0.95 pair=4 u=0.907375
+PASS | N7 U rent transport beta*d=D_2 beta=0.95 pair=4
 PASS | U HB interaction identity beta=0.95 pair=4
 PASS | U H0 ex-ante bounds ordered beta=0.95 pair=4 nu=0.01
 PASS | U HB ex-ante rent beta=0.95 pair=4 nu=0.01
@@ -4346,5 +4363,5 @@ PASS | anonymous majority allocation is invariant N=14
 PASS | named majority coalitions can differ N=15
 PASS | anonymous majority allocation is invariant N=15
 
-SUMMARY | 4342 PASS / 0 FAIL
+SUMMARY | 4359 PASS / 0 FAIL
 LIMIT | Mechanical evidence only; independent formal review remains required.

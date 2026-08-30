@@ -126,12 +126,18 @@ Se `A_C` é `none` na fibra, a comparação de rendas é `none`; não se cria pa
 
 ## 7. Interação agenda × informação
 
-Seja `RI_g^{N,theta}` a renda informacional sem agenda já congelada em `N7`. A interação identificada é a diferença entre dois contrastes, não um efeito realização a realização:
+Seja `RI_g^{N,R1,theta}` a renda informacional sem agenda já congelada em
+`N7`, na data nativa de `R1`. Antes da comparação, transporte-a para `A`:
 
 ```text
-I_g^theta=RI_g^{A,theta}-RI_g^{N,theta},
-DeltaI^theta=DeltaRI_A^theta-DeltaRI_N^theta.
+RI_g^{N,A,theta}=beta*RI_g^{N,R1,theta},
+I_g^theta=RI_g^{A,theta}-RI_g^{N,A,theta},
+DeltaI^theta=DeltaRI_A^theta-beta*DeltaRI_N^{R1,theta}.
 ```
+
+Esse `beta` é o único transporte de `R1` para `A` no ramo sem agenda. Ele não
+é um novo desconto aplicado às rendas de agenda ou aos valores privados de
+`A_C`, que já chegam em `A`.
 
 Os conjuntos exatos são formados por produtos de binders completos nas mesmas primitivas. Não se introduz acoplamento cross-world, sorteio comum ou selector. Se qualquer fonte necessária é `none`, o objeto composto correspondente é `none`, enquanto as fontes existentes permanecem registradas.
 

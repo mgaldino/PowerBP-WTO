@@ -214,9 +214,12 @@ check("no current-proposal symmetry or new proposal tie-break is imposed",
 check("linked type vectors precede ex-ante images",
       regexpr("RI_g^{A,theta}", results_text, fixed = TRUE)[[1L]] <
         regexpr("RI_g^{A,E}", results_text, fixed = TRUE)[[1L]])
-check("rent subtraction applies zero new beta factors",
-      grepl('"new_beta_applications_in_rent_subtraction": 0', interface_text, fixed = TRUE) &&
+check("agenda-rent subtraction applies zero new beta factors",
+      grepl('"new_beta_applications_in_agenda_rent_subtraction": 0', interface_text, fixed = TRUE) &&
         grepl("zero novos fatores de `beta`", results_text, fixed = TRUE))
+check("N7 no-agenda rent is transported once from R1 to A",
+      grepl('"no_agenda_rent_transport_to_A"', interface_text, fixed = TRUE) &&
+        grepl("RI_g^{N,A,01}=beta*RI_g^{N,R1,01}", results_text, fixed = TRUE))
 check("none cells use null and never numeric sentinels",
       length(gregexpr('"status": "none"', interface_text, fixed = TRUE)[[1L]]) >= 3L &&
         length(gregexpr('"rent_vector": null', interface_text, fixed = TRUE)[[1L]]) == 2L &&
@@ -386,19 +389,22 @@ for (beta in c(0.2, 0.5, 0.8, 0.95)) {
 
     for (u in seq(u_min, z_h, length.out = 11L)) {
       rent <- c(u - z_l, u - z_h)
-      interaction <- c(u - z_l - d, u - z_h)
+      interaction <- c(u - z_l - beta * d, u - z_h)
       check(sprintf("U H0 rent signs beta=%.2f pair=%d u=%.6f", beta, i, u),
             rent[[1]] >= -1e-10 && rent[[2]] <= 1e-10 &&
               (rent[[1]] > 1e-10 || rent[[2]] < -1e-10))
       check(sprintf("U H0 interaction signs beta=%.2f pair=%d u=%.6f", beta, i, u),
-            interaction[[1]] < -1e-10 && interaction[[2]] <= 1e-10)
+            close_num(interaction[[1]], interaction[[2]]) &&
+              interaction[[1]] <= 1e-10 &&
+              if (u < z_h - 1e-10) interaction[[1]] < -1e-10 else close_num(interaction, c(0, 0)))
     }
 
-    closed_interaction <- c(d2 - d, 0)
-    expected_interaction <- c(-beta * (1 - beta) * (o1 - o0), 0)
+    check(sprintf("N7 U rent transport beta*d=D_2 beta=%.2f pair=%d", beta, i),
+          close_num(beta * d, d2))
+    closed_interaction <- c(d2 - beta * d, 0)
+    expected_interaction <- c(0, 0)
     check(sprintf("U HB interaction identity beta=%.2f pair=%d", beta, i),
-          close_num(closed_interaction, expected_interaction) &&
-            closed_interaction[[1]] < 0)
+          close_num(closed_interaction, expected_interaction))
 
     for (nu in c(0.01, 0.2, 0.5, 0.8, 0.99)) {
       z_e_nu <- (1 - nu) * z_l + nu * z_h

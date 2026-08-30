@@ -316,19 +316,25 @@ Esse corolário não afirma que a diferença de rendas seja negativa; afirma que
 
 ## 9. Interação com o benchmark sem agenda
 
-Seja `RI_g^{N,01}` a correspondência de renda sem agenda de `N7`. Defina
+Seja `RI_g^{N,R1,01}` a correspondência de renda sem agenda de `N7`, em
+unidades nativas de `R1`. Para comparar na data `A`, defina
 
 ```text
-I_g^{01}=RI_g^{A,01}-RI_g^{N,01}
+RI_g^{N,A,01}=beta*RI_g^{N,R1,01},
+I_g^{01}=RI_g^{A,01}-RI_g^{N,A,01}.
 ```
 
-como diferença de Minkowski de vetores completos, usando produtos de binders nas mesmas primitivas. Isso mede como a introdução da agenda muda a renda informacional. Não mede uma diferença realização a realização e não presume um sorteio comum.
+O fator `beta` transporta a renda sem agenda exatamente uma vez de `R1` para
+`A`. A diferença de Minkowski usa vetores completos e produtos de binders nas
+mesmas primitivas. Isso mede como a introdução da agenda muda a renda
+informacional. Não mede uma diferença realização a realização e não presume um
+sorteio comum.
 
 Para maioria:
 
 ```text
 I_M^{01}(d,eta)
- =RI_M^{A,01}(d,eta)-RI_M^{N,01}(d),
+ =RI_M^{A,01}(d,eta)-beta*RI_M^{N,R1,01}(d),
 ```
 
 onde as fontes sem agenda são exatamente `N7-RI-M-II`, `N7-RI-M-IX` ou `N7-RI-M-XX`. Essa forma set-valued é mantida: não há sinal geral sem selecionar as correspondências das duas arquiteturas.
@@ -337,7 +343,7 @@ Para unanimidade, `N7` permite forma fechada.
 
 ### 9.1 Endpoint `nu=0`
 
-Como `RI_U^{N,01}=(0,0)`,
+Como `RI_U^{N,R1,01}=(0,0)`,
 
 ```text
 I_U^{01}=(0,max{z_L,d_H}-z_H).
@@ -357,34 +363,40 @@ Escreva
 d=beta*(o_1-o_0).
 ```
 
-Como `RI_U^{N,01}=(d,0)`,
+Como `RI_U^{N,R1,01}=(d,0)`, sua imagem na data `A` é
+`(beta*d,0)=(D_2,0)`. Portanto,
 
 ```text
 I_U^{01}
- ={(u-z_L-d,u-z_H):u in [u_min,z_H]}.
+ ={(u-z_L-D_2,u-z_H):u in [u_min,z_H]}
+ ={(u-z_H,u-z_H):u in [u_min,z_H]}.
 ```
 
 Para todo membro,
 
 ```text
-u-z_L-d
- <=z_H-z_L-d
- =-beta*(1-beta)*(o_1-o_0)<0,
-
-u-z_H<=0.
+u-z_H<=0
 ```
 
-Portanto, nessa fibra, agenda reduz estritamente a renda do tipo baixo sob unanimidade e não aumenta a renda do tipo alto.
+nas duas coordenadas. A interação é estritamente negativa para ambos os tipos
+quando `u<z_H` e é `(0,0)` no membro eficiente `u=z_H`. Sua imagem ex ante é o
+mesmo escalar `u-z_H`, no intervalo `[u_min-z_H,0]`.
 
 ### 9.4 Prior alto, crença off-path alta, e `nu=1`
 
 ```text
-I_U^{01}=(-beta*(1-beta)*(o_1-o_0),0).
+I_U^{01}=(0,0).
 ```
 
-O efeito é estritamente negativo para o tipo baixo e zero para o alto.
+As rendas com e sem agenda coincidem depois de expressas na mesma data.
 
-**Teorema AR-MSB-T5 — sinal da interação sob unanimidade.** Em toda fibra alta na qual a interação existe, agenda reduz estritamente a renda informacional do tipo baixo e reduz fracamente a do tipo alto. Em `nu=0`, reduz estritamente apenas a coordenada contrafactual alta; em prior baixo positivo, a interação é `none` porque a renda sem agenda é `none`.
+**Teorema AR-MSB-T5 — sinal da interação sob unanimidade.** Em toda fibra
+alta na qual a interação existe, agenda reduz fracamente a renda informacional
+dos dois tipos. A redução é estrita para ambos exatamente nos membros `rho=0`
+com `u<z_H`; ela é zero no membro `u=z_H`, na família de crença off-path alta
+e em `nu=1`. Em `nu=0`, reduz estritamente apenas a coordenada contrafactual
+alta; em prior baixo positivo, a interação é `none` porque a renda sem agenda
+é `none`.
 
 Esse resultado não diz que agenda reduz o payoff de `H`: compara a vantagem da informação privada em dois jogos diferentes.
 
@@ -394,7 +406,7 @@ Quando `A_C` e o contraste sem agenda de `N7` existem, defina
 
 ```text
 DeltaI^{01}
- =DeltaRI_A^{01}-DeltaRI_N^{01}.
+ =DeltaRI_A^{01}-beta*DeltaRI_N^{R1,01}.
 ```
 
 É a mudança causada pela agenda na diferença `U-M` das rendas informacionais. A imagem exata vem de um par formado por um binder completo de `A_C` e um registro completo de contraste de `N7`; não se combinam coordenadas de registros distintos. Se qualquer fonte é `none`, `DeltaI` é `none`.
@@ -412,8 +424,9 @@ Por isso, os operadores de payoff e renda fatoram pelo resumo econômico públic
 - Os quatro jogos públicos por regra e tipo sempre possuem PBE.
 - `RI_g^A` existe exatamente onde a fonte privada `A_g` existe.
 - `DeltaRI_A` existe exatamente onde `A_C` existe.
-- `I_g` existe exatamente onde as rendas com e sem agenda da regra existem.
-- `DeltaI` existe exatamente onde `DeltaRI_A` e `DeltaRI_N` existem.
+- `I_g` existe exatamente onde as rendas com agenda e sem agenda na data
+  `R1` existem; a segunda é então transportada para `A`.
+- `DeltaI` existe exatamente onde `DeltaRI_A` e `DeltaRI_N^{R1}` existem.
 - Nenhuma ausência recebe `0`, `NA`, infinito ou payoff fictício.
 
 ## 13. O que está e não está provado

@@ -4,7 +4,7 @@
 **Worktree:** `/private/tmp/PBP-am-msb`  
 **Branch:** `agenda-extension-am-msb`  
 **Commit de autorização:** `c72335ace29fbee9262cbfbd2b843b155a351653`  
-**Status:** `IMPLEMENTER CANDIDATE / 4342 PASS / 0 FAIL / UNREVIEWED / UNFROZEN`
+**Status:** `IMPLEMENTER CANDIDATE / 4359 PASS / 0 FAIL / UNREVIEWED / UNFROZEN`
 
 ## 1. Escopo executado
 
@@ -67,7 +67,7 @@ delta_theta=-G(o_theta)+DeltaRI_A^theta,
 
 de modo que unanimidade supera maioria no jogo privado para o tipo `theta` se e somente se a diferença de rendas `DeltaRI_A^theta` excede o gap público `G(o_theta)`.
 
-Sob unanimidade, em toda fibra existente, a renda do tipo baixo é não negativa e a do tipo alto é não positiva, com ao menos uma desigualdade estrita. Nos priors altos em que a interação com `N7` existe, introduzir agenda reduz estritamente a renda informacional do tipo baixo e reduz fracamente a do tipo alto. Isso é uma afirmação sobre a vantagem de informação privada, não sobre o nível do payoff de `H`.
+Sob unanimidade, em toda fibra existente, a renda do tipo baixo é não negativa e a do tipo alto é não positiva, com ao menos uma desigualdade estrita. Para a interação, a renda sem agenda de `N7` é primeiro transportada da data `R1` para `A` por um fator `beta`. Nos priors altos em que a interação existe, introduzir agenda reduz fracamente a renda informacional dos dois tipos; a redução é estrita para ambos nos membros `rho=0` com `u<z_H` e é zero no membro eficiente e na família de crença off-path alta. Isso é uma afirmação sobre a vantagem de informação privada, não sobre o nível do payoff de `H`.
 
 As rendas e interações de maioria permanecem set-valued quando as fontes são set-valued; nenhum envelope foi promovido a correspondência exata.
 
@@ -75,13 +75,13 @@ As rendas e interações de maioria permanecem set-valued quando as fontes são 
 
 | Arquivo | Função | SHA-256 |
 |---|---|---|
-| `model_redesign/agenda_extension_AR_msb_contract.md` | autoridade, domínio, datas e operadores | `b4c785a23ad6481090f8008955a65640de7b15b0bb5aa82d8e0b0dcb9540828b` |
-| `model_redesign/agenda_extension_AR_msb_results.md` | derivação e provas | `ddfeaabb56b91f039adc2eafd8b0168450d245eeb848ba8f805c50c1c5471bc3` |
-| `model_redesign/agenda_extension_AR_msb_interface.json` | interface downstream tipada | `bc81df2958584046ffcbe6d88eb8e5012bd23c56bddc77858c80abaaf455b181` |
-| `model_redesign/agenda_extension_AR_msb_claim_ledger.tsv` | ledger de 30 claims | `c190a67776ab834afa77b77da5d70c19e5834eda8fe8c650fdd60af331238e3a` |
-| `model_redesign/agenda_extension_AR_msb_game_dag.json` | DAG de dependências | `792350ced6ab0877043d5bc552d1a4f4ecd5641f4777ae6271da6fb9168ff8d5` |
-| `scripts/verify_agenda_extension_AR_msb.R` | falsificação mecânica reproduzível | `6b3b6aed891a39bd9c8ebaef8099bc97621f4f10ab05b4f0867a7e3f6369a5a6` |
-| `quality_reports/verification_outputs/2026-08-30_AR_msb_verifier_output.txt` | saída completa | `549663a249d1745fffaacb2001f693c646650bc5098a7ccc709bd547dba1f52b` |
+| `model_redesign/agenda_extension_AR_msb_contract.md` | autoridade, domínio, datas e operadores | `385bc9ec8cec9fd60c83659cf634d7d68bfb7115a37852d873c67c5460ef78df` |
+| `model_redesign/agenda_extension_AR_msb_results.md` | derivação e provas | `4dcd7d1919203ebf52431ce9ee0a44a2571c1075773fb5c8d2e1aef8be8e598f` |
+| `model_redesign/agenda_extension_AR_msb_interface.json` | interface downstream tipada | `6fcf1ba0f7433e55ac984d8ab20984fca7034e98f816ca61e7f236dfdf4d372f` |
+| `model_redesign/agenda_extension_AR_msb_claim_ledger.tsv` | ledger de 30 claims | `19d077a697d1ece385dacc095c0d4e95101fd24aff536161f56e92e2c6afe109` |
+| `model_redesign/agenda_extension_AR_msb_game_dag.json` | DAG de dependências | `c4a317598e9f22fcf6273d39cfdec23aa8e7cf075f88d90d42a9850d94fe4a7d` |
+| `scripts/verify_agenda_extension_AR_msb.R` | falsificação mecânica reproduzível | `c2c421414ecbc365d5628f566f64baa64d8c5fb8ba289acd50db40df690e04d3` |
+| `quality_reports/verification_outputs/2026-08-30_AR_msb_verifier_output.txt` | saída completa | `adbf7b561417849694205f79f98fd789c5a25b5cb95d849906c640f07659e897` |
 
 ## 5. Verificação mecânica
 
@@ -95,7 +95,7 @@ Rscript --vanilla scripts/verify_agenda_extension_AR_msb.R \
 Resultado:
 
 ```text
-SUMMARY | 4342 PASS / 0 FAIL
+SUMMARY | 4359 PASS / 0 FAIL
 LIMIT | Mechanical evidence only; independent formal review remains required.
 ```
 
