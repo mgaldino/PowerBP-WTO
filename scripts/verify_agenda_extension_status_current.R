@@ -92,9 +92,11 @@ record_check(
               "b59ce1bf5b5ee7b57707684de92c38d4fa325b30") &&
     identical(status$a_u_candidate_snapshot$two_layer_substantive_commit,
               "b56085c436eb629c335764eb982d174e5cc2d392") &&
+    identical(status$a_u_candidate_snapshot$two_layer_packaged_candidate_commit,
+              "34a95f47284296359fa0b9d07dc99e241b42f1ed") &&
     identical(status$a_u_candidate_snapshot$candidate_manifest_sha256,
               "3cf2c047ad2da35665c21b47f94ca117482d7e7f537d9caa4e0ddce29ae7b369"),
-  "A_U blind lock, adjudicated candidate, two-layer commit, and manifest are pinned"
+  "A_U blind lock, adjudicated candidate, two-layer commits, and manifest are pinned"
 )
 
 record_check(
