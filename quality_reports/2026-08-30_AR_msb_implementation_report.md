@@ -4,7 +4,7 @@
 **Worktree:** `/private/tmp/PBP-am-msb`  
 **Branch:** `agenda-extension-am-msb`  
 **Commit de autorização:** `c72335ace29fbee9262cbfbd2b843b155a351653`  
-**Status:** `REPAIRED IMPLEMENTER CANDIDATE / 4367 PASS / 0 FAIL / UNREVIEWED / UNFROZEN`
+**Status:** `ROUND-3 IMPLEMENTER CANDIDATE / 4372 PASS / 0 FAIL / UNREVIEWED / UNFROZEN`
 
 ## 1. Escopo executado
 
@@ -77,12 +77,12 @@ As rendas e interações de maioria permanecem set-valued quando as fontes são 
 |---|---|---|
 | `model_redesign/agenda_extension_AR_msb_contract.md` | autoridade, domínio, datas e operadores | `c4867a9a8ef5f8171de04ae6b628a2fc29c5d5e033678f4448d0cbc55433f7a6` |
 | `model_redesign/agenda_extension_AR_msb_results.md` | derivação e provas | `7a7913b6999a5cd69446d5f3e191f507f417582cd1c8617f7af0d5d8e8d331db` |
-| `model_redesign/agenda_extension_AR_msb_interface.json` | interface econômica downstream e ponte por hash | `ff2270043e6e7e64aa6fdd6843e0fadc1f902d6282ca3e367f922f43762ddf03` |
-| `model_redesign/agenda_extension_AR_msb_complete_records.json` | family records públicos e tuplas derivadas completas | `64e6f9b9c0c4b5775793a9361c4af06a8c82a892882b5c608101ffa420f7f0ff` |
+| `model_redesign/agenda_extension_AR_msb_interface.json` | interface econômica downstream e ponte por hash | `62caca71f0fd221a7e17026d7518d53b97713ff9c9d7f61a62a52f312120800b` |
+| `model_redesign/agenda_extension_AR_msb_complete_records.json` | family records públicos e tuplas derivadas completas | `96d6045787200153f9d77cab9279053ad97a3076d2c23782b16b8f3e2ff6cca8` |
 | `model_redesign/agenda_extension_AR_msb_claim_ledger.tsv` | ledger de 30 claims no enum aprovado | `98d3ac5acc4ea347c5c3cca4ae41ffdda589683ea1399836b9f8f37ae5814a76` |
 | `model_redesign/agenda_extension_game_dag_simplified.json` | DAG canônico imutável de topologia/proveniência | `a2572dc8954d63535d4edcbf04158e9524d11ed4537a822713e534df580ee9e0` |
-| `scripts/verify_agenda_extension_AR_msb.R` | falsificação mecânica reproduzível | `20ada1470e823af00967ce1a2af23c7563c6c4e6f55c098b25ac19d47a1b3250` |
-| `quality_reports/verification_outputs/2026-08-30_AR_msb_verifier_output.txt` | saída completa | `5d0d89d4dc37ed97ca739f0b1c1f4cca6e500fee460ab5c9449b5d6b07282bba` |
+| `scripts/verify_agenda_extension_AR_msb.R` | falsificação mecânica reproduzível | `bb52b97c4a18dc997a97bf1d1b902bacdc896ff0980e44ead8301287a0334320` |
+| `quality_reports/verification_outputs/2026-08-30_AR_msb_verifier_output.txt` | saída completa | `9dae2730685afac8d8e6e0776eeecc2cfc41475059f4ea73a85ffc7acfdf6412` |
 
 ### 4.1 Reparo após a primeira rodada independente
 
@@ -105,6 +105,21 @@ matemática:
 Essas mudanças invalidam o primeiro snapshot para fins de aprovação e exigem
 uma nova rodada de duas revisões sobre os novos bytes.
 
+### 4.2 Reparo após a segunda rodada independente
+
+No snapshot `8215c9f36910a94e251fea4ed8a3be273780a409`, o parecer matemático
+foi novamente `PASS 0/0/0`. O parecer adversarial encontrou um finding major
+de rastreabilidade, confirmado pela adjudicação: `AR-DINT-UM` ainda usava um
+placeholder textual para “o contraste aplicável de N7”, embora N7 contenha
+nove células distintas — seis com record ID e três `none` com certificado.
+
+O placeholder foi substituído por um mapa explícito das nove células. Cada
+entrada registra `cell_id`, `existence_status`, `contrast_record_id` ou a
+referência à célula que contém o certificado. O verificador agora resolve esse
+mapa contra o JSON congelado de N7, exige a partição 9/6/3 e inclui três testes
+negativos: ID inexistente, record atribuído a célula `none` e certificado
+ausente. Nenhuma fórmula, seleção, correspondência ou arquivo congelado mudou.
+
 ## 5. Verificação mecânica
 
 Comando:
@@ -117,7 +132,7 @@ Rscript --vanilla scripts/verify_agenda_extension_AR_msb.R \
 Resultado:
 
 ```text
-SUMMARY | 4367 PASS / 0 FAIL
+SUMMARY | 4372 PASS / 0 FAIL
 LIMIT | Mechanical evidence only; independent formal review remains required.
 ```
 

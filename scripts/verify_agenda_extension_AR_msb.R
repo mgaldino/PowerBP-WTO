@@ -163,6 +163,10 @@ if (!requireNamespace("jsonlite", quietly = TRUE)) {
   interface <- jsonlite::read_json(interface_path, simplifyVector = FALSE)
   complete_records <- jsonlite::read_json(complete_records_path, simplifyVector = FALSE)
   canonical_dag <- jsonlite::read_json(canonical_dag_path, simplifyVector = FALSE)
+  n7_interface <- jsonlite::read_json(
+    "model_redesign/essential_input_n7_complete_information_benchmark_candidate.json",
+    simplifyVector = FALSE
+  )
 
   dag_issues <- agenda_validate_dag(canonical_dag)
   check("canonical Gate 0 DAG passes the approved generic validator",
@@ -261,6 +265,104 @@ if (!requireNamespace("jsonlite", quietly = TRUE)) {
   }
   check("every derived record contains the complete source/date/transport tuple and exact object",
         length(derived_issues) == 0L)
+
+  expected_n7_dri_cells <- c(
+    "N7-DRI-CELL-II-NU-ZERO", "N7-DRI-CELL-II-NONE", "N7-DRI-CELL-II-HIGH",
+    "N7-DRI-CELL-IX-NU-ZERO", "N7-DRI-CELL-IX-NONE", "N7-DRI-CELL-IX-HIGH",
+    "N7-DRI-CELL-XX-NU-ZERO", "N7-DRI-CELL-XX-NONE", "N7-DRI-CELL-XX-HIGH"
+  )
+  n7_dri_cells <- n7_interface$informational_rent_contrast_cells
+  n7_dri_ids <- vapply(n7_dri_cells, function(cell) cell$cell_id, character(1L))
+  n7_dri_statuses <- vapply(
+    n7_dri_cells, function(cell) cell$existence_status, character(1L)
+  )
+  check("frozen N7 institutional-rent source has exactly the expected 9/6/3 cells",
+        length(n7_dri_ids) == 9L && !anyDuplicated(n7_dri_ids) &&
+          setequal(n7_dri_ids, expected_n7_dri_cells) &&
+          sum(n7_dri_statuses == "exists") == 6L &&
+          sum(n7_dri_statuses == "none") == 3L)
+
+  validate_n7_dri_map <- function(map, source_cells) {
+    issues <- character()
+    required <- c(
+      "cell_id", "existence_status", "contrast_record_id",
+      "certificate_source_cell_id"
+    )
+    if (!is.list(map) || length(map) != 9L) return("map is not a nine-entry list")
+    map_ids <- vapply(map, function(entry) {
+      if (is.null(entry$cell_id)) "" else entry$cell_id
+    }, character(1L))
+    source_ids <- vapply(source_cells, function(cell) cell$cell_id, character(1L))
+    if (anyDuplicated(map_ids) || !setequal(map_ids, source_ids)) {
+      issues <- c(issues, "map cell inventory differs from frozen N7")
+    }
+    source_index <- setNames(source_cells, source_ids)
+    for (entry in map) {
+      missing <- agenda_missing_fields(entry, required)
+      if (length(missing)) {
+        issues <- c(issues, paste("map entry missing", paste(missing, collapse = ",")))
+        next
+      }
+      source_cell <- source_index[[entry$cell_id]]
+      if (is.null(source_cell)) {
+        issues <- c(issues, "map cites unknown N7 cell")
+        next
+      }
+      if (!identical(entry$existence_status, source_cell$existence_status)) {
+        issues <- c(issues, paste(entry$cell_id, "status mismatch"))
+      }
+      records <- source_cell$informational_rent_contrast_records
+      record_ids <- if (length(records)) {
+        vapply(records, function(record) record$contrast_record_id, character(1L))
+      } else {
+        character()
+      }
+      if (identical(source_cell$existence_status, "exists")) {
+        if (length(record_ids) != 1L ||
+            !identical(entry$contrast_record_id, record_ids[[1L]]) ||
+            !is.null(entry$certificate_source_cell_id) ||
+            !is.null(source_cell$nonexistence_certificate)) {
+          issues <- c(issues, paste(entry$cell_id, "does not resolve its unique record"))
+        }
+      } else if (identical(source_cell$existence_status, "none")) {
+        if (length(record_ids) != 0L ||
+            !is.null(entry$contrast_record_id) ||
+            !identical(entry$certificate_source_cell_id, entry$cell_id) ||
+            is.null(source_cell$nonexistence_certificate)) {
+          issues <- c(issues, paste(entry$cell_id, "does not resolve its none certificate"))
+        }
+      } else {
+        issues <- c(issues, paste(entry$cell_id, "has an invalid frozen status"))
+      }
+    }
+    unique(issues)
+  }
+
+  n7_dri_map <- complete_records$institutional_interaction_record$
+    source_ids_and_hashes$N7_contrast_cell_map
+  check("AR institutional interaction resolves all nine N7 cells, records and none certificates",
+        length(validate_n7_dri_map(n7_dri_map, n7_dri_cells)) == 0L)
+
+  bad_id_map <- agenda_clone(n7_dri_map)
+  first_exists <- which(vapply(
+    bad_id_map, function(entry) identical(entry$existence_status, "exists"), logical(1L)
+  ))[[1L]]
+  bad_id_map[[first_exists]]$contrast_record_id <- "N7-DRI-NOT-A-REAL-RECORD"
+  check("negative test rejects an unknown N7 contrast record ID",
+        length(validate_n7_dri_map(bad_id_map, n7_dri_cells)) > 0L)
+
+  bad_none_record_map <- agenda_clone(n7_dri_map)
+  first_none <- which(vapply(
+    bad_none_record_map, function(entry) identical(entry$existence_status, "none"), logical(1L)
+  ))[[1L]]
+  bad_none_record_map[[first_none]]$contrast_record_id <- "N7-DRI-II-NU-ZERO"
+  check("negative test rejects a record ID assigned to an N7 none cell",
+        length(validate_n7_dri_map(bad_none_record_map, n7_dri_cells)) > 0L)
+
+  bad_none_certificate_map <- agenda_clone(n7_dri_map)
+  bad_none_certificate_map[[first_none]]$certificate_source_cell_id <- NULL
+  check("negative test rejects a missing N7 none-certificate reference",
+        length(validate_n7_dri_map(bad_none_certificate_map, n7_dri_cells)) > 0L)
 
   collect_hashes <- function(object) {
     if (is.list(object)) return(unlist(lapply(object, collect_hashes), use.names = FALSE))

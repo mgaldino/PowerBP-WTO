@@ -405,7 +405,62 @@
     "source_ids_and_hashes": {
       "agenda_rent_contrast_id": "AR-DRI-A-UM",
       "agenda_rent_contrast_external_hash": null,
-      "N7_contrast_record_ids": "the applicable frozen N7-DRI record among the nine explicit cells",
+      "N7_contrast_cell_map": [
+        {
+          "cell_id": "N7-DRI-CELL-II-NU-ZERO",
+          "existence_status": "exists",
+          "contrast_record_id": "N7-DRI-II-NU-ZERO",
+          "certificate_source_cell_id": null
+        },
+        {
+          "cell_id": "N7-DRI-CELL-II-NONE",
+          "existence_status": "none",
+          "contrast_record_id": null,
+          "certificate_source_cell_id": "N7-DRI-CELL-II-NONE"
+        },
+        {
+          "cell_id": "N7-DRI-CELL-II-HIGH",
+          "existence_status": "exists",
+          "contrast_record_id": "N7-DRI-II-HIGH",
+          "certificate_source_cell_id": null
+        },
+        {
+          "cell_id": "N7-DRI-CELL-IX-NU-ZERO",
+          "existence_status": "exists",
+          "contrast_record_id": "N7-DRI-IX-NU-ZERO",
+          "certificate_source_cell_id": null
+        },
+        {
+          "cell_id": "N7-DRI-CELL-IX-NONE",
+          "existence_status": "none",
+          "contrast_record_id": null,
+          "certificate_source_cell_id": "N7-DRI-CELL-IX-NONE"
+        },
+        {
+          "cell_id": "N7-DRI-CELL-IX-HIGH",
+          "existence_status": "exists",
+          "contrast_record_id": "N7-DRI-IX-HIGH",
+          "certificate_source_cell_id": null
+        },
+        {
+          "cell_id": "N7-DRI-CELL-XX-NU-ZERO",
+          "existence_status": "exists",
+          "contrast_record_id": "N7-DRI-XX-NU-ZERO",
+          "certificate_source_cell_id": null
+        },
+        {
+          "cell_id": "N7-DRI-CELL-XX-NONE",
+          "existence_status": "none",
+          "contrast_record_id": null,
+          "certificate_source_cell_id": "N7-DRI-CELL-XX-NONE"
+        },
+        {
+          "cell_id": "N7-DRI-CELL-XX-HIGH",
+          "existence_status": "exists",
+          "contrast_record_id": "N7-DRI-XX-HIGH",
+          "certificate_source_cell_id": null
+        }
+      ],
       "N7_interface_sha256": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45"
     },
     "source_binders": "one complete AC/public agenda contrast tuple paired with one complete applicable N7 institutional rent contrast record",

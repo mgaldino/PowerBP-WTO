@@ -37,6 +37,11 @@ PASS | every complete public family is explicitly indexed by public type
 PASS | every complete public family passes the approved generic family validator
 PASS | public collections and cells cite complete known family records
 PASS | every derived record contains the complete source/date/transport tuple and exact object
+PASS | frozen N7 institutional-rent source has exactly the expected 9/6/3 cells
+PASS | AR institutional interaction resolves all nine N7 cells, records and none certificates
+PASS | negative test rejects an unknown N7 contrast record ID
+PASS | negative test rejects a record ID assigned to an N7 none cell
+PASS | negative test rejects a missing N7 none-certificate reference
 PASS | complete records contain only pinned external hashes and no self hash
 PASS | all AR ledger rows pass the approved generic claim validator
 PASS | frozen N7 record exists: N7-PUB-M-R1-T0-INCLUDE
@@ -4371,5 +4376,5 @@ PASS | anonymous majority allocation is invariant N=14
 PASS | named majority coalitions can differ N=15
 PASS | anonymous majority allocation is invariant N=15
 
-SUMMARY | 4367 PASS / 0 FAIL
+SUMMARY | 4372 PASS / 0 FAIL
 LIMIT | Mechanical evidence only; independent formal review remains required.
