@@ -2,7 +2,8 @@
 
 # Mechanical falsification harness for the A_C M/S/B exact-fiber comparison.
 # It checks frozen-source bytes, schemas, diagonal-fiber arithmetic, imported
-# A_U cells, type-first contrasts, envelope identities and the uniform bound.
+# A_U cells, linked type-first contrasts, envelope identities, uniform and
+# low-cell bounds, the necessity counterexample and the parity identity.
 # It does NOT prove source PBE completeness, abstract Borel factorization,
 # setwise lifting over arbitrary correspondences, or universal optimality.
 
@@ -149,9 +150,22 @@ check("principal comparison is on the same exact fiber",
 check("exact binders precede source economic summaries",
       regexpr("J_AC\\^bind", results_text)[[1L]] <
         regexpr("S_M\\^econ", results_text)[[1L]])
-check("cross-world joint law is expressly absent",
+check("cross-world joint law is not induced or identified",
       grepl('"cross_world_joint_law": "not_defined"', interface_text, fixed = TRUE) &&
-        grepl("probabilidade conjunta entre regras", results_text, fixed = TRUE))
+        grepl('"coupling_qualification": "mathematical couplings can be imposed',
+              interface_text, fixed = TRUE) &&
+        grepl("induzem, selecionam nem identificam uma probabilidade", results_text, fixed = TRUE) &&
+        !grepl("existe lei conjunta cross-world", contract_text, fixed = TRUE))
+check("ex-ante values are explicitly defined before scalar envelopes",
+      grepl("V_g^E(R_g)=(1-nu)*V_g^0(R_g)+nu*V_g^1(R_g)",
+            results_text, fixed = TRUE) &&
+        regexpr("V_g^E(R_g)=", results_text, fixed = TRUE)[[1L]] <
+          regexpr("M_r={V_M^r", results_text, fixed = TRUE)[[1L]])
+check("ex-ante contrast is the linked affine image of D_01",
+      grepl("D_E(d,eta)", results_text, fixed = TRUE) &&
+        grepl('"ex_ante_contrast_image": "D_E={(1-nu)*x_0+nu*x_1:',
+              interface_text, fixed = TRUE) &&
+        grepl("coincide com a soma de Minkowski", results_text, fixed = TRUE))
 check("AC applies zero new beta factors",
       grepl('"new_beta_applications": 0', interface_text, fixed = TRUE) &&
         grepl("zero fatores novos de `beta`", results_text, fixed = TRUE))
@@ -233,6 +247,7 @@ for (row_id in seq_len(nrow(parameter_rows))) {
   u_min <- max(z_L, d_H)
   Z_E <- 1 - k * beta / m
   gap <- Z_E - z_H
+  low_gap <- Z_E - z_L
   prefix <- sprintf("grid[%d]:N=%d,beta=%.2f,o=(%.2f,%.2f)",
                     row_id, N, beta, o_0, o_1)
 
@@ -241,8 +256,26 @@ for (row_id in seq_len(nrow(parameter_rows))) {
         z_H > z_L && z_H > d_H && z_H > u_min - 1e-12)
   check(paste(prefix, "T5 algebraic identity"),
         close_num(gap, beta * (c_excluded / m - beta * o_1)))
+  majority_grid <- c(Z_E, (Z_E + 1) / 2, 1)
+  unanimity_grid <- c(u_min, (u_min + z_H) / 2, z_H)
+  pairwise_margins <- as.vector(outer(majority_grid, unanimity_grid, "-"))
+  check(paste(prefix, "T5 uniform margin holds on the bound-admissible payoff grid"),
+        min(pairwise_margins) >= gap - 1e-12 && close_num(min(pairwise_margins), gap))
   check(paste(prefix, "T5 sign equivalence"),
         identical(sign(gap), sign(c_excluded / m - beta * o_1)))
+  check(paste(prefix, "low-cell margin identity"),
+        close_num(low_gap, beta * (c_excluded / m - beta * o_0)))
+  if (beta * o_0 < c_excluded / m - 1e-12) {
+    check(paste(prefix, "strict low-cell region has Z_E above z_L"),
+          Z_E > z_L)
+  }
+  expected_fraction <- if (N %% 2L == 1L) {
+    1 / 2
+  } else {
+    (N - 2) / (2 * (N - 1))
+  }
+  check(paste(prefix, "parity identity for c/m"),
+        close_num(c_excluded / m, expected_fraction))
   if (beta * o_1 < c_excluded / m - 1e-12) {
     check(paste(prefix, "strict T5 region has Z_E above all U values"),
           Z_E > z_H && z_H >= u_min)
@@ -316,6 +349,50 @@ check("coupled type vectors produce exactly two contrast vectors",
       nrow(unique(exact_differences)) == 2L)
 check("marginal splicing fabricates a vector outside the exact set",
       !any(apply(exact_differences, 1L, function(x) close_num(x, spliced_difference))))
+
+nu_link <- 0.3
+linked_ex_ante <- apply(exact_differences, 1L, function(x) {
+  (1 - nu_link) * x[[1L]] + nu_link * x[[2L]]
+})
+independent_ex_ante <- as.vector(outer(
+  (1 - nu_link) * exact_differences[, 1L],
+  nu_link * exact_differences[, 2L],
+  "+"
+))
+check("linked D_E image uses complete contrast vectors",
+      length(unique(linked_ex_ante)) == 2L)
+check("independent marginal recombination can fabricate ex-ante contrasts",
+      any(!vapply(independent_ex_ante, function(x) {
+        any(vapply(linked_ex_ante, function(y) close_num(x, y), logical(1L)))
+      }, logical(1L))))
+
+N <- 5
+m <- 4
+k <- 2
+c_excluded <- 2
+beta <- 0.9
+o_0 <- 0.5
+o_1 <- 0.6
+y_bar <- 0.8
+nu <- 0
+Z_E <- 1 - k * beta / m
+z_L <- 1 - beta + beta^2 * o_0
+d_H <- beta^2 * o_1
+check("necessity counterexample satisfies primitive domain",
+      N >= 3 && 0 < beta && beta < 1 && 0 < o_0 && o_0 < o_1 &&
+        o_1 <= y_bar && y_bar <= 1 && nu == 0)
+check("necessity counterexample lies outside strict T5",
+      beta * o_1 > c_excluded / m)
+check("necessity counterexample has strict majority bound for both endpoint types",
+      close_num(Z_E, 0.55) && close_num(z_L, 0.505) &&
+        close_num(d_H, 0.486) && Z_E > max(z_L, d_H))
+
+check("results state T5 is sufficient rather than necessary",
+      grepl("contraexemplo", results_text, fixed = TRUE) &&
+        grepl("necessidade,", results_text, fixed = TRUE))
+check("results state the odd-even parity formulas",
+      grepl("c/m = 1/2", results_text, fixed = TRUE) &&
+        grepl("c/m = (N-2)/(2*(N-1))", results_text, fixed = TRUE))
 
 cat("\n")
 cat(sprintf("MECHANICAL RESULT: %s | %d PASS | %d FAIL\n",

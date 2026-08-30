@@ -40,7 +40,7 @@ O nó forma pares compatíveis de assessments completos e calcula imagens compar
 | Novas crenças | nenhuma |
 | Novo conceito de solução | nenhum; herda PBE + as-if-pivotal + `T^Y` + M/S/B de cada fonte |
 | Seleção cross-rule | nenhuma |
-| Acoplamento probabilístico cross-world | inexistente e não presumido |
+| Acoplamento probabilístico cross-world | nenhum é induzido, identificado ou presumido pelo modelo |
 | Data dos valores | `A` em ambas as fontes |
 | Novo desconto | nenhum |
 
@@ -166,7 +166,13 @@ C_econ(R_M,R_U)
    (Gamma_bar_U^0,Gamma_bar_U^1)).
 ```
 
-As leis das duas instituições aparecem como par ordenado. Não existe lei conjunta cross-world.
+As leis das duas instituições aparecem como par ordenado. O game form e `A_C`
+não induzem, selecionam nem identificam uma lei conjunta cross-world. É
+matematicamente possível impor um acoplamento — por exemplo, o produto
+independente —, mas qualquer escolha desse tipo acrescentaria uma convenção
+cross-world ausente das primitivas. Sem essa convenção, não são identificadas
+correlações, probabilidades de eventos conjuntos ou leis de diferenças
+realização a realização.
 
 `A_C` não introduz função de bem-estar, ordem estocástica ou ranking escalar dos payoffs fracos. Ele preserva suas leis anônimas dentro de `Gamma_bar_g^theta`.
 

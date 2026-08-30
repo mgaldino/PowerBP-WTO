@@ -89,16 +89,23 @@ Gamma_bar_g^theta = lei anônima do registro realizado,
 theta in {0,1}.
 ```
 
-Defina
+Defina primeiro a coordenada ex ante derivada do vetor ligado do mesmo binder:
+
+```text
+V_g^E(R_g)=(1-nu)*V_g^0(R_g)+nu*V_g^1(R_g),
+g in {M,U}.
+```
+
+Então,
 
 ```text
 delta_theta=V_U^theta-V_M^theta,
-delta_E=(1-nu)*delta_0+nu*delta_1,
+delta_E=V_U^E-V_M^E=(1-nu)*delta_0+nu*delta_1,
 Delta_A^theta=A_U^theta-A_M^theta,
 Delta_D^theta=-Delta_A^theta.
 ```
 
-O conjunto conjunto primário é
+O conjunto primário é
 
 ```text
 K_AC^bind(d,eta)
@@ -309,6 +316,18 @@ D_01(d,eta)
 
 Essa igualdade é consequência do produto fibrado, não um produto de marginais por tipo. Em particular, não se forma `proj_0(V_g^01) times proj_1(V_g^01)`.
 
+A imagem ex ante é aplicada ao vetor ligado inteiro:
+
+```text
+D_E(d,eta)
+ ={(1-nu)*x_0+nu*x_1:(x_0,x_1) in D_01(d,eta)}.
+```
+
+Em geral, essa imagem não coincide com a soma de Minkowski construída a partir
+de escolhas independentes nas projeções marginais,
+`(1-nu)D_0+nu D_1`. Essa última operação pode recombinar contrastes de binders
+distintos e criar valores inexistentes.
+
 Para `r in {0,1,E}`, defina
 
 ```text
@@ -344,7 +363,7 @@ Em todas as células, outcomes e leis de acordo podem variar mesmo quando o payo
 
 ## 9. Envelopes derivados
 
-Para uma coordenada escalar `r`, ponha
+Para `r in {0,1,E}`, usando a definição de `V_g^E` da Seção 3, ponha
 
 ```text
 M_r={V_M^r(R_M):R_M in B_M(d,eta)},
@@ -399,6 +418,18 @@ V_U^theta<=z_H=1-beta+beta^2*o_1.
 
 **Teorema AC-MSB-T5 — condição suficiente uniforme.**
 
+Suponha
+
+```text
+J_AC^bind(d,eta) != empty.
+```
+
+Defina a margem garantida
+
+```text
+g_T5=beta*(c/m-beta*o_1).
+```
+
 Se
 
 ```text
@@ -406,15 +437,15 @@ beta*o_1 < c/m,
 c=m-k,
 ```
 
-então, em todo par comparável e para os dois tipos,
+então `g_T5>0` e, em todo par comparável e para os dois tipos,
 
 ```text
-V_M^theta>V_U^theta,
-delta_theta<0,
-delta_E<0.
+V_M^theta-V_U^theta>=g_T5>0,
+delta_theta<=-g_T5<0,
+delta_E<=-g_T5<0.
 ```
 
-Se `beta*o_1=c/m`, maioria é fracamente superior para os dois tipos e ex ante.
+Se `beta*o_1=c/m`, então `g_T5=0` e maioria é fracamente superior para os dois tipos e ex ante.
 
 **Prova.**
 
@@ -430,6 +461,108 @@ Sob desigualdade estrita, `V_M^theta>=Z_E>z_H>=V_U^theta`. Na igualdade, substit
 Intuição: maioria permite excluir `c` Estados fracos e comprar apenas uma coalizão mínima; quando o maior custo de continuação de unanimidade, `beta*o_1`, é menor que a fração excluível `c/m`, até o melhor payoff possível sob unanimidade fica abaixo da proposta segura disponível sob maioria.
 
 T5 é suficiente, não necessário. Fora dessa região, o ranking exato permanece o operador de sinais da Seção 7. Os bounds congelados, sozinhos, não autorizam selecionar um equilíbrio de maioria nem afirmar vantagem universal da unanimidade.
+
+### 10.1 Corolário de célula baixa
+
+**Corolário AC-MSB-C2 — certificado local com `o_0`.**
+
+Suponha `J_AC^bind(d,eta) != empty` e defina
+
+```text
+g_0=beta*(c/m-beta*o_0).
+```
+
+Em qualquer célula baixa interior existente,
+
+```text
+0<nu<=nu_star,
+nu_off=0,
+Delta_U>=0,
+```
+
+vale `V_U^0=V_U^1=z_L`. Se `beta*o_0<c/m`, então, para os dois tipos e ex ante,
+
+```text
+V_M^theta-V_U^theta>=g_0>0,
+delta_theta<=-g_0<0,
+delta_E<=-g_0<0.
+```
+
+No endpoint `nu=0`, a mesma condição garante a vantagem ex ante
+
+```text
+V_M^E-V_U^E>=g_0>0,
+delta_E<=-g_0<0.
+```
+
+Ela não afirma dominância do tipo alto contrafactual no endpoint sem usar o
+vetor específico dessa célula.
+
+**Prova.** Na célula baixa interior existente, a partição da Seção 5 dá
+`V_U^theta=z_L` para ambos os tipos. Como `V_M^theta>=Z_E`,
+
+```text
+V_M^theta-V_U^theta
+ >=Z_E-z_L
+ =1-k*beta/m-[1-beta+beta^2*o_0]
+ =beta*(c/m-beta*o_0)
+ =g_0.
+```
+
+A média ex ante preserva a mesma margem. Em `nu=0`, `V_U^E=z_L` e
+`V_M^E=V_M^0>=Z_E`, produzindo a desigualdade ex ante. QED.
+
+Como `o_0<o_1`, o certificado local é estritamente menos exigente que T5. Ele
+explicita por que a condição global de T5 não é necessária.
+
+### 10.2 Contraexemplo à necessidade de T5
+
+**Exemplo AC-MSB-E1.** Tome
+
+```text
+N=5, m=4, k=2, c=2,
+beta=0.9, o_0=0.5, o_1=0.6, y_bar=0.8,
+nu=0.
+```
+
+As primitivas são admissíveis e `c/m=0.5`, enquanto
+`beta*o_1=0.54>0.5`; portanto T5 não se aplica. Contudo,
+
+```text
+Z_E=0.55,
+z_L=1-0.9+0.9^2*0.5=0.505,
+d_H=0.9^2*0.6=0.486.
+```
+
+No endpoint baixo,
+
+```text
+(V_U^0,V_U^1)=(z_L,max{z_L,d_H})=(0.505,0.505).
+```
+
+A fibra de `A_M` existe no endpoint e todo binder de maioria satisfaz
+`V_M^theta>=Z_E=0.55`. Logo maioria domina estritamente ambos os tipos e ex
+ante, embora a condição de T5 falhe. Esse é um contraexemplo à necessidade, não
+à suficiência, de T5.
+
+### 10.3 Paridade da fração excluível
+
+**Corolário AC-MSB-C3 — forma fechada de `c/m`.** Como
+`m=N-1`, `k=floor(N/2)` e `c=m-k`,
+
+```text
+c/m = 1/2                         se N é ímpar,
+c/m = (N-2)/(2*(N-1))             se N é par.
+```
+
+**Prova.** Se `N=2h+1`, então `m=2h`, `k=h` e `c=h`. Se
+`N=2h`, então `m=2h-1`, `k=h` e `c=h-1`. Substituir em `c/m`
+produz as duas expressões. QED.
+
+Assim, com número ímpar de Estados, T5 reduz a `beta*o_1<1/2`. Com número par,
+o limiar é estritamente inferior a `1/2`, mas converge a `1/2` quando `N`
+cresce. A diferença vem da fração de Estados fracos que uma coalizão mínima de
+maioria pode excluir.
 
 ## 11. Acordo, atraso e outcomes
 
@@ -449,7 +582,12 @@ O_AC(d,eta)
     (R_M,R_U) in J_AC^bind(d,eta)}.
 ```
 
-Não se define uma probabilidade conjunta entre regras. Sem função de bem-estar ou ordem sobre distribuições autorizada, `A_C` não converte `O_AC` em ranking adicional.
+O game form e `A_C` não induzem, selecionam nem identificam uma probabilidade
+conjunta entre regras. `O_AC` preserva um par ordenado de leis marginais, não
+uma distribuição model-implied sobre pares de realizações. Embora seja possível
+impor um acoplamento matemático, fazê-lo acrescentaria uma convenção cross-world
+ausente das primitivas. Sem função de bem-estar ou ordem sobre distribuições
+autorizada, `A_C` não converte `O_AC` em ranking adicional.
 
 ## 12. Limites e invalidação
 
@@ -461,14 +599,20 @@ O resultado prova:
 - fórmulas de contraste por tipo e ex ante;
 - classificação exata de dominância por conjuntos de sinais;
 - envelopes posteriores ao conjunto exato;
-- T5 como condição suficiente uniforme de vantagem de maioria.
+- T5 como condição suficiente uniforme de vantagem de maioria, com margem
+  quantitativa explícita;
+- um certificado menos restritivo nas células baixas e no payoff ex ante do
+  endpoint baixo;
+- um contraexemplo construtivo à necessidade de T5; e
+- a forma fechada da fração excluível `c/m` segundo a paridade de `N`.
 
 Ele não prova:
 
 - extremos fechados da correspondência geral de `A_M`;
 - uma seleção normativa entre equilíbrios;
 - uma ordem de bem-estar sobre os Estados fracos;
-- acoplamento de realizações entre instituições;
+- um acoplamento induzido, selecionado ou identificado de realizações entre
+  instituições;
 - suficiência de `Sum_econ` para operações off-path ou de identidade formal;
 - qualquer benchmark público de `A_R`.
 

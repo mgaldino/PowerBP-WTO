@@ -85,7 +85,7 @@
     "no_cross_world_restriction": "proposals, named coalitions, supports, continuation selections and random realizations need not coincide; the model supplies no cross-world correlation device",
     "exact_signature_image": "J_AC^ex={(Sig_ex_M(R_M),Sig_ex_U(R_U)):(R_M,R_U) in J_AC^bind}"
   },
-  "declared_economic_operation": {
+    "declared_economic_operation": {
     "source_coordinates": [
       "V_M^0",
       "V_M^1",
@@ -99,11 +99,15 @@
       "Gamma_bar_M^1",
       "Gamma_bar_U^0",
       "Gamma_bar_U^1"
-    ],
-    "contrasts": {
-      "delta_0": "V_U^0-V_M^0",
-      "delta_1": "V_U^1-V_M^1",
-      "delta_E": "(1-nu)*delta_0+nu*delta_1",
+      ],
+      "derived_ex_ante_values": {
+        "V_M^E": "(1-nu)*V_M^0+nu*V_M^1 from one complete A_M binder",
+        "V_U^E": "(1-nu)*V_U^0+nu*V_U^1 from one complete A_U binder"
+      },
+      "contrasts": {
+        "delta_0": "V_U^0-V_M^0",
+        "delta_1": "V_U^1-V_M^1",
+        "delta_E": "V_U^E-V_M^E=(1-nu)*delta_0+nu*delta_1",
       "Delta_A_theta": "A_U^theta-A_M^theta",
       "Delta_D_theta": "-Delta_A_theta"
     },
@@ -165,26 +169,32 @@
       "payoff_vector": "(z_H,z_H)"
     }
   ],
-  "comparison_correspondence": {
+    "comparison_correspondence": {
     "existence": "J_AC^bind(d,eta) is nonempty iff both B_M(d,eta) and B_U(d,eta) are nonempty",
     "none_rule": "an empty comparison has status none and no numeric sentinel",
-    "vector_contrast_set": "D_01=V_U^01-V_M^01 using complete coupled type vectors, never products of type marginals",
+      "vector_contrast_set": "D_01=V_U^01-V_M^01 using complete coupled type vectors, never products of type marginals",
+      "ex_ante_contrast_image": "D_E={(1-nu)*x_0+nu*x_1:(x_0,x_1) in D_01}; it is generally not the independently recombined Minkowski sum (1-nu)D_0+nu D_1",
     "scalar_sets": "D_r={delta_r:r in {0,1,E}} and S_r={sign(x):x in D_r}",
     "envelopes": "inf D_r=inf U_r-sup M_r and sup D_r=sup U_r-inf M_r, only after the exact set",
     "selection_note": "in the high-prior rho=0 cell, U payoffs range over a nondegenerate interval; values are selection-dependent even when a sign is robust"
   },
-  "selection_free_certificate": {
+    "selection_free_certificate": {
     "majority_lower_bound": "V_M^theta>=Z_E=1-k*beta/m",
     "unanimity_upper_bound": "V_U^theta<=z_H=1-beta+beta^2*o_1",
-    "identity": "Z_E-z_H=beta*(c/m-beta*o_1)",
-    "strict_condition": "beta*o_1<c/m implies delta_0<0, delta_1<0 and delta_E<0 in every comparable pair",
-    "weak_condition": "beta*o_1=c/m implies weak majority dominance",
-    "scope": "sufficient, not necessary"
-  },
-  "outcome_scope": {
-    "object": "ordered pairs of anonymous type-conditioned realized-record laws",
-    "welfare_order": "not_authorized",
-    "joint_probability_between_rules": "not_defined"
+      "identity": "Z_E-z_H=beta*(c/m-beta*o_1)",
+      "strict_condition": "in a nonempty common fiber, beta*o_1<c/m implies V_M^theta-V_U^theta>=g_T5=beta*(c/m-beta*o_1)>0 and delta_E<=-g_T5 in every comparable pair",
+      "weak_condition": "beta*o_1=c/m implies weak majority dominance",
+      "low_cell_certificate": "in a nonempty low-prior interior cell with nu_off=0 and Delta_U>=0, beta*o_0<c/m implies V_M^theta-V_U^theta>=g_0=beta*(c/m-beta*o_0)>0 for both types and ex ante",
+      "nu_zero_certificate": "at nu=0, beta*o_0<c/m implies the ex-ante margin V_M^E-V_U^E>=g_0>0; it does not by itself claim high-type counterfactual dominance",
+      "necessity_counterexample": "N=5,m=4,k=2,c=2,beta=0.9,o_0=0.5,o_1=0.6,y_bar=0.8,nu=0 has beta*o_1=0.54>c/m=0.5 but Z_E=0.55>max(z_L,d_H)=0.505",
+      "parity": "c/m=1/2 for odd N and (N-2)/(2*(N-1)) for even N",
+      "scope": "T5 is sufficient, not necessary; the low-cell certificate is local and the nu=0 statement is ex ante"
+    },
+    "outcome_scope": {
+      "object": "ordered pairs of anonymous type-conditioned realized-record laws",
+      "welfare_order": "not_authorized",
+      "joint_probability_between_rules": "not_defined",
+      "coupling_qualification": "mathematical couplings can be imposed, but no coupling is induced, selected or identified by the game form or AC"
   },
   "proof_paths": [
     "model_redesign/agenda_extension_AC_msb_contract.md",
