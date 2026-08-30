@@ -37,6 +37,8 @@ P <- 1 - (q - 2) * w - t1
 D <- w
 nu_SE <- beta * (1 / m - o0) /
   (beta * (1 / m - o0) + 1 - beta * q / m)
+nu_SP <- beta * (o1 - o0) /
+  (1 - beta * o0 - beta * (q - 1) / m)
 
 check_equal(w, 0.225, "weak continuation price")
 check_equal(t0, 0.09, "low threshold")
@@ -49,6 +51,9 @@ check_equal(D, 0.225, "delay payoff")
 check_equal(nu_SE, 0.135 / 0.46, "screening-exclusion cutoff")
 check_equal((1 - nu_SE) * L + nu_SE * w, E,
             "screening and exclusion tie at nu_SE")
+check_equal(nu_SP, 0.225 / 0.46, "screening-pooling algebra")
+check_equal((1 - nu_SP) * L + nu_SP * w, P,
+            "screening and pooling tie at nu_SP")
 
 # Public benchmark: buying H replaces exactly one weak vote.
 for (m_i in 3:20) {
@@ -83,10 +88,27 @@ check_equal(RI_M, c(0.01, 0), "majority informational rent")
 check_equal(RI_U, c(0.225, 0), "unanimity informational rent")
 check_equal(Delta_RI, c(0.215, 0), "difference of differences")
 
-# One shared lambda must bind both coordinates of a segment.
-vE <- c(0.10, 0.35)
-vP <- c(0.315, 0.315)
-cvec <- c(0.09, 0.315)
+# One shared lambda must bind both coordinates of an attainable residual
+# segment. These parameters satisfy o1 = 1/m and the residual tie condition.
+segment_o0 <- 0.10
+segment_o1 <- 0.25
+segment_nu <- 5 / 6
+segment_nu_star <- (segment_o1 - segment_o0) / (1 - segment_o0)
+vE <- c(segment_o0, segment_o1)
+vP <- c(beta * segment_o1, beta * segment_o1)
+cvec <- c(beta * segment_o0, beta * segment_o1)
+
+check_equal(segment_o1, 1 / m, "residual segment boundary")
+check_equal(segment_nu_star, 1 / 6, "residual example terminal cutoff")
+check_true(segment_nu > segment_nu_star,
+           "residual example lies above terminal cutoff")
+check_equal(
+  (1 - segment_nu) * segment_o0 + segment_nu * segment_o1,
+  beta * segment_o1,
+  "residual proposal tie condition"
+)
+check_equal(vE - cvec, c(0.01, 0.025), "residual exclusion endpoint")
+check_equal(vP - cvec, c(0.135, 0), "residual pooling endpoint")
 for (lambda in seq(0, 1, by = 0.01)) {
   lhs <- lambda * vE + (1 - lambda) * vP - cvec
   rhs <- lambda * (vE - cvec) + (1 - lambda) * (vP - cvec)

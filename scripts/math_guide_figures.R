@@ -29,7 +29,7 @@ plot_terminal_cutoff <- function(o0 = 0.10, o1 = 0.35) {
   )
 }
 
-plot_linked_segment <- function(a0 = 0.01, a1 = 0.035, d = 0.225) {
+plot_linked_segment <- function(a0 = 0.01, a1 = 0.025, d = 0.135) {
   stopifnot(a0 >= 0, a1 >= 0, d >= 0)
 
   endpoint_exclusion <- c(a0, a1)
@@ -65,7 +65,7 @@ plot_linked_segment <- function(a0 = 0.01, a1 = 0.035, d = 0.225) {
   )
   text(
     endpoint_exclusion[1], endpoint_exclusion[2],
-    labels = "Exclusao", pos = 4, cex = 0.86
+    labels = "Exclus\u00e3o", pos = 4, cex = 0.86
   )
   text(
     endpoint_pooling[1], endpoint_pooling[2],
@@ -73,7 +73,7 @@ plot_linked_segment <- function(a0 = 0.01, a1 = 0.035, d = 0.225) {
   )
   legend(
     "topright",
-    legend = c("Segmento atingivel", "Retangulo dos envelopes"),
+    legend = c("Segmento ating\u00edvel", "Ret\u00e2ngulo dos envelopes"),
     col = c("#1f4e79", "#999999"),
     lty = c(1, 3), lwd = c(3, 1), bty = "n", cex = 0.84
   )

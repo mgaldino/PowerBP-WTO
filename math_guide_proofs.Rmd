@@ -11,7 +11,7 @@ output:
     number_sections: true
 header-includes:
   - \usepackage{amsmath,amssymb,amsthm}
-  - \usepackage{booktabs,longtable,array}
+  - \usepackage{booktabs,longtable,array,float}
   - \usepackage{hyperref}
   - \newtheorem{theorem}{Teorema}[section]
   - \newtheorem{definition}[theorem]{Definição}
@@ -64,10 +64,10 @@ dificuldade não está em teoremas avançados, mas em cinco disciplinas:
 
 | Etapa | Foco | Meta de domínio |
 |---|---|---|
-| 1 | Seções 1 e 2 | Reconstruir o timing e transportar corretamente valores de R2 para R1. |
-| 2 | Seções 3 e 4 | Derivar os cutoffs e a correspondência de maioria sem consultar o paper. |
-| 3 | Seção 5 | Reproduzir a prova de inexistência em unanimidade perfil por perfil. |
-| 4 | Seção 6 | Calcular \(RI_M\), \(RI_U\) e \(\Delta RI\) preservando conjuntos exatos. |
+| 1 | Seções 3 e 4 | Reconstruir o timing e transportar corretamente valores de R2 para R1; depois dominar crenças e votos. |
+| 2 | Seções 5 e 6 | Derivar os cutoffs e a correspondência de maioria sem consultar o paper. |
+| 3 | Seção 7 | Reproduzir a prova de inexistência em unanimidade perfil por perfil. |
+| 4 | Seção 8 | Calcular \(RI_M\), \(RI_U\) e \(\Delta RI\) preservando conjuntos exatos. |
 | 5 | Exercícios e soluções | Resolver primeiro sem olhar a solução; depois explicar cada erro em voz alta. |
 
 Table: Roteiro de estudo em cinco etapas.
@@ -108,13 +108,22 @@ rodada. Um pacote é
 
 \[
 s=(y,(x_j)_{j\neq i},r_i),
-\qquad
-y+\sum_{j\neq i}x_j+r_i\leq1.
+\qquad 0\leq y\leq\bar y,\quad x_j\geq0,\quad r_i\geq0,
+\quad y+\sum_{j\neq i}x_j+r_i\leq1.
 \]
 
 Aqui \(y\) é a concessão a \(H\), \(x_j\) é o pagamento ao weak responder
-\(j\) e \(r_i\) é o residual do proponente. Os objetos derivados mais usados
-são
+\(j\), \(r_i\) é o residual do proponente e
+\(o_1\leq\bar y\leq1\). Se a proposta passa, o proponente recebe \(r_i\),
+cada weak responder recebe \(x_j\), e \(H\) recebe \(y\) se votou sim ou
+\(y+o_\theta\) se votou não. Se a quota não é atingida em R1, todos seguem
+para R2 e a continuação é multiplicada por \(\beta\). Se a quota não é
+atingida na rodada terminal, weak states recebem zero e \(H\) recebe
+\(o_\theta\). A ramificação \(y+o_\theta\) completa a árvore; em uma exclusão
+ótima, o proponente move qualquer \(y>0\) para seu residual e, portanto, fixa
+\(y=0\).
+
+Os objetos derivados mais usados são
 
 \[
 w=\frac{\beta}{m},\qquad
@@ -136,7 +145,7 @@ Os vetores de payoff de \(H\) são sempre ordenados como tipo baixo/tipo alto.
 
 \small
 \begin{longtable}{p{0.23\textwidth}p{0.29\textwidth}p{0.38\textwidth}}
-\caption{Mapa completo dos resultados formais para as ferramentas matemáticas.}\\
+\caption{Mapa dos resultados formais e apêndices para as ferramentas matemáticas.}\\
 \toprule
 Resultado & Ferramenta & Função na prova \\
 \midrule
@@ -155,6 +164,9 @@ Proposição 7: diferença de diferenças & Álgebra de conjuntos, imagens afins
 Apêndice C.1: equivalência nos endpoints & Suporte de distribuições degeneradas & Mostra que \(\nu=0\) e \(\nu=1\) são jogos literais de informação completa, não limites laterais. \\
 Apêndice C.2: conjuntos exatos & Segmentos afins e envelopes marginais & Impede transformar uma linha atingível em um retângulo não atingível. \\
 Apêndice C.3: valores trabalhados & Substituição numérica e auditoria de unidades & Reproduz cutoffs, vetores privados, benchmarks e rendas na ilustração. \\
+Apêndice A.1: transições e payoffs & Árvore extensiva completa e dominância local & Define também as ações fora do caminho e mostra por que toda exclusão ótima fixa \(y=0\). \\
+Apêndice A.2: crenças e votos & Bayes, consistência estrutural, suporte e comparação pivotal & Fecha o conceito de solução usado em cada history, inclusive quando o denominador de Bayes é zero. \\
+Apêndice D: notação & Análise dimensional e dicionário de símbolos & Permite auditar se thresholds, continuações, desacordos e diferenças estão na mesma data. \\
 \bottomrule
 \end{longtable}
 \normalsize
@@ -278,9 +290,14 @@ não determina a crença porque a fórmula tem denominador zero.
 Um assessment contém estratégias para todo information set e um sistema de
 crenças. Ele é um PBE quando cada ação prescrita maximiza o payoff esperado em
 seu information set e as crenças seguem Bayes onde a atualização é definida.
-O paper acrescenta estratégias puras no ballot, no-signaling-what-you-don't-
-know, preservação do suporte nos endpoints, comparação as-if-pivotal para weak
-responders e \(T^Y\) na igualdade esperada exata.
+O paper acrescenta estratégias puras no ballot,
+no-signaling-what-you-don't-know, consistência estrutural, preservação do
+suporte nos endpoints,
+comparação as-if-pivotal para weak responders e \(T^Y\) na igualdade esperada
+exata. Consistência estrutural exige que histories que codificam exatamente a
+mesma informação recebam a mesma crença; portanto, um denominador zero não
+autoriza escolher posteriors incompatíveis em representações equivalentes da
+mesma história informacional.
 \end{definition}
 
 \textit{Intuição.} Um equilíbrio não descreve apenas o que acontece no
@@ -414,7 +431,22 @@ S(\nu)-E=(1-\nu)\beta(1/m-o_0)
 \]
 
 A primeira não depende de \(\nu\). A segunda é afim e produz \(\nu_{SE}\).
-Comparar screening com pooling produz \(\nu_{SP}\).
+Comparar screening com pooling produz \(\nu_{SP}\). Com efeito,
+
+\[
+S(\nu)=P
+\quad\Longleftrightarrow\quad
+L-P=\nu(L-w),
+\]
+
+e, quando \(o_1<1/m\),
+
+\[
+\nu_{SP}
+=\frac{L-P}{L-w}
+=\frac{\beta(o_1-o_0)}
+{1-\beta o_0-\beta(q-1)/m}.
+\]
 
 ## Cutoffs, igualdade e seleção
 
@@ -439,7 +471,9 @@ o sinal de \(k=\beta o_1-o_0\) depende dos parâmetros.
 3. Para \(o_0=0.10\) e \(o_1=0.35\), calcule \(\nu^*\) e determine a oferta
    terminal ótima em \(\nu=0.20\) e \(\nu=0.35\).
 4. Derive \(\nu_{SE}\) resolvendo \(S(\nu)=E\).
-5. Prove que \(k\) pode ter qualquer sinal e dê um exemplo numérico de cada
+5. Derive \(\nu_{SP}\) resolvendo \(S(\nu)=P\), e explique por que esse
+   cutoff é usado na célula \(o_1<1/m\).
+6. Prove que \(k\) pode ter qualquer sinal e dê um exemplo numérico de cada
    caso mantendo \(0<o_0<o_1<1\) e \(0<\beta<1\).
 
 Soluções na Seção \ref{sol:cutoffs}.
@@ -496,10 +530,21 @@ As comparações têm uma ordem eficiente:
 2. \(S(\nu)-E\) decide entre screening e exclusão;
 3. quando pooling é competitivo, \(S(\nu)-P\) decide o cutoff final.
 
-Isso produz as cinco células da Proposição 3. As fronteiras
-\(o_0=1/m\) e \(o_1=1/m\) precisam ser tratadas separadamente porque uma
-desigualdade estrita vira igualdade. No caso \(o_1=1/m\), exclusão e pooling
-podem gerar um segmento de propostas maximizadoras, não apenas dois pontos.
+Isso produz exatamente as cinco células da Proposição 3:
+
+1. se \(o_1<1/m\), screening para \(\nu\leq\nu_{SP}\) e pooling acima;
+2. se \(o_0<1/m<o_1\), screening para \(\nu\leq\nu_{SE}\) e exclusão acima;
+3. se \(1/m<o_0<o_1\), exclusão para toda crença;
+4. se \(o_0=1/m<o_1\), screening apenas em \(\nu=0\) e exclusão em
+   \(\nu>0\);
+5. se \(o_0<o_1=1/m\), screening até \(\nu_{SE}\). Acima do cutoff,
+   exclusão é selecionada quando
+   \((1-\nu)o_0+\nu o_1<\beta o_1\), pooling quando a desigualdade se
+   inverte, e o segmento inteiro entre as duas propostas quando há igualdade.
+
+As fronteiras precisam ser tratadas separadamente porque uma desigualdade
+estrita vira igualdade. No quinto caso, o segmento residual é multiplicidade
+genuína, mas só existe na igualdade indicada.
 
 ## Factibilidade e uso integral da pie
 
@@ -567,7 +612,9 @@ r_i=1-\ell-(m-1)A.
 Cada weak responder recebe o maior valor de continuação possível e, portanto,
 vota sim. Resta verificar as quatro respostas puras de \(H\):
 
-\begin{center}
+\begin{table}[H]
+\centering
+\caption{Exaustão dos perfis puros de voto de \(H\) depois de \(s^\dagger\)}
 \begin{tabular}{p{0.16\textwidth}p{0.70\textwidth}}
 \toprule
 Perfil baixo/alto & Razão da falha \\
@@ -578,7 +625,7 @@ Perfil baixo/alto & Razão da falha \\
 \((N,Y)\) & O tipo alto imita o não prescrito ao tipo baixo e obtém \(h\); o não do tipo baixo também não pode ser estritamente sustentado na oferta \(\ell\). \\
 \bottomrule
 \end{tabular}
-\end{center}
+\end{table}
 
 Nenhum perfil sobrevive. Como \(s^\dagger\) é factível, não há PBE em
 estratégias puras de ballot nessa célula.
@@ -594,12 +641,44 @@ correspondência pode ser descontínua.
 Acima de \(\nu^*\), a continuação terminal já é pooling. A proposta de R1 paga
 
 \[
-h=\beta o_1,qquad
+h=\beta o_1,\qquad
 B=\frac{\beta(1-o_1)}{m}
 \]
 
 a \(H\) e a cada weak responder relevante. O acordo imediato supera delay por
 \(1-\beta>0\).
+
+## Como completar as respostas nos domínios de existência
+
+Existência não se prova apenas exibindo a proposta on-path. É preciso completar
+uma resposta pura depois de toda proposta factível. Escreva
+\(u=\min_j x_j\). Em \(\nu=0\), o suporte fixa o posterior em zero e as
+respostas de \(H\), ordenadas baixo/alto, dividem todas as propostas em casos
+disjuntos e exaustivos:
+
+- \((Y,Y)\) se \(u<A\), ou se \(u\geq A\) e \(y\geq h\);
+- \((N,N)\) se \(u\geq A\) e \(y<\ell\);
+- \((Y,N)\) se \(u\geq A\) e \(\ell\leq y<h\);
+- \((N,Y)\) nunca é racional.
+
+Para \(\nu^*<\nu<1\), \((Y,Y)\) é racional se \(u<B\), ou se
+\(u\geq B\) e \(y\geq h\); \((N,N)\) é racional se \(u\geq B\) e
+\(y<h\); os perfis separadores não são racionais. Quando sim é off-path, uma
+crença admissível \(\eta_Y\) sustenta os weak votes precisamente se
+\(W(\eta_Y)\leq u\), onde a continuação terminal transportada a R1 é
+
+\[
+W(\eta)=
+\begin{cases}
+(1-\eta)A,&\eta\leq\nu^*,\\
+B,&\eta>\nu^*,
+\end{cases}
+\qquad W(\eta)\in[B,A].
+\]
+
+Em \(\nu=1\), preservação do suporte fixa o posterior em um. Essas partições
+mostram que toda proposta recebe uma resposta; o argumento de \(s^\dagger\)
+mostra por que isso falha apenas na célula vazia.
 
 ## Conexão com o paper
 
@@ -618,9 +697,10 @@ célula vazia.
    \(0<\nu\leq\nu^*\).
 4. Explique por que eliminar apenas os perfis pooling não seria uma prova de
    inexistência.
-5. Dê um exemplo simples de correspondência \(F:[0,1]\rightrightarrows\R\)
-   que seja não vazia em zero e vazia em todo ponto positivo. Relacione o
-   exemplo à descontinuidade do paper.
+5. Para \(c\in(0,1)\), dê um exemplo de correspondência
+   \(F:[0,1]\rightrightarrows\R\) que seja não vazia em zero, vazia em
+   \(0<x\leq c\) e novamente não vazia em \(c<x\leq1\). Relacione \(c\)
+   com \(\nu^*\) e explique a descontinuidade no endpoint.
 
 Soluções na Seção \ref{sol:nonexistence}.
 
@@ -684,8 +764,13 @@ não o produto cartesiano de seus envelopes marginais.
 
 pois \(\lambda c+(1-\lambda)c=c\). \(\square\)
 
-```{r segment-figure, fig.cap="Segmento de payoffs com peso comum. Os limites de cada componente formam uma caixa, mas somente a linha corresponde a propostas aceitas pelo modelo.", fig.width=6.4, fig.height=5}
-plot_linked_segment(a0 = 0.01, a1 = 0.035, d = 0.225)
+Para que a figura represente uma multiplicidade realmente atingível, use a
+fronteira \(m=4\), \(\beta=0.9\), \(o_0=0.10\), \(o_1=1/m=0.25\) e a
+crença de empate \(\nu=5/6\). Nesse ponto, \(\nu^*=1/6\) e o segmento está
+no domínio residual da Proposição 3.
+
+```{r segment-figure, fig.cap="Segmento de payoffs com peso comum na fronteira $o_1=1/m$. Os limites de cada componente formam uma caixa, mas somente a linha corresponde a propostas do modelo.", fig.width=6.4, fig.height=5}
+plot_linked_segment(a0 = 0.01, a1 = 0.025, d = 0.135)
 ```
 
 ## Exemplo completo de rendas
@@ -713,10 +798,10 @@ RI_U=(0.225,0),\qquad
 \Delta RI=(0.215,0).
 \]
 
-Cada coordenada responde a uma pergunta contrafactual precisa. O primeiro zero
-de \(RI_M\) não significa que o tipo baixo tenha payoff zero; significa que sua
-informação privada acrescenta (0.01) ao benchmark. O segundo zero significa
-que a informação não muda o payoff do tipo alto nessa célula.
+Cada coordenada responde a uma pergunta contrafactual precisa. A primeira
+coordenada, \(0.01\), não é o payoff do tipo baixo, mas o quanto sua informação
+privada acrescenta ao benchmark. O zero da segunda coordenada significa que a
+informação não muda o payoff do tipo alto nessa célula.
 
 ## Álgebra dos sinais
 
@@ -731,6 +816,51 @@ a_\theta=(1-\beta)o_\theta>0,
 Os dois primeiros têm sinal fixo. O terceiro compara o threshold alto
 descontado com o desacordo baixo corrente e pode ser positivo, nulo ou
 negativo. Por isso algumas células têm ordenação robusta e outras não.
+
+## Tabela mestre das correspondências exatas
+
+Esta tabela é o dicionário operacional das Proposições 5--7. As regiões
+públicas são II: \(o_1\leq1/m\), IX:
+\(o_0\leq1/m<o_1\) e XX: \(1/m<o_0\). Sempre que a unanimidade privada é
+vazia, toda diferença que a usa também é vazia.
+
+\small
+\begin{longtable}{p{0.14\textwidth}p{0.43\textwidth}p{0.32\textwidth}}
+\caption{Células exatas dos contrastes e das rendas informacionais.}\\
+\toprule
+Objeto & Célula & Conjunto exato \\
+\midrule
+\endfirsthead
+\toprule
+Objeto & Célula & Conjunto exato \\
+\midrule
+\endhead
+\(V_U^{priv}-V_M^{priv}\) & \(\nu=0\), maioria screening & \(\{(0,0)\}\) \\
+\(V_U^{priv}-V_M^{priv}\) & \(\nu=0\), maioria exclusão & \(\{(-a_0,-a_1)\}\) \\
+\(V_U^{priv}-V_M^{priv}\) & \(0<\nu\leq\nu^*\) & \(\varnothing\) \\
+\(V_U^{priv}-V_M^{priv}\) & \(\nu>\nu^*\), maioria screening/pooling/exclusão & \(\{(d,0)\}\), \(\{(0,0)\}\), \(\{(k,-a_1)\}\) \\
+\(V_U^{priv}-V_M^{priv}\) & segmento exclusão--pooling & \(\{\lambda(k,-a_1):\lambda\in[0,1]\}\) \\
+\midrule
+\(RI_M\) & II, screening/pooling/exclusão & \(\{(0,0)\}\), \(\{(d,0)\}\), \(\{(a_0,a_1)\}\) \\
+\(RI_M\) & II, segmento exclusão--pooling & \(\{\lambda(a_0,a_1)+(1-\lambda)(d,0)\}\) \\
+\(RI_M\) & IX, screening/exclusão & \(\{(0,-a_1)\}\), \(\{(a_0,0)\}\) \\
+\(RI_M\) & XX, exclusão & \(\{(0,0)\}\) \\
+\(RI_U\) & \(\nu=0\); \(0<\nu\leq\nu^*\); \(\nu>\nu^*\) & \(\{(0,0)\}\); \(\varnothing\); \(\{(d,0)\}\) \\
+\midrule
+\(\Delta RI\) & \(\nu=0\), II/IX/XX & \(\{(0,0)\}\), \(\{(0,a_1)\}\), \(\{(0,0)\}\) \\
+\(\Delta RI\) & \(0<\nu\leq\nu^*\), toda região & \(\varnothing\) \\
+\(\Delta RI\) & \(\nu>\nu^*\), II screening/pooling/exclusão & \(\{(d,0)\}\), \(\{(0,0)\}\), \(\{(k,-a_1)\}\) \\
+\(\Delta RI\) & \(\nu>\nu^*\), II segmento & \(\{\lambda(k,-a_1):\lambda\in[0,1]\}\) \\
+\(\Delta RI\) & \(\nu>\nu^*\), IX screening/exclusão & \(\{(d,a_1)\}\), \(\{(k,0)\}\) \\
+\(\Delta RI\) & \(\nu>\nu^*\), XX exclusão & \(\{(d,0)\}\) \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+Nas linhas com segmento, \(\lambda\) é o mesmo peso da proposta em todas as
+coordenadas e fica restrito aos pesos que sobrevivem ao tie-break. A tabela
+permite calcular qualquer célula, mas não substitui a reconstrução do
+equilíbrio que gera cada vetor.
 
 ## Conexão com o paper
 
@@ -906,7 +1036,23 @@ Barganha legislativa & Baron e Ferejohn (1989), modelo base de reconhecimento e 
    {\beta(1/m-o_0)+1-\beta q/m}.
    \]
 
-5. Para sinal positivo, tome \(\beta=0.9\), \(o_1=0.4\) e \(o_0=0.2\):
+5. Como \(S(\nu)=(1-\nu)L+\nu w\), a igualdade com pooling é
+   \[
+   L-P=\nu(L-w).
+   \]
+   Usando \(L-P=\beta(o_1-o_0)\) e
+   \[
+   L-w=1-\beta o_0-\frac{\beta(q-1)}{m},
+   \]
+   obtemos
+   \[
+   \nu_{SP}=\frac{\beta(o_1-o_0)}
+   {1-\beta o_0-\beta(q-1)/m}.
+   \]
+   Quando \(o_1<1/m\), pooling supera exclusão; por isso a comparação final
+   relevante é screening versus pooling.
+
+6. Para sinal positivo, tome \(\beta=0.9\), \(o_1=0.4\) e \(o_0=0.2\):
    \(k=0.36-0.2=0.16>0\). Para zero, use \(o_0=\beta o_1\), por exemplo
    \(\beta=0.5\), \(o_1=0.6\), \(o_0=0.3\). Para sinal negativo, tome
    \(\beta=0.5\), \(o_1=0.6\), \(o_0=0.4\): \(k=0.3-0.4=-0.1\).
@@ -992,11 +1138,20 @@ Barganha legislativa & Baron e Ferejohn (1989), modelo base de reconhecimento e 
    ainda existe uma resposta pura candidata. Uma prova de inexistência precisa
    esgotar o espaço inteiro de estratégias admissíveis.
 
-5. Defina \(F(0)=\{0\}\) e \(F(x)=\varnothing\) para todo \(x>0\). Ela é não
-   vazia no endpoint e vazia imediatamente à direita. No paper, a causa é
-   econômica e informacional: em zero o suporte contém apenas o tipo baixo;
-   com qualquer probabilidade positiva, o tipo alto reaparece e permite as
-   imitações que eliminam os perfis puros.
+5. Defina
+   \[
+   F(x)=
+   \begin{cases}
+   \{0\},&x=0,\\
+   \varnothing,&0<x\leq c,\\
+   \{1\},&c<x\leq1.
+   \end{cases}
+   \]
+   Ela é não vazia no endpoint, vazia numa célula intermediária e volta a ser
+   não vazia acima do cutoff. No paper, tome \(c=\nu^*\): a descontinuidade
+   em zero vem da mudança de suporte, a célula vazia é apenas
+   \(0<\nu\leq\nu^*\), e a continuação pooling restaura existência para
+   \(\nu>\nu^*\).
 
 ## Soluções: correspondências e conjuntos {#sol:sets}
 
@@ -1053,7 +1208,7 @@ tarefas abaixo sem consultar as soluções.
 - Calcular \(RI_M\), \(RI_U\) e \(\Delta RI\) em qualquer célula da tabela.
 - Desenhar o segmento com peso comum \(\lambda\) e explicar por que seus
   envelopes não formam um conjunto atingível retangular.
-- Dizer, em linguagem substantiva, o que \(a_\theta\), (d) e (k) medem.
+- Dizer, em linguagem substantiva, o que \(a_\theta\), \(d\) e \(k\) medem.
 
 Se algum item falhar, volte à seção correspondente e refaça primeiro o exemplo
 numérico, depois a derivação simbólica. Esse movimento do concreto para o geral
