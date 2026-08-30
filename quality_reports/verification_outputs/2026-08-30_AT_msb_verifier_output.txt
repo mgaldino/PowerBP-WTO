@@ -1,0 +1,53 @@
+A_T total agenda-effect mechanical verifier
+Snapshot date: 2026-08-30
+Agenda effect orientation: with agenda minus without agenda
+Institutional orientation: U-M
+Claim boundary: mechanical checks only; not mathematical or editorial approval
+
+PASS | frozen/source byte hash: quality_reports/plans/2026-08-30_autorizacao_efeito_total_agenda.md
+PASS | frozen/source byte hash: model_redesign/agenda_extension_AR_msb_results.md
+PASS | frozen/source byte hash: model_redesign/agenda_extension_AR_msb_interface.json
+PASS | frozen/source byte hash: model_redesign/agenda_extension_AR_msb_complete_records.json
+PASS | frozen/source byte hash: quality_reports/2026-08-30_A_R_msb_final_gate_manifest.sha256
+PASS | frozen/source byte hash: model_redesign/essential_input_n7_complete_information_benchmark_candidate.json
+PASS | A_R final manifest verifies
+PASS | candidate artifact exists: model_redesign/agenda_extension_AT_msb_contract.md
+PASS | candidate artifact exists: model_redesign/agenda_extension_AT_msb_results.md
+PASS | candidate artifact exists: model_redesign/agenda_extension_AT_msb_interface.json
+PASS | candidate artifact exists: model_redesign/agenda_extension_AT_msb_complete_records.json
+PASS | candidate artifact exists: model_redesign/agenda_extension_AT_msb_claim_ledger.tsv
+PASS | AT interface and complete-record export are valid JSON
+PASS | AT ledger has exact 16-column schema
+PASS | AT ledger has 21 unique sequential claims
+PASS | all AT ledger claims are proved candidate claims
+PASS | all AT ledger payoffs are dated A
+PASS | contract contains required guard: T_g^theta=D_g^theta+I_g^theta
+PASS | contract contains required guard: DeltaT^theta=DeltaD^theta+DeltaI^theta
+PASS | contract contains required guard: compara dois pacotes
+PASS | contract contains required guard: `beta` aparece uma única vez
+PASS | contract contains required guard: seleção cross-world
+PASS | results contain required result/limit: T_U=none
+PASS | results contain required result/limit: T_M^{01}=D_M^{01}+I_M^{01}
+PASS | results contain required result/limit: Q_g^theta=h_g^A(o_theta)-beta*V_g^{N,R1,theta}
+PASS | results contain required result/limit: efeito causal puro
+PASS | results contain required result/limit: sinal geral autorizado
+PASS | interface exposes required object: with_agenda_minus_without_agenda
+PASS | interface exposes required object: T_g^theta=D_g^theta+I_g^theta
+PASS | interface exposes required object: set_valued_no_general_sign
+PASS | interface exposes required object: not_a_single_factor_causal_effect
+PASS | interface exposes required object: if any required arm is none, the composed effect is none
+PASS | full grid: D_U=1-beta
+PASS | full grid: D_M piecewise identity
+PASS | full grid: D_M is nonnegative
+PASS | full grid: DeltaD piecewise identity
+PASS | 250 samples: U nu=0 total effect identity
+PASS | 250 samples: U high-rho-zero total effect identity
+PASS | 250 samples: U high total effect stays in proved bounds
+PASS | 250 samples: U high fixed effect is 1-beta
+PASS | 250 samples: U diagonal at nu=0
+PASS | 250 samples: U diagonal at high prior
+PASS | 250 samples: generic factorial identity T=D+I
+PASS | approved v6 Rmd remains unchanged
+PASS | approved v6 PDF remains unchanged
+
+SUMMARY | 45 PASS | 0 FAIL

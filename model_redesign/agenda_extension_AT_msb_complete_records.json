@@ -1,0 +1,94 @@
+{
+  "schema_ref": "agenda_extension_AT_complete_effect_records_v1",
+  "node_id": "AT",
+  "status": "implementer_candidate_unreviewed_unfrozen",
+  "source_tuple_rule": {
+    "same_primitives": true,
+    "complete_vectors_only": true,
+    "cross_world_random_coupling": false,
+    "cross_world_equilibrium_selection": false,
+    "type_coordinate_splicing": false,
+    "none_propagates": true
+  },
+  "factorial_record": {
+    "record_id": "AT-FACTORIAL-2X2",
+    "cells_at_A": {
+      "N_CI": "beta*h_g^{N,R1,01}",
+      "N_PI": "beta*V_g^{N,R1,01}",
+      "A_CI": "h_g^{A,01}",
+      "A_PI": "V_g^{A,01}"
+    },
+    "effects": {
+      "D_g": "A_CI-N_CI",
+      "T_g": "A_PI-N_PI",
+      "beta_RI_N_g": "N_PI-N_CI",
+      "RI_A_g": "A_PI-A_CI",
+      "I_g": "T_g-D_g=RI_A_g-beta_RI_N_g",
+      "Q_g": "A_CI-N_PI"
+    }
+  },
+  "direct_effect_records": [
+    {
+      "record_id": "AT-D-U",
+      "institution": "unanimity",
+      "source_agenda": "AR-BENCH-U-01",
+      "source_no_agenda": "N7-PUB-U-R1-T0 and N7-PUB-U-R1-T1",
+      "value": "D_U^{01}=(1-beta,1-beta)"
+    },
+    {
+      "record_id": "AT-D-M",
+      "institution": "majority",
+      "source_agenda": "AR-BENCH-M-01",
+      "source_no_agenda": "the applicable N7 public majority R1 type records",
+      "value": "D_M(o)=Z_E-(c/m)*beta^2*o for o<=1/m; Z_E-beta*o for 1/m<o<tau_M; 0 for o>=tau_M"
+    }
+  ],
+  "total_private_effect_records": [
+    {
+      "record_id": "AT-T-U",
+      "institution": "unanimity",
+      "source_interaction": "AR-INT-U",
+      "operation": "translate every exact I_U vector by (1-beta,1-beta)",
+      "exact_cells": "nu=0: (1-beta,max{Delta_U,0}); low positive prior: none; high rho=0: {(u-d_H,u-d_H)}; high offpath-high and nu=1: (1-beta,1-beta)"
+    },
+    {
+      "record_id": "AT-T-M",
+      "institution": "majority",
+      "source_interaction": "AR-INT-M",
+      "operation": "translate every exact I_M vector by (D_M(o_0),D_M(o_1))",
+      "exact_cells": "inherited source-record products; no general sign"
+    }
+  ],
+  "institutional_effect_record": {
+    "record_id": "AT-DT-UM",
+    "orientation": "U-M",
+    "source_interaction": "AR-DINT-UM",
+    "operation": "DeltaT^{01}=DeltaD^{01}+DeltaI^{01}",
+    "sign_rule": "U has the larger agenda effect for theta iff DeltaI^theta>-DeltaD^theta"
+  },
+  "diagonal_records": [
+    {
+      "record_id": "AT-Q-U",
+      "institution": "unanimity",
+      "causal_status": "cross-package contrast, not a one-factor causal effect",
+      "exact_cells": "nu=0: (1-beta,1-beta); low positive prior: none; high prior: (Delta_U,1-beta)"
+    },
+    {
+      "record_id": "AT-Q-M",
+      "institution": "majority",
+      "causal_status": "cross-package contrast, not a one-factor causal effect",
+      "operation": "Q_M^{01}=D_M^{01}-beta*RI_M^{N,R1,01} over applicable complete N7 records"
+    }
+  ],
+  "payoff_date_audit": {
+    "agenda_values_native_date": "A",
+    "no_agenda_values_native_date": "R1",
+    "no_agenda_transport_factor": "beta",
+    "beta_application_count_to_no_agenda_arm": 1,
+    "beta_application_count_to_agenda_arm": 0
+  },
+  "proof_paths": [
+    "model_redesign/agenda_extension_AT_msb_contract.md",
+    "model_redesign/agenda_extension_AT_msb_results.md"
+  ]
+}
