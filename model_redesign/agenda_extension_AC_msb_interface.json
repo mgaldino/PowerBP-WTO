@@ -1,0 +1,203 @@
+{
+  "schema_ref": "agenda_extension_AC_msb_exact_fiber_comparison_candidate_v1",
+  "node_id": "AC",
+  "candidate_status": "authorized_implementer_candidate_unreviewed_unfrozen",
+  "orientation": "U-M",
+  "governing_skills": [
+    "solve-dynamic-games",
+    "formal-game-theory-polisci"
+  ],
+  "authorization": {
+    "path": "quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md",
+    "sha256": "ea4e2e9b9e1296aecd64760f058f0097ff4281f6a9b301373feeea2591092f95",
+    "scope": "derive and package AC only; AR, manuscript migration, tag, merge and push remain unauthorized"
+  },
+  "frozen_sources": {
+    "A_M": {
+      "mathematical_path": "model_redesign/agenda_extension_A_M_msb_results.md",
+      "mathematical_sha256": "7159a7e9f84b076000b3313d89b4de9ca692a055a31cdbb9f5a5561a30a283a3",
+      "claim_ledger_path": "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv",
+      "claim_ledger_sha256": "321cb2ed45ed1c5ebb6103a4ac567f07b735dd7a2ca8e2252925b43b8a2add9c",
+      "terminal_authority_path": "quality_reports/2026-08-29_A_M_msb_two_layer_terminal_approval_and_freeze.md",
+      "terminal_authority_sha256": "ca109199060f3aa775f6e2f18ef46fd9cefaff522cc3f7fdeeabfe9d5f412158",
+      "final_manifest_path": "quality_reports/2026-08-29_A_M_msb_two_layer_final_gate_manifest.sha256",
+      "final_manifest_sha256": "8eb870d5595a4373994e8f47a25a3dd137b00ac8c32fc09b947444498a32775e",
+      "status": "pass_frozen"
+    },
+    "A_U": {
+      "contract_path": "model_redesign/agenda_extension_A_U_msb_contract.md",
+      "contract_sha256": "348ffc702d75e47ec8f8008bccb71338174649f57d90af8fc78e919cfd4ded26",
+      "mathematical_path": "model_redesign/agenda_extension_A_U_msb_results.md",
+      "mathematical_sha256": "e2e2ec8cabc3d44b0c72bfa8ae1ef3d35256078448ce688db79bb7c1a96cdc11",
+      "interface_path": "model_redesign/agenda_extension_A_U_msb_interface.json",
+      "interface_sha256": "2ee931d21e3858db6702f78a4636d1f3c4b445910c8160120921c3bfc3b4b317",
+      "claim_ledger_path": "model_redesign/agenda_extension_A_U_msb_claim_ledger.tsv",
+      "claim_ledger_sha256": "18de37fbadf787f9217f45c9eb5ef31854c75611c9f65ba8130e06a2cd2a34c5",
+      "terminal_authority_path": "quality_reports/2026-08-30_A_U_msb_two_layer_terminal_approval_and_freeze.md",
+      "terminal_authority_sha256": "e330a1956a7c071dc72c2556eda68cf32d2b81473d700100bbf7e1f6e195111b",
+      "final_manifest_path": "quality_reports/2026-08-30_A_U_msb_two_layer_final_gate_manifest.sha256",
+      "final_manifest_sha256": "b85741b2176c4480f5f3632c4464a93cebabb5dd4f71636626917b9227030180",
+      "status": "pass_frozen"
+    }
+  },
+  "common_domain": {
+    "parameters": [
+      "N",
+      "m",
+      "q",
+      "k",
+      "beta",
+      "o_0",
+      "o_1",
+      "y_bar",
+      "Y",
+      "nu"
+    ],
+    "identities": [
+      "m=N-1",
+      "q=floor(N/2)+1",
+      "k=q-1",
+      "c=m-k"
+    ],
+    "domain": "N>=3; 0<beta<1; 0<o_0<o_1<1; o_1<=y_bar<=1; nu in [0,1]",
+    "typing_note": "y_bar is the A_M domain primitive; A_U is uniform in it. The A_U proposal y_H is not this primitive."
+  },
+  "common_fiber": {
+    "interior": "eta=(rho,nu_off), rho in [0,infinity], nu_off=b_rho(nu)=nu*rho/(1-nu+nu*rho)",
+    "endpoints": "eta=(*,nu), so nu_off=nu and rho is quotiented out",
+    "diagonal_requirement": "A_M and A_U use the same d and the same eta",
+    "off_diagonal_status": "excluded from the principal comparison"
+  },
+  "source_binder_sets": {
+    "majority": "B_M(d,eta), the complete frozen A_M binders in the fixed fiber; it may be empty at a fixed rho",
+    "unanimity": "B_U(d,eta), the complete frozen A_U binders in the fixed fiber",
+    "atomicity": "every strategy, belief, continuation, outcome and payoff coordinate is imported from one complete source binder; coordinate splicing is forbidden"
+  },
+  "primary_exact_relation": {
+    "definition": "J_AC^bind(d,eta)=B_M(d,eta) times_(d,eta) B_U(d,eta)",
+    "necessary_and_sufficient_membership": [
+      "same primitive tuple d",
+      "same fiber eta",
+      "R_M belongs completely to B_M(d,eta)",
+      "R_U belongs completely to B_U(d,eta)",
+      "both binders remain atomic"
+    ],
+    "no_cross_world_restriction": "proposals, named coalitions, supports, continuation selections and random realizations need not coincide; the model supplies no cross-world correlation device",
+    "exact_signature_image": "J_AC^ex={(Sig_ex_M(R_M),Sig_ex_U(R_U)):(R_M,R_U) in J_AC^bind}"
+  },
+  "declared_economic_operation": {
+    "source_coordinates": [
+      "V_M^0",
+      "V_M^1",
+      "V_U^0",
+      "V_U^1",
+      "A_M^0",
+      "A_M^1",
+      "A_U^0",
+      "A_U^1",
+      "Gamma_bar_M^0",
+      "Gamma_bar_M^1",
+      "Gamma_bar_U^0",
+      "Gamma_bar_U^1"
+    ],
+    "contrasts": {
+      "delta_0": "V_U^0-V_M^0",
+      "delta_1": "V_U^1-V_M^1",
+      "delta_E": "(1-nu)*delta_0+nu*delta_1",
+      "Delta_A_theta": "A_U^theta-A_M^theta",
+      "Delta_D_theta": "-Delta_A_theta"
+    },
+    "payoff_date": "A in both sources and in AC",
+    "new_beta_applications": 0,
+    "cross_world_joint_law": "not_defined"
+  },
+  "factorization_gate": {
+    "source_summaries": [
+      "Sum_econ_M=(rho,nu_off,(q_Z)#Gamma_0,(q_Z)#Gamma_1), with rho=* at endpoints",
+      "Sum_econ_U=(rho,nu_off,(q_U)#Gamma_0,(q_U)#Gamma_1), with rho=* at endpoints"
+    ],
+    "same_fiber_constancy": "if both source economic summaries are separately fixed in the same fiber, all coordinates of the declared economic operation are fixed",
+    "measurable_factorization": "C_econ=C_bar_econ compose (Sum_econ_M,Sum_econ_U), with C_bar_econ Borel",
+    "setwise_lifting": "the summary image is obtained from pairs of complete summary preimages; no type coordinate, posterior law or outcome is recombined across preimages",
+    "excluded_operations": "named supports, public posterior maps pointwise, message coincidence, named identities, type-plan relations and raw off-path functions"
+  },
+  "unanimity_payoff_fibers": [
+    {
+      "cell_id": "AC-MSB-U-NU-ZERO",
+      "domain": "nu=0; eta=(*,0)",
+      "status": "exists",
+      "payoff_vector": "(z_L,max(z_L,d_H))"
+    },
+    {
+      "cell_id": "AC-MSB-U-LOW-RHO-ZERO",
+      "domain": "0<nu<=nu_star; Delta_U>=0; rho=0; nu_off=0",
+      "status": "exists",
+      "payoff_vector": "(z_L,z_L)"
+    },
+    {
+      "cell_id": "AC-MSB-U-LOW-NONE",
+      "domain": "0<nu<=nu_star and [Delta_U<0 or nu_off>0]",
+      "status": "none",
+      "payoff_vector": null
+    },
+    {
+      "cell_id": "AC-MSB-U-HIGH-RHO-ZERO",
+      "domain": "nu_star<nu<1; rho=0; nu_off=0",
+      "status": "exists",
+      "payoff_vector": "(u,u), u in [max(z_L,d_H),z_H]"
+    },
+    {
+      "cell_id": "AC-MSB-U-HIGH-OFFPATH-NONE",
+      "domain": "nu_star<nu<1; nu_off in (0,nu_star]",
+      "status": "none",
+      "payoff_vector": null
+    },
+    {
+      "cell_id": "AC-MSB-U-HIGH-OFFPATH-HIGH",
+      "domain": "nu_star<nu<1; nu_off in (nu_star,1]",
+      "status": "exists",
+      "payoff_vector": "(z_H,z_H)"
+    },
+    {
+      "cell_id": "AC-MSB-U-NU-ONE",
+      "domain": "nu=1; eta=(*,1)",
+      "status": "exists",
+      "payoff_vector": "(z_H,z_H)"
+    }
+  ],
+  "comparison_correspondence": {
+    "existence": "J_AC^bind(d,eta) is nonempty iff both B_M(d,eta) and B_U(d,eta) are nonempty",
+    "none_rule": "an empty comparison has status none and no numeric sentinel",
+    "vector_contrast_set": "D_01=V_U^01-V_M^01 using complete coupled type vectors, never products of type marginals",
+    "scalar_sets": "D_r={delta_r:r in {0,1,E}} and S_r={sign(x):x in D_r}",
+    "envelopes": "inf D_r=inf U_r-sup M_r and sup D_r=sup U_r-inf M_r, only after the exact set",
+    "selection_note": "in the high-prior rho=0 cell, U payoffs range over a nondegenerate interval; values are selection-dependent even when a sign is robust"
+  },
+  "selection_free_certificate": {
+    "majority_lower_bound": "V_M^theta>=Z_E=1-k*beta/m",
+    "unanimity_upper_bound": "V_U^theta<=z_H=1-beta+beta^2*o_1",
+    "identity": "Z_E-z_H=beta*(c/m-beta*o_1)",
+    "strict_condition": "beta*o_1<c/m implies delta_0<0, delta_1<0 and delta_E<0 in every comparable pair",
+    "weak_condition": "beta*o_1=c/m implies weak majority dominance",
+    "scope": "sufficient, not necessary"
+  },
+  "outcome_scope": {
+    "object": "ordered pairs of anonymous type-conditioned realized-record laws",
+    "welfare_order": "not_authorized",
+    "joint_probability_between_rules": "not_defined"
+  },
+  "proof_paths": [
+    "model_redesign/agenda_extension_AC_msb_contract.md",
+    "model_redesign/agenda_extension_AC_msb_results.md"
+  ],
+  "claim_ledger_path": "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv",
+  "mechanical_evidence_path": "quality_reports/verification_outputs/2026-08-30_AC_msb_verifier_output.txt",
+  "review_status": "two independent formal reviews of one hash-pinned candidate are pending",
+  "downstream_authorization": {
+    "AR": false,
+    "manuscript_migration": false,
+    "tag": false,
+    "merge": false,
+    "push": false
+  }
+}

@@ -1,0 +1,949 @@
+A_C M/S/B exact-fiber comparison mechanical verifier
+Snapshot date: 2026-08-30
+Orientation: U-M
+Claim boundary: mechanical checks only; no PBE-completeness or abstract-factorization claim
+
+PASS | frozen byte hash: quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md
+PASS | frozen byte hash: model_redesign/agenda_extension_A_M_msb_results.md
+PASS | frozen byte hash: model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv
+PASS | frozen byte hash: quality_reports/2026-08-29_A_M_msb_two_layer_terminal_approval_and_freeze.md
+PASS | frozen byte hash: quality_reports/2026-08-29_A_M_msb_two_layer_final_gate_manifest.sha256
+PASS | frozen byte hash: model_redesign/agenda_extension_A_U_msb_contract.md
+PASS | frozen byte hash: model_redesign/agenda_extension_A_U_msb_results.md
+PASS | frozen byte hash: model_redesign/agenda_extension_A_U_msb_interface.json
+PASS | frozen byte hash: model_redesign/agenda_extension_A_U_msb_claim_ledger.tsv
+PASS | frozen byte hash: quality_reports/2026-08-30_A_U_msb_two_layer_terminal_approval_and_freeze.md
+PASS | frozen byte hash: quality_reports/2026-08-30_A_U_msb_two_layer_final_gate_manifest.sha256
+PASS | A_M final manifest verifies all frozen entries
+PASS | A_U final manifest verifies all frozen entries
+PASS | AC interface is valid JSON
+PASS | AC ledger has the exact 16-column schema
+PASS | AC ledger claim ids are unique and use the AC-MSB namespace
+PASS | AC ledger keeps every payoff at date A
+PASS | AC source paths exist or are versioned verifier references
+PASS | domain carries y_bar and distinguishes it from y_H
+PASS | principal comparison is on the same exact fiber
+PASS | exact binders precede source economic summaries
+PASS | cross-world joint law is expressly absent
+PASS | AC applies zero new beta factors
+PASS | none cells use null rather than a numeric payoff sentinel
+PASS | AR and all downstream mutations remain unauthorized
+PASS | rho map is monotone with endpoints at nu=0.05
+PASS | rho inverse at nu=0.05,p=0.00
+PASS | rho inverse at nu=0.05,p=0.01
+PASS | rho inverse at nu=0.05,p=0.20
+PASS | rho inverse at nu=0.05,p=0.50
+PASS | rho inverse at nu=0.05,p=0.90
+PASS | rho inverse at nu=0.05,p=1.00
+PASS | rho map is monotone with endpoints at nu=0.20
+PASS | rho inverse at nu=0.20,p=0.00
+PASS | rho inverse at nu=0.20,p=0.01
+PASS | rho inverse at nu=0.20,p=0.20
+PASS | rho inverse at nu=0.20,p=0.50
+PASS | rho inverse at nu=0.20,p=0.90
+PASS | rho inverse at nu=0.20,p=1.00
+PASS | rho map is monotone with endpoints at nu=0.50
+PASS | rho inverse at nu=0.50,p=0.00
+PASS | rho inverse at nu=0.50,p=0.01
+PASS | rho inverse at nu=0.50,p=0.20
+PASS | rho inverse at nu=0.50,p=0.50
+PASS | rho inverse at nu=0.50,p=0.90
+PASS | rho inverse at nu=0.50,p=1.00
+PASS | rho map is monotone with endpoints at nu=0.80
+PASS | rho inverse at nu=0.80,p=0.00
+PASS | rho inverse at nu=0.80,p=0.01
+PASS | rho inverse at nu=0.80,p=0.20
+PASS | rho inverse at nu=0.80,p=0.50
+PASS | rho inverse at nu=0.80,p=0.90
+PASS | rho inverse at nu=0.80,p=1.00
+PASS | rho map is monotone with endpoints at nu=0.95
+PASS | rho inverse at nu=0.95,p=0.00
+PASS | rho inverse at nu=0.95,p=0.01
+PASS | rho inverse at nu=0.95,p=0.20
+PASS | rho inverse at nu=0.95,p=0.50
+PASS | rho inverse at nu=0.95,p=0.90
+PASS | rho inverse at nu=0.95,p=1.00
+PASS | grid[1]:N=3,beta=0.20,o=(0.05,0.10) nu_star is interior
+PASS | grid[1]:N=3,beta=0.20,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[1]:N=3,beta=0.20,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[1]:N=3,beta=0.20,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[1]:N=3,beta=0.20,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[1]:N=3,beta=0.20,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[1]:N=3,beta=0.20,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[1]:N=3,beta=0.20,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[1]:N=3,beta=0.20,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[1]:N=3,beta=0.20,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[1]:N=3,beta=0.20,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[1]:N=3,beta=0.20,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[2]:N=4,beta=0.20,o=(0.05,0.10) nu_star is interior
+PASS | grid[2]:N=4,beta=0.20,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[2]:N=4,beta=0.20,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[2]:N=4,beta=0.20,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[2]:N=4,beta=0.20,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[2]:N=4,beta=0.20,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[2]:N=4,beta=0.20,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[2]:N=4,beta=0.20,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[2]:N=4,beta=0.20,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[2]:N=4,beta=0.20,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[2]:N=4,beta=0.20,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[2]:N=4,beta=0.20,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[3]:N=5,beta=0.20,o=(0.05,0.10) nu_star is interior
+PASS | grid[3]:N=5,beta=0.20,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[3]:N=5,beta=0.20,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[3]:N=5,beta=0.20,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[3]:N=5,beta=0.20,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[3]:N=5,beta=0.20,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[3]:N=5,beta=0.20,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[3]:N=5,beta=0.20,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[3]:N=5,beta=0.20,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[3]:N=5,beta=0.20,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[3]:N=5,beta=0.20,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[3]:N=5,beta=0.20,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[4]:N=13,beta=0.20,o=(0.05,0.10) nu_star is interior
+PASS | grid[4]:N=13,beta=0.20,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[4]:N=13,beta=0.20,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[4]:N=13,beta=0.20,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[4]:N=13,beta=0.20,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[4]:N=13,beta=0.20,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[4]:N=13,beta=0.20,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[4]:N=13,beta=0.20,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[4]:N=13,beta=0.20,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[4]:N=13,beta=0.20,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[4]:N=13,beta=0.20,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[4]:N=13,beta=0.20,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[5]:N=3,beta=0.60,o=(0.05,0.10) nu_star is interior
+PASS | grid[5]:N=3,beta=0.60,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[5]:N=3,beta=0.60,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[5]:N=3,beta=0.60,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[5]:N=3,beta=0.60,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[5]:N=3,beta=0.60,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[5]:N=3,beta=0.60,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[5]:N=3,beta=0.60,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[5]:N=3,beta=0.60,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[5]:N=3,beta=0.60,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[5]:N=3,beta=0.60,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[5]:N=3,beta=0.60,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[6]:N=4,beta=0.60,o=(0.05,0.10) nu_star is interior
+PASS | grid[6]:N=4,beta=0.60,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[6]:N=4,beta=0.60,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[6]:N=4,beta=0.60,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[6]:N=4,beta=0.60,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[6]:N=4,beta=0.60,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[6]:N=4,beta=0.60,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[6]:N=4,beta=0.60,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[6]:N=4,beta=0.60,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[6]:N=4,beta=0.60,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[6]:N=4,beta=0.60,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[6]:N=4,beta=0.60,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[7]:N=5,beta=0.60,o=(0.05,0.10) nu_star is interior
+PASS | grid[7]:N=5,beta=0.60,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[7]:N=5,beta=0.60,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[7]:N=5,beta=0.60,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[7]:N=5,beta=0.60,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[7]:N=5,beta=0.60,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[7]:N=5,beta=0.60,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[7]:N=5,beta=0.60,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[7]:N=5,beta=0.60,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[7]:N=5,beta=0.60,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[7]:N=5,beta=0.60,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[7]:N=5,beta=0.60,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[8]:N=13,beta=0.60,o=(0.05,0.10) nu_star is interior
+PASS | grid[8]:N=13,beta=0.60,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[8]:N=13,beta=0.60,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[8]:N=13,beta=0.60,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[8]:N=13,beta=0.60,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[8]:N=13,beta=0.60,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[8]:N=13,beta=0.60,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[8]:N=13,beta=0.60,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[8]:N=13,beta=0.60,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[8]:N=13,beta=0.60,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[8]:N=13,beta=0.60,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[8]:N=13,beta=0.60,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[9]:N=3,beta=0.90,o=(0.05,0.10) nu_star is interior
+PASS | grid[9]:N=3,beta=0.90,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[9]:N=3,beta=0.90,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[9]:N=3,beta=0.90,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[9]:N=3,beta=0.90,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[9]:N=3,beta=0.90,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[9]:N=3,beta=0.90,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[9]:N=3,beta=0.90,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[9]:N=3,beta=0.90,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[9]:N=3,beta=0.90,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[9]:N=3,beta=0.90,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[9]:N=3,beta=0.90,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[10]:N=4,beta=0.90,o=(0.05,0.10) nu_star is interior
+PASS | grid[10]:N=4,beta=0.90,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[10]:N=4,beta=0.90,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[10]:N=4,beta=0.90,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[10]:N=4,beta=0.90,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[10]:N=4,beta=0.90,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[10]:N=4,beta=0.90,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[10]:N=4,beta=0.90,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[10]:N=4,beta=0.90,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[10]:N=4,beta=0.90,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[10]:N=4,beta=0.90,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[10]:N=4,beta=0.90,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[11]:N=5,beta=0.90,o=(0.05,0.10) nu_star is interior
+PASS | grid[11]:N=5,beta=0.90,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[11]:N=5,beta=0.90,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[11]:N=5,beta=0.90,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[11]:N=5,beta=0.90,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[11]:N=5,beta=0.90,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[11]:N=5,beta=0.90,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[11]:N=5,beta=0.90,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[11]:N=5,beta=0.90,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[11]:N=5,beta=0.90,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[11]:N=5,beta=0.90,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[11]:N=5,beta=0.90,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[12]:N=13,beta=0.90,o=(0.05,0.10) nu_star is interior
+PASS | grid[12]:N=13,beta=0.90,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[12]:N=13,beta=0.90,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[12]:N=13,beta=0.90,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[12]:N=13,beta=0.90,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[12]:N=13,beta=0.90,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[12]:N=13,beta=0.90,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[12]:N=13,beta=0.90,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[12]:N=13,beta=0.90,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[12]:N=13,beta=0.90,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[12]:N=13,beta=0.90,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[12]:N=13,beta=0.90,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[13]:N=3,beta=0.99,o=(0.05,0.10) nu_star is interior
+PASS | grid[13]:N=3,beta=0.99,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[13]:N=3,beta=0.99,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[13]:N=3,beta=0.99,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[13]:N=3,beta=0.99,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[13]:N=3,beta=0.99,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[13]:N=3,beta=0.99,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[13]:N=3,beta=0.99,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[13]:N=3,beta=0.99,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[13]:N=3,beta=0.99,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[13]:N=3,beta=0.99,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[13]:N=3,beta=0.99,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[14]:N=4,beta=0.99,o=(0.05,0.10) nu_star is interior
+PASS | grid[14]:N=4,beta=0.99,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[14]:N=4,beta=0.99,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[14]:N=4,beta=0.99,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[14]:N=4,beta=0.99,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[14]:N=4,beta=0.99,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[14]:N=4,beta=0.99,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[14]:N=4,beta=0.99,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[14]:N=4,beta=0.99,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[14]:N=4,beta=0.99,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[14]:N=4,beta=0.99,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[14]:N=4,beta=0.99,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[15]:N=5,beta=0.99,o=(0.05,0.10) nu_star is interior
+PASS | grid[15]:N=5,beta=0.99,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[15]:N=5,beta=0.99,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[15]:N=5,beta=0.99,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[15]:N=5,beta=0.99,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[15]:N=5,beta=0.99,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[15]:N=5,beta=0.99,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[15]:N=5,beta=0.99,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[15]:N=5,beta=0.99,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[15]:N=5,beta=0.99,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[15]:N=5,beta=0.99,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[15]:N=5,beta=0.99,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[16]:N=13,beta=0.99,o=(0.05,0.10) nu_star is interior
+PASS | grid[16]:N=13,beta=0.99,o=(0.05,0.10) U payoff bounds are ordered
+PASS | grid[16]:N=13,beta=0.99,o=(0.05,0.10) T5 algebraic identity
+PASS | grid[16]:N=13,beta=0.99,o=(0.05,0.10) T5 sign equivalence
+PASS | grid[16]:N=13,beta=0.99,o=(0.05,0.10) strict T5 region has Z_E above all U values
+PASS | grid[16]:N=13,beta=0.99,o=(0.05,0.10) endpoint zero payoff vector below z_H
+PASS | grid[16]:N=13,beta=0.99,o=(0.05,0.10) endpoint one payoff vector equals z_H
+PASS | grid[16]:N=13,beta=0.99,o=(0.05,0.10) low cell at p=0 follows Delta condition
+PASS | grid[16]:N=13,beta=0.99,o=(0.05,0.10) low positive off-path belief is none
+PASS | grid[16]:N=13,beta=0.99,o=(0.05,0.10) high p=0 cell is H0
+PASS | grid[16]:N=13,beta=0.99,o=(0.05,0.10) high boundary p=nu_star is none
+PASS | grid[16]:N=13,beta=0.99,o=(0.05,0.10) high p>nu_star cell is HB
+PASS | grid[17]:N=3,beta=0.20,o=(0.10,0.70) nu_star is interior
+PASS | grid[17]:N=3,beta=0.20,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[17]:N=3,beta=0.20,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[17]:N=3,beta=0.20,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[17]:N=3,beta=0.20,o=(0.10,0.70) strict T5 region has Z_E above all U values
+PASS | grid[17]:N=3,beta=0.20,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[17]:N=3,beta=0.20,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[17]:N=3,beta=0.20,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[17]:N=3,beta=0.20,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[17]:N=3,beta=0.20,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[17]:N=3,beta=0.20,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[17]:N=3,beta=0.20,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[18]:N=4,beta=0.20,o=(0.10,0.70) nu_star is interior
+PASS | grid[18]:N=4,beta=0.20,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[18]:N=4,beta=0.20,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[18]:N=4,beta=0.20,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[18]:N=4,beta=0.20,o=(0.10,0.70) strict T5 region has Z_E above all U values
+PASS | grid[18]:N=4,beta=0.20,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[18]:N=4,beta=0.20,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[18]:N=4,beta=0.20,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[18]:N=4,beta=0.20,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[18]:N=4,beta=0.20,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[18]:N=4,beta=0.20,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[18]:N=4,beta=0.20,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[19]:N=5,beta=0.20,o=(0.10,0.70) nu_star is interior
+PASS | grid[19]:N=5,beta=0.20,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[19]:N=5,beta=0.20,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[19]:N=5,beta=0.20,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[19]:N=5,beta=0.20,o=(0.10,0.70) strict T5 region has Z_E above all U values
+PASS | grid[19]:N=5,beta=0.20,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[19]:N=5,beta=0.20,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[19]:N=5,beta=0.20,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[19]:N=5,beta=0.20,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[19]:N=5,beta=0.20,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[19]:N=5,beta=0.20,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[19]:N=5,beta=0.20,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[20]:N=13,beta=0.20,o=(0.10,0.70) nu_star is interior
+PASS | grid[20]:N=13,beta=0.20,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[20]:N=13,beta=0.20,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[20]:N=13,beta=0.20,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[20]:N=13,beta=0.20,o=(0.10,0.70) strict T5 region has Z_E above all U values
+PASS | grid[20]:N=13,beta=0.20,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[20]:N=13,beta=0.20,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[20]:N=13,beta=0.20,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[20]:N=13,beta=0.20,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[20]:N=13,beta=0.20,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[20]:N=13,beta=0.20,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[20]:N=13,beta=0.20,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[21]:N=3,beta=0.60,o=(0.10,0.70) nu_star is interior
+PASS | grid[21]:N=3,beta=0.60,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[21]:N=3,beta=0.60,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[21]:N=3,beta=0.60,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[21]:N=3,beta=0.60,o=(0.10,0.70) strict T5 region has Z_E above all U values
+PASS | grid[21]:N=3,beta=0.60,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[21]:N=3,beta=0.60,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[21]:N=3,beta=0.60,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[21]:N=3,beta=0.60,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[21]:N=3,beta=0.60,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[21]:N=3,beta=0.60,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[21]:N=3,beta=0.60,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[22]:N=4,beta=0.60,o=(0.10,0.70) nu_star is interior
+PASS | grid[22]:N=4,beta=0.60,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[22]:N=4,beta=0.60,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[22]:N=4,beta=0.60,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[22]:N=4,beta=0.60,o=(0.10,0.70) outside T5 region bound alone does not certify majority
+PASS | grid[22]:N=4,beta=0.60,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[22]:N=4,beta=0.60,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[22]:N=4,beta=0.60,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[22]:N=4,beta=0.60,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[22]:N=4,beta=0.60,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[22]:N=4,beta=0.60,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[22]:N=4,beta=0.60,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[23]:N=5,beta=0.60,o=(0.10,0.70) nu_star is interior
+PASS | grid[23]:N=5,beta=0.60,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[23]:N=5,beta=0.60,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[23]:N=5,beta=0.60,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[23]:N=5,beta=0.60,o=(0.10,0.70) strict T5 region has Z_E above all U values
+PASS | grid[23]:N=5,beta=0.60,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[23]:N=5,beta=0.60,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[23]:N=5,beta=0.60,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[23]:N=5,beta=0.60,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[23]:N=5,beta=0.60,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[23]:N=5,beta=0.60,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[23]:N=5,beta=0.60,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[24]:N=13,beta=0.60,o=(0.10,0.70) nu_star is interior
+PASS | grid[24]:N=13,beta=0.60,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[24]:N=13,beta=0.60,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[24]:N=13,beta=0.60,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[24]:N=13,beta=0.60,o=(0.10,0.70) strict T5 region has Z_E above all U values
+PASS | grid[24]:N=13,beta=0.60,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[24]:N=13,beta=0.60,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[24]:N=13,beta=0.60,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[24]:N=13,beta=0.60,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[24]:N=13,beta=0.60,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[24]:N=13,beta=0.60,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[24]:N=13,beta=0.60,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[25]:N=3,beta=0.90,o=(0.10,0.70) nu_star is interior
+PASS | grid[25]:N=3,beta=0.90,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[25]:N=3,beta=0.90,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[25]:N=3,beta=0.90,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[25]:N=3,beta=0.90,o=(0.10,0.70) outside T5 region bound alone does not certify majority
+PASS | grid[25]:N=3,beta=0.90,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[25]:N=3,beta=0.90,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[25]:N=3,beta=0.90,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[25]:N=3,beta=0.90,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[25]:N=3,beta=0.90,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[25]:N=3,beta=0.90,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[25]:N=3,beta=0.90,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[26]:N=4,beta=0.90,o=(0.10,0.70) nu_star is interior
+PASS | grid[26]:N=4,beta=0.90,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[26]:N=4,beta=0.90,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[26]:N=4,beta=0.90,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[26]:N=4,beta=0.90,o=(0.10,0.70) outside T5 region bound alone does not certify majority
+PASS | grid[26]:N=4,beta=0.90,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[26]:N=4,beta=0.90,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[26]:N=4,beta=0.90,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[26]:N=4,beta=0.90,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[26]:N=4,beta=0.90,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[26]:N=4,beta=0.90,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[26]:N=4,beta=0.90,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[27]:N=5,beta=0.90,o=(0.10,0.70) nu_star is interior
+PASS | grid[27]:N=5,beta=0.90,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[27]:N=5,beta=0.90,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[27]:N=5,beta=0.90,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[27]:N=5,beta=0.90,o=(0.10,0.70) outside T5 region bound alone does not certify majority
+PASS | grid[27]:N=5,beta=0.90,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[27]:N=5,beta=0.90,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[27]:N=5,beta=0.90,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[27]:N=5,beta=0.90,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[27]:N=5,beta=0.90,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[27]:N=5,beta=0.90,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[27]:N=5,beta=0.90,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[28]:N=13,beta=0.90,o=(0.10,0.70) nu_star is interior
+PASS | grid[28]:N=13,beta=0.90,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[28]:N=13,beta=0.90,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[28]:N=13,beta=0.90,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[28]:N=13,beta=0.90,o=(0.10,0.70) outside T5 region bound alone does not certify majority
+PASS | grid[28]:N=13,beta=0.90,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[28]:N=13,beta=0.90,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[28]:N=13,beta=0.90,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[28]:N=13,beta=0.90,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[28]:N=13,beta=0.90,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[28]:N=13,beta=0.90,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[28]:N=13,beta=0.90,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[29]:N=3,beta=0.99,o=(0.10,0.70) nu_star is interior
+PASS | grid[29]:N=3,beta=0.99,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[29]:N=3,beta=0.99,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[29]:N=3,beta=0.99,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[29]:N=3,beta=0.99,o=(0.10,0.70) outside T5 region bound alone does not certify majority
+PASS | grid[29]:N=3,beta=0.99,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[29]:N=3,beta=0.99,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[29]:N=3,beta=0.99,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[29]:N=3,beta=0.99,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[29]:N=3,beta=0.99,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[29]:N=3,beta=0.99,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[29]:N=3,beta=0.99,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[30]:N=4,beta=0.99,o=(0.10,0.70) nu_star is interior
+PASS | grid[30]:N=4,beta=0.99,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[30]:N=4,beta=0.99,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[30]:N=4,beta=0.99,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[30]:N=4,beta=0.99,o=(0.10,0.70) outside T5 region bound alone does not certify majority
+PASS | grid[30]:N=4,beta=0.99,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[30]:N=4,beta=0.99,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[30]:N=4,beta=0.99,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[30]:N=4,beta=0.99,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[30]:N=4,beta=0.99,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[30]:N=4,beta=0.99,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[30]:N=4,beta=0.99,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[31]:N=5,beta=0.99,o=(0.10,0.70) nu_star is interior
+PASS | grid[31]:N=5,beta=0.99,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[31]:N=5,beta=0.99,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[31]:N=5,beta=0.99,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[31]:N=5,beta=0.99,o=(0.10,0.70) outside T5 region bound alone does not certify majority
+PASS | grid[31]:N=5,beta=0.99,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[31]:N=5,beta=0.99,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[31]:N=5,beta=0.99,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[31]:N=5,beta=0.99,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[31]:N=5,beta=0.99,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[31]:N=5,beta=0.99,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[31]:N=5,beta=0.99,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[32]:N=13,beta=0.99,o=(0.10,0.70) nu_star is interior
+PASS | grid[32]:N=13,beta=0.99,o=(0.10,0.70) U payoff bounds are ordered
+PASS | grid[32]:N=13,beta=0.99,o=(0.10,0.70) T5 algebraic identity
+PASS | grid[32]:N=13,beta=0.99,o=(0.10,0.70) T5 sign equivalence
+PASS | grid[32]:N=13,beta=0.99,o=(0.10,0.70) outside T5 region bound alone does not certify majority
+PASS | grid[32]:N=13,beta=0.99,o=(0.10,0.70) endpoint zero payoff vector below z_H
+PASS | grid[32]:N=13,beta=0.99,o=(0.10,0.70) endpoint one payoff vector equals z_H
+PASS | grid[32]:N=13,beta=0.99,o=(0.10,0.70) low cell at p=0 follows Delta condition
+PASS | grid[32]:N=13,beta=0.99,o=(0.10,0.70) low positive off-path belief is none
+PASS | grid[32]:N=13,beta=0.99,o=(0.10,0.70) high p=0 cell is H0
+PASS | grid[32]:N=13,beta=0.99,o=(0.10,0.70) high boundary p=nu_star is none
+PASS | grid[32]:N=13,beta=0.99,o=(0.10,0.70) high p>nu_star cell is HB
+PASS | grid[33]:N=3,beta=0.20,o=(0.30,0.40) nu_star is interior
+PASS | grid[33]:N=3,beta=0.20,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[33]:N=3,beta=0.20,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[33]:N=3,beta=0.20,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[33]:N=3,beta=0.20,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[33]:N=3,beta=0.20,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[33]:N=3,beta=0.20,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[33]:N=3,beta=0.20,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[33]:N=3,beta=0.20,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[33]:N=3,beta=0.20,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[33]:N=3,beta=0.20,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[33]:N=3,beta=0.20,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[34]:N=4,beta=0.20,o=(0.30,0.40) nu_star is interior
+PASS | grid[34]:N=4,beta=0.20,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[34]:N=4,beta=0.20,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[34]:N=4,beta=0.20,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[34]:N=4,beta=0.20,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[34]:N=4,beta=0.20,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[34]:N=4,beta=0.20,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[34]:N=4,beta=0.20,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[34]:N=4,beta=0.20,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[34]:N=4,beta=0.20,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[34]:N=4,beta=0.20,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[34]:N=4,beta=0.20,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[35]:N=5,beta=0.20,o=(0.30,0.40) nu_star is interior
+PASS | grid[35]:N=5,beta=0.20,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[35]:N=5,beta=0.20,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[35]:N=5,beta=0.20,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[35]:N=5,beta=0.20,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[35]:N=5,beta=0.20,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[35]:N=5,beta=0.20,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[35]:N=5,beta=0.20,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[35]:N=5,beta=0.20,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[35]:N=5,beta=0.20,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[35]:N=5,beta=0.20,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[35]:N=5,beta=0.20,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[36]:N=13,beta=0.20,o=(0.30,0.40) nu_star is interior
+PASS | grid[36]:N=13,beta=0.20,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[36]:N=13,beta=0.20,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[36]:N=13,beta=0.20,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[36]:N=13,beta=0.20,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[36]:N=13,beta=0.20,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[36]:N=13,beta=0.20,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[36]:N=13,beta=0.20,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[36]:N=13,beta=0.20,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[36]:N=13,beta=0.20,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[36]:N=13,beta=0.20,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[36]:N=13,beta=0.20,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[37]:N=3,beta=0.60,o=(0.30,0.40) nu_star is interior
+PASS | grid[37]:N=3,beta=0.60,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[37]:N=3,beta=0.60,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[37]:N=3,beta=0.60,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[37]:N=3,beta=0.60,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[37]:N=3,beta=0.60,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[37]:N=3,beta=0.60,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[37]:N=3,beta=0.60,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[37]:N=3,beta=0.60,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[37]:N=3,beta=0.60,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[37]:N=3,beta=0.60,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[37]:N=3,beta=0.60,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[38]:N=4,beta=0.60,o=(0.30,0.40) nu_star is interior
+PASS | grid[38]:N=4,beta=0.60,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[38]:N=4,beta=0.60,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[38]:N=4,beta=0.60,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[38]:N=4,beta=0.60,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[38]:N=4,beta=0.60,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[38]:N=4,beta=0.60,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[38]:N=4,beta=0.60,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[38]:N=4,beta=0.60,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[38]:N=4,beta=0.60,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[38]:N=4,beta=0.60,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[38]:N=4,beta=0.60,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[39]:N=5,beta=0.60,o=(0.30,0.40) nu_star is interior
+PASS | grid[39]:N=5,beta=0.60,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[39]:N=5,beta=0.60,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[39]:N=5,beta=0.60,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[39]:N=5,beta=0.60,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[39]:N=5,beta=0.60,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[39]:N=5,beta=0.60,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[39]:N=5,beta=0.60,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[39]:N=5,beta=0.60,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[39]:N=5,beta=0.60,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[39]:N=5,beta=0.60,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[39]:N=5,beta=0.60,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[40]:N=13,beta=0.60,o=(0.30,0.40) nu_star is interior
+PASS | grid[40]:N=13,beta=0.60,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[40]:N=13,beta=0.60,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[40]:N=13,beta=0.60,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[40]:N=13,beta=0.60,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[40]:N=13,beta=0.60,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[40]:N=13,beta=0.60,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[40]:N=13,beta=0.60,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[40]:N=13,beta=0.60,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[40]:N=13,beta=0.60,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[40]:N=13,beta=0.60,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[40]:N=13,beta=0.60,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[41]:N=3,beta=0.90,o=(0.30,0.40) nu_star is interior
+PASS | grid[41]:N=3,beta=0.90,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[41]:N=3,beta=0.90,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[41]:N=3,beta=0.90,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[41]:N=3,beta=0.90,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[41]:N=3,beta=0.90,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[41]:N=3,beta=0.90,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[41]:N=3,beta=0.90,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[41]:N=3,beta=0.90,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[41]:N=3,beta=0.90,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[41]:N=3,beta=0.90,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[41]:N=3,beta=0.90,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[42]:N=4,beta=0.90,o=(0.30,0.40) nu_star is interior
+PASS | grid[42]:N=4,beta=0.90,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[42]:N=4,beta=0.90,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[42]:N=4,beta=0.90,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[42]:N=4,beta=0.90,o=(0.30,0.40) outside T5 region bound alone does not certify majority
+PASS | grid[42]:N=4,beta=0.90,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[42]:N=4,beta=0.90,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[42]:N=4,beta=0.90,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[42]:N=4,beta=0.90,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[42]:N=4,beta=0.90,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[42]:N=4,beta=0.90,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[42]:N=4,beta=0.90,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[43]:N=5,beta=0.90,o=(0.30,0.40) nu_star is interior
+PASS | grid[43]:N=5,beta=0.90,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[43]:N=5,beta=0.90,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[43]:N=5,beta=0.90,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[43]:N=5,beta=0.90,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[43]:N=5,beta=0.90,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[43]:N=5,beta=0.90,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[43]:N=5,beta=0.90,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[43]:N=5,beta=0.90,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[43]:N=5,beta=0.90,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[43]:N=5,beta=0.90,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[43]:N=5,beta=0.90,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[44]:N=13,beta=0.90,o=(0.30,0.40) nu_star is interior
+PASS | grid[44]:N=13,beta=0.90,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[44]:N=13,beta=0.90,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[44]:N=13,beta=0.90,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[44]:N=13,beta=0.90,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[44]:N=13,beta=0.90,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[44]:N=13,beta=0.90,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[44]:N=13,beta=0.90,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[44]:N=13,beta=0.90,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[44]:N=13,beta=0.90,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[44]:N=13,beta=0.90,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[44]:N=13,beta=0.90,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[45]:N=3,beta=0.99,o=(0.30,0.40) nu_star is interior
+PASS | grid[45]:N=3,beta=0.99,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[45]:N=3,beta=0.99,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[45]:N=3,beta=0.99,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[45]:N=3,beta=0.99,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[45]:N=3,beta=0.99,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[45]:N=3,beta=0.99,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[45]:N=3,beta=0.99,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[45]:N=3,beta=0.99,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[45]:N=3,beta=0.99,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[45]:N=3,beta=0.99,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[45]:N=3,beta=0.99,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[46]:N=4,beta=0.99,o=(0.30,0.40) nu_star is interior
+PASS | grid[46]:N=4,beta=0.99,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[46]:N=4,beta=0.99,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[46]:N=4,beta=0.99,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[46]:N=4,beta=0.99,o=(0.30,0.40) outside T5 region bound alone does not certify majority
+PASS | grid[46]:N=4,beta=0.99,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[46]:N=4,beta=0.99,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[46]:N=4,beta=0.99,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[46]:N=4,beta=0.99,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[46]:N=4,beta=0.99,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[46]:N=4,beta=0.99,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[46]:N=4,beta=0.99,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[47]:N=5,beta=0.99,o=(0.30,0.40) nu_star is interior
+PASS | grid[47]:N=5,beta=0.99,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[47]:N=5,beta=0.99,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[47]:N=5,beta=0.99,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[47]:N=5,beta=0.99,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[47]:N=5,beta=0.99,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[47]:N=5,beta=0.99,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[47]:N=5,beta=0.99,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[47]:N=5,beta=0.99,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[47]:N=5,beta=0.99,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[47]:N=5,beta=0.99,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[47]:N=5,beta=0.99,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[48]:N=13,beta=0.99,o=(0.30,0.40) nu_star is interior
+PASS | grid[48]:N=13,beta=0.99,o=(0.30,0.40) U payoff bounds are ordered
+PASS | grid[48]:N=13,beta=0.99,o=(0.30,0.40) T5 algebraic identity
+PASS | grid[48]:N=13,beta=0.99,o=(0.30,0.40) T5 sign equivalence
+PASS | grid[48]:N=13,beta=0.99,o=(0.30,0.40) strict T5 region has Z_E above all U values
+PASS | grid[48]:N=13,beta=0.99,o=(0.30,0.40) endpoint zero payoff vector below z_H
+PASS | grid[48]:N=13,beta=0.99,o=(0.30,0.40) endpoint one payoff vector equals z_H
+PASS | grid[48]:N=13,beta=0.99,o=(0.30,0.40) low cell at p=0 follows Delta condition
+PASS | grid[48]:N=13,beta=0.99,o=(0.30,0.40) low positive off-path belief is none
+PASS | grid[48]:N=13,beta=0.99,o=(0.30,0.40) high p=0 cell is H0
+PASS | grid[48]:N=13,beta=0.99,o=(0.30,0.40) high boundary p=nu_star is none
+PASS | grid[48]:N=13,beta=0.99,o=(0.30,0.40) high p>nu_star cell is HB
+PASS | grid[49]:N=3,beta=0.20,o=(0.80,0.95) nu_star is interior
+PASS | grid[49]:N=3,beta=0.20,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[49]:N=3,beta=0.20,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[49]:N=3,beta=0.20,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[49]:N=3,beta=0.20,o=(0.80,0.95) strict T5 region has Z_E above all U values
+PASS | grid[49]:N=3,beta=0.20,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[49]:N=3,beta=0.20,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[49]:N=3,beta=0.20,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[49]:N=3,beta=0.20,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[49]:N=3,beta=0.20,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[49]:N=3,beta=0.20,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[49]:N=3,beta=0.20,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[50]:N=4,beta=0.20,o=(0.80,0.95) nu_star is interior
+PASS | grid[50]:N=4,beta=0.20,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[50]:N=4,beta=0.20,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[50]:N=4,beta=0.20,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[50]:N=4,beta=0.20,o=(0.80,0.95) strict T5 region has Z_E above all U values
+PASS | grid[50]:N=4,beta=0.20,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[50]:N=4,beta=0.20,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[50]:N=4,beta=0.20,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[50]:N=4,beta=0.20,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[50]:N=4,beta=0.20,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[50]:N=4,beta=0.20,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[50]:N=4,beta=0.20,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[51]:N=5,beta=0.20,o=(0.80,0.95) nu_star is interior
+PASS | grid[51]:N=5,beta=0.20,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[51]:N=5,beta=0.20,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[51]:N=5,beta=0.20,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[51]:N=5,beta=0.20,o=(0.80,0.95) strict T5 region has Z_E above all U values
+PASS | grid[51]:N=5,beta=0.20,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[51]:N=5,beta=0.20,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[51]:N=5,beta=0.20,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[51]:N=5,beta=0.20,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[51]:N=5,beta=0.20,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[51]:N=5,beta=0.20,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[51]:N=5,beta=0.20,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[52]:N=13,beta=0.20,o=(0.80,0.95) nu_star is interior
+PASS | grid[52]:N=13,beta=0.20,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[52]:N=13,beta=0.20,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[52]:N=13,beta=0.20,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[52]:N=13,beta=0.20,o=(0.80,0.95) strict T5 region has Z_E above all U values
+PASS | grid[52]:N=13,beta=0.20,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[52]:N=13,beta=0.20,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[52]:N=13,beta=0.20,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[52]:N=13,beta=0.20,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[52]:N=13,beta=0.20,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[52]:N=13,beta=0.20,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[52]:N=13,beta=0.20,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[53]:N=3,beta=0.60,o=(0.80,0.95) nu_star is interior
+PASS | grid[53]:N=3,beta=0.60,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[53]:N=3,beta=0.60,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[53]:N=3,beta=0.60,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[53]:N=3,beta=0.60,o=(0.80,0.95) outside T5 region bound alone does not certify majority
+PASS | grid[53]:N=3,beta=0.60,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[53]:N=3,beta=0.60,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[53]:N=3,beta=0.60,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[53]:N=3,beta=0.60,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[53]:N=3,beta=0.60,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[53]:N=3,beta=0.60,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[53]:N=3,beta=0.60,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[54]:N=4,beta=0.60,o=(0.80,0.95) nu_star is interior
+PASS | grid[54]:N=4,beta=0.60,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[54]:N=4,beta=0.60,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[54]:N=4,beta=0.60,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[54]:N=4,beta=0.60,o=(0.80,0.95) outside T5 region bound alone does not certify majority
+PASS | grid[54]:N=4,beta=0.60,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[54]:N=4,beta=0.60,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[54]:N=4,beta=0.60,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[54]:N=4,beta=0.60,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[54]:N=4,beta=0.60,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[54]:N=4,beta=0.60,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[54]:N=4,beta=0.60,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[55]:N=5,beta=0.60,o=(0.80,0.95) nu_star is interior
+PASS | grid[55]:N=5,beta=0.60,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[55]:N=5,beta=0.60,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[55]:N=5,beta=0.60,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[55]:N=5,beta=0.60,o=(0.80,0.95) outside T5 region bound alone does not certify majority
+PASS | grid[55]:N=5,beta=0.60,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[55]:N=5,beta=0.60,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[55]:N=5,beta=0.60,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[55]:N=5,beta=0.60,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[55]:N=5,beta=0.60,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[55]:N=5,beta=0.60,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[55]:N=5,beta=0.60,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[56]:N=13,beta=0.60,o=(0.80,0.95) nu_star is interior
+PASS | grid[56]:N=13,beta=0.60,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[56]:N=13,beta=0.60,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[56]:N=13,beta=0.60,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[56]:N=13,beta=0.60,o=(0.80,0.95) outside T5 region bound alone does not certify majority
+PASS | grid[56]:N=13,beta=0.60,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[56]:N=13,beta=0.60,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[56]:N=13,beta=0.60,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[56]:N=13,beta=0.60,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[56]:N=13,beta=0.60,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[56]:N=13,beta=0.60,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[56]:N=13,beta=0.60,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[57]:N=3,beta=0.90,o=(0.80,0.95) nu_star is interior
+PASS | grid[57]:N=3,beta=0.90,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[57]:N=3,beta=0.90,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[57]:N=3,beta=0.90,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[57]:N=3,beta=0.90,o=(0.80,0.95) outside T5 region bound alone does not certify majority
+PASS | grid[57]:N=3,beta=0.90,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[57]:N=3,beta=0.90,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[57]:N=3,beta=0.90,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[57]:N=3,beta=0.90,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[57]:N=3,beta=0.90,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[57]:N=3,beta=0.90,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[57]:N=3,beta=0.90,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[58]:N=4,beta=0.90,o=(0.80,0.95) nu_star is interior
+PASS | grid[58]:N=4,beta=0.90,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[58]:N=4,beta=0.90,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[58]:N=4,beta=0.90,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[58]:N=4,beta=0.90,o=(0.80,0.95) outside T5 region bound alone does not certify majority
+PASS | grid[58]:N=4,beta=0.90,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[58]:N=4,beta=0.90,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[58]:N=4,beta=0.90,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[58]:N=4,beta=0.90,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[58]:N=4,beta=0.90,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[58]:N=4,beta=0.90,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[58]:N=4,beta=0.90,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[59]:N=5,beta=0.90,o=(0.80,0.95) nu_star is interior
+PASS | grid[59]:N=5,beta=0.90,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[59]:N=5,beta=0.90,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[59]:N=5,beta=0.90,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[59]:N=5,beta=0.90,o=(0.80,0.95) outside T5 region bound alone does not certify majority
+PASS | grid[59]:N=5,beta=0.90,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[59]:N=5,beta=0.90,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[59]:N=5,beta=0.90,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[59]:N=5,beta=0.90,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[59]:N=5,beta=0.90,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[59]:N=5,beta=0.90,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[59]:N=5,beta=0.90,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[60]:N=13,beta=0.90,o=(0.80,0.95) nu_star is interior
+PASS | grid[60]:N=13,beta=0.90,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[60]:N=13,beta=0.90,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[60]:N=13,beta=0.90,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[60]:N=13,beta=0.90,o=(0.80,0.95) outside T5 region bound alone does not certify majority
+PASS | grid[60]:N=13,beta=0.90,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[60]:N=13,beta=0.90,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[60]:N=13,beta=0.90,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[60]:N=13,beta=0.90,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[60]:N=13,beta=0.90,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[60]:N=13,beta=0.90,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[60]:N=13,beta=0.90,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[61]:N=3,beta=0.99,o=(0.80,0.95) nu_star is interior
+PASS | grid[61]:N=3,beta=0.99,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[61]:N=3,beta=0.99,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[61]:N=3,beta=0.99,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[61]:N=3,beta=0.99,o=(0.80,0.95) outside T5 region bound alone does not certify majority
+PASS | grid[61]:N=3,beta=0.99,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[61]:N=3,beta=0.99,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[61]:N=3,beta=0.99,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[61]:N=3,beta=0.99,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[61]:N=3,beta=0.99,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[61]:N=3,beta=0.99,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[61]:N=3,beta=0.99,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[62]:N=4,beta=0.99,o=(0.80,0.95) nu_star is interior
+PASS | grid[62]:N=4,beta=0.99,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[62]:N=4,beta=0.99,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[62]:N=4,beta=0.99,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[62]:N=4,beta=0.99,o=(0.80,0.95) outside T5 region bound alone does not certify majority
+PASS | grid[62]:N=4,beta=0.99,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[62]:N=4,beta=0.99,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[62]:N=4,beta=0.99,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[62]:N=4,beta=0.99,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[62]:N=4,beta=0.99,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[62]:N=4,beta=0.99,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[62]:N=4,beta=0.99,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[63]:N=5,beta=0.99,o=(0.80,0.95) nu_star is interior
+PASS | grid[63]:N=5,beta=0.99,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[63]:N=5,beta=0.99,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[63]:N=5,beta=0.99,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[63]:N=5,beta=0.99,o=(0.80,0.95) outside T5 region bound alone does not certify majority
+PASS | grid[63]:N=5,beta=0.99,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[63]:N=5,beta=0.99,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[63]:N=5,beta=0.99,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[63]:N=5,beta=0.99,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[63]:N=5,beta=0.99,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[63]:N=5,beta=0.99,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[63]:N=5,beta=0.99,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | grid[64]:N=13,beta=0.99,o=(0.80,0.95) nu_star is interior
+PASS | grid[64]:N=13,beta=0.99,o=(0.80,0.95) U payoff bounds are ordered
+PASS | grid[64]:N=13,beta=0.99,o=(0.80,0.95) T5 algebraic identity
+PASS | grid[64]:N=13,beta=0.99,o=(0.80,0.95) T5 sign equivalence
+PASS | grid[64]:N=13,beta=0.99,o=(0.80,0.95) outside T5 region bound alone does not certify majority
+PASS | grid[64]:N=13,beta=0.99,o=(0.80,0.95) endpoint zero payoff vector below z_H
+PASS | grid[64]:N=13,beta=0.99,o=(0.80,0.95) endpoint one payoff vector equals z_H
+PASS | grid[64]:N=13,beta=0.99,o=(0.80,0.95) low cell at p=0 follows Delta condition
+PASS | grid[64]:N=13,beta=0.99,o=(0.80,0.95) low positive off-path belief is none
+PASS | grid[64]:N=13,beta=0.99,o=(0.80,0.95) high p=0 cell is H0
+PASS | grid[64]:N=13,beta=0.99,o=(0.80,0.95) high boundary p=nu_star is none
+PASS | grid[64]:N=13,beta=0.99,o=(0.80,0.95) high p>nu_star cell is HB
+PASS | T5 equality fixture N=3,beta=0.55 is admissible
+PASS | T5 equality fixture N=3,beta=0.55 closes the bound
+PASS | T5 equality fixture N=3,beta=0.75 is admissible
+PASS | T5 equality fixture N=3,beta=0.75 closes the bound
+PASS | T5 equality fixture N=3,beta=0.90 is admissible
+PASS | T5 equality fixture N=3,beta=0.90 closes the bound
+PASS | T5 equality fixture N=3,beta=0.99 is admissible
+PASS | T5 equality fixture N=3,beta=0.99 closes the bound
+PASS | T5 equality fixture N=4,beta=0.55 is admissible
+PASS | T5 equality fixture N=4,beta=0.55 closes the bound
+PASS | T5 equality fixture N=4,beta=0.75 is admissible
+PASS | T5 equality fixture N=4,beta=0.75 closes the bound
+PASS | T5 equality fixture N=4,beta=0.90 is admissible
+PASS | T5 equality fixture N=4,beta=0.90 closes the bound
+PASS | T5 equality fixture N=4,beta=0.99 is admissible
+PASS | T5 equality fixture N=4,beta=0.99 closes the bound
+PASS | T5 equality fixture N=5,beta=0.55 is admissible
+PASS | T5 equality fixture N=5,beta=0.55 closes the bound
+PASS | T5 equality fixture N=5,beta=0.75 is admissible
+PASS | T5 equality fixture N=5,beta=0.75 closes the bound
+PASS | T5 equality fixture N=5,beta=0.90 is admissible
+PASS | T5 equality fixture N=5,beta=0.90 closes the bound
+PASS | T5 equality fixture N=5,beta=0.99 is admissible
+PASS | T5 equality fixture N=5,beta=0.99 closes the bound
+PASS | T5 equality fixture N=6,beta=0.55 is admissible
+PASS | T5 equality fixture N=6,beta=0.55 closes the bound
+PASS | T5 equality fixture N=6,beta=0.75 is admissible
+PASS | T5 equality fixture N=6,beta=0.75 closes the bound
+PASS | T5 equality fixture N=6,beta=0.90 is admissible
+PASS | T5 equality fixture N=6,beta=0.90 closes the bound
+PASS | T5 equality fixture N=6,beta=0.99 is admissible
+PASS | T5 equality fixture N=6,beta=0.99 closes the bound
+PASS | T5 equality fixture N=7,beta=0.55 is admissible
+PASS | T5 equality fixture N=7,beta=0.55 closes the bound
+PASS | T5 equality fixture N=7,beta=0.75 is admissible
+PASS | T5 equality fixture N=7,beta=0.75 closes the bound
+PASS | T5 equality fixture N=7,beta=0.90 is admissible
+PASS | T5 equality fixture N=7,beta=0.90 closes the bound
+PASS | T5 equality fixture N=7,beta=0.99 is admissible
+PASS | T5 equality fixture N=7,beta=0.99 closes the bound
+PASS | T5 equality fixture N=8,beta=0.55 is admissible
+PASS | T5 equality fixture N=8,beta=0.55 closes the bound
+PASS | T5 equality fixture N=8,beta=0.75 is admissible
+PASS | T5 equality fixture N=8,beta=0.75 closes the bound
+PASS | T5 equality fixture N=8,beta=0.90 is admissible
+PASS | T5 equality fixture N=8,beta=0.90 closes the bound
+PASS | T5 equality fixture N=8,beta=0.99 is admissible
+PASS | T5 equality fixture N=8,beta=0.99 closes the bound
+PASS | T5 equality fixture N=9,beta=0.55 is admissible
+PASS | T5 equality fixture N=9,beta=0.55 closes the bound
+PASS | T5 equality fixture N=9,beta=0.75 is admissible
+PASS | T5 equality fixture N=9,beta=0.75 closes the bound
+PASS | T5 equality fixture N=9,beta=0.90 is admissible
+PASS | T5 equality fixture N=9,beta=0.90 closes the bound
+PASS | T5 equality fixture N=9,beta=0.99 is admissible
+PASS | T5 equality fixture N=9,beta=0.99 closes the bound
+PASS | T5 equality fixture N=10,beta=0.55 is admissible
+PASS | T5 equality fixture N=10,beta=0.55 closes the bound
+PASS | T5 equality fixture N=10,beta=0.75 is admissible
+PASS | T5 equality fixture N=10,beta=0.75 closes the bound
+PASS | T5 equality fixture N=10,beta=0.90 is admissible
+PASS | T5 equality fixture N=10,beta=0.90 closes the bound
+PASS | T5 equality fixture N=10,beta=0.99 is admissible
+PASS | T5 equality fixture N=10,beta=0.99 closes the bound
+PASS | T5 equality fixture N=11,beta=0.55 is admissible
+PASS | T5 equality fixture N=11,beta=0.55 closes the bound
+PASS | T5 equality fixture N=11,beta=0.75 is admissible
+PASS | T5 equality fixture N=11,beta=0.75 closes the bound
+PASS | T5 equality fixture N=11,beta=0.90 is admissible
+PASS | T5 equality fixture N=11,beta=0.90 closes the bound
+PASS | T5 equality fixture N=11,beta=0.99 is admissible
+PASS | T5 equality fixture N=11,beta=0.99 closes the bound
+PASS | T5 equality fixture N=12,beta=0.55 is admissible
+PASS | T5 equality fixture N=12,beta=0.55 closes the bound
+PASS | T5 equality fixture N=12,beta=0.75 is admissible
+PASS | T5 equality fixture N=12,beta=0.75 closes the bound
+PASS | T5 equality fixture N=12,beta=0.90 is admissible
+PASS | T5 equality fixture N=12,beta=0.90 closes the bound
+PASS | T5 equality fixture N=12,beta=0.99 is admissible
+PASS | T5 equality fixture N=12,beta=0.99 closes the bound
+PASS | T5 equality fixture N=13,beta=0.55 is admissible
+PASS | T5 equality fixture N=13,beta=0.55 closes the bound
+PASS | T5 equality fixture N=13,beta=0.75 is admissible
+PASS | T5 equality fixture N=13,beta=0.75 closes the bound
+PASS | T5 equality fixture N=13,beta=0.90 is admissible
+PASS | T5 equality fixture N=13,beta=0.90 closes the bound
+PASS | T5 equality fixture N=13,beta=0.99 is admissible
+PASS | T5 equality fixture N=13,beta=0.99 closes the bound
+PASS | T5 equality fixture N=14,beta=0.55 is admissible
+PASS | T5 equality fixture N=14,beta=0.55 closes the bound
+PASS | T5 equality fixture N=14,beta=0.75 is admissible
+PASS | T5 equality fixture N=14,beta=0.75 closes the bound
+PASS | T5 equality fixture N=14,beta=0.90 is admissible
+PASS | T5 equality fixture N=14,beta=0.90 closes the bound
+PASS | T5 equality fixture N=14,beta=0.99 is admissible
+PASS | T5 equality fixture N=14,beta=0.99 closes the bound
+PASS | T5 equality fixture N=15,beta=0.55 is admissible
+PASS | T5 equality fixture N=15,beta=0.55 closes the bound
+PASS | T5 equality fixture N=15,beta=0.75 is admissible
+PASS | T5 equality fixture N=15,beta=0.75 closes the bound
+PASS | T5 equality fixture N=15,beta=0.90 is admissible
+PASS | T5 equality fixture N=15,beta=0.90 closes the bound
+PASS | T5 equality fixture N=15,beta=0.99 is admissible
+PASS | T5 equality fixture N=15,beta=0.99 closes the bound
+PASS | type-first contrast identity at nu=0.0
+PASS | type-first contrast identity at nu=0.1
+PASS | type-first contrast identity at nu=0.5
+PASS | type-first contrast identity at nu=0.9
+PASS | type-first contrast identity at nu=1.0
+PASS | finite envelope lower identity
+PASS | finite envelope upper identity
+PASS | coupled type vectors produce exactly two contrast vectors
+PASS | marginal splicing fabricates a vector outside the exact set
+
+MECHANICAL RESULT: PASS | 941 PASS | 0 FAIL
+UNTESTED GATES: completeness of either PBE correspondence; arbitrary continuous deviations; abstract Borel factorization; exact setwise lifting beyond the written proof; extreme-point attainment; any welfare ranking; independent formal review.
