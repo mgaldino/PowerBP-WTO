@@ -1,5 +1,20 @@
 # Model Redesign Workspace
 
+> ## CURRENT AGENDA-EXTENSION STATUS — 2026-08-29
+>
+> `A_M` under M/S/B is `pass/frozen` on the exact terminal-gate hashes.
+> `A_U`, `AC`, and `AR` remain `pending/unfrozen` and unauthorized. Read
+> `agenda_extension_STATUS.md` and `agenda_extension_status_current.json`
+> before using any agenda-extension artifact. The older
+> `agenda_extension_game_dag*.json` files retain their pre-M/S/B historical
+> lifecycle fields and are not the current status authority. Nothing in this
+> closure authorizes manuscript migration, a tag, merge, or push.
+>
+> The remainder of this README contains historical redesign guidance from
+> earlier model architectures. Where it conflicts with the current essential-
+> input contract or the agenda-extension status above, the later governing
+> records prevail.
+
 This folder is the formal laboratory for the next version of the paper.
 
 **Current blocker (2026-08-05).** The user adopted the standard bargaining

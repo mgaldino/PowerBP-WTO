@@ -6,6 +6,19 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 
 ## Current Status
 
+- **Agenda extension lifecycle (2026-08-29):** `A_M` under M/S/B and the
+  approved two-layer signature architecture is `pass/frozen` only on the
+  hashes in
+  `quality_reports/2026-08-29_A_M_msb_two_layer_final_gate_manifest.sha256`
+  (manifest SHA-256
+  `8eb870d5595a4373994e8f47a25a3dd137b00ac8c32fc09b947444498a32775e`).
+  Read current extension status first from
+  `model_redesign/agenda_extension_STATUS.md` and
+  `model_redesign/agenda_extension_status_current.json`. The older
+  `agenda_extension_game_dag*.json` files are immutable pre-M/S/B provenance;
+  their `A_M=pending` fields are not the current lifecycle authority. `A_U`,
+  `AC`, and `AR` remain `pending/unfrozen` and unauthorized. No manuscript
+  migration, tag, merge, or push follows from this closure.
 - **Essential-input chain (2026-08-21):** N1--N4, N6, and terminal N7 are
   `pass/frozen`, each on a final hash with two independent PASS 0/0/0 reviews;
   N5 is absent from the DAG. The author explicitly approved frozen N7 and

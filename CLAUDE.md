@@ -15,6 +15,18 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 
 ## Status
 
+- **Lifecycle da extensão de agenda (2026-08-29):** `A_M` sob M/S/B e a
+  arquitetura aprovada de assinatura em duas camadas está `pass/frozen`
+  somente nos hashes de
+  `quality_reports/2026-08-29_A_M_msb_two_layer_final_gate_manifest.sha256`
+  (SHA-256 do manifesto
+  `8eb870d5595a4373994e8f47a25a3dd137b00ac8c32fc09b947444498a32775e`).
+  Ler primeiro `model_redesign/agenda_extension_STATUS.md` e
+  `model_redesign/agenda_extension_status_current.json`. Os antigos
+  `agenda_extension_game_dag*.json` são proveniência imutável anterior a M/S/B;
+  seus campos `A_M=pending` não são a autoridade atual de lifecycle. `A_U`,
+  `AC` e `AR` permanecem `pending/unfrozen` e sem autorização. Este fechamento
+  não autoriza migração ao manuscrito, tag, merge ou push.
 - **Cadeia essential-input (2026-08-21):** N1--N4, N6 e o nó terminal N7 estão
   `pass/frozen`, cada um no hash final com dois pareceres independentes PASS
   0/0/0; N5 não integra o DAG. O autor aprovou explicitamente N7 congelado e

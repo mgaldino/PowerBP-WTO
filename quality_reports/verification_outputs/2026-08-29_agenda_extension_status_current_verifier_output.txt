@@ -1,0 +1,47 @@
+During startup - Warning messages:
+1: Setting LC_CTYPE failed, using "C"
+2: Setting LC_COLLATE failed, using "C"
+3: Setting LC_TIME failed, using "C"
+4: Setting LC_MESSAGES failed, using "C"
+5: Setting LC_MONETARY failed, using "C"
+PASS | current structured status exists
+PASS | status schema is agenda_extension_lifecycle_status_v1
+PASS | status date is pinned
+PASS | terminal authority hash is pinned
+PASS | final gate manifest hash is pinned
+PASS | candidate manifest hash is pinned
+PASS | terminal closure commit is pinned
+PASS | terminal authority bytes match
+PASS | final gate manifest bytes match
+PASS | candidate manifest bytes match
+PASS | A_M has exactly one current status record
+PASS | A_U has exactly one current status record
+PASS | AC has exactly one current status record
+PASS | AR has exactly one current status record
+PASS | A_M is pass/frozen with terminal author approval
+PASS | A_U remains pending/unfrozen and unauthorized
+PASS | AC remains pending/unfrozen and unauthorized
+PASS | AR remains pending/unfrozen and unauthorized
+PASS | structured status lists the four exact frozen A_M artifact hashes
+PASS | frozen bytes match: model_redesign/agenda_extension_A_M_msb_results.md
+PASS | frozen bytes match: model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv
+PASS | frozen bytes match: scripts/verify_agenda_extension_A_M_msb.R
+PASS | frozen bytes match: quality_reports/verification_outputs/2026-08-29_A_M_msb_two_layer_signature_verifier_output.txt
+PASS | frozen C_M dependency matches its pinned hash
+PASS | structured status lists both exact formal-review hashes
+PASS | both formal reviews are recorded as PASS 0/0/0
+PASS | review bytes match: quality_reports/2026-08-29_A_M_msb_two_layer_signature_formal_review_1.md
+PASS | review bytes match: quality_reports/2026-08-29_A_M_msb_two_layer_signature_formal_review_2.md
+PASS | adjudication verdict and zero counts are preserved
+PASS | adjudication Markdown bytes match
+PASS | adjudication JSON bytes match
+PASS | structured status pins the preserved legacy sources
+PASS | legacy provenance bytes remain unchanged: model_redesign/agenda_extension_game_dag.json
+PASS | legacy provenance bytes remain unchanged: model_redesign/agenda_extension_game_dag_simplified.json
+PASS | legacy provenance bytes remain unchanged: scripts/verify_agenda_extension_A_M_mechanical.R
+PASS | pre-M/S/B DAG still records its historical A_M pending state
+PASS | simplified pre-M/S/B DAG still records its historical A_M pending state
+PASS | no downstream, manuscript, tag, merge, or push authorization is introduced
+PASS | human-readable status identifies A_M as pass/frozen
+PASS | human-readable status preserves A_U as pending/unfrozen
+SUMMARY | 40 PASS | 0 FAIL

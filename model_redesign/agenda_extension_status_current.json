@@ -1,0 +1,139 @@
+{
+  "schema_version": "agenda_extension_lifecycle_status_v1",
+  "as_of": "2026-08-29",
+  "namespace": "agenda_extension",
+  "scope": "administrative lifecycle status only; mathematical artifacts and historical DAGs remain immutable",
+  "human_readable_status": "model_redesign/agenda_extension_STATUS.md",
+  "authority": {
+    "path": "quality_reports/2026-08-29_A_M_msb_two_layer_terminal_approval_and_freeze.md",
+    "sha256": "ca109199060f3aa775f6e2f18ef46fd9cefaff522cc3f7fdeeabfe9d5f412158",
+    "final_gate_manifest_path": "quality_reports/2026-08-29_A_M_msb_two_layer_final_gate_manifest.sha256",
+    "final_gate_manifest_sha256": "8eb870d5595a4373994e8f47a25a3dd137b00ac8c32fc09b947444498a32775e"
+  },
+  "snapshot": {
+    "branch": "agenda-extension-am-msb",
+    "substantive_commit": "e020629d5bad8fbd66d67cf108b1a2e0d8b048fd",
+    "packaged_candidate_commit": "e17520ee927eaca96ac9624ea032f855a6dc284d",
+    "reviews_commit": "200f9871b9d31c074432a355760e162a2dd2209e",
+    "terminal_closure_commit": "e191099a378a32bd2192d437455493e5e3300816",
+    "candidate_manifest_path": "quality_reports/2026-08-29_A_M_msb_two_layer_signature_candidate_manifest.sha256",
+    "candidate_manifest_sha256": "4130c09b9a7d504e0dd18f63c8793a0f6ce5f239369c585d924c48742177c0aa"
+  },
+  "nodes": [
+    {
+      "node_id": "A_M",
+      "status": "pass",
+      "frozen": true,
+      "authorization": "terminal_author_approval",
+      "contract": "M/S/B with the approved two-layer signature architecture",
+      "depends_on": [
+        {
+          "node_id": "essential_input:C_M",
+          "path": "model_redesign/essential_input_solution_concept/n3_r1_majority_candidate.json",
+          "sha256": "ff053798db1e2d4c103f3162e2e6525d20b68fc5ff376416c2deb66dae47330d"
+        }
+      ],
+      "frozen_artifacts": [
+        {
+          "path": "model_redesign/agenda_extension_A_M_msb_results.md",
+          "sha256": "7159a7e9f84b076000b3313d89b4de9ca692a055a31cdbb9f5a5561a30a283a3"
+        },
+        {
+          "path": "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv",
+          "sha256": "321cb2ed45ed1c5ebb6103a4ac567f07b735dd7a2ca8e2252925b43b8a2add9c"
+        },
+        {
+          "path": "scripts/verify_agenda_extension_A_M_msb.R",
+          "sha256": "b3133ab97870cf9c5730c57da40c2c9f4d68912226bb8d8f080022653e2a8391"
+        },
+        {
+          "path": "quality_reports/verification_outputs/2026-08-29_A_M_msb_two_layer_signature_verifier_output.txt",
+          "sha256": "3a242732c07b3d6ed5c508ca0238d1665c42de9d4f00f857b4030fe724ce7628"
+        }
+      ],
+      "reviews": [
+        {
+          "path": "quality_reports/2026-08-29_A_M_msb_two_layer_signature_formal_review_1.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "1b71c06b52b26f7455f75d58df1896ffe325f90af6aa24dbef63db331af01519"
+        },
+        {
+          "path": "quality_reports/2026-08-29_A_M_msb_two_layer_signature_formal_review_2.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "ff78147c2cd20f764d6ba70fee433a925054ac99c80bb32f4b5967e88ebb5cc3"
+        }
+      ],
+      "adjudication": {
+        "verdict": "NO_CONFIRMED_DEFECTS",
+        "counts": {
+          "confirmed": 0,
+          "partial": 0,
+          "unresolved": 0
+        },
+        "markdown_path": "quality_reports/adjudication/a_m_msb_two_layer/4130c09b9a7d/adjudication_round1.md",
+        "markdown_sha256": "99b230f0814091de52be98ce56f19aae05dcb46520b557d0e0a41ae20e890298",
+        "json_path": "quality_reports/adjudication/a_m_msb_two_layer/4130c09b9a7d/adjudication_round1.json",
+        "json_sha256": "0c73b403c50b6e3f31487d07c710d74f170eb47651d31282ff8b22b970180481"
+      }
+    },
+    {
+      "node_id": "A_U",
+      "status": "pending",
+      "frozen": false,
+      "authorization": "none",
+      "reason": "requires its own blind audit under the M/S/B freedom before it can be consumed"
+    },
+    {
+      "node_id": "AC",
+      "status": "pending",
+      "frozen": false,
+      "authorization": "none",
+      "reason": "blocked by pending A_U and by operation-specific sufficiency or measurable-factorization claims"
+    },
+    {
+      "node_id": "AR",
+      "status": "pending",
+      "frozen": false,
+      "authorization": "none",
+      "reason": "requires a separate author GO after the reviewed private package"
+    }
+  ],
+  "downstream": {
+    "authorization": "none",
+    "manuscript_migration_authorized": false,
+    "tag_authorized": false,
+    "merge_authorized": false,
+    "push_authorized": false
+  },
+  "legacy_status_sources": [
+    {
+      "path": "model_redesign/agenda_extension_game_dag.json",
+      "sha256": "9644151b8441ed5d09d1a870c3a2f5b94437c2376c7af6fb419c17297ebd5cd6",
+      "historical_contract": "pre-M/S/B agenda-extension DAG",
+      "recorded_A_M_status": "pending",
+      "current_role": "immutable provenance; lifecycle status superseded by this sidecar"
+    },
+    {
+      "path": "model_redesign/agenda_extension_game_dag_simplified.json",
+      "sha256": "a2572dc8954d63535d4edcbf04158e9524d11ed4537a822713e534df580ee9e0",
+      "historical_contract": "simplified pre-M/S/B candidate DAG",
+      "recorded_A_M_status": "pending",
+      "current_role": "immutable provenance; lifecycle status superseded by this sidecar"
+    },
+    {
+      "path": "scripts/verify_agenda_extension_A_M_mechanical.R",
+      "sha256": "1512fe8b31b65d44ef58fcbba2c58e345e3631f767aac9a0f363f897c7d28747",
+      "historical_contract": "mechanical verifier for the pre-M/S/B candidate",
+      "recorded_A_M_status": "pending",
+      "current_role": "immutable provenance; not a verifier of the frozen M/S/B package"
+    }
+  ],
+  "interpretation_rules": [
+    "Read node lifecycle from this sidecar together with the hash-pinned terminal authority.",
+    "Do not edit frozen A_M artifacts merely to update embedded candidate-era prose.",
+    "Do not infer authorization from topological readiness or from A_M being pass/frozen.",
+    "Dated reports and candidate files retain the status true at their own snapshot and remain provenance only."
+  ]
+}
