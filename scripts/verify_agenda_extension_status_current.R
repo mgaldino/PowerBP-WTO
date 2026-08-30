@@ -131,15 +131,23 @@ record_check(
             "a92175096f0a13340416825510e7b755b64a9c64") &&
     identical(status$a_c_candidate_snapshot$substantive_commit,
               "efeee0264bfe4f80e042bcced3a10dc313a452fe") &&
-    identical(status$a_c_candidate_snapshot$packaged_candidate_commit,
+    identical(status$a_c_candidate_snapshot$round1_packaged_candidate_commit,
               "886c440c4ea882cca42472975e6316c927c86a6e") &&
+    identical(status$a_c_candidate_snapshot$round1_reviews_and_adjudication_commit,
+              "ddae0df51d99792f8e876dfb89b223a45184dfd7") &&
+    identical(status$a_c_candidate_snapshot$traceability_repair_commit,
+              "7151b368f1e9d43de30b437ab2386c82655aa789") &&
+    identical(status$a_c_candidate_snapshot$round2_packaged_candidate_commit,
+              "7248c56cca098d86c0117a78f89c4555c0d934d3") &&
+    identical(status$a_c_candidate_snapshot$round2_reviews_and_adjudication_commit,
+              "62bad2e6e5d4f360e4c2ae2830916bc02522b512") &&
     identical(status$a_c_candidate_snapshot$candidate_manifest_sha256,
-              "6ba078efb05f7aea628f73644e26a05e26dd6de592237a239855a365e6389d9a") &&
+              "fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba") &&
     identical(status$a_c_candidate_snapshot$game_dag_sha256,
-              "bd440d445e4fdc70b0825abd2bde7acd7ad5d045c7fa9c337e1adfeb63cdf9c6") &&
+              "830aedea4d89007353f0b1da9b7ae623b1680360626521f536abedd7fda42b9c") &&
     identical(status$a_c_candidate_snapshot$mechanical_result,
               "941 PASS / 0 FAIL"),
-  "A_C authorization, substantive and packaging commits, manifest, DAG, and mechanical result are pinned"
+  "A_C authorization, both candidate rounds, repairs, reviews, manifest, DAG, and mechanical result are pinned"
 )
 
 record_check(
@@ -216,8 +224,8 @@ record_check(
     identical(ac$authorization, "start_authorized") &&
     identical(ac$mechanical_result, "941 PASS / 0 FAIL") &&
     identical(ac$review_status,
-              "two independent read-only formal reviews pending"),
-  "AC is a start-authorized pending/unfrozen candidate awaiting two reviews"
+              "round-2 mathematics reviewed; targeted read-only verification of the administrative repair pending"),
+  "AC is a start-authorized pending/unfrozen candidate awaiting targeted administrative verification"
 )
 record_check(
   identical(ar$status, "pending") && identical(ar$frozen, FALSE) &&
@@ -325,7 +333,7 @@ expected_a_c_candidate_hashes <- c(
   "model_redesign/agenda_extension_AC_msb_interface.json" =
     "103b564bd15af69dbb45c6b57cd16a0228d3c60a24b758ad779f6b75e7fe2cdf",
   "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv" =
-    "f753140181d6ac51cd9edcb54ba449b207c1315288225e36f14ca90db5deb7d1",
+    "280f8168cc632fd650e79cc9a4da411b42f24a5f2d845f5e98d337a99ec5ed5b",
   "scripts/verify_agenda_extension_AC_msb.R" =
     "bf69fb434cc05cc53ecab97080989cf2526979c903f17cf0e33c768acb945e51",
   "quality_reports/verification_outputs/2026-08-30_AC_msb_verifier_output.txt" =
@@ -347,10 +355,60 @@ record_check(
 )
 record_check(
   identical(ac$candidate_manifest$sha256,
-            "6ba078efb05f7aea628f73644e26a05e26dd6de592237a239855a365e6389d9a") &&
+            "fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba") &&
     identical(sha256(ac$candidate_manifest$path),
               ac$candidate_manifest$sha256),
-  "A_C node record pins the candidate manifest"
+  "A_C node record pins the round-2 candidate manifest"
+)
+
+expected_a_c_round2_review_hashes <- c(
+  "quality_reports/2026-08-30_AC_msb_round2_formal_review_1.md" =
+    "085db057eb9275b9cd8a6084d7a923c6bc0e4710ba5f3091622d3ebda3d0cd6f",
+  "quality_reports/2026-08-30_AC_msb_round2_formal_review_2.md" =
+    "872522eddae4b8af886a9d31197a4b6f1014bf14234841c4575a123cdc84d0ee"
+)
+a_c_round2_review_hashes <- setNames(
+  vapply(ac$current_reviews, function(x) x$sha256, character(1L)),
+  vapply(ac$current_reviews, function(x) x$path, character(1L))
+)
+record_check(
+  identical(a_c_round2_review_hashes[names(expected_a_c_round2_review_hashes)],
+            expected_a_c_round2_review_hashes),
+  "A_C round-2 review hashes are pinned"
+)
+record_check(
+  identical(ac$current_reviews[[1L]]$verdict, "PASS") &&
+    identical(ac$current_reviews[[1L]]$findings, "0/0/0") &&
+    identical(ac$current_reviews[[2L]]$verdict, "FAIL") &&
+    identical(ac$current_reviews[[2L]]$findings, "0/0/1"),
+  "A_C round-2 review divergence is preserved exactly"
+)
+for (relative_path in names(expected_a_c_round2_review_hashes)) {
+  record_check(
+    identical(sha256(relative_path),
+              unname(expected_a_c_round2_review_hashes[[relative_path]])),
+    sprintf("A_C round-2 review bytes match: %s", relative_path)
+  )
+}
+record_check(
+  identical(ac$current_adjudication$verdict, "READY_FOR_IMPLEMENTATION") &&
+    identical(ac$current_adjudication$confirmed_finding, "AC-R2-MIN-1") &&
+    identical(sha256(ac$current_adjudication$markdown_path),
+              ac$current_adjudication$markdown_sha256) &&
+    identical(sha256(ac$current_adjudication$json_path),
+              ac$current_adjudication$json_sha256),
+  "A_C round-2 adjudication and confirmed administrative finding are pinned"
+)
+record_check(
+  identical(ac$previous_review_round$confirmed_finding, "AC-R1-MIN-1") &&
+    identical(ac$previous_review_round$adjudication_verdict,
+              "READY_FOR_IMPLEMENTATION"),
+  "A_C round-1 traceability finding is preserved as historical and repaired"
+)
+record_check(
+  identical(ac$administrative_repair_status,
+            "AC-R2-MIN-1 implemented in the four adjudicated lifecycle artifacts; targeted final verification pending"),
+  "A_C administrative repair is recorded without terminal approval"
 )
 
 expected_a_u_review_hashes <- c(
@@ -519,6 +577,10 @@ record_check(
 record_check(
   any(grepl("NO_CONFIRMED_DEFECTS", status_md, fixed = TRUE, useBytes = TRUE)),
   "human-readable status records the clean A_U round-2 adjudication"
+)
+record_check(
+  any(grepl("AC-R2-MIN-1", status_md, fixed = TRUE, useBytes = TRUE)),
+  "human-readable status records the confirmed A_C administrative finding"
 )
 
 cat(sprintf("SUMMARY | %d PASS | %d FAIL\n", pass_count, fail_count))

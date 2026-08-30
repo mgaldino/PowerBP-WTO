@@ -9,16 +9,17 @@
 ## Resposta curta
 
 `A_M` e `A_U` sob M/S/B estão **`pass/frozen`** nos respectivos bytes exatos
-aprovados. `A_C` foi autorizado, derivado e empacotado como um candidato
-**`pending/unfrozen`**; ainda aguarda dois pareceres independentes, adjudicação e
-aprovação autoral terminal. `A_R` continua não autorizado. Não há autorização
+aprovados. `A_C` foi autorizado, derivado e revisado matematicamente, mas segue
+**`pending/unfrozen`**: o único finding corrente foi administrativo, seu reparo
+foi aplicado e ainda aguarda verificação independente dirigida e aprovação
+autoral terminal. `A_R` continua não autorizado. Não há autorização
 para migrar resultados ao manuscrito, criar tag, fazer merge ou push.
 
 | Nó | Status atual | Pode ser executado ou consumido agora? |
 |---|---|---|
 | `A_M` | `pass/frozen` | Apenas os bytes congelados podem ser citados; o status não autoriza trabalho downstream. |
 | `A_U` | `pass/frozen`; revisões, adjudicação e aprovação autoral terminal concluídas | Apenas os bytes congelados podem ser citados; o status não inicia `AC`. |
-| `AC` | candidato `pending/unfrozen`; início autorizado | Pode ser revisado nos hashes do manifesto; ainda não pode ser citado como resultado congelado. |
+| `AC` | candidato `pending/unfrozen`; matemática revisada; reparo administrativo aguardando checagem final | Pode ser verificado nos hashes da rodada 2; ainda não pode ser citado como resultado congelado. |
 | `AR` | `pending/unfrozen` | Não. Exige GO autoral separado após o pacote privado revisado. |
 
 ## Candidato atual de `A_C`
@@ -28,13 +29,16 @@ está em `quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md`
 (SHA-256
 `ea4e2e9b9e1296aecd64760f058f0097ff4281f6a9b301373feeea2591092f95`).
 O núcleo matemático foi fixado no commit
-`efeee0264bfe4f80e042bcced3a10dc313a452fe` e o pacote de revisão, no commit
-`886c440c4ea882cca42472975e6316c927c86a6e`.
+`efeee0264bfe4f80e042bcced3a10dc313a452fe`. A rodada 1 foi empacotada no
+commit `886c440c4ea882cca42472975e6316c927c86a6e`; depois do reparo de
+rastreabilidade determinado pela primeira adjudicação, a rodada 2 foi
+empacotada no commit `7248c56cca098d86c0117a78f89c4555c0d934d3`.
 
-O manifesto
-`quality_reports/2026-08-30_AC_msb_candidate_manifest.sha256` (SHA-256
-`6ba078efb05f7aea628f73644e26a05e26dd6de592237a239855a365e6389d9a`)
-fixa seis artefatos. O candidato forma primeiro o produto de binders completos
+O manifesto corrente
+`quality_reports/2026-08-30_AC_msb_round2_candidate_manifest.sha256`
+(SHA-256
+`fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba`)
+fixa sete artefatos. O candidato forma primeiro o produto de binders completos
 de `A_M` e `A_U` na mesma economia e na mesma fibra `(rho,nu_off)`. Só depois
 aplica o resumo econômico, mediante prova específica de fatoração mensurável.
 Os contrastes são calculados por tipo e então agregados pelo prior, sem novo
@@ -51,9 +55,28 @@ Na igualdade a dominância de maioria é fraca. A condição não é necessária
 dela, o ranking continua sendo uma correspondência que pode depender da seleção.
 
 O verificador retornou `941 PASS / 0 FAIL`. Isso é evidência mecânica, não prova
-formal independente. Dois pareceres read-only sobre exatamente o manifesto
-acima, seguidos de adjudicação, são o próximo gate. Mesmo dois `PASS` não
-congelam `A_C` sem aprovação autoral terminal.
+formal independente. Na rodada 1, um parecer deu `FAIL 0/0/1` porque oito
+`source_record_ids` do ledger não identificavam precisamente as premissas
+citadas; o outro deu `PASS 0/0/0`. A adjudicação confirmou apenas esse finding,
+`AC-R1-MIN-1`, sem atingir T1–T5. Os oito IDs foram corrigidos e nenhuma prova,
+interface ou hipótese mudou.
+
+Na rodada 2, o parecer 1 deu `PASS 0/0/0`. O parecer 2 confirmou que o reparo e
+T1–T5 estavam corretos, mas deu `FAIL 0/0/1` porque este registro central ainda
+apontava para o manifesto, DAG e ledger da rodada 1. A adjudicação classificou
+`AC-R2-MIN-1` como minor estritamente administrativo e autorizou um único
+reparo nos quatro arquivos de lifecycle. Esse reparo repina:
+
+```text
+commit da rodada 2 = 7248c56cca098d86c0117a78f89c4555c0d934d3
+manifesto          = fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba
+DAG                 = 830aedea4d89007353f0b1da9b7ae623b1680360626521f536abedd7fda42b9c
+ledger              = 280f8168cc632fd650e79cc9a4da411b42f24a5f2d845f5e98d337a99ec5ed5b
+```
+
+O próximo gate é uma checagem read-only dirigida somente à reprodutibilidade
+desse reparo administrativo e à imutabilidade dos sete blobs matemáticos. Mesmo
+um `PASS` final não congela `A_C` sem aprovação autoral terminal.
 
 ## Status próprio de `A_U`
 
