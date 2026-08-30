@@ -19,6 +19,14 @@
     "candidate_manifest_path": "quality_reports/2026-08-29_A_M_msb_two_layer_signature_candidate_manifest.sha256",
     "candidate_manifest_sha256": "4130c09b9a7d504e0dd18f63c8793a0f6ce5f239369c585d924c48742177c0aa"
   },
+  "a_u_candidate_snapshot": {
+    "blind_lock_commit": "c193f3bdd99c6b127e76e595d851051fa005e247",
+    "packaged_candidate_commit": "b59ce1bf5b5ee7b57707684de92c38d4fa325b30",
+    "candidate_manifest_path": "quality_reports/2026-08-29_A_U_msb_final_implementer_manifest.sha256",
+    "candidate_manifest_sha256": "f95322c800e113ac74dbf8d378d7a329b9e6a06cb27e7e016c0a1c6322d2be81",
+    "mechanical_result": "1095 PASS / 0 FAIL",
+    "lifecycle": "pending owner decision; unfrozen"
+  },
   "nodes": [
     {
       "node_id": "A_M",
@@ -82,15 +90,63 @@
       "node_id": "A_U",
       "status": "pending",
       "frozen": false,
-      "authorization": "none",
-      "reason": "requires its own blind audit under the M/S/B freedom before it can be consumed"
+      "authorization": "owner_decision_required",
+      "reason": "the strategic correspondence survived both independent reviews, but adjudication confirmed one important defect in the equivalence/interface architecture",
+      "strategic_correspondence_status": "reviewed and preserved; no confirmed defect in thresholds, payoffs, Bayes, PBE families, endpoints, or existence/exhaustion at the assessment level",
+      "equivalence_interface_status": "blocked by confirmed R2-I-1 pending an A_U-specific author decision",
+      "candidate_artifacts": [
+        {
+          "path": "model_redesign/agenda_extension_A_U_msb_results.md",
+          "sha256": "fefe77fe0dcd86941ed41ed5cd13ff22323ffb2e12221db5e2d91604de7774fc"
+        },
+        {
+          "path": "model_redesign/agenda_extension_A_U_msb_interface.json",
+          "sha256": "ee9582805b17562d5b1e2bb9e511eca7984ae2fd3379d94667b8464c50932410"
+        },
+        {
+          "path": "model_redesign/agenda_extension_A_U_msb_claim_ledger.tsv",
+          "sha256": "e2d7b0f19429bf7149b7e2ba0afd998469004b5dad23e1b8a7330aec6a8bd03b"
+        },
+        {
+          "path": "scripts/verify_agenda_extension_A_U_msb.R",
+          "sha256": "b738695e38de6fe8ceaca982250cac5f3251ef2dbb903ac47e03246b27328399"
+        },
+        {
+          "path": "quality_reports/verification_outputs/2026-08-29_A_U_msb_post_comparison_verifier_output.txt",
+          "sha256": "e06587ec81df764726e7fbb7f1a7b163528f3bc235c57a5f05b880585f228586"
+        }
+      ],
+      "reviews": [
+        {
+          "path": "quality_reports/2026-08-29_A_U_msb_formal_review_1.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "36e1e092ff2135e5610b2d942a81b7955ed899702ae266986ca2c712659f380d"
+        },
+        {
+          "path": "quality_reports/2026-08-29_A_U_msb_formal_review_2.md",
+          "verdict": "FAIL",
+          "findings": "0/1/0",
+          "sha256": "79a335f6557b4274786256011cc850fbf8dd81e606b43ef7f2d04d951aa4ea57"
+        }
+      ],
+      "adjudication": {
+        "verdict": "BLOCKED",
+        "confirmed_finding": "R2-I-1",
+        "scope": "equivalence and downstream interface only; strategic mathematics preserved",
+        "fix_assessment": "owner_decision",
+        "markdown_path": "quality_reports/adjudication/A_U_msb/b59ce1bf5b5/adjudication_round1.md",
+        "markdown_sha256": "bce0b8fb1abe75a39e8a9a857653a6f328a5dc00f2e264d3805ec8b927fad5ad",
+        "json_path": "quality_reports/adjudication/A_U_msb/b59ce1bf5b5/adjudication_round1.json",
+        "json_sha256": "460780c0f694969f2f1566cbc913d797d8c25e6e2e48f47a047c89fddceb749b"
+      }
     },
     {
       "node_id": "AC",
       "status": "pending",
       "frozen": false,
       "authorization": "none",
-      "reason": "blocked by pending A_U and by operation-specific sufficiency or measurable-factorization claims"
+      "reason": "blocked by the pending A_U owner decision and by operation-specific sufficiency or measurable-factorization claims"
     },
     {
       "node_id": "AR",

@@ -8,17 +8,55 @@
 
 ## Resposta curta
 
-`A_M` sob M/S/B está **`pass/frozen`** nos bytes exatos aprovados. `A_U`,
-`AC` e `AR` continuam **`pending/unfrozen`** e não estão autorizados. Não há
-autorização para migrar resultados ao manuscrito, criar tag, fazer merge ou
-push.
+`A_M` sob M/S/B está **`pass/frozen`** nos bytes exatos aprovados. `A_U`
+continua **`pending/unfrozen`**: sua matemática estratégica sobreviveu a duas
+revisões independentes, mas a adjudicação confirmou um defeito importante e
+restrito à equivalência/interface, que exige decisão autoral. `AC` e `AR`
+continuam **`pending/unfrozen`** e não estão autorizados. Não há autorização
+para migrar resultados ao manuscrito, criar tag, fazer merge ou push.
 
 | Nó | Status atual | Pode ser executado ou consumido agora? |
 |---|---|---|
 | `A_M` | `pass/frozen` | Apenas os bytes congelados podem ser citados; o status não autoriza trabalho downstream. |
-| `A_U` | `pending/unfrozen` | Não. Requer auditoria própria e cega sob M/S/B. |
-| `AC` | `pending/unfrozen` | Não. Depende de `A_U` e de provas de suficiência ou fatoração específicas da operação. |
+| `A_U` | `pending/unfrozen`; decisão autoral requerida | Não. A solução estratégica foi preservada, mas a equivalência entre misturas de relabelings ainda não foi decidida para `A_U`. |
+| `AC` | `pending/unfrozen` | Não. Depende da decisão sobre a interface de `A_U` e de provas de suficiência ou fatoração específicas da operação. |
 | `AR` | `pending/unfrozen` | Não. Exige GO autoral separado após o pacote privado revisado. |
+
+## Status próprio de `A_U`
+
+A reconstrução cega foi fixada no commit
+`c193f3bdd99c6b127e76e595d851051fa005e247`; a comparação histórica e o
+pacote final do implementador, no commit
+`b59ce1bf5b5ee7b57707684de92c38d4fa325b30`. O manifesto final do candidato é
+`quality_reports/2026-08-29_A_U_msb_final_implementer_manifest.sha256`
+(SHA-256
+`f95322c800e113ac74dbf8d378d7a329b9e6a06cb27e7e016c0a1c6322d2be81`).
+O verificador foi reproduzido com `1095 PASS / 0 FAIL`; essa evidência é
+mecânica e não substitui as provas.
+
+Os dois pareceres independentes cobriram esses mesmos bytes:
+
+- parecer 1: `PASS 0/0/0`, SHA-256
+  `36e1e092ff2135e5610b2d942a81b7955ed899702ae266986ca2c712659f380d`;
+- parecer 2: `FAIL 0/1/0`, SHA-256
+  `79a335f6557b4274786256011cc850fbf8dd81e606b43ef7f2d04d951aa4ea57`.
+
+A adjudicação em
+`quality_reports/adjudication/A_U_msb/b59ce1bf5b5/adjudication_round1.md`
+confirmou `R2-I-1` e encerrou a rodada como `BLOCKED`. O finding não atinge
+thresholds, payoffs, Bayes, famílias de PBE, endpoints ou a exaustão no nível
+de assessments. Ele atinge apenas a escolha da relação de equivalência e o
+formato da interface downstream: a clarificação geral colapsa misturas sobre
+relabelings, enquanto a arquitetura que separa camada formal exata e resumo
+econômico foi aprovada posteriormente apenas para `A_M`.
+
+Não há patch técnico automático. `A_U` precisa de uma decisão específica entre:
+
+1. estender a `A_U` a arquitetura em duas camadas de `A_M`; ou
+2. manter o quociente anônimo anterior e reconstruir uma equivalência única
+   que colapse misturas sem apagar diferenças de revelação.
+
+Até essa escolha ser registrada, `A_U` não é congelado e `AC` não começa.
 
 ## Autoridade do status de `A_M`
 

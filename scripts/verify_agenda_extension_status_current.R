@@ -85,6 +85,15 @@ record_check(
             "e191099a378a32bd2192d437455493e5e3300816"),
   "terminal closure commit is pinned"
 )
+record_check(
+  identical(status$a_u_candidate_snapshot$blind_lock_commit,
+            "c193f3bdd99c6b127e76e595d851051fa005e247") &&
+    identical(status$a_u_candidate_snapshot$packaged_candidate_commit,
+              "b59ce1bf5b5ee7b57707684de92c38d4fa325b30") &&
+    identical(status$a_u_candidate_snapshot$candidate_manifest_sha256,
+              "f95322c800e113ac74dbf8d378d7a329b9e6a06cb27e7e016c0a1c6322d2be81"),
+  "A_U blind lock, packaged candidate, and manifest are pinned"
+)
 
 record_check(
   identical(sha256(status$authority$path), status$authority$sha256),
@@ -99,6 +108,11 @@ record_check(
   identical(sha256(status$snapshot$candidate_manifest_path),
             status$snapshot$candidate_manifest_sha256),
   "candidate manifest bytes match"
+)
+record_check(
+  identical(sha256(status$a_u_candidate_snapshot$candidate_manifest_path),
+            status$a_u_candidate_snapshot$candidate_manifest_sha256),
+  "A_U candidate manifest bytes match"
 )
 
 a_m <- node_by_id(status, "A_M")
@@ -117,8 +131,13 @@ record_check(
 )
 record_check(
   identical(a_u$status, "pending") && identical(a_u$frozen, FALSE) &&
-    identical(a_u$authorization, "none"),
-  "A_U remains pending/unfrozen and unauthorized"
+    identical(a_u$authorization, "owner_decision_required"),
+  "A_U remains pending/unfrozen and requires an owner decision"
+)
+record_check(
+  identical(a_u$equivalence_interface_status,
+            "blocked by confirmed R2-I-1 pending an A_U-specific author decision"),
+  "A_U equivalence/interface blocker is recorded exactly"
 )
 record_check(
   identical(ac$status, "pending") && identical(ac$frozen, FALSE) &&
@@ -192,6 +211,82 @@ for (relative_path in names(expected_review_hashes)) {
   )
 }
 
+expected_a_u_candidate_hashes <- c(
+  "model_redesign/agenda_extension_A_U_msb_results.md" =
+    "fefe77fe0dcd86941ed41ed5cd13ff22323ffb2e12221db5e2d91604de7774fc",
+  "model_redesign/agenda_extension_A_U_msb_interface.json" =
+    "ee9582805b17562d5b1e2bb9e511eca7984ae2fd3379d94667b8464c50932410",
+  "model_redesign/agenda_extension_A_U_msb_claim_ledger.tsv" =
+    "e2d7b0f19429bf7149b7e2ba0afd998469004b5dad23e1b8a7330aec6a8bd03b",
+  "scripts/verify_agenda_extension_A_U_msb.R" =
+    "b738695e38de6fe8ceaca982250cac5f3251ef2dbb903ac47e03246b27328399",
+  "quality_reports/verification_outputs/2026-08-29_A_U_msb_post_comparison_verifier_output.txt" =
+    "e06587ec81df764726e7fbb7f1a7b163528f3bc235c57a5f05b880585f228586"
+)
+a_u_candidate_hashes <- setNames(
+  vapply(a_u$candidate_artifacts, function(x) x$sha256, character(1L)),
+  vapply(a_u$candidate_artifacts, function(x) x$path, character(1L))
+)
+record_check(
+  identical(a_u_candidate_hashes[names(expected_a_u_candidate_hashes)],
+            expected_a_u_candidate_hashes),
+  "structured status lists the exact A_U candidate hashes"
+)
+for (relative_path in names(expected_a_u_candidate_hashes)) {
+  record_check(
+    identical(sha256(relative_path),
+              unname(expected_a_u_candidate_hashes[[relative_path]])),
+    sprintf("A_U candidate bytes match: %s", relative_path)
+  )
+}
+
+expected_a_u_review_hashes <- c(
+  "quality_reports/2026-08-29_A_U_msb_formal_review_1.md" =
+    "36e1e092ff2135e5610b2d942a81b7955ed899702ae266986ca2c712659f380d",
+  "quality_reports/2026-08-29_A_U_msb_formal_review_2.md" =
+    "79a335f6557b4274786256011cc850fbf8dd81e606b43ef7f2d04d951aa4ea57"
+)
+a_u_review_hashes <- setNames(
+  vapply(a_u$reviews, function(x) x$sha256, character(1L)),
+  vapply(a_u$reviews, function(x) x$path, character(1L))
+)
+record_check(
+  identical(a_u_review_hashes[names(expected_a_u_review_hashes)],
+            expected_a_u_review_hashes),
+  "structured status lists both exact A_U review hashes"
+)
+record_check(
+  identical(a_u$reviews[[1L]]$verdict, "PASS") &&
+    identical(a_u$reviews[[1L]]$findings, "0/0/0") &&
+    identical(a_u$reviews[[2L]]$verdict, "FAIL") &&
+    identical(a_u$reviews[[2L]]$findings, "0/1/0"),
+  "A_U review divergence is recorded exactly"
+)
+for (relative_path in names(expected_a_u_review_hashes)) {
+  record_check(
+    identical(sha256(relative_path),
+              unname(expected_a_u_review_hashes[[relative_path]])),
+    sprintf("A_U review bytes match: %s", relative_path)
+  )
+}
+
+record_check(
+  identical(a_u$adjudication$verdict, "BLOCKED") &&
+    identical(a_u$adjudication$confirmed_finding, "R2-I-1") &&
+    identical(a_u$adjudication$fix_assessment, "owner_decision"),
+  "A_U adjudication and owner-decision boundary are preserved"
+)
+record_check(
+  identical(sha256(a_u$adjudication$markdown_path),
+            a_u$adjudication$markdown_sha256),
+  "A_U adjudication Markdown bytes match"
+)
+record_check(
+  identical(sha256(a_u$adjudication$json_path),
+            a_u$adjudication$json_sha256),
+  "A_U adjudication JSON bytes match"
+)
+
 record_check(
   identical(a_m$adjudication$verdict, "NO_CONFIRMED_DEFECTS") &&
     identical(a_m$adjudication$counts$confirmed, 0L) &&
@@ -262,6 +357,10 @@ record_check(
 record_check(
   any(grepl("A_U.*pending/unfrozen", status_md, fixed = FALSE, useBytes = TRUE)),
   "human-readable status preserves A_U as pending/unfrozen"
+)
+record_check(
+  any(grepl("R2-I-1", status_md, fixed = TRUE, useBytes = TRUE)),
+  "human-readable status records the confirmed A_U interface finding"
 )
 
 cat(sprintf("SUMMARY | %d PASS | %d FAIL\n", pass_count, fail_count))

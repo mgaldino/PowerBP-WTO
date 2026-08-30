@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a-u-msb:b59ce1bf5b5:round1",
+  "source": {
+    "reviewed_artifact": "model_redesign/agenda_extension_A_U_msb_results.md",
+    "sha256": "fefe77fe0dcd86941ed41ed5cd13ff22323ffb2e12221db5e2d91604de7774fc",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-08-29_A_U_msb_formal_review_1.md",
+      "sha256": "36e1e092ff2135e5610b2d942a81b7955ed899702ae266986ca2c712659f380d"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-08-29_A_U_msb_formal_review_2.md",
+      "sha256": "79a335f6557b4274786256011cc850fbf8dd81e606b43ef7f2d04d951aa4ea57"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "R2-I-1",
+      "source_review": "R2",
+      "quoted_finding": "A assinatura de A_U adota sem autorização a camada exata criada apenas para A_M e contradiz o colapso aprovado de misturas sobre relabelings.",
+      "type": "scope_or_consistency",
+      "severity": "important",
+      "scientific_dimension": "fidelidade de implementação e escopo da interface de equivalência",
+      "held_decision": true,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_A_U_msb_results.md:95-101,335-337,354-365",
+        "model_redesign/agenda_extension_A_U_msb_interface.json:87-91",
+        "model_redesign/agenda_extension_A_U_msb_claim_ledger.tsv:24-25",
+        "model_redesign/agenda_extension_A_U_msb_contract.md:126-128,160-171",
+        "quality_reports/plans/2026-08-29_clarificacao_assinatura_anonimato.md:59-73,86-95,116-118",
+        "quality_reports/plans/2026-08-29_decisao_assinatura_duas_camadas_A_M.md:1-11,32-54,76-85,144-153",
+        "quality_reports/2026-08-29_A_U_msb_formal_review_1.md:430-454",
+        "quality_reports/2026-08-29_A_U_msb_formal_review_2.md:179-185,208-210,241-242,309-357"
+      ],
+      "defect_evidence": [
+        "A clarificação geral aprovada determina que misturas sobre a órbita ou sobre identidades formem uma única classe, além de exigir uma permutação comum no perfil inteiro.",
+        "O candidato define a equivalência de A_U apenas como órbita comum do binder e declara expressamente que misturas sobre relabelings não são automaticamente o mesmo assessment.",
+        "A decisão posterior que torna a órbita diagonal uma camada formal exata tem objeto e processo explicitamente limitados a A_M e não concede a mesma arquitetura a A_U.",
+        "No exemplo P/Q, pooling puro e todas as misturas comuns entre duas propostas relabeladas são PBEs com o mesmo posterior e payoff; a órbita do candidato distingue pesos que a clarificação manda colapsar."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "git rev-parse HEAD retornou b59ce1bf5b5ee7b57707684de92c38d4fa325b30 na branch agenda-extension-am-msb.",
+        "shasum -a 256 -c no manifesto final retornou 26/26 entradas OK; o manifesto tem SHA-256 f95322c800e113ac74dbf8d378d7a329b9e6a06cb27e7e016c0a1c6322d2be81.",
+        "Hashes recalculados: resultados fefe77fe0dcd86941ed41ed5cd13ff22323ffb2e12221db5e2d91604de7774fc; R1 36e1e092ff2135e5610b2d942a81b7955ed899702ae266986ca2c712659f380d; R2 79a335f6557b4274786256011cc850fbf8dd81e606b43ef7f2d04d951aa4ea57.",
+        "Rscript inline reproduziu nu_star=0.375, a=0.369, b=0.2475, d=0.405, z_L=0.262, z_H=0.505, Delta=-0.143; P e Q somam 1, pagam mínimo 0.2475 e V=0.45 excede o cap off-path 0.405.",
+        "Rscript --vanilla scripts/verify_agenda_extension_A_U_msb.R /dev/null retornou MECHANICAL RESULT: PASS | 1095 PASS | 0 FAIL."
+      ],
+      "reasoning": "R1 demonstra corretamente que a ação de uma permutação comum é Borel, preserva o jogo e fecha o conjunto de PBE; Gate 0 e M/S/B também justificam preservar o binder inteiro sem recombinação. Isso valida a ação e o objeto estratégico, não a alegação de que cada órbita seja toda a classe de assinatura. As cláusulas explícitas da clarificação que colapsam misturas continuam governando A_U, enquanto a reinterpretação em duas camadas foi aprovada somente para A_M. O contraexemplo P/Q pertence à família estratégica H0 e separa as duas relações sem alterar revelação. Portanto o finding é confirmado apenas na equivalência/interface: AUX-MSB-023 e o default de AUX-MSB-024 são afetados; thresholds, payoffs, Bayes, famílias de PBE, endpoints, mensurabilidade e o binder literal não são refutados.",
+      "proposed_fix_assessment": "owner_decision",
+      "disposition": "Não encaminhar patch automático nem escolher arquitetura. Preservar a solução estratégica e o binder literal; aguardar decisão autoral específica para a equivalência de A_U e, depois dela, recortar de forma coerente contrato, resultados, interface, ledger e manifesto para nova revisão independente."
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "confirmed": 1,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 1
+  },
+  "adjudication": {
+    "verdict": "BLOCKED",
+    "checked_at": "2026-08-29T23:39:47-03:00",
+    "reasons": [
+      "O artefato, o snapshot e os 26 insumos manifestos estão íntegros, e os dois pareceres cobrem os mesmos bytes.",
+      "R2-I-1 foi confirmado diretamente: a equivalência por órbita adotada para A_U não implementa o colapso geral de misturas, e a decisão que resolve essa tensão por duas camadas é exclusiva de A_M.",
+      "A leitura contrária de R1 sustenta a ação comum e a preservação do binder, mas não supera as cláusulas explícitas sobre misturas; a matemática estratégica permanece não afetada.",
+      "Não existe reparo técnico único autorizado: a interface de equivalência de A_U depende de decisão autoral e não pode ser encaminhada para implementação automática.",
+      "O contrato candidato é Markdown, não um argument-contract JSON compatível com o validador; ele foi conferido diretamente, e o record usa contract.required=false com campos opcionais nulos."
+    ]
+  }
+}
