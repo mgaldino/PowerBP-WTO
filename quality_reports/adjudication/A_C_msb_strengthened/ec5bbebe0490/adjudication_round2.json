@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a-c-msb-strengthened:ec5bbebe0490:round2",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-08-30_AC_msb_strengthened_round2_candidate_manifest.sha256",
+    "sha256": "ec5bbebe0490eb8a46ee5e0de1565cf52ae1838721a870df21cdc4a629058339",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-08-30_AC_msb_strengthened_round2_formal_review_1.md",
+      "sha256": "acf971e9f460f7404a4c681ca1a7a51880c5fbca20870584dc8525e3e21ce4c4"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-08-30_AC_msb_strengthened_round2_formal_review_2.md",
+      "sha256": "99a228814a61541015622e85949f4e634a69659f0e7428c4dfa2a95cc12ebcde"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "ADJ-AC-STRENGTH-R2-MIN-1",
+      "source_review": "ADJ",
+      "quoted_finding": "O finding historico sobre os sidecars nao foi reparado: os registros canonicos e seu checker ainda pinam o candidato anterior.",
+      "type": "artifact",
+      "severity": "minor",
+      "scientific_dimension": "reproducibility",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_status_current.json:41-60,197-275",
+        "model_redesign/agenda_extension_STATUS.md:11-90",
+        "scripts/verify_agenda_extension_status_current.R:129-158",
+        "quality_reports/verification_outputs/2026-08-30_agenda_extension_status_current_verifier_output.txt:final summary"
+      ],
+      "defect_evidence": [
+        "O sidecar estruturado ainda pina o manifesto fc9788a0, o resultado 941 PASS / 0 FAIL, o DAG 830aedea e o gate anterior 68eeefe8.",
+        "O status humano ainda apresenta o pacote anterior como corrente e pronto para decisao terminal.",
+        "O checker central reproduziu 90 PASS / 7 FAIL; o output versionado continua defasado."
+      ],
+      "refuting_evidence": [
+        "O manifesto reparado passou 8/8, a matematica esta integra, A_C permanece pending/unfrozen e nenhum downstream foi autorizado."
+      ],
+      "mechanical_checks": [
+        "shasum -a 256 -c quality_reports/2026-08-30_AC_msb_strengthened_round2_candidate_manifest.sha256: 8/8 OK",
+        "Rscript --vanilla scripts/verify_agenda_extension_status_current.R: SUMMARY | 90 PASS | 7 FAIL",
+        "Rscript scripts/verify_agenda_extension_AC_msb.R: 1200 PASS | 0 FAIL"
+      ],
+      "reasoning": "Os pareceres limitaram a verificacao aos oito itens do manifesto. A evidencia direta mostra que o reparo de lifecycle ainda nao havia sido aplicado. O defeito e local e seguramente reparavel, sem atingir os resultados.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Atualizar os quatro sidecars e checker para pinar o candidato ec5bbebe, seus dois pareceres, esta adjudicacao e 1200 PASS / 0 FAIL; reexecutar ate zero FAIL e formar novo manifesto terminal sem alterar os oito artefatos."
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "confirmed": 1,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "READY_FOR_IMPLEMENTATION",
+    "checked_at": "2026-08-30T13:29:21-03:00",
+    "reasons": [
+      "O manifesto reparado passou 8/8 e permaneceu byte-identico entre o candidato e o HEAD que acrescentou apenas os dois pareceres.",
+      "Os reparos de acoplamento degenerado e cadeia de autorizacao estao completos, e a matematica reproduziu 1200 PASS / 0 FAIL.",
+      "O reparo dos sidecars ainda nao havia sido executado e constitui finding administrativo confirmado, local e seguro.",
+      "A_C continua pending/unfrozen; A_R, manuscrito, tag, merge e push permanecem nao autorizados."
+    ]
+  }
+}
