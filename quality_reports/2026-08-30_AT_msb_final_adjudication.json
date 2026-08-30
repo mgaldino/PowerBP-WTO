@@ -1,0 +1,41 @@
+{
+  "node_id": "AT",
+  "candidate_commit": "7033063a4b737cc0acc087ac71261e25805c689d",
+  "candidate_manifest_sha256": "ca3248fb8ef63a2dcc008b5e30ffda1a8e170806ea172969e069daef1e9629cd",
+  "verdict": "NO_CONFIRMED_DEFECTS",
+  "reviews": [
+    {
+      "kind": "mathematical",
+      "status": "PASS",
+      "critical": 0,
+      "major": 0,
+      "minor": 0
+    },
+    {
+      "kind": "adversarial",
+      "status": "PASS",
+      "critical": 0,
+      "major": 0,
+      "minor": 0
+    }
+  ],
+  "findings": {
+    "total": 0,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0
+  },
+  "lifecycle": {
+    "status": "reviewed",
+    "frozen": false,
+    "terminal_author_approval": false
+  },
+  "downstream": {
+    "authorization": "none",
+    "manuscript_migration": false,
+    "tag": false,
+    "merge": false,
+    "push": false
+  }
+}
