@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a-c-msb:fc9788a0a9cd:round2",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-08-30_AC_msb_round2_candidate_manifest.sha256",
+    "sha256": "fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-08-30_AC_msb_round2_formal_review_1.md",
+      "sha256": "085db057eb9275b9cd8a6084d7a923c6bc0e4710ba5f3091622d3ebda3d0cd6f"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-08-30_AC_msb_round2_formal_review_2.md",
+      "sha256": "872522eddae4b8af886a9d31197a4b6f1014bf14234841c4575a123cdc84d0ee"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "AC-R2-MIN-1",
+      "source_review": "R2",
+      "quoted_finding": "The central current lifecycle snapshot still pins the round-1 AC commit, manifest, DAG and ledger, so its own versioned checker output is stale and no longer reproducible.",
+      "type": "artifact",
+      "severity": "minor",
+      "scientific_dimension": "reproducibility",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_status_current.json: a_c_candidate_snapshot",
+        "model_redesign/agenda_extension_STATUS.md: Candidato atual de A_C",
+        "scripts/verify_agenda_extension_status_current.R: A_C pinned hashes",
+        "quality_reports/verification_outputs/2026-08-30_agenda_extension_status_current_verifier_output.txt"
+      ],
+      "defect_evidence": [
+        "The current JSON pins round-1 manifest 6ba078ef, DAG bd440d, ledger f753140 and packaged commit 886c440.",
+        "The current round-2 bytes are manifest fc9788a, DAG 830aede, ledger 280f816 and packaged commit 7248c56.",
+        "Reexecuting the versioned lifecycle checker returns 80 PASS and 2 FAIL, while the stored output says 82 PASS and 0 FAIL."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "Rscript scripts/verify_agenda_extension_status_current.R returned two failures",
+        "Round-2 candidate manifest verified 7/7 entries"
+      ],
+      "reasoning": "A file named current must reproduce the current pinned snapshot. The mismatch is real but administrative and conservative; it leaves the governed mathematical candidate and downstream authorization boundary intact.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Repin only the four central lifecycle artifacts to the round-2 commit, manifest, DAG and ledger; rerun the lifecycle checker; do not change any mathematical candidate blob or downstream flag."
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "confirmed": 1,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "READY_FOR_IMPLEMENTATION",
+    "checked_at": "2026-08-30T10:50:54-03:00",
+    "reasons": [
+      "The round-2 mathematical candidate and closure of AC-R1-MIN-1 are clean.",
+      "The central lifecycle checker independently reproduces two exact stale-hash failures.",
+      "The repair is administrative, uniquely bounded and safe; no material issue remains unresolved."
+    ]
+  }
+}
