@@ -1,0 +1,320 @@
+{
+  "schema_ref": "agenda_extension_AR_msb_public_benchmark_rent_interaction_candidate_v1",
+  "node_id": "AR",
+  "candidate_status": "authorized_implementer_candidate_unreviewed_unfrozen",
+  "orientation": "U-M",
+  "authorization": {
+    "path": "quality_reports/plans/2026-08-30_autorizacao_inicio_A_R.md",
+    "sha256": "0bc58b63f05de25ad9ef134dbf0fdf02d3ca2e4c50c0fd1b9627d6f0eced5e09",
+    "literal_author_decision": "Ok. Faça A_R",
+    "scope": "public agenda PBE benchmarks, agenda informational rents, U-M rent difference, ex-ante linked images and agenda-information interaction; no manuscript, tag, merge or push"
+  },
+  "governing_contracts": {
+    "gate0": {
+      "path": "quality_reports/plans/2026-08-26_agenda_extension_gate0_simplified.md",
+      "sha256": "fb2cd323a74b30432746dc37d622014cd7768e6d5442877ed3a8e043df546dc4",
+      "approval_path": "quality_reports/2026-08-27_fechamento_autoral_gate0_agenda_extension_simplified.md",
+      "approval_sha256": "0a8ccf93b6986b1a9d7ad552c8ae690ea4e0a7816ec1999bf8a3dc454c85d26d"
+    },
+    "msb_amendment": {
+      "path": "quality_reports/plans/2026-08-29_emenda_extensao_agenda_markov_crencas.md",
+      "sha256": "8f0f3a0e430e8005bd7a1da99477a7b0e27e163b85aa87c2ad349d9578aab21b"
+    }
+  },
+  "frozen_sources": {
+    "AC": {
+      "interface_path": "model_redesign/agenda_extension_AC_msb_interface.json",
+      "interface_sha256": "ea869c023ce7426dae3b92ffad344b4c79f1f0ce220b8fffaceb011904a85249",
+      "results_path": "model_redesign/agenda_extension_AC_msb_results.md",
+      "results_sha256": "8cadee000f6b8a9f94aff754fdb680f427b731bccf121ae642126a9383693d0a",
+      "terminal_authority_path": "quality_reports/2026-08-30_A_C_msb_strengthened_terminal_approval_and_freeze.md",
+      "terminal_authority_sha256": "b331f88b7abb99c03a5a8c657d163d1e006c0cf4cb51e744abcee298ac6af557",
+      "final_manifest_path": "quality_reports/2026-08-30_A_C_msb_strengthened_final_gate_manifest.sha256",
+      "final_manifest_sha256": "332d1d7be7a7b38f715c8d7d872c6f7010c22a27fc924b91e8f694199a190fe4",
+      "status": "pass_frozen"
+    },
+    "N7_public": {
+      "interface_path": "model_redesign/essential_input_n7_complete_information_benchmark_candidate.json",
+      "interface_sha256": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45",
+      "terminal_authority_path": "quality_reports/2026-08-21_fechamento_autoral_goal4_n7.md",
+      "terminal_authority_sha256": "ca7a842b3a953ab16e76dbf518692a0d05a87d1224093a53d4ccc647624545d2",
+      "status": "pass_frozen"
+    },
+    "goal1_external_interfaces": {
+      "path": "model_redesign/agenda_extension_goal1_external_interfaces.json",
+      "sha256": "588e7da2ec7df2f208ccaf082d3bc30834ea12625484b04b25d3eae7fce20a86",
+      "approval_path": "quality_reports/2026-08-27_fechamento_goal1_agenda_extension.md",
+      "approval_sha256": "282c2f397fd8f7ecd4b6817ceda71a17ddac1fe0a5c879201c4a54864dd9461c"
+    }
+  },
+  "domain": {
+    "primitive_tuple": "d=(N,m,q,k,c,beta,o_0,o_1,y_bar,Y,nu)",
+    "identities": [
+      "m=N-1>=3",
+      "q=floor(N/2)+1",
+      "k=q-1=floor(N/2)",
+      "c=m-k"
+    ],
+    "restrictions": [
+      "0<beta<1",
+      "0<o_0<o_1<1",
+      "o_1<=y_bar<=1",
+      "nu in [0,1]"
+    ],
+    "private_fiber": "eta=(rho,nu_off) on interior priors with the frozen Bayes diagonal; eta=(*,nu) at endpoints",
+    "public_information": "theta is common knowledge before the agenda proposal and the posterior is degenerate after every history"
+  },
+  "payoff_dates": {
+    "agenda_stage": "A date 0",
+    "public_continuation_source": "N7 R1 current units",
+    "transport_A_from_R1": "multiply by beta exactly once",
+    "private_source": "AC values already at A",
+    "new_beta_applications_in_rent_subtraction": 0
+  },
+  "solution_concept": {
+    "assessment": "PBE",
+    "weak_voting": "pure as-if-pivotal",
+    "equality": "T^Y selects yes",
+    "continuation_selection": "M/S selects the payoff-anonymous symmetric continuation class with canonical literal uniform recognition and coalition lottery",
+    "current_proposal_symmetry": "not imposed; every H lottery over current payoff-tied majority coalitions is preserved",
+    "proposal_tie_break": "none added; at a pass-delay payoff tie all best passing and rejecting proposals and all mixtures are retained"
+  },
+  "public_continuation": {
+    "majority_hegemon_R1": "p_M(o)=beta*o for o<=1/m and p_M(o)=o for o>1/m",
+    "majority_weak_R1": "w_M(o)=(1-beta*o)/m for o<=1/m and w_M(o)=1/m for o>1/m",
+    "unanimity_hegemon_R1": "p_U(o)=beta*o",
+    "unanimity_weak_R1": "w_U(o)=(1-beta*o)/m",
+    "external_option_accounting": "when majority excludes H, o is external to the unit pie and every weak state receives 1/m under the symmetric continuation"
+  },
+  "public_equilibrium_records": [
+    {
+      "record_id": "AR-PUB-M-INCLUDE",
+      "institution": "majority",
+      "domain": "o<=1/m",
+      "weak_vote_rule": "yes iff x_j>=beta*(1-beta*o)/m",
+      "member_generator": "any probability law over proposals paying the threshold to exactly k weak states, zero to the other c weak states, and retaining P_I(o)=1-k*beta*(1-beta*o)/m",
+      "hegemon_payoff": "h_M(o)=P_I(o)",
+      "delay_payoff": "beta^2*o",
+      "agreement_probability": "1",
+      "selection_status": "all named coalition laws retained; immediate agreement is strict",
+      "payoff_date": "A"
+    },
+    {
+      "record_id": "AR-PUB-M-EXCLUDE-PASS",
+      "institution": "majority",
+      "domain": "o>1/m and beta*o<Z_E, Z_E=1-k*beta/m",
+      "weak_vote_rule": "yes iff x_j>=beta/m",
+      "member_generator": "any probability law over proposals paying beta/m to exactly k weak states and zero to the other c weak states",
+      "hegemon_payoff": "h_M(o)=Z_E",
+      "delay_payoff": "beta*o",
+      "agreement_probability": "1",
+      "selection_status": "all named coalition laws retained",
+      "payoff_date": "A"
+    },
+    {
+      "record_id": "AR-PUB-M-EXCLUDE-TIE",
+      "institution": "majority",
+      "domain": "o>1/m and beta*o=Z_E",
+      "weak_vote_rule": "yes iff x_j>=beta/m",
+      "member_generator": "any probability law supported on optimal minimal passing proposals and proposals with fewer than k weak yes votes",
+      "hegemon_payoff": "h_M(o)=Z_E=beta*o",
+      "delay_payoff": "beta*o",
+      "agreement_probability": "any alpha in [0,1], linked to the same proposal mixture",
+      "selection_status": "full pass-delay mixture correspondence retained",
+      "payoff_date": "A"
+    },
+    {
+      "record_id": "AR-PUB-M-EXCLUDE-DELAY",
+      "institution": "majority",
+      "domain": "o>1/m and beta*o>Z_E",
+      "weak_vote_rule": "yes iff x_j>=beta/m",
+      "member_generator": "any proposal receiving fewer than k weak yes votes",
+      "hegemon_payoff": "h_M(o)=beta*o",
+      "delay_payoff": "beta*o",
+      "agreement_probability": "0",
+      "selection_status": "all optimal deliberately rejected proposals retained",
+      "payoff_date": "A"
+    },
+    {
+      "record_id": "AR-PUB-U-ALL",
+      "institution": "unanimity",
+      "domain": "all o in (0,1)",
+      "weak_vote_rule": "yes iff x_j>=beta*(1-beta*o)/m",
+      "member_generator": "unique on-path proposal pays the threshold to every weak state",
+      "hegemon_payoff": "h_U(o)=1-beta+beta^2*o",
+      "delay_payoff": "beta^2*o",
+      "agreement_probability": "1",
+      "selection_status": "unique proposal, result and payoff on path",
+      "payoff_date": "A"
+    }
+  ],
+  "public_payoff_functions": {
+    "Z_E": "1-k*beta/m",
+    "tau_M": "Z_E/beta=1/beta-k/m",
+    "h_M": "1-k*beta*(1-beta*o)/m for o<=1/m; max{Z_E,beta*o} for o>1/m",
+    "h_U": "1-beta+beta^2*o",
+    "public_gap_G": {
+      "definition": "G(o)=h_M(o)-h_U(o)",
+      "include": "beta*(c/m)*(1-beta*o)",
+      "exclude_pass_or_tie": "beta*(c/m-beta*o)",
+      "exclude_delay_or_tie": "(1-beta)*(beta*o-1)",
+      "sign": "positive for o<=1/m; for o>1/m sign G=sign(c/m-beta*o)"
+    },
+    "ex_ante": "apply (1-nu,nu) to the linked type vector after both type payoffs are computed"
+  },
+  "agenda_rent_operator": {
+    "by_rule": "RI_g^{A,01}=V_g^{01}-(h_g(o_0),h_g(o_1))",
+    "ex_ante": "RI_g^{A,E}=(1-nu)RI_g^{A,0}+nu*RI_g^{A,1}",
+    "institutional_difference": "DeltaRI_A^{01}=RI_U^{A,01}-RI_M^{A,01}=delta^{01}+(G(o_0),G(o_1))",
+    "private_gap_decomposition": "delta_theta=-G(o_theta)+DeltaRI_A^theta",
+    "preference_rule": "private U strictly beats M for theta iff DeltaRI_A^theta>G(o_theta)",
+    "atomicity": "each type vector comes from one complete private binder; no marginal recombination",
+    "none_rule": "if the required private source or AC fiber is empty, the corresponding rent or rent contrast is none"
+  },
+  "unanimity_agenda_rent_cells": [
+    {
+      "cell_id": "AR-RI-U-NU-ZERO",
+      "domain": "nu=0",
+      "status": "exists",
+      "rent_vector": "(0,max{z_L,d_H}-z_H)",
+      "ex_ante": "0"
+    },
+    {
+      "cell_id": "AR-RI-U-LOW-EXISTS",
+      "domain": "0<nu<=nu_star, Delta_U>=0, rho=0",
+      "status": "exists",
+      "rent_vector": "(0,-D_2)",
+      "ex_ante": "-nu*D_2"
+    },
+    {
+      "cell_id": "AR-RI-U-LOW-NONE",
+      "domain": "other low-prior fibers",
+      "status": "none",
+      "rent_vector": null,
+      "ex_ante": null
+    },
+    {
+      "cell_id": "AR-RI-U-HIGH-RHO-ZERO",
+      "domain": "nu_star<nu<1, rho=0",
+      "status": "exists",
+      "rent_vector": "{(u-z_L,u-z_H):u in [max{z_L,d_H},z_H]}",
+      "ex_ante": "[max{z_L,d_H}-z_E(nu),z_H-z_E(nu)]"
+    },
+    {
+      "cell_id": "AR-RI-U-HIGH-OFFPATH-HIGH",
+      "domain": "nu_star<nu<1, nu_off in (nu_star,1]",
+      "status": "exists",
+      "rent_vector": "(D_2,0)",
+      "ex_ante": "(1-nu)*D_2"
+    },
+    {
+      "cell_id": "AR-RI-U-HIGH-NONE",
+      "domain": "nu_star<nu<1, nu_off in (0,nu_star]",
+      "status": "none",
+      "rent_vector": null,
+      "ex_ante": null
+    },
+    {
+      "cell_id": "AR-RI-U-NU-ONE",
+      "domain": "nu=1",
+      "status": "exists",
+      "rent_vector": "(D_2,0)",
+      "ex_ante": "0"
+    }
+  ],
+  "interaction_operator": {
+    "rule_level": "I_g^{01}=RI_g^{A,01}-RI_g^{N,01}",
+    "institutional": "DeltaI^{01}=DeltaRI_A^{01}-DeltaRI_N^{01}",
+    "exact_set_rule": "form products of complete records at the same primitives before taking vector differences; no cross-world coupling or selector",
+    "none_rule": "if either required source is none, the composed interaction is none and the surviving source remains separately recorded"
+  },
+  "unanimity_interaction_cells": [
+    {
+      "cell_id": "AR-INT-U-NU-ZERO",
+      "domain": "nu=0",
+      "status": "exists",
+      "interaction_vector": "(0,max{z_L,d_H}-z_H)",
+      "sign": "low zero; counterfactual high strictly negative; ex ante zero",
+      "N7_source_record_id": "N7-RI-U-NU-ZERO"
+    },
+    {
+      "cell_id": "AR-INT-U-LOW-NONE",
+      "domain": "0<nu<=nu_star",
+      "status": "none",
+      "interaction_vector": null,
+      "sign": null,
+      "N7_source_record_id": null
+    },
+    {
+      "cell_id": "AR-INT-U-HIGH-RHO-ZERO",
+      "domain": "nu_star<nu<1, rho=0",
+      "status": "exists",
+      "interaction_vector": "{(u-z_L-d,u-z_H):u in [max{z_L,d_H},z_H]}, d=beta*(o_1-o_0)",
+      "sign": "low strictly negative; high weakly negative",
+      "N7_source_record_id": "N7-RI-U-HIGH"
+    },
+    {
+      "cell_id": "AR-INT-U-HIGH-OFFPATH-HIGH",
+      "domain": "nu_star<nu<1, nu_off in (nu_star,1]",
+      "status": "exists",
+      "interaction_vector": "(-beta*(1-beta)*(o_1-o_0),0)",
+      "sign": "low strictly negative; high zero",
+      "N7_source_record_id": "N7-RI-U-HIGH"
+    },
+    {
+      "cell_id": "AR-INT-U-NU-ONE",
+      "domain": "nu=1",
+      "status": "exists",
+      "interaction_vector": "(-beta*(1-beta)*(o_1-o_0),0)",
+      "sign": "counterfactual low strictly negative; high zero; ex ante zero",
+      "N7_source_record_id": "N7-RI-U-HIGH"
+    }
+  ],
+  "majority_rent_and_interaction": {
+    "agenda_rent": "exact translation of the frozen A_M linked payoff vectors by -(h_M(o_0),h_M(o_1))",
+    "no_agenda_sources": [
+      "N7-RI-M-II",
+      "N7-RI-M-IX",
+      "N7-RI-M-XX"
+    ],
+    "interaction": "exact vector difference RI_M^A-RI_M^N with full source records retained",
+    "sign_status": "set-valued; no general sign claimed"
+  },
+  "two_layer_signature": {
+    "public_exact": "complete public binder by rule and public type, including current named proposal law, every vote after every proposal, degenerate beliefs and literal M/S continuation",
+    "public_economic": "type payoff of H, agreement-delay law and anonymous realized outcome law",
+    "factorization": "declared payoff and rent operators factor measurably through complete source economic summaries after the exact products are formed",
+    "scope_limit": "named coalition laws, proposal identity, raw off-path functions and cross-world realization relations remain exact-layer objects",
+    "reynolds_status": "no Reynolds barycenter is treated as an assessment, PBE representative or selector"
+  },
+  "source_rent_record_ids": {
+    "majority": [
+      "N7-RI-M-II",
+      "N7-RI-M-IX",
+      "N7-RI-M-XX"
+    ],
+    "unanimity": [
+      "N7-RI-U-NU-ZERO",
+      "N7-RI-U-HIGH"
+    ],
+    "institutional_contrast_cells": "the nine frozen N7-DRI cells, including explicit none cells"
+  },
+  "proof_paths": [
+    "model_redesign/agenda_extension_AR_msb_contract.md",
+    "model_redesign/agenda_extension_AR_msb_results.md"
+  ],
+  "mechanical_evidence_path": "quality_reports/verification_outputs/2026-08-30_AR_msb_verifier_output.txt",
+  "claim_ledger_path": "model_redesign/agenda_extension_AR_msb_claim_ledger.tsv",
+  "game_dag_path": "model_redesign/agenda_extension_AR_msb_game_dag.json",
+  "authorization_boundary": {
+    "AR_derivation": true,
+    "independent_review": true,
+    "adjudication": true,
+    "terminal_freeze": false,
+    "manuscript_migration": false,
+    "tag": false,
+    "merge": false,
+    "push": false
+  },
+  "invalidation": "any source-byte, M/S/B, quota, equality, payoff-date, domain or interaction-operator change invalidates this candidate; AR never changes AC or N7 retroactively"
+}
