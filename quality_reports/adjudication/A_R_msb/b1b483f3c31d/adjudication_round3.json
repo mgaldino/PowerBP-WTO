@@ -1,0 +1,54 @@
+{
+  "schema_version": "agenda_extension_AR_adjudication_v1",
+  "node_id": "AR",
+  "round": 3,
+  "snapshot_commit": "8016dacb79c382d085f23f836a1fdbf8d9b05292",
+  "candidate_manifest_path": "quality_reports/2026-08-30_AR_msb_candidate_manifest.sha256",
+  "candidate_manifest_sha256": "b1b483f3c31d58c3cd94807e9b55fd303e795510210914634e29faaee322a6d0",
+  "candidate_manifest_entries": 22,
+  "review_inputs": [
+    {
+      "path": "quality_reports/2026-08-30_AR_msb_round3_formal_review_1.md",
+      "verdict": "PASS",
+      "critical": 0,
+      "major": 0,
+      "minor": 0
+    },
+    {
+      "path": "quality_reports/2026-08-30_AR_msb_round3_formal_review_2.md",
+      "verdict": "PASS",
+      "critical": 0,
+      "major": 0,
+      "minor": 0
+    }
+  ],
+  "closed_historical_findings": [
+    {
+      "finding_id": "R2-MAJ-1",
+      "prior_status": "CONFIRMED",
+      "current_status": "CLOSED_BY_REPAIR",
+      "repair": "N7_contrast_cell_map resolves all nine frozen N7 cells, six record IDs and three none certificates"
+    }
+  ],
+  "mechanical_result": "4372 PASS / 0 FAIL",
+  "verdict": "NO_CONFIRMED_DEFECTS",
+  "counts": {
+    "total": 0,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0,
+    "critical": 0,
+    "major": 0,
+    "minor": 0
+  },
+  "authorization_effect": {
+    "terminal_author_approval": false,
+    "pass_frozen": false,
+    "manuscript_migration": false,
+    "tag": false,
+    "merge": false,
+    "push": false
+  }
+}
