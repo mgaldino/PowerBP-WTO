@@ -1,0 +1,243 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a-c-msb-external-chatgpt:68eeefe86b8a:round1",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-08-30_AC_msb_terminal_gate_candidate_manifest.sha256",
+    "sha256": "68eeefe86b8ade64266c1c8c9901ef070742aa2821e356371a5736dabfceaf64",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "WEB-CHATGPT",
+      "path": "quality_reports/external_reviews/2026-08-30_consulta_tecnica_externa_nao_formal_chatgpt_AC_msb.md",
+      "sha256": "c7e2e39850e23ae6e0353d5b4ff0c15d88e1d23035717e4fa751c5d4b4aea796"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "WEB-AC-F001",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "A frase de que não existe lei ou probabilidade conjunta entre regras é literalmente forte demais; o modelo não induz, identifica ou autoriza uma lei conjunta, embora acoplamentos matemáticos existam.",
+      "type": "overclaim",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "model_redesign/agenda_extension_AC_msb_contract.md:43",
+        "model_redesign/agenda_extension_AC_msb_contract.md:169",
+        "model_redesign/agenda_extension_AC_msb_results.md:63",
+        "model_redesign/agenda_extension_AC_msb_results.md:452",
+        "model_redesign/agenda_extension_AC_msb_interface.json:85",
+        "model_redesign/agenda_extension_AC_msb_interface.json:112",
+        "model_redesign/agenda_extension_AC_msb_interface.json:187"
+      ],
+      "defect_evidence": [
+        "As frases 'Acoplamento probabilístico cross-world | inexistente e não presumido' e 'Não existe lei conjunta cross-world' são existenciais e absolutas.",
+        "Um par de leis marginais admite ao menos o acoplamento-produto sob as estruturas mensuráveis usuais."
+      ],
+      "refuting_evidence": [
+        "O resultado diz 'Não se define uma probabilidade conjunta entre regras', não que nenhum acoplamento matemático exista.",
+        "A interface usa 'not_defined' e afirma que o modelo não fornece dispositivo de correlação cross-world."
+      ],
+      "mechanical_checks": [
+        "Busca literal em contrato, resultados e interface no snapshot governado",
+        "12/12 entradas do manifesto terminal verificadas"
+      ],
+      "reasoning": "A objeção confirma um excesso de linguagem em duas frases do contrato, mas não atinge a formulação já qualificada do resultado/interface nem a arquitetura de O_AC. Por isso o finding é parcial e o reparo deve ser estritamente local.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Substituir apenas as formulações absolutas do contrato por linguagem de ausência de lei conjunta induzida, selecionada ou identificada pelo modelo; não impor acoplamento."
+    },
+    {
+      "finding_id": "WEB-AC-F002",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "T5 deve declarar J_AC^bind(d,eta) não vazio antes de chamar sua conclusão de dominância institucional.",
+      "type": "logic",
+      "severity": "minor",
+      "scientific_dimension": "exposition",
+      "held_decision": false,
+      "status": "REFUTED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AC_msb_results.md:272-291",
+        "model_redesign/agenda_extension_AC_msb_results.md:319-328",
+        "model_redesign/agenda_extension_AC_msb_results.md:394",
+        "model_redesign/agenda_extension_AC_msb_results.md:400-428"
+      ],
+      "defect_evidence": [],
+      "refuting_evidence": [
+        "T5 conclui para 'todo par comparável', expressão que pressupõe um elemento da relação comparativa.",
+        "T4 define a não vacuidade fibra a fibra e a Seção 7 declara explicitamente que uma fibra vazia recebe classificação none, sem sinal institucional.",
+        "O teto de unanimidade usado na prova é restrito a toda fibra existente."
+      ],
+      "mechanical_checks": [
+        "Leitura conjunta das Seções 6, 7 e 10 do resultado"
+      ],
+      "reasoning": "A hipótese explícita seria redundância pedagógica, não reparo lógico: o texto já exclui a interpretação econômica de uma quantificação vazia.",
+      "proposed_fix_assessment": "not_provided",
+      "disposition": "Nenhuma implementação exigida; repetição opcional somente por preferência editorial."
+    },
+    {
+      "finding_id": "WEB-AC-F003",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "A coordenada ex ante V_g^E deve ser definida explicitamente antes dos envelopes e D_E deve preservar a ligação entre os tipos.",
+      "type": "definition",
+      "severity": "minor",
+      "scientific_dimension": "formalization",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AC_msb_results.md:82-99",
+        "model_redesign/agenda_extension_AC_msb_results.md:116-128",
+        "model_redesign/agenda_extension_AC_msb_results.md:293-317",
+        "model_redesign/agenda_extension_AC_msb_results.md:345-380"
+      ],
+      "defect_evidence": [
+        "O texto define delta_E, mas não define em geral V_g^E(R_g).",
+        "A Seção 9 usa M_r e U_r e depois inclui r em {0,1,E}, o que requer V_g^E."
+      ],
+      "refuting_evidence": [
+        "T2 torna a interpretação pretendida inequívoca e a Seção 7 já preserva o vetor ligado D_01; não há erro numérico ou recombinação efetiva."
+      ],
+      "mechanical_checks": [
+        "Busca de todas as ocorrências de V_g^E e V_U^E no resultado governado"
+      ],
+      "reasoning": "A notação é recuperável, mas não total: V_g^E é necessário para que os envelopes com r=E sejam formalmente bem tipados.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Definir V_g^E(R_g):=(1-nu)V_g^0(R_g)+nu V_g^1(R_g) antes dos envelopes e reiterar que D_E é a imagem linear de D_01."
+    },
+    {
+      "finding_id": "WEB-AC-F004",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "A fatorização Borel deve esclarecer se nu é constante na fibra ou recuperado globalmente do resumo.",
+      "type": "measurability",
+      "severity": "minor",
+      "scientific_dimension": "formalization",
+      "held_decision": false,
+      "status": "REFUTED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AC_msb_contract.md:49-82",
+        "model_redesign/agenda_extension_AC_msb_contract.md:96-104",
+        "model_redesign/agenda_extension_AC_msb_contract.md:173-200",
+        "model_redesign/agenda_extension_AC_msb_results.md:130-179"
+      ],
+      "defect_evidence": [],
+      "refuting_evidence": [
+        "O domínio fixa d, que contém nu, antes de definir a fibra eta.",
+        "O contrato exige a fatorização dentro da mesma fibra e T3 começa com 'Na mesma fibra eta'.",
+        "A combinação afim usa, portanto, um nu constante no teorema fiberwise."
+      ],
+      "mechanical_checks": [
+        "Rastreamento de d, eta, Sum_econ e C_bar_econ no contrato e no resultado"
+      ],
+      "reasoning": "O sobrescrito (d,eta) poderia tornar a dependência visualmente mais explícita, mas a quantificação atual já fixa nu e não contém a ambiguidade matemática alegada.",
+      "proposed_fix_assessment": "not_provided",
+      "disposition": "Nenhuma implementação exigida; alteração somente editorial."
+    },
+    {
+      "finding_id": "WEB-AC-F005",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "O texto deve chamar [inf D_r,sup D_r] de casco intervalar fechado e explicitar que os conjuntos são limitados.",
+      "type": "terminology",
+      "severity": "minor",
+      "scientific_dimension": "exposition",
+      "held_decision": false,
+      "status": "REFUTED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AC_msb_results.md:345-380"
+      ],
+      "defect_evidence": [],
+      "refuting_evidence": [
+        "O intervalo é escrito com colchetes, [inf D_r,sup D_r], portanto é explicitamente fechado.",
+        "A frase imediatamente anterior restringe as identidades a ínfimos e supremos de conjuntos limitados."
+      ],
+      "mechanical_checks": [
+        "Leitura literal da Seção 9"
+      ],
+      "reasoning": "A redação sugerida é sinônimo mais explícito do que já está formalmente escrito; não fecha lacuna nem muda o resultado.",
+      "proposed_fix_assessment": "not_provided",
+      "disposition": "Nenhuma implementação exigida."
+    },
+    {
+      "finding_id": "WEB-AC-F006",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "T5 pode ser fortalecido para declarar a margem uniforme beta(c/m-beta o_1) por tipo e ex ante.",
+      "type": "new_result",
+      "severity": "minor",
+      "scientific_dimension": "exposition",
+      "held_decision": true,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AC_msb_results.md:385-432"
+      ],
+      "defect_evidence": [
+        "A própria prova estabelece Z_E-z_H=beta(c/m-beta o_1), e os bounds dão V_M^theta-V_U^theta maior ou igual a essa quantidade."
+      ],
+      "refuting_evidence": [
+        "O enunciado atual já prova corretamente o sinal; omitir a margem não é defeito."
+      ],
+      "mechanical_checks": [
+        "Simplificação algébrica direta da prova de T5"
+      ],
+      "reasoning": "A margem é uma consequência formal válida, mas promovê-la a corolário acrescenta conteúdo expositivo não necessário ao reparo.",
+      "proposed_fix_assessment": "owner_decision",
+      "disposition": "Não encaminhar ao implementador sem decisão autoral explícita de ampliar T5."
+    },
+    {
+      "finding_id": "WEB-AC-F007",
+      "source_review": "WEB-CHATGPT",
+      "quoted_finding": "A partição de A_U implica um certificado beta o_0<c/m nas células baixas, um contraexemplo à necessidade de T5 e uma interpretação de paridade de c/m.",
+      "type": "new_result",
+      "severity": "minor",
+      "scientific_dimension": "scope",
+      "held_decision": true,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_AC_msb_results.md:185-224",
+        "model_redesign/agenda_extension_AC_msb_results.md:385-432"
+      ],
+      "defect_evidence": [
+        "Nas células baixas existentes, V_U^0=V_U^1=z_L e Z_E-z_L=beta(c/m-beta o_0).",
+        "Para N=5, beta=0.9, o_0=0.5, o_1=0.6, T5 falha, mas Z_E=0.55 excede max{z_L,d_H}=0.505.",
+        "Com k=floor(N/2), c/m é 1/2 para N ímpar e (N-2)/(2(N-1)) para N par."
+      ],
+      "refuting_evidence": [
+        "Esses resultados não são necessários para a correção de T1-T5 e ampliam a apresentação além do pacote originalmente revisado."
+      ],
+      "mechanical_checks": [
+        "Aritmética do contraexemplo reproduzida em R",
+        "Identidade de paridade verificada em R para N=3,...,100"
+      ],
+      "reasoning": "As três implicações são corretas e esclarecem a não necessidade de T5, mas constituem resultados adicionais cuja inclusão depende da estratégia expositiva do autor.",
+      "proposed_fix_assessment": "owner_decision",
+      "disposition": "Não implementar sem decisão autoral explícita; se autorizado, tratar como corolário e exemplo, não como correção de T5."
+    }
+  ],
+  "summary": {
+    "total": 7,
+    "confirmed": 3,
+    "partial": 1,
+    "refuted": 3,
+    "unresolved": 0,
+    "held_decisions": 2
+  },
+  "adjudication": {
+    "verdict": "READY_FOR_IMPLEMENTATION",
+    "checked_at": "2026-08-30T12:32:37-03:00",
+    "reasons": [
+      "A consulta externa confirma T1-T5 condicionados aos pacotes congelados de A_M e A_U.",
+      "Duas formulações absolutas sobre inexistência de lei conjunta no contrato são excessivas, mas o resultado e a interface já usam a formulação correta not_defined.",
+      "A definição geral de V_g^E está ausente antes dos envelopes e pode ser acrescentada localmente.",
+      "As demais precisões alegadas estão já cobertas ou são resultados novos opcionais sujeitos a decisão autoral.",
+      "Nenhum item permanece matematicamente não resolvido."
+    ]
+  }
+}
