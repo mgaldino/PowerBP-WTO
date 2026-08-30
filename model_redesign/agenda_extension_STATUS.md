@@ -102,6 +102,8 @@ O manifesto final
 `quality_reports/2026-08-30_A_R_msb_final_gate_manifest.sha256`, SHA-256
 `a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38`,
 fixa `35/35` entradas. `A_R` é, portanto, `pass/frozen` somente nesses bytes.
+O registro e o manifesto de congelamento entraram no commit
+`3307d2079f6d8b901b675a489b9a8de89ffcf9f1`.
 Isso não autoriza migração para o manuscrito, tag, merge, push ou qualquer
 outro trabalho downstream.
 

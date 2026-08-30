@@ -208,6 +208,8 @@ record_check(
               "497e11801c020bf505cb4104df78ed599e9adf58") &&
     identical(status$a_r_candidate_snapshot$lifecycle_reviews_and_adjudication_commit,
               "12d336a69ecfb4da6196ec55bb767d2dfe9bfa4d") &&
+    identical(status$a_r_candidate_snapshot$terminal_closure_commit,
+              "3307d2079f6d8b901b675a489b9a8de89ffcf9f1") &&
     identical(status$a_r_candidate_snapshot$candidate_manifest_sha256,
               "b1b483f3c31d58c3cd94807e9b55fd303e795510210914634e29faaee322a6d0") &&
     identical(status$a_r_candidate_snapshot$terminal_gate_candidate_manifest_sha256,
