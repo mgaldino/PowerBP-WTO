@@ -76,6 +76,16 @@ record_check(
   "final gate manifest hash is pinned"
 )
 record_check(
+  identical(status$a_u_authority$sha256,
+            "e330a1956a7c071dc72c2556eda68cf32d2b81473d700100bbf7e1f6e195111b"),
+  "A_U terminal authority hash is pinned"
+)
+record_check(
+  identical(status$a_u_authority$final_gate_manifest_sha256,
+            "b85741b2176c4480f5f3632c4464a93cebabb5dd4f71636626917b9227030180"),
+  "A_U final gate manifest hash is pinned"
+)
+record_check(
   identical(status$snapshot$candidate_manifest_sha256,
             "4130c09b9a7d504e0dd18f63c8793a0f6ce5f239369c585d924c48742177c0aa"),
   "candidate manifest hash is pinned"
@@ -100,6 +110,8 @@ record_check(
               "0e3b4a8a26f161566562852b4dc8c4320759affa") &&
     identical(status$a_u_candidate_snapshot$round2_adjudication_commit,
               "15dd01fc272e254bde82f86fe093f0ef5d3da69f") &&
+    identical(status$a_u_candidate_snapshot$terminal_closure_commit,
+              "c34df1afe8b03989336a8f19d840543be2681312") &&
     identical(status$a_u_candidate_snapshot$candidate_manifest_sha256,
               "1c4720e99a1d72ec1533578a141e476679650eded2a333ac3a95f87e7d441b2b"),
   "A_U blind lock, candidates, review and adjudication commits, and round-2 manifest are pinned"
@@ -113,6 +125,15 @@ record_check(
   identical(sha256(status$authority$final_gate_manifest_path),
             status$authority$final_gate_manifest_sha256),
   "final gate manifest bytes match"
+)
+record_check(
+  identical(sha256(status$a_u_authority$path), status$a_u_authority$sha256),
+  "A_U terminal authority bytes match"
+)
+record_check(
+  identical(sha256(status$a_u_authority$final_gate_manifest_path),
+            status$a_u_authority$final_gate_manifest_sha256),
+  "A_U final gate manifest bytes match"
 )
 record_check(
   identical(sha256(status$snapshot$candidate_manifest_path),
@@ -140,9 +161,9 @@ record_check(
   "A_M is pass/frozen with terminal author approval"
 )
 record_check(
-  identical(a_u$status, "pending") && identical(a_u$frozen, FALSE) &&
-    identical(a_u$authorization, "terminal_author_approval_pending"),
-  "A_U remains pending/unfrozen after the technical gates and before terminal author approval"
+  identical(a_u$status, "pass") && isTRUE(a_u$frozen) &&
+    identical(a_u$authorization, "terminal_author_approval"),
+  "A_U is pass/frozen with terminal author approval"
 )
 record_check(
   identical(a_u$equivalence_interface_status,
@@ -242,19 +263,19 @@ expected_a_u_candidate_hashes <- c(
     "4d30e01cc288e2a66d9e1576df2bd89d478e75a6f447f3a8135fd8b694a7d0f2"
 )
 a_u_candidate_hashes <- setNames(
-  vapply(a_u$candidate_artifacts, function(x) x$sha256, character(1L)),
-  vapply(a_u$candidate_artifacts, function(x) x$path, character(1L))
+  vapply(a_u$frozen_artifacts, function(x) x$sha256, character(1L)),
+  vapply(a_u$frozen_artifacts, function(x) x$path, character(1L))
 )
 record_check(
   identical(a_u_candidate_hashes[names(expected_a_u_candidate_hashes)],
             expected_a_u_candidate_hashes),
-  "structured status lists the exact A_U candidate hashes"
+  "structured status lists the exact frozen A_U hashes"
 )
 for (relative_path in names(expected_a_u_candidate_hashes)) {
   record_check(
     identical(sha256(relative_path),
               unname(expected_a_u_candidate_hashes[[relative_path]])),
-    sprintf("A_U candidate bytes match: %s", relative_path)
+    sprintf("frozen A_U bytes match: %s", relative_path)
   )
 }
 
@@ -410,8 +431,8 @@ record_check(
   "human-readable status identifies A_M as pass/frozen"
 )
 record_check(
-  any(grepl("A_U.*pending/unfrozen", status_md, fixed = FALSE, useBytes = TRUE)),
-  "human-readable status preserves A_U as pending/unfrozen"
+  any(grepl("A_U.*pass/frozen", status_md, fixed = FALSE, useBytes = TRUE)),
+  "human-readable status identifies A_U as pass/frozen"
 )
 record_check(
   any(grepl("R2-I-1", status_md, fixed = TRUE, useBytes = TRUE)),

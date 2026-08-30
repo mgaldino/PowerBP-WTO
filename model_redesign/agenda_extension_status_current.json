@@ -10,6 +10,12 @@
     "final_gate_manifest_path": "quality_reports/2026-08-29_A_M_msb_two_layer_final_gate_manifest.sha256",
     "final_gate_manifest_sha256": "8eb870d5595a4373994e8f47a25a3dd137b00ac8c32fc09b947444498a32775e"
   },
+  "a_u_authority": {
+    "path": "quality_reports/2026-08-30_A_U_msb_two_layer_terminal_approval_and_freeze.md",
+    "sha256": "e330a1956a7c071dc72c2556eda68cf32d2b81473d700100bbf7e1f6e195111b",
+    "final_gate_manifest_path": "quality_reports/2026-08-30_A_U_msb_two_layer_final_gate_manifest.sha256",
+    "final_gate_manifest_sha256": "b85741b2176c4480f5f3632c4464a93cebabb5dd4f71636626917b9227030180"
+  },
   "snapshot": {
     "branch": "agenda-extension-am-msb",
     "substantive_commit": "e020629d5bad8fbd66d67cf108b1a2e0d8b048fd",
@@ -27,10 +33,11 @@
     "round2_candidate_commit": "8e86bab8ea10f75e6fd5aeeb230a9e260479483a",
     "round2_reviews_commit": "0e3b4a8a26f161566562852b4dc8c4320759affa",
     "round2_adjudication_commit": "15dd01fc272e254bde82f86fe093f0ef5d3da69f",
+    "terminal_closure_commit": "c34df1afe8b03989336a8f19d840543be2681312",
     "candidate_manifest_path": "quality_reports/2026-08-30_A_U_msb_two_layer_round2_candidate_manifest.sha256",
     "candidate_manifest_sha256": "1c4720e99a1d72ec1533578a141e476679650eded2a333ac3a95f87e7d441b2b",
     "mechanical_result": "1110 PASS / 0 FAIL",
-    "lifecycle": "two independent PASS 0/0/0 reviews and NO_CONFIRMED_DEFECTS adjudication complete; terminal author approval pending; unfrozen"
+    "lifecycle": "two independent PASS 0/0/0 reviews, NO_CONFIRMED_DEFECTS adjudication and terminal author approval complete; pass/frozen"
   },
   "nodes": [
     {
@@ -93,17 +100,17 @@
     },
     {
       "node_id": "A_U",
-      "status": "pending",
-      "frozen": false,
-      "authorization": "terminal_author_approval_pending",
-      "reason": "the author extended the two-layer architecture to A_U; two independent PASS 0/0/0 reviews and a NO_CONFIRMED_DEFECTS adjudication are complete, but the reviewed bytes still require terminal author approval",
+      "status": "pass",
+      "frozen": true,
+      "authorization": "terminal_author_approval",
+      "reason": "the author terminally approved the exact twice-reviewed and independently adjudicated A_U two-layer bytes",
       "strategic_correspondence_status": "reviewed and preserved; no confirmed defect in thresholds, payoffs, Bayes, PBE families, endpoints, or existence/exhaustion at the assessment level",
       "equivalence_interface_status": "R2-I-1 addressed by A_U-specific Sig_ex_U and Sum_econ_U; reviewed twice with PASS 0/0/0 and independently adjudicated with no confirmed defects",
       "author_decision": {
         "path": "quality_reports/plans/2026-08-30_decisao_assinatura_duas_camadas_A_U.md",
         "sha256": "5f2e3e99c9d14a88097fca3f249ce4212564a31b1cd80902bdb4b11cca2d73ae"
       },
-      "candidate_artifacts": [
+      "frozen_artifacts": [
         {
           "path": "model_redesign/agenda_extension_A_U_msb_contract.md",
           "sha256": "348ffc702d75e47ec8f8008bccb71338174649f57d90af8fc78e919cfd4ded26"
@@ -171,7 +178,7 @@
       "status": "pending",
       "frozen": false,
       "authorization": "none",
-      "reason": "not authorized; requires reviewed A_U bytes and operation-specific sufficiency or measurable-factorization claims"
+      "reason": "not authorized; A_M and A_U are frozen inputs, but AC still requires a separate start authorization and operation-specific exact-fiber, sufficiency, and measurable-factorization proofs"
     },
     {
       "node_id": "AR",

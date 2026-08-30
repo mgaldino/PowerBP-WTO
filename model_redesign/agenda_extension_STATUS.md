@@ -8,18 +8,17 @@
 
 ## Resposta curta
 
-`A_M` sob M/S/B está **`pass/frozen`** nos bytes exatos aprovados. Em `A_U`, a
-decisão autoral de estender a arquitetura em duas camadas já foi implementada,
-os dois novos pareceres independentes deram **`PASS 0/0/0`** e a adjudicação
-final encontrou **zero defeitos confirmados**. Mesmo assim, os bytes continuam
-**`pending/unfrozen`** até a aprovação autoral terminal. `AC` e `AR` continuam
+`A_M` e `A_U` sob M/S/B estão **`pass/frozen`** nos respectivos bytes exatos
+aprovados. Em `A_U`, a arquitetura em duas camadas foi implementada, recebeu
+dois pareceres independentes **`PASS 0/0/0`**, adjudicação com **zero defeitos
+confirmados** e aprovação autoral terminal. `AC` e `AR` continuam
 **`pending/unfrozen`** e não estão autorizados. Não há autorização para migrar
 resultados ao manuscrito, criar tag, fazer merge ou push.
 
 | Nó | Status atual | Pode ser executado ou consumido agora? |
 |---|---|---|
 | `A_M` | `pass/frozen` | Apenas os bytes congelados podem ser citados; o status não autoriza trabalho downstream. |
-| `A_U` | `pending/unfrozen`; revisões e adjudicação concluídas, aprovação autoral terminal pendente | Não. O pacote passou pela revisão, mas os bytes ainda não foram aprovados pelo autor. |
+| `A_U` | `pass/frozen`; revisões, adjudicação e aprovação autoral terminal concluídas | Apenas os bytes congelados podem ser citados; o status não inicia `AC`. |
 | `AC` | `pending/unfrozen` | Não. Depende do fechamento revisado de `A_U` e de provas de suficiência ou fatoração específicas da operação. |
 | `AR` | `pending/unfrozen` | Não. Exige GO autoral separado após o pacote privado revisado. |
 
@@ -74,10 +73,20 @@ deu `NO_CONFIRMED_DEFECTS`, com zero findings confirmados, parciais ou não
 resolvidos. Ela também confirmou que os seis artefatos matemáticos são byte a
 byte idênticos aos da rodada anterior e que o reparo alterou apenas o DAG.
 
-Esses resultados fecham os gates técnicos, mas não substituem a aprovação
-autoral terminal. Até esse ato, `A_U` não é congelado e `AC` não começa. Os
-pareceres históricos de 2026-08-29 permanecem como proveniência da lacuna que
-motivou a arquitetura em duas camadas; não governam os novos bytes.
+O autor aprovou terminalmente `A_U` em 2026-08-30. O registro
+`quality_reports/2026-08-30_A_U_msb_two_layer_terminal_approval_and_freeze.md`
+(SHA-256
+`e330a1956a7c071dc72c2556eda68cf32d2b81473d700100bbf7e1f6e195111b`)
+e o manifesto final
+`quality_reports/2026-08-30_A_U_msb_two_layer_final_gate_manifest.sha256`
+(SHA-256
+`b85741b2176c4480f5f3632c4464a93cebabb5dd4f71636626917b9227030180`)
+fixam os bytes aprovados. A pergunta subsequente do autor sobre `AC` não o
+autoriza: `AC` continua `pending/unfrozen` até GO separado.
+
+Os pareceres históricos de 2026-08-29 permanecem como proveniência da lacuna
+que motivou a arquitetura em duas camadas; não governam os bytes agora
+congelados.
 
 ## Autoridade do status de `A_M`
 
