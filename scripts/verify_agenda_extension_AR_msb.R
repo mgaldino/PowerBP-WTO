@@ -87,7 +87,11 @@ source_hashes <- c(
   "model_redesign/agenda_extension_goal1_external_interfaces.json" =
     "588e7da2ec7df2f208ccaf082d3bc30834ea12625484b04b25d3eae7fce20a86",
   "quality_reports/2026-08-27_fechamento_goal1_agenda_extension.md" =
-    "282c2f397fd8f7ecd4b6817ceda71a17ddac1fe0a5c879201c4a54864dd9461c"
+    "282c2f397fd8f7ecd4b6817ceda71a17ddac1fe0a5c879201c4a54864dd9461c",
+  "model_redesign/agenda_extension_game_dag_simplified.json" =
+    "a2572dc8954d63535d4edcbf04158e9524d11ed4537a822713e534df580ee9e0",
+  "scripts/agenda_extension_goal1_verifier_lib.R" =
+    "b067fac9f4b059c5eb5638b23119601ae527dc98ac9dc17d26792711eb752492"
 )
 
 for (path in names(source_hashes)) {
@@ -101,9 +105,12 @@ contract_path <- "model_redesign/agenda_extension_AR_msb_contract.md"
 results_path <- "model_redesign/agenda_extension_AR_msb_results.md"
 interface_path <- "model_redesign/agenda_extension_AR_msb_interface.json"
 ledger_path <- "model_redesign/agenda_extension_AR_msb_claim_ledger.tsv"
-dag_path <- "model_redesign/agenda_extension_AR_msb_game_dag.json"
+complete_records_path <- "model_redesign/agenda_extension_AR_msb_complete_records.json"
+canonical_dag_path <- "model_redesign/agenda_extension_game_dag_simplified.json"
+generic_verifier_path <- "scripts/agenda_extension_goal1_verifier_lib.R"
 
-for (path in c(contract_path, results_path, interface_path, ledger_path, dag_path)) {
+for (path in c(contract_path, results_path, interface_path, ledger_path,
+               complete_records_path)) {
   check(sprintf("candidate artifact exists: %s", path), file.exists(path))
 }
 
@@ -115,13 +122,14 @@ n7_text <- paste(readLines(
   warn = FALSE, encoding = "UTF-8"
 ), collapse = "\n")
 
-json_status <- vapply(c(interface_path, dag_path), function(path) {
+json_status <- vapply(c(interface_path, complete_records_path, canonical_dag_path), function(path) {
   status <- suppressWarnings(system2(
     "python3", c("-m", "json.tool", path), stdout = FALSE, stderr = FALSE
   ))
   if (is.null(status)) 0L else as.integer(status)
 }, integer(1L))
-check("AR interface and DAG are valid JSON", all(json_status == 0L))
+check("AR interface, complete records and canonical DAG are valid JSON",
+      all(json_status == 0L))
 
 ledger <- read.delim(
   ledger_path,
@@ -149,43 +157,127 @@ check("none convention and lifecycle boundary are explicit",
         grepl('"terminal_freeze": false', interface_text, fixed = TRUE))
 
 if (!requireNamespace("jsonlite", quietly = TRUE)) {
-  check("jsonlite available for DAG checks", FALSE)
+  check("jsonlite available for generic schema checks", FALSE)
 } else {
-  dag <- jsonlite::fromJSON(dag_path, simplifyVector = FALSE)
-  node_ids <- vapply(dag$nodes, function(x) x$id, character(1L))
-  check("DAG node ids are unique", !anyDuplicated(node_ids))
-  dependencies_exist <- all(vapply(dag$nodes, function(x) {
-    all(unlist(x$depends_on, use.names = FALSE) %in% node_ids)
-  }, logical(1L)))
-  check("every DAG dependency names an existing node", dependencies_exist)
+  source(generic_verifier_path, local = TRUE)
+  interface <- jsonlite::read_json(interface_path, simplifyVector = FALSE)
+  complete_records <- jsonlite::read_json(complete_records_path, simplifyVector = FALSE)
+  canonical_dag <- jsonlite::read_json(canonical_dag_path, simplifyVector = FALSE)
 
-  deps <- setNames(lapply(dag$nodes, function(x) unlist(x$depends_on, use.names = FALSE)), node_ids)
-  remaining <- node_ids
-  passed <- character(0L)
-  while (length(remaining) > 0L) {
-    ready <- remaining[vapply(remaining, function(id) all(deps[[id]] %in% passed), logical(1L))]
-    if (length(ready) == 0L) break
-    passed <- c(passed, ready)
-    remaining <- setdiff(remaining, ready)
+  dag_issues <- agenda_validate_dag(canonical_dag)
+  check("canonical Gate 0 DAG passes the approved generic validator",
+        length(dag_issues) == 0L)
+  check("AR uses the canonical DAG only as immutable topology/provenance",
+        identical(interface$canonical_dag$path, canonical_dag_path) &&
+          identical(interface$canonical_dag$sha256, sha256(canonical_dag_path)) &&
+          grepl("topology", interface$canonical_dag$role, fixed = TRUE) &&
+          !file.exists("model_redesign/agenda_extension_AR_msb_game_dag.json"))
+
+  complete_hash <- sha256(complete_records_path)
+  check("summary interface pins the complete-record export",
+        identical(interface$complete_records_export$path, complete_records_path) &&
+          identical(interface$complete_records_export$sha256, complete_hash))
+  check("abbreviated public objects are labeled economic summaries, not complete records",
+        "public_economic_summaries" %in% names(interface) &&
+          !"public_equilibrium_records" %in% names(interface))
+
+  family_records <- complete_records$public_family_records
+  family_ids <- vapply(family_records, function(record) record$family_record_id,
+                       character(1L))
+  check("complete public family IDs are unique", !anyDuplicated(family_ids))
+  check("every complete public family is explicitly indexed by public type",
+        all(vapply(family_records, function(record) {
+          agenda_nonempty_scalar(record$public_type)
+        }, logical(1L))))
+  family_issues <- unlist(lapply(family_records, agenda_validate_family_record),
+                          use.names = FALSE)
+  check("every complete public family passes the approved generic family validator",
+        length(family_issues) == 0L)
+
+  collection_fields <- c(
+    "collection_id", "node_id", "institution", "domain", "status",
+    "family_record_ids", "source_complete_view_id", "cells", "proof_paths"
+  )
+  cell_fields <- c("cell_id", "domain", "status", "family_record_ids",
+                   "none_reason", "proof_path")
+  collection_issues <- unlist(lapply(
+    complete_records$public_equilibrium_collections,
+    function(collection) {
+      issues <- agenda_missing_fields(collection, collection_fields)
+      if (!length(issues)) {
+        cited <- unlist(collection$family_record_ids, use.names = FALSE)
+        if (!all(cited %in% family_ids)) issues <- c(issues, "unknown family ID")
+        for (cell in collection$cells) {
+          issues <- c(issues, agenda_missing_fields(cell, cell_fields))
+          cell_ids <- unlist(cell$family_record_ids, use.names = FALSE)
+          if (!all(cell_ids %in% family_ids)) issues <- c(issues, "unknown cell family ID")
+        }
+      }
+      issues
+    }
+  ), use.names = FALSE)
+  check("public collections and cells cite complete known family records",
+        length(collection_issues) == 0L)
+
+  derived_base_fields <- c(
+    "source_ids_and_hashes", "source_binders", "native_values",
+    "native_dates", "transport_factors_to_A", "beta_application_counts",
+    "values_at_A", "proof_path"
+  )
+  benchmark_base_fields <- c(
+    "source_ids_and_hashes", "source_atomic_binders", "native_values",
+    "native_dates", "transport_factors_to_A", "beta_application_counts",
+    "values_at_A", "proof_path"
+  )
+  exact_fields <- c(
+    rep("exact_object_at_A", length(complete_records$benchmark_records)),
+    rep("exact_rent_set_at_A", length(complete_records$agenda_rent_records)),
+    "exact_contrast_set_at_A",
+    rep("exact_interaction_set_at_A", length(complete_records$interaction_records)),
+    "exact_interaction_set_at_A"
+  )
+  derived_records <- c(
+    complete_records$benchmark_records,
+    complete_records$agenda_rent_records,
+    list(complete_records$institutional_rent_record),
+    complete_records$interaction_records,
+    list(complete_records$institutional_interaction_record)
+  )
+  derived_issues <- character()
+  for (index in seq_along(derived_records)) {
+    required <- if (index <= length(complete_records$benchmark_records)) {
+      benchmark_base_fields
+    } else {
+      derived_base_fields
+    }
+    required <- c(required, exact_fields[[index]])
+    derived_issues <- c(
+      derived_issues,
+      agenda_missing_fields(derived_records[[index]], required)
+    )
+    if (agenda_has_payoff_sentinel(derived_records[[index]])) {
+      derived_issues <- c(derived_issues, "payoff sentinel")
+    }
   }
-  check("AR dependency graph is acyclic", length(remaining) == 0L)
+  check("every derived record contains the complete source/date/transport tuple and exact object",
+        length(derived_issues) == 0L)
 
-  model_dir <- dirname(dag_path)
-  artifact_ok <- vapply(dag$nodes, function(x) {
-    if (is.null(x$artifact_path) || is.null(x$artifact_hash)) return(TRUE)
-    path <- normalizePath(file.path(model_dir, x$artifact_path), mustWork = FALSE)
-    expected <- sub("^sha256:", "", x$artifact_hash)
-    file.exists(path) && identical(sha256(path), expected)
-  }, logical(1L))
-  check("every DAG artifact hash matches current bytes", all(artifact_ok))
+  collect_hashes <- function(object) {
+    if (is.list(object)) return(unlist(lapply(object, collect_hashes), use.names = FALSE))
+    if (is.character(object)) return(object[grepl("^[0-9a-f]{64}$", object)])
+    character()
+  }
+  embedded_hashes <- unique(collect_hashes(complete_records))
+  known_external_hashes <- unique(unname(source_hashes))
+  check("complete records contain only pinned external hashes and no self hash",
+        !complete_hash %in% embedded_hashes &&
+          all(embedded_hashes %in% known_external_hashes))
 
-  package_node <- dag$nodes[[match("A_R_candidate_package", node_ids)]]
-  companions <- package_node$companion_artifacts
-  companion_ok <- all(vapply(companions, function(x) {
-    path <- file.path(model_dir, x$path)
-    file.exists(path) && identical(sha256(path), x$sha256)
-  }, logical(1L)))
-  check("DAG companion hashes match contract, results and ledger", companion_ok)
+  claim_issues <- unlist(lapply(seq_len(nrow(ledger)), function(index) {
+    agenda_validate_claim_row(as.list(ledger[index, , drop = FALSE]))
+  }), use.names = FALSE)
+  check("all AR ledger rows pass the approved generic claim validator",
+        length(claim_issues) == 0L)
 }
 
 required_n7_records <- c(

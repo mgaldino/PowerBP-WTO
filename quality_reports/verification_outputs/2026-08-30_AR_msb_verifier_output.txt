@@ -15,22 +15,30 @@ PASS | frozen/source byte hash: model_redesign/essential_input_n7_complete_infor
 PASS | frozen/source byte hash: quality_reports/2026-08-21_fechamento_autoral_goal4_n7.md
 PASS | frozen/source byte hash: model_redesign/agenda_extension_goal1_external_interfaces.json
 PASS | frozen/source byte hash: quality_reports/2026-08-27_fechamento_goal1_agenda_extension.md
+PASS | frozen/source byte hash: model_redesign/agenda_extension_game_dag_simplified.json
+PASS | frozen/source byte hash: scripts/agenda_extension_goal1_verifier_lib.R
 PASS | AC final manifest verifies all frozen entries
 PASS | candidate artifact exists: model_redesign/agenda_extension_AR_msb_contract.md
 PASS | candidate artifact exists: model_redesign/agenda_extension_AR_msb_results.md
 PASS | candidate artifact exists: model_redesign/agenda_extension_AR_msb_interface.json
 PASS | candidate artifact exists: model_redesign/agenda_extension_AR_msb_claim_ledger.tsv
-PASS | candidate artifact exists: model_redesign/agenda_extension_AR_msb_game_dag.json
-PASS | AR interface and DAG are valid JSON
+PASS | candidate artifact exists: model_redesign/agenda_extension_AR_msb_complete_records.json
+PASS | AR interface, complete records and canonical DAG are valid JSON
 PASS | AR ledger has the exact 16-column schema
 PASS | AR ledger has 30 unique sequential claim ids
 PASS | every AR ledger payoff is typed at date A
 PASS | none convention and lifecycle boundary are explicit
-PASS | DAG node ids are unique
-PASS | every DAG dependency names an existing node
-PASS | AR dependency graph is acyclic
-PASS | every DAG artifact hash matches current bytes
-PASS | DAG companion hashes match contract, results and ledger
+PASS | canonical Gate 0 DAG passes the approved generic validator
+PASS | AR uses the canonical DAG only as immutable topology/provenance
+PASS | summary interface pins the complete-record export
+PASS | abbreviated public objects are labeled economic summaries, not complete records
+PASS | complete public family IDs are unique
+PASS | every complete public family is explicitly indexed by public type
+PASS | every complete public family passes the approved generic family validator
+PASS | public collections and cells cite complete known family records
+PASS | every derived record contains the complete source/date/transport tuple and exact object
+PASS | complete records contain only pinned external hashes and no self hash
+PASS | all AR ledger rows pass the approved generic claim validator
 PASS | frozen N7 record exists: N7-PUB-M-R1-T0-INCLUDE
 PASS | frozen N7 record exists: N7-PUB-M-R1-T0-EXCLUDE
 PASS | frozen N7 record exists: N7-PUB-M-R1-T1-INCLUDE
@@ -4363,5 +4371,5 @@ PASS | anonymous majority allocation is invariant N=14
 PASS | named majority coalitions can differ N=15
 PASS | anonymous majority allocation is invariant N=15
 
-SUMMARY | 4359 PASS / 0 FAIL
+SUMMARY | 4367 PASS / 0 FAIL
 LIMIT | Mechanical evidence only; independent formal review remains required.

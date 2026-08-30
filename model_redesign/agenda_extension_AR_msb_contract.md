@@ -35,6 +35,13 @@ Não há autorização para manuscrito, tag, merge ou push.
 
 O contrato simplificado aprovado e a emenda M/S/B continuam governantes. Nenhum arquivo congelado é alterado ou reinterpretado.
 
+O DAG governante continua sendo o DAG canônico de Gate 0,
+`model_redesign/agenda_extension_game_dag_simplified.json`, SHA-256
+`a2572dc8954d63535d4edcbf04158e9524d11ed4537a822713e534df580ee9e0`.
+Ele é citado somente como topologia e proveniência imutáveis; seu lifecycle
+histórico `pending` não é reescrito por `A_R`. Não existe um segundo DAG de
+`A_R`.
+
 ## 3. Domínio comum e datas
 
 Fixe
@@ -102,6 +109,13 @@ r_U(o)=beta*w_U(o).
 
 Denote por `P_g^theta(d)` o conjunto de binders completos do jogo público de agenda sob a regra `g`. A camada exata preserva proposta, loteria de coalizão, votos em toda proposta e o binder literal da continuação. A camada econômica preserva payoff de `H`, probabilidade de acordo/atraso e lei anônima do resultado realizado.
 
+Os family records públicos completos e as tuplas completas de benchmark,
+renda, contraste e interação são materializados em
+`model_redesign/agenda_extension_AR_msb_complete_records.json`. A interface
+principal rotula seus objetos abreviados como resumos econômicos e fixa esse
+export completo por hash externo; o próprio export não contém hash de si
+mesmo.
+
 ## 6. Binders de renda de agenda
 
 Na fibra privada comum `eta` de `A_C`, tome `(R_M,R_U) in J_AC^bind(d,eta)` e, separadamente, um binder público de cada tipo e regra. Não se presume realização aleatória comum entre jogos contrafactuais.
@@ -149,7 +163,11 @@ As propostas nomeadas e loterias de coalizão de maioria pertencem à assinatura
 
 ## 9. Escopo da prova mecânica e revisão
 
-O verificador pode conferir hashes, schemas, DAG, identidades algébricas, desigualdades e partições em grades finitas. Ele não prova completude de PBE, mensurabilidade abstrata, fatorização setwise universal ou inexistência de desvios fora das provas textuais.
+O verificador pode conferir hashes, schemas, o DAG canônico, family records,
+tuplas derivadas, enum do ledger, identidades algébricas, desigualdades e
+partições em grades finitas. Ele não prova completude de PBE, mensurabilidade
+abstrata, fatorização setwise universal ou inexistência de desvios fora das
+provas textuais.
 
 O candidato permanece `unreviewed/unfrozen` até duas revisões independentes sobre os mesmos bytes, adjudicação e aprovação autoral terminal.
 

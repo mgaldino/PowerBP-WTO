@@ -1,5 +1,5 @@
 {
-  "schema_ref": "agenda_extension_AR_msb_public_benchmark_rent_interaction_candidate_v1",
+  "schema_ref": "agenda_extension_AR_msb_public_benchmark_rent_interaction_candidate_v2",
   "node_id": "AR",
   "candidate_status": "authorized_implementer_candidate_unreviewed_unfrozen",
   "orientation": "U-M",
@@ -88,7 +88,7 @@
     "unanimity_weak_R1": "w_U(o)=(1-beta*o)/m",
     "external_option_accounting": "when majority excludes H, o is external to the unit pie and every weak state receives 1/m under the symmetric continuation"
   },
-  "public_equilibrium_records": [
+  "public_economic_summaries": [
     {
       "record_id": "AR-PUB-M-INCLUDE",
       "institution": "majority",
@@ -306,9 +306,19 @@
     "model_redesign/agenda_extension_AR_msb_contract.md",
     "model_redesign/agenda_extension_AR_msb_results.md"
   ],
+  "complete_records_export": {
+    "path": "model_redesign/agenda_extension_AR_msb_complete_records.json",
+    "sha256": "64e6f9b9c0c4b5775793a9361c4af06a8c82a892882b5c608101ffa420f7f0ff",
+    "contents": "complete public equilibrium family records by symbolic public type plus complete benchmark, rent, contrast and interaction source tuples",
+    "self_hash_rule": "the complete-record file contains no hash of itself; this interface and the external candidate manifest pin its bytes"
+  },
   "mechanical_evidence_path": "quality_reports/verification_outputs/2026-08-30_AR_msb_verifier_output.txt",
   "claim_ledger_path": "model_redesign/agenda_extension_AR_msb_claim_ledger.tsv",
-  "game_dag_path": "model_redesign/agenda_extension_AR_msb_game_dag.json",
+  "canonical_dag": {
+    "path": "model_redesign/agenda_extension_game_dag_simplified.json",
+    "sha256": "a2572dc8954d63535d4edcbf04158e9524d11ed4537a822713e534df580ee9e0",
+    "role": "immutable Gate 0 topology and provenance only; its historical pending lifecycle is not the current AR lifecycle"
+  },
   "authorization_boundary": {
     "AR_derivation": true,
     "independent_review": true,

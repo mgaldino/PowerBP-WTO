@@ -1,0 +1,426 @@
+{
+  "schema_ref": "agenda_extension_AR_msb_complete_public_and_derived_records_v1",
+  "node_id": "AR",
+  "status": "implementer_candidate_unreviewed_unfrozen",
+  "orientation": "U-M",
+  "source_complete_view_id": "AGENDA-GOAL1-EXTERNAL-INTERFACES",
+  "source_complete_view_path": "model_redesign/agenda_extension_goal1_external_interfaces.json",
+  "source_complete_view_sha256": "588e7da2ec7df2f208ccaf082d3bc30834ea12625484b04b25d3eae7fce20a86",
+  "canonical_dag": {
+    "path": "model_redesign/agenda_extension_game_dag_simplified.json",
+    "sha256": "a2572dc8954d63535d4edcbf04158e9524d11ed4537a822713e534df580ee9e0",
+    "role": "immutable Gate 0 topology and provenance only; current AR lifecycle is recorded outside this historical DAG"
+  },
+  "external_source_hashes": {
+    "AC_interface": "ea869c023ce7426dae3b92ffad344b4c79f1f0ce220b8fffaceb011904a85249",
+    "N7_public_interface": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45",
+    "Gate0": "fb2cd323a74b30432746dc37d622014cd7768e6d5442877ed3a8e043df546dc4",
+    "MSB": "8f0f3a0e430e8005bd7a1da99477a7b0e27e163b85aa87c2ad349d9578aab21b",
+    "AR_authorization": "0bc58b63f05de25ad9ef134dbf0fdf02d3ca2e4c50c0fd1b9627d6f0eced5e09"
+  },
+  "public_equilibrium_collections": [
+    {
+      "collection_id": "AR-PUB-M-COLLECTION",
+      "node_id": "AR",
+      "institution": "majority",
+      "domain": "m=N-1>=3, 0<beta<1, public_type theta in {theta_0,theta_1}, o=o_theta in (0,1)",
+      "status": "exists",
+      "family_record_ids": [
+        "AR-PUB-M-INCLUDE-THETA",
+        "AR-PUB-M-EXCLUDE-PASS-THETA",
+        "AR-PUB-M-EXCLUDE-TIE-THETA",
+        "AR-PUB-M-EXCLUDE-DELAY-THETA"
+      ],
+      "source_complete_view_id": "N7-PUBLIC-COMPLETE-INFORMATION-BENCHMARK",
+      "cells": [
+        {
+          "cell_id": "AR-PUB-M-INCLUDE-CELL",
+          "domain": "o_theta<=1/m",
+          "status": "exists",
+          "family_record_ids": ["AR-PUB-M-INCLUDE-THETA"],
+          "none_reason": null,
+          "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Section 3.1"
+        },
+        {
+          "cell_id": "AR-PUB-M-EXCLUDE-PASS-CELL",
+          "domain": "o_theta>1/m and beta*o_theta<Z_E",
+          "status": "exists",
+          "family_record_ids": ["AR-PUB-M-EXCLUDE-PASS-THETA"],
+          "none_reason": null,
+          "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Section 3.2"
+        },
+        {
+          "cell_id": "AR-PUB-M-EXCLUDE-TIE-CELL",
+          "domain": "o_theta>1/m and beta*o_theta=Z_E",
+          "status": "exists",
+          "family_record_ids": ["AR-PUB-M-EXCLUDE-TIE-THETA"],
+          "none_reason": null,
+          "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Section 3.2"
+        },
+        {
+          "cell_id": "AR-PUB-M-EXCLUDE-DELAY-CELL",
+          "domain": "o_theta>1/m and beta*o_theta>Z_E; empty inside o_theta<1 when tau_M>=1",
+          "status": "exists",
+          "family_record_ids": ["AR-PUB-M-EXCLUDE-DELAY-THETA"],
+          "none_reason": null,
+          "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Section 3.2"
+        }
+      ],
+      "proof_paths": [
+        "model_redesign/agenda_extension_AR_msb_contract.md Sections 4-5",
+        "model_redesign/agenda_extension_AR_msb_results.md Section 3"
+      ]
+    },
+    {
+      "collection_id": "AR-PUB-U-COLLECTION",
+      "node_id": "AR",
+      "institution": "unanimity",
+      "domain": "m=N-1>=3, 0<beta<1, public_type theta in {theta_0,theta_1}, o=o_theta in (0,1)",
+      "status": "exists",
+      "family_record_ids": ["AR-PUB-U-ALL-THETA"],
+      "source_complete_view_id": "N7-PUBLIC-COMPLETE-INFORMATION-BENCHMARK",
+      "cells": [
+        {
+          "cell_id": "AR-PUB-U-ALL-CELL",
+          "domain": "all o_theta in (0,1)",
+          "status": "exists",
+          "family_record_ids": ["AR-PUB-U-ALL-THETA"],
+          "none_reason": null,
+          "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Section 4"
+        }
+      ],
+      "proof_paths": [
+        "model_redesign/agenda_extension_AR_msb_contract.md Sections 4-5",
+        "model_redesign/agenda_extension_AR_msb_results.md Section 4"
+      ]
+    }
+  ],
+  "public_family_records": [
+    {
+      "family_record_id": "AR-PUB-M-INCLUDE-THETA",
+      "institution": "majority",
+      "cell_id": "AR-PUB-M-INCLUDE-CELL",
+      "public_type": "theta in {theta_0,theta_1}, with o=o_theta; this symbolic record is instantiated separately for each public type",
+      "parameter_domain": "o_theta<=1/m",
+      "member_parameter_or_selector": "a Borel probability lambda_theta on the finite set of k-subsets K of the named weak states",
+      "member_generator": "draw K from lambda_theta; propose x_j=beta*(1-beta*o_theta)/m iff j in K, x_j=0 otherwise, and retain P_I(o_theta)=1-k*beta*(1-beta*o_theta)/m",
+      "necessary_and_sufficient_membership_rule": "lambda_theta is any probability on k-subsets; every supported proposal is minimal and passes; no other passing or rejecting proposal is a best reply because P_I(o_theta)-beta^2*o_theta>0",
+      "strategy_by_type": "the publicly known type theta uses the member generator; there is no hidden countertype strategy in this public game",
+      "weak_vote_strategy": "after every feasible proposal, weak j votes yes iff x_j>=beta*(1-beta*o_theta)/m, including equality by T^Y",
+      "belief_system": "posterior mass one on public theta after every history",
+      "continuation_rule": "after rejection use the literal M/S-selected symmetric representative N7-PUB-M-R1-T0-INCLUDE for theta_0 and N7-PUB-M-R1-T1-INCLUDE for theta_1",
+      "payoff_by_type_and_identity": "H receives P_I(o_theta); in a passing realization weak j receives x_j; after any rejected proposal the date-A continuation vector is beta times the cited N7 R1 vector",
+      "outcome_distribution": "lambda_theta pushes forward to immediate passage with H with probability one; the named coalition varies with K and the anonymous payment multiset is fixed",
+      "atomic_binder": "B_AR_M_INCLUDE(theta,lambda_theta,C_M_INCLUDE_theta^MS) binds the same proposal law, complete votes, degenerate belief, literal continuation, payoffs and outcome law",
+      "source_ids_and_hashes": {
+        "source_record_ids_by_public_type": {
+          "theta_0": "N7-PUB-M-R1-T0-INCLUDE",
+          "theta_1": "N7-PUB-M-R1-T1-INCLUDE"
+        },
+        "source_interface_path": "model_redesign/essential_input_n7_complete_information_benchmark_candidate.json",
+        "source_interface_sha256": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45"
+      },
+      "selection_status": "all current named-coalition lotteries lambda_theta retained; M/S selects only the continuation",
+      "refinement_status": "PBE plus pure as-if-pivotal weak voting and T^Y; no proposal tie-break",
+      "payoff_date": "A",
+      "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Sections 3.1 and 3.3"
+    },
+    {
+      "family_record_id": "AR-PUB-M-EXCLUDE-PASS-THETA",
+      "institution": "majority",
+      "cell_id": "AR-PUB-M-EXCLUDE-PASS-CELL",
+      "public_type": "theta in {theta_0,theta_1}, with o=o_theta; instantiate separately",
+      "parameter_domain": "o_theta>1/m and beta*o_theta<Z_E, Z_E=1-k*beta/m",
+      "member_parameter_or_selector": "a Borel probability lambda_theta on the finite set of k-subsets K of the named weak states",
+      "member_generator": "draw K from lambda_theta; propose x_j=beta/m iff j in K, x_j=0 otherwise, and retain Z_E",
+      "necessary_and_sufficient_membership_rule": "lambda_theta is any probability on k-subsets; every supported proposal is minimal and passes; beta*o_theta<Z_E rules out rejected best replies",
+      "strategy_by_type": "the publicly known type theta uses the member generator",
+      "weak_vote_strategy": "after every feasible proposal, weak j votes yes iff x_j>=beta/m, including equality by T^Y",
+      "belief_system": "posterior mass one on public theta after every history",
+      "continuation_rule": "after rejection use the literal M/S-selected symmetric representative N7-PUB-M-R1-T0-EXCLUDE for theta_0 and N7-PUB-M-R1-T1-EXCLUDE for theta_1",
+      "payoff_by_type_and_identity": "H receives Z_E; in a passing realization weak j receives x_j; rejection would give H beta*o_theta and every weak state beta/m in interim expectation",
+      "outcome_distribution": "lambda_theta pushes forward to immediate passage with H with probability one; named coalition varies and the anonymous payment multiset is fixed",
+      "atomic_binder": "B_AR_M_EXCLUDE_PASS(theta,lambda_theta,C_M_EXCLUDE_theta^MS) binds the same proposal law, votes, belief, continuation, payoffs and outcome law",
+      "source_ids_and_hashes": {
+        "source_record_ids_by_public_type": {
+          "theta_0": "N7-PUB-M-R1-T0-EXCLUDE",
+          "theta_1": "N7-PUB-M-R1-T1-EXCLUDE"
+        },
+        "source_interface_path": "model_redesign/essential_input_n7_complete_information_benchmark_candidate.json",
+        "source_interface_sha256": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45"
+      },
+      "selection_status": "all current named-coalition lotteries retained",
+      "refinement_status": "PBE plus pure as-if-pivotal weak voting and T^Y; no proposal tie-break",
+      "payoff_date": "A",
+      "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Sections 3.2 and 3.3"
+    },
+    {
+      "family_record_id": "AR-PUB-M-EXCLUDE-TIE-THETA",
+      "institution": "majority",
+      "cell_id": "AR-PUB-M-EXCLUDE-TIE-CELL",
+      "public_type": "theta in {theta_0,theta_1}, with o=o_theta; instantiate separately",
+      "parameter_domain": "o_theta>1/m and beta*o_theta=Z_E",
+      "member_parameter_or_selector": "a Borel probability lambda_theta on the disjoint union of minimal passing proposals and feasible proposals with fewer than k weak yes votes",
+      "member_generator": "draw the current proposal from lambda_theta; minimal passing proposals pay beta/m to exactly k weak states; rejecting proposals induce fewer than k yes votes",
+      "necessary_and_sufficient_membership_rule": "lambda_theta is any probability supported on that union; proposals that pass at greater cost are excluded; the same lambda_theta determines alpha=lambda_theta(pass)",
+      "strategy_by_type": "the publicly known type theta uses lambda_theta; there is no proposal tie-break",
+      "weak_vote_strategy": "after every feasible proposal, weak j votes yes iff x_j>=beta/m, including equality by T^Y",
+      "belief_system": "posterior mass one on public theta after every history",
+      "continuation_rule": "after every rejection use the literal M/S-selected symmetric representative N7-PUB-M-R1-T0-EXCLUDE for theta_0 and N7-PUB-M-R1-T1-EXCLUDE for theta_1",
+      "payoff_by_type_and_identity": "H receives Z_E=beta*o_theta in every realization; weak current payoffs and delayed continuation payoffs are bound to the realized proposal branch",
+      "outcome_distribution": "agreement probability alpha=lambda_theta(pass), delay probability 1-alpha, with named coalition and continuation outcome generated by the same lambda_theta draw",
+      "atomic_binder": "B_AR_M_EXCLUDE_TIE(theta,lambda_theta,C_M_EXCLUDE_theta^MS) binds proposal mixture, alpha, votes, belief, continuation, payoffs and outcomes without splicing",
+      "source_ids_and_hashes": {
+        "source_record_ids_by_public_type": {
+          "theta_0": "N7-PUB-M-R1-T0-EXCLUDE",
+          "theta_1": "N7-PUB-M-R1-T1-EXCLUDE"
+        },
+        "source_interface_path": "model_redesign/essential_input_n7_complete_information_benchmark_candidate.json",
+        "source_interface_sha256": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45"
+      },
+      "selection_status": "all pass-delay mixtures and all supported named proposals retained atomically",
+      "refinement_status": "PBE plus pure as-if-pivotal weak voting and T^Y; no proposal tie-break",
+      "payoff_date": "A",
+      "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Sections 3.2 and 3.3"
+    },
+    {
+      "family_record_id": "AR-PUB-M-EXCLUDE-DELAY-THETA",
+      "institution": "majority",
+      "cell_id": "AR-PUB-M-EXCLUDE-DELAY-CELL",
+      "public_type": "theta in {theta_0,theta_1}, with o=o_theta; instantiate separately",
+      "parameter_domain": "o_theta>1/m and beta*o_theta>Z_E",
+      "member_parameter_or_selector": "a Borel probability lambda_theta on feasible proposals that induce fewer than k weak yes votes",
+      "member_generator": "draw any rejecting proposal from lambda_theta; current payments are not realized and the game enters the cited continuation",
+      "necessary_and_sufficient_membership_rule": "lambda_theta assigns probability one to proposals with fewer than k weak yes votes; beta*o_theta>Z_E excludes all passing proposals from the best-reply set",
+      "strategy_by_type": "the publicly known type theta uses lambda_theta",
+      "weak_vote_strategy": "after every feasible proposal, weak j votes yes iff x_j>=beta/m, including equality by T^Y",
+      "belief_system": "posterior mass one on public theta after every history",
+      "continuation_rule": "after rejection use the literal M/S-selected symmetric representative N7-PUB-M-R1-T0-EXCLUDE for theta_0 and N7-PUB-M-R1-T1-EXCLUDE for theta_1",
+      "payoff_by_type_and_identity": "H receives beta*o_theta; each named weak state's date-A payoff is beta times its payoff in the literal N7 continuation member",
+      "outcome_distribution": "delay probability one; the terminal outcome law is beta-timed and generated by the same literal continuation binder",
+      "atomic_binder": "B_AR_M_EXCLUDE_DELAY(theta,lambda_theta,C_M_EXCLUDE_theta^MS) binds rejecting proposal law, votes, belief, continuation, payoffs and delayed outcomes",
+      "source_ids_and_hashes": {
+        "source_record_ids_by_public_type": {
+          "theta_0": "N7-PUB-M-R1-T0-EXCLUDE",
+          "theta_1": "N7-PUB-M-R1-T1-EXCLUDE"
+        },
+        "source_interface_path": "model_redesign/essential_input_n7_complete_information_benchmark_candidate.json",
+        "source_interface_sha256": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45"
+      },
+      "selection_status": "all optimal rejecting proposal laws retained",
+      "refinement_status": "PBE plus pure as-if-pivotal weak voting and T^Y; no proposal tie-break",
+      "payoff_date": "A",
+      "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Sections 3.2 and 3.3"
+    },
+    {
+      "family_record_id": "AR-PUB-U-ALL-THETA",
+      "institution": "unanimity",
+      "cell_id": "AR-PUB-U-ALL-CELL",
+      "public_type": "theta in {theta_0,theta_1}, with o=o_theta; instantiate separately",
+      "parameter_domain": "all o_theta in (0,1)",
+      "member_parameter_or_selector": "singleton",
+      "member_generator": "propose x_j=beta*(1-beta*o_theta)/m for every weak j and retain h_U(o_theta)=1-beta+beta^2*o_theta",
+      "necessary_and_sufficient_membership_rule": "all m weak votes are necessary; exact threshold payments uniquely maximize H's passing payoff and exceed delay by 1-beta",
+      "strategy_by_type": "the publicly known type theta uses the unique proposal",
+      "weak_vote_strategy": "after every feasible proposal, weak j votes yes iff x_j>=beta*(1-beta*o_theta)/m, including equality by T^Y",
+      "belief_system": "posterior mass one on public theta after every history",
+      "continuation_rule": "after rejection use the literal M/S-selected symmetric representative N7-PUB-U-R1-T0 for theta_0 and N7-PUB-U-R1-T1 for theta_1",
+      "payoff_by_type_and_identity": "H receives h_U(o_theta); every weak j receives beta*(1-beta*o_theta)/m; rejection would give beta times the cited N7 R1 vector",
+      "outcome_distribution": "immediate agreement with H with probability one at the unique uniform current allocation",
+      "atomic_binder": "B_AR_U(theta,C_U_theta^MS) binds the unique proposal, complete votes, degenerate belief, literal continuation, payoffs and outcome",
+      "source_ids_and_hashes": {
+        "source_record_ids_by_public_type": {
+          "theta_0": "N7-PUB-U-R1-T0",
+          "theta_1": "N7-PUB-U-R1-T1"
+        },
+        "source_interface_path": "model_redesign/essential_input_n7_complete_information_benchmark_candidate.json",
+        "source_interface_sha256": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45"
+      },
+      "selection_status": "singleton on-path proposal and outcome; literal continuation multiplicity only as selected by M/S",
+      "refinement_status": "PBE plus pure as-if-pivotal weak voting and T^Y",
+      "payoff_date": "A",
+      "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Section 4"
+    }
+  ],
+  "benchmark_records": [
+    {
+      "benchmark_record_id": "AR-BENCH-M-01",
+      "institution": "majority",
+      "status": "exists",
+      "public_type_instances": ["theta_0", "theta_1"],
+      "source_family_record_ids": [
+        "AR-PUB-M-INCLUDE-THETA",
+        "AR-PUB-M-EXCLUDE-PASS-THETA",
+        "AR-PUB-M-EXCLUDE-TIE-THETA",
+        "AR-PUB-M-EXCLUDE-DELAY-THETA"
+      ],
+      "source_ids_and_hashes": {
+        "N7_record_ids": [
+          "N7-PUB-M-R1-T0-INCLUDE",
+          "N7-PUB-M-R1-T0-EXCLUDE",
+          "N7-PUB-M-R1-T1-INCLUDE",
+          "N7-PUB-M-R1-T1-EXCLUDE"
+        ],
+        "N7_sha256": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45"
+      },
+      "source_atomic_binders": "the type-indexed pair of complete B_AR_M_* family binders selected by the parameter cell, never a recombination of their coordinates",
+      "native_values": "N7 p_M(o_theta) and w_M(o_theta) in R1 current units",
+      "native_dates": "C, where C is the public N7 R1 continuation",
+      "transport_factors_to_A": "beta for every N7 continuation coordinate",
+      "beta_application_counts": 1,
+      "values_at_A": "r_M(o_theta)=beta*w_M(o_theta), D_M(o_theta)=beta*p_M(o_theta), and equilibrium h_M(o_theta) from the same public family binder",
+      "exact_object_at_A": "the linked type payoff vector (h_M(o_0),h_M(o_1)) plus the ordered pair of exact public family laws; agreement law remains set-valued at beta*o_theta=Z_E",
+      "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Sections 2-3"
+    },
+    {
+      "benchmark_record_id": "AR-BENCH-U-01",
+      "institution": "unanimity",
+      "status": "exists",
+      "public_type_instances": ["theta_0", "theta_1"],
+      "source_family_record_ids": ["AR-PUB-U-ALL-THETA"],
+      "source_ids_and_hashes": {
+        "N7_record_ids": ["N7-PUB-U-R1-T0", "N7-PUB-U-R1-T1"],
+        "N7_sha256": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45"
+      },
+      "source_atomic_binders": "the ordered pair (B_AR_U(theta_0,C_U_0^MS),B_AR_U(theta_1,C_U_1^MS))",
+      "native_values": "N7 p_U(o_theta)=beta*o_theta and w_U(o_theta)=(1-beta*o_theta)/m in R1 current units",
+      "native_dates": "C, where C is the public N7 R1 continuation",
+      "transport_factors_to_A": "beta for every N7 continuation coordinate",
+      "beta_application_counts": 1,
+      "values_at_A": "r_U(o_theta)=beta*w_U(o_theta), D_U(o_theta)=beta*p_U(o_theta), h_U(o_theta)=1-beta+beta^2*o_theta",
+      "exact_object_at_A": "the linked singleton vector (h_U(o_0),h_U(o_1)) and ordered pair of complete public binders",
+      "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Sections 2 and 4"
+    }
+  ],
+  "agenda_rent_records": [
+    {
+      "rent_record_id": "AR-RI-A-M",
+      "institution": "majority",
+      "status": "exists iff the frozen A_M binder set is nonempty in eta",
+      "source_ids_and_hashes": {
+        "private_source_id": "AC source component B_M(d,eta)",
+        "AC_interface_sha256": "ea869c023ce7426dae3b92ffad344b4c79f1f0ce220b8fffaceb011904a85249",
+        "public_benchmark_id": "AR-BENCH-M-01",
+        "public_benchmark_external_hash": null
+      },
+      "source_binders": "(R_M,B_pub_M(theta_0),B_pub_M(theta_1)) with R_M atomic and each public binder complete",
+      "native_values": "V_M^{01}(R_M) and (h_M(o_0),h_M(o_1))",
+      "native_dates": "A for both operands",
+      "transport_factors_to_A": "1 for both operands",
+      "beta_application_counts": 0,
+      "values_at_A": "the unchanged two operands at A",
+      "exact_rent_set_at_A": "{V_M^{01}(R_M)-(h_M(o_0),h_M(o_1)):R_M in B_M(d,eta)}",
+      "ex_ante_image": "apply (1-nu,nu) only after the linked vector is formed",
+      "none_rule": "none iff B_M(d,eta) is empty",
+      "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Section 6"
+    },
+    {
+      "rent_record_id": "AR-RI-A-U",
+      "institution": "unanimity",
+      "status": "exists iff the frozen A_U binder set is nonempty in eta",
+      "source_ids_and_hashes": {
+        "private_source_id": "AC source component B_U(d,eta)",
+        "AC_interface_sha256": "ea869c023ce7426dae3b92ffad344b4c79f1f0ce220b8fffaceb011904a85249",
+        "public_benchmark_id": "AR-BENCH-U-01",
+        "public_benchmark_external_hash": null
+      },
+      "source_binders": "(R_U,B_pub_U(theta_0),B_pub_U(theta_1)) with R_U atomic and public binders complete",
+      "native_values": "V_U^{01}(R_U) and (z_L,z_H)=(h_U(o_0),h_U(o_1))",
+      "native_dates": "A for both operands",
+      "transport_factors_to_A": "1 for both operands",
+      "beta_application_counts": 0,
+      "values_at_A": "the unchanged two operands at A",
+      "exact_rent_set_at_A": "{V_U^{01}(R_U)-(z_L,z_H):R_U in B_U(d,eta)}, with the seven cells in the summary interface preserved",
+      "ex_ante_image": "apply (1-nu,nu) only after the linked vector is formed",
+      "none_rule": "none exactly in the frozen empty A_U fibers",
+      "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Sections 6-7"
+    }
+  ],
+  "institutional_rent_record": {
+    "contrast_record_id": "AR-DRI-A-UM",
+    "orientation": "U-M",
+    "status": "exists iff J_AC^bind(d,eta) is nonempty",
+    "source_ids_and_hashes": {
+      "AC_comparison_id": "J_AC^bind(d,eta)",
+      "AC_interface_sha256": "ea869c023ce7426dae3b92ffad344b4c79f1f0ce220b8fffaceb011904a85249",
+      "majority_rent_id": "AR-RI-A-M",
+      "unanimity_rent_id": "AR-RI-A-U"
+    },
+    "source_binders": "(R_M,R_U,B_pub_M^0,B_pub_M^1,B_pub_U^0,B_pub_U^1) with the AC pair and every public binder kept atomic",
+    "native_values": "delta^{01}=V_U^{01}-V_M^{01} and G^{01}=(h_M(o_0)-h_U(o_0),h_M(o_1)-h_U(o_1))",
+    "native_dates": "A",
+    "transport_factors_to_A": "1",
+    "beta_application_counts": 0,
+    "values_at_A": "DeltaRI_A^{01}=delta^{01}+G^{01}",
+    "exact_contrast_set_at_A": "the image of J_AC^bind under the displayed linked vector map; no marginal product",
+    "none_rule": "none iff J_AC^bind(d,eta) is empty",
+    "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Section 8"
+  },
+  "interaction_records": [
+    {
+      "interaction_record_id": "AR-INT-M",
+      "institution": "majority",
+      "status": "exists iff AR-RI-A-M and the applicable N7 majority rent record both exist",
+      "source_ids_and_hashes": {
+        "agenda_rent_id": "AR-RI-A-M",
+        "agenda_rent_external_hash": null,
+        "N7_rent_record_ids": ["N7-RI-M-II", "N7-RI-M-IX", "N7-RI-M-XX"],
+        "N7_interface_sha256": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45"
+      },
+      "source_binders": "a complete AR-RI-A-M source tuple paired with one applicable complete N7 majority rent record; no common realization is imposed",
+      "native_values": "RI_M^{A,01} at A and RI_M^{N,R1,01} in N7 R1 units",
+      "native_dates": "A and C (=N7 R1), respectively",
+      "transport_factors_to_A": "1 and beta, respectively",
+      "beta_application_counts": "0 and 1, respectively",
+      "values_at_A": "RI_M^{A,01} and beta*RI_M^{N,R1,01}",
+      "exact_interaction_set_at_A": "RI_M^{A,01}-beta*RI_M^{N,R1,01} over the complete source-record product",
+      "none_rule": "none if either source is empty; the surviving source remains separately recorded",
+      "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Section 9"
+    },
+    {
+      "interaction_record_id": "AR-INT-U",
+      "institution": "unanimity",
+      "status": "exists iff AR-RI-A-U and the applicable N7 unanimity rent record both exist",
+      "source_ids_and_hashes": {
+        "agenda_rent_id": "AR-RI-A-U",
+        "agenda_rent_external_hash": null,
+        "N7_rent_record_ids": ["N7-RI-U-NU-ZERO", "N7-RI-U-HIGH"],
+        "N7_interface_sha256": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45"
+      },
+      "source_binders": "a complete AR-RI-A-U source tuple paired with the applicable complete N7 unanimity rent record",
+      "native_values": "RI_U^{A,01} at A and RI_U^{N,R1,01} in N7 R1 units",
+      "native_dates": "A and C (=N7 R1), respectively",
+      "transport_factors_to_A": "1 and beta, respectively",
+      "beta_application_counts": "0 and 1, respectively",
+      "values_at_A": "RI_U^{A,01} and beta*RI_U^{N,R1,01}",
+      "exact_interaction_set_at_A": "nu=0: (0,max{z_L,d_H}-z_H); low positive prior: none; high rho=0: {(u-z_H,u-z_H)}; high offpath-high and nu=1: (0,0)",
+      "none_rule": "none for 0<nu<=nu_star because the N7 unanimity rent source is none; otherwise follows source existence",
+      "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Section 9"
+    }
+  ],
+  "institutional_interaction_record": {
+    "interaction_record_id": "AR-DINT-UM",
+    "orientation": "U-M",
+    "status": "exists iff AR-DRI-A-UM and the applicable N7 DeltaRI record both exist",
+    "source_ids_and_hashes": {
+      "agenda_rent_contrast_id": "AR-DRI-A-UM",
+      "agenda_rent_contrast_external_hash": null,
+      "N7_contrast_record_ids": "the applicable frozen N7-DRI record among the nine explicit cells",
+      "N7_interface_sha256": "4e0169ded349bce0377561001b18424c3daf4f22baee7c034deacc7677b49c45"
+    },
+    "source_binders": "one complete AC/public agenda contrast tuple paired with one complete applicable N7 institutional rent contrast record",
+    "native_values": "DeltaRI_A^{01} at A and DeltaRI_N^{R1,01} in N7 R1 units",
+    "native_dates": "A and C (=N7 R1), respectively",
+    "transport_factors_to_A": "1 and beta, respectively",
+    "beta_application_counts": "0 and 1, respectively",
+    "values_at_A": "DeltaRI_A^{01} and beta*DeltaRI_N^{R1,01}",
+    "exact_interaction_set_at_A": "DeltaI^{01}=DeltaRI_A^{01}-beta*DeltaRI_N^{R1,01} over the complete source-record product",
+    "none_rule": "none if either contrast source is none",
+    "proof_path": "model_redesign/agenda_extension_AR_msb_results.md Section 10"
+  },
+  "no_self_hash_rule": "Internal AR records cite IDs and atomic binders but no hash of this containing file. The external candidate manifest pins this file after construction.",
+  "proof_paths": [
+    "model_redesign/agenda_extension_AR_msb_contract.md",
+    "model_redesign/agenda_extension_AR_msb_results.md"
+  ]
+}

@@ -436,3 +436,11 @@ Estão provados no candidato: as correspondências públicas; os payoffs públic
 Permanecem deliberadamente set-valued: a renda de maioria, a diferença institucional herdada de `A_C`, a interação de maioria e a interação institucional. Não se reivindica um sinal geral onde as fontes não o identificam.
 
 O verificador mecânico é evidência de falsificação finita, não parecer matemático. O candidato permanece `unreviewed/unfrozen`; manuscrito, tag, merge e push não estão autorizados.
+
+Os binders públicos e as tuplas de transporte citados nestas provas estão
+serializados integralmente em
+`model_redesign/agenda_extension_AR_msb_complete_records.json`. Os registros
+são parametrizados explicitamente pelo tipo público, citam os IDs concretos de
+`N7` para cada tipo e preservam a mesma lei de propostas, votos, continuação,
+payoffs e outcomes no binder atômico. O DAG canônico de Gate 0 é somente a
+autoridade imutável de topologia; nenhum DAG concorrente foi criado.
