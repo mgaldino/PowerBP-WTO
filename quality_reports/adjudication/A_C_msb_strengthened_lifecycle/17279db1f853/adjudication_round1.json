@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a-c-msb-strengthened-lifecycle:17279db1f853:round1",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-08-30_AC_msb_strengthened_terminal_gate_candidate_manifest.sha256",
+    "sha256": "17279db1f853e5bc0bb3b7b1ef2411053e1beb6929e56c15b766e0ee847ef5d2",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-08-30_AC_msb_strengthened_lifecycle_review_1.md",
+      "sha256": "e4eb4d0200ec9dfdff2286f189a305263f7eed89794402496dc112a0df1eff55"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-08-30_AC_msb_strengthened_lifecycle_review_2.md",
+      "sha256": "fc2a0b4544db0abe216a00d66ebb15a4ba90f812456bd11141881502e3ff4386"
+    }
+  ],
+  "findings": [],
+  "summary": {
+    "total": 0,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "NO_CONFIRMED_DEFECTS",
+    "checked_at": "2026-08-30T13:43:47-03:00",
+    "reasons": [
+      "O commit de reparo e ancestral do HEAD, cujo delta acrescenta somente os dois pareceres de lifecycle.",
+      "O manifesto matematico passou 8/8 e o manifesto terminal passou 13/13.",
+      "Os oito artefatos governados permanecem byte-identicos ao candidato e os cinco sidecars correspondem exatamente ao reparo autorizado.",
+      "O checker central reproduziu 92 PASS / 0 FAIL com stdout byte-identico ao output versionado.",
+      "A_C permanece pending/unfrozen; A_R, manuscrito, tag, merge e push continuam nao autorizados."
+    ]
+  }
+}
