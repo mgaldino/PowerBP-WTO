@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a-c-msb:76f4540cacc1:round3",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-08-30_AC_msb_round2_candidate_manifest.sha256",
+    "sha256": "fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-08-30_AC_msb_round3_formal_review_1.md",
+      "sha256": "83e6a4a7249f666fb0760ed33b43c3fbff710f39476ef63791f4a9ae55b1c989"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-08-30_AC_msb_round3_formal_review_2.md",
+      "sha256": "c515bfef9efd594d947bc76b660046f4784dd66de69b9929598a459ad86fdedf"
+    }
+  ],
+  "findings": [],
+  "summary": {
+    "total": 0,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "NO_CONFIRMED_DEFECTS",
+    "checked_at": "2026-08-30T11:04:50-03:00",
+    "reasons": [
+      "O snapshot reparado 76f4540cacc15a8db6f0175e7056a7692433bec5 e ancestral do HEAD 128860d9f3fd903554b17ad8f343a6211d96cc7d, e a diferenca ate o HEAD contem somente os dois pareceres da rodada 3; os quatro sidecars autorizados e os sete blobs governados nao mudaram.",
+      "O manifesto de candidato da rodada 2 tem SHA-256 fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba e passou 7/7 verificacoes; os sete blobs matematicos sao byte-identicos entre o pacote 7248c56cca098d86c0117a78f89c4555c0d934d3, o reparo 76f4540cacc15a8db6f0175e7056a7692433bec5 e o HEAD de materializacao.",
+      "O reparo de AC-R2-MIN-1 alterou exatamente os quatro sidecars autorizados e os repinou ao commit, manifesto, DAG e ledger da rodada 2, preservando o historico das rodadas 1 e 2.",
+      "A reexecucao do checker central terminou com 90 PASS e 0 FAIL; seu stdout foi byte-identico ao output versionado e reproduziu o SHA-256 f3d14f552436735552a874f0720fe80cd4769792296314972deb74d3ccb25ee2.",
+      "A verificacao adversarial direta nao encontrou finding atual: AC-R2-MIN-1 esta reparado, A_C permanece pending e unfrozen a espera de aprovacao terminal do autor, e A_R e o downstream continuam sem autorizacao."
+    ]
+  }
+}
