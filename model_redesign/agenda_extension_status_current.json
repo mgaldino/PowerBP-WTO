@@ -22,6 +22,12 @@
     "final_gate_manifest_path": "quality_reports/2026-08-30_A_C_msb_strengthened_final_gate_manifest.sha256",
     "final_gate_manifest_sha256": "332d1d7be7a7b38f715c8d7d872c6f7010c22a27fc924b91e8f694199a190fe4"
   },
+  "a_r_authority": {
+    "path": "quality_reports/2026-08-30_A_R_msb_terminal_approval_and_freeze.md",
+    "sha256": "13c4663bbedbc19b43cd39a55e7106a7c41be9566163e23287e941ad84aa7b29",
+    "final_gate_manifest_path": "quality_reports/2026-08-30_A_R_msb_final_gate_manifest.sha256",
+    "final_gate_manifest_sha256": "a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38"
+  },
   "snapshot": {
     "branch": "agenda-extension-am-msb",
     "substantive_commit": "e020629d5bad8fbd66d67cf108b1a2e0d8b048fd",
@@ -72,12 +78,18 @@
     "interface_repaired_candidate_commit": "8215c9f36910a94e251fea4ed8a3be273780a409",
     "final_candidate_commit": "8016dacb79c382d085f23f836a1fdbf8d9b05292",
     "reviews_and_adjudication_commit": "ff9b4617004ca216b5bbed88995cc752f60bf0a9",
+    "reviewed_lifecycle_status_commit": "497e11801c020bf505cb4104df78ed599e9adf58",
+    "lifecycle_reviews_and_adjudication_commit": "12d336a69ecfb4da6196ec55bb767d2dfe9bfa4d",
     "candidate_manifest_path": "quality_reports/2026-08-30_AR_msb_candidate_manifest.sha256",
     "candidate_manifest_sha256": "b1b483f3c31d58c3cd94807e9b55fd303e795510210914634e29faaee322a6d0",
     "terminal_gate_candidate_manifest_path": "quality_reports/2026-08-30_AR_msb_terminal_gate_candidate_manifest.sha256",
     "terminal_gate_candidate_manifest_sha256": "f326c7fbf1b70fb66f286a6b9e265b67be76a4385553cbc288d828b0c0386a6f",
+    "lifecycle_candidate_manifest_path": "quality_reports/2026-08-30_AR_msb_lifecycle_candidate_manifest.sha256",
+    "lifecycle_candidate_manifest_sha256": "25ff65848bf6509050a68732d195a864f15c69da3322e5bd2174f3f0adf7f859",
+    "lifecycle_final_gate_manifest_path": "quality_reports/2026-08-30_AR_msb_lifecycle_final_gate_manifest.sha256",
+    "lifecycle_final_gate_manifest_sha256": "10bfa622dd222639b7d2493f4c8b076dba9fd87bc25bb8e6709ba7930f270695",
     "mechanical_result": "4372 PASS / 0 FAIL",
-    "lifecycle": "two independent PASS 0/0/0 reviews and NO_CONFIRMED_DEFECTS adjudication complete; terminal author approval pending; reviewed/unfrozen"
+    "lifecycle": "formal and lifecycle review each completed twice with PASS 0/0/0; both adjudications found NO_CONFIRMED_DEFECTS; terminal author approval complete; pass/frozen"
   },
   "nodes": [
     {
@@ -315,9 +327,9 @@
     },
     {
       "node_id": "AR",
-      "status": "reviewed",
-      "frozen": false,
-      "authorization": "implementation_and_review_authorized_terminal_approval_pending",
+      "status": "pass",
+      "frozen": true,
+      "authorization": "terminal_author_approval",
       "author_go": {
         "literal_decision": "Ok. Faça A_R",
         "path": "quality_reports/plans/2026-08-30_autorizacao_inicio_A_R.md",
@@ -360,12 +372,48 @@
         "sha256": "f326c7fbf1b70fb66f286a6b9e265b67be76a4385553cbc288d828b0c0386a6f",
         "entries": 27
       },
+      "lifecycle_reviews": [
+        {
+          "path": "quality_reports/2026-08-30_AR_msb_lifecycle_review_1.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "84a503f6204495e76bbcbc7ff4b09afe44723e46a50f9453ad19efd68df82e96"
+        },
+        {
+          "path": "quality_reports/2026-08-30_AR_msb_lifecycle_review_2.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "6ec0e930f6cbb1d90a762dcfa35d8a4e7cdea9c0da65686ef1a49923b060e7da"
+        }
+      ],
+      "lifecycle_adjudication": {
+        "verdict": "NO_CONFIRMED_DEFECTS",
+        "counts": {
+          "confirmed": 0,
+          "partial": 0,
+          "unresolved": 0
+        },
+        "markdown_path": "quality_reports/adjudication/A_R_msb_lifecycle/25ff65848bf6/adjudication_round1.md",
+        "markdown_sha256": "583c6ab75e172ff55b924b361d19bf8f5b53aa1ed9fcdc7a3c69f4e0a0d5fc42",
+        "json_path": "quality_reports/adjudication/A_R_msb_lifecycle/25ff65848bf6/adjudication_round1.json",
+        "json_sha256": "95def36d481b8967cb3b463cfcb079ffa5b8030c7d4e7be11612955c3106621b"
+      },
+      "terminal_author_approval": {
+        "literal_decision": "ok, aprovado",
+        "path": "quality_reports/2026-08-30_A_R_msb_terminal_approval_and_freeze.md",
+        "sha256": "13c4663bbedbc19b43cd39a55e7106a7c41be9566163e23287e941ad84aa7b29"
+      },
+      "final_gate_manifest": {
+        "path": "quality_reports/2026-08-30_A_R_msb_final_gate_manifest.sha256",
+        "sha256": "a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38",
+        "entries": 35
+      },
       "mechanical_result": "4372 PASS / 0 FAIL",
       "historical_findings_closed": [
         "round 1: competing DAG, incomplete public interface and invalid claim_kind enum",
         "round 2: unresolved N7 institutional-rent placeholder in AR-DINT-UM"
       ],
-      "reason": "mathematical and adversarial reviews plus final adjudication are complete; terminal author approval is still required before pass/frozen"
+      "reason": "the author terminally approved the exact formally reviewed, lifecycle-reviewed and independently adjudicated A_R bytes; pass/frozen"
     }
   ],
   "downstream": {

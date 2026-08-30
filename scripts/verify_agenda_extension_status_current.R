@@ -50,6 +50,20 @@ sha256 <- function(relative_path) {
   if (length(match) == 0L || identical(match, "")) NA_character_ else match
 }
 
+verify_manifest <- function(relative_path, expected_entries) {
+  absolute_path <- file.path(root, relative_path)
+  if (!file.exists(absolute_path)) return(FALSE)
+  lines <- readLines(absolute_path, warn = FALSE, encoding = "UTF-8")
+  entry_count <- sum(grepl("^[0-9a-f]{64}  ", lines, useBytes = TRUE))
+  exit_status <- suppressWarnings(system2(
+    "shasum",
+    c("-a", "256", "-c", absolute_path),
+    stdout = FALSE,
+    stderr = FALSE
+  ))
+  identical(entry_count, expected_entries) && identical(exit_status, 0L)
+}
+
 node_by_id <- function(status, node_id) {
   hits <- Filter(function(node) identical(node$node_id, node_id), status$nodes)
   if (length(hits) != 1L) return(NULL)
@@ -104,6 +118,16 @@ record_check(
   identical(status$a_c_authority$final_gate_manifest_sha256,
             "332d1d7be7a7b38f715c8d7d872c6f7010c22a27fc924b91e8f694199a190fe4"),
   "A_C final gate manifest hash is pinned"
+)
+record_check(
+  identical(status$a_r_authority$sha256,
+            "13c4663bbedbc19b43cd39a55e7106a7c41be9566163e23287e941ad84aa7b29"),
+  "A_R terminal authority hash is pinned"
+)
+record_check(
+  identical(status$a_r_authority$final_gate_manifest_sha256,
+            "a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38"),
+  "A_R final gate manifest hash is pinned"
 )
 record_check(
   identical(status$snapshot$candidate_manifest_sha256,
@@ -180,13 +204,21 @@ record_check(
               "8016dacb79c382d085f23f836a1fdbf8d9b05292") &&
     identical(status$a_r_candidate_snapshot$reviews_and_adjudication_commit,
               "ff9b4617004ca216b5bbed88995cc752f60bf0a9") &&
+    identical(status$a_r_candidate_snapshot$reviewed_lifecycle_status_commit,
+              "497e11801c020bf505cb4104df78ed599e9adf58") &&
+    identical(status$a_r_candidate_snapshot$lifecycle_reviews_and_adjudication_commit,
+              "12d336a69ecfb4da6196ec55bb767d2dfe9bfa4d") &&
     identical(status$a_r_candidate_snapshot$candidate_manifest_sha256,
               "b1b483f3c31d58c3cd94807e9b55fd303e795510210914634e29faaee322a6d0") &&
     identical(status$a_r_candidate_snapshot$terminal_gate_candidate_manifest_sha256,
               "f326c7fbf1b70fb66f286a6b9e265b67be76a4385553cbc288d828b0c0386a6f") &&
+    identical(status$a_r_candidate_snapshot$lifecycle_candidate_manifest_sha256,
+              "25ff65848bf6509050a68732d195a864f15c69da3322e5bd2174f3f0adf7f859") &&
+    identical(status$a_r_candidate_snapshot$lifecycle_final_gate_manifest_sha256,
+              "10bfa622dd222639b7d2493f4c8b076dba9fd87bc25bb8e6709ba7930f270695") &&
     identical(status$a_r_candidate_snapshot$mechanical_result,
               "4372 PASS / 0 FAIL"),
-  "A_R authorization, three candidate stages, reviews, adjudication, manifests, and mechanical result are pinned"
+  "A_R authorization, candidate stages, formal and lifecycle reviews, adjudications, manifests, and mechanical result are pinned"
 )
 
 record_check(
@@ -215,6 +247,15 @@ record_check(
   identical(sha256(status$a_c_authority$final_gate_manifest_path),
             status$a_c_authority$final_gate_manifest_sha256),
   "A_C final gate manifest bytes match"
+)
+record_check(
+  identical(sha256(status$a_r_authority$path), status$a_r_authority$sha256),
+  "A_R terminal authority bytes match"
+)
+record_check(
+  identical(sha256(status$a_r_authority$final_gate_manifest_path),
+            status$a_r_authority$final_gate_manifest_sha256),
+  "A_R final gate manifest bytes match"
 )
 record_check(
   identical(sha256(status$snapshot$candidate_manifest_path),
@@ -250,6 +291,16 @@ record_check(
   identical(sha256(status$a_r_candidate_snapshot$terminal_gate_candidate_manifest_path),
             status$a_r_candidate_snapshot$terminal_gate_candidate_manifest_sha256),
   "A_R terminal-gate candidate manifest bytes match"
+)
+record_check(
+  identical(sha256(status$a_r_candidate_snapshot$lifecycle_candidate_manifest_path),
+            status$a_r_candidate_snapshot$lifecycle_candidate_manifest_sha256),
+  "A_R lifecycle candidate manifest bytes match"
+)
+record_check(
+  identical(sha256(status$a_r_candidate_snapshot$lifecycle_final_gate_manifest_path),
+            status$a_r_candidate_snapshot$lifecycle_final_gate_manifest_sha256),
+  "A_R lifecycle final-gate manifest bytes match"
 )
 
 a_m <- node_by_id(status, "A_M")
@@ -303,11 +354,10 @@ record_check(
   "A_C terminal approval and 20-entry final gate manifest bytes match"
 )
 record_check(
-  identical(ar$status, "reviewed") && identical(ar$frozen, FALSE) &&
-    identical(ar$authorization,
-              "implementation_and_review_authorized_terminal_approval_pending") &&
+  identical(ar$status, "pass") && isTRUE(ar$frozen) &&
+    identical(ar$authorization, "terminal_author_approval") &&
     identical(ar$mechanical_result, "4372 PASS / 0 FAIL"),
-  "AR is reviewed/unfrozen and still awaits terminal author approval"
+  "AR is pass/frozen with terminal author approval"
 )
 record_check(
   grepl("^Ok\\.", ar$author_go$literal_decision) &&
@@ -344,6 +394,43 @@ record_check(
     identical(sha256(ar$terminal_gate_candidate_manifest$path),
               ar$terminal_gate_candidate_manifest$sha256),
   "AR 27-entry technical terminal-gate candidate is byte-valid"
+)
+record_check(
+  length(ar$lifecycle_reviews) == 2L &&
+    all(vapply(ar$lifecycle_reviews, function(review) {
+      identical(review$verdict, "PASS") &&
+        identical(review$findings, "0/0/0") &&
+        identical(sha256(review$path), review$sha256)
+    }, logical(1L))),
+  "AR has two byte-valid PASS 0/0/0 lifecycle reviews"
+)
+record_check(
+  identical(ar$lifecycle_adjudication$verdict, "NO_CONFIRMED_DEFECTS") &&
+    identical(ar$lifecycle_adjudication$counts$confirmed, 0L) &&
+    identical(ar$lifecycle_adjudication$counts$partial, 0L) &&
+    identical(ar$lifecycle_adjudication$counts$unresolved, 0L) &&
+    identical(sha256(ar$lifecycle_adjudication$markdown_path),
+              ar$lifecycle_adjudication$markdown_sha256) &&
+    identical(sha256(ar$lifecycle_adjudication$json_path),
+              ar$lifecycle_adjudication$json_sha256),
+  "AR lifecycle adjudication is byte-valid and has no confirmed or unresolved defects"
+)
+record_check(
+  identical(ar$terminal_author_approval$literal_decision, "ok, aprovado") &&
+    identical(ar$terminal_author_approval$sha256,
+              "13c4663bbedbc19b43cd39a55e7106a7c41be9566163e23287e941ad84aa7b29") &&
+    identical(sha256(ar$terminal_author_approval$path),
+              ar$terminal_author_approval$sha256) &&
+    identical(ar$final_gate_manifest$sha256,
+              "a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38") &&
+    identical(ar$final_gate_manifest$entries, 35L) &&
+    identical(sha256(ar$final_gate_manifest$path),
+              ar$final_gate_manifest$sha256),
+  "A_R terminal approval and 35-entry final gate manifest bytes match"
+)
+record_check(
+  verify_manifest(ar$final_gate_manifest$path, 35L),
+  "A_R final gate reproduces all 35/35 pinned entries"
 )
 
 expected_frozen_hashes <- c(
@@ -714,10 +801,9 @@ record_check(
   "human-readable status identifies A_C as pass/frozen"
 )
 record_check(
-  any(grepl("revisado e não congelado", status_md,
-            fixed = TRUE, useBytes = TRUE)) &&
-    any(grepl("reviewed/unfrozen", status_md, fixed = TRUE, useBytes = TRUE)),
-  "human-readable status identifies A_R as reviewed/unfrozen"
+  any(grepl("A_R.*pass/frozen", status_md, fixed = FALSE, useBytes = TRUE)) &&
+    any(grepl("35/35", status_md, fixed = TRUE, useBytes = TRUE)),
+  "human-readable status identifies A_R as pass/frozen on its 35-entry final gate"
 )
 record_check(
   any(grepl("R2-I-1", status_md, fixed = TRUE, useBytes = TRUE)),
@@ -755,6 +841,13 @@ record_check(
     any(grepl("f326c7fbf1b70fb66f286a6b9e265b67be76a4385553cbc288d828b0c0386a6f",
               status_md, fixed = TRUE, useBytes = TRUE)),
   "human-readable status identifies the exact A_R terminal-gate candidate"
+)
+record_check(
+  any(grepl("13c4663bbedbc19b43cd39a55e7106a7c41be9566163e23287e941ad84aa7b29",
+            status_md, fixed = TRUE, useBytes = TRUE)) &&
+    any(grepl("a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38",
+              status_md, fixed = TRUE, useBytes = TRUE)),
+  "human-readable status identifies A_R terminal approval and final gate"
 )
 
 cat(sprintf("SUMMARY | %d PASS | %d FAIL\n", pass_count, fail_count))

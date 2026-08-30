@@ -8,24 +8,23 @@
 
 ## Resposta curta
 
-`A_M`, `A_U` e `A_C` sob M/S/B estão **`pass/frozen`** nos respectivos bytes
-exatos aprovados. Em `A_C`, o finding minor exclusivamente administrativo foi
-reparado sem alterar nenhum dos oito artefatos matemáticos; o reparo recebeu
+`A_M`, `A_U`, `A_C` e `A_R` sob M/S/B estão **`pass/frozen`** nos respectivos
+bytes exatos aprovados. Em `A_C`, o finding minor exclusivamente administrativo
+foi reparado sem alterar nenhum dos oito artefatos matemáticos; o reparo recebeu
 dois pareceres `PASS 0/0/0`, adjudicação `NO_CONFIRMED_DEFECTS` e aprovação
-autoral terminal. `A_R` foi autorizado, derivado e recebeu dois pareceres
-`PASS 0/0/0` e adjudicação final `NO_CONFIRMED_DEFECTS`, mas permanece
-**revisado e não congelado**, aguardando aprovação autoral terminal. Não há
-autorização para migrar resultados ao manuscrito, criar tag, fazer merge ou
-push.
+autoral terminal. `A_R` também recebeu dois pareceres formais e dois pareceres
+de ciclo de vida `PASS 0/0/0`, duas adjudicações `NO_CONFIRMED_DEFECTS` e
+aprovação autoral terminal. Não há autorização para migrar resultados ao
+manuscrito, criar tag, fazer merge ou push.
 
 | Nó | Status atual | Pode ser executado ou consumido agora? |
 |---|---|---|
 | `A_M` | `pass/frozen` | Apenas os bytes congelados podem ser citados; o status não autoriza trabalho downstream. |
 | `A_U` | `pass/frozen`; revisões, adjudicação e aprovação autoral terminal concluídas | Apenas os bytes congelados podem ser citados; o status não inicia `AC`. |
 | `AC` | `pass/frozen`; candidato fortalecido, revisões, adjudicações e aprovação autoral terminal concluídas | Apenas os bytes do manifesto final podem ser citados; o status não inicia `AR`. |
-| `AR` | `reviewed/unfrozen`; duas revisões `PASS 0/0/0` e adjudicação sem findings correntes | Não pode ser consumido downstream. Exige aprovação autoral terminal separada para `pass/frozen`. |
+| `AR` | `pass/frozen`; duas revisões formais, duas revisões de ciclo de vida, duas adjudicações e aprovação autoral terminal concluídas | Apenas os bytes do manifesto final podem ser citados; o status não autoriza trabalho downstream. |
 
-## Status revisado de `A_R`
+## Status congelado de `A_R`
 
 O autor abriu o nó com “Ok. Faça A_R”. A autorização exata está em
 `quality_reports/plans/2026-08-30_autorizacao_inicio_A_R.md`, SHA-256
@@ -82,8 +81,29 @@ SHA-256
 `f326c7fbf1b70fb66f286a6b9e265b67be76a4385553cbc288d828b0c0386a6f`,
 fixa 27/27 entradas.
 
-Essas revisões não equivalem a aprovação autoral terminal. Até essa decisão,
-`A_R` não é `pass/frozen` e não autoriza migração, tag, merge ou push.
+O status administrativo foi então fixado em um candidato de ciclo de vida de
+`5/5` entradas, SHA-256
+`25ff65848bf6509050a68732d195a864f15c69da3322e5bd2174f3f0adf7f859`.
+Dois pareceres independentes adicionais deram `PASS 0/0/0`:
+
+- `quality_reports/2026-08-30_AR_msb_lifecycle_review_1.md`, SHA-256
+  `84a503f6204495e76bbcbc7ff4b09afe44723e46a50f9453ad19efd68df82e96`;
+- `quality_reports/2026-08-30_AR_msb_lifecycle_review_2.md`, SHA-256
+  `6ec0e930f6cbb1d90a762dcfa35d8a4e7cdea9c0da65686ef1a49923b060e7da`.
+
+A adjudicação de ciclo de vida em
+`quality_reports/adjudication/A_R_msb_lifecycle/25ff65848bf6/adjudication_round1.md`
+também deu `NO_CONFIRMED_DEFECTS`. O autor respondeu “ok, aprovado”, decisão
+registrada em
+`quality_reports/2026-08-30_A_R_msb_terminal_approval_and_freeze.md`, SHA-256
+`13c4663bbedbc19b43cd39a55e7106a7c41be9566163e23287e941ad84aa7b29`.
+
+O manifesto final
+`quality_reports/2026-08-30_A_R_msb_final_gate_manifest.sha256`, SHA-256
+`a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38`,
+fixa `35/35` entradas. `A_R` é, portanto, `pass/frozen` somente nesses bytes.
+Isso não autoriza migração para o manuscrito, tag, merge, push ou qualquer
+outro trabalho downstream.
 
 ## Status congelado de `A_C`
 
