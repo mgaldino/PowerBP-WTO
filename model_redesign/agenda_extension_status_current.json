@@ -66,6 +66,19 @@
     "mechanical_result": "1200 PASS / 0 FAIL",
     "lifecycle": "mathematical candidate reviewed twice with PASS 0/0/0; administrative repair reviewed twice with PASS 0/0/0 and independently adjudicated with NO_CONFIRMED_DEFECTS; terminal author approval complete; pass/frozen"
   },
+  "a_r_candidate_snapshot": {
+    "authorization_commit": "c72335ace29fbee9262cbfbd2b843b155a351653",
+    "date_corrected_candidate_commit": "aba98f6abcf1b13d2dc386962fb592133a80001f",
+    "interface_repaired_candidate_commit": "8215c9f36910a94e251fea4ed8a3be273780a409",
+    "final_candidate_commit": "8016dacb79c382d085f23f836a1fdbf8d9b05292",
+    "reviews_and_adjudication_commit": "ff9b4617004ca216b5bbed88995cc752f60bf0a9",
+    "candidate_manifest_path": "quality_reports/2026-08-30_AR_msb_candidate_manifest.sha256",
+    "candidate_manifest_sha256": "b1b483f3c31d58c3cd94807e9b55fd303e795510210914634e29faaee322a6d0",
+    "terminal_gate_candidate_manifest_path": "quality_reports/2026-08-30_AR_msb_terminal_gate_candidate_manifest.sha256",
+    "terminal_gate_candidate_manifest_sha256": "f326c7fbf1b70fb66f286a6b9e265b67be76a4385553cbc288d828b0c0386a6f",
+    "mechanical_result": "4372 PASS / 0 FAIL",
+    "lifecycle": "two independent PASS 0/0/0 reviews and NO_CONFIRMED_DEFECTS adjudication complete; terminal author approval pending; reviewed/unfrozen"
+  },
   "nodes": [
     {
       "node_id": "A_M",
@@ -302,10 +315,57 @@
     },
     {
       "node_id": "AR",
-      "status": "pending",
+      "status": "reviewed",
       "frozen": false,
-      "authorization": "none",
-      "reason": "requires a separate author GO after the reviewed private package"
+      "authorization": "implementation_and_review_authorized_terminal_approval_pending",
+      "author_go": {
+        "literal_decision": "Ok. Faça A_R",
+        "path": "quality_reports/plans/2026-08-30_autorizacao_inicio_A_R.md",
+        "sha256": "0bc58b63f05de25ad9ef134dbf0fdf02d3ca2e4c50c0fd1b9627d6f0eced5e09"
+      },
+      "candidate": {
+        "commit": "8016dacb79c382d085f23f836a1fdbf8d9b05292",
+        "manifest_path": "quality_reports/2026-08-30_AR_msb_candidate_manifest.sha256",
+        "manifest_sha256": "b1b483f3c31d58c3cd94807e9b55fd303e795510210914634e29faaee322a6d0",
+        "entries": 22
+      },
+      "reviews": [
+        {
+          "path": "quality_reports/2026-08-30_AR_msb_round3_formal_review_1.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "f694578d0964471e599404655f7997e8fc2a72d55ce364151875ae8adb5238ec"
+        },
+        {
+          "path": "quality_reports/2026-08-30_AR_msb_round3_formal_review_2.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "ec31beb38d502125115e1d33f0481ec3116be72fdba92660da4d5a2eb846473a"
+        }
+      ],
+      "adjudication": {
+        "verdict": "NO_CONFIRMED_DEFECTS",
+        "counts": {
+          "confirmed": 0,
+          "partial": 0,
+          "unresolved": 0
+        },
+        "markdown_path": "quality_reports/adjudication/A_R_msb/b1b483f3c31d/adjudication_round3.md",
+        "markdown_sha256": "f80b6fee504a902e8ed2cb104d9f07a61643f90f201456870d4061694c84ecd0",
+        "json_path": "quality_reports/adjudication/A_R_msb/b1b483f3c31d/adjudication_round3.json",
+        "json_sha256": "e0bd23393115cfff963c6f50945fc6f9b715767e336b573a5f255fd1265b60bb"
+      },
+      "terminal_gate_candidate_manifest": {
+        "path": "quality_reports/2026-08-30_AR_msb_terminal_gate_candidate_manifest.sha256",
+        "sha256": "f326c7fbf1b70fb66f286a6b9e265b67be76a4385553cbc288d828b0c0386a6f",
+        "entries": 27
+      },
+      "mechanical_result": "4372 PASS / 0 FAIL",
+      "historical_findings_closed": [
+        "round 1: competing DAG, incomplete public interface and invalid claim_kind enum",
+        "round 2: unresolved N7 institutional-rent placeholder in AR-DINT-UM"
+      ],
+      "reason": "mathematical and adversarial reviews plus final adjudication are complete; terminal author approval is still required before pass/frozen"
     }
   ],
   "downstream": {

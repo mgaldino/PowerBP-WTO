@@ -169,6 +169,25 @@ record_check(
               "1200 PASS / 0 FAIL"),
   "A_C strengthened candidate, mathematical and lifecycle review chain, terminal closure, DAG, and mechanical result are pinned"
 )
+record_check(
+  identical(status$a_r_candidate_snapshot$authorization_commit,
+            "c72335ace29fbee9262cbfbd2b843b155a351653") &&
+    identical(status$a_r_candidate_snapshot$date_corrected_candidate_commit,
+              "aba98f6abcf1b13d2dc386962fb592133a80001f") &&
+    identical(status$a_r_candidate_snapshot$interface_repaired_candidate_commit,
+              "8215c9f36910a94e251fea4ed8a3be273780a409") &&
+    identical(status$a_r_candidate_snapshot$final_candidate_commit,
+              "8016dacb79c382d085f23f836a1fdbf8d9b05292") &&
+    identical(status$a_r_candidate_snapshot$reviews_and_adjudication_commit,
+              "ff9b4617004ca216b5bbed88995cc752f60bf0a9") &&
+    identical(status$a_r_candidate_snapshot$candidate_manifest_sha256,
+              "b1b483f3c31d58c3cd94807e9b55fd303e795510210914634e29faaee322a6d0") &&
+    identical(status$a_r_candidate_snapshot$terminal_gate_candidate_manifest_sha256,
+              "f326c7fbf1b70fb66f286a6b9e265b67be76a4385553cbc288d828b0c0386a6f") &&
+    identical(status$a_r_candidate_snapshot$mechanical_result,
+              "4372 PASS / 0 FAIL"),
+  "A_R authorization, three candidate stages, reviews, adjudication, manifests, and mechanical result are pinned"
+)
 
 record_check(
   identical(sha256(status$authority$path), status$authority$sha256),
@@ -222,6 +241,16 @@ record_check(
             status$a_c_candidate_snapshot$terminal_gate_candidate_manifest_sha256),
   "A_C terminal-gate candidate manifest bytes match"
 )
+record_check(
+  identical(sha256(status$a_r_candidate_snapshot$candidate_manifest_path),
+            status$a_r_candidate_snapshot$candidate_manifest_sha256),
+  "A_R candidate manifest bytes match"
+)
+record_check(
+  identical(sha256(status$a_r_candidate_snapshot$terminal_gate_candidate_manifest_path),
+            status$a_r_candidate_snapshot$terminal_gate_candidate_manifest_sha256),
+  "A_R terminal-gate candidate manifest bytes match"
+)
 
 a_m <- node_by_id(status, "A_M")
 a_u <- node_by_id(status, "A_U")
@@ -274,9 +303,47 @@ record_check(
   "A_C terminal approval and 20-entry final gate manifest bytes match"
 )
 record_check(
-  identical(ar$status, "pending") && identical(ar$frozen, FALSE) &&
-    identical(ar$authorization, "none"),
-  "AR remains pending/unfrozen and unauthorized"
+  identical(ar$status, "reviewed") && identical(ar$frozen, FALSE) &&
+    identical(ar$authorization,
+              "implementation_and_review_authorized_terminal_approval_pending") &&
+    identical(ar$mechanical_result, "4372 PASS / 0 FAIL"),
+  "AR is reviewed/unfrozen and still awaits terminal author approval"
+)
+record_check(
+  grepl("^Ok\\.", ar$author_go$literal_decision) &&
+    grepl("A_R$", ar$author_go$literal_decision) &&
+    identical(sha256(ar$author_go$path), ar$author_go$sha256) &&
+    identical(ar$candidate$commit,
+              "8016dacb79c382d085f23f836a1fdbf8d9b05292") &&
+    identical(ar$candidate$entries, 22L) &&
+    identical(sha256(ar$candidate$manifest_path), ar$candidate$manifest_sha256),
+  "AR author GO and exact 22-entry candidate snapshot are valid"
+)
+record_check(
+  length(ar$reviews) == 2L &&
+    all(vapply(ar$reviews, function(review) {
+      identical(review$verdict, "PASS") &&
+        identical(review$findings, "0/0/0") &&
+        identical(sha256(review$path), review$sha256)
+    }, logical(1L))),
+  "AR has two byte-valid PASS 0/0/0 independent reviews"
+)
+record_check(
+  identical(ar$adjudication$verdict, "NO_CONFIRMED_DEFECTS") &&
+    identical(ar$adjudication$counts$confirmed, 0L) &&
+    identical(ar$adjudication$counts$partial, 0L) &&
+    identical(ar$adjudication$counts$unresolved, 0L) &&
+    identical(sha256(ar$adjudication$markdown_path),
+              ar$adjudication$markdown_sha256) &&
+    identical(sha256(ar$adjudication$json_path),
+              ar$adjudication$json_sha256),
+  "AR final adjudication is byte-valid and has no confirmed or unresolved defects"
+)
+record_check(
+  identical(ar$terminal_gate_candidate_manifest$entries, 27L) &&
+    identical(sha256(ar$terminal_gate_candidate_manifest$path),
+              ar$terminal_gate_candidate_manifest$sha256),
+  "AR 27-entry technical terminal-gate candidate is byte-valid"
 )
 
 expected_frozen_hashes <- c(
@@ -647,6 +714,12 @@ record_check(
   "human-readable status identifies A_C as pass/frozen"
 )
 record_check(
+  any(grepl("revisado e não congelado", status_md,
+            fixed = TRUE, useBytes = TRUE)) &&
+    any(grepl("reviewed/unfrozen", status_md, fixed = TRUE, useBytes = TRUE)),
+  "human-readable status identifies A_R as reviewed/unfrozen"
+)
+record_check(
   any(grepl("R2-I-1", status_md, fixed = TRUE, useBytes = TRUE)),
   "human-readable status records the confirmed A_U interface finding"
 )
@@ -670,6 +743,18 @@ record_check(
     any(grepl("332d1d7be7a7b38f715c8d7d872c6f7010c22a27fc924b91e8f694199a190fe4",
               status_md, fixed = TRUE, useBytes = TRUE)),
   "human-readable status identifies the exact A_C final gate"
+)
+record_check(
+  any(grepl("4372 PASS / 0 FAIL", status_md, fixed = TRUE, useBytes = TRUE)) &&
+    any(grepl("b1b483f3c31d58c3cd94807e9b55fd303e795510210914634e29faaee322a6d0",
+              status_md, fixed = TRUE, useBytes = TRUE)),
+  "human-readable status identifies the exact reviewed A_R candidate"
+)
+record_check(
+  any(grepl("27/27", status_md, fixed = TRUE, useBytes = TRUE)) &&
+    any(grepl("f326c7fbf1b70fb66f286a6b9e265b67be76a4385553cbc288d828b0c0386a6f",
+              status_md, fixed = TRUE, useBytes = TRUE)),
+  "human-readable status identifies the exact A_R terminal-gate candidate"
 )
 
 cat(sprintf("SUMMARY | %d PASS | %d FAIL\n", pass_count, fail_count))

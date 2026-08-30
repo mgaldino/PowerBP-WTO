@@ -12,15 +12,78 @@
 exatos aprovados. Em `A_C`, o finding minor exclusivamente administrativo foi
 reparado sem alterar nenhum dos oito artefatos matemáticos; o reparo recebeu
 dois pareceres `PASS 0/0/0`, adjudicação `NO_CONFIRMED_DEFECTS` e aprovação
-autoral terminal. `A_R` continua não autorizado. Não há autorização para migrar
-resultados ao manuscrito, criar tag, fazer merge ou push.
+autoral terminal. `A_R` foi autorizado, derivado e recebeu dois pareceres
+`PASS 0/0/0` e adjudicação final `NO_CONFIRMED_DEFECTS`, mas permanece
+**revisado e não congelado**, aguardando aprovação autoral terminal. Não há
+autorização para migrar resultados ao manuscrito, criar tag, fazer merge ou
+push.
 
 | Nó | Status atual | Pode ser executado ou consumido agora? |
 |---|---|---|
 | `A_M` | `pass/frozen` | Apenas os bytes congelados podem ser citados; o status não autoriza trabalho downstream. |
 | `A_U` | `pass/frozen`; revisões, adjudicação e aprovação autoral terminal concluídas | Apenas os bytes congelados podem ser citados; o status não inicia `AC`. |
 | `AC` | `pass/frozen`; candidato fortalecido, revisões, adjudicações e aprovação autoral terminal concluídas | Apenas os bytes do manifesto final podem ser citados; o status não inicia `AR`. |
-| `AR` | `pending/unfrozen` | Não. Exige GO autoral separado após o pacote privado revisado. |
+| `AR` | `reviewed/unfrozen`; duas revisões `PASS 0/0/0` e adjudicação sem findings correntes | Não pode ser consumido downstream. Exige aprovação autoral terminal separada para `pass/frozen`. |
+
+## Status revisado de `A_R`
+
+O autor abriu o nó com “Ok. Faça A_R”. A autorização exata está em
+`quality_reports/plans/2026-08-30_autorizacao_inicio_A_R.md`, SHA-256
+`0bc58b63f05de25ad9ef134dbf0fdf02d3ca2e4c50c0fd1b9627d6f0eced5e09`.
+
+O candidato final está no commit
+`8016dacb79c382d085f23f836a1fdbf8d9b05292`. O manifesto
+`quality_reports/2026-08-30_AR_msb_candidate_manifest.sha256`, SHA-256
+`b1b483f3c31d58c3cd94807e9b55fd303e795510210914634e29faaee322a6d0`,
+fixa 22/22 entradas. O verificador retornou `4372 PASS / 0 FAIL`.
+
+Os resultados centrais são:
+
+```text
+h_U(o)=1-beta+beta^2*o,
+
+h_M(o)=1-k*beta*(1-beta*o)/m,           se o<=1/m,
+h_M(o)=max{1-k*beta/m,beta*o},          se o>1/m,
+
+RI_g^{A,01}=V_g^{01}-(h_g(o_0),h_g(o_1)),
+DeltaRI_A^theta=delta_theta+G(o_theta),
+DeltaI^{01}=DeltaRI_A^{01}-beta*DeltaRI_N^{R1,01}.
+```
+
+Em linguagem econômica, sob unanimidade pública `H` sempre prefere comprar
+todos os votos imediatamente. Sob maioria, quando sua opção externa pública é
+alta, `H` pode preferir que a própria proposta fracasse e acessar a
+continuação. Assim, a vantagem pública da maioria não é automática. A renda de
+informação é medida contra esses benchmarks públicos e, somente depois, os
+vetores ligados por tipo são agregados ex ante.
+
+A primeira rodada confirmou a matemática, mas revelou um DAG concorrente, uma
+interface pública incompleta e categorias inválidas no ledger. A segunda
+rodada confirmou esses reparos e encontrou um placeholder residual na fonte da
+interação institucional. O candidato final removeu o placeholder e resolve
+explicitamente as nove células de contraste de `N7`: seis records existentes e
+três células `none` com certificado.
+
+Os dois pareceres finais cobrem os mesmos bytes:
+
+- `quality_reports/2026-08-30_AR_msb_round3_formal_review_1.md`:
+  `PASS 0/0/0`, SHA-256
+  `f694578d0964471e599404655f7997e8fc2a72d55ce364151875ae8adb5238ec`;
+- `quality_reports/2026-08-30_AR_msb_round3_formal_review_2.md`:
+  `PASS 0/0/0`, SHA-256
+  `ec31beb38d502125115e1d33f0481ec3116be72fdba92660da4d5a2eb846473a`.
+
+A adjudicação final em
+`quality_reports/adjudication/A_R_msb/b1b483f3c31d/adjudication_round3.md`
+deu `NO_CONFIRMED_DEFECTS`, com zero findings correntes, parciais ou não
+resolvidos. O manifesto do gate técnico
+`quality_reports/2026-08-30_AR_msb_terminal_gate_candidate_manifest.sha256`,
+SHA-256
+`f326c7fbf1b70fb66f286a6b9e265b67be76a4385553cbc288d828b0c0386a6f`,
+fixa 27/27 entradas.
+
+Essas revisões não equivalem a aprovação autoral terminal. Até essa decisão,
+`A_R` não é `pass/frozen` e não autoriza migração, tag, merge ou push.
 
 ## Status congelado de `A_C`
 

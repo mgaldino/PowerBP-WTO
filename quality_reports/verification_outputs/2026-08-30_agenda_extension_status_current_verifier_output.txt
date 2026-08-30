@@ -11,6 +11,7 @@ PASS | candidate manifest hash is pinned
 PASS | terminal closure commit is pinned
 PASS | A_U blind lock, candidates, review and adjudication commits, and round-2 manifest are pinned
 PASS | A_C strengthened candidate, mathematical and lifecycle review chain, terminal closure, DAG, and mechanical result are pinned
+PASS | A_R authorization, three candidate stages, reviews, adjudication, manifests, and mechanical result are pinned
 PASS | terminal authority bytes match
 PASS | final gate manifest bytes match
 PASS | A_U terminal authority bytes match
@@ -22,6 +23,8 @@ PASS | A_U candidate manifest bytes match
 PASS | A_C candidate manifest bytes match
 PASS | A_C dependency DAG bytes match
 PASS | A_C terminal-gate candidate manifest bytes match
+PASS | A_R candidate manifest bytes match
+PASS | A_R terminal-gate candidate manifest bytes match
 PASS | A_M has exactly one current status record
 PASS | A_U has exactly one current status record
 PASS | AC has exactly one current status record
@@ -32,7 +35,11 @@ PASS | A_U two-layer interface is recorded as twice reviewed and independently a
 PASS | A_U-specific author decision bytes match
 PASS | AC is pass/frozen with terminal author approval on the strengthened package
 PASS | A_C terminal approval and 20-entry final gate manifest bytes match
-PASS | AR remains pending/unfrozen and unauthorized
+PASS | AR is reviewed/unfrozen and still awaits terminal author approval
+PASS | AR author GO and exact 22-entry candidate snapshot are valid
+PASS | AR has two byte-valid PASS 0/0/0 independent reviews
+PASS | AR final adjudication is byte-valid and has no confirmed or unresolved defects
+PASS | AR 27-entry technical terminal-gate candidate is byte-valid
 PASS | structured status lists the four exact frozen A_M artifact hashes
 PASS | frozen bytes match: model_redesign/agenda_extension_A_M_msb_results.md
 PASS | frozen bytes match: model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv
@@ -93,9 +100,12 @@ PASS | no downstream, manuscript, tag, merge, or push authorization is introduce
 PASS | human-readable status identifies A_M as pass/frozen
 PASS | human-readable status identifies A_U as pass/frozen
 PASS | human-readable status identifies A_C as pass/frozen
+PASS | human-readable status identifies A_R as reviewed/unfrozen
 PASS | human-readable status records the confirmed A_U interface finding
 PASS | human-readable status records the clean A_U round-2 adjudication
 PASS | human-readable status records the strengthened A_C administrative finding
 PASS | human-readable status identifies the exact strengthened A_C terminal-gate candidate
 PASS | human-readable status identifies the exact A_C final gate
-SUMMARY | 100 PASS | 0 FAIL
+PASS | human-readable status identifies the exact reviewed A_R candidate
+PASS | human-readable status identifies the exact A_R terminal-gate candidate
+SUMMARY | 110 PASS | 0 FAIL
