@@ -63,6 +63,27 @@
     "payoff_vectors_by_type_and_identity",
     "common_weak_permutation_orbit"
   ],
+  "payoff_by_type_and_identity_rule": {
+    "hegemon_if_pass": "z for either type",
+    "hegemon_if_reject_mu_zero": {
+      "theta_0": "d_0",
+      "theta_1": "d"
+    },
+    "hegemon_if_reject_mu_high": {
+      "theta_0": "d",
+      "theta_1": "d"
+    },
+    "weak_j_if_pass": "x_j for either type, independently of j's own vote",
+    "weak_j_if_reject_mu_zero": {
+      "theta_0": "a",
+      "theta_1": "0"
+    },
+    "weak_j_if_reject_mu_high": {
+      "theta_0": "b",
+      "theta_1": "b"
+    },
+    "typing_note": "The theta_1,mu=0 weak payoff is the counterfactual realized coordinate of the literal C_U low record; it is zero, not the posterior-expected voting price a."
+  },
   "exact_signature_rule": {
     "equivalence": "same nu_off and same orbit under one common permutation of weak identities applied to the entire atomic binder",
     "current_H_strategy_symmetry_imposed": false,

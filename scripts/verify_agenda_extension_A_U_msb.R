@@ -39,6 +39,17 @@ cat("Snapshot date: 2026-08-29\n")
 cat("Frozen C_U SHA-256: f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b\n")
 cat("Claim boundary: mechanical checks only; no PBE-completeness claim\n\n")
 
+source_cu_path <- "model_redesign/essential_input_solution_concept/n4_r1_unanimity_candidate.json"
+source_cu_text <- readLines(source_cu_path, warn = FALSE, encoding = "UTF-8")
+check(
+  "literal C_U low-cell counterfactual theta_1 weak payoff is zero",
+  any(grepl(
+    '"theta_1_realized_vector": "every weak state 0 after the failed R1 proposal and N2 screening;',
+    source_cu_text,
+    fixed = TRUE
+  ))
+)
+
 parameter_rows <- expand.grid(
   N = c(3, 4, 5, 13),
   beta = c(0.2, 0.6, 0.9, 0.99),

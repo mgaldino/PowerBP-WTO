@@ -1,6 +1,6 @@
 {
   "schema_ref": "solve_dynamic_games_dependency_manifest_v1",
-  "purpose": "blind A_U implementer candidate only; does not change the administrative lifecycle of A_U",
+  "purpose": "A_U implementer candidate derived blind first and then repaired only by the documented historical comparison; does not change the administrative lifecycle of A_U",
   "nodes": [
     {
       "id": "C_U_frozen",
@@ -30,14 +30,14 @@
       "depends_on": ["A_U_blind_contract"],
       "status": "pass",
       "artifact_path": "agenda_extension_A_U_msb_interface.json",
-      "artifact_hash": "sha256:6d0c89255f0470805d5febfc498c17aad2506024c6fd66eefb68db3d9c507fdc",
+      "artifact_hash": "sha256:ee9582805b17562d5b1e2bb9e511eca7984ae2fd3379d94667b8464c50932410",
       "dependency_hashes": {
         "A_U_blind_contract": "sha256:4136d897d3606a5cec926247d1dc57e60a90e83344a5c19efbef8dd789d97a57"
       },
-      "started_order": 5,
-      "passed_order": 6,
+      "started_order": 7,
+      "passed_order": 8,
       "frozen": true,
-      "lifecycle_note": "pass/frozen only inside the committed blind-lock; the project A_U node remains pending/unfrozen until external reviews"
+      "lifecycle_note": "implementer candidate bytes are hash-pinned after comparison; the project A_U node remains pending/unfrozen until external reviews"
     },
     {
       "id": "AC",
@@ -52,5 +52,5 @@
       "authorization": "not authorized in this task"
     }
   ],
-  "execution_note": "The skills governed the contract, DAG, reverse order and gates. AC was not started."
+  "execution_note": "The skills governed the contract, DAG, reverse order and gates. Blind-lock commit c193f3b preceded historical comparison. AC was not started."
 }
