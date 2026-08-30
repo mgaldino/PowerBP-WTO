@@ -69,6 +69,8 @@ cat("Claim boundary: mechanical checks only; no PBE-completeness or abstract-fac
 source_hashes <- c(
   "quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md" =
     "ea4e2e9b9e1296aecd64760f058f0097ff4281f6a9b301373feeea2591092f95",
+  "quality_reports/plans/2026-08-30_autorizacao_fortalecimento_A_C_pos_consulta.md" =
+    "131e7485879ffbf1d399f91c2b838fb05e8d64644ae2c393692ffce1888fedec",
   "model_redesign/agenda_extension_A_M_msb_results.md" =
     "7159a7e9f84b076000b3313d89b4de9ca692a055a31cdbb9f5a5561a30a283a3",
   "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv" =
@@ -139,6 +141,19 @@ check("AC ledger keeps every payoff at date A",
 check("AC source paths exist or are versioned verifier references",
       all(file.exists(ledger$proof_path) |
             grepl(" Sections? | Section ", ledger$proof_path)))
+strengthening_claims <- c(
+  "AC-MSB-001", "AC-MSB-006", "AC-MSB-013", "AC-MSB-017",
+  "AC-MSB-019", "AC-MSB-021", "AC-MSB-022", "AC-MSB-023", "AC-MSB-024"
+)
+strengthening_hash <-
+  "131e7485879ffbf1d399f91c2b838fb05e8d64644ae2c393692ffce1888fedec"
+check("strengthening authorization propagates to every changed or new ledger claim",
+      all(strengthening_claims %in% ledger$claim_id) &&
+        all(grepl(
+          strengthening_hash,
+          ledger$source_hashes[match(strengthening_claims, ledger$claim_id)],
+          fixed = TRUE
+        )))
 
 check("domain carries y_bar and distinguishes it from y_H",
       grepl("o_1<=y_bar<=1", contract_text, fixed = TRUE) &&
@@ -150,12 +165,25 @@ check("principal comparison is on the same exact fiber",
 check("exact binders precede source economic summaries",
       regexpr("J_AC\\^bind", results_text)[[1L]] <
         regexpr("S_M\\^econ", results_text)[[1L]])
-check("cross-world joint law is not induced or identified",
+check("cross-world scope declares marginals without a general coupling rule",
       grepl('"cross_world_joint_law": "not_defined"', interface_text, fixed = TRUE) &&
-        grepl('"coupling_qualification": "mathematical couplings can be imposed',
+        grepl('"coupling_qualification": "AC declares only ordered marginals',
               interface_text, fixed = TRUE) &&
-        grepl("induzem, selecionam nem identificam uma probabilidade", results_text, fixed = TRUE) &&
-        !grepl("existe lei conjunta cross-world", contract_text, fixed = TRUE))
+        grepl("regra geral de acoplamento entre regras", results_text, fixed = TRUE) &&
+        grepl("degenerada, o conjunto de acoplamentos", contract_text, fixed = TRUE) &&
+        grepl("caso-limite", results_text, fixed = TRUE))
+degenerate_p <- c(1, 0)
+nondegenerate_q <- c(0.3, 0.7)
+degenerate_coupling <- rbind(nondegenerate_q, c(0, 0))
+frechet_11 <- c(
+  max(0, degenerate_p[[1L]] + nondegenerate_q[[1L]] - 1),
+  min(degenerate_p[[1L]], nondegenerate_q[[1L]])
+)
+check("degenerate marginal yields a unique compatible 2x2 coupling",
+      close_num(rowSums(degenerate_coupling), degenerate_p) &&
+        close_num(colSums(degenerate_coupling), nondegenerate_q) &&
+        close_num(frechet_11[[1L]], frechet_11[[2L]]) &&
+        close_num(frechet_11[[1L]], degenerate_coupling[[1L, 1L]]))
 check("ex-ante values are explicitly defined before scalar envelopes",
       grepl("V_g^E(R_g)=(1-nu)*V_g^0(R_g)+nu*V_g^1(R_g)",
             results_text, fixed = TRUE) &&

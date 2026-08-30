@@ -582,12 +582,14 @@ O_AC(d,eta)
     (R_M,R_U) in J_AC^bind(d,eta)}.
 ```
 
-O game form e `A_C` não induzem, selecionam nem identificam uma probabilidade
-conjunta entre regras. `O_AC` preserva um par ordenado de leis marginais, não
-uma distribuição model-implied sobre pares de realizações. Embora seja possível
-impor um acoplamento matemático, fazê-lo acrescentaria uma convenção cross-world
-ausente das primitivas. Sem função de bem-estar ou ordem sobre distribuições
-autorizada, `A_C` não converte `O_AC` em ranking adicional.
+`O_AC` preserva um par ordenado de leis marginais. `A_C` não introduz variável
+aleatória conjunta nem regra geral de acoplamento entre regras. Em geral, as
+marginais não identificam um acoplamento único; impor um acrescentaria uma
+convenção cross-world ausente das primitivas. Se uma marginal for degenerada,
+o acoplamento compatível pode ser matematicamente único, mas esse caso-limite
+não fornece uma primitiva que pareie realizações contrafactuais nem autoriza
+operações conjuntas não declaradas. Sem função de bem-estar ou ordem sobre
+distribuições autorizada, `A_C` tampouco converte `O_AC` em ranking adicional.
 
 ## 12. Limites e invalidação
 
@@ -611,8 +613,8 @@ Ele não prova:
 - extremos fechados da correspondência geral de `A_M`;
 - uma seleção normativa entre equilíbrios;
 - uma ordem de bem-estar sobre os Estados fracos;
-- um acoplamento induzido, selecionado ou identificado de realizações entre
-  instituições;
+- uma variável aleatória conjunta, uma regra geral de acoplamento ou operações
+  cross-world não declaradas entre realizações institucionais;
 - suficiência de `Sum_econ` para operações off-path ou de identidade formal;
 - qualquer benchmark público de `A_R`.
 

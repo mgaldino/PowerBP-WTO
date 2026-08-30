@@ -20,9 +20,13 @@ mais fortes discutidos imediatamente antes.
 
 ## 2. Escopo autorizado
 
-1. Qualificar a linguagem sobre leis conjuntas cross-world: o game form e
-   `A_C` não induzem, selecionam nem identificam uma lei conjunta, embora seja
-   possível impor acoplamentos como convenções externas.
+1. Qualificar a linguagem sobre leis conjuntas cross-world: `A_C` declara
+   apenas o par ordenado de leis marginais e não introduz variável aleatória
+   conjunta nem regra geral de acoplamento. Em geral, as marginais não
+   identificam um acoplamento único. Se uma marginal for degenerada, a
+   unicidade matemática do acoplamento naquele caso-limite não autoriza
+   interpretar as realizações contrafactuais como pareadas por uma primitiva do
+   jogo nem executar operações cross-world não declaradas.
 2. Definir explicitamente
    `V_g^E=(1-nu)V_g^0+nu V_g^1` a partir do mesmo binder e registrar `D_E` como
    imagem afim do vetor ligado `D_01`.
@@ -40,8 +44,8 @@ mais fortes discutidos imediatamente antes.
 ## 3. Limites preservados
 
 - A autorização não modifica os pacotes congelados de `A_M` ou `A_U`.
-- Não autoriza acoplamento cross-world, seleção de equilíbrio ou novo ranking
-  de bem-estar.
+- Não autoriza introduzir uma variável aleatória conjunta ou uma regra geral de
+  acoplamento cross-world, seleção de equilíbrio ou novo ranking de bem-estar.
 - Não autoriza `A_R`, migração ao manuscrito, tag, merge ou push.
 - Os novos bytes de `A_C` permanecem `pending/unfrozen` até novo manifesto,
   verificações mecânicas, revisões formais independentes, adjudicação e decisão

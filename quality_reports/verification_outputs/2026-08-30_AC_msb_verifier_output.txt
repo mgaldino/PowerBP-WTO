@@ -4,6 +4,7 @@ Orientation: U-M
 Claim boundary: mechanical checks only; no PBE-completeness or abstract-factorization claim
 
 PASS | frozen byte hash: quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md
+PASS | frozen byte hash: quality_reports/plans/2026-08-30_autorizacao_fortalecimento_A_C_pos_consulta.md
 PASS | frozen byte hash: model_redesign/agenda_extension_A_M_msb_results.md
 PASS | frozen byte hash: model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv
 PASS | frozen byte hash: quality_reports/2026-08-29_A_M_msb_two_layer_terminal_approval_and_freeze.md
@@ -21,10 +22,12 @@ PASS | AC ledger has the exact 16-column schema
 PASS | AC ledger claim ids are unique and use the AC-MSB namespace
 PASS | AC ledger keeps every payoff at date A
 PASS | AC source paths exist or are versioned verifier references
+PASS | strengthening authorization propagates to every changed or new ledger claim
 PASS | domain carries y_bar and distinguishes it from y_H
 PASS | principal comparison is on the same exact fiber
 PASS | exact binders precede source economic summaries
-PASS | cross-world joint law is not induced or identified
+PASS | cross-world scope declares marginals without a general coupling rule
+PASS | degenerate marginal yields a unique compatible 2x2 coupling
 PASS | ex-ante values are explicitly defined before scalar envelopes
 PASS | ex-ante contrast is the linked affine image of D_01
 PASS | AC applies zero new beta factors
@@ -1201,5 +1204,5 @@ PASS | necessity counterexample has strict majority bound for both endpoint type
 PASS | results state T5 is sufficient rather than necessary
 PASS | results state the odd-even parity formulas
 
-MECHANICAL RESULT: PASS | 1197 PASS | 0 FAIL
+MECHANICAL RESULT: PASS | 1200 PASS | 0 FAIL
 UNTESTED GATES: completeness of either PBE correspondence; arbitrary continuous deviations; abstract Borel factorization; exact setwise lifting beyond the written proof; extreme-point attainment; any welfare ranking; independent formal review.

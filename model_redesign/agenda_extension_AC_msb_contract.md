@@ -12,6 +12,13 @@ A autorização de início está em
 `quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md`, SHA-256
 `ea4e2e9b9e1296aecd64760f058f0097ff4281f6a9b301373feeea2591092f95`.
 
+O fortalecimento posterior — incluindo a margem quantitativa, o certificado
+local, o contraexemplo à necessidade, a paridade e a qualificação sobre
+acoplamentos degenerados — foi autorizado em
+`quality_reports/plans/2026-08-30_autorizacao_fortalecimento_A_C_pos_consulta.md`,
+SHA-256
+`131e7485879ffbf1d399f91c2b838fb05e8d64644ae2c393692ffce1888fedec`.
+
 `A_C` consome somente:
 
 | Fonte | Artefato matemático principal | SHA-256 | Autoridade terminal | Manifesto final |
@@ -40,7 +47,7 @@ O nó forma pares compatíveis de assessments completos e calcula imagens compar
 | Novas crenças | nenhuma |
 | Novo conceito de solução | nenhum; herda PBE + as-if-pivotal + `T^Y` + M/S/B de cada fonte |
 | Seleção cross-rule | nenhuma |
-| Acoplamento probabilístico cross-world | nenhum é induzido, identificado ou presumido pelo modelo |
+| Acoplamento probabilístico cross-world | `A_C` declara apenas o par de marginais; nenhuma variável aleatória conjunta nem regra geral de acoplamento é introduzida ou presumida |
 | Data dos valores | `A` em ambas as fontes |
 | Novo desconto | nenhum |
 
@@ -166,13 +173,15 @@ C_econ(R_M,R_U)
    (Gamma_bar_U^0,Gamma_bar_U^1)).
 ```
 
-As leis das duas instituições aparecem como par ordenado. O game form e `A_C`
-não induzem, selecionam nem identificam uma lei conjunta cross-world. É
-matematicamente possível impor um acoplamento — por exemplo, o produto
-independente —, mas qualquer escolha desse tipo acrescentaria uma convenção
-cross-world ausente das primitivas. Sem essa convenção, não são identificadas
-correlações, probabilidades de eventos conjuntos ou leis de diferenças
-realização a realização.
+As leis das duas instituições aparecem como par ordenado. `A_C` declara apenas
+essas marginais e não introduz variável aleatória conjunta nem regra geral de
+acoplamento cross-world. Em geral, as marginais não identificam um acoplamento
+único: é matematicamente possível impor, por exemplo, o produto independente,
+mas isso acrescenta uma convenção ausente das primitivas. Se uma marginal for
+degenerada, o conjunto de acoplamentos compatíveis pode ser unitário; essa
+unicidade matemática no caso-limite não transforma o par em uma variável
+conjunta primitiva do jogo nem autoriza correlações, eventos conjuntos ou leis
+de diferenças realização a realização como operações declaradas de `A_C`.
 
 `A_C` não introduz função de bem-estar, ordem estocástica ou ranking escalar dos payoffs fracos. Ele preserva suas leis anônimas dentro de `Gamma_bar_g^theta`.
 
