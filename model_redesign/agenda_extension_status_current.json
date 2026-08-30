@@ -41,23 +41,20 @@
   },
   "a_c_candidate_snapshot": {
     "authorization_commit": "a92175096f0a13340416825510e7b755b64a9c64",
-    "substantive_commit": "efeee0264bfe4f80e042bcced3a10dc313a452fe",
-    "round1_packaged_candidate_commit": "886c440c4ea882cca42472975e6316c927c86a6e",
-    "round1_reviews_and_adjudication_commit": "ddae0df51d99792f8e876dfb89b223a45184dfd7",
-    "traceability_repair_commit": "7151b368f1e9d43de30b437ab2386c82655aa789",
-    "round2_packaged_candidate_commit": "7248c56cca098d86c0117a78f89c4555c0d934d3",
-    "round2_reviews_and_adjudication_commit": "62bad2e6e5d4f360e4c2ae2830916bc02522b512",
-    "administrative_repair_commit": "76f4540cacc15a8db6f0175e7056a7692433bec5",
-    "round3_reviews_commit": "128860d9f3fd903554b17ad8f343a6211d96cc7d",
-    "round3_adjudication_commit": "39268e9d2579b1e072cfa8456a18d30ce89c54de",
-    "candidate_manifest_path": "quality_reports/2026-08-30_AC_msb_round2_candidate_manifest.sha256",
-    "candidate_manifest_sha256": "fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba",
-    "terminal_gate_candidate_manifest_path": "quality_reports/2026-08-30_AC_msb_terminal_gate_candidate_manifest.sha256",
-    "terminal_gate_candidate_manifest_sha256": "68eeefe86b8ade64266c1c8c9901ef070742aa2821e356371a5736dabfceaf64",
+    "strengthened_candidate_commit": "02d217283948fbf430a10491c0907d484dbac3b4",
+    "strengthened_round1_reviews_commit": "c21e55425e9209d40d6fd377e0b304c910483054",
+    "strengthened_round1_adjudication_commit": "83807b72126f77a354d68f289374f927526d39ee",
+    "repaired_candidate_commit": "5410b06b1cb036e53ba2d34830e21425e65f89a0",
+    "repaired_reviews_commit": "019dd142c802b516762727dfae61fb65e9598e8f",
+    "repaired_adjudication_commit": "f605028e9760b89ea401ce4ad7c4b3d3e90a10e7",
+    "candidate_manifest_path": "quality_reports/2026-08-30_AC_msb_strengthened_round2_candidate_manifest.sha256",
+    "candidate_manifest_sha256": "ec5bbebe0490eb8a46ee5e0de1565cf52ae1838721a870df21cdc4a629058339",
+    "terminal_gate_candidate_manifest_path": "quality_reports/2026-08-30_AC_msb_strengthened_terminal_gate_candidate_manifest.sha256",
+    "terminal_gate_candidate_manifest_sha256": "17279db1f853e5bc0bb3b7b1ef2411053e1beb6929e56c15b766e0ee847ef5d2",
     "game_dag_path": "model_redesign/agenda_extension_AC_msb_game_dag.json",
-    "game_dag_sha256": "830aedea4d89007353f0b1da9b7ae623b1680360626521f536abedd7fda42b9c",
-    "mechanical_result": "941 PASS / 0 FAIL",
-    "lifecycle": "start authorized; mathematical candidate reviewed; AC-R1-MIN-1 and AC-R2-MIN-1 repaired; round-3 directed reviews PASS 0/0/0 twice and independent adjudication NO_CONFIRMED_DEFECTS; terminal author approval pending; unfrozen"
+    "game_dag_sha256": "83245ae3e33b0fd8a29898627aaae40226c9317402e79e1b1375b34aa88a4262",
+    "mechanical_result": "1200 PASS / 0 FAIL",
+    "lifecycle": "start and strengthening authorized; repaired mathematical candidate reviewed twice with PASS 0/0/0; independent adjudication confirmed only the stale-sidecar finding; that administrative repair is now implemented; terminal author approval pending; unfrozen"
   },
   "nodes": [
     {
@@ -197,82 +194,66 @@
       "node_id": "AC",
       "status": "pending",
       "frozen": false,
-      "authorization": "start_authorized",
-      "reason": "the exact-fiber comparison, operation-specific measurable-factorization proof and selection-free sufficient bound passed mathematical review; both confirmed minor findings were repaired and the final directed review/adjudication is clean; terminal author approval remains pending",
-      "authorization_record": {
-        "path": "quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md",
-        "sha256": "ea4e2e9b9e1296aecd64760f058f0097ff4281f6a9b301373feeea2591092f95"
-      },
-      "candidate_manifest": {
-        "path": "quality_reports/2026-08-30_AC_msb_round2_candidate_manifest.sha256",
-        "sha256": "fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba"
-      },
-      "mechanical_result": "941 PASS / 0 FAIL",
-      "previous_review_round": {
-        "manifest_path": "quality_reports/2026-08-30_AC_msb_candidate_manifest.sha256",
-        "manifest_sha256": "6ba078efb05f7aea628f73644e26a05e26dd6de592237a239855a365e6389d9a",
-        "review_1": "FAIL 0/0/1",
-        "review_2": "PASS 0/0/0",
-        "confirmed_finding": "AC-R1-MIN-1",
-        "adjudication_verdict": "READY_FOR_IMPLEMENTATION",
-        "scope": "semantic source_record_ids in the claim ledger only; T1-T5 preserved"
-      },
-      "current_reviews": [
+      "authorization": "start_and_strengthening_authorized",
+      "reason": "the strengthened exact-fiber comparison passed two independent mathematical reviews; adjudication confirmed only stale lifecycle sidecars, now repaired; terminal author approval remains pending",
+      "authorization_records": [
         {
-          "path": "quality_reports/2026-08-30_AC_msb_round2_formal_review_1.md",
-          "verdict": "PASS",
-          "findings": "0/0/0",
-          "sha256": "085db057eb9275b9cd8a6084d7a923c6bc0e4710ba5f3091622d3ebda3d0cd6f"
+          "path": "quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md",
+          "sha256": "ea4e2e9b9e1296aecd64760f058f0097ff4281f6a9b301373feeea2591092f95"
         },
         {
-          "path": "quality_reports/2026-08-30_AC_msb_round2_formal_review_2.md",
-          "verdict": "FAIL",
-          "findings": "0/0/1",
-          "sha256": "872522eddae4b8af886a9d31197a4b6f1014bf14234841c4575a123cdc84d0ee"
+          "path": "quality_reports/plans/2026-08-30_autorizacao_fortalecimento_A_C_pos_consulta.md",
+          "sha256": "131e7485879ffbf1d399f91c2b838fb05e8d64644ae2c393692ffce1888fedec"
+        }
+      ],
+      "candidate_manifest": {
+        "path": "quality_reports/2026-08-30_AC_msb_strengthened_round2_candidate_manifest.sha256",
+        "sha256": "ec5bbebe0490eb8a46ee5e0de1565cf52ae1838721a870df21cdc4a629058339"
+      },
+      "mechanical_result": "1200 PASS / 0 FAIL",
+      "historical_findings_preserved": [
+        "AC-R1-MIN-1: semantic source_record_ids repaired without changing T1-T5",
+        "AC-R2-MIN-1: lifecycle pins repaired on the earlier candidate",
+        "AC-STRENGTH-R1-MIN-1: strengthened lifecycle pins repaired in this sidecar update",
+        "AC-STRENGTH-R2-MIN-1: degenerate-coupling overclaim repaired",
+        "AC-STRENGTH-R2-MIN-2: strengthening-authorization chain repaired"
+      ],
+      "current_reviews": [
+        {
+          "path": "quality_reports/2026-08-30_AC_msb_strengthened_round2_formal_review_1.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "acf971e9f460f7404a4c681ca1a7a51880c5fbca20870584dc8525e3e21ce4c4"
+        },
+        {
+          "path": "quality_reports/2026-08-30_AC_msb_strengthened_round2_formal_review_2.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "99a228814a61541015622e85949f4e634a69659f0e7428c4dfa2a95cc12ebcde"
         }
       ],
       "current_adjudication": {
         "verdict": "READY_FOR_IMPLEMENTATION",
-        "confirmed_finding": "AC-R2-MIN-1",
-        "scope": "central lifecycle pins only; no mathematical blob affected",
-        "markdown_path": "quality_reports/adjudication/A_C_msb/fc9788a0a9cd/adjudication_round2.md",
-        "markdown_sha256": "3c643fd72c3966cfedd6643bd06164f8543563d9c2466a89459252ec9d0b8f38",
-        "json_path": "quality_reports/adjudication/A_C_msb/fc9788a0a9cd/adjudication_round2.json",
-        "json_sha256": "3be56e507ea97e125208d24cd3fb8623bbca7b65659c6761f4622cfcb43f575c"
-      },
-      "directed_final_reviews": [
-        {
-          "path": "quality_reports/2026-08-30_AC_msb_round3_formal_review_1.md",
-          "verdict": "PASS",
-          "findings": "0/0/0",
-          "sha256": "83e6a4a7249f666fb0760ed33b43c3fbff710f39476ef63791f4a9ae55b1c989"
-        },
-        {
-          "path": "quality_reports/2026-08-30_AC_msb_round3_formal_review_2.md",
-          "verdict": "PASS",
-          "findings": "0/0/0",
-          "sha256": "c515bfef9efd594d947bc76b660046f4784dd66de69b9929598a459ad86fdedf"
-        }
-      ],
-      "directed_final_adjudication": {
-        "verdict": "NO_CONFIRMED_DEFECTS",
         "counts": {
-          "confirmed": 0,
+          "confirmed": 1,
           "partial": 0,
           "unresolved": 0
         },
-        "markdown_path": "quality_reports/adjudication/A_C_msb/fc9788a0a9cd/adjudication_round3.md",
-        "markdown_sha256": "e6647a28c5653a6af91f0fc66f81b6af258ef9b04aacb238a38e4da5a57918a3",
-        "json_path": "quality_reports/adjudication/A_C_msb/fc9788a0a9cd/adjudication_round3.json",
-        "json_sha256": "53b8803679c078b33ee6f44c8de46b78922e9574648ebcf668f744d6c15decec"
+        "confirmed_finding": "ADJ-AC-STRENGTH-R2-MIN-1",
+        "scope": "stale central lifecycle pins only; no mathematical blob affected",
+        "repair_status": "implemented in the current sidecars and checker",
+        "markdown_path": "quality_reports/adjudication/A_C_msb_strengthened/ec5bbebe0490/adjudication_round2.md",
+        "markdown_sha256": "9ac52a646817cbfef6172cd210707b04057daea0f0171a96fdda9a5a5b032982",
+        "json_path": "quality_reports/adjudication/A_C_msb_strengthened/ec5bbebe0490/adjudication_round2.json",
+        "json_sha256": "8838dc4d14f0c39658291aa5bb129d84ee74d5e87229be2a72e318b9433fe0d8"
       },
       "terminal_gate_candidate_manifest": {
-        "path": "quality_reports/2026-08-30_AC_msb_terminal_gate_candidate_manifest.sha256",
-        "sha256": "68eeefe86b8ade64266c1c8c9901ef070742aa2821e356371a5736dabfceaf64",
-        "entries": 12
+        "path": "quality_reports/2026-08-30_AC_msb_strengthened_terminal_gate_candidate_manifest.sha256",
+        "sha256": "17279db1f853e5bc0bb3b7b1ef2411053e1beb6929e56c15b766e0ee847ef5d2",
+        "entries": 13
       },
-      "administrative_repair_status": "AC-R2-MIN-1 implemented and independently verified twice with PASS 0/0/0; final adjudication found no current defect",
-      "review_status": "mathematical review complete; directed final reviews PASS 0/0/0 twice; NO_CONFIRMED_DEFECTS adjudication complete; terminal author approval pending"
+      "administrative_repair_status": "ADJ-AC-STRENGTH-R2-MIN-1 implemented; checker and human-readable status repinned to the strengthened candidate",
+      "review_status": "mathematical candidate reviewed twice with PASS 0/0/0; independent adjudication found no mathematical defect and one now-repaired administrative finding; terminal author approval pending"
     },
     {
       "node_id": "AR",

@@ -8,7 +8,7 @@ PASS | A_U final gate manifest hash is pinned
 PASS | candidate manifest hash is pinned
 PASS | terminal closure commit is pinned
 PASS | A_U blind lock, candidates, review and adjudication commits, and round-2 manifest are pinned
-PASS | A_C authorization, candidate rounds, repairs, reviews, adjudication, terminal-gate candidate, DAG, and mechanical result are pinned
+PASS | A_C strengthened candidate, repaired review chain, terminal gate, DAG, and mechanical result are pinned
 PASS | terminal authority bytes match
 PASS | final gate manifest bytes match
 PASS | A_U terminal authority bytes match
@@ -26,7 +26,7 @@ PASS | A_M is pass/frozen with terminal author approval
 PASS | A_U is pass/frozen with terminal author approval
 PASS | A_U two-layer interface is recorded as twice reviewed and independently adjudicated
 PASS | A_U-specific author decision bytes match
-PASS | AC is a reviewed and adjudicated pending/unfrozen candidate awaiting terminal author approval
+PASS | AC is the strengthened reviewed pending/unfrozen candidate awaiting terminal author approval
 PASS | AR remains pending/unfrozen and unauthorized
 PASS | structured status lists the four exact frozen A_M artifact hashes
 PASS | frozen bytes match: model_redesign/agenda_extension_A_M_msb_results.md
@@ -51,20 +51,15 @@ PASS | A_C candidate bytes match: model_redesign/agenda_extension_AC_msb_interfa
 PASS | A_C candidate bytes match: model_redesign/agenda_extension_AC_msb_claim_ledger.tsv
 PASS | A_C candidate bytes match: scripts/verify_agenda_extension_AC_msb.R
 PASS | A_C candidate bytes match: quality_reports/verification_outputs/2026-08-30_AC_msb_verifier_output.txt
-PASS | A_C start-authorization bytes match
-PASS | A_C node record pins the round-2 candidate manifest
-PASS | A_C round-2 review hashes are pinned
-PASS | A_C round-2 review divergence is preserved exactly
-PASS | A_C round-2 review bytes match: quality_reports/2026-08-30_AC_msb_round2_formal_review_1.md
-PASS | A_C round-2 review bytes match: quality_reports/2026-08-30_AC_msb_round2_formal_review_2.md
-PASS | A_C round-2 adjudication and confirmed administrative finding are pinned
-PASS | A_C round-1 traceability finding is preserved as historical and repaired
-PASS | A_C administrative repair is independently verified without terminal approval
-PASS | A_C directed final reviews are pinned as PASS 0/0/0 twice
-PASS | A_C directed final review bytes match: quality_reports/2026-08-30_AC_msb_round3_formal_review_1.md
-PASS | A_C directed final review bytes match: quality_reports/2026-08-30_AC_msb_round3_formal_review_2.md
-PASS | A_C directed final adjudication records no current confirmed, partial, or unresolved defect
-PASS | A_C terminal-gate candidate pins 12 reviewed and adjudicated entries
+PASS | A_C start and strengthening authorization bytes match
+PASS | A_C node record pins the strengthened round-2 candidate manifest
+PASS | A_C strengthened review hashes are pinned
+PASS | A_C strengthened reviews are recorded as PASS 0/0/0 twice
+PASS | A_C strengthened review bytes match: quality_reports/2026-08-30_AC_msb_strengthened_round2_formal_review_1.md
+PASS | A_C strengthened review bytes match: quality_reports/2026-08-30_AC_msb_strengthened_round2_formal_review_2.md
+PASS | A_C strengthened adjudication and repaired administrative finding are pinned
+PASS | A_C historical findings remain preserved rather than erased
+PASS | A_C strengthened terminal-gate candidate pins 13 reviewed and adjudicated entries
 PASS | A_U round-2 candidate has two current reviews and a current adjudication
 PASS | A_U round-2 reviews are both pinned as PASS 0/0/0
 PASS | A_U round-2 review bytes match: quality_reports/2026-08-30_A_U_msb_two_layer_round2_formal_review_1.md
@@ -93,6 +88,6 @@ PASS | human-readable status identifies A_U as pass/frozen
 PASS | human-readable status identifies A_C as pending/unfrozen
 PASS | human-readable status records the confirmed A_U interface finding
 PASS | human-readable status records the clean A_U round-2 adjudication
-PASS | human-readable status records the confirmed A_C administrative finding
-PASS | human-readable status identifies the exact A_C terminal-gate candidate
-SUMMARY | 97 PASS | 0 FAIL
+PASS | human-readable status records the strengthened A_C administrative finding
+PASS | human-readable status identifies the exact strengthened A_C terminal-gate candidate
+SUMMARY | 92 PASS | 0 FAIL

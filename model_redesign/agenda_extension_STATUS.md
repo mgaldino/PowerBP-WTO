@@ -9,86 +9,92 @@
 ## Resposta curta
 
 `A_M` e `A_U` sob M/S/B estão **`pass/frozen`** nos respectivos bytes exatos
-aprovados. `A_C` foi autorizado, derivado, revisado e adjudicado sem defeito
-corrente, mas segue **`pending/unfrozen`** até a aprovação autoral terminal. Os
-dois findings minor históricos foram reparados e permanecem documentados; não
-foram apagados retroativamente. `A_R` continua não autorizado. Não há autorização
-para migrar resultados ao manuscrito, criar tag, fazer merge ou push.
+aprovados. `A_C` foi fortalecido, reparado e recebeu dois pareceres independentes
+`PASS 0/0/0`, mas segue **`pending/unfrozen`** até a aprovação autoral terminal.
+A adjudicação confirmou um finding minor exclusivamente administrativo: estes
+sidecars ainda apontavam para o candidato anterior. O reparo está implementado
+abaixo sem alterar nenhum dos oito artefatos revisados. `A_R` continua não
+autorizado. Não há autorização para migrar resultados ao manuscrito, criar tag,
+fazer merge ou push.
 
 | Nó | Status atual | Pode ser executado ou consumido agora? |
 |---|---|---|
 | `A_M` | `pass/frozen` | Apenas os bytes congelados podem ser citados; o status não autoriza trabalho downstream. |
 | `A_U` | `pass/frozen`; revisões, adjudicação e aprovação autoral terminal concluídas | Apenas os bytes congelados podem ser citados; o status não inicia `AC`. |
-| `AC` | candidato `pending/unfrozen`; duas revisões finais `PASS 0/0/0`; adjudicação sem defeito corrente | Está pronto para decisão autoral terminal nos 12 hashes do manifesto; ainda não é resultado congelado. |
+| `AC` | candidato fortalecido `pending/unfrozen`; duas revisões `PASS 0/0/0`; matemática sem defeito confirmado; finding administrativo reparado | Está pronto para decisão autoral terminal nos 13 hashes do manifesto; ainda não é resultado congelado. |
 | `AR` | `pending/unfrozen` | Não. Exige GO autoral separado após o pacote privado revisado. |
 
 ## Candidato atual de `A_C`
 
-O autor autorizou o início com a frase “A_c pode iniciar, autorizado.” O registro
-está em `quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md`
-(SHA-256
-`ea4e2e9b9e1296aecd64760f058f0097ff4281f6a9b301373feeea2591092f95`).
-O núcleo matemático foi fixado no commit
-`efeee0264bfe4f80e042bcced3a10dc313a452fe`. A rodada 1 foi empacotada no
-commit `886c440c4ea882cca42472975e6316c927c86a6e`; depois do reparo de
-rastreabilidade determinado pela primeira adjudicação, a rodada 2 foi
-empacotada no commit `7248c56cca098d86c0117a78f89c4555c0d934d3`.
+O autor autorizou o início com “A_c pode iniciar, autorizado.” e, depois da
+consulta externa, autorizou também todos os resultados fortes com “do it.”. Os
+dois registros exatos são:
 
-O manifesto corrente
-`quality_reports/2026-08-30_AC_msb_round2_candidate_manifest.sha256`
-(SHA-256
-`fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba`)
-fixa sete artefatos. O candidato forma primeiro o produto de binders completos
-de `A_M` e `A_U` na mesma economia e na mesma fibra `(rho,nu_off)`. Só depois
-aplica o resumo econômico, mediante prova específica de fatoração mensurável.
-Os contrastes são calculados por tipo e então agregados pelo prior, sem novo
-desconto.
+- `quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md`, SHA-256
+  `ea4e2e9b9e1296aecd64760f058f0097ff4281f6a9b301373feeea2591092f95`;
+- `quality_reports/plans/2026-08-30_autorizacao_fortalecimento_A_C_pos_consulta.md`,
+  SHA-256
+  `131e7485879ffbf1d399f91c2b838fb05e8d64644ae2c393692ffce1888fedec`.
 
-Além do operador exato de conjuntos e sinais, o candidato prova a condição
-suficiente selection-free
+O candidato reparado foi fixado no commit
+`5410b06b1cb036e53ba2d34830e21425e65f89a0`. Seu manifesto corrente é
+`quality_reports/2026-08-30_AC_msb_strengthened_round2_candidate_manifest.sha256`,
+SHA-256
+`ec5bbebe0490eb8a46ee5e0de1565cf52ae1838721a870df21cdc4a629058339`,
+com 8/8 entradas válidas.
 
-```text
-beta*o_1<c/m  =>  V_M^theta>V_U^theta para theta=0,1.
-```
+O núcleo preserva a arquitetura em duas camadas: primeiro forma pares de binders
+completos de `A_M` e `A_U` na mesma economia e fibra `(rho,nu_off)`; somente
+depois calcula resumos econômicos. Por isso, os payoffs dos dois tipos continuam
+ligados pelo mesmo binder, e o contraste ex ante é a imagem afim dessa dupla,
+não uma recombinação independente de marginais.
 
-Na igualdade a dominância de maioria é fraca. A condição não é necessária; fora
-dela, o ranking continua sendo uma correspondência que pode depender da seleção.
-
-O verificador retornou `941 PASS / 0 FAIL`. Isso é evidência mecânica, não prova
-formal independente. Na rodada 1, um parecer deu `FAIL 0/0/1` porque oito
-`source_record_ids` do ledger não identificavam precisamente as premissas
-citadas; o outro deu `PASS 0/0/0`. A adjudicação confirmou apenas esse finding,
-`AC-R1-MIN-1`, sem atingir T1–T5. Os oito IDs foram corrigidos e nenhuma prova,
-interface ou hipótese mudou.
-
-Na rodada 2, o parecer 1 deu `PASS 0/0/0`. O parecer 2 confirmou que o reparo e
-T1–T5 estavam corretos, mas deu `FAIL 0/0/1` porque este registro central ainda
-apontava para o manifesto, DAG e ledger da rodada 1. A adjudicação classificou
-`AC-R2-MIN-1` como minor estritamente administrativo e autorizou um único
-reparo nos quatro arquivos de lifecycle. Esse reparo repina:
+Além da comparação exata, o candidato agora registra:
 
 ```text
-commit da rodada 2 = 7248c56cca098d86c0117a78f89c4555c0d934d3
-manifesto          = fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba
-DAG                 = 830aedea4d89007353f0b1da9b7ae623b1680360626521f536abedd7fda42b9c
-ledger              = 280f8168cc632fd650e79cc9a4da411b42f24a5f2d845f5e98d337a99ec5ed5b
+beta*o_1<c/m
+  => V_M^theta-V_U^theta >= g_T5
+  para theta=0,1 e ex ante,
+
+g_T5=beta*(c/m-beta*o_1)>0.
 ```
 
-O reparo administrativo foi então submetido a duas checagens read-only
-independentes. Ambas deram `PASS 0/0/0`, reproduziram `90 PASS / 0 FAIL` no
-checker central e confirmaram que as sete entradas matemáticas permanecem
-byte-idênticas. A adjudicação final voltou diretamente aos commits e hashes e
-deu `NO_CONFIRMED_DEFECTS`, com zero findings confirmados, parciais ou não
-resolvidos na rodada 3.
+Nas células baixas, há a condição local menos restritiva
+`beta*o_0<c/m`, com margem `g_0=beta*(c/m-beta*o_0)`. No endpoint `nu=0`,
+essa condição sozinha sustenta apenas a conclusão ex ante. Um exemplo com
+`N=5` prova que T5 é suficiente, mas não necessária. A fração `c/m` é `1/2`
+quando `N` é ímpar e `(N-2)/(2*(N-1))` quando `N` é par.
 
-O manifesto
-`quality_reports/2026-08-30_AC_msb_terminal_gate_candidate_manifest.sha256`
-(SHA-256
-`68eeefe86b8ade64266c1c8c9901ef070742aa2821e356371a5736dabfceaf64`)
-fixa as sete entradas matemáticas, o manifesto da rodada 2, os dois pareceres
-finais e os dois registros da adjudicação: 12/12 hashes passam. Esse é o objeto
-exato pronto para decisão autoral. As revisões e a adjudicação não congelam
-`A_C` sem aprovação autoral terminal.
+O texto sobre outcomes também foi corrigido. `A_C` declara somente o par de
+leis marginais e não introduz variável conjunta ou regra geral de acoplamento.
+Em geral, as marginais não determinam um acoplamento único; em casos degenerados
+podem determinar, mas isso não autoriza interpretar realizações contrafactuais
+como pareadas pelo jogo nem executar operações cross-world não declaradas.
+
+O verificador retornou `1200 PASS / 0 FAIL`. Dois pareceristas independentes
+cobriram os mesmos oito hashes:
+
+- `quality_reports/2026-08-30_AC_msb_strengthened_round2_formal_review_1.md`:
+  `PASS 0/0/0`, SHA-256
+  `acf971e9f460f7404a4c681ca1a7a51880c5fbca20870584dc8525e3e21ce4c4`;
+- `quality_reports/2026-08-30_AC_msb_strengthened_round2_formal_review_2.md`:
+  `PASS 0/0/0`, SHA-256
+  `99a228814a61541015622e85949f4e634a69659f0e7428c4dfa2a95cc12ebcde`.
+
+A adjudicação independente, em
+`quality_reports/adjudication/A_C_msb_strengthened/ec5bbebe0490/adjudication_round2.md`,
+confirmou a matemática e os reparos substantivos. Seu único finding foi
+`ADJ-AC-STRENGTH-R2-MIN-1`: os sidecars ainda pinavam o candidato anterior. O
+finding não atingiu nenhum resultado; este trecho e o JSON estruturado são seu
+reparo administrativo determinado.
+
+O novo manifesto terminal
+`quality_reports/2026-08-30_AC_msb_strengthened_terminal_gate_candidate_manifest.sha256`,
+SHA-256
+`17279db1f853e5bc0bb3b7b1ef2411053e1beb6929e56c15b766e0ee847ef5d2`,
+fixa 13/13 entradas: os oito artefatos do candidato, seu manifesto, os dois
+pareceres e os dois registros da adjudicação. Esse é o objeto exato pronto para
+decisão autoral. Ele permanece `pending/unfrozen` até essa decisão.
 
 ## Status próprio de `A_U`
 

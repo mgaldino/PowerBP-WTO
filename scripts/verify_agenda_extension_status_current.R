@@ -129,33 +129,27 @@ record_check(
 record_check(
   identical(status$a_c_candidate_snapshot$authorization_commit,
             "a92175096f0a13340416825510e7b755b64a9c64") &&
-    identical(status$a_c_candidate_snapshot$substantive_commit,
-              "efeee0264bfe4f80e042bcced3a10dc313a452fe") &&
-    identical(status$a_c_candidate_snapshot$round1_packaged_candidate_commit,
-              "886c440c4ea882cca42472975e6316c927c86a6e") &&
-    identical(status$a_c_candidate_snapshot$round1_reviews_and_adjudication_commit,
-              "ddae0df51d99792f8e876dfb89b223a45184dfd7") &&
-    identical(status$a_c_candidate_snapshot$traceability_repair_commit,
-              "7151b368f1e9d43de30b437ab2386c82655aa789") &&
-    identical(status$a_c_candidate_snapshot$round2_packaged_candidate_commit,
-              "7248c56cca098d86c0117a78f89c4555c0d934d3") &&
-    identical(status$a_c_candidate_snapshot$round2_reviews_and_adjudication_commit,
-              "62bad2e6e5d4f360e4c2ae2830916bc02522b512") &&
-    identical(status$a_c_candidate_snapshot$administrative_repair_commit,
-              "76f4540cacc15a8db6f0175e7056a7692433bec5") &&
-    identical(status$a_c_candidate_snapshot$round3_reviews_commit,
-              "128860d9f3fd903554b17ad8f343a6211d96cc7d") &&
-    identical(status$a_c_candidate_snapshot$round3_adjudication_commit,
-              "39268e9d2579b1e072cfa8456a18d30ce89c54de") &&
+    identical(status$a_c_candidate_snapshot$strengthened_candidate_commit,
+              "02d217283948fbf430a10491c0907d484dbac3b4") &&
+    identical(status$a_c_candidate_snapshot$strengthened_round1_reviews_commit,
+              "c21e55425e9209d40d6fd377e0b304c910483054") &&
+    identical(status$a_c_candidate_snapshot$strengthened_round1_adjudication_commit,
+              "83807b72126f77a354d68f289374f927526d39ee") &&
+    identical(status$a_c_candidate_snapshot$repaired_candidate_commit,
+              "5410b06b1cb036e53ba2d34830e21425e65f89a0") &&
+    identical(status$a_c_candidate_snapshot$repaired_reviews_commit,
+              "019dd142c802b516762727dfae61fb65e9598e8f") &&
+    identical(status$a_c_candidate_snapshot$repaired_adjudication_commit,
+              "f605028e9760b89ea401ce4ad7c4b3d3e90a10e7") &&
     identical(status$a_c_candidate_snapshot$candidate_manifest_sha256,
-              "fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba") &&
+              "ec5bbebe0490eb8a46ee5e0de1565cf52ae1838721a870df21cdc4a629058339") &&
     identical(status$a_c_candidate_snapshot$terminal_gate_candidate_manifest_sha256,
-              "68eeefe86b8ade64266c1c8c9901ef070742aa2821e356371a5736dabfceaf64") &&
+              "17279db1f853e5bc0bb3b7b1ef2411053e1beb6929e56c15b766e0ee847ef5d2") &&
     identical(status$a_c_candidate_snapshot$game_dag_sha256,
-              "830aedea4d89007353f0b1da9b7ae623b1680360626521f536abedd7fda42b9c") &&
+              "83245ae3e33b0fd8a29898627aaae40226c9317402e79e1b1375b34aa88a4262") &&
     identical(status$a_c_candidate_snapshot$mechanical_result,
-              "941 PASS / 0 FAIL"),
-  "A_C authorization, candidate rounds, repairs, reviews, adjudication, terminal-gate candidate, DAG, and mechanical result are pinned"
+              "1200 PASS / 0 FAIL"),
+  "A_C strengthened candidate, repaired review chain, terminal gate, DAG, and mechanical result are pinned"
 )
 
 record_check(
@@ -234,11 +228,11 @@ record_check(
 )
 record_check(
   identical(ac$status, "pending") && identical(ac$frozen, FALSE) &&
-    identical(ac$authorization, "start_authorized") &&
-    identical(ac$mechanical_result, "941 PASS / 0 FAIL") &&
+    identical(ac$authorization, "start_and_strengthening_authorized") &&
+    identical(ac$mechanical_result, "1200 PASS / 0 FAIL") &&
     identical(ac$review_status,
-              "mathematical review complete; directed final reviews PASS 0/0/0 twice; NO_CONFIRMED_DEFECTS adjudication complete; terminal author approval pending"),
-  "AC is a reviewed and adjudicated pending/unfrozen candidate awaiting terminal author approval"
+              "mathematical candidate reviewed twice with PASS 0/0/0; independent adjudication found no mathematical defect and one now-repaired administrative finding; terminal author approval pending"),
+  "AC is the strengthened reviewed pending/unfrozen candidate awaiting terminal author approval"
 )
 record_check(
   identical(ar$status, "pending") && identical(ar$frozen, FALSE) &&
@@ -340,17 +334,17 @@ for (relative_path in names(expected_a_u_candidate_hashes)) {
 
 expected_a_c_candidate_hashes <- c(
   "model_redesign/agenda_extension_AC_msb_contract.md" =
-    "d09958a447cc440586c000f92c10982ae1f786a94845c602d714c6ff284a8b14",
+    "abd9b27be4cf1490501e07d0d95ca53a27ae62b492354cb6feb8a633cf021a66",
   "model_redesign/agenda_extension_AC_msb_results.md" =
-    "479c0089a1ed6a08dc9ffd8061933d248505c9b753a036f812f5b163586d8e77",
+    "8cadee000f6b8a9f94aff754fdb680f427b731bccf121ae642126a9383693d0a",
   "model_redesign/agenda_extension_AC_msb_interface.json" =
-    "103b564bd15af69dbb45c6b57cd16a0228d3c60a24b758ad779f6b75e7fe2cdf",
+    "ea869c023ce7426dae3b92ffad344b4c79f1f0ce220b8fffaceb011904a85249",
   "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv" =
-    "280f8168cc632fd650e79cc9a4da411b42f24a5f2d845f5e98d337a99ec5ed5b",
+    "ed49e1f78a77481135b001599c263aeb41bbea106d439cf2f2a660c5c0d1edb1",
   "scripts/verify_agenda_extension_AC_msb.R" =
-    "bf69fb434cc05cc53ecab97080989cf2526979c903f17cf0e33c768acb945e51",
+    "340c5b793b4f509df7e83fc1f9326bbf1b8b9c7d5f17a41056103a32e029b904",
   "quality_reports/verification_outputs/2026-08-30_AC_msb_verifier_output.txt" =
-    "7d039c00e8ab092b8a3402771062ff83c01d1669e75ab8230b5897b8f530965a"
+    "0be70231be14e346b252147c51c64714170141b1e7ebf6ae89ddec6c596978e5"
 )
 for (relative_path in names(expected_a_c_candidate_hashes)) {
   record_check(
@@ -360,113 +354,79 @@ for (relative_path in names(expected_a_c_candidate_hashes)) {
   )
 }
 record_check(
-  identical(ac$authorization_record$sha256,
-            "ea4e2e9b9e1296aecd64760f058f0097ff4281f6a9b301373feeea2591092f95") &&
-    identical(sha256(ac$authorization_record$path),
-              ac$authorization_record$sha256),
-  "A_C start-authorization bytes match"
+  length(ac$authorization_records) == 2L &&
+    all(vapply(ac$authorization_records, function(x) {
+      identical(sha256(x$path), x$sha256)
+    }, logical(1L))) &&
+    identical(ac$authorization_records[[2L]]$sha256,
+              "131e7485879ffbf1d399f91c2b838fb05e8d64644ae2c393692ffce1888fedec"),
+  "A_C start and strengthening authorization bytes match"
 )
 record_check(
   identical(ac$candidate_manifest$sha256,
-            "fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba") &&
+            "ec5bbebe0490eb8a46ee5e0de1565cf52ae1838721a870df21cdc4a629058339") &&
     identical(sha256(ac$candidate_manifest$path),
               ac$candidate_manifest$sha256),
-  "A_C node record pins the round-2 candidate manifest"
+  "A_C node record pins the strengthened round-2 candidate manifest"
 )
 
-expected_a_c_round2_review_hashes <- c(
-  "quality_reports/2026-08-30_AC_msb_round2_formal_review_1.md" =
-    "085db057eb9275b9cd8a6084d7a923c6bc0e4710ba5f3091622d3ebda3d0cd6f",
-  "quality_reports/2026-08-30_AC_msb_round2_formal_review_2.md" =
-    "872522eddae4b8af886a9d31197a4b6f1014bf14234841c4575a123cdc84d0ee"
+expected_a_c_current_review_hashes <- c(
+  "quality_reports/2026-08-30_AC_msb_strengthened_round2_formal_review_1.md" =
+    "acf971e9f460f7404a4c681ca1a7a51880c5fbca20870584dc8525e3e21ce4c4",
+  "quality_reports/2026-08-30_AC_msb_strengthened_round2_formal_review_2.md" =
+    "99a228814a61541015622e85949f4e634a69659f0e7428c4dfa2a95cc12ebcde"
 )
-a_c_round2_review_hashes <- setNames(
+a_c_current_review_hashes <- setNames(
   vapply(ac$current_reviews, function(x) x$sha256, character(1L)),
   vapply(ac$current_reviews, function(x) x$path, character(1L))
 )
 record_check(
-  identical(a_c_round2_review_hashes[names(expected_a_c_round2_review_hashes)],
-            expected_a_c_round2_review_hashes),
-  "A_C round-2 review hashes are pinned"
+  identical(a_c_current_review_hashes[names(expected_a_c_current_review_hashes)],
+            expected_a_c_current_review_hashes),
+  "A_C strengthened review hashes are pinned"
 )
 record_check(
-  identical(ac$current_reviews[[1L]]$verdict, "PASS") &&
-    identical(ac$current_reviews[[1L]]$findings, "0/0/0") &&
-    identical(ac$current_reviews[[2L]]$verdict, "FAIL") &&
-    identical(ac$current_reviews[[2L]]$findings, "0/0/1"),
-  "A_C round-2 review divergence is preserved exactly"
+  all(vapply(ac$current_reviews, function(x) {
+    identical(x$verdict, "PASS") && identical(x$findings, "0/0/0")
+  }, logical(1L))),
+  "A_C strengthened reviews are recorded as PASS 0/0/0 twice"
 )
-for (relative_path in names(expected_a_c_round2_review_hashes)) {
+for (relative_path in names(expected_a_c_current_review_hashes)) {
   record_check(
     identical(sha256(relative_path),
-              unname(expected_a_c_round2_review_hashes[[relative_path]])),
-    sprintf("A_C round-2 review bytes match: %s", relative_path)
+              unname(expected_a_c_current_review_hashes[[relative_path]])),
+    sprintf("A_C strengthened review bytes match: %s", relative_path)
   )
 }
 record_check(
   identical(ac$current_adjudication$verdict, "READY_FOR_IMPLEMENTATION") &&
-    identical(ac$current_adjudication$confirmed_finding, "AC-R2-MIN-1") &&
+    identical(ac$current_adjudication$counts$confirmed, 1L) &&
+    identical(ac$current_adjudication$counts$partial, 0L) &&
+    identical(ac$current_adjudication$counts$unresolved, 0L) &&
+    identical(ac$current_adjudication$confirmed_finding,
+              "ADJ-AC-STRENGTH-R2-MIN-1") &&
+    identical(ac$current_adjudication$repair_status,
+              "implemented in the current sidecars and checker") &&
     identical(sha256(ac$current_adjudication$markdown_path),
               ac$current_adjudication$markdown_sha256) &&
     identical(sha256(ac$current_adjudication$json_path),
               ac$current_adjudication$json_sha256),
-  "A_C round-2 adjudication and confirmed administrative finding are pinned"
+  "A_C strengthened adjudication and repaired administrative finding are pinned"
 )
 record_check(
-  identical(ac$previous_review_round$confirmed_finding, "AC-R1-MIN-1") &&
-    identical(ac$previous_review_round$adjudication_verdict,
-              "READY_FOR_IMPLEMENTATION"),
-  "A_C round-1 traceability finding is preserved as historical and repaired"
+  identical(ac$historical_findings_preserved[[1L]],
+            "AC-R1-MIN-1: semantic source_record_ids repaired without changing T1-T5") &&
+    any(grepl("AC-STRENGTH-R2-MIN-1", ac$historical_findings_preserved,
+              fixed = TRUE)),
+  "A_C historical findings remain preserved rather than erased"
 )
 record_check(
-  identical(ac$administrative_repair_status,
-            "AC-R2-MIN-1 implemented and independently verified twice with PASS 0/0/0; final adjudication found no current defect"),
-  "A_C administrative repair is independently verified without terminal approval"
-)
-expected_a_c_round3_review_hashes <- c(
-  "quality_reports/2026-08-30_AC_msb_round3_formal_review_1.md" =
-    "83e6a4a7249f666fb0760ed33b43c3fbff710f39476ef63791f4a9ae55b1c989",
-  "quality_reports/2026-08-30_AC_msb_round3_formal_review_2.md" =
-    "c515bfef9efd594d947bc76b660046f4784dd66de69b9929598a459ad86fdedf"
-)
-a_c_round3_review_hashes <- setNames(
-  vapply(ac$directed_final_reviews, function(x) x$sha256, character(1L)),
-  vapply(ac$directed_final_reviews, function(x) x$path, character(1L))
-)
-record_check(
-  identical(a_c_round3_review_hashes[names(expected_a_c_round3_review_hashes)],
-            expected_a_c_round3_review_hashes) &&
-    all(vapply(ac$directed_final_reviews, function(x) {
-      identical(x$verdict, "PASS") && identical(x$findings, "0/0/0")
-    }, logical(1L))),
-  "A_C directed final reviews are pinned as PASS 0/0/0 twice"
-)
-for (relative_path in names(expected_a_c_round3_review_hashes)) {
-  record_check(
-    identical(sha256(relative_path),
-              unname(expected_a_c_round3_review_hashes[[relative_path]])),
-    sprintf("A_C directed final review bytes match: %s", relative_path)
-  )
-}
-record_check(
-  identical(ac$directed_final_adjudication$verdict,
-            "NO_CONFIRMED_DEFECTS") &&
-    identical(ac$directed_final_adjudication$counts$confirmed, 0L) &&
-    identical(ac$directed_final_adjudication$counts$partial, 0L) &&
-    identical(ac$directed_final_adjudication$counts$unresolved, 0L) &&
-    identical(sha256(ac$directed_final_adjudication$markdown_path),
-              ac$directed_final_adjudication$markdown_sha256) &&
-    identical(sha256(ac$directed_final_adjudication$json_path),
-              ac$directed_final_adjudication$json_sha256),
-  "A_C directed final adjudication records no current confirmed, partial, or unresolved defect"
-)
-record_check(
-  identical(ac$terminal_gate_candidate_manifest$entries, 12L) &&
+  identical(ac$terminal_gate_candidate_manifest$entries, 13L) &&
     identical(ac$terminal_gate_candidate_manifest$sha256,
-              "68eeefe86b8ade64266c1c8c9901ef070742aa2821e356371a5736dabfceaf64") &&
+              "17279db1f853e5bc0bb3b7b1ef2411053e1beb6929e56c15b766e0ee847ef5d2") &&
     identical(sha256(ac$terminal_gate_candidate_manifest$path),
               ac$terminal_gate_candidate_manifest$sha256),
-  "A_C terminal-gate candidate pins 12 reviewed and adjudicated entries"
+  "A_C strengthened terminal-gate candidate pins 13 reviewed and adjudicated entries"
 )
 
 expected_a_u_review_hashes <- c(
@@ -637,12 +597,15 @@ record_check(
   "human-readable status records the clean A_U round-2 adjudication"
 )
 record_check(
-  any(grepl("AC-R2-MIN-1", status_md, fixed = TRUE, useBytes = TRUE)),
-  "human-readable status records the confirmed A_C administrative finding"
+  any(grepl("ADJ-AC-STRENGTH-R2-MIN-1", status_md,
+            fixed = TRUE, useBytes = TRUE)),
+  "human-readable status records the strengthened A_C administrative finding"
 )
 record_check(
-  any(grepl("12/12", status_md, fixed = TRUE, useBytes = TRUE)),
-  "human-readable status identifies the exact A_C terminal-gate candidate"
+  any(grepl("13/13", status_md, fixed = TRUE, useBytes = TRUE)) &&
+    any(grepl("17279db1f853e5bc0bb3b7b1ef2411053e1beb6929e56c15b766e0ee847ef5d2",
+              status_md, fixed = TRUE, useBytes = TRUE)),
+  "human-readable status identifies the exact strengthened A_C terminal-gate candidate"
 )
 
 cat(sprintf("SUMMARY | %d PASS | %d FAIL\n", pass_count, fail_count))
