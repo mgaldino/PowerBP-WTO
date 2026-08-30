@@ -1,0 +1,99 @@
+Agenda-extension migration-matrix verifier
+This is a mechanical integrity check; it is not mathematical or editorial approval.
+
+PASS | matrix TSV exists | quality_reports/plans/2026-08-30_agenda_extension_migration_matrix.tsv
+PASS | matrix explanatory document exists | quality_reports/plans/2026-08-30_agenda_extension_migration_matrix.md
+PASS | editorial proposal exists | quality_reports/plans/2026-08-30_proposta_arquitetura_editorial_agenda_extension.md
+PASS | matrix has the exact schema | migration_id, source_node, claim_ids, source_artifact, source_sha256, governing_manifest, governing_manifest_sha256, current_v6_anchor, proposed_action, proposed_destination, placement, proof_destination, editorial_status, scope_guard
+PASS | matrix has 13 migration rows | rows: 13
+PASS | migration ids are unique | MIG-GAME-01, MIG-AM-01, MIG-AU-01, MIG-AC-01, MIG-AC-02, MIG-AC-03, MIG-AR-01, MIG-AR-02, MIG-AR-03, MIG-AR-04, MIG-AR-05, MIG-AR-06, MIG-AR-07
+PASS | all source nodes are allowed
+PASS | all rows remain unauthorized proposals
+PASS | all actions are controlled
+PASS | all placements are controlled
+PASS | MIG-GAME-01: source artifact exists | model_redesign/agenda_extension_AR_msb_contract.md
+PASS | MIG-GAME-01: source artifact hash matches | c4867a9a8ef5f8171de04ae6b628a2fc29c5d5e033678f4448d0cbc55433f7a6
+PASS | MIG-GAME-01: governing manifest hash matches | a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38
+PASS | MIG-GAME-01: ledger exposes a claim-id column | claim_id, node_id, cell_id, record_or_family_id, member_domain, claim_kind, claim_text, domain, status, selection_status, assumptions_used, source_record_ids, source_hashes, payoff_date, evidence_path, proof_path
+PASS | MIG-GAME-01: all claims exist in the source ledger | AR-MSB-001, AR-MSB-002, AR-MSB-003, AR-MSB-028
+PASS | MIG-AM-01: source artifact exists | model_redesign/agenda_extension_A_M_msb_results.md
+PASS | MIG-AM-01: source artifact hash matches | 7159a7e9f84b076000b3313d89b4de9ca692a055a31cdbb9f5a5561a30a283a3
+PASS | MIG-AM-01: governing manifest hash matches | 8eb870d5595a4373994e8f47a25a3dd137b00ac8c32fc09b947444498a32775e
+PASS | MIG-AM-01: ledger exposes a claim-id column | claim_id, node_id, cell_id, record_or_family_id, member_domain, claim_kind, claim_text, domain, status, selection_status, assumptions_used, source_record_ids, source_hashes, payoff_date, evidence_path, proof_path
+PASS | MIG-AM-01: all claims exist in the source ledger | AMX-001, AMX-014, AMX-015, AMX-016a, AMX-016b
+PASS | MIG-AU-01: source artifact exists | model_redesign/agenda_extension_A_U_msb_results.md
+PASS | MIG-AU-01: source artifact hash matches | e2e2ec8cabc3d44b0c72bfa8ae1ef3d35256078448ce688db79bb7c1a96cdc11
+PASS | MIG-AU-01: governing manifest hash matches | b85741b2176c4480f5f3632c4464a93cebabb5dd4f71636626917b9227030180
+PASS | MIG-AU-01: ledger exposes a claim-id column | claim_id, node_id, cell_id, record_or_family_id, member_domain, claim_kind, claim_text, domain, status, selection_status, assumptions_used, source_record_ids, source_hashes, payoff_date, evidence_path, proof_path
+PASS | MIG-AU-01: all claims exist in the source ledger | AUX-MSB-007, AUX-MSB-010, AUX-MSB-011, AUX-MSB-012, AUX-MSB-013, AUX-MSB-014, AUX-MSB-015, AUX-MSB-021, AUX-MSB-022, AUX-MSB-023, AUX-MSB-024
+PASS | MIG-AC-01: source artifact exists | model_redesign/agenda_extension_AC_msb_results.md
+PASS | MIG-AC-01: source artifact hash matches | 8cadee000f6b8a9f94aff754fdb680f427b731bccf121ae642126a9383693d0a
+PASS | MIG-AC-01: governing manifest hash matches | 332d1d7be7a7b38f715c8d7d872c6f7010c22a27fc924b91e8f694199a190fe4
+PASS | MIG-AC-01: ledger exposes a claim-id column | claim_id, node_id, cell_id, record_or_family_id, member_domain, claim_kind, claim_text, domain, status, selection_status, assumptions_used, source_record_ids, source_hashes, payoff_date, evidence_path, proof_path
+PASS | MIG-AC-01: all claims exist in the source ledger | AC-MSB-003, AC-MSB-004, AC-MSB-005, AC-MSB-006, AC-MSB-013, AC-MSB-014
+PASS | MIG-AC-02: source artifact exists | model_redesign/agenda_extension_AC_msb_results.md
+PASS | MIG-AC-02: source artifact hash matches | 8cadee000f6b8a9f94aff754fdb680f427b731bccf121ae642126a9383693d0a
+PASS | MIG-AC-02: governing manifest hash matches | 332d1d7be7a7b38f715c8d7d872c6f7010c22a27fc924b91e8f694199a190fe4
+PASS | MIG-AC-02: ledger exposes a claim-id column | claim_id, node_id, cell_id, record_or_family_id, member_domain, claim_kind, claim_text, domain, status, selection_status, assumptions_used, source_record_ids, source_hashes, payoff_date, evidence_path, proof_path
+PASS | MIG-AC-02: all claims exist in the source ledger | AC-MSB-017, AC-MSB-018, AC-MSB-022, AC-MSB-023, AC-MSB-024
+PASS | MIG-AC-03: source artifact exists | model_redesign/agenda_extension_AC_msb_results.md
+PASS | MIG-AC-03: source artifact hash matches | 8cadee000f6b8a9f94aff754fdb680f427b731bccf121ae642126a9383693d0a
+PASS | MIG-AC-03: governing manifest hash matches | 332d1d7be7a7b38f715c8d7d872c6f7010c22a27fc924b91e8f694199a190fe4
+PASS | MIG-AC-03: ledger exposes a claim-id column | claim_id, node_id, cell_id, record_or_family_id, member_domain, claim_kind, claim_text, domain, status, selection_status, assumptions_used, source_record_ids, source_hashes, payoff_date, evidence_path, proof_path
+PASS | MIG-AC-03: all claims exist in the source ledger | AC-MSB-008, AC-MSB-009, AC-MSB-011, AC-MSB-012, AC-MSB-015, AC-MSB-016, AC-MSB-019
+PASS | MIG-AR-01: source artifact exists | model_redesign/agenda_extension_AR_msb_results.md
+PASS | MIG-AR-01: source artifact hash matches | 7a7913b6999a5cd69446d5f3e191f507f417582cd1c8617f7af0d5d8e8d331db
+PASS | MIG-AR-01: governing manifest hash matches | a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38
+PASS | MIG-AR-01: ledger exposes a claim-id column | claim_id, node_id, cell_id, record_or_family_id, member_domain, claim_kind, claim_text, domain, status, selection_status, assumptions_used, source_record_ids, source_hashes, payoff_date, evidence_path, proof_path
+PASS | MIG-AR-01: all claims exist in the source ledger | AR-MSB-004, AR-MSB-006, AR-MSB-007, AR-MSB-008, AR-MSB-009, AR-MSB-010, AR-MSB-011
+PASS | MIG-AR-02: source artifact exists | model_redesign/agenda_extension_AR_msb_results.md
+PASS | MIG-AR-02: source artifact hash matches | 7a7913b6999a5cd69446d5f3e191f507f417582cd1c8617f7af0d5d8e8d331db
+PASS | MIG-AR-02: governing manifest hash matches | a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38
+PASS | MIG-AR-02: ledger exposes a claim-id column | claim_id, node_id, cell_id, record_or_family_id, member_domain, claim_kind, claim_text, domain, status, selection_status, assumptions_used, source_record_ids, source_hashes, payoff_date, evidence_path, proof_path
+PASS | MIG-AR-02: all claims exist in the source ledger | AR-MSB-005, AR-MSB-012, AR-MSB-013
+PASS | MIG-AR-03: source artifact exists | model_redesign/agenda_extension_AR_msb_results.md
+PASS | MIG-AR-03: source artifact hash matches | 7a7913b6999a5cd69446d5f3e191f507f417582cd1c8617f7af0d5d8e8d331db
+PASS | MIG-AR-03: governing manifest hash matches | a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38
+PASS | MIG-AR-03: ledger exposes a claim-id column | claim_id, node_id, cell_id, record_or_family_id, member_domain, claim_kind, claim_text, domain, status, selection_status, assumptions_used, source_record_ids, source_hashes, payoff_date, evidence_path, proof_path
+PASS | MIG-AR-03: all claims exist in the source ledger | AR-MSB-014, AR-MSB-015
+PASS | MIG-AR-04: source artifact exists | model_redesign/agenda_extension_AR_msb_results.md
+PASS | MIG-AR-04: source artifact hash matches | 7a7913b6999a5cd69446d5f3e191f507f417582cd1c8617f7af0d5d8e8d331db
+PASS | MIG-AR-04: governing manifest hash matches | a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38
+PASS | MIG-AR-04: ledger exposes a claim-id column | claim_id, node_id, cell_id, record_or_family_id, member_domain, claim_kind, claim_text, domain, status, selection_status, assumptions_used, source_record_ids, source_hashes, payoff_date, evidence_path, proof_path
+PASS | MIG-AR-04: all claims exist in the source ledger | AR-MSB-016, AR-MSB-017, AR-MSB-018, AR-MSB-019
+PASS | MIG-AR-05: source artifact exists | model_redesign/agenda_extension_AR_msb_results.md
+PASS | MIG-AR-05: source artifact hash matches | 7a7913b6999a5cd69446d5f3e191f507f417582cd1c8617f7af0d5d8e8d331db
+PASS | MIG-AR-05: governing manifest hash matches | a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38
+PASS | MIG-AR-05: ledger exposes a claim-id column | claim_id, node_id, cell_id, record_or_family_id, member_domain, claim_kind, claim_text, domain, status, selection_status, assumptions_used, source_record_ids, source_hashes, payoff_date, evidence_path, proof_path
+PASS | MIG-AR-05: all claims exist in the source ledger | AR-MSB-020, AR-MSB-021, AR-MSB-022
+PASS | MIG-AR-06: source artifact exists | model_redesign/agenda_extension_AR_msb_results.md
+PASS | MIG-AR-06: source artifact hash matches | 7a7913b6999a5cd69446d5f3e191f507f417582cd1c8617f7af0d5d8e8d331db
+PASS | MIG-AR-06: governing manifest hash matches | a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38
+PASS | MIG-AR-06: ledger exposes a claim-id column | claim_id, node_id, cell_id, record_or_family_id, member_domain, claim_kind, claim_text, domain, status, selection_status, assumptions_used, source_record_ids, source_hashes, payoff_date, evidence_path, proof_path
+PASS | MIG-AR-06: all claims exist in the source ledger | AR-MSB-023, AR-MSB-024, AR-MSB-025
+PASS | MIG-AR-07: source artifact exists | model_redesign/agenda_extension_AR_msb_results.md
+PASS | MIG-AR-07: source artifact hash matches | 7a7913b6999a5cd69446d5f3e191f507f417582cd1c8617f7af0d5d8e8d331db
+PASS | MIG-AR-07: governing manifest hash matches | a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38
+PASS | MIG-AR-07: ledger exposes a claim-id column | claim_id, node_id, cell_id, record_or_family_id, member_domain, claim_kind, claim_text, domain, status, selection_status, assumptions_used, source_record_ids, source_hashes, payoff_date, evidence_path, proof_path
+PASS | MIG-AR-07: all claims exist in the source ledger | AR-MSB-026, AR-MSB-027, AR-MSB-028, AR-MSB-029
+PASS | MIG-GAME-01: current-v6 anchor exists | # The model {#model}
+PASS | MIG-AM-01: current-v6 anchor exists | ## Private majority in Round 1
+PASS | MIG-AU-01: current-v6 anchor exists | ## Private unanimity in Round 1
+PASS | MIG-AC-01: current-v6 anchor exists | ## Comparing the private games
+PASS | MIG-AC-02: current-v6 anchor exists | ## Comparing the private games
+PASS | MIG-AC-03: current-v6 anchor exists | # Appendix C: Endpoints, exact sets, and illustration {-}
+PASS | MIG-AR-01: current-v6 anchor exists | ## Complete-information benchmark
+PASS | MIG-AR-02: current-v6 anchor exists | ## Complete-information benchmark
+PASS | MIG-AR-03: current-v6 anchor exists | ## Complete-information benchmark
+PASS | MIG-AR-04: current-v6 anchor exists | ## Informational rents and the difference of differences
+PASS | MIG-AR-05: current-v6 anchor exists | ## Informational rents and the difference of differences
+PASS | MIG-AR-06: current-v6 anchor exists | # Discussion {#discussion}
+PASS | MIG-AR-07: current-v6 anchor exists | # Appendix B: Proofs {-}
+PASS | formal_model_v6.Rmd remains on the approved snapshot | 00bbaa3a5768348fede3f6584bab915b7c1dbf1fd1cccbf723bb64a90188e4a6
+PASS | formal_model_v6.pdf remains on the approved snapshot | 3602b0753a8a61ddcb2450f7181ba2f8fc53b9f73ad16cdfbb46e337019182be
+PASS | 2026-08-29_A_M_msb_two_layer_final_gate_manifest.sha256 verifies | perl: warning: Setting locale failed. | perl: warning: Please check that your locale settings: | 	LC_ALL = "C.UTF-8", | 	LC_CTYPE = "C.UTF-8", | 	LANG = "C.UTF-8" |     are supported and installed on your system. | perl: warning: Falling back to the standard locale ("C"). | model_redesign/agenda_extension_A_M_msb_results.md: OK | model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv: OK | scripts/verify_agenda_extension_A_M_msb.R: OK | quality_reports/verification_outputs/2026-08-29_A_M_msb_two_layer_signature_verifier_output.txt: OK | quality_reports/2026-08-29_A_M_msb_two_layer_signature_candidate_manifest.sha256: OK | quality_reports/2026-08-29_A_M_msb_two_layer_signature_formal_review_1.md: OK | quality_reports/2026-08-29_A_M_msb_two_layer_signature_formal_review_2.md: OK | quality_reports/2026-08-29_A_M_msb_two_layer_signature_formal_reviews_manifest.sha256: OK | quality_reports/adjudication/a_m_msb_two_layer/4130c09b9a7d/adjudication_round1.md: OK | quality_reports/adjudication/a_m_msb_two_layer/4130c09b9a7d/adjudication_round1.json: OK | quality_reports/2026-08-29_A_M_msb_two_layer_terminal_approval_and_freeze.md: OK
+PASS | 2026-08-30_A_U_msb_two_layer_final_gate_manifest.sha256 verifies | perl: warning: Setting locale failed. | perl: warning: Please check that your locale settings: | 	LC_ALL = "C.UTF-8", | 	LC_CTYPE = "C.UTF-8", | 	LANG = "C.UTF-8" |     are supported and installed on your system. | perl: warning: Falling back to the standard locale ("C"). | quality_reports/plans/2026-08-30_decisao_assinatura_duas_camadas_A_U.md: OK | model_redesign/agenda_extension_A_U_msb_contract.md: OK | model_redesign/agenda_extension_A_U_msb_results.md: OK | model_redesign/agenda_extension_A_U_msb_interface.json: OK | model_redesign/agenda_extension_A_U_msb_claim_ledger.tsv: OK | scripts/verify_agenda_extension_A_U_msb.R: OK | quality_reports/verification_outputs/2026-08-30_A_U_msb_two_layer_verifier_output.txt: OK | model_redesign/agenda_extension_A_U_msb_game_dag.json: OK | quality_reports/2026-08-30_A_U_msb_two_layer_round2_candidate_manifest.sha256: OK | quality_reports/2026-08-30_A_U_msb_two_layer_round2_formal_review_1.md: OK | quality_reports/2026-08-30_A_U_msb_two_layer_round2_formal_review_2.md: OK | quality_reports/adjudication/A_U_msb_two_layer/1c4720e99a1d/adjudication_round2.md: OK | quality_reports/adjudication/A_U_msb_two_layer/1c4720e99a1d/adjudication_round2.json: OK | quality_reports/2026-08-30_A_U_msb_two_layer_technical_gate_manifest.sha256: OK | quality_reports/2026-08-30_A_U_msb_two_layer_terminal_approval_and_freeze.md: OK
+PASS | 2026-08-30_A_C_msb_strengthened_final_gate_manifest.sha256 verifies | perl: warning: Setting locale failed. | perl: warning: Please check that your locale settings: | 	LC_ALL = "C.UTF-8", | 	LC_CTYPE = "C.UTF-8", | 	LANG = "C.UTF-8" |     are supported and installed on your system. | perl: warning: Falling back to the standard locale ("C"). | quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md: OK | quality_reports/plans/2026-08-30_autorizacao_fortalecimento_A_C_pos_consulta.md: OK | model_redesign/agenda_extension_AC_msb_contract.md: OK | model_redesign/agenda_extension_AC_msb_results.md: OK | model_redesign/agenda_extension_AC_msb_interface.json: OK | model_redesign/agenda_extension_AC_msb_claim_ledger.tsv: OK | scripts/verify_agenda_extension_AC_msb.R: OK | quality_reports/verification_outputs/2026-08-30_AC_msb_verifier_output.txt: OK | model_redesign/agenda_extension_AC_msb_game_dag.json: OK | quality_reports/2026-08-30_AC_msb_strengthened_round2_candidate_manifest.sha256: OK | quality_reports/2026-08-30_AC_msb_strengthened_round2_formal_review_1.md: OK | quality_reports/2026-08-30_AC_msb_strengthened_round2_formal_review_2.md: OK | quality_reports/adjudication/A_C_msb_strengthened/ec5bbebe0490/adjudication_round2.md: OK | quality_reports/adjudication/A_C_msb_strengthened/ec5bbebe0490/adjudication_round2.json: OK | quality_reports/2026-08-30_AC_msb_strengthened_terminal_gate_candidate_manifest.sha256: OK | quality_reports/2026-08-30_AC_msb_strengthened_lifecycle_review_1.md: OK | quality_reports/2026-08-30_AC_msb_strengthened_lifecycle_review_2.md: OK | quality_reports/adjudication/A_C_msb_strengthened_lifecycle/17279db1f853/adjudication_round1.md: OK | quality_reports/adjudication/A_C_msb_strengthened_lifecycle/17279db1f853/adjudication_round1.json: OK | quality_reports/2026-08-30_A_C_msb_strengthened_terminal_approval_and_freeze.md: OK
+PASS | 2026-08-30_A_R_msb_final_gate_manifest.sha256 verifies | perl: warning: Setting locale failed. | perl: warning: Please check that your locale settings: | 	LC_ALL = "C.UTF-8", | 	LC_CTYPE = "C.UTF-8", | 	LANG = "C.UTF-8" |     are supported and installed on your system. | perl: warning: Falling back to the standard locale ("C"). | quality_reports/plans/2026-08-30_autorizacao_inicio_A_R.md: OK | quality_reports/plans/2026-08-26_agenda_extension_gate0_simplified.md: OK | quality_reports/2026-08-27_fechamento_autoral_gate0_agenda_extension_simplified.md: OK | quality_reports/plans/2026-08-29_emenda_extensao_agenda_markov_crencas.md: OK | model_redesign/agenda_extension_AC_msb_interface.json: OK | model_redesign/agenda_extension_AC_msb_results.md: OK | quality_reports/2026-08-30_A_C_msb_strengthened_terminal_approval_and_freeze.md: OK | quality_reports/2026-08-30_A_C_msb_strengthened_final_gate_manifest.sha256: OK | model_redesign/essential_input_n7_complete_information_benchmark_candidate.json: OK | quality_reports/2026-08-21_fechamento_autoral_goal4_n7.md: OK | model_redesign/agenda_extension_goal1_external_interfaces.json: OK | quality_reports/2026-08-27_fechamento_goal1_agenda_extension.md: OK | model_redesign/agenda_extension_game_dag_simplified.json: OK | scripts/agenda_extension_goal1_verifier_lib.R: OK | model_redesign/agenda_extension_AR_msb_contract.md: OK | model_redesign/agenda_extension_AR_msb_results.md: OK | model_redesign/agenda_extension_AR_msb_interface.json: OK | model_redesign/agenda_extension_AR_msb_complete_records.json: OK | model_redesign/agenda_extension_AR_msb_claim_ledger.tsv: OK | scripts/verify_agenda_extension_AR_msb.R: OK | quality_reports/verification_outputs/2026-08-30_AR_msb_verifier_output.txt: OK | quality_reports/2026-08-30_AR_msb_implementation_report.md: OK | quality_reports/2026-08-30_AR_msb_candidate_manifest.sha256: OK | quality_reports/2026-08-30_AR_msb_round3_formal_review_1.md: OK | quality_reports/2026-08-30_AR_msb_round3_formal_review_2.md: OK | quality_reports/adjudication/A_R_msb/b1b483f3c31d/adjudication_round3.md: OK | quality_reports/adjudication/A_R_msb/b1b483f3c31d/adjudication_round3.json: OK | quality_reports/2026-08-30_AR_msb_terminal_gate_candidate_manifest.sha256: OK | quality_reports/2026-08-30_AR_msb_lifecycle_candidate_manifest.sha256: OK | quality_reports/2026-08-30_AR_msb_lifecycle_review_1.md: OK | quality_reports/2026-08-30_AR_msb_lifecycle_review_2.md: OK | quality_reports/adjudication/A_R_msb_lifecycle/25ff65848bf6/adjudication_round1.md: OK | quality_reports/adjudication/A_R_msb_lifecycle/25ff65848bf6/adjudication_round1.json: OK | quality_reports/2026-08-30_AR_msb_lifecycle_final_gate_manifest.sha256: OK | quality_reports/2026-08-30_A_R_msb_terminal_approval_and_freeze.md: OK
+
+SUMMARY | 94 PASS | 0 FAIL
