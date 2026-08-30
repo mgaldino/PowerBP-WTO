@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a-u-msb-two-layer:be482e329e34:round1",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-08-30_A_U_msb_two_layer_candidate_manifest.sha256",
+    "sha256": "3cf2c047ad2da35665c21b47f94ca117482d7e7f537d9caa4e0ddce29ae7b369",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-08-30_A_U_msb_two_layer_formal_review_1.md",
+      "sha256": "28fbd376afc18feaf890b30454cc3f51ac3cfdc4db63039b8ab174a1734d7a2a"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-08-30_A_U_msb_two_layer_formal_review_2.md",
+      "sha256": "073b32ea58f0b32ff760ff8b5f170400d091ef97fb461f0a1421273062698ed9"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "R2-M-1",
+      "source_review": "R2",
+      "quoted_finding": "O DAG versionado falha no verificador que o governa.",
+      "type": "artifact",
+      "severity": "minor",
+      "scientific_dimension": "reprodutibilidade e auditabilidade da dependência e da ordem de execução",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "model_redesign/agenda_extension_A_U_msb_game_dag.json:16-73",
+        "quality_reports/2026-08-30_A_U_msb_two_layer_formal_review_2.md",
+        "quality_reports/2026-08-30_A_U_msb_two_layer_candidate_manifest.sha256",
+        "/Users/manoelgaldino/.codex/skills/solve-dynamic-games/references/templates.md",
+        "/Users/manoelgaldino/.codex/skills/solve-dynamic-games/scripts/check_game_dag.py"
+      ],
+      "defect_evidence": [
+        "O comando oficial com --require-execution-order terminou com exit status 1 e imprimiu INVALID, apesar de confirmar que o grafo é acíclico.",
+        "Quatro nós iniciados omitem hashes de cinco dependências diretas.",
+        "A_U_two_layer_candidate registra C_U_frozen e A_U_two_layer_author_decision em dependency_hashes sem declará-los em depends_on.",
+        "Três artifact_path são resolvidos relativamente ao diretório model_redesign e apontam para caminhos inexistentes."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "Branch e HEAD foram confirmados como agenda-extension-am-msb e be482e329e34e6690211089363358c2399706e52.",
+        "O manifesto retornou 16/16 entradas OK.",
+        "Hashes recalculados: manifesto 3cf2c047ad2da35665c21b47f94ca117482d7e7f537d9caa4e0ddce29ae7b369; DAG 772ad71235597391726908b9e9864b9625f4b4dc8fcfa6e1d286630b242a73c7; R1 28fbd376afc18feaf890b30454cc3f51ac3cfdc4db63039b8ab174a1734d7a2a; R2 073b32ea58f0b32ff760ff8b5f170400d091ef97fb461f0a1421273062698ed9.",
+        "O checker oficial retornou INVALID, Ready: AC, nove linhas ERROR e exit status 1.",
+        "A simulação in-memory do alinhamento local retornou SIMULATED_REPAIR_VALID=True e SIMULATED_ERRORS=[]."
+      ],
+      "reasoning": "O schema exige que todo nó iniciado congele o artifact_hash de cada dependência direta, sem entradas excedentes. O checker resolve artifact_path relativamente ao diretório do manifesto. O DAG viola objetivamente ambas as regras. A ordem, a aciclicidade e os hashes substantivos não falham; Ready: AC não supera INVALID nem a ausência de autorização. A simulação corrigida passou, demonstrando que o defeito é administrativo e limitado.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Alinhar dependency_hashes exatamente a depends_on, corrigir os três artifact_path segundo a base model_redesign, reexecutar o checker até VALID e repinar DAG e manifesto. Não alterar contrato, resultados, interface, ledger, verificador matemático ou mérito estratégico."
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "confirmed": 1,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "READY_FOR_IMPLEMENTATION",
+    "checked_at": "2026-08-30T09:19:39-03:00",
+    "reasons": [
+      "O snapshot, os pareceres e as 16 entradas do manifesto foram verificados e permanecem íntegros.",
+      "R2-M-1 foi reproduzido diretamente pelo checker oficial e é um defeito minor de artefato e reprodutibilidade.",
+      "Os dois pareceres sustentam o mérito matemático, e a falha do DAG não altera correspondência estratégica, Lambda, q_U, P/Q ou a interface econômica.",
+      "O reparo é local, mecanicamente especificado e passou em simulação in-memory; não há finding material não resolvido nem decisão autoral a tomar."
+    ]
+  }
+}
