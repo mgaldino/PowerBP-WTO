@@ -1,0 +1,56 @@
+{
+  "schema_ref": "solve_dynamic_games_dependency_manifest_v1",
+  "purpose": "blind A_U implementer candidate only; does not change the administrative lifecycle of A_U",
+  "nodes": [
+    {
+      "id": "C_U_frozen",
+      "depends_on": [],
+      "status": "pass",
+      "artifact_path": "essential_input_solution_concept/n4_r1_unanimity_candidate.json",
+      "artifact_hash": "sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+      "started_order": 1,
+      "passed_order": 2,
+      "frozen": true
+    },
+    {
+      "id": "A_U_blind_contract",
+      "depends_on": ["C_U_frozen"],
+      "status": "pass",
+      "artifact_path": "agenda_extension_A_U_msb_contract.md",
+      "artifact_hash": "sha256:4136d897d3606a5cec926247d1dc57e60a90e83344a5c19efbef8dd789d97a57",
+      "dependency_hashes": {
+        "C_U_frozen": "sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b"
+      },
+      "started_order": 3,
+      "passed_order": 4,
+      "frozen": true
+    },
+    {
+      "id": "A_U_blind_candidate",
+      "depends_on": ["A_U_blind_contract"],
+      "status": "pass",
+      "artifact_path": "agenda_extension_A_U_msb_interface.json",
+      "artifact_hash": "sha256:6d0c89255f0470805d5febfc498c17aad2506024c6fd66eefb68db3d9c507fdc",
+      "dependency_hashes": {
+        "A_U_blind_contract": "sha256:4136d897d3606a5cec926247d1dc57e60a90e83344a5c19efbef8dd789d97a57"
+      },
+      "started_order": 5,
+      "passed_order": 6,
+      "frozen": true,
+      "lifecycle_note": "pass/frozen only inside the committed blind-lock; the project A_U node remains pending/unfrozen until external reviews"
+    },
+    {
+      "id": "AC",
+      "depends_on": ["A_U_blind_candidate"],
+      "status": "pending",
+      "artifact_path": null,
+      "artifact_hash": null,
+      "dependency_hashes": {},
+      "started_order": null,
+      "passed_order": null,
+      "frozen": false,
+      "authorization": "not authorized in this task"
+    }
+  ],
+  "execution_note": "The skills governed the contract, DAG, reverse order and gates. AC was not started."
+}

@@ -1,0 +1,184 @@
+{
+  "schema_ref": "agenda_extension_A_U_msb_blind_candidate_v1",
+  "node_id": "A_U",
+  "candidate_status": "implementer_complete_pending_external_review_unfrozen",
+  "blind_declaration": "esta solução foi fechada sem acesso ao candidato antigo",
+  "governing_skills": [
+    "solve-dynamic-games",
+    "formal-game-theory-polisci"
+  ],
+  "institution": "U",
+  "function_of": {
+    "parameters": ["N", "beta", "o_0", "o_1", "nu", "nu_off"],
+    "domain": "N>=3; 0<beta<1; 0<o_0<o_1<1; 0<=nu<=1; nu_off respects D_C and prior support"
+  },
+  "source_complete_view": {
+    "source_node_id": "C_U",
+    "source_artifact_path": "model_redesign/essential_input_solution_concept/n4_r1_unanimity_candidate.json",
+    "source_artifact_hash": "f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+    "native_date": "C_U R1 current units",
+    "transport_factor_to_A": "beta",
+    "beta_application_count": 1,
+    "consumable_posterior_domain": "D_C={0} union (nu_star,1]",
+    "none_posterior_domain": "(0,nu_star]",
+    "literal_records": {
+      "mu=0": "N4-SC-EQ-L-STAR",
+      "mu>nu_star": "N4-SC-EQ-P-STAR with its full literal assessment binder"
+    }
+  },
+  "definitions": {
+    "m": "N-1",
+    "nu_star": "(o_1-o_0)/(1-o_0)",
+    "ell": "beta*o_0",
+    "h": "beta*o_1",
+    "d_0": "beta*ell=beta^2*o_0",
+    "d": "beta*h=beta^2*o_1",
+    "a": "beta*(1-ell)/m",
+    "b": "beta*(1-h)/m",
+    "z_L": "1-m*a=1-beta+d_0",
+    "z_H": "1-m*b=1-beta+d",
+    "Delta": "z_L-d=1-beta-beta^2*(o_1-o_0)",
+    "y_L": "(z_L,a,...,a) in Y",
+    "y_bar": "y_H=(z_H,b,...,b) in Y"
+  },
+  "belief_and_vote_interface": {
+    "disciplined_points": "local relative-neighborhood Bayes limit exists pointwise and lies in D_C",
+    "non_disciplined_points": "one constant nu_off in D_C",
+    "endpoint_support": "nu=0 implies mu=nu_off=0 everywhere; nu=1 implies mu=nu_off=1 everywhere",
+    "weak_vote": "weak j votes yes iff x_j>=a at mu=0 and iff x_j>=b at mu>nu_star; equality yes by T^Y",
+    "pass": "all m weak voters vote yes",
+    "continuation_rule": "kappa_U(h)=hat_kappa_U(U,C,mu(h)); no proposal-identity or vote-vector dependence"
+  },
+  "atomic_binder_schema": [
+    "sigma_0",
+    "sigma_1",
+    "mu",
+    "nu_off",
+    "hat_kappa_U",
+    "weak_vote_strategy",
+    "Q_0",
+    "Q_1",
+    "Gamma_0",
+    "Gamma_1",
+    "payoff_vectors_by_type_and_identity",
+    "common_weak_permutation_orbit"
+  ],
+  "exact_signature_rule": {
+    "equivalence": "same nu_off and same orbit under one common permutation of weak identities applied to the entire atomic binder",
+    "current_H_strategy_symmetry_imposed": false,
+    "anonymous_summary": "derived statistic only; no A_U-to-AC sufficiency claim",
+    "downstream_default": "consume the exact binder/orbit unless AC proves measurable factorization"
+  },
+  "cells": [
+    {
+      "cell_id": "AU-MSB-CELL-NU-ZERO",
+      "domain": "nu=0",
+      "status": "exists",
+      "family_record_ids": ["AU-MSB-E0"],
+      "none_reason": null
+    },
+    {
+      "cell_id": "AU-MSB-CELL-LOW-DELTA-NEG",
+      "domain": "0<nu<=nu_star and Delta<0",
+      "status": "none",
+      "family_record_ids": [],
+      "none_reason": "Bayes plausibility forces positive mass at posterior zero; imitation requires common V=z_L>=d, contradicted by Delta<0"
+    },
+    {
+      "cell_id": "AU-MSB-CELL-LOW-DELTA-NONNEG",
+      "domain": "0<nu<=nu_star and Delta>=0",
+      "status": "exists",
+      "family_record_ids": ["AU-MSB-L"],
+      "none_reason": null
+    },
+    {
+      "cell_id": "AU-MSB-CELL-HIGH-DELTA-NEG",
+      "domain": "nu_star<nu<1 and Delta<0",
+      "status": "exists",
+      "family_record_ids": ["AU-MSB-H0", "AU-MSB-HB"],
+      "none_reason": null
+    },
+    {
+      "cell_id": "AU-MSB-CELL-HIGH-DELTA-NONNEG",
+      "domain": "nu_star<nu<1 and Delta>=0",
+      "status": "exists",
+      "family_record_ids": ["AU-MSB-L", "AU-MSB-H0", "AU-MSB-HB"],
+      "none_reason": null
+    },
+    {
+      "cell_id": "AU-MSB-CELL-NU-ONE",
+      "domain": "nu=1",
+      "status": "exists",
+      "family_record_ids": ["AU-MSB-E1"],
+      "none_reason": null
+    }
+  ],
+  "family_records": [
+    {
+      "family_record_id": "AU-MSB-E0",
+      "parameter_domain": "nu=0; nu_off=0",
+      "member_parameter_or_selector": "counterfactual sigma_1 depends on sign(Delta)",
+      "member_generator": "sigma_0=delta_y_L; if Delta>0 sigma_1=delta_y_L; if Delta=0 sigma_1 is any Borel probability on {y_L} union R_L; if Delta<0 sigma_1 is any Borel probability on R_L; R_L={min_j x_j<a}",
+      "strategy_by_type": "as member_generator",
+      "weak_vote_strategy": "complete threshold rule at mu=0",
+      "belief_system": "mu=0 everywhere",
+      "continuation_rule": "literal C_U low record at every rejection",
+      "payoff_by_type": "V_0=z_L; V_1=z_L if Delta>0; V_1=d if Delta<0; V_1=d=z_L memberwise if Delta=0",
+      "selection_status": "full zero-prior counterfactual strategy correspondence preserved",
+      "payoff_date": "A"
+    },
+    {
+      "family_record_id": "AU-MSB-L",
+      "parameter_domain": "0<nu<1; Delta>=0; nu_off=0; lambda_0>0",
+      "member_parameter_or_selector": "Borel sigma_0,sigma_1 plus pointwise local-Bayes map and literal Markov continuation binder",
+      "member_generator": "sigma_0({y_L})=alpha>0; sigma_1({y_L})=0; posterior high mbar-a.e. elsewhere; used high signals pass with z=z_L, except rejected high signals are also allowed when Delta=0; every disciplined and non-disciplined point passes no-profitable-deviation test",
+      "necessary_and_sufficient_membership_rule": "all generator conditions, local Bayes, D_C coverage, Borel measurability and complete pointwise sequential rationality",
+      "payoff_by_type": "V_0=V_1=z_L",
+      "outcome_distribution": "Gamma_theta from the same binder; agreement probability one when Delta>0; endogenous agreement/delay mix allowed when Delta=0",
+      "selection_status": "pure, discrete, semi-pooling and atomless measures retained",
+      "payoff_date": "A"
+    },
+    {
+      "family_record_id": "AU-MSB-H0",
+      "parameter_domain": "nu_star<nu<1; nu_off=0; lambda_0=0; V in [max(z_L,d),z_H]",
+      "member_parameter_or_selector": "V and Borel sigma_0,sigma_1 plus pointwise local-Bayes map and literal Markov continuation binder",
+      "member_generator": "posterior high mbar-a.e.; used passing signals have z=V and min x_j>=b; used rejecting signals only when V=d; every disciplined and non-disciplined point passes no-profitable-deviation test",
+      "necessary_and_sufficient_membership_rule": "all generator conditions, local Bayes, D_C coverage, Borel measurability and complete pointwise sequential rationality",
+      "payoff_by_type": "V_0=V_1=V",
+      "outcome_distribution": "Gamma_theta; agreement probability one if V>d; endogenous accepted/rejected mix if V=d",
+      "selection_status": "continuum of payoff and signaling classes preserved",
+      "payoff_date": "A"
+    },
+    {
+      "family_record_id": "AU-MSB-HB",
+      "parameter_domain": "nu_star<nu<1; nu_off in (nu_star,1]",
+      "member_parameter_or_selector": "nu_off and literal Markov continuation binder",
+      "member_generator": "sigma_0=sigma_1=delta_y_H",
+      "necessary_and_sufficient_membership_rule": "high off-path belief makes y_H a forcing deviation, so only efficient pooling survives",
+      "payoff_by_type": "V_0=V_1=z_H",
+      "outcome_distribution": "immediate agreement at y_H with probability one for each type",
+      "selection_status": "proposal unique; nu_off and literal continuation-assessment multiplicity preserved",
+      "payoff_date": "A"
+    },
+    {
+      "family_record_id": "AU-MSB-E1",
+      "parameter_domain": "nu=1; nu_off=1",
+      "member_parameter_or_selector": "literal high-continuation binder",
+      "member_generator": "sigma_0=sigma_1=delta_y_H",
+      "strategy_by_type": "both types choose y_H uniquely, including the zero-prior type",
+      "weak_vote_strategy": "complete threshold rule at mu=1",
+      "belief_system": "mu=1 everywhere",
+      "continuation_rule": "literal C_U high record at every rejection",
+      "payoff_by_type": "V_0=V_1=z_H",
+      "selection_status": "unique proposal/outcome/payoff; literal continuation-assessment multiplicity preserved",
+      "payoff_date": "A"
+    }
+  ],
+  "ex_ante_rule": "compute V_0,V_1 first, then (1-nu)V_0+nu V_1",
+  "proof_paths": [
+    "model_redesign/agenda_extension_A_U_msb_contract.md",
+    "model_redesign/agenda_extension_A_U_msb_results.md"
+  ],
+  "mechanical_evidence_path": "quality_reports/verification_outputs/2026-08-29_A_U_msb_blind_verifier_output.txt",
+  "review_status": "two independent external reviews pending"
+}
