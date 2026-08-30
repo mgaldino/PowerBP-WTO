@@ -4,6 +4,16 @@
 # This script verifies hashes and authorization boundaries. It is not a new
 # mathematical review of A_M, A_U, AC, or AR.
 
+args <- commandArgs(trailingOnly = TRUE)
+if (length(args) > 1L) {
+  stop("Usage: Rscript scripts/verify_agenda_extension_status_current.R [OUTPUT_PATH]")
+}
+if (length(args) == 1L) {
+  dir.create(dirname(args[[1L]]), recursive = TRUE, showWarnings = FALSE)
+  sink(args[[1L]], split = TRUE)
+  on.exit(sink(), add = TRUE)
+}
+
 if (!requireNamespace("jsonlite", quietly = TRUE)) {
   stop("Package 'jsonlite' is required.", call. = FALSE)
 }
@@ -116,6 +126,21 @@ record_check(
               "1c4720e99a1d72ec1533578a141e476679650eded2a333ac3a95f87e7d441b2b"),
   "A_U blind lock, candidates, review and adjudication commits, and round-2 manifest are pinned"
 )
+record_check(
+  identical(status$a_c_candidate_snapshot$authorization_commit,
+            "a92175096f0a13340416825510e7b755b64a9c64") &&
+    identical(status$a_c_candidate_snapshot$substantive_commit,
+              "efeee0264bfe4f80e042bcced3a10dc313a452fe") &&
+    identical(status$a_c_candidate_snapshot$packaged_candidate_commit,
+              "886c440c4ea882cca42472975e6316c927c86a6e") &&
+    identical(status$a_c_candidate_snapshot$candidate_manifest_sha256,
+              "6ba078efb05f7aea628f73644e26a05e26dd6de592237a239855a365e6389d9a") &&
+    identical(status$a_c_candidate_snapshot$game_dag_sha256,
+              "bd440d445e4fdc70b0825abd2bde7acd7ad5d045c7fa9c337e1adfeb63cdf9c6") &&
+    identical(status$a_c_candidate_snapshot$mechanical_result,
+              "941 PASS / 0 FAIL"),
+  "A_C authorization, substantive and packaging commits, manifest, DAG, and mechanical result are pinned"
+)
 
 record_check(
   identical(sha256(status$authority$path), status$authority$sha256),
@@ -144,6 +169,16 @@ record_check(
   identical(sha256(status$a_u_candidate_snapshot$candidate_manifest_path),
             status$a_u_candidate_snapshot$candidate_manifest_sha256),
   "A_U candidate manifest bytes match"
+)
+record_check(
+  identical(sha256(status$a_c_candidate_snapshot$candidate_manifest_path),
+            status$a_c_candidate_snapshot$candidate_manifest_sha256),
+  "A_C candidate manifest bytes match"
+)
+record_check(
+  identical(sha256(status$a_c_candidate_snapshot$game_dag_path),
+            status$a_c_candidate_snapshot$game_dag_sha256),
+  "A_C dependency DAG bytes match"
 )
 
 a_m <- node_by_id(status, "A_M")
@@ -178,8 +213,11 @@ record_check(
 )
 record_check(
   identical(ac$status, "pending") && identical(ac$frozen, FALSE) &&
-    identical(ac$authorization, "none"),
-  "AC remains pending/unfrozen and unauthorized"
+    identical(ac$authorization, "start_authorized") &&
+    identical(ac$mechanical_result, "941 PASS / 0 FAIL") &&
+    identical(ac$review_status,
+              "two independent read-only formal reviews pending"),
+  "AC is a start-authorized pending/unfrozen candidate awaiting two reviews"
 )
 record_check(
   identical(ar$status, "pending") && identical(ar$frozen, FALSE) &&
@@ -278,6 +316,42 @@ for (relative_path in names(expected_a_u_candidate_hashes)) {
     sprintf("frozen A_U bytes match: %s", relative_path)
   )
 }
+
+expected_a_c_candidate_hashes <- c(
+  "model_redesign/agenda_extension_AC_msb_contract.md" =
+    "d09958a447cc440586c000f92c10982ae1f786a94845c602d714c6ff284a8b14",
+  "model_redesign/agenda_extension_AC_msb_results.md" =
+    "479c0089a1ed6a08dc9ffd8061933d248505c9b753a036f812f5b163586d8e77",
+  "model_redesign/agenda_extension_AC_msb_interface.json" =
+    "103b564bd15af69dbb45c6b57cd16a0228d3c60a24b758ad779f6b75e7fe2cdf",
+  "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv" =
+    "f753140181d6ac51cd9edcb54ba449b207c1315288225e36f14ca90db5deb7d1",
+  "scripts/verify_agenda_extension_AC_msb.R" =
+    "bf69fb434cc05cc53ecab97080989cf2526979c903f17cf0e33c768acb945e51",
+  "quality_reports/verification_outputs/2026-08-30_AC_msb_verifier_output.txt" =
+    "7d039c00e8ab092b8a3402771062ff83c01d1669e75ab8230b5897b8f530965a"
+)
+for (relative_path in names(expected_a_c_candidate_hashes)) {
+  record_check(
+    identical(sha256(relative_path),
+              unname(expected_a_c_candidate_hashes[[relative_path]])),
+    sprintf("A_C candidate bytes match: %s", relative_path)
+  )
+}
+record_check(
+  identical(ac$authorization_record$sha256,
+            "ea4e2e9b9e1296aecd64760f058f0097ff4281f6a9b301373feeea2591092f95") &&
+    identical(sha256(ac$authorization_record$path),
+              ac$authorization_record$sha256),
+  "A_C start-authorization bytes match"
+)
+record_check(
+  identical(ac$candidate_manifest$sha256,
+            "6ba078efb05f7aea628f73644e26a05e26dd6de592237a239855a365e6389d9a") &&
+    identical(sha256(ac$candidate_manifest$path),
+              ac$candidate_manifest$sha256),
+  "A_C node record pins the candidate manifest"
+)
 
 expected_a_u_review_hashes <- c(
   "quality_reports/2026-08-29_A_U_msb_formal_review_1.md" =
@@ -433,6 +507,10 @@ record_check(
 record_check(
   any(grepl("A_U.*pass/frozen", status_md, fixed = FALSE, useBytes = TRUE)),
   "human-readable status identifies A_U as pass/frozen"
+)
+record_check(
+  any(grepl("A_C.*pending/unfrozen", status_md, fixed = FALSE, useBytes = TRUE)),
+  "human-readable status identifies A_C as pending/unfrozen"
 )
 record_check(
   any(grepl("R2-I-1", status_md, fixed = TRUE, useBytes = TRUE)),

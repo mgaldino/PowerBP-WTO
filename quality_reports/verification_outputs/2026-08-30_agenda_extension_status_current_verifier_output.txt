@@ -8,12 +8,15 @@ PASS | A_U final gate manifest hash is pinned
 PASS | candidate manifest hash is pinned
 PASS | terminal closure commit is pinned
 PASS | A_U blind lock, candidates, review and adjudication commits, and round-2 manifest are pinned
+PASS | A_C authorization, substantive and packaging commits, manifest, DAG, and mechanical result are pinned
 PASS | terminal authority bytes match
 PASS | final gate manifest bytes match
 PASS | A_U terminal authority bytes match
 PASS | A_U final gate manifest bytes match
 PASS | candidate manifest bytes match
 PASS | A_U candidate manifest bytes match
+PASS | A_C candidate manifest bytes match
+PASS | A_C dependency DAG bytes match
 PASS | A_M has exactly one current status record
 PASS | A_U has exactly one current status record
 PASS | AC has exactly one current status record
@@ -22,7 +25,7 @@ PASS | A_M is pass/frozen with terminal author approval
 PASS | A_U is pass/frozen with terminal author approval
 PASS | A_U two-layer interface is recorded as twice reviewed and independently adjudicated
 PASS | A_U-specific author decision bytes match
-PASS | AC remains pending/unfrozen and unauthorized
+PASS | AC is a start-authorized pending/unfrozen candidate awaiting two reviews
 PASS | AR remains pending/unfrozen and unauthorized
 PASS | structured status lists the four exact frozen A_M artifact hashes
 PASS | frozen bytes match: model_redesign/agenda_extension_A_M_msb_results.md
@@ -41,6 +44,14 @@ PASS | frozen A_U bytes match: model_redesign/agenda_extension_A_U_msb_interface
 PASS | frozen A_U bytes match: model_redesign/agenda_extension_A_U_msb_claim_ledger.tsv
 PASS | frozen A_U bytes match: scripts/verify_agenda_extension_A_U_msb.R
 PASS | frozen A_U bytes match: quality_reports/verification_outputs/2026-08-30_A_U_msb_two_layer_verifier_output.txt
+PASS | A_C candidate bytes match: model_redesign/agenda_extension_AC_msb_contract.md
+PASS | A_C candidate bytes match: model_redesign/agenda_extension_AC_msb_results.md
+PASS | A_C candidate bytes match: model_redesign/agenda_extension_AC_msb_interface.json
+PASS | A_C candidate bytes match: model_redesign/agenda_extension_AC_msb_claim_ledger.tsv
+PASS | A_C candidate bytes match: scripts/verify_agenda_extension_AC_msb.R
+PASS | A_C candidate bytes match: quality_reports/verification_outputs/2026-08-30_AC_msb_verifier_output.txt
+PASS | A_C start-authorization bytes match
+PASS | A_C node record pins the candidate manifest
 PASS | A_U round-2 candidate has two current reviews and a current adjudication
 PASS | A_U round-2 reviews are both pinned as PASS 0/0/0
 PASS | A_U round-2 review bytes match: quality_reports/2026-08-30_A_U_msb_two_layer_round2_formal_review_1.md
@@ -66,6 +77,7 @@ PASS | simplified pre-M/S/B DAG still records its historical A_M pending state
 PASS | no downstream, manuscript, tag, merge, or push authorization is introduced
 PASS | human-readable status identifies A_M as pass/frozen
 PASS | human-readable status identifies A_U as pass/frozen
+PASS | human-readable status identifies A_C as pending/unfrozen
 PASS | human-readable status records the confirmed A_U interface finding
 PASS | human-readable status records the clean A_U round-2 adjudication
-SUMMARY | 70 PASS | 0 FAIL
+SUMMARY | 82 PASS | 0 FAIL

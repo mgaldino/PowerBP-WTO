@@ -9,18 +9,51 @@
 ## Resposta curta
 
 `A_M` e `A_U` sob M/S/B estão **`pass/frozen`** nos respectivos bytes exatos
-aprovados. Em `A_U`, a arquitetura em duas camadas foi implementada, recebeu
-dois pareceres independentes **`PASS 0/0/0`**, adjudicação com **zero defeitos
-confirmados** e aprovação autoral terminal. `AC` e `AR` continuam
-**`pending/unfrozen`** e não estão autorizados. Não há autorização para migrar
-resultados ao manuscrito, criar tag, fazer merge ou push.
+aprovados. `A_C` foi autorizado, derivado e empacotado como um candidato
+**`pending/unfrozen`**; ainda aguarda dois pareceres independentes, adjudicação e
+aprovação autoral terminal. `A_R` continua não autorizado. Não há autorização
+para migrar resultados ao manuscrito, criar tag, fazer merge ou push.
 
 | Nó | Status atual | Pode ser executado ou consumido agora? |
 |---|---|---|
 | `A_M` | `pass/frozen` | Apenas os bytes congelados podem ser citados; o status não autoriza trabalho downstream. |
 | `A_U` | `pass/frozen`; revisões, adjudicação e aprovação autoral terminal concluídas | Apenas os bytes congelados podem ser citados; o status não inicia `AC`. |
-| `AC` | `pending/unfrozen` | Não. Depende do fechamento revisado de `A_U` e de provas de suficiência ou fatoração específicas da operação. |
+| `AC` | candidato `pending/unfrozen`; início autorizado | Pode ser revisado nos hashes do manifesto; ainda não pode ser citado como resultado congelado. |
 | `AR` | `pending/unfrozen` | Não. Exige GO autoral separado após o pacote privado revisado. |
+
+## Candidato atual de `A_C`
+
+O autor autorizou o início com a frase “A_c pode iniciar, autorizado.” O registro
+está em `quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md`
+(SHA-256
+`ea4e2e9b9e1296aecd64760f058f0097ff4281f6a9b301373feeea2591092f95`).
+O núcleo matemático foi fixado no commit
+`efeee0264bfe4f80e042bcced3a10dc313a452fe` e o pacote de revisão, no commit
+`886c440c4ea882cca42472975e6316c927c86a6e`.
+
+O manifesto
+`quality_reports/2026-08-30_AC_msb_candidate_manifest.sha256` (SHA-256
+`6ba078efb05f7aea628f73644e26a05e26dd6de592237a239855a365e6389d9a`)
+fixa seis artefatos. O candidato forma primeiro o produto de binders completos
+de `A_M` e `A_U` na mesma economia e na mesma fibra `(rho,nu_off)`. Só depois
+aplica o resumo econômico, mediante prova específica de fatoração mensurável.
+Os contrastes são calculados por tipo e então agregados pelo prior, sem novo
+desconto.
+
+Além do operador exato de conjuntos e sinais, o candidato prova a condição
+suficiente selection-free
+
+```text
+beta*o_1<c/m  =>  V_M^theta>V_U^theta para theta=0,1.
+```
+
+Na igualdade a dominância de maioria é fraca. A condição não é necessária; fora
+dela, o ranking continua sendo uma correspondência que pode depender da seleção.
+
+O verificador retornou `941 PASS / 0 FAIL`. Isso é evidência mecânica, não prova
+formal independente. Dois pareceres read-only sobre exatamente o manifesto
+acima, seguidos de adjudicação, são o próximo gate. Mesmo dois `PASS` não
+congelam `A_C` sem aprovação autoral terminal.
 
 ## Status próprio de `A_U`
 
@@ -81,8 +114,10 @@ e o manifesto final
 `quality_reports/2026-08-30_A_U_msb_two_layer_final_gate_manifest.sha256`
 (SHA-256
 `b85741b2176c4480f5f3632c4464a93cebabb5dd4f71636626917b9227030180`)
-fixam os bytes aprovados. A pergunta subsequente do autor sobre `AC` não o
-autoriza: `AC` continua `pending/unfrozen` até GO separado.
+fixam os bytes aprovados. A pergunta subsequente do autor sobre `AC` não o havia
+autorizado naquele momento; a autorização separada posterior está registrada na
+seção anterior. `A_C` agora é um candidato `pending/unfrozen`, não um resultado
+terminalmente aprovado.
 
 Os pareceres históricos de 2026-08-29 permanecem como proveniência da lacuna
 que motivou a arquitetura em duas camadas; não governam os bytes agora
