@@ -1,4 +1,4 @@
-# `A_T` — efeito total do poder de agenda
+# `A_T` — efeito total da etapa obrigatória de agenda
 
 **Data:** 2026-08-30  
 **Status:** `IMPLEMENTER CANDIDATE / UNREVIEWED / UNFROZEN`  
@@ -14,7 +14,9 @@ T_g^theta=V_g^{A,theta}-beta*V_g^{N,R1,theta}.
 ```
 
 Ele compara o jogo com agenda e informação privada ao jogo com **informação
-apenas**, isto é, informação privada sem a oportunidade anterior de agenda.
+apenas**, isto é, informação privada sem a etapa anterior obrigatória na qual
+`H` propõe. O tratamento não é uma opção facultativa: com agenda, `H` precisa
+propor na data `A`; sem agenda, o jogo começa diretamente em `R1`.
 
 Para cada regra,
 
@@ -125,8 +127,8 @@ D_M(o)=
 é estritamente positivo para `o<tau_M`, com a fórmula de inclusão própria em
 `o<=1/m`, e é zero para `o>=tau_M`. Nunca é negativo.
 
-**Intuição.** Com outside option baixa ou moderada, `H` usa a oportunidade
-anterior para obter acordo antes da continuação. Com outside option alta, sua
+**Intuição.** Com outside option baixa ou moderada, `H` usa a etapa anterior
+para obter acordo antes da continuação. Com outside option alta, sua
 melhor proposta induz atraso e entrega exatamente `beta*o`, o mesmo valor do
 controle sem agenda transportado para `A`; a oportunidade de propor não tem
 valor direto.
@@ -190,7 +192,7 @@ T_U=none.
 Isso não apaga uma célula de agenda existente; apenas impede formar o efeito
 causal porque o braço de controle não possui PBE no conceito mantido.
 
-### 4.3 Prior alto, crença off-path baixa
+### 4.3 Prior alto, crença off-path degenerada em `rho=0`
 
 Se `nu_star<nu<1` e `rho=0`, o payoff de agenda é comum aos tipos,
 
@@ -208,7 +210,26 @@ T_U^theta in [max{Delta_U,0},1-beta].
 O efeito é fracamente positivo para ambos. Ele é zero apenas no membro
 `u=d_H` quando `d_H>=z_L`; é estritamente positivo nos demais membros.
 
-### 4.4 Prior alto, crença off-path alta, e `nu=1`
+### 4.4 Prior alto, crença off-path baixa positiva
+
+Se
+
+```text
+nu_star<nu<1 e nu_off in (0,nu_star],
+```
+
+o braço com agenda sob unanimidade é `none`, enquanto o controle sem agenda
+existe. Pela regra de propagação de ausência,
+
+```text
+T_U=none,
+DeltaT=none.
+```
+
+O contraste diagonal `Q_U` continua existindo nessa fibra porque não utiliza o
+braço privado com agenda.
+
+### 4.5 Prior alto, crença off-path alta, e `nu=1`
 
 ```text
 T_U^{01}=(1-beta,1-beta).
@@ -217,8 +238,13 @@ T_U^{01}=(1-beta,1-beta).
 **Teorema AT-MSB-T4 — agenda versus informação apenas sob unanimidade.** Em
 toda célula em que os dois braços possuem PBE, introduzir a etapa de agenda sob
 informação privada beneficia fracamente cada tipo de `H`. O ganho máximo é
-`1-beta`; zero é possível somente na célula alta `rho=0` descrita acima. Em
-prior baixo positivo, o efeito é `none`, não zero.
+`1-beta`. Zero é possível (i) na coordenada contrafactual do tipo alto em
+`nu=0` quando `Delta_U<=0` e (ii) no membro `u=d_H` da célula alta `rho=0`
+quando `d_H>=z_L`. Nas células `none` — prior baixo positivo por ausência do
+controle, ou prior alto com `nu_off in (0,nu_star]` por ausência do tratamento —
+o efeito é indefinido, não zero. O efeito ex ante em `nu=0` continua sendo
+estritamente positivo e igual a `1-beta`, pois o tipo alto tem probabilidade
+zero nesse endpoint.
 
 ## 5. Efeito total sob informação privada: maioria
 
@@ -342,7 +368,7 @@ O candidato prova por tradução de fontes congeladas:
 - o desenho fatorial e as identidades `T=D+I` e `DeltaT=DeltaD+DeltaI`;
 - os efeitos diretos fechados sob `U` e `M`;
 - a comparação direta `DeltaD` por ramos;
-- a classificação completa de `T_U`;
+- a classificação completa de `T_U`, inclusive as duas famílias `none`;
 - a representação exata selection-free de `T_M` e `DeltaT`;
 - o contraste diagonal `Q_U` e a representação de `Q_M`;
 - as regras de existência e `none`.

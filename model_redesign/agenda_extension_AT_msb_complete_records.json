@@ -49,7 +49,9 @@
       "institution": "unanimity",
       "source_interaction": "AR-INT-U",
       "operation": "translate every exact I_U vector by (1-beta,1-beta)",
-      "exact_cells": "nu=0: (1-beta,max{Delta_U,0}); low positive prior: none; high rho=0: {(u-d_H,u-d_H)}; high offpath-high and nu=1: (1-beta,1-beta)"
+      "exact_cells": "nu=0: (1-beta,max{Delta_U,0}); 0<nu<=nu_star: none because the no-agenda control is none; nu_star<nu<1 and rho=0: {(u-d_H,u-d_H): u in [max{z_L,d_H},z_H]}; nu_star<nu<1 and nu_off in (0,nu_star]: none because the agenda-private arm is none; nu_star<nu<1 and nu_off in (nu_star,1], plus nu=1: (1-beta,1-beta)",
+      "zero_members": "at nu=0 the counterfactual high-type coordinate is zero iff Delta_U<=0; in the high-prior rho=0 family the linked member is zero iff u=d_H, possible when d_H>=z_L",
+      "none_implication": "DeltaT is none whenever T_U is none; Q_U is unaffected by absence of the agenda-private arm"
     },
     {
       "record_id": "AT-T-M",

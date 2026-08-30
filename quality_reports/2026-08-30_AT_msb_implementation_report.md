@@ -1,7 +1,7 @@
-# Relatório de implementação — `A_T`, efeito total do poder de agenda
+# Relatório de implementação — `A_T`, efeito total da etapa obrigatória de agenda
 
 **Data:** 2026-08-30  
-**Status:** `IMPLEMENTED CANDIDATE / MECHANICALLY CHECKED / PENDING INDEPENDENT REVIEW`  
+**Status:** `REPAIRED CANDIDATE / MECHANICALLY CHECKED / PENDING INDEPENDENT RE-REVIEW`
 **Branch:** `codex/agenda-total-effect`
 
 ## 1. Lacuna fechada
@@ -37,9 +37,11 @@ T_g=V_g^A-beta*V_g^N=D_g+I_g.
 - Sob maioria e informação completa, `D_M>0` abaixo do limiar de atraso
   `tau_M` e `D_M=0` a partir dele.
 - Sob informação privada e unanimidade, `T_U` é fracamente positivo em toda
-  célula em que ambos os braços existem; pode ser zero numa fronteira alta.
+  célula em que ambos os braços existem. Pode ser zero na coordenada
+  contrafactual alta em `nu=0` e numa fronteira da família alta `rho=0`.
 - Em prior baixo positivo, `T_U=none` porque o braço sem agenda não possui PBE
-  puro, ainda que o braço com agenda possa existir.
+  puro. Em prior alto com crença off-path baixa positiva, `T_U=none` porque o
+  braço com agenda não possui PBE puro. Ausência nunca é recodificada como zero.
 - Sob maioria, `T_M=D_M+I_M` permanece set-valued, sem sinal geral imposto.
 - A diferença institucional satisfaz `DeltaT=DeltaD+DeltaI`.
 
@@ -58,18 +60,29 @@ T_g=V_g^A-beta*V_g^N=D_g+I_g.
 Resultado:
 
 ```text
-45 PASS / 0 FAIL
+49 PASS / 0 FAIL
 ```
 
-O harness conferiu hashes congelados, manifests, schemas, 21 claims, datas,
+O harness conferiu hashes congelados, manifests, schemas, 22 claims, datas,
 identidades fatoriais, fórmulas por ramos em uma grade de 4.380 pontos e 250
-amostras adicionais para as células fechadas de unanimidade. Ele também
-confirmou que o Rmd e o PDF v6 permanecem nos hashes aprovados.
+amostras adicionais para as células fechadas de unanimidade. Também testa a
+célula alta `none`, o domínio completo de `u` e o endpoint em que a coordenada
+contrafactual alta é zero. O Rmd e o PDF v6 permanecem nos hashes aprovados.
 
 O harness não prova completude de PBE, sinal dos conjuntos de maioria,
 legitimidade de seleção cross-world ou relevância empírica.
 
-## 6. Próximo gate
+## 6. Reparos após a primeira rodada independente
+
+Dois pareceres independentes sobre o commit `422a3e61d61c26d090ad1fc8f324636fe0bf421e`
+detectaram a mesma célula alta `none` omitida e a classificação incompleta dos
+casos de efeito zero. O parecer matemático acrescentou que o registro completo
+da família `rho=0` precisava quantificar `u`. Os três pontos foram incorporados.
+O rótulo causal também passou a nomear literalmente o tratamento do game form:
+inserir uma etapa anterior e obrigatória de proposta por `H`, e não conceder
+uma opção facultativa.
+
+## 7. Próximo gate
 
 O candidato deve ser revisado por leitores independentes sobre bytes fixos.
 Qualquer finding substantivo deve ser adjudicado antes de solicitar aprovação

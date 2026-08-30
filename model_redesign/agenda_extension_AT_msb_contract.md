@@ -1,4 +1,4 @@
-# Contrato de `A_T` — efeito total do poder de agenda
+# Contrato de `A_T` — efeito total da etapa obrigatória de agenda
 
 **Data:** 2026-08-30  
 **Nó:** `A_T`  
@@ -7,9 +7,9 @@
 
 ## 1. Pergunta e autorização
 
-`A_T` responde qual é o efeito estrutural de dar a `H` uma oportunidade de
-propor na data `A`, separadamente sob maioria e unanimidade, quando a informação
-é completa e quando o tipo permanece privado.
+`A_T` responde qual é o efeito estrutural de inserir uma etapa anterior e
+**obrigatória** na qual `H` propõe na data `A`, separadamente sob maioria e
+unanimidade, quando a informação é completa e quando o tipo permanece privado.
 
 A autorização literal e os limites estão em
 `quality_reports/plans/2026-08-30_autorizacao_efeito_total_agenda.md`, SHA-256
@@ -32,8 +32,9 @@ entra por seus registros completos congelados.
 
 ## 3. Data e tratamento
 
-O estágio `A` é a data 0. O jogo sem agenda começa em `R1`, uma data depois.
-Assim, o efeito da **oportunidade adicional de agenda** compara:
+O estágio `A` é a data 0. Nele, `H` precisa fazer uma proposta: o game form não
+contém ação nula, renúncia ou passagem. O jogo sem agenda começa diretamente em
+`R1`, uma data depois. Assim, o efeito da **etapa obrigatória de agenda** compara:
 
 ```text
 valor com agenda na data A - beta * valor sem agenda na data R1.
@@ -43,8 +44,12 @@ O fator `beta` aparece uma única vez no braço sem agenda. Um contraste sem ess
 fator responderia a outra pergunta — substituir o proponente mantendo a data
 fixa — e não é o tratamento definido no contrato aprovado da extensão.
 
-O termo "causal" é estrutural e interno ao modelo. Não é uma afirmação causal
-empírica.
+O tratamento é, portanto, `inserir a etapa anterior e obrigatória de proposta -
+iniciar diretamente em R1`. Ele não é o valor de uma opção facultativa de
+propor, nem o efeito de trocar o proponente mantendo a data fixa. Sob informação
+privada, a proposta obrigatória também pode revelar informação e alterar crenças
+e continuações. O termo "causal" é estrutural e interno ao modelo; não é uma
+afirmação causal empírica.
 
 ## 4. Desenho fatorial `2 x 2`
 

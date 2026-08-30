@@ -115,22 +115,27 @@ expected_columns <- c(
   "source_hashes", "payoff_date", "evidence_path", "proof_path"
 )
 check("AT ledger has exact 16-column schema", identical(names(ledger), expected_columns))
-check("AT ledger has 21 unique sequential claims",
-      nrow(ledger) == 21L && !anyDuplicated(ledger$claim_id) &&
-        identical(ledger$claim_id, sprintf("AT-MSB-%03d", seq_len(21L))))
+check("AT ledger has 22 unique sequential claims",
+      nrow(ledger) == 22L && !anyDuplicated(ledger$claim_id) &&
+        identical(ledger$claim_id, sprintf("AT-MSB-%03d", seq_len(22L))))
 check("all AT ledger claims are proved candidate claims", all(ledger$status == "proved"))
 check("all AT ledger payoffs are dated A", all(ledger$payoff_date == "A"))
 
 contract_text <- paste(readLines(candidate_paths[[1L]], warn = FALSE, encoding = "UTF-8"), collapse = "\n")
 results_text <- paste(readLines(candidate_paths[[2L]], warn = FALSE, encoding = "UTF-8"), collapse = "\n")
 interface_text <- paste(readLines(candidate_paths[[3L]], warn = FALSE, encoding = "UTF-8"), collapse = "\n")
+complete_records_text <- paste(
+  readLines(candidate_paths[[4L]], warn = FALSE, encoding = "UTF-8"),
+  collapse = "\n"
+)
 
 required_contract_strings <- c(
   "T_g^theta=D_g^theta+I_g^theta",
   "DeltaT^theta=DeltaD^theta+DeltaI^theta",
   "compara dois pacotes",
   "`beta` aparece uma única vez",
-  "seleção cross-world"
+  "seleção cross-world",
+  "**obrigatória**"
 )
 for (needle in required_contract_strings) {
   check(sprintf("contract contains required guard: %s", needle),
@@ -154,12 +159,28 @@ required_interface_strings <- c(
   "T_g^theta=D_g^theta+I_g^theta",
   "set_valued_no_general_sign",
   "not_a_single_factor_causal_effect",
-  "if any required arm is none, the composed effect is none"
+  "if any required arm is none, the composed effect is none",
+  "AT-T-U-HIGH-NONE"
 )
 for (needle in required_interface_strings) {
   check(sprintf("interface exposes required object: %s", needle),
         grepl(needle, interface_text, fixed = TRUE, useBytes = TRUE))
 }
+
+check(
+  "results enumerate high-prior none and both U zero families",
+  grepl("nu_off in (0,nu_star]", results_text, fixed = TRUE, useBytes = TRUE) &&
+    grepl("coordenada contrafactual do tipo alto", results_text,
+          fixed = TRUE, useBytes = TRUE) &&
+    grepl("membro `u=d_H`", results_text, fixed = TRUE, useBytes = TRUE)
+)
+check(
+  "complete records retain the linked u member domain",
+  grepl(
+    "{(u-d_H,u-d_H): u in [max{z_L,d_H},z_H]}",
+    complete_records_text, fixed = TRUE, useBytes = TRUE
+  )
+)
 
 set.seed(20260830)
 grid <- expand.grid(

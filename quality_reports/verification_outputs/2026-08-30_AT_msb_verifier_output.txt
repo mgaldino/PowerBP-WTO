@@ -18,7 +18,7 @@ PASS | candidate artifact exists: model_redesign/agenda_extension_AT_msb_complet
 PASS | candidate artifact exists: model_redesign/agenda_extension_AT_msb_claim_ledger.tsv
 PASS | AT interface and complete-record export are valid JSON
 PASS | AT ledger has exact 16-column schema
-PASS | AT ledger has 21 unique sequential claims
+PASS | AT ledger has 22 unique sequential claims
 PASS | all AT ledger claims are proved candidate claims
 PASS | all AT ledger payoffs are dated A
 PASS | contract contains required guard: T_g^theta=D_g^theta+I_g^theta
@@ -26,6 +26,7 @@ PASS | contract contains required guard: DeltaT^theta=DeltaD^theta+DeltaI^theta
 PASS | contract contains required guard: compara dois pacotes
 PASS | contract contains required guard: `beta` aparece uma única vez
 PASS | contract contains required guard: seleção cross-world
+PASS | contract contains required guard: **obrigatória**
 PASS | results contain required result/limit: T_U=none
 PASS | results contain required result/limit: T_M^{01}=D_M^{01}+I_M^{01}
 PASS | results contain required result/limit: Q_g^theta=h_g^A(o_theta)-beta*V_g^{N,R1,theta}
@@ -36,6 +37,9 @@ PASS | interface exposes required object: T_g^theta=D_g^theta+I_g^theta
 PASS | interface exposes required object: set_valued_no_general_sign
 PASS | interface exposes required object: not_a_single_factor_causal_effect
 PASS | interface exposes required object: if any required arm is none, the composed effect is none
+PASS | interface exposes required object: AT-T-U-HIGH-NONE
+PASS | results enumerate high-prior none and both U zero families
+PASS | complete records retain the linked u member domain
 PASS | full grid: D_U=1-beta
 PASS | full grid: D_M piecewise identity
 PASS | full grid: D_M is nonnegative
@@ -50,4 +54,4 @@ PASS | 250 samples: generic factorial identity T=D+I
 PASS | approved v6 Rmd remains unchanged
 PASS | approved v6 PDF remains unchanged
 
-SUMMARY | 45 PASS | 0 FAIL
+SUMMARY | 49 PASS | 0 FAIL

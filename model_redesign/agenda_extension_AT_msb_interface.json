@@ -115,6 +115,15 @@
       "coordinate_range": "[max{Delta_U,0},1-beta]"
     },
     {
+      "cell_id": "AT-T-U-HIGH-NONE",
+      "domain": "nu_star<nu<1 and nu_off in (0,nu_star]",
+      "status": "none",
+      "effect_vector": null,
+      "reason": "the agenda private-unanimity arm is none while the no-agenda control exists",
+      "institutional_total_effect": "none",
+      "diagonal_contrast": "continues to exist because it does not use the agenda private-information arm"
+    },
+    {
       "cell_id": "AT-T-U-HIGH-OFFPATH-HIGH",
       "domain": "nu_star<nu<1 and nu_off in (nu_star,1]",
       "status": "exists",
@@ -155,6 +164,13 @@
     "type_splicing": "forbidden",
     "selection": "none added",
     "none": "if any required arm is none, the composed effect is none"
+  },
+  "causal_treatment_scope": {
+    "treatment": "insert an earlier mandatory H-proposal stage at A rather than start directly at R1",
+    "null_pass_or_waiver_action": false,
+    "optional_proposal_value": false,
+    "same_date_proposer_reassignment": false,
+    "private_information_note": "the mandatory proposal is an informative action and can change beliefs and continuations"
   },
   "proof_paths": [
     "model_redesign/agenda_extension_AT_msb_contract.md",
