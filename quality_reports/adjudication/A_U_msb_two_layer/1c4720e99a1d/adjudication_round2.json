@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a-u-msb-two-layer:8e86bab8ea10:round2",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-08-30_A_U_msb_two_layer_round2_candidate_manifest.sha256",
+    "sha256": "1c4720e99a1d72ec1533578a141e476679650eded2a333ac3a95f87e7d441b2b",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-08-30_A_U_msb_two_layer_round2_formal_review_1.md",
+      "sha256": "6432708aabe1694603c99eb8df4e8b1ecda196ef8df8244128fd1b8f20c5be75"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-08-30_A_U_msb_two_layer_round2_formal_review_2.md",
+      "sha256": "3ae8bcf4e858f10784a25d548526a88f8d66469428c7c7ab0195704659458b84"
+    }
+  ],
+  "findings": [],
+  "summary": {
+    "total": 0,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "NO_CONFIRMED_DEFECTS",
+    "checked_at": "2026-08-30T09:38:26-03:00",
+    "reasons": [
+      "O HEAD candidato 8e86bab8ea10f75e6fd5aeeb230a9e260479483a e o manifesto de SHA-256 1c4720e99a1d72ec1533578a141e476679650eded2a333ac3a95f87e7d441b2b foram identificados sem ambiguidade; as 20 entradas passaram no shasum e o HEAD posterior só acrescenta os dois pareceres.",
+      "Os dois pareceres independentes cobrem o mesmo snapshot, têm os hashes declarados e reportam PASS 0/0/0; a adjudicação voltou diretamente aos artefatos e não decidiu por concordância.",
+      "O checker oficial passou em texto e JSON com exit status zero, VALID, valid=true e errors=[], confirmando o fechamento mecânico de R2-M-1.",
+      "Contrato, resultados, interface, ledger, verificador R e output matemático são byte a byte idênticos entre be482e3 e 8e86bab, de modo que o reparo permaneceu restrito ao DAG.",
+      "Ready: AC é apenas prontidão topológica; AC continua pending e explicitamente não autorizado, e A_U permanece pending/unfrozen até aprovação terminal do autor."
+    ]
+  }
+}
