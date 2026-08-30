@@ -1,19 +1,19 @@
 ---
 title: "Guia Matemático para as Provas do Paper"
 subtitle: "Informational Power Through Pivotality: How Consensus Can Benefit a Hegemon"
-author: "Documento auxiliar"
+author: "Documento auxiliar de estudo"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
+  bookdown::pdf_document2:
     latex_engine: xelatex
     toc: true
     toc_depth: 3
     number_sections: true
 header-includes:
   - \usepackage{amsmath,amssymb,amsthm}
-  - \usepackage{booktabs}
-  - \usepackage{longtable}
-  - \usepackage{array}
+  - \usepackage{booktabs,longtable,array}
+  - \usepackage{microtype}
+  - \usepackage{enumitem}
   - \usepackage{hyperref}
   - \newtheorem{theorem}{Teorema}[section]
   - \newtheorem{definition}[theorem]{Definição}
@@ -24,849 +24,740 @@ header-includes:
   - \newtheorem{remark}[theorem]{Observação}
   - \newcommand{\R}{\mathbb{R}}
   - \newcommand{\N}{\mathbb{N}}
-  - \setlength{\parskip}{0.5em}
-geometry: margin=2.5cm
-fontsize: 12pt
+  - \newcommand{\E}{\mathbb{E}}
+  - \newcommand{\Prob}{\mathbb{P}}
+  - \setlength{\parskip}{0.45em}
+geometry: margin=2.35cm
+fontsize: 11pt
 mainfont: Times New Roman
+link-citations: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
+                      fig.align = "center", out.width = "90%")
+source("scripts/math_guide_figures.R", encoding = "UTF-8")
 ```
 
-# Introdução
+# Como usar este guia
 
-Este guia explica a matemática necessária para acompanhar as provas do paper
+Este guia explica a matemática efetivamente usada nas provas de
 *Informational Power Through Pivotality: How Consensus Can Benefit a Hegemon*,
-versão `formal_model_v6.Rmd`. O objetivo não é ensinar teoria dos jogos ou
-análise matemática do zero. O objetivo é tornar transparentes os passos que
-aparecem nas demonstrações: redução por thresholds, comparação de candidatos,
-restrições de incentivo, envelopes superiores, inclusão de conjuntos e sinais
-de diferenças de payoff.
+na versão congelada de `formal_model_v6.Rmd` de 25 de agosto de 2026. Ele não é
+um livro-texto geral. Seu objetivo é permitir que o leitor reconstrua cada
+resultado do paper, reconheça os pontos delicados e saiba verificar sozinho se
+uma derivação está correta.
 
-O leitor-alvo conhece cálculo de uma variável, álgebra elementar, análise real
-básica e teoria dos jogos em nível de graduação. O guia assume familiaridade com
-equilíbrio de Nash, indução retroativa e a ideia de equilíbrio perfeito
-bayesiano, mas revisa exatamente a parte desses conceitos usada no paper.
+O leitor-alvo conhece álgebra, cálculo de uma variável, probabilidade básica e
+teoria dos jogos em nível de graduação. Tudo que vai além disso é desenvolvido
+aqui. Em particular, o paper não usa Brouwer, Kakutani, Tarski, Topkis,
+Perron-Frobenius, integração de Lebesgue ou programação dinâmica infinita. A
+dificuldade não está em teoremas avançados, mas em cinco disciplinas:
 
-O paper não usa teoremas de ponto fixo, topologia avançada, medida, programação
-dinâmica infinita ou estática comparativa monotônica no sentido de Topkis. As
-provas são finitas e algébricas. A dificuldade está menos em técnicas
-matemáticas pesadas e mais em manter claro qual história de votação induz qual
-posterior, qual threshold é relevante e qual candidato é admissível.
+1. resolver o jogo na ordem correta;
+2. comparar payoffs na mesma data;
+3. atualizar crenças apenas com informação que uma ação pode revelar;
+4. manter juntos estratégias, payoffs e outcomes do mesmo equilíbrio;
+5. provar inexistência sem transformar uma lacuna em um payoff fictício.
 
-## Mini-glossário de siglas e abreviações
+## Roteiro de estudo sugerido
 
-O paper usa algumas abreviações por economia de espaço. Neste guia, elas têm os
-seguintes significados:
+| Etapa | Foco | Meta de domínio |
+|---|---|---|
+| 1 | Seções 1 e 2 | Reconstruir o timing e transportar corretamente valores de R2 para R1. |
+| 2 | Seções 3 e 4 | Derivar os cutoffs e a correspondência de maioria sem consultar o paper. |
+| 3 | Seção 5 | Reproduzir a prova de inexistência em unanimidade perfil por perfil. |
+| 4 | Seção 6 | Calcular (RI_M), (RI_U) e \(\Delta RI\) preservando conjuntos exatos. |
+| 5 | Exercícios e soluções | Resolver primeiro sem olhar a solução; depois explicar cada erro em voz alta. |
 
-\small
-\begin{center}
-\begin{tabular}{p{0.16\textwidth}p{0.70\textwidth}}
-\toprule
-Abreviação & Significado \\
-\midrule
-IC & Restrição de incentivo (*incentive constraint*): condição que garante que um jogador prefere seguir a ação prescrita em vez de desviar. \\
-PBE & Equilíbrio perfeito bayesiano: estratégia e crenças consistentes em um jogo dinâmico com informação incompleta. \\
-R1, R2 & Round 1 e Round 2, isto é, primeira e segunda rodada de barganha. \\
-\(P\) & Candidato pooling: proposta aceita pelos dois tipos de \(H\). \\
-\(L\) & Candidato low-only: proposta aceita apenas pelo tipo low de \(H\). \\
-\(D\) & Candidato delay: proposta que falha sem revelar informação nova. \\
-\bottomrule
-\end{tabular}
-\end{center}
-\normalsize
+Um bom teste final é conseguir explicar por que o paper é matematicamente
+finito e algébrico, mas ainda assim exige cuidado game-teórico: a racionalidade
+sequencial precisa valer também depois de propostas fora do caminho.
+
+## Mini-glossário
+
+| Símbolo ou termo | Significado |
+|---|---|
+| PBE | Equilíbrio perfeito bayesiano: estratégias sequencialmente racionais e crenças atualizadas por Bayes onde possível. |
+| R1, R2 | Primeira e segunda rodadas de barganha. R2 é terminal. |
+| IC | Restrição de incentivo: desigualdade que impede um desvio lucrativo. |
+| as-if-pivotal | Um weak responder compara sim e não condicionalmente ao caso em que seu voto decide o resultado. |
+| (T^Y) | Em indiferença esperada exata no problema relevante, o votante escolhe sim. |
+| pooling | Os dois tipos de (H) tomam a mesma ação ou recebem a mesma oferta aceita. |
+| screening | A oferta separa comportamentos: o tipo baixo aceita e o alto rejeita. |
+| exclusão | A maioria aprova sem o voto de (H), com (y=0). |
+| correspondência | Função set-valued: associa a cada parâmetro um conjunto, possivelmente vazio, de equilíbrios ou payoffs. |
 
 ## Notação essencial
 
-Há um hegemon \(H\) e \(m=N-1\) weak states. O tipo do hegemon é
-\(\theta\in\{0,1\}\), com crença \(\mu=\Pr(\theta=1)\). Um pacote institucional
-\(y\in[0,\bar y]\) favorece \(H\) e reduz um-para-um o excedente da coalizão
-fraca. Os thresholds terminais são \(t_0<t_1\). O payoff externo de \(H\) quando
-nenhum acordo o inclui é \(o_\theta\). A taxa de desconto é
-\(\beta\in(0,1]\).
-
-Sob unanimidade, \(H\) é pivotal. Sob maioria, no benchmark No-Cheap-H, weak
-states podem aprovar sem tornar \(H\) pivotal. Os principais objetos derivados
-são:
+Há um hegemon (H) e (m\geq3) weak states. O total de jogadores é
+(N=m+1), e a quota de maioria é
 
 \[
-a_\theta(\nu)=t_\theta-o_\theta+\beta C_\theta(\nu),
+q=\left\lfloor\frac{N}{2}\right\rfloor+1.
 \]
 
-o threshold dinâmico de aceitação de \(H\) depois de um posterior \(\nu\);
+O tipo de (H) é \(\theta\in\{0,1\}\), com prior
+\(\nu=\Pr(\theta=1)\). Os desacordos satisfazem
+\(0<o_0<o_1<1\), e \(\beta\in(0,1)\) é o fator de desconto de uma
+rodada. Um pacote é
 
 \[
-c(\nu)=\frac{\beta p_2(\nu)}{m},
+s=(y,(x_j)_{j\neq i},r_i),
+\qquad
+y+\sum_{j\neq i}x_j+r_i\leq1.
 \]
 
-o valor de continuação de um weak voter sob unanimidade; e
+Aqui (y) é a concessão a (H), (x_j) é o pagamento ao weak responder
+(j) e (r_i) é o residual do proponente. Os objetos derivados mais usados
+são
 
 \[
-\Delta_H(\mu)=V_H^U(\mu)-V_H^M(\mu),
+w=\frac{\beta}{m},\qquad
+t_\theta=\beta o_\theta,\qquad
+\nu^*=\frac{o_1-o_0}{1-o_0},
 \]
 
-a diferença de payoff que determina a comparação institucional quando as duas
-regras formam.
+e
 
-# Mapa: prova para pré-requisito
+\[
+a_\theta=(1-\beta)o_\theta,\qquad
+d=\beta(o_1-o_0),\qquad
+k=\beta o_1-o_0.
+\]
+
+Os vetores de payoff de (H) são sempre ordenados como tipo baixo/tipo alto.
+
+# Mapa: resultado do paper para pré-requisito
 
 \small
-\begin{longtable}{p{0.22\textwidth}p{0.31\textwidth}p{0.37\textwidth}}
-\caption{Mapa dos resultados formais do paper para as ferramentas matemáticas usadas nas provas.}\\
+\begin{longtable}{p{0.23\textwidth}p{0.29\textwidth}p{0.38\textwidth}}
+\caption{Mapa completo dos resultados formais para as ferramentas matemáticas.}\\
 \toprule
-Resultado do paper & Ferramenta matemática & Onde a ferramenta entra \\
+Resultado & Ferramenta & Função na prova \\
 \midrule
 \endfirsthead
 \toprule
-Resultado do paper & Ferramenta matemática & Onde a ferramenta entra \\
+Resultado & Ferramenta & Função na prova \\
 \midrule
 \endhead
-Definição 1: jogo baseline & Jogo finito dinâmico com informação incompleta; conjunto factível linear & Define estados, propostas, votos, thresholds e entry. Não requer prova, mas fixa o domínio das demais provas. \\
-Definição 2: weak-vote-passive assessment & Sistema de crenças e atualização condicional; pivotalidade de votos & Determina os usos remanescentes da assessment: desvios de weak voters e desvios de \(H\) a partir de prescrições pooling. \\
-Proposição 1: Majority no-screening & Indução retroativa; comparação de custos; função afim em \(\mu\) & Mostra que, se \(a_0^M>\beta/m\), comprar \(H\) não é mais barato que comprar um weak voter. \\
-Lema 1: Terminal unanimity threshold & Redução por thresholds; solução de desigualdade linear & Compara \((1-\mu)(1-t_0)\) com \(1-t_1\) e obtém \(\mu_2^*=(t_1-t_0)/(1-t_0)\). \\
-Lema 2: weak-caused failures and nonpivotal \(H\) votes & Compatibilidade de incentivos; atualização bayesiana em voto pooling & Mostra que uma falha causada por weak rejection não sustenta sinalização pura informativa pelo voto não pivotal de \(H\). \\
-Lema 3: Rejected-history reduction & Partição de histórias; compatibilidade de incentivos; ordem de thresholds & Classifica rejeições como delay, ramo high-rejection de low-only, ou história não compatível com incentivos. \\
-Proposição 2: Round-1 outcome & Exaustão de candidatos finitos; envelope superior; tie-break & Reduz Round 1 a \(\max\{\Pi_P,\Pi_L,\Pi_D\}\) sobre candidatos admissíveis. \\
-Proposição 3: Weak-state entry nesting & Limites superiores e inclusão de conjuntos & Mostra \(S_K^U\leq1\), logo \(V_W^U\leq V_W^M\) e \(F_U\subseteq F_M\). \\
-Proposição 4: Conditional comparison & Sinal de uma diferença de payoff & Usa \(\Delta_H(\mu)\) para classificar a preferência de \(H\) quando ambas as regras formam. \\
-Corolário 1: Institutional classification & Partição disjunta e exaustiva de \([0,1]\) & Divide o espaço de crenças por formação institucional e pelo sinal de \(\Delta_H\). \\
-Apêndice B.2: Microfundação do threshold & Álgebra de equivalência & Mostra que \(y+b_\theta\geq d_\theta\) equivale a \(y\geq t_\theta=d_\theta-b_\theta\). \\
-Apêndice B.3--B.5 & Limites, caso colapsado, derivadas e comparação finita & Explica one-shot bridge, complete information, comparative statics e delay example. \\
+Proposição 1: benchmark com tipo público & Indução retroativa, desconto, contagem de coalizão e minimização de custo & Resolve R2, transporta continuações uma vez e compara comprar (H) com comprar um weak vote. \\
+Proposição 2: jogos privados terminais & Redução por thresholds, valor esperado e função afim & Reduz um contínuo de ofertas a (o_0) e (o_1), e deriva \(\nu^*\). \\
+Proposição 3: correspondência privada de maioria & Incentivos pivotais, candidatos finitos, diferenças afins e partição de casos & Obtém exclusão, screening e pooling; demonstra que delay é dominado. \\
+Proposição 4: correspondência privada de unanimidade & Bayes, preservação de suporte, racionalidade sequencial e prova por exaustão & Constrói os dois domínios de existência e elimina os quatro perfis puros na célula intermediária. \\
+Proposição 5: contraste privado & Álgebra vetorial e subtração componente a componente & Compara os vetores privados sob as duas regras sem misturar tipos. \\
+Proposição 6: rendas informacionais & Diferença de correspondências e benchmark contrafactual & Calcula (RI_M) e (RI_U) preservando células vazias e multiplicidade. \\
+Proposição 7: diferença de diferenças & Álgebra de conjuntos, imagens afins e análise de sinal & Calcula \(\Delta RI\), inclusive o segmento exato com peso comum \(\lambda\). \\
+Apêndice C.1: equivalência nos endpoints & Suporte de distribuições degeneradas & Mostra que \(\nu=0\) e \(\nu=1\) são jogos literais de informação completa, não limites laterais. \\
+Apêndice C.2: conjuntos exatos & Segmentos afins e envelopes marginais & Impede transformar uma linha atingível em um retângulo não atingível. \\
+Apêndice C.3: valores trabalhados & Substituição numérica e auditoria de unidades & Reproduz cutoffs, vetores privados, benchmarks e rendas na ilustração. \\
 \bottomrule
 \end{longtable}
 \normalsize
 
-# Roteiro comentado das provas
+# Jogos finitos, indução retroativa e unidades de tempo
 
-Esta seção serve como ponte entre o paper e as seções matemáticas do guia. A
-ideia é mostrar, prova por prova, qual é a sequência lógica mínima. Ao ler o
-apêndice do paper, use este roteiro como checklist: cada linha da prova deve
-estar cumprindo uma dessas funções.
+## A ideia matemática
 
-## Proposição 1: Majority no-screening
+Um jogo de duas rodadas deve ser resolvido de trás para frente. Isso não é
+apenas uma convenção de exposição. A ação ótima em R1 depende dos valores de
+continuação gerados em R2. Se R2 ainda não estiver resolvida, a restrição de
+incentivo de R1 contém um objeto desconhecido.
 
-A prova da Proposição 1 tem quatro blocos.
+\begin{definition}[Valor de continuação]
+O valor de continuação de um jogador depois de uma história pública (h) é o
+payoff esperado que ele obtém no subjogo iniciado em (h), dadas as estratégias
+e crenças do assessment.
+\end{definition}
 
-Primeiro, ela resolve o terminal round sob maioria. Como weak states podem
-aprovar sem \(H\), um weak proposer escolhe \(y=0\), não paga nada aos weak
-voters no terminal round e fica com o excedente unitário. Isso gera
+\begin{theorem}[{Indução retroativa com desconto de uma rodada}]
+Considere um jogo finito com uma rodada terminal R2 e uma rodada anterior R1.
+Se (C_i(h)) é o valor de R2 em unidades da data de R2, então a alternativa de
+continuar depois de (h), avaliada em R1, vale \(\beta C_i(h)\). O fator
+\(\beta\) aparece exatamente uma vez. Um payoff realizado imediatamente em R1
+não recebe esse fator.
+\end{theorem}
+
+\textit{Intuição.} O desconto é uma conversão de unidades, como converter uma
+quantia futura para valor presente. Multiplicar duas vezes desconta duas
+rodadas, que não existem. Não multiplicar confunde pagamentos em datas
+diferentes.
+
+## Exemplo: benchmark público
+
+Em R2 sob maioria, um proponente fraco pode passar sem (H), pagando zero aos
+respondentes. Por simetria de reconhecimento, antes do sorteio cada weak state
+tem valor esperado (1/m). Em R1, portanto, o preço de um weak vote é
+
 \[
-W_2^M=\frac{1}{m}
-\qquad\text{e}\qquad
-c_M=\beta W_2^M=\frac{\beta}{m}.
+w=\beta\frac{1}{m}.
 \]
-Esse cálculo é simples, mas é a base de toda a prova: \(c_M\) é o preço de um
-weak vote em Round 1.
 
-Segundo, a prova constrói a proposta majority sem \(H\). O proposer já vota sim
-e precisa de \(k=q-1\) votos adicionais. Ele paga \(c_M\) a \(k\) weak voters e
-guarda
+Se o tipo público de (H) tem desacordo (o), sua continuação de R2 é (o),
+e seu preço em R1 é \(\beta o\). Incluir (H) economiza um weak vote. Logo,
+
 \[
-1-kc_M.
+\text{custo de inclusão}=(q-2)w+\beta o,
 \]
-A checagem de factibilidade relevante é
+
+enquanto
+
 \[
-1-kc_M-c_M=1-\frac{q\beta}{m}\geq0.
+\text{custo de exclusão}=(q-1)w.
 \]
-Ela diz que, mesmo depois de pagar os votos necessários, o proposer não preferiria
-simplesmente rejeitar e esperar a continuação.
 
-Terceiro, a prova mostra que comprar \(H\) é desnecessário quando \(H\) não
-substitui um weak vote de modo barato. Se uma proposta inclui \(H\) e ainda paga
-\(k\) weak voters, ela é dominada: basta retirar \(H\), porque seu voto não é
-necessário. A única alternativa relevante é comprar \(H\) e apenas \(k-1\) weak
-voters.
+Incluir é fracamente mais barato se e somente se
 
-Quarto, a prova compara a alternativa low-only com \(H\) incluído ao caminho sem
-\(H\). O payoff gap é
 \[
-g(\mu)=c_M-a_0^M+\mu(a_0^M+kc_M-1).
-\]
-Essa é uma função afim. Sob \(a_0^M\geq c_M\), temos \(g(0)\leq0\). Sob
-\(q\beta/m\leq1\), temos \(g(1)\leq0\). Logo \(g(\mu)\leq0\) para todo
-\(\mu\in[0,1]\). A versão estrita \(a_0^M>c_M\) elimina o empate de fronteira em
-\(\mu=0\).
-
-O que a prova não faz: ela não afirma que majority nunca poderia screenar \(H\)
-em qualquer ambiente. Ela mostra que o benchmark sem screening é selecionado no
-domínio Strict No-Cheap-H. Fora desse domínio, o próprio enunciado reconhece a
-possibilidade de majority screening.
-
-## Lema 1: Terminal unanimity threshold
-
-A prova do Lema 1 é o caso mais limpo de redução por threshold. No terminal
-round, rejeição encerra o jogo, então weak voters não têm continuação positiva.
-Qualquer pacote abaixo de \(t_0\) é rejeitado por ambos os tipos de \(H\). Um
-pacote em \([t_0,t_1)\) é aceito apenas pelo low type; dentro dessa região, o
-menor pacote \(t_0\) é ótimo para o proposer. Um pacote em \([t_1,\bar y]\) é
-aceito por ambos; dentro dessa região, \(t_1\) é ótimo.
-
-Portanto a prova reduz a escolha contínua de \(y\) a duas expressões:
-\[
-L_2(\mu)=(1-\mu)(1-t_0),
-\qquad
-P_2(\mu)=1-t_1.
-\]
-O cutoff vem da igualdade \(L_2(\mu)=P_2(\mu)\):
-\[
-(1-\mu)(1-t_0)=1-t_1
+(q-2)w+\beta o\leq(q-1)w
 \quad\Longleftrightarrow\quad
-\mu=\frac{t_1-t_0}{1-t_0}.
+o\leq\frac{1}{m}.
 \]
-O tie-break terminal seleciona low-only na igualdade. Dividir por \(m\) dá o
-payoff representativo dos weak states.
 
-O ponto conceitual importante é que o cutoff \(\mu_2^*\) não depende de \(m\).
-O número de weak states divide o payoff representativo, mas não muda a escolha
-do proposer entre \(t_0\) e \(t_1\), porque ambos os candidatos escalam da mesma
-forma no terminal round.
+Esse cálculo entrega o cutoff público (1/m). Note que (q) cancela porque a
+comparação troca exatamente um voto de (H) por exatamente um weak vote.
 
-## Lema 2: falhas weak-caused e votos não pivotais de \(H\)
+## Conexão com o paper
 
-O novo Lema 2 reduz uma parte da dependência da weak-vote-passive assessment.
-Ele trata apenas de propostas que já estão desenhadas para falhar por rejeição
-weak: a proposta e o vetor \(x\) são públicos, e pelo menos um weak voter
-necessário recebe menos que seu valor de continuação. Então \(H\) sabe que a
-proposta não passa, qualquer que seja seu próprio voto.
+A Proposição 1 usa esta lógica quatro vezes: resolve maioria em R2, resolve
+unanimidade em R2, transporta os valores para R1 e compara coalizões. A prova
+da Proposição 3 também usa o fato de que delay vale apenas (w) para o
+proponente reconhecido de R1, enquanto exclusão imediata vale
+(E=1-(q-1)w).
 
-Nesse ponto, o voto de \(H\) não determina o resultado corrente. A única
-questão é se esse voto não pivotal poderia funcionar como sinal puro e criar um
-quarto candidato de payoff para o proposer. A resposta é não, sob o domínio do
-paper.
-
-Considere uma prescrição separadora pura. Seja \(v_0\) o voto prescrito ao tipo
-low e \(v_1\neq v_0\) o voto prescrito ao tipo high. Como o prior é interior,
-Bayes dá posterior zero depois de \(v_0\) e posterior um depois de \(v_1\). O
-tipo high é indiferente entre posteriors, porque
-\[
-C_1(\nu)=o_1
-\]
-para todo \(\nu\). O tipo low, porém, prefere o posterior alto:
-\[
-C_0(1)=o_0+t_1-t_0>o_0=C_0(0),
-\]
-pois \(t_1>t_0\). Logo, o tipo low imita o voto \(v_1\) que induz posterior um.
-Isso viola a restrição de incentivo da separação.
-
-Se os dois tipos de \(H\) fazem pooling no mesmo voto, o voto observado não
-contém informação sobre \(\theta\), e Bayes mantém o posterior em \(\mu\). Como
-a falha weak-caused é induzida por alocação pública, não por informação privada
-de weak voters, essa história é equivalente ao delay sem informação \(D\).
-
-O alcance do lema é deliberadamente local: ele não é uma refinement, não fixa
-crenças fora do caminho depois de desvios de uma prescrição pooling, e não
-caracteriza todos os PBEs irrestritos. Ele apenas remove a necessidade de uma
-cláusula separada da assessment para o voto não pivotal de \(H\) em falhas
-weak-caused dentro da análise pura selecionada.
-
-## Lema 3: Rejected-history reduction
-
-O Lema 3 é a prova mais delicada porque seu papel é disciplinar histórias que
-não terminam em acordo. A prova não calcula um novo payoff; ela mostra que essas
-histórias não criam um quarto candidato relevante.
-
-O primeiro corte é entre falhas causadas por weak voters e falhas causadas por
-\(H\). Se a proposta foi desenhada para falhar por weak rejection, pelo menos um
-weak voter necessário recebe menos que seu continuation value. Nessa situação,
-alterar o voto de \(H\) não torna a proposta aprovada. Pelo Lema 2, o voto não
-pivotal de \(H\) não pode sustentar separação pura informativa, e votos pooling
-de \(H\) deixam o posterior em \(\mu\). Essas histórias são equivalentes em
-payoff ao candidato delay \(D\).
-
-O segundo corte trata falhas causadas por \(H\), isto é, todos os weak voters
-aprovam e a proposta falha porque \(H\) rejeita. Se low aceita e high rejeita,
-temos exatamente o ramo de rejeição high do candidato low-only \(L\). Se high
-aceita e low rejeita, teríamos uma história high-only. O paper exclui isso pela
-ordem de thresholds.
-
-O passo técnico é mostrar por que high-only não é incentive-compatible para o
-low type. Se high aceita, o pacote precisa satisfazer o threshold do high type.
-Mas, sob High-Posterior Pooling e R1 Dynamic Threshold Order, isto é, sob a
-condição que ordena os thresholds dinâmicos da primeira rodada,
-\[
-a_0(0)\leq a_0(1)\leq a_1.
-\]
-Logo qualquer pacote aceitável para high também é aceitável para low quando a
-rejeição revelaria o posterior baixo. Portanto o low type não pode ser
-prescrito a rejeitar enquanto high aceita.
-
-Ao final, todas as rejeições relevantes caem em uma de três categorias: delay
-\(D\), ramo high-rejection de \(L\), ou história não compatível com incentivos.
-Isso abre caminho para a Proposição 2.
-
-## Proposição 2: outcome de Round 1
-
-A Proposição 2 combina os Lemas 2 e 3 com maximização finita.
-
-O primeiro passo é exaustão de candidatos aceitos. Pela ordem dinâmica de
-thresholds, high-only acceptance é excluída. Pacotes acima do threshold relevante
-são dominados por baixar \(y\), e pagamentos weak acima do continuation value
-são dominados por baixar \(x_i\). Restam dois candidatos aceitos:
+Um erro típico é comparar (o_\theta), realizado por exclusão em R1, com
+\(o_\theta\) de R2 sem descontar o segundo. A diferença
 
 \[
-P:\quad y=a_1,\quad x_i=c(\mu),
+a_\theta=o_\theta-\beta o_\theta=(1-\beta)o_\theta
 \]
+
+é exatamente a cunha temporal que reaparece nos contrastes institucionais.
+
+## Exercícios
+
+1. Com (m=4), (q=3) e \(\beta=0.9\), calcule (w), o custo de inclusão
+   quando (o=0.20) e o custo de exclusão.
+2. Mostre algebricamente que o cutoff público não depende de (q), desde que
+   incluir (H) substitua exatamente um weak responder.
+3. Prove que (E-w=1-\beta q/m>0) quando \(\beta<1\) e \(q\leq m\).
+4. Explique por que um desacordo realizado em R1 deve entrar sem desconto, mas
+   o mesmo desacordo realizado após falha em R2 entra como \(\beta o_\theta\)
+   na decisão de R1.
+5. Suponha, apenas para este exercício, três rodadas com o mesmo fator
+   \(\beta\). Qual é o valor em R1 de um payoff (z) realizado em R3? Por que
+   essa resposta não deve ser usada no paper de duas rodadas?
+
+Soluções na Seção \ref{sol:backward}.
+
+# Probabilidade condicional, crenças e racionalidade sequencial
+
+## Bayes no interior
+
+\begin{definition}[Regra de Bayes]
+Se uma ação (a) pode ser tomada pelos tipos baixo e alto com probabilidades
+\(\sigma_0(a)\) e \(\sigma_1(a)\), e o prior do tipo alto é \(\nu\), então,
+sempre que o denominador for positivo,
 \[
-L:\quad y=a_0(1),\quad x_i=c(0).
+\Pr(\theta=1\mid a)=
+\frac{\nu\sigma_1(a)}
+{(1-\nu)\sigma_0(a)+\nu\sigma_1(a)}.
 \]
-
-O segundo passo checa as restrições de incentivo do candidato pooling \(P\). Em
-outras palavras: verifica se cada jogador prefere seguir a ação prescrita em vez
-de desviar. O high type aceita em \(a_1\). O low type também aceita porque
-\(a_1\geq a_0(1)\). Weak voters aprovam porque recebem \(c(\mu)\), exatamente o
-valor de rejeição sob posterior \(\mu\). O payoff do proposer é
-\[
-\Pi_P^U(\mu)=1-a_1-(m-1)c(\mu).
-\]
-
-O terceiro passo checa as restrições de incentivo do candidato low-only \(L\).
-O low type aceita em \(a_0(1)\). O high type rejeita quando
-\(a_0(1)<a_1\). Weak voters recebem \(c(0)\), que é o pagamento mínimo para
-aprovar na história low. O proposer recebe residual no estado low e continuação
-\(c(1)\) no estado high:
-\[
-\Pi_L^U(\mu)
-=(1-\mu)\{1-a_0(1)-(m-1)c(0)\}+\mu c(1).
-\]
-
-O quarto passo é delay \(D\). O proposer escolhe uma proposta factível com
-\(y=0\) e pagamentos weak zero. A proposta é rejeitada pelos weak voters; pelo
-Lema 2, o voto não pivotal de \(H\) não sustenta separação pura informativa, e
-um voto pooling de \(H\) mantém o posterior em \(\mu\). O proposer recebe
-\[
-\Pi_D^U(\mu)=c(\mu).
-\]
-
-O quinto passo invoca o Lema 3 para garantir que rejeições não adicionam outro
-candidato. O sexto passo aplica o máximo:
-\[
-\bar\Pi^U(\mu)=\max_{K\in\mathcal K(\mu)}\Pi_K^U(\mu).
-\]
-O tie-break contra \(H\) seleciona entre maximizadores, mas não muda o valor do
-proposer.
-
-## Proposição 3: Weak-state entry nesting
-
-A Proposição 3 é uma prova de accounting. O objetivo é mostrar que a formação
-sob unanimidade é mais difícil para weak states do que a formação sob majority
-no benchmark No-Cheap-H.
-
-Sob pooling, o total weak payoff é
-\[
-S_P^U=1-a_1\leq1.
-\]
-Sob low-only,
-\[
-S_L^U(\mu)=(1-\mu)(1-a_0(1))+\mu\beta p_2(1)\leq1.
-\]
-O primeiro termo é no máximo \(1-\mu\), porque \(a_0(1)\geq0\). O segundo é no
-máximo \(\mu\), porque \(\beta\leq1\) e \(p_2(1)\leq1\). Sob delay,
-\[
-S_D^U(\mu)=\beta p_2(\mu)\leq1.
-\]
-
-Como o candidato selecionado é um de \(P,L,D\), sempre
-\[
-S_{k^*(\mu)}^U(\mu)\leq1.
-\]
-Dividindo por \(m\), temos \(V_W^U(\mu)\leq1/m\). Pela Proposição 1, sob
-Strict No-Cheap-H, \(V_W^M(\mu)=1/m\). Portanto
-\[
-V_W^U(\mu)\leq V_W^M(\mu)
-\]
-para todo \(\mu\), o que implica \(F_U(\chi)\subseteq F_M(\chi)\).
-
-Note que a prova não diz que weak states "gostam" de majority por uma razão
-psicológica ou normativa. Ela mostra uma desigualdade contábil: majority preserva
-o excedente weak unitário no benchmark, enquanto unanimidade paga \(H\) ou
-atrasa acordo.
-
-## Proposição 4 e Corolário 1
-
-A Proposição 4 é uma definição operacional de comparação: quando ambas as regras
-formam, \(H\) prefere unanimidade se \(V_H^U>V_H^M\). Subtrair \(V_H^M\) dos
-dois lados transforma a comparação no sinal de \(\Delta_H\).
-
-O Corolário 1 pega esse critério e o combina com os entry sets. A classificação
-segue em três perguntas:
-
-1. Majority forma? Se não, estamos em \(\mathcal C_0\).
-2. Se majority forma, unanimity também forma? Se não, estamos em
-   \(\mathcal C_M\).
-3. Se ambas formam, qual é o sinal de \(\Delta_H\)? Isso separa
-   \(\mathcal C_U^H\), \(\mathcal C_T^H\) e \(\mathcal C_M^H\).
-
-A Proposição 3 é o motivo pelo qual não existe uma sexta categoria "só
-unanimity". A inclusão \(F_U\subseteq F_M\) elimina esse caso.
-
-## Apêndice B: escopo e extensões
-
-O Apêndice B não adiciona um novo theorem principal, mas contém quatro
-operações matemáticas úteis.
-
-Primeiro, a microfundação do threshold é uma equivalência algébrica:
-\[
-y+b_\theta\geq d_\theta
-\quad\Longleftrightarrow\quad
-y\geq d_\theta-b_\theta.
-\]
-Definir \(t_\theta=d_\theta-b_\theta\) permite trabalhar com thresholds líquidos
-sem carregar a decomposição \(d_\theta,b_\theta\) no baseline.
-
-Segundo, o one-shot bridge elimina a segunda rodada. Sem continuação, desaparecem
-\(a_0(1)\), \(a_1\) e delay. A matemática volta à comparação terminal entre
-\((1-\mu)(1-t_0)\) e \(1-t_1\).
-
-Terceiro, o complete-information benchmark colapsa \(t_0=t_1=t\) e
-\(o_0=o_1=o\). Pooling e low-only deixam de ser estratégias distintas porque
-não há tipo privado a screenar. O mecanismo informacional desaparece.
-
-Quarto, Appendix B.4 calcula comparative statics locais. Por exemplo,
-\[
-a_1-a_0(1)=(1-\beta)\{t_1-t_0+o_0-o_1\}.
-\]
-Essa identidade mostra por que uma outside option muito maior do high type pode
-eliminar strict low-only separation: ela reduz o threshold dinâmico líquido do
-high type em Round 1.
-
-# Desigualdades afins, cutoffs e análise de sinal
-
-\begin{definition}[Função afim]
-Uma função \(f:[0,1]\to\R\) é afim quando pode ser escrita como
-\[
-f(\mu)=A+B\mu
-\]
-para constantes reais \(A\) e \(B\). Seu gráfico é uma reta. Em particular,
-para decidir se \(f(\mu)\geq0\) em todo o intervalo \([0,1]\), basta controlar
-os extremos quando se sabe que \(f\) é afim.
 \end{definition}
 
-\begin{theorem}[Desigualdade afim em um intervalo]
-Se \(f(\mu)=A+B\mu\) é afim em \([0,1]\), então \(f(\mu)\leq0\) para todo
-\(\mu\in[0,1]\) se, e somente se, \(f(0)\leq0\) e \(f(1)\leq0\). Analogamente,
-\(f(\mu)\geq0\) para todo \(\mu\in[0,1]\) se, e somente se,
-\(f(0)\geq0\) e \(f(1)\geq0\).
-\end{theorem}
+Se os dois tipos escolhem (a) com probabilidade um, o posterior continua
+igual a \(\nu\). Se apenas o tipo alto escolhe (a), o posterior é um. Se
+apenas o tipo baixo escolhe (a), é zero. Se nenhum tipo escolhe (a), Bayes
+não determina a crença porque a fórmula tem denominador zero.
 
-**Intuição.** Uma reta não pode sair do intervalo vertical delimitado por seus
-valores nos extremos sem curvar. Como funções afins não curvam, seus valores
-intermediários são combinações convexas dos extremos:
+\begin{definition}[PBE na forma usada pelo paper]
+Um assessment contém estratégias para todo information set e um sistema de
+crenças. Ele é um PBE quando cada ação prescrita maximiza o payoff esperado em
+seu information set e as crenças seguem Bayes onde a atualização é definida.
+O paper acrescenta estratégias puras no ballot, no-signaling-what-you-don't-
+know, preservação do suporte nos endpoints, comparação as-if-pivotal para weak
+responders e (T^Y) na igualdade esperada exata.
+\end{definition}
+
+\textit{Intuição.} Um equilíbrio não descreve apenas o que acontece no
+caminho. Ele também precisa dizer como cada jogador responderia a toda proposta
+factível que poderia ser desviada. Essa obrigação é decisiva para a prova de
+inexistência da Proposição 4.
+
+## Suporte nos endpoints
+
+O suporte de uma distribuição é o conjunto de tipos com probabilidade positiva.
+No paper, uma crença posterior nunca pode atribuir probabilidade positiva a um
+tipo que está fora do suporte do prior. Assim:
+
 \[
-f(\mu)=(1-\mu)f(0)+\mu f(1).
+\nu=0\Longrightarrow\Pr(\theta=1\mid h)=0\quad\text{para toda história }h,
 \]
 
-**Prova.** Pela identidade acima, se \(f(0)\leq0\) e \(f(1)\leq0\), então
-\((1-\mu)f(0)+\mu f(1)\leq0\) para todo \(\mu\in[0,1]\). A recíproca é imediata
-porque \(0\) e \(1\) pertencem ao intervalo. O argumento para \(\geq0\) é
-idêntico.
+e analogamente, se \(\nu=1\), todo posterior é um. Esta é uma condição
+declarada do conceito de solução, não uma consequência automática de PBE em
+priors degenerados.
 
-\begin{example}[Cutoff terminal]
-No terminal unanimity lemma, o weak proposer compara low-only e pooling:
+## Voto as-if-pivotal e (T^Y)
+
+Considere um weak responder (j). Condicionalmente ao evento em que seu voto
+decide entre passagem e falha, ele compara
+
 \[
-(1-\mu)(1-t_0)\geq 1-t_1.
+x_j
+\quad\text{com}\quad
+\beta C_j(h^N).
 \]
-Rearranjando,
-\[
-\mu\leq \frac{t_1-t_0}{1-t_0}.
-\]
-Com \(t_0=0.35\) e \(t_1=0.70\), o cutoff é
-\[
-\mu_2^*=\frac{0.35}{0.65}\approx0.538.
-\]
+
+Se o primeiro é maior, vota sim; se é menor, vota não; na igualdade, (T^Y)
+seleciona sim. Para (H), a comparação é feita tipo por tipo. (T^Y) fecha o
+conjunto de ofertas aprováveis: o proponente pode pagar exatamente o valor de
+reserva, em vez de precisar oferecer ``reserva mais epsilon''.
+
+\begin{example}[Posterior depois de um voto separador]
+Se no perfil prescrito o tipo baixo vota sim e o alto vota não, e
+\(0<\nu<1\), Bayes implica posterior zero após sim e um após não. Um tipo que
+prefira a continuação associada ao outro voto pode imitá-lo. Essa comparação é
+uma IC, não apenas uma atualização estatística.
 \end{example}
 
 ## Conexão com o paper
 
-Essa ferramenta aparece repetidamente:
-
-- Na Proposição 1, o payoff gap entre o ramo majority com \(H\) incluído e o
-  ramo sem \(H\) é afim em \(\mu\). A prova checa os extremos para mostrar que
-  o ramo com \(H\) é dominado quando \(a_0^M\geq c_M\).
-- No Lema 1, a comparação terminal entre low-only e pooling resolve uma
-  desigualdade linear e gera \(\mu_2^*\).
-- No exemplo principal, a igualdade entre
-  \(\Pi_P^U(\mu)=-0.0375+0.3575\mu\) e
-  \(\Pi_L^U(\mu)=0.1025-0.0875\mu\) gera o cutoff de seleção
-  \(\mu\approx0.315\).
-- Em Appendix B.4, os sinais de \(\Delta_H^P\) e \(\Delta_H^L\) no caso
-  \(o_0=o_1=o\) também são resolvidos por desigualdades lineares.
+A Proposição 2 usa Bayes apenas de forma simples, pois R2 é terminal. A
+Proposição 4 usa toda a estrutura: crenças depois do voto de (H), ações
+off-path, suporte nos endpoints, resposta pivotal dos fracos e (T^Y). O
+Apêndice C.1 depende da distinção entre um endpoint literal e o limite
+\(\nu\downarrow0\).
 
 ## Exercícios
 
-1. Mostre que \(f(\mu)=2-3\mu\) é não negativa em \([0,1/2]\) e negativa em
-   \((2/3,1]\).
-2. Com \(t_0=0.20\) e \(t_1=0.55\), calcule
-   \(\mu_2^*=(t_1-t_0)/(1-t_0)\).
-3. Resolva a desigualdade \((1-\mu)(1-t_0)\geq1-t_1\) passo a passo.
-4. No exemplo principal, encontre o ponto em que
-   \(-0.0375+0.3575\mu=0.1025-0.0875\mu\).
-5. Prove que, se \(a_0^M\geq c_M\) e \(q\beta/m\leq1\), o gap
-   \(g(\mu)=c_M-a_0^M+\mu(a_0^M+kc_M-1)\) é não positivo em todo \([0,1]\).
-6. No caso \(o_0=o_1=o\), mostre que
-   \(\Delta_H^P(\mu)=(1-\mu)(t_1-t_0)-(1-\beta)o\) é positiva se, e somente se,
-   \(\mu<1-(1-\beta)o/(t_1-t_0)\).
+1. Calcule o posterior quando \(\nu=0.3\),
+   \(\sigma_0(a)=0.2\) e \(\sigma_1(a)=0.8\).
+2. Mostre que uma ação pooling, tomada com probabilidade um por ambos os tipos,
+   não altera um prior interior.
+3. Explique por que o desvio de um weak state, que não observa \(\theta\), não
+   deve por si só mover a crença no conceito declarado pelo paper.
+4. Um weak responder recebe (x_j=0.18) se a proposta passar e valor de
+   continuação corrente (0.20) se ela falhar. Determine seu voto. Repita para
+   (x_j=0.20).
+5. Mostre por que \(\nu=0\) e \(\nu\downarrow0\) podem gerar respostas
+   diferentes depois de uma ação off-path de (H).
 
-Soluções na Seção \ref{solucoes-afins}.
+Soluções na Seção \ref{sol:bayes}.
 
-# Backward induction e redução por thresholds
+# Thresholds, cutoffs e funções afins
 
-\begin{definition}[Threshold de aceitação]
-Um threshold de aceitação é um número \(a\) tal que um jogador aceita exatamente
-as propostas \(y\geq a\). Se o payoff do jogador aumenta em \(y\), qualquer
-proposta estritamente acima de \(a\) que ainda induz o mesmo comportamento é
-custosa demais para o proposer.
-\end{definition}
+## Redução por thresholds
 
-\begin{theorem}[Redução por threshold mínimo]
-Suponha que o proposer queira maximizar \(1-y-z\), onde \(z\) representa outros
-pagamentos necessários, e que o receptor aceite se, e somente se, \(y\geq a\).
-Entre todas as propostas que induzem aceitação do receptor, a proposta
-proposer-ótima usa \(y=a\), desde que seja factível.
+\begin{theorem}[Redução a ofertas-limite]
+Suponha que um proponente escolha (y\geq0), que seu payoff seja estritamente
+decrescente em (y) dentro de cada conjunto de tipos que aceita, e que os
+tipos tenham thresholds ordenados \(c_0<c_1\). Entre ofertas aceitas apenas
+pelo tipo baixo, a melhor é (y=c_0). Entre ofertas aceitas pelos dois tipos,
+a melhor é (y=c_1). Logo, um contínuo de ofertas se reduz a dois candidatos.
 \end{theorem}
 
-**Intuição.** Se \(y>a\), o proposer pode reduzir \(y\) um pouco sem mudar a
-decisão do receptor. Como cada unidade de \(y\) reduz o excedente residual dos
-weak states, pagar acima do threshold é dominado.
+\textit{Prova.} No intervalo \([c_0,c_1)\), aumentar (y) não muda o conjunto
+de tipos que aceita e reduz o payoff do proponente, então (c_0) domina as
+demais ofertas do intervalo. No intervalo \([c_1,\bar y]\), o mesmo argumento
+seleciona (c_1). Ofertas abaixo de (c_0) não são aceitas. \(\square\)
 
-**Prova.** Seja \(y>a\). Escolha \(\varepsilon\in(0,y-a]\). A proposta
-\(y'=y-\varepsilon\) continua satisfazendo \(y'\geq a\), então preserva a
-aceitação. O payoff do proposer aumenta em \(\varepsilon\). Logo nenhum
-\(y>a\) é ótimo. O menor \(y\) aceitável é \(a\).
+Na unanimidade terminal do paper, \(c_0=o_0\) e \(c_1=o_1\). A oferta baixa
+gera
 
-\begin{example}[Terminal unanimity]
-No terminal round, \(H\) aceita low-only quando \(y\geq t_0\) e pooling quando
-\(y\geq t_1\). Pelo teorema, o proposer só precisa comparar \(y=t_0\) e
-\(y=t_1\). Pacotes dentro de \((t_0,t_1)\) são aceitos pelo mesmo tipo low, mas
-dão menos excedente ao weak proposer.
-\end{example}
-
-## Conexão com o paper
-
-O Lema 1 usa a redução por thresholds para mostrar que o terminal round tem só
-duas propostas relevantes: \(y=t_0\) e \(y=t_1\). A Proposição 2 usa a mesma
-lógica dinamicamente. Em Round 1, os thresholds não são apenas \(t_0\) e \(t_1\),
-mas \(a_0(1)\) e \(a_1\), porque a rejeição leva a valores de continuação. Ainda
-assim, uma vez fixado o posterior que precifica a rejeição, pagar acima do
-threshold relevante continua sendo dominado.
-
-Essa é a razão matemática para o paper poder substituir uma infinidade de
-pacotes \(y\in[0,\bar y]\) por poucos candidatos discretos: pooling \(P\),
-low-only \(L\) e delay \(D\).
-
-## Exercícios
-
-1. Se o receptor aceita quando \(y\geq0.4\), qual pacote aceito maximiza
-   \(1-y\)?
-2. Se low aceita quando \(y\geq0.3\) e high aceita quando \(y\geq0.7\), quais
-   são os dois pacotes relevantes em uma rodada terminal?
-3. Explique por que um pacote \(y=0.5\) é dominado em uma região na qual apenas
-   o tipo low aceita e \(t_0=0.3<t_1=0.7\).
-4. Com \(\beta=0.6\), \(t_1=0.70\) e \(o_1=0.05\), calcule
-   \(a_1=t_1-(1-\beta)o_1\).
-5. Mostre que, se \(a_0(1)<a_1\), então \(y=a_0(1)\) pode separar low e high,
-   mas \(y=a_1\) não separa: ambos aceitam.
-6. Dê uma prova curta de que, se \(a_0(1)=a_1\), não existe low-only separation
-   estrita no Round 1.
-
-Soluções na Seção \ref{solucoes-thresholds}.
-
-# Equilíbrio, beliefs e restrições de incentivo de votação
-
-\begin{definition}[Assessment em jogo dinâmico]
-Um assessment combina estratégias e crenças. Estratégias dizem o que cada
-jogador faz em cada história; crenças dizem que posterior os jogadores usam
-depois de histórias informativas ou fora do caminho.
-\end{definition}
-
-\begin{definition}[Restrição de incentivo pivotal]
-Uma restrição de incentivo de voto compara o payoff de votar conforme prescrito
-com o payoff de desviar quando o voto do jogador pode mudar o resultado. Se o
-voto não é pivotal, o desvio não muda o outcome e só importa se altera crenças
-ou futuras continuações.
-\end{definition}
-
-\begin{theorem}[Restrição mínima para aprovação de weak voters]
-Suponha que um weak voter receba \(x\) se aprovar e a proposta passar. Se sua
-rejeição induz continuação \(c\), então aprovação é fracamente ótima sempre que
 \[
-x\geq c.
+L_2(\nu)=(1-\nu)(1-o_0),
 \]
-Se o proposer quer minimizar o pagamento mantendo aprovação, escolhe \(x=c\).
-\end{theorem}
 
-**Intuição.** O weak voter não precisa receber mais que seu valor de rejeição.
-Mas, se recebe menos, rejeitar é melhor quando o voto é pivotal.
+e pooling gera
 
-**Prova.** A aprovação dá \(x\). A rejeição dá \(c\). Aprovar é fracamente ótimo
-se, e somente se, \(x\geq c\). Como \(x\) reduz o residual do proposer, o menor
-pagamento que satisfaz a restrição de incentivo é \(x=c\).
-
-\begin{example}[Weak-vote-passive assessment]
-No candidato pooling \(P\), os dois tipos de \(H\) aceitam. Um weak voter que
-desvia para rejeição não revela informação sobre \(\theta\), porque weak voters
-não observam o tipo de \(H\). O posterior permanece \(\mu\), e a continuação do
-weak voter é \(c(\mu)\). Portanto o proposer paga \(c(\mu)\) a cada weak voter
-necessário.
-\end{example}
-
-## Conexão com o paper
-
-A Definição 2 especifica uma weak-vote-passive assessment: desvios unilaterais
-de weak voters não atualizam crenças sobre \(\theta\), votos de \(H\) podem
-separar tipos quando prescritos de forma separadora, e desvios de \(H\) a partir
-de prescrições pooling recebem posteriors especificados. O Lema 2 substitui a
-antiga cláusula separada para propostas desenhadas para falhar por rejeição
-weak. Esses elementos são essenciais nos Lemas 2 e 3 e na Proposição 2.
-
-Na prova da Proposição 2:
-
-- Em \(P\), o proposer paga \(c(\mu)\) aos weak voters.
-- Em \(L\), o proposer paga \(c(0)\) aos weak voters, porque a aprovação é
-  avaliada na história em que o low type aceita e o high type rejeita.
-- Em \(D\), weak voters são pagos zero e rejeitam; pelo Lema 2, a falha
-  weak-caused não gera sinalização pura informativa pelo voto não pivotal de
-  \(H\), então o proposer recebe \(c(\mu)\).
-
-## Exercícios
-
-1. Se um weak voter recebe \(x=0.04\) ao aprovar e \(c=0.05\) ao rejeitar, ele
-   aprova?
-2. Qual é o pagamento mínimo para induzir aprovação quando \(c=0.0325\)?
-3. No candidato \(P\), explique por que um desvio de weak voter não deve revelar
-   informação sobre \(\theta\) sob a weak-vote-passive assessment.
-4. No candidato \(L\), por que a rejeição do high type é informativa, mas a
-   aprovação de um weak voter não é?
-5. Mostre que pagar \(x>c(\mu)\) aos weak voters em \(P\) é dominado para o
-   proposer.
-6. Considere \(N=3\), com exatamente um weak voter não propositor. Explique por
-   que o caso de delay exige checar separadamente se uma mudança unilateral de
-   voto pode tornar a proposta aprovada.
-
-Soluções na Seção \ref{solucoes-ics}.
-
-# Máximos finitos e envelopes de candidatos
-
-\begin{definition}[Envelope superior finito]
-Dadas funções \(f_1,\ldots,f_J\), o envelope superior é
 \[
-F(\mu)=\max\{f_1(\mu),\ldots,f_J(\mu)\}.
+P_2=1-o_1.
 \]
-Quando cada \(f_j\) é afim, \(F\) é uma função linear por partes. O candidato
-selecionado em cada crença é aquele que atinge o máximo.
-\end{definition}
 
-\begin{theorem}[Seleção por máximo finito]
-Se todo outcome payoff-relevante pertence a um conjunto finito de candidatos
-\(\mathcal K(\mu)\), e o proposer maximiza payoff, então seu valor é
+O cutoff resolve \(L_2(\nu)=P_2\):
+
 \[
-\bar\Pi(\mu)=\max_{K\in\mathcal K(\mu)}\Pi_K(\mu).
+\nu^*=\frac{o_1-o_0}{1-o_0}.
 \]
-Mudanças de regime ocorrem apenas quando um candidato deixa de ser admissível
-ou quando dois candidatos admissíveis empatam.
-\end{theorem}
 
-**Intuição.** Depois que a prova reduziu o jogo a candidatos discretos, a parte
-restante é escolher o maior número. A matemática difícil passa a ser justificar
-a exaustão dos candidatos, não calcular o máximo.
-
-**Prova.** Por hipótese, qualquer outcome payoff-relevante é equivalente a
-algum \(K\in\mathcal K(\mu)\). Logo nenhum payoff fora do conjunto pode superar
-o máximo sobre \(\mathcal K(\mu)\). Como o proposer escolhe um candidato
-admissível que maximiza payoff, o valor é exatamente o máximo.
-
-```{r envelope-figure, fig.cap="Envelope superior no exemplo principal. Low-only é selecionado até o ponto de empate com pooling; pooling é selecionado depois. O candidato delay fica abaixo nessa parametrização.", fig.width=7, fig.height=4}
-mu <- seq(0, 1, length.out = 501)
-Pi_P <- -0.0375 + 0.3575 * mu
-Pi_L <- 0.1025 - 0.0875 * mu
-Pi_D <- rep(0.03, length(mu))
-plot(mu, Pi_P, type = "l", lwd = 2, col = "#1f78b4",
-     ylim = range(c(Pi_P, Pi_L, Pi_D)),
-     xlab = expression(mu), ylab = "payoff do weak proposer")
-lines(mu, Pi_L, lwd = 2, col = "#33a02c")
-lines(mu, Pi_D, lwd = 2, col = "#6a3d9a", lty = 2)
-lines(mu, pmax(Pi_P, Pi_L, Pi_D), lwd = 3, col = "#e31a1c")
-abline(v = (0.1025 + 0.0375) / (0.3575 + 0.0875), lty = 3)
-legend("bottomright",
-       legend = c("Pooling", "Low-only", "Delay ilustrativo", "Envelope"),
-       col = c("#1f78b4", "#33a02c", "#6a3d9a", "#e31a1c"),
-       lwd = c(2, 2, 2, 3), lty = c(1, 1, 2, 1), bty = "n")
+```{r cutoff-figure, fig.cap="Figura 1. Payoffs do proponente na unanimidade terminal. A oferta baixa é uma função afim decrescente da crença; pooling é constante. O cruzamento define o cutoff.", fig.width=7, fig.height=4.2}
+plot_terminal_cutoff(o0 = 0.10, o1 = 0.35)
 ```
 
+## Lema do sinal afim
+
+\begin{lemma}[Sinal de uma função afim em um intervalo]
+Se (g(z)=a+bz) e (z\in[0,1]), então o máximo e o mínimo de (g) são
+atingidos nos endpoints. Em particular, se (g(0)\leq0) e (g(1)\leq0),
+então (g(z)\leq0) para todo (z\in[0,1]).
+\end{lemma}
+
+\textit{Intuição.} O gráfico de uma função afim é um segmento de reta. Ele não
+pode subir acima dos dois extremos e depois voltar sem curvatura.
+
+Na maioria privada, duas diferenças importantes são
+
+\[
+P-E=\beta(1/m-o_1)
+\]
+
+e
+
+\[
+S(\nu)-E=(1-\nu)\beta(1/m-o_0)
+-\nu(1-\beta q/m).
+\]
+
+A primeira não depende de \(\nu\). A segunda é afim e produz \(\nu_{SE}\).
+Comparar screening com pooling produz \(\nu_{SP}\).
+
+## Cutoffs, igualdade e seleção
+
+Resolver uma igualdade identifica onde dois candidatos dão o mesmo payoff ao
+proponente. Ainda é preciso aplicar a regra de seleção. No paper, empates entre
+propostas maximizadoras são resolvidos pela proposta que minimiza o payoff
+esperado de (H). Assim, ``os payoffs do proponente são iguais'' não implica
+que as duas propostas sobrevivam.
+
 ## Conexão com o paper
 
-A Proposição 2 é exatamente uma proposição de máximo finito:
-\[
-\bar\Pi^U(\mu)=\max_{K\in\mathcal K(\mu)}\Pi_K^U(\mu),
-\]
-com \(K\in\{P,L,D\}\). Os Lemas 2 e 3 fazem o trabalho de limpeza: rejeições
-causadas por weak voters reduzem a delay; rejeição do high type pertence ao
-ramo low-only; high-only é incompatível com a ordem de thresholds.
-
-Depois disso, a seleção do Round 1 é o envelope superior dos candidatos
-admissíveis. A regra de tie-break contra \(H\) não altera o valor do weak
-proposer; ela escolhe um dos maximizadores quando há empate.
+A Proposição 2 é uma aplicação direta da redução a ofertas-limite. A
+Proposição 3 combina três funções afins e uma constante. As Proposições 5 a 7
+usam análise de sinal ainda mais elementar: (d>0), (a_\theta>0), enquanto
+o sinal de (k=\beta o_1-o_0) depende dos parâmetros.
 
 ## Exercícios
 
-1. Calcule \(\max\{0.10,0.07,0.03\}\).
-2. Para \(f(\mu)=0.10-\mu\) e \(g(\mu)=0.02+\mu\), encontre o ponto em que os
-   candidatos empatam.
-3. Com as funções do exemplo principal, verifique que low-only vence pooling em
-   \(\mu=0.20\).
-4. Com as mesmas funções, verifique que pooling vence low-only em \(\mu=0.60\).
-5. Mostre que, se \(D\) é sempre abaixo de \(P\) e \(L\), o envelope de
-   \(\{P,L,D\}\) coincide com o envelope de \(\{P,L\}\).
-6. Explique por que a prova da Proposição 2 não poderia simplesmente escrever
-   o máximo sem antes provar os Lemas 2 e 3.
+1. Derive \(\nu^*\) a partir de
+   \((1-\nu)(1-o_0)=1-o_1\).
+2. Mostre que (0<\nu^*<1) sob (0<o_0<o_1<1).
+3. Para (o_0=0.10) e (o_1=0.35), calcule \(\nu^*\) e determine a oferta
+   terminal ótima em \(\nu=0.20\) e \(\nu=0.35\).
+4. Derive \(\nu_{SE}\) resolvendo (S(\nu)=E).
+5. Prove que (k\) pode ter qualquer sinal e dê um exemplo numérico de cada
+   caso mantendo (0<o_0<o_1<1) e \(0<\beta<1\).
 
-Soluções na Seção \ref{solucoes-envelope}.
+Soluções na Seção \ref{sol:cutoffs}.
 
-# Inclusão de conjuntos, partições e classificação institucional
+# Coalizões, incentivos e redução a candidatos finitos
 
-\begin{definition}[Entry set]
-Dada uma regra \(R\in\{U,M\}\) e um custo de entrada \(\chi\), o entry set é
+## Contagem mínima de votos
+
+O proponente conta como um voto sim. Sob maioria, ele precisa de mais
+\(q-1\) votos. Há duas coalizões mínimas relevantes:
+
+1. exclusão: comprar (q-1) weak responders e dispensar (H);
+2. inclusão: comprar (q-2) weak responders e tornar (H) pivotal.
+
+Pagar mais votantes do que o necessário reduz o residual sem mudar o outcome.
+Pagar menos produz falha. Essa observação reduz a dimensão do problema antes de
+qualquer comparação de payoffs.
+
+\begin{proposition}[Redução da maioria privada]
+Sob as primitivas do paper, toda proposta ótima de R1 sob maioria pertence a
+uma das seguintes classes:
 \[
-F_R(\chi)=\{\mu\in[0,1]:V_W^R(\mu)\geq\chi\}.
+\begin{aligned}
+E&=1-(q-1)w && \text{(exclusão)},\\
+L&=1-(q-2)w-t_0 && \text{(payoff quando screening passa)},\\
+S(\nu)&=(1-\nu)L+\nu w && \text{(screening ex ante)},\\
+P&=1-(q-2)w-t_1 && \text{(pooling)},\\
+D&=w && \text{(delay deliberado)}.
+\end{aligned}
 \]
-Ele contém as crenças nas quais weak states aceitam formar a instituição sob a
-regra \(R\).
-\end{definition}
+Além disso, (D<E). Portanto, a escolha ótima reduz-se a comparar
+\(E\), (S(\nu)\) e (P\).
+\end{proposition}
 
-\begin{theorem}[Inclusão por dominância ponto a ponto]
-Se \(V_W^U(\mu)\leq V_W^M(\mu)\) para todo \(\mu\in[0,1]\), então
+\textit{Demonstração guiada.}
+
+Para excluir (H), o proponente compra (q-1) votos a (w) e fixa (y=0).
+Para tornar (H) pivotal, compra (q-2) votos. Screening oferece
+\(t_0=\beta o_0\): o tipo baixo aceita, o alto rejeita e o jogo segue para R2.
+Se o tipo alto ocorre, o proponente recebe sua continuação (w). Pooling
+oferece (t_1=\beta o_1\) e passa com ambos. Finalmente,
+
 \[
-F_U(\chi)\subseteq F_M(\chi)
+E-D=1-\frac{\beta q}{m}>0,
 \]
-para todo \(\chi\geq0\).
-\end{theorem}
 
-**Intuição.** Se unanimidade nunca dá aos weak states payoff maior que maioria,
-qualquer crença em que unanimidade cobre o custo de entrada também cobre o custo
-sob maioria.
+porque (q\leq m) e \(\beta<1\). Logo, delay nunca maximiza.
 
-**Prova.** Tome \(\mu\in F_U(\chi)\). Então \(V_W^U(\mu)\geq\chi\). Como
-\(V_W^M(\mu)\geq V_W^U(\mu)\), segue que \(V_W^M(\mu)\geq\chi\). Logo
-\(\mu\in F_M(\chi)\).
+## Partição de casos
 
-\begin{definition}[Partição]
-Uma coleção de conjuntos \(A_1,\ldots,A_J\) é uma partição de \(X\) se os
-conjuntos são dois a dois disjuntos e sua união é \(X\).
-\end{definition}
+As comparações têm uma ordem eficiente:
+
+1. (P-E=\beta(1/m-o_1)\) decide se pooling pode derrotar exclusão;
+2. (S(\nu)-E\) decide entre screening e exclusão;
+3. quando pooling é competitivo, (S(\nu)-P\) decide o cutoff final.
+
+Isso produz as cinco células da Proposição 3. As fronteiras
+\(o_0=1/m\) e \(o_1=1/m\) precisam ser tratadas separadamente porque uma
+desigualdade estrita vira igualdade. No caso (o_1=1/m), exclusão e pooling
+podem gerar um segmento de propostas maximizadoras, não apenas dois pontos.
+
+## Factibilidade e uso integral da pie
+
+Depois de fixar os pagamentos mínimos capazes de comprar a coalizão, todo
+excedente não alocado pode ser transferido ao residual (r_i). Isso aumenta o
+payoff do proponente e não muda votos. Portanto, as propostas selecionadas
+esgotam a pie. A lógica é uma prova de dominância local, não uma igualdade
+imposta como primitiva.
 
 ## Conexão com o paper
 
-A Proposição 3 usa um argumento de cota superior. Sob unanimidade:
-\[
-S_P^U=1-a_1\leq1,\quad
-S_L^U(\mu)\leq1,\quad
-S_D^U(\mu)\leq1.
-\]
-Como o candidato selecionado é um desses três, o total weak payoff sob
-unanimidade nunca excede a unidade. Dividindo por \(m\), obtém-se
-\[
-V_W^U(\mu)\leq \frac{1}{m}=V_W^M(\mu),
-\]
-sob Strict No-Cheap-H.
-
-O Corolário 1 usa esse nesting para excluir a categoria "só unanimidade". O
-espaço de crenças é então particionado por: nenhuma regra forma, só maioria
-forma, as duas formam e \(H\) prefere unanimidade, as duas formam e \(H\) é
-indiferente, ou as duas formam e \(H\) prefere maioria.
+Esta seção reconstrói a Proposição 3. Ela também explica por que os nomes
+exclusão, screening e pooling são classificações do resultado da solução, e
+não ações primitivas. O paper primeiro constrói todos os payoffs a partir da
+árvore e só então atribui os rótulos.
 
 ## Exercícios
 
-1. Se \(V_W^U(\mu)=0.04\), \(V_W^M(\mu)=0.08\) e \(\chi=0.05\), qual regra
-   forma nessa crença?
-2. Prove diretamente que \(S_P^U=1-a_1\leq1\) quando \(a_1\geq0\).
-3. Mostre que \(S_D^U(\mu)=\beta p_2(\mu)\leq1\) quando \(\beta\leq1\) e
-   \(p_2(\mu)\leq1\).
-4. Use a definição de \(F_R(\chi)\) para provar a inclusão
-   \(F_U(\chi)\subseteq F_M(\chi)\) a partir de \(V_W^U\leq V_W^M\).
-5. Explique por que a inclusão elimina a categoria "only unanimity".
-6. Mostre que os cinco conjuntos do Corolário 1 são exaustivos.
+1. Para (m=4), (q=3), \(\beta=0.9\), (o_0=0.10) e (o_1=0.35),
+   calcule (E), (L), (P) e (D).
+2. Usando os valores do exercício anterior, escreva (S(\nu)) e encontre o
+   cutoff entre screening e exclusão.
+3. Explique por que screening usa (q-2), e não (q-1), weak responders.
+4. Prove que uma proposta de exclusão com (y>0) é estritamente dominada por
+   outra que move (y) para (r_i).
+5. Construa a árvore de decisão das comparações (P-E), (S-E) e (S-P) que
+   gera as regiões da Proposição 3.
 
-Soluções na Seção \ref{solucoes-conjuntos}.
+Soluções na Seção \ref{sol:coalitions}.
 
-# Comparação de payoffs e estática comparativa elementar
+# Provas de inexistência por exaustão e desvio
 
-\begin{definition}[Payoff gap]
-O payoff gap de \(H\) é
-\[
-\Delta_H(\mu)=V_H^U(\mu)-V_H^M(\mu).
-\]
-Quando as duas instituições formam, seu sinal determina a preferência
-institucional de \(H\).
-\end{definition}
+## Existência exige resposta em toda proposta
 
-\begin{theorem}[Regra de sinal para comparação binária]
-Se um jogador compara duas alternativas \(A\) e \(B\), e
-\(\Delta=V(A)-V(B)\), então ele prefere estritamente \(A\) se
-\(\Delta>0\), é indiferente se \(\Delta=0\), e prefere estritamente \(B\) se
-\(\Delta<0\).
+Em um PBE, a estratégia precisa especificar uma resposta sequencialmente
+racional depois de cada proposta factível, inclusive propostas com
+probabilidade zero no caminho. Portanto, para provar inexistência é suficiente
+encontrar uma proposta factível para a qual nenhuma resposta admissível possa
+ser completada.
+
+\begin{theorem}[Certificado finito de inexistência]
+Considere um information set no qual um jogador informado tem dois tipos e
+duas ações puras. Se existe uma história factível em que cada um dos quatro
+perfis contingentes
+\((Y,Y)\), \((N,N)\), \((Y,N)\) e \((N,Y)\)
+viola racionalidade sequencial ou uma regra declarada do conceito de solução,
+então não existe PBE no espaço de estratégias puras considerado.
 \end{theorem}
 
-**Intuição.** Essa é apenas a definição de preferência por payoff esperado. A
-importância no paper é separar a pergunta "a instituição forma?" da pergunta
-"qual instituição \(H\) prefere quando ambas formam?".
+\textit{Intuição.} Dois tipos e duas ações geram apenas quatro funções puras do
+tipo para a ação. Eliminar todas é uma prova exaustiva. Não é necessário
+adivinhar qual delas seria on-path.
 
-**Prova.** Como os payoffs representam preferências, \(V(A)>V(B)\) equivale a
-preferir \(A\). Subtrair \(V(B)\) dos dois lados transforma essa comparação em
-\(\Delta>0\). Os casos de igualdade e sinal negativo seguem da mesma forma.
+## O desvio (s^\dagger)
 
-\begin{example}[Gap no exemplo principal]
-No ramo pooling do exemplo principal,
+Na célula (0<\nu\leq\nu^*\), considere
+
 \[
-\Delta_H^P(\mu)=0.330-0.350\mu.
+s^\dagger:\qquad
+y=\ell=\beta o_0,\quad
+x_j=A=\frac{\beta(1-o_0)}{m}\ \forall j,\quad
+r_i=1-\ell-(m-1)A.
 \]
-O crossing ocorre em \(\mu=0.330/0.350\approx0.943\). Abaixo disso, pooling
-sob unanimidade favorece \(H\) em relação à maioria; acima disso, maioria
-domina.
-\end{example}
+
+Cada weak responder recebe o maior valor de continuação possível e, portanto,
+vota sim. Resta verificar as quatro respostas puras de (H):
+
+\begin{center}
+\begin{tabular}{p{0.16\textwidth}p{0.70\textwidth}}
+\toprule
+Perfil baixo/alto & Razão da falha \\
+\midrule
+\((Y,Y)\) & O tipo alto recebe \(\ell<h=\beta o_1\) e prefere votar não para obter sua continuação. \\
+\((N,N)\) & Para o tipo baixo, não rende exatamente \(\ell\); por \(T^Y\), a igualdade exige sim. \\
+\((Y,N)\) & O tipo baixo imita o não do tipo alto, revela-se como alto e obtém continuação \(h>\ell\). \\
+\((N,Y)\) & O tipo alto imita o não prescrito ao tipo baixo e obtém \(h\); o não do tipo baixo também não pode ser estritamente sustentado na oferta \(\ell\). \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Nenhum perfil sobrevive. Como (s^\dagger) é factível, não há PBE em
+estratégias puras de ballot nessa célula.
+
+## Por que o endpoint é diferente
+
+Em \(\nu=0\), o tipo alto está fora do suporte. Uma ação off-path não pode
+ressuscitá-lo. A imitação que sustentava a continuação (h) deixa de estar
+disponível ao tipo baixo. Por isso a correspondência pode ser não vazia em
+\(\nu=0\) e vazia para todo \(\nu>0\) pequeno. Não há contradição: uma
+correspondência pode ser descontínua.
+
+Acima de \(\nu^*\), a continuação terminal já é pooling. A proposta de R1 paga
+
+\[
+h=\beta o_1,qquad
+B=\frac{\beta(1-o_1)}{m}
+\]
+
+a (H) e a cada weak responder relevante. O acordo imediato supera delay por
+(1-\beta>0).
 
 ## Conexão com o paper
 
-A Proposição 4 é formalmente simples, mas substantivamente central: quando as
-duas regras formam, a comparação institucional é o sinal de \(\Delta_H(\mu)\).
-O Corolário 1 usa esse sinal para dividir o both-form region em três partes:
-\(\Delta_H>0\), \(\Delta_H=0\) e \(\Delta_H<0\).
+Esta é a ferramenta central da Proposição 4. A conclusão é deliberadamente
+restrita: inexistência de PBE com votos puros. Ela não prova inexistência de
+equilíbrios com mixed ballot strategies, nem autoriza interpolar um payoff na
+célula vazia.
 
-Appendix B.4 usa derivadas elementares e rearranjos para interpretar os
-parâmetros. Por exemplo, a margem No-Cheap-H é
+## Exercícios
+
+1. Liste todas as funções puras de \(\{0,1\}\) para \(\{Y,N\}\) e explique
+   por que são exatamente quatro.
+2. Verifique que (s^\dagger) é factível e que seu residual é
+   (A+1-\beta>0).
+3. Mostre formalmente por que o perfil \((Y,N)\) falha quando
+   (0<\nu\leq\nu^*\).
+4. Explique por que eliminar apenas os perfis pooling não seria uma prova de
+   inexistência.
+5. Dê um exemplo simples de correspondência (F:[0,1]\rightrightarrows\R)
+   que seja não vazia em zero e vazia em todo ponto positivo. Relacione o
+   exemplo à descontinuidade do paper.
+
+Soluções na Seção \ref{sol:nonexistence}.
+
+# Correspondências, conjuntos exatos e diferenças de diferenças
+
+## Funções set-valued
+
+\begin{definition}[Correspondência]
+Uma correspondência (F:X\rightrightarrows Y) associa cada (x\in X) a um
+subconjunto (F(x)\subseteq Y). Ao contrário de uma função ordinária,
+(F(x)) pode ter vários elementos ou ser vazio.
+\end{definition}
+
+No paper, a multiplicidade de equilíbrios torna os payoffs set-valued. A
+inexistência sob unanimidade torna algumas células vazias. Esses dois casos não
+podem ser substituídos por uma média ou por um valor representativo.
+
+\begin{definition}[Diferença de conjuntos]
+Para (A,B\subseteq\R^n\), defina
 \[
-\mathcal M_{NC}=t_0-(1-\beta)o_0-\frac{\beta}{m}.
+A-B=\{a-b:a\in A,\ b\in B\}.
 \]
+Se (A=\varnothing) ou (B=\varnothing), então (A-B=\varnothing).
+\end{definition}
+
+Assim,
+
+\[
+RI_g=V_g^{priv}-V_g^{pub},
+\qquad
+\Delta RI=RI_U-RI_M.
+\]
+
+Cada subtração é componente a componente no mesmo tipo. Não se subtrai o tipo
+baixo de uma regra do tipo alto de outra.
+
+## Segmentos afins e peso comum
+
+\begin{theorem}[Imagem afim de um segmento]
+Se
+\[
+v(\lambda)=\lambda v^E+(1-\lambda)v^P,
+\qquad \lambda\in[0,1],
+\]
+e (c) é um vetor fixo, então
+\[
+\{v(\lambda)-c:\lambda\in[0,1]\}
+=
+\{\lambda(v^E-c)+(1-\lambda)(v^P-c):\lambda\in[0,1]\}.
+\]
+A mesma \(\lambda\) governa todas as coordenadas. O conjunto é um segmento,
+não o produto cartesiano de seus envelopes marginais.
+\end{theorem}
+
+\textit{Prova.} Distribua a subtração:
+
+\[
+\lambda v^E+(1-\lambda)v^P-c
+=\lambda(v^E-c)+(1-\lambda)(v^P-c),
+\]
+
+pois \(\lambda c+(1-\lambda)c=c\). \(\square\)
+
+```{r segment-figure, fig.cap="Figura 2. Segmento atingível com peso comum. Os envelopes de cada coordenada formam um retângulo, mas somente a linha é gerada por propostas admissíveis.", fig.width=6.4, fig.height=5}
+plot_linked_segment(a0 = 0.01, a1 = 0.035, d = 0.225)
+```
+
+## Exemplo completo de rendas
+
+Com (m=4), \(\beta=0.9\), (o_0=0.10), (o_1=0.35) e
+\(\nu=0.80\), a maioria privada exclui e a unanimidade privada faz pooling:
+
+\[
+V_M^{priv}=(0.10,0.35),\qquad
+V_U^{priv}=(0.315,0.315).
+\]
+
+Os benchmarks públicos são
+
+\[
+V_M^{pub}=(0.09,0.35),\qquad
+V_U^{pub}=(0.09,0.315).
+\]
+
 Logo,
+
 \[
-\frac{\partial\mathcal M_{NC}}{\partial t_0}=1,\qquad
-\frac{\partial\mathcal M_{NC}}{\partial o_0}=-(1-\beta),\qquad
-\frac{\partial\mathcal M_{NC}}{\partial\beta}=o_0-\frac{1}{m}.
+RI_M=(0.01,0),\qquad
+RI_U=(0.225,0),\qquad
+\Delta RI=(0.215,0).
 \]
 
-Essas derivadas não são uma técnica sofisticada de comparative statics; são
-apenas leitura local da fórmula.
+Cada coordenada responde a uma pergunta contrafactual precisa. O primeiro zero
+de (RI_M) não significa que o tipo baixo tenha payoff zero; significa que sua
+informação privada acrescenta (0.01) ao benchmark. O segundo zero significa
+que a informação não muda o payoff do tipo alto nessa célula.
+
+## Álgebra dos sinais
+
+Três quantidades tornam a tabela da Proposição 7 legível:
+
+\[
+a_\theta=(1-\beta)o_\theta>0,
+\qquad d=\beta(o_1-o_0)>0,
+\qquad k=\beta o_1-o_0.
+\]
+
+Os dois primeiros têm sinal fixo. O terceiro compara o threshold alto
+descontado com o desacordo baixo corrente e pode ser positivo, nulo ou
+negativo. Por isso algumas células têm ordenação robusta e outras não.
+
+## Conexão com o paper
+
+As Proposições 5, 6 e 7 são álgebra de vetores e conjuntos, mas a disciplina é
+substantiva: cada vetor deve vir de um equilíbrio inteiro; uma célula vazia
+permanece vazia; e a mesma proposta ou o mesmo peso \(\lambda\) precisa ligar
+payoffs e outcomes. O Apêndice C.2 resume envelopes apenas depois de registrar
+o conjunto exato.
 
 ## Exercícios
 
-1. Se \(V_H^U=0.20\) e \(V_H^M=0.15\), qual é \(\Delta_H\) e qual regra \(H\)
-   prefere?
-2. Resolva \(0.330-0.350\mu=0\).
-3. Para \(\mathcal M_{NC}=t_0-(1-\beta)o_0-\beta/m\), calcule a derivada em
-   relação a \(t_0\).
-4. Calcule a derivada de \(\mathcal M_{NC}\) em relação a \(\beta\).
-5. No caso \(o_0=o_1=o\), explique por que aumentar \(o\) reduz
-   \(\Delta_H^P\).
-6. Explique por que uma mudança no candidato selecionado pode mudar a inclinação
-   de \(\Delta_H(\mu)\), mesmo sem mudar os parâmetros primitivos.
+1. Se (A=\{(1,2)\}) e (B=\{(0.4,1.5)\}), calcule (A-B).
+2. Prove diretamente que \(\varnothing-B=\varnothing\).
+3. Para (v^E=(0.1,0.3)) e (v^P=(0.4,0.4)), calcule o ponto do segmento em
+   \(\lambda=0.25\). Mostre que não é possível escolher pesos diferentes por
+   coordenada.
+4. Reproduza (RI_M), (RI_U) e \(\Delta RI\) no exemplo numérico acima.
+5. Explique por que os envelopes marginais
+   \([\min\{0,k\},\max\{0,k\}]\) e \([-a_1,0]\) não autorizam todo ponto do
+   retângulo formado por eles.
 
-Soluções na Seção \ref{solucoes-payoff}.
+Soluções na Seção \ref{sol:sets}.
 
-# Referências de livros-texto
+# Referências para aprofundamento
+
+O guia é autocontido. As leituras abaixo servem para consolidar a técnica e
+ver versões mais gerais.
 
 \small
-\begin{longtable}{p{0.25\textwidth}p{0.31\textwidth}p{0.34\textwidth}}
-\caption{Referências úteis por tópico matemático usado no paper.}\\
+\begin{longtable}{p{0.22\textwidth}p{0.35\textwidth}p{0.33\textwidth}}
+\caption{Leituras recomendadas por tópico.}\\
 \toprule
 Tópico & Referência principal & Alternativa \\
 \midrule
@@ -875,209 +766,14 @@ Tópico & Referência principal & Alternativa \\
 Tópico & Referência principal & Alternativa \\
 \midrule
 \endhead
-Jogos dinâmicos e PBE & Fudenberg e Tirole, *Game Theory*, capítulos 3 e 8 & Osborne e Rubinstein, *A Course in Game Theory*, capítulos 6 e 12 \\
-Bargaining legislativo & Baron e Ferejohn (1989), modelo de bargaining legislativo & Eraslan, Evdokimov e Zapal (2019), survey de legislative bargaining \\
-Desigualdades e funções afins & Simon e Blume, *Mathematics for Economists*, capítulos 2 e 3 & Sundaram, *A First Course in Optimization Theory*, apêndices matemáticos \\
-Maximização finita e envelopes & Sundaram, *A First Course in Optimization Theory*, capítulo 1 & Mas-Colell, Whinston e Green, *Microeconomic Theory*, seções sobre escolha e maximização \\
-Incentive constraints & Mas-Colell, Whinston e Green, capítulos 13--14 & Fudenberg e Tirole, capítulos sobre informação incompleta e signaling \\
-Set theory elementar e partições & Simon e Blume, capítulo 29, seções introdutórias & Jehle e Reny, *Advanced Microeconomic Theory*, apêndice matemático \\
-Comparative statics elementar & Simon e Blume, capítulos 14--15 & Dixit, *Optimization in Economic Theory*, capítulos 1--2 \\
+Indução retroativa e jogos dinâmicos & Gibbons (1992), Cap. 2, ``Dynamic Games of Complete Information'' & Osborne e Rubinstein (1994), Parte II, ``Extensive Games with Perfect Information'' \\
+Informação incompleta e PBE & Gibbons (1992), Cap. 4, ``Dynamic Games of Incomplete Information'' & Fudenberg e Tirole (1991), Parte IV, jogos dinâmicos com informação incompleta \\
+Bayes e valor esperado & Blitzstein e Hwang (2019), Caps. 2 e 4, probabilidade condicional e esperança & DeGroot e Schervish (2012), capítulos iniciais sobre probabilidade e Bayes \\
+Estratégias de prova e exaustão & Velleman (2006), Cap. 3, ``Proofs'', e ``Summary of Proof Techniques'' & Hammack (2018), capítulos sobre prova direta, contraposição e casos \\
+Segmentos, convexidade e imagens afins & Rockafellar (1970), Seções 2 e 3 sobre conjuntos convexos & Velleman (2006), Caps. 4 e 5 sobre relações e funções \\
+Barganha legislativa & Baron e Ferejohn (1989), modelo base de reconhecimento e coalizões mínimas & Eraslan e McLennan (2019), revisão de bargaining legislativo e multilateral \\
 \bottomrule
 \end{longtable}
 \normalsize
 
-# Soluções dos exercícios
-
-## Soluções: desigualdades afins \label{solucoes-afins}
-
-1. \(f(\mu)=2-3\mu\). Em \([0,1/2]\), o menor valor ocorre em
-   \(\mu=1/2\), dando \(2-3/2=1/2>0\). Em \((2/3,1]\), temos
-   \(3\mu>2\), logo \(2-3\mu<0\).
-
-2. \[
-\mu_2^*=\frac{0.55-0.20}{1-0.20}=\frac{0.35}{0.80}=0.4375.
-\]
-
-3. Comece de \((1-\mu)(1-t_0)\geq1-t_1\). Como \(1-t_0>0\),
-   \[
-   1-\mu\geq\frac{1-t_1}{1-t_0}.
-   \]
-   Subtraindo de 1,
-   \[
-   \mu\leq1-\frac{1-t_1}{1-t_0}
-   =\frac{t_1-t_0}{1-t_0}.
-   \]
-
-4. Igualando,
-   \[
-   -0.0375+0.3575\mu=0.1025-0.0875\mu.
-   \]
-   Logo \(0.445\mu=0.140\), e
-   \[
-   \mu=0.140/0.445\approx0.315.
-   \]
-
-5. O gap é afim. Em \(\mu=0\),
-   \(g(0)=c_M-a_0^M\leq0\). Em \(\mu=1\),
-   \[
-   g(1)=c_M-a_0^M+a_0^M+kc_M-1=(k+1)c_M-1=q\beta/m-1\leq0.
-   \]
-   Como \(g\) é afim, é não positivo em todo \([0,1]\).
-
-6. Escreva \(g=t_1-t_0>0\). Então
-   \[
-   (1-\mu)g-(1-\beta)o>0
-   \]
-   equivale a
-   \[
-   1-\mu>\frac{(1-\beta)o}{g},
-   \]
-   ou
-   \[
-   \mu<1-\frac{(1-\beta)o}{g}.
-   \]
-
-## Soluções: thresholds \label{solucoes-thresholds}
-
-1. O pacote aceito que maximiza \(1-y\) é \(y=0.4\). Qualquer \(y>0.4\)
-   também é aceito, mas dá payoff menor ao proposer.
-
-2. Os dois pacotes relevantes são \(y=0.3\), aceito apenas pelo low type, e
-   \(y=0.7\), aceito pelos dois tipos.
-
-3. Em \((0.3,0.7)\), apenas low aceita. Como \(y=0.3\) também é aceito apenas
-   por low e custa menos ao weak proposer, \(y=0.5\) é dominado.
-
-4. \[
-   a_1=0.70-(1-0.6)0.05=0.70-0.02=0.68.
-   \]
-
-5. Se \(y=a_0(1)\), o low type é indiferente/aceita, mas o high type rejeita
-   porque \(a_0(1)<a_1\). Se \(y=a_1\), o high type aceita e, pela ordem
-   \(a_0(1)\leq a_1\), o low type também aceita.
-
-6. Low-only separation estrita exige um pacote \(y\) que low aceite e high
-   rejeite, isto é, \(y\geq a_0(1)\) e \(y<a_1\). Se \(a_0(1)=a_1\), não existe
-   \(y\) satisfazendo simultaneamente \(y\geq a_1\) e \(y<a_1\).
-
-## Soluções: restrições de incentivo \label{solucoes-ics}
-
-1. Não. Como \(0.04<0.05\), rejeitar dá payoff maior.
-
-2. O pagamento mínimo é \(x=c=0.0325\).
-
-3. Porque weak voters não observam \(\theta\). Sob a assessment mantida, seu
-   desvio não contém informação privada sobre o tipo de \(H\), então não muda o
-   posterior.
-
-4. A rejeição do high type é informativa porque \(H\) observa seu próprio tipo
-   e sua estratégia prescrita separa tipos. A aprovação de um weak voter não é
-   informativa sobre \(\theta\), pois weak voters não conhecem \(\theta\).
-
-5. Se \(x>c(\mu)\), reduzir \(x\) para \(c(\mu)\) preserva a aprovação weak e
-   aumenta o residual do proposer. Portanto \(x>c(\mu)\) é dominado.
-
-6. Com \(N=3\), só há um weak voter não propositor além do proposer. Se esse
-   voter muda de no para yes, a unanimidade pode depender apenas do voto de
-   \(H\). Por isso a prova checa explicitamente que, mesmo nesse edge case, a
-   continuação de rejeitar é pelo menos tão boa quanto o desvio.
-
-## Soluções: envelopes \label{solucoes-envelope}
-
-1. O máximo é \(0.10\).
-
-2. Igualando \(0.10-\mu=0.02+\mu\), temos \(0.08=2\mu\), logo
-   \(\mu=0.04\).
-
-3. Em \(\mu=0.20\),
-   \[
-   \Pi_P=-0.0375+0.3575(0.20)=0.034,
-   \]
-   enquanto
-   \[
-   \Pi_L=0.1025-0.0875(0.20)=0.085.
-   \]
-   Low-only vence.
-
-4. Em \(\mu=0.60\),
-   \[
-   \Pi_P=-0.0375+0.3575(0.60)=0.177,
-   \]
-   e
-   \[
-   \Pi_L=0.1025-0.0875(0.60)=0.050.
-   \]
-   Pooling vence.
-
-5. Se \(D(\mu)\leq\max\{P(\mu),L(\mu)\}\) para todo \(\mu\), então adicionar
-   \(D\) ao conjunto não altera o maior valor. Logo os envelopes coincidem.
-
-6. Porque o máximo só é correto se o conjunto de candidatos for exaustivo. Sem
-   os Lemas 2 e 3, poderia haver uma história rejeitada ou separadora com payoff
-   maior que \(P,L,D\).
-
-## Soluções: conjuntos \label{solucoes-conjuntos}
-
-1. Unanimidade não forma, pois \(0.04<0.05\). Maioria forma, pois
-   \(0.08\geq0.05\). Portanto só majority forma.
-
-2. Como \(a_1\geq0\), subtrair \(a_1\) de 1 não pode produzir valor maior que
-   1. Logo \(1-a_1\leq1\).
-
-3. Como \(p_2(\mu)\leq1\) e \(\beta\leq1\), o produto
-   \(\beta p_2(\mu)\leq1\).
-
-4. Se \(\mu\in F_U(\chi)\), então \(V_W^U(\mu)\geq\chi\). Como
-   \(V_W^M(\mu)\geq V_W^U(\mu)\), segue que \(V_W^M(\mu)\geq\chi\), logo
-   \(\mu\in F_M(\chi)\).
-
-5. "Only unanimity" exigiria \(\mu\in F_U(\chi)\) e
-   \(\mu\notin F_M(\chi)\). Mas \(F_U(\chi)\subseteq F_M(\chi)\), então isso é
-   impossível.
-
-6. Para qualquer \(\mu\), ou \(\mu\notin F_M\), ou \(\mu\in F_M\). Se está em
-   \(F_M\), ou não está em \(F_U\), ou está em \(F_U\). Se está em \(F_U\), uma
-   e apenas uma das três condições vale: \(\Delta_H>0\), \(\Delta_H=0\), ou
-   \(\Delta_H<0\). Portanto os cinco casos cobrem todo \([0,1]\).
-
-## Soluções: payoff gap \label{solucoes-payoff}
-
-1. \(\Delta_H=0.20-0.15=0.05>0\). Logo \(H\) prefere unanimidade.
-
-2. \[
-   0.330-0.350\mu=0
-   \quad\Rightarrow\quad
-   \mu=0.330/0.350\approx0.943.
-   \]
-
-3. \[
-   \frac{\partial\mathcal M_{NC}}{\partial t_0}=1.
-   \]
-
-4. Como
-   \[
-   \mathcal M_{NC}=t_0-o_0+\beta o_0-\frac{\beta}{m},
-   \]
-   a derivada em relação a \(\beta\) é
-   \[
-   o_0-\frac{1}{m}.
-   \]
-
-5. No caso comum, \(\Delta_H^P=(1-\mu)(t_1-t_0)-(1-\beta)o\). Aumentar \(o\)
-   aumenta o termo subtraído \((1-\beta)o\), reduzindo o payoff gap quando
-   \(\beta<1\).
-
-6. Cada candidato tem uma fórmula diferente para \(V_H^U(\mu)\). Quando a
-   seleção muda, \(\Delta_H(\mu)\) passa a usar outra fórmula candidata; por
-   isso a inclinação pode mudar mesmo com parâmetros primitivos fixos.
-
-# Checklist de cobertura
-
-- Proposição 1, Lema 1, Lema 2, Lema 3, Proposição 2, Proposição 3,
-  Proposição 4 e Corolário 1 estão mapeados na tabela inicial.
-- As duas definições centrais do paper estão conectadas às seções de jogo,
-  beliefs e restrições de incentivo.
-- O Apêndice B está coberto como microfundação, one-shot bridge, complete
-  information, comparative statics e delay example.
-- O guia evita ferramentas não usadas nas provas, como ponto fixo, medida,
-  correspondências e teoria da ordem.
+<!-- SOLUTIONS -->
