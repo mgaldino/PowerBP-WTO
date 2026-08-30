@@ -141,13 +141,21 @@ record_check(
               "7248c56cca098d86c0117a78f89c4555c0d934d3") &&
     identical(status$a_c_candidate_snapshot$round2_reviews_and_adjudication_commit,
               "62bad2e6e5d4f360e4c2ae2830916bc02522b512") &&
+    identical(status$a_c_candidate_snapshot$administrative_repair_commit,
+              "76f4540cacc15a8db6f0175e7056a7692433bec5") &&
+    identical(status$a_c_candidate_snapshot$round3_reviews_commit,
+              "128860d9f3fd903554b17ad8f343a6211d96cc7d") &&
+    identical(status$a_c_candidate_snapshot$round3_adjudication_commit,
+              "39268e9d2579b1e072cfa8456a18d30ce89c54de") &&
     identical(status$a_c_candidate_snapshot$candidate_manifest_sha256,
               "fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba") &&
+    identical(status$a_c_candidate_snapshot$terminal_gate_candidate_manifest_sha256,
+              "68eeefe86b8ade64266c1c8c9901ef070742aa2821e356371a5736dabfceaf64") &&
     identical(status$a_c_candidate_snapshot$game_dag_sha256,
               "830aedea4d89007353f0b1da9b7ae623b1680360626521f536abedd7fda42b9c") &&
     identical(status$a_c_candidate_snapshot$mechanical_result,
               "941 PASS / 0 FAIL"),
-  "A_C authorization, both candidate rounds, repairs, reviews, manifest, DAG, and mechanical result are pinned"
+  "A_C authorization, candidate rounds, repairs, reviews, adjudication, terminal-gate candidate, DAG, and mechanical result are pinned"
 )
 
 record_check(
@@ -188,6 +196,11 @@ record_check(
             status$a_c_candidate_snapshot$game_dag_sha256),
   "A_C dependency DAG bytes match"
 )
+record_check(
+  identical(sha256(status$a_c_candidate_snapshot$terminal_gate_candidate_manifest_path),
+            status$a_c_candidate_snapshot$terminal_gate_candidate_manifest_sha256),
+  "A_C terminal-gate candidate manifest bytes match"
+)
 
 a_m <- node_by_id(status, "A_M")
 a_u <- node_by_id(status, "A_U")
@@ -224,8 +237,8 @@ record_check(
     identical(ac$authorization, "start_authorized") &&
     identical(ac$mechanical_result, "941 PASS / 0 FAIL") &&
     identical(ac$review_status,
-              "round-2 mathematics reviewed; targeted read-only verification of the administrative repair pending"),
-  "AC is a start-authorized pending/unfrozen candidate awaiting targeted administrative verification"
+              "mathematical review complete; directed final reviews PASS 0/0/0 twice; NO_CONFIRMED_DEFECTS adjudication complete; terminal author approval pending"),
+  "AC is a reviewed and adjudicated pending/unfrozen candidate awaiting terminal author approval"
 )
 record_check(
   identical(ar$status, "pending") && identical(ar$frozen, FALSE) &&
@@ -407,8 +420,53 @@ record_check(
 )
 record_check(
   identical(ac$administrative_repair_status,
-            "AC-R2-MIN-1 implemented in the four adjudicated lifecycle artifacts; targeted final verification pending"),
-  "A_C administrative repair is recorded without terminal approval"
+            "AC-R2-MIN-1 implemented and independently verified twice with PASS 0/0/0; final adjudication found no current defect"),
+  "A_C administrative repair is independently verified without terminal approval"
+)
+expected_a_c_round3_review_hashes <- c(
+  "quality_reports/2026-08-30_AC_msb_round3_formal_review_1.md" =
+    "83e6a4a7249f666fb0760ed33b43c3fbff710f39476ef63791f4a9ae55b1c989",
+  "quality_reports/2026-08-30_AC_msb_round3_formal_review_2.md" =
+    "c515bfef9efd594d947bc76b660046f4784dd66de69b9929598a459ad86fdedf"
+)
+a_c_round3_review_hashes <- setNames(
+  vapply(ac$directed_final_reviews, function(x) x$sha256, character(1L)),
+  vapply(ac$directed_final_reviews, function(x) x$path, character(1L))
+)
+record_check(
+  identical(a_c_round3_review_hashes[names(expected_a_c_round3_review_hashes)],
+            expected_a_c_round3_review_hashes) &&
+    all(vapply(ac$directed_final_reviews, function(x) {
+      identical(x$verdict, "PASS") && identical(x$findings, "0/0/0")
+    }, logical(1L))),
+  "A_C directed final reviews are pinned as PASS 0/0/0 twice"
+)
+for (relative_path in names(expected_a_c_round3_review_hashes)) {
+  record_check(
+    identical(sha256(relative_path),
+              unname(expected_a_c_round3_review_hashes[[relative_path]])),
+    sprintf("A_C directed final review bytes match: %s", relative_path)
+  )
+}
+record_check(
+  identical(ac$directed_final_adjudication$verdict,
+            "NO_CONFIRMED_DEFECTS") &&
+    identical(ac$directed_final_adjudication$counts$confirmed, 0L) &&
+    identical(ac$directed_final_adjudication$counts$partial, 0L) &&
+    identical(ac$directed_final_adjudication$counts$unresolved, 0L) &&
+    identical(sha256(ac$directed_final_adjudication$markdown_path),
+              ac$directed_final_adjudication$markdown_sha256) &&
+    identical(sha256(ac$directed_final_adjudication$json_path),
+              ac$directed_final_adjudication$json_sha256),
+  "A_C directed final adjudication records no current confirmed, partial, or unresolved defect"
+)
+record_check(
+  identical(ac$terminal_gate_candidate_manifest$entries, 12L) &&
+    identical(ac$terminal_gate_candidate_manifest$sha256,
+              "68eeefe86b8ade64266c1c8c9901ef070742aa2821e356371a5736dabfceaf64") &&
+    identical(sha256(ac$terminal_gate_candidate_manifest$path),
+              ac$terminal_gate_candidate_manifest$sha256),
+  "A_C terminal-gate candidate pins 12 reviewed and adjudicated entries"
 )
 
 expected_a_u_review_hashes <- c(
@@ -581,6 +639,10 @@ record_check(
 record_check(
   any(grepl("AC-R2-MIN-1", status_md, fixed = TRUE, useBytes = TRUE)),
   "human-readable status records the confirmed A_C administrative finding"
+)
+record_check(
+  any(grepl("12/12", status_md, fixed = TRUE, useBytes = TRUE)),
+  "human-readable status identifies the exact A_C terminal-gate candidate"
 )
 
 cat(sprintf("SUMMARY | %d PASS | %d FAIL\n", pass_count, fail_count))

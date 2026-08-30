@@ -47,12 +47,17 @@
     "traceability_repair_commit": "7151b368f1e9d43de30b437ab2386c82655aa789",
     "round2_packaged_candidate_commit": "7248c56cca098d86c0117a78f89c4555c0d934d3",
     "round2_reviews_and_adjudication_commit": "62bad2e6e5d4f360e4c2ae2830916bc02522b512",
+    "administrative_repair_commit": "76f4540cacc15a8db6f0175e7056a7692433bec5",
+    "round3_reviews_commit": "128860d9f3fd903554b17ad8f343a6211d96cc7d",
+    "round3_adjudication_commit": "39268e9d2579b1e072cfa8456a18d30ce89c54de",
     "candidate_manifest_path": "quality_reports/2026-08-30_AC_msb_round2_candidate_manifest.sha256",
     "candidate_manifest_sha256": "fc9788a0a9cd02bb6e059c9f918f4fe5ad7ebdcdb79e210f036684d65602cbba",
+    "terminal_gate_candidate_manifest_path": "quality_reports/2026-08-30_AC_msb_terminal_gate_candidate_manifest.sha256",
+    "terminal_gate_candidate_manifest_sha256": "68eeefe86b8ade64266c1c8c9901ef070742aa2821e356371a5736dabfceaf64",
     "game_dag_path": "model_redesign/agenda_extension_AC_msb_game_dag.json",
     "game_dag_sha256": "830aedea4d89007353f0b1da9b7ae623b1680360626521f536abedd7fda42b9c",
     "mechanical_result": "941 PASS / 0 FAIL",
-    "lifecycle": "start authorized; round-2 mathematical candidate reviewed without a mathematical defect; AC-R2-MIN-1 confirmed only for the stale central lifecycle pins and repaired administratively; targeted final verification and terminal author approval pending; unfrozen"
+    "lifecycle": "start authorized; mathematical candidate reviewed; AC-R1-MIN-1 and AC-R2-MIN-1 repaired; round-3 directed reviews PASS 0/0/0 twice and independent adjudication NO_CONFIRMED_DEFECTS; terminal author approval pending; unfrozen"
   },
   "nodes": [
     {
@@ -193,7 +198,7 @@
       "status": "pending",
       "frozen": false,
       "authorization": "start_authorized",
-      "reason": "the exact-fiber comparison, operation-specific measurable-factorization proof and selection-free sufficient bound passed mathematical review; a confirmed stale-lifecycle minor was repaired administratively, and targeted final verification plus terminal author approval remain pending",
+      "reason": "the exact-fiber comparison, operation-specific measurable-factorization proof and selection-free sufficient bound passed mathematical review; both confirmed minor findings were repaired and the final directed review/adjudication is clean; terminal author approval remains pending",
       "authorization_record": {
         "path": "quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md",
         "sha256": "ea4e2e9b9e1296aecd64760f058f0097ff4281f6a9b301373feeea2591092f95"
@@ -235,8 +240,39 @@
         "json_path": "quality_reports/adjudication/A_C_msb/fc9788a0a9cd/adjudication_round2.json",
         "json_sha256": "3be56e507ea97e125208d24cd3fb8623bbca7b65659c6761f4622cfcb43f575c"
       },
-      "administrative_repair_status": "AC-R2-MIN-1 implemented in the four adjudicated lifecycle artifacts; targeted final verification pending",
-      "review_status": "round-2 mathematics reviewed; targeted read-only verification of the administrative repair pending"
+      "directed_final_reviews": [
+        {
+          "path": "quality_reports/2026-08-30_AC_msb_round3_formal_review_1.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "83e6a4a7249f666fb0760ed33b43c3fbff710f39476ef63791f4a9ae55b1c989"
+        },
+        {
+          "path": "quality_reports/2026-08-30_AC_msb_round3_formal_review_2.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "c515bfef9efd594d947bc76b660046f4784dd66de69b9929598a459ad86fdedf"
+        }
+      ],
+      "directed_final_adjudication": {
+        "verdict": "NO_CONFIRMED_DEFECTS",
+        "counts": {
+          "confirmed": 0,
+          "partial": 0,
+          "unresolved": 0
+        },
+        "markdown_path": "quality_reports/adjudication/A_C_msb/fc9788a0a9cd/adjudication_round3.md",
+        "markdown_sha256": "e6647a28c5653a6af91f0fc66f81b6af258ef9b04aacb238a38e4da5a57918a3",
+        "json_path": "quality_reports/adjudication/A_C_msb/fc9788a0a9cd/adjudication_round3.json",
+        "json_sha256": "53b8803679c078b33ee6f44c8de46b78922e9574648ebcf668f744d6c15decec"
+      },
+      "terminal_gate_candidate_manifest": {
+        "path": "quality_reports/2026-08-30_AC_msb_terminal_gate_candidate_manifest.sha256",
+        "sha256": "68eeefe86b8ade64266c1c8c9901ef070742aa2821e356371a5736dabfceaf64",
+        "entries": 12
+      },
+      "administrative_repair_status": "AC-R2-MIN-1 implemented and independently verified twice with PASS 0/0/0; final adjudication found no current defect",
+      "review_status": "mathematical review complete; directed final reviews PASS 0/0/0 twice; NO_CONFIRMED_DEFECTS adjudication complete; terminal author approval pending"
     },
     {
       "node_id": "AR",

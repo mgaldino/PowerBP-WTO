@@ -9,17 +9,17 @@
 ## Resposta curta
 
 `A_M` e `A_U` sob M/S/B estão **`pass/frozen`** nos respectivos bytes exatos
-aprovados. `A_C` foi autorizado, derivado e revisado matematicamente, mas segue
-**`pending/unfrozen`**: o único finding corrente foi administrativo, seu reparo
-foi aplicado e ainda aguarda verificação independente dirigida e aprovação
-autoral terminal. `A_R` continua não autorizado. Não há autorização
+aprovados. `A_C` foi autorizado, derivado, revisado e adjudicado sem defeito
+corrente, mas segue **`pending/unfrozen`** até a aprovação autoral terminal. Os
+dois findings minor históricos foram reparados e permanecem documentados; não
+foram apagados retroativamente. `A_R` continua não autorizado. Não há autorização
 para migrar resultados ao manuscrito, criar tag, fazer merge ou push.
 
 | Nó | Status atual | Pode ser executado ou consumido agora? |
 |---|---|---|
 | `A_M` | `pass/frozen` | Apenas os bytes congelados podem ser citados; o status não autoriza trabalho downstream. |
 | `A_U` | `pass/frozen`; revisões, adjudicação e aprovação autoral terminal concluídas | Apenas os bytes congelados podem ser citados; o status não inicia `AC`. |
-| `AC` | candidato `pending/unfrozen`; matemática revisada; reparo administrativo aguardando checagem final | Pode ser verificado nos hashes da rodada 2; ainda não pode ser citado como resultado congelado. |
+| `AC` | candidato `pending/unfrozen`; duas revisões finais `PASS 0/0/0`; adjudicação sem defeito corrente | Está pronto para decisão autoral terminal nos 12 hashes do manifesto; ainda não é resultado congelado. |
 | `AR` | `pending/unfrozen` | Não. Exige GO autoral separado após o pacote privado revisado. |
 
 ## Candidato atual de `A_C`
@@ -74,9 +74,21 @@ DAG                 = 830aedea4d89007353f0b1da9b7ae623b1680360626521f536abedd7fd
 ledger              = 280f8168cc632fd650e79cc9a4da411b42f24a5f2d845f5e98d337a99ec5ed5b
 ```
 
-O próximo gate é uma checagem read-only dirigida somente à reprodutibilidade
-desse reparo administrativo e à imutabilidade dos sete blobs matemáticos. Mesmo
-um `PASS` final não congela `A_C` sem aprovação autoral terminal.
+O reparo administrativo foi então submetido a duas checagens read-only
+independentes. Ambas deram `PASS 0/0/0`, reproduziram `90 PASS / 0 FAIL` no
+checker central e confirmaram que as sete entradas matemáticas permanecem
+byte-idênticas. A adjudicação final voltou diretamente aos commits e hashes e
+deu `NO_CONFIRMED_DEFECTS`, com zero findings confirmados, parciais ou não
+resolvidos na rodada 3.
+
+O manifesto
+`quality_reports/2026-08-30_AC_msb_terminal_gate_candidate_manifest.sha256`
+(SHA-256
+`68eeefe86b8ade64266c1c8c9901ef070742aa2821e356371a5736dabfceaf64`)
+fixa as sete entradas matemáticas, o manifesto da rodada 2, os dois pareceres
+finais e os dois registros da adjudicação: 12/12 hashes passam. Esse é o objeto
+exato pronto para decisão autoral. As revisões e a adjudicação não congelam
+`A_C` sem aprovação autoral terminal.
 
 ## Status próprio de `A_U`
 
