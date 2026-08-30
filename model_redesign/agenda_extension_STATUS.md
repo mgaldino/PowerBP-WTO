@@ -8,23 +8,21 @@
 
 ## Resposta curta
 
-`A_M` e `A_U` sob M/S/B estão **`pass/frozen`** nos respectivos bytes exatos
-aprovados. `A_C` foi fortalecido, reparado e recebeu dois pareceres independentes
-`PASS 0/0/0`, mas segue **`pending/unfrozen`** até a aprovação autoral terminal.
-A adjudicação confirmou um finding minor exclusivamente administrativo: estes
-sidecars ainda apontavam para o candidato anterior. O reparo está implementado
-abaixo sem alterar nenhum dos oito artefatos revisados. `A_R` continua não
-autorizado. Não há autorização para migrar resultados ao manuscrito, criar tag,
-fazer merge ou push.
+`A_M`, `A_U` e `A_C` sob M/S/B estão **`pass/frozen`** nos respectivos bytes
+exatos aprovados. Em `A_C`, o finding minor exclusivamente administrativo foi
+reparado sem alterar nenhum dos oito artefatos matemáticos; o reparo recebeu
+dois pareceres `PASS 0/0/0`, adjudicação `NO_CONFIRMED_DEFECTS` e aprovação
+autoral terminal. `A_R` continua não autorizado. Não há autorização para migrar
+resultados ao manuscrito, criar tag, fazer merge ou push.
 
 | Nó | Status atual | Pode ser executado ou consumido agora? |
 |---|---|---|
 | `A_M` | `pass/frozen` | Apenas os bytes congelados podem ser citados; o status não autoriza trabalho downstream. |
 | `A_U` | `pass/frozen`; revisões, adjudicação e aprovação autoral terminal concluídas | Apenas os bytes congelados podem ser citados; o status não inicia `AC`. |
-| `AC` | candidato fortalecido `pending/unfrozen`; duas revisões `PASS 0/0/0`; matemática sem defeito confirmado; finding administrativo reparado | Está pronto para decisão autoral terminal nos 13 hashes do manifesto; ainda não é resultado congelado. |
+| `AC` | `pass/frozen`; candidato fortalecido, revisões, adjudicações e aprovação autoral terminal concluídas | Apenas os bytes do manifesto final podem ser citados; o status não inicia `AR`. |
 | `AR` | `pending/unfrozen` | Não. Exige GO autoral separado após o pacote privado revisado. |
 
-## Candidato atual de `A_C`
+## Status congelado de `A_C`
 
 O autor autorizou o início com “A_c pode iniciar, autorizado.” e, depois da
 consulta externa, autorizou também todos os resultados fortes com “do it.”. Os
@@ -88,13 +86,25 @@ confirmou a matemática e os reparos substantivos. Seu único finding foi
 finding não atingiu nenhum resultado; este trecho e o JSON estruturado são seu
 reparo administrativo determinado.
 
-O novo manifesto terminal
+O manifesto do gate técnico
 `quality_reports/2026-08-30_AC_msb_strengthened_terminal_gate_candidate_manifest.sha256`,
 SHA-256
 `17279db1f853e5bc0bb3b7b1ef2411053e1beb6929e56c15b766e0ee847ef5d2`,
 fixa 13/13 entradas: os oito artefatos do candidato, seu manifesto, os dois
-pareceres e os dois registros da adjudicação. Esse é o objeto exato pronto para
-decisão autoral. Ele permanece `pending/unfrozen` até essa decisão.
+pareceres e os dois registros da adjudicação matemática.
+
+O reparo administrativo subsequente recebeu dois pareceres independentes
+`PASS 0/0/0` e adjudicação final `NO_CONFIRMED_DEFECTS`. O autor aprovou
+terminalmente `A_C` com “aprovado. O que é A_R mesmo?”. A primeira frase aprova
+`A_C`; a pergunta não inicia `A_R`. O registro terminal é
+`quality_reports/2026-08-30_A_C_msb_strengthened_terminal_approval_and_freeze.md`
+(SHA-256
+`b331f88b7abb99c03a5a8c657d163d1e006c0cf4cb51e744abcee298ac6af557`).
+O manifesto final
+`quality_reports/2026-08-30_A_C_msb_strengthened_final_gate_manifest.sha256`
+(SHA-256
+`332d1d7be7a7b38f715c8d7d872c6f7010c22a27fc924b91e8f694199a190fe4`)
+fixa 20/20 entradas e torna `A_C` `pass/frozen` somente nesses bytes.
 
 ## Status próprio de `A_U`
 
@@ -157,8 +167,8 @@ e o manifesto final
 `b85741b2176c4480f5f3632c4464a93cebabb5dd4f71636626917b9227030180`)
 fixam os bytes aprovados. A pergunta subsequente do autor sobre `AC` não o havia
 autorizado naquele momento; a autorização separada posterior está registrada na
-seção anterior. `A_C` agora é um candidato `pending/unfrozen`, não um resultado
-terminalmente aprovado.
+seção anterior. `A_C` foi posteriormente revisado, adjudicado e aprovado
+terminalmente; agora é `pass/frozen` somente nos bytes do manifesto final.
 
 Os pareceres históricos de 2026-08-29 permanecem como proveniência da lacuna
 que motivou a arquitetura em duas camadas; não governam os bytes agora

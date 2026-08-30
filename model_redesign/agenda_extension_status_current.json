@@ -16,6 +16,12 @@
     "final_gate_manifest_path": "quality_reports/2026-08-30_A_U_msb_two_layer_final_gate_manifest.sha256",
     "final_gate_manifest_sha256": "b85741b2176c4480f5f3632c4464a93cebabb5dd4f71636626917b9227030180"
   },
+  "a_c_authority": {
+    "path": "quality_reports/2026-08-30_A_C_msb_strengthened_terminal_approval_and_freeze.md",
+    "sha256": "b331f88b7abb99c03a5a8c657d163d1e006c0cf4cb51e744abcee298ac6af557",
+    "final_gate_manifest_path": "quality_reports/2026-08-30_A_C_msb_strengthened_final_gate_manifest.sha256",
+    "final_gate_manifest_sha256": "332d1d7be7a7b38f715c8d7d872c6f7010c22a27fc924b91e8f694199a190fe4"
+  },
   "snapshot": {
     "branch": "agenda-extension-am-msb",
     "substantive_commit": "e020629d5bad8fbd66d67cf108b1a2e0d8b048fd",
@@ -47,6 +53,10 @@
     "repaired_candidate_commit": "5410b06b1cb036e53ba2d34830e21425e65f89a0",
     "repaired_reviews_commit": "019dd142c802b516762727dfae61fb65e9598e8f",
     "repaired_adjudication_commit": "f605028e9760b89ea401ce4ad7c4b3d3e90a10e7",
+    "administrative_repair_commit": "5785a157d85915ac616f853ee2b314a51da095eb",
+    "administrative_reviews_commit": "4575f3781d6bbd92a73589c081bd0b88e0bcb680",
+    "administrative_adjudication_commit": "67349a76b01c7cdaff860ee94e2ef4ad36f3422c",
+    "terminal_closure_commit": "858e454e9079719dbb521f2cd35cffc3b4a02a13",
     "candidate_manifest_path": "quality_reports/2026-08-30_AC_msb_strengthened_round2_candidate_manifest.sha256",
     "candidate_manifest_sha256": "ec5bbebe0490eb8a46ee5e0de1565cf52ae1838721a870df21cdc4a629058339",
     "terminal_gate_candidate_manifest_path": "quality_reports/2026-08-30_AC_msb_strengthened_terminal_gate_candidate_manifest.sha256",
@@ -54,7 +64,7 @@
     "game_dag_path": "model_redesign/agenda_extension_AC_msb_game_dag.json",
     "game_dag_sha256": "83245ae3e33b0fd8a29898627aaae40226c9317402e79e1b1375b34aa88a4262",
     "mechanical_result": "1200 PASS / 0 FAIL",
-    "lifecycle": "start and strengthening authorized; repaired mathematical candidate reviewed twice with PASS 0/0/0; independent adjudication confirmed only the stale-sidecar finding; that administrative repair is now implemented; terminal author approval pending; unfrozen"
+    "lifecycle": "mathematical candidate reviewed twice with PASS 0/0/0; administrative repair reviewed twice with PASS 0/0/0 and independently adjudicated with NO_CONFIRMED_DEFECTS; terminal author approval complete; pass/frozen"
   },
   "nodes": [
     {
@@ -192,10 +202,10 @@
     },
     {
       "node_id": "AC",
-      "status": "pending",
-      "frozen": false,
-      "authorization": "start_and_strengthening_authorized",
-      "reason": "the strengthened exact-fiber comparison passed two independent mathematical reviews; adjudication confirmed only stale lifecycle sidecars, now repaired; terminal author approval remains pending",
+      "status": "pass",
+      "frozen": true,
+      "authorization": "terminal_author_approval",
+      "reason": "the author terminally approved the exact strengthened A_C bytes after independent mathematical and lifecycle review and adjudication",
       "authorization_records": [
         {
           "path": "quality_reports/plans/2026-08-30_autorizacao_inicio_A_C_msb.md",
@@ -209,6 +219,15 @@
       "candidate_manifest": {
         "path": "quality_reports/2026-08-30_AC_msb_strengthened_round2_candidate_manifest.sha256",
         "sha256": "ec5bbebe0490eb8a46ee5e0de1565cf52ae1838721a870df21cdc4a629058339"
+      },
+      "terminal_author_approval": {
+        "path": "quality_reports/2026-08-30_A_C_msb_strengthened_terminal_approval_and_freeze.md",
+        "sha256": "b331f88b7abb99c03a5a8c657d163d1e006c0cf4cb51e744abcee298ac6af557"
+      },
+      "final_gate_manifest": {
+        "path": "quality_reports/2026-08-30_A_C_msb_strengthened_final_gate_manifest.sha256",
+        "sha256": "332d1d7be7a7b38f715c8d7d872c6f7010c22a27fc924b91e8f694199a190fe4",
+        "entries": 20
       },
       "mechanical_result": "1200 PASS / 0 FAIL",
       "historical_findings_preserved": [
@@ -252,8 +271,34 @@
         "sha256": "17279db1f853e5bc0bb3b7b1ef2411053e1beb6929e56c15b766e0ee847ef5d2",
         "entries": 13
       },
+      "lifecycle_reviews": [
+        {
+          "path": "quality_reports/2026-08-30_AC_msb_strengthened_lifecycle_review_1.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "e4eb4d0200ec9dfdff2286f189a305263f7eed89794402496dc112a0df1eff55"
+        },
+        {
+          "path": "quality_reports/2026-08-30_AC_msb_strengthened_lifecycle_review_2.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "fc2a0b4544db0abe216a00d66ebb15a4ba90f812456bd11141881502e3ff4386"
+        }
+      ],
+      "lifecycle_adjudication": {
+        "verdict": "NO_CONFIRMED_DEFECTS",
+        "counts": {
+          "confirmed": 0,
+          "partial": 0,
+          "unresolved": 0
+        },
+        "markdown_path": "quality_reports/adjudication/A_C_msb_strengthened_lifecycle/17279db1f853/adjudication_round1.md",
+        "markdown_sha256": "fb36f3ac3ee52dc819efda9e0df848c4be57b186db5439601fb8f4ea834dd1ad",
+        "json_path": "quality_reports/adjudication/A_C_msb_strengthened_lifecycle/17279db1f853/adjudication_round1.json",
+        "json_sha256": "b65e2a4295b440fedfb616a356a0249900efad8f155f619397a2a13d3eb7c905"
+      },
       "administrative_repair_status": "ADJ-AC-STRENGTH-R2-MIN-1 implemented; checker and human-readable status repinned to the strengthened candidate",
-      "review_status": "mathematical candidate reviewed twice with PASS 0/0/0; independent adjudication found no mathematical defect and one now-repaired administrative finding; terminal author approval pending"
+      "review_status": "mathematical candidate and lifecycle repair each reviewed twice with PASS 0/0/0; final lifecycle adjudication found no confirmed defects; terminal author approval complete; pass/frozen"
     },
     {
       "node_id": "AR",
@@ -296,7 +341,7 @@
   "interpretation_rules": [
     "Read node lifecycle from this sidecar together with the hash-pinned terminal authority.",
     "Do not edit frozen A_M artifacts merely to update embedded candidate-era prose.",
-    "Do not infer authorization from topological readiness or from A_M being pass/frozen.",
+    "Do not infer authorization from topological readiness or from any predecessor being pass/frozen.",
     "Dated reports and candidate files retain the status true at their own snapshot and remain provenance only."
   ]
 }

@@ -96,6 +96,16 @@ record_check(
   "A_U final gate manifest hash is pinned"
 )
 record_check(
+  identical(status$a_c_authority$sha256,
+            "b331f88b7abb99c03a5a8c657d163d1e006c0cf4cb51e744abcee298ac6af557"),
+  "A_C terminal authority hash is pinned"
+)
+record_check(
+  identical(status$a_c_authority$final_gate_manifest_sha256,
+            "332d1d7be7a7b38f715c8d7d872c6f7010c22a27fc924b91e8f694199a190fe4"),
+  "A_C final gate manifest hash is pinned"
+)
+record_check(
   identical(status$snapshot$candidate_manifest_sha256,
             "4130c09b9a7d504e0dd18f63c8793a0f6ce5f239369c585d924c48742177c0aa"),
   "candidate manifest hash is pinned"
@@ -141,6 +151,14 @@ record_check(
               "019dd142c802b516762727dfae61fb65e9598e8f") &&
     identical(status$a_c_candidate_snapshot$repaired_adjudication_commit,
               "f605028e9760b89ea401ce4ad7c4b3d3e90a10e7") &&
+    identical(status$a_c_candidate_snapshot$administrative_repair_commit,
+              "5785a157d85915ac616f853ee2b314a51da095eb") &&
+    identical(status$a_c_candidate_snapshot$administrative_reviews_commit,
+              "4575f3781d6bbd92a73589c081bd0b88e0bcb680") &&
+    identical(status$a_c_candidate_snapshot$administrative_adjudication_commit,
+              "67349a76b01c7cdaff860ee94e2ef4ad36f3422c") &&
+    identical(status$a_c_candidate_snapshot$terminal_closure_commit,
+              "858e454e9079719dbb521f2cd35cffc3b4a02a13") &&
     identical(status$a_c_candidate_snapshot$candidate_manifest_sha256,
               "ec5bbebe0490eb8a46ee5e0de1565cf52ae1838721a870df21cdc4a629058339") &&
     identical(status$a_c_candidate_snapshot$terminal_gate_candidate_manifest_sha256,
@@ -149,7 +167,7 @@ record_check(
               "83245ae3e33b0fd8a29898627aaae40226c9317402e79e1b1375b34aa88a4262") &&
     identical(status$a_c_candidate_snapshot$mechanical_result,
               "1200 PASS / 0 FAIL"),
-  "A_C strengthened candidate, repaired review chain, terminal gate, DAG, and mechanical result are pinned"
+  "A_C strengthened candidate, mathematical and lifecycle review chain, terminal closure, DAG, and mechanical result are pinned"
 )
 
 record_check(
@@ -169,6 +187,15 @@ record_check(
   identical(sha256(status$a_u_authority$final_gate_manifest_path),
             status$a_u_authority$final_gate_manifest_sha256),
   "A_U final gate manifest bytes match"
+)
+record_check(
+  identical(sha256(status$a_c_authority$path), status$a_c_authority$sha256),
+  "A_C terminal authority bytes match"
+)
+record_check(
+  identical(sha256(status$a_c_authority$final_gate_manifest_path),
+            status$a_c_authority$final_gate_manifest_sha256),
+  "A_C final gate manifest bytes match"
 )
 record_check(
   identical(sha256(status$snapshot$candidate_manifest_path),
@@ -227,12 +254,24 @@ record_check(
   "A_U-specific author decision bytes match"
 )
 record_check(
-  identical(ac$status, "pending") && identical(ac$frozen, FALSE) &&
-    identical(ac$authorization, "start_and_strengthening_authorized") &&
+  identical(ac$status, "pass") && isTRUE(ac$frozen) &&
+    identical(ac$authorization, "terminal_author_approval") &&
     identical(ac$mechanical_result, "1200 PASS / 0 FAIL") &&
     identical(ac$review_status,
-              "mathematical candidate reviewed twice with PASS 0/0/0; independent adjudication found no mathematical defect and one now-repaired administrative finding; terminal author approval pending"),
-  "AC is the strengthened reviewed pending/unfrozen candidate awaiting terminal author approval"
+              "mathematical candidate and lifecycle repair each reviewed twice with PASS 0/0/0; final lifecycle adjudication found no confirmed defects; terminal author approval complete; pass/frozen"),
+  "AC is pass/frozen with terminal author approval on the strengthened package"
+)
+record_check(
+  identical(ac$terminal_author_approval$sha256,
+            "b331f88b7abb99c03a5a8c657d163d1e006c0cf4cb51e744abcee298ac6af557") &&
+    identical(sha256(ac$terminal_author_approval$path),
+              ac$terminal_author_approval$sha256) &&
+    identical(ac$final_gate_manifest$sha256,
+              "332d1d7be7a7b38f715c8d7d872c6f7010c22a27fc924b91e8f694199a190fe4") &&
+    identical(ac$final_gate_manifest$entries, 20L) &&
+    identical(sha256(ac$final_gate_manifest$path),
+              ac$final_gate_manifest$sha256),
+  "A_C terminal approval and 20-entry final gate manifest bytes match"
 )
 record_check(
   identical(ar$status, "pending") && identical(ar$frozen, FALSE) &&
@@ -428,6 +467,25 @@ record_check(
               ac$terminal_gate_candidate_manifest$sha256),
   "A_C strengthened terminal-gate candidate pins 13 reviewed and adjudicated entries"
 )
+record_check(
+  length(ac$lifecycle_reviews) == 2L &&
+    all(vapply(ac$lifecycle_reviews, function(x) {
+      identical(x$verdict, "PASS") && identical(x$findings, "0/0/0") &&
+        identical(sha256(x$path), x$sha256)
+    }, logical(1L))),
+  "A_C lifecycle reviews are both pinned as PASS 0/0/0"
+)
+record_check(
+  identical(ac$lifecycle_adjudication$verdict, "NO_CONFIRMED_DEFECTS") &&
+    identical(ac$lifecycle_adjudication$counts$confirmed, 0L) &&
+    identical(ac$lifecycle_adjudication$counts$partial, 0L) &&
+    identical(ac$lifecycle_adjudication$counts$unresolved, 0L) &&
+    identical(sha256(ac$lifecycle_adjudication$markdown_path),
+              ac$lifecycle_adjudication$markdown_sha256) &&
+    identical(sha256(ac$lifecycle_adjudication$json_path),
+              ac$lifecycle_adjudication$json_sha256),
+  "A_C lifecycle adjudication records no confirmed defects and exact bytes"
+)
 
 expected_a_u_review_hashes <- c(
   "quality_reports/2026-08-29_A_U_msb_formal_review_1.md" =
@@ -585,8 +643,8 @@ record_check(
   "human-readable status identifies A_U as pass/frozen"
 )
 record_check(
-  any(grepl("A_C.*pending/unfrozen", status_md, fixed = FALSE, useBytes = TRUE)),
-  "human-readable status identifies A_C as pending/unfrozen"
+  any(grepl("A_C.*pass/frozen", status_md, fixed = FALSE, useBytes = TRUE)),
+  "human-readable status identifies A_C as pass/frozen"
 )
 record_check(
   any(grepl("R2-I-1", status_md, fixed = TRUE, useBytes = TRUE)),
@@ -606,6 +664,12 @@ record_check(
     any(grepl("17279db1f853e5bc0bb3b7b1ef2411053e1beb6929e56c15b766e0ee847ef5d2",
               status_md, fixed = TRUE, useBytes = TRUE)),
   "human-readable status identifies the exact strengthened A_C terminal-gate candidate"
+)
+record_check(
+  any(grepl("20/20", status_md, fixed = TRUE, useBytes = TRUE)) &&
+    any(grepl("332d1d7be7a7b38f715c8d7d872c6f7010c22a27fc924b91e8f694199a190fe4",
+              status_md, fixed = TRUE, useBytes = TRUE)),
+  "human-readable status identifies the exact A_C final gate"
 )
 
 cat(sprintf("SUMMARY | %d PASS | %d FAIL\n", pass_count, fail_count))
