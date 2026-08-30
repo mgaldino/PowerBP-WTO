@@ -10,15 +10,16 @@
 
 `A_M` sob M/S/B está **`pass/frozen`** nos bytes exatos aprovados. Em `A_U`, a
 decisão autoral de estender a arquitetura em duas camadas já foi implementada,
-mas os novos bytes continuam **`pending/unfrozen`** até dois novos pareceres,
-adjudicação e aprovação autoral terminal. `AC` e `AR` continuam
+os dois novos pareceres independentes deram **`PASS 0/0/0`** e a adjudicação
+final encontrou **zero defeitos confirmados**. Mesmo assim, os bytes continuam
+**`pending/unfrozen`** até a aprovação autoral terminal. `AC` e `AR` continuam
 **`pending/unfrozen`** e não estão autorizados. Não há autorização para migrar
 resultados ao manuscrito, criar tag, fazer merge ou push.
 
 | Nó | Status atual | Pode ser executado ou consumido agora? |
 |---|---|---|
 | `A_M` | `pass/frozen` | Apenas os bytes congelados podem ser citados; o status não autoriza trabalho downstream. |
-| `A_U` | `pending/unfrozen`; implementação em duas camadas aguarda dois pareceres | Não. A decisão existe, mas os bytes novos ainda não foram aprovados. |
+| `A_U` | `pending/unfrozen`; revisões e adjudicação concluídas, aprovação autoral terminal pendente | Não. O pacote passou pela revisão, mas os bytes ainda não foram aprovados pelo autor. |
 | `AC` | `pending/unfrozen` | Não. Depende do fechamento revisado de `A_U` e de provas de suficiência ou fatoração específicas da operação. |
 | `AR` | `pending/unfrozen` | Não. Exige GO autoral separado após o pacote privado revisado. |
 
@@ -30,10 +31,12 @@ adjudicado, em `b59ce1bf5b5ee7b57707684de92c38d4fa325b30`. A decisão específic
 duas camadas está em
 `quality_reports/plans/2026-08-30_decisao_assinatura_duas_camadas_A_U.md`; sua
 implementação substantiva, no commit
-`b56085c436eb629c335764eb982d174e5cc2d392`. O novo manifesto é
-`quality_reports/2026-08-30_A_U_msb_two_layer_candidate_manifest.sha256`
+`b56085c436eb629c335764eb982d174e5cc2d392`. Depois do reparo estritamente
+administrativo do DAG, o snapshot final revisado ficou no commit
+`8e86bab8ea10f75e6fd5aeeb230a9e260479483a`. O manifesto da rodada 2 é
+`quality_reports/2026-08-30_A_U_msb_two_layer_round2_candidate_manifest.sha256`
 (SHA-256
-`3cf2c047ad2da35665c21b47f94ca117482d7e7f537d9caa4e0ddce29ae7b369`).
+`1c4720e99a1d72ec1533578a141e476679650eded2a333ac3a95f87e7d441b2b`).
 O verificador retornou `1110 PASS / 0 FAIL`; essa evidência é mecânica e não
 substitui as provas.
 
@@ -56,9 +59,25 @@ econômico havia sido aprovada posteriormente apenas para `A_M`.
 Essa lacuna normativa foi fechada pela instrução autoral de 2026-08-30. O novo
 candidato define `Sig_ex_U` para identidade formal por órbita diagonal e
 `Sum_econ_U` para equivalência econômica anônima, preservando o binder completo
-para operações sensíveis a funções off-path. Os dois novos pareceres devem
-cobrir exatamente o novo manifesto; os pareceres históricos não aprovam os
-novos bytes. Até o novo gate terminal, `A_U` não é congelado e `AC` não começa.
+para operações sensíveis a funções off-path.
+
+Dois pareceristas independentes cobriram exatamente o manifesto da rodada 2:
+
+- parecer 1: `PASS 0/0/0`, SHA-256
+  `6432708aabe1694603c99eb8df4e8b1ecda196ef8df8244128fd1b8f20c5be75`;
+- parecer 2: `PASS 0/0/0`, SHA-256
+  `3ae8bcf4e858f10784a25d548526a88f8d66469428c7c7ab0195704659458b84`.
+
+A adjudicação independente final, em
+`quality_reports/adjudication/A_U_msb_two_layer/1c4720e99a1d/adjudication_round2.md`,
+deu `NO_CONFIRMED_DEFECTS`, com zero findings confirmados, parciais ou não
+resolvidos. Ela também confirmou que os seis artefatos matemáticos são byte a
+byte idênticos aos da rodada anterior e que o reparo alterou apenas o DAG.
+
+Esses resultados fecham os gates técnicos, mas não substituem a aprovação
+autoral terminal. Até esse ato, `A_U` não é congelado e `AC` não começa. Os
+pareceres históricos de 2026-08-29 permanecem como proveniência da lacuna que
+motivou a arquitetura em duas camadas; não governam os novos bytes.
 
 ## Autoridade do status de `A_M`
 

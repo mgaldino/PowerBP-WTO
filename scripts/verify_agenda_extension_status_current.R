@@ -94,9 +94,15 @@ record_check(
               "b56085c436eb629c335764eb982d174e5cc2d392") &&
     identical(status$a_u_candidate_snapshot$two_layer_packaged_candidate_commit,
               "34a95f47284296359fa0b9d07dc99e241b42f1ed") &&
+    identical(status$a_u_candidate_snapshot$round2_candidate_commit,
+              "8e86bab8ea10f75e6fd5aeeb230a9e260479483a") &&
+    identical(status$a_u_candidate_snapshot$round2_reviews_commit,
+              "0e3b4a8a26f161566562852b4dc8c4320759affa") &&
+    identical(status$a_u_candidate_snapshot$round2_adjudication_commit,
+              "15dd01fc272e254bde82f86fe093f0ef5d3da69f") &&
     identical(status$a_u_candidate_snapshot$candidate_manifest_sha256,
-              "3cf2c047ad2da35665c21b47f94ca117482d7e7f537d9caa4e0ddce29ae7b369"),
-  "A_U blind lock, adjudicated candidate, two-layer commits, and manifest are pinned"
+              "1c4720e99a1d72ec1533578a141e476679650eded2a333ac3a95f87e7d441b2b"),
+  "A_U blind lock, candidates, review and adjudication commits, and round-2 manifest are pinned"
 )
 
 record_check(
@@ -135,13 +141,13 @@ record_check(
 )
 record_check(
   identical(a_u$status, "pending") && identical(a_u$frozen, FALSE) &&
-    identical(a_u$authorization, "author_decision_implemented_pending_two_new_reviews"),
-  "A_U remains pending/unfrozen after the author decision was implemented"
+    identical(a_u$authorization, "terminal_author_approval_pending"),
+  "A_U remains pending/unfrozen after the technical gates and before terminal author approval"
 )
 record_check(
   identical(a_u$equivalence_interface_status,
-            "R2-I-1 addressed by A_U-specific Sig_ex_U and Sum_econ_U implementation; unreviewed candidate only"),
-  "A_U two-layer interface is recorded as implemented but unreviewed"
+            "R2-I-1 addressed by A_U-specific Sig_ex_U and Sum_econ_U; reviewed twice with PASS 0/0/0 and independently adjudicated with no confirmed defects"),
+  "A_U two-layer interface is recorded as twice reviewed and independently adjudicated"
 )
 record_check(
   identical(a_u$author_decision$sha256,
@@ -259,8 +265,50 @@ expected_a_u_review_hashes <- c(
     "79a335f6557b4274786256011cc850fbf8dd81e606b43ef7f2d04d951aa4ea57"
 )
 record_check(
-  length(a_u$current_reviews) == 0L && is.null(a_u$current_adjudication),
-  "new A_U candidate correctly has no current review or adjudication yet"
+  length(a_u$current_reviews) == 2L && !is.null(a_u$current_adjudication),
+  "A_U round-2 candidate has two current reviews and a current adjudication"
+)
+expected_a_u_round2_review_hashes <- c(
+  "quality_reports/2026-08-30_A_U_msb_two_layer_round2_formal_review_1.md" =
+    "6432708aabe1694603c99eb8df4e8b1ecda196ef8df8244128fd1b8f20c5be75",
+  "quality_reports/2026-08-30_A_U_msb_two_layer_round2_formal_review_2.md" =
+    "3ae8bcf4e858f10784a25d548526a88f8d66469428c7c7ab0195704659458b84"
+)
+a_u_round2_review_hashes <- setNames(
+  vapply(a_u$current_reviews, function(x) x$sha256, character(1L)),
+  vapply(a_u$current_reviews, function(x) x$path, character(1L))
+)
+record_check(
+  identical(a_u_round2_review_hashes[names(expected_a_u_round2_review_hashes)],
+            expected_a_u_round2_review_hashes) &&
+    all(vapply(a_u$current_reviews, function(x) {
+      identical(x$verdict, "PASS") && identical(x$findings, "0/0/0")
+    }, logical(1L))),
+  "A_U round-2 reviews are both pinned as PASS 0/0/0"
+)
+for (relative_path in names(expected_a_u_round2_review_hashes)) {
+  record_check(
+    identical(sha256(relative_path),
+              unname(expected_a_u_round2_review_hashes[[relative_path]])),
+    sprintf("A_U round-2 review bytes match: %s", relative_path)
+  )
+}
+record_check(
+  identical(a_u$current_adjudication$verdict, "NO_CONFIRMED_DEFECTS") &&
+    identical(a_u$current_adjudication$counts$confirmed, 0L) &&
+    identical(a_u$current_adjudication$counts$partial, 0L) &&
+    identical(a_u$current_adjudication$counts$unresolved, 0L),
+  "A_U round-2 adjudication records no confirmed, partial, or unresolved defects"
+)
+record_check(
+  identical(sha256(a_u$current_adjudication$markdown_path),
+            a_u$current_adjudication$markdown_sha256),
+  "A_U round-2 adjudication Markdown bytes match"
+)
+record_check(
+  identical(sha256(a_u$current_adjudication$json_path),
+            a_u$current_adjudication$json_sha256),
+  "A_U round-2 adjudication JSON bytes match"
 )
 record_check(
   identical(a_u$previous_review_round$review_1, "PASS 0/0/0") &&
@@ -368,6 +416,10 @@ record_check(
 record_check(
   any(grepl("R2-I-1", status_md, fixed = TRUE, useBytes = TRUE)),
   "human-readable status records the confirmed A_U interface finding"
+)
+record_check(
+  any(grepl("NO_CONFIRMED_DEFECTS", status_md, fixed = TRUE, useBytes = TRUE)),
+  "human-readable status records the clean A_U round-2 adjudication"
 )
 
 cat(sprintf("SUMMARY | %d PASS | %d FAIL\n", pass_count, fail_count))

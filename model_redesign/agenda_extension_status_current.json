@@ -24,10 +24,13 @@
     "adjudicated_candidate_commit": "b59ce1bf5b5ee7b57707684de92c38d4fa325b30",
     "two_layer_substantive_commit": "b56085c436eb629c335764eb982d174e5cc2d392",
     "two_layer_packaged_candidate_commit": "34a95f47284296359fa0b9d07dc99e241b42f1ed",
-    "candidate_manifest_path": "quality_reports/2026-08-30_A_U_msb_two_layer_candidate_manifest.sha256",
-    "candidate_manifest_sha256": "3cf2c047ad2da35665c21b47f94ca117482d7e7f537d9caa4e0ddce29ae7b369",
+    "round2_candidate_commit": "8e86bab8ea10f75e6fd5aeeb230a9e260479483a",
+    "round2_reviews_commit": "0e3b4a8a26f161566562852b4dc8c4320759affa",
+    "round2_adjudication_commit": "15dd01fc272e254bde82f86fe093f0ef5d3da69f",
+    "candidate_manifest_path": "quality_reports/2026-08-30_A_U_msb_two_layer_round2_candidate_manifest.sha256",
+    "candidate_manifest_sha256": "1c4720e99a1d72ec1533578a141e476679650eded2a333ac3a95f87e7d441b2b",
     "mechanical_result": "1110 PASS / 0 FAIL",
-    "lifecycle": "author decision implemented; two new independent reviews and adjudication pending; unfrozen"
+    "lifecycle": "two independent PASS 0/0/0 reviews and NO_CONFIRMED_DEFECTS adjudication complete; terminal author approval pending; unfrozen"
   },
   "nodes": [
     {
@@ -92,10 +95,10 @@
       "node_id": "A_U",
       "status": "pending",
       "frozen": false,
-      "authorization": "author_decision_implemented_pending_two_new_reviews",
-      "reason": "the author extended the two-layer architecture to A_U; the new bytes now require two independent reviews, adjudication and terminal approval",
+      "authorization": "terminal_author_approval_pending",
+      "reason": "the author extended the two-layer architecture to A_U; two independent PASS 0/0/0 reviews and a NO_CONFIRMED_DEFECTS adjudication are complete, but the reviewed bytes still require terminal author approval",
       "strategic_correspondence_status": "reviewed and preserved; no confirmed defect in thresholds, payoffs, Bayes, PBE families, endpoints, or existence/exhaustion at the assessment level",
-      "equivalence_interface_status": "R2-I-1 addressed by A_U-specific Sig_ex_U and Sum_econ_U implementation; unreviewed candidate only",
+      "equivalence_interface_status": "R2-I-1 addressed by A_U-specific Sig_ex_U and Sum_econ_U; reviewed twice with PASS 0/0/0 and independently adjudicated with no confirmed defects",
       "author_decision": {
         "path": "quality_reports/plans/2026-08-30_decisao_assinatura_duas_camadas_A_U.md",
         "sha256": "5f2e3e99c9d14a88097fca3f249ce4212564a31b1cd80902bdb4b11cca2d73ae"
@@ -126,8 +129,32 @@
           "sha256": "4d30e01cc288e2a66d9e1576df2bd89d478e75a6f447f3a8135fd8b694a7d0f2"
         }
       ],
-      "current_reviews": [],
-      "current_adjudication": null,
+      "current_reviews": [
+        {
+          "path": "quality_reports/2026-08-30_A_U_msb_two_layer_round2_formal_review_1.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "6432708aabe1694603c99eb8df4e8b1ecda196ef8df8244128fd1b8f20c5be75"
+        },
+        {
+          "path": "quality_reports/2026-08-30_A_U_msb_two_layer_round2_formal_review_2.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "3ae8bcf4e858f10784a25d548526a88f8d66469428c7c7ab0195704659458b84"
+        }
+      ],
+      "current_adjudication": {
+        "verdict": "NO_CONFIRMED_DEFECTS",
+        "counts": {
+          "confirmed": 0,
+          "partial": 0,
+          "unresolved": 0
+        },
+        "markdown_path": "quality_reports/adjudication/A_U_msb_two_layer/1c4720e99a1d/adjudication_round2.md",
+        "markdown_sha256": "7b59712364c69b7a528d913d6904ffdb2d321276909b4b2792c47872df2b78a4",
+        "json_path": "quality_reports/adjudication/A_U_msb_two_layer/1c4720e99a1d/adjudication_round2.json",
+        "json_sha256": "27350d0be42602bed3edec37de64ef82594513300bb74dff61432250d7548e50"
+      },
       "previous_review_round": {
         "snapshot_commit": "b59ce1bf5b5ee7b57707684de92c38d4fa325b30",
         "review_1": "PASS 0/0/0",

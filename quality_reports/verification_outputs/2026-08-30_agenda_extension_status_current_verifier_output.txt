@@ -5,7 +5,7 @@ PASS | terminal authority hash is pinned
 PASS | final gate manifest hash is pinned
 PASS | candidate manifest hash is pinned
 PASS | terminal closure commit is pinned
-PASS | A_U blind lock, adjudicated candidate, two-layer commits, and manifest are pinned
+PASS | A_U blind lock, candidates, review and adjudication commits, and round-2 manifest are pinned
 PASS | terminal authority bytes match
 PASS | final gate manifest bytes match
 PASS | candidate manifest bytes match
@@ -15,8 +15,8 @@ PASS | A_U has exactly one current status record
 PASS | AC has exactly one current status record
 PASS | AR has exactly one current status record
 PASS | A_M is pass/frozen with terminal author approval
-PASS | A_U remains pending/unfrozen after the author decision was implemented
-PASS | A_U two-layer interface is recorded as implemented but unreviewed
+PASS | A_U remains pending/unfrozen after the technical gates and before terminal author approval
+PASS | A_U two-layer interface is recorded as twice reviewed and independently adjudicated
 PASS | A_U-specific author decision bytes match
 PASS | AC remains pending/unfrozen and unauthorized
 PASS | AR remains pending/unfrozen and unauthorized
@@ -37,7 +37,13 @@ PASS | A_U candidate bytes match: model_redesign/agenda_extension_A_U_msb_interf
 PASS | A_U candidate bytes match: model_redesign/agenda_extension_A_U_msb_claim_ledger.tsv
 PASS | A_U candidate bytes match: scripts/verify_agenda_extension_A_U_msb.R
 PASS | A_U candidate bytes match: quality_reports/verification_outputs/2026-08-30_A_U_msb_two_layer_verifier_output.txt
-PASS | new A_U candidate correctly has no current review or adjudication yet
+PASS | A_U round-2 candidate has two current reviews and a current adjudication
+PASS | A_U round-2 reviews are both pinned as PASS 0/0/0
+PASS | A_U round-2 review bytes match: quality_reports/2026-08-30_A_U_msb_two_layer_round2_formal_review_1.md
+PASS | A_U round-2 review bytes match: quality_reports/2026-08-30_A_U_msb_two_layer_round2_formal_review_2.md
+PASS | A_U round-2 adjudication records no confirmed, partial, or unresolved defects
+PASS | A_U round-2 adjudication Markdown bytes match
+PASS | A_U round-2 adjudication JSON bytes match
 PASS | historical A_U review divergence is preserved separately
 PASS | A_U review bytes match: quality_reports/2026-08-29_A_U_msb_formal_review_1.md
 PASS | A_U review bytes match: quality_reports/2026-08-29_A_U_msb_formal_review_2.md
@@ -57,4 +63,5 @@ PASS | no downstream, manuscript, tag, merge, or push authorization is introduce
 PASS | human-readable status identifies A_M as pass/frozen
 PASS | human-readable status preserves A_U as pending/unfrozen
 PASS | human-readable status records the confirmed A_U interface finding
-SUMMARY | 59 PASS | 0 FAIL
+PASS | human-readable status records the clean A_U round-2 adjudication
+SUMMARY | 66 PASS | 0 FAIL
