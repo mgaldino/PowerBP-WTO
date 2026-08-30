@@ -1,0 +1,49 @@
+{
+  "schema_version": "agenda_extension_AR_lifecycle_adjudication_v1",
+  "node_id": "AR",
+  "snapshot_commit": "497e11801c020bf505cb4104df78ed599e9adf58",
+  "lifecycle_manifest_path": "quality_reports/2026-08-30_AR_msb_lifecycle_candidate_manifest.sha256",
+  "lifecycle_manifest_sha256": "25ff65848bf6509050a68732d195a864f15c69da3322e5bd2174f3f0adf7f859",
+  "lifecycle_manifest_entries": 5,
+  "review_inputs": [
+    {
+      "path": "quality_reports/2026-08-30_AR_msb_lifecycle_review_1.md",
+      "verdict": "PASS",
+      "critical": 0,
+      "major": 0,
+      "minor": 0
+    },
+    {
+      "path": "quality_reports/2026-08-30_AR_msb_lifecycle_review_2.md",
+      "verdict": "PASS",
+      "critical": 0,
+      "major": 0,
+      "minor": 0
+    }
+  ],
+  "verified": {
+    "technical_gate_entries": 27,
+    "candidate_entries": 22,
+    "lifecycle_checks": "110 PASS / 0 FAIL",
+    "current_status": "reviewed",
+    "frozen": false,
+    "terminal_author_approval": false,
+    "downstream_authorization": "none",
+    "manuscript_migration": false,
+    "tag": false,
+    "merge": false,
+    "push": false
+  },
+  "verdict": "NO_CONFIRMED_DEFECTS",
+  "counts": {
+    "total": 0,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0,
+    "critical": 0,
+    "major": 0,
+    "minor": 0
+  }
+}
