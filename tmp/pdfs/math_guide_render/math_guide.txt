@@ -1,0 +1,1340 @@
+Guia Matemático para as Provas do Paper
+Informational Power Through Pivotality: How Consensus Can Benefit a Hegemon
+Documento auxiliar de estudo
+2026-08-30
+
+Contents
+1
+
+Como usar este guia
+1.1 Roteiro de estudo sugerido . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.2 Mini-glossário . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.3 Notação essencial . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+2
+3
+3
+4
+
+2
+
+Mapa: resultado do paper para pré-requisito
+
+4
+
+3
+
+Jogos finitos, indução retroativa e unidades de tempo
+3.1 A ideia matemática . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.2 Exemplo: benchmark público . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.3 Conexão com o paper . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.4 Exercícios . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+5
+5
+6
+6
+6
+
+4
+
+Probabilidade condicional, crenças e racionalidade sequencial
+4.1 Bayes no interior . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.2 Suporte nos endpoints . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.3 Voto as-if-pivotal e 𝑇 𝑌 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.4 Conexão com o paper . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.5 Exercícios . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+7
+7
+7
+7
+8
+8
+
+5
+
+Thresholds, cutoffs e funções afins
+8
+5.1 Redução por thresholds . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+5.2 Lema do sinal afim . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+5.3 Cutoffs, igualdade e seleção . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+5.4 Conexão com o paper . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+5.5 Exercícios . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+
+6
+
+Coalizões, incentivos e redução a candidatos finitos
+6.1 Contagem mínima de votos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6.2 Partição de casos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6.3 Factibilidade e uso integral da pie . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1
+
+10
+10
+11
+11
+
+6.4
+6.5
+
+Conexão com o paper . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+Exercícios . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+
+7
+
+Provas de inexistência por exaustão e desvio
+7.1 Existência exige resposta em toda proposta . . . . . . . . . . . . . . . . . . . . . .
+7.2 O desvio 𝑠† . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7.3 Por que o endpoint é diferente . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7.4 Conexão com o paper . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7.5 Exercícios . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+12
+12
+12
+13
+13
+13
+
+8
+
+Correspondências, conjuntos exatos e diferenças de diferenças
+8.1 Funções set-valued . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8.2 Segmentos afins e peso comum . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8.3 Exemplo completo de rendas . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8.4 Álgebra dos sinais . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8.5 Conexão com o paper . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8.6 Exercícios . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+14
+14
+14
+14
+16
+16
+16
+
+9
+
+Referências para aprofundamento
+
+16
+
+10 Soluções dos exercícios
+10.1 Soluções: indução retroativa e tempo . . . . . . . . . . . . . . . . . . . . . . . . .
+10.2 Soluções: Bayes, crenças e votação . . . . . . . . . . . . . . . . . . . . . . . . . .
+10.3 Soluções: thresholds e cutoffs . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+10.4 Soluções: coalizões e candidatos . . . . . . . . . . . . . . . . . . . . . . . . . . .
+10.5 Soluções: inexistência . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+10.6 Soluções: correspondências e conjuntos . . . . . . . . . . . . . . . . . . . . . . . .
+
+17
+17
+18
+18
+19
+20
+20
+
+11 Checklist de domínio
+
+21
+
+1
+
+Como usar este guia
+
+Este guia explica a matemática efetivamente usada nas provas de Informational Power Through Pivotality: How Consensus Can Benefit a Hegemon, na versão congelada de formal_model_v6.Rmd de
+25 de agosto de 2026. Ele não é um livro-texto geral. Seu objetivo é permitir que o leitor reconstrua
+cada resultado do paper, reconheça os pontos delicados e saiba verificar sozinho se uma derivação
+está correta.
+O leitor-alvo conhece álgebra, cálculo de uma variável, probabilidade básica e teoria dos jogos em
+nível de graduação. Tudo que vai além disso é desenvolvido aqui. Em particular, o paper não
+usa Brouwer, Kakutani, Tarski, Topkis, Perron-Frobenius, integração de Lebesgue ou programação
+dinâmica infinita. A dificuldade não está em teoremas avançados, mas em cinco disciplinas:
+1. resolver o jogo na ordem correta;
+2. comparar payoffs na mesma data;
+3. atualizar crenças apenas com informação que uma ação pode revelar;
+4. manter juntos estratégias, payoffs e outcomes do mesmo equilíbrio;
+2
+
+5. provar inexistência sem transformar uma lacuna em um payoff fictício.
+
+1.1
+
+Roteiro de estudo sugerido
+
+Etapa
+
+Foco
+
+Meta de domínio
+
+1
+
+Seções 1 e 2
+
+2
+
+Seções 3 e 4
+
+3
+
+Seção 5
+
+4
+
+Seção 6
+
+5
+
+Exercícios e soluções
+
+Reconstruir o timing e
+transportar corretamente
+valores de R2 para R1.
+Derivar os cutoffs e a
+correspondência de maioria
+sem consultar o paper.
+Reproduzir a prova de
+inexistência em unanimidade
+perfil por perfil.
+Calcular 𝑅𝐼𝑀 , 𝑅𝐼𝑈 e Δ𝑅𝐼
+preservando conjuntos exatos.
+Resolver primeiro sem olhar a
+solução; depois explicar cada
+erro em voz alta.
+
+Um bom teste final é conseguir explicar por que o paper é matematicamente finito e algébrico, mas
+ainda assim exige cuidado game-teórico: a racionalidade sequencial precisa valer também depois de
+propostas fora do caminho.
+
+1.2
+
+Mini-glossário
+
+Símbolo ou termo
+
+Significado
+
+PBE
+
+Equilíbrio perfeito bayesiano: estratégias
+sequencialmente racionais e crenças atualizadas
+por Bayes onde possível.
+Primeira e segunda rodadas de barganha. R2 é
+terminal.
+Restrição de incentivo: desigualdade que
+impede um desvio lucrativo.
+Um weak responder compara sim e não
+condicionalmente ao caso em que seu voto
+decide o resultado.
+Em indiferença esperada exata no problema
+relevante, o votante escolhe sim.
+Os dois tipos de 𝐻 tomam a mesma ação ou
+recebem a mesma oferta aceita.
+
+R1, R2
+IC
+as-if-pivotal
+
+𝑇𝑌
+pooling
+
+3
+
+Símbolo ou termo
+
+Significado
+
+screening
+
+A oferta separa comportamentos: o tipo baixo
+aceita e o alto rejeita.
+A maioria aprova sem o voto de 𝐻 , com 𝑦 = 0.
+Função set-valued: associa a cada parâmetro um
+conjunto, possivelmente vazio, de equilíbrios ou
+payoffs.
+
+exclusão
+correspondência
+
+1.3
+
+Notação essencial
+
+Há um hegemon 𝐻 e 𝑚 ≥ 3 weak states. O total de jogadores é 𝑁 = 𝑚 + 1, e a quota de maioria é
+
+𝑞=⌊
+
+𝑁
+⌋ + 1.
+2
+
+O tipo de 𝐻 é 𝜃 ∈ {0, 1}, com prior 𝜈 = Pr(𝜃 = 1). Os desacordos satisfazem 0 < 𝑜0 < 𝑜1 < 1, e
+𝛽 ∈ (0, 1) é o fator de desconto de uma rodada. Um pacote é
+
+𝑠 = (𝑦, (𝑥𝑗 )𝑗≠𝑖 , 𝑟𝑖 ),
+
+𝑦 + ∑ 𝑥𝑗 + 𝑟𝑖 ≤ 1.
+𝑗≠𝑖
+
+Aqui 𝑦 é a concessão a 𝐻 , 𝑥𝑗 é o pagamento ao weak responder 𝑗 e 𝑟𝑖 é o residual do proponente.
+Os objetos derivados mais usados são
+
+𝑤=
+
+𝛽
+,
+𝑚
+
+𝑡𝜃 = 𝛽𝑜𝜃 ,
+
+𝜈∗ =
+
+𝑜1 − 𝑜0
+,
+1 − 𝑜0
+
+e
+
+𝑎𝜃 = (1 − 𝛽)𝑜𝜃 ,
+
+𝑑 = 𝛽(𝑜1 − 𝑜0 ),
+
+𝑘 = 𝛽𝑜1 − 𝑜0 .
+
+Os vetores de payoff de 𝐻 são sempre ordenados como tipo baixo/tipo alto.
+
+2
+
+Mapa: resultado do paper para pré-requisito
+Tabela 3: Mapa completo dos resultados formais para as ferramentas matemáticas.
+Resultado
+
+Ferramenta
+
+Função na prova
+
+Proposição 1: benchmark com tipo público
+
+Indução retroativa, desconto,
+contagem de coalizão e minimização de custo
+
+Resolve R2, transporta continuações uma
+vez e compara comprar 𝐻 com comprar
+um weak vote.
+
+4
+
+Resultado
+
+Ferramenta
+
+Função na prova
+
+Proposição 2: jogos privados terminais
+Proposição 3:
+correspondência privada de
+maioria
+Proposição 4:
+correspondência privada de
+unanimidade
+Proposição 5: contraste
+privado
+Proposição 6: rendas informacionais
+Proposição 7: diferença
+de diferenças
+Apêndice C.1: equivalência nos endpoints
+
+Redução por thresholds, valor
+esperado e função afim
+Incentivos pivotais, candidatos
+finitos, diferenças afins e partição de casos
+Bayes, preservação de suporte,
+racionalidade sequencial e
+prova por exaustão
+Álgebra vetorial e subtração
+componente a componente
+Diferença de correspondências
+e benchmark contrafactual
+Álgebra de conjuntos, imagens
+afins e análise de sinal
+Suporte de distribuições degeneradas
+
+Reduz um contínuo de ofertas a 𝑜0 e 𝑜1 , e
+deriva 𝜈 ∗ .
+Obtém exclusão, screening e pooling;
+demonstra que delay é dominado.
+
+Apêndice C.2: conjuntos
+exatos
+Apêndice C.3: valores
+trabalhados
+
+Segmentos afins e envelopes
+marginais
+Substituição numérica e auditoria de unidades
+
+Constrói os dois domínios de existência e
+elimina os quatro perfis puros na célula intermediária.
+Compara os vetores privados sob as duas
+regras sem misturar tipos.
+Calcula 𝑅𝐼𝑀 e 𝑅𝐼𝑈 preservando células
+vazias e multiplicidade.
+Calcula Δ𝑅𝐼 , inclusive o segmento exato
+com peso comum 𝜆.
+Mostra que 𝜈 = 0 e 𝜈 = 1 são jogos literais de informação completa, não limites
+laterais.
+Impede transformar uma linha atingível
+em um retângulo não atingível.
+Reproduz cutoffs, vetores privados,
+benchmarks e rendas na ilustração.
+
+3
+
+Jogos finitos, indução retroativa e unidades de tempo
+
+3.1
+
+A ideia matemática
+
+Um jogo de duas rodadas deve ser resolvido de trás para frente. Isso não é apenas uma convenção de
+exposição. A ação ótima em R1 depende dos valores de continuação gerados em R2. Se R2 ainda
+não estiver resolvida, a restrição de incentivo de R1 contém um objeto desconhecido.
+Definição 3.1 (Valor de continuação). O valor de continuação de um jogador depois de uma história
+pública ℎ é o payoff esperado que ele obtém no subjogo iniciado em ℎ, dadas as estratégias e crenças
+do assessment.
+Teorema 3.2 (Indução retroativa com desconto de uma rodada). Considere um jogo finito com uma
+rodada terminal R2 e uma rodada anterior R1. Se 𝐶𝑖 (ℎ) é o valor de R2 em unidades da data de
+R2, então a alternativa de continuar depois de ℎ, avaliada em R1, vale 𝛽𝐶𝑖 (ℎ). O fator 𝛽 aparece
+exatamente uma vez. Um payoff realizado imediatamente em R1 não recebe esse fator.
+Intuição. O desconto é uma conversão de unidades, como converter uma quantia futura para valor
+presente. Multiplicar duas vezes desconta duas rodadas, que não existem. Não multiplicar confunde
+pagamentos em datas diferentes.
+
+5
+
+3.2
+
+Exemplo: benchmark público
+
+Em R2 sob maioria, um proponente fraco pode passar sem 𝐻 , pagando zero aos respondentes. Por
+simetria de reconhecimento, antes do sorteio cada weak state tem valor esperado (1/m). Em R1,
+portanto, o preço de um weak vote é
+
+𝑤=𝛽
+
+1
+.
+𝑚
+
+Se o tipo público de 𝐻 tem desacordo 𝑜, sua continuação de R2 é 𝑜, e seu preço em R1 é 𝛽𝑜. Incluir
+𝐻 economiza um weak vote. Logo,
+custo de inclusão = (𝑞 − 2)𝑤 + 𝛽𝑜,
+enquanto
+custo de exclusão = (𝑞 − 1)𝑤.
+Incluir é fracamente mais barato se e somente se
+
+(𝑞 − 2)𝑤 + 𝛽𝑜 ≤ (𝑞 − 1)𝑤
+
+⟺
+
+𝑜≤
+
+1
+.
+𝑚
+
+Esse cálculo entrega o cutoff público 1/𝑚. Note que 𝑞 cancela porque a comparação troca exatamente
+um voto de 𝐻 por exatamente um weak vote.
+
+3.3
+
+Conexão com o paper
+
+A Proposição 1 usa esta lógica quatro vezes: resolve maioria em R2, resolve unanimidade em R2,
+transporta os valores para R1 e compara coalizões. A prova da Proposição 3 também usa o fato
+de que delay vale apenas 𝑤 para o proponente reconhecido de R1, enquanto exclusão imediata vale
+𝐸 = 1 − (𝑞 − 1)𝑤.
+Um erro típico é comparar 𝑜𝜃 , realizado por exclusão em R1, com 𝑜𝜃 de R2 sem descontar o segundo.
+A diferença
+
+𝑎𝜃 = 𝑜𝜃 − 𝛽𝑜𝜃 = (1 − 𝛽)𝑜𝜃
+é exatamente a cunha temporal que reaparece nos contrastes institucionais.
+
+3.4
+
+Exercícios
+
+1. Com 𝑚 = 4, 𝑞 = 3 e 𝛽 = 0.9, calcule 𝑤, o custo de inclusão quando 𝑜 = 0.20 e o custo de
+exclusão.
+2. Mostre algebricamente que o cutoff público não depende de 𝑞 , desde que incluir 𝐻 substitua
+exatamente um weak responder.
+3. Prove que 𝐸 − 𝑤 = 1 − 𝛽𝑞/𝑚 > 0 quando 𝛽 < 1 e 𝑞 ≤ 𝑚.
+6
+
+4. Explique por que um desacordo realizado em R1 deve entrar sem desconto, mas o mesmo
+desacordo realizado após falha em R2 entra como 𝛽𝑜𝜃 na decisão de R1.
+5. Suponha, apenas para este exercício, três rodadas com o mesmo fator 𝛽 . Qual é o valor em R1
+de um payoff 𝑧 realizado em R3? Por que essa resposta não deve ser usada no paper de duas
+rodadas?
+Soluções na Seção 10.1.
+
+4
+
+Probabilidade condicional, crenças e racionalidade sequencial
+
+4.1
+
+Bayes no interior
+
+Definição 4.1 (Regra de Bayes). Se uma ação 𝑎 pode ser tomada pelos tipos baixo e alto com probabilidades 𝜎0 (𝑎) e 𝜎1 (𝑎), e o prior do tipo alto é 𝜈 , então, sempre que o denominador for positivo,
+Pr(𝜃 = 1 ∣ 𝑎) =
+
+𝜈𝜎1 (𝑎)
+.
+(1 − 𝜈)𝜎0 (𝑎) + 𝜈𝜎1 (𝑎)
+
+Se os dois tipos escolhem 𝑎 com probabilidade um, o posterior continua igual a 𝜈 . Se apenas o tipo
+alto escolhe 𝑎, o posterior é um. Se apenas o tipo baixo escolhe 𝑎, é zero. Se nenhum tipo escolhe 𝑎,
+Bayes não determina a crença porque a fórmula tem denominador zero.
+Definição 4.2 (PBE na forma usada pelo paper). Um assessment contém estratégias para todo information set e um sistema de crenças. Ele é um PBE quando cada ação prescrita maximiza o payoff
+esperado em seu information set e as crenças seguem Bayes onde a atualização é definida. O paper
+acrescenta estratégias puras no ballot, no-signaling-what-you-don’t- know, preservação do suporte
+nos endpoints, comparação as-if-pivotal para weak responders e 𝑇 𝑌 na igualdade esperada exata.
+Intuição. Um equilíbrio não descreve apenas o que acontece no caminho. Ele também precisa dizer
+como cada jogador responderia a toda proposta factível que poderia ser desviada. Essa obrigação é
+decisiva para a prova de inexistência da Proposição 4.
+
+4.2
+
+Suporte nos endpoints
+
+O suporte de uma distribuição é o conjunto de tipos com probabilidade positiva. No paper, uma
+crença posterior nunca pode atribuir probabilidade positiva a um tipo que está fora do suporte do
+prior. Assim:
+
+𝜈 = 0 ⟹ Pr(𝜃 = 1 ∣ ℎ) = 0 para toda história ℎ,
+e analogamente, se 𝜈 = 1, todo posterior é um. Esta é uma condição declarada do conceito de
+solução, não uma consequência automática de PBE em priors degenerados.
+
+4.3
+
+Voto as-if-pivotal e 𝑇 𝑌
+
+Considere um weak responder 𝑗. Condicionalmente ao evento em que seu voto decide entre passagem
+e falha, ele compara
+7
+
+𝑥𝑗
+
+com 𝛽𝐶𝑗 (ℎ𝑁 ).
+
+Se o primeiro é maior, vota sim; se é menor, vota não; na igualdade, 𝑇 𝑌 seleciona sim. Para 𝐻 ,
+a comparação é feita tipo por tipo. 𝑇 𝑌 fecha o conjunto de ofertas aprováveis: o proponente pode
+pagar exatamente o valor de reserva, em vez de precisar oferecer “reserva mais epsilon’ ’.
+Exemplo 4.3 (Posterior depois de um voto separador). Se no perfil prescrito o tipo baixo vota sim
+e o alto vota não, e 0 < 𝜈 < 1, Bayes implica posterior zero após sim e um após não. Um tipo
+que prefira a continuação associada ao outro voto pode imitá-lo. Essa comparação é uma IC, não
+apenas uma atualização estatística.
+
+4.4
+
+Conexão com o paper
+
+A Proposição 2 usa Bayes apenas de forma simples, pois R2 é terminal. A Proposição 4 usa toda a
+estrutura: crenças depois do voto de 𝐻 , ações off-path, suporte nos endpoints, resposta pivotal dos
+fracos e 𝑇 𝑌 . O Apêndice C.1 depende da distinção entre um endpoint literal e o limite 𝜈 ↓ 0.
+
+4.5
+
+Exercícios
+
+1. Calcule o posterior quando 𝜈 = 0.3, 𝜎0 (𝑎) = 0.2 e 𝜎1 (𝑎) = 0.8.
+2. Mostre que uma ação pooling, tomada com probabilidade um por ambos os tipos, não altera
+um prior interior.
+3. Explique por que o desvio de um weak state, que não observa 𝜃, não deve por si só mover a
+crença no conceito declarado pelo paper.
+4. Um weak responder recebe 𝑥𝑗 = 0.18 se a proposta passar e valor de continuação corrente
+(0.20) se ela falhar. Determine seu voto. Repita para 𝑥𝑗 = 0.20.
+5. Mostre por que 𝜈 = 0 e 𝜈 ↓ 0 podem gerar respostas diferentes depois de uma ação off-path
+de 𝐻 .
+Soluções na Seção 10.2.
+
+5
+
+Thresholds, cutoffs e funções afins
+
+5.1
+
+Redução por thresholds
+
+Teorema 5.1 (Redução a ofertas-limite). Suponha que um proponente escolha 𝑦 ≥ 0, que seu payoff
+seja estritamente decrescente em 𝑦 dentro de cada conjunto de tipos que aceita, e que os tipos tenham
+thresholds ordenados 𝑐0 < 𝑐1 . Entre ofertas aceitas apenas pelo tipo baixo, a melhor é 𝑦 = 𝑐0 . Entre
+ofertas aceitas pelos dois tipos, a melhor é 𝑦 = 𝑐1 . Logo, um contínuo de ofertas se reduz a dois
+candidatos.
+Prova. No intervalo [𝑐0 , 𝑐1 ), aumentar 𝑦 não muda o conjunto de tipos que aceita e reduz o payoff do
+proponente, então 𝑐0 domina as demais ofertas do intervalo. No intervalo [𝑐1 , 𝑦]̄ , o mesmo argumento
+seleciona 𝑐1 . Ofertas abaixo de 𝑐0 não são aceitas. □
+Na unanimidade terminal do paper, 𝑐0 = 𝑜0 e 𝑐1 = 𝑜1 . A oferta baixa gera
+8
+
+𝐿2 (𝜈) = (1 − 𝜈)(1 − 𝑜0 ),
+e pooling gera
+
+𝑃2 = 1 − 𝑜1 .
+O cutoff resolve 𝐿2 (𝜈) = 𝑃2 :
+
+Payoff esperado do proponente
+
+𝜈∗ =
+
+𝑜1 − 𝑜0
+.
+1 − 𝑜0
+
+Oferta baixa
+Pooling
+ν*
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0.0
+0.0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1.0
+
+ν
+
+Figura 1: Payoff do proponente na unanimidade terminal. A oferta baixa cai linearmente com a
+probabilidade do tipo alto; pooling permanece constante. O cruzamento define o cutoff.
+
+5.2
+
+Lema do sinal afim
+
+Lema 5.2 (Sinal de uma função afim em um intervalo). Se 𝑔(𝑧) = 𝑎 + 𝑏𝑧 e 𝑧 ∈ [0, 1], então o
+máximo e o mínimo de 𝑔 são atingidos nos endpoints. Em particular, se 𝑔(0) ≤ 0 e 𝑔(1) ≤ 0, então
+𝑔(𝑧) ≤ 0 para todo 𝑧 ∈ [0, 1].
+Intuição. O gráfico de uma função afim é um segmento de reta. Ele não pode subir acima dos dois
+extremos e depois voltar sem curvatura.
+Na maioria privada, duas diferenças importantes são
+
+𝑃 − 𝐸 = 𝛽(1/𝑚 − 𝑜1 )
+9
+
+e
+
+𝑆(𝜈) − 𝐸 = (1 − 𝜈)𝛽(1/𝑚 − 𝑜0 ) − 𝜈(1 − 𝛽𝑞/𝑚).
+A primeira não depende de 𝜈 . A segunda é afim e produz 𝜈𝑆𝐸 . Comparar screening com pooling
+produz 𝜈𝑆𝑃 .
+
+5.3
+
+Cutoffs, igualdade e seleção
+
+Resolver uma igualdade identifica onde dois candidatos dão o mesmo payoff ao proponente. Ainda é
+preciso aplicar a regra de seleção. No paper, empates entre propostas maximizadoras são resolvidos
+pela proposta que minimiza o payoff esperado de 𝐻 . Assim, “os payoffs do proponente são iguais’ ’
+não implica que as duas propostas sobrevivam.
+
+5.4
+
+Conexão com o paper
+
+A Proposição 2 é uma aplicação direta da redução a ofertas-limite. A Proposição 3 combina três
+funções afins e uma constante. As Proposições 5 a 7 usam análise de sinal ainda mais elementar:
+𝑑 > 0, 𝑎𝜃 > 0, enquanto o sinal de 𝑘 = 𝛽𝑜1 − 𝑜0 depende dos parâmetros.
+
+5.5
+
+Exercícios
+
+1. Derive 𝜈 ∗ a partir de (1 − 𝜈)(1 − 𝑜0 ) = 1 − 𝑜1 .
+2. Mostre que 0 < 𝜈 ∗ < 1 sob 0 < 𝑜0 < 𝑜1 < 1.
+3. Para 𝑜0 = 0.10 e 𝑜1 = 0.35, calcule 𝜈 ∗ e determine a oferta terminal ótima em 𝜈 = 0.20 e
+𝜈 = 0.35.
+4. Derive 𝜈𝑆𝐸 resolvendo 𝑆(𝜈) = 𝐸 .
+5. Prove que 𝑘 pode ter qualquer sinal e dê um exemplo numérico de cada caso mantendo 0 <
+𝑜0 < 𝑜1 < 1 e 0 < 𝛽 < 1.
+Soluções na Seção 10.3.
+
+6
+
+Coalizões, incentivos e redução a candidatos finitos
+
+6.1
+
+Contagem mínima de votos
+
+O proponente conta como um voto sim. Sob maioria, ele precisa de mais 𝑞 − 1 votos. Há duas
+coalizões mínimas relevantes:
+1. exclusão: comprar 𝑞 − 1 weak responders e dispensar 𝐻 ;
+2. inclusão: comprar 𝑞 − 2 weak responders e tornar 𝐻 pivotal.
+Pagar mais votantes do que o necessário reduz o residual sem mudar o outcome. Pagar menos produz
+falha. Essa observação reduz a dimensão do problema antes de qualquer comparação de payoffs.
+
+10
+
+Proposição 6.1 (Redução da maioria privada). Sob as primitivas do paper, toda proposta ótima de
+R1 sob maioria pertence a uma das seguintes classes:
+
+𝐸 = 1 − (𝑞 − 1)𝑤
+𝐿 = 1 − (𝑞 − 2)𝑤 − 𝑡0
+𝑆(𝜈) = (1 − 𝜈)𝐿 + 𝜈𝑤
+𝑃 = 1 − (𝑞 − 2)𝑤 − 𝑡1
+𝐷=𝑤
+
+(exclusão),
+(payoff quando screening passa),
+(screening ex ante),
+(pooling),
+(delay deliberado).
+
+Além disso, 𝐷 < 𝐸 . Portanto, a escolha ótima reduz-se a comparar 𝐸 , 𝑆(𝜈) e 𝑃 .
+Demonstração guiada.
+Para excluir 𝐻 , o proponente compra 𝑞 − 1 votos a 𝑤 e fixa 𝑦 = 0. Para tornar 𝐻 pivotal, compra
+𝑞 − 2 votos. Screening oferece 𝑡0 = 𝛽𝑜0 : o tipo baixo aceita, o alto rejeita e o jogo segue para R2.
+Se o tipo alto ocorre, o proponente recebe sua continuação 𝑤. Pooling oferece 𝑡1 = 𝛽𝑜1 e passa com
+ambos. Finalmente,
+
+𝐸−𝐷=1−
+
+𝛽𝑞
+> 0,
+𝑚
+
+porque 𝑞 ≤ 𝑚 e 𝛽 < 1. Logo, delay nunca maximiza.
+
+6.2
+
+Partição de casos
+
+As comparações têm uma ordem eficiente:
+1. 𝑃 − 𝐸 = 𝛽(1/𝑚 − 𝑜1 ) decide se pooling pode derrotar exclusão;
+2. 𝑆(𝜈) − 𝐸 decide entre screening e exclusão;
+3. quando pooling é competitivo, 𝑆(𝜈) − 𝑃 decide o cutoff final.
+Isso produz as cinco células da Proposição 3. As fronteiras 𝑜0 = 1/𝑚 e 𝑜1 = 1/𝑚 precisam ser
+tratadas separadamente porque uma desigualdade estrita vira igualdade. No caso 𝑜1 = 1/𝑚, exclusão
+e pooling podem gerar um segmento de propostas maximizadoras, não apenas dois pontos.
+
+6.3
+
+Factibilidade e uso integral da pie
+
+Depois de fixar os pagamentos mínimos capazes de comprar a coalizão, todo excedente não alocado
+pode ser transferido ao residual 𝑟𝑖 . Isso aumenta o payoff do proponente e não muda votos. Portanto, as propostas selecionadas esgotam a pie. A lógica é uma prova de dominância local, não uma
+igualdade imposta como primitiva.
+
+6.4
+
+Conexão com o paper
+
+Esta seção reconstrói a Proposição 3. Ela também explica por que os nomes exclusão, screening e
+pooling são classificações do resultado da solução, e não ações primitivas. O paper primeiro constrói
+todos os payoffs a partir da árvore e só então atribui os rótulos.
+
+11
+
+6.5
+
+Exercícios
+
+1. Para 𝑚 = 4, 𝑞 = 3, 𝛽 = 0.9, 𝑜0 = 0.10 e 𝑜1 = 0.35, calcule 𝐸 , 𝐿, 𝑃 e 𝐷.
+2. Usando os valores do exercício anterior, escreva 𝑆(𝜈) e encontre o cutoff entre screening e
+exclusão.
+3. Explique por que screening usa 𝑞 − 2, e não 𝑞 − 1, weak responders.
+4. Prove que uma proposta de exclusão com 𝑦 > 0 é estritamente dominada por outra que move
+𝑦 para 𝑟𝑖 .
+5. Construa a árvore de decisão das comparações 𝑃 − 𝐸 , 𝑆 − 𝐸 e 𝑆 − 𝑃 que gera as regiões da
+Proposição 3.
+Soluções na Seção 10.4.
+
+7
+
+Provas de inexistência por exaustão e desvio
+
+7.1
+
+Existência exige resposta em toda proposta
+
+Em um PBE, a estratégia precisa especificar uma resposta sequencialmente racional depois de cada
+proposta factível, inclusive propostas com probabilidade zero no caminho. Portanto, para provar
+inexistência é suficiente encontrar uma proposta factível para a qual nenhuma resposta admissível
+possa ser completada.
+Teorema 7.1 (Certificado finito de inexistência). Considere um information set no qual um jogador
+informado tem dois tipos e duas ações puras. Se existe uma história factível em que cada um dos
+quatro perfis contingentes (𝑌 , 𝑌 ), (𝑁 , 𝑁 ), (𝑌 , 𝑁 ) e (𝑁 , 𝑌 ) viola racionalidade sequencial ou
+uma regra declarada do conceito de solução, então não existe PBE no espaço de estratégias puras
+considerado.
+Intuição. Dois tipos e duas ações geram apenas quatro funções puras do tipo para a ação. Eliminar
+todas é uma prova exaustiva. Não é necessário adivinhar qual delas seria on-path.
+
+7.2
+
+O desvio 𝑠†
+
+Na célula 0 < 𝜈 ≤ 𝜈 ∗ , considere
+
+𝑠† ∶
+
+𝑦 = ℓ = 𝛽𝑜0 ,
+
+𝑥𝑗 = 𝐴 =
+
+𝛽(1 − 𝑜0 )
+∀𝑗,
+𝑚
+
+𝑟𝑖 = 1 − ℓ − (𝑚 − 1)𝐴.
+
+Cada weak responder recebe o maior valor de continuação possível e, portanto, vota sim. Resta
+verificar as quatro respostas puras de 𝐻 :
+
+12
+
+Perfil baixo/alto
+
+Razão da falha
+
+(𝑌 , 𝑌 )
+
+O tipo alto recebe ℓ < ℎ = 𝛽𝑜1 e prefere votar não para obter sua
+continuação.
+Para o tipo baixo, não rende exatamente ℓ; por 𝑇 𝑌 , a igualdade exige
+sim.
+O tipo baixo imita o não do tipo alto, revela-se como alto e obtém continuação ℎ > ℓ.
+O tipo alto imita o não prescrito ao tipo baixo e obtém ℎ; o não do tipo
+baixo também não pode ser estritamente sustentado na oferta ℓ.
+
+(𝑁 , 𝑁 )
+(𝑌 , 𝑁 )
+(𝑁 , 𝑌 )
+
+Nenhum perfil sobrevive. Como 𝑠† é factível, não há PBE em estratégias puras de ballot nessa célula.
+
+7.3
+
+Por que o endpoint é diferente
+
+Em 𝜈 = 0, o tipo alto está fora do suporte. Uma ação off-path não pode ressuscitá-lo. A imitação que
+sustentava a continuação ℎ deixa de estar disponível ao tipo baixo. Por isso a correspondência pode
+ser não vazia em 𝜈 = 0 e vazia para todo 𝜈 > 0 pequeno. Não há contradição: uma correspondência
+pode ser descontínua.
+Acima de 𝜈 ∗ , a continuação terminal já é pooling. A proposta de R1 paga
+
+ℎ = 𝛽𝑜1 , 𝑞𝑞𝑢𝑎𝑑𝐵 =
+
+𝛽(1 − 𝑜1 )
+𝑚
+
+a 𝐻 e a cada weak responder relevante. O acordo imediato supera delay por 1 − 𝛽 > 0.
+
+7.4
+
+Conexão com o paper
+
+Esta é a ferramenta central da Proposição 4. A conclusão é deliberadamente restrita: inexistência de
+PBE com votos puros. Ela não prova inexistência de equilíbrios com mixed ballot strategies, nem
+autoriza interpolar um payoff na célula vazia.
+
+7.5
+
+Exercícios
+
+1. Liste todas as funções puras de {0, 1} para {𝑌 , 𝑁 } e explique por que são exatamente quatro.
+2. Verifique que 𝑠† é factível e que seu residual é 𝐴 + 1 − 𝛽 > 0.
+3. Mostre formalmente por que o perfil (𝑌 , 𝑁 ) falha quando 0 < 𝜈 ≤ 𝜈 ∗ .
+4. Explique por que eliminar apenas os perfis pooling não seria uma prova de inexistência.
+5. Dê um exemplo simples de correspondência 𝐹 ∶ [0, 1] ⇉ ℝ que seja não vazia em zero e vazia
+em todo ponto positivo. Relacione o exemplo à descontinuidade do paper.
+Soluções na Seção 10.5.
+
+13
+
+8
+
+Correspondências, conjuntos exatos e diferenças de diferenças
+
+8.1
+
+Funções set-valued
+
+Definição 8.1 (Correspondência). Uma correspondência 𝐹 ∶ 𝑋 ⇉ 𝑌 associa cada 𝑥 ∈ 𝑋 a um
+subconjunto 𝐹 (𝑥) ⊆ 𝑌 . Ao contrário de uma função ordinária, (F(x)) pode ter vários elementos ou
+ser vazio.
+No paper, a multiplicidade de equilíbrios torna os payoffs set-valued. A inexistência sob unanimidade
+torna algumas células vazias. Esses dois casos não podem ser substituídos por uma média ou por um
+valor representativo.
+Definição 8.2 (Diferença de conjuntos). Para 𝐴, 𝐵 ⊆ ℝ𝑛 , defina
+
+𝐴 − 𝐵 = {𝑎 − 𝑏 ∶ 𝑎 ∈ 𝐴, 𝑏 ∈ 𝐵}.
+Se 𝐴 = ∅ ou 𝐵 = ∅, então 𝐴 − 𝐵 = ∅.
+Assim,
+
+𝑅𝐼𝑔 = 𝑉𝑔𝑝𝑟𝑖𝑣 − 𝑉𝑔𝑝𝑢𝑏 ,
+
+Δ𝑅𝐼 = 𝑅𝐼𝑈 − 𝑅𝐼𝑀 .
+
+Cada subtração é componente a componente no mesmo tipo. Não se subtrai o tipo baixo de uma regra
+do tipo alto de outra.
+
+8.2
+
+Segmentos afins e peso comum
+
+Teorema 8.3 (Imagem afim de um segmento). Se
+
+𝑣(𝜆) = 𝜆𝑣𝐸 + (1 − 𝜆)𝑣𝑃 ,
+
+𝜆 ∈ [0, 1],
+
+e 𝑐 é um vetor fixo, então
+
+{𝑣(𝜆) − 𝑐 ∶ 𝜆 ∈ [0, 1]} = {𝜆(𝑣𝐸 − 𝑐) + (1 − 𝜆)(𝑣𝑃 − 𝑐) ∶ 𝜆 ∈ [0, 1]}.
+A mesma 𝜆 governa todas as coordenadas. O conjunto é um segmento, não o produto cartesiano de
+seus envelopes marginais.
+Prova. Distribua a subtração:
+
+𝜆𝑣𝐸 + (1 − 𝜆)𝑣𝑃 − 𝑐 = 𝜆(𝑣𝐸 − 𝑐) + (1 − 𝜆)(𝑣𝑃 − 𝑐),
+pois 𝜆𝑐 + (1 − 𝜆)𝑐 = 𝑐. □
+
+8.3
+
+Exemplo completo de rendas
+
+Com 𝑚 = 4, 𝛽 = 0.9, 𝑜0 = 0.10, 𝑜1 = 0.35 e 𝜈 = 0.80, a maioria privada exclui e a unanimidade
+privada faz pooling:
+𝑝𝑟𝑖𝑣
+𝑉𝑀
+= (0.10, 0.35),
+
+𝑉𝑈𝑝𝑟𝑖𝑣 = (0.315, 0.315).
+14
+
+Segmento atingivel
+Retangulo dos envelopes
+
+Exclusao
+
+Componente do tipo alto
+
+0.03
+
+0.02
+
+0.01
+
+Pooling
+
+0.00
+
+0.00
+
+0.05
+
+0.10
+
+0.15
+
+0.20
+
+Componente do tipo baixo
+
+Figura 2: Segmento de payoffs com peso comum. Os limites de cada componente formam uma caixa,
+mas somente a linha corresponde a propostas aceitas pelo modelo.
+
+15
+
+Os benchmarks públicos são
+
+𝑉𝑈𝑝𝑢𝑏 = (0.09, 0.315).
+
+𝑝𝑢𝑏
+= (0.09, 0.35),
+𝑉𝑀
+
+Logo,
+
+𝑅𝐼𝑀 = (0.01, 0),
+
+𝑅𝐼𝑈 = (0.225, 0),
+
+Δ𝑅𝐼 = (0.215, 0).
+
+Cada coordenada responde a uma pergunta contrafactual precisa. O primeiro zero de 𝑅𝐼𝑀 não significa que o tipo baixo tenha payoff zero; significa que sua informação privada acrescenta (0.01) ao
+benchmark. O segundo zero significa que a informação não muda o payoff do tipo alto nessa célula.
+
+8.4
+
+Álgebra dos sinais
+
+Três quantidades tornam a tabela da Proposição 7 legível:
+
+𝑎𝜃 = (1 − 𝛽)𝑜𝜃 > 0,
+
+𝑑 = 𝛽(𝑜1 − 𝑜0 ) > 0,
+
+𝑘 = 𝛽𝑜1 − 𝑜0 .
+
+Os dois primeiros têm sinal fixo. O terceiro compara o threshold alto descontado com o desacordo
+baixo corrente e pode ser positivo, nulo ou negativo. Por isso algumas células têm ordenação robusta
+e outras não.
+
+8.5
+
+Conexão com o paper
+
+As Proposições 5, 6 e 7 são álgebra de vetores e conjuntos, mas a disciplina é substantiva: cada vetor
+deve vir de um equilíbrio inteiro; uma célula vazia permanece vazia; e a mesma proposta ou o mesmo
+peso 𝜆 precisa ligar payoffs e outcomes. O Apêndice C.2 resume envelopes apenas depois de registrar
+o conjunto exato.
+
+8.6
+
+Exercícios
+
+1. Se 𝐴 = {(1, 2)} e 𝐵 = {(0.4, 1.5)}, calcule 𝐴 − 𝐵.
+2. Prove diretamente que ∅ − 𝐵 = ∅.
+3. Para 𝑣𝐸 = (0.1, 0.3) e 𝑣𝑃 = (0.4, 0.4), calcule o ponto do segmento em 𝜆 = 0.25. Mostre
+que não é possível escolher pesos diferentes por coordenada.
+4. Reproduza 𝑅𝐼𝑀 , 𝑅𝐼𝑈 e Δ𝑅𝐼 no exemplo numérico acima.
+5. Explique por que os envelopes marginais [min{0, 𝑘}, max{0, 𝑘}] e [−𝑎1 , 0] não autorizam
+todo ponto do retângulo formado por eles.
+Soluções na Seção 10.6.
+
+9
+
+Referências para aprofundamento
+
+O guia é autocontido. As leituras abaixo servem para consolidar a técnica e ver versões mais gerais.
+
+16
+
+Tabela 4: Leituras recomendadas por tópico.
+Tópico
+
+Referência principal
+
+Alternativa
+
+Indução retroativa e jogos dinâmicos
+
+Gibbons (1992), Cap. 2, “Dynamic
+Games of Complete Information”
+
+Informação incompleta
+e PBE
+
+Gibbons (1992), Cap. 4, “Dynamic
+Games of Incomplete Information”
+
+Bayes e valor esperado
+
+Blitzstein e Hwang (2019), Caps. 2 e 4,
+probabilidade condicional e esperança
+
+Estratégias de prova e
+exaustão
+Segmentos,
+convexidade e imagens afins
+Barganha legislativa
+
+Velleman (2006), Cap. 3, “Proofs”, e
+“Summary of Proof Techniques”
+Rockafellar (1970), Seções 2 e 3 sobre
+conjuntos convexos
+Baron e Ferejohn (1989), modelo base
+de reconhecimento e coalizões mínimas
+
+Osborne e Rubinstein (1994), Parte
+II, “Extensive Games with Perfect
+Information”
+Fudenberg e Tirole (1991), Parte IV,
+jogos dinâmicos com informação incompleta
+DeGroot e Schervish (2012), capítulos iniciais sobre probabilidade e
+Bayes
+Hammack (2018), capítulos sobre
+prova direta, contraposição e casos
+Velleman (2006), Caps. 4 e 5 sobre
+relações e funções
+Eraslan e McLennan (2019), revisão
+de bargaining legislativo e multilateral
+
+10
+
+Soluções dos exercícios
+
+10.1
+
+Soluções: indução retroativa e tempo
+
+1. Temos
+
+𝑤=
+
+0.9
+= 0.225.
+4
+
+Como 𝑞 − 2 = 1, o custo de inclusão é
+
+1(0.225) + 0.9(0.20) = 0.225 + 0.18 = 0.405.
+O custo de exclusão é
+
+(𝑞 − 1)𝑤 = 2(0.225) = 0.45.
+Logo, incluir é mais barato nesse ponto, em conformidade com 𝑜 = 0.20 < 1/𝑚 = 0.25.
+2. Compare
+
+(𝑞 − 2)𝑤 + 𝛽𝑜 ≤ (𝑞 − 1)𝑤.
+Subtraindo (𝑞 − 2)𝑤 dos dois lados, sobra 𝛽𝑜 ≤ 𝑤. Como 𝑤 = 𝛽/𝑚 e 𝛽 > 0, dividir por 𝛽
+dá 𝑜 ≤ 1/𝑚. A quota cancela porque os dois lados compartilham 𝑞 − 2 weak votes; apenas o
+voto substituto difere.
+3. Por definição,
+
+𝛽
+𝛽𝑞
+𝛽
+−
+=1− .
+𝑚 𝑚
+𝑚
+Como 𝑞 ≤ 𝑚, temos 𝑞/𝑚 ≤ 1. Como 𝛽 < 1, 𝛽𝑞/𝑚 < 1. Portanto, 𝐸 − 𝑤 > 0. A
+desigualdade estrita usa 𝛽 < 1; em uma fronteira com 𝛽 = 1 e 𝑞 = 𝑚, ela viraria igualdade.
+𝐸 − 𝑤 = 1 − (𝑞 − 1)
+
+17
+
+4. Desconto compara datas. Se a exclusão encerra o jogo em R1, o payoff 𝑜𝜃 é corrente. Se R1
+falha, o mesmo payoff só é recebido ao fim de R2 e vale 𝛽𝑜𝜃 em unidades de R1. A diferença
+é (1 − 𝛽)𝑜𝜃 . Aplicar desconto ao payoff corrente ou deixar de aplicá-lo ao payoff futuro altera
+artificialmente a preferência entre acordo e delay.
+5. Entre R1 e R3 há duas transições de uma rodada. O valor presente é 𝛽 2 𝑧 . O paper tem apenas
+uma transição possível de R1 para R2; usar 𝛽 2 ali inventaria uma rodada adicional e descontaria
+duas vezes.
+
+10.2
+
+Soluções: Bayes, crenças e votação
+
+1. O numerador é 0.3(0.8) = 0.24. O denominador é
+
+0.7(0.2) + 0.3(0.8) = 0.14 + 0.24 = 0.38.
+Logo,
+Pr(𝜃 = 1 ∣ 𝑎) =
+
+0.24
+≈ 0.6316.
+0.38
+
+2. Se 𝜎0 (𝑎) = 𝜎1 (𝑎) = 1, então
+Pr(𝜃 = 1 ∣ 𝑎) =
+
+𝜈
+= 𝜈.
+(1 − 𝜈) + 𝜈
+
+A ação não discrimina os tipos e, portanto, não contém informação nova.
+3. O weak state não conhece 𝜃. Sob a disciplina declarada, sua ação pode revelar preferências
+próprias ou um erro, mas não informação privada sobre o tipo de 𝐻 que ele nunca observou.
+Permitir a atualização faria uma ação de um jogador desinformado “sinalizar o que ele não
+sabe’ ’ e abriria punições off-path desconectadas da estrutura informacional.
+4. A comparação pivotal é entre 𝑥𝑗 e 0.20. Com 𝑥𝑗 = 0.18, sim rende menos do que a continuação, então o voto é não. Com 𝑥𝑗 = 0.20, há igualdade esperada exata, e 𝑇 𝑌 seleciona
+sim.
+5. Em 𝜈 = 0, o tipo alto não pertence ao suporte. A condição do paper impõe posterior zero depois
+de toda história, inclusive off-path. Em qualquer 𝜈 > 0, por menor que seja, os dois tipos
+pertencem ao suporte; uma ação de probabilidade zero sob ambos pode receber uma crença
+interior livre, e uma ação separadora pode revelar um tipo. Logo, as continuações disponíveis
+depois do desvio podem mudar descontinuamente no endpoint.
+
+10.3
+
+Soluções: thresholds e cutoffs
+
+1. Comece de
+
+(1 − 𝜈)(1 − 𝑜0 ) = 1 − 𝑜1 .
+Dividindo por 1 − 𝑜0 > 0,
+
+1−𝜈 =
+Portanto,
+
+𝜈 =1−
+
+1 − 𝑜1
+.
+1 − 𝑜0
+
+1 − 𝑜1
+𝑜 − 𝑜0
+= 1
+= 𝜈 ∗.
+1 − 𝑜0
+1 − 𝑜0
+18
+
+2. O numerador 𝑜1 − 𝑜0 é positivo, e o denominador 1 − 𝑜0 também, então 𝜈 ∗ > 0. Além disso,
+𝑜1 < 1 implica 𝑜1 − 𝑜0 < 1 − 𝑜0 . Dividindo por 1 − 𝑜0 > 0, obtemos 𝜈 ∗ < 1.
+3. Temos
+
+0.25
+0.35 − 0.10
+=
+= 0.2777.
+1 − 0.10
+0.90
+Em 𝜈 = 0.20 < 𝜈 ∗ , a oferta ótima é 𝑦 = 𝑜0 = 0.10. Em 𝜈 = 0.35 > 𝜈 ∗ , é 𝑦 = 𝑜1 = 0.35.
+𝜈∗ =
+
+4. Use
+
+𝑆(𝜈) − 𝐸 = (1 − 𝜈)𝛽(1/𝑚 − 𝑜0 ) − 𝜈(1 − 𝛽𝑞/𝑚) = 0.
+Defina 𝐴0 = 𝛽(1/𝑚 − 𝑜0 ) e 𝐵0 = 1 − 𝛽𝑞/𝑚. Então (1 − 𝜈)𝐴0 = 𝜈𝐵0 , de modo que
+
+𝜈𝑆𝐸 =
+
+𝛽(1/𝑚 − 𝑜0 )
+𝐴0
+=
+.
+𝐴0 + 𝐵0
+𝛽(1/𝑚 − 𝑜0 ) + 1 − 𝛽𝑞/𝑚
+
+5. Para sinal positivo, tome 𝛽 = 0.9, 𝑜1 = 0.4 e 𝑜0 = 0.2: 𝑘 = 0.36 − 0.2 = 0.16 > 0. Para
+zero, use 𝑜0 = 𝛽𝑜1 , por exemplo 𝛽 = 0.5, 𝑜1 = 0.6, 𝑜0 = 0.3. Para sinal negativo, tome
+𝛽 = 0.5, 𝑜1 = 0.6, 𝑜0 = 0.4: 𝑘 = 0.3 − 0.4 = −0.1. Todos satisfazem 0 < 𝑜0 < 𝑜1 < 1.
+
+10.4
+
+Soluções: coalizões e candidatos
+
+1. Primeiro, 𝑤 = 0.9/4 = 0.225, 𝑡0 = 0.09 e 𝑡1 = 0.315. Como 𝑞 = 3,
+
+𝐸 = 1 − 2(0.225) = 0.55,
+𝐿 = 1 − 1(0.225) − 0.09 = 0.685,
+𝑃 = 1 − 1(0.225) − 0.315 = 0.46,
+e 𝐷 = 𝑤 = 0.225.
+2. Screening dá
+
+𝑆(𝜈) = (1 − 𝜈)0.685 + 𝜈(0.225) = 0.685 − 0.46𝜈.
+Igualando a 𝐸 = 0.55, obtemos
+
+0.685 − 0.46𝜈 = 0.55
+
+⇒
+
+𝜈=
+
+0.135
+≈ 0.2935.
+0.46
+
+3. O proponente já conta como sim. Com 𝑞 − 2 weak responders, há 1 + (𝑞 − 2) = 𝑞 − 1 votos
+certos. O voto de 𝐻 é o 𝑞 -ésimo e decide a passagem. Se fossem comprados 𝑞 − 1 weak
+responders, a proposta passaria sem 𝐻 , deixando de ser screening.
+4. Numa exclusão, a coalizão de weak votes já atinge a quota. O voto de 𝐻 não é necessário.
+Substitua (𝑦, 𝑟𝑖 ) por (0, 𝑟𝑖 + 𝑦), mantendo todos os 𝑥𝑗 . A proposta continua factível, os votos
+e o outcome não mudam, e o payoff do proponente cresce estritamente em 𝑦 > 0. Logo, a
+proposta original é estritamente dominada.
+5. A árvore é:
+• se 𝑜1 < 1/𝑚, então 𝑃 > 𝐸 ; compare 𝑆 com 𝑃 e use 𝜈𝑆𝑃 ;
+19
+
+• se 𝑜0 < 1/𝑚 < 𝑜1 , então o tipo baixo pode ser comprado de forma competitiva, mas
+pooling perde para exclusão; compare 𝑆 com 𝐸 e use 𝜈𝑆𝐸 ;
+• se 1/𝑚 < 𝑜0 , até o tipo baixo é caro, então exclusão domina;
+• trate 𝑜0 = 1/𝑚 e 𝑜1 = 1/𝑚 separadamente, pois aparecem empates e, no segundo caso,
+um segmento residual.
+
+10.5
+
+Soluções: inexistência
+
+1. Uma estratégia pura de 𝐻 escolhe uma ação para o tipo baixo e uma para o alto. Cada coordenada tem duas possibilidades. Logo há 22 = 4 funções: (𝑌 , 𝑌 ), (𝑁 , 𝑁 ), (𝑌 , 𝑁 ) e (𝑁 , 𝑌 ).
+2. Usando ℓ = 𝛽𝑜0 e 𝐴 = 𝛽(1 − 𝑜0 )/𝑚,
+
+𝑟𝑖 = 1 − ℓ − (𝑚 − 1)𝐴.
+Como 𝑚𝐴 = 𝛽(1 − 𝑜0 ), temos
+
+𝑟𝑖 = 1 − 𝛽𝑜0 − 𝑚𝐴 + 𝐴 = 1 − 𝛽𝑜0 − 𝛽(1 − 𝑜0 ) + 𝐴 = 1 − 𝛽 + 𝐴.
+Esse valor é positivo porque 𝛽 < 1 e 𝐴 > 0. A soma das alocações é exatamente um, portanto
+a proposta é factível.
+3. Sob (𝑌 , 𝑁 ), o voto não é prescrito apenas ao tipo alto. Como 0 < 𝜈 , o tipo alto pertence ao
+suporte, e o não pode induzir a continuação associada ao tipo alto, ℎ = 𝛽𝑜1 . O tipo baixo
+recebe ℓ = 𝛽𝑜0 votando sim, mas pode imitar o não e obter ℎ. Como 𝑜1 > 𝑜0 , temos ℎ > ℓ,
+logo o desvio é estritamente lucrativo.
+4. Pooling cobre apenas (𝑌 , 𝑌 ) e (𝑁 , 𝑁 ). Uma estratégia pura pode ser separadora, (𝑌 , 𝑁 )
+ou (𝑁 , 𝑌 ). Enquanto uma delas não for eliminada, ainda existe uma resposta pura candidata.
+Uma prova de inexistência precisa esgotar o espaço inteiro de estratégias admissíveis.
+5. Defina 𝐹 (0) = {0} e 𝐹 (𝑥) = ∅ para todo 𝑥 > 0. Ela é não vazia no endpoint e vazia imediatamente à direita. No paper, a causa é econômica e informacional: em zero o suporte contém
+apenas o tipo baixo; com qualquer probabilidade positiva, o tipo alto reaparece e permite as
+imitações que eliminam os perfis puros.
+
+10.6
+
+Soluções: correspondências e conjuntos
+
+1. Como os dois conjuntos são singletons, há uma única diferença:
+
+𝐴 − 𝐵 = {(1 − 0.4, 2 − 1.5)} = {(0.6, 0.5)}.
+2. Pela definição, um elemento de ∅ − 𝐵 teria de ser escrito como 𝑎 − 𝑏 com 𝑎 ∈ ∅. Não existe
+tal 𝑎. Portanto, não existe elemento na diferença e ∅ − 𝐵 = ∅.
+3. Em 𝜆 = 0.25,
+
+𝑣(0.25) = 0.25(0.1, 0.3) + 0.75(0.4, 0.4) = (0.325, 0.375).
+O peso descreve uma única proposta aleatorizada ou um único ponto do segmento. Usar 𝜆1 na
+primeira coordenada e 𝜆2 na segunda combinaria componentes de objetos distintos e poderia
+produzir um vetor que nenhum equilíbrio gera.
+20
+
+4. Subtraia componente a componente:
+
+𝑅𝐼𝑀 = (0.10, 0.35) − (0.09, 0.35) = (0.01, 0),
+𝑅𝐼𝑈 = (0.315, 0.315) − (0.09, 0.315) = (0.225, 0),
+e
+
+Δ𝑅𝐼 = (0.225, 0) − (0.01, 0) = (0.215, 0).
+5. Os envelopes informam apenas o menor e o maior valor de cada coordenada quando 𝜆 varia.
+Mas cada valor baixo está ligado a um valor alto pelo mesmo 𝜆. O retângulo permitiria escolher
+uma coordenada no endpoint de exclusão e a outra no endpoint de pooling simultaneamente.
+Salvo nos pontos da linha que liga os endpoints, essa combinação não corresponde a nenhuma
+proposta e, portanto, não é atingível.
+
+11 Checklist de domínio
+Antes de considerar a matemática dominada, verifique se você consegue fazer as tarefas abaixo sem
+consultar as soluções.
+• Derivar 𝑝𝑀 (𝑜) e 𝑝𝑈 (𝑜) desde R2.
+• Explicar por que 𝛽 aparece uma vez, e apenas uma, em R1.
+• Derivar 𝜈 ∗ , 𝜈𝑆𝐸 e 𝜈𝑆𝑃 .
+• Reconstruir 𝐸 , 𝑆(𝜈), 𝑃 e demonstrar 𝐷 < 𝐸 .
+• Distinguir on-path, off-path, pooling, separating e suporte degenerado.
+• Eliminar os quatro perfis puros depois de 𝑠† .
+• Explicar por que uma célula vazia não recebe payoff.
+• Calcular 𝑅𝐼𝑀 , 𝑅𝐼𝑈 e Δ𝑅𝐼 em qualquer célula da tabela.
+• Desenhar o segmento com peso comum 𝜆 e explicar por que seus envelopes não formam um
+conjunto atingível retangular.
+• Dizer, em linguagem substantiva, o que 𝑎𝜃 , (d) e (k) medem.
+Se algum item falhar, volte à seção correspondente e refaça primeiro o exemplo numérico, depois a
+derivação simbólica. Esse movimento do concreto para o geral é a rota mais curta para dominar as
+provas deste paper.
+
+21
+
+
