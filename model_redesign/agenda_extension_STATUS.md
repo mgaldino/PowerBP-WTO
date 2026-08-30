@@ -1,6 +1,6 @@
 # Status atual da extensão de agenda
 
-**Data de referência:** 2026-08-29
+**Data de referência:** 2026-08-30
 
 **Natureza:** registro administrativo; não contém nova matemática
 
@@ -8,55 +8,57 @@
 
 ## Resposta curta
 
-`A_M` sob M/S/B está **`pass/frozen`** nos bytes exatos aprovados. `A_U`
-continua **`pending/unfrozen`**: sua matemática estratégica sobreviveu a duas
-revisões independentes, mas a adjudicação confirmou um defeito importante e
-restrito à equivalência/interface, que exige decisão autoral. `AC` e `AR`
-continuam **`pending/unfrozen`** e não estão autorizados. Não há autorização
-para migrar resultados ao manuscrito, criar tag, fazer merge ou push.
+`A_M` sob M/S/B está **`pass/frozen`** nos bytes exatos aprovados. Em `A_U`, a
+decisão autoral de estender a arquitetura em duas camadas já foi implementada,
+mas os novos bytes continuam **`pending/unfrozen`** até dois novos pareceres,
+adjudicação e aprovação autoral terminal. `AC` e `AR` continuam
+**`pending/unfrozen`** e não estão autorizados. Não há autorização para migrar
+resultados ao manuscrito, criar tag, fazer merge ou push.
 
 | Nó | Status atual | Pode ser executado ou consumido agora? |
 |---|---|---|
 | `A_M` | `pass/frozen` | Apenas os bytes congelados podem ser citados; o status não autoriza trabalho downstream. |
-| `A_U` | `pending/unfrozen`; decisão autoral requerida | Não. A solução estratégica foi preservada, mas a equivalência entre misturas de relabelings ainda não foi decidida para `A_U`. |
-| `AC` | `pending/unfrozen` | Não. Depende da decisão sobre a interface de `A_U` e de provas de suficiência ou fatoração específicas da operação. |
+| `A_U` | `pending/unfrozen`; implementação em duas camadas aguarda dois pareceres | Não. A decisão existe, mas os bytes novos ainda não foram aprovados. |
+| `AC` | `pending/unfrozen` | Não. Depende do fechamento revisado de `A_U` e de provas de suficiência ou fatoração específicas da operação. |
 | `AR` | `pending/unfrozen` | Não. Exige GO autoral separado após o pacote privado revisado. |
 
 ## Status próprio de `A_U`
 
 A reconstrução cega foi fixada no commit
-`c193f3bdd99c6b127e76e595d851051fa005e247`; a comparação histórica e o
-pacote final do implementador, no commit
-`b59ce1bf5b5ee7b57707684de92c38d4fa325b30`. O manifesto final do candidato é
-`quality_reports/2026-08-29_A_U_msb_final_implementer_manifest.sha256`
+`c193f3bdd99c6b127e76e595d851051fa005e247`; o candidato posteriormente
+adjudicado, em `b59ce1bf5b5ee7b57707684de92c38d4fa325b30`. A decisão específica de
+duas camadas está em
+`quality_reports/plans/2026-08-30_decisao_assinatura_duas_camadas_A_U.md`; sua
+implementação substantiva, no commit
+`b56085c436eb629c335764eb982d174e5cc2d392`. O novo manifesto é
+`quality_reports/2026-08-30_A_U_msb_two_layer_candidate_manifest.sha256`
 (SHA-256
-`f95322c800e113ac74dbf8d378d7a329b9e6a06cb27e7e016c0a1c6322d2be81`).
-O verificador foi reproduzido com `1095 PASS / 0 FAIL`; essa evidência é
-mecânica e não substitui as provas.
+`3cf2c047ad2da35665c21b47f94ca117482d7e7f537d9caa4e0ddce29ae7b369`).
+O verificador retornou `1110 PASS / 0 FAIL`; essa evidência é mecânica e não
+substitui as provas.
 
-Os dois pareceres independentes cobriram esses mesmos bytes:
+Os pareceres de 2026-08-29 cobriram apenas os bytes anteriores à decisão:
 
 - parecer 1: `PASS 0/0/0`, SHA-256
   `36e1e092ff2135e5610b2d942a81b7955ed899702ae266986ca2c712659f380d`;
 - parecer 2: `FAIL 0/1/0`, SHA-256
   `79a335f6557b4274786256011cc850fbf8dd81e606b43ef7f2d04d951aa4ea57`.
 
-A adjudicação em
+A adjudicação histórica em
 `quality_reports/adjudication/A_U_msb/b59ce1bf5b5/adjudication_round1.md`
-confirmou `R2-I-1` e encerrou a rodada como `BLOCKED`. O finding não atinge
+confirmou `R2-I-1` e encerrou aquela rodada como `BLOCKED`. O finding não atinge
 thresholds, payoffs, Bayes, famílias de PBE, endpoints ou a exaustão no nível
 de assessments. Ele atinge apenas a escolha da relação de equivalência e o
 formato da interface downstream: a clarificação geral colapsa misturas sobre
 relabelings, enquanto a arquitetura que separa camada formal exata e resumo
-econômico foi aprovada posteriormente apenas para `A_M`.
+econômico havia sido aprovada posteriormente apenas para `A_M`.
 
-Não há patch técnico automático. `A_U` precisa de uma decisão específica entre:
-
-1. estender a `A_U` a arquitetura em duas camadas de `A_M`; ou
-2. manter o quociente anônimo anterior e reconstruir uma equivalência única
-   que colapse misturas sem apagar diferenças de revelação.
-
-Até essa escolha ser registrada, `A_U` não é congelado e `AC` não começa.
+Essa lacuna normativa foi fechada pela instrução autoral de 2026-08-30. O novo
+candidato define `Sig_ex_U` para identidade formal por órbita diagonal e
+`Sum_econ_U` para equivalência econômica anônima, preservando o binder completo
+para operações sensíveis a funções off-path. Os dois novos pareceres devem
+cobrir exatamente o novo manifesto; os pareceres históricos não aprovam os
+novos bytes. Até o novo gate terminal, `A_U` não é congelado e `AC` não começa.
 
 ## Autoridade do status de `A_M`
 

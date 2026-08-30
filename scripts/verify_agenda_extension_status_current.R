@@ -64,7 +64,7 @@ record_check(
   identical(status$schema_version, "agenda_extension_lifecycle_status_v1"),
   "status schema is agenda_extension_lifecycle_status_v1"
 )
-record_check(identical(status$as_of, "2026-08-29"), "status date is pinned")
+record_check(identical(status$as_of, "2026-08-30"), "status date is pinned")
 record_check(
   identical(status$authority$sha256,
             "ca109199060f3aa775f6e2f18ef46fd9cefaff522cc3f7fdeeabfe9d5f412158"),
@@ -88,11 +88,13 @@ record_check(
 record_check(
   identical(status$a_u_candidate_snapshot$blind_lock_commit,
             "c193f3bdd99c6b127e76e595d851051fa005e247") &&
-    identical(status$a_u_candidate_snapshot$packaged_candidate_commit,
+    identical(status$a_u_candidate_snapshot$adjudicated_candidate_commit,
               "b59ce1bf5b5ee7b57707684de92c38d4fa325b30") &&
+    identical(status$a_u_candidate_snapshot$two_layer_substantive_commit,
+              "b56085c436eb629c335764eb982d174e5cc2d392") &&
     identical(status$a_u_candidate_snapshot$candidate_manifest_sha256,
-              "f95322c800e113ac74dbf8d378d7a329b9e6a06cb27e7e016c0a1c6322d2be81"),
-  "A_U blind lock, packaged candidate, and manifest are pinned"
+              "3cf2c047ad2da35665c21b47f94ca117482d7e7f537d9caa4e0ddce29ae7b369"),
+  "A_U blind lock, adjudicated candidate, two-layer commit, and manifest are pinned"
 )
 
 record_check(
@@ -131,13 +133,19 @@ record_check(
 )
 record_check(
   identical(a_u$status, "pending") && identical(a_u$frozen, FALSE) &&
-    identical(a_u$authorization, "owner_decision_required"),
-  "A_U remains pending/unfrozen and requires an owner decision"
+    identical(a_u$authorization, "author_decision_implemented_pending_two_new_reviews"),
+  "A_U remains pending/unfrozen after the author decision was implemented"
 )
 record_check(
   identical(a_u$equivalence_interface_status,
-            "blocked by confirmed R2-I-1 pending an A_U-specific author decision"),
-  "A_U equivalence/interface blocker is recorded exactly"
+            "R2-I-1 addressed by A_U-specific Sig_ex_U and Sum_econ_U implementation; unreviewed candidate only"),
+  "A_U two-layer interface is recorded as implemented but unreviewed"
+)
+record_check(
+  identical(a_u$author_decision$sha256,
+            "5f2e3e99c9d14a88097fca3f249ce4212564a31b1cd80902bdb4b11cca2d73ae") &&
+    identical(sha256(a_u$author_decision$path), a_u$author_decision$sha256),
+  "A_U-specific author decision bytes match"
 )
 record_check(
   identical(ac$status, "pending") && identical(ac$frozen, FALSE) &&
@@ -212,16 +220,18 @@ for (relative_path in names(expected_review_hashes)) {
 }
 
 expected_a_u_candidate_hashes <- c(
+  "model_redesign/agenda_extension_A_U_msb_contract.md" =
+    "348ffc702d75e47ec8f8008bccb71338174649f57d90af8fc78e919cfd4ded26",
   "model_redesign/agenda_extension_A_U_msb_results.md" =
-    "fefe77fe0dcd86941ed41ed5cd13ff22323ffb2e12221db5e2d91604de7774fc",
+    "e2e2ec8cabc3d44b0c72bfa8ae1ef3d35256078448ce688db79bb7c1a96cdc11",
   "model_redesign/agenda_extension_A_U_msb_interface.json" =
-    "ee9582805b17562d5b1e2bb9e511eca7984ae2fd3379d94667b8464c50932410",
+    "2ee931d21e3858db6702f78a4636d1f3c4b445910c8160120921c3bfc3b4b317",
   "model_redesign/agenda_extension_A_U_msb_claim_ledger.tsv" =
-    "e2d7b0f19429bf7149b7e2ba0afd998469004b5dad23e1b8a7330aec6a8bd03b",
+    "18de37fbadf787f9217f45c9eb5ef31854c75611c9f65ba8130e06a2cd2a34c5",
   "scripts/verify_agenda_extension_A_U_msb.R" =
-    "b738695e38de6fe8ceaca982250cac5f3251ef2dbb903ac47e03246b27328399",
-  "quality_reports/verification_outputs/2026-08-29_A_U_msb_post_comparison_verifier_output.txt" =
-    "e06587ec81df764726e7fbb7f1a7b163528f3bc235c57a5f05b880585f228586"
+    "1c4c319fd925b6472612ddd5730ec4ee166af64a555f7aa97e6c930e1ad45fa6",
+  "quality_reports/verification_outputs/2026-08-30_A_U_msb_two_layer_verifier_output.txt" =
+    "4d30e01cc288e2a66d9e1576df2bd89d478e75a6f447f3a8135fd8b694a7d0f2"
 )
 a_u_candidate_hashes <- setNames(
   vapply(a_u$candidate_artifacts, function(x) x$sha256, character(1L)),
@@ -246,21 +256,15 @@ expected_a_u_review_hashes <- c(
   "quality_reports/2026-08-29_A_U_msb_formal_review_2.md" =
     "79a335f6557b4274786256011cc850fbf8dd81e606b43ef7f2d04d951aa4ea57"
 )
-a_u_review_hashes <- setNames(
-  vapply(a_u$reviews, function(x) x$sha256, character(1L)),
-  vapply(a_u$reviews, function(x) x$path, character(1L))
+record_check(
+  length(a_u$current_reviews) == 0L && is.null(a_u$current_adjudication),
+  "new A_U candidate correctly has no current review or adjudication yet"
 )
 record_check(
-  identical(a_u_review_hashes[names(expected_a_u_review_hashes)],
-            expected_a_u_review_hashes),
-  "structured status lists both exact A_U review hashes"
-)
-record_check(
-  identical(a_u$reviews[[1L]]$verdict, "PASS") &&
-    identical(a_u$reviews[[1L]]$findings, "0/0/0") &&
-    identical(a_u$reviews[[2L]]$verdict, "FAIL") &&
-    identical(a_u$reviews[[2L]]$findings, "0/1/0"),
-  "A_U review divergence is recorded exactly"
+  identical(a_u$previous_review_round$review_1, "PASS 0/0/0") &&
+    identical(a_u$previous_review_round$review_2, "FAIL 0/1/0") &&
+    identical(a_u$previous_review_round$confirmed_finding, "R2-I-1"),
+  "historical A_U review divergence is preserved separately"
 )
 for (relative_path in names(expected_a_u_review_hashes)) {
   record_check(
@@ -271,19 +275,20 @@ for (relative_path in names(expected_a_u_review_hashes)) {
 }
 
 record_check(
-  identical(a_u$adjudication$verdict, "BLOCKED") &&
-    identical(a_u$adjudication$confirmed_finding, "R2-I-1") &&
-    identical(a_u$adjudication$fix_assessment, "owner_decision"),
-  "A_U adjudication and owner-decision boundary are preserved"
+  identical(a_u$previous_review_round$adjudication_verdict, "BLOCKED") &&
+    identical(a_u$previous_review_round$confirmed_finding, "R2-I-1") &&
+    identical(a_u$previous_review_round$json_sha256,
+              "460780c0f694969f2f1566cbc913d797d8c25e6e2e48f47a047c89fddceb749b"),
+  "historical A_U adjudication boundary is preserved"
 )
 record_check(
-  identical(sha256(a_u$adjudication$markdown_path),
-            a_u$adjudication$markdown_sha256),
+  identical(sha256("quality_reports/adjudication/A_U_msb/b59ce1bf5b5/adjudication_round1.md"),
+            "bce0b8fb1abe75a39e8a9a857653a6f328a5dc00f2e264d3805ec8b927fad5ad"),
   "A_U adjudication Markdown bytes match"
 )
 record_check(
-  identical(sha256(a_u$adjudication$json_path),
-            a_u$adjudication$json_sha256),
+  identical(sha256(a_u$previous_review_round$json_path),
+            a_u$previous_review_round$json_sha256),
   "A_U adjudication JSON bytes match"
 )
 

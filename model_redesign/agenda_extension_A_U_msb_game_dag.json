@@ -1,6 +1,6 @@
 {
   "schema_ref": "solve_dynamic_games_dependency_manifest_v1",
-  "purpose": "A_U implementer candidate derived blind first and then repaired only by the documented historical comparison; does not change the administrative lifecycle of A_U",
+  "purpose": "A_U two-layer reimplementation after the A_U-specific author decision; strategic correspondence inherited unchanged from the adjudicated blind candidate",
   "nodes": [
     {
       "id": "C_U_frozen",
@@ -13,35 +13,56 @@
       "frozen": true
     },
     {
-      "id": "A_U_blind_contract",
+      "id": "A_U_blind_candidate_historical",
       "depends_on": ["C_U_frozen"],
       "status": "pass",
-      "artifact_path": "agenda_extension_A_U_msb_contract.md",
-      "artifact_hash": "sha256:4136d897d3606a5cec926247d1dc57e60a90e83344a5c19efbef8dd789d97a57",
-      "dependency_hashes": {
-        "C_U_frozen": "sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b"
-      },
+      "artifact_path_at_commit": "model_redesign/agenda_extension_A_U_msb_interface.json",
+      "artifact_commit": "b59ce1bf5b5ee7b57707684de92c38d4fa325b30",
+      "artifact_hash": "sha256:ee9582805b17562d5b1e2bb9e511eca7984ae2fd3379d94667b8464c50932410",
       "started_order": 3,
-      "passed_order": 4,
+      "passed_order": 8,
+      "frozen": true,
+      "lifecycle_note": "historical strategic candidate; its equivalence interface was blocked by adjudicated finding R2-I-1"
+    },
+    {
+      "id": "A_U_two_layer_author_decision",
+      "depends_on": ["A_U_blind_candidate_historical"],
+      "status": "pass",
+      "artifact_path": "quality_reports/plans/2026-08-30_decisao_assinatura_duas_camadas_A_U.md",
+      "artifact_hash": "sha256:5f2e3e99c9d14a88097fca3f249ce4212564a31b1cd80902bdb4b11cca2d73ae",
+      "started_order": 9,
+      "passed_order": 10,
       "frozen": true
     },
     {
-      "id": "A_U_blind_candidate",
-      "depends_on": ["A_U_blind_contract"],
+      "id": "A_U_two_layer_contract",
+      "depends_on": ["C_U_frozen", "A_U_two_layer_author_decision"],
       "status": "pass",
-      "artifact_path": "agenda_extension_A_U_msb_interface.json",
-      "artifact_hash": "sha256:ee9582805b17562d5b1e2bb9e511eca7984ae2fd3379d94667b8464c50932410",
+      "artifact_path": "model_redesign/agenda_extension_A_U_msb_contract.md",
+      "artifact_hash": "sha256:348ffc702d75e47ec8f8008bccb71338174649f57d90af8fc78e919cfd4ded26",
+      "started_order": 11,
+      "passed_order": 12,
+      "frozen": false
+    },
+    {
+      "id": "A_U_two_layer_candidate",
+      "depends_on": ["A_U_blind_candidate_historical", "A_U_two_layer_contract"],
+      "status": "pass",
+      "artifact_path": "model_redesign/agenda_extension_A_U_msb_interface.json",
+      "artifact_hash": "sha256:2ee931d21e3858db6702f78a4636d1f3c4b445910c8160120921c3bfc3b4b317",
       "dependency_hashes": {
-        "A_U_blind_contract": "sha256:4136d897d3606a5cec926247d1dc57e60a90e83344a5c19efbef8dd789d97a57"
+        "C_U_frozen": "sha256:f1c823123a9b218096d6d072ff5786775c91698ff0c2004791731d2d3406408b",
+        "A_U_two_layer_author_decision": "sha256:5f2e3e99c9d14a88097fca3f249ce4212564a31b1cd80902bdb4b11cca2d73ae",
+        "A_U_two_layer_contract": "sha256:348ffc702d75e47ec8f8008bccb71338174649f57d90af8fc78e919cfd4ded26"
       },
-      "started_order": 7,
-      "passed_order": 8,
-      "frozen": true,
-      "lifecycle_note": "implementer candidate bytes are hash-pinned after comparison; the project A_U node remains pending/unfrozen until external reviews"
+      "started_order": 13,
+      "passed_order": 14,
+      "frozen": false,
+      "lifecycle_note": "implementer candidate at substantive commit b56085c436eb629c335764eb982d174e5cc2d392; two fresh formal reviews, adjudication and terminal author approval remain required"
     },
     {
       "id": "AC",
-      "depends_on": ["A_U_blind_candidate"],
+      "depends_on": ["A_U_two_layer_candidate"],
       "status": "pending",
       "artifact_path": null,
       "artifact_hash": null,
@@ -52,5 +73,5 @@
       "authorization": "not authorized in this task"
     }
   ],
-  "execution_note": "The skills governed the contract, DAG, reverse order and gates. Blind-lock commit c193f3b preceded historical comparison. AC was not started."
+  "execution_note": "The two-layer candidate preserves the old strategic correspondence and replaces only the blocked equivalence/interface architecture. AC was not started."
 }

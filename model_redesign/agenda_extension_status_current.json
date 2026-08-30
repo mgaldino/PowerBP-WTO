@@ -1,6 +1,6 @@
 {
   "schema_version": "agenda_extension_lifecycle_status_v1",
-  "as_of": "2026-08-29",
+  "as_of": "2026-08-30",
   "namespace": "agenda_extension",
   "scope": "administrative lifecycle status only; mathematical artifacts and historical DAGs remain immutable",
   "human_readable_status": "model_redesign/agenda_extension_STATUS.md",
@@ -21,11 +21,12 @@
   },
   "a_u_candidate_snapshot": {
     "blind_lock_commit": "c193f3bdd99c6b127e76e595d851051fa005e247",
-    "packaged_candidate_commit": "b59ce1bf5b5ee7b57707684de92c38d4fa325b30",
-    "candidate_manifest_path": "quality_reports/2026-08-29_A_U_msb_final_implementer_manifest.sha256",
-    "candidate_manifest_sha256": "f95322c800e113ac74dbf8d378d7a329b9e6a06cb27e7e016c0a1c6322d2be81",
-    "mechanical_result": "1095 PASS / 0 FAIL",
-    "lifecycle": "pending owner decision; unfrozen"
+    "adjudicated_candidate_commit": "b59ce1bf5b5ee7b57707684de92c38d4fa325b30",
+    "two_layer_substantive_commit": "b56085c436eb629c335764eb982d174e5cc2d392",
+    "candidate_manifest_path": "quality_reports/2026-08-30_A_U_msb_two_layer_candidate_manifest.sha256",
+    "candidate_manifest_sha256": "3cf2c047ad2da35665c21b47f94ca117482d7e7f537d9caa4e0ddce29ae7b369",
+    "mechanical_result": "1110 PASS / 0 FAIL",
+    "lifecycle": "author decision implemented; two new independent reviews and adjudication pending; unfrozen"
   },
   "nodes": [
     {
@@ -90,53 +91,49 @@
       "node_id": "A_U",
       "status": "pending",
       "frozen": false,
-      "authorization": "owner_decision_required",
-      "reason": "the strategic correspondence survived both independent reviews, but adjudication confirmed one important defect in the equivalence/interface architecture",
+      "authorization": "author_decision_implemented_pending_two_new_reviews",
+      "reason": "the author extended the two-layer architecture to A_U; the new bytes now require two independent reviews, adjudication and terminal approval",
       "strategic_correspondence_status": "reviewed and preserved; no confirmed defect in thresholds, payoffs, Bayes, PBE families, endpoints, or existence/exhaustion at the assessment level",
-      "equivalence_interface_status": "blocked by confirmed R2-I-1 pending an A_U-specific author decision",
+      "equivalence_interface_status": "R2-I-1 addressed by A_U-specific Sig_ex_U and Sum_econ_U implementation; unreviewed candidate only",
+      "author_decision": {
+        "path": "quality_reports/plans/2026-08-30_decisao_assinatura_duas_camadas_A_U.md",
+        "sha256": "5f2e3e99c9d14a88097fca3f249ce4212564a31b1cd80902bdb4b11cca2d73ae"
+      },
       "candidate_artifacts": [
         {
+          "path": "model_redesign/agenda_extension_A_U_msb_contract.md",
+          "sha256": "348ffc702d75e47ec8f8008bccb71338174649f57d90af8fc78e919cfd4ded26"
+        },
+        {
           "path": "model_redesign/agenda_extension_A_U_msb_results.md",
-          "sha256": "fefe77fe0dcd86941ed41ed5cd13ff22323ffb2e12221db5e2d91604de7774fc"
+          "sha256": "e2e2ec8cabc3d44b0c72bfa8ae1ef3d35256078448ce688db79bb7c1a96cdc11"
         },
         {
           "path": "model_redesign/agenda_extension_A_U_msb_interface.json",
-          "sha256": "ee9582805b17562d5b1e2bb9e511eca7984ae2fd3379d94667b8464c50932410"
+          "sha256": "2ee931d21e3858db6702f78a4636d1f3c4b445910c8160120921c3bfc3b4b317"
         },
         {
           "path": "model_redesign/agenda_extension_A_U_msb_claim_ledger.tsv",
-          "sha256": "e2d7b0f19429bf7149b7e2ba0afd998469004b5dad23e1b8a7330aec6a8bd03b"
+          "sha256": "18de37fbadf787f9217f45c9eb5ef31854c75611c9f65ba8130e06a2cd2a34c5"
         },
         {
           "path": "scripts/verify_agenda_extension_A_U_msb.R",
-          "sha256": "b738695e38de6fe8ceaca982250cac5f3251ef2dbb903ac47e03246b27328399"
+          "sha256": "1c4c319fd925b6472612ddd5730ec4ee166af64a555f7aa97e6c930e1ad45fa6"
         },
         {
-          "path": "quality_reports/verification_outputs/2026-08-29_A_U_msb_post_comparison_verifier_output.txt",
-          "sha256": "e06587ec81df764726e7fbb7f1a7b163528f3bc235c57a5f05b880585f228586"
+          "path": "quality_reports/verification_outputs/2026-08-30_A_U_msb_two_layer_verifier_output.txt",
+          "sha256": "4d30e01cc288e2a66d9e1576df2bd89d478e75a6f447f3a8135fd8b694a7d0f2"
         }
       ],
-      "reviews": [
-        {
-          "path": "quality_reports/2026-08-29_A_U_msb_formal_review_1.md",
-          "verdict": "PASS",
-          "findings": "0/0/0",
-          "sha256": "36e1e092ff2135e5610b2d942a81b7955ed899702ae266986ca2c712659f380d"
-        },
-        {
-          "path": "quality_reports/2026-08-29_A_U_msb_formal_review_2.md",
-          "verdict": "FAIL",
-          "findings": "0/1/0",
-          "sha256": "79a335f6557b4274786256011cc850fbf8dd81e606b43ef7f2d04d951aa4ea57"
-        }
-      ],
-      "adjudication": {
-        "verdict": "BLOCKED",
+      "current_reviews": [],
+      "current_adjudication": null,
+      "previous_review_round": {
+        "snapshot_commit": "b59ce1bf5b5ee7b57707684de92c38d4fa325b30",
+        "review_1": "PASS 0/0/0",
+        "review_2": "FAIL 0/1/0",
+        "adjudication_verdict": "BLOCKED",
         "confirmed_finding": "R2-I-1",
         "scope": "equivalence and downstream interface only; strategic mathematics preserved",
-        "fix_assessment": "owner_decision",
-        "markdown_path": "quality_reports/adjudication/A_U_msb/b59ce1bf5b5/adjudication_round1.md",
-        "markdown_sha256": "bce0b8fb1abe75a39e8a9a857653a6f328a5dc00f2e264d3805ec8b927fad5ad",
         "json_path": "quality_reports/adjudication/A_U_msb/b59ce1bf5b5/adjudication_round1.json",
         "json_sha256": "460780c0f694969f2f1566cbc913d797d8c25e6e2e48f47a047c89fddceb749b"
       }
@@ -146,7 +143,7 @@
       "status": "pending",
       "frozen": false,
       "authorization": "none",
-      "reason": "blocked by the pending A_U owner decision and by operation-specific sufficiency or measurable-factorization claims"
+      "reason": "not authorized; requires reviewed A_U bytes and operation-specific sufficiency or measurable-factorization claims"
     },
     {
       "node_id": "AR",
