@@ -120,6 +120,13 @@ check("AT ledger has 22 unique sequential claims",
         identical(ledger$claim_id, sprintf("AT-MSB-%03d", seq_len(22L))))
 check("all AT ledger claims are proved candidate claims", all(ledger$status == "proved"))
 check("all AT ledger payoffs are dated A", all(ledger$payoff_date == "A"))
+check(
+  "high-none ledger claim resolves the exact frozen AR source ID",
+  identical(
+    ledger$source_record_ids[ledger$claim_id == "AT-MSB-011"],
+    "AR-RI-U-HIGH-NONE"
+  )
+)
 
 contract_text <- paste(readLines(candidate_paths[[1L]], warn = FALSE, encoding = "UTF-8"), collapse = "\n")
 results_text <- paste(readLines(candidate_paths[[2L]], warn = FALSE, encoding = "UTF-8"), collapse = "\n")

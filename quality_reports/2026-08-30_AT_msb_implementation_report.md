@@ -60,14 +60,15 @@ T_g=V_g^A-beta*V_g^N=D_g+I_g.
 Resultado:
 
 ```text
-49 PASS / 0 FAIL
+50 PASS / 0 FAIL
 ```
 
 O harness conferiu hashes congelados, manifests, schemas, 22 claims, datas,
 identidades fatoriais, fórmulas por ramos em uma grade de 4.380 pontos e 250
 amostras adicionais para as células fechadas de unanimidade. Também testa a
 célula alta `none`, o domínio completo de `u` e o endpoint em que a coordenada
-contrafactual alta é zero. O Rmd e o PDF v6 permanecem nos hashes aprovados.
+contrafactual alta é zero. Também resolve o ID high-none do ledger contra a
+fonte congelada. O Rmd e o PDF v6 permanecem nos hashes aprovados.
 
 O harness não prova completude de PBE, sinal dos conjuntos de maioria,
 legitimidade de seleção cross-world ou relevância empírica.
@@ -82,7 +83,14 @@ O rótulo causal também passou a nomear literalmente o tratamento do game form:
 inserir uma etapa anterior e obrigatória de proposta por `H`, e não conceder
 uma opção facultativa.
 
-## 7. Próximo gate
+## 7. Reparo após a segunda rodada independente
+
+Os dois leitores aprovaram toda a matemática do commit `93b42091b946db0e3b795d157c99070d27465d5e`,
+mas encontraram um ID de proveniência inexistente no ledger. O identificador
+`AR-U-HIGH-NONE` foi substituído pelo ID literal da fonte congelada,
+`AR-RI-U-HIGH-NONE`, e o verificador passou a testar esse vínculo.
+
+## 8. Próximo gate
 
 O candidato deve ser revisado por leitores independentes sobre bytes fixos.
 Qualquer finding substantivo deve ser adjudicado antes de solicitar aprovação

@@ -21,6 +21,7 @@ PASS | AT ledger has exact 16-column schema
 PASS | AT ledger has 22 unique sequential claims
 PASS | all AT ledger claims are proved candidate claims
 PASS | all AT ledger payoffs are dated A
+PASS | high-none ledger claim resolves the exact frozen AR source ID
 PASS | contract contains required guard: T_g^theta=D_g^theta+I_g^theta
 PASS | contract contains required guard: DeltaT^theta=DeltaD^theta+DeltaI^theta
 PASS | contract contains required guard: compara dois pacotes
@@ -54,4 +55,4 @@ PASS | 250 samples: generic factorial identity T=D+I
 PASS | approved v6 Rmd remains unchanged
 PASS | approved v6 PDF remains unchanged
 
-SUMMARY | 49 PASS | 0 FAIL
+SUMMARY | 50 PASS | 0 FAIL
