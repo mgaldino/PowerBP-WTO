@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "a-m-msb-two-layer:e17520ee927e:round1",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-08-29_A_M_msb_two_layer_signature_candidate_manifest.sha256",
+    "sha256": "4130c09b9a7d504e0dd18f63c8793a0f6ce5f239369c585d924c48742177c0aa",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-08-29_A_M_msb_two_layer_signature_formal_review_1.md",
+      "sha256": "1b71c06b52b26f7455f75d58df1896ffe325f90af6aa24dbef63db331af01519"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-08-29_A_M_msb_two_layer_signature_formal_review_2.md",
+      "sha256": "ff78147c2cd20f764d6ba70fee433a925054ac99c80bb32f4b5967e88ebb5cc3"
+    }
+  ],
+  "findings": [],
+  "summary": {
+    "total": 0,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "NO_CONFIRMED_DEFECTS",
+    "checked_at": "2026-08-29T21:46:36-03:00",
+    "reasons": [
+      "A identidade do branch, do HEAD, dos ancestrais e dos hashes externos foi confirmada; os manifestos passaram em 24 de 24 e 3 de 3 entradas.",
+      "Os dois pareceres são independentes entre si, cobrem o mesmo snapshot e convergem em PASS com contagem 0/0/0.",
+      "A verificação adversarial independente dos clusters load-bearing não encontrou defeito material nem item não resolvido.",
+      "A reexecução do verificador reproduziu 3954 PASS e 0 FAIL e foi tratada somente como evidência mecânica."
+    ]
+  }
+}
