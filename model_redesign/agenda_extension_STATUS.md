@@ -54,6 +54,8 @@ O manifesto final
 `quality_reports/2026-08-31_A_T_msb_final_gate_manifest.sha256`, SHA-256
 `071134e722f7dbe39034cc5c8f38c1da140cb72b8560378bdf7ea5cd43995970`,
 fixa `21/21` entradas. `A_T` é, portanto, `pass/frozen` somente nesses bytes.
+O registro, o manifesto e a atualização de ciclo de vida entraram no commit
+`08ba104406fbc72128fb067836bca14443cc41fe`.
 
 O congelamento cobre `D`, `I`, `T=D+I`, `DeltaD`, `DeltaI`, `DeltaT`, as
 correspondências exatas e o contraste diagonal `Q`. A consulta externa não

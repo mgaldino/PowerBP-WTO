@@ -237,6 +237,8 @@ record_check(
             "7033063a4b737cc0acc087ac71261e25805c689d") &&
     identical(status$a_t_candidate_snapshot$reviews_commit,
               "32b0c166f0d1e004457ad44cf33b5250af2745d0") &&
+    identical(status$a_t_candidate_snapshot$terminal_closure_commit,
+              "08ba104406fbc72128fb067836bca14443cc41fe") &&
     identical(status$a_t_candidate_snapshot$candidate_manifest_sha256,
               "ca3248fb8ef63a2dcc008b5e30ffda1a8e170806ea172969e069daef1e9629cd") &&
     identical(status$a_t_candidate_snapshot$review_gate_manifest_sha256,
