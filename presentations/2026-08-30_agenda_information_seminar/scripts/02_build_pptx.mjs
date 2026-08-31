@@ -142,31 +142,19 @@ function addImageSlide(imageName, alt) {
   addFooter(slide, "Steinberg (2002), “In the Shadow of Law or Power?”.");
 }
 
-// 4. Neighbors
+// 4. Open margin
 {
-  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "O que a teoria próxima já ensina", 4);
-  addCard(slide, 70, 140, 535, 420, "Piazolo–Vanberg (GEB)", "• Proponente fixo.\n• Dois respondentes informados.\n• Rejeição sinaliza força sob unanimidade.\n• Respondentes mais caros; atraso e desacordo.", C.blue);
-  addCard(slide, 675, 140, 535, 420, "Glynia–Thum–Xefteris", "• Respondentes conhecem seus custos.\n• Proponente conhece a distribuição.\n• Escolha entre proposta segura e aposta.\n• Rankings não monotônicos.", C.teal);
-  textbox(slide, "O GEB já mostra sinalização e exclusão; perguntamos quem captura o prêmio sem agenda hegemônica.", { left: 120, top: 585, width: 1040, height: 62 }, {
-    fontSize: 23, color: C.orange, bold: true, alignment: "center",
+  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "A margem que Steinberg deixa em aberto", 4);
+  addCard(slide, 70, 140, 535, 360, "Na explicação convencional", "• A potência molda texto, timing e alternativas.\n• Sua força material disciplina os fracos.\n• O consenso ratifica um pacote trabalhado informalmente.", C.blue);
+  addCard(slide, 675, 140, 535, 360, "No nosso contrafactual", "• H conhece sua própria exigência para aceitar.\n• Os proponentes fracos não a observam.\n• Retiramos de H a iniciativa formal: πH = 0.", C.orange);
+  textbox(slide, "A regra pode dar poder à informação do hegemon antes de lhe devolvermos a agenda?", { left: 125, top: 540, width: 1030, height: 75 }, {
+    fontSize: 27, color: C.navy, bold: true, alignment: "center", verticalAlignment: "middle",
   });
 }
 
-// 5. Question
+// 5. Model
 {
-  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "A pergunta que resta", 5);
-  textbox(slide, "Quando a informação gera poder mesmo sem agenda hegemônica ou votos extras?", { left: 130, top: 160, width: 1020, height: 130 }, {
-    fontSize: 38, color: C.navy, bold: true, alignment: "center", verticalAlignment: "middle",
-  });
-  addCard(slide, 345, 340, 590, 150, "Benchmark deliberadamente exigente", "πH = 0: apenas Estados fracos propõem nos dois períodos.", C.orange);
-  textbox(slide, "Se H ganhar sob unanimidade, o ganho não pode ser atribuído à iniciativa formal.", { left: 180, top: 535, width: 920, height: 70 }, {
-    fontSize: 24, color: C.ink, alignment: "center",
-  });
-}
-
-// 6. Model
-{
-  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "Arquitetura mínima do modelo", 6);
+  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "Arquitetura mínima do modelo", 5);
   addCard(slide, 70, 145, 520, 390, "Atores e informação", "• Um hegemon H e m ≥ 3 Estados fracos.\n• H conhece sua exigência mínima: o₁ > o₀.\n• Os fracos conhecem apenas ν = Pr(θ = 1).", C.blue);
   addCard(slide, 635, 145, 565, 390, "Instituições e tempo", "• Dois períodos; desconto β.\n• O pacote y concede excedente a H.\n• Maioria pode excluir H.\n• Unanimidade exige seu sim.", C.orange);
   textbox(slide, "A regra muda se uma coalizão pode contornar o voto informado.", { left: 150, top: 555, width: 980, height: 48 }, {
@@ -175,12 +163,12 @@ function addImageSlide(imageName, alt) {
   addFooter(slide, "R1: fraco propõe → votos → acordo/continuação β → R2 terminal: fraco propõe → acordo/desacordo.");
 }
 
-addImageSlide("figura_1_substituto_informacional.png", "Figura 1: maioria pode substituir H; unanimidade torna H essencial.");
-addImageSlide("figura_2_gap_publico.png", "Figura 2: vantagem pública da maioria por opção externa.");
+addImageSlide("figura_1_substituto_informacional.png", "Figura 1: maioria pode substituir H; unanimidade torna H essencial."); // 6
+addImageSlide("figura_2_gap_publico.png", "Figura 2: vantagem pública da maioria por opção externa."); // 7
 
-// 9. Private information
+// 8. Private information
 {
-  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "Com informação privada, as regras ativam jogos distintos", 9);
+  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "Com informação privada, as regras ativam jogos distintos", 8);
   addCard(slide, 70, 145, 525, 420, "Maioria", "• Pode contornar H.\n• Screening, pooling e exclusão.\n• A exigência de H pode ser evitada por uma coalizão alternativa.", C.blue);
   addCard(slide, 665, 145, 545, 420, "Unanimidade", "• Todo acordo compra o sim de H.\n• Crença baixa: oferta ao tipo baixo.\n• Crença intermediária: não há PBE puro.\n• Crença alta: pooling no limiar alto.", C.orange);
   textbox(slide, "No pooling, a baixa exigência é paga como se pudesse ser alta.", { left: 175, top: 588, width: 930, height: 52 }, {
@@ -188,11 +176,9 @@ addImageSlide("figura_2_gap_publico.png", "Figura 2: vantagem pública da maiori
   });
 }
 
-addImageSlide("figura_4_incidencia_por_tipo.png", "Figura 4: incidência da renda por tipo.");
-
-// 11. Identification
+// 9. Identification
 {
-  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "Como identificar a fonte do ganho", 11);
+  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "Como identificar a fonte do ganho", 9);
   addCard(slide, 90, 145, 1100, 118, "Fixe um par de equilíbrios comparáveis (sM, sU)", "RIgθ(sg) = Vg(priv, θ; sg) − hg(oθ)", C.blue);
   addCard(slide, 90, 292, 1100, 118, "Mudança institucional do prêmio", "ΔRIθ(sU,sM) = RIUθ(sU) − RIMθ(sM)", C.orange);
   addCard(slide, 90, 439, 1100, 130, "Teste da reversão", "δθ(sU,sM) = −G(oθ) + ΔRIθ(sU,sM)", C.teal);
@@ -201,32 +187,48 @@ addImageSlide("figura_4_incidencia_por_tipo.png", "Figura 4: incidência da rend
   });
 }
 
-addImageSlide("figura_3_ponte_reversao.png", "Figura 3: a renda informacional carrega a reversão.");
+addImageSlide("figura_3_ponte_reversao.png", "Figura 3: a renda informacional carrega a reversão."); // 10
 
-// 13. Literature positioning
+// 11. GEB positioning
 {
-  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "A contribuição diante dos dois papers próximos", 13);
-  addCard(slide, 55, 135, 365, 445, "GEB", "Informados: dois respondentes simétricos.\n\nAgenda: proponente fixo.\n\nRegra: muda sinal da rejeição e preço dos votos.\n\nObjeto: custo, atraso, desacordo.", C.blue);
-  addCard(slide, 458, 135, 365, 445, "Public Choice", "Informação: respondentes conhecem seus custos; proponente conhece a distribuição.\n\nAgenda: agenda setter fixo.\n\nRegra: muda seguro versus aposta.\n\nObjeto: aprovação e transferências.", C.teal);
-  addCard(slide, 860, 135, 365, 445, "Este modelo", "Informado: um único hegemon.\n\nAgenda: retirada e devolvida.\n\nRegra: torna sua informação evitável ou incontornável.\n\nObjeto: incidência, reversão e três poderes.", C.orange);
-  textbox(slide, "Não descobrimos o sinal da rejeição: isolamos quem captura o prêmio sem agenda hegemônica.", { left: 140, top: 610, width: 1000, height: 45 }, {
-    fontSize: 22, color: C.navy, bold: true, alignment: "center",
+  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "GEB: a mesma base institucional, outra arquitetura", 11);
+  addCard(slide, 70, 135, 535, 430, "Piazolo–Vanberg", "• Dois respondentes simétricos têm custos privados.\n• Maioria contorna um recorrendo ao outro — também informado.\n• Unanimidade torna ambos indispensáveis.\n• Rejeição altera preços futuros; também há pooling imediato.", C.blue);
+  addCard(slide, 675, 135, 535, 430, "Este modelo", "• Toda a informação privada está num único H.\n• Maioria o substitui por coalizão sem informação sobre θ.\n• Unanimidade torna a única exigência privada incontornável.\n• Mapeamos RIgθ e ΔRIθ por tipo.", C.orange);
+  textbox(slide, "Não contrapomos sinalização e indispensabilidade. Mudamos a arquitetura e o estimando.", { left: 130, top: 595, width: 1020, height: 54 }, {
+    fontSize: 23, color: C.navy, bold: true, alignment: "center",
   });
+  addFooter(slide, "No GEB, uma oferta alta também deixa renda ao tipo baixo: a espécie da renda não é nova.");
 }
 
-// 14. Agenda epilogue
+// 12. Public Choice positioning
 {
-  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "Epílogo: devolvendo a agenda ao hegemon", 14);
-  textbox(slide, "Agenda acrescenta duas coisas diferentes", { left: 140, top: 130, width: 1000, height: 80 }, {
-    fontSize: 31, color: C.navy, bold: true, alignment: "center", verticalAlignment: "middle",
+  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "Public Choice: o mesmo seguro, outro portador do poder", 12);
+  addCard(slide, 70, 135, 535, 430, "Glynia–Thum–Xefteris", "• Agenda setter fixo e desinformado.\n• Dois respondentes simétricos conhecem seus custos.\n• Uma oferta: seguro caro versus aposta barata.\n• Foco em aprovação, transferências e payoff do proponente.", C.teal);
+  addCard(slide, 675, 135, 535, 430, "Nossa mudança de estimando", "• Payoff interino do único ator assimétrico.\n• Benchmark público do mesmo tipo e regra.\n• Maioria pode eliminar toda a informação de H da coalizão.\n• Na extensão, o mesmo H informado recebe agenda.", C.orange);
+  textbox(slide, "Não reivindicamos uma nova renda de pooling: seguimos quem a recebe e como ela muda com agenda.", { left: 115, top: 595, width: 1050, height: 54 }, {
+    fontSize: 23, color: C.navy, bold: true, alignment: "center",
   });
-  addCard(slide, 105, 250, 500, 265, "Efeito direto", "Sob unanimidade, DU = 1 − β > 0. Dar a proposta a H eleva diretamente seu payoff.", C.blue);
-  addCard(slide, 675, 250, 500, 265, "Interação informacional", "Em células comparáveis de alta exigência, IU¹ ≤ 0. Agenda pode comprimir o prêmio informacional.", C.orange);
-  textbox(slide, "Agenda aumenta o payoff, mas pode substituir parte do poder de informação.", { left: 145, top: 565, width: 990, height: 60 }, {
-    fontSize: 24, color: C.teal, bold: true, alignment: "center",
-  });
-  addFooter(slide, "A_T: resultado revisado, ainda não congelado. Nos pares provados sob unanimidade, o efeito total é não negativo.");
+  addFooter(slide, "O Public Choice também contém benchmark público e renda do tipo barato sob oferta alta.");
 }
+
+// 13. Agenda role crossing
+{
+  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "Extensão: o ator informado atravessa o balcão", 13);
+  addCard(slide, 80, 135, 440, 185, "Sem agenda de H (N)", "Fraco desinformado propõe.\nH informado responde.", C.blue);
+  textbox(slide, "⟶", { left: 575, top: 195, width: 130, height: 70 }, {
+    fontSize: 54, color: C.orange, bold: true, alignment: "center", verticalAlignment: "middle",
+  });
+  addCard(slide, 760, 135, 440, 185, "Com agenda de H (A)", "H informado propõe.\nEstados fracos respondem.", C.orange);
+  addCard(slide, 80, 365, 350, 185, "Efeito direto D", "Ganho de propor quando o tipo é conhecido.", C.blue);
+  addCard(slide, 465, 365, 350, 185, "Interação I", "Mudança na renda informacional causada pela agenda.", C.orange);
+  addCard(slide, 850, 365, 350, 185, "Efeito total T", "Tgθ = Dgθ + Igθ", C.teal);
+  textbox(slide, "A agenda muda o papel do informado e a composição da renda que ele extrai.", { left: 130, top: 595, width: 1020, height: 54 }, {
+    fontSize: 25, color: C.navy, bold: true, alignment: "center",
+  });
+  addFooter(slide, "A proposta de H é uma etapa anterior e obrigatória; T = D + I é uma identidade fatorial.");
+}
+
+addImageSlide("figura_5_efeito_direto_agenda.png", "Figura 5: efeito direto da agenda sob maioria e unanimidade."); // 14
 
 // 15. WTO answer
 {

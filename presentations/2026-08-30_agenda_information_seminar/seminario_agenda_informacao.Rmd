@@ -101,58 +101,35 @@ O consenso pode \textbf{legitimar} um acordo já moldado por poder material.
 
 \smallsource{Steinberg (2002), “In the Shadow of Law or Power?”.}
 
-## O que a teoria próxima já ensina
+## A margem que Steinberg deixa em aberto
 
 \begin{columns}[T,onlytextwidth]
-\begin{column}{0.47\textwidth}
-\textbf{Piazolo--Vanberg (GEB)}
+\begin{column}{0.46\textwidth}
+\textbf{Na explicação convencional}
 
-- Proponente fixo; dois respondentes informados.
-- Rejeição sinaliza força sob unanimidade.
-- Respondentes ficam “mais caros”; atraso e desacordo aumentam.
+- A potência molda texto, timing e alternativas.
+- Sua força material disciplina os membros mais fracos.
+- O consenso ratifica um pacote já trabalhado informalmente.
 \end{column}
-\begin{column}{0.47\textwidth}
-\textbf{Glynia--Thum--Xefteris (Public Choice)}
+\begin{column}{0.48\textwidth}
+\textbf{No nosso contrafactual}
 
-- Cada respondente conhece seu custo; o proponente conhece a distribuição.
-- Escolhe entre proposta segura e aposta de baixo custo.
-- Unanimidade nem sempre rejeita mais; maioria nem sempre transfere menos.
+- $H$ conhece sua própria exigência para aceitar.
+- Os proponentes fracos não observam essa exigência.
+- Retiramos de $H$ a iniciativa formal: $\pi_H=0$.
 \end{column}
 \end{columns}
 
-\vspace{0.5cm}
-\begin{beamercolorbox}[wd=\textwidth,sep=0.25cm,rounded=true]{block body}
+\vspace{0.42cm}
+\begin{beamercolorbox}[wd=\textwidth,sep=0.30cm,rounded=true]{block body}
 \centering
 \large
-O GEB já mostra sinalização e exclusão. Perguntamos \textbf{quem captura o prêmio} quando somente o hegemon é informado e não controla a agenda.
+\textcolor{Navy}{\textbf{A regra pode dar poder à informação do hegemon antes de lhe devolvermos a agenda?}}
 \end{beamercolorbox}
-
-\smallsource{Piazolo e Vanberg (2025), Games and Economic Behavior; Glynia, Thum e Xefteris (2026), Public Choice.}
-
-## A pergunta que resta
-
-\centering
-\vspace{0.45cm}
-
-\Large
-\textcolor{Navy}{\textbf{Quando a informação gera poder mesmo sem agenda hegemônica ou votos extras?}}
-
-\vspace{0.65cm}
-
-\normalsize
-O benchmark retira deliberadamente a explicação mais óbvia:
 
 \vspace{0.25cm}
-
-\begin{beamercolorbox}[wd=0.80\textwidth,sep=0.35cm,rounded=true]{block body}
 \centering
-\large
-$\pi_H=0$: apenas Estados fracos propõem nos dois períodos.
-\end{beamercolorbox}
-
-\vspace{0.5cm}
-
-Se o hegemon ganhar sob unanimidade, o ganho não pode ser atribuído à iniciativa formal.
+Se $H$ ganhar sob unanimidade nesse benchmark, o ganho não pode ser atribuído à iniciativa formal.
 
 ## Arquitetura mínima do modelo
 
@@ -222,11 +199,6 @@ No pooling, o hegemon de baixa exigência recebe como se pudesse ter alta exigê
 
 \smallsource{Escopo: $o_1>o_0$, crença alta o bastante para pooling e pares comparáveis. Ausência de PBE puro não é payoff zero.}
 
-## \phantom{.} {.plain}
-
-\centering
-\includegraphics[width=\textwidth,height=0.96\paperheight,keepaspectratio]{figures/figura_4_incidencia_por_tipo.png}
-
 ## Como identificar a fonte do ganho
 
 Fixe um par comparável de equilíbrios $(s_M,s_U)$. Para cada regra, o efeito de payoff associado à informação privada é:
@@ -264,59 +236,99 @@ Se $G(o_0)>0$ e $\delta_0(s_U,s_M)>0$, então $\Delta RI_0(s_U,s_M)>G(o_0)$.
 \centering
 \includegraphics[width=\textwidth,height=0.96\paperheight,keepaspectratio]{figures/figura_3_ponte_reversao.png}
 
-## A contribuição diante dos dois papers próximos
+## GEB: a mesma base institucional, outra arquitetura
 
-\scriptsize
-\begin{tabular}{p{2.4cm} p{3.0cm} p{3.1cm} p{3.3cm}}
-\toprule
- & \textbf{GEB} & \textbf{Public Choice} & \textbf{Este modelo} \\
-\midrule
-Quem é informado? & Dois respondentes simétricos & Cada respondente conhece seu custo; o proponente conhece a distribuição & Um único hegemon conhece sua exigência \\
-Agenda & Proponente fixo & Proponente fixo / agenda setter & Retirada no benchmark; devolvida na extensão \\
-Papel da regra & Muda sinal da rejeição e preço dos votos & Muda escolha entre proposta segura e aposta & Torna a informação de $H$ evitável ou incontornável \\
-Objeto distintivo & Custo, atraso, desacordo & Aprovação e transferências totais & Incidência do prêmio, reversão público--privada e três poderes \\
-\bottomrule
-\end{tabular}
-
-\vspace{0.35cm}
-\normalsize
-\centering
-\textcolor{Orange}{\textbf{Não descobrimos o valor sinalizador da rejeição.}} Isolamos quem captura o prêmio quando somente um ator assimétrico é informado e não controla a agenda.
-
-## Epílogo: devolvendo a agenda ao hegemon
-
-\centering
-\begin{tabular}{c|c|c}
- & \textbf{Sem agenda de $H$} & \textbf{Com agenda de $H$} \\
-\hline
-\textbf{Tipo conhecido} & benchmark & efeito direto de propor \\
-\textbf{Tipo privado} & prêmio informacional & direto + interação \\
-\end{tabular}
-
-\vspace{0.25cm}
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.47\textwidth}
-\textbf{Efeito direto}
+\textbf{Piazolo--Vanberg}
 
-- Sob unanimidade, $D_U=1-\beta>0$.
-- Dar a proposta a $H$ eleva diretamente seu payoff.
+- Dois respondentes simétricos têm custos privados.
+- Maioria contorna um deles recorrendo ao outro, que também é informado.
+- Unanimidade torna ambos indispensáveis.
+- Rejeição pode alterar preços futuros; também há pooling imediato sem rejeição.
 \end{column}
 \begin{column}{0.47\textwidth}
-\textbf{Interação informacional}
+\textbf{Este modelo}
 
-- Em células comparáveis de tipo alto, $I_U^1\leq0$.
-- Agenda pode elevar o payoff total e simultaneamente comprimir a renda de informação.
+- Toda a informação privada está concentrada num único $H$.
+- A maioria o substitui por uma coalizão sem informação sobre $\theta$.
+- A unanimidade torna a única exigência privada incontornável.
+- Mapeamos $RI_g^\theta$ e $\Delta RI_\theta$ para cada tipo de $H$.
 \end{column}
 \end{columns}
 
-\vspace{0.30cm}
-\begin{beamercolorbox}[wd=\textwidth,sep=0.25cm,rounded=true]{block body}
+\vspace{0.32cm}
+\begin{beamercolorbox}[wd=\textwidth,sep=0.24cm,rounded=true]{block body}
 \centering
 \large
-Nos pares comparáveis provados, agenda pode elevar o payoff total e comprimir o efeito de informação: \textbf{os dois poderes podem ser substitutos parciais}.
+\textbf{Não contrapomos sinalização e indispensabilidade.} Perguntamos como a arquitetura concentra e disciplina a renda do ator informado.
 \end{beamercolorbox}
 
-\smallsource{A\_T: resultado revisado, ainda não congelado no snapshot. Identidade $T=D+I$ e gráfico detalhado no apêndice.}
+\smallsource{No GEB, uma oferta alta também deixa renda ao tipo baixo. A diferença não é a “espécie” da renda.}
+
+## Public Choice: o mesmo seguro, outro portador do poder
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\textwidth}
+\textbf{Glynia--Thum--Xefteris}
+
+- Agenda setter fixo e desinformado; dois respondentes simétricos conhecem seus custos.
+- Uma oferta: seguro caro versus aposta barata.
+- Há benchmark público e renda de pooling do tipo barato.
+- Foco: oferta ótima, aprovação, transferências e payoff do proponente.
+\end{column}
+\begin{column}{0.47\textwidth}
+\textbf{Nossa mudança de estimando}
+
+- O payoff interino do único ator assimétrico é o objeto central.
+- Subtraímos o benchmark público do mesmo tipo sob a mesma regra.
+- A maioria pode eliminar toda a informação privada sobre $H$ da coalizão.
+- Na extensão, esse mesmo $H$ informado recebe direitos de proposta.
+\end{column}
+\end{columns}
+
+\vspace{0.32cm}
+\begin{beamercolorbox}[wd=\textwidth,sep=0.24cm,rounded=true]{block body}
+\centering
+\large
+\textbf{Não reivindicamos uma nova renda de pooling.} Seguimos quem a recebe e como ela muda quando o próprio informado ganha agenda.
+\end{beamercolorbox}
+
+## Extensão: o ator informado atravessa o balcão
+
+\centering
+\begin{tabular}{p{4.7cm} c p{4.7cm}}
+\textbf{Benchmark sem agenda de $H$} & & \textbf{Extensão com agenda de $H$} \\
+Fraco desinformado propõe & $\Longrightarrow$ & $H$ informado propõe \\
+$H$ informado responde & & Estados fracos respondem \\
+\end{tabular}
+
+\vspace{0.42cm}
+
+\begin{tabular}{c|c|c}
+ & \textbf{Sem agenda de $H$} $(N)$ & \textbf{Com agenda de $H$} $(A)$ \\
+\hline
+\textbf{Tipo público} & $\beta h_g^N(o_\theta)$ & $h_g^A(o_\theta)$ \\
+\textbf{Tipo privado} & $\beta V_g^{N,\theta}$ & $V_g^{A,\theta}$ \\
+\end{tabular}
+
+\vspace{0.42cm}
+
+\[
+\boxed{T_g^\theta=D_g^\theta+I_g^\theta}
+\qquad
+\begin{array}{l}
+D: \text{ ganho direto de propor com o tipo conhecido}\\
+I: \text{ mudança na renda informacional causada pela agenda}
+\end{array}
+\]
+
+\smallsource{A etapa de proposta de $H$ é anterior e obrigatória; não é uma opção de pular o jogo.}
+
+## \phantom{.} {.plain}
+
+\centering
+\includegraphics[width=\textwidth,height=0.96\paperheight,keepaspectratio]{figures/figura_5_efeito_direto_agenda.png}
 
 ## Quando os EUA de baixa exigência podem receber mais sob consenso
 
@@ -381,7 +393,7 @@ O modelo faz uma comparação institucional condicional; não contém um estági
 ## \phantom{.} {.plain}
 
 \centering
-\includegraphics[width=\textwidth,height=0.96\paperheight,keepaspectratio]{figures/figura_5_efeito_direto_agenda.png}
+\includegraphics[width=\textwidth,height=0.96\paperheight,keepaspectratio]{figures/figura_4_incidencia_por_tipo.png}
 
 ## Decomposição do efeito total da agenda
 
@@ -455,6 +467,7 @@ $m=4$, $\beta=0{,}90$, $o_0=0{,}10$, $o_1=0{,}90$, $\nu=0{,}95$. Contra o equil�
 - “Nenhum PBE puro” é ausência de solução na classe analisada, não payoff zero.
 - Sob maioria e com agenda, várias comparações são correspondências; não há sinal global sem seleção.
 - As decomposições são identidades; a contribuição vem da existência de regiões e membros que lhes dão conteúdo.
+- GEB e Public Choice também contêm pooling, benchmark público e renda do tipo baixo; a contribuição aqui é de arquitetura, incidência e decomposição.
 - Steinberg motiva a aplicação, mas frequentemente descreve potências extraindo informação dos fracos; aqui os fracos inferem a reserva de $H$.
 - Consenso e unanimidade são equivalentes apenas no domínio modelado em que uma objeção bloqueia a proposta; votação subsidiária e acordos plurilaterais ficam fora.
 - A versão-base está congelada; A\_M, A\_U, A\_C e A\_R estão congelados; A\_T foi revisado, mas não estava congelado no snapshot consultado.

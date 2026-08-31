@@ -18,21 +18,15 @@ Steinberg oferece a resposta clássica. Potências controlam agenda, redação, 
 
 Aceitamos esse argumento. Mas fazemos uma pergunta adicional: mesmo sem controlar a proposta, o hegemon pode ganhar porque sua aprovação é necessária e seu custo de aceitar é privado? Primeiro retiramos a agenda para identificar essa margem; só depois a devolvemos.
 
-## Slide 4 — O que a teoria próxima já ensina
+## Slide 4 — A margem que Steinberg deixa em aberto
 
-É importante não superestimar a novidade. Piazolo e Vanberg estudam um proponente fixo e dois respondentes privadamente informados. Sob unanimidade, rejeitar pode sinalizar força e tornar os respondentes mais caros; sob maioria, a ameaça de exclusão altera esse incentivo.
+Steinberg explica como potências moldam o texto, o timing e o conjunto de alternativas, usando poder material durante a negociação informal. O consenso aparece ao final, legitimando um pacote cuja distribuição já foi trabalhada sob pesos muito desiguais. Essa é uma explicação de poder de agenda e de poder material.
 
-Glynia, Thum e Xefteris estudam dois respondentes que conhecem seus próprios custos, enquanto o proponente conhece apenas a distribuição. A regra muda a escolha entre uma proposta segura e uma aposta barata, produzindo rankings não monotônicos de aprovação e transferências.
+Nós invertemos a direção informacional. O hegemon conhece sua própria exigência mínima para aceitar; os proponentes fracos não a observam. E começamos retirando justamente a explicação mais óbvia: a probabilidade de H propor é zero. A pergunta é se a regra pode valorizar a informação do hegemon antes de lhe devolvermos a agenda.
 
-Esses trabalhos não isolam a nossa configuração: apenas um ator institucionalmente assimétrico é informado, os substitutos potenciais não carregam a mesma informação e a agenda desse ator é retirada no benchmark.
+Se H ganhar sob unanimidade nesse benchmark, o ganho não pode ser atribuído à iniciativa formal. Depois, na extensão, poderemos medir exatamente o que muda quando o mesmo ator informado passa a controlar a proposta.
 
-## Slide 5 — A pergunta que resta
-
-O benchmark empilha o desenho contra nossa conclusão. No primeiro modelo, a probabilidade de H propor é zero; em ambos os períodos, somente Estados fracos são reconhecidos. Se H ganhar sob unanimidade, o ganho não pode ser chamado de prêmio por iniciativa formal.
-
-A contribuição não será “unanimidade encarece votos”, já conhecida. Será mostrar quem captura o prêmio quando apenas o ator assimétrico é informado, separar esse prêmio da vantagem pública de um voto necessário e verificar se ele pode inverter uma comparação institucional desfavorável.
-
-## Slide 6 — Arquitetura mínima do modelo
+## Slide 5 — Arquitetura mínima do modelo
 
 Há um hegemon e pelo menos três Estados fracos. O hegemon possui baixa ou alta exigência mínima para aceitar um acordo, e somente ele conhece essa exigência. Os demais conhecem a probabilidade de a exigência ser alta. Há dois períodos e desconto intertemporal.
 
@@ -40,7 +34,7 @@ O timing é curto: um fraco propõe no primeiro período; os demais votam simult
 
 O conceito de solução fica no apêndice: PBE, voto avaliado como se cada eleitor fosse pivotal e sim na indiferença. Aqui apresento apenas resultados e intuição.
 
-## Slide 7 — A regra muda se o voto informado pode ser contornado
+## Slide 6 — A regra muda se o voto informado pode ser contornado
 
 [Aponte o painel esquerdo.] Sob maioria, uma coalizão mínima pode comprar votos de Estados fracos e deixar H de fora. Isso não elimina toda informação ou todo screening sob maioria, mas cria a opção de evitar a exigência privada de H.
 
@@ -48,7 +42,7 @@ O conceito de solução fica no apêndice: PBE, voto avaliado como se cada eleit
 
 Esta é a imagem principal do paper: a regra muda a substituibilidade do portador da informação.
 
-## Slide 8 — Com baixa exigência conhecida, maioria pode pagar mais a H
+## Slide 7 — Com baixa exigência conhecida, maioria pode pagar mais a H
 
 Antes do jogo privado, calculamos o payoff de H se todos conhecessem sua exigência. A curva G é maioria menos unanimidade. Portanto, G positivo significa vantagem pública da maioria; G negativo, vantagem pública da unanimidade.
 
@@ -56,7 +50,7 @@ Na região de baixa exigência, a maioria pode pagar mais a H. Isso cria um cont
 
 Os parâmetros são ilustração teórica, não calibração da OMC.
 
-## Slide 9 — Com informação privada, as regras ativam jogos distintos
+## Slide 8 — Com informação privada, as regras ativam jogos distintos
 
 Sob maioria, a correspondência contém screening, pooling e exclusão. A existência de coalizões alternativas torna a informação de H evitável em alguns membros, mas não a elimina universalmente.
 
@@ -64,15 +58,7 @@ Sob unanimidade, com crença baixa aparece oferta voltada à baixa exigência; n
 
 As comparações são membro a membro ou entre conjuntos. Uma célula sem PBE puro não recebe payoff zero.
 
-## Slide 10 — No piso do pooling, o prêmio favorece a baixa exigência
-
-Agora uso uma comparação conservadora do lado da unanimidade. Para as primitivas da figura, o payoff de pooling sob unanimidade pode variar de 0,729 a 0,829. Eu uso o piso, 0,729, e o comparo ao membro de maioria exibido.
-
-Para o hegemon de baixa exigência, a vantagem pública da maioria é 0,4095. O prêmio informacional diferencial sob unanimidade é 0,548, deixando uma vantagem privada líquida de 0,1385 para unanimidade. Para o tipo de alta exigência, o prêmio é negativo neste mesmo par e o saldo privado favorece maioria em 0,081.
-
-Portanto, a incidência é precisa e assimétrica: neste membro conservador, a baixa exigência ganha por ser confundida com a alta; não alegamos um ranking universal da correspondência.
-
-## Slide 11 — Como identificar a fonte do ganho
+## Slide 9 — Como identificar a fonte do ganho
 
 Fixamos explicitamente um par comparável de equilíbrios, um sob cada regra. Para cada equilíbrio, definimos RI como o payoff com informação privada menos o payoff do mesmo tipo quando sua exigência é pública. É um efeito de payoff assinado associado à informação privada; quando positivo, pode ser lido como prêmio.
 
@@ -80,27 +66,43 @@ A diferença privada total é menos G, a vantagem pública da unanimidade, mais 
 
 O teste é simples. Se G de o zero é positivo, a maioria venceria com baixa exigência conhecida. Se delta zero é positivo no par comparável, então o prêmio diferencial necessariamente excede G. A informação não apenas ajuda; ela supera toda a vantagem pública anterior da maioria.
 
-## Slide 12 — Até no piso do pooling, a informação carrega a reversão
+## Slide 10 — Até no piso do pooling, a informação carrega a reversão
 
 A figura traduz a comparação conservadora. Começamos 0,4095 abaixo de zero. Usando o piso da faixa de pooling, o prêmio acrescenta 0,548. Terminamos 0,1385 acima de zero.
 
 Isto ainda é um resultado de existência equilíbrio a equilíbrio. Não afirmo que unanimidade domina todos os equilíbrios de maioria. Mas também não escolho agora o extremo superior favorável da unanimidade: contra o equilíbrio de maioria exibido, toda a faixa admissível de pooling sob unanimidade produz a reversão para a baixa exigência.
 
-## Slide 13 — A contribuição diante dos dois papers próximos
+## Slide 11 — GEB: a mesma base institucional, outra arquitetura
 
-A tabela torna a demarcação explícita. Não descobrimos o valor sinalizador da rejeição — a GEB já o mostra. Também não descobrimos que informação incompleta pode inverter rankings — o Public Choice já o mostra.
+Agora que o modelo está claro, podemos compará-lo sem caricaturar o GEB. Nos dois artigos, maioria permite contornar um respondente informado e unanimidade torna aprovações adicionais indispensáveis. Nos dois, uma oferta alta pode ser aceita imediatamente por tipos baixos e altos, deixando renda ao tipo baixo sem nenhuma rejeição no caminho de equilíbrio. Portanto, a diferença não é “sinalização versus indispensabilidade”.
 
-Nossa contribuição é combinar um único hegemon informado, substitutos não informados e ausência de agenda hegemônica no benchmark; localizar a incidência do prêmio; e usar o contrafactual público–privado para mostrar uma reversão que precisa ser carregada pela informação. Depois, a extensão separa agenda, pivotalidade e exigência externa.
+Piazolo e Vanberg dispersam a informação entre dois respondentes simétricos. Contornar um significa recorrer ao outro, que também tem custo privado. A dinâmica da rejeição altera preços futuros e pode produzir atraso e breakdown.
 
-Em uma frase: passamos de “votos ficam caros” para “a regra determina se a informação do ator assimétrico pode ser evitada pela coalizão”.
+Nós concentramos toda a informação privada num único ator hierárquico. Quando a maioria contorna H, usa votos fracos cujo preço não depende do tipo de H; ela pode evitar toda a fonte privada relevante. Além disso, construímos o payoff interino de cada tipo, subtraímos seu benchmark público e calculamos quanto a instituição muda essa renda. A contribuição defensável é de arquitetura e estimando, não a descoberta de uma nova espécie de pooling.
 
-## Slide 14 — Epílogo: devolvendo a agenda ao hegemon
+## Slide 12 — Public Choice: o mesmo seguro, outro portador do poder
 
-A extensão cria um desenho dois por dois: informação pública ou privada, agenda ausente ou presente. O efeito total da agenda, T, se separa em D, o efeito direto quando o tipo é conhecido, e I, a mudança do prêmio informacional causada pela agenda.
+A cautela é idêntica com Glynia, Thum e Xefteris. O artigo já tem benchmark de informação completa, pooling e renda para o respondente barato: quando recebe a oferta desenhada para o custo alto, ele captura a diferença entre os dois custos. Também discute quem pode preferir cada regra. Não podemos reivindicar exclusividade sobre nenhum desses elementos.
 
-Sob unanimidade, o efeito direto é positivo: dar a proposta a H aumenta seu payoff. Mas, em células comparáveis do tipo de alta exigência, a interação informacional pode ser não positiva. Agenda pode elevar o payoff total e ao mesmo tempo comprimir o prêmio por esconder a exigência.
+O artigo fixa um agenda setter desinformado e dois respondentes simétricos informados. Em uma proposta, o proponente escolhe entre seguro caro e aposta barata; o foco recai sobre aprovação, transferências agregadas e payoff do proponente.
 
-Esse é o papel da agenda na história: ela não é necessária ao mecanismo básico e não deve ser somada mecanicamente ao poder informacional. Os dois poderes podem ser substitutos parciais. O gráfico detalhado fica no apêndice.
+Nós mudamos o portador do poder e o objeto medido. O único informado é o próprio ator assimétrico cuja renda queremos explicar. A coalizão substituta sob maioria não contém informação privada sobre seu tipo. E a extensão mantém esse mesmo H, mas o desloca de respondente informado para proponente informado. Em uma frase: não reivindicamos uma nova renda de pooling; seguimos quem a recebe e como ela muda quando o próprio informado ganha agenda.
+
+## Slide 13 — Extensão: o ator informado atravessa o balcão
+
+Esta é a diferença que a extensão acrescenta aos dois papers próximos. No benchmark, um Estado fraco desinformado propõe e o hegemon informado responde. Na extensão, introduzimos uma etapa anterior e obrigatória em que o próprio H informado propõe e os fracos respondem. O detentor da informação atravessa o balcão.
+
+O desenho público ou privado, sem ou com agenda, permite uma decomposição disciplinada. D mede o ganho direto de dar a proposta a H quando seu tipo é conhecido. I mede quanto essa mudança de papel altera sua renda informacional. T é o efeito total da agenda sob informação privada, e satisfaz T igual a D mais I.
+
+Essa identidade não é, sozinha, uma descoberta comportamental. O conteúdo vem das regiões de equilíbrio e dos sinais demonstrados. Sua utilidade é impedir que chamemos todo aumento de payoff de “poder de agenda” ou toda diferença residual de “informação”.
+
+## Slide 14 — O efeito direto da agenda não pertence a uma única regra
+
+O gráfico já corrige uma intuição simplista. Com o tipo conhecido, dar a agenda a H aumenta diretamente seu payoff sob unanimidade em um menos beta. Mas, para exigências baixas, o ganho direto pode ser ainda maior sob maioria. Agenda não é propriedade natural de uma regra; seu valor depende das coalizões que o proponente consegue montar.
+
+Com informação privada, precisamos acrescentar I. Nos pares comparáveis provados sob unanimidade, o efeito total da agenda é não negativo. Ao mesmo tempo, para o tipo de alta exigência, a interação pode ser não positiva. O mesmo H pode ganhar payoff total por controlar a proposta e perder parte do prêmio que antes extraía por ser um respondente difícil de precificar.
+
+Essa é a mensagem substantiva da extensão: agenda altera a composição da extração. Mais poder direto de escolher o pacote não implica mais renda informacional; os dois canais podem ser substitutos parciais. Sob maioria, preservamos a correspondência e não impomos um sinal global por seleção silenciosa.
 
 ## Slide 15 — Quando os EUA de baixa exigência podem receber mais sob consenso
 
