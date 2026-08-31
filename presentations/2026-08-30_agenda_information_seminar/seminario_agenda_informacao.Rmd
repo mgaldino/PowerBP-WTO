@@ -1,0 +1,475 @@
+---
+title: "Quando o consenso pode dar poder ao hegemon"
+subtitle: "Agenda, indispensabilidade e renda informacional"
+author: "Manoel Galdino"
+date: "Seminário de Economia Política Internacional"
+output:
+  beamer_presentation:
+    theme: default
+    colortheme: default
+    fonttheme: professionalfonts
+    slide_level: 2
+    keep_tex: true
+classoption:
+  - aspectratio=169
+header-includes:
+  - \usepackage{booktabs}
+  - \usepackage{array}
+  - \usepackage{graphicx}
+  - \usepackage{xcolor}
+  - \definecolor{Navy}{HTML}{143B5D}
+  - \definecolor{Blue}{HTML}{2C7FB8}
+  - \definecolor{Orange}{HTML}{E76F51}
+  - \definecolor{Teal}{HTML}{2A9D8F}
+  - \definecolor{Muted}{HTML}{66727E}
+  - \setbeamercolor{normal text}{fg=black,bg=white}
+  - \setbeamercolor{structure}{fg=Navy}
+  - \setbeamercolor{frametitle}{fg=Navy,bg=white}
+  - \setbeamercolor{title}{fg=Navy}
+  - \setbeamercolor{subtitle}{fg=Muted}
+  - \setbeamertemplate{navigation symbols}{}
+  - \setbeamertemplate{footline}{\hfill\usebeamerfont{page number in head/foot}\insertframenumber\hspace{0.35cm}\vspace{0.18cm}}
+  - \setbeamertemplate{itemize item}{\color{Orange}\scriptsize$\blacksquare$}
+  - \setbeamertemplate{itemize subitem}{\color{Blue}\scriptsize$\blacktriangleright$}
+  - \setbeamerfont{frametitle}{series=\bfseries,size=\Large}
+  - \setbeamerfont{title}{series=\bfseries,size=\huge}
+  - \setbeamerfont{subtitle}{size=\Large}
+  - \newcommand{\Hrule}{\textcolor{Orange}{\rule{1.3cm}{2.5pt}}}
+  - \newcommand{\smallsource}[1]{\vfill{\tiny\color{Muted}#1}}
+---
+
+## O paradoxo da OMC
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.54\textwidth}
+\Large
+\textbf{Igualdade formal}
+
+\vspace{0.2cm}
+\normalsize
+
+- A regra formal procura primeiro o consenso.
+- Se ele não é alcançado, o acordo prevê votação.
+- Cada membro tem um voto.
+
+\vspace{0.35cm}
+\Large
+\textbf{Desigualdade substantiva}
+
+\vspace{0.2cm}
+\normalsize
+
+- Os Estados Unidos continuam capazes de moldar resultados.
+\end{column}
+\begin{column}{0.40\textwidth}
+\vspace{0.25cm}
+\begin{beamercolorbox}[wd=\textwidth,sep=0.35cm,rounded=true]{block body}
+\centering
+\Large
+\textcolor{Navy}{\textbf{Por que um hegemon aceitaria uma regra que dá veto a todos?}}
+\end{beamercolorbox}
+\end{column}
+\end{columns}
+
+\smallsource{Fonte institucional: Acordo de Marrakesh, Art. IX. O mapeamento aos EUA é uma interpretação teórica, não um teste empírico.}
+
+## A resposta convencional: pesos invisíveis
+
+\Hrule
+
+\vspace{0.35cm}
+
+Steinberg mostra como o consenso pode coexistir com assimetria por meio de:
+
+\vspace{0.2cm}
+
+- controle da agenda e da redação;
+- ameaça de saída, coerção e fechamento de alternativas;
+- negociação informal antes do momento formal de aprovação.
+
+\vspace{0.45cm}
+
+\begin{beamercolorbox}[wd=\textwidth,sep=0.28cm,rounded=true]{block body}
+\centering
+\large
+O consenso pode \textbf{legitimar} um acordo já moldado por poder material.
+\end{beamercolorbox}
+
+\vspace{0.3cm}
+
+\textcolor{Orange}{\textbf{Nossa pergunta adiciona outra fonte:}} o que a regra faz com a informação privada do hegemon?
+
+\smallsource{Steinberg (2002), “In the Shadow of Law or Power?”.}
+
+## O que a teoria próxima já ensina
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\textwidth}
+\textbf{Piazolo--Vanberg (GEB)}
+
+- Proponente fixo; dois respondentes informados.
+- Rejeição sinaliza força sob unanimidade.
+- Respondentes ficam “mais caros”; atraso e desacordo aumentam.
+\end{column}
+\begin{column}{0.47\textwidth}
+\textbf{Glynia--Thum--Xefteris (Public Choice)}
+
+- Cada respondente conhece seu custo; o proponente conhece a distribuição.
+- Escolhe entre proposta segura e aposta de baixo custo.
+- Unanimidade nem sempre rejeita mais; maioria nem sempre transfere menos.
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{beamercolorbox}[wd=\textwidth,sep=0.25cm,rounded=true]{block body}
+\centering
+\large
+O GEB já mostra sinalização e exclusão. Perguntamos \textbf{quem captura o prêmio} quando somente o hegemon é informado e não controla a agenda.
+\end{beamercolorbox}
+
+\smallsource{Piazolo e Vanberg (2025), Games and Economic Behavior; Glynia, Thum e Xefteris (2026), Public Choice.}
+
+## A pergunta que resta
+
+\centering
+\vspace{0.45cm}
+
+\Large
+\textcolor{Navy}{\textbf{Quando a informação gera poder mesmo sem agenda hegemônica ou votos extras?}}
+
+\vspace{0.65cm}
+
+\normalsize
+O benchmark retira deliberadamente a explicação mais óbvia:
+
+\vspace{0.25cm}
+
+\begin{beamercolorbox}[wd=0.80\textwidth,sep=0.35cm,rounded=true]{block body}
+\centering
+\large
+$\pi_H=0$: apenas Estados fracos propõem nos dois períodos.
+\end{beamercolorbox}
+
+\vspace{0.5cm}
+
+Se o hegemon ganhar sob unanimidade, o ganho não pode ser atribuído à iniciativa formal.
+
+## Arquitetura mínima do modelo
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\textbf{Atores e informação}
+
+- Um hegemon $H$ e $m\geq3$ Estados fracos.
+- $H$ conhece sua exigência mínima $o_\theta$; $o_1>o_0$.
+- Os fracos conhecem apenas $\nu=\Pr(\theta=1)$.
+\end{column}
+\begin{column}{0.48\textwidth}
+\textbf{Instituições e tempo}
+
+- Dois períodos; o futuro é descontado por $\beta$.
+- Pacote $y$ concede parte do excedente a $H$.
+- Maioria: uma coalizão pode excluir $H$.
+- Unanimidade: o “sim” de $H$ é indispensável.
+\end{column}
+\end{columns}
+
+\vspace{0.45cm}
+\begin{beamercolorbox}[wd=\textwidth,sep=0.25cm,rounded=true]{block body}
+\centering
+\large
+No modelo, a regra muda se uma coalizão pode \textbf{contornar o voto informado}.
+\end{beamercolorbox}
+
+\smallsource{Timing: fraco propõe em R1 $\rightarrow$ votos simultâneos $\rightarrow$ acordo ou continuação $\beta$ $\rightarrow$ fraco propõe em R2 terminal $\rightarrow$ acordo ou desacordo.}
+
+## \phantom{.} {.plain}
+
+\centering
+\includegraphics[width=\textwidth,height=0.96\paperheight,keepaspectratio]{figures/figura_1_substituto_informacional.png}
+
+## \phantom{.} {.plain}
+
+\centering
+\includegraphics[width=\textwidth,height=0.96\paperheight,keepaspectratio]{figures/figura_2_gap_publico.png}
+
+## Com informação privada, as regras ativam jogos distintos
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\textwidth}
+\textbf{Maioria}
+
+- Pode contornar $H$.
+- A correspondência contém screening, pooling e exclusão.
+- A informação de $H$ pode ser evitada por uma coalizão alternativa.
+\end{column}
+\begin{column}{0.47\textwidth}
+\textbf{Unanimidade}
+
+- Todo acordo precisa comprar o “sim” de $H$.
+- Crença baixa: oferta ao tipo baixo.
+- Crença intermediária: não há PBE puro.
+- Crença alta: pooling no limiar do tipo alto.
+\end{column}
+\end{columns}
+
+\vspace{0.45cm}
+\begin{beamercolorbox}[wd=\textwidth,sep=0.25cm,rounded=true]{block body}
+\centering
+\large
+No pooling, o hegemon de baixa exigência recebe como se pudesse ter alta exigência: o prêmio vem da \textbf{incerteza sobre uma aprovação indispensável}.
+\end{beamercolorbox}
+
+\smallsource{Escopo: $o_1>o_0$, crença alta o bastante para pooling e pares comparáveis. Ausência de PBE puro não é payoff zero.}
+
+## \phantom{.} {.plain}
+
+\centering
+\includegraphics[width=\textwidth,height=0.96\paperheight,keepaspectratio]{figures/figura_4_incidencia_por_tipo.png}
+
+## Como identificar a fonte do ganho
+
+Fixe um par comparável de equilíbrios $(s_M,s_U)$. Para cada regra, o efeito de payoff associado à informação privada é:
+
+\[
+RI_g^\theta(s_g)
+=
+V_g^{priv,\theta}(s_g)-h_g(o_\theta)
+\]
+
+\vspace{0.25cm}
+
+A mudança institucional da renda informacional é:
+
+\[
+\Delta RI_\theta(s_U,s_M)=RI_U^\theta(s_U)-RI_M^\theta(s_M)
+\]
+
+\vspace{0.25cm}
+
+E a diferença privada total obedece à decomposição:
+
+\[
+\boxed{\delta_\theta(s_U,s_M)
+=-G(o_\theta)+\Delta RI_\theta(s_U,s_M)}
+\]
+
+\centering
+Se $G(o_0)>0$ e $\delta_0(s_U,s_M)>0$, então $\Delta RI_0(s_U,s_M)>G(o_0)$.
+
+\smallsource{Resultado equilíbrio a equilíbrio: a apresentação demonstra existência, não um ranking universal de toda a correspondência.}
+
+## \phantom{.} {.plain}
+
+\centering
+\includegraphics[width=\textwidth,height=0.96\paperheight,keepaspectratio]{figures/figura_3_ponte_reversao.png}
+
+## A contribuição diante dos dois papers próximos
+
+\scriptsize
+\begin{tabular}{p{2.4cm} p{3.0cm} p{3.1cm} p{3.3cm}}
+\toprule
+ & \textbf{GEB} & \textbf{Public Choice} & \textbf{Este modelo} \\
+\midrule
+Quem é informado? & Dois respondentes simétricos & Cada respondente conhece seu custo; o proponente conhece a distribuição & Um único hegemon conhece sua exigência \\
+Agenda & Proponente fixo & Proponente fixo / agenda setter & Retirada no benchmark; devolvida na extensão \\
+Papel da regra & Muda sinal da rejeição e preço dos votos & Muda escolha entre proposta segura e aposta & Torna a informação de $H$ evitável ou incontornável \\
+Objeto distintivo & Custo, atraso, desacordo & Aprovação e transferências totais & Incidência do prêmio, reversão público--privada e três poderes \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.35cm}
+\normalsize
+\centering
+\textcolor{Orange}{\textbf{Não descobrimos o valor sinalizador da rejeição.}} Isolamos quem captura o prêmio quando somente um ator assimétrico é informado e não controla a agenda.
+
+## Epílogo: devolvendo a agenda ao hegemon
+
+\centering
+\begin{tabular}{c|c|c}
+ & \textbf{Sem agenda de $H$} & \textbf{Com agenda de $H$} \\
+\hline
+\textbf{Tipo conhecido} & benchmark & efeito direto de propor \\
+\textbf{Tipo privado} & prêmio informacional & direto + interação \\
+\end{tabular}
+
+\vspace{0.25cm}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\textwidth}
+\textbf{Efeito direto}
+
+- Sob unanimidade, $D_U=1-\beta>0$.
+- Dar a proposta a $H$ eleva diretamente seu payoff.
+\end{column}
+\begin{column}{0.47\textwidth}
+\textbf{Interação informacional}
+
+- Em células comparáveis de tipo alto, $I_U^1\leq0$.
+- Agenda pode elevar o payoff total e simultaneamente comprimir a renda de informação.
+\end{column}
+\end{columns}
+
+\vspace{0.30cm}
+\begin{beamercolorbox}[wd=\textwidth,sep=0.25cm,rounded=true]{block body}
+\centering
+\large
+Nos pares comparáveis provados, agenda pode elevar o payoff total e comprimir o efeito de informação: \textbf{os dois poderes podem ser substitutos parciais}.
+\end{beamercolorbox}
+
+\smallsource{A\_T: resultado revisado, ainda não congelado no snapshot. Identidade $T=D+I$ e gráfico detalhado no apêndice.}
+
+## Quando os EUA de baixa exigência podem receber mais sob consenso
+
+\begin{enumerate}
+\item A exigência mínima dos EUA para aceitar permanece parcialmente privada.
+\item Uma coalizão majoritária sem os EUA é viável e pode contornar sua informação.
+\item No domínio modelado, o consenso torna a objeção norte-americana incontornável.
+\item A crença no tipo de alta exigência é suficiente para sustentar pooling.
+\item O prêmio diferencial satisfaz $\Delta RI_0(s_U,s_M)>G(o_0)$ e supera a vantagem pública da maioria.
+\end{enumerate}
+
+\vspace{0.25cm}
+\begin{beamercolorbox}[wd=\textwidth,sep=0.23cm,rounded=true]{block body}
+\centering
+\large
+Sob essas condições, o consenso pode transformar a aprovação informada do hegemon em \textbf{insumo essencial}.
+\end{beamercolorbox}
+
+\smallsource{Preferência interina do tipo baixo, sob regra fixa. Reversão robusta à faixa U de pooling, condicionada ao equilíbrio M exibido.}
+
+## Três poderes, uma conclusão
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.30\textwidth}
+\centering
+\Large\textcolor{Blue}{\textbf{Reserva}}
+
+\normalsize
+Força fora da instituição.
+\end{column}
+\begin{column}{0.30\textwidth}
+\centering
+\Large\textcolor{Orange}{\textbf{Pivotalidade}}
+
+\normalsize
+Ausência de substituto para o voto.
+\end{column}
+\begin{column}{0.30\textwidth}
+\centering
+\Large\textcolor{Teal}{\textbf{Agenda}}
+
+\normalsize
+Capacidade de escolher a proposta.
+\end{column}
+\end{columns}
+
+\vspace{0.65cm}
+
+\begin{beamercolorbox}[wd=\textwidth,sep=0.35cm,rounded=true]{block body}
+\centering
+\Large
+\textbf{Consenso pode transformar informação privada em poder quando torna o voto informado incontornável.}
+\end{beamercolorbox}
+
+\vspace{0.4cm}
+
+\small
+O modelo faz uma comparação institucional condicional; não contém um estágio endógeno no qual os EUA escolhem a regra e não constitui evidência de que este mecanismo explica um episódio específico da OMC.
+
+# Apêndice
+
+## \phantom{.} {.plain}
+
+\centering
+\includegraphics[width=\textwidth,height=0.96\paperheight,keepaspectratio]{figures/figura_5_efeito_direto_agenda.png}
+
+## Decomposição do efeito total da agenda
+
+\centering
+\begin{tabular}{c|c|c}
+ & \textbf{Sem agenda de $H$} $(N)$ & \textbf{Com agenda de $H$} $(A)$ \\
+\hline
+\textbf{Tipo público} & $h_g^N(o_\theta)$ & $h_g^A(o_\theta)$ \\
+\textbf{Tipo privado} & $V_g^{N,\theta}$ & $V_g^{A,\theta}$ \\
+\end{tabular}
+
+\vspace{0.55cm}
+
+\[
+T_g^\theta
+=V_g^{A,\theta}-\beta V_g^{N,\theta}
+=\underbrace{\left(h_g^A-\beta h_g^N\right)}_{D_g^\theta}
++\underbrace{\left(RI_g^A-\beta RI_g^N\right)}_{I_g^\theta}
+\]
+
+\vspace{0.35cm}
+
+$D_g^\theta$ é o efeito direto sob informação completa; $I_g^\theta$ é a interação da agenda com o efeito informacional. A normalização por $\beta$ compara a agenda atual ao valor descontado de continuar sem ela.
+
+## Fórmulas do benchmark público
+
+Com $q=\lfloor(m+1)/2\rfloor+1$, $k=q-1$, $c=m-k$ e $Z_E=1-k\beta/m$:
+
+\[
+h_U(o)=1-\beta+\beta^2o
+\]
+
+\[
+h_M(o)=
+\begin{cases}
+1-\dfrac{k\beta(1-\beta o)}{m}, & o\leq 1/m,\\[0.2cm]
+\max\{Z_E,\beta o\}, & o>1/m.
+\end{cases}
+\]
+
+\[
+G(o)=h_M(o)-h_U(o)
+\]
+
+Para $o>1/m$, o sinal de $G(o)$ coincide com o de $c/m-\beta o$.
+
+## Exemplo teórico da reversão
+
+\centering
+\begin{tabular}{lrrr}
+\toprule
+ & \textbf{Maioria} & \textbf{Unanimidade (piso)} & $U-M$ \\
+\midrule
+Baixa exigência, jogo público & 0,5905 & 0,1810 & $-0,4095$ \\
+Baixa exigência, jogo privado & 0,5905 & 0,7290 & $+0,1385$ \\
+Efeito informacional & 0,0000 & 0,5480 & $+0,5480$ \\
+\midrule
+Alta exigência, jogo público & 0,8100 & 0,8290 & $+0,0190$ \\
+Alta exigência, jogo privado & 0,8100 & 0,7290 & $-0,0810$ \\
+Efeito informacional & 0,0000 & $-0,1000$ & $-0,1000$ \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.45cm}
+
+\small
+$m=4$, $\beta=0{,}90$, $o_0=0{,}10$, $o_1=0{,}90$, $\nu=0{,}95$. Contra o equilíbrio de maioria exibido, usa-se o piso $0{,}729$ da faixa admissível de pooling sob unanimidade, $[0{,}729;0{,}829]$. Ilustração teórica, não calibração.
+
+## Fronteiras de honestidade
+
+- “Nenhum PBE puro” é ausência de solução na classe analisada, não payoff zero.
+- Sob maioria e com agenda, várias comparações são correspondências; não há sinal global sem seleção.
+- As decomposições são identidades; a contribuição vem da existência de regiões e membros que lhes dão conteúdo.
+- Steinberg motiva a aplicação, mas frequentemente descreve potências extraindo informação dos fracos; aqui os fracos inferem a reserva de $H$.
+- Consenso e unanimidade são equivalentes apenas no domínio modelado em que uma objeção bloqueia a proposta; votação subsidiária e acordos plurilaterais ficam fora.
+- A versão-base está congelada; A\_M, A\_U, A\_C e A\_R estão congelados; A\_T foi revisado, mas não estava congelado no snapshot consultado.
+
+## Referências principais
+
+\footnotesize
+
+- Galdino, M. \emph{Informational Power Through Pivotality}. Manuscrito e extensão de poder de agenda.
+- Glynia, N., M. Thum e D. Xefteris. 2026. “Unanimity versus Majority: Proposing under Incomplete Information.” \emph{Public Choice}.
+- Piazolo, D. e C. Vanberg. 2025. “Legislative Bargaining with Private Information: A Comparison of Majority and Unanimity Rule.” \emph{Games and Economic Behavior} 153: 499--522.
+- Steinberg, R. H. 2002. “In the Shadow of Law or Power? Consensus-Based Bargaining and Outcomes in the GATT/WTO.” \emph{International Organization} 56(2): 339--374.
+- World Trade Organization. Marrakesh Agreement Establishing the WTO, Art. IX.
+
+\vspace{0.35cm}
+
+\scriptsize
+Arquivos vizinhos usados: \texttt{references/modelo\_similar\_geb.pdf} e \texttt{references/modelo\_similar\_public\_choice.pdf}.
