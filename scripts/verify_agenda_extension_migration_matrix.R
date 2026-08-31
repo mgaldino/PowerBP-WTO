@@ -38,6 +38,11 @@ verify_manifest <- function(path) {
 matrix_path <- "quality_reports/plans/2026-08-30_agenda_extension_migration_matrix.tsv"
 matrix_doc <- "quality_reports/plans/2026-08-30_agenda_extension_migration_matrix.md"
 proposal_doc <- "quality_reports/plans/2026-08-30_proposta_arquitetura_editorial_agenda_extension.md"
+decision_doc <- "quality_reports/plans/2026-08-30_decisao_arquitetura_editorial_agenda_extension.md"
+positioning_doc <- "quality_reports/2026-08-31_sintese_posicionamento_geb_pc_e_seminario.md"
+synthesis_doc <- "reports/chatgpt_pro_packets/2026-08-30_sintese_comparacoes_agenda_informacao_tipo_baixo.md"
+editorial_manifest <- "quality_reports/plans/2026-08-31_agenda_extension_migration_editorial_inputs.sha256"
+presentation_dir <- "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar"
 
 expected_columns <- c(
   "migration_id", "source_node", "claim_ids", "source_artifact",
@@ -49,6 +54,10 @@ expected_columns <- c(
 record_check("matrix TSV exists", file.exists(matrix_path), matrix_path)
 record_check("matrix explanatory document exists", file.exists(matrix_doc), matrix_doc)
 record_check("editorial proposal exists", file.exists(proposal_doc), proposal_doc)
+record_check("authorial architecture decision exists", file.exists(decision_doc), decision_doc)
+record_check("positioning synthesis exists", file.exists(positioning_doc), positioning_doc)
+record_check("additional-comparisons synthesis exists", file.exists(synthesis_doc), synthesis_doc)
+record_check("editorial-input manifest exists", file.exists(editorial_manifest), editorial_manifest)
 
 matrix <- read.delim(
   matrix_path,
@@ -59,20 +68,37 @@ matrix <- read.delim(
 )
 
 record_check("matrix has the exact schema", identical(names(matrix), expected_columns), paste(names(matrix), collapse = ", "))
-record_check("matrix has 13 migration rows", nrow(matrix) == 13L, paste("rows:", nrow(matrix)))
+record_check("matrix has 25 migration rows", nrow(matrix) == 25L, paste("rows:", nrow(matrix)))
 record_check("migration ids are unique", !anyDuplicated(matrix$migration_id), paste(matrix$migration_id, collapse = ", "))
-record_check("all source nodes are allowed", all(matrix$source_node %in% c("A_M", "A_U", "AC", "AR")))
-record_check("all rows remain unauthorized proposals", all(matrix$editorial_status == "PROPOSED_NOT_AUTHORIZED"))
+formal_nodes <- c("A_M", "A_U", "AC", "AR", "AT")
+nonformal_nodes <- c("SYNTH", "EDITORIAL", "POSITIONING")
+record_check("all source nodes are allowed", all(matrix$source_node %in% c(formal_nodes, nonformal_nodes)))
+record_check(
+  "all rows remain unauthorized or blocked",
+  all(matrix$editorial_status %in% c("PROPOSED_NOT_AUTHORIZED", "BLOCKED_PENDING_AT_FREEZE"))
+)
+record_check(
+  "all AT rows are blocked pending freeze",
+  all(matrix$editorial_status[matrix$source_node == "AT"] == "BLOCKED_PENDING_AT_FREEZE")
+)
+record_check(
+  "no non-AT row claims the AT freeze blocker",
+  all(matrix$editorial_status[matrix$source_node != "AT"] == "PROPOSED_NOT_AUTHORIZED")
+)
 record_check(
   "all actions are controlled",
-  all(matrix$proposed_action %in% c("ADD_EXTENSION", "PRESERVE_AND_CITE", "MOVE_TECHNICAL"))
+  all(matrix$proposed_action %in% c(
+    "ADD_EXTENSION", "PRESERVE_AND_CITE", "MOVE_TECHNICAL",
+    "APPLY_EDITORIAL_DECISION", "REVISE_NARRATIVE"
+  ))
 )
 record_check(
   "all placements are controlled",
   all(matrix$placement %in% c(
     "MAIN_SETUP", "MAIN_SUMMARY", "MAIN_PROPOSITION", "MAIN_COROLLARY",
     "APPENDIX_ONLY", "MAIN_PROPOSITION_PART", "MAIN_COROLLARY_FIGURE",
-    "MAIN_SUMMARY_COROLLARY", "MAIN_INTUITION"
+    "MAIN_SUMMARY_COROLLARY", "MAIN_INTUITION", "PAPER_ARCHITECTURE",
+    "MAIN_NARRATIVE", "TITLE", "MAIN_POSITIONING", "MAIN_APPLICATION"
   ))
 )
 
@@ -80,7 +106,8 @@ ledger_paths <- c(
   A_M = "model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv",
   A_U = "model_redesign/agenda_extension_A_U_msb_claim_ledger.tsv",
   AC = "model_redesign/agenda_extension_AC_msb_claim_ledger.tsv",
-  AR = "model_redesign/agenda_extension_AR_msb_claim_ledger.tsv"
+  AR = "model_redesign/agenda_extension_AR_msb_claim_ledger.tsv",
+  AT = "model_redesign/agenda_extension_AT_msb_claim_ledger.tsv"
 )
 
 ledgers <- lapply(ledger_paths, function(path) {
@@ -107,19 +134,27 @@ for (i in seq_len(nrow(matrix))) {
     row$governing_manifest_sha256
   )
 
-  ledger <- ledgers[[row$source_node]]
-  ledger_claim_column <- intersect(c("claim_id", "claim"), names(ledger))
-  record_check(
-    paste0(prefix, "ledger exposes a claim-id column"),
-    length(ledger_claim_column) == 1L,
-    paste(names(ledger), collapse = ", ")
-  )
-  if (length(ledger_claim_column) == 1L) {
-    claims <- split_claims(row$claim_ids)
+  if (row$source_node %in% formal_nodes) {
+    ledger <- ledgers[[row$source_node]]
+    ledger_claim_column <- intersect(c("claim_id", "claim"), names(ledger))
     record_check(
-      paste0(prefix, "all claims exist in the source ledger"),
-      all(claims %in% ledger[[ledger_claim_column]]),
-      paste(claims, collapse = ", ")
+      paste0(prefix, "ledger exposes a claim-id column"),
+      length(ledger_claim_column) == 1L,
+      paste(names(ledger), collapse = ", ")
+    )
+    if (length(ledger_claim_column) == 1L) {
+      claims <- split_claims(row$claim_ids)
+      record_check(
+        paste0(prefix, "all claims exist in the source ledger"),
+        all(claims %in% ledger[[ledger_claim_column]]),
+        paste(claims, collapse = ", ")
+      )
+    }
+  } else {
+    record_check(
+      paste0(prefix, "non-formal source has explicit locators"),
+      nzchar(row$claim_ids) && all(nzchar(split_claims(row$claim_ids))),
+      row$claim_ids
     )
   }
 }
@@ -146,13 +181,15 @@ for (path in names(expected_snapshot)) {
   )
 }
 
-final_manifests <- c(
+verified_manifests <- c(
   "quality_reports/2026-08-29_A_M_msb_two_layer_final_gate_manifest.sha256",
   "quality_reports/2026-08-30_A_U_msb_two_layer_final_gate_manifest.sha256",
   "quality_reports/2026-08-30_A_C_msb_strengthened_final_gate_manifest.sha256",
-  "quality_reports/2026-08-30_A_R_msb_final_gate_manifest.sha256"
+  "quality_reports/2026-08-30_A_R_msb_final_gate_manifest.sha256",
+  "quality_reports/2026-08-30_AT_msb_review_gate_manifest.sha256",
+  editorial_manifest
 )
-for (path in final_manifests) {
+for (path in verified_manifests) {
   verification <- verify_manifest(path)
   record_check(
     paste0(basename(path), " verifies"),
@@ -160,6 +197,23 @@ for (path in final_manifests) {
     verification$output
   )
 }
+
+matrix_doc_text <- readLines(matrix_doc, warn = FALSE, encoding = "UTF-8")
+record_check(
+  "presentation was located without being consumed",
+  dir.exists(presentation_dir),
+  presentation_dir
+)
+record_check(
+  "matrix records presentation hold status",
+  any(grepl("LOCATED_AWAITING_AUTHOR_OK", matrix_doc_text, fixed = TRUE)),
+  "LOCATED_AWAITING_AUTHOR_OK"
+)
+record_check(
+  "matrix records the absolute presentation location",
+  any(grepl(presentation_dir, matrix_doc_text, fixed = TRUE)),
+  presentation_dir
+)
 
 pass_count <- sum(vapply(checks, function(x) x$status == "PASS", logical(1)))
 fail_count <- length(checks) - pass_count
