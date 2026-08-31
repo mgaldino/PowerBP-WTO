@@ -8,13 +8,18 @@ PASS | authorial architecture decision exists | quality_reports/plans/2026-08-30
 PASS | positioning synthesis exists | quality_reports/2026-08-31_sintese_posicionamento_geb_pc_e_seminario.md
 PASS | additional-comparisons synthesis exists | reports/chatgpt_pro_packets/2026-08-30_sintese_comparacoes_agenda_informacao_tipo_baixo.md
 PASS | editorial-input manifest exists | quality_reports/plans/2026-08-31_agenda_extension_migration_editorial_inputs.sha256
+PASS | round-2 input manifest exists | quality_reports/plans/2026-08-31_agenda_extension_migration_round2_inputs.sha256
+PASS | seminar and Steinberg extraction exists | quality_reports/2026-08-31_seminar_and_steinberg_migration_extract.md
+PASS | rationalist Steinberg note exists | notes/2026-08-31_rationalist_reconstruction_steinberg_paper_note.md
+PASS | final seminar PDF exists | /Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar/seminario_agenda_informacao.pdf
+PASS | seminar source Rmd exists | /Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar/seminario_agenda_informacao.Rmd
 PASS | matrix has the exact schema | migration_id, source_node, claim_ids, source_artifact, source_sha256, governing_manifest, governing_manifest_sha256, current_v6_anchor, proposed_action, proposed_destination, placement, proof_destination, editorial_status, scope_guard
-PASS | matrix has 25 migration rows | rows: 25
-PASS | migration ids are unique | MIG-GAME-01, MIG-AM-01, MIG-AU-01, MIG-AC-01, MIG-AC-02, MIG-AC-03, MIG-AR-01, MIG-AR-02, MIG-AR-03, MIG-AR-04, MIG-AR-05, MIG-AR-06, MIG-AR-07, MIG-SYNTH-01, MIG-SYNTH-02, MIG-AT-01, MIG-AT-02, MIG-AT-03, MIG-AT-04, MIG-AT-05, MIG-ED-01, MIG-ED-02, MIG-POS-01, MIG-POS-02, MIG-POS-03
+PASS | matrix has 34 migration rows | rows: 34
+PASS | migration ids are unique | MIG-GAME-01, MIG-AM-01, MIG-AU-01, MIG-AC-01, MIG-AC-02, MIG-AC-03, MIG-AR-01, MIG-AR-02, MIG-AR-03, MIG-AR-04, MIG-AR-05, MIG-AR-06, MIG-AR-07, MIG-SYNTH-01, MIG-SYNTH-02, MIG-AT-01, MIG-AT-02, MIG-AT-03, MIG-AT-04, MIG-AT-05, MIG-ED-01, MIG-ED-02, MIG-POS-01, MIG-POS-02, MIG-POS-03, MIG-SEM-01, MIG-SEM-02, MIG-SEM-03, MIG-SEM-04, MIG-SEM-05, MIG-ST-01, MIG-ST-02, MIG-ST-03, MIG-ST-04
 PASS | all source nodes are allowed
 PASS | all rows remain unauthorized or blocked
-PASS | all AT rows are blocked pending freeze
-PASS | no non-AT row claims the AT freeze blocker
+PASS | exactly the AT-dependent rows are blocked pending freeze | MIG-AT-01, MIG-AT-02, MIG-AT-03, MIG-AT-04, MIG-AT-05, MIG-SEM-03
+PASS | every other row remains proposed but unauthorized
 PASS | all actions are controlled
 PASS | all placements are controlled
 PASS | MIG-GAME-01: source artifact exists | model_redesign/agenda_extension_AR_msb_contract.md
@@ -135,6 +140,42 @@ PASS | MIG-POS-03: source artifact exists | quality_reports/2026-08-31_sintese_p
 PASS | MIG-POS-03: source artifact hash matches | 3559eb3b461eaf71b1d2bbf7990f1a3ef9840d74186db7dc0dc223b6ee850e54
 PASS | MIG-POS-03: governing manifest hash matches | 855de9f6794b484576aba6add38e2af8a3caee2fb65d159c5d7dd7f29fde1512
 PASS | MIG-POS-03: non-formal source has explicit locators | POS-WTO;POS-OBSERVABLE-SIGNATURE
+PASS | MIG-SEM-01: source artifact exists | quality_reports/2026-08-31_seminar_and_steinberg_migration_extract.md
+PASS | MIG-SEM-01: source artifact hash matches | ee5ac4fea87ea377dea8404133b08e28e777a9bc595dd1f7b30b6144b82a1344
+PASS | MIG-SEM-01: governing manifest hash matches | 98b8a2d8b2a3cec0f6bd41446e33e19524897bff82dbe78f6901602007aedfdd
+PASS | MIG-SEM-01: non-formal source has explicit locators | SEM-S02;SEM-S03;SEM-S04;SEM-S16
+PASS | MIG-SEM-02: source artifact exists | quality_reports/2026-08-31_seminar_and_steinberg_migration_extract.md
+PASS | MIG-SEM-02: source artifact hash matches | ee5ac4fea87ea377dea8404133b08e28e777a9bc595dd1f7b30b6144b82a1344
+PASS | MIG-SEM-02: governing manifest hash matches | 98b8a2d8b2a3cec0f6bd41446e33e19524897bff82dbe78f6901602007aedfdd
+PASS | MIG-SEM-02: non-formal source has explicit locators | SEM-S07;SEM-S10;SEM-FIG02;SEM-FIG03
+PASS | MIG-SEM-03: source artifact exists | quality_reports/2026-08-31_seminar_and_steinberg_migration_extract.md
+PASS | MIG-SEM-03: source artifact hash matches | ee5ac4fea87ea377dea8404133b08e28e777a9bc595dd1f7b30b6144b82a1344
+PASS | MIG-SEM-03: governing manifest hash matches | 98b8a2d8b2a3cec0f6bd41446e33e19524897bff82dbe78f6901602007aedfdd
+PASS | MIG-SEM-03: non-formal source has explicit locators | SEM-S13;SEM-S14;SEM-S19;SEM-FIG05
+PASS | MIG-SEM-04: source artifact exists | quality_reports/2026-08-31_seminar_and_steinberg_migration_extract.md
+PASS | MIG-SEM-04: source artifact hash matches | ee5ac4fea87ea377dea8404133b08e28e777a9bc595dd1f7b30b6144b82a1344
+PASS | MIG-SEM-04: governing manifest hash matches | 98b8a2d8b2a3cec0f6bd41446e33e19524897bff82dbe78f6901602007aedfdd
+PASS | MIG-SEM-04: non-formal source has explicit locators | SEM-S18;SEM-S21
+PASS | MIG-SEM-05: source artifact exists | quality_reports/2026-08-31_seminar_and_steinberg_migration_extract.md
+PASS | MIG-SEM-05: source artifact hash matches | ee5ac4fea87ea377dea8404133b08e28e777a9bc595dd1f7b30b6144b82a1344
+PASS | MIG-SEM-05: governing manifest hash matches | 98b8a2d8b2a3cec0f6bd41446e33e19524897bff82dbe78f6901602007aedfdd
+PASS | MIG-SEM-05: non-formal source has explicit locators | SEM-S22
+PASS | MIG-ST-01: source artifact exists | notes/2026-08-31_rationalist_reconstruction_steinberg_paper_note.md
+PASS | MIG-ST-01: source artifact hash matches | b29e5dcbb79395967423cd98a409a085281faf6f596910d9a02e0a44b58a2c6c
+PASS | MIG-ST-01: governing manifest hash matches | 98b8a2d8b2a3cec0f6bd41446e33e19524897bff82dbe78f6901602007aedfdd
+PASS | MIG-ST-01: non-formal source has explicit locators | ST-SEC01;ST-SEC04;ST-SEC05
+PASS | MIG-ST-02: source artifact exists | notes/2026-08-31_rationalist_reconstruction_steinberg_paper_note.md
+PASS | MIG-ST-02: source artifact hash matches | b29e5dcbb79395967423cd98a409a085281faf6f596910d9a02e0a44b58a2c6c
+PASS | MIG-ST-02: governing manifest hash matches | 98b8a2d8b2a3cec0f6bd41446e33e19524897bff82dbe78f6901602007aedfdd
+PASS | MIG-ST-02: non-formal source has explicit locators | ST-TABLE02;ST-SEC06
+PASS | MIG-ST-03: source artifact exists | notes/2026-08-31_rationalist_reconstruction_steinberg_paper_note.md
+PASS | MIG-ST-03: source artifact hash matches | b29e5dcbb79395967423cd98a409a085281faf6f596910d9a02e0a44b58a2c6c
+PASS | MIG-ST-03: governing manifest hash matches | 98b8a2d8b2a3cec0f6bd41446e33e19524897bff82dbe78f6901602007aedfdd
+PASS | MIG-ST-03: non-formal source has explicit locators | ST-SEC03.1;ST-SEC03.2;ST-SEC03.3
+PASS | MIG-ST-04: source artifact exists | notes/2026-08-31_rationalist_reconstruction_steinberg_paper_note.md
+PASS | MIG-ST-04: source artifact hash matches | b29e5dcbb79395967423cd98a409a085281faf6f596910d9a02e0a44b58a2c6c
+PASS | MIG-ST-04: governing manifest hash matches | 98b8a2d8b2a3cec0f6bd41446e33e19524897bff82dbe78f6901602007aedfdd
+PASS | MIG-ST-04: non-formal source has explicit locators | ST-ROW-INFORMATION;ST-SEC04-INFO
 PASS | MIG-GAME-01: current-v6 anchor exists | # The model {#model}
 PASS | MIG-AM-01: current-v6 anchor exists | ## Private majority in Round 1
 PASS | MIG-AU-01: current-v6 anchor exists | ## Private unanimity in Round 1
@@ -160,6 +201,15 @@ PASS | MIG-ED-02: current-v6 anchor exists | # Conclusion
 PASS | MIG-POS-01: current-v6 anchor exists | title: "Informational Power Through Pivotality: How Consensus Can Benefit a Hegemon"
 PASS | MIG-POS-02: current-v6 anchor exists | Two recent papers also make disagreement values private
 PASS | MIG-POS-03: current-v6 anchor exists | ## OPEC, the WTO, and observable implications
+PASS | MIG-SEM-01: current-v6 anchor exists | # Introduction
+PASS | MIG-SEM-02: current-v6 anchor exists | ## Informational rents and the difference of differences
+PASS | MIG-SEM-03: current-v6 anchor exists | ## Comparing the private games
+PASS | MIG-SEM-04: current-v6 anchor exists | # Appendix C: Endpoints, exact sets, and illustration {-}
+PASS | MIG-SEM-05: current-v6 anchor exists | ## Limits
+PASS | MIG-ST-01: current-v6 anchor exists | One explanation offered in the literature
+PASS | MIG-ST-02: current-v6 anchor exists | # Introduction
+PASS | MIG-ST-03: current-v6 anchor exists | # Appendix C: Endpoints, exact sets, and illustration {-}
+PASS | MIG-ST-04: current-v6 anchor exists | ## OPEC, the WTO, and observable implications
 PASS | formal_model_v6.Rmd remains on the approved snapshot | 00bbaa3a5768348fede3f6584bab915b7c1dbf1fd1cccbf723bb64a90188e4a6
 PASS | formal_model_v6.pdf remains on the approved snapshot | 3602b0753a8a61ddcb2450f7181ba2f8fc53b9f73ad16cdfbb46e337019182be
 PASS | 2026-08-29_A_M_msb_two_layer_final_gate_manifest.sha256 verifies | perl: warning: Setting locale failed. | perl: warning: Please check that your locale settings: | 	LC_ALL = "C.UTF-8", | 	LC_CTYPE = "C.UTF-8", | 	LANG = "C.UTF-8" |     are supported and installed on your system. | perl: warning: Falling back to the standard locale ("C"). | model_redesign/agenda_extension_A_M_msb_results.md: OK | model_redesign/agenda_extension_A_M_msb_claim_ledger.tsv: OK | scripts/verify_agenda_extension_A_M_msb.R: OK | quality_reports/verification_outputs/2026-08-29_A_M_msb_two_layer_signature_verifier_output.txt: OK | quality_reports/2026-08-29_A_M_msb_two_layer_signature_candidate_manifest.sha256: OK | quality_reports/2026-08-29_A_M_msb_two_layer_signature_formal_review_1.md: OK | quality_reports/2026-08-29_A_M_msb_two_layer_signature_formal_review_2.md: OK | quality_reports/2026-08-29_A_M_msb_two_layer_signature_formal_reviews_manifest.sha256: OK | quality_reports/adjudication/a_m_msb_two_layer/4130c09b9a7d/adjudication_round1.md: OK | quality_reports/adjudication/a_m_msb_two_layer/4130c09b9a7d/adjudication_round1.json: OK | quality_reports/2026-08-29_A_M_msb_two_layer_terminal_approval_and_freeze.md: OK
@@ -168,8 +218,12 @@ PASS | 2026-08-30_A_C_msb_strengthened_final_gate_manifest.sha256 verifies | per
 PASS | 2026-08-30_A_R_msb_final_gate_manifest.sha256 verifies | perl: warning: Setting locale failed. | perl: warning: Please check that your locale settings: | 	LC_ALL = "C.UTF-8", | 	LC_CTYPE = "C.UTF-8", | 	LANG = "C.UTF-8" |     are supported and installed on your system. | perl: warning: Falling back to the standard locale ("C"). | quality_reports/plans/2026-08-30_autorizacao_inicio_A_R.md: OK | quality_reports/plans/2026-08-26_agenda_extension_gate0_simplified.md: OK | quality_reports/2026-08-27_fechamento_autoral_gate0_agenda_extension_simplified.md: OK | quality_reports/plans/2026-08-29_emenda_extensao_agenda_markov_crencas.md: OK | model_redesign/agenda_extension_AC_msb_interface.json: OK | model_redesign/agenda_extension_AC_msb_results.md: OK | quality_reports/2026-08-30_A_C_msb_strengthened_terminal_approval_and_freeze.md: OK | quality_reports/2026-08-30_A_C_msb_strengthened_final_gate_manifest.sha256: OK | model_redesign/essential_input_n7_complete_information_benchmark_candidate.json: OK | quality_reports/2026-08-21_fechamento_autoral_goal4_n7.md: OK | model_redesign/agenda_extension_goal1_external_interfaces.json: OK | quality_reports/2026-08-27_fechamento_goal1_agenda_extension.md: OK | model_redesign/agenda_extension_game_dag_simplified.json: OK | scripts/agenda_extension_goal1_verifier_lib.R: OK | model_redesign/agenda_extension_AR_msb_contract.md: OK | model_redesign/agenda_extension_AR_msb_results.md: OK | model_redesign/agenda_extension_AR_msb_interface.json: OK | model_redesign/agenda_extension_AR_msb_complete_records.json: OK | model_redesign/agenda_extension_AR_msb_claim_ledger.tsv: OK | scripts/verify_agenda_extension_AR_msb.R: OK | quality_reports/verification_outputs/2026-08-30_AR_msb_verifier_output.txt: OK | quality_reports/2026-08-30_AR_msb_implementation_report.md: OK | quality_reports/2026-08-30_AR_msb_candidate_manifest.sha256: OK | quality_reports/2026-08-30_AR_msb_round3_formal_review_1.md: OK | quality_reports/2026-08-30_AR_msb_round3_formal_review_2.md: OK | quality_reports/adjudication/A_R_msb/b1b483f3c31d/adjudication_round3.md: OK | quality_reports/adjudication/A_R_msb/b1b483f3c31d/adjudication_round3.json: OK | quality_reports/2026-08-30_AR_msb_terminal_gate_candidate_manifest.sha256: OK | quality_reports/2026-08-30_AR_msb_lifecycle_candidate_manifest.sha256: OK | quality_reports/2026-08-30_AR_msb_lifecycle_review_1.md: OK | quality_reports/2026-08-30_AR_msb_lifecycle_review_2.md: OK | quality_reports/adjudication/A_R_msb_lifecycle/25ff65848bf6/adjudication_round1.md: OK | quality_reports/adjudication/A_R_msb_lifecycle/25ff65848bf6/adjudication_round1.json: OK | quality_reports/2026-08-30_AR_msb_lifecycle_final_gate_manifest.sha256: OK | quality_reports/2026-08-30_A_R_msb_terminal_approval_and_freeze.md: OK
 PASS | 2026-08-30_AT_msb_review_gate_manifest.sha256 verifies | perl: warning: Setting locale failed. | perl: warning: Please check that your locale settings: | 	LC_ALL = "C.UTF-8", | 	LC_CTYPE = "C.UTF-8", | 	LANG = "C.UTF-8" |     are supported and installed on your system. | perl: warning: Falling back to the standard locale ("C"). | quality_reports/2026-08-30_AT_msb_candidate_manifest.sha256: OK | quality_reports/2026-08-30_AT_msb_final_math_review.md: OK | quality_reports/2026-08-30_AT_msb_final_adversarial_review.md: OK | quality_reports/2026-08-30_AT_msb_final_adjudication.md: OK | quality_reports/2026-08-30_AT_msb_final_adjudication.json: OK | quality_reports/2026-08-30_AT_msb_reviewed_status.md: OK
 PASS | 2026-08-31_agenda_extension_migration_editorial_inputs.sha256 verifies | perl: warning: Setting locale failed. | perl: warning: Please check that your locale settings: | 	LC_ALL = "C.UTF-8", | 	LC_CTYPE = "C.UTF-8", | 	LANG = "C.UTF-8" |     are supported and installed on your system. | perl: warning: Falling back to the standard locale ("C"). | quality_reports/plans/2026-08-30_decisao_arquitetura_editorial_agenda_extension.md: OK | quality_reports/2026-08-31_sintese_posicionamento_geb_pc_e_seminario.md: OK | reports/chatgpt_pro_packets/2026-08-30_sintese_comparacoes_agenda_informacao_tipo_baixo.md: OK
-PASS | presentation was located without being consumed | /Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar
-PASS | matrix records presentation hold status | LOCATED_AWAITING_AUTHOR_OK
-PASS | matrix records the absolute presentation location | /Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar
+PASS | 2026-08-31_agenda_extension_migration_round2_inputs.sha256 verifies | perl: warning: Setting locale failed. | perl: warning: Please check that your locale settings: | 	LC_ALL = "C.UTF-8", | 	LC_CTYPE = "C.UTF-8", | 	LANG = "C.UTF-8" |     are supported and installed on your system. | perl: warning: Falling back to the standard locale ("C"). | ../PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar/seminario_agenda_informacao.pdf: OK | ../PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar/seminario_agenda_informacao.Rmd: OK | ../PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar/roteiro_de_fala.md: OK | notes/2026-08-31_rationalist_reconstruction_steinberg_paper_note.md: OK | quality_reports/2026-08-31_seminar_and_steinberg_migration_extract.md: OK
+PASS | final seminar PDF hash is fixed | /Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar/seminario_agenda_informacao.pdf
+PASS | seminar source Rmd hash is fixed | /Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar/seminario_agenda_informacao.Rmd
+PASS | Steinberg note hash is fixed | notes/2026-08-31_rationalist_reconstruction_steinberg_paper_note.md
+PASS | matrix records final presentation as consumed read-only | CONSUMED_READ_ONLY_FINAL
+PASS | matrix no longer records the presentation hold | LOCATED_AWAITING_AUTHOR_OK absent
+PASS | matrix records the absolute final presentation path | /Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar/seminario_agenda_informacao.pdf
 
-SUMMARY | 170 PASS | 0 FAIL
+SUMMARY | 224 PASS | 0 FAIL

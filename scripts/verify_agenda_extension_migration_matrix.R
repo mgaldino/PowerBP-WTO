@@ -42,7 +42,11 @@ decision_doc <- "quality_reports/plans/2026-08-30_decisao_arquitetura_editorial_
 positioning_doc <- "quality_reports/2026-08-31_sintese_posicionamento_geb_pc_e_seminario.md"
 synthesis_doc <- "reports/chatgpt_pro_packets/2026-08-30_sintese_comparacoes_agenda_informacao_tipo_baixo.md"
 editorial_manifest <- "quality_reports/plans/2026-08-31_agenda_extension_migration_editorial_inputs.sha256"
-presentation_dir <- "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar"
+round2_manifest <- "quality_reports/plans/2026-08-31_agenda_extension_migration_round2_inputs.sha256"
+seminar_extract <- "quality_reports/2026-08-31_seminar_and_steinberg_migration_extract.md"
+steinberg_doc <- "notes/2026-08-31_rationalist_reconstruction_steinberg_paper_note.md"
+presentation_pdf <- "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar/seminario_agenda_informacao.pdf"
+presentation_rmd <- "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar/seminario_agenda_informacao.Rmd"
 
 expected_columns <- c(
   "migration_id", "source_node", "claim_ids", "source_artifact",
@@ -58,6 +62,11 @@ record_check("authorial architecture decision exists", file.exists(decision_doc)
 record_check("positioning synthesis exists", file.exists(positioning_doc), positioning_doc)
 record_check("additional-comparisons synthesis exists", file.exists(synthesis_doc), synthesis_doc)
 record_check("editorial-input manifest exists", file.exists(editorial_manifest), editorial_manifest)
+record_check("round-2 input manifest exists", file.exists(round2_manifest), round2_manifest)
+record_check("seminar and Steinberg extraction exists", file.exists(seminar_extract), seminar_extract)
+record_check("rationalist Steinberg note exists", file.exists(steinberg_doc), steinberg_doc)
+record_check("final seminar PDF exists", file.exists(presentation_pdf), presentation_pdf)
+record_check("seminar source Rmd exists", file.exists(presentation_rmd), presentation_rmd)
 
 matrix <- read.delim(
   matrix_path,
@@ -68,28 +77,30 @@ matrix <- read.delim(
 )
 
 record_check("matrix has the exact schema", identical(names(matrix), expected_columns), paste(names(matrix), collapse = ", "))
-record_check("matrix has 25 migration rows", nrow(matrix) == 25L, paste("rows:", nrow(matrix)))
+record_check("matrix has 34 migration rows", nrow(matrix) == 34L, paste("rows:", nrow(matrix)))
 record_check("migration ids are unique", !anyDuplicated(matrix$migration_id), paste(matrix$migration_id, collapse = ", "))
 formal_nodes <- c("A_M", "A_U", "AC", "AR", "AT")
-nonformal_nodes <- c("SYNTH", "EDITORIAL", "POSITIONING")
+nonformal_nodes <- c("SYNTH", "EDITORIAL", "POSITIONING", "SEMINAR", "STEINBERG")
 record_check("all source nodes are allowed", all(matrix$source_node %in% c(formal_nodes, nonformal_nodes)))
 record_check(
   "all rows remain unauthorized or blocked",
   all(matrix$editorial_status %in% c("PROPOSED_NOT_AUTHORIZED", "BLOCKED_PENDING_AT_FREEZE"))
 )
+expected_blocked <- c("MIG-AT-01", "MIG-AT-02", "MIG-AT-03", "MIG-AT-04", "MIG-AT-05", "MIG-SEM-03")
 record_check(
-  "all AT rows are blocked pending freeze",
-  all(matrix$editorial_status[matrix$source_node == "AT"] == "BLOCKED_PENDING_AT_FREEZE")
+  "exactly the AT-dependent rows are blocked pending freeze",
+  setequal(matrix$migration_id[matrix$editorial_status == "BLOCKED_PENDING_AT_FREEZE"], expected_blocked),
+  paste(expected_blocked, collapse = ", ")
 )
 record_check(
-  "no non-AT row claims the AT freeze blocker",
-  all(matrix$editorial_status[matrix$source_node != "AT"] == "PROPOSED_NOT_AUTHORIZED")
+  "every other row remains proposed but unauthorized",
+  all(matrix$editorial_status[!matrix$migration_id %in% expected_blocked] == "PROPOSED_NOT_AUTHORIZED")
 )
 record_check(
   "all actions are controlled",
   all(matrix$proposed_action %in% c(
     "ADD_EXTENSION", "PRESERVE_AND_CITE", "MOVE_TECHNICAL",
-    "APPLY_EDITORIAL_DECISION", "REVISE_NARRATIVE"
+    "APPLY_EDITORIAL_DECISION", "REVISE_NARRATIVE", "ADD_TABLE"
   ))
 )
 record_check(
@@ -98,7 +109,8 @@ record_check(
     "MAIN_SETUP", "MAIN_SUMMARY", "MAIN_PROPOSITION", "MAIN_COROLLARY",
     "APPENDIX_ONLY", "MAIN_PROPOSITION_PART", "MAIN_COROLLARY_FIGURE",
     "MAIN_SUMMARY_COROLLARY", "MAIN_INTUITION", "PAPER_ARCHITECTURE",
-    "MAIN_NARRATIVE", "TITLE", "MAIN_POSITIONING", "MAIN_APPLICATION"
+    "MAIN_NARRATIVE", "TITLE", "MAIN_POSITIONING", "MAIN_APPLICATION",
+    "MAIN_TABLE", "MAIN_SCOPE"
   ))
 )
 
@@ -187,7 +199,8 @@ verified_manifests <- c(
   "quality_reports/2026-08-30_A_C_msb_strengthened_final_gate_manifest.sha256",
   "quality_reports/2026-08-30_A_R_msb_final_gate_manifest.sha256",
   "quality_reports/2026-08-30_AT_msb_review_gate_manifest.sha256",
-  editorial_manifest
+  editorial_manifest,
+  round2_manifest
 )
 for (path in verified_manifests) {
   verification <- verify_manifest(path)
@@ -200,19 +213,34 @@ for (path in verified_manifests) {
 
 matrix_doc_text <- readLines(matrix_doc, warn = FALSE, encoding = "UTF-8")
 record_check(
-  "presentation was located without being consumed",
-  dir.exists(presentation_dir),
-  presentation_dir
+  "final seminar PDF hash is fixed",
+  identical(sha256(presentation_pdf), "f921ecf8a0885492a22999946dce7d6f8e4a4d13e4d58b9c5b991aacbc0e3836"),
+  presentation_pdf
 )
 record_check(
-  "matrix records presentation hold status",
-  any(grepl("LOCATED_AWAITING_AUTHOR_OK", matrix_doc_text, fixed = TRUE)),
-  "LOCATED_AWAITING_AUTHOR_OK"
+  "seminar source Rmd hash is fixed",
+  identical(sha256(presentation_rmd), "82e24a0a2ba2402becc4996640426f60db88225df925b4c9d698e909cf49f4b4"),
+  presentation_rmd
 )
 record_check(
-  "matrix records the absolute presentation location",
-  any(grepl(presentation_dir, matrix_doc_text, fixed = TRUE)),
-  presentation_dir
+  "Steinberg note hash is fixed",
+  identical(sha256(steinberg_doc), "b29e5dcbb79395967423cd98a409a085281faf6f596910d9a02e0a44b58a2c6c"),
+  steinberg_doc
+)
+record_check(
+  "matrix records final presentation as consumed read-only",
+  any(grepl("CONSUMED_READ_ONLY_FINAL", matrix_doc_text, fixed = TRUE)),
+  "CONSUMED_READ_ONLY_FINAL"
+)
+record_check(
+  "matrix no longer records the presentation hold",
+  !any(grepl("LOCATED_AWAITING_AUTHOR_OK", matrix_doc_text, fixed = TRUE)),
+  "LOCATED_AWAITING_AUTHOR_OK absent"
+)
+record_check(
+  "matrix records the absolute final presentation path",
+  any(grepl(presentation_pdf, matrix_doc_text, fixed = TRUE)),
+  presentation_pdf
 )
 
 pass_count <- sum(vapply(checks, function(x) x$status == "PASS", logical(1)))

@@ -1,8 +1,9 @@
 # Matriz auditável de migração da extensão de agenda
 
 **Data:** 2026-08-30  
-**Status:** AMPLIADA COM COMPARAÇÕES PÓS-\(A_R\), DECISÕES EDITORIAIS E
-POSICIONAMENTO — NÃO AUTORIZA EDIÇÕES NO MANUSCRITO
+**Status:** AMPLIADA COM COMPARAÇÕES PÓS-\(A_R\), DECISÕES EDITORIAIS,
+APRESENTAÇÃO FINAL E RECONSTRUÇÃO RACIONALISTA DE STEINBERG — NÃO AUTORIZA
+EDIÇÕES NO MANUSCRITO
 **Worktree:** `/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion-agenda-integration`  
 **Branch:** `codex/agenda-extension-manuscript-integration`
 
@@ -10,15 +11,17 @@ POSICIONAMENTO — NÃO AUTORIZA EDIÇÕES NO MANUSCRITO
 
 Este documento transforma os resultados congelados de \(A_M\), \(A_U\),
 \(A_C\) e \(A_R\), as comparações adicionais produzidas depois desses nós, o
-candidato revisto mas ainda não congelado \(A_T\) e as decisões editoriais do
-autor em uma fila explícita de possíveis edições futuras de
+candidato revisto mas ainda não congelado \(A_T\), as decisões editoriais do
+autor, a apresentação final e a reconstrução racionalista de Steinberg em uma
+fila explícita de possíveis edições futuras de
 `formal_model_v6.Rmd`. Para cada bloco, registra fonte, destino, nível de
 detalhe, prova e gate ainda aberto.
 
 A fonte canônica em nível de linha é
 `quality_reports/plans/2026-08-30_agenda_extension_migration_matrix.tsv`. O TSV
-tem 25 linhas. As linhas fechadas continuam `PROPOSED_NOT_AUTHORIZED`; as cinco
-linhas de \(A_T\) estão `BLOCKED_PENDING_AT_FREEZE`.
+tem 34 linhas. As linhas fechadas continuam `PROPOSED_NOT_AUTHORIZED`; as cinco
+linhas de \(A_T\) e a figura da apresentação que delas depende estão
+`BLOCKED_PENDING_AT_FREEZE`.
 
 Nada neste pacote:
 
@@ -26,7 +29,7 @@ Nada neste pacote:
 - cria um novo resultado matemático;
 - seleciona um equilíbrio dentro de uma correspondência;
 - autoriza migração, nova revisão do manuscrito, tag ou push;
-- usa a apresentação ainda em finalização como evidência ou fonte textual.
+- converte a apresentação ou a reconstrução racionalista em prova formal.
 
 ## 2. Fronteira de integração verificada
 
@@ -59,6 +62,13 @@ As fontes editoriais e a síntese comparativa são fixadas por
 Esse manifesto preserva proveniência; não converte decisões editoriais em
 teoremas.
 
+A segunda rodada de insumos é fixada por
+`quality_reports/plans/2026-08-31_agenda_extension_migration_round2_inputs.sha256`.
+Ela reúne a apresentação final, sua fonte, o roteiro de fala, a nota de
+Steinberg e o relatório de extração editorial. A leitura e a triagem são
+registradas em
+`quality_reports/2026-08-31_seminar_and_steinberg_migration_extract.md`.
+
 ## 3. Leitura da matriz
 
 Cada linha liga um conjunto de `claim_ids` a:
@@ -70,7 +80,7 @@ Cada linha liga um conjunto de `claim_ids` a:
 5. um destino no texto e outro para a prova;
 6. uma trava que impede extrapolações.
 
-As ações têm cinco significados:
+As ações têm seis significados:
 
 - `ADD_EXTENSION`: acrescentar, após autorização, um resultado novo da extensão;
 - `PRESERVE_AND_CITE`: resumir no corpo sem substituir a correspondência completa congelada;
@@ -78,29 +88,37 @@ As ações têm cinco significados:
 - `APPLY_EDITORIAL_DECISION`: aplicar uma escolha autoral somente depois da
   autorização da linha correspondente;
 - `REVISE_NARRATIVE`: rever framing ou aplicação sem alterar o conteúdo formal.
+- `ADD_TABLE`: inserir um quadro sintético que organiza mecanismos já
+  documentados, sem promovê-lo a resultado formal.
 
-Os identificadores `SYNTH-*`, `DEC-*` e `POS-*` são localizadores editoriais,
-não novos claims matemáticos. Os claims `AT-MSB-*` pertencem ao ledger formal
-de \(A_T\), mas não são migráveis enquanto o nó estiver `unfrozen`.
+Os identificadores `SYNTH-*`, `DEC-*`, `POS-*`, `SEM-*` e `ST-*` são
+localizadores editoriais, não novos claims matemáticos. Os claims `AT-MSB-*`
+pertencem ao ledger formal de \(A_T\), mas não são migráveis enquanto o nó
+estiver `unfrozen`.
 
 ## 4. Síntese da migração proposta
 
 ### Texto principal
 
 O corpo continua obedecendo à Opção 1 e deve caber em aproximadamente 3,5--5
-páginas. A fila agora contém oito blocos, que devem ser fundidos numa única
-seção enxuta:
+páginas. A apresentação e Steinberg devem organizar, não inflar, essa
+arquitetura. A fila contém dez blocos, que devem ser fundidos numa única seção
+enxuta:
 
 1. contrato e timing da extensão, deixando intacto o benchmark sem poder de agenda;
 2. resumo das correspondências privadas sob maioria e unanimidade;
 3. comparação privada exata no mesmo estado do mundo, seguida da condição suficiente T5;
 4. benchmarks públicos sob maioria e unanimidade e o hiato \(G(o)\);
 5. rendas informacionais por tipo, agregação ex ante e decomposição institucional;
-6. intuição da interação entre poder de agenda e poder informacional, sem impor sinal onde o resultado permanece conjuntista.
+6. intuição da interação entre poder de agenda e poder informacional, sem impor sinal onde o resultado permanece conjuntista;
 7. efeito causal da etapa de agenda, com \(T=D+I\), separado do ranking
    institucional \(U-M\);
 8. posicionamento conciso frente a Piazolo--Vanberg e
-   Glynia--Thum--Xefteris, pela pergunta, mecanismo e papel do ator informado.
+   Glynia--Thum--Xefteris, pela pergunta, mecanismo e papel do ator informado;
+9. reconstrução racionalista condensada das práticas de Steinberg em seis
+   famílias estratégicas;
+10. figura de dois painéis: hiato público \(G(o)\) e reversão produzida pela
+    renda informacional do tipo baixo.
 
 A ordem recomendada é: benchmark sem agenda; timing da extensão; benchmark
 público e fronteira \(\beta o=c/m\); comparação privada por tipo; efeito causal
@@ -108,6 +126,13 @@ da agenda; agregação ex ante e implicação substantiva. Na notação canônic
 \(k=q-1\) é o número de votos fracos comprado pela maioria e \(c=m-k\) é o
 número de fracos que ela pode excluir. O uso local de `k` para "excluídos" na
 entrevista não deve migrar para o paper.
+
+A reconstrução de Steinberg entra antes do contrafactual identificador. O
+quadro compacto traduz agenda/emenda, opção externa/paciência, espaço
+contratual, informação, interação futura e implementação em primitivas
+estratégicas. O quadro detalhado fica fora do corpo. A figura pública/reversão
+entra depois do benchmark público; o desenho \(D/I/T\) continua bloqueado por
+\(A_T\).
 
 ### Apêndices
 
@@ -123,6 +148,9 @@ Os apêndices receberiam:
   \(Q\), mantendo seu escopo causal distinto;
 - tipologia completa de posicionamento, se necessária, fora do fluxo das
   provas econômicas.
+- crosswalk completo entre práticas de Steinberg, primitivas, qualificações e
+  relação com o modelo;
+- exemplo numérico e incidência por tipo usados no seminário.
 
 ## 5. Travas substantivas
 
@@ -146,6 +174,15 @@ A futura migração deve invalidar a linha afetada e tudo que depende dela se qu
 - \(T\) é contraste causal estrutural dentro do modelo; \(Q\) muda agenda e
   informação simultaneamente e não é efeito causal puro;
 - na interação com N7, \(\beta\) deve aparecer exatamente uma vez.
+- “sem poder de agenda” significa sem privilégio formal exclusivo de proposta
+  para \(H\), não ausência de um protocolo de reconhecimento;
+- a apresentação ilustra os resultados, mas não amplia seus domínios;
+- a reconstrução de Steinberg é uma interpretação racionalista do autor, não
+  uma formalização atribuída a Steinberg;
+- `rho` e `delta` da nota não devem migrar: preservar `rho` em seu uso aprovado
+  na extensão e \(\beta\) como fator de desconto;
+- aquiescência/estoppel não é mecanismo independente, reputação exige jogo
+  repetido e single undertaking não equivale à destruição do fallback.
 
 ## 6. Decisões editoriais incorporadas como propostas
 
@@ -167,27 +204,33 @@ A futura migração deve invalidar a linha afetada e tudo que depende dela se qu
    agenda de facto. Antes de atribuir criação ou escolha institucional aos
    Estados Unidos, exigir auditoria própria de fontes e linguagem de
    consistência, não identificação histórica.
+8. **Steinberg:** usar um quadro sintético de famílias estratégicas no corpo e
+   o crosswalk completo no apêndice ou material online.
+9. **Figura:** combinar \(G(o)\) e a ponte de reversão em dois painéis; deixar
+   o contraste causal direto da agenda bloqueado até o fechamento de \(A_T\).
 
-## 7. Apresentação localizada, mas não consumida
+## 7. Apresentação final e nota de Steinberg consumidas
 
-| Fonte futura | Localização | Estado | Regra |
+| Fonte | Localização | Estado | Regra |
 |---|---|---|---|
-| apresentação do seminário | `/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar/` | `LOCATED_AWAITING_AUTHOR_OK` | não abrir, ler, hashear, citar nem extrair até autorização explícita |
+| apresentação do seminário | `/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar/seminario_agenda_informacao.pdf` | `CONSUMED_READ_ONLY_FINAL` | 23 páginas lidas, renderizadas e triadas; PDF não editado |
+| fonte da apresentação | `/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/presentations/2026-08-30_agenda_information_seminar/seminario_agenda_informacao.Rmd` | `CONSUMED_READ_ONLY_FINAL` | usada para localizar fórmulas e estrutura; não é nova fonte formal |
+| reconstrução racionalista | `notes/2026-08-31_rationalist_reconstruction_steinberg_paper_note.md` | `CONSUMED_READ_ONLY` | incorporada como insumo editorial; não atribuída a Steinberg como modelo formal |
 
-A localização foi registrada apenas para adiantar o trabalho. Nenhum arquivo
-da apresentação foi consumido nesta ampliação. Depois do OK do autor, a versão
-final deverá ser fixada por hash e triada. Elementos pedagógicos podem sugerir
-ordem, figura ou intuição, mas não substituir fontes formais.
+Os insumos foram fixados por hash e a triagem completa está no relatório de
+extração. Elementos pedagógicos sugerem ordem, figura e intuição; eles não
+substituem os manifests formais de \(A_M\), \(A_U\), \(A_C\), \(A_R\) ou
+\(A_T\).
 
 ## 8. Gates antes da edição do manuscrito
 
 1. fechar \(A_T\): decidir os seis corolários adicionais, aplicar as quatro
    precisões locais, revisar de novo e obter aprovação autoral terminal;
 2. atualizar `MIG-AT-*` com o futuro manifest final;
-3. obter o OK para consumir a apresentação final;
-4. auditar os preprints e qualquer alegação histórica sobre EUA/OMC;
-5. autorizar linha a linha o TSV, incluindo título e narrativa;
-6. só então editar, compilar e revisar independentemente o novo snapshot,
+3. auditar os preprints e qualquer alegação histórica sobre EUA/OMC;
+4. autorizar linha a linha o TSV, incluindo título, narrativa, quadro de
+   Steinberg e figura de dois painéis;
+5. só então editar, compilar e revisar independentemente o novo snapshot,
    com implementador diferente dos revisores.
 
 ## 9. Uso futuro
