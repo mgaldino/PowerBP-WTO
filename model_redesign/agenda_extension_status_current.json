@@ -1,6 +1,6 @@
 {
   "schema_version": "agenda_extension_lifecycle_status_v1",
-  "as_of": "2026-08-30",
+  "as_of": "2026-08-31",
   "namespace": "agenda_extension",
   "scope": "administrative lifecycle status only; mathematical artifacts and historical DAGs remain immutable",
   "human_readable_status": "model_redesign/agenda_extension_STATUS.md",
@@ -27,6 +27,12 @@
     "sha256": "13c4663bbedbc19b43cd39a55e7106a7c41be9566163e23287e941ad84aa7b29",
     "final_gate_manifest_path": "quality_reports/2026-08-30_A_R_msb_final_gate_manifest.sha256",
     "final_gate_manifest_sha256": "a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38"
+  },
+  "a_t_authority": {
+    "path": "quality_reports/2026-08-31_A_T_msb_terminal_approval_and_freeze.md",
+    "sha256": "ea8e36540b1185fb226d40850ed6c9dca7595516f14d6d606fa555b38b91d51f",
+    "final_gate_manifest_path": "quality_reports/2026-08-31_A_T_msb_final_gate_manifest.sha256",
+    "final_gate_manifest_sha256": "071134e722f7dbe39034cc5c8f38c1da140cb72b8560378bdf7ea5cd43995970"
   },
   "snapshot": {
     "branch": "agenda-extension-am-msb",
@@ -91,6 +97,20 @@
     "lifecycle_final_gate_manifest_sha256": "10bfa622dd222639b7d2493f4c8b076dba9fd87bc25bb8e6709ba7930f270695",
     "mechanical_result": "4372 PASS / 0 FAIL",
     "lifecycle": "formal and lifecycle review each completed twice with PASS 0/0/0; both adjudications found NO_CONFIRMED_DEFECTS; terminal author approval complete; pass/frozen"
+  },
+  "a_t_candidate_snapshot": {
+    "candidate_commit": "7033063a4b737cc0acc087ac71261e25805c689d",
+    "reviews_commit": "32b0c166f0d1e004457ad44cf33b5250af2745d0",
+    "candidate_manifest_path": "quality_reports/2026-08-30_AT_msb_candidate_manifest.sha256",
+    "candidate_manifest_sha256": "ca3248fb8ef63a2dcc008b5e30ffda1a8e170806ea172969e069daef1e9629cd",
+    "candidate_entries": 11,
+    "review_gate_manifest_path": "quality_reports/2026-08-30_AT_msb_review_gate_manifest.sha256",
+    "review_gate_manifest_sha256": "52063c245390526c6f986bb6095d976eecfcd4fcbfc95cd8f054f848d0e52ad6",
+    "final_gate_manifest_path": "quality_reports/2026-08-31_A_T_msb_final_gate_manifest.sha256",
+    "final_gate_manifest_sha256": "071134e722f7dbe39034cc5c8f38c1da140cb72b8560378bdf7ea5cd43995970",
+    "final_gate_entries": 21,
+    "mechanical_result": "50 PASS / 0 FAIL",
+    "lifecycle": "two independent PASS 0/0/0 reviews, NO_CONFIRMED_DEFECTS formal adjudication and terminal author approval complete; pass/frozen"
   },
   "nodes": [
     {
@@ -415,11 +435,83 @@
         "round 2: unresolved N7 institutional-rent placeholder in AR-DINT-UM"
       ],
       "reason": "the author terminally approved the exact formally reviewed, lifecycle-reviewed and independently adjudicated A_R bytes; pass/frozen"
+    },
+    {
+      "node_id": "AT",
+      "status": "pass",
+      "frozen": true,
+      "authorization": "terminal_author_approval",
+      "candidate": {
+        "commit": "7033063a4b737cc0acc087ac71261e25805c689d",
+        "manifest_path": "quality_reports/2026-08-30_AT_msb_candidate_manifest.sha256",
+        "manifest_sha256": "ca3248fb8ef63a2dcc008b5e30ffda1a8e170806ea172969e069daef1e9629cd",
+        "entries": 11
+      },
+      "reviews": [
+        {
+          "path": "quality_reports/2026-08-30_AT_msb_final_math_review.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "66fa407b7b81731d2d9ba90c12e0875641d1bffb630cdc5d6f5701139acfa657"
+        },
+        {
+          "path": "quality_reports/2026-08-30_AT_msb_final_adversarial_review.md",
+          "verdict": "PASS",
+          "findings": "0/0/0",
+          "sha256": "90beb7717f465884469c182fe957171d63709a715c71169af3897db0e9c2b58a"
+        }
+      ],
+      "adjudication": {
+        "verdict": "NO_CONFIRMED_DEFECTS",
+        "counts": {
+          "confirmed": 0,
+          "partial": 0,
+          "unresolved": 0
+        },
+        "markdown_path": "quality_reports/2026-08-30_AT_msb_final_adjudication.md",
+        "markdown_sha256": "8984b17c900413acc650d492d9353e0097fe4a1f44d32e198143007ec05dfe49",
+        "json_path": "quality_reports/2026-08-30_AT_msb_final_adjudication.json",
+        "json_sha256": "455a3ffe5642fc9ccf8a3ab454a785d5310f975c2276d60f746f5c1f9faa9730"
+      },
+      "terminal_author_approval": {
+        "literal_decision": "A_t aprovado então.",
+        "path": "quality_reports/2026-08-31_A_T_msb_terminal_approval_and_freeze.md",
+        "sha256": "ea8e36540b1185fb226d40850ed6c9dca7595516f14d6d606fa555b38b91d51f"
+      },
+      "final_gate_manifest": {
+        "path": "quality_reports/2026-08-31_A_T_msb_final_gate_manifest.sha256",
+        "sha256": "071134e722f7dbe39034cc5c8f38c1da140cb72b8560378bdf7ea5cd43995970",
+        "entries": 21
+      },
+      "mechanical_result": "50 PASS / 0 FAIL",
+      "external_consultation": {
+        "status": "advisory_not_formal_review",
+        "mathematical_defect_found": false,
+        "expository_precisions_for_migration": 4,
+        "additional_corollaries_not_promoted_to_frozen_claims": 6
+      },
+      "migration_release": [
+        "MIG-AT-01",
+        "MIG-AT-02",
+        "MIG-AT-03",
+        "MIG-AT-04",
+        "MIG-AT-05",
+        "MIG-SEM-03"
+      ],
+      "reason": "the author terminally approved the exact twice-reviewed and formally adjudicated A_T candidate; pass/frozen and consumable by the separately authorized manuscript transition"
     }
   ],
   "downstream": {
-    "authorization": "none",
-    "manuscript_migration_authorized": false,
+    "authorization": "existing_manuscript_transition_only",
+    "manuscript_migration_authorized": true,
+    "released_by_a_t_freeze": [
+      "MIG-AT-01",
+      "MIG-AT-02",
+      "MIG-AT-03",
+      "MIG-AT-04",
+      "MIG-AT-05",
+      "MIG-SEM-03"
+    ],
     "tag_authorized": false,
     "merge_authorized": false,
     "push_authorized": false

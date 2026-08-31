@@ -1,6 +1,6 @@
 # Status atual da extensão de agenda
 
-**Data de referência:** 2026-08-30
+**Data de referência:** 2026-08-31
 
 **Natureza:** registro administrativo; não contém nova matemática
 
@@ -8,14 +8,16 @@
 
 ## Resposta curta
 
-`A_M`, `A_U`, `A_C` e `A_R` sob M/S/B estão **`pass/frozen`** nos respectivos
+`A_M`, `A_U`, `A_C`, `A_R` e `A_T` sob M/S/B estão **`pass/frozen`** nos respectivos
 bytes exatos aprovados. Em `A_C`, o finding minor exclusivamente administrativo
 foi reparado sem alterar nenhum dos oito artefatos matemáticos; o reparo recebeu
 dois pareceres `PASS 0/0/0`, adjudicação `NO_CONFIRMED_DEFECTS` e aprovação
 autoral terminal. `A_R` também recebeu dois pareceres formais e dois pareceres
 de ciclo de vida `PASS 0/0/0`, duas adjudicações `NO_CONFIRMED_DEFECTS` e
-aprovação autoral terminal. Não há autorização para migrar resultados ao
-manuscrito, criar tag, fazer merge ou push.
+aprovação autoral terminal. `A_T` recebeu dois pareceres `PASS 0/0/0`,
+adjudicação `NO_CONFIRMED_DEFECTS` e aprovação autoral terminal em 2026-08-31.
+A transição para o manuscrito já havia sido autorizada separadamente; tag,
+merge e push continuam sem autorização.
 
 | Nó | Status atual | Pode ser executado ou consumido agora? |
 |---|---|---|
@@ -23,6 +25,46 @@ manuscrito, criar tag, fazer merge ou push.
 | `A_U` | `pass/frozen`; revisões, adjudicação e aprovação autoral terminal concluídas | Apenas os bytes congelados podem ser citados; o status não inicia `AC`. |
 | `AC` | `pass/frozen`; candidato fortalecido, revisões, adjudicações e aprovação autoral terminal concluídas | Apenas os bytes do manifesto final podem ser citados; o status não inicia `AR`. |
 | `AR` | `pass/frozen`; duas revisões formais, duas revisões de ciclo de vida, duas adjudicações e aprovação autoral terminal concluídas | Apenas os bytes do manifesto final podem ser citados; o status não autoriza trabalho downstream. |
+| `A_T` | `pass/frozen`; dois pareceres formais, adjudicação e aprovação autoral terminal concluídas | Os bytes do manifesto final podem ser consumidos pela transição do manuscrito já autorizada; não há autorização para tag, merge ou push. |
+
+## Status congelado de `A_T`
+
+O candidato matemático final de `A_T` está no commit
+`7033063a4b737cc0acc087ac71261e25805c689d`. O manifesto
+`quality_reports/2026-08-30_AT_msb_candidate_manifest.sha256`, SHA-256
+`ca3248fb8ef63a2dcc008b5e30ffda1a8e170806ea172969e069daef1e9629cd`,
+fixa `11/11` entradas. Uma execução fresca do verificador retornou
+`50 PASS / 0 FAIL`.
+
+Os dois pareceres formais finais cobrem os mesmos bytes:
+
+- `quality_reports/2026-08-30_AT_msb_final_math_review.md`:
+  `PASS 0/0/0`, SHA-256
+  `66fa407b7b81731d2d9ba90c12e0875641d1bffb630cdc5d6f5701139acfa657`;
+- `quality_reports/2026-08-30_AT_msb_final_adversarial_review.md`:
+  `PASS 0/0/0`, SHA-256
+  `90beb7717f465884469c182fe957171d63709a715c71169af3897db0e9c2b58a`.
+
+A adjudicação formal final deu `NO_CONFIRMED_DEFECTS`. O autor aprovou
+terminalmente `A_T` com “A_t aprovado então.”. A decisão está registrada em
+`quality_reports/2026-08-31_A_T_msb_terminal_approval_and_freeze.md`, SHA-256
+`ea8e36540b1185fb226d40850ed6c9dca7595516f14d6d606fa555b38b91d51f`.
+
+O manifesto final
+`quality_reports/2026-08-31_A_T_msb_final_gate_manifest.sha256`, SHA-256
+`071134e722f7dbe39034cc5c8f38c1da140cb72b8560378bdf7ea5cd43995970`,
+fixa `21/21` entradas. `A_T` é, portanto, `pass/frozen` somente nesses bytes.
+
+O congelamento cobre `D`, `I`, `T=D+I`, `DeltaD`, `DeltaI`, `DeltaT`, as
+correspondências exatas e o contraste diagonal `Q`. A consulta externa não
+formal posterior confirmou a matemática, recomendou quatro precisões de
+exposição e derivou seis corolários adicionais. As precisões podem orientar a
+redação; os seis corolários adicionais não foram promovidos retroativamente a
+claims congelados.
+
+As linhas `MIG-AT-01` a `MIG-AT-05` e `MIG-SEM-03` deixam de estar retidas por
+falta de congelamento. Isso vale somente para a transição do manuscrito já
+autorizada e não concede autorização para tag, merge ou push.
 
 ## Status congelado de `A_R`
 

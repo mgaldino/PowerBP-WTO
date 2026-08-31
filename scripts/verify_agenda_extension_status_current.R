@@ -2,7 +2,7 @@
 
 # Mechanical lifecycle reconciliation check for the agenda extension.
 # This script verifies hashes and authorization boundaries. It is not a new
-# mathematical review of A_M, A_U, AC, or AR.
+# mathematical review of A_M, A_U, AC, AR, or AT.
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) > 1L) {
@@ -88,7 +88,7 @@ record_check(
   identical(status$schema_version, "agenda_extension_lifecycle_status_v1"),
   "status schema is agenda_extension_lifecycle_status_v1"
 )
-record_check(identical(status$as_of, "2026-08-30"), "status date is pinned")
+record_check(identical(status$as_of, "2026-08-31"), "status date is pinned")
 record_check(
   identical(status$authority$sha256,
             "ca109199060f3aa775f6e2f18ef46fd9cefaff522cc3f7fdeeabfe9d5f412158"),
@@ -128,6 +128,16 @@ record_check(
   identical(status$a_r_authority$final_gate_manifest_sha256,
             "a57696cac12d3b3910cd7406842ea9d270df6193e4c696e455e06722447c8e38"),
   "A_R final gate manifest hash is pinned"
+)
+record_check(
+  identical(status$a_t_authority$sha256,
+            "ea8e36540b1185fb226d40850ed6c9dca7595516f14d6d606fa555b38b91d51f"),
+  "A_T terminal authority hash is pinned"
+)
+record_check(
+  identical(status$a_t_authority$final_gate_manifest_sha256,
+            "071134e722f7dbe39034cc5c8f38c1da140cb72b8560378bdf7ea5cd43995970"),
+  "A_T final gate manifest hash is pinned"
 )
 record_check(
   identical(status$snapshot$candidate_manifest_sha256,
@@ -222,6 +232,23 @@ record_check(
               "4372 PASS / 0 FAIL"),
   "A_R authorization, candidate stages, formal and lifecycle reviews, adjudications, manifests, and mechanical result are pinned"
 )
+record_check(
+  identical(status$a_t_candidate_snapshot$candidate_commit,
+            "7033063a4b737cc0acc087ac71261e25805c689d") &&
+    identical(status$a_t_candidate_snapshot$reviews_commit,
+              "32b0c166f0d1e004457ad44cf33b5250af2745d0") &&
+    identical(status$a_t_candidate_snapshot$candidate_manifest_sha256,
+              "ca3248fb8ef63a2dcc008b5e30ffda1a8e170806ea172969e069daef1e9629cd") &&
+    identical(status$a_t_candidate_snapshot$review_gate_manifest_sha256,
+              "52063c245390526c6f986bb6095d976eecfcd4fcbfc95cd8f054f848d0e52ad6") &&
+    identical(status$a_t_candidate_snapshot$final_gate_manifest_sha256,
+              "071134e722f7dbe39034cc5c8f38c1da140cb72b8560378bdf7ea5cd43995970") &&
+    identical(status$a_t_candidate_snapshot$candidate_entries, 11L) &&
+    identical(status$a_t_candidate_snapshot$final_gate_entries, 21L) &&
+    identical(status$a_t_candidate_snapshot$mechanical_result,
+              "50 PASS / 0 FAIL"),
+  "A_T candidate, reviews, manifests, and mechanical result are pinned"
+)
 
 record_check(
   identical(sha256(status$authority$path), status$authority$sha256),
@@ -258,6 +285,15 @@ record_check(
   identical(sha256(status$a_r_authority$final_gate_manifest_path),
             status$a_r_authority$final_gate_manifest_sha256),
   "A_R final gate manifest bytes match"
+)
+record_check(
+  identical(sha256(status$a_t_authority$path), status$a_t_authority$sha256),
+  "A_T terminal authority bytes match"
+)
+record_check(
+  identical(sha256(status$a_t_authority$final_gate_manifest_path),
+            status$a_t_authority$final_gate_manifest_sha256),
+  "A_T final gate manifest bytes match"
 )
 record_check(
   identical(sha256(status$snapshot$candidate_manifest_path),
@@ -304,16 +340,33 @@ record_check(
             status$a_r_candidate_snapshot$lifecycle_final_gate_manifest_sha256),
   "A_R lifecycle final-gate manifest bytes match"
 )
+record_check(
+  identical(sha256(status$a_t_candidate_snapshot$candidate_manifest_path),
+            status$a_t_candidate_snapshot$candidate_manifest_sha256),
+  "A_T candidate manifest bytes match"
+)
+record_check(
+  identical(sha256(status$a_t_candidate_snapshot$review_gate_manifest_path),
+            status$a_t_candidate_snapshot$review_gate_manifest_sha256),
+  "A_T review-gate manifest bytes match"
+)
+record_check(
+  identical(sha256(status$a_t_candidate_snapshot$final_gate_manifest_path),
+            status$a_t_candidate_snapshot$final_gate_manifest_sha256),
+  "A_T final-gate manifest bytes match"
+)
 
 a_m <- node_by_id(status, "A_M")
 a_u <- node_by_id(status, "A_U")
 ac <- node_by_id(status, "AC")
 ar <- node_by_id(status, "AR")
+at <- node_by_id(status, "AT")
 
 record_check(!is.null(a_m), "A_M has exactly one current status record")
 record_check(!is.null(a_u), "A_U has exactly one current status record")
 record_check(!is.null(ac), "AC has exactly one current status record")
 record_check(!is.null(ar), "AR has exactly one current status record")
+record_check(!is.null(at), "AT has exactly one current status record")
 record_check(
   identical(a_m$status, "pass") && isTRUE(a_m$frozen) &&
     identical(a_m$authorization, "terminal_author_approval"),
@@ -433,6 +486,61 @@ record_check(
 record_check(
   verify_manifest(ar$final_gate_manifest$path, 35L),
   "A_R final gate reproduces all 35/35 pinned entries"
+)
+record_check(
+  identical(at$status, "pass") && isTRUE(at$frozen) &&
+    identical(at$authorization, "terminal_author_approval") &&
+    identical(at$mechanical_result, "50 PASS / 0 FAIL"),
+  "AT is pass/frozen with terminal author approval"
+)
+record_check(
+  identical(at$candidate$commit,
+            "7033063a4b737cc0acc087ac71261e25805c689d") &&
+    identical(at$candidate$entries, 11L) &&
+    identical(sha256(at$candidate$manifest_path), at$candidate$manifest_sha256),
+  "AT exact 11-entry candidate snapshot is valid"
+)
+record_check(
+  length(at$reviews) == 2L &&
+    all(vapply(at$reviews, function(review) {
+      identical(review$verdict, "PASS") &&
+        identical(review$findings, "0/0/0") &&
+        identical(sha256(review$path), review$sha256)
+    }, logical(1L))),
+  "AT has two byte-valid PASS 0/0/0 independent reviews"
+)
+record_check(
+  identical(at$adjudication$verdict, "NO_CONFIRMED_DEFECTS") &&
+    identical(at$adjudication$counts$confirmed, 0L) &&
+    identical(at$adjudication$counts$partial, 0L) &&
+    identical(at$adjudication$counts$unresolved, 0L) &&
+    identical(sha256(at$adjudication$markdown_path),
+              at$adjudication$markdown_sha256) &&
+    identical(sha256(at$adjudication$json_path),
+              at$adjudication$json_sha256),
+  "AT final adjudication is byte-valid and has no confirmed or unresolved defects"
+)
+record_check(
+  grepl("^A_t aprovado", at$terminal_author_approval$literal_decision) &&
+    grepl("\\.$", at$terminal_author_approval$literal_decision) &&
+    identical(sha256(at$terminal_author_approval$path),
+              at$terminal_author_approval$sha256) &&
+    identical(at$final_gate_manifest$entries, 21L) &&
+    identical(sha256(at$final_gate_manifest$path),
+              at$final_gate_manifest$sha256),
+  "A_T terminal approval and 21-entry final gate manifest bytes match"
+)
+record_check(
+  verify_manifest(at$final_gate_manifest$path, 21L),
+  "A_T final gate reproduces all 21/21 pinned entries"
+)
+record_check(
+  identical(at$external_consultation$status,
+            "advisory_not_formal_review") &&
+    identical(at$external_consultation$mathematical_defect_found, FALSE) &&
+    identical(at$external_consultation$expository_precisions_for_migration, 4L) &&
+    identical(at$external_consultation$additional_corollaries_not_promoted_to_frozen_claims, 6L),
+  "A_T external consultation remains advisory and its six extra corollaries are not silently frozen"
 )
 
 expected_frozen_hashes <- c(
@@ -777,12 +885,17 @@ record_check(
 )
 
 record_check(
-  identical(status$downstream$authorization, "none") &&
-    identical(status$downstream$manuscript_migration_authorized, FALSE) &&
+  identical(status$downstream$authorization,
+            "existing_manuscript_transition_only") &&
+    identical(status$downstream$manuscript_migration_authorized, TRUE) &&
+    identical(unlist(status$downstream$released_by_a_t_freeze,
+                     use.names = FALSE),
+              c("MIG-AT-01", "MIG-AT-02", "MIG-AT-03", "MIG-AT-04",
+                "MIG-AT-05", "MIG-SEM-03")) &&
     identical(status$downstream$tag_authorized, FALSE) &&
     identical(status$downstream$merge_authorized, FALSE) &&
     identical(status$downstream$push_authorized, FALSE),
-  "no downstream, manuscript, tag, merge, or push authorization is introduced"
+  "only the existing manuscript transition consumes the released A_T lines; tag, merge, and push remain unauthorized"
 )
 
 status_md <- readLines(
@@ -806,6 +919,12 @@ record_check(
   any(grepl("A_R.*pass/frozen", status_md, fixed = FALSE, useBytes = TRUE)) &&
     any(grepl("35/35", status_md, fixed = TRUE, useBytes = TRUE)),
   "human-readable status identifies A_R as pass/frozen on its 35-entry final gate"
+)
+record_check(
+  any(grepl("A_T.*pass/frozen", status_md, fixed = FALSE, useBytes = TRUE)) &&
+    any(grepl("21/21", status_md, fixed = TRUE, useBytes = TRUE)) &&
+    any(grepl("50 PASS / 0 FAIL", status_md, fixed = TRUE, useBytes = TRUE)),
+  "human-readable status identifies A_T as pass/frozen on its 21-entry final gate"
 )
 record_check(
   any(grepl("R2-I-1", status_md, fixed = TRUE, useBytes = TRUE)),
