@@ -2,13 +2,13 @@
   "schema": "openai.presentation.layout/v4",
   "unit": "px",
   "slide": {
-    "aid": "sl/axojz2",
-    "id": "axojz2",
+    "aid": "sl/w1k37l",
+    "id": "w1k37l",
     "slide": 8,
-    "layoutId": "cbb1a19f-1df1-43b6-b9dc-bb8037bd5739",
+    "layoutId": "90289aad-1579-43da-b419-9e2e7ec10264",
     "layoutName": "Title Slide",
     "layoutType": "title",
-    "masterLayoutId": "33380879-3dd8-49fa-a1b1-41ccf78ee777",
+    "masterLayoutId": "c91869a2-e1f8-43a9-81ce-b5b5bcaec7f3",
     "masterLayoutName": "Master",
     "backgroundColor": "#FFFFFF",
     "frame": {
@@ -37,20 +37,23 @@
       "lt2": "#E8E8E8",
       "hlink": "#467886",
       "folHlink": "#96607D"
-    }
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
   },
   "inheritedLayers": [
     {
       "scope": "layout",
-      "id": "cbb1a19f-1df1-43b6-b9dc-bb8037bd5739",
+      "id": "90289aad-1579-43da-b419-9e2e7ec10264",
       "name": "Title Slide",
       "type": "title",
-      "parentLayoutId": "33380879-3dd8-49fa-a1b1-41ccf78ee777",
+      "parentLayoutId": "c91869a2-e1f8-43a9-81ce-b5b5bcaec7f3",
       "elements": []
     },
     {
       "scope": "master",
-      "id": "33380879-3dd8-49fa-a1b1-41ccf78ee777",
+      "id": "c91869a2-e1f8-43a9-81ce-b5b5bcaec7f3",
       "name": "Master",
       "type": "master",
       "elements": []
@@ -59,24 +62,664 @@
   "elements": [
     {
       "order": 1,
-      "kind": "image",
+      "kind": "shape",
       "scope": "slide",
-      "aid": "im/b218vq5g",
+      "aid": "sh/xsra5gbq",
       "id": "1",
       "bbox": [
-        0,
-        0,
-        1280,
-        720
+        70,
+        36,
+        1030,
+        54
       ],
-      "alt": "Figura 2: vantagem pública da maioria por opção externa.",
-      "contentType": "image/png",
-      "imageFit": "contain",
-      "asset": {
-        "assetId": "cbab3d38-1f88-4e1d-a3b4-22ab0bedb8d5",
-        "contentType": "image/png",
-        "byteLength": 175827
-      }
+      "geometry": "rect",
+      "text": "Com informação privada, as regras ativam jogos distintos",
+      "textPreview": "Com informação privada, as regras ativam jogos distintos",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 32,
+        "typeface": "+mn-lt",
+        "color": "#143B5D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Com informação privada, as regras ativam jogos distintos"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Com informação privada, as regras ativam jogos distintos",
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "color": "#143B5D",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Com informação privada, as regras ativam jogos distintos",
+              "fontSize": 32,
+              "color": "#143B5D",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ap0ru1sz",
+      "id": "2",
+      "bbox": [
+        70,
+        100,
+        92,
+        5
+      ],
+      "geometry": "rect",
+      "fillColor": "#E76F51",
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bq9s36tk",
+      "id": "3",
+      "bbox": [
+        1170,
+        42,
+        45,
+        36
+      ],
+      "geometry": "rect",
+      "text": "8",
+      "textPreview": "8",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#66727E",
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "8"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "8",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#66727E",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "8",
+              "fontSize": 15,
+              "color": "#66727E",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/oni9srut",
+      "id": "4",
+      "bbox": [
+        70,
+        145,
+        525,
+        420
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D8E1E7",
+      "lineWidth": 1
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/pora1wbe",
+      "id": "5",
+      "bbox": [
+        70,
+        145,
+        8,
+        420
+      ],
+      "geometry": "rect",
+      "fillColor": "#2C7FB8",
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2lgrqhc3",
+      "id": "6",
+      "bbox": [
+        94,
+        163,
+        483,
+        38
+      ],
+      "geometry": "rect",
+      "text": "Maioria",
+      "textPreview": "Maioria",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#143B5D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Maioria"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Maioria",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#143B5D",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Maioria",
+              "fontSize": 23,
+              "color": "#143B5D",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nm9szmto",
+      "id": "7",
+      "bbox": [
+        94,
+        210,
+        480,
+        338
+      ],
+      "geometry": "rect",
+      "text": "• Pode contornar H.\n• Screening, pooling e exclusão.\n• A exigência de H pode ser evitada por uma coalizão alternativa.",
+      "textPreview": "• Pode contornar H. | • Screening, pooling e exclusão. | • A exigência de H pode ser evitada por uma coalizão alternativa.",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#17212B",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "• Pode contornar H."
+          },
+          {
+            "index": 2,
+            "text": "• Screening, pooling e exclusão."
+          },
+          {
+            "index": 3,
+            "text": "• A exigência de H pode ser evitada por uma coalizão"
+          },
+          {
+            "index": 4,
+            "text": "alternativa."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "• Pode contornar H.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Pode contornar H.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "• Screening, pooling e exclusão.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Screening, pooling e exclusão.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "• A exigência de H pode ser evitada por uma coalizão alternativa.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• A exigência de H pode ser evitada por uma coalizão alternativa.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8j2t4vad",
+      "id": "8",
+      "bbox": [
+        665,
+        145,
+        545,
+        420
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D8E1E7",
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9kbad0by",
+      "id": "9",
+      "bbox": [
+        665,
+        145,
+        8,
+        420
+      ],
+      "geometry": "rect",
+      "fillColor": "#E76F51",
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1kzedgvu",
+      "id": "10",
+      "bbox": [
+        689,
+        163,
+        503,
+        38
+      ],
+      "geometry": "rect",
+      "text": "Unanimidade",
+      "textPreview": "Unanimidade",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#143B5D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Unanimidade"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Unanimidade",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#143B5D",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Unanimidade",
+              "fontSize": 23,
+              "color": "#143B5D",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0jqd4bu9",
+      "id": "11",
+      "bbox": [
+        689,
+        210,
+        500,
+        338
+      ],
+      "geometry": "rect",
+      "text": "• Todo acordo compra o sim de H.\n• Crença baixa: oferta ao tipo baixo.\n• Crença intermediária: não há PBE puro.\n• Crença alta: pooling no limiar alto.",
+      "textPreview": "• Todo acordo compra o sim de H. | • Crença baixa: oferta ao tipo baixo. | • Crença intermediária: não há PBE puro. | • Crença alta: pool...",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#17212B",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "• Todo acordo compra o sim de H."
+          },
+          {
+            "index": 2,
+            "text": "• Crença baixa: oferta ao tipo baixo."
+          },
+          {
+            "index": 3,
+            "text": "• Crença intermediária: não há PBE puro."
+          },
+          {
+            "index": 4,
+            "text": "• Crença alta: pooling no limiar alto."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "• Todo acordo compra o sim de H.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Todo acordo compra o sim de H.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "• Crença baixa: oferta ao tipo baixo.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Crença baixa: oferta ao tipo baixo.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "• Crença intermediária: não há PBE puro.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Crença intermediária: não há PBE puro.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "• Crença alta: pooling no limiar alto.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Crença alta: pooling no limiar alto.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fihcb6do",
+      "id": "12",
+      "bbox": [
+        175,
+        588,
+        930,
+        52
+      ],
+      "geometry": "rect",
+      "text": "No pooling, a baixa exigência é paga como se pudesse ser alta.",
+      "textPreview": "No pooling, a baixa exigência é paga como se pudesse ser alta.",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 25,
+        "typeface": "+mn-lt",
+        "color": "#143B5D",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "No pooling, a baixa exigência é paga como se pudesse ser alta."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "No pooling, a baixa exigência é paga como se pudesse ser alta.",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "color": "#143B5D",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "No pooling, a baixa exigência é paga como se pudesse ser alta.",
+              "fontSize": 25,
+              "color": "#143B5D",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
     }
   ],
   "composeRuns": []

@@ -116,7 +116,7 @@ function addImageSlide(imageName, alt) {
   textbox(slide, "Agenda, indispensabilidade e renda informacional", { left: 98, top: 340, width: 710, height: 55 }, {
     fontSize: 25, color: C.muted,
   });
-  addCard(slide, 875, 145, 300, 300, "A pergunta", "Por que um hegemon como os Estados Unidos poderia preferir consenso a maioria?", C.orange);
+  addCard(slide, 875, 145, 300, 300, "A pergunta", "Como o consenso pode elevar o payoff de um hegemon em relação à maioria?", C.orange);
   textbox(slide, "Manoel Galdino  •  Seminário de Economia Política Internacional", { left: 98, top: 618, width: 780, height: 36 }, {
     fontSize: 16, color: C.muted,
   });
@@ -126,14 +126,14 @@ function addImageSlide(imageName, alt) {
 {
   const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "O paradoxo da OMC", 2);
   addCard(slide, 70, 145, 520, 400, "Igualdade formal", "• Primeiro, consenso.\n• Se não houver consenso, votação.\n• Cada membro tem um voto.\n\nMas os Estados Unidos continuam capazes de moldar resultados.", C.blue);
-  addCard(slide, 635, 145, 565, 400, "A pergunta", "Por que um hegemon aceitaria — e às vezes preferiria — uma regra que dá veto formal a todos?", C.orange);
-  addFooter(slide, "Acordo de Marrakesh, Art. IX. Aplicação aos EUA: interpretação teórica, não teste empírico.");
+  addCard(slide, 635, 145, 565, 400, "A pergunta", "Quando o tipo de baixa exigência pode obter mais sob consenso do que sob maioria?", C.orange);
+  addFooter(slide, "Art. IX. Com sim na indiferença, consenso e unanimidade são equivalentes no domínio modelado; aplicação teórica.");
 }
 
 // 3. Conventional answer
 {
   const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "A resposta convencional: pesos invisíveis", 3);
-  addCard(slide, 70, 142, 340, 355, "Agenda", "Controle do texto, do timing e do conjunto de alternativas.", C.blue);
+  addCard(slide, 70, 142, 340, 355, "Agenda e informação", "Controle do texto, do timing e das alternativas; aprendizado sobre as restrições dos fracos.", C.blue);
   addCard(slide, 470, 142, 340, 355, "Poder material", "Ameaça de saída, coerção e fechamento de opções.", C.orange);
   addCard(slide, 870, 142, 340, 355, "Consenso", "Legitima formalmente um acordo já moldado na negociação informal.", C.teal);
   textbox(slide, "Nossa pergunta adicional: o que a regra faz com a informação privada do hegemon?", { left: 120, top: 548, width: 1035, height: 74 }, {
@@ -150,6 +150,7 @@ function addImageSlide(imageName, alt) {
   textbox(slide, "A regra pode dar poder à informação do hegemon antes de lhe devolvermos a agenda?", { left: 125, top: 540, width: 1030, height: 75 }, {
     fontSize: 27, color: C.navy, bold: true, alignment: "center", verticalAlignment: "middle",
   });
+  addFooter(slide, "πH = 0 remove o direito formal de propor; não elimina toda a influência informal sobre agenda descrita por Steinberg.");
 }
 
 // 5. Model
@@ -192,7 +193,7 @@ addImageSlide("figura_3_ponte_reversao.png", "Figura 3: a renda informacional ca
 // 11. GEB positioning
 {
   const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "GEB: a mesma base institucional, outra arquitetura", 11);
-  addCard(slide, 70, 135, 535, 430, "Piazolo–Vanberg", "• Dois respondentes simétricos têm custos privados.\n• Maioria contorna um recorrendo ao outro — também informado.\n• Unanimidade torna ambos indispensáveis.\n• Rejeição altera preços futuros; também há pooling imediato.", C.blue);
+  addCard(slide, 70, 135, 535, 430, "Piazolo–Vanberg", "• Dois respondentes simétricos têm custos privados.\n• Maioria disciplina por exclusão: recorre ao outro, também informado.\n• Unanimidade aumenta o valor de parecer exigente.\n• Rejeição altera preços futuros; também há pooling imediato.", C.blue);
   addCard(slide, 675, 135, 535, 430, "Este modelo", "• Toda a informação privada está num único H.\n• Maioria o substitui por coalizão sem informação sobre θ.\n• Unanimidade torna a única exigência privada incontornável.\n• Mapeamos RIgθ e ΔRIθ por tipo.", C.orange);
   textbox(slide, "Não contrapomos sinalização e indispensabilidade. Mudamos a arquitetura e o estimando.", { left: 130, top: 595, width: 1020, height: 54 }, {
     fontSize: 23, color: C.navy, bold: true, alignment: "center",
@@ -208,17 +209,20 @@ addImageSlide("figura_3_ponte_reversao.png", "Figura 3: a renda informacional ca
   textbox(slide, "Não reivindicamos uma nova renda de pooling: seguimos quem a recebe e como ela muda com agenda.", { left: 115, top: 595, width: 1050, height: 54 }, {
     fontSize: 23, color: C.navy, bold: true, alignment: "center",
   });
-  addFooter(slide, "O Public Choice também contém benchmark público e renda do tipo barato sob oferta alta.");
+  addFooter(slide, "O Public Choice também contém benchmark público e renda do tipo barato numa oferta aceita por ambos.");
 }
 
 // 13. Agenda role crossing
 {
-  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "Extensão: o ator informado atravessa o balcão", 13);
+  const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "Segundo resultado: o ator informado atravessa o balcão", 13);
   addCard(slide, 80, 135, 440, 185, "Sem agenda de H (N)", "Fraco desinformado propõe.\nH informado responde.", C.blue);
   textbox(slide, "⟶", { left: 575, top: 195, width: 130, height: 70 }, {
     fontSize: 54, color: C.orange, bold: true, alignment: "center", verticalAlignment: "middle",
   });
   addCard(slide, 760, 135, 440, 185, "Com agenda de H (A)", "H informado propõe.\nEstados fracos respondem.", C.orange);
+  textbox(slide, "Em cada lado: tipo conhecido e tipo privado", { left: 345, top: 326, width: 590, height: 34 }, {
+    fontSize: 19, color: C.muted, bold: true, alignment: "center",
+  });
   addCard(slide, 80, 365, 350, 185, "Efeito direto D", "Ganho de propor quando o tipo é conhecido.", C.blue);
   addCard(slide, 465, 365, 350, 185, "Interação I", "Mudança na renda informacional causada pela agenda.", C.orange);
   addCard(slide, 850, 365, 350, 185, "Efeito total T", "Tgθ = Dgθ + Igθ", C.teal);
@@ -228,15 +232,15 @@ addImageSlide("figura_3_ponte_reversao.png", "Figura 3: a renda informacional ca
   addFooter(slide, "A proposta de H é uma etapa anterior e obrigatória; T = D + I é uma identidade fatorial.");
 }
 
-addImageSlide("figura_5_efeito_direto_agenda.png", "Figura 5: efeito direto da agenda sob maioria e unanimidade."); // 14
+addImageSlide("figura_5_efeito_direto_agenda.png", "Figura 5: agenda pode elevar o payoff e comprimir a renda informacional."); // 14
 
 // 15. WTO answer
 {
   const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "Quando os EUA de baixa exigência podem receber mais sob consenso", 15);
   const body = "1. Exigência mínima para aceitar parcialmente privada.\n\n2. Maioria sem os EUA viável e capaz de contornar sua informação.\n\n3. Consenso torna a objeção norte-americana incontornável no domínio modelado.\n\n4. Crença alta sustenta pooling.\n\n5. ΔRI₀(sU,sM) > G(o₀).";
   addCard(slide, 90, 135, 1100, 420, "As cinco condições", body, C.orange);
-  textbox(slide, "Preferência interina do tipo baixo, sob regra fixa — não uma preferência ex ante de todos os tipos.", { left: 150, top: 585, width: 980, height: 56 }, {
-    fontSize: 27, color: C.navy, bold: true, alignment: "center",
+  textbox(slide, "Sem agenda: preferência interina do tipo baixo. Com agenda: o ranking entre regras depende de D e I.", { left: 140, top: 580, width: 1000, height: 66 }, {
+    fontSize: 24, color: C.navy, bold: true, alignment: "center",
   });
 }
 
@@ -246,8 +250,8 @@ addImageSlide("figura_5_efeito_direto_agenda.png", "Figura 5: efeito direto da a
   addCard(slide, 75, 155, 345, 240, "Exigência externa", "Força fora da instituição.", C.blue);
   addCard(slide, 467, 155, 345, 240, "Pivotalidade", "Ausência de substituto para o voto.", C.orange);
   addCard(slide, 860, 155, 345, 240, "Agenda", "Capacidade de escolher a proposta.", C.teal);
-  textbox(slide, "CONSENSO PODE TRANSFORMAR INFORMAÇÃO PRIVADA EM PODER QUANDO TORNA O VOTO INFORMADO INCONTORNÁVEL.", { left: 120, top: 465, width: 1040, height: 110 }, {
-    fontSize: 34, color: C.navy, bold: true, alignment: "center", verticalAlignment: "middle",
+  textbox(slide, "CONSENSO TRANSFORMA INFORMAÇÃO EM PODER QUANDO O VOTO INFORMADO É INCONTORNÁVEL.\nAGENDA ELEVA A EXTRAÇÃO DIRETA, MAS PODE COMPRIMIR A PARCELA INFORMACIONAL.", { left: 105, top: 440, width: 1070, height: 150 }, {
+    fontSize: 29, color: C.navy, bold: true, alignment: "center", verticalAlignment: "middle",
   });
   textbox(slide, "Comparação institucional condicional; sem estágio endógeno de escolha da regra e sem teste de um episódio específico da OMC.", { left: 160, top: 620, width: 960, height: 40 }, {
     fontSize: 16, color: C.muted, alignment: "center",

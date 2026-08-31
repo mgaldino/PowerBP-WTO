@@ -48,9 +48,11 @@ header-includes:
 \vspace{0.2cm}
 \normalsize
 
-- A regra formal procura primeiro o consenso.
-- Se ele não é alcançado, o acordo prevê votação.
-- Cada membro tem um voto.
+\begin{itemize}
+\item A regra formal procura primeiro o consenso.
+\item Se ele não é alcançado, o acordo prevê votação.
+\item Cada membro tem um voto.
+\end{itemize}
 
 \vspace{0.35cm}
 \Large
@@ -59,19 +61,21 @@ header-includes:
 \vspace{0.2cm}
 \normalsize
 
-- Os Estados Unidos continuam capazes de moldar resultados.
+\begin{itemize}
+\item Os Estados Unidos continuam capazes de moldar resultados.
+\end{itemize}
 \end{column}
 \begin{column}{0.40\textwidth}
 \vspace{0.25cm}
 \begin{beamercolorbox}[wd=\textwidth,sep=0.35cm,rounded=true]{block body}
 \centering
 \Large
-\textcolor{Navy}{\textbf{Por que um hegemon aceitaria uma regra que dá veto a todos?}}
+\textcolor{Navy}{\textbf{Quando o tipo de baixa exigência pode obter mais sob consenso?}}
 \end{beamercolorbox}
 \end{column}
 \end{columns}
 
-\smallsource{Fonte institucional: Acordo de Marrakesh, Art. IX. O mapeamento aos EUA é uma interpretação teórica, não um teste empírico.}
+\smallsource{Fonte: Acordo de Marrakesh, Art. IX. Com “sim” na indiferença, consenso e unanimidade são equivalentes no domínio modelado. Aplicação teórica, não teste empírico.}
 
 ## A resposta convencional: pesos invisíveis
 
@@ -83,9 +87,12 @@ Steinberg mostra como o consenso pode coexistir com assimetria por meio de:
 
 \vspace{0.2cm}
 
-- controle da agenda e da redação;
-- ameaça de saída, coerção e fechamento de alternativas;
-- negociação informal antes do momento formal de aprovação.
+\begin{itemize}
+\item controle da agenda e da redação;
+\item ameaça de saída, coerção e fechamento de alternativas;
+\item revelação das preferências dos fracos aos agenda setters poderosos;
+\item negociação informal antes do momento formal de aprovação.
+\end{itemize}
 
 \vspace{0.45cm}
 
@@ -107,16 +114,20 @@ O consenso pode \textbf{legitimar} um acordo já moldado por poder material.
 \begin{column}{0.46\textwidth}
 \textbf{Na explicação convencional}
 
-- A potência molda texto, timing e alternativas.
-- Sua força material disciplina os membros mais fracos.
-- O consenso ratifica um pacote já trabalhado informalmente.
+\begin{itemize}
+\item A potência molda texto, timing e alternativas.
+\item Sua força material disciplina os membros mais fracos.
+\item O consenso ratifica um pacote já trabalhado informalmente.
+\end{itemize}
 \end{column}
 \begin{column}{0.48\textwidth}
 \textbf{No nosso contrafactual}
 
-- $H$ conhece sua própria exigência para aceitar.
-- Os proponentes fracos não observam essa exigência.
-- Retiramos de $H$ a iniciativa formal: $\pi_H=0$.
+\begin{itemize}
+\item $H$ conhece sua própria exigência para aceitar.
+\item Os proponentes fracos não observam essa exigência.
+\item Retiramos de $H$ a iniciativa formal: $\pi_H=0$.
+\end{itemize}
 \end{column}
 \end{columns}
 
@@ -131,23 +142,29 @@ O consenso pode \textbf{legitimar} um acordo já moldado por poder material.
 \centering
 Se $H$ ganhar sob unanimidade nesse benchmark, o ganho não pode ser atribuído à iniciativa formal.
 
+\smallsource{$\pi_H=0$ remove o direito formal de propor; não pretende eliminar toda a influência informal sobre agenda descrita por Steinberg.}
+
 ## Arquitetura mínima do modelo
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.48\textwidth}
 \textbf{Atores e informação}
 
-- Um hegemon $H$ e $m\geq3$ Estados fracos.
-- $H$ conhece sua exigência mínima $o_\theta$; $o_1>o_0$.
-- Os fracos conhecem apenas $\nu=\Pr(\theta=1)$.
+\begin{itemize}
+\item Um hegemon $H$ e $m\geq3$ Estados fracos.
+\item $H$ conhece sua exigência mínima $o_\theta$; $o_1>o_0$.
+\item Os fracos conhecem apenas $\nu=\Pr(\theta=1)$.
+\end{itemize}
 \end{column}
 \begin{column}{0.48\textwidth}
 \textbf{Instituições e tempo}
 
-- Dois períodos; o futuro é descontado por $\beta$.
-- Pacote $y$ concede parte do excedente a $H$.
-- Maioria: uma coalizão pode excluir $H$.
-- Unanimidade: o “sim” de $H$ é indispensável.
+\begin{itemize}
+\item Dois períodos; o futuro é descontado por $\beta$.
+\item Pacote $y$ concede parte do excedente a $H$.
+\item Maioria: uma coalizão pode excluir $H$.
+\item Unanimidade: o “sim” de $H$ é indispensável.
+\end{itemize}
 \end{column}
 \end{columns}
 
@@ -176,17 +193,21 @@ No modelo, a regra muda se uma coalizão pode \textbf{contornar o voto informado
 \begin{column}{0.47\textwidth}
 \textbf{Maioria}
 
-- Pode contornar $H$.
-- A correspondência contém screening, pooling e exclusão.
-- A informação de $H$ pode ser evitada por uma coalizão alternativa.
+\begin{itemize}
+\item Pode contornar $H$.
+\item A correspondência contém screening, pooling e exclusão.
+\item A informação de $H$ pode ser evitada por uma coalizão alternativa.
+\end{itemize}
 \end{column}
 \begin{column}{0.47\textwidth}
 \textbf{Unanimidade}
 
-- Todo acordo precisa comprar o “sim” de $H$.
-- Crença baixa: oferta ao tipo baixo.
-- Crença intermediária: não há PBE puro.
-- Crença alta: pooling no limiar do tipo alto.
+\begin{itemize}
+\item Todo acordo precisa comprar o “sim” de $H$.
+\item Crença baixa: oferta ao tipo baixo.
+\item Crença intermediária: não há PBE puro.
+\item Crença alta: pooling no limiar do tipo alto.
+\end{itemize}
 \end{column}
 \end{columns}
 
@@ -242,18 +263,22 @@ Se $G(o_0)>0$ e $\delta_0(s_U,s_M)>0$, então $\Delta RI_0(s_U,s_M)>G(o_0)$.
 \begin{column}{0.47\textwidth}
 \textbf{Piazolo--Vanberg}
 
-- Dois respondentes simétricos têm custos privados.
-- Maioria contorna um deles recorrendo ao outro, que também é informado.
-- Unanimidade torna ambos indispensáveis.
-- Rejeição pode alterar preços futuros; também há pooling imediato sem rejeição.
+\begin{itemize}
+\item Dois respondentes simétricos têm custos privados.
+\item Maioria contorna um deles recorrendo ao outro, que também é informado.
+\item Unanimidade aumenta o valor de parecer exigente.
+\item Rejeição pode alterar preços futuros; também há pooling imediato.
+\end{itemize}
 \end{column}
 \begin{column}{0.47\textwidth}
 \textbf{Este modelo}
 
-- Toda a informação privada está concentrada num único $H$.
-- A maioria o substitui por uma coalizão sem informação sobre $\theta$.
-- A unanimidade torna a única exigência privada incontornável.
-- Mapeamos $RI_g^\theta$ e $\Delta RI_\theta$ para cada tipo de $H$.
+\begin{itemize}
+\item Toda a informação privada está concentrada num único $H$.
+\item A maioria o substitui por coalizão sem informação sobre $\theta$.
+\item A unanimidade torna a única exigência privada incontornável.
+\item Mapeamos $RI_g^\theta$ e $\Delta RI_\theta$ por tipo de $H$.
+\end{itemize}
 \end{column}
 \end{columns}
 
@@ -272,18 +297,22 @@ Se $G(o_0)>0$ e $\delta_0(s_U,s_M)>0$, então $\Delta RI_0(s_U,s_M)>G(o_0)$.
 \begin{column}{0.47\textwidth}
 \textbf{Glynia--Thum--Xefteris}
 
-- Agenda setter fixo e desinformado; dois respondentes simétricos conhecem seus custos.
-- Uma oferta: seguro caro versus aposta barata.
-- Há benchmark público e renda de pooling do tipo barato.
-- Foco: oferta ótima, aprovação, transferências e payoff do proponente.
+\begin{itemize}
+\item Agenda setter fixo e desinformado; respondentes simétricos conhecem seus custos.
+\item Uma oferta: seguro caro versus aposta barata.
+\item Há benchmark público e renda do tipo barato numa oferta aceita por ambos.
+\item Foco: oferta ótima, aprovação, transferências e payoff do proponente.
+\end{itemize}
 \end{column}
 \begin{column}{0.47\textwidth}
 \textbf{Nossa mudança de estimando}
 
-- O payoff interino do único ator assimétrico é o objeto central.
-- Subtraímos o benchmark público do mesmo tipo sob a mesma regra.
-- A maioria pode eliminar toda a informação privada sobre $H$ da coalizão.
-- Na extensão, esse mesmo $H$ informado recebe direitos de proposta.
+\begin{itemize}
+\item O payoff interino do único ator assimétrico é o objeto central.
+\item Subtraímos o benchmark público do mesmo tipo sob a mesma regra.
+\item A maioria elimina da coalizão toda a informação privada sobre $H$.
+\item Na extensão, esse mesmo $H$ informado recebe direitos de proposta.
+\end{itemize}
 \end{column}
 \end{columns}
 
@@ -294,7 +323,7 @@ Se $G(o_0)>0$ e $\delta_0(s_U,s_M)>0$, então $\Delta RI_0(s_U,s_M)>G(o_0)$.
 \textbf{Não reivindicamos uma nova renda de pooling.} Seguimos quem a recebe e como ela muda quando o próprio informado ganha agenda.
 \end{beamercolorbox}
 
-## Extensão: o ator informado atravessa o balcão
+## Segundo resultado: o ator informado atravessa o balcão
 
 \centering
 \begin{tabular}{p{4.7cm} c p{4.7cm}}
@@ -303,25 +332,34 @@ Fraco desinformado propõe & $\Longrightarrow$ & $H$ informado propõe \\
 $H$ informado responde & & Estados fracos respondem \\
 \end{tabular}
 
-\vspace{0.42cm}
+\vspace{0.30cm}
 
-\begin{tabular}{c|c|c}
- & \textbf{Sem agenda de $H$} $(N)$ & \textbf{Com agenda de $H$} $(A)$ \\
-\hline
-\textbf{Tipo público} & $\beta h_g^N(o_\theta)$ & $h_g^A(o_\theta)$ \\
-\textbf{Tipo privado} & $\beta V_g^{N,\theta}$ & $V_g^{A,\theta}$ \\
-\end{tabular}
+Em cada lado, resolvemos duas versões: \textbf{tipo conhecido} e \textbf{tipo privado}.
 
-\vspace{0.42cm}
+\vspace{0.35cm}
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.29\textwidth}
+\centering
+\textbf{Direto: $D$}
+
+Ganho de propor quando o tipo é conhecido.
+\end{column}
+\begin{column}{0.36\textwidth}
+\centering
+\textbf{Interação: $I$}
+
+Mudança na renda informacional causada pela agenda.
+\end{column}
+\begin{column}{0.29\textwidth}
+\centering
+\textbf{Total: $T$}
 
 \[
-\boxed{T_g^\theta=D_g^\theta+I_g^\theta}
-\qquad
-\begin{array}{l}
-D: \text{ ganho direto de propor com o tipo conhecido}\\
-I: \text{ mudança na renda informacional causada pela agenda}
-\end{array}
+\boxed{T=D+I}
 \]
+\end{column}
+\end{columns}
 
 \smallsource{A etapa de proposta de $H$ é anterior e obrigatória; não é uma opção de pular o jogo.}
 
@@ -347,7 +385,10 @@ I: \text{ mudança na renda informacional causada pela agenda}
 Sob essas condições, o consenso pode transformar a aprovação informada do hegemon em \textbf{insumo essencial}.
 \end{beamercolorbox}
 
-\smallsource{Preferência interina do tipo baixo, sob regra fixa. Reversão robusta à faixa U de pooling, condicionada ao equilíbrio M exibido.}
+\vspace{0.18cm}
+\centering
+\small
+Com agenda, o payoff pode aumentar, mas o ranking entre regras passa a depender de $D$ e $I$: agenda não favorece automaticamente a unanimidade.
 
 ## Três poderes, uma conclusão
 
@@ -381,6 +422,10 @@ Capacidade de escolher a proposta.
 \centering
 \Large
 \textbf{Consenso pode transformar informação privada em poder quando torna o voto informado incontornável.}
+
+\vspace{0.20cm}
+\large
+Quando o mesmo ator ganha agenda, aumenta a extração direta, mas pode comprimir a parcela informacional.
 \end{beamercolorbox}
 
 \vspace{0.4cm}
@@ -467,7 +512,7 @@ $m=4$, $\beta=0{,}90$, $o_0=0{,}10$, $o_1=0{,}90$, $\nu=0{,}95$. Contra o equil�
 - “Nenhum PBE puro” é ausência de solução na classe analisada, não payoff zero.
 - Sob maioria e com agenda, várias comparações são correspondências; não há sinal global sem seleção.
 - As decomposições são identidades; a contribuição vem da existência de regiões e membros que lhes dão conteúdo.
-- GEB e Public Choice também contêm pooling, benchmark público e renda do tipo baixo; a contribuição aqui é de arquitetura, incidência e decomposição.
+- GEB e Public Choice também contêm ofertas aceitas por vários tipos, benchmark público e renda do tipo baixo; a contribuição aqui é de arquitetura, incidência e decomposição.
 - Steinberg motiva a aplicação, mas frequentemente descreve potências extraindo informação dos fracos; aqui os fracos inferem a reserva de $H$.
 - Consenso e unanimidade são equivalentes apenas no domínio modelado em que uma objeção bloqueia a proposta; votação subsidiária e acordos plurilaterais ficam fora.
 - A versão-base está congelada; A\_M, A\_U, A\_C e A\_R estão congelados; A\_T foi revisado, mas não estava congelado no snapshot consultado.

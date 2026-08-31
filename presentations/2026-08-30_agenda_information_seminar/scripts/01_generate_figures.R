@@ -256,16 +256,21 @@ p5 <- ggplot(agenda_long, aes(o, D, colour = regra, group = interaction(regra, s
   geom_line(linewidth = 1.7) +
   geom_vline(xintercept = c(1 / m, tau_M), linetype = "dashed", colour = muted, linewidth = 0.7) +
   annotate("label", x = 0.14, y = 0.43, label = "Agenda vale mais sob maioria\npara reservas baixas", fill = "white", linewidth = 0, colour = blue, size = 4.2) +
-  annotate("label", x = 0.80, y = 0.15, label = "Sob unanimidade:\nD_U = 1 − beta", fill = "white", linewidth = 0, colour = orange, size = 4.2) +
+  annotate("label", x = 0.80, y = 0.15, label = "Sob unanimidade:\nD_U = 1 − beta", fill = "white", linewidth = 0, colour = orange, size = 4.0) +
+  annotate(
+    "label", x = 0.76, y = 0.37,
+    label = "Com informação privada:  T = D + I\nNos pares comparáveis sob U:  T ≥ 0\nPara o tipo alto:  I_U¹ ≤ 0",
+    fill = "#F7F9FA", linewidth = 0.35, colour = teal, size = 3.8
+  ) +
   scale_colour_manual(values = c("Maioria" = blue, "Unanimidade" = orange)) +
   scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.25), expand = expansion(mult = c(0, 0.01))) +
   scale_y_continuous(limits = c(0, 0.60), breaks = seq(0, 0.6, 0.1)) +
   labs(
-    title = "O efeito direto da agenda não pertence a uma única regra",
+    title = "Agenda pode elevar o payoff e comprimir a renda informacional",
     subtitle = expression(D[g] == h[g]^A - beta*h[g]^N~": efeito direto sob informação completa"),
     x = expression("exigência observável de H para aceitar, "~o),
     y = "efeito direto da agenda",
-    caption = "Figura 5. Ilustração teórica: m = 4, beta = 0,90, q = 3. Efeitos de informação entram separadamente pelo termo I_g."
+    caption = "Figura 5. Ilustração teórica: m = 4, beta = 0,90, q = 3. A_T revisado, ainda não congelado; maioria permanece set-valued no jogo privado."
   ) +
   theme_seminar()
 save_figure(p5, "figura_5_efeito_direto_agenda")

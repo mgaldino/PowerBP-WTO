@@ -2,13 +2,13 @@
   "schema": "openai.presentation.layout/v4",
   "unit": "px",
   "slide": {
-    "aid": "sl/y7dsli",
-    "id": "y7dsli",
+    "aid": "sl/m7fkyo",
+    "id": "m7fkyo",
     "slide": 12,
-    "layoutId": "cbb1a19f-1df1-43b6-b9dc-bb8037bd5739",
+    "layoutId": "90289aad-1579-43da-b419-9e2e7ec10264",
     "layoutName": "Title Slide",
     "layoutType": "title",
-    "masterLayoutId": "33380879-3dd8-49fa-a1b1-41ccf78ee777",
+    "masterLayoutId": "c91869a2-e1f8-43a9-81ce-b5b5bcaec7f3",
     "masterLayoutName": "Master",
     "backgroundColor": "#FFFFFF",
     "frame": {
@@ -37,20 +37,23 @@
       "lt2": "#E8E8E8",
       "hlink": "#467886",
       "folHlink": "#96607D"
-    }
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
   },
   "inheritedLayers": [
     {
       "scope": "layout",
-      "id": "cbb1a19f-1df1-43b6-b9dc-bb8037bd5739",
+      "id": "90289aad-1579-43da-b419-9e2e7ec10264",
       "name": "Title Slide",
       "type": "title",
-      "parentLayoutId": "33380879-3dd8-49fa-a1b1-41ccf78ee777",
+      "parentLayoutId": "c91869a2-e1f8-43a9-81ce-b5b5bcaec7f3",
       "elements": []
     },
     {
       "scope": "master",
-      "id": "33380879-3dd8-49fa-a1b1-41ccf78ee777",
+      "id": "c91869a2-e1f8-43a9-81ce-b5b5bcaec7f3",
       "name": "Master",
       "type": "master",
       "elements": []
@@ -59,24 +62,755 @@
   "elements": [
     {
       "order": 1,
-      "kind": "image",
+      "kind": "shape",
       "scope": "slide",
-      "aid": "im/hczq1s3i",
+      "aid": "sh/bqtofi18",
       "id": "1",
       "bbox": [
-        0,
-        0,
-        1280,
-        720
+        70,
+        36,
+        1030,
+        54
       ],
-      "alt": "Figura 3: a renda informacional carrega a reversão.",
-      "contentType": "image/png",
-      "imageFit": "contain",
-      "asset": {
-        "assetId": "c0b5aa76-1293-4871-a610-fac1e10356d2",
-        "contentType": "image/png",
-        "byteLength": 133037
-      }
+      "geometry": "rect",
+      "text": "Public Choice: o mesmo seguro, outro portador do poder",
+      "textPreview": "Public Choice: o mesmo seguro, outro portador do poder",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 32,
+        "typeface": "+mn-lt",
+        "color": "#143B5D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Public Choice: o mesmo seguro, outro portador do poder"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Public Choice: o mesmo seguro, outro portador do poder",
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "color": "#143B5D",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Public Choice: o mesmo seguro, outro portador do poder",
+              "fontSize": 32,
+              "color": "#143B5D",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cr258n2t",
+      "id": "2",
+      "bbox": [
+        70,
+        100,
+        92,
+        5
+      ],
+      "geometry": "rect",
+      "fillColor": "#E76F51",
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xsb6hsje",
+      "id": "3",
+      "bbox": [
+        1170,
+        42,
+        45,
+        36
+      ],
+      "geometry": "rect",
+      "text": "12",
+      "textPreview": "12",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#66727E",
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "12"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "12",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#66727E",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "12",
+              "fontSize": 15,
+              "color": "#66727E",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2l0n2dkr",
+      "id": "4",
+      "bbox": [
+        70,
+        135,
+        535,
+        430
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D8E1E7",
+      "lineWidth": 1
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nm9obi1c",
+      "id": "5",
+      "bbox": [
+        70,
+        135,
+        8,
+        430
+      ],
+      "geometry": "rect",
+      "fillColor": "#2A9D8F",
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/oni54n2x",
+      "id": "6",
+      "bbox": [
+        94,
+        153,
+        493,
+        38
+      ],
+      "geometry": "rect",
+      "text": "Glynia–Thum–Xefteris",
+      "textPreview": "Glynia–Thum–Xefteris",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#143B5D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Glynia–Thum–Xefteris"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Glynia–Thum–Xefteris",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#143B5D",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Glynia–Thum–Xefteris",
+              "fontSize": 23,
+              "color": "#143B5D",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/por6d8ji",
+      "id": "7",
+      "bbox": [
+        94,
+        200,
+        490,
+        348
+      ],
+      "geometry": "rect",
+      "text": "• Agenda setter fixo e desinformado.\n• Dois respondentes simétricos conhecem seus custos.\n• Uma oferta: seguro caro versus aposta barata.\n• Foco em aprovação, transferências e payoff do proponente.",
+      "textPreview": "• Agenda setter fixo e desinformado. | • Dois respondentes simétricos conhecem seus custos. | • Uma oferta: seguro caro versus aposta bar...",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#17212B",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 5,
+        "lines": [
+          {
+            "index": 1,
+            "text": "• Agenda setter fixo e desinformado."
+          },
+          {
+            "index": 2,
+            "text": "• Dois respondentes simétricos conhecem seus custos."
+          },
+          {
+            "index": 3,
+            "text": "• Uma oferta: seguro caro versus aposta barata."
+          },
+          {
+            "index": 4,
+            "text": "• Foco em aprovação, transferências e payoff do"
+          },
+          {
+            "index": 5,
+            "text": "proponente."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "• Agenda setter fixo e desinformado.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Agenda setter fixo e desinformado.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "• Dois respondentes simétricos conhecem seus custos.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Dois respondentes simétricos conhecem seus custos.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "• Uma oferta: seguro caro versus aposta barata.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Uma oferta: seguro caro versus aposta barata.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "• Foco em aprovação, transferências e payoff do proponente.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Foco em aprovação, transferências e payoff do proponente.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6hk7exkv",
+      "id": "8",
+      "bbox": [
+        675,
+        135,
+        535,
+        430
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D8E1E7",
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7idon21g",
+      "id": "9",
+      "bbox": [
+        675,
+        135,
+        8,
+        430
+      ],
+      "geometry": "rect",
+      "fillColor": "#E76F51",
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/v6psra9s",
+      "id": "10",
+      "bbox": [
+        699,
+        153,
+        493,
+        38
+      ],
+      "geometry": "rect",
+      "text": "Nossa mudança de estimando",
+      "textPreview": "Nossa mudança de estimando",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#143B5D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Nossa mudança de estimando"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Nossa mudança de estimando",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#143B5D",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Nossa mudança de estimando",
+              "fontSize": 23,
+              "color": "#143B5D",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u5gry5s7",
+      "id": "11",
+      "bbox": [
+        699,
+        200,
+        490,
+        348
+      ],
+      "geometry": "rect",
+      "text": "• Payoff interino do único ator assimétrico.\n• Benchmark público do mesmo tipo e regra.\n• Maioria pode eliminar toda a informação de H da coalizão.\n• Na extensão, o mesmo H informado recebe agenda.",
+      "textPreview": "• Payoff interino do único ator assimétrico. | • Benchmark público do mesmo tipo e regra. | • Maioria pode eliminar toda a informação de ...",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#17212B",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 5,
+        "lines": [
+          {
+            "index": 1,
+            "text": "• Payoff interino do único ator assimétrico."
+          },
+          {
+            "index": 2,
+            "text": "• Benchmark público do mesmo tipo e regra."
+          },
+          {
+            "index": 3,
+            "text": "• Maioria pode eliminar toda a informação de H da"
+          },
+          {
+            "index": 4,
+            "text": "coalizão."
+          },
+          {
+            "index": 5,
+            "text": "• Na extensão, o mesmo H informado recebe agenda."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "• Payoff interino do único ator assimétrico.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Payoff interino do único ator assimétrico.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "• Benchmark público do mesmo tipo e regra.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Benchmark público do mesmo tipo e regra.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "• Maioria pode eliminar toda a informação de H da coalizão.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Maioria pode eliminar toda a informação de H da coalizão.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "• Na extensão, o mesmo H informado recebe agenda.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#17212B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Na extensão, o mesmo H informado recebe agenda.",
+              "fontSize": 19,
+              "color": "#17212B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/h87at0ri",
+      "id": "12",
+      "bbox": [
+        115,
+        595,
+        1050,
+        54
+      ],
+      "geometry": "rect",
+      "text": "Não reivindicamos uma nova renda de pooling: seguimos quem a recebe e como ela muda com agenda.",
+      "textPreview": "Não reivindicamos uma nova renda de pooling: seguimos quem a recebe e como ela muda com agenda.",
+      "resolvedFontSize": 21.05,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#143B5D",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 0.92,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Não reivindicamos uma nova renda de pooling: seguimos quem a recebe e como ela muda com agenda."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Não reivindicamos uma nova renda de pooling: seguimos quem a recebe e como ela muda com agenda.",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#143B5D",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Não reivindicamos uma nova renda de pooling: seguimos quem a recebe e como ela muda com agenda.",
+              "fontSize": 23,
+              "color": "#143B5D",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/g7yt0fax",
+      "id": "13",
+      "bbox": [
+        72,
+        680,
+        1120,
+        24
+      ],
+      "geometry": "rect",
+      "text": "O Public Choice também contém benchmark público e renda do tipo barato numa oferta aceita por ambos.",
+      "textPreview": "O Public Choice também contém benchmark público e renda do tipo barato numa oferta aceita por ambos.",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 11,
+        "typeface": "+mn-lt",
+        "color": "#66727E",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 3,
+          "right": 4,
+          "bottom": 3,
+          "left": 4
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "O Public Choice também contém benchmark público e renda do tipo barato numa oferta aceita por ambos."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "O Public Choice também contém benchmark público e renda do tipo barato numa oferta aceita por ambos.",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#66727E",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "O Public Choice também contém benchmark público e renda do tipo barato numa oferta aceita por ambos.",
+              "fontSize": 11,
+              "color": "#66727E",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
     }
   ],
   "composeRuns": []
