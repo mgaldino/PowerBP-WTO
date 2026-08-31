@@ -125,15 +125,15 @@ function addImageSlide(imageName, alt) {
 // 2. Puzzle
 {
   const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "O paradoxo da OMC", 2);
-  addCard(slide, 70, 145, 520, 400, "Igualdade formal", "• Primeiro, consenso.\n• Se não houver consenso, votação.\n• Cada membro tem um voto.\n\nMas os Estados Unidos continuam capazes de moldar resultados.", C.blue);
-  addCard(slide, 635, 145, 565, 400, "A pergunta", "Quando o tipo de baixa exigência pode obter mais sob consenso do que sob maioria?", C.orange);
+  addCard(slide, 70, 145, 520, 400, "Igualdade formal na OMC", "Duas fontes de igualdade:\n\n• O consenso implica que todos possuem igual poder de veto.\n\n• Não há controle formal de agenda por nenhum agente.", C.blue);
+  addCard(slide, 635, 145, 565, 400, "A pergunta", "Como assimetria de poder no SI é consistente com igualdade formal em uma IO?", C.orange);
   addFooter(slide, "Art. IX. Com sim na indiferença, consenso e unanimidade são equivalentes no domínio modelado; aplicação teórica.");
 }
 
 // 3. Conventional answer
 {
   const slide = deck.slides.add(); slide.background.fill = C.white; addHeader(slide, "A resposta convencional: pesos invisíveis", 3);
-  addCard(slide, 70, 142, 340, 355, "Agenda e informação", "Controle do texto, do timing e das alternativas; aprendizado sobre as restrições dos fracos.", C.blue);
+  addCard(slide, 70, 142, 340, 355, "Agenda informal", "Controle de agenda informal; timing, alternativas e negociação antes da aprovação.", C.blue);
   addCard(slide, 470, 142, 340, 355, "Poder material", "Ameaça de saída, coerção e fechamento de opções.", C.orange);
   addCard(slide, 870, 142, 340, 355, "Consenso", "Legitima formalmente um acordo já moldado na negociação informal.", C.teal);
   textbox(slide, "Nossa pergunta adicional: o que a regra faz com a informação privada do hegemon?", { left: 120, top: 548, width: 1035, height: 74 }, {
