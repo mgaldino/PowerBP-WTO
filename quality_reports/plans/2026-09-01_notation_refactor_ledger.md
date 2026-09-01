@@ -109,3 +109,14 @@ scripts are read-only sources.
   PDF `243ad597fecac3062ea1050f43b2a650fa8fe60b2415be5476bdf37979fb8143`;
   bibliography
   `71f1413b45b44a4c55a9d0ffb4fb2e1218cfac7ced547829bd0e3eae6200f755`.
+- Author-approved terminology clarification: in the main text, replaced the
+  loose expression “common off-path fiber” with “same off-path specification.”
+  The text now identifies `rho` as the likelihood-ratio coordinate and
+  `mu^{off}` as its implied posterior, and states directly that institutional
+  comparisons never combine components from different equilibrium records.
+  Technical uses of “fiber” and “fiber product” remain in the appendix. The
+  YAML-defined render passed, with Rmd SHA-256
+  `ec9f281efb5e28c4e0b3c1c0c2756a2684aa85f0670e5ce42544ec886c3f0a97`
+  and PDF SHA-256
+  `146fee55cb063b645121f2a6802a85c58816c542a5474442691c0903af5fafc4`.
+  The Introduction block remains byte-identical to the principal branch.

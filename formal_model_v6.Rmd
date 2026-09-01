@@ -882,15 +882,17 @@ e=m-k,\qquad v_M^{\mathrm{safe}}=1-\frac{k\beta}{m}.
 \]
 Under majority, \(k\) is the number of weak votes that \(H\) must buy and
 \(e\) is the number of weak states that a minimal winning coalition can leave
-outside. The private games also retain the common off-path fiber
-\((\rho,\mu^{\mathrm{off}})\), where
+outside. The private games also retain the same off-path specification,
+summarized by the likelihood-ratio coordinate \(\rho\) and its implied posterior
+\(\mu^{\mathrm{off}}\), where
 \[
 \mu^{\mathrm{off}}
 =\frac{p\rho}{1-p+p\rho}
 \]
-for an interior prior; at an endpoint, the fiber is \((*,p)\). Comparisons across
-rules always pair complete equilibrium records in the same economy and the
-same fiber. They do not splice type payoffs, proposals, or outcomes from
+for an interior prior. At an endpoint, \(\rho\) is irrelevant and
+\(\mu^{\mathrm{off}}=p\). Comparisons across rules always pair complete
+equilibrium records from the same economy and under the same off-path
+specification. They never combine type payoffs, proposals, or outcomes from
 different records.
 
 ## Public agenda power
