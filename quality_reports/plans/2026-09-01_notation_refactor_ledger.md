@@ -66,3 +66,16 @@ scripts are read-only sources.
   PDF `374d83889dab79fa6de881ba4190a4d3afbfed84292bbfb13d9f7730ee230ae6`.
   The linked fibers, `none` cells, and separate definitions of `T` and `Q`
   were retained. The Introduction remained untouched.
+- Introduction transfer: copied verbatim from commit
+  `462ea472c3a506d7c478acd12239e6208f71f277` on `codex/essential-input`.
+  The extracted source and destination blocks have the same SHA-256,
+  `a1fa56b59519e10a2a9c80343d35c732c0111eac229d0e401cbeeb88c75b522f`.
+  No wording was corrected or completed.
+- Bibliography gate: the two source-Introduction orphans were repaired in
+  `references.bib` and the candidate rendered without citation warnings. See
+  `quality_reports/2026-09-01_validate_bib_notation_refactor.md`.
+- Post-transfer candidate hashes: Rmd
+  `ce6b791a06dc2d253bfc856af3cf9dc94e1ee34dc9e521bef360f44dabe5b2cf`;
+  PDF `09be930e6ffcb804647849940015b46c7f4e8669caa152e53468c5fb4b9cdc14`;
+  bibliography
+  `7f758b42c7a21871afe89e0deca7564f0246bc4479e5ed225149d44831037e80`.
