@@ -79,3 +79,25 @@ scripts are read-only sources.
   PDF `09be930e6ffcb804647849940015b46c7f4e8669caa152e53468c5fb4b9cdc14`;
   bibliography
   `7f758b42c7a21871afe89e0deca7564f0246bc4479e5ed225149d44831037e80`.
+- First independent post-transfer review: the formal text passed all formula,
+  domain, correspondence, date, empty-cell, sign-orientation, and `T`/`Q`
+  checks. The candidate failed the artifact gate because the four embedded
+  figures still displayed the old notation; a separate PDF review also found
+  three elements extending past the normal text margin. No reviewer edited
+  the candidate.
+- Artifact repair: updated only reader-facing labels in
+  `scripts/essential_input_manuscript_figure_functions.R`, regenerated all
+  four PDF/PNG figure bundles, and changed the F3 data labels from `RI` to
+  `IR`. The generator retained the frozen N6/N7 hash checks, and all plotted
+  numeric values and geometries remained unchanged. The three overmargin
+  elements were reflowed without changing their mathematical content.
+- Post-repair checks: YAML-defined rendering succeeded; all 66 pages are
+  nonempty; PDF text contains none of `o_theta`, `o0`, `o1`, `nu_SE`, `nu*`,
+  `RI_M`, `RI_U`, or `DeltaRI`; and the bounding-box scan found no text past
+  the normal right boundary. Candidate hashes: Rmd
+  `a55b976f7ee217e1c9a24ddf03424494b5bd33c173154b1215c2b01e773dc642`;
+  PDF `c06d7d55e735a0acd65924e2606fa3d4c7aa0aac3d38bd02de72b6da1dd34c63`;
+  bibliography
+  `7f758b42c7a21871afe89e0deca7564f0246bc4479e5ed225149d44831037e80`.
+  The Introduction remains byte-identical to the principal-branch block, SHA-256
+  `a1fa56b59519e10a2a9c80343d35c732c0111eac229d0e401cbeeb88c75b522f`.

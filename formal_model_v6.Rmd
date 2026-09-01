@@ -160,7 +160,7 @@ proposal, and amendment protocol & Familiar agenda power; deliberately removed
 from the baseline hegemon \\
 Market size, sanctions, alternative forums, withdrawal from GATT 1947 &
 Disagreement and continuation payoffs & Microfoundation for asymmetric and
-possibly privately known \(o_\theta\) \\
+possibly privately known \(o\in\{\ell,h\}\) \\
 Side payments, exceptions, transition periods, issue linkage, single undertaking
 & Feasible contract space and closure rule & Motivation for a divisible package;
 single undertaking is distinct from destruction of the old fallback \\
@@ -1916,7 +1916,9 @@ limits. At \(p=0\), support preservation fixes
  &v_U^A(\ell)=\beta^2h,\\
 \text{any Borel law supported on }\mathcal R_L,&v_U^A(\ell)<\beta^2h,
 \end{cases}
-\qquad
+\]
+where
+\[
 \mathcal R_L=\{x\in\mathcal X:\min_jx_j<r_U(\ell)\}.
 \]
 The linked payoff is
@@ -2132,7 +2134,10 @@ IR_g^A
 This fixed-vector translation preserves every atom, mixture, and linked type
 coordinate. The exact unanimity cells are:
 
-\begin{longtable}{p{0.37\linewidth}p{0.37\linewidth}p{0.17\linewidth}}
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{p{0.35\linewidth}p{0.35\linewidth}p{0.17\linewidth}}
 \caption{Unanimity informational rent with hegemonic agenda}\label{tab:auri}\\
 \toprule
 Fiber & \(IR_U^A\) & Ex ante image \\
@@ -2159,6 +2164,7 @@ v_U^A(h)-v_{U,E}^A(p)]\) \\
 \(p=1\) & \((v_U^A(h)-v_U^A(\ell),0)\) & \(0\) \\
 \bottomrule
 \end{longtable}
+\endgroup
 
 Here \(v_{U,E}^A(p)=(1-p)v_U^A(\ell)+pv_U^A(h)\). Every existing cell satisfies
 \[
@@ -2424,11 +2430,13 @@ I_U=
 \begin{cases}
 (0,\max\{v_U^A(\ell),\beta^2h\}-v_U^A(h)),&p=0,\\
 \varnothing,&0<p\leq p^*,\\
-\{(u-v_U^A(h),u-v_U^A(h)):
-u\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]\},
+\left\{\begin{gathered}
+(u-v_U^A(h),u-v_U^A(h)):\\
+u\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]
+\end{gathered}\right\},
  &p^*<p<1,\ \mu^{\mathrm{off}}=0,\\
-(0,0),&p^*<p<1,\ \mu^{\mathrm{off}}\in(p^*,1],\\
-\varnothing,&p^*<p<1,\ \mu^{\mathrm{off}}\in(0,p^*],\\
+(0,0),&\substack{p^*<p<1,\\ \mu^{\mathrm{off}}\in(p^*,1]},\\
+\varnothing,&\substack{p^*<p<1,\\ \mu^{\mathrm{off}}\in(0,p^*]},\\
 (0,0),&p=1.
 \end{cases}
 \]
