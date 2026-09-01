@@ -1,0 +1,2965 @@
+Power and Its Shadow: When Unanimity Serves the
+                                      Hegemon
+
+       Manoel Galdino (University of São Paulo; mgaldino@usp.br)
+
+                                        2026-08-22
+
+                                           Abstract
+
+    International organizations combine formally equal votes with large inequalities in bargain-
+ ing power. This paper isolates one channel through which that combination can favor a hege-
+ mon. In a two-round benchmark, only weak states propose and a hegemon privately knows
+ whether its disagreement payoff is low or high. Majority permits a proposer to replace the
+ hegemon with uninformed weak-state votes, while unanimity makes its privately informed ap-
+ proval indispensable. Comparing each private game with its public-type counterpart separates
+ the value of a necessary vote from type-specific informational rent. The institutional rank-
+ ing is conditional and the maintained pure-strategy correspondence is empty in some belief
+ regions. We then add an earlier, mandatory stage in which the informed hegemon proposes.
+ Public agenda power can favor either rule: majority has an advantage when the outside option
+ is low, while unanimity can gain when the outside option makes majoritarian delay attractive.
+ Under private information, the structural causal contrast of agenda is a correspondence and
+ decomposes as 𝑇 = 𝐷 + 𝐼 , where 𝐷 is the complete-information agenda effect and 𝐼 is its
+ interaction with informational rent. Agenda weakly benefits both types under unanimity wher-
+ ever both arms exist; no general sign is imposed under majority. The analysis preserves linked
+ type vectors, empty cells, and equilibrium multiplicity. It shows how veto indispensability,
+ agenda power, and private information jointly shape the distributive value of formally equal
+ approval rules.
+
+
+
+
+                                               1
+1    Introduction
+At the height of American power, the United States led the creation of the World Trade Organiza-
+tion (WTO). One would expect that bargaining outcomes in the trading system would reflect the
+asymmetry of power in the international system. Surely, International Organizations created by
+the hegemon would reflect such asymmetries in their rules. And yet, the WTO was created on the
+basis of equality rather than power: decisions by consensus meant that each member had equal veto
+power, and the US had no agenda power. Why would a hegemon help create an organization in
+which every state would formally be its equal?
+
+The standard explanation is that equality under the law does not mean equality in practice. Coer-
+cion and Information institutions rule the negotiation process and shape the results, favoring the
+powerful over the weak (Steinberg 2002). The US and the (then) European Community drafted the
+negotiation texts used by all, offered market access and exit options to alter other states’ alternatives,
+assembled linked packages, and gathered information through successive proposals and objections.
+
+The best example is the process that ended with the creation of the WTO. At the close of the Uruguay
+Round, they threatened states that did not accept the creation of the WTO with withdrawal from the
+GATT 1947. The status quo was no longer available for such states. This episode shows how
+material power can enter a formally egalitarian institution through the agenda, the contract space,
+and the value of disagreement.
+
+From the perspective of the distributive rationalist tradition, which focuses on bargaining theories
+of multilateral bodies (Voeten 2019), it is hard to reconcile this explanation with a rationalist frame-
+work. Consider the standard Baron and Ferejohn framework (Baron and Ferejohn 1989). Under
+open rule and equal recognition of the probability of proposal, combined with unanimity, there is
+no asymmetry of power and, as a result, no inequality of outcomes (Kalandrakis 2006). Concretely,
+if the US or the so-called Quad (US, EC, Japan, and Canada) had no formal agenda power, any
+country could propose a deal at any stage of a bargaining round. In fact, many coalitions did that
+during the Uruguay Round; for example, the agro-export group of countries called the Cairns Group
+(Cairns Group 1987). So, either a hegemon like the US made a blunder, or there is a need to further
+explain the institutional architecture of institutions like the OMC from a rationalist point of view,
+much like Fearon (1995) did for war.
+
+                                                    2
+More recently, the formal literature has investigated multilateral settings in which a single unin-
+formed player is the sole proposer and multiple symmetric responders privately know their own
+types. On the one hand, they highlighted how the uninformed player may optimally choose to
+transfer informational rents as insurance against rejection (Glynia, Thum, and Xefteris 2026). On
+the other hand, they show that informed responders can likewise obtain informational rents by acting
+tough, since rejection under unanimity can improve their continuation offers (Piazolo and Vanberg
+2025).
+
+However, their models do not study settings in which power, rather than weakness, is concentrated
+in a single player, a key theme in International Relations. There is also no explanation of what hap-
+pens to informational rent when the same actor holds both private information and proposal power,
+nor of the role of screening by uninformed weak players versus signaling by the informed player
+when proposing. Most importantly, in these models, changing the voting rule changes how many
+informed voters the proposer must buy and therefore the relative appeal of pooling and screening,
+but every winning coalition still includes an informed responder. They leave open a more funda-
+mental question: what happens to the informed actor’s bargaining power and informational rents
+when a minimum winning coalition can be formed entirely from uninformed voters? This question
+is central to understanding the comparison between majority and unanimity from the perspective of
+the most powerful actor.
+
+The current paper fills this gap with a general 𝑛-player bargaining game in which power is concen-
+trated in a single player, the hegemon, while all other players are symmetric and weak. As in the
+existing literature, the privately informed actor can be either a high or a low type. I first investigate
+what happens when even the powerful actor is stripped of proposal power. I then reintroduce pro-
+posal power by allowing the hegemon to make the first proposal, as often occurs in international
+organizations.
+
+I show that..
+
+Section 3 works a numerical case. Section 4 defines the game and solution concept. Section 5
+solves the complete-information benchmarks, then the private games, and finally the informational
+rents and their difference across voting rules. Section 7 interprets the essential-input mechanism
+and its limits. The appendices give the proofs, the endpoint conventions, the exact correspondence
+
+
+                                                   3
+tables, and the worked values.
+
+
+
+2    Literature and contribution
+
+2.1 Formal equality and informal power in international institutions
+
+The paper begins from an established problem in international political economy. International or-
+ganizations often give states formally equal rights while operating in a system with large disparities
+in markets, outside options, and coercive capacity (Krasner 1983; Koremenos, Lipson, and Snidal
+2001). Research on informal governance shows how powerful states can preserve formally neu-
+tral rules while influencing agendas, staffing, enforcement, and the alternatives available to weaker
+members (Steinberg 2002; Stone 2011). The result is neither formal equality translated mechani-
+cally into equal influence nor material power operating wholly outside institutions. Power works
+through the bargaining environment in which formal rules are used.
+
+Steinberg’s study of the GATT and WTO supplies the closest substantive account (Steinberg 2002).
+He distinguishes law-based bargaining, in which members take sovereign-equality procedures seri-
+ously, from power-based bargaining that invisibly weights outcomes toward the United States and
+the European Community. His historical evidence covers several practices: Green Room and Quad
+agenda setting, control of drafts and packages, market-access leverage, sanctions and forum exit,
+side payments and issue linkage, successive probes of state preferences, and legitimacy generated
+by an appearance of consent. These practices do not all constitute separate mechanisms. They can
+be organized by the strategic object each one changes.
+
+
+
+
+                                                  4
+                     Table 1: Steinberg’s practices and their strategic counterparts
+
+  Observed practice              Strategic object                     Relation to this paper
+
+  Green Room, Quad, draft-       Recognition,       proposal,   and   Familiar agenda power; deliberately
+  ing,      difficult-to-amend   amendment protocol                   removed from the baseline hegemon
+  packages
+  Market size,      sanctions,   Disagreement and continuation        Microfoundation for asymmetric and
+  alternative forums, with-      payoffs                              possibly privately known 𝑜 ∈ {ℓ, ℎ}
+  drawal from GATT 1947
+  Side payments, exceptions,     Feasible contract space and clo-     Motivation for a divisible package; sin-
+  transition periods, issue      sure rule                            gle undertaking is distinct from de-
+  linkage, single undertaking                                         struction of the old fallback
+  Proposals,       objections,   Information structure                Steinberg     emphasizes    information
+  working groups, and ple-                                            flowing from weak members to agenda
+  nary probes                                                         setters;    the model studies private
+                                                                      information held by the hegemon
+  Legitimacy,      implemen-     Future participation and en-         Complementary mechanisms outside
+  tation,    and reputational    forcement                            the paper’s two-round baseline
+  concerns
+
+
+
+This reconstruction clarifies the paper’s counterfactual. The model accepts the asymmetry of dis-
+agreement values and the availability of compensating concessions, both of which Steinberg helps
+motivate. It then removes the hegemon’s exclusive proposal power. That restriction does not assert
+that agenda power was absent from the WTO. It permits a cleaner question: can a formally equal
+approval rule give a privately informed hegemon a distributive advantage even when weak states
+control proposals?
+
+
+2.2 Proposal rights and multilateral bargaining
+
+Baron and Ferejohn provide the canonical framework for that question (Baron and Ferejohn 1989).
+Their model places recognition, proposals, voting, and continuation values inside a sequential non-
+cooperative game. This move makes legislative outcomes depend on the rules governing both
+
+                                                         5
+agenda formation and approval, rather than on voting power alone. It also establishes the vocabu-
+lary used here: recognized proposers divide a fixed surplus, build winning coalitions, and compare
+immediate agreement with continuation.
+
+Kalandrakis isolates the distributive force of recognition more sharply (Kalandrakis 2006). For
+monotonic voting rules and arbitrary discount factors, appropriate proposal probabilities can sup-
+port any division of the surplus as stationary equilibrium payoffs. Proposal rights can therefore
+dominate the political power attributed to votes or patience. This is the benchmark the present pa-
+per switches off. The hegemon is never recognized in the baseline, so a favorable payoff cannot
+be attributed to its probability of proposing. Work on proposal and veto rights and the broader
+legislative- bargaining literature further shows that approval thresholds, continuation values, and
+recognition jointly determine who is bought into a coalition (Winter 1996; McCarty 2000; Eraslan
+and Evdokimov 2019).
+
+Heterogeneity in disagreement values supplies the complete-information bridge. Miller, Montero,
+and Vanberg show that a player with an expensive known vote can benefit under unanimity and be
+excluded from a minimal winning coalition under majority (Miller, Montero, and Vanberg 2018).
+That is a public-type effect of pivotality and coalition composition. The contribution here begins
+after this benchmark by asking what private information adds to the same institutional comparison.
+
+
+2.3 Private information and the price of approval
+
+Piazolo and Vanberg offer the closest dynamic comparison (Piazolo and Vanberg 2025). A fixed,
+uninformed proposer bargains for two periods with responders who privately know their disagree-
+ment values. Rejection in the first period can signal that a responder is expensive. Under unanimity,
+that reputation improves the responder’s continuation offer; under majority, it can lead to exclusion
+from the next coalition. Their result establishes the comparative root on which this paper builds:
+toughness is rewarded when a vote is indispensable and punished when the voter can be replaced.
+It also predicts visible bargaining friction, because rejection carries the signal.
+
+Glynia, Thum, and Xefteris close the dynamic channel (Glynia, Thum, and Xefteris 2026). Their
+proposer makes one offer without knowing the acceptance costs of symmetric responders. The
+relevant choice is between a costly package that insures against high types and a cheaper gamble
+
+                                                   6
+that buys only enough low-cost votes. Unanimity can induce the safe package, while majority can
+induce the gamble. This mechanism can raise approval under unanimity or raise total transfers
+under majority, reversing familiar rankings without learning through delay.
+
+These papers establish mechanisms that the present analysis should not claim as new. Piazolo and
+Vanberg show how the voting rule changes the signaling value of rejection. Glynia, Thum, and
+Xefteris show how it changes the proposer’s insurance problem. The present paper changes the
+organization of private information. One asymmetric actor, the hegemon, is informed; the weak
+states that can substitute for it are not. Majority can therefore bypass the only private information
+relevant to the proposed payment. Unanimity makes that information unavoidable.
+
+The distinction produces two results absent from the neighboring models. First, the approval rule
+acts as an on-off switch for the informed participant rather than only changing the price of one
+informed vote relative to another. Second, the public-type benchmark permits a type-specific de-
+composition between the value of a necessary vote and the additional rent created by uncertainty. In
+the pooling region, that rent can arise through immediate agreement, without an on-path rejection.
+The paper therefore studies who receives the surplus when the only privately informed actor moves
+from replaceable to indispensable.
+
+Related models of incomplete-information bargaining examine majority-only screening, cheap talk,
+reputational toughness, and informational loss (Tsai 2009; Tsai and Yang 2010; Chen and Eraslan
+2013, 2014; Ma 2023). Informational voting models ask how votes aggregate signals distributed
+across voters (Feddersen and Pesendorfer 1998). Here weak states hold no private signals about
+the hegemon. The institutional comparison operates through coalition composition and the price of
+one actor’s privately known participation constraint.
+
+
+
+3    A working numerical illustration
+Consider one hegemon and four weak states. The unit pie is bargained over with discount factor
+0.9. The two disagreement payoffs are 0.10 and 0.35. In the terminal unanimity round, a proposer
+chooses between an offer accepted only by the low outside option and an offer accepted under either
+
+
+
+
+                                                 7
+outside option. The cutoff probability of the high outside option is
+
+                                          0.35 − 0.10
+                                   𝑝∗ =               = 0.2778.
+                                           1 − 0.10
+
+At a belief of 0.20, the proposer offers 0.10 and accepts the risk of failure when the outside option
+is high. At a belief of 0.35, it offers 0.35 and both outside-option values accept. This is a working
+numerical illustration, not an empirical calibration. The full two-round game adds the option to buy
+weak-state votes and the continuation created by a failed first ballot.
+
+
+
+4    The model
+
+4.1 Players, information, and proposals
+
+There is one hegemon, 𝐻 , and 𝑚 ≥ 3 weak states, 𝑊 = {1, … , 𝑚}, for a total of 𝑚 + 1 states.
+Nature selects 𝐻 ’s terminal disagreement payoff 𝑜 ∈ {ℓ, ℎ}, observed only by 𝐻 , with Pr(𝑜 =
+ℎ) = 𝑝 ∈ [0, 1]. The two possible values satisfy
+
+
+                                          0 < ℓ < ℎ < 1.
+
+
+The game has two rounds. In each round, one weak state is recognized uniformly to propose; 𝐻 is
+never a proposer. The two recognition draws are independent and made with replacement. Every
+weak state remains eligible in Round 2, including the Round-1 proposer. A proposal by weak state
+𝑖 is the allocation vector
+
+
+    𝑥 = (𝑥𝐻 , (𝑥𝑗 )𝑗∈𝑊 ) ∈ 𝒳,                          ̄ , 𝑥𝑗 ≥ 0, 𝑥𝐻 + ∑ 𝑥𝑗 ≤ 1} ,
+                                    𝒳 = {𝑥 ∶ 0 ≤ 𝑥𝐻 ≤ 𝑥𝐻
+                                                                                 𝑗∈𝑊
+
+
+where ℎ ≤ 𝑥𝐻
+           ̄ ≤ 1. Payments cannot be negative and side payments outside the proposed package
+are unavailable. Here 𝑥𝐻 is the institutional concession assigned to 𝐻 , and 𝑥𝑗 is weak state 𝑗’s
+share, including the proposer when 𝑗 = 𝑖. The fixed unit pie is exhausted on the equilibrium path.
+Agreement provides 𝐻 no intrinsic benefit beyond 𝑥𝐻 , which isolates informational concessions
+and pivotality from any direct value of agreement.
+
+
+                                                   8
+4.2 Ballots, timing, and payoffs
+
+The proposer is counted as voting yes. All other states vote simultaneously; the complete vote
+vector and outcome become public only after all votes have been cast. Define
+
+                                                 𝑚+1
+                                          𝑘=⌊        ⌋.
+                                                  2
+
+Under majority, passage requires 𝑘 additional yes votes beyond the proposer’s; unanimity requires
+every state’s yes vote. The ballot protocol is otherwise identical across rules.
+
+If a proposal passes, every stated allocation is implemented. If 𝐻 votes yes, it receives 𝑥𝐻 . If 𝐻
+votes no but a majority passes the proposal without it, its general payoff is 𝑥𝐻 + 𝑜. This formula is
+part of the complete game because the proposed institutional term 𝑥𝐻 is implemented even without
+𝐻 ’s approval. In every equilibrium exclusion derived below, however, the proposer chooses 𝑥𝐻 =
+0; the hegemon therefore receives exactly 𝑜, never a positive concession on top of it.
+
+If nothing passes in Round 1, no payoff is realized then and the game proceeds to Round 2. Round-2
+payoffs are multiplied by 𝛽 ∈ (0, 1) when evaluated in Round-1 units. If nothing passes in Round
+2, each weak state receives zero and 𝐻 receives 𝑜 in Round-2 units. A no vote is only a ballot
+action; it does not remove a player or trigger disagreement by itself. [AUTHOR: P1] The delayed
+terminal disagreement payoff represents the cost of prolonging international negotiations.
+
+                    Table 2: Transitions and payoffs in the essential-input game
+
+ Event                      Weak-state payoffs           𝐻 votes yes               𝐻 votes no
+
+ Proposal passes            Proposed 𝑥𝑗 , including 𝑥𝐻                             𝑥𝐻 + 𝑜
+                            𝑥𝑖
+ Round-1 proposal fails     No current payoff; pro- 𝛽𝐶𝐻 (𝔥𝑌 )                      𝛽𝐶𝐻 (𝔥𝑁 )
+                            ceed to Round 2
+ Round-2 proposal fails     Zero                         𝑜                         𝑜
+
+
+
+Here 𝔥𝑌 and 𝔥𝑁 denote the distinct public histories in which 𝐻 voted yes or no, and 𝐶𝐻 (𝔥𝑎 )
+denotes 𝐻 ’s Round-2 continuation value after history 𝔥𝑎 . These continuation values need not be
+
+
+                                                  9
+equal because the public vote can change beliefs before Round 2.
+
+                                                               Quota met
+                                                         package implemented
+
+
+     Weak proposer             Simultaneous ballot                                                             Quota met
+chooses a Round-1 package   vote vector becomes public                                                    package implemented
+
+
+                                                         Quota not met         Weak proposer chooses
+                                                         Round 2 begins        terminal package; ballot
+
+
+                                                                                                             Quota not met
+                                                                                                          terminal disagreement
+
+
+Figure 1: Sequence of proposals and ballots. Within each ballot, responding states vote simultane-
+ously. A failed first-round proposal continues to the terminal round; a no vote alone does not end
+the game.
+
+
+
+4.3 Solution concept
+
+We use perfect Bayesian equilibrium with pure ballot strategies and three declared disciplines. First,
+an action by a player who does not know 𝑜 does not change beliefs about 𝑜. After an action by 𝐻 ,
+beliefs follow Bayes’ rule whenever possible and otherwise satisfy structural consistency. Second,
+a weak responder evaluates yes and no as if its own vote were pivotal. Third, a voter accepts when
+exactly indifferent in expected value. Among proposal choices that give the proposer the same
+expected payoff, the selected proposal minimizes 𝐻 ’s expected payoff.
+
+Endpoint beliefs preserve the support of the prior. If 𝑝 = 0, the posterior assigns zero probability
+to ℎ at every history; if 𝑝 = 1, it assigns probability one to ℎ. For 0 < 𝑝 < 1, an action by 𝐻
+that has zero probability under both outside-option values may support any posterior in [0, 1]. This
+is a condition of our solution concept. It follows the no-signaling logic used in multistage games
+(Fudenberg and Tirole 1991); support preservation is analogous to, but narrower than, the never-
+dissuaded discipline discussed by Osborne and Rubinstein (1990). Tremble consistency motivates
+the restriction but is not invoked as a theorem for degenerate priors (Kreps and Wilson 1982).
+
+
+
+
+                                                          10
+                               Table 3: Scope of the formal results
+
+    Element                       Maintained scope
+
+    Players and horizon           One hegemon, 𝑚 ≥ 3 weak states, two rounds
+    Agenda                        Only weak states propose in both rounds
+    Voting                        Simultaneous public ballots; majority or unanimity
+    Information                   Private outside option 𝑜 ∈ {ℓ, ℎ}; support-preserving end-
+                                  points
+    Payoffs                       Unit pie, 0 < ℓ < ℎ < 1, 0 < 𝛽 < 1; no intrinsic agreement
+                                  benefit for 𝐻
+    Equilibrium                   Perfect Bayesian equilibrium in pure ballot strategies with the
+                                  declared voting and proposal tie-break rules
+
+
+
+4.4 Separate agenda-stage extension
+
+The benchmark above remains the paper’s primary model. After solving it, we consider a sepa-
+rate extension in which the informed hegemon must make an earlier proposal at date 𝐴. Passage
+implements that proposal immediately; failure enters Round 1 of the benchmark and transports its
+complete continuation by exactly one factor 𝛽 . The extension gives 𝐻 no option to skip the pro-
+posal while retaining a date-𝐴 continuation. Section 6 states the economic results, and Appendices
+E–F preserve the complete equilibrium correspondences and date conventions.
+
+
+
+5     Results
+The solution proceeds by backward induction. We begin with public types because that benchmark
+separates the value of a necessary vote from the value of private information. We then solve the
+private terminal games, the private first-round games, and finally subtract the public benchmark
+component by component.
+
+
+
+
+                                                  11
+5.1 Complete-information benchmark
+
+With a public type, no belief or signaling issue remains. The proposer compares the price of 𝐻 ’s
+vote with the price of enough weak-state votes. In the terminal round, the relevant price of 𝐻 is 𝑜.
+In the first round, it is 𝛽𝑜, because rejection leads to the terminal round. Under majority, a weak-
+state vote costs 𝛽/𝑚 in first-round units. Under unanimity with public disagreement payoff 𝑜, each
+weak responder’s continuation price is 𝛽(1 − 𝑜)/𝑚.
+
+Proposition 5.1 (Public-type benchmark). Fix a public type with disagreement payoff 𝑜. In the ter-
+minal round, majority passes a proposal without 𝐻 , assigns 𝑥𝐻 = 0, and gives the weak proposer
+the whole unit pie; 𝐻 receives 𝑜. Terminal unanimity passes with 𝑥𝐻 = 𝑜, and the weak proposer
+retains 1 − 𝑜.
+
+In Round 1, unanimity passes immediately with 𝑥𝐻 = 𝛽𝑜. Majority includes 𝐻 if 𝑜 ≤ 1/𝑚 and
+excludes it if 𝑜 > 1/𝑚. At equality the proposal including 𝐻 is selected. Consequently, the public
+Round-1 payoff of 𝐻 is
+
+                                    ⎧
+                          𝐵
+                                    {𝛽𝑜, 𝑜 ≤ 1/𝑚,            𝐵
+                         𝑣𝑀 (𝑜) = ⎨                         𝑣𝑈 (𝑜) = 𝛽𝑜.
+                                    {𝑜,     𝑜 > 1/𝑚,
+                                    ⎩
+
+
+
+
+                                                12
+                 Table 4: Complete-information outcomes by round and voting rule
+
+ Round         Rule             Proposed payments             Weak proposer             𝐻
+
+ 2             Majority         𝑥𝐻 = 0; weak responders       1                         𝑜
+                                get zero
+ 2             Unanimity        𝑥𝐻 = 𝑜; weak responders       1−𝑜                       𝑜
+                                get zero
+ 1             Majority, 𝑜 ≤    𝑥𝐻 = 𝛽𝑜; 𝑘 − 1 responders     1 − 𝛽𝑜 − (𝑘 − 1)𝛽/𝑚       𝛽𝑜
+               1/𝑚              get 𝛽/𝑚
+ 1             Majority, 𝑜 >    𝑥𝐻 = 0; 𝑘 responders get      1 − 𝑘𝛽/𝑚                  𝑜
+               1/𝑚              𝛽/𝑚
+ 1             Unanimity        𝑥𝐻 = 𝛽𝑜; every responder      1 − 𝛽𝑜 − (𝑚 − 1)𝛽(1 −     𝛽𝑜
+                                gets 𝛽(1 − 𝑜)/𝑚               𝑜)/𝑚
+
+
+
+At 𝑜 = 1/𝑚, buying 𝐻 ’s vote and buying the substitute weak-state vote cost the proposer the same
+amount. The proposal tie-break selects inclusion because it gives 𝐻 the lower payoff 𝛽𝑜 < 𝑜.
+
+
+5.2 Private information in the terminal round
+
+Let
+                                                    ℎ−ℓ
+                                            𝑝∗ =        .
+                                                    1−ℓ
+Under terminal majority, 𝐻 ’s vote is unnecessary and the belief never enters the proposer’s choice.
+Under terminal unanimity, the proposer compares a low offer that succeeds only when the type is
+low with a high offer that both types accept.
+
+Proposition 5.2 (Private terminal games). Under majority, the unique equilibrium outcome assigns
+𝑥𝐻 = 0, pays no responding weak state, and gives the full pie to the proposer. The proposal passes
+without 𝐻 ; a hegemon with outside option 𝑜 receives 𝑜, and a weak state receives 1/𝑚 before
+recognition.
+
+Under unanimity, if 𝑝 ≤ 𝑝∗ , the proposer offers 𝑥𝐻 = ℓ. The low outside-option type accepts and
+the high outside-option type rejects, so the proposal succeeds with probability 1 − 𝑝. If 𝑝 > 𝑝∗ , the
+
+
+                                                   13
+proposer offers 𝑥𝐻 = ℎ and both types accept. At 𝑝 = 𝑝∗ , the low offer is selected.
+
+The cutoff equates (1 − 𝑝)(1 − ℓ), the proposer’s payoff from the low offer, with 1 − ℎ, its payoff
+from pooling. Notice that no discount factor appears inside this terminal comparison.
+
+
+5.3 Private majority in Round 1
+
+Let 𝑤 = 𝛽/𝑚. The proposer’s payoffs from the three undominated outcome classes are:
+
+
+                            Π𝐸 = 1 − 𝑘𝑤,
+                         Π𝑆 (𝑝) = (1 − 𝑝) [1 − (𝑘 − 1)𝑤 − 𝛽ℓ] + 𝑝𝑤,
+                            Π𝑃 = 1 − (𝑘 − 1)𝑤 − 𝛽ℎ.
+
+Exclusion buys 𝑘 weak responders at price 𝑤 each and sets 𝑥𝐻 = 0. Screening buys 𝑘 − 1 weak
+responders and offers 𝛽ℓ: the low outside-option type accepts and the high outside-option type
+delays. Pooling buys 𝑘 − 1 weak responders and offers 𝛽ℎ, which both types accept. Deliberate
+delay is strictly worse than exclusion because 1 − 𝛽(𝑘 + 1)/𝑚 > 0.
+
+When ℓ < 1/𝑚, define
+
+                                            𝛽(1/𝑚 − ℓ)
+                           𝑝𝑆=𝐸 =                               .
+                                    𝛽(1/𝑚 − ℓ) + 1 − 𝛽(𝑘 + 1)/𝑚
+
+When ℎ < 1/𝑚, define
+                                                𝛽(ℎ − ℓ)
+                                   𝑝𝑆=𝑃 =                  .
+                                             1 − 𝛽ℓ − 𝛽𝑘/𝑚
+
+Proposition 5.3 (Private majority correspondence). For 𝑚 ≥ 3, the equilibrium outcome class is:
+
+   1. If ℎ < 1/𝑚, screening for 𝑝 ≤ 𝑝𝑆=𝑃 and pooling above it.
+
+   2. If ℓ < 1/𝑚 < ℎ, screening for 𝑝 ≤ 𝑝𝑆=𝐸 and exclusion above it.
+
+   3. If 1/𝑚 < ℓ < ℎ, exclusion for every 𝑝.
+
+   4. If ℓ = 1/𝑚 < ℎ, screening at 𝑝 = 0 and exclusion for 𝑝 > 0.
+
+   5. If ℓ < ℎ = 1/𝑚, screening for 𝑝 ≤ 𝑝𝑆=𝐸 . Above that cutoff, exclusion is selected when
+      (1 − 𝑝)ℓ + 𝑝ℎ < 𝛽ℎ, pooling is selected when the inequality is reversed, and the entire
+
+                                                14
+      proposal segment joining the two survives when the two expressions are equal.
+
+At every cutoff involving screening, screening is selected. Permuting the identities of identically
+paid weak responders generates additional equilibria but does not change 𝐻 ’s payoff vector or
+the outcome class. Payoffs of weak states identified by label can be permuted and, on the residual
+proposal family, vary with the common proposal weight.
+
+The last segment is genuine multiplicity. Its mixing weight is a probability over pure proposals in
+the proposer’s strategy, and the same weight must be used jointly for payoffs and outcomes. It is
+not a license to combine componentwise minima and maxima into an unattained rectangle.
+
+
+5.4 Private unanimity in Round 1
+
+Let
+                                      𝛽(1 − ℓ)                  𝛽(1 − ℎ)
+                              𝑤ℓ𝑈 =            ,        𝑤ℎ𝑈 =            .
+                                         𝑚                         𝑚
+At 𝑝 = 0, support preservation prevents an impossible high type from being reintroduced by an
+off-path belief. The proposer can therefore offer the low threshold 𝛽ℓ, pay each responding weak
+state its continuation 𝑤ℓ𝑈 , and keep 𝑤ℓ𝑈 + 1 − 𝛽 . When 𝑝 > 𝑝∗ , the continuation itself pools, so
+the proposer offers 𝛽ℎ, pays each responder 𝑤ℎ𝑈 , and keeps 𝑤ℎ𝑈 + 1 − 𝛽 .
+
+The intermediate cell fails for a different reason. A feasible deviation can pay every weak responder
+enough to force a yes vote. Once all weak votes are yes, no pure contingent voting profile for the
+two possible types of 𝐻 survives: pooling yes is rejected by the high type, pooling no is overturned
+by the low type at equality, and either separating profile gives one type a profitable imitation.
+
+Proposition 5.4 (Private unanimity correspondence). Under unanimity:
+
+
+      𝑝=0       ∶ immediate low-type agreement with 𝑥𝐻 = 𝛽ℓ, 𝑥𝑗 = 𝑤ℓ𝑈 , 𝑥𝑖 = 𝑤ℓ𝑈 + 1 − 𝛽;
+
+ 0 < 𝑝 ≤ 𝑝∗ ∶ no perfect Bayesian equilibrium in pure ballot strategies;
+
+ 𝑝∗ < 𝑝 ≤ 1 ∶ immediate pooling agreement with 𝑥𝐻 = 𝛽ℎ, 𝑥𝑗 = 𝑤ℎ𝑈 , 𝑥𝑖 = 𝑤ℎ𝑈 + 1 − 𝛽.
+
+The corresponding payoff vectors for 𝐻 , ordered as low and high type, are (𝛽ℓ, 𝛽ℎ) at 𝑝 = 0 and
+(𝛽ℎ, 𝛽ℎ) above 𝑝∗ .
+
+
+                                                   15
+Remark (Pure-strategy scope). The middle cell establishes nonexistence only within the paper’s
+maintained space of pure ballot strategies. We do not derive, characterize, select, or compare equi-
+libria involving mixed ballot strategies, and make no claim about existence under such strategies.
+
+               Table 5: Private-information Round-1 equilibrium correspondences
+
+ Rule          Parameter cell                Selected outcome class                                𝐻 payoff vector
+
+ Majority      ℎ < 1/𝑚                       Screening for 𝑝 ≤ 𝑝𝑆=𝑃 ; pooling above                (𝛽ℓ, 𝛽ℎ)          or
+                                                                                                   (𝛽ℎ, 𝛽ℎ)
+ Majority      ℓ < 1/𝑚 < ℎ                   Screening for 𝑝 ≤ 𝑝𝑆=𝐸 ; exclusion above              (𝛽ℓ, 𝛽ℎ) or (ℓ, ℎ)
+ Majority      1/𝑚 < ℓ                       Exclusion for every 𝑝                                 (ℓ, ℎ)
+ Majority      ℓ = 1/𝑚 < ℎ                   Screening at 𝑝 = 0; exclusion for 𝑝 > 0               (𝛽ℓ, 𝛽ℎ) or (ℓ, ℎ)
+ Majority      ℓ < ℎ = 1/𝑚                   Screening through 𝑝𝑆=𝐸 ; above, exclusion, pooling,   (𝛽ℓ, 𝛽ℎ),   (ℓ, ℎ),
+                                             or their exact proposal segment under the tie-break   (𝛽ℎ, 𝛽ℎ), or the
+                                                                                                   linked segment
+ Unanimity     𝑝=0                           Immediate low-type agreement                          (𝛽ℓ, 𝛽ℎ)
+ Unanimity     0 < 𝑝 ≤ 𝑝∗                    No PBE in pure ballot strategies                      ∅
+ Unanimity     𝑝∗ < 𝑝 ≤ 1                    Immediate pooling agreement                           (𝛽ℎ, 𝛽ℎ)
+
+
+
+
+                                                 16
+ Prices and coalition anatomy
+                                                   A. Prices paid to the hegemon
+                                                                                      Majority                                                                                                   Unanimity
+                                             0.4
+                                                                         pS=E                                                                                                  p*
+                                                                                                                                                                                    both types receive beta h
+
+
+
+
+                                             0.3
+
+
+
+
+   Hegemon payoff in round 1
+                                                                                                                                                                                                                      low type's pooling rent
+                                             0.2                                                                                                          no pure−vote PBE
+                                                                                                                                                                                                                      beta(h − l)
+
+
+
+
+                                             0.1
+
+
+
+
+                                             0.0
+                                                0.0             0.2             0.4              0.6           0.8                  1.0          0.0                 0.2                  0.4                   0.6         0.8                 1.0
+                                                                                                                     Prior probability of the high type, p
+
+                                                                                                               Hegemon type                   High type         Low type
+
+
+
+                                                   B. Coalition anatomy at the worked example
+
+
+
+
+   Share of the unit institutional surplus
+                                                   Under majority the pie buys substitutes; under unanimity it buys the hegemon
+                                             1.0
+
+                                             0.8
+
+                                             0.6
+                                                                                                                     H excluded: collects o
+                                                                                                                        outside the pie
+                                             0.4
+
+                                             0.2
+
+                                             0.0
+                                                                                 Majority                                                                                                               Unanimity
+
+
+                                                                                        Allocation     Substitute votes         Weak−state floors            Concession to H          Proposer residual
+
+
+
+                                                                                                               Hegemon type                   High type         Low type
+
+
+ Majority caps the hegemon's price by buying substitute votes; unanimity pays the hegemon directly. Panel A plots type−specific round−1 payoffs.
+ Majority pays beta l and beta h through p_S=E, then exclusion leaves H with its disagreement payoff; unanimity has no pure−vote PBE for 0 < p <=
+ p* and pools at beta h above p*. Under unanimity both types receive beta h; the dashed high−type line is drawn over the solid low−type line
+ where they coincide. The yellow span is the low type's pooling rent beta(h − l), not the public−benchmark rent estimand. Panel B decomposes the
+ unit surplus at p = 0.35: majority buys k substitutes at beta/m, while the adjacent markers show the excluded H collecting o outside the pie;
+ unanimity pays m−1 weak−state floors, beta h, and the proposer residual. Parameters: l = 0.100, h = 0.350, m = 4, beta = 0.90. Note:
+ Model−generated regions; all boundaries closed−form.
+
+
+
+
+Figure 2: The price and coalition anatomy of the private games. Majority can replace the hegemon’s
+vote with an additional weak-state vote; unanimity cannot. Labels report first-round prices and
+preserve the distinct low-type, pooling, and exclusion outcomes.
+
+
+
+5.5 Comparing the private games
+
+The comparison below uses the same parameter point under both institutions and only cells in which
+both games have a pure-strategy equilibrium. The timing wedges are (1 − 𝛽)ℓ and (1 − 𝛽)ℎ:
+exclusion realizes the disagreement payoff now, whereas inclusion can price a continuation that
+is discounted in Round-1 units. They are distinct from the discounted type gap 𝛽(ℎ − ℓ) and the
+
+
+                                                                                                                                      17
+cross-date quantity 𝛽ℎ − ℓ.
+
+Proposition 5.5 (Private institutional payoff contrast). Write 𝑉𝑈𝐵 − 𝑉𝑀
+                                                                      𝐵
+                                                                        as a low-type/high-type
+vector.
+
+   1. At 𝑝 = 0, the vector is (0, 0) if majority screens and (−(1 − 𝛽)ℓ, −(1 − 𝛽)ℎ) if majority
+      excludes.
+
+   2. For 0 < 𝑝 ≤ 𝑝∗ , the contrast is empty because private unanimity has no pure-strategy
+      equilibrium.
+
+   3. For 𝑝 > 𝑝∗ , the vector is (𝛽(ℎ − ℓ), 0) if majority screens, (0, 0) if majority pools, and
+      (𝛽ℎ − ℓ, −(1 − 𝛽)ℎ) if majority excludes.
+
+   4. On the residual exclusion–pooling segment at ℎ = 1/𝑚, the exact attainable set is {𝜆(𝛽ℎ −
+      ℓ, −(1 − 𝛽)ℎ) ∶ 𝜆 ∈ [0, 1]}, restricted to the proposal weights that survive the tie-break.
+      The same 𝜆 binds payoffs and outcomes.
+
+Thus unanimity does not have a single unconditional payoff effect. Its effect depends on which
+substitute coalition disciplines the majority proposer and on which type is evaluated. Figure 3 maps
+these exact classes without averaging types.
+
+
+
+
+                                                18
+                                            The private−rule payoff contrast is type−specific
+                                            Closed−form slice l = 0.50 x h; m = 4 weak states; beta = 0.90
+                                                                                           Low type                                                                                                             High type
+                                        4
+
+
+
+
+                                        3
+
+
+
+
+   Relative hegemonic strength, m x h
+                                        2
+
+
+
+
+                                        1
+
+
+
+
+                                        0
+                                         0.0                   0.2                 0.4                  0.6                      0.8                   1.0    0.0                   0.2                   0.4                0.6               0.8   1.0
+                                                                                                                                       Prior probability of the high type, p
+
+                                                                        Unanimity minus majority                 H indifferent           H prefers majority          H prefers unanimity         No comparison: no pure−vote PBE (unanimity)
+
+
+
+                                                                                                                         Analytical boundary                    p*         pS=P           pS=E
+
+                                            Colored regions compare the hegemon's private−information payoff under unanimity and majority at the same parameter point. The hatched region is empty
+                                            because unanimity has no perfect Bayesian equilibrium in pure ballot strategies. The left−edge segment is the literal p = 0 endpoint. The horizontal
+                                            threshold m x h = 1 is the cost at which majority switches between buying the hegemon and buying an additional weak−state vote. No prior−weighted or ex
+                                            ante image is displayed. Note: model−generated closed−form regions.
+
+
+
+
+Figure 3: Private-game payoff contrast, unanimity minus majority, by hegemon type. Each cell is
+evaluated at the same parameter point. The hatched band marks parameter values for which private
+unanimity has no pure-strategy equilibrium and the contrast is therefore empty.
+
+
+
+5.6 Informational rents and the difference of differences
+
+For rule 𝑔 ∈ {𝑀 , 𝑈 }, define the type-contingent informational-rent correspondence
+
+
+                                                                                                                                 𝐼𝑅𝑔𝐵 = 𝑉𝑔𝐵 − 𝑣𝑔𝐵 ,
+
+
+where the public benchmark is evaluated at the same type and the same remaining parameters. The
+institutional informational-rent contrast is
+
+
+                                                                                                                      Δ𝐼𝑅𝐵 = 𝐼𝑅𝑈
+                                                                                                                               𝐵     𝐵
+                                                                                                                                 − 𝐼𝑅𝑀 .
+
+
+These are differences between correspondences. If a source correspondence is empty, so is the dif-
+ference. Under multiplicity, subtraction preserves the entire attainable set and its common proposal
+weight.
+
+
+                                                                                                                                                     19
+We write the three public outside-option regions in words: both types are included when ℎ ≤ 1/𝑚;
+the low type is included and the high type excluded when ℓ ≤ 1/𝑚 < ℎ; and both types are
+excluded when 1/𝑚 < ℓ.
+
+The rent comparison first asks what private information changes within each rule. Under unanimity,
+the public benchmark already buys the known type at its discounted threshold; private pooling
+therefore raises only the low type’s payoff. Under majority, information matters only when the
+private equilibrium changes the public inclusion decision or the price paid to a type.
+
+Proposition 5.6 (Informational rents by voting rule). Under unanimity,
+
+                                    ⎧
+                                    { {(0, 0)},            𝑝 = 0,
+                                    {
+                                    {
+                              𝐵
+                            𝐼𝑅𝑈 = ⎨∅,               0 < 𝑝 ≤ 𝑝∗ ,
+                                  {
+                                  {
+                                  {{(𝛽(ℎ − ℓ), 0)}, 𝑝 > 𝑝∗ .
+                                  ⎩
+
+Under majority, the informational rent depends jointly on the public region and the private equi-
+librium class:
+
+                    both types included, screening        ∶ (0, 0),
+                     both types included, pooling         ∶ (𝛽(ℎ − ℓ), 0),
+                     both types included, exclusion       ∶ ((1 − 𝛽)ℓ, (1 − 𝛽)ℎ),
+                 low included, high excluded, screening ∶ (0, −(1 − 𝛽)ℎ),
+                 low included, high excluded, exclusion ∶ ((1 − 𝛽)ℓ, 0),
+                    both types excluded, exclusion        ∶ (0, 0).
+
+On the residual exclusion–pooling segment at ℎ = 1/𝑚, the exact set is {𝜆((1 − 𝛽)ℓ, (1 − 𝛽)ℎ) +
+(1 − 𝜆)(𝛽(ℎ − ℓ), 0) ∶ 𝜆 ∈ [0, 1]}, restricted to the segment that survives the proposal tie-break.
+
+The difference of differences then removes majority’s informational rent from unanimity’s. Screen-
+ing can leave a positive low-type contrast in the high-belief cell because unanimity pools. Exclusion
+instead compares the high threshold discounted to the present with the low current disagreement
+payoff, so its low-type sign is governed by 𝛽ℎ − ℓ.
+
+Proposition 5.7 (Institutional informational-rent contrast). At 𝑝 = 0, Δ𝐼𝑅𝐵 = (0, 0) when both
+
+                                                  20
+types are included or both are excluded, while Δ𝐼𝑅𝐵 = (0, (1−𝛽)ℎ) when the low type is included
+and the high type excluded; the high-type component there is off support but remains part of the
+type-contingent vector.
+
+For 0 < 𝑝 ≤ 𝑝∗ , Δ𝐼𝑅𝐵 = ∅.
+
+For 𝑝 > 𝑝∗ , the exact vectors are
+
+
+                      both types included, screening    ∶ (𝛽(ℎ − ℓ), 0),
+                       both types included, pooling     ∶ (0, 0),
+                      both types included, exclusion    ∶ (𝛽ℎ − ℓ, −(1 − 𝛽)ℎ),
+                low included, high excluded, screening ∶ (𝛽(ℎ − ℓ), (1 − 𝛽)ℎ),
+                low included, high excluded, exclusion ∶ (𝛽ℎ − ℓ, 0),
+                      both types excluded, exclusion    ∶ (𝛽(ℎ − ℓ), 0).
+
+On the residual segment, the exact attainable set is {𝜆(𝛽ℎ − ℓ, −(1 − 𝛽)ℎ) ∶ 𝜆 ∈ [0, 1]} over the
+surviving proposal weights.
+
+           Table 6: Exact informational-rent correspondences and institutional contrast
+
+  Object       Cell                                         Exact set
+    𝐵
+  𝐼𝑅𝑀          Both types included, screening               {(0, 0)}
+    𝐵
+  𝐼𝑅𝑀          Both types included, pooling                 {(𝛽(ℎ − ℓ), 0)}
+    𝐵
+  𝐼𝑅𝑀          Both types included, exclusion               {((1 − 𝛽)ℓ, (1 − 𝛽)ℎ)}
+    𝐵
+  𝐼𝑅𝑀          Both types included, exclusion–pooling {𝜆((1 − 𝛽)ℓ, (1 − 𝛽)ℎ) + (1 −
+               segment                                      𝜆)(𝛽(ℎ − ℓ), 0)}
+    𝐵
+  𝐼𝑅𝑀          Low included, high excluded, screening       {(0, −(1 − 𝛽)ℎ)}
+    𝐵
+  𝐼𝑅𝑀          Low included, high excluded, exclusion       {((1 − 𝛽)ℓ, 0)}
+    𝐵
+  𝐼𝑅𝑀          Both types excluded, exclusion               {(0, 0)}
+    𝐵
+  𝐼𝑅𝑈          𝑝=0                                          {(0, 0)}
+    𝐵
+  𝐼𝑅𝑈          0 < 𝑝 ≤ 𝑝∗                                   ∅
+    𝐵
+  𝐼𝑅𝑈          𝑝 > 𝑝∗                                       {(𝛽(ℎ − ℓ), 0)}
+
+
+
+                                                 21
+  Object        Cell                                          Exact set
+
+  Δ𝐼𝑅𝐵          𝑝 = 0, both types included                    {(0, 0)}
+  Δ𝐼𝑅𝐵          𝑝 = 0, low included, high excluded            {(0, (1 − 𝛽)ℎ)}
+  Δ𝐼𝑅𝐵          𝑝 = 0, both types excluded                    {(0, 0)}
+  Δ𝐼𝑅𝐵          0 < 𝑝 ≤ 𝑝∗ , every public region              ∅
+  Δ𝐼𝑅𝐵          𝑝 > 𝑝∗ , both types included, screening       {(𝛽(ℎ − ℓ), 0)}
+  Δ𝐼𝑅𝐵          𝑝 > 𝑝∗ , both types included, pooling         {(0, 0)}
+  Δ𝐼𝑅𝐵          𝑝 > 𝑝∗ , both types included, exclusion       {(𝛽ℎ − ℓ, −(1 − 𝛽)ℎ)}
+  Δ𝐼𝑅𝐵          𝑝 > 𝑝∗ , both types included, exclusion– {𝜆(𝛽ℎ − ℓ, −(1 − 𝛽)ℎ) ∶ 𝜆 ∈
+                pooling segment                               [0, 1]}
+  Δ𝐼𝑅𝐵          𝑝 > 𝑝∗ , low included, high excluded, {(𝛽(ℎ − ℓ), (1 − 𝛽)ℎ)}
+                screening
+  Δ𝐼𝑅𝐵          𝑝 > 𝑝∗ , low included, high excluded, ex- {(𝛽ℎ − ℓ, 0)}
+                clusion
+  Δ𝐼𝑅𝐵          𝑝 > 𝑝∗ , both types excluded, exclusion       {(𝛽(ℎ − ℓ), 0)}
+
+
+In every segment row, 𝜆 ∈ [0, 1] is restricted to the proposal weights that survive the tie-break and
+binds all payoff and outcome components.
+
+The sign pattern is transparent once each component is kept separate. Above the unanimity cutoff,
+the low type gains 𝛽(ℎ − ℓ) > 0 when majority screens because unanimity pools and pays the high
+threshold. The same screening comparison is zero at 𝑝 = 0, while the middle cell is empty. When
+majority excludes, the low type’s gain is 𝛽ℎ−ℓ, which is positive, zero, or negative according as 𝛽ℎ
+is above, equal to, or below ℓ. The high type gains (1−𝛽)ℎ > 0 only when private majority screens
+even though public majority would exclude it; it loses (1−𝛽)ℎ when public majority includes it but
+private majority excludes. When both private rules pool, the informational-rent contrast is exactly
+zero.
+
+
+
+
+                                                 22
+    Power versus information
+                                 A. Public and private−information payoffs
+                                                                Low type                                                                                  High type
+                          0.35
+
+
+                          0.30
+
+
+
+
+      Hegemon payoff
+                          0.25
+
+
+                          0.20
+
+
+                          0.15
+
+
+                          0.10
+
+                                           Majority                                    Unanimity                                  Majority                                     Unanimity
+
+
+                                                                     Voting rule       Majority        Unanimity       Information            Public   Private
+
+
+
+                                 B. Informational rents and their institutional contrast
+                          0.25
+                                                                                                   0.225
+                                                                                                                                                             0.215
+                          0.20
+
+
+
+
+      Payoff difference
+                          0.15
+
+
+                          0.10
+
+
+                          0.05
+                                                 0.010
+                                                                0.000                                                     0.000                                              0.000
+                          0.00
+
+
+                                                         IRBM                                                   IRBU                                                  ∆IRB
+
+
+                                                                                       Hegemon type                Low type       High type
+
+
+    Exact power−information decomposition at the working illustration (l = 0.10, h = 0.35, m = 4, beta = 0.90, p = 0.80). Panel A compares each rule
+    under public and private information. Panel B reports IR_M^B, IR_U^B, and Delta IR^B = IR_U^B − IR_M^B component by component. At this point
+    majority excludes and unanimity pools: the low−type values are 0.010, 0.225, and 0.215, while all high−type informational−rent values are zero.
+    This is a working numerical illustration of the exact N7 formulas, not a calibration.
+
+
+
+
+Figure 4: Power and information in the hegemon’s payoff. The public benchmark captures the effect
+of making the hegemon’s vote necessary when its type is known. Informational rent compares the
+private game with that benchmark, and Δ𝐼𝑅𝐵 compares this rent across unanimity and majority
+without recombining types or selecting among multiple equilibria.
+
+
+
+6                          Agenda power and its informational shadow
+The baseline removes an exclusive formal proposal privilege from 𝐻 to identify informational
+power through pivotality. We now restore agenda power in a separate extension. Before the two-
+round game, at date 𝐴, the informed hegemon must propose a feasible division of the unit pie. If
+that proposal fails, the game enters Round 1 of the baseline. The continuation is therefore trans-
+ported from Round 1 to date 𝐴 by exactly one factor 𝛽 . The proposal is mandatory: 𝐻 cannot skip
+
+
+                                                                                                           23
+the agenda stage and obtain the continuation at date 𝐴.
+
+Let
+                                                    safe       𝑘𝛽
+                                 𝑒 = 𝑚 − 𝑘,        𝑣𝑀    =1−      .
+                                                               𝑚
+Under majority, 𝑘 is the number of weak votes that 𝐻 must buy and 𝑒 is the number of weak states
+that a minimal winning coalition can leave outside. The private games also retain the same off-path
+specification, summarized by the likelihood-ratio coordinate 𝜌 and its implied posterior 𝜇off , where
+
+                                                     𝑝𝜌
+                                        𝜇off =
+                                                 1 − 𝑝 + 𝑝𝜌
+
+for an interior prior. At an endpoint, 𝜌 is irrelevant and 𝜇off = 𝑝. Comparisons across rules always
+pair complete equilibrium records from the same economy and under the same off-path specifica-
+tion. They never combine type payoffs, proposals, or outcomes from different records.
+
+
+6.1 Public agenda power
+
+Suppose first that 𝑜 is public before 𝐻 proposes. Under unanimity, 𝐻 buys every weak vote at
+its continuation price and agreement is immediate. Under majority, it buys a minimal coalition
+when passage is better than continuation, but a type with a sufficiently high outside option may
+deliberately induce rejection. The resulting payoffs at date 𝐴 are
+
+                                       𝐴
+                                      𝑣𝑈 (𝑜) = 1 − 𝛽 + 𝛽 2 𝑜
+
+
+and
+                                     ⎧    𝑘𝛽(1 − 𝛽𝑜)
+                                     {1 −              , 𝑜 ≤ 1/𝑚,
+                             𝐴
+                            𝑣𝑀 (𝑜) = ⎨         𝑚
+                                     {max{𝑣safe , 𝛽𝑜},   𝑜 > 1/𝑚.
+                                     ⎩     𝑀
+
+In the first majority branch, any lottery over minimal coalitions is retained. For 𝑜 > 1/𝑚, define
+
+                                           safe
+                                    ∗     𝑣𝑀     1  𝑘  1
+                                   𝑜𝑀 =         = −   > .
+                                           𝛽     𝛽 𝑚   𝑚
+
+
+
+
+                                                 24
+                                ∗
+Agreement is immediate for 𝑜 < 𝑜𝑀 , any linked mixture of passage and delay is possible at equality,
+                                      ∗       ∗
+and every equilibrium delays for 𝑜 > 𝑜𝑀 . If 𝑜𝑀 ≥ 1, the last branch is outside the maintained
+domain 𝑜 ∈ (0, 1). Unanimity does not inherit this delay: buying all votes beats rejection by exactly
+1 − 𝛽.
+
+Define the public institutional gap with the common orientation unanimity minus majority,
+
+
+                                   Δ𝑣𝐴 (𝑜) = 𝑣𝑈
+                                              𝐴        𝐴
+                                                (𝑜) − 𝑣𝑀 (𝑜).
+
+
+Then
+                             ⎧    𝑒
+                             {−𝛽 (1 − 𝛽𝑜),     𝑜 ≤ 1/𝑚,
+                             { 𝑚
+                             {         𝑒
+                   Δ𝑣𝐴 (𝑜) = ⎨𝛽 (𝛽𝑜 − ) ,                        safe
+                                               𝑜 > 1/𝑚 and 𝛽𝑜 ≤ 𝑣𝑀    ,
+                             {         𝑚
+                             {
+                             {(1 − 𝛽)(1 − 𝛽𝑜), 𝑜 > 1/𝑚 and 𝛽𝑜 ≥ 𝑣safe .
+                             ⎩                                   𝑀
+
+                                           safe
+The last two expressions coincide at 𝛽𝑜 = 𝑣𝑀    . The first branch is negative; for 𝑜 > 1/𝑚, the
+sign of Δ𝑣𝐴 (𝑜) is the sign of 𝛽𝑜 − 𝑒/𝑚. Agenda power under public information thus need not
+favor unanimity. If 𝛽ℎ < 𝑒/𝑚, majority gives both types a strictly larger payoff; equality yields a
+weak ranking. Above that boundary, the public component can itself point toward unanimity.
+
+       Panel A: public institutional gap                Panel B: an informational reversal
+                                                       Low type          𝑀        𝑈    𝑈 −𝑀
+
+                                                       Public         .5905    .1810    -.4095
+                              𝐴
+          Δ𝑣𝐴 (𝑜) = 𝑣𝑈
+                     𝐴
+                       (𝑜) − 𝑣𝑀 (𝑜)
+                                                       Private        .5905    .7290    +.1385
+                                                       Information .0000       .5480    +.5480
+ 𝑜 ≤ 1/𝑚 ∶ Δ𝑣𝐴 (𝑜) < 0,
+ 𝑜 > 1/𝑚 ∶ sgn Δ𝑣𝐴 (𝑜) = sgn(𝛽𝑜 − 𝑒/𝑚).
+
+Public information favors majority below the
+boundary and can favor unanimity above it.
+Figure 5: Public power and an informational reversal. Panel A reports the exact sign boundary for
+Δ𝑣𝐴 (𝑜). Panel B uses one linked member with 𝑚 = 4, 𝛽 = .90, ℓ = .10, ℎ = .90, and 𝑝 = .95;
+the unanimity value is the lower endpoint of its admissible pooling interval. The numbers are a
+theoretical illustration, not an empirical calibration or a global ranking of the correspondence.
+
+
+
+                                                 25
+6.2 Private agenda power and institutional comparison
+
+Let 𝑉𝑔𝐴 = (𝑉𝑔𝐴 (ℓ), 𝑉𝑔𝐴 (ℎ)) denote the linked type-payoff vector generated by one complete private
+equilibrium record under rule 𝑔 ∈ {𝑀 , 𝑈 }. The majority correspondence contains pure pooling,
+separation, agreement, and deliberate-delay classes as well as Borel mixtures. It is not replaced by
+a selected equilibrium or by componentwise envelopes. Under unanimity, the exact payoff fibers
+                                                        𝐴
+can be written directly with the public value function 𝑣𝑈 (𝑜) = 1 − 𝛽 + 𝛽 2 𝑜:
+
+       ⎧ 𝐴               𝐴    2
+       {(𝑣𝑈 (ℓ), max{𝑣𝑈 (ℓ), 𝛽 ℎ}),                        𝑝 = 0,
+       {
+       { 𝐴         𝐴
+       {(𝑣𝑈 (ℓ), 𝑣𝑈  (ℓ)),                                 0 < 𝑝 ≤ 𝑝 ∗ , 𝑣𝑈
+                                                                          𝐴
+                                                                            (ℓ) ≥ 𝛽 2 ℎ, 𝜇off = 0,
+       {
+       {                     𝐴
+       {{(𝑢, 𝑢) ∶ 𝑢 ∈ [max{𝑣𝑈  (ℓ), 𝛽 2 ℎ}, 𝑣𝑈
+                                             𝐴
+                                               (ℎ)]},      𝑝∗ < 𝑝 < 1, 𝜇off = 0,
+   𝐴
+  𝑉𝑈 = ⎨
+           𝐴       𝐴
+       {(𝑣𝑈  (ℎ), 𝑣𝑈 (ℎ)),                                 𝑝∗ < 𝑝 < 1, 𝜇off ∈ (𝑝∗ , 1],
+       {
+       { 𝐴
+       {(𝑣𝑈 (ℎ), 𝑣𝑈𝐴
+                     (ℎ)),                                 𝑝 = 1,
+       {
+       {
+       {∅,                                                 otherwise.
+       ⎩
+
+Here and below ∅, also reported as none in the source correspondences, means an empty correspon-
+dence under the maintained pure-PBE M/S/B architecture. It is not a zero effect or a claim about
+mixed equilibria outside that architecture.
+
+Institutional comparison begins with the exact fiber product
+
+                               off             off                        off
+                    𝒥bind
+                     𝐴 (d, 𝜌, 𝜇 ) = ℬ𝑀 (d, 𝜌, 𝜇 ) ×(d,𝜌,𝜇off ) ℬ𝑈 (d, 𝜌, 𝜇 ).
+
+
+
+For each member, define the private institutional contrast using the same unanimity-minus-majority
+orientation as the public contrast:
+
+
+           Δ𝑉 𝐴 (𝑜) = 𝑉𝑈𝐴 (𝑜) − 𝑉𝑀
+                                 𝐴
+                                   (𝑜),         Δ𝑉𝐸𝐴 = (1 − 𝑝)Δ𝑉 𝐴 (ℓ) + 𝑝Δ𝑉 𝐴 (ℎ).
+
+
+The affine average is applied only after preserving the linked type vector. If either source is empty
+in the common fiber, the comparison is empty.
+
+The exact correspondence may remain set-valued, but one selection-free region is available. For
+
+
+                                                 26
+every nonempty common fiber, if
+                                                       𝑒
+                                                𝛽ℎ <     ,
+                                                       𝑚
+then, for both types and ex ante,
+
+                                        𝐴                    𝑒
+                             𝑉𝑈𝐴 (𝑜) − 𝑉𝑀 (𝑜) ≤ −𝛽 (           − 𝛽ℎ) < 0.
+                                                             𝑚
+
+At equality the same ranking is weak. This condition is sufficient, not necessary. It follows from
+                 𝐴
+the lower bound 𝑉𝑀        safe
+                   (𝑜) ≥ 𝑣𝑀    and the upper bound 𝑉𝑈𝐴 (𝑜) ≤ 𝑣𝑈
+                                                              𝐴
+                                                                (ℎ); outside it, the full corre-
+spondence determines the ranking.
+
+
+6.3 Public power, informational rents, and type incidence
+
+For each linked private record, define the agenda-game informational rent type by type,
+
+                                                                          𝐴
+                𝐼𝑅𝑔𝐴 (𝑜) = 𝑉𝑔𝐴 (𝑜) − 𝑣𝑔𝐴 (𝑜),      Δ𝐼𝑅𝐴 (𝑜) = 𝐼𝑅𝑈
+                                                                𝐴
+                                                                  (𝑜) − 𝐼𝑅𝑀 (𝑜).
+
+
+Because every institutional contrast now uses the orientation unanimity minus majority, the decom-
+position is
+
+
+              Δ𝑉 𝐴 (𝑜) = Δ𝑣𝐴 (𝑜) + Δ𝐼𝑅𝐴 (𝑜) ,           Δ𝐼𝑅𝐴 (𝑜) = Δ𝑉 𝐴 (𝑜) − Δ𝑣𝐴 (𝑜).
+
+
+The same identity holds ex ante after applying the affine map to the same linked vector.
+                                                                   𝐴            𝐴
+The incidence under unanimity is exact. In every existing fiber, 𝐼𝑅𝑈 (ℓ) ≥ 0, 𝐼𝑅𝑈 (ℎ) ≤ 0, and at
+least one inequality is strict. Positive informational rent belongs to the low type, which can receive
+a concession designed for the high type. The high type receives no such premium and may lose
+relative to its public benchmark. When Δ𝑣𝐴 (ℓ) < 0, public information favors majority for the
+low type. If a comparable private member nevertheless has Δ𝑉 𝐴 (ℓ) > 0, then member by member
+
+
+                                    Δ𝐼𝑅𝐴 (ℓ) > −Δ𝑣𝐴 (ℓ) > 0.
+
+
+Information is then the only component pointing toward unanimity and more than offsets majority’s
+
+
+                                                  27
+public advantage. This statement does not select a member or imply a global sign for Δ𝐼𝑅𝐴 (ℓ).
+
+Agenda also changes the informational rent relative to the no-agenda benchmark. Let 𝐼𝑅𝑔𝐵 be the
+frozen Round-1 correspondence from the baseline. Its date-𝐴 value is 𝛽𝐼𝑅𝑔𝐵 , so
+
+
+                            𝐼𝑔 = 𝐼𝑅𝑔𝐴 − 𝛽𝐼𝑅𝑔𝐵 ,                   Δ𝐼 = Δ𝐼𝑅𝐴 − 𝛽Δ𝐼𝑅𝐵 .
+
+
+This is the only multiplication by 𝛽 in the interaction. Under unanimity, agenda weakly reduces
+informational rent in every existing high-prior fiber; under majority and across rules the interaction
+remains set-valued wherever its sources do.
+
+
+6.4 The structural effect of the agenda stage
+
+The agenda effect compares presence and absence of the mandatory date-𝐴 stage within a fixed
+information regime. All four arms in Figure 6 are expressed at date 𝐴.
+
+                               Baseline without hegemonic agenda 𝐵                          Hegemonic agenda 𝐴
+            Public type                               𝛽𝑣𝑔𝐵 (𝑜)                                         𝑣𝑔𝐴 (𝑜)
+            Private type                              𝛽𝑉𝑔𝐵 (𝑜)                                        𝑉𝑔𝐴 (𝑜)
+
+
+                        𝑇⏟
+                         𝑔 (𝑜)                  =              𝐷
+                                                               ⏟𝑔 (𝑜)                 +              𝐼⏟
+                                                                                                      𝑔 (𝑜)                .
+             agenda under private information       agenda under public information       agenda–information interaction
+
+
+
+Figure 6: The factorial agenda-information design. The treatment adds an earlier, mandatory pro-
+posal stage; the control begins in Round 1 and is discounted once when evaluated at date 𝐴.
+
+
+Formally,
+                      𝐷𝑔 (𝑜) = 𝑣𝑔𝐴 (𝑜) − 𝛽𝑣𝑔𝐵 (𝑜),                    𝑇𝑔 (𝑜) = 𝑉𝑔𝐴 (𝑜) − 𝛽𝑉𝑔𝐵 (𝑜),
+
+and for every complete record in which both arms exist,
+
+
+                                                𝑇𝑔 (𝑜) = 𝐷𝑔 (𝑜) + 𝐼𝑔 (𝑜) .
+
+
+This is a structural causal contrast inside the model, not an empirically identified estimand. Under
+
+                                                                 28
+multiplicity it is a correspondence of admissible contrasts.
+
+The public effects are
+                                          𝐷𝑈 (𝑜) = 1 − 𝛽
+
+and
+                                  ⎧ safe    𝑒 2
+                                  {𝑣𝑀 − 𝛽 𝑜, 𝑜 ≤ 1/𝑚,
+                                  {        𝑚
+                                  {
+                         𝐷𝑀 (𝑜) = ⎨𝑣𝑀
+                                    safe
+                                         − 𝛽𝑜,             ∗
+                                                1/𝑚 < 𝑜 < 𝑜𝑀 ,
+                                  {
+                                  {
+                                  {0,                ∗
+                                                𝑜 ≥ 𝑜𝑀 .
+                                  ⎩
+Thus agenda never lowers 𝐻 ’s public payoff under majority, but it can have no direct value when the
+mandatory proposal induces the same delayed continuation as the control. The first branch applies
+at 𝑜 = 1/𝑚; the frozen continuation selection creates a downward jump in 𝐷𝑀 immediately to its
+                      ∗
+right. The threshold 𝑜𝑀 can lie outside 𝑜 ∈ (0, 1).
+
+Under private unanimity, 𝑇𝑈 weakly benefits each type wherever both arms exist, with exact cells
+reported in Appendix E. Under private majority,
+
+
+                                         𝑇𝑀 = 𝐷𝑀 + 𝐼𝑀
+
+
+is the exact translation of the interaction correspondence by the fixed public vector. No general sign
+is imposed. Across rules, member by member within a complete admissible product,
+
+
+       Δ𝐷(𝑜) = 𝐷𝑈 (𝑜) − 𝐷𝑀 (𝑜),            Δ𝑇 (𝑜) = 𝑇𝑈 (𝑜) − 𝑇𝑀 (𝑜) = Δ𝐷(𝑜) + Δ𝐼(𝑜).
+
+
+The diagonal object 𝑄𝑔 = 𝑣𝑔𝐴 − 𝛽𝑉𝑔𝐵 changes agenda and information simultaneously. It is useful
+for comparison but is not a one-factor causal effect; Appendix E reports it separately.
+
+
+
+
+                                                 29
+7    Discussion
+
+7.1 Pivotality, substitutes, and contested strength
+
+The model’s central distinction is technological. Under majority, the proposer can replace the hege-
+mon with another uninformed weak-state vote. Under unanimity, the hegemon’s approval is an
+essential input. Removing the substitute changes both bargaining power and the way private infor-
+mation enters proposals.
+
+The complete-information benchmark shows the power component. If the known hegemon is cheap
+enough, majority includes it and both rules pay the same discounted threshold. If it is expensive,
+majority excludes it while unanimity must still buy its vote. The informational comparison asks a
+different question: after netting out that public-type difference, how much does private information
+change each rule’s payoff?
+
+The answer is not simply that private information always benefits a hegemon. Pooling under una-
+nimity benefits the low type because weak states price it as high. Screening under majority can
+remove that rent, while exclusion can make the comparison depend on whether the high threshold
+discounted to the present exceeds the low current disagreement payoff. The high type’s rent changes
+only when its treatment differs across the private and public majority games.
+
+The empty middle-belief cell is equally important for scope. It records the failure of every pure
+voting pattern under the declared belief and pivotality conditions. It does not supply a payoff for
+institutional comparison and does not justify filling the gap by interpolation.
+
+
+
+
+                                                 30
+                                             Hegemonic decline across pooling, an empty pure−strategy cell, and the endpoint
+                                             l = 0.100; h = 0.350; m = 4 weak states; beta = 0.90
+
+                                       0.4                                                                                                                      Read hegemonic decline from right to left
+
+
+                                                                                                                                                    pooling: low type receives
+                                                                                                                                                      the high type's price
+
+
+
+
+   Low type's payoff under unanimity
+                                       0.3
+
+
+
+
+                                       0.2                no pure−strategy PBE                                                                                                                   pooling rent beta(h − l)
+
+
+
+
+                                       0.1
+
+
+                                                    common−knowledge weakness:
+                                                    H bought at reservation
+
+                                                                                                  p* = (h−l)/(1−l)
+                                       0.0
+                                          0.0                                   0.2                                  0.4                                  0.6                                   0.8                         1.0
+                                                                                                                 Prior probability of the high type, p
+
+                                                                                                    Region             No pure−strategy PBE           Pooling under unanimity
+
+                                             The figure should be read from high to low p. Above p*, pooling pays the low type beta h, creating the rent beta(h − l) relative to its
+                                             reservation price beta l. The light orange field identifies the pooling region; the darker band isolates the payoff−relevant rent between beta l
+                                             and beta h. For 0 < p <= p*, the hatched area records the absence of a perfect Bayesian equilibrium in pure ballot strategies; p = 0 is an
+                                             isolated complete−information endpoint, not an interval, and the low type is bought at reservation. The figure makes no claim about equilibria
+                                             involving mixed ballot strategies. Note: Model−generated regions; all boundaries closed−form.
+
+
+
+
+Figure 7: A schematic movement in beliefs about hegemonic strength. The hatched region is the
+set in which the unanimity game has no equilibrium in pure ballot strategies under the maintained
+concept. Historical annotations, if used, are illustrations rather than empirical tests or calibration.
+
+
+
+7.2 WTO creation, exit, and observable implications
+
+The close of the Uruguay Round provides a sharper institutional illustration than OPEC. Steinberg
+reports that the United States and the European Community backed the single undertaking and,
+after joining the WTO, withdrew from GATT 1947 (Steinberg 2002). Their withdrawal terminated
+the old GATT obligations, including most-favored-nation treatment, toward countries that did not
+accept the Final Act and join the new organization. The maneuver made the preexisting trading
+relationship a less valuable fallback and helped give the WTO package broad membership.
+
+The two parts of that strategy map to different bargaining objects. The single undertaking joined
+the Uruguay Round agreements into one package and restricted selective acceptance. Withdrawal
+from GATT 1947 changed the value of rejecting that package. The latter supplies a concrete micro-
+foundation for disagreement payoffs: market power permits a major state to shape what agreement
+failure is worth to itself and to its partners. If the precise value of the major state’s outside option
+
+                                                                                                                                   31
+is not common knowledge, bargaining over an approval that cannot be replaced also creates the
+screening problem analyzed in the model.
+
+The episode is not a literal implementation of the baseline. Steinberg shows that the United States
+and European Community exercised substantial de facto agenda influence, whereas the benchmark
+denies the hegemon an exclusive formal proposal right. The benchmark isolates one channel inside
+a historically richer process. It asks what the consensus requirement contributes after agenda control
+is held fixed, not whether agenda control was absent or whether the model identifies why the United
+States created the WTO.
+
+This distinction yields observable implications. Informational power through pivotality should be
+strongest where a major state’s approval has no coalition substitute, its fallback is hard for partners to
+price, and the negotiated package can vary enough to compensate uncertain participation constraints.
+In the pooling region, the signature is a smooth agreement that grants a concession suited to a
+stronger possible type. A theory of signaling through rejection instead predicts visible delay or
+failed proposals before beliefs change. Under majority, the availability of a substitute coalition
+should reduce the return on private information even when the underlying outside option remains
+unequal.
+
+Steinberg also emphasizes information flowing in the opposite direction: the consensus process
+helps powerful agenda setters elicit weaker states’ preferences. The model studies weak proposers
+who are uncertain about the hegemon’s continuation value. An empirical application must distin-
+guish these directions of information and use language of consistency rather than treat the WTO
+episode as identification of the formal mechanism.
+
+
+7.3 Limits
+
+The baseline fixes the voting rule, keeps the institutional pie at one, gives proposal power only to
+weak states, and uses two types and two rounds. The agenda extension relaxes only that baseline
+proposal restriction by adding the earlier mandatory proposal stage for 𝐻 . Neither part analyzes
+endogenous rule choice or an endogenous agenda protocol; the paper also does not analyze more
+than two types, sequential roll-call voting, or intrinsic agreement benefits. The restriction 𝑚 ≥ 3
+excludes the three-player case. The strict discounting assumption excludes the corner 𝛽 = 1, where
+
+                                                   32
+additional indifferences would require a separate analysis.
+
+The endpoint-support condition also matters. A type assigned zero probability by the prior cannot
+be resurrected after an off-path action. This makes the degenerate-prior cells coincide with their
+complete-information games. In the interior, both types remain in the prior’s support and off-path
+actions by 𝐻 can sustain a range of posterior beliefs.
+
+The agenda extension preserves rather than resolves equilibrium multiplicity. Its majority effects,
+institutional comparisons, and some interactions are correspondences. Every robust sign is therefore
+setwise, and every other sign is member-specific. Empty cells record absence of a pure PBE under
+M/S/B, not a zero effect. The structural contrast 𝑇 also depends on the maintained date convention
+and mandatory proposal stage; it is distinct from the diagonal comparison 𝑄.
+
+Finally, the WTO discussion is a theoretical application. The model neither identifies why the
+United States and European Community designed the WTO nor establishes that a particular histor-
+ical actor was a low or high type. It also abstracts from plurilateral agreements, subsidiary voting
+procedures, ratification, implementation, and repeated-game reputation. Those mechanisms may
+complement or substitute for the channels isolated here.
+
+
+
+8    Conclusion
+Consensus can benefit a hegemon even when weak states control the agenda because unanimity
+removes substitutes for the hegemon’s vote. Complete information reveals the familiar pivotality
+component. Private information adds a distinct component: when unanimity pools at the high
+threshold, a low type can earn rent; whether this exceeds its majority rent depends on the majority
+correspondence and the outside-option region.
+
+Restoring hegemonic agenda power does not erase the benchmark result. It separates real power
+from its informational shadow. When the outside option is high, the public component can itself
+favor unanimity. When public information favors majority, a private unanimity ranking can arise
+only if the relative informational rent offsets that public disadvantage. The structural effect of the
+agenda stage is 𝑇 = 𝐷 + 𝐼 : its direct value and its interaction with information are distinct, and
+neither has a universal institutional sign.
+
+Formal equality of votes can therefore coexist with unequal bargaining power through three chan-
+                                                 33
+nels: outside options, proposal rights, and the price of an approval with no substitute. The WTO
+application is consistent with their coexistence, while the identifying benchmark shows that the last
+channel does not require an exclusive formal proposal right. The paper’s conclusions remain con-
+ditional on complete linked correspondences, their domains, and the cells in which the maintained
+equilibrium concept exists.
+
+
+
+
+                                                 34
+Appendix A: Protocol, beliefs, and incentives
+
+A.1 Complete transition and payoff rules
+
+For a proposal 𝑥 = (𝑥𝐻 , 𝑥1 , … , 𝑥𝑚 ), let 𝑎𝐻 ∈ {𝑌 , 𝑁 } and let the weak responders’ votes be
+𝑎−𝑖 . The proposer votes yes. If the quota is met, the proposal is implemented in full. Each weak
+respondent receives 𝑥𝑗 , the proposer receives 𝑥𝑖 , and 𝐻 receives 𝑥𝐻 after yes and 𝑥𝐻 + 𝑜 after
+no. If the quota is not met in Round 1, the public vote vector leads to Round 2; every continuation
+payoff is then multiplied by 𝛽 . If the quota is not met in Round 2, weak states receive zero and 𝐻
+receives 𝑜.
+
+The 𝑥𝐻 + 𝑜 branch is necessary for a complete strategy specification. It is not an equilibrium
+description. Whenever majority passes without 𝐻 , a proposer strictly prefers to move any positive
+𝑥𝐻 into its own allocation, holding all votes fixed. Hence all equilibrium exclusions set 𝑥𝐻 = 0
+and pay 𝐻 exactly 𝑜.
+
+
+A.2 Beliefs and ballot restrictions
+
+Uninformed weak-state proposals and votes preserve the current belief. A vote by 𝐻 updates by
+Bayes’ rule when its denominator is positive. At a zero-denominator action in an interior-prior
+game, the posterior may range over [0, 1], subject to structural consistency across histories that
+encode the same information. At 𝑝 = 0 or 𝑝 = 1, posterior support never expands.
+
+A weak responder compares its allocation with the continuation that would follow if its vote
+switched passage into failure. It votes yes at equality. 𝐻 maximizes its type-contingent con-
+tinuation payoff and votes yes at exact indifference. These restrictions apply at every proposal,
+including off-path proposals.
+
+
+
+
+                                                35
+Appendix B: Proofs
+
+B.1 Proof of Proposition 5.1
+
+In terminal majority, a weak responder’s disagreement value is zero, so any nonnegative allocation
+induces yes under the indifference-to-yes convention. Because 𝑘 ≤ 𝑚, the proposer can pass
+without 𝐻 , set every payment to zero, and keep one. 𝐻 is nonpivotal and strictly votes no because
+no yields 𝑥𝐻 +𝑜 rather than 𝑥𝐻 . Moving any positive 𝑥𝐻 to the proposer leaves passage unchanged,
+so equilibrium exclusion has 𝑥𝐻 = 0 and 𝐻 receives 𝑜.
+
+In terminal unanimity, every weak responder accepts zero and 𝐻 accepts exactly when 𝑥𝐻 ≥ 𝑜.
+The proposer therefore sets 𝑥𝐻 = 𝑜.
+
+Move to Round 1. The terminal continuation of a weak state before recognition under majority is
+1/𝑚, hence 𝑤 = 𝛽/𝑚. The continuation of 𝐻 is 𝛽𝑜. Under unanimity, paying 𝐻 exactly 𝛽𝑜 and
+each weak responder its continuation implements immediate agreement and leaves the proposer
+strictly more than delay because 𝛽 < 1.
+
+Under majority, inclusion costs (𝑘 − 1)𝑤 + 𝛽𝑜; exclusion costs 𝑘𝑤. Inclusion is weakly cheaper
+exactly when 𝑜 ≤ 1/𝑚. At equality the proposer is indifferent, and the proposal tie-break selects
+inclusion because 𝐻 receives 𝛽𝑜 < 𝑜. This gives the stated payoffs. □
+
+
+B.2 Proof of Proposition 5.2
+
+The majority argument is the terminal-majority part of the preceding proof. Before recognition,
+symmetry gives each weak state expected payoff 1/𝑚.
+
+Under unanimity, weak responders accept zero. Any accepted offer to 𝐻 can be reduced to the
+lowest threshold consistent with its acceptance set. The only nonempty acceptance sets are the low
+type alone, implemented by 𝑥𝐻 = ℓ, and both types, implemented by 𝑥𝐻 = ℎ. The first gives the
+proposer (1 − 𝑝)(1 − ℓ); the second gives 1 − ℎ. The low offer is weakly preferred exactly when
+
+                                               ℎ−ℓ
+                                          𝑝≤       = 𝑝∗ .
+                                               1−ℓ
+
+At equality the low offer gives 𝐻 the lower expected payoff and is selected. □
+
+                                                36
+B.3 Proof of Proposition 5.3
+
+A responding weak state votes yes exactly when 𝑥𝑗 ≥ 𝑤 = 𝛽/𝑚. Let 𝑛𝑌 be the number of such
+responders. If 𝑛𝑌 ≥ 𝑘, the weak votes pass the proposal without 𝐻 ; both types of 𝐻 vote no and
+receive 𝑥𝐻 + 𝑜. If 𝑛𝑌 = 𝑘 − 1, 𝐻 is pivotal and a type with outside option 𝑜 votes yes exactly
+when 𝑥𝐻 ≥ 𝛽𝑜. If 𝑛𝑌 ≤ 𝑘 − 2, the proposal fails regardless of 𝐻 ’s vote.
+
+Within each acceptance class, reducing weak payments to 𝑤, reducing 𝑥𝐻 to the relevant type
+threshold, and assigning the remaining pie to the proposer weakly increases its payoff. This leaves
+four candidates: exclusion with payoff Π𝐸 , screening with payoff Π𝑆 (𝑝), pooling with payoff Π𝑃 ,
+and deliberate delay with payoff 𝑤. Exclusion is always feasible and
+
+                                                     𝛽(𝑘 + 1)
+                                     Π𝐸 − 𝑤 = 1 −             > 0,
+                                                        𝑚
+
+so delay is never selected. A screening or pooling candidate that could beat exclusion is automati-
+cally feasible.
+
+The decisive payoff differences are
+
+
+                                      Π𝑃 − Π𝐸 = 𝛽(1/𝑚 − ℎ)
+
+
+and
+                   Π𝑆 (𝑝) − Π𝐸 = (1 − 𝑝)𝛽(1/𝑚 − ℓ) − 𝑝(1 − 𝛽(𝑘 + 1)/𝑚).
+
+Where pooling can beat exclusion, comparing screening with pooling yields 𝑝𝑆=𝑃 ; comparing
+screening with exclusion yields 𝑝𝑆=𝐸 . Substituting the signs of ℓ − 1/𝑚 and ℎ − 1/𝑚 produces
+the five cases in Proposition 5.3.
+
+At screening ties, its expected payoff to 𝐻 is strictly smaller than that of the tied alternative, so the
+proposal tie-break selects screening. When ℎ = 1/𝑚, exclusion and pooling give the proposer the
+same payoff. Their payoffs to 𝐻 determine the stated selection; exact equality leaves their entire
+proposal segment. All selected proposals exhaust the pie. Finally, permuting the identities of weak
+responders does not change any comparison, which establishes the reported identity multiplicity. □
+
+
+
+
+                                                   37
+B.4 Proof of Proposition 5.4
+
+Transport the terminal unanimity continuation into Round-1 units. If the posterior is 𝜇, a weak
+state’s continuation is
+                                        ⎧
+                                        {(1 − 𝜇)𝑤ℓ𝑈 , 𝜇 ≤ 𝑝∗ ,
+                                𝑊 (𝜇) = ⎨
+                                        {𝑤ℎ𝑈 ,        𝜇 > 𝑝∗ .
+                                        ⎩
+Thus 𝑊 (𝜇) ∈ [𝑤ℎ𝑈 , 𝑤ℓ𝑈 ], and 𝑥𝑗 = 𝑤ℓ𝑈 forces every weak responder to vote yes under any admis-
+sible posterior.
+
+At 𝑝 = 0, support preservation fixes every posterior at zero. The proposal
+
+
+             𝑥𝐻 = 𝛽ℓ,      𝑥𝑗 = 𝑤ℓ𝑈 ,      𝑥𝑖 = 1 − 𝛽ℓ − (𝑚 − 1)𝑤ℓ𝑈 = 𝑤ℓ𝑈 + 1 − 𝛽
+
+
+is accepted. Each responder and 𝐻 is exactly indifferent and votes yes. Any lower payment loses a
+required vote; any higher payment reduces the proposer’s residual. A delay gives the proposer 𝑤ℓ𝑈 ,
+so immediate agreement is strictly better by 1 − 𝛽 .
+
+For 𝑝 > 𝑝∗ , the analogous pooling proposal is
+
+
+             𝑥𝐻 = 𝛽ℎ,      𝑥𝑗 = 𝑤ℎ𝑈 ,      𝑥𝑖 = 1 − 𝛽ℎ − (𝑚 − 1)𝑤ℎ𝑈 = 𝑤ℎ𝑈 + 1 − 𝛽.
+
+
+Both types of 𝐻 and every weak responder accept, and immediate agreement again exceeds delay
+by 1 − 𝛽 .
+
+For completeness, write 𝑢 = min𝑗 𝑥𝑗 after an arbitrary proposal and order the strategy of 𝐻 as
+low-type/high-type. At 𝑝 = 0, posterior support is always the low type. The profile (𝑌 , 𝑌 ) is
+sequentially rational if 𝑢 < 𝑤ℓ𝑈 , or if 𝑢 ≥ 𝑤ℓ𝑈 and 𝑥𝐻 ≥ 𝛽ℎ; (𝑁 , 𝑁 ) is rational if 𝑢 ≥ 𝑤ℓ𝑈 and
+𝑥𝐻 < 𝛽ℓ; and (𝑌 , 𝑁 ) is rational if 𝑢 ≥ 𝑤ℓ𝑈 and 𝛽ℓ ≤ 𝑥𝐻 < 𝛽ℎ. The profile (𝑁 , 𝑌 ) is never
+rational. These cases are mutually exclusive and exhaustive.
+
+For 𝑝∗ < 𝑝 < 1, the profile (𝑌 , 𝑌 ) is rational if 𝑢 < 𝑤ℎ𝑈 , or if 𝑢 ≥ 𝑤ℎ𝑈 and 𝑥𝐻 ≥ 𝛽ℎ; (𝑁 , 𝑁 )
+is rational if 𝑢 ≥ 𝑤ℎ𝑈 and 𝑥𝐻 < 𝛽ℎ; and neither separating profile is rational. Bayes gives the
+current prior after an on-profile pooled action. When yes is a zero-probability action, an admissible
+posterior 𝜇𝑌 supports all weak yes votes exactly when 𝑊 (𝜇𝑌 ) ≤ 𝑢, which is possible in the stated
+
+                                                 38
+no profile because 𝑢 ≥ 𝑤ℎ𝑈 . At 𝑝 = 1, support preservation fixes the posterior at one and the same
+two pooled-profile conditions apply. Thus every proposal in both existence domains has a pure,
+sequentially rational response completion.
+
+It remains to show the empty cell. For 0 < 𝑝 ≤ 𝑝∗ , consider
+
+
+     𝑠† ∶    𝑥𝐻 = 𝛽ℓ,     𝑥𝑗 = 𝑤ℓ𝑈 for every weak responder,       𝑥𝑖 = 1 − 𝛽ℓ − (𝑚 − 1)𝑤ℓ𝑈 .
+
+
+All weak responders must vote yes. Enumerate the four pure type-contingent profiles for 𝐻 , ordered
+low/high:
+
+   1. Under (𝑌 , 𝑌 ), the high type receives 𝛽ℓ < 𝛽ℎ and profitably votes no to obtain continuation
+      𝛽ℎ.
+
+   2. Under (𝑁 , 𝑁 ), the low type’s no gives 𝛽ℓ, so the indifference-to-yes convention requires
+      yes.
+
+   3. Under (𝑌 , 𝑁 ), the low type can imitate the high type’s no. That action reveals the high type
+      and yields continuation 𝛽ℎ > 𝛽ℓ.
+
+   4. Under (𝑁 , 𝑌 ), the high type can imitate the low type’s no and obtain continuation 𝛽ℎ, while
+      the prescribed comparison cannot support strict no against yes at the offer.
+
+No pure profile is sequentially rational after 𝑠† . Because a PBE must specify a valid pure response
+after every feasible proposal, no pure-ballot PBE exists in this cell. This also explains the disconti-
+nuity: at 𝑝 = 0, support preservation rules out the posterior that drives the imitation argument; for
+every positive 𝑝, both types are possible. □
+
+
+B.5 Proof of Proposition 5.5
+
+The private majority payoff vectors for 𝐻 are
+
+                     𝐵,𝑆                   𝐵,𝑃                     𝐵,𝐸
+                    𝑉𝑀   = (𝛽ℓ, 𝛽ℎ),      𝑉𝑀   = (𝛽ℎ, 𝛽ℎ),        𝑉𝑀   = (ℓ, ℎ).
+
+
+The private unanimity vectors are (𝛽ℓ, 𝛽ℎ) at 𝑝 = 0, empty for 0 < 𝑝 ≤ 𝑝∗ , and (𝛽ℎ, 𝛽ℎ) for
+𝑝 > 𝑝∗ . Componentwise subtraction gives the proposition. On any proposal segment, subtraction
+
+                                                  39
+is affine in the common proposal weight, so the payoff set and outcome set remain atomic. □
+
+
+B.6 Proofs of Propositions 5.6 and 5.7
+
+From Proposition 5.1, the public payoff vectors are
+
+                            𝐵     𝐵       𝐵                𝐵
+                           𝑣𝑀 = (𝑣𝑀 (ℓ), 𝑣𝑀 (ℎ)),         𝑣𝑈 = (𝛽ℓ, 𝛽ℎ).
+
+
+Subtracting these from each private vector gives the table in Proposition 5.6. In particular, unanimity
+is payoff-equivalent to its public endpoint at 𝑝 = 0, is empty in the middle cell, and pools above
+the cutoff, which yields (𝛽(ℎ − ℓ), 0).
+           𝐵        𝐵
+Subtract 𝐼𝑅𝑀 from 𝐼𝑅𝑈 . In the high-belief cell, screening gives (𝛽(ℎ−ℓ), 0) when both types are
+publicly included and (𝛽(ℎ − ℓ), (1 − 𝛽)ℎ) when only the low type is publicly included; pooling
+gives zero. Exclusion gives (𝛽ℎ − ℓ, −(1 − 𝛽)ℎ), (𝛽ℎ − ℓ, 0), or (𝛽(ℎ − ℓ), 0), respectively when
+both types are included, only the low type is included, or both types are excluded. The endpoint fol-
+lows by the same calculation. An empty source set remains empty. For the residual segment, affine
+subtraction with its common weight 𝜆 yields the one-dimensional segment stated in the proposi-
+tions, not the Cartesian product of marginal envelopes. □
+
+
+
+Appendix C: Endpoints, exact sets, and illustration
+
+C.1 Endpoint equivalence
+
+At 𝑝 = 0, posterior support is the singleton low type. The private unanimity proposal and payoff
+coincide with the public low-type game. At 𝑝 = 1, posterior support is the singleton high type,
+and the private pooling proposal and payoff coincide with the public high-type game. The same
+equivalence holds under majority: applying the relevant private class at each endpoint reproduces
+public inclusion or exclusion, including the 𝑜 = 1/𝑚 tie-break. Thus the endpoints are literal
+complete-information games, not one-sided limits.
+
+
+
+
+                                                  40
+C.2 Exact correspondence and envelopes
+
+Most parameter cells are singleton payoff vectors. At ℎ = 1/𝑚, exact indifference between exclu-
+sion and pooling can leave a proposal segment. If 𝜆 is the exclusion weight, every reported object
+uses that same 𝜆. The lower and upper envelope of any component may summarize the segment,
+but coordinated marginal envelopes do not imply that all pairwise combinations are attainable.
+
+For majority-rule informational rents, the exact componentwise envelopes are
+
+  𝐵                                                                          𝐵
+𝐼𝑅𝑀 (ℓ) ∈ [min{(1 − 𝛽)ℓ, 𝛽(ℎ − ℓ)}, max{(1 − 𝛽)ℓ, 𝛽(ℎ − ℓ)}],              𝐼𝑅𝑀 (ℎ) ∈ [0, (1 − 𝛽)ℎ].
+
+
+For both the private institutional payoff contrast and Δ𝐼𝑅𝐵 , they are
+
+
+        low type ∈ [min{0, 𝛽ℎ − ℓ}, max{0, 𝛽ℎ − ℓ}],            high type ∈ [−(1 − 𝛽)ℎ, 0].
+
+
+In each case these are the marginal envelopes of a single line segment. The same 𝜆 indexes both
+coordinates, so the Cartesian product of the two intervals is not attainable.
+                                                                                       𝐵
+Where 0 < 𝑝 ≤ 𝑝∗ , the private unanimity correspondence is empty. Accordingly, 𝑉𝑈𝐵 , 𝐼𝑅𝑈 , and
+Δ𝐼𝑅𝐵 are empty. No payoff, sign, institutional ranking, or interpolation is assigned to that cell.
+
+
+C.3 Worked values
+
+Return to 𝑚 = 4, 𝑘 = 2, 𝛽 = 0.9, ℓ = 0.10, and ℎ = 0.35. Besides 𝑝∗ = 0.2778, the majority
+screening–exclusion cutoff is
+
+                                        0.9(0.25 − 0.10)
+                      𝑝𝑆=𝐸 =                                    = 0.2935.
+                                0.9(0.25 − 0.10) + 1 − 0.9(3/4)
+
+At 𝑝 = 0.80, majority excludes and unanimity pools. The public payoff vectors are
+
+                            𝐵                          𝐵
+                           𝑣𝑀 = (0.09, 0.35),         𝑣𝑈 = (0.09, 0.315),
+
+
+
+
+                                                 41
+while the private payoff vectors are
+
+                            𝐵
+                           𝑉𝑀 = (0.10, 0.35),          𝑉𝑈𝐵 = (0.315, 0.315).
+
+
+Therefore
+
+                𝐵                         𝐵
+              𝐼𝑅𝑀 = (0.01, 0),          𝐼𝑅𝑈 = (0.225, 0),         Δ𝐼𝑅𝐵 = (0.215, 0).
+
+
+These numbers illustrate one point where the low type is publicly included and the high type ex-
+cluded; they do not average over parameter values or estimate a real institution.
+
+
+
+Appendix D: Notation
+
+                       Table 7: Notation for the essential-input bargaining game
+
+   Symbol                 Meaning
+
+   𝐻                      Privately informed hegemon
+   𝑊, 𝑚                   Set and number of weak states; 𝑚 ≥ 3
+   𝑘 = ⌊(𝑚+1)/2⌋ Additional yes votes a proposer needs under majority
+   𝑜 ∈ {ℓ, ℎ}             Hegemon’s terminal disagreement payoff, with 0 < ℓ < ℎ < 1
+   𝑝                      Prior probability of the high outside option ℎ
+   𝜇, 𝜇off                Posterior probability of ℎ, on and off path
+   𝛽                      One-round discount factor, strictly between zero and one
+   𝑥                  = Feasible allocation vector
+   (𝑥𝐻 , 𝑥1 , … , 𝑥𝑚 )
+   𝑥̄𝐻                    Maximum feasible allocation to 𝐻 ; ℎ ≤ 𝑥̄𝐻 ≤ 1
+   𝑥𝐻 , 𝑥𝑗 , 𝑥𝑖           Allocations to 𝐻 , weak responder 𝑗, and proposer 𝑖
+   𝑤 = 𝛽/𝑚                First-round continuation value of a weak state under majority
+   𝑝∗                     Terminal unanimity cutoff, (ℎ − ℓ)/(1 − ℓ)
+   𝐵, 𝐴                   Games without and with the earlier hegemonic agenda stage
+   𝑣𝑔𝐵 (𝑜), 𝑣𝑔𝐴 (𝑜)       Public-information payoff under rule 𝑔 in each arm
+
+                                                  42
+      Symbol               Meaning
+
+      𝑉𝑔𝐵 (𝑜), 𝑉𝑔𝐴 (𝑜)     Private-information payoff correspondence in each arm
+      𝐼𝑅𝑔𝐵 , 𝐼𝑅𝑔𝐴          Private payoff minus the same-arm public benchmark
+      Δ𝐼𝑅𝐵 , Δ𝐼𝑅𝐴          Unanimity-minus-majority informational-rent contrasts
+      𝑒=𝑚−𝑘                Weak states excluded by a minimal majority coalition
+       safe
+      𝑣𝑀                   Safe majority-agenda payoff, 1 − 𝑘𝛽/𝑚
+       ∗                                                  safe
+      𝑜𝑀                   Majority-agenda delay cutoff, 𝑣𝑀    /𝛽
+      𝜌                    Off-path likelihood-ratio coordinate in the agenda extension
+      Δ𝑣𝐴 (𝑜)                                                     𝐴
+                           Public institutional gap with agenda, 𝑣𝑈        𝐴
+                                                                    (𝑜) − 𝑣𝑀 (𝑜)
+      Δ𝑉 𝐴 (𝑜)             Private institutional contrast with agenda, 𝑉𝑈𝐴 (𝑜) − 𝑉𝑀
+                                                                                  𝐴
+                                                                                    (𝑜)
+      𝐷𝑔 , 𝐼𝑔 , 𝑇𝑔         Direct public agenda effect, agenda–information interaction, and total
+                           private agenda effect
+      𝑄𝑔                   Diagonal agenda-only versus information-only comparison
+
+
+
+
+Appendix E: Exact agenda-stage correspondences and compar-
+isons
+
+E.1 Agenda-stage contract
+
+Fix
+                                     d = (𝑚, 𝑘, 𝑒, 𝛽, ℓ, ℎ, 𝑥𝐻
+                                                             ̄ , 𝒳, 𝑝),
+                              𝑚 ≥ 3,      𝑘 = ⌊(𝑚 + 1)/2⌋,      𝑒 = 𝑚 − 𝑘,
+                      0 < 𝛽 < 1,     0 < ℓ < ℎ < 1,      ℎ ≤ 𝑥𝐻
+                                                              ̄ ≤ 1,      𝑝 ∈ [0, 1].
+
+At date 𝐴, after observing its type, 𝐻 proposes
+
+
+          𝑥𝐴 = (𝑥𝐻 , 𝑥1 , … , 𝑥𝑚 ) ∈ 𝒳,       𝒳 = {𝑥𝐴 ∶ 𝑥𝐻 ≥ 0, 𝑥𝑗 ≥ 0, 𝑥𝐻 + ∑𝑗 𝑥𝑗 ≤ 1}.
+
+
+The proposal counts as 𝐻 ’s affirmative vote. Weak states vote simultaneously and in pure strategies.
+Majority requires 𝑘 affirmative weak votes; unanimity requires all 𝑚. Passage implements the
+
+
+                                                    43
+package at date 𝐴. Rejection enters the corresponding frozen Round-1 continuation, whose native
+payoff is multiplied by 𝛽 exactly once.
+
+A rejected public history includes the rule, proposal, proposer, full ballot, outcome, and posterior.
+Its continuation selector is total, public, Borel, common to types compatible with the history, and
+returns one complete frozen Round-1 equilibrium record. A record binds strategies, beliefs, recog-
+nition lotteries, ballots, payoffs, and outcomes. No scalar continuation payoff may replace it.
+
+For an interior prior, the equilibrium proposal laws of the two types are Borel measures 𝜎ℓ , 𝜎ℎ . At
+every disciplined proposal, Bayes’ rule determines the posterior from their local likelihood ratio.
+At undisciplined proposals, the M/S/B restriction fixes the posterior to
+
+                                                𝑝𝜌
+                          𝜇off = 𝑏𝜌 (𝑝) =              ,      𝜌 ∈ [0, ∞].
+                                            1 − 𝑝 + 𝑝𝜌
+
+The extended-real boundary conventions are
+
+
+                                    𝑏0 (𝑝) = 0,        𝑏∞ (𝑝) = 1
+
+
+for an interior prior. The endpoints preserve prior support: 𝜇off = 𝑝 everywhere, the fiber is
+(∗, 𝑝), and 𝜌 is irrelevant. Voting follows the same as-if-pivotal comparison and indifference-to-
+yes convention as the baseline.
+
+
+E.2 Complete private-majority correspondence
+
+For each posterior 𝜇 and a fixed anonymous Markov continuation selection 𝜒, let 𝐴𝜒 (𝜇) be 𝐻 ’s
+best payoff from a proposal that passes and let 𝐷𝜒,𝑜 (𝜇) be the payoff of a type with outside option
+𝑜 from rejection, both at date 𝐴. Define
+
+
+                     𝐴𝜇 ∶= 𝐴𝜒 (𝜇),          𝐷𝑜,𝜇 ∶= 𝐷𝜒,𝑜 (𝜇),       𝜇 ∈ [0, 1],
+
+
+
+
+                                                  44
+so that 𝐴𝑝 , 𝐴0 , 𝐴1 and 𝐷ℓ,𝑝 , 𝐷ℎ,𝑝 , 𝐷ℓ,0 , 𝐷ℓ,1 , 𝐷ℎ,0 , 𝐷ℎ,1 denote evaluations of these same func-
+tions at the displayed posterior. Also define
+
+
+                              𝑂𝑜 (𝜌) = max{𝐴𝜒 (𝑏𝜌 (𝑝)), 𝐷𝜒,𝑜 (𝑏𝜌 (𝑝))}.
+
+
+The following conditions are necessary and sufficient for every interior pure equilibrium class:
+
+                      Table 8: Pure private-majority classes at the agenda stage
+
+  Class                      Necessary and sufficient condition and linked type payoff
+
+  Pooling agreement          𝑂ℎ (𝜌) ≤ 𝐴𝑝 , with any 𝑧 ∈ [𝑂ℎ (𝜌), 𝐴𝑝 ]; linked payoff (𝑧, 𝑧)
+  Pooling delay              𝐷ℓ,𝑝 ≥ 𝑂ℓ (𝜌) and 𝐷ℎ,𝑝 ≥ 𝑂ℎ (𝜌); linked payoff (𝐷ℓ,𝑝 , 𝐷ℎ,𝑝 )
+  Separating                 𝑂ℎ (𝜌) ≤ min{𝐴0 , 𝐴1 }, with any 𝑧 ∈ [𝑂ℎ (𝜌), min{𝐴0 , 𝐴1 }];
+  agreement–                 linked payoff (𝑧, 𝑧)
+  agreement
+  Low agreement, high 𝐷ℎ,1 ≥ 𝑂ℎ (𝜌) and max{𝐷ℓ,1 , 𝑂ℓ (𝜌)} ≤ min{𝐴0 , 𝐷ℎ,1 }; linked
+  delay                      payoff
+
+
+                                    (𝑧, 𝐷ℎ,1 ),     𝑧 ∈ [max{𝐷ℓ,1 , 𝑂ℓ (𝜌)}, min{𝐴0 , 𝐷ℎ,1 }]
+
+
+
+  Low      delay,    high Impossible; linked payoff ∅
+  agreement
+  Separating        delay– 𝐷ℓ,0 ≥ 𝐷ℓ,1 , 𝐷ℎ,1 ≥ 𝐷ℎ,0 , 𝐷ℓ,0 ≥ 𝑂ℓ (𝜌), and 𝐷ℎ,1 ≥ 𝑂ℎ (𝜌);
+  delay                      linked payoff (𝐷ℓ,0 , 𝐷ℎ,1 )
+
+
+
+These classes preserve proposals and messages even when their payoffs coincide. Separating agree-
+ment at the same 𝑧 is separation in messages at indifference, not pooling. The off-path feasibility
+set for 𝜌 can be disconnected because the frozen majority continuation changes branches; no single
+cutoff substitutes for the table.
+
+
+
+
+                                                    45
+For mixed strategies, a complete reduced record is
+
+
+                               𝑅𝑀 = (𝜌, 𝜇off , 𝜎ℓ , 𝜎ℎ , 𝜆, 𝜋, 𝜒, 𝑎, 𝑢ℓ , 𝑢ℎ ).
+
+
+It retains the public proposal law 𝜆, posterior map 𝜋, continuation selection 𝜒, ballot map 𝑎, and
+both type payoffs. Bayes holds pointwise on the disciplined support, every weak vote satisfies the
+pivotal comparison at every proposal, and each type’s proposal law is supported on its global best
+responses. This criterion is necessary and sufficient; arbitrary Borel mixtures and atomless supports
+are included.
+
+At 𝑝 ∈ {0, 1}, the posterior is fixed at the endpoint. With
+
+
+                                         𝑀𝑜 = max{𝐴𝑝 , 𝐷𝑜,𝑝 },
+
+
+each type’s Borel proposal law may be any probability measure supported on its argmax. The
+probability-zero type remains part of the linked record. For every admissible primitive and prior,
+at least one majority PBE exists for some 𝜌; this does not assert existence at every fixed 𝜌.
+
+
+E.3 Complete private-unanimity correspondence
+
+Define
+                                      𝛽(1 − 𝛽𝑜)            𝐴
+                           𝑟𝑈 (𝑜) =             ,         𝑣𝑈 (𝑜) = 1 − 𝛽 + 𝛽 2 𝑜.
+                                          𝑚
+Thus 0 < 𝑟𝑈 (ℎ) < 𝑟𝑈 (ℓ), and the two proposal primitives are
+
+
+                𝑥ℓ = (𝑣𝑈
+                       𝐴
+                         (ℓ), 𝑟𝑈 (ℓ), … , 𝑟𝑈 (ℓ)),        𝑥ℎ = (𝑣𝑈
+                                                                 𝐴
+                                                                   (ℎ), 𝑟𝑈 (ℎ), … , 𝑟𝑈 (ℎ)).
+
+
+At posterior zero, every weak state accepts exactly when 𝑥𝑗 ≥ 𝑟𝑈 (ℓ); at a high posterior, it accepts
+exactly when 𝑥𝑗 ≥ 𝑟𝑈 (ℎ). Equality passes under the indifference-to-yes convention. The only
+continuation posteriors admitted by the frozen unanimity continuation are
+
+
+                                          𝒟𝐶 = {0} ∪ (𝑝∗ , 1].
+
+
+
+
+                                                     46
+Rejection pays the high type 𝛽 2 ℎ at every admissible posterior; it pays the low type 𝛽 2 ℓ at posterior
+zero and 𝛽 2 ℎ at a high posterior.
+
+A complete unanimity member is the indivisible binder
+
+
+                              𝑅𝑈 = (𝜎ℓ , 𝜎ℎ , 𝜇, 𝜇off , 𝜅𝑈
+                                                         ̂ , 𝑣, Ω, Γℓ , Γℎ ).
+
+
+Here 𝜎𝑜 is a Borel proposal law, 𝜎̄ = (1 − 𝑝)𝜎ℓ + 𝑝𝜎ℎ , 𝜇 is the public posterior, and 𝜇off ∈ 𝒟𝐶 is
+its single value at every undisciplined proposal. The selector 𝜅𝑈
+                                                                ̂ returns a complete literal frozen
+continuation member at the same posterior, 𝑣 is the full pure ballot map, and Ω𝑜 (𝑥) is the literal
+terminal law induced by passage or by that continuation. Finally, Γ𝑜 is the realized pushforward
+law of the joint record
+
+
+                      (𝑥, 𝜇(𝑥), 𝑣(𝑥), pass/reject, 𝜅𝑈
+                                                    ̂ , Ω𝑜 (𝑥), date-𝐴 payoffs).
+
+
+The local Bayes limit must exist at every disciplined proposal, including zero-mass limit points, and
+must lie in 𝒟𝐶 . At each such point, and at every undisciplined point evaluated with 𝜇off , neither
+type may obtain a profitable proposal deviation. These pointwise restrictions, the ballot map, the
+literal continuation, and both realized laws are part of the same binder and cannot be recombined
+across members.
+
+The full interior correspondence is generated by the following two families.
+
+Low-posterior family AU-MSB-L. Its exact domain is
+
+                                                 𝐴
+                            0 < 𝑝 < 1,          𝑣𝑈 (ℓ) ≥ 𝛽 2 ℎ,      𝜇off = 0.
+
+
+Choose Borel laws satisfying all of the following:
+
+   1. 𝜎ℓ ({𝑥ℓ }) = 𝛼𝐿 > 0 and 𝜎ℎ ({𝑥ℓ }) = 0;
+   2. outside 𝑥ℓ , 𝜇(𝑥) > 𝑝∗ 𝜎̄ -almost surely;
+   3. each used proposal outside 𝑥ℓ either passes with 𝐻 ’s share 𝑣𝑈
+                                                                   𝐴                     𝐴
+                                                                     (ℓ), or, only when 𝑣𝑈 (ℓ) =
+      𝛽 2 ℎ, rejects and pays 𝛽 2 ℎ = 𝑣𝑈
+                                       𝐴
+                                         (ℓ);
+   4. every disciplined proposal, including every zero-mass limit point, gives each type a deviation
+
+
+                                                    47
+                             𝐴
+      payoff no larger than 𝑣𝑈 (ℓ); every undisciplined proposal satisfies the same inequality under
+      posterior zero.
+
+Every accepted high-posterior signal therefore belongs to
+
+                                             𝐴
+                         𝒦𝐿 = {𝑥 ∈ 𝒳 ∶ 𝑥𝐻 = 𝑣𝑈 (ℓ), min 𝑥𝑗 ≥ 𝑟𝑈 (ℎ)}.
+                                                             𝑗
+
+
+The laws may be asymmetric, discrete, semi-pooling, mixed, or atomless. A pure witness has the
+low type propose 𝑥ℓ and the high type propose 𝑥𝑆 = (𝑣𝑈
+                                                     𝐴
+                                                       (ℓ), 𝑟𝑈 (ℎ), … , 𝑟𝑈 (ℎ)). Every member
+                    𝐴       𝐴           𝐴
+has linked payoff (𝑣𝑈 (ℓ), 𝑣𝑈 (ℓ)). If 𝑣𝑈 (ℓ) > 𝛽 2 ℎ, agreement occurs with probability one for both
+           𝐴
+types; if 𝑣𝑈 (ℓ) = 𝛽 2 ℎ, high-posterior rejected signals may carry mass. The weak-state payoff
+attached to the same member is 𝑥𝑗 after passage, 𝑟𝑈 (ℓ) after rejection at (𝜇, 𝑜) = (0, ℓ), zero after
+rejection at (0, ℎ), and 𝑟𝑈 (ℎ) after rejection at any high posterior.
+
+High-posterior family AU-MSB-H. Its necessary prior domain is 𝑝∗ < 𝑝 < 1. When 𝜇off = 0,
+choose any
+                                            𝐴
+                                  𝑢 ∈ [max{𝑣𝑈 (ℓ), 𝛽 2 ℎ}, 𝑣𝑈
+                                                            𝐴
+                                                              (ℎ)],
+
+and Borel laws such that: 𝜇 > 𝑝∗ 𝜎̄ -almost surely; the local admissible Bayes limit exists at every
+disciplined point; every used accepted proposal lies in
+
+
+                         𝒦𝐻 (𝑢) = {𝑥 ∈ 𝒳 ∶ 𝑥𝐻 = 𝑢, min 𝑥𝑗 ≥ 𝑟𝑈 (ℎ)};
+                                                            𝑗
+
+
+used rejected proposals occur only when 𝑢 = 𝛽 2 ℎ; every disciplined deviation gives each type at
+most 𝑢; and every undisciplined deviation, evaluated at posterior zero, also gives at most 𝑢. The
+linked payoff is (𝑢, 𝑢). If 𝑢 > 𝛽 2 ℎ, agreement has probability one for each type; if 𝑢 = 𝛽 2 ℎ, each
+type may mix accepted proposals with 𝑥𝐻 = 𝛽 2 ℎ and rejected high-posterior proposals. A pure
+pooling witness for every 𝑢 is
+
+                         1−𝑢     1−𝑢
+           𝑥(𝑢) = (𝑢,        ,…,     ),             𝜎ℓ = 𝜎ℎ = 𝛿𝑥(𝑢) ,       𝜇(𝑥(𝑢)) = 𝑝.
+                          𝑚       𝑚
+
+When 𝜇off ∈ (𝑝∗ , 1], the only current proposal laws are 𝜎ℓ = 𝜎ℎ = 𝛿𝑥ℎ , with 𝜇(𝑥ℎ ) = 𝑝 and payoff
+  𝐴       𝐴
+(𝑣𝑈 (ℎ), 𝑣𝑈 (ℎ)); multiplicity survives only in 𝜇off and the complete literal continuation binder.
+
+
+                                                  48
+When 𝜇off ∈ (0, 𝑝∗ ], the correspondence is empty. For 𝑝∗ < 𝑝 < 1 and 𝜇off = 0, the high-
+posterior family always exists, and the low-posterior family is additionally present exactly when
+ 𝐴
+𝑣𝑈 (ℓ) ≥ 𝛽 2 ℎ. For 0 < 𝑝 ≤ 𝑝∗ , equilibrium exists exactly when 𝑣𝑈
+                                                                  𝐴
+                                                                    (ℓ) ≥ 𝛽 2 ℎ and consists only
+of the low-posterior family. There is no third interior family.
+
+The endpoints are complete Borel strategy correspondences, not one-sided limits. At 𝑝 = 0, support
+preservation fixes 𝜇(𝑥) = 𝜇off = 0 everywhere, 𝜎ℓ = 𝛿𝑥ℓ , and the counterfactual high-type law is
+
+                    ⎧                                                  𝐴
+                    { 𝛿𝑥ℓ ,                                           𝑣𝑈 (ℓ) > 𝛽 2 ℎ,
+                    {
+                    {
+                                                  ℓ          𝐴         2
+                    ⎨any Borel law supported on {𝑥 } ∪ ℛ𝐿 , 𝑣𝑈 (ℓ) = 𝛽 ℎ,
+                    {
+                    {
+                    {any Borel law supported on ℛ𝐿 ,         𝐴
+                                                            𝑣𝑈 (ℓ) < 𝛽 2 ℎ,
+                    ⎩
+
+where
+                                 ℛ𝐿 = {𝑥 ∈ 𝒳 ∶ min 𝑥𝑗 < 𝑟𝑈 (ℓ)}.
+                                                     𝑗
+
+                       𝐴           𝐴
+The linked payoff is (𝑣𝑈 (ℓ), max{𝑣𝑈 (ℓ), 𝛽 2 ℎ}), and the low type agrees immediately with proba-
+bility one. At 𝑝 = 1, support preservation fixes 𝜇(𝑥) = 𝜇off = 1 everywhere and 𝜎ℓ = 𝜎ℎ = 𝛿𝑥ℎ ,
+including the probability-zero type’s strategy, with linked payoff
+
+
+                                       𝑉𝑈𝐴 = (𝑣𝑈
+                                               𝐴       𝐴
+                                                 (ℎ), 𝑣𝑈 (ℎ)).
+
+
+Consequently, the payoff image of the complete correspondence is
+
+       ⎧ 𝐴               𝐴    2
+       {(𝑣𝑈 (ℓ), max{𝑣𝑈 (ℓ), 𝛽 ℎ}),                          𝑝 = 0,
+       {
+       { 𝐴         𝐴
+       {(𝑣𝑈 (ℓ), 𝑣𝑈  (ℓ)),                                   0 < 𝑝 ≤ 𝑝 ∗ , 𝑣𝑈
+                                                                            𝐴
+                                                                              (ℓ) ≥ 𝛽 2 ℎ, 𝜇off = 0,
+       {
+       {                     𝐴
+       {{(𝑢, 𝑢) ∶ 𝑢 ∈ [max{𝑣𝑈  (ℓ), 𝛽 2 ℎ}, 𝑣𝑈
+                                             𝐴
+                                               (ℎ)]},        𝑝∗ < 𝑝 < 1, 𝜇off = 0,
+   𝐴
+  𝑉𝑈 = ⎨
+           𝐴       𝐴
+       {(𝑣𝑈  (ℎ), 𝑣𝑈 (ℎ)),                                   𝑝∗ < 𝑝 < 1, 𝜇off ∈ (𝑝∗ , 1],
+       {
+       { 𝐴
+       {(𝑣𝑈 (ℎ), 𝑣𝑈𝐴
+                     (ℎ)),                                   𝑝 = 1,
+       {
+       {
+       {∅,                                                   all remaining fibers.
+       ⎩
+
+This display is only an image: it neither replaces the binder nor converts an interval of linked vectors
+
+
+                                                  49
+into a Cartesian product.
+
+For the two-layer representation, let 𝑍𝑈 be the compact realized-record space containing the named
+proposal and ballot coordinates, the realized posterior, pass/reject, the literal continuation-cell iden-
+tity, and the terminal allocation and payoff record. Then
+
+                    𝑈,𝑅𝑈
+                   Γ𝑜      = Law𝑜 (𝑥, 𝜇(𝑥), 𝑣(𝑥), pass/reject, 𝜁𝑈 , 𝜔term ) ∈ 𝒫(𝑍𝑈 ).
+
+
+Under a common permutation 𝑔 of weak-state names, let ℛ𝑔 relabel every named weak-state coor-
+dinate and let Λ𝛾 code the diagonal orbit of 𝛾 = (Γℓ , Γℎ ). For interior priors,
+
+            𝑒𝑥
+        Sig𝑈 (𝑅𝑈 ) = (𝜌, 𝜇off , Λ𝛾 ),       Sum𝑒𝑐𝑜𝑛
+                                               𝑈    (𝑅𝑈 ) = (𝜌, 𝜇off , (𝑞𝑈 )# Γℓ , (𝑞𝑈 )# Γℎ ),
+
+
+with endpoint forms (∗, 𝑝, Λ𝛾 ) and (∗, 𝑝, (𝑞𝑈 )# Γℓ , (𝑞𝑈 )# Γℎ ). The exact signature preserves the
+diagonal orbit of realized laws and their relevant realized identities; the economic layer removes
+names record by record. Neither layer contains the full off-path functions. Formal-identity and
+realized-law operations use the exact signature; any operation that depends on off-path beliefs,
+strategies, supports, messages, or continuation plans must instead consume the underlying complete
+binder. No Reynolds average is treated as an equilibrium representative, and every none cell above
+remains empty in both layers.
+
+
+E.4 Exact same-fiber institutional comparison
+
+Let ℬ𝑀 (d, 𝜌, 𝜇off ) and ℬ𝑈 (d, 𝜌, 𝜇off ) be the full correspondences just described. The admissible
+comparison set is
+
+
+                     𝒥bind      off             off                        off
+                      𝐴 (d, 𝜌, 𝜇 ) = ℬ𝑀 (d, 𝜌, 𝜇 ) ×(d,𝜌,𝜇off ) ℬ𝑈 (d, 𝜌, 𝜇 ).
+
+
+
+This product requires identical primitives and the same fiber, but it imposes no common proposal,
+continuation realization, or cross-world randomization. The exact linked type-payoff contrast is
+
+
+                 𝒞𝐴          off                𝐴         off      𝐴         off
+                  ℓℎ (d, 𝜌, 𝜇 ) = {𝑢 − 𝑣 ∶ 𝑢 ∈ 𝑉𝑈 (d, 𝜌, 𝜇 ), 𝑣 ∈ 𝑉𝑀 (d, 𝜌, 𝜇 )}.
+
+
+
+
+                                                   50
+It is a difference of complete vectors. The ex ante image is
+
+
+                𝒞𝐴         off                                   𝐴          off
+                 𝐸 (d, 𝜌, 𝜇 ) = {(1 − 𝑝)𝑥ℓ + 𝑝𝑥ℎ ∶ (𝑥ℓ , 𝑥ℎ ) ∈ 𝒞ℓℎ (d, 𝜌, 𝜇 )}.
+
+
+
+It is generally not equal to the sum of independently chosen marginal images. Dominance claims are
+setwise: unanimity dominates in a coordinate only when every member has positive sign; majority
+dominates only when every member has negative sign. A crossing set is selection dependent. An
+empty fiber has classification none, not sign zero.
+
+
+E.5 The sufficient majority-advantage region
+
+Every majority binder satisfies
+
+                          𝐴                                            𝑘𝛽
+                         𝑉𝑀            safe
+                            (𝑜) ≥ max{𝑣𝑀    , 𝛽 2 𝑜},       safe
+                                                           𝑣𝑀    =1−      ,
+                                                                       𝑚
+
+while every unanimity binder satisfies
+
+
+                                  𝑉𝑈𝐴 (𝑜) ≤ 𝑣𝑈
+                                             𝐴
+                                               (ℎ) = 1 − 𝛽 + 𝛽 2 ℎ.
+
+
+Therefore
+                                   safe    𝐴             𝑒
+                                  𝑣𝑀    − 𝑣𝑈 (ℎ) = 𝛽 (     − 𝛽ℎ) .
+                                                         𝑚
+If 𝛽ℎ < 𝑒/𝑚, then this margin is positive and every comparable member satisfies
+
+                                                         𝑒
+                            𝑉𝑈𝐴 (𝑜) − 𝑉𝑀
+                                       𝐴
+                                         (𝑜) ≤ −𝛽 (        − 𝛽ℎ) < 0
+                                                         𝑚
+
+for both types and ex ante. Equality yields weak majority advantage. This proves sufficiency only.
+
+The condition is not necessary. With
+
+
+               𝑚 = 4, 𝑘 = 2, 𝑒 = 2, 𝛽 = .9, ℓ = .5, ℎ = .6, 𝑥𝐻
+                                                             ̄ = .8, 𝑝 = 0,
+
+                                                                          safe         𝐴
+we have 𝑒/𝑚 = .5 and 𝛽ℎ = .54 > .5, so the condition fails. Nevertheless 𝑣𝑀    = .55, 𝑣𝑈 (ℓ) =
+.505, and 𝛽 2 ℎ = .486; hence every majority binder strictly exceeds the endpoint unanimity vector
+
+                                                 51
+(.505, .505).
+
+The excluded fraction is
+                                   ⎧
+                                𝑒  {1/2,          𝑚 even,
+                                  =⎨
+                                𝑚 {
+                                   ⎩(𝑚 − 1)/(2𝑚), 𝑚 odd.
+In an existing low-prior cell, the weaker local condition 𝛽ℓ < 𝑒/𝑚 gives the margin 𝛽(𝑒/𝑚 − 𝛽ℓ).
+At 𝑝 = 0, that condition guarantees only the ex ante conclusion unless the full counterfactual type
+vector is used.
+
+
+E.6 Public-majority PBE classes
+
+For public 𝑜 ≤ 1/𝑚, each weak vote costs
+
+                                                  𝛽(1 − 𝛽𝑜)
+                                       𝑟𝑀 (𝑜) =             .
+                                                      𝑚
+
+Every optimal proposal pays exactly 𝑟𝑀 (𝑜) to exactly 𝑘 weak states, pays zero to the rest, and
+leaves
+                                     𝐴             𝑘𝛽(1 − 𝛽𝑜)
+                                    𝑣𝑀 (𝑜) = 1 −
+                                                       𝑚
+to 𝐻 . Every probability measure over these minimal coalitions is a PBE proposal lottery. Passage
+strictly dominates the delayed payoff 𝛽 2 𝑜.
+                                                                     safe
+For 𝑜 > 1/𝑚, every purchased weak vote costs 𝛽/𝑚, so passage leaves 𝑣𝑀    and rejection yields
+𝛽𝑜. Thus:
+
+                    ∗
+         1/𝑚 < 𝑜 < 𝑜𝑀 ∶ every PBE passes through a minimal coalition,
+                       ∗
+                  𝑜 = 𝑜𝑀 ∶ every linked mixture of minimal passage and delay is allowed,
+                       ∗
+                  𝑜 > 𝑜𝑀 ∶ every PBE deliberately delays.
+
+At the tie, the same mixture weight binds the proposal, result, and agreement probability. The public
+
+
+
+
+                                                  52
+payoff is always the singleton
+
+                                     ⎧   𝑘𝛽(1 − 𝛽𝑜)
+                                     {1−               , 𝑜 ≤ 1/𝑚,
+                             𝐴
+                            𝑣𝑀 (𝑜) = ⎨          𝑚
+                                     {max{𝑣𝑀
+                                           safe
+                                                , 𝛽𝑜},   𝑜 > 1/𝑚.
+                                     ⎩
+
+E.7 Public-unanimity PBE
+
+Every weak vote costs
+                                                  𝛽(1 − 𝛽𝑜)
+                                       𝑟𝑈 (𝑜) =             .
+                                                      𝑚
+The unique optimal on-path proposal pays this amount to all 𝑚 weak states and leaves
+
+                                        𝐴
+                                       𝑣𝑈 (𝑜) = 1 − 𝛽 + 𝛽 2 𝑜
+
+
+to 𝐻 . Rejection yields 𝛽 2 𝑜, so passage is strictly better by 1 − 𝛽 . Agreement is immediate and
+payoff-determined for every public type; no majority-style delay is imported into this rule.
+
+
+E.8 The public gap
+
+Subtracting E.6 from E.7 gives the unanimity-minus-majority gap
+
+                                 ⎧
+                                 { −𝛽(𝑒/𝑚)(1 − 𝛽𝑜), 𝑜 ≤ 1/𝑚,
+                                 {
+                                 {
+                   Δ𝑣𝐴 (𝑜) = ⎨𝛽(𝛽𝑜 − 𝑒/𝑚),                               safe
+                                                          𝑜 > 1/𝑚, 𝛽𝑜 ≤ 𝑣𝑀    ,
+                             {
+                             {
+                             {(1 − 𝛽)(1 − 𝛽𝑜),                           safe
+                                                          𝑜 > 1/𝑚, 𝛽𝑜 ≥ 𝑣𝑀    .
+                             ⎩
+
+                          safe
+Continuity holds at 𝛽𝑜 = 𝑣𝑀    . For 𝑜 > 1/𝑚,
+
+
+                                  sgn Δ𝑣𝐴 (𝑜) = sgn(𝛽𝑜 − 𝑒/𝑚).
+
+
+At 𝑜 = 1/𝑚, the first branch applies because the frozen no-agenda continuation includes 𝐻 at
+equality. This special selection also matters for the direct agenda effect in E.12.
+
+
+
+
+                                                  53
+E.9 Exact informational-rent translations
+
+For every complete private binder,
+
+
+                                          𝐼𝑅𝑔𝐴 = 𝑉𝑔𝐴 − (𝑣𝑔𝐴 (ℓ), 𝑣𝑔𝐴 (ℎ)).
+
+
+This fixed-vector translation preserves every atom, mixture, and linked type coordinate. The exact
+unanimity cells are:
+
+                       Table 9: Unanimity informational rent with hegemonic agenda
+
+     Fiber                                         𝐴
+                                                 𝐼𝑅𝑈                                        Ex ante image
+
+     𝑝=0                                         (0, max{𝑣𝐴       2      𝐴
+                                                          𝑈 (ℓ), 𝛽 ℎ} − 𝑣𝑈 (ℎ))             0
+     0 < 𝑝 ≤ 𝑝∗ , 𝑣𝐴        2
+                   𝑈 (ℓ) ≥ 𝛽 ℎ, 𝜇
+                                 off
+                                     =0          (0, −(𝑣𝐴        𝐴
+                                                        𝑈 (ℎ) − 𝑣𝑈 (ℓ)))                    −𝑝(𝑣𝐴        𝐴
+                                                                                                𝑈 (ℎ) − 𝑣𝑈 (ℓ))
+     Other low-prior fibers                      ∅                                          ∅
+     𝑝∗ < 𝑝 < 1, 𝜇off = 0                        {(𝑢 − 𝑣𝐴               𝐴
+                                                          𝑈 (ℓ), 𝑢 − 𝑣𝑈 (ℎ))      ∶   𝑢   ∈ [max{𝑣𝐴       2
+                                                                                                  𝑈 (ℓ), 𝛽 ℎ} −
+                                                 [max{𝑣𝐴       2     𝐴
+                                                       𝑈 (ℓ), 𝛽 ℎ}, 𝑣𝑈 (ℎ)]}                𝑣𝐴         𝐴
+                                                                                             𝑈,𝐸 (𝑝), 𝑣𝑈 (ℎ)      −
+                                                                                            𝑣𝐴
+                                                                                             𝑈,𝐸 (𝑝)]
+     𝑝∗ < 𝑝 < 1, 𝜇off ∈ (𝑝∗ , 1]                 (𝑣𝐴        𝐴
+                                                   𝑈 (ℎ) − 𝑣𝑈 (ℓ), 0)                       (1 − 𝑝)(𝑣𝐴
+                                                                                                     𝑈 (ℎ) −
+                                                                                            𝑣𝐴
+                                                                                             𝑈 (ℓ))
+     𝑝∗ < 𝑝 < 1, 𝜇off ∈ (0, 𝑝∗ ]                 ∅                                          ∅
+     𝑝=1                                         (𝑣𝐴        𝐴
+                                                   𝑈 (ℎ) − 𝑣𝑈 (ℓ), 0)                       0
+
+
+
+
+      𝐴                 𝐴         𝐴
+Here 𝑣𝑈,𝐸 (𝑝) = (1 − 𝑝)𝑣𝑈 (ℓ) + 𝑝𝑣𝑈 (ℎ). Every existing cell satisfies
+
+                                            𝐴                    𝐴
+                                          𝐼𝑅𝑈 (ℓ) ≥ 0,         𝐼𝑅𝑈 (ℎ) ≤ 0,
+
+
+with at least one strict inequality. Majority rent is retained as the exact translation of the full majority
+payoff correspondence; it has no imposed global sign.
+
+
+E.10 Public power and information decomposition
+
+For every same-fiber member,
+
+
+                          Δ𝐼𝑅𝐴 (𝑜) = 𝐼𝑅𝑈
+                                       𝐴         𝐴
+                                         (𝑜) − 𝐼𝑅𝑀 (𝑜) = Δ𝑉 𝐴 (𝑜) − Δ𝑣𝐴 (𝑜),
+
+
+
+
+                                                          54
+or equivalently
+                                Δ𝑉 𝐴 (𝑜) = Δ𝑣𝐴 (𝑜) + Δ𝐼𝑅𝐴 (𝑜).
+
+If Δ𝑣𝐴 (ℓ) < 0 and a private member has Δ𝑉 𝐴 (ℓ) > 0, then
+
+
+                                   Δ𝐼𝑅𝐴 (ℓ) > −Δ𝑣𝐴 (ℓ) > 0
+
+
+for that member. Type incidence precedes ex ante aggregation:
+
+
+                  Δ𝑉𝐸𝐴 = Δ𝑣𝐸
+                           𝐴      𝐴
+                             + Δ𝐼𝑅𝐸 ,         𝐴
+                                            Δ𝑣𝐸 = (1 − 𝑝)Δ𝑣𝐴 (ℓ) + 𝑝Δ𝑣𝐴 (ℎ).
+
+
+Under the sufficient condition in E.5,
+
+
+          Δ𝑉 𝐴 (𝑜) ≤ −𝛽(𝑒/𝑚 − 𝛽ℎ),             Δ𝐼𝑅𝐴 (𝑜) ≤ −Δ𝑣𝐴 (𝑜) − 𝛽(𝑒/𝑚 − 𝛽ℎ).
+
+
+This bounds the informational difference relative to the amount required to reverse majority’s guar-
+anteed private advantage; it does not assign a sign to Δ𝐼𝑅𝐴 (𝑜).
+
+The numerical member in Figure 5 gives
+
+
+              Δ𝐼𝑅𝐴 (ℓ) = .5480,          Δ𝑣𝐴 (ℓ) = −.4095,           Δ𝑉 𝐴 (ℓ) = .1385.
+
+
+These linked values illustrate the identity; they do not calibrate the WTO or select globally from
+either correspondence.
+
+
+E.11 Factorial design and identity
+
+At date 𝐴, the four cells are
+
+
+                                                   𝐵         𝐴
+                                 public type    𝛽𝑣𝑔𝐵 (𝑜)   𝑣𝑔𝐴 (𝑜)
+                                 private type 𝛽𝑉𝑔𝐵 (𝑜) 𝑉𝑔𝐴 (𝑜).
+
+
+
+
+                                                55
+Define
+                                  𝐷𝑔 (𝑜) = 𝑣𝑔𝐴 (𝑜) − 𝛽𝑣𝑔𝐵 (𝑜),
+                                      𝑇𝑔 (𝑜) = 𝑉𝑔𝐴 (𝑜) − 𝛽𝑉𝑔𝐵 (𝑜),
+                                      𝐼𝑔 (𝑜) = 𝐼𝑅𝑔𝐴 (𝑜) − 𝛽𝐼𝑅𝑔𝐵 (𝑜).
+
+Substituting 𝑉 = 𝑣 + 𝐼𝑅 in both arms yields, by type and ex ante,
+
+
+                                             𝑇𝑔 = 𝐷 𝑔 + 𝐼 𝑔 .
+
+
+The factor 𝛽 appears once because the no-agenda arm begins one date later. The treatment combines
+an earlier opportunity with a mandatory proposal. Redating Round 1 to date 𝐴 in the control would
+define another structural contrast.
+
+
+E.12 Direct agenda effects and their institutional difference
+
+The rule-specific public effects are
+                                            𝐷𝑈 (𝑜) = 1 − 𝛽
+
+and
+                                      ⎧ safe
+                                      { 𝑣𝑀 − (𝑒/𝑚)𝛽 2 𝑜, 𝑜 ≤ 1/𝑚,
+                                      {
+                                      {
+                       𝐷𝑀 (𝑜) = ⎨𝑣𝑀
+                                  safe
+                                       − 𝛽𝑜,                               ∗
+                                                                1/𝑚 < 𝑜 < 𝑜𝑀 ,
+                                {
+                                {
+                                {0,                                  ∗
+                                                                𝑜 ≥ 𝑜𝑀 .
+                                ⎩
+                         ∗
+The threshold satisfies 𝑜𝑀 > 1/𝑚, but it can be weakly above one, in which case the last branch
+is empty in the admissible domain. At 𝑜 = 1/𝑚, the first branch applies. The frozen continuation
+selection creates the jump
+
+                                                                 𝛽     𝑒𝛽
+                    𝐷𝑀 (1/𝑚) −             lim       𝐷𝑀 (𝑜) =      (1 − ) > 0.
+                                      𝑜↓1/𝑚, 𝑜>1/𝑚               𝑚     𝑚
+
+
+
+
+                                                     56
+With Δ𝐷(𝑜) = 𝐷𝑈 (𝑜) − 𝐷𝑀 (𝑜),
+
+                                  ⎧
+                                  { −𝛽(𝑒/𝑚)(1 − 𝛽𝑜), 𝑜 ≤ 1/𝑚,
+                                  {
+                                  {
+                      Δ𝐷(𝑜) = ⎨𝛽(𝑜 − 𝑒/𝑚),                              ∗
+                                                             1/𝑚 < 𝑜 ≤ 𝑜𝑀 ,
+                              {
+                              {
+                              {1 − 𝛽,                             ∗
+                                                             𝑜 ≥ 𝑜𝑀 .
+                              ⎩
+
+                                   ∗
+The last two formulas coincide at 𝑜𝑀 . This branchwise statement is the frozen result; no stronger
+global classification from the later external consultation is promoted here.
+
+
+E.13 Total private agenda effects
+
+Under unanimity, the exact linked correspondence is
+
+     ⎧               𝐴          2
+     {(1 − 𝛽, max{𝑣𝑈 (ℓ) − 𝛽 ℎ, 0}),                                    𝑝 = 0,
+     {
+     {
+     {∅,                                                                0 < 𝑝 ≤ 𝑝∗ ,
+     {
+     {
+     {{(𝑢 − 𝛽 2 ℎ, 𝑢 − 𝛽 2 ℎ) ∶ 𝑢 ∈ [max{𝑣𝑈
+                                          𝐴
+                                            (ℓ), 𝛽 2 ℎ}, 𝑣𝑈
+                                                          𝐴
+                                                            (ℎ)]},      𝑝∗ < 𝑝 < 1, 𝜇off = 0,
+𝑇𝑈 = ⎨
+     {∅,                                                                𝑝∗ < 𝑝 < 1, 𝜇off ∈ (0, 𝑝∗ ],
+     {
+     {
+     {(1 − 𝛽, 1 − 𝛽),                                                   𝑝∗ < 𝑝 < 1, 𝜇off ∈ (𝑝∗ , 1],
+     {
+     {
+     {(1 − 𝛽, 1 − 𝛽),                                                   𝑝 = 1.
+     ⎩
+
+In the low-prior interior, the no-agenda control is always empty; the agenda treatment may exist or
+may also be empty. In the high-prior low-positive off-path fiber, the control exists but the agenda
+treatment is empty. These different missing arms both propagate to an empty 𝑇𝑈 .
+
+Where both arms exist, every unanimity member weakly benefits both types and the maximum gain
+is 1 − 𝛽 . At 𝑝 = 0, the ex ante gain is 1 − 𝛽 even if the probability-zero high coordinate is zero.
+
+For majority, retain the exact interaction correspondence:
+
+
+                                        𝑇𝑀 = 𝐷𝑀 + 𝐼𝑀 .
+
+
+
+
+                                                 57
+For each coordinate and member,
+
+
+                              𝑇𝑀 (𝑜) > 0 ⟺ 𝐼𝑀 (𝑜) > −𝐷𝑀 (𝑜),
+                              𝑇𝑀 (𝑜) = 0 ⟺ 𝐼𝑀 (𝑜) = −𝐷𝑀 (𝑜),
+                              𝑇𝑀 (𝑜) < 0 ⟺ 𝐼𝑀 (𝑜) < −𝐷𝑀 (𝑜).
+
+No selection-free sign follows when the source correspondence crosses the threshold. Across rules,
+
+
+                                    Δ𝑇 (𝑜) = Δ𝐷(𝑜) + Δ𝐼(𝑜)
+
+
+member by member in every complete product. A robust ranking requires the entire admissible
+correspondence to lie on one side of −Δ𝐷(𝑜).
+
+
+E.14 The diagonal contrast
+
+The diagonal comparison is
+
+
+                        𝑄𝑔 (𝑜) = 𝑣𝑔𝐴 (𝑜) − 𝛽𝑉𝑔𝐵 (𝑜) = 𝐷𝑔 (𝑜) − 𝛽𝐼𝑅𝑔𝐵 (𝑜).
+
+
+It compares public information with agenda against private information without agenda, changing
+two factors at once. It is not a causal effect of agenda or information alone.
+
+Under unanimity,
+                                 ⎧
+                                 {(1 − 𝛽, 1 − 𝛽),             𝑝 = 0,
+                                 {
+                                 {
+                         𝑄𝑈 = ⎨∅,                        0 < 𝑝 ≤ 𝑝∗ ,
+                              {
+                              {
+                              {(𝑣𝑈𝐴
+                                    (ℓ) − 𝛽 2 ℎ, 1 − 𝛽), 𝑝∗ < 𝑝 ≤ 1.
+                              ⎩
+The ex ante value in the high-prior region is
+
+
+                                𝑄𝐸                   2
+                                 𝑈 = 1 − 𝛽 − (1 − 𝑝)𝛽 (ℎ − ℓ).
+
+
+
+Under majority,
+                                                    𝐵
+                                       𝑄𝑀 = 𝐷𝑀 − 𝛽𝐼𝑅𝑀
+
+
+
+                                                 58
+is the exact image of the applicable linked no-agenda records and remains set-valued where those
+records do. 𝑄𝑈 may exist where 𝑇𝑈 is empty because it does not use the private agenda arm.
+
+
+
+Appendix F: Factorization, interaction, and scope
+
+F.1 Exact and economic layers
+
+For majority, the exact signature is
+
+                                       𝑒𝑥
+                                  Sig𝑀 (𝑅𝑀 ) = (𝜌, 𝜇off , Λ(Γℓ ,Γℎ ) ),
+
+
+where Λ codes the diagonal relabeling orbit of the two complete realized laws. Its economic sum-
+mary is
+                          Sum𝑒𝑐𝑜𝑛           off
+                             𝑀 (𝑅𝑀 ) = (𝜌, 𝜇 , (𝑞𝑍 )# Γℓ , (𝑞𝑍 )# Γℎ ).
+
+                                            𝑒𝑥
+Unanimity uses the analogous pair Sig𝑈 and Sum𝑒𝑐𝑜𝑛
+                                              𝑈    . The exact signature preserves the diagonal
+relabeling orbit of the realized laws and the relevant identities inside those realized records. It does
+not retain the complete off-path belief, strategy, support, message, or continuation functions. Those
+functions remain only in the underlying complete binder, and every off-path-sensitive operation
+must consume that binder. The economic layer retains the anonymous realized laws needed for
+payoffs, agreement, delay, and anonymous outcomes.
+
+The institutional operator is first applied to complete binders. Only after that product is formed do
+payoff and outcome maps factor measurably through the economic summaries:
+
+                                                              𝑒𝑐𝑜𝑛
+                     𝒞econ (𝑅𝑀 , 𝑅𝑈 ) = 𝒞econ (Sum𝑒𝑐𝑜𝑛
+                                                  𝑀 (𝑅𝑀 ), Sum𝑈    (𝑅𝑈 )).
+
+
+No Reynolds average is an equilibrium representative. Equality of summaries does not identify
+named proposals, coalition lotteries, or off-path plans.
+
+For coordinate 𝑟 ∈ {ℓ, ℎ, 𝐸}, the contrast envelope satisfies
+
+
+                   inf 𝒞𝐴
+                        𝑟 = inf 𝑈𝑟 − sup 𝑀𝑟 ,           sup 𝒞𝐴
+                                                             𝑟 = sup 𝑈𝑟 − inf 𝑀𝑟 .
+
+
+
+                                                   59
+The interval between these numbers is an interval hull, not necessarily an attained set. Likewise,
+the outcome object is the ordered pair of marginal laws
+
+
+          𝒪𝐴 (d, 𝜌, 𝜇off ) = {((Γ̄ ℓ𝑀 , Γ̄ ℎ𝑀 ), (Γ̄ ℓ𝑈 , Γ̄ ℎ𝑈 )) ∶ (𝑅𝑀 , 𝑅𝑈 ) ∈ 𝒥bind      off
+                                                                                   𝐴 (d, 𝜌, 𝜇 )} .
+
+
+
+It is not a joint counterfactual distribution. A common cross-world draw or coordinate splicing
+would add a primitive absent from the model.
+
+
+F.2 Interaction with the no-agenda benchmark
+
+Let 𝐼𝑅𝑔𝐵 be the native Round-1 rent vector from the no-agenda benchmark. The exact interaction
+is the Minkowski difference of complete linked records,
+
+
+                                         𝐼𝑔 = 𝐼𝑅𝑔𝐴 − 𝛽𝐼𝑅𝑔𝐵 .
+
+
+For majority, the applicable no-agenda records are the three public regions written in words in Table
+6; no general sign is inferred.
+
+Under unanimity:
+
+                  ⎧            𝐴        2         𝐴
+                  {(0, max{𝑣𝑈 (ℓ), 𝛽 ℎ} − 𝑣𝑈 (ℎ)),                  𝑝 = 0,
+                  {
+                  {
+                  {∅,                                               0 < 𝑝 ≤ 𝑝∗ ,
+                  {
+                  {⎧ (𝑢 − 𝑣𝐴 (ℎ), 𝑢 − 𝑣𝐴 (ℎ)) ∶ ⎫
+                  {{            𝑈               𝑈          }
+                  {⎨                                       ⎬ ,      𝑝∗ < 𝑝 < 1, 𝜇off = 0,
+             𝐼𝑈 = ⎨{
+                   ⎩  𝑢 ∈  [ max {𝑣 𝐴
+                                    𝑈 (ℓ), 𝛽 2
+                                               ℎ}, 𝑣 𝐴
+                                                     𝑈 (ℎ)]}
+                                                           ⎭
+                  {                                                  𝑝∗ <𝑝<1,
+                  {(0, 0),                                          𝜇off ∈(𝑝∗ ,1],
+                  {
+                  {                                                  𝑝∗ <𝑝<1,
+                  {∅,
+                  {                                                 𝜇off ∈(0,𝑝∗ ],
+                  {
+                  {(0, 0),                                          𝑝 = 1.
+                  ⎩
+
+Thus agenda weakly reduces unanimity’s informational rent in every existing high-prior fiber; the
+                                                               𝐴
+change is strict for both types exactly when 𝜇off = 0 and 𝑢 < 𝑣𝑈 (ℎ). At 𝑝 = 0, only the probability-
+zero high coordinate falls.
+
+
+
+                                                    60
+The institutional interaction is
+                                      Δ𝐼 = Δ𝐼𝑅𝐴 − 𝛽Δ𝐼𝑅𝐵 .
+
+It exists only when both exact sources exist. It remains set-valued whenever either source does and
+is never assembled from independently chosen marginal coordinates.
+
+
+F.3 Payoff dates, existence, and verification limits
+
+All agenda-game values arrive at date 𝐴. Native no-agenda Round-1 values are multiplied by 𝛽
+exactly once before comparison. Public agenda payoffs, private agenda payoffs, agenda rents, and
+their institutional contrasts receive no additional factor.
+
+The existence rules are:
+
+    • every public agenda game has a PBE for both rules and types;
+
+    • 𝐼𝑅𝑔𝐴 exists exactly where the private agenda source exists;
+
+    • Δ𝐼𝑅𝐴 exists exactly where the same-fiber product exists;
+
+    • 𝐼𝑔 exists exactly where both its agenda and no-agenda rent sources exist;
+
+    • Δ𝐼 , 𝑇𝑔 , and Δ𝑇 exist only where every source required by their definitions exists.
+
+An absent source propagates ∅. It is never encoded as zero, NA, infinity, or a fictional payoff. Me-
+chanical scripts check hashes, schemas, finite identities, inequalities, and enumerated cells. They
+do not prove PBE completeness, abstract measurability, universal factorization, or the absence of
+unenumerated deviations; those conclusions come from the textual proofs fixed by the source man-
+ifests.
+
+
+F.4 Causal scope and mandatory treatment
+
+𝑇𝑔 is a structural causal contrast inside the specified model. It is not an empirically identified esti-
+mand for the WTO or another institution. The treatment inserts an earlier and mandatory hegemonic
+proposal stage. Its control starts at Round 1, so 𝑇𝑔 includes the value of timing as specified by the
+game. It does not describe an optional proposal right that 𝐻 can decline while retaining the same
+date-𝐴 payoff.
+
+                                                   61
+When a contrast is set-valued, each comparison is member-specific. A selection-free claim requires
+the entire exact correspondence to lie on the relevant side of the threshold. We do not promote the six
+later advisory corollaries to frozen theorems. The exact result remains the source correspondence
+and its declared domain.
+
+
+
+Appendix G: Rationalist crosswalk for the WTO application
+
+                      Table 10: WTO practices, strategic primitives, and scope
+
+ Practice                    Strategic translation           Primitive       Qualification and rela-
+                                                                             tion to the model
+
+ Green      Room,   Quad, Restricted agenda coali- Recognition               Familiar de facto agenda
+ Washington and Brus- tion                                   and   proposal power; removed from
+ sels meetings                                               protocol        the baseline and restored
+                                                                             in the extension
+ Drafting, brackets, sec- Control       of   proposal, Proposal          and Mostly agenda power
+ retariat texts, hard-to- amendment          rule,        or amendment       under a closed rule; a
+ amend packages              textual reversion               protocol        separate drafting mech-
+                                                                             anism    would      require
+                                                                             alternative amendment
+                                                                             procedures
+ Market size                 Better alternatives and 𝑜 ∈ {ℓ, ℎ}, 𝛽           Microfoundation         for
+                             possibly greater patience                       asymmetric       disagree-
+                                                                             ment; patience asymme-
+                                                                             try remains outside the
+                                                                             model
+
+
+
+
+                                                     62
+Practice                    Strategic translation        Primitive          Qualification and rela-
+                                                                            tion to the model
+
+Absolute reciprocity        Metric for exchanged Contract metric            Not      an    independent
+                            concessions                                     asymmetry              with-
+                                                                            out      market-size      or
+                                                                            adjustment-cost differ-
+                                                                            ences
+Sanctions,    alternative Credible changes in con- Disagreement             Microfoundation          for
+forums,      preferential tinuation values               payoff        and outside-option         power;
+clubs, selective blocking                                commitment         a     non-credible     threat
+                                                                            would require another
+                                                                            commitment device
+Side payments, excep- Targeted compensation Feasible                   con- Represented by the di-
+tions, transition periods   at reservation values        tract space        visible unit pie; does not
+                                                                            determine who keeps the
+                                                                            residual
+Issue linkage and multi- Cross-dimensional com- Contract space              Supports                 the
+dimensional packages        pensation                                       transferable-surplus
+                                                                            approximation without
+                                                                            making        every    issue
+                                                                            literally divisible
+Single undertaking          Linked      package     and Contract space Distinct from destruc-
+                            closed         acceptance and closure rule tion of GATT 1947 as a
+                            choice                                          fallback
+U.S. and EC withdrawal Lower value of rejecting Disagreement                Historically specific ma-
+from GATT 1947              the WTO package              payoffs            nipulation of the status
+                                                                            quo; not a constitutive
+                                                                            feature of the single un-
+                                                                            dertaking
+
+
+                                                  63
+ Practice                    Strategic translation        Primitive          Qualification and rela-
+                                                                             tion to the model
+
+ Proposals,     objections, Observable       responses Information           Steinberg         generally
+ working groups,       and   may reveal reservation structure                has information flow
+ verification                values                                          from    weak      members
+                                                                             to agenda setters; the
+                                                                             model        reverses   that
+                                                                             direction
+ Acquiescence and estop- Finality or continuing Voting, amend- Not                   an     independent
+ pel                         objection as fixed by the ment, and tim- mechanism: any loss of
+                             procedure                    ing                a future right to object
+                                                                             must be part of the rule
+ Retribution, trust, and Present action changes Repeated inter- Outside the two-round
+ reputation                  future beliefs or punish- action                model; not inserted as an
+                             ment                                            ad hoc one-shot cost
+ Formal equality and le- Consent may change rat- Implementation Complementary mecha-
+ gitimacy                    ification, compliance, or and       domestic nism outside the unitary-
+                             participation                politics           actor model
+ Consensus                   Every approval is indis- Approval               The institutional primi-
+                             pensable; majority sup- threshold               tive isolated in the base-
+                             plies substitutes                               line
+
+
+
+This table is a rationalist reconstruction by the author, not a formal model attributed to Steinberg. It
+groups observed practices by the strategic object they change. It also preserves three distinctions:
+acquiescence is part of the voting and amendment protocol, reputation requires future interaction,
+and the single undertaking does not itself destroy the GATT 1947 fallback.
+
+
+
+
+                                                  64
+References
+Baron, David P., and John A. Ferejohn. 1989. “Bargaining in Legislatures.” American Political
+   Science Review 83 (4): 1181–1206. https://doi.org/10.2307/1961664.
+Cairns Group. 1987. “Cairns Group Proposal to the Uruguay Round Negotiating Group on Agri-
+   culture.” Multilateral Trade Negotiations, Uruguay Round, Negotiating Group on Agriculture
+   MTN.GNG/NG5/W/21. Geneva: General Agreement on Tariffs and Trade. https://www.wto.
+   org/gatt_docs/English/SULPDF/92030054.pdf.
+Chen, Ying, and Hülya Eraslan. 2013. “Informational Loss in Bundled Bargaining.” Journal of
+   Theoretical Politics 25 (3): 338–62. https://doi.org/10.1177/0951629813482232.
+———. 2014. “Rhetoric in Legislative Bargaining with Asymmetric Information.” Theoretical
+   Economics 9 (2): 483–513. https://doi.org/10.3982/TE821.
+Eraslan, Hülya, and Kirill S. Evdokimov. 2019. “Legislative and Multilateral Bargaining.” An-
+   nual Review of Economics 11: 443–72. https://doi.org/10.1146/annurev-economics-080218-
+   025633.
+Fearon, James D. 1995. “Rationalist Explanations for War.” International Organization 49 (3):
+   379–414.
+Feddersen, Timothy J., and Wolfgang Pesendorfer. 1998. “Convicting the Innocent: The Inferiority
+   of Unanimous Jury Verdicts Under Strategic Voting.” American Political Science Review 92 (1):
+   23–35. https://doi.org/10.2307/2585926.
+Fudenberg, Drew, and Jean Tirole. 1991. Game Theory. Cambridge, MA: MIT Press.
+Glynia, Nektaria, Marcel Thum, and Dimitrios Xefteris. 2026. “Unanimity Versus Majority:
+   Proposing Under Incomplete Information.” Public Choice. https://doi.org/10.1007/s11127-
+   026-01383-9.
+Kalandrakis, Tasos. 2006. “Proposal Rights and Political Power.” American Journal of Political
+   Science 50 (2): 441–48. https://doi.org/10.1111/j.1540-5907.2006.00193.x.
+Koremenos, Barbara, Charles Lipson, and Duncan Snidal. 2001. “The Rational Design of In-
+   ternational Institutions.” International Organization 55 (4): 761–99. https://doi.org/10.1162/
+   002081801317193592.
+Krasner, Stephen D. 1983. “Structural Causes and Regime Consequences: Regimes as Intervening
+
+
+
+                                              65
+   Variables.” In International Regimes, edited by Stephen D. Krasner, 1–21. Ithaca, NY: Cornell
+   University Press.
+Kreps, David M., and Robert Wilson. 1982. “Sequential Equilibria.” Econometrica 50 (4): 863–94.
+Ma, Zizhen. 2023. “Efficiency and Surplus Distribution in Majoritarian Reputational Bargaining.”
+   Journal of Economic Theory 210: 105649. https://doi.org/10.1016/j.jet.2023.105649.
+McCarty, Nolan M. 2000. “Proposal Rights, Veto Rights, and Political Bargaining.” American
+   Journal of Political Science 44 (3): 506–22. https://doi.org/10.2307/2669261.
+Miller, Luis, Maria Montero, and Christoph Vanberg. 2018. “Legislative Bargaining with Hetero-
+   geneous Disagreement Values: Theory and Experiments.” Games and Economic Behavior 107:
+   60–92. https://doi.org/10.1016/j.geb.2017.11.003.
+Osborne, Martin J., and Ariel Rubinstein. 1990. Bargaining and Markets. San Diego: Academic
+   Press.
+Piazolo, David, and Christoph Vanberg. 2025. “Legislative Bargaining with Private Information: A
+   Comparison of Majority and Unanimity Rule.” Games and Economic Behavior 153: 499–522.
+   https://doi.org/10.1016/j.geb.2025.07.010.
+Steinberg, Richard H. 2002. “In the Shadow of Law or Power? Consensus-Based Bargaining and
+   Outcomes in the GATT/WTO.” International Organization 56 (2): 339–74. https://doi.org/10.
+   1162/002081802320005504.
+Stone, Randall W. 2011. Controlling Institutions: International Organizations and the Global
+   Economy. Cambridge: Cambridge University Press.
+Tsai, Tsung-Sheng. 2009. “The Evaluation of Majority Rules in a Legislative Bargaining Model.”
+   Journal of Comparative Economics 37 (4): 674–84. https://doi.org/10.1016/j.jce.2009.01.001.
+Tsai, Tsung-Sheng, and C. C. Yang. 2010. “On Majoritarian Bargaining with Incomplete In-
+   formation.” International Economic Review 51 (4): 959–79. https://doi.org/10.1111/j.1468-
+   2354.2010.00607.x.
+Voeten, Erik. 2019. “Making Sense of the Design of International Institutions.” Annual Review of
+   Political Science 22: 147–63. https://doi.org/10.1146/annurev-polisci-041916-021108.
+Winter, Eyal. 1996. “Voting and Vetoing.” American Political Science Review 90 (4): 813–23.
+   https://doi.org/10.2307/2945844.
+
+
+
+
+                                                66
+
