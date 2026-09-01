@@ -59,3 +59,10 @@ scripts are read-only sources.
   `b707a498ef8efa31f7de5786b5236afe35c3ae26ffb6a313c6d3049307489b62`;
   PDF `52b75b1964f888ae30347edc3cdaef0a7ee7f8b50d50d87a3af352b0f6165f8d`.
   The Introduction remained untouched.
+- Agenda extension and technical appendices: sectionwise notation migration
+  completed and rendered successfully on 2026-09-01. Candidate hashes at this
+  checkpoint: Rmd
+  `821e64b32ba92e41e2a0184458068961d4272372aea0a4acc08ea089e4abaa14`;
+  PDF `374d83889dab79fa6de881ba4190a4d3afbfed84292bbfb13d9f7730ee230ae6`.
+  The linked fibers, `none` cells, and separate definitions of `T` and `Q`
+  were retained. The Introduction remained untouched.
