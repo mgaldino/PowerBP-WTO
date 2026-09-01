@@ -1,0 +1,441 @@
+---
+title: "Benefícios para os Estados Fracos"
+subtitle: "Incidência por papel no modelo de poder informacional"
+author: "Nota analítica baseada no manuscrito atual"
+date: "1 de setembro de 2026"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+    toc: true
+    toc_depth: 2
+    fig_caption: true
+fontsize: 11pt
+geometry: margin=2.4cm
+mainfont: "Times New Roman"
+header-includes:
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \usepackage{float}
+  - \usepackage{xcolor}
+  - \usepackage{microtype}
+  - \usepackage{caption}
+  - \captionsetup{font=small,labelfont=bf}
+  - \renewcommand{\tablename}{Tabela}
+  - \renewcommand{\figurename}{Figura}
+  - \renewcommand{\contentsname}{Sumário}
+  - \setlength{\parindent}{0pt}
+  - \setlength{\parskip}{5pt}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.pos = "H",
+  out.width = "95%"
+)
+
+roles <- read.csv(
+  "output/tables/beneficios_estados_fracos_papeis.csv",
+  fileEncoding = "UTF-8",
+  check.names = FALSE
+)
+summaries <- read.csv(
+  "output/tables/beneficios_estados_fracos_resumos.csv",
+  fileEncoding = "UTF-8",
+  check.names = FALSE
+)
+parameters <- read.csv(
+  "output/tables/beneficios_estados_fracos_parametros.csv",
+  fileEncoding = "UTF-8",
+  check.names = FALSE
+)
+
+fmt <- function(x, digits = 4) formatC(x, format = "f", digits = digits)
+
+make_role_table <- function(examples) {
+  z <- subset(roles, exemplo %in% examples)
+  data.frame(
+    Exemplo = z$exemplo,
+    Regra = z$regra,
+    Tipo = z$tipo,
+    Papel = z$papel,
+    Probabilidade = fmt(z$probabilidade, 3),
+    `Payoff condicional` = fmt(z$payoff_condicional, 4),
+    `Contribuição ex ante` = fmt(z$contribuicao, 4),
+    check.names = FALSE
+  )
+}
+
+make_summary_table <- function(examples) {
+  z <- subset(summaries, exemplo %in% examples)
+  data.frame(
+    Exemplo = z$exemplo,
+    Regra = z$regra,
+    Tipo = z$tipo,
+    `Payoff esperado` = fmt(z$payoff_esperado, 4),
+    check.names = FALSE
+  )
+}
+```
+
+# Síntese
+
+Os benefícios dos Estados fracos podem ser obtidos sem resolver novamente o
+jogo e sem construir uma medida agregada de bem-estar. Para qualquer Estado
+fraco, basta multiplicar o payoff recebido em cada papel pela probabilidade de
+ocupar esse papel. Sob a seleção simétrica usada nesta nota, todos os Estados
+fracos têm as mesmas probabilidades *ex ante*.
+
+No benchmark em que um fraco propõe, os papéis relevantes são: proponente,
+membro não proponente da coalizão vencedora e excluído. Na extensão de agenda,
+o proponente inicial é o hegemon (H); os fracos são incluídos, excluídos ou
+recebem a continuação após uma proposta rejeitada. Se a continuação começa,
+os três papéis do benchmark reaparecem, descontados uma vez.
+
+Os principais resultados distributivos são:
+
+1. maioria favorece o proponente fraco porque exige a compra de menos votos;
+2. um fraco comprado pela maioria pode receber mais que receberia sob
+   unanimidade;
+3. unanimidade beneficia os fracos que seriam excluídos pela coalizão
+   majoritária;
+4. quando maioria produz atraso, a vantagem de ocupar futuramente o papel de
+   proponente pode superar o pagamento imediato oferecido sob unanimidade;
+5. informação privada pode beneficiar tipos diferentes de fracos por canais
+   diferentes: preço de inclusão, probabilidade de exclusão e custo do atraso.
+
+Esta é uma nota de incidência distributiva. Ela não altera o conceito de
+equilíbrio, as crenças, os desempates nem as correspondências do manuscrito.
+
+# Decomposição por papéis
+
+Considere um benchmark em que um dos (m) Estados fracos é reconhecido
+uniformemente como proponente. Suponha que a proposta vencedora inclua (r)
+fracos não proponentes, todos simétricos. Para qualquer fraco (j),
+
+\[
+\Pr(j\text{ proponente})=\frac1m,
+\qquad
+\Pr(j\text{ incluído})=\frac r m,
+\qquad
+\Pr(j\text{ excluído})=1-\frac{1+r}{m}.
+\]
+
+Se (u_P) é o payoff do proponente e (u_I) o payoff de um incluído, o
+payoff esperado de qualquer Estado fraco é
+
+\[
+V_W=\frac1m u_P+\frac r m u_I.
+\tag{1}
+\]
+
+O payoff do excluído não aparece porque é zero. A Tabela \ref{tab:probpapeis}
+mostra como (r) varia entre as classes do benchmark.
+
+\begin{table}[H]
+\centering
+\caption{Probabilidades dos papéis no benchmark simétrico}
+\label{tab:probpapeis}
+\begin{tabular}{lccc}
+\toprule
+Classe & Proponente & Incluído & Excluído \\
+\midrule
+Maioria, exclusão de (H) & (1/m) & (k/m) & ((m-k-1)/m) \\
+Maioria, screening ou pooling & (1/m) & ((k-1)/m) & ((m-k)/m) \\
+Unanimidade & (1/m) & ((m-1)/m) & (0) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A igualdade entre as probabilidades exige uma seleção anônima: reconhecimento
+uniforme e uma loteria uniforme entre coalizões vencedoras de mesmo tamanho.
+Simetria das primitivas, isoladamente, não elimina PBEs assimétricos. A nota
+usa o representante simétrico porque seu objetivo é a incidência *ex ante* para
+um Estado fraco indiferenciado.
+
+# Benchmark sem agenda
+
+## Informação pública
+
+Seja
+
+\[
+k=\left\lfloor\frac{m+1}{2}\right\rfloor,
+\qquad
+w=\frac{\beta}{m}.
+\]
+
+Quando maioria inclui (H), o proponente paga (eta o) ao hegemon e compra
+(k-1) fracos a (w). Quando maioria exclui (H), compra (k) fracos a
+(w). Sob unanimidade, paga (eta o) a (H) e
+
+\[
+w_U(o)=\frac{\beta(1-o)}m
+\]
+
+a cada fraco não proponente.
+
+Com (m=4), (eta=0{,}90), (ell=0{,}10) e (h=0{,}35), temos
+(k=2) e (1/m=0{,}25). O tipo baixo é barato e o tipo alto é caro para a
+coalizão majoritária.
+
+```{r tab-public-roles, results='asis'}
+knitr::kable(
+  make_role_table(c("Benchmark público: H barato", "Benchmark público: H caro")),
+  format = "latex",
+  booktabs = TRUE,
+  longtable = TRUE,
+  caption = "Payoffs por papel no benchmark com informação pública",
+  label = "tab:publicroles",
+  align = c("l", "l", "l", "l", "r", "r", "r")
+)
+```
+
+```{r tab-public-summary, results='asis'}
+knitr::kable(
+  make_summary_table(c("Benchmark público: H barato", "Benchmark público: H caro")),
+  format = "latex",
+  booktabs = TRUE,
+  caption = "Payoff esperado de um Estado fraco no benchmark público",
+  label = "tab:publicsummary",
+  align = c("l", "l", "l", "r")
+)
+```
+
+Quando (o=0{,}10), as duas regras entregam o mesmo payoff esperado,
+(0{,}2275), mas por distribuições diferentes. Maioria concentra mais no
+proponente e em poucos parceiros; unanimidade distribui pagamentos entre todos
+os não proponentes. Quando (o=0{,}35), maioria exclui (H) e o payoff
+esperado de um fraco sobe para (0{,}25); unanimidade mantém (H) e reduz o
+payoff para (0{,}1713).
+
+## Informação privada: screening versus pooling
+
+Um exemplo simples mostra que o custo do atraso pode alterar a incidência.
+Considere (m=4), (eta=0{,}75), (ell=0{,}05), (h=0{,}15) e
+(p=0{,}115). Os dois limites relevantes são
+
+\[
+p^*=0{,}1053,
+\qquad
+p_{S=P}=0{,}1277.
+\]
+
+Logo, unanimidade faz pooling, enquanto maioria ainda faz screening. Se (H)
+é baixo, o screening majoritário passa; se (H) é alto, a proposta falha e
+os fracos recebem a continuação.
+
+```{r tab-private-summary, results='asis'}
+knitr::kable(
+  make_summary_table("Privado: p = 0.115"),
+  format = "latex",
+  booktabs = TRUE,
+  caption = "Exemplo privado: payoff esperado por tipo de H",
+  label = "tab:privatesummary",
+  align = c("l", "l", "l", "r")
+)
+```
+
+Para o tipo baixo, unanimidade menos maioria é
+
+\[
+-\frac{\beta(h-\ell)}m=-0{,}0188.
+\]
+
+Os fracos financiam o pagamento do limiar alto. Para o tipo alto, porém,
+
+\[
+\frac{1-\beta(1+h)}m=0{,}0344>0.
+\]
+
+Unanimidade pode beneficiar os fracos nesse estado porque evita o atraso
+produzido pelo screening majoritário. Antes de observar o tipo de (H), basta
+ponderar os dois valores por (1-p) e (p).
+
+# Extensão com agenda de H
+
+## Fórmula geral
+
+Na data (A), (H) é o proponente. Sob maioria, uma proposta aprovada compra
+(k) fracos. Sob uma loteria simétrica,
+
+\[
+\Pr(j\text{ incluído}\mid\text{passagem})=\frac{k}{m},
+\qquad
+\Pr(j\text{ excluído}\mid\text{passagem})=\frac{m-k}{m}.
+\]
+
+Para cada tipo (	heta\in\{\ell,h\}),
+
+\[
+V_{W,\theta}^{A,M}
+=
+\Pr(A\mid\theta)\frac{k}{m}
+E[x_j\mid j\in K,A,\theta]
++
+\Pr(D\mid\theta)\beta V_{W,\theta}^{B,M},
+\tag{2}
+\]
+
+onde (A) indica acordo e (D), atraso. Sob unanimidade, todo fraco é
+incluído quando há acordo:
+
+\[
+V_{W,\theta}^{A,U}
+=
+\Pr(A\mid\theta)E[x_j\mid A,\theta]
++
+\Pr(D\mid\theta)\beta V_{W,\theta}^{B,U}.
+\tag{3}
+\]
+
+Finalmente,
+
+\[
+V_W^{A,g}=(1-p)V_{W,\ell}^{A,g}+pV_{W,h}^{A,g}.
+\tag{4}
+\]
+
+## Informação pública
+
+Sob unanimidade, todo fraco recebe
+
+\[
+r_U(o)=\frac{\beta(1-\beta o)}m.
+\]
+
+Sob maioria, um fraco incluído recebe o mesmo valor quando (o\leq1/m),
+recebe (eta/m) quando (1/m<o<o_M^*), e entra na continuação quando
+(o>o_M^*), onde
+
+\[
+o_M^*=\frac1\beta-\frac{k}{m}.
+\]
+
+```{r tab-agenda-public, results='asis'}
+knitr::kable(
+  make_summary_table(c(
+    "Agenda pública: H barato",
+    "Agenda pública: H intermediário",
+    "Agenda pública: H caro e atraso"
+  )),
+  format = "latex",
+  booktabs = TRUE,
+  caption = "Payoff esperado de um Estado fraco na extensão pública",
+  label = "tab:agendapublic",
+  align = c("l", "l", "l", "r")
+)
+```
+
+```{r fig-agenda-public, fig.cap='Payoff esperado de um Estado fraco na extensão de agenda com informação pública. Maioria usa uma coalizão simétrica de tamanho k; unanimidade inclui todos. Para o = 0,80, maioria induz atraso e o payoff inclui a continuação descontada.', out.width='92%'}
+knitr::include_graphics("output/figures/beneficios_estados_fracos_agenda_publica.png")
+```
+
+Os três pontos ilustram mecanismos distintos:
+
+- (o=0{,}10): o preço de um incluído é igual nas duas regras, mas
+  unanimidade inclui todos;
+- (o=0{,}35): um incluído na coalizão majoritária recebe mais, porém metade
+  dos fracos recebe zero; unanimidade distribui um pagamento menor a todos;
+- (o=0{,}80): maioria induz atraso, preservando a possibilidade de um fraco
+  ser proponente na continuação; unanimidade fecha acordo imediato, mas paga
+  apenas (0{,}0630) a cada fraco.
+
+## Informação privada
+
+Sob maioria, condicionalmente a uma proposta com posterior (mu) e
+continuação selecionada (chi(mu)), o preço de um voto fraco é
+
+\[
+r_\chi(\mu)=\beta c_\chi(\mu).
+\]
+
+(H) paga (r_\chi(mu)) a (k) fracos, paga zero aos demais e conserva
+(1-kr_\chi(mu)). Se a proposta é rejeitada, não existe coalizão vencedora
+na data (A); cada fraco recebe sua continuação condicionada ao tipo.
+
+Sob unanimidade, não há excluídos numa proposta aprovada. No representante
+canônico, cada fraco recebe
+
+\[
+a=\frac{\beta(1-\beta\ell)}m
+\quad\text{em posterior zero},
+\qquad
+b=\frac{\beta(1-\beta h)}m
+\quad\text{em posterior alto}.
+\]
+
+A correspondência completa também admite propostas assimétricas acima desses
+pisos; por isso, os valores abaixo são exemplos canônicos, não uma seleção
+global da correspondência.
+
+```{r tab-agenda-private, results='asis'}
+knitr::kable(
+  make_role_table("Agenda privada: propostas canônicas"),
+  format = "latex",
+  booktabs = TRUE,
+  caption = "Exemplos canônicos de pagamentos aos fracos na extensão privada",
+  label = "tab:agendaprivate",
+  align = c("l", "l", "l", "l", "r", "r", "r")
+)
+```
+
+Com (m=4), (eta=0{,}90), (ell=0{,}10) e (h=0{,}35):
+
+- uma continuação majoritária de exclusão produz preço (0{,}2250), mas cada
+  fraco só tem probabilidade (1/2) de ser comprado;
+- uma continuação majoritária de pooling produz preço (0{,}1541), novamente
+  com probabilidade (1/2) de inclusão;
+- unanimidade inclui todos e paga (0{,}2048) em posterior zero ou (0{,}1541)
+  em posterior alto.
+
+# Interpretação
+
+A decomposição por papéis revela um conflito distributivo que desaparece
+quando se olha apenas para o payoff do hegemon:
+
+- **proponente fraco:** normalmente prefere maioria, pois conserva o residual
+  depois de comprar menos votos;
+- **fraco incluído pela maioria:** pode receber um preço de voto maior que sob
+  unanimidade;
+- **fraco excluído pela maioria:** prefere unanimidade sempre que esta lhe
+  oferece um pagamento positivo;
+- **fraco na continuação:** pode beneficiar-se do atraso porque recupera a
+  probabilidade de propor ou integrar a próxima coalizão.
+
+Assim, “benefício para os Estados fracos” não tem necessariamente um único
+sinal. A regra redistribui entre papéis. O payoff *ex ante* de um fraco
+simétrico é obtido diretamente pelas probabilidades desses papéis, sem nova
+solução do jogo.
+
+# Limites e status
+
+Esta nota mantém quatro limites importantes:
+
+1. usa o representante simétrico com reconhecimento e coalizões uniformes;
+2. preserva as células vazias da correspondência original;
+3. não transforma exemplos canônicos da extensão privada em seleção universal;
+4. não introduz entrada, custo de participação ou heterogeneidade entre os
+   Estados fracos.
+
+O resultado é uma extensão de interpretação e contabilidade de payoffs. Uma
+incorporação ao manuscrito exigiria uma etapa separada de derivação, revisão
+independente e autorização editorial.
+
+# Reprodutibilidade
+
+Os exemplos foram calculados pelo script
+`scripts/compute_beneficios_estados_fracos.R`. Ele produz:
+
+- `output/tables/beneficios_estados_fracos_papeis.csv`;
+- `output/tables/beneficios_estados_fracos_resumos.csv`;
+- `output/tables/beneficios_estados_fracos_parametros.csv`;
+- `output/figures/beneficios_estados_fracos_agenda_publica.png`.
+
+O script verifica probabilidades, não negatividade, identidades analíticas e
+os limites que sustentam o exemplo privado de screening versus pooling.
+
