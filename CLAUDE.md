@@ -103,6 +103,16 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 >
 > **Registro normativo: `quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md`
 > (status APPROVED, decisão do autor). Ler antes de qualquer derivação ou revisão de N4.**
+> **Adendo 2026-09-01 (APPROVED)**: a codificação operacional de structural
+> consistency — quais histórias compartilham a crença off-path (pares η_Y/η_N
+> por ballot, quociente sobre coordenadas fracas), gatilho por denominador
+> bayesiano zero, valores livres locais ao ballot — está em
+> `quality_reports/2026-09-01_decisao_structural_consistency_baseline.md`.
+> Codificação apenas: nenhum payoff, fronteira ou correspondência muda. As
+> edições de manuscrito autorizadas (Solution concept, A.2, E.1) foram
+> aplicadas em 2026-09-01 e criam candidato novo pendente de revisão
+> independente, com item de checagem direcional e cláusula de reconciliação
+> com a interface efetiva de N2 registrados no adendo.
 > Origem: auditoria game-teórica em `quality_reports/2026-08-21_game-theory-audit_essential_input.md`
 > (2 passes independentes), que demonstrou que as provas provisórias de N4 usavam
 > convenções mutuamente incompatíveis. Conversa completa em

@@ -98,6 +98,16 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 >
 > **Normative record: `quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md`
 > (status APPROVED, author's decision). Read it before any N4 derivation or review.**
+> **Addendum 2026-09-01 (APPROVED)**: the operational codification of structural
+> consistency — which histories share the off-path belief (per-ballot η_Y/η_N
+> pairs, quotient over weak coordinates), the zero-Bayes-denominator trigger,
+> ballot-local free values — is recorded in
+> `quality_reports/2026-09-01_decisao_structural_consistency_baseline.md`.
+> Codification only: no payoff, boundary, or correspondence changes. The
+> authorized manuscript edits (Solution concept, A.2, E.1) were applied on
+> 2026-09-01 and create a new candidate pending independent review, with a
+> directional check item and an N2-interface reconciliation clause recorded in
+> the addendum.
 > Origin: the game-theory audit in `quality_reports/2026-08-21_game-theory-audit_essential_input.md`
 > (two independent passes) proved that the provisional N4 proofs relied on mutually
 > incompatible conventions. Full conversation record in

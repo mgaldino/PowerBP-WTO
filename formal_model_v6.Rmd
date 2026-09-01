@@ -411,15 +411,17 @@ We use perfect Bayesian equilibrium with pure ballot strategies and three
 declared disciplines. First, an action by a player who does not know
 \(o\) does not change beliefs about \(o\). After an action by \(H\),
 beliefs follow Bayes' rule whenever possible and otherwise satisfy structural
-consistency. Second, a weak responder evaluates yes and no as if its own vote
+consistency, the restriction stated exactly in Appendix A.2. Second, a weak
+responder evaluates yes and no as if its own vote
 were pivotal. Third, a voter accepts when exactly indifferent in expected
 value. Among proposal choices that give the proposer the same
 expected payoff, the selected proposal minimizes \(H\)'s expected payoff.
 
 Endpoint beliefs preserve the support of the prior. If \(p=0\), the posterior
 assigns zero probability to \(h\) at every history; if \(p=1\), it assigns
-probability one to \(h\). For \(0<p<1\), an action by \(H\) that has zero
-probability under both outside-option values may support any posterior in
+probability one to \(h\). For \(0<p<1\), an action by \(H\) whose Bayesian
+denominator is zero under the prescribed profile and the current belief may
+support any posterior in
 \([0,1]\). This is a condition of our solution
 concept. It follows the no-signaling logic used in multistage games
 [@fudenberg1991game]; support preservation is analogous to, but narrower than,
@@ -1352,11 +1354,23 @@ holding all votes fixed. Hence all equilibrium exclusions set \(x_H=0\) and pay
 
 ## A.2 Beliefs and ballot restrictions {-}
 
-Uninformed weak-state proposals and votes preserve the current belief. A vote
-by \(H\) updates by Bayes' rule when its denominator is positive. At a
-zero-denominator action in an interior-prior game, the posterior may range over
-\([0,1]\), subject to structural consistency across histories that encode the
-same information. At \(p=0\) or \(p=1\), posterior support never expands.
+Uninformed weak-state proposals and votes preserve the current belief.
+Structural consistency is the following restriction. Fix a profile. At each
+ballot, the entering belief is the current posterior, and \(H\)'s prescribed
+law is the type-contingent vote distribution the profile assigns at that
+ballot. The posterior after any vote vector depends on the history only
+through the entering belief, the prescribed law, and \(H\)'s realized vote; it
+is therefore invariant across vote vectors of the same ballot that differ only
+in weak-state votes. If \(H\)'s realized vote has positive probability under
+the prescribed law and the entering belief, the posterior is the Bayes update
+given that law, including at ballots reached by earlier weak-state deviations.
+If the Bayes denominator is zero, the posterior is a single free value
+attached to that ballot-and-vote pair, chosen within the support of the prior:
+any value in \([0,1]\) for an interior prior, and the degenerate posterior at
+\(p=0\) or \(p=1\). Distinct ballots may carry distinct free values. This
+condition is a declared restriction of our equilibrium concept; it is not the
+consistency notion of sequential equilibrium [@kreps1982sequential], and it is
+narrower than the never-dissuaded discipline of @osborneRubinstein1990.
 
 A weak responder compares its allocation with the continuation that would
 follow if its vote switched passage into failure. It votes yes at equality.
@@ -1729,6 +1743,12 @@ for an interior prior. The endpoints preserve prior support:
 irrelevant. Voting follows the
 same as-if-pivotal comparison and
 indifference-to-yes convention as the baseline.
+
+The single coordinate \(\rho\) is common to every undisciplined proposal. This
+is a stronger restriction than the ballot-by-ballot free values of Appendix
+A.2, adopted here to index the correspondences. The two conventions never
+interact: a rejected agenda proposal enters a complete Round-1 record, whose
+internal beliefs follow the baseline rule.
 
 ## E.2 Complete private-majority correspondence {-}
 
