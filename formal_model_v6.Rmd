@@ -275,14 +275,14 @@ known participation constraint.
 Consider one hegemon and four weak states. The unit pie is bargained over with
 discount factor \(0.9\). The two disagreement payoffs are \(0.10\) and
 \(0.35\). In the terminal unanimity round, a proposer chooses between an offer
-accepted only by the low type and an offer accepted by both types. The cutoff
-probability of the high type is
+accepted only by the low outside option and an offer accepted under either
+outside option. The cutoff probability of the high outside option is
 \[
-\nu^*=\frac{0.35-0.10}{1-0.10}=0.2778.
+p^*=\frac{0.35-0.10}{1-0.10}=0.2778.
 \]
 At a belief of \(0.20\), the proposer offers \(0.10\) and accepts the risk of
-failure when the type is high. At a belief of \(0.35\), it offers \(0.35\) and
-both types accept. This is a working numerical illustration, not an empirical
+failure when the outside option is high. At a belief of \(0.35\), it offers
+\(0.35\) and both outside-option values accept. This is a working numerical illustration, not an empirical
 calibration. The full two-round game adds the option to buy weak-state votes
 and the continuation created by a failed first ballot.
 
@@ -291,57 +291,56 @@ and the continuation created by a failed first ballot.
 ## Players, information, and proposals
 
 There is one hegemon, \(H\), and \(m\geq3\) weak states,
-\(W=\{1,\ldots,m\}\). Thus \(N=m+1\). Nature selects
-\(\theta\in\{0,1\}\), observed only by \(H\), with
-\(\Pr(\theta=1)=\nu\in[0,1]\). The terminal disagreement payoffs satisfy
+\(W=\{1,\ldots,m\}\), for a total of \(m+1\) states. Nature selects
+\(H\)'s terminal disagreement payoff \(o\in\{\ell,h\}\), observed only by
+\(H\), with \(\Pr(o=h)=p\in[0,1]\). The two possible values satisfy
 \[
-0<o_0<o_1<1.
+0<\ell<h<1.
 \]
 
 The game has two rounds. In each round, one weak state is recognized
 uniformly to propose; \(H\) is never a proposer. The two recognition draws are
 independent and made with replacement. Every weak state remains eligible in
-Round 2, including the Round-1 proposer. A proposal by weak state \(i\) is
+Round 2, including the Round-1 proposer. A proposal by weak state \(i\) is the
+allocation vector
 \[
-s=(y,(x_j)_{j\in W\setminus\{i\}},r_i),
+x=(x_H,(x_j)_{j\in W})\in\mathcal X,
 \qquad
-0\leq y\leq\bar y,\quad x_j\geq0,\quad r_i\geq0,\quad
-y+\sum_{j\neq i}x_j+r_i\leq1,
+\mathcal X=\left\{x:0\leq x_H\leq\bar x_H,\ x_j\geq0,\
+x_H+\sum_{j\in W}x_j\leq1\right\},
 \]
-where \(o_1\leq\bar y\leq1\). Payments cannot be negative and side payments
-outside the proposed package are unavailable.
-Here \(y\) is the institutional concession assigned to \(H\), \(x_j\) is the
-share assigned to responding weak state \(j\), and \(r_i\) is the proposer's
-residual. The fixed unit pie is exhausted on the equilibrium path.
-
-The payoff from agreement for \(H\) is \(y+b_\theta\). We normalize
-\(b_\theta=0\), so an included hegemon receives the concession \(y\).
-[AUTHOR: P2] This normalization isolates informational concessions and
-pivotality from any intrinsic benefit that an agreement might itself provide.
+where \(h\leq\bar x_H\leq1\). Payments cannot be negative and side payments
+outside the proposed package are unavailable. Here \(x_H\) is the
+institutional concession assigned to \(H\), and \(x_j\) is weak state
+\(j\)'s share, including the proposer when \(j=i\). The fixed unit pie is
+exhausted on the equilibrium path. Agreement provides \(H\) no intrinsic
+benefit beyond \(x_H\), which isolates informational concessions and
+pivotality from any direct value of agreement.
 
 ## Ballots, timing, and payoffs
 
 The proposer is counted as voting yes. All other states vote simultaneously;
 the complete vote vector and outcome become public only after all votes have
-been cast. Majority requires
+been cast. Define
 \[
-q=\left\lfloor\frac{N}{2}\right\rfloor+1
+k=\left\lfloor\frac{m+1}{2}\right\rfloor.
 \]
-yes votes, while unanimity requires every state's yes vote. The ballot
-protocol is otherwise identical across rules.
+Under majority, passage requires \(k\) additional yes votes beyond the
+proposer's; unanimity requires every state's yes vote. The ballot protocol is
+otherwise identical across rules.
 
-If a proposal passes, every stated weak-state allocation is implemented. If
-\(H\) votes yes, it receives \(y\). If \(H\) votes no but a majority passes
-the proposal without it, its general payoff is \(y+o_\theta\). This formula is
-part of the complete game because the proposed institutional term \(y\) is
+If a proposal passes, every stated allocation is implemented. If
+\(H\) votes yes, it receives \(x_H\). If \(H\) votes no but a majority passes
+the proposal without it, its general payoff is \(x_H+o\). This formula is
+part of the complete game because the proposed institutional term \(x_H\) is
 implemented even without \(H\)'s approval. In every equilibrium exclusion
-derived below, however, the proposer chooses \(y=0\); the hegemon therefore
-receives exactly \(o_\theta\), never a positive concession on top of it.
+derived below, however, the proposer chooses \(x_H=0\); the hegemon therefore
+receives exactly \(o\), never a positive concession on top of it.
 
 If nothing passes in Round 1, no payoff is realized then and the game proceeds
 to Round 2. Round-2 payoffs are multiplied by
 \(\beta\in(0,1)\) when evaluated in Round-1 units. If nothing passes in Round
-2, each weak state receives zero and \(H\) receives \(o_\theta\) in Round-2
+2, each weak state receives zero and \(H\) receives \(o\) in Round-2
 units. A no vote is only a ballot action; it does not remove a player or
 trigger disagreement by itself. [AUTHOR: P1] The delayed terminal disagreement
 payoff represents the cost of prolonging international negotiations.
@@ -354,18 +353,19 @@ payoff represents the cost of prolonging international negotiations.
 \toprule
 Event & Weak-state payoffs & \(H\) votes yes & \(H\) votes no \\
 \midrule
-Proposal passes & Proposed \(x_j\) and \(r_i\) & \(y\) & \(y+o_\theta\) \\
+Proposal passes & Proposed \(x_j\), including \(x_i\) & \(x_H\) & \(x_H+o\) \\
 Round-1 proposal fails & No current payoff; proceed to Round 2 &
-\(\beta C_H(h^Y)\) & \(\beta C_H(h^N)\) \\
-Round-2 proposal fails & Zero & \(o_\theta\) & \(o_\theta\) \\
+\(\beta C_H(\mathfrak h^Y)\) & \(\beta C_H(\mathfrak h^N)\) \\
+Round-2 proposal fails & Zero & \(o\) & \(o\) \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Here \(h^Y\) and \(h^N\) denote the distinct public histories in which \(H\)
-voted yes or no, and \(C_H(h^a)\) denotes \(H\)'s Round-2 continuation value
-after history \(h^a\). These continuation values need not be equal because the
-public vote can change beliefs before Round 2.
+Here \(\mathfrak h^Y\) and \(\mathfrak h^N\) denote the distinct public
+histories in which \(H\) voted yes or no, and \(C_H(\mathfrak h^a)\) denotes
+\(H\)'s Round-2 continuation value after history \(\mathfrak h^a\). These
+continuation values need not be equal because the public vote can change
+beliefs before Round 2.
 
 \begin{figure}[H]
 \centering
@@ -400,17 +400,18 @@ terminal round; a no vote alone does not end the game.}
 
 We use perfect Bayesian equilibrium with pure ballot strategies and three
 declared disciplines. First, an action by a player who does not know
-\(\theta\) does not change beliefs about \(\theta\). After an action by \(H\),
+\(o\) does not change beliefs about \(o\). After an action by \(H\),
 beliefs follow Bayes' rule whenever possible and otherwise satisfy structural
 consistency. Second, a weak responder evaluates yes and no as if its own vote
-were pivotal. Third, exact expected indifference is resolved in favor of yes,
-denoted \(T^Y\). Among proposal choices that give the proposer the same
+were pivotal. Third, a voter accepts when exactly indifferent in expected
+value. Among proposal choices that give the proposer the same
 expected payoff, the selected proposal minimizes \(H\)'s expected payoff.
 
-Endpoint beliefs preserve the support of the prior. If \(\nu=0\), the posterior
-is zero at every history; if \(\nu=1\), it is one at every history. For
-\(0<\nu<1\), an action by \(H\) that has zero probability under both types may
-support any posterior in \([0,1]\). This is a condition of our solution
+Endpoint beliefs preserve the support of the prior. If \(p=0\), the posterior
+assigns zero probability to \(h\) at every history; if \(p=1\), it assigns
+probability one to \(h\). For \(0<p<1\), an action by \(H\) that has zero
+probability under both outside-option values may support any posterior in
+\([0,1]\). This is a condition of our solution
 concept. It follows the no-signaling logic used in multistage games
 [@fudenberg1991game]; support preservation is analogous to, but narrower than,
 the never-dissuaded discipline discussed by @osborneRubinstein1990. Tremble
@@ -428,8 +429,8 @@ Element & Maintained scope \\
 Players and horizon & One hegemon, \(m\geq3\) weak states, two rounds \\
 Agenda & Only weak states propose in both rounds \\
 Voting & Simultaneous public ballots; majority or unanimity \\
-Information & Binary private type of \(H\); support-preserving endpoints \\
-Payoffs & Unit pie, \(0<o_0<o_1<1\), \(0<\beta<1\), \(b_\theta=0\) \\
+Information & Private outside option \(o\in\{\ell,h\}\); support-preserving endpoints \\
+Payoffs & Unit pie, \(0<\ell<h<1\), \(0<\beta<1\); no intrinsic agreement benefit for \(H\) \\
 Equilibrium & Perfect Bayesian equilibrium in pure ballot strategies with the
 declared voting and proposal tie-break rules \\
 \bottomrule
@@ -459,8 +460,8 @@ component.
 
 With a public type, no belief or signaling issue remains. The proposer compares
 the price of \(H\)'s vote with the price of enough weak-state votes. In the
-terminal round, the relevant price of \(H\) is \(o_\theta\). In the first
-round, it is \(\beta o_\theta\), because rejection leads to the terminal
+terminal round, the relevant price of \(H\) is \(o\). In the first
+round, it is \(\beta o\), because rejection leads to the terminal
 round.
 Under majority, a weak-state vote costs \(\beta/m\) in first-round units. Under
 unanimity with public disagreement payoff \(o\), each weak responder's
@@ -468,22 +469,22 @@ continuation price is \(\beta(1-o)/m\).
 
 \begin{proposition}[Public-type benchmark]\label{prop:public}
 Fix a public type with disagreement payoff \(o\). In the terminal round,
-majority passes a proposal without \(H\), assigns \(y=0\), and gives the weak
+majority passes a proposal without \(H\), assigns \(x_H=0\), and gives the weak
 proposer the whole unit pie; \(H\) receives \(o\). Terminal unanimity passes
-with \(y=o\), and the weak proposer retains \(1-o\).
+with \(x_H=o\), and the weak proposer retains \(1-o\).
 
-In Round 1, unanimity passes immediately with \(y=\beta o\). Majority includes
+In Round 1, unanimity passes immediately with \(x_H=\beta o\). Majority includes
 \(H\) if \(o\leq1/m\) and excludes it if \(o>1/m\). At equality the proposal
 including \(H\) is selected. Consequently, the public Round-1 payoff of \(H\)
 is
 \[
-p_M(o)=
+v_M^B(o)=
 \begin{cases}
 \beta o,&o\leq1/m,\\
 o,&o>1/m,
 \end{cases}
 \qquad
-p_U(o)=\beta o.
+v_U^B(o)=\beta o.
 \]
 \end{proposition}
 
@@ -496,13 +497,13 @@ p_U(o)=\beta o.
 \toprule
 Round & Rule & Proposed payments & Weak proposer & \(H\) \\
 \midrule
-2 & Majority & \(y=0\); weak responders get zero & \(1\) & \(o\) \\
-2 & Unanimity & \(y=o\); weak responders get zero & \(1-o\) & \(o\) \\
-1 & Majority, \(o\leq1/m\) & \(y=\beta o\); \(q-2\) responders get \(\beta/m\) &
-\(1-\beta o-(q-2)\beta/m\) & \(\beta o\) \\
-1 & Majority, \(o>1/m\) & \(y=0\); \(q-1\) responders get \(\beta/m\) &
-\(1-(q-1)\beta/m\) & \(o\) \\
-1 & Unanimity & \(y=\beta o\); every responder gets \(\beta(1-o)/m\) &
+2 & Majority & \(x_H=0\); weak responders get zero & \(1\) & \(o\) \\
+2 & Unanimity & \(x_H=o\); weak responders get zero & \(1-o\) & \(o\) \\
+1 & Majority, \(o\leq1/m\) & \(x_H=\beta o\); \(k-1\) responders get \(\beta/m\) &
+\(1-\beta o-(k-1)\beta/m\) & \(\beta o\) \\
+1 & Majority, \(o>1/m\) & \(x_H=0\); \(k\) responders get \(\beta/m\) &
+\(1-k\beta/m\) & \(o\) \\
+1 & Unanimity & \(x_H=\beta o\); every responder gets \(\beta(1-o)/m\) &
 \(1-\beta o-(m-1)\beta(1-o)/m\) & \(\beta o\) \\
 \bottomrule
 \end{tabular}
@@ -516,7 +517,7 @@ because it gives \(H\) the lower payoff \(\beta o<o\).
 
 Let
 \[
-\nu^*=\frac{o_1-o_0}{1-o_0}.
+p^*=\frac{h-\ell}{1-\ell}.
 \]
 Under terminal majority, \(H\)'s vote is unnecessary and the belief never
 enters the proposer's choice. Under terminal unanimity, the proposer compares a
@@ -524,68 +525,65 @@ low offer that succeeds only when the type is low with a high offer that both
 types accept.
 
 \begin{proposition}[Private terminal games]\label{prop:terminal}
-Under majority, the unique equilibrium outcome assigns \(y=0\), pays no
+Under majority, the unique equilibrium outcome assigns \(x_H=0\), pays no
 responding weak state, and gives the full pie to the proposer. The proposal
-passes without \(H\); type \(\theta\) receives \(o_\theta\), and a weak state
+passes without \(H\); a hegemon with outside option \(o\) receives \(o\), and a weak state
 receives \(1/m\) before recognition.
 
-Under unanimity, if \(\nu\leq\nu^*\), the proposer offers \(y=o_0\). The low
-type accepts and the high type rejects, so the proposal succeeds with
-probability \(1-\nu\). If \(\nu>\nu^*\), the proposer offers \(y=o_1\) and both
-types accept. At \(\nu=\nu^*\), the low offer is selected.
+Under unanimity, if \(p\leq p^*\), the proposer offers \(x_H=\ell\). The low
+outside-option type accepts and the high outside-option type rejects, so the proposal succeeds with
+probability \(1-p\). If \(p>p^*\), the proposer offers \(x_H=h\) and both
+types accept. At \(p=p^*\), the low offer is selected.
 \end{proposition}
 
-The cutoff equates \((1-\nu)(1-o_0)\), the proposer's payoff from the low
-offer, with \(1-o_1\), its payoff from pooling. Notice that no discount factor
+The cutoff equates \((1-p)(1-\ell)\), the proposer's payoff from the low
+offer, with \(1-h\), its payoff from pooling. Notice that no discount factor
 appears inside this terminal comparison.
 
 ## Private majority in Round 1
 
-Define
-\[
-w=\frac{\beta}{m},\quad t_\theta=\beta o_\theta,
-\]
-and the proposer's payoffs from the three undominated outcome classes:
+Let \(w=\beta/m\). The proposer's payoffs from the three undominated outcome
+classes are:
 \[
 \begin{aligned}
-E&=1-(q-1)w,\\
-L&=1-(q-2)w-t_0,\\
-S(\nu)&=(1-\nu)L+\nu w,\\
-P&=1-(q-2)w-t_1.
+\Pi_E&=1-kw,\\
+\Pi_S(p)&=(1-p)\left[1-(k-1)w-\beta\ell\right]+pw,\\
+\Pi_P&=1-(k-1)w-\beta h.
 \end{aligned}
 \]
-Exclusion buys \(q-1\) weak responders at price \(w\) each and sets \(y=0\).
-Screening buys \(q-2\) weak responders and offers \(t_0\): the low type accepts
-and the high type delays. Pooling buys \(q-2\) weak responders and offers
-\(t_1\), which both types accept. Deliberate delay is strictly worse than
-exclusion because \(1-\beta q/m>0\).
+Exclusion buys \(k\) weak responders at price \(w\) each and sets \(x_H=0\).
+Screening buys \(k-1\) weak responders and offers \(\beta\ell\): the low
+outside-option type accepts and the high outside-option type delays. Pooling
+buys \(k-1\) weak responders and offers \(\beta h\), which both types accept.
+Deliberate delay is strictly worse than exclusion because
+\(1-\beta(k+1)/m>0\).
 
-When \(o_0<1/m\), define
+When \(\ell<1/m\), define
 \[
-\nu_{SE}=
-\frac{\beta(1/m-o_0)}
-{\beta(1/m-o_0)+1-\beta q/m}.
+p_{S=E}=
+\frac{\beta(1/m-\ell)}
+{\beta(1/m-\ell)+1-\beta(k+1)/m}.
 \]
-When \(o_1<1/m\), define
+When \(h<1/m\), define
 \[
-\nu_{SP}=
-\frac{\beta(o_1-o_0)}
-{1-\beta o_0-\beta(q-1)/m}.
+p_{S=P}=
+\frac{\beta(h-\ell)}
+{1-\beta\ell-\beta k/m}.
 \]
 
 \begin{proposition}[Private majority correspondence]\label{prop:majority}
 For \(m\geq3\), the equilibrium outcome class is:
 
 \begin{enumerate}
-\item If \(o_1<1/m\), screening for \(\nu\leq\nu_{SP}\) and pooling above it.
-\item If \(o_0<1/m<o_1\), screening for \(\nu\leq\nu_{SE}\) and exclusion
+\item If \(h<1/m\), screening for \(p\leq p_{S=P}\) and pooling above it.
+\item If \(\ell<1/m<h\), screening for \(p\leq p_{S=E}\) and exclusion
 above it.
-\item If \(1/m<o_0<o_1\), exclusion for every \(\nu\).
-\item If \(o_0=1/m<o_1\), screening at \(\nu=0\) and exclusion for
-\(\nu>0\).
-\item If \(o_0<o_1=1/m\), screening for \(\nu\leq\nu_{SE}\). Above that
+\item If \(1/m<\ell<h\), exclusion for every \(p\).
+\item If \(\ell=1/m<h\), screening at \(p=0\) and exclusion for
+\(p>0\).
+\item If \(\ell<h=1/m\), screening for \(p\leq p_{S=E}\). Above that
 cutoff, exclusion is selected when
-\((1-\nu)o_0+\nu o_1<\beta o_1\), pooling is selected when the inequality is
+\((1-p)\ell+ph<\beta h\), pooling is selected when the inequality is
 reversed, and the entire proposal segment joining the two survives when the
 two expressions are equal.
 \end{enumerate}
@@ -606,15 +604,15 @@ componentwise minima and maxima into an unattained rectangle.
 
 Let
 \[
-\ell=\beta o_0,\qquad h=\beta o_1,\qquad
-A=\frac{\beta(1-o_0)}{m},\qquad
-B=\frac{\beta(1-o_1)}{m}.
+w_\ell^U=\frac{\beta(1-\ell)}{m},\qquad
+w_h^U=\frac{\beta(1-h)}{m}.
 \]
-At \(\nu=0\), support preservation prevents an impossible high type from being
+At \(p=0\), support preservation prevents an impossible high type from being
 reintroduced by an off-path belief. The proposer can therefore offer the low
-threshold \(\ell\), pay each responding weak state its continuation \(A\), and
-keep \(A+1-\beta\). When \(\nu>\nu^*\), the continuation itself pools, so the
-proposer offers \(h\), pays each responder \(B\), and keeps \(B+1-\beta\).
+threshold \(\beta\ell\), pay each responding weak state its continuation
+\(w_\ell^U\), and keep \(w_\ell^U+1-\beta\). When \(p>p^*\), the continuation
+itself pools, so the proposer offers \(\beta h\), pays each responder \(w_h^U\),
+and keeps \(w_h^U+1-\beta\).
 
 The intermediate cell fails for a different reason. A feasible deviation can
 pay every weak responder enough to force a yes vote. Once all weak votes are
@@ -627,18 +625,18 @@ profitable imitation.
 Under unanimity:
 \[
 \begin{array}{ccl}
-\nu=0
+p=0
 &:& \text{immediate low-type agreement with }
- y=\ell,\ x_j=A,\ r_i=A+1-\beta;\\[2mm]
-0<\nu\leq\nu^*
+ x_H=\beta\ell,\ x_j=w_\ell^U,\ x_i=w_\ell^U+1-\beta;\\[2mm]
+0<p\leq p^*
 &:& \text{no perfect Bayesian equilibrium in pure ballot strategies};\\[2mm]
-\nu^*<\nu\leq1
+p^*<p\leq1
 &:& \text{immediate pooling agreement with }
- y=h,\ x_j=B,\ r_i=B+1-\beta.
+ x_H=\beta h,\ x_j=w_h^U,\ x_i=w_h^U+1-\beta.
 \end{array}
 \]
 The corresponding payoff vectors for \(H\), ordered as low and high type, are
-\((\ell,h)\) at \(\nu=0\) and \((h,h)\) above \(\nu^*\).
+\((\beta\ell,\beta h)\) at \(p=0\) and \((\beta h,\beta h)\) above \(p^*\).
 \end{proposition}
 
 \begin{remark}[Pure-strategy scope]
@@ -657,19 +655,19 @@ existence under such strategies.
 \toprule
 Rule & Parameter cell & Selected outcome class & \(H\) payoff vector \\
 \midrule
-Majority & \(o_1<1/m\) & Screening for \(\nu\leq\nu_{SP}\); pooling above &
-\((t_0,t_1)\) or \((t_1,t_1)\) \\
-Majority & \(o_0<1/m<o_1\) & Screening for \(\nu\leq\nu_{SE}\); exclusion above &
-\((t_0,t_1)\) or \((o_0,o_1)\) \\
-Majority & \(1/m<o_0\) & Exclusion for every \(\nu\) & \((o_0,o_1)\) \\
-Majority & \(o_0=1/m<o_1\) & Screening at \(\nu=0\); exclusion for \(\nu>0\) &
-\((t_0,t_1)\) or \((o_0,o_1)\) \\
-Majority & \(o_0<o_1=1/m\) & Screening through \(\nu_{SE}\); above, exclusion,
+Majority & \(h<1/m\) & Screening for \(p\leq p_{S=P}\); pooling above &
+\((\beta\ell,\beta h)\) or \((\beta h,\beta h)\) \\
+Majority & \(\ell<1/m<h\) & Screening for \(p\leq p_{S=E}\); exclusion above &
+\((\beta\ell,\beta h)\) or \((\ell,h)\) \\
+Majority & \(1/m<\ell\) & Exclusion for every \(p\) & \((\ell,h)\) \\
+Majority & \(\ell=1/m<h\) & Screening at \(p=0\); exclusion for \(p>0\) &
+\((\beta\ell,\beta h)\) or \((\ell,h)\) \\
+Majority & \(\ell<h=1/m\) & Screening through \(p_{S=E}\); above, exclusion,
 pooling, or their exact proposal segment under the tie-break &
-\((t_0,t_1)\), \((o_0,o_1)\), \((t_1,t_1)\), or the linked segment \\
-Unanimity & \(\nu=0\) & Immediate low-type agreement & \((\ell,h)\) \\
-Unanimity & \(0<\nu\leq\nu^*\) & No PBE in pure ballot strategies & \(\varnothing\) \\
-Unanimity & \(\nu^*<\nu\leq1\) & Immediate pooling agreement & \((h,h)\) \\
+\((\beta\ell,\beta h)\), \((\ell,h)\), \((\beta h,\beta h)\), or the linked segment \\
+Unanimity & \(p=0\) & Immediate low-type agreement & \((\beta\ell,\beta h)\) \\
+Unanimity & \(0<p\leq p^*\) & No PBE in pure ballot strategies & \(\varnothing\) \\
+Unanimity & \(p^*<p\leq1\) & Immediate pooling agreement & \((\beta h,\beta h)\) \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -687,30 +685,25 @@ pooling, and exclusion outcomes.}
 ## Comparing the private games
 
 The comparison below uses the same parameter point under both institutions and
-only cells in which both games have a pure-strategy equilibrium. Let
-\[
-a_\theta=(1-\beta)o_\theta,\qquad
-d=\beta(o_1-o_0),\qquad
-\xi=\beta o_1-o_0.
-\]
-The terms \(a_\theta\) are timing wedges: exclusion realizes the disagreement
-payoff now, whereas inclusion can price a continuation that is discounted in
-Round-1 units. They are distinct from the type gap \(d\) and the cross-date
-quantity \(\xi\).
+only cells in which both games have a pure-strategy equilibrium. The timing
+wedges are \((1-\beta)\ell\) and \((1-\beta)h\): exclusion realizes the
+disagreement payoff now, whereas inclusion can price a continuation that is
+discounted in Round-1 units. They are distinct from the discounted type gap
+\(\beta(h-\ell)\) and the cross-date quantity \(\beta h-\ell\).
 
 \begin{proposition}[Private institutional payoff contrast]\label{prop:privatecompare}
-Write \(V_U^{priv}-V_M^{priv}\) as a low-type/high-type vector.
+Write \(V_U^B-V_M^B\) as a low-type/high-type vector.
 
 \begin{enumerate}
-\item At \(\nu=0\), the vector is \((0,0)\) if majority screens and
-\((-a_0,-a_1)\) if majority excludes.
-\item For \(0<\nu\leq\nu^*\), the contrast is empty because private unanimity
+\item At \(p=0\), the vector is \((0,0)\) if majority screens and
+\((-(1-\beta)\ell,-(1-\beta)h)\) if majority excludes.
+\item For \(0<p\leq p^*\), the contrast is empty because private unanimity
 has no pure-strategy equilibrium.
-\item For \(\nu>\nu^*\), the vector is \((d,0)\) if majority screens,
-\((0,0)\) if majority pools, and \((\xi,-a_1)\) if majority excludes.
-\item On the residual exclusion--pooling segment at \(o_1=1/m\), the exact
+\item For \(p>p^*\), the vector is \((\beta(h-\ell),0)\) if majority screens,
+\((0,0)\) if majority pools, and \((\beta h-\ell,-(1-\beta)h)\) if majority excludes.
+\item On the residual exclusion--pooling segment at \(h=1/m\), the exact
 attainable set is
-\(\{\lambda(\xi,-a_1):\lambda\in[0,1]\}\), restricted to the proposal weights
+\(\{\lambda(\beta h-\ell,-(1-\beta)h):\lambda\in[0,1]\}\), restricted to the proposal weights
 that survive the tie-break. The same \(\lambda\) binds payoffs and outcomes.
 \end{enumerate}
 \end{proposition}
@@ -735,24 +728,20 @@ equilibrium and the contrast is therefore empty.}
 For rule \(g\in\{M,U\}\), define the type-contingent informational-rent
 correspondence
 \[
-RI_g=V_g^{priv}-V_g^{pub},
+IR_g^B=V_g^B-v_g^B,
 \]
 where the public benchmark is evaluated at the same type and the same remaining
 parameters. The institutional informational-rent contrast is
 \[
-\Delta RI=RI_U-RI_M.
+\Delta IR^B=IR_U^B-IR_M^B.
 \]
 These are differences between correspondences. If a source correspondence is
 empty, so is the difference. Under multiplicity, subtraction preserves the
 entire attainable set and its common proposal weight.
 
-For compactness, call the public outside-option regions
-\[
-\mathrm{II}: o_1\leq1/m,\qquad
-\mathrm{IX}: o_0\leq1/m<o_1,\qquad
-\mathrm{XX}: 1/m<o_0.
-\]
-The labels only record whether each public type is included by majority.
+We write the three public outside-option regions in words: both types are
+included when \(h\leq1/m\); the low type is included and the high type excluded
+when \(\ell\leq1/m<h\); and both types are excluded when \(1/m<\ell\).
 
 The rent comparison first asks what private information changes *within* each
 rule. Under unanimity, the public benchmark already buys the known type at its
@@ -763,11 +752,11 @@ changes the public inclusion decision or the price paid to a type.
 \begin{proposition}[Informational rents by voting rule]\label{prop:rents}
 Under unanimity,
 \[
-RI_U=
+IR_U^B=
 \begin{cases}
-\{(0,0)\},&\nu=0,\\
-\varnothing,&0<\nu\leq\nu^*,\\
-\{(d,0)\},&\nu>\nu^*.
+\{(0,0)\},&p=0,\\
+\varnothing,&0<p\leq p^*,\\
+\{(\beta(h-\ell),0)\},&p>p^*.
 \end{cases}
 \]
 
@@ -775,16 +764,17 @@ Under majority, the informational rent depends jointly on the public region
 and the private equilibrium class:
 \[
 \begin{array}{ccl}
-\mathrm{II},\ \text{screening}&:&(0,0),\\
-\mathrm{II},\ \text{pooling}&:&(d,0),\\
-\mathrm{II},\ \text{exclusion}&:&(a_0,a_1),\\
-\mathrm{IX},\ \text{screening}&:&(0,-a_1),\\
-\mathrm{IX},\ \text{exclusion}&:&(a_0,0),\\
-\mathrm{XX},\ \text{exclusion}&:&(0,0).
+\text{both types included, screening}&:&(0,0),\\
+\text{both types included, pooling}&:&(\beta(h-\ell),0),\\
+\text{both types included, exclusion}&:&((1-\beta)\ell,(1-\beta)h),\\
+\text{low included, high excluded, screening}&:&(0,-(1-\beta)h),\\
+\text{low included, high excluded, exclusion}&:&((1-\beta)\ell,0),\\
+\text{both types excluded, exclusion}&:&(0,0).
 \end{array}
 \]
-On the residual exclusion--pooling segment at \(o_1=1/m\), the exact set is
-\(\{\lambda(a_0,a_1)+(1-\lambda)(d,0):\lambda\in[0,1]\}\), restricted to the
+On the residual exclusion--pooling segment at \(h=1/m\), the exact set is
+\(\{\lambda((1-\beta)\ell,(1-\beta)h)
++(1-\lambda)(\beta(h-\ell),0):\lambda\in[0,1]\}\), restricted to the
 segment that survives the proposal tie-break.
 \end{proposition}
 
@@ -792,28 +782,29 @@ The difference of differences then removes majority's informational rent from
 unanimity's. Screening can leave a positive low-type contrast in the
 high-belief cell because unanimity pools. Exclusion instead compares the high
 threshold discounted to the present with the low current disagreement payoff,
-so its low-type sign is governed by \(\xi=\beta o_1-o_0\).
+so its low-type sign is governed by \(\beta h-\ell\).
 
 \begin{proposition}[Institutional informational-rent contrast]\label{prop:deltari}
-At \(\nu=0\), \(\Delta RI=(0,0)\) in regions II and XX, while
-\(\Delta RI=(0,a_1)\) in region IX; the high-type component there is
+At \(p=0\), \(\Delta IR^B=(0,0)\) when both types are included or both are
+excluded, while \(\Delta IR^B=(0,(1-\beta)h)\) when the low type is included
+and the high type excluded; the high-type component there is
 off support but remains part of the type-contingent vector.
 
-For \(0<\nu\leq\nu^*\), \(\Delta RI=\varnothing\).
+For \(0<p\leq p^*\), \(\Delta IR^B=\varnothing\).
 
-For \(\nu>\nu^*\), the exact vectors are
+For \(p>p^*\), the exact vectors are
 \[
 \begin{array}{ccl}
-\mathrm{II},\ \text{screening}&:&(d,0),\\
-\mathrm{II},\ \text{pooling}&:&(0,0),\\
-\mathrm{II},\ \text{exclusion}&:&(\xi,-a_1),\\
-\mathrm{IX},\ \text{screening}&:&(d,a_1),\\
-\mathrm{IX},\ \text{exclusion}&:&(\xi,0),\\
-\mathrm{XX},\ \text{exclusion}&:&(d,0).
+\text{both types included, screening}&:&(\beta(h-\ell),0),\\
+\text{both types included, pooling}&:&(0,0),\\
+\text{both types included, exclusion}&:&(\beta h-\ell,-(1-\beta)h),\\
+\text{low included, high excluded, screening}&:&(\beta(h-\ell),(1-\beta)h),\\
+\text{low included, high excluded, exclusion}&:&(\beta h-\ell,0),\\
+\text{both types excluded, exclusion}&:&(\beta(h-\ell),0).
 \end{array}
 \]
 On the residual segment, the exact attainable set is
-\(\{\lambda(\xi,-a_1):\lambda\in[0,1]\}\) over the surviving proposal weights.
+\(\{\lambda(\beta h-\ell,-(1-\beta)h):\lambda\in[0,1]\}\) over the surviving proposal weights.
 \end{proposition}
 
 \begin{longtable}{p{0.11\linewidth}p{0.43\linewidth}p{0.36\linewidth}}
@@ -827,31 +818,34 @@ Object & Cell & Exact set \\
 Object & Cell & Exact set \\
 \midrule
 \endhead
-\(RI_M\) & II, screening & \(\{(0,0)\}\) \\
-\(RI_M\) & II, pooling & \(\{(d,0)\}\) \\
-\(RI_M\) & II, exclusion & \(\{(a_0,a_1)\}\) \\
-\(RI_M\) & II, exclusion--pooling segment &
-\(\{\lambda(a_0,a_1)+(1-\lambda)(d,0)\}\) \\
-\(RI_M\) & IX, screening & \(\{(0,-a_1)\}\) \\
-\(RI_M\) & IX, exclusion & \(\{(a_0,0)\}\) \\
-\(RI_M\) & XX, exclusion & \(\{(0,0)\}\) \\
+\(IR_M^B\) & Both types included, screening & \(\{(0,0)\}\) \\
+\(IR_M^B\) & Both types included, pooling & \(\{(\beta(h-\ell),0)\}\) \\
+\(IR_M^B\) & Both types included, exclusion &
+\(\{((1-\beta)\ell,(1-\beta)h)\}\) \\
+\(IR_M^B\) & Both types included, exclusion--pooling segment &
+\(\{\lambda((1-\beta)\ell,(1-\beta)h)+(1-\lambda)(\beta(h-\ell),0)\}\) \\
+\(IR_M^B\) & Low included, high excluded, screening & \(\{(0,-(1-\beta)h)\}\) \\
+\(IR_M^B\) & Low included, high excluded, exclusion & \(\{((1-\beta)\ell,0)\}\) \\
+\(IR_M^B\) & Both types excluded, exclusion & \(\{(0,0)\}\) \\
 \midrule
-\(RI_U\) & \(\nu=0\) & \(\{(0,0)\}\) \\
-\(RI_U\) & \(0<\nu\leq\nu^*\) & \(\varnothing\) \\
-\(RI_U\) & \(\nu>\nu^*\) & \(\{(d,0)\}\) \\
+\(IR_U^B\) & \(p=0\) & \(\{(0,0)\}\) \\
+\(IR_U^B\) & \(0<p\leq p^*\) & \(\varnothing\) \\
+\(IR_U^B\) & \(p>p^*\) & \(\{(\beta(h-\ell),0)\}\) \\
 \midrule
-\(\Delta RI\) & \(\nu=0\), II & \(\{(0,0)\}\) \\
-\(\Delta RI\) & \(\nu=0\), IX & \(\{(0,a_1)\}\) \\
-\(\Delta RI\) & \(\nu=0\), XX & \(\{(0,0)\}\) \\
-\(\Delta RI\) & \(0<\nu\leq\nu^*\), every public region & \(\varnothing\) \\
-\(\Delta RI\) & \(\nu>\nu^*\), II screening & \(\{(d,0)\}\) \\
-\(\Delta RI\) & \(\nu>\nu^*\), II pooling & \(\{(0,0)\}\) \\
-\(\Delta RI\) & \(\nu>\nu^*\), II exclusion & \(\{(\xi,-a_1)\}\) \\
-\(\Delta RI\) & \(\nu>\nu^*\), II exclusion--pooling segment &
-\(\{\lambda(\xi,-a_1):\lambda\in[0,1]\}\) \\
-\(\Delta RI\) & \(\nu>\nu^*\), IX screening & \(\{(d,a_1)\}\) \\
-\(\Delta RI\) & \(\nu>\nu^*\), IX exclusion & \(\{(\xi,0)\}\) \\
-\(\Delta RI\) & \(\nu>\nu^*\), XX exclusion & \(\{(d,0)\}\) \\
+\(\Delta IR^B\) & \(p=0\), both types included & \(\{(0,0)\}\) \\
+\(\Delta IR^B\) & \(p=0\), low included, high excluded & \(\{(0,(1-\beta)h)\}\) \\
+\(\Delta IR^B\) & \(p=0\), both types excluded & \(\{(0,0)\}\) \\
+\(\Delta IR^B\) & \(0<p\leq p^*\), every public region & \(\varnothing\) \\
+\(\Delta IR^B\) & \(p>p^*\), both types included, screening & \(\{(\beta(h-\ell),0)\}\) \\
+\(\Delta IR^B\) & \(p>p^*\), both types included, pooling & \(\{(0,0)\}\) \\
+\(\Delta IR^B\) & \(p>p^*\), both types included, exclusion &
+\(\{(\beta h-\ell,-(1-\beta)h)\}\) \\
+\(\Delta IR^B\) & \(p>p^*\), both types included, exclusion--pooling segment &
+\(\{\lambda(\beta h-\ell,-(1-\beta)h):\lambda\in[0,1]\}\) \\
+\(\Delta IR^B\) & \(p>p^*\), low included, high excluded, screening &
+\(\{(\beta(h-\ell),(1-\beta)h)\}\) \\
+\(\Delta IR^B\) & \(p>p^*\), low included, high excluded, exclusion & \(\{(\beta h-\ell,0)\}\) \\
+\(\Delta IR^B\) & \(p>p^*\), both types excluded, exclusion & \(\{(\beta(h-\ell),0)\}\) \\
 \bottomrule
 \end{longtable}
 
@@ -859,13 +853,13 @@ In every segment row, \(\lambda\in[0,1]\) is restricted to the proposal weights
 that survive the tie-break and binds all payoff and outcome components.
 
 The sign pattern is transparent once each component is kept separate. Above
-the unanimity cutoff, the low type gains \(d>0\) when majority screens because
+the unanimity cutoff, the low type gains \(\beta(h-\ell)>0\) when majority screens because
 unanimity pools and pays the high threshold. The same screening comparison is
-zero at \(\nu=0\), while the middle cell is empty. When majority excludes, the
-low type's gain is \(\xi\), which is
-positive, zero, or negative according as \(\beta o_1\) is above, equal to, or
-below \(o_0\). The high type gains \(a_1>0\) only when private majority screens
-even though public majority would exclude it; it loses \(a_1\) when public
+zero at \(p=0\), while the middle cell is empty. When majority excludes, the
+low type's gain is \(\beta h-\ell\), which is
+positive, zero, or negative according as \(\beta h\) is above, equal to, or
+below \(\ell\). The high type gains \((1-\beta)h>0\) only when private majority screens
+even though public majority would exclude it; it loses \((1-\beta)h\) when public
 majority includes it but private majority excludes. When both private rules
 pool, the informational-rent contrast is exactly zero.
 
@@ -875,7 +869,7 @@ pool, the informational-rent contrast is exactly zero.
 \caption{Power and information in the hegemon's payoff. The public benchmark
 captures the effect of making the hegemon's vote necessary when its type is
 known. Informational rent compares the private game with that benchmark, and
-\(\Delta RI\) compares this rent across unanimity and majority without
+\(\Delta IR^B\) compares this rent across unanimity and majority without
 recombining types or selecting among multiple equilibria.}
 \label{fig:rents}
 \end{figure}
