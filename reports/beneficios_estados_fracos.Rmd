@@ -19,7 +19,6 @@ header-includes:
   - \usepackage{array}
   - \usepackage{float}
   - \usepackage{xcolor}
-  - \usepackage{microtype}
   - \usepackage{caption}
   - \captionsetup{font=small,labelfont=bf}
   - \renewcommand{\tablename}{Tabela}
@@ -59,13 +58,13 @@ fmt <- function(x, digits = 4) formatC(x, format = "f", digits = digits)
 make_role_table <- function(examples) {
   z <- subset(roles, exemplo %in% examples)
   data.frame(
-    Exemplo = z$exemplo,
+    Cenário = sub("^(Benchmark público: |Agenda privada: )", "", z$exemplo),
     Regra = z$regra,
     Tipo = z$tipo,
     Papel = z$papel,
-    Probabilidade = fmt(z$probabilidade, 3),
-    `Payoff condicional` = fmt(z$payoff_condicional, 4),
-    `Contribuição ex ante` = fmt(z$contribuicao, 4),
+    `Pr.` = fmt(z$probabilidade, 3),
+    Payoff = fmt(z$payoff_condicional, 4),
+    Contribuição = fmt(z$contribuicao, 4),
     check.names = FALSE
   )
 }
@@ -92,7 +91,7 @@ fracos têm as mesmas probabilidades *ex ante*.
 
 No benchmark em que um fraco propõe, os papéis relevantes são: proponente,
 membro não proponente da coalizão vencedora e excluído. Na extensão de agenda,
-o proponente inicial é o hegemon (H); os fracos são incluídos, excluídos ou
+o proponente inicial é o hegemon $H$; os fracos são incluídos, excluídos ou
 recebem a continuação após uma proposta rejeitada. Se a continuação começa,
 os três papéis do benchmark reaparecem, descontados uma vez.
 
@@ -113,9 +112,9 @@ equilíbrio, as crenças, os desempates nem as correspondências do manuscrito.
 
 # Decomposição por papéis
 
-Considere um benchmark em que um dos (m) Estados fracos é reconhecido
-uniformemente como proponente. Suponha que a proposta vencedora inclua (r)
-fracos não proponentes, todos simétricos. Para qualquer fraco (j),
+Considere um benchmark em que um dos $m$ Estados fracos é reconhecido
+uniformemente como proponente. Suponha que a proposta vencedora inclua $r$
+fracos não proponentes, todos simétricos. Para qualquer fraco $j$,
 
 \[
 \Pr(j\text{ proponente})=\frac1m,
@@ -125,7 +124,7 @@ fracos não proponentes, todos simétricos. Para qualquer fraco (j),
 \Pr(j\text{ excluído})=1-\frac{1+r}{m}.
 \]
 
-Se (u_P) é o payoff do proponente e (u_I) o payoff de um incluído, o
+Se $u_P$ é o payoff do proponente e $u_I$ o payoff de um incluído, o
 payoff esperado de qualquer Estado fraco é
 
 \[
@@ -134,7 +133,7 @@ V_W=\frac1m u_P+\frac r m u_I.
 \]
 
 O payoff do excluído não aparece porque é zero. A Tabela \ref{tab:probpapeis}
-mostra como (r) varia entre as classes do benchmark.
+mostra como $r$ varia entre as classes do benchmark.
 
 \begin{table}[H]
 \centering
@@ -144,9 +143,9 @@ mostra como (r) varia entre as classes do benchmark.
 \toprule
 Classe & Proponente & Incluído & Excluído \\
 \midrule
-Maioria, exclusão de (H) & (1/m) & (k/m) & ((m-k-1)/m) \\
-Maioria, screening ou pooling & (1/m) & ((k-1)/m) & ((m-k)/m) \\
-Unanimidade & (1/m) & ((m-1)/m) & (0) \\
+Maioria, exclusão de $H$ & $1/m$ & $k/m$ & $(m-k-1)/m$ \\
+Maioria, screening ou pooling & $1/m$ & $(k-1)/m$ & $(m-k)/m$ \\
+Unanimidade & $1/m$ & $(m-1)/m$ & $0$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -169,9 +168,9 @@ k=\left\lfloor\frac{m+1}{2}\right\rfloor,
 w=\frac{\beta}{m}.
 \]
 
-Quando maioria inclui (H), o proponente paga (eta o) ao hegemon e compra
-(k-1) fracos a (w). Quando maioria exclui (H), compra (k) fracos a
-(w). Sob unanimidade, paga (eta o) a (H) e
+Quando maioria inclui $H$, o proponente paga $\beta o$ ao hegemon e compra
+$k-1$ fracos a $w$. Quando maioria exclui $H$, compra $k$ fracos a
+$w$. Sob unanimidade, paga $\beta o$ a $H$ e
 
 \[
 w_U(o)=\frac{\beta(1-o)}m
@@ -179,24 +178,28 @@ w_U(o)=\frac{\beta(1-o)}m
 
 a cada fraco não proponente.
 
-Com (m=4), (eta=0{,}90), (ell=0{,}10) e (h=0{,}35), temos
-(k=2) e (1/m=0{,}25). O tipo baixo é barato e o tipo alto é caro para a
+Com $m=4$, $\beta=0{,}90$, $\ell=0{,}10$ e $h=0{,}35$, temos
+$k=2$ e $1/m=0{,}25$. O tipo baixo é barato e o tipo alto é caro para a
 coalizão majoritária.
 
 ```{r tab-public-roles, results='asis'}
-knitr::kable(
+tab_public_roles <- knitr::kable(
   make_role_table(c("Benchmark público: H barato", "Benchmark público: H caro")),
   format = "latex",
   booktabs = TRUE,
-  longtable = TRUE,
   caption = "Payoffs por papel no benchmark com informação pública",
   label = "tab:publicroles",
   align = c("l", "l", "l", "l", "r", "r", "r")
 )
+kableExtra::kable_styling(
+  tab_public_roles,
+  latex_options = c("HOLD_position", "scale_down"),
+  font_size = 8
+)
 ```
 
 ```{r tab-public-summary, results='asis'}
-knitr::kable(
+tab_public_summary <- knitr::kable(
   make_summary_table(c("Benchmark público: H barato", "Benchmark público: H caro")),
   format = "latex",
   booktabs = TRUE,
@@ -204,20 +207,21 @@ knitr::kable(
   label = "tab:publicsummary",
   align = c("l", "l", "l", "r")
 )
+kableExtra::kable_styling(tab_public_summary, latex_options = "HOLD_position")
 ```
 
-Quando (o=0{,}10), as duas regras entregam o mesmo payoff esperado,
-(0{,}2275), mas por distribuições diferentes. Maioria concentra mais no
+Quando $o=0{,}10$, as duas regras entregam o mesmo payoff esperado,
+$0{,}2275$, mas por distribuições diferentes. Maioria concentra mais no
 proponente e em poucos parceiros; unanimidade distribui pagamentos entre todos
-os não proponentes. Quando (o=0{,}35), maioria exclui (H) e o payoff
-esperado de um fraco sobe para (0{,}25); unanimidade mantém (H) e reduz o
-payoff para (0{,}1713).
+os não proponentes. Quando $o=0{,}35$, maioria exclui $H$ e o payoff
+esperado de um fraco sobe para $0{,}25$; unanimidade mantém $H$ e reduz o
+payoff para $0{,}1713$.
 
 ## Informação privada: screening versus pooling
 
 Um exemplo simples mostra que o custo do atraso pode alterar a incidência.
-Considere (m=4), (eta=0{,}75), (ell=0{,}05), (h=0{,}15) e
-(p=0{,}115). Os dois limites relevantes são
+Considere $m=4$, $\beta=0{,}75$, $\ell=0{,}05$, $h=0{,}15$ e
+$p=0{,}115$. Os dois limites relevantes são
 
 \[
 p^*=0{,}1053,
@@ -225,12 +229,12 @@ p^*=0{,}1053,
 p_{S=P}=0{,}1277.
 \]
 
-Logo, unanimidade faz pooling, enquanto maioria ainda faz screening. Se (H)
-é baixo, o screening majoritário passa; se (H) é alto, a proposta falha e
+Logo, unanimidade faz pooling, enquanto maioria ainda faz screening. Se $H$
+é baixo, o screening majoritário passa; se $H$ é alto, a proposta falha e
 os fracos recebem a continuação.
 
 ```{r tab-private-summary, results='asis'}
-knitr::kable(
+tab_private_summary <- knitr::kable(
   make_summary_table("Privado: p = 0.115"),
   format = "latex",
   booktabs = TRUE,
@@ -238,6 +242,7 @@ knitr::kable(
   label = "tab:privatesummary",
   align = c("l", "l", "l", "r")
 )
+kableExtra::kable_styling(tab_private_summary, latex_options = "HOLD_position")
 ```
 
 Para o tipo baixo, unanimidade menos maioria é
@@ -253,15 +258,15 @@ Os fracos financiam o pagamento do limiar alto. Para o tipo alto, porém,
 \]
 
 Unanimidade pode beneficiar os fracos nesse estado porque evita o atraso
-produzido pelo screening majoritário. Antes de observar o tipo de (H), basta
-ponderar os dois valores por (1-p) e (p).
+produzido pelo screening majoritário. Antes de observar o tipo de $H$, basta
+ponderar os dois valores por $1-p$ e $p$.
 
 # Extensão com agenda de H
 
 ## Fórmula geral
 
-Na data (A), (H) é o proponente. Sob maioria, uma proposta aprovada compra
-(k) fracos. Sob uma loteria simétrica,
+Na data $A$, $H$ é o proponente. Sob maioria, uma proposta aprovada compra
+$k$ fracos. Sob uma loteria simétrica,
 
 \[
 \Pr(j\text{ incluído}\mid\text{passagem})=\frac{k}{m},
@@ -269,7 +274,7 @@ Na data (A), (H) é o proponente. Sob maioria, uma proposta aprovada compra
 \Pr(j\text{ excluído}\mid\text{passagem})=\frac{m-k}{m}.
 \]
 
-Para cada tipo (	heta\in\{\ell,h\}),
+Para cada tipo $\theta\in\{\ell,h\}$,
 
 \[
 V_{W,\theta}^{A,M}
@@ -281,7 +286,7 @@ E[x_j\mid j\in K,A,\theta]
 \tag{2}
 \]
 
-onde (A) indica acordo e (D), atraso. Sob unanimidade, todo fraco é
+onde $A$ indica acordo e $D$, atraso. Sob unanimidade, todo fraco é
 incluído quando há acordo:
 
 \[
@@ -308,16 +313,16 @@ Sob unanimidade, todo fraco recebe
 r_U(o)=\frac{\beta(1-\beta o)}m.
 \]
 
-Sob maioria, um fraco incluído recebe o mesmo valor quando (o\leq1/m),
-recebe (eta/m) quando (1/m<o<o_M^*), e entra na continuação quando
-(o>o_M^*), onde
+Sob maioria, um fraco incluído recebe o mesmo valor quando $o\leq1/m$,
+recebe $\beta/m$ quando $1/m<o<o_M^*$, e entra na continuação quando
+$o>o_M^*$, onde
 
 \[
 o_M^*=\frac1\beta-\frac{k}{m}.
 \]
 
 ```{r tab-agenda-public, results='asis'}
-knitr::kable(
+tab_agenda_public <- knitr::kable(
   make_summary_table(c(
     "Agenda pública: H barato",
     "Agenda pública: H intermediário",
@@ -329,34 +334,38 @@ knitr::kable(
   label = "tab:agendapublic",
   align = c("l", "l", "l", "r")
 )
+kableExtra::kable_styling(tab_agenda_public, latex_options = "HOLD_position")
 ```
 
 ```{r fig-agenda-public, fig.cap='Payoff esperado de um Estado fraco na extensão de agenda com informação pública. Maioria usa uma coalizão simétrica de tamanho k; unanimidade inclui todos. Para o = 0,80, maioria induz atraso e o payoff inclui a continuação descontada.', out.width='92%'}
-knitr::include_graphics("output/figures/beneficios_estados_fracos_agenda_publica.png")
+knitr::include_graphics(normalizePath(
+  "output/figures/beneficios_estados_fracos_agenda_publica.png",
+  mustWork = TRUE
+), rel_path = FALSE)
 ```
 
 Os três pontos ilustram mecanismos distintos:
 
-- (o=0{,}10): o preço de um incluído é igual nas duas regras, mas
+- $o=0{,}10$: o preço de um incluído é igual nas duas regras, mas
   unanimidade inclui todos;
-- (o=0{,}35): um incluído na coalizão majoritária recebe mais, porém metade
+- $o=0{,}35$: um incluído na coalizão majoritária recebe mais, porém metade
   dos fracos recebe zero; unanimidade distribui um pagamento menor a todos;
-- (o=0{,}80): maioria induz atraso, preservando a possibilidade de um fraco
+- $o=0{,}80$: maioria induz atraso, preservando a possibilidade de um fraco
   ser proponente na continuação; unanimidade fecha acordo imediato, mas paga
-  apenas (0{,}0630) a cada fraco.
+  apenas $0{,}0630$ a cada fraco.
 
 ## Informação privada
 
-Sob maioria, condicionalmente a uma proposta com posterior (mu) e
-continuação selecionada (chi(mu)), o preço de um voto fraco é
+Sob maioria, condicionalmente a uma proposta com posterior $\mu$ e
+continuação selecionada $\chi(\mu)$, o preço de um voto fraco é
 
 \[
 r_\chi(\mu)=\beta c_\chi(\mu).
 \]
 
-(H) paga (r_\chi(mu)) a (k) fracos, paga zero aos demais e conserva
-(1-kr_\chi(mu)). Se a proposta é rejeitada, não existe coalizão vencedora
-na data (A); cada fraco recebe sua continuação condicionada ao tipo.
+$H$ paga $r_\chi(\mu)$ a $k$ fracos, paga zero aos demais e conserva
+$1-kr_\chi(\mu)$. Se a proposta é rejeitada, não existe coalizão vencedora
+na data $A$; cada fraco recebe sua continuação condicionada ao tipo.
 
 Sob unanimidade, não há excluídos numa proposta aprovada. No representante
 canônico, cada fraco recebe
@@ -374,23 +383,31 @@ pisos; por isso, os valores abaixo são exemplos canônicos, não uma seleção
 global da correspondência.
 
 ```{r tab-agenda-private, results='asis'}
-knitr::kable(
-  make_role_table("Agenda privada: propostas canônicas"),
+tab_agenda_private_data <- make_role_table("Agenda privada: propostas canônicas")
+tab_agenda_private_data$Cenário <- NULL
+tab_agenda_private_data$Tipo <- NULL
+tab_agenda_private <- knitr::kable(
+  tab_agenda_private_data,
   format = "latex",
   booktabs = TRUE,
   caption = "Exemplos canônicos de pagamentos aos fracos na extensão privada",
   label = "tab:agendaprivate",
-  align = c("l", "l", "l", "l", "r", "r", "r")
+  align = c("l", "l", "r", "r", "r")
+)
+kableExtra::kable_styling(
+  tab_agenda_private,
+  latex_options = c("HOLD_position", "scale_down"),
+  font_size = 9
 )
 ```
 
-Com (m=4), (eta=0{,}90), (ell=0{,}10) e (h=0{,}35):
+Com $m=4$, $\beta=0{,}90$, $\ell=0{,}10$ e $h=0{,}35$:
 
-- uma continuação majoritária de exclusão produz preço (0{,}2250), mas cada
-  fraco só tem probabilidade (1/2) de ser comprado;
-- uma continuação majoritária de pooling produz preço (0{,}1541), novamente
-  com probabilidade (1/2) de inclusão;
-- unanimidade inclui todos e paga (0{,}2048) em posterior zero ou (0{,}1541)
+- uma continuação majoritária de exclusão produz preço $0{,}2250$, mas cada
+  fraco só tem probabilidade $1/2$ de ser comprado;
+- uma continuação majoritária de pooling produz preço $0{,}1541$, novamente
+  com probabilidade $1/2$ de inclusão;
+- unanimidade inclui todos e paga $0{,}2047$ em posterior zero ou $0{,}1541$
   em posterior alto.
 
 # Interpretação
@@ -438,4 +455,3 @@ Os exemplos foram calculados pelo script
 
 O script verifica probabilidades, não negatividade, identidades analíticas e
 os limites que sustentam o exemplo privado de screening versus pooling.
-

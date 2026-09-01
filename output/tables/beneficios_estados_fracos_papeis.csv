@@ -1,42 +1,42 @@
 "exemplo","regra","tipo","papel","probabilidade","payoff_condicional","observacao","contribuicao"
-"Benchmark p,"Maioria","o = 0.10","Proponente",0.25,0.685,"Maioria inclui H",0.17125
-"Benchmark p,"Maioria","o = 0.10","Inclu,0.25,0.225,"Parceiro fraco na coaliz,0.05625
-"Benchmark p,"Maioria","o = 0.10","Exclu,0.5,0,"Fora da coaliz,0
-"Benchmark p,"Unanimidade","o = 0.10","Proponente",0.25,0.3025,"Proponente fraco compra H e todos os fracos",0.075625
-"Benchmark p,"Unanimidade","o = 0.10","Inclu,0.75,0.2025,"Todo n,0.151875
-"Benchmark p,"Unanimidade","o = 0.10","Exclu,0,0,"N,0
-"Benchmark p,"Maioria","o = 0.35","Proponente",0.25,0.55,"Maioria exclui H",0.1375
-"Benchmark p,"Maioria","o = 0.35","Inclu,0.5,0.225,"Parceiro fraco na coaliz,0.1125
-"Benchmark p,"Maioria","o = 0.35","Exclu,0.25,0,"Fora da coaliz,0
-"Benchmark p,"Unanimidade","o = 0.35","Proponente",0.25,0.24625,"Proponente fraco compra H e todos os fracos",0.0615625
-"Benchmark p,"Unanimidade","o = 0.35","Inclu,0.75,0.14625,"Todo n,0.1096875
-"Benchmark p,"Unanimidade","o = 0.35","Exclu,0,0,"N,0
+"Benchmark público: H barato","Maioria","o = 0.10","Proponente",0.25,0.685,"Maioria inclui H",0.17125
+"Benchmark público: H barato","Maioria","o = 0.10","Incluído",0.25,0.225,"Parceiro fraco na coalizão",0.05625
+"Benchmark público: H barato","Maioria","o = 0.10","Excluído",0.5,0,"Fora da coalizão vencedora",0
+"Benchmark público: H barato","Unanimidade","o = 0.10","Proponente",0.25,0.3025,"Proponente fraco compra H e todos os fracos",0.075625
+"Benchmark público: H barato","Unanimidade","o = 0.10","Incluído",0.75,0.2025,"Todo não proponente é incluído",0.151875
+"Benchmark público: H barato","Unanimidade","o = 0.10","Excluído",0,0,"Não existe sob unanimidade",0
+"Benchmark público: H caro","Maioria","o = 0.35","Proponente",0.25,0.55,"Maioria exclui H",0.1375
+"Benchmark público: H caro","Maioria","o = 0.35","Incluído",0.5,0.225,"Parceiro fraco na coalizão",0.1125
+"Benchmark público: H caro","Maioria","o = 0.35","Excluído",0.25,0,"Fora da coalizão vencedora",0
+"Benchmark público: H caro","Unanimidade","o = 0.35","Proponente",0.25,0.24625,"Proponente fraco compra H e todos os fracos",0.0615625
+"Benchmark público: H caro","Unanimidade","o = 0.35","Incluído",0.75,0.14625,"Todo não proponente é incluído",0.1096875
+"Benchmark público: H caro","Unanimidade","o = 0.35","Excluído",0,0,"Não existe sob unanimidade",0
 "Privado: p = 0.115","Maioria - screening","H baixo","Proponente",0.25,0.775,"Acordo imediato",0.19375
-"Privado: p = 0.115","Maioria - screening","H baixo","Inclu,0.25,0.1875,"Parceiro pago",0.046875
-"Privado: p = 0.115","Maioria - screening","H baixo","Exclu,0.5,0,"Fora da coaliz,0
-"Privado: p = 0.115","Maioria - screening","H alto","Continua,1,0.1875,"A proposta falha; novo reconhecimento uniforme no Round 2",0.1875
+"Privado: p = 0.115","Maioria - screening","H baixo","Incluído",0.25,0.1875,"Parceiro pago",0.046875
+"Privado: p = 0.115","Maioria - screening","H baixo","Excluído",0.5,0,"Fora da coalizão",0
+"Privado: p = 0.115","Maioria - screening","H alto","Continuação",1,0.1875,"A proposta falha; novo reconhecimento uniforme no Round 2",0.1875
 "Privado: p = 0.115","Unanimidade - pooling","H baixo","Proponente",0.25,0.409375,"Paga o limiar alto",0.10234375
-"Privado: p = 0.115","Unanimidade - pooling","H baixo","Inclu,0.75,0.159375,"Todo n,0.11953125
-"Privado: p = 0.115","Unanimidade - pooling","H baixo","Exclu,0,0,"N,0
+"Privado: p = 0.115","Unanimidade - pooling","H baixo","Incluído",0.75,0.159375,"Todo não proponente é incluído",0.11953125
+"Privado: p = 0.115","Unanimidade - pooling","H baixo","Excluído",0,0,"Não existe",0
 "Privado: p = 0.115","Unanimidade - pooling","H alto","Proponente",0.25,0.409375,"Paga o limiar alto",0.10234375
-"Privado: p = 0.115","Unanimidade - pooling","H alto","Inclu,0.75,0.159375,"Todo n,0.11953125
-"Privado: p = 0.115","Unanimidade - pooling","H alto","Exclu,0,0,"N,0
-"Agenda p,"Maioria","o = 0.10","Inclu,0.5,0.20475,"H compra k fracos",0.102375
-"Agenda p,"Maioria","o = 0.10","Exclu,0.5,0,"Fora da coaliz,0
-"Agenda p,"Unanimidade","o = 0.10","Inclu,1,0.20475,"H compra todos os fracos",0.20475
-"Agenda p,"Unanimidade","o = 0.10","Exclu,0,0,"N,0
-"Agenda p,"Maioria","o = 0.35","Inclu,0.5,0.225,"H compra k fracos",0.1125
-"Agenda p,"Maioria","o = 0.35","Exclu,0.5,0,"Fora da coaliz,0
-"Agenda p,"Unanimidade","o = 0.35","Inclu,1,0.154125,"H compra todos os fracos",0.154125
-"Agenda p,"Unanimidade","o = 0.35","Exclu,0,0,"N,0
-"Agenda p,"Maioria","o = 0.80","Proponente na continua,0.25,0.495,"H induz atraso; payoff trazido para a data A",0.12375
-"Agenda p,"Maioria","o = 0.80","Inclu,0.5,0.2025,"H induz atraso; payoff trazido para a data A",0.10125
-"Agenda p,"Maioria","o = 0.80","Fora na continua,0.25,0,"H induz atraso; payoff zero",0
-"Agenda p,"Unanimidade","o = 0.80","Inclu,1,0.063,"H compra todos os fracos",0.063
-"Agenda p,"Unanimidade","o = 0.80","Exclu,0,0,"N,0
-"Agenda privada: propostas can,"Maioria - continua,"Passagem","Inclu,0.5,0.225,"Pre,0.1125
-"Agenda privada: propostas can,"Maioria - continua,"Passagem","Exclu,0.5,0,"Fora da coaliz,0
-"Agenda privada: propostas can,"Maioria - continua,"Passagem","Inclu,0.5,0.154125,"Pre,0.0770625
-"Agenda privada: propostas can,"Maioria - continua,"Passagem","Exclu,0.5,0,"Fora da coaliz,0
-"Agenda privada: propostas can,"Unanimidade - posterior zero","Passagem","Inclu,1,0.20475,"Representante can,0.20475
-"Agenda privada: propostas can,"Unanimidade - posterior alto","Passagem","Inclu,1,0.154125,"Representante can,0.154125
+"Privado: p = 0.115","Unanimidade - pooling","H alto","Incluído",0.75,0.159375,"Todo não proponente é incluído",0.11953125
+"Privado: p = 0.115","Unanimidade - pooling","H alto","Excluído",0,0,"Não existe",0
+"Agenda pública: H barato","Maioria","o = 0.10","Incluído em A",0.5,0.20475,"H compra k fracos",0.102375
+"Agenda pública: H barato","Maioria","o = 0.10","Excluído em A",0.5,0,"Fora da coalizão de H",0
+"Agenda pública: H barato","Unanimidade","o = 0.10","Incluído em A",1,0.20475,"H compra todos os fracos",0.20475
+"Agenda pública: H barato","Unanimidade","o = 0.10","Excluído em A",0,0,"Não existe sob unanimidade",0
+"Agenda pública: H intermediário","Maioria","o = 0.35","Incluído em A",0.5,0.225,"H compra k fracos",0.1125
+"Agenda pública: H intermediário","Maioria","o = 0.35","Excluído em A",0.5,0,"Fora da coalizão de H",0
+"Agenda pública: H intermediário","Unanimidade","o = 0.35","Incluído em A",1,0.154125,"H compra todos os fracos",0.154125
+"Agenda pública: H intermediário","Unanimidade","o = 0.35","Excluído em A",0,0,"Não existe sob unanimidade",0
+"Agenda pública: H caro e atraso","Maioria","o = 0.80","Proponente na continuação",0.25,0.495,"H induz atraso; payoff trazido para a data A",0.12375
+"Agenda pública: H caro e atraso","Maioria","o = 0.80","Incluído na continuação",0.5,0.2025,"H induz atraso; payoff trazido para a data A",0.10125
+"Agenda pública: H caro e atraso","Maioria","o = 0.80","Fora na continuação",0.25,0,"H induz atraso; payoff zero",0
+"Agenda pública: H caro e atraso","Unanimidade","o = 0.80","Incluído em A",1,0.063,"H compra todos os fracos",0.063
+"Agenda pública: H caro e atraso","Unanimidade","o = 0.80","Excluído em A",0,0,"Não existe sob unanimidade",0
+"Agenda privada: propostas canônicas","Maioria - continuação E","Passagem","Incluído",0.5,0.225,"Preço r_chi = beta/m",0.1125
+"Agenda privada: propostas canônicas","Maioria - continuação E","Passagem","Excluído",0.5,0,"Fora da coalizão de H",0
+"Agenda privada: propostas canônicas","Maioria - continuação P","Passagem","Incluído",0.5,0.154125,"Preço r_chi = beta(1-beta h)/m",0.0770625
+"Agenda privada: propostas canônicas","Maioria - continuação P","Passagem","Excluído",0.5,0,"Fora da coalizão de H",0
+"Agenda privada: propostas canônicas","Unanimidade - posterior zero","Passagem","Incluído",1,0.20475,"Representante canônico simétrico",0.20475
+"Agenda privada: propostas canônicas","Unanimidade - posterior alto","Passagem","Incluído",1,0.154125,"Representante canônico simétrico",0.154125
