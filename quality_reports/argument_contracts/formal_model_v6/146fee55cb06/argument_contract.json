@@ -1,0 +1,164 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "formal-model-v6:146fee55cb06:round1",
+  "profile": "formal",
+  "source": {
+    "reviewed_artifact": "formal_model_v6.pdf",
+    "sha256": "146fee55cb063b645121f2a6802a85c58816c542a5474442691c0903af5fafc4",
+    "editable_sources": [
+      {
+        "path": "formal_model_v6.Rmd",
+        "sha256": "ec9f281efb5e28c4e0b3c1c0c2756a2684aa85f0670e5ce42544ec886c3f0a97"
+      }
+    ]
+  },
+  "document": {
+    "title": "Power and Its Shadow: When Unanimity Serves the Hegemon",
+    "language": "en",
+    "format": "pdf",
+    "word_count": 18219,
+    "page_count": 66,
+    "substantive_sections": 18
+  },
+  "section_map": [
+    {"section_id":"S01","title":"Abstract and Introduction","locator":"pp. 1-3","reader_id":"reader-framing","function":"puzzle, thesis, scope, and roadmap","claims":["C01"],"evidence":["E01"],"non_claims":["No unconditional institutional ranking or WTO identification"],"ambiguities":["Unfinished 'I show that..' is non-blocking editorial residue"]},
+    {"section_id":"S02","title":"Literature and contribution","locator":"pp. 4-7","reader_id":"reader-framing","function":"literature positioning and contribution","claims":["C01","C12"],"evidence":["E01","E12"],"non_claims":["Does not claim rejection signaling or proposer insurance as new"],"ambiguities":[]},
+    {"section_id":"S03","title":"Working numerical illustration","locator":"pp. 7-8","reader_id":"reader-framing","function":"terminal-screening illustration","claims":["C03"],"evidence":["E03"],"non_claims":["Not an empirical calibration or full two-round result"],"ambiguities":[]},
+    {"section_id":"S04","title":"The model","locator":"pp. 8-11","reader_id":"reader-model:/root/contract_model","function":"players, timing, information, payoffs, and solution concept","claims":["C01"],"evidence":["E01"],"non_claims":["A no vote is not opt-out; only weak states propose in the benchmark"],"ambiguities":["A02 structural-consistency relation is not mathematically defined"]},
+    {"section_id":"S05","title":"Baseline results","locator":"pp. 11-23","reader_id":"reader-results","function":"solve public and private baseline games and contrasts","claims":["C02","C03","C04","C05","C06"],"evidence":["E02","E03","E04","E05","E06"],"non_claims":["No universal ranking; empty cells are not zero"],"ambiguities":[]},
+    {"section_id":"S06","title":"Agenda power and its informational shadow","locator":"pp. 23-29","reader_id":"reader-extension:/root/contract_extension","function":"mandatory agenda extension and decompositions","claims":["C07","C08","C09","C10","C11"],"evidence":["E07","E08","E09","E10","E11"],"non_claims":["No general majority sign and no empirical estimand"],"ambiguities":["Pure-PBE shorthand is resolved by the precise pure-ballot/Borel-proposal contract"]},
+    {"section_id":"S07","title":"Discussion: mechanism","locator":"pp. 30-31","reader_id":"reader-framing","function":"interpret substitutes, essential input, and empty cells","claims":["C01","C06"],"evidence":["E01","E06"],"non_claims":["Private information does not always benefit the hegemon"],"ambiguities":[]},
+    {"section_id":"S08","title":"WTO application and observable implications","locator":"pp. 31-32","reader_id":"reader-framing","function":"theoretical application","claims":["C12"],"evidence":["E12"],"non_claims":["No literal implementation, calibration, or identification"],"ambiguities":[]},
+    {"section_id":"S09","title":"Limits","locator":"pp. 32-33","reader_id":"reader-framing","function":"global scope restrictions","claims":["C01","C11","C12"],"evidence":["E01","E11","E12"],"non_claims":["No endogenous rule choice, mixed-ballot result, or repeated-game mechanism"],"ambiguities":["M/S/B has no literal expansion but has operational definitions"]},
+    {"section_id":"S10","title":"Conclusion","locator":"pp. 33-34","reader_id":"reader-framing","function":"conditional synthesis","claims":["C01","C10","C11","C12"],"evidence":["E01","E10","E11","E12"],"non_claims":["Consensus is not claimed always to favor the hegemon"],"ambiguities":[]},
+    {"section_id":"S11","title":"Appendix A: Protocol, beliefs, and incentives","locator":"p. 35","reader_id":"reader-model:/root/contract_model","function":"complete payoff and belief rules","claims":["C01"],"evidence":["E01"],"non_claims":["The x_H+o branch is not an equilibrium exclusion with positive x_H"],"ambiguities":["A02 structural-consistency relation remains unresolved"]},
+    {"section_id":"S12","title":"Appendix B: Proofs","locator":"pp. 36-40","reader_id":"reader-results","function":"prove Propositions 5.1-5.7","claims":["C02","C03","C04","C05","C06"],"evidence":["E02","E03","E04","E05","E06"],"non_claims":["No mixed-ballot existence claim"],"ambiguities":[]},
+    {"section_id":"S13","title":"Appendix C: Endpoints, exact sets, and illustration","locator":"pp. 40-42","reader_id":"reader-results","function":"endpoint and linked-set discipline","claims":["C06"],"evidence":["E06"],"non_claims":["Marginal envelopes are not attainable rectangles"],"ambiguities":[]},
+    {"section_id":"S14","title":"Appendix D: Notation","locator":"pp. 42-43","reader_id":"reader-model:/root/contract_model","function":"notation glossary","claims":["C01","C11"],"evidence":["E01","E11"],"non_claims":["The glossary does not itself establish results"],"ambiguities":["Q label is resolved by E.14 as non-causal diagonal comparison"]},
+    {"section_id":"S15","title":"Appendix E.1-E.5","locator":"pp. 43-51","reader_id":"reader-extension:/root/contract_extension","function":"agenda contract, private correspondences, same-fiber comparison","claims":["C08","C09"],"evidence":["E08","E09"],"non_claims":["Payoff images do not replace complete binders"],"ambiguities":["A01 agenda-stage feasible-set ceiling is unresolved"]},
+    {"section_id":"S16","title":"Appendix E.6-E.14","locator":"pp. 52-58","reader_id":"reader-extension:/root/contract_extension","function":"public agenda classes and D/I/T/Q decompositions","claims":["C07","C10","C11"],"evidence":["E07","E10","E11"],"non_claims":["Q is not a one-factor causal effect"],"ambiguities":[]},
+    {"section_id":"S17","title":"Appendix F","locator":"pp. 59-62","reader_id":"reader-extension:/root/contract_extension","function":"factorization, existence, verification, and causal scope","claims":["C08","C11"],"evidence":["E08","E11"],"non_claims":["Mechanical scripts do not prove abstract completeness or measurability"],"ambiguities":[]},
+    {"section_id":"S18","title":"Appendix G","locator":"pp. 62-64","reader_id":"reader-framing","function":"WTO strategic crosswalk","claims":["C12"],"evidence":["E12"],"non_claims":["Not a formal model attributed to Steinberg"],"ambiguities":[]}
+  ],
+  "synthesis": {
+    "thesis": "Conditional on the declared equilibrium architecture and its existence domains, unanimity can favor a privately informed hegemon without exclusive formal proposal power because it removes coalition substitutes for the hegemon's approval; public benchmarks isolate pivotality, private-public differences isolate informational rent, and a separate mandatory agenda stage identifies their interaction within the model.",
+    "research_question": "What happens to a powerful actor's bargaining payoff and informational rent when majority can bypass the only privately informed participant but unanimity makes its approval indispensable, and how does an earlier mandatory proposal opportunity alter that comparison?",
+    "contribution": "The paper reorganizes private information around one informed hegemon and symmetric uninformed weak states, treats the approval rule as an on-off switch for the informed participant, preserves linked type correspondences and empty cells, and derives the agenda decompositions Delta V^A = Delta v^A + Delta IR^A and T_g = D_g + I_g.",
+    "claim_type": "exact formal equilibrium characterization, correspondence-valued comparative claim, and structural within-model contrast",
+    "core_claims": [
+      {"claim_id":"C01","text":"Majority supplies a substitute for the informed hegemon's vote while unanimity makes that approval an essential input; any payoff ranking is conditional.","strength":"scoped formal mechanism claim"},
+      {"claim_id":"C02","text":"The public baseline includes H under Round-1 majority iff o <= 1/m and always prices H at beta o under unanimity.","strength":"exact proposition"},
+      {"claim_id":"C03","text":"Terminal majority excludes H; terminal unanimity screens through p* and pools above it.","strength":"exact proposition"},
+      {"claim_id":"C04","text":"Round-1 private majority has exact screening, pooling, exclusion, and linked residual cells.","strength":"exact correspondence"},
+      {"claim_id":"C05","text":"Round-1 private unanimity is empty for 0 < p <= p* within pure ballot strategies and pools above p*.","strength":"exact scoped nonexistence/existence result"},
+      {"claim_id":"C06","text":"Baseline payoff and informational-rent contrasts are distinct linked correspondences with conditional signs and propagated emptiness.","strength":"exact correspondence comparison"},
+      {"claim_id":"C07","text":"Public agenda power can favor either rule; for o > 1/m the public gap has the sign of beta o - e/m.","strength":"exact branchwise comparison"},
+      {"claim_id":"C08","text":"Private agenda results require complete Borel binders; payoff images, envelopes, and summaries cannot be spliced.","strength":"exact correspondence architecture"},
+      {"claim_id":"C09","text":"Same-fiber comparison preserves complete records; beta h < e/m is sufficient but not necessary for setwise majority advantage.","strength":"scoped sufficient-condition theorem"},
+      {"claim_id":"C10","text":"Delta V^A = Delta v^A + Delta IR^A member by member; unanimity agenda rent is nonnegative for the low type and nonpositive for the high type in every existing fiber.","strength":"exact identity and incidence result"},
+      {"claim_id":"C11","text":"T_g = D_g + I_g within the structural factorial design; T_U is weakly positive where both arms exist, while T_M has no general sign and Q_g is not one-factor causal.","strength":"structural within-model correspondence claim"},
+      {"claim_id":"C12","text":"The WTO material is a theoretical strategic crosswalk, not literal implementation, calibration, or identification.","strength":"explicit application scope claim"}
+    ],
+    "evidence_map": [
+      {"claim_id":"C01","source_locator":"PDF pp. 1-3, 30-34","evidence":"Model contrast, discussion, limits, and conclusion","scope":"Conditional on maintained correspondences and existence domains"},
+      {"claim_id":"C02","source_locator":"Proposition 5.1, PDF pp. 12-13; proof p. 36","evidence":"Backward induction and vote-cost comparison","scope":"Public-type no-agenda baseline"},
+      {"claim_id":"C03","source_locator":"Proposition 5.2, PDF pp. 13-14; proof p. 36","evidence":"Acceptance-set payoff comparison","scope":"Private terminal games"},
+      {"claim_id":"C04","source_locator":"Proposition 5.3, PDF pp. 14-16; proof pp. 37-38","evidence":"Exhaustion and pairwise comparison of E/S/P classes","scope":"Round-1 majority; m >= 3"},
+      {"claim_id":"C05","source_locator":"Proposition 5.4, PDF pp. 15-16; proof pp. 38-39","evidence":"Constructive equilibria and four-profile failure after s-dagger","scope":"PBE with pure ballot strategies only"},
+      {"claim_id":"C06","source_locator":"Propositions 5.5-5.7, PDF pp. 17-23; Appendix B-C","evidence":"Componentwise subtraction of exact linked vectors","scope":"Both sources exist; no coordinate splicing"},
+      {"claim_id":"C07","source_locator":"PDF pp. 23-25; Appendix E.6-E.8","evidence":"Branchwise public agenda solutions","scope":"Mandatory date-A proposal and fixed date convention"},
+      {"claim_id":"C08","source_locator":"Appendix E.1-E.4, PDF pp. 43-51","evidence":"Necessary/sufficient classes and complete Borel binders","scope":"Pure ballots; potentially mixed Borel proposals"},
+      {"claim_id":"C09","source_locator":"PDF pp. 25-26; Appendix E.4-E.5","evidence":"Same-fiber product and uniform bounds","scope":"Common nonempty fibers; condition is sufficient only"},
+      {"claim_id":"C10","source_locator":"PDF pp. 26-27; Appendix E.9-E.10","evidence":"Fixed-vector rent translation and algebraic identity","scope":"Member-specific before ex ante aggregation"},
+      {"claim_id":"C11","source_locator":"PDF pp. 27-29; Appendix E.11-E.14 and F.2-F.4","evidence":"Four-arm factorial definitions and exact correspondences","scope":"Structural model contrast; absent arms propagate empty sets"},
+      {"claim_id":"C12","source_locator":"PDF pp. 31-33, 62-64","evidence":"Explicit main-text limits and Appendix G crosswalk","scope":"Theoretical consistency rather than empirical identification"}
+    ],
+    "scope_conditions": [
+      "One hegemon, m >= 3 weak states, two types, two baseline rounds, 0 < ell < h < 1, and 0 < beta < 1",
+      "Fixed unit pie, nonnegative package allocations, no outside side payments, and no intrinsic agreement benefit for H",
+      "Only weak states propose in the benchmark; the extension adds a separate earlier mandatory H proposal",
+      "Simultaneous public ballots under a fixed majority or unanimity rule",
+      "PBE with pure ballot strategies, declared belief/voting disciplines, support-preserving endpoints, and proposal tie-break",
+      "Agenda proposal laws may be Borel mixed or atomless; complete records are compared only in the same economy and off-path fiber",
+      "Type vectors remain linked and empty sources propagate the empty set",
+      "Selection-free signs require the whole exact correspondence on one side of the threshold"
+    ],
+    "non_claims": [
+      "No universal ranking of unanimity versus majority",
+      "No claim that private information always benefits the hegemon",
+      "No payoff, sign, or interpolation in empty cells",
+      "No characterization or existence claim for mixed ballot strategies",
+      "No replacement of linked correspondences by marginal envelopes or cross-world splicing",
+      "No empirical calibration, WTO identification, or historical type assignment",
+      "T_g is not an empirically identified estimand and Q_g is not a one-factor causal effect",
+      "No endogenous rule choice, endogenous agenda protocol, repeated reputation, implementation, ratification, or plurilateral extension",
+      "Mechanical checks do not prove abstract PBE completeness or measurability"
+    ],
+    "terminology": [
+      {"preferred":"pure ballot strategies","avoid":["pure-strategy PBE without qualification"],"reason":"Agenda proposal laws may be Borel mixed"},
+      {"preferred":"terminal disagreement payoff or outside option","avoid":["immediate opt-out payoff"],"reason":"A no vote does not remove H"},
+      {"preferred":"linked type vector and complete binder","avoid":["independent marginal selections"],"reason":"One record binds types, payoffs, outcomes, and weights"},
+      {"preferred":"empty correspondence","avoid":["zero, NA, or interpolation"],"reason":"It records absence of a maintained equilibrium source"},
+      {"preferred":"informational rent IR_g = V_g - v_g","avoid":["price of the necessary vote"],"reason":"Rent is private minus same-rule public payoff"},
+      {"preferred":"structural causal contrast inside the model","avoid":["empirically identified treatment effect"],"reason":"No empirical design identifies T_g"},
+      {"preferred":"diagonal comparison Q_g","avoid":["agenda-only causal effect"],"reason":"Q_g changes agenda and information together"},
+      {"preferred":"de facto agenda influence versus exclusive formal proposal right","avoid":["undifferentiated agenda power when precision matters"],"reason":"Historical and formal uses differ"},
+      {"preferred":"M/S/B restriction","avoid":["invented acronym expansion"],"reason":"No literal expansion occurs; operational content is defined by fibers and binders"}
+    ],
+    "ambiguities": [
+      {"ambiguity_id":"A01","text":"The benchmark and primitive vector impose x_H <= bar x_H, but Appendix E.1 redefines the agenda-stage feasible set without that ceiling; inheritance versus omission is unresolved and can alter agenda correspondences.","locator":"Rmd 295-303, 1642-1644, 1669-1683; PDF pp. 8, 42-43","material":true},
+      {"ambiguity_id":"A02","text":"The baseline invokes structural consistency across histories encoding the same information without mathematically defining that equivalence relation; the agenda M/S/B fibers do not explicitly supply the missing baseline definition.","locator":"Rmd 392-410, 1337-1341; PDF pp. 10, 35","material":true}
+    ],
+    "profile_fields": {
+      "players": ["One informed hegemon H", "m >= 3 symmetric weak states W", "Nature selects o in {ell,h}"],
+      "timing": ["Nature selects o", "Two weak-proposer baseline rounds with simultaneous ballots", "Round-1 failure leads to discounted Round 2", "Agenda extension inserts mandatory date-A H proposal before Round 1"],
+      "information": ["H alone observes o; prior p", "Weak-state actions do not move beliefs", "H actions use Bayes where possible", "Endpoints preserve support", "Agenda off-path fibers use rho and mu_off"],
+      "actions_strategies": ["Weak proposers choose feasible packages in the baseline", "Responders vote yes or no", "Ballots are pure", "Agenda proposal laws may be arbitrary Borel mixtures", "Complete binders preserve strategies, beliefs, continuations, payoffs, and outcomes"],
+      "equilibrium_concept": {"name":"perfect Bayesian equilibrium with pure ballot strategies","disciplines":["no signaling by uninformed players","Bayes plus declared structural consistency","as-if-pivotal weak voting","yes at exact expected-value indifference","support-preserving endpoints","proposal tie-break minimizing H payoff among proposer ties"]},
+      "assumptions": ["m >= 3", "0 < ell < h < 1", "0 < beta < 1", "fixed unit pie", "no intrinsic agreement benefit for H", "simultaneous public ballots", "fixed voting rule", "mandatory rather than optional agenda treatment"],
+      "propositions": ["Propositions 5.1-5.7", "Appendix E.2-E.3 complete private agenda correspondences", "Appendix E.4-E.5 same-fiber comparison and sufficient region", "Appendix E.6-E.14 public classes and D/I/T/Q identities", "Appendix F factorization, existence, and scope"],
+      "mechanisms": ["majority substitution", "unanimity essential input", "pooling informational rent", "discounted continuation", "mandatory agenda power", "agenda-information interaction", "support-preserving endpoints and empty cells"],
+      "comparative_statics": ["screening/pooling switch at p*", "majority E/S/P switches at p_S=P and p_S=E", "public agenda gap sign at beta o = e/m for o > 1/m", "baseline exclusion sign at beta h - ell", "beta h < e/m is sufficient but not necessary", "no general sign for T_M, Delta IR^A, Delta I, or Delta T"]
+    },
+    "not_applicable": {}
+  },
+  "reconciliation": {
+    "questions": [
+      {"question_id":"R01","text":"Does opening 'no agenda power' deny historical de facto influence?"},
+      {"question_id":"R02","text":"Does pure-strategy shorthand prohibit mixed agenda proposals?"},
+      {"question_id":"R03","text":"Is Q_g a one-factor causal effect?"},
+      {"question_id":"R04","text":"Does the agenda-stage feasible set inherit x_H <= bar x_H?"},
+      {"question_id":"R05","text":"Which baseline histories are equivalent under structural consistency?"}
+    ],
+    "responses": [
+      {"question_id":"R01","resolution":"No. Later text explicitly distinguishes exclusive formal proposal rights from substantial de facto influence.","locator":"PDF pp. 5, 32, 62"},
+      {"question_id":"R02","resolution":"No. Precise passages impose pure ballots and permit Borel mixed or atomless proposal laws.","locator":"PDF pp. 10, 43-50"},
+      {"question_id":"R03","resolution":"No. E.14 and F.4 state that Q_g changes agenda and information simultaneously.","locator":"PDF pp. 58, 62"},
+      {"question_id":"R04","resolution":"Unresolved; conflicting feasible-set definitions remain.","locator":"PDF pp. 8, 42-43"},
+      {"question_id":"R05","resolution":"Unresolved; no mathematical equivalence relation is supplied for the baseline.","locator":"PDF pp. 10, 35"}
+    ],
+    "unresolved": [
+      {"ambiguity_id":"A01","reason":"Inheritance or omission of the agenda-stage ceiling changes feasible proposals and can change later formal criticism."},
+      {"ambiguity_id":"A02","reason":"The admissible off-path belief class is not uniquely operationalized, which can change later equilibrium-concept criticism."}
+    ]
+  },
+  "gate": {
+    "status": "FAIL",
+    "round": 1,
+    "checked_at": "2026-09-01T19:48:01-03:00",
+    "checks": {
+      "coverage": true,
+      "anchors": true,
+      "scope": true,
+      "nonclaims": true,
+      "preferred_specification": true,
+      "ambiguities": false,
+      "source_hash": true
+    },
+    "reasons": [
+      "All 18 substantive units are covered and the central claims, scope restrictions, and non-claims are source-anchored.",
+      "The PDF and Rmd hashes match the preflight snapshot.",
+      "A01 and A02 remain material interpretive ambiguities, so the ambiguity check fails and PASS is not permitted."
+    ]
+  }
+}
