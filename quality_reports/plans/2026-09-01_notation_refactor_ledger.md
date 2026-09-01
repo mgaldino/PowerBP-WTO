@@ -101,3 +101,11 @@ scripts are read-only sources.
   `7f758b42c7a21871afe89e0deca7564f0246bc4479e5ed225149d44831037e80`.
   The Introduction remains byte-identical to the principal-branch block, SHA-256
   `a1fa56b59519e10a2a9c80343d35c732c0111eac229d0e401cbeeb88c75b522f`.
+- Final bibliography repair: the Cairns entry now double-braces the corporate
+  institution so citeproc renders “General Agreement on Tariffs and Trade” as
+  one continuous name. The candidate was rendered again. Final artifact hashes
+  before independent re-review: Rmd
+  `a55b976f7ee217e1c9a24ddf03424494b5bd33c173154b1215c2b01e773dc642`;
+  PDF `243ad597fecac3062ea1050f43b2a650fa8fe60b2415be5476bdf37979fb8143`;
+  bibliography
+  `71f1413b45b44a4c55a9d0ffb4fb2e1218cfac7ced547829bd0e3eae6200f755`.

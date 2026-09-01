@@ -17,7 +17,7 @@
 | Key | Manuscript location | Repair and verification |
 |---|---|---|
 | `voeten2019making` | Introduction | Added Erik Voeten, "Making Sense of the Design of International Institutions," *Annual Review of Political Science* 22 (2019): 147--163, DOI `10.1146/annurev-polisci-041916-021108`. Metadata checked against the journal record reproduced by SSRN. |
-| `cairnsgroup1987proposal` | Introduction | Added the Cairns Group proposal to the GATT Uruguay Round Negotiating Group on Agriculture, document `MTN.GNG/NG5/W/21`, 26 October 1987. Metadata and document number checked against the official WTO-hosted GATT document. |
+| `cairnsgroup1987proposal` | Introduction | Added the Cairns Group proposal to the GATT Uruguay Round Negotiating Group on Agriculture, document `MTN.GNG/NG5/W/21`, 26 October 1987. Metadata and document number checked against the official WTO-hosted GATT document. The corporate institution name is double-braced so citeproc preserves “General Agreement on Tariffs and Trade” as one literal entity. |
 
 Sources accessed 2026-09-01:
 
@@ -48,4 +48,6 @@ useful project references.
   field.
 - The two new entries use stable identifiers: a DOI for Voeten and an official
   GATT document number plus WTO-hosted PDF for the Cairns Group proposal.
+- The rendered Cairns reference preserves the institutional name as the
+  continuous literal “General Agreement on Tariffs and Trade.”
 - No wording in the approved Introduction was changed during the repair.
