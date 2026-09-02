@@ -22,6 +22,8 @@ header-includes:
   - \usepackage{array}
   - \usepackage{graphicx}
   - \usepackage{caption}
+  - \usepackage{etoolbox}
+  - \AtBeginEnvironment{CSLReferences}{\interlinepenalty=10000}
 fontsize: 12pt
 geometry: margin=2.5cm
 mainfont: Times New Roman
@@ -2919,19 +2921,28 @@ Appendix B.9 proves that the exact orbit law is a complete invariant and that
 every anonymous Borel outcome used here factors uniquely through the economic
 summary.
 
-For coordinate \(r\in\{\ell,h,\mathrm{ea}\}\), define the two scalar images
-on the fixed common fiber by
+For every nonempty fixed common fiber, let \(V_{g,o}^A(R_g)\) denote
+\(H\)'s date-\(A\) payoff of type \(o\in\{\ell,h\}\) encoded by the complete
+binder \(R_g\), and define its ex ante coordinate by
 \[
-M_r=\{V_M^r(R_M):R_M\in
-  \mathcal B_M(\mathbf d,\rho,\mu^{\mathrm{off}})\},
-\qquad
-U_r=\{V_U^r(R_U):R_U\in
-  \mathcal B_U(\mathbf d,\rho,\mu^{\mathrm{off}})\}.
+V_{g,\mathrm{ea}}^A(R_g)
+=(1-p)V_{g,\ell}^A(R_g)+pV_{g,h}^A(R_g).
+\]
+For \(s\in\{\ell,h,\mathrm{ea}\}\), define the two scalar images and their
+exact contrast by
+\[
+\begin{aligned}
+M_s&=\{V_{M,s}^A(R_M):R_M\in
+  \mathcal B_M(\mathbf d,\rho,\mu^{\mathrm{off}})\},\\
+U_s&=\{V_{U,s}^A(R_U):R_U\in
+  \mathcal B_U(\mathbf d,\rho,\mu^{\mathrm{off}})\},\\
+\mathcal C_s^A&=\{u-v:u\in U_s,\ v\in M_s\}.
+\end{aligned}
 \]
 The contrast envelope satisfies
 \[
-\inf\mathcal C_r^A=\inf U_r-\sup M_r,\qquad
-\sup\mathcal C_r^A=\sup U_r-\inf M_r.
+\inf\mathcal C_s^A=\inf U_s-\sup M_s,\qquad
+\sup\mathcal C_s^A=\sup U_s-\inf M_s.
 \]
 The interval between these numbers is an interval hull, not necessarily an
 attained set. For \(g\in\{M,U\}\) and \(o\in\{\ell,h\}\), write
