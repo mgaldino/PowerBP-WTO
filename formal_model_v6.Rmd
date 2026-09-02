@@ -449,6 +449,10 @@ declared voting and proposal tie-break rules \\
 
 ## Separate agenda-stage extension
 
+We use superscript \(B\) for the two-round baseline and superscript \(A\) for
+the extension with the additional agenda stage. Thus the superscripts identify
+the arm of the comparison rather than a player or an action.
+
 The benchmark above remains the paper's primary model. After solving it, we
 consider a separate extension in which the informed hegemon must make an
 earlier proposal at date \(A\). Passage implements that proposal immediately;
@@ -1013,8 +1017,9 @@ For each member, define the private institutional contrast using the same
 unanimity-minus-majority orientation as the public contrast:
 \[
 \Delta V^A(o)=V_U^A(o)-V_M^A(o),\qquad
-\Delta V_E^A=(1-p)\Delta V^A(\ell)+p\Delta V^A(h).
+\Delta V_{\mathrm{ea}}^A=(1-p)\Delta V^A(\ell)+p\Delta V^A(h).
 \]
+Here and below, the subscript \(\mathrm{ea}\) denotes the ex ante coordinate.
 The affine average is applied only after preserving the linked type vector.
 If either source is empty in the common fiber, the comparison is empty.
 
@@ -1475,13 +1480,13 @@ which establishes the reported identity multiplicity. \(\square\)
 Transport the terminal unanimity continuation into Round-1 units. If the
 posterior is \(\mu\), a weak state's continuation is
 \[
-W(\mu)=
+c_U(\mu)=
 \begin{cases}
 (1-\mu)w_\ell^U,&\mu\leq p^*,\\
 w_h^U,&\mu>p^*.
 \end{cases}
 \]
-Thus \(W(\mu)\in[w_h^U,w_\ell^U]\), and \(x_j=w_\ell^U\) forces every weak responder to vote
+Thus \(c_U(\mu)\in[w_h^U,w_\ell^U]\), and \(x_j=w_\ell^U\) forces every weak responder to vote
 yes under any admissible posterior.
 
 At \(p=0\), support preservation fixes every posterior at zero. The proposal
@@ -1651,6 +1656,7 @@ Symbol & Meaning \\
 \(x=(x_H,x_1,\ldots,x_m)\) & Feasible allocation vector \\
 \(x_H\), \(x_j\), \(x_i\) & Allocations to \(H\), weak responder \(j\), and proposer \(i\) \\
 \(w=\beta/m\) & First-round continuation value of a weak state under majority \\
+\(w_o^U=\beta(1-o)/m\) & First-round continuation value of a weak state under unanimity \\
 \(p^*\) & Terminal unanimity cutoff, \((h-\ell)/(1-\ell)\) \\
 \(B\), \(A\) & Games without and with the earlier hegemonic agenda stage \\
 \(v_g^B(o)\), \(v_g^A(o)\) & Public-information payoff under rule \(g\) in each arm \\
@@ -1661,6 +1667,7 @@ Symbol & Meaning \\
 \(v_M^{\mathrm{safe}}\) & Safe majority-agenda payoff, \(1-k\beta/m\) \\
 \(o_M^*\) & Majority-agenda delay cutoff, \(v_M^{\mathrm{safe}}/\beta\) \\
 \(\rho\) & Off-path likelihood-ratio coordinate in the agenda extension \\
+\(\mathrm{ea}\) & Ex ante coordinate, evaluated as the prior-weighted average of the two types \\
 \(\Delta v^A(o)\) & Public institutional gap with agenda, \(v_U^A(o)-v_M^A(o)\) \\
 \(\Delta V^A(o)\) & Private institutional contrast with agenda,
 \(V_U^A(o)-V_M^A(o)\) \\
@@ -1669,6 +1676,12 @@ interaction, and total private agenda effect \\
 \(Q_g\) & Diagonal agenda-only versus information-only comparison \\
 \bottomrule
 \end{longtable}
+
+The symbols \(w\) and \(w_o^U\) price a weak vote inside the baseline arm.
+The functions \(r_M(o)\) and \(r_U(o)\) in Appendix E price a weak vote one
+date earlier, after rejection enters the baseline continuation. The extra
+discounting means that these are date-specific objects, not alternative names
+for the same quantity.
 
 # Appendix E: Exact agenda-stage correspondences and comparisons {-}
 
@@ -1728,19 +1741,20 @@ internal beliefs follow the baseline rule.
 ## E.2 Complete private-majority correspondence {-}
 
 For each posterior \(\mu\) and a fixed anonymous Markov continuation selection
-\(\chi\), let \(A_\chi(\mu)\) be \(H\)'s best payoff from a proposal that
-passes and let \(D_{\chi,o}(\mu)\) be the payoff of a type with outside option \(o\) from
+\(\chi\), let \(a_\chi^{\mathrm{pass}}(\mu)\) be \(H\)'s best payoff from a
+proposal that passes and let \(d_{\chi,o}(\mu)\) be the payoff of a type with outside option \(o\) from
 rejection, both at date \(A\). Define
 \[
-A_\mu:=A_\chi(\mu),\qquad D_{o,\mu}:=D_{\chi,o}(\mu),
+a_\mu^{\mathrm{pass}}:=a_\chi^{\mathrm{pass}}(\mu),\qquad
+d_{o,\mu}:=d_{\chi,o}(\mu),
 \qquad \mu\in[0,1],
 \]
-so that \(A_p,A_0,A_1\) and
-\(D_{\ell,p},D_{h,p},D_{\ell,0},D_{\ell,1},D_{h,0},D_{h,1}\) denote evaluations of
-these same functions at the displayed posterior. Also define
+so that \(a_p^{\mathrm{pass}},a_0^{\mathrm{pass}},a_1^{\mathrm{pass}}\)
+and \(d_{\ell,p},d_{h,p},d_{\ell,0},d_{\ell,1},d_{h,0},d_{h,1}\)
+denote evaluations of these same functions at the displayed posterior. Also define
 \[
 O_o(\rho)
-=\max\{A_\chi(b_\rho(p)),D_{\chi,o}(b_\rho(p))\}.
+=\max\{a_\chi^{\mathrm{pass}}(b_\rho(p)),d_{\chi,o}(b_\rho(p))\}.
 \]
 The following conditions are necessary and sufficient for every interior
 pure equilibrium class:
@@ -1756,27 +1770,27 @@ Class & Necessary and sufficient condition and linked type payoff \\
 \midrule
 \endhead
 Pooling agreement &
-\(O_h(\rho)\leq A_p\), with any
-\(z\in[O_h(\rho),A_p]\); linked payoff \((z,z)\) \\
+\(O_h(\rho)\leq a_p^{\mathrm{pass}}\), with any
+\(z\in[O_h(\rho),a_p^{\mathrm{pass}}]\); linked payoff \((z,z)\) \\
 Pooling delay &
-\(D_{\ell,p}\geq O_\ell(\rho)\) and
-\(D_{h,p}\geq O_h(\rho)\); linked payoff
-\((D_{\ell,p},D_{h,p})\) \\
+\(d_{\ell,p}\geq O_\ell(\rho)\) and
+\(d_{h,p}\geq O_h(\rho)\); linked payoff
+\((d_{\ell,p},d_{h,p})\) \\
 Separating agreement--agreement &
-\(O_h(\rho)\leq\min\{A_0,A_1\}\), with any
-\(z\in[O_h(\rho),\min\{A_0,A_1\}]\); linked payoff \((z,z)\) \\
+\(O_h(\rho)\leq\min\{a_0^{\mathrm{pass}},a_1^{\mathrm{pass}}\}\), with any
+\(z\in[O_h(\rho),\min\{a_0^{\mathrm{pass}},a_1^{\mathrm{pass}}\}]\); linked payoff \((z,z)\) \\
 Low agreement, high delay &
-\(D_{h,1}\geq O_h(\rho)\) and
-\(\max\{D_{\ell,1},O_\ell(\rho)\}\leq\min\{A_0,D_{h,1}\}\); linked payoff
+\(d_{h,1}\geq O_h(\rho)\) and
+\(\max\{d_{\ell,1},O_\ell(\rho)\}\leq\min\{a_0^{\mathrm{pass}},d_{h,1}\}\); linked payoff
 \[
-(z,D_{h,1}),\qquad
-z\in[\max\{D_{\ell,1},O_\ell(\rho)\},\min\{A_0,D_{h,1}\}]
+(z,d_{h,1}),\qquad
+z\in[\max\{d_{\ell,1},O_\ell(\rho)\},\min\{a_0^{\mathrm{pass}},d_{h,1}\}]
 \] \\
 Low delay, high agreement & Impossible; linked payoff \(\varnothing\) \\
 Separating delay--delay &
-\(D_{\ell,0}\geq D_{\ell,1}\), \(D_{h,1}\geq D_{h,0}\),
-\(D_{\ell,0}\geq O_\ell(\rho)\), and \(D_{h,1}\geq O_h(\rho)\); linked payoff
-\((D_{\ell,0},D_{h,1})\) \\
+\(d_{\ell,0}\geq d_{\ell,1}\), \(d_{h,1}\geq d_{h,0}\),
+\(d_{\ell,0}\geq O_\ell(\rho)\), and \(d_{h,1}\geq O_h(\rho)\); linked payoff
+\((d_{\ell,0},d_{h,1})\) \\
 \bottomrule
 \end{longtable}
 
@@ -1788,11 +1802,12 @@ single cutoff substitutes for the table.
 
 For mixed strategies, a complete reduced record is
 \[
-R_M=(\rho,\mu^{\mathrm{off}},\sigma_\ell,\sigma_h,\lambda,\pi,\chi,
-a,u_\ell,u_h).
+R_M=(\rho,\mu^{\mathrm{off}},\sigma_\ell,\sigma_h,\bar\sigma,\pi,\chi,
+b_M,u_\ell,u_h).
 \]
-It retains the public proposal law \(\lambda\), posterior map \(\pi\),
-continuation selection \(\chi\), ballot map \(a\), and both type payoffs.
+Here \(\bar\sigma=(1-p)\sigma_\ell+p\sigma_h\) is the public proposal law.
+The record also retains posterior map \(\pi\), continuation selection
+\(\chi\), ballot map \(b_M\), and both type payoffs.
 Bayes holds pointwise on the disciplined support, every weak vote satisfies
 the pivotal comparison at every proposal, and each type's proposal law is
 supported on its global best responses. This criterion is necessary and
@@ -1800,7 +1815,7 @@ sufficient; arbitrary Borel mixtures and atomless supports are included.
 
 At \(p\in\{0,1\}\), the posterior is fixed at the endpoint. With
 \[
-M_o=\max\{A_p,D_{o,p}\},
+\overline V_o=\max\{a_p^{\mathrm{pass}},d_{o,p}\},
 \]
 each type's Borel proposal law may be any probability measure supported on
 its argmax. The probability-zero type remains part of the linked record.
@@ -1824,7 +1839,7 @@ at a high posterior, it accepts exactly when \(x_j\geq r_U(h)\). Equality
 passes under the indifference-to-yes convention. The only continuation posteriors admitted by the frozen unanimity
 continuation are
 \[
-\mathcal D_C=\{0\}\cup(p^*,1].
+\mathcal P_C=\{0\}\cup(p^*,1].
 \]
 Rejection pays the high type \(\beta^2h\) at every admissible posterior; it
 pays the low type \(\beta^2\ell\) at posterior zero and \(\beta^2h\) at a high
@@ -1833,22 +1848,22 @@ posterior.
 A complete unanimity member is the indivisible binder
 \[
 R_U=(\sigma_\ell,\sigma_h,\mu,\mu^{\mathrm{off}},
-     \widehat\kappa_U,v,\Omega,\Gamma_\ell,\Gamma_h).
+     \widehat\kappa_U,b_U,\Omega,\Gamma_\ell,\Gamma_h).
 \]
 Here \(\sigma_o\) is a Borel proposal law,
 \(\bar\sigma=(1-p)\sigma_\ell+p\sigma_h\), \(\mu\) is the public posterior,
-and \(\mu^{\mathrm{off}}\in\mathcal D_C\) is its single value at every
+and \(\mu^{\mathrm{off}}\in\mathcal P_C\) is its single value at every
 undisciplined proposal. The selector \(\widehat\kappa_U\) returns a complete
-literal frozen continuation member at the same posterior, \(v\) is the full
+literal frozen continuation member at the same posterior, \(b_U\) is the full
 pure ballot map, and \(\Omega_o(x)\) is the literal terminal law induced by
 passage or by that continuation. Finally, \(\Gamma_o\) is the realized
 pushforward law of the joint record
 \[
-(x,\mu(x),v(x),\text{pass/reject},\widehat\kappa_U,
+(x,\mu(x),b_U(x),\text{pass/reject},\widehat\kappa_U,
   \Omega_o(x),\text{date-}A\text{ payoffs}).
 \]
 The local Bayes limit must exist at every disciplined proposal, including
-zero-mass limit points, and must lie in \(\mathcal D_C\). At each such point,
+zero-mass limit points, and must lie in \(\mathcal P_C\). At each such point,
 and at every undisciplined point evaluated with \(\mu^{\mathrm{off}}\), neither type may obtain
 a profitable proposal deviation. These pointwise restrictions, the ballot
 map, the literal continuation, and both realized laws are part of the same
@@ -1970,10 +1985,10 @@ terminal allocation and payoff record. Then
 \[
 \Gamma_o^{U,R_U}
 =\operatorname{Law}_o
- (x,\mu(x),v(x),\text{pass/reject},\zeta_U,\omega_{\mathrm{term}})
+ (x,\mu(x),b_U(x),\text{pass/reject},\zeta_U,\omega_{\mathrm{term}})
 \in\mathcal P(Z_U).
 \]
-Under a common permutation \(g\) of weak-state names, let \(\mathscr R_g\) relabel
+Under a common permutation \(\tau\) of weak-state names, let \(\mathscr R_\tau\) relabel
 every named weak-state coordinate and let \(\Lambda_\gamma\) code the diagonal
 orbit of \(\gamma=(\Gamma_\ell,\Gamma_h)\). For interior priors,
 \[
@@ -2013,7 +2028,7 @@ The exact linked type-payoff contrast is
 \]
 It is a difference of complete vectors. The ex ante image is
 \[
-\mathcal C_E^A(\mathbf d,\rho,\mu^{\mathrm{off}})
+\mathcal C_{\mathrm{ea}}^A(\mathbf d,\rho,\mu^{\mathrm{off}})
 =\{(1-p)x_\ell+px_h:
   (x_\ell,x_h)\in\mathcal C_{\ell h}^A(\mathbf d,\rho,\mu^{\mathrm{off}})\}.
 \]
@@ -2172,8 +2187,8 @@ Other low-prior fibers & \(\varnothing\) & \(\varnothing\) \\
 \(p^*<p<1\), \(\mu^{\mathrm{off}}=0\) &
 \(\{(u-v_U^A(\ell),u-v_U^A(h)):
 u\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]\}\) &
-\([\max\{v_U^A(\ell),\beta^2h\}-v_{U,E}^A(p),
-v_U^A(h)-v_{U,E}^A(p)]\) \\
+\([\max\{v_U^A(\ell),\beta^2h\}-v_{U,\mathrm{ea}}^A(p),
+v_U^A(h)-v_{U,\mathrm{ea}}^A(p)]\) \\
 \(p^*<p<1\), \(\mu^{\mathrm{off}}\in(p^*,1]\) &
 \((v_U^A(h)-v_U^A(\ell),0)\) & \((1-p)(v_U^A(h)-v_U^A(\ell))\) \\
 \(p^*<p<1\), \(\mu^{\mathrm{off}}\in(0,p^*]\) &
@@ -2183,7 +2198,7 @@ v_U^A(h)-v_{U,E}^A(p)]\) \\
 \end{longtable}
 \endgroup
 
-Here \(v_{U,E}^A(p)=(1-p)v_U^A(\ell)+pv_U^A(h)\). Every existing cell satisfies
+Here \(v_{U,\mathrm{ea}}^A(p)=(1-p)v_U^A(\ell)+pv_U^A(h)\). Every existing cell satisfies
 \[
 IR_U^A(\ell)\geq0,\qquad IR_U^A(h)\leq0,
 \]
@@ -2209,8 +2224,8 @@ If \(\Delta v^A(\ell)<0\) and a private member has \(\Delta V^A(\ell)>0\), then
 \]
 for that member. Type incidence precedes ex ante aggregation:
 \[
-\Delta V_E^A=\Delta v_E^A+\Delta IR_E^A,\quad
-\Delta v_E^A=(1-p)\Delta v^A(\ell)+p\Delta v^A(h).
+\Delta V_{\mathrm{ea}}^A=\Delta v_{\mathrm{ea}}^A+\Delta IR_{\mathrm{ea}}^A,\quad
+\Delta v_{\mathrm{ea}}^A=(1-p)\Delta v^A(\ell)+p\Delta v^A(h).
 \]
 Under the sufficient condition in E.5,
 \[
@@ -2409,7 +2424,7 @@ the economic summaries:
 No Reynolds average is an equilibrium representative. Equality of summaries
 does not identify named proposals, coalition lotteries, or off-path plans.
 
-For coordinate \(r\in\{\ell,h,E\}\), the contrast envelope satisfies
+For coordinate \(r\in\{\ell,h,\mathrm{ea}\}\), the contrast envelope satisfies
 \[
 \inf\mathcal C_r^A=\inf U_r-\sup M_r,\qquad
 \sup\mathcal C_r^A=\sup U_r-\inf M_r.
