@@ -209,47 +209,59 @@ if (!(p_star > 0 && p_star < 1) || low_family_exists) {
   stop("The existence-map parameterization does not match the documented case.", call. = FALSE)
 }
 
-existence_rectangles <- data.frame(
-  xmin = c(0, p_star),
-  xmax = c(p_star, 1),
-  ymin = c(0, p_star),
-  ymax = c(1, 1),
-  status = c("No pure-strategy PBE", "PBE exists")
-)
-low_right_rectangle <- data.frame(
-  xmin = p_star,
-  xmax = 1,
-  ymin = 0,
-  ymax = p_star,
-  status = "No pure-strategy PBE"
-)
-existence_areas <- rbind(existence_rectangles, low_right_rectangle)
-existence_boundaries <- data.frame(
-  boundary = c("prior cutoff", "off-path cutoff", "zero-posterior family"),
-  value = c(p_star, p_star, 0),
-  orientation = c("vertical", "horizontal", "horizontal"),
+existence_data <- data.frame(
+  component = c(
+    "low endpoint", "zero-posterior family", "high-posterior family",
+    "high endpoint", "complement"
+  ),
+  status = c(rep("PBE exists", 4L), "No PBE in pure ballot strategies"),
+  p_lower = c(0, p_star, p_star, 1, NA),
+  p_upper = c(0, 1, 1, 1, NA),
+  p_lower_included = c(TRUE, FALSE, FALSE, TRUE, NA),
+  p_upper_included = c(TRUE, FALSE, FALSE, TRUE, NA),
+  mu_off_lower = c(0, 0, p_star, 1, NA),
+  mu_off_upper = c(0, 0, 1, 1, NA),
+  mu_off_lower_included = c(TRUE, TRUE, FALSE, TRUE, NA),
+  mu_off_upper_included = c(TRUE, TRUE, TRUE, TRUE, NA),
+  condition = c(
+    "p = 0 and mu_off = 0",
+    "p_star < p < 1 and mu_off = 0",
+    "p_star < p < 1 and p_star < mu_off <= 1",
+    "p = 1 and mu_off = 1",
+    "all remaining admissible pairs"
+  ),
   stringsAsFactors = FALSE
-)
-existence_data <- rbind(
-  transform(existence_areas, object = "area"),
-  data.frame(
-    xmin = c(0, 1), xmax = c(0, 1), ymin = c(0, 1), ymax = c(0, 1),
-    status = "PBE exists", object = "support-preserving endpoint"
-  )
 )
 existence_data$low_family_payoff_condition <- low_family_exists
 existence_data$p_star <- p_star
 
+# A small visual inset makes the strict p boundaries visible without changing
+# the exact set recorded in existence_data.
+display_epsilon <- 0.008
+existence_background <- data.frame(xmin = 0, xmax = 1, ymin = 0, ymax = 1)
+existence_interior <- data.frame(
+  xmin = p_star + display_epsilon,
+  xmax = 1 - display_epsilon,
+  ymin = p_star + display_epsilon,
+  ymax = 1
+)
+
 existence_plot <- ggplot2::ggplot() +
   ggplot2::geom_rect(
-    data = existence_areas,
-    ggplot2::aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = status),
-    colour = "white",
-    linewidth = 0.25
+    data = existence_background,
+    ggplot2::aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+    fill = "#D9D9D9",
+    colour = NA
+  ) +
+  ggplot2::geom_rect(
+    data = existence_interior,
+    ggplot2::aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+    fill = "#0072B2",
+    colour = NA
   ) +
   ggplot2::geom_vline(
-    xintercept = p_star,
-    linetype = "dashed",
+    xintercept = c(p_star, 1),
+    linetype = c("dashed", "dotted"),
     linewidth = 0.55,
     colour = "#36434D"
   ) +
@@ -260,8 +272,22 @@ existence_plot <- ggplot2::ggplot() +
     colour = "#36434D"
   ) +
   ggplot2::geom_segment(
-    ggplot2::aes(x = p_star, xend = 1, y = 0, yend = 0),
+    ggplot2::aes(
+      x = p_star + display_epsilon,
+      xend = 1 - display_epsilon,
+      y = 0,
+      yend = 0
+    ),
     linewidth = 2.2,
+    colour = "#0072B2"
+  ) +
+  ggplot2::geom_point(
+    data = data.frame(p = c(p_star, 1), mu_off = c(0, 0)),
+    ggplot2::aes(x = p, y = mu_off),
+    shape = 21,
+    size = 3.2,
+    stroke = 0.9,
+    fill = "#D9D9D9",
     colour = "#0072B2"
   ) +
   ggplot2::geom_point(
@@ -278,19 +304,16 @@ existence_plot <- ggplot2::ggplot() +
     colour = "white", fontface = "bold", size = 4
   ) +
   ggplot2::annotate(
-    "text", x = 0.14, y = 0.52, label = "No pure-strategy\nPBE",
+    "text", x = 0.14, y = 0.52, label = "No PBE in\npure ballot strategies",
     colour = "#46515C", size = 3.6
   ) +
   ggplot2::annotate(
-    "text", x = 0.64, y = 0.13, label = "No pure-strategy PBE",
+    "text", x = 0.64, y = 0.13, label = "No PBE in pure ballot strategies",
     colour = "#46515C", size = 3.5
   ) +
   ggplot2::annotate(
     "text", x = 0.67, y = 0.035, label = "Zero-posterior family",
     colour = "#005A8D", size = 3.2, vjust = -0.3
-  ) +
-  ggplot2::scale_fill_manual(
-    values = c("PBE exists" = "#0072B2", "No pure-strategy PBE" = "#D9D9D9")
   ) +
   ggplot2::scale_x_continuous(
     limits = c(0, 1),
@@ -306,7 +329,7 @@ existence_plot <- ggplot2::ggplot() +
   ) +
   ggplot2::coord_cartesian(clip = "off") +
   ggplot2::labs(
-    title = "Agenda-game existence is restricted by two belief cutoffs",
+    title = "Agenda-game existence in pure ballot strategies",
     subtitle = "Running illustration: ell = 0.10, h = 0.35, beta = 0.90; p* = 0.278",
     x = "Prior probability of the high type, p",
     y = "Off-path posterior, mu^off"

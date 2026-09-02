@@ -33,7 +33,7 @@ bibliography: references.bib
 link-citations: true
 keywords: "International organizations, unanimity rule, legislative bargaining, private information, hegemonic power, informational rents"
 abstract: |
-  Why can unanimity benefit a powerful state when every member has the same veto? This paper studies a two-round bargaining game in which only weak states propose and a hegemon privately knows whether its disagreement payoff is low or high. Majority allows weak states to replace the hegemon's vote; unanimity makes its approval indispensable. Relative to a public-information benchmark, unanimity transfers informational rent to the low-disagreement-payoff type, while majority can eliminate that rent through exclusion. Some beliefs admit no equilibrium in the maintained pure-ballot class. An extension lets the hegemon propose first. Agenda power benefits it under unanimity, but majority can still be better when the disagreement payoff is low relative to the weak votes a winning coalition can exclude. The model offers a rationalist account of unequal bargaining power under formally equal rules.
+  Why can unanimity benefit a powerful state when every member has the same veto? This paper studies a two-round bargaining game in which only weak states propose and a hegemon privately knows whether its disagreement payoff is low or high. Majority allows weak states to replace the hegemon's vote; unanimity makes its approval indispensable. Relative to a public-information benchmark, unanimity transfers informational rent to the low-disagreement-payoff type, while majority can eliminate that rent through exclusion. Some beliefs admit no equilibrium in the maintained class of pure ballot strategies. An extension lets the hegemon propose first. Agenda power benefits it under unanimity, but majority can still be better when the disagreement payoff is low relative to the weak votes a winning coalition can exclude. The model offers a rationalist account of unequal bargaining power under formally equal rules.
 ---
 
 \newpage
@@ -290,7 +290,7 @@ raises the low type's informational rent by \(0.215\) because weak states must
 pay the high threshold when they cannot replace the hegemon's vote.
 
 For beliefs \(0<p\leq0.2778\), the unanimity game has no
-equilibrium in the maintained pure-ballot class. The worked values illustrate
+equilibrium in the maintained class of pure ballot strategies. The worked values illustrate
 one point at which both institutional correspondences exist; they are not an
 empirical calibration.
 
@@ -480,11 +480,9 @@ the complete equilibrium correspondences and date conventions.
 
 # Results {#results}
 
-The solution proceeds by backward induction. We begin with public types because
-that benchmark separates the value of a necessary vote from the value of
-private information. We then solve the private terminal games, the private
-first-round games, and finally subtract the public benchmark component by
-component.
+The solution proceeds by backward induction. We first solve public types to
+separate the value of a necessary vote from private information. We then solve
+the private terminal and first-round games and subtract the public benchmark.
 
 ## Complete-information benchmark
 
@@ -669,7 +667,7 @@ The corresponding payoff vectors for \(H\), ordered as low and high type, are
 \((\beta\ell,\beta h)\) at \(p=0\) and \((\beta h,\beta h)\) above \(p^*\).
 \end{proposition}
 
-\begin{remark}[Pure-strategy scope]
+\begin{remark}[Pure-ballot scope]
 The middle cell establishes nonexistence only within the paper's maintained
 space of pure ballot strategies. We do not derive, characterize, select, or
 compare equilibria involving mixed ballot strategies, and make no claim about
@@ -715,7 +713,7 @@ pooling, and exclusion outcomes.}
 ## Comparing the private games
 
 The comparison below uses the same parameter point under both institutions and
-only cells in which both games have a pure-strategy equilibrium. The timing
+only cells in which both games have an equilibrium in pure ballot strategies. The timing
 wedges are \((1-\beta)\ell\) and \((1-\beta)h\): exclusion realizes the
 disagreement payoff now, whereas inclusion can price a continuation that is
 discounted in Round-1 units. They are distinct from the discounted type gap
@@ -728,7 +726,7 @@ Write \(V_U^B-V_M^B\) as a low-type/high-type vector.
 \item At \(p=0\), the vector is \((0,0)\) if majority screens and
 \((-(1-\beta)\ell,-(1-\beta)h)\) if majority excludes.
 \item For \(0<p\leq p^*\), the contrast is empty because private unanimity
-has no pure-strategy equilibrium.
+has no equilibrium in pure ballot strategies.
 \item For \(p>p^*\), the vector is \((\beta(h-\ell),0)\) if majority screens,
 \((0,0)\) if majority pools, and \((\beta h-\ell,-(1-\beta)h)\) if majority excludes.
 \item On the residual exclusion--pooling segment at \(h=1/m\), the exact
@@ -748,8 +746,8 @@ parameter cells without averaging types.
 \includegraphics[width=0.96\linewidth]{figures/essential_input/figure_f1_private_comparison.pdf}
 \caption{Private-game payoff contrast, unanimity minus majority, by hegemon
 type. Each cell is evaluated at the same parameter point. The hatched band
-marks parameter values for which private unanimity has no pure-strategy
-equilibrium and the contrast is therefore empty.}
+marks parameter values for which private unanimity has no equilibrium in pure
+ballot strategies and the contrast is therefore empty.}
 \label{fig:privatecompare}
 \end{figure}
 
@@ -1024,20 +1022,29 @@ interval. The numbers are a theoretical illustration of the decomposition.
 
 ## Private agenda power and institutional comparison
 
-Let \(V_g^A=(V_g^A(\ell),V_g^A(h))\) denote the linked type-payoff
-vector generated by one complete private equilibrium assessment under rule
-\(g\in\{M,U\}\). The majority correspondence contains pure pooling,
+Let \(\mathbf d=(m,k,e,\beta,\ell,h,\mathcal X,p)\) collect the primitives.
+For a fixed specification \((\mathbf d,\rho,\mu^{\mathrm{off}})\), let
+\(\mathcal B_g(\mathbf d,\rho,\mu^{\mathrm{off}})\) be the correspondence of
+complete equilibrium assessments under rule \(g\in\{M,U\}\). Each
+\(R_g\in\mathcal B_g\) generates the linked type-payoff vector
+\[
+\mathbf V_g^A(R_g)
+=\bigl(V_{g,\ell}^A(R_g),V_{g,h}^A(R_g)\bigr),
+\]
+and \(\mathcal V_g^A(\mathbf d,\rho,\mu^{\mathrm{off}})\) denotes the image of
+these vectors. When the assessment is clear, we suppress \(R_g\) and write
+\(V_g^A(o)\) for its type-\(o\) coordinate. The majority correspondence contains pure pooling,
 separation, agreement, and deliberate-delay forms as well as Borel mixtures.
 All of these assessments remain in the correspondence. Under unanimity, the
 exact payoff correspondence can be written directly with the
 public value function \(v_U^A(o)=1-\beta+\beta^2o\):
 \[
-V_U^A=
+\mathcal V_U^A(\mathbf d,\rho,\mu^{\mathrm{off}})=
 \begin{cases}
 \bigl(v_U^A(\ell),\max\{v_U^A(\ell),\beta^2h\}\bigr),&p=0,\\
 \bigl(v_U^A(\ell),v_U^A(\ell)\bigr),
   &0<p\leq p^*,\ v_U^A(\ell)\geq\beta^2h,\ \mu^{\mathrm{off}}=0,\\
-\{(u,u):u\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]\},
+\{(z,z):z\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]\},
   &p^*<p<1,\ \mu^{\mathrm{off}}=0,\\
 \bigl(v_U^A(h),v_U^A(h)\bigr),&p^*<p<1,\ \mu^{\mathrm{off}}\in(p^*,1],\\
 \bigl(v_U^A(h),v_U^A(h)\bigr),&p=1,\\
@@ -1051,14 +1058,16 @@ specified parameter and belief values.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\linewidth]{figures/agenda_extension/figure_agenda_unanimity_existence.pdf}
-\caption{Existence of a pure-strategy private-unanimity equilibrium in the
+\caption{Existence of a private-unanimity equilibrium in pure ballot strategies in the
 agenda extension. The map uses the running illustration
 \((m,\beta,\ell,h)=(4,.90,.10,.35)\), for which
 \(p^*=(h-\ell)/(1-\ell)=.278\). Blue marks combinations of the prior \(p\) and
 off-path posterior \(\mu^{\mathrm{off}}\) with an equilibrium; gray marks
-nonexistence under the maintained pure-ballot concept. The blue segment at
-\(\mu^{\mathrm{off}}=0\) is part of the existence set. Support preservation
-restricts the endpoint priors to the displayed points \((0,0)\) and \((1,1)\).}
+nonexistence under the maintained class of pure ballot strategies. The blue segment at
+\(\mu^{\mathrm{off}}=0\) represents
+\((p^*,1)\times\{0\}\); its open circles mark excluded endpoints. The interior
+blue area represents \((p^*,1)\times(p^*,1]\). Support preservation adds only
+the filled endpoint points \((0,0)\) and \((1,1)\).}
 \label{fig:agendaexistence}
 \end{figure}
 
@@ -1066,8 +1075,11 @@ Figure \ref{fig:agendaexistence} makes the domain restriction explicit. With
 the running values, the low-prior family fails its payoff condition, so the
 interior existence set begins only above \(p^*\). In that region an off-path
 posterior of zero supports an interval of pooling payoffs, while posteriors
-above \(p^*\) select the high-posterior form. The gray regions carry no
-agenda-game payoff comparison.
+above \(p^*\) select the high-posterior form. At \(p=1\), only the
+support-preserving point \(\mu^{\mathrm{off}}=1\) remains. The gray regions
+carry no agenda-game payoff comparison.
+
+\newpage
 
 Institutional comparison begins with the restricted product
 \[
@@ -1076,8 +1088,7 @@ Institutional comparison begins with the restricted product
  \times_{(\mathbf d,\rho,\mu^{\mathrm{off}})}
  \mathcal B_U(\mathbf d,\rho,\mu^{\mathrm{off}}).
 \]
-For each paired assessment, define the private institutional contrast using the same
-unanimity-minus-majority orientation as the public contrast:
+For each paired assessment, the private institutional contrast uses the same orientation:
 \[
 \Delta V^A(o)=V_U^A(o)-V_M^A(o),\qquad
 \Delta V_{\mathrm{ea}}^A=(1-p)\Delta V^A(\ell)+p\Delta V^A(h).
@@ -1323,7 +1334,7 @@ interior, both types remain in the prior's support and off-path actions by
 The agenda extension preserves rather than resolves equilibrium multiplicity.
 Its majority effects, institutional comparisons, and some interactions are
 correspondences. Every robust sign is therefore setwise, and every other sign
-is assessment-specific. Empty cells contain no pure-strategy PBE under the
+is assessment-specific. Empty cells contain no PBE in pure ballot strategies under the
 maintained solution concept. The agenda comparison \(T\) depends on the
 maintained date convention and mandatory proposal stage; the diagonal
 comparison \(Q\) changes both the agenda and information specification.
@@ -1550,21 +1561,21 @@ x_i=1-\beta h-(m-1)w_h^U=w_h^U+1-\beta.
 Both types of \(H\) and every weak responder accept, and immediate agreement
 again exceeds delay by \(1-\beta\).
 
-For completeness, write \(u=\min_j x_j\) after an arbitrary proposal and order
+For completeness, write \(x_{\min}=\min_j x_j\) after an arbitrary proposal and order
 the strategy of \(H\) as low-type/high-type. At \(p=0\), posterior support is
 always the low type. The profile \((Y,Y)\) is sequentially rational if
-\(u<w_\ell^U\), or if \(u\geq w_\ell^U\) and \(x_H\geq\beta h\); \((N,N)\) is rational if
-\(u\geq w_\ell^U\) and \(x_H<\beta\ell\); and \((Y,N)\) is rational if
-\(u\geq w_\ell^U\) and \(\beta\ell\leq x_H<\beta h\). The profile \((N,Y)\) is never rational.
+\(x_{\min}<w_\ell^U\), or if \(x_{\min}\geq w_\ell^U\) and \(x_H\geq\beta h\); \((N,N)\) is rational if
+\(x_{\min}\geq w_\ell^U\) and \(x_H<\beta\ell\); and \((Y,N)\) is rational if
+\(x_{\min}\geq w_\ell^U\) and \(\beta\ell\leq x_H<\beta h\). The profile \((N,Y)\) is never rational.
 These cases are mutually exclusive and exhaustive.
 
-For \(p^*<p<1\), the profile \((Y,Y)\) is rational if \(u<w_h^U\), or if
-\(u\geq w_h^U\) and \(x_H\geq\beta h\); \((N,N)\) is rational if \(u\geq w_h^U\) and
+For \(p^*<p<1\), the profile \((Y,Y)\) is rational if \(x_{\min}<w_h^U\), or if
+\(x_{\min}\geq w_h^U\) and \(x_H\geq\beta h\); \((N,N)\) is rational if \(x_{\min}\geq w_h^U\) and
 \(x_H<\beta h\); and neither separating profile is rational. Bayes gives the current
 prior after an on-profile pooled action. When yes is a zero-probability action,
 an admissible posterior \(\mu_Y\) supports all weak yes votes exactly when
-\(c_U(\mu_Y)\leq u\), which is possible in the stated no profile because
-\(u\geq w_h^U\). At \(p=1\), support preservation fixes the posterior at one
+\(c_U(\mu_Y)\leq x_{\min}\), which is possible in the stated no profile because
+\(x_{\min}\geq w_h^U\). At \(p=1\), support preservation fixes the posterior at one
 and the same two pooled-profile conditions apply. Thus every proposal in both
 existence domains has a pure, sequentially rational response completion.
 
@@ -1591,7 +1602,7 @@ against yes at the offer.
 
 No pure profile is sequentially rational after \(s^\dagger\). Because a PBE
 must specify a valid pure response after every feasible proposal, no
-pure-ballot PBE exists in this cell. This also explains the discontinuity:
+PBE in pure ballot strategies exists in this cell. This also explains the discontinuity:
 at \(p=0\), support preservation rules out the posterior that drives the
 imitation argument; for every positive \(p\), both types are possible.
 \(\square\)
@@ -2022,7 +2033,7 @@ At \(p=0\), posterior support is the singleton low type. The private
 unanimity proposal and payoff coincide with the public low-type game. At
 \(p=1\), posterior support is the singleton high type, and the private
 pooling proposal and payoff coincide with the public high-type game. The same
-equivalence holds under majority: applying the relevant private class at each
+equivalence holds under majority: applying the relevant private equilibrium form at each
 endpoint reproduces public inclusion or exclusion, including the
 \(o=1/m\) tie-break. Thus the endpoints are literal complete-information
 games, not one-sided limits.
@@ -2085,18 +2096,25 @@ Symbol & Meaning \\
 \(p^*\) & Terminal unanimity cutoff, \((h-\ell)/(1-\ell)\) \\
 \(B\), \(A\) & Games without and with the earlier hegemonic agenda stage \\
 \(v_g^B(o)\), \(v_g^A(o)\) & Public-information payoff under rule \(g\) in each arm \\
-\(V_g^B(o)\), \(V_g^A(o)\) & Private-information payoff correspondence in each arm \\
-\(IR_g^B\), \(IR_g^A\) & Private payoff minus the same-arm public benchmark \\
+\(V_g^B(o)\) & Baseline private-information payoff correspondence \\
+\(V_{g,o}^A(R_g)\), \(\mathbf V_g^A(R_g)\) & Type-\(o\) payoff and linked
+type-payoff vector induced by agenda-game assessment \(R_g\) \\
+\(IR_g^B\), \(IR_g^A(o)\) & Private payoff minus the same-arm public benchmark \\
+\(\mathbf{IR}_g^A(R_g)\), \(\mathcal{IR}_g^A\) & Linked agenda-game rent
+vector and its image over complete assessments \\
 \(\Delta IR^B\), \(\Delta IR^A\) & Unanimity-minus-majority informational-rent contrasts \\
 \(e=m-k\) & Weak states excluded by a minimal majority coalition \\
 \(v_M^{\mathrm{safe}}\) & Safe majority-agenda payoff, \(1-k\beta/m\) \\
 \(o_M^*\) & Majority-agenda delay cutoff, \(v_M^{\mathrm{safe}}/\beta\) \\
 \(\rho\) & Off-path likelihood-ratio coordinate in the agenda extension \\
+\(\mathbf d\) & Vector collecting the primitive parameter specification \\
 \(\widehat\mu(\cdot)\) & Borel posterior map in mixed majority assessments \\
 \(R_g\) & Complete equilibrium assessment under rule \(g\), including
 strategies, beliefs, continuation selections, and induced outcome laws \\
 \(\mathcal B_g(\mathbf d,\rho,\mu^{\mathrm{off}})\) & Correspondence of
 complete assessments at a fixed primitive and off-path belief specification \\
+\(\mathcal V_g^A(\mathbf d,\rho,\mu^{\mathrm{off}})\) & Linked type-payoff
+vectors induced by those complete assessments \\
 \(\mathcal J_A^{\mathrm{cmp}}\) & Restricted product pairing majority and
 unanimity assessments at the same specification \\
 \(\Gamma_o^{g,R_g}\) & Type-specific joint realized law induced by assessment
@@ -2423,23 +2441,23 @@ The weak-state payoff attached to the same assessment is \(x_j\) after passage,
 **High-posterior family.** Its necessary
 prior domain is \(p^*<p<1\). When \(\mu^{\mathrm{off}}=0\), choose any
 \[
-u\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)],
+z\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)],
 \]
 and Borel laws such that: \(\mu>p^*\)
 \(\bar\sigma\)-almost surely; the local admissible Bayes limit exists at
 every disciplined point; every used accepted proposal lies in
 \[
-\mathcal K_H(u)=\{x\in\mathcal X:x_H=u,\ \min_jx_j\geq r_U(h)\};
+\mathcal K_H(z)=\{x\in\mathcal X:x_H=z,\ \min_jx_j\geq r_U(h)\};
 \]
-used rejected proposals occur only when \(u=\beta^2h\); every disciplined
-deviation gives each type at most \(u\); and every undisciplined deviation,
-evaluated at posterior zero, also gives at most \(u\). The linked payoff is
-\((u,u)\). If \(u>\beta^2h\), agreement has probability one for each type; if
-\(u=\beta^2h\), each type may mix accepted proposals with \(x_H=\beta^2h\) and rejected
-high-posterior proposals. A pure pooling witness for every \(u\) is
+used rejected proposals occur only when \(z=\beta^2h\); every disciplined
+deviation gives each type at most \(z\); and every undisciplined deviation,
+evaluated at posterior zero, also gives at most \(z\). The linked payoff is
+\((z,z)\). If \(z>\beta^2h\), agreement has probability one for each type; if
+\(z=\beta^2h\), each type may mix accepted proposals with \(x_H=\beta^2h\) and rejected
+high-posterior proposals. A pure pooling witness for every \(z\) is
 \[
-x(u)=\left(u,\frac{1-u}{m},\ldots,\frac{1-u}{m}\right),\qquad
-\sigma_\ell=\sigma_h=\delta_{x(u)},\qquad \mu(x(u))=p.
+x(z)=\left(z,\frac{1-z}{m},\ldots,\frac{1-z}{m}\right),\qquad
+\sigma_\ell=\sigma_h=\delta_{x(z)},\qquad \mu(x(z))=p.
 \]
 When \(\mu^{\mathrm{off}}\in(p^*,1]\), the only current proposal laws are
 \(\sigma_\ell=\sigma_h=\delta_{x^h}\), with \(\mu(x^h)=p\) and payoff
@@ -2475,17 +2493,17 @@ immediately with probability one. At \(p=1\), support preservation fixes
 \(\sigma_\ell=\sigma_h=\delta_{x^h}\), including the probability-zero type's
 strategy, with linked payoff
 \[
-V_U^A=(v_U^A(h),v_U^A(h)).
+\bigl(v_U^A(h),v_U^A(h)\bigr).
 \]
 
 Consequently, the payoff image of the complete correspondence is
 \[
-V_U^A=
+\mathcal V_U^A(\mathbf d,\rho,\mu^{\mathrm{off}})=
 \begin{cases}
 \bigl(v_U^A(\ell),\max\{v_U^A(\ell),\beta^2h\}\bigr),&p=0,\\
 \bigl(v_U^A(\ell),v_U^A(\ell)\bigr),
  &0<p\leq p^*,\ v_U^A(\ell)\geq\beta^2h,\ \mu^{\mathrm{off}}=0,\\
-\{(u,u):u\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]\},
+\{(z,z):z\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]\},
  &p^*<p<1,\ \mu^{\mathrm{off}}=0,\\
 \bigl(v_U^A(h),v_U^A(h)\bigr),&p^*<p<1,\ \mu^{\mathrm{off}}\in(p^*,1],\\
 \bigl(v_U^A(h),v_U^A(h)\bigr),&p=1,\\
@@ -2559,11 +2577,18 @@ correspondences just described. The admissible comparison set is
 This product pairs assessments with identical primitives and the same off-path
 belief specification. Proposals and continuation realizations remain
 rule-specific.
+For \(g\in\{M,U\}\), the corresponding linked payoff-vector image is
+\[
+\mathcal V_g^A(\mathbf d,\rho,\mu^{\mathrm{off}})
+=\{\mathbf V_g^A(R_g):R_g\in
+\mathcal B_g(\mathbf d,\rho,\mu^{\mathrm{off}})\}.
+\]
 The exact linked type-payoff contrast is
 \[
 \mathcal C_{\ell h}^A(\mathbf d,\rho,\mu^{\mathrm{off}})
-=\{u-v:u\in V_U^A(\mathbf d,\rho,\mu^{\mathrm{off}}),\
-             v\in V_M^A(\mathbf d,\rho,\mu^{\mathrm{off}})\}.
+=\{\mathbf z_U-\mathbf z_M:
+\mathbf z_U\in\mathcal V_U^A(\mathbf d,\rho,\mu^{\mathrm{off}}),\
+\mathbf z_M\in\mathcal V_M^A(\mathbf d,\rho,\mu^{\mathrm{off}})\}.
 \]
 It is a difference of complete vectors. The ex ante image is
 \[
@@ -2697,11 +2722,12 @@ for the public agenda difference in E.12.
 
 ## E.9 Exact informational-rent translations {-}
 
-For every complete private assessment,
+For every complete private assessment \(R_g\), define the linked rent vector
 \[
-IR_g^A
-=V_g^A-(v_g^A(\ell),v_g^A(h)).
+\mathbf{IR}_g^A(R_g)
+=\mathbf V_g^A(R_g)-(v_g^A(\ell),v_g^A(h)).
 \]
+Its image over \(\mathcal B_g\) is denoted \(\mathcal{IR}_g^A\).
 This fixed-vector translation preserves every atom, mixture, and linked type
 coordinate. The exact unanimity cells are:
 
@@ -2711,11 +2737,11 @@ coordinate. The exact unanimity cells are:
 \begin{longtable}{p{0.35\linewidth}p{0.35\linewidth}p{0.17\linewidth}}
 \caption{Unanimity informational rent with hegemonic agenda}\label{tab:auri}\\
 \toprule
-Parameter cell & \(IR_U^A\) & Ex ante image \\
+Parameter cell & Rent-vector image \(\mathcal{IR}_U^A\) & Ex ante image \\
 \midrule
 \endfirsthead
 \toprule
-Parameter cell & \(IR_U^A\) & Ex ante image \\
+Parameter cell & Rent-vector image \(\mathcal{IR}_U^A\) & Ex ante image \\
 \midrule
 \endhead
 \(p=0\) &
@@ -2724,8 +2750,8 @@ Parameter cell & \(IR_U^A\) & Ex ante image \\
 \((0,-(v_U^A(h)-v_U^A(\ell)))\) & \(-p(v_U^A(h)-v_U^A(\ell))\) \\
 Other low-prior parameter cells & \(\varnothing\) & \(\varnothing\) \\
 \(p^*<p<1\), \(\mu^{\mathrm{off}}=0\) &
-\(\{(u-v_U^A(\ell),u-v_U^A(h)):
-u\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]\}\) &
+\(\{(z-v_U^A(\ell),z-v_U^A(h)):
+z\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]\}\) &
 \([\max\{v_U^A(\ell),\beta^2h\}-v_{U,\mathrm{ea}}^A(p),
 v_U^A(h)-v_{U,\mathrm{ea}}^A(p)]\) \\
 \(p^*<p<1\), \(\mu^{\mathrm{off}}\in(p^*,1]\) &
@@ -2853,8 +2879,8 @@ T_U=
 \begin{cases}
 (1-\beta,\max\{v_U^A(\ell)-\beta^2h,0\}),&p=0,\\
 \varnothing,&0<p\leq p^*,\\
-\{(u-\beta^2h,u-\beta^2h):
-u\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]\},
+\{(z-\beta^2h,z-\beta^2h):
+z\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]\},
  &p^*<p<1,\ \mu^{\mathrm{off}}=0,\\
 \varnothing,&p^*<p<1,\ \mu^{\mathrm{off}}\in(0,p^*],\\
 (1-\beta,1-\beta),&p^*<p<1,\ \mu^{\mathrm{off}}\in(p^*,1],\\
@@ -2981,7 +3007,7 @@ M_s&=\{V_{M,s}^A(R_M):R_M\in
   \mathcal B_M(\mathbf d,\rho,\mu^{\mathrm{off}})\},\\
 U_s&=\{V_{U,s}^A(R_U):R_U\in
   \mathcal B_U(\mathbf d,\rho,\mu^{\mathrm{off}})\},\\
-\mathcal C_s^A&=\{u-v:u\in U_s,\ v\in M_s\}.
+\mathcal C_s^A&=\{z_U-z_M:z_U\in U_s,\ z_M\in M_s\}.
 \end{aligned}
 \]
 The contrast envelope satisfies
@@ -3010,8 +3036,8 @@ draw or coordinate splicing would require an additional model primitive.
 ## F.2 Interaction with the no-agenda benchmark {-}
 
 Let \(IR_g^B\) be the native Round-1 rent vector from the no-agenda
-benchmark. The exact interaction is the Minkowski difference of complete
-linked assessments,
+benchmark. The exact interaction is the Minkowski difference of linked rent
+vectors generated by complete assessments,
 \[
 I_g
 =IR_g^A-\beta IR_g^B.
@@ -3026,8 +3052,8 @@ I_U=
 (0,\max\{v_U^A(\ell),\beta^2h\}-v_U^A(h)),&p=0,\\
 \varnothing,&0<p\leq p^*,\\
 \left\{\begin{gathered}
-(u-v_U^A(h),u-v_U^A(h)):\\
-u\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]
+(z-v_U^A(h),z-v_U^A(h)):\\
+z\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]
 \end{gathered}\right\},
  &p^*<p<1,\ \mu^{\mathrm{off}}=0,\\
 (0,0),&\substack{p^*<p<1,\\ \mu^{\mathrm{off}}\in(p^*,1]},\\
@@ -3037,7 +3063,7 @@ u\in[\max\{v_U^A(\ell),\beta^2h\},v_U^A(h)]
 \]
 Thus agenda weakly reduces unanimity's informational rent in every existing
 high-prior parameter cell; the change is strict for both types exactly when
-\(\mu^{\mathrm{off}}=0\) and \(u<v_U^A(h)\). At \(p=0\), only the probability-zero high
+\(\mu^{\mathrm{off}}=0\) and \(z<v_U^A(h)\). At \(p=0\), only the probability-zero high
 coordinate falls.
 
 The institutional interaction is
@@ -3083,7 +3109,7 @@ rather than an optional proposal right or an empirical estimate for the WTO.
 
 When a contrast is set-valued, each comparison is assessment-specific. A
 selection-free claim requires the entire exact correspondence to lie on the
-relevant side of the threshold. The stated results are the source
+relevant side of the threshold. The stated results report the exact
 correspondences on their declared domains.
 
 # References {-}

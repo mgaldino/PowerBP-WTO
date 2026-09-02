@@ -1,6 +1,6 @@
-"xmin","xmax","ymin","ymax","status","object","low_family_payoff_condition","p_star"
-0,0.277777777777778,0,1,"No pure-strategy PBE","area",FALSE,0.277777777777778
-0.277777777777778,1,0.277777777777778,1,"PBE exists","area",FALSE,0.277777777777778
-0.277777777777778,1,0,0.277777777777778,"No pure-strategy PBE","area",FALSE,0.277777777777778
-0,0,0,0,"PBE exists","support-preserving endpoint",FALSE,0.277777777777778
-1,1,1,1,"PBE exists","support-preserving endpoint",FALSE,0.277777777777778
+"component","status","p_lower","p_upper","p_lower_included","p_upper_included","mu_off_lower","mu_off_upper","mu_off_lower_included","mu_off_upper_included","condition","low_family_payoff_condition","p_star"
+"low endpoint","PBE exists",0,0,TRUE,TRUE,0,0,TRUE,TRUE,"p = 0 and mu_off = 0",FALSE,0.277777777777778
+"zero-posterior family","PBE exists",0.277777777777778,1,FALSE,FALSE,0,0,TRUE,TRUE,"p_star < p < 1 and mu_off = 0",FALSE,0.277777777777778
+"high-posterior family","PBE exists",0.277777777777778,1,FALSE,FALSE,0.277777777777778,1,FALSE,TRUE,"p_star < p < 1 and p_star < mu_off <= 1",FALSE,0.277777777777778
+"high endpoint","PBE exists",1,1,TRUE,TRUE,1,1,TRUE,TRUE,"p = 1 and mu_off = 1",FALSE,0.277777777777778
+"complement","No PBE in pure ballot strategies",NA,NA,NA,NA,NA,NA,NA,NA,"all remaining admissible pairs",FALSE,0.277777777777778

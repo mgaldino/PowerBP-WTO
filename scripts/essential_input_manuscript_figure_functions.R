@@ -44,7 +44,7 @@ ei_response_palette <- c(
   "H prefers unanimity" = "#0072B2",
   "H indifferent" = "#E69F00",
   "H prefers majority" = "#D55E00",
-  "No comparison: no pure-vote PBE (unanimity)" = "#D9D9D9"
+  "No comparison: no PBE in pure ballot strategies" = "#D9D9D9"
 )
 
 ei_type_palette <- c(
@@ -169,7 +169,7 @@ ei_n6_prior_weighted_private_comparison <- function(o_0, o_1, m, beta, nu) {
   if (!identical(unanimity$existence_status, "exists")) {
     return(list(
       existence_status = "none",
-      region = "No comparison: no pure-vote PBE (unanimity)",
+      region = "No comparison: no PBE in pure ballot strategies",
       majority_ex_ante = numeric(0), unanimity_ex_ante = NA_real_,
       contrast = numeric(0), majority_classes = majority$selected_classes
     ))
@@ -221,7 +221,7 @@ ei_verify_f1_ex_ante_partition <- function(kappa, m, beta) {
     for (nu in nu_values) {
       if (abs(nu - nu_star) < 1e-6 || abs(nu - second_boundary) < 1e-6) next
       expected <- if (nu <= nu_star) {
-        "No comparison: no pure-vote PBE (unanimity)"
+        "No comparison: no PBE in pure ballot strategies"
       } else if (o_1 < substitute_cost) {
         if (nu < second_boundary) "H prefers unanimity" else "H indifferent"
       } else {
@@ -296,7 +296,7 @@ essential_input_f1_data <- function(
   none_region <- lapply(comparison_views, function(type) {
     ei_curve_band_polygon(
       all_o1, function(y) rep(0, length(y)), functions$nu_star,
-      "No comparison: no pure-vote PBE (unanimity)", type,
+      "No comparison: no PBE in pure ballot strategies", type,
       paste0("none_", gsub(" ", "_", tolower(type))), multiplier
     )
   })
@@ -569,8 +569,8 @@ plot_essential_input_f1 <- function(data_object, figure_label = "Private-rule pa
       linetype = "Analytical boundary",
       caption = ei_wrap_text(paste0(
         "Colored polygons report the payoff comparison between unanimity and majority. The first two panels condition on H's type. ",
-        "The ex ante panel applies the prior weights (1-nu, nu) to every type-payoff vector passed through the frozen N6 interface before taking unanimity minus majority; it adds no equilibrium selection or public benchmark. ",
-        "The neutral hatched region has no comparison because unanimity has no pure-vote PBE. ",
+        "The ex ante panel applies the prior weights (1-nu, nu) to every linked type-payoff vector before taking unanimity minus majority; it adds no equilibrium selection or public benchmark. ",
+        "The neutral hatched region has no comparison because unanimity has no PBE in pure ballot strategies. ",
         "The left-edge segments report the distinct complete-information endpoint at nu = 0. ",
         "Boundaries are nu* = (1-kappa)o1/(1-kappa o1), nu_SP = beta(1-kappa)o1/[1-beta kappa o1-beta(q-1)/m], ",
         "nu_SE = beta(1/m-kappa o1)/[beta(1/m-kappa o1)+1-beta q/m], and nu_XA = (beta-kappa)/(1-kappa) on the majority-exclusion branch. ",
@@ -908,7 +908,7 @@ plot_essential_input_f2 <- function(data_object) {
     ggplot2::geom_label(
       data = data.frame(
         rule = "Unanimity", nu = constants$nu_star / 2, payoff = 0.205,
-        label = "no pure-vote PBE"
+        label = "no PBE in\npure ballot strategies"
       ),
       ggplot2::aes(x = nu, y = payoff, label = label),
       inherit.aes = FALSE, size = 2.65, linewidth = 0.18,
@@ -983,8 +983,8 @@ plot_essential_input_f2 <- function(data_object) {
   caption <- sprintf(
     paste0(
       "Majority caps the hegemon's price by buying substitute votes; unanimity pays the hegemon directly. ",
-      "Panel A plots type-specific round-1 payoffs. Majority pays beta l and beta h through p_S=E, then exclusion leaves H with its disagreement payoff; unanimity has no pure-vote PBE for 0 < p <= p* and pools at beta h above p*. ",
-      "Under unanimity both types receive beta h; the dashed high-type line is drawn over the solid low-type line where they coincide. The yellow span is the low type's pooling rent beta(h - l), not the public-benchmark rent estimand. ",
+      "Panel A plots type-specific round-1 payoffs. Majority pays beta l and beta h through p_S=E, then exclusion leaves H with its disagreement payoff; unanimity has no PBE in pure ballot strategies for 0 < p <= p* and pools at beta h above p*. ",
+      "Under unanimity both types receive beta h; the dashed high-type line is drawn over the solid low-type line where they coincide. The yellow span is the low type's pooling rent beta(h - l), not the informational-rent measure relative to public information. ",
       "Panel B decomposes the unit surplus at p = %.2f: majority buys k substitutes at beta/m, while the adjacent markers show the excluded H collecting o outside the pie; unanimity pays m-1 weak-state floors, beta h, and the proposer residual. ",
       "Parameters: l = %.3f, h = %.3f, m = %d, beta = %.2f. Note: Model-generated regions; all boundaries closed-form."
     ),
@@ -1199,7 +1199,7 @@ essential_input_f4_data <- function(
     )
   )
   regions <- data.frame(
-    region = c("No pure-strategy PBE", "Pooling"),
+    region = c("No PBE in pure ballot strategies", "Pooling"),
     xmin = c(0, constants$nu_star), xmax = c(constants$nu_star, 1),
     ymin = 0, ymax = 0.40,
     stringsAsFactors = FALSE
@@ -1257,7 +1257,7 @@ plot_essential_input_f4 <- function(data_object) {
     ) +
     ggplot2::annotate(
       "label", x = constants$nu_star / 2, y = 0.205,
-      label = "no pure-strategy PBE",
+      label = "no PBE in\npure ballot strategies",
       size = 3.0, linewidth = 0.18,
       fill = grDevices::adjustcolor("white", alpha.f = 0.84)
     ) +
@@ -1287,9 +1287,9 @@ plot_essential_input_f4 <- function(data_object) {
       label = "pooling rent beta(h - l)", hjust = 0, size = 2.8, colour = "#6F5700"
     ) +
     ggplot2::scale_fill_manual(
-      values = c("No pure-strategy PBE" = "#D9D9D9", Pooling = "#E69F00"),
+      values = c("No PBE in pure ballot strategies" = "#D9D9D9", Pooling = "#E69F00"),
       labels = c(
-        "No pure-strategy PBE" = "No pure-strategy PBE",
+        "No PBE in pure ballot strategies" = "No PBE in pure ballot strategies",
         Pooling = "Pooling under unanimity"
       )
     ) +
@@ -1301,7 +1301,7 @@ plot_essential_input_f4 <- function(data_object) {
     ) +
     ggplot2::coord_cartesian(clip = "off") +
     ggplot2::labs(
-      title = "Hegemonic decline across pooling, an empty pure-strategy cell, and the endpoint",
+      title = "Hegemonic decline across pooling, nonexistence, and the endpoint",
       subtitle = sprintf(
         "l = %.3f; h = %.3f; m = %d weak states; beta = %.2f",
         parameters$o_0, parameters$o_1, parameters$m, parameters$beta
@@ -1430,7 +1430,7 @@ essential_input_appendix_c1_data <- function(
     row_index <- row_index + 1L
     rows[[row_index]] <- add_polygon(
       source_polygons$none, type,
-      "No comparison: no pure-vote PBE (unanimity)", paste0("none_", type)
+      "No comparison: no PBE in pure ballot strategies", paste0("none_", type)
     )
     for (name in c("screening_below", "screening_cross")) {
       row_index <- row_index + 1L
@@ -1590,7 +1590,7 @@ plot_essential_input_appendix_c1 <- function(data_object) {
       fill = "Private-rule comparison",
       linetype = "Analytical boundary",
       caption = ei_wrap_text(paste0(
-        "The triangular domain satisfies 0 < o0 < o1 < 1. Colored polygons report the type-specific payoff comparison between unanimity and majority; the neutral hatched polygon has no comparison because unanimity has no pure-vote PBE. ",
+        "The triangular domain satisfies 0 < o0 < o1 < 1. Colored polygons report the type-specific payoff comparison between unanimity and majority; the neutral hatched polygon has no comparison because unanimity has no PBE in pure ballot strategies. ",
         "The worked example is o0 = 0.100 and o1 = 0.350. All boundaries are evaluated analytically rather than filled by a classification grid. ",
         "Note: Model-generated regions; all boundaries closed-form."
       ), width = 150L)
@@ -1860,7 +1860,7 @@ plot_essential_input_f3_final <- function(data_object) {
       "Panel B reports IR_M^B, IR_U^B, and Delta IR^B = IR_U^B - IR_M^B component by component. ",
       "At this point majority excludes and unanimity pools: the low-type values are ",
       "0.010, 0.225, and 0.215, while all high-type informational-rent values are zero. ",
-      "This is a working numerical illustration of the exact N7 formulas, not a calibration."
+      "This is a numerical illustration of the exact model formulas, not a calibration."
     ),
     parameters$o_0, parameters$o_1, parameters$m,
     parameters$beta, parameters$nu
