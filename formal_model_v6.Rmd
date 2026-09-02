@@ -1520,7 +1520,7 @@ For \(p^*<p<1\), the profile \((Y,Y)\) is rational if \(u<w_h^U\), or if
 \(x_H<\beta h\); and neither separating profile is rational. Bayes gives the current
 prior after an on-profile pooled action. When yes is a zero-probability action,
 an admissible posterior \(\mu_Y\) supports all weak yes votes exactly when
-\(W(\mu_Y)\leq u\), which is possible in the stated no profile because
+\(c_U(\mu_Y)\leq u\), which is possible in the stated no profile because
 \(u\geq w_h^U\). At \(p=1\), support preservation fixes the posterior at one
 and the same two pooled-profile conditions apply. Thus every proposal in both
 existence domains has a pure, sequentially rational response completion.
@@ -2377,7 +2377,7 @@ Q_U=
 \]
 The ex ante value in the high-prior region is
 \[
-Q_U^E=1-\beta-(1-p)\beta^2(h-\ell).
+Q_{U,\mathrm{ea}}=1-\beta-(1-p)\beta^2(h-\ell).
 \]
 Under majority,
 \[
