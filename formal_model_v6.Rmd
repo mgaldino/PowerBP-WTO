@@ -1043,7 +1043,8 @@ This condition is sufficient, not necessary. It follows from the lower bound
 \(V_M^A(o)\geq v_M^{\mathrm{safe}}\) and
 the upper bound \(V_U^A(o)\leq v_U^A(h)\); outside it, the full
 correspondence determines the ranking.
-Appendix E.5 gives the setwise comparison and a counterexample to necessity.
+Appendices B.7--B.8 prove the two bounds. Appendix E.5 gives the setwise
+comparison and a counterexample to necessity.
 
 ## Public power, informational rents, and type incidence
 
@@ -1071,7 +1072,8 @@ strict.
 Positive informational rent belongs to the low type, which can receive a
 concession designed for the high type. The high type receives no such premium
 and may lose relative to its public benchmark. Appendix E.9 reports the exact
-cellwise translations. When
+cellwise translations, and Appendix B.8 proves the underlying exhaustive
+unanimity correspondence. When
 \(\Delta v^A(\ell)<0\), public information favors majority for the low type.
 If a comparable private member nevertheless has \(\Delta V^A(\ell)>0\), then
 member by member
@@ -1591,6 +1593,346 @@ empty. For the residual segment, affine subtraction with its common weight
 \(\lambda\) yields the one-dimensional segment stated in the propositions,
 not the Cartesian product of marginal envelopes. \(\square\)
 
+## B.7 Proof of the private-majority agenda correspondence {-}
+
+Fix the primitives and the anonymous Markov continuation selection \(\chi\)
+from Appendix E. For posterior \(\mu\), let \(c_\chi(\mu)\) be a weak
+state's continuation payoff and \(h_{\chi,o}(\mu)\) the continuation payoff
+of type \(o\), both in the native units of the baseline. Transporting the
+continuation to date \(A\) gives
+\[
+r_\chi(\mu)=\beta c_\chi(\mu),\qquad
+d_{\chi,o}(\mu)=\beta h_{\chi,o}(\mu).
+\]
+Every baseline branch gives \(0<c_\chi(\mu)\leq1/m\). Hence
+\[
+0<r_\chi(\mu)\leq\frac{\beta}{m},
+\qquad kr_\chi(\mu)<1.
+\]
+As-if-pivotal voting therefore implies that weak state \(j\) votes yes if
+and only if \(x_j\geq r_\chi(\mu)\). The equality case passes by the declared
+indifference rule. A proposal passes exactly when at least \(k\) weak states
+receive that amount. Conditional on \(\mu\), the best passing proposal pays
+\(r_\chi(\mu)\) to exactly \(k\) weak states and leaves
+\[
+a_\chi^{\mathrm{pass}}(\mu)=1-kr_\chi(\mu)
+\]
+to \(H\). A proposal such as \((1,0,\ldots,0)\) is rejected and attains
+\(d_{\chi,o}(\mu)\). Thus both terms in
+\[
+\max\{a_\chi^{\mathrm{pass}}(\mu),d_{\chi,o}(\mu)\}
+\]
+are attainable at every fixed posterior.
+
+For a pure interior profile, the public support contains at most two
+proposals. Its complement is dense in the proposal simplex. If the canonical
+best passing proposal at \(\mu^{\mathrm{off}}\) is itself on the support,
+reduce \(H\)'s share by \(\varepsilon>0\), keep the \(k\) threshold
+payments fixed, and choose a sequence \(\varepsilon\downarrow0\) that avoids
+the finitely many supported proposals. Rejected proposals are also available
+off support. Consequently, the supremum payoff from an unsupported proposal
+is exactly
+\[
+O_o(\rho)=\max\{a_\chi^{\mathrm{pass}}(\mu^{\mathrm{off}}),
+d_{\chi,o}(\mu^{\mathrm{off}})\}.
+\]
+Because rejection is weakly more valuable to the high type while the passing
+term is common, \(O_h(\rho)\geq O_\ell(\rho)\).
+
+We can now enumerate the pure profiles. Under pooling, the posterior is
+\(p\). If the common proposal passes, both types receive the same share
+\(z\); feasibility requires \(z\leq a_p^{\mathrm{pass}}\), and absence of
+unsupported deviations requires \(z\geq O_h(\rho)\). This gives the first
+row of Table \ref{tab:ampure}. If the pooled proposal is rejected, type \(o\)
+receives \(d_{o,p}\), so the two inequalities in the pooling-delay row are
+necessary and sufficient.
+
+Under separation, Bayes' rule assigns posterior zero to the low-type proposal
+and posterior one to the high-type proposal. If both pass, either type can
+copy the other's proposal and receive the same share. Bilateral imitation
+therefore forces a common \(z\). Feasibility and unsupported deviations give
+\[
+O_h(\rho)\leq z\leq
+\min\{a_0^{\mathrm{pass}},a_1^{\mathrm{pass}}\}.
+\]
+If the low type passes and the high type delays, imitation, feasibility, and
+unsupported deviations require
+\[
+\max\{d_{\ell,1},O_\ell(\rho)\}
+\leq z\leq
+\min\{a_0^{\mathrm{pass}},d_{h,1}\},
+\qquad d_{h,1}\geq O_h(\rho).
+\]
+These are exactly the fourth row of the table. The reverse pattern is
+impossible: it would require
+\(d_{\ell,0}\geq z\geq d_{h,0}\), although
+\(d_{h,0}>d_{\ell,0}\). Finally, if both proposals are rejected, bilateral
+imitation gives \(d_{\ell,0}\geq d_{\ell,1}\) and
+\(d_{h,1}\geq d_{h,0}\); the remaining two inequalities in the last row
+exclude unsupported deviations. The pooling/separating and pass/reject
+enumeration is exhaustive. Canonical passing proposals and clearly rejected
+proposals attain every listed payoff, proving sufficiency as well as
+necessity.
+
+For completeness with arbitrary Borel proposal laws, set
+\(\mathsf S_M=\operatorname{supp}(\bar\sigma)\) and define
+\[
+u_o(x)=b_M(x)x_H+\{1-b_M(x)\}d_{\chi,o}(\pi(x)),
+\qquad
+V_o=\int u_o(x)\,\sigma_o(dx).
+\]
+Let \(u_o^{\mathrm{off}}\) evaluate an unsupported proposal at
+\(\mu^{\mathrm{off}}\), and put
+\[
+\mathfrak O_o(\mathsf S_M)
+=\sup_{x\notin\mathsf S_M}u_o^{\mathrm{off}}(x),
+\]
+with the supremum of the empty set equal to \(-\infty\). The proposal laws
+generate a PBE if and only if, in addition to Bayes, the ballot rule, and the
+continuation selection in \(R_M\),
+\[
+\begin{aligned}
+u_o(x)&\leq V_o &&\text{for every }x\in\mathsf S_M,\\
+u_o(x)&=V_o &&\text{for }\sigma_o\text{-almost every }x,\\
+V_o&\geq\mathfrak O_o(\mathsf S_M),&& o\in\{\ell,h\}.
+\end{aligned}
+\]
+Necessity follows because each type can copy every supported proposal and
+choose any unsupported proposal, while a mixed strategy assigns probability
+one to best responses. Conversely, prescribe the cutoff ballots and the
+continuation \(\chi(\pi(x))\). The first line rules out profitable supported
+deviations, the third rules out unsupported ones, and the second restricts
+each type's law to best responses. This proves sequential rationality at
+every proposal. The local Bayes ratio is a pointwise limit of Borel ratios on
+the closed support and is constant off it; hence \(\pi\), the finite cutoff
+ballot, and both payoff maps are Borel. The conditions are therefore also
+sufficient for the mixed correspondence stated in Appendix E.2.
+
+At \(p\in\{0,1\}\), prior support fixes every posterior at the endpoint.
+Each type's complete Borel best-response correspondence is consequently the
+set of probability measures supported on its argmax between passage and
+rejection, with value \(\overline V_o\).
+
+It remains to prove existence and the lower bound used in Appendix E.5. Let
+\[
+v_M^{\mathrm{safe}}=1-\frac{k\beta}{m},
+\qquad T=\frac{v_M^{\mathrm{safe}}}{\beta}
+=\frac1\beta-\frac{k}{m}>\frac1m.
+\]
+If \(h\leq T\), take \(\rho=1\) and pool on the canonical passing proposal
+at posterior \(p\). To see that rejection is not profitable, consider the
+three possible continuation outcomes. Exclusion gives the high type at most
+\(\beta h\leq\beta T=v_M^{\mathrm{safe}}\); screening or pooling gives it
+at most \(\beta^2h<v_M^{\mathrm{safe}}\), while the best passing proposal
+at that posterior leaves at least \(v_M^{\mathrm{safe}}\). The same
+inequalities hold for the low type and are preserved on the residual
+continuation segment by convexity.
+
+If \(\ell\leq T\leq h\), take \(\mu^{\mathrm{off}}=1\). At posterior one,
+the majority continuation excludes \(H\), so
+\[
+d_{\ell,1}=\beta\ell\leq v_M^{\mathrm{safe}}
+\leq\beta h=d_{h,1}.
+\]
+At posterior zero, the best passing proposal leaves at least
+\(v_M^{\mathrm{safe}}\). Thus the low type passes with that share and the
+high type rejects; the displayed inequalities rule out imitation in both
+directions and the posterior-one calculation also rules out unsupported
+deviations. If \(T\leq\ell\), then \(T>1/m\) implies that the majority
+continuation excludes \(H\) at every posterior. Rejection gives each type
+\(\beta o\geq v_M^{\mathrm{safe}}\), so both types can pool on delay for
+any \(\rho\). The adjacent constructions remain valid at equality;
+endpoints follow from the preceding argmax description. Thus a majority PBE
+exists for every admissible primitive and prior for some \(\rho\).
+
+Moreover, at any posterior \(H\) can pay \(\beta/m\) to any \(k\) weak
+states and retain \(v_M^{\mathrm{safe}}\). Since every cutoff is at most
+\(\beta/m\), this proposal passes regardless of the belief it induces. A
+clearly rejected proposal gives type \(o\) at least \(\beta^2o\). Hence every
+majority equilibrium satisfies
+\[
+V_M^A(o)\geq
+\max\{v_M^{\mathrm{safe}},\beta^2o\},
+\]
+which establishes the lower bound used by Proposition
+\ref{prop:agenda-majority}. \(\square\)
+
+## B.8 Proof of the private-unanimity agenda correspondence {-}
+
+Write
+\[
+z_L=v_U^A(\ell)=1-\beta+\beta^2\ell,
+\quad z_H=v_U^A(h)=1-\beta+\beta^2h,
+\quad d=\beta^2h,
+\quad \Delta=z_L-d.
+\]
+At posterior zero, unanimity prices every weak vote at \(r_U(\ell)\); at a
+posterior above \(p^*\), it prices every weak vote at \(r_U(h)\). Since one
+no vote rejects the proposal, sequential rationality after that vote requires
+a continuation at the same posterior. The baseline unanimity correspondence
+has no member on \((0,p^*]\). Therefore every disciplined posterior and the
+common off-support posterior must lie in
+\(\mathcal P_C=\{0\}\cup(p^*,1]\).
+
+The cutoff sets are closed because equality is accepted. The maximal shares
+that \(H\) can retain under the two admissible prices are attained at
+\(x^\ell\) and \(x^h\), and equal \(z_L\) and \(z_H\), respectively.
+Rejection gives the high type \(d\) at every admissible posterior. It gives
+the low type \(\beta^2\ell\) at posterior zero and \(d\) at a high
+posterior. In particular,
+\[
+0<r_U(h)<r_U(\ell),\qquad
+z_H=z_L+\beta^2(h-\ell)>z_L,\qquad z_H>d.
+\]
+
+We first establish two reduction lemmas. For an interior prior, the two types
+receive the same equilibrium payoff. A signal used by the high type has a
+high posterior. If it passes, the low type can copy it and obtain the same
+share; if it rejects, both types receive \(d\). A positive-mass
+zero-posterior signal can be used only by the low type. It cannot reject in
+equilibrium: the high type can guarantee \(d\), and the low type can copy a
+best high-type signal, whereas rejection at zero gives it only
+\(\beta^2\ell<d\). It must therefore pass, after which the high type can copy
+it and obtain the same share. These bilateral imitation inequalities, together
+with indifference on the support of each mixed strategy, imply a common payoff
+\(V\).
+
+Next let
+\[
+\lambda_0=\int 1\{\mu(x)=0\}\,d\bar\sigma(x)
+\]
+be the public mass of zero-posterior proposals. If \(\lambda_0>0\), the low
+type uses such a proposal and can receive at most \(z_L\); only \(x^\ell\)
+attains that maximum. The common-payoff result and the high type's rejection
+option require \(z_L\geq d\), or \(\Delta\geq0\). An off-support high
+posterior would permit the deviation \(x^h\), which yields
+\(z_H>z_L\); hence \(\mu^{\mathrm{off}}=0\). It follows that
+\(V=z_L\), \(\sigma_\ell(\{x^\ell\})>0\), and
+\(\sigma_h(\{x^\ell\})=0\). If instead \(\lambda_0=0\), Bayes plausibility
+gives
+\[
+p=\int\mu(x)\,d\bar\sigma(x)>p^*,
+\]
+because the posterior is above \(p^*\) almost surely. These two cases are
+exhaustive.
+
+Suppose first that \(\lambda_0>0\). The preceding argument gives the domain
+of the low-posterior family. Every used high-posterior proposal must either
+pass with \(H\)'s share \(z_L\), or, only when \(z_L=d\), reject and deliver
+the same payoff. The pointwise deviation restrictions in Appendix E.3 are
+necessary because either type can choose every proposal, including supported
+limit points of zero mass. They are sufficient because all used proposals
+then yield \(z_L\), while every other disciplined or unsupported proposal
+yields at most \(z_L\). A pure witness is
+\[
+\sigma_\ell=\delta_{x^\ell},\qquad
+\sigma_h=\delta_{x^S},\qquad
+x^S=(z_L,r_U(h),\ldots,r_U(h)).
+\]
+The proposal \(x^S\) passes and is feasible because
+\(z_L+mr_U(h)=1-\beta^2(h-\ell)<1\). Neither type gains by imitation or by
+rejection precisely when \(\Delta\geq0\). This proves necessity and
+sufficiency of the low-posterior family.
+
+Now suppose \(\lambda_0=0\), so \(p>p^*\). If
+\(\mu^{\mathrm{off}}=0\), the common payoff must satisfy
+\[
+\max\{z_L,d\}\leq V\leq z_H.
+\]
+The lower bound excludes the best zero-posterior passing and rejection
+deviations; the upper bound is the maximal feasible share at a high posterior.
+For every \(V\) in the interval, the pooling proposal
+\[
+x(V)=\left(V,\frac{1-V}{m},\ldots,\frac{1-V}{m}\right)
+\]
+passes because \(V\leq z_H\) implies
+\((1-V)/m\geq r_U(h)\). It gives posterior \(p\) and leaves no profitable
+off-support deviation because \(V\geq\max\{z_L,d\}\). This proves existence
+of every payoff in the high-posterior family with zero off-support belief;
+the pointwise restrictions in Appendix E.3 give the corresponding necessary
+and sufficient condition for arbitrary Borel laws.
+
+If \(\mu^{\mathrm{off}}>p^*\), the off-support proposal \(x^h\) guarantees
+\(z_H\). Feasibility also bounds the common payoff by \(z_H\); hence
+\(V=z_H\). The only passing proposal that leaves this share is \(x^h\), so
+both proposal laws are \(\delta_{x^h}\). An off-support posterior in
+\((0,p^*]\) is inadmissible because it has no baseline continuation. Thus the
+two high-posterior subfamilies in Appendix E.3 are exhaustive. Combining them
+with the dichotomy for \(\lambda_0\) proves that there is no third interior
+family and gives all stated existence cells.
+
+At \(p=0\), support preservation fixes every posterior at zero. The low type
+uniquely chooses \(x^\ell\). The counterfactual high type chooses
+\(x^\ell\) if \(z_L>d\), may mix \(x^\ell\) with rejected proposals if
+\(z_L=d\), and chooses any rejected best response if \(z_L<d\). This gives
+the endpoint correspondence in Appendix E.3. At \(p=1\), every posterior is
+one and both types uniquely choose \(x^h\), since \(z_H=d+1-\beta>d\).
+
+Finally, any passing unanimity proposal gives every weak state at least
+\(r_U(h)\), so it leaves \(H\) at most \(z_H\); every rejection payoff is at
+most \(d<z_H\). Therefore every unanimity member satisfies
+\[
+V_U^A(o)\leq z_H=v_U^A(h).
+\]
+Together with the majority lower bound in Appendix B.7, this proves the two
+bounds used in Appendix E.5. The linked payoff image, informational-rent
+incidence, and total agenda-effect cells then follow by the fixed-vector
+subtractions displayed in Appendices E.9 and E.13. \(\square\)
+
+## B.9 Proof of the exact and economic representations {-}
+
+The argument is the same for majority and unanimity, so fix a rule \(g\).
+Let \(Z_g\) be the realized-record space defined in Appendices E--F. It is a
+finite product and disjoint union of compact Polish proposal, posterior,
+ballot, continuation-label, and terminal-record spaces; hence it is itself
+compact Polish. A common permutation \(\tau\in G=S_m\) of weak-state names
+acts on \(Z_g\) by a homeomorphism \(T_\tau\). Relabeling a PBE by
+\(T_\tau\) preserves feasibility and payoffs, transports relative balls and
+supports, commutes with the local Bayes limit, and maps ballots, continuation
+kernels, and deviations bijectively to payoff-equivalent objects. The
+relabeled object is therefore also a PBE.
+
+Set \(X_g=\mathcal P(Z_g)^2\), with the weak topology, and let the finite group
+act diagonally on the pair of type-specific realized laws. This is a Polish
+space with a continuous group action. For \(x\in X_g\), define the orbit law
+\[
+\Lambda_x=\frac1{|G|}\sum_{\tau\in G}\delta_{\tau x}.
+\]
+For every Borel set \(C\subseteq X_g\),
+\[
+\Lambda_x(C)=\frac1{|G|}\sum_{\tau\in G}1_C(\tau x)
+\]
+is Borel in \(x\), so \(x\mapsto\Lambda_x\) is Borel. Right multiplication
+only reorders the finite sum, proving invariance. If \(x'=\tau x\), the two
+orbit laws coincide. Conversely, if \(\Lambda_x=\Lambda_{x'}\), the Borel
+singleton \(\{x'\}\) has positive mass under \(\Lambda_{x'}\), hence also
+under \(\Lambda_x\); therefore \(x'=\tau x\) for some \(\tau\). The orbit
+law is thus a complete invariant of diagonal relabeling, which proves the
+claim about \(\operatorname{Sig}^{ex}_g\).
+
+For the economic layer, choose a Borel injection of \(Z_g\) into \([0,1]\)
+and let \(q_g\) map each record to the least element of its finite orbit. This
+gives a Borel transversal and a Borel quotient map satisfying
+\(q_g\circ T_\tau=q_g\). If \(f:Z_g\to E\) is Borel and invariant, define
+\(\bar f\) on the transversal by its value at the selected representative.
+Invariance makes the definition independent of the original named record,
+and surjectivity of \(q_g\) gives uniqueness. Thus
+\[
+f=\bar f\circ q_g,
+\qquad
+\int f\,d\Gamma_o
+=\int\bar f\,d(q_g)_\#\Gamma_o.
+\]
+Payoffs, passage and delay, the posterior law, anonymous terminal outcomes,
+and the ordered multiset of weak-state payoffs are invariant Borel maps, so
+they factor through the economic summary. The same is true of the payoff and
+outcome comparisons after the complete majority and unanimity objects have
+first been paired in the same primitive and belief fiber. Named proposals,
+named supports, and off-path strategy or belief functions are not invariant
+realized summaries and therefore remain in the underlying complete object.
+This proves the measurability, orbit-completeness, and universal anonymous
+factorization statements in Appendix F.1. \(\square\)
+
 # Appendix C: Endpoints, exact sets, and illustration {-}
 
 ## C.1 Endpoint equivalence {-}
@@ -1808,10 +2150,29 @@ b_M,u_\ell,u_h).
 Here \(\bar\sigma=(1-p)\sigma_\ell+p\sigma_h\) is the public proposal law.
 The record also retains posterior map \(\pi\), continuation selection
 \(\chi\), ballot map \(b_M\), and both type payoffs.
-Bayes holds pointwise on the disciplined support, every weak vote satisfies
-the pivotal comparison at every proposal, and each type's proposal law is
-supported on its global best responses. This criterion is necessary and
-sufficient; arbitrary Borel mixtures and atomless supports are included.
+Let
+\[
+\begin{gathered}
+\mathsf S_M=\operatorname{supp}(\bar\sigma),\qquad
+u_o(x)=b_M(x)x_H+\{1-b_M(x)\}d_{\chi,o}(\pi(x)),\\
+V_o=\int u_o(x)\,\sigma_o(dx),\qquad
+\mathfrak O_o(\mathsf S_M)
+=\sup_{x\notin\mathsf S_M}u_o^{\mathrm{off}}(x),
+\end{gathered}
+\]
+where \(u_o^{\mathrm{off}}\) evaluates an unsupported proposal at
+\(\mu^{\mathrm{off}}\), and the supremum of the empty set is
+\(-\infty\). In addition to pointwise Bayes updating on the disciplined
+support, the pivotal ballot rule at every proposal, and the continuation
+selection \(\chi\), the necessary-and-sufficient proposal conditions are
+\[
+\begin{aligned}
+u_o(x)&\leq V_o &&\text{for every }x\in\mathsf S_M,\\
+u_o(x)&=V_o &&\text{for }\sigma_o\text{-almost every }x,\\
+V_o&\geq\mathfrak O_o(\mathsf S_M),&&o\in\{\ell,h\}.
+\end{aligned}
+\]
+Thus arbitrary Borel mixtures and atomless supports are included.
 
 At \(p\in\{0,1\}\), the posterior is fixed at the endpoint. With
 \[
@@ -1821,6 +2182,9 @@ each type's Borel proposal law may be any probability measure supported on
 its argmax. The probability-zero type remains part of the linked record.
 For every admissible primitive and prior, at least one majority PBE exists
 for some \(\rho\); this does not assert existence at every fixed \(\rho\).
+Appendix B.7 proves the pure enumeration, the mixed membership criterion, the
+endpoint correspondences, existence, and the uniform lower bound used in the
+body.
 
 ## E.3 Complete private-unanimity correspondence {-}
 
@@ -2006,6 +2370,9 @@ strategies, supports, messages, or continuation plans must instead consume
 the underlying complete binder. No Reynolds average is treated as an
 equilibrium representative, and every \texttt{none} cell above remains empty
 in both layers.
+Appendix B.8 proves the two-family characterization, its exhaustiveness and
+existence domains, the endpoint correspondences, and the payoff bound used in
+the body.
 
 ## E.4 Exact same-fiber institutional comparison {-}
 
@@ -2423,6 +2790,9 @@ the economic summaries:
 \]
 No Reynolds average is an equilibrium representative. Equality of summaries
 does not identify named proposals, coalition lotteries, or off-path plans.
+Appendix B.9 proves that the exact orbit law is a complete invariant and that
+every anonymous Borel outcome used here factors uniquely through the economic
+summary.
 
 For coordinate \(r\in\{\ell,h,\mathrm{ea}\}\), the contrast envelope satisfies
 \[
@@ -2506,11 +2876,11 @@ required by their definitions exists.
 \end{itemize}
 
 An absent source propagates \(\varnothing\). It is never encoded as zero,
-\(\mathrm{NA}\), infinity, or a fictional payoff. Mechanical scripts check
-hashes, schemas, finite identities, inequalities, and enumerated cells. They
-do not prove PBE completeness, abstract measurability, universal
-factorization, or the absence of unenumerated deviations; those conclusions
-come from the textual proofs fixed by the source manifests.
+\(\mathrm{NA}\), infinity, or a fictional payoff. Appendices B.7--B.9 prove
+the completeness and existence claims for the agenda correspondences, the
+absence of a third unanimity family, and the measurability and factorization
+properties used in the comparison. No conventional value is assigned to an
+empty source.
 
 ## F.4 Causal scope and mandatory treatment {-}
 
