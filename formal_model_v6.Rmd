@@ -315,10 +315,10 @@ allocation vector
 \[
 x=(x_H,(x_j)_{j\in W})\in\mathcal X,
 \qquad
-\mathcal X=\left\{x:0\leq x_H\leq\bar x_H,\ x_j\geq0,\
-x_H+\sum_{j\in W}x_j\leq1\right\},
+\mathcal X=\left\{x:x_H\geq0,\ x_j\geq0,\
+x_H+\sum_{j\in W}x_j\leq1\right\}.
 \]
-where \(h\leq\bar x_H\leq1\). Payments cannot be negative and side payments
+Payments cannot be negative and side payments
 outside the proposed package are unavailable. Here \(x_H\) is the
 institutional concession assigned to \(H\), and \(x_j\) is weak state
 \(j\)'s share, including the proposer when \(j=i\). The fixed unit pie is
@@ -338,13 +338,14 @@ Under majority, passage requires \(k\) additional yes votes beyond the
 proposer's; unanimity requires every state's yes vote. The ballot protocol is
 otherwise identical across rules.
 
-If a proposal passes, every stated allocation is implemented. If
-\(H\) votes yes, it receives \(x_H\). If \(H\) votes no but a majority passes
-the proposal without it, its general payoff is \(x_H+o\). This formula is
-part of the complete game because the proposed institutional term \(x_H\) is
-implemented even without \(H\)'s approval. In every equilibrium exclusion
-derived below, however, the proposer chooses \(x_H=0\); the hegemon therefore
-receives exactly \(o\), never a positive concession on top of it.
+If a proposal passes, its allocations are implemented among the parties to
+the agreement. If \(H\) votes yes, it is a party and receives \(x_H\). If
+\(H\) votes no but a majority passes the proposal without it, \(H\) is not a
+party: it receives its outside option \(o\), and the share \(x_H\), which no
+non-party can claim, accrues to the proposer's residual. Agreement and
+disagreement payoffs are therefore mutually exclusive at every history. In
+every equilibrium exclusion derived below the proposer chooses \(x_H=0\), and
+the hegemon receives exactly \(o\).
 
 If nothing passes in Round 1, no payoff is realized then and the game proceeds
 to Round 2. Round-2 payoffs are multiplied by
@@ -362,7 +363,8 @@ payoff represents the cost of prolonging international negotiations.
 \toprule
 Event & Weak-state payoffs & \(H\) votes yes & \(H\) votes no \\
 \midrule
-Proposal passes & Proposed \(x_j\), including \(x_i\) & \(x_H\) & \(x_H+o\) \\
+Proposal passes & Proposed \(x_j\), including \(x_i\); after an \(H\) no, the
+proposer also receives the reverted \(x_H\) & \(x_H\) & \(o\) \\
 Round-1 proposal fails & No current payoff; proceed to Round 2 &
 \(\beta C_H(\mathfrak h^Y)\) & \(\beta C_H(\mathfrak h^N)\) \\
 Round-2 proposal fails & Zero & \(o\) & \(o\) \\
@@ -1339,18 +1341,20 @@ in which the maintained equilibrium concept exists.
 
 For a proposal \(x=(x_H,x_1,\ldots,x_m)\), let \(a_H\in\{Y,N\}\) and let the weak
 responders' votes be \(a_{-i}\). The proposer votes yes. If the quota is met,
-the proposal is implemented in full. Each weak respondent receives \(x_j\),
-the proposer receives \(x_i\), and \(H\) receives \(x_H\) after yes and
-\(x_H+o\) after no. If the quota is not met in Round 1, the public vote
+the proposal is implemented among the parties. Each weak respondent receives
+\(x_j\), the proposer receives \(x_i\), and \(H\) receives \(x_H\) after yes;
+after no, \(H\) receives \(o\) and the unclaimed \(x_H\) accrues to the
+proposer's residual. If the quota is not met in Round 1, the public vote
 vector leads to Round 2; every continuation payoff is then multiplied by
 \(\beta\). If the quota is not met in Round 2, weak states receive zero and
 \(H\) receives \(o\).
 
-The \(x_H+o\) branch is necessary for a complete strategy specification.
-It is not an equilibrium description. Whenever majority passes without \(H\),
-a proposer strictly prefers to move any positive \(x_H\) into its own allocation,
-holding all votes fixed. Hence all equilibrium exclusions set \(x_H=0\) and pay
-\(H\) exactly \(o\).
+Agreement and disagreement payoffs are mutually exclusive at every history:
+no history pays a player both an allocation from the pie and an outside
+option. The reversion branch is off-path bookkeeping, not an equilibrium
+description: proposals that differ only in an \(x_H\) that reverts are
+payoff-equivalent for every player, and we report the representative with
+\(x_H=0\). All equilibrium exclusions pay \(H\) exactly \(o\).
 
 ## A.2 Beliefs and ballot restrictions {-}
 
@@ -1386,9 +1390,11 @@ In terminal majority, a weak responder's disagreement value is zero, so any
 nonnegative allocation induces yes under the indifference-to-yes convention.
 Because \(k\leq m\), the
 proposer can pass without \(H\), set every payment to zero, and keep one.
-\(H\) is nonpivotal and strictly votes no because no yields \(x_H+o\) rather
-than \(x_H\). Moving any positive \(x_H\) to the proposer leaves passage unchanged,
-so equilibrium exclusion has \(x_H=0\) and \(H\) receives \(o\).
+\(H\) is nonpivotal: yes yields \(x_H\) and no yields \(o\), with the
+unclaimed \(x_H\) reverting to the proposer after a no. Any \(x_H<o\) induces
+no and is payoff-equivalent to \(x_H=0\) through the reversion, while any
+\(x_H\geq o\) induces yes and is strictly worse for the proposer. Equilibrium
+exclusion has \(x_H=0\) and \(H\) receives \(o\).
 
 In terminal unanimity, every weak responder accepts zero and \(H\) accepts
 exactly when \(x_H\geq o\). The proposer therefore sets \(x_H=o\).
@@ -1426,8 +1432,9 @@ At equality the low offer gives \(H\) the lower expected payoff and is selected.
 
 A responding weak state votes yes exactly when \(x_j\geq w=\beta/m\).
 Let \(n_Y\) be the number of such responders. If \(n_Y\geq k\), the weak votes
-pass the proposal without \(H\); both types of \(H\) vote no and receive
-\(x_H+o\). If \(n_Y=k-1\), \(H\) is pivotal and a type with outside option
+pass the proposal without \(H\); a type with outside option \(o\) votes yes
+only when \(x_H\geq o\), and after a no it receives \(o\) while the unclaimed
+\(x_H\) reverts to the proposer. If \(n_Y=k-1\), \(H\) is pivotal and a type with outside option
 \(o\) votes yes exactly when \(x_H\geq\beta o\). If \(n_Y\leq k-2\), the proposal
 fails regardless of \(H\)'s vote.
 
@@ -1672,7 +1679,6 @@ Symbol & Meaning \\
 \(\mu\), \(\mu^{\mathrm{off}}\) & Posterior probability of \(h\), on and off path \\
 \(\beta\) & One-round discount factor, strictly between zero and one \\
 \(x=(x_H,x_1,\ldots,x_m)\) & Feasible allocation vector \\
-\(\bar x_H\) & Maximum feasible allocation to \(H\); \(h\leq\bar x_H\leq1\) \\
 \(x_H\), \(x_j\), \(x_i\) & Allocations to \(H\), weak responder \(j\), and proposer \(i\) \\
 \(w=\beta/m\) & First-round continuation value of a weak state under majority \\
 \(p^*\) & Terminal unanimity cutoff, \((h-\ell)/(1-\ell)\) \\
@@ -1701,10 +1707,9 @@ interaction, and total private agenda effect \\
 Fix
 \[
 \begin{gathered}
-\mathbf d=(m,k,e,\beta,\ell,h,\bar x_H,\mathcal X,p),\\
+\mathbf d=(m,k,e,\beta,\ell,h,\mathcal X,p),\\
 m\geq3,\quad k=\lfloor(m+1)/2\rfloor,\quad e=m-k,\\
-0<\beta<1,\quad 0<\ell<h<1,\quad
-h\leq\bar x_H\leq1,\quad p\in[0,1].
+0<\beta<1,\quad 0<\ell<h<1,\quad p\in[0,1].
 \end{gathered}
 \]
 At date \(A\), after observing its type, \(H\) proposes
@@ -2075,7 +2080,7 @@ This proves sufficiency only.
 The condition is not necessary. With
 \[
 m=4,\ k=2,\ e=2,\ \beta=.9,
-\ell=.5,\ h=.6,\ \bar x_H=.8,\ p=0,
+\ell=.5,\ h=.6,\ p=0,
 \]
 we have \(e/m=.5\) and \(\beta h=.54>.5\), so the condition fails.
 Nevertheless \(v_M^{\mathrm{safe}}=.55\), \(v_U^A(\ell)=.505\), and

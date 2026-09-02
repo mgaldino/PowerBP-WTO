@@ -55,6 +55,49 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
   `quality_reports/2026-08-25_proofread_introducao_v6.md`, não uma extensão
   retroativa daqueles pareceres.
 
+> ## FUNDAMENTOS INVIOLÁVEIS DO MODELO (2026-09-01, APPROVED)
+>
+> Registro: `quality_reports/2026-09-01_decisao_exclusao_payoffs_e_fundamentos.md`.
+> **Regras de operação**: (1) toda proposta de protocolo, convenção ou
+> contabilidade é checada contra esta lista ANTES de ser escalada — o que
+> viola um fundamento não é opção escalável, é violação reportável; (2)
+> reversão de um fundamento só pode ser proposta nomeando-se explicitamente
+> como tal ("isto reverte o fundamento #k"), fora de lote, com assinatura
+> autoral individual. Origem: a decisão D1 de 2026-08-12 (x_H+o) reverteu uma
+> proibição explícita sem se anunciar como reversão e só foi detectada ao
+> final — o básico não escrito perde para o racional escrito.
+>
+> 1. **Frame herdado de BF/Kalandrakis = PROTOCOLO**: reconhecimento uniforme
+>    entre weak states, propostas sobre a pie, ballots, rodadas com desconto;
+>    e o benchmark de simetria de Kalandrakis 2006. A estrutura de desacordo
+>    NÃO é herdada (em BF é toda zero e não adjudica nada) — é especificação
+>    própria do domínio, declarada.
+> 2. **Comparação institucional exclusivamente unanimidade vs. maioria**,
+>    mesma economia, mesmo protocolo de ballot.
+> 3. **Exatamente um ator informado, H**; weak states simétricos, sem
+>    informação privada e sem canal próprio de sinalização.
+> 4. **Payoffs de acordo e desacordo mutuamente exclusivos em todo
+>    histórico**: parte do acordo aprovado recebe sua alocação; quem está fora
+>    (H excluído por maioria, ou desacordo terminal) recebe sua outside option
+>    e nada da pie; alocação a não-parte é inentregável e reverte ao residual
+>    do proponente. NUNCA somar alocação e outside option (erro x_H+o do D1,
+>    supersedido em 2026-09-01).
+> 5. **Nenhuma restrição ao espaço de propostas** além de não-negatividade e
+>    x_H+Σx_j ≤ 1. Sem tetos (o parâmetro `\bar x_H`/`y_bar` foi deletado).
+> 6. **Pie fixa em 1** (surplus de clube dos membros); **outside option de H
+>    externa à pie** e invariante ao acordo dos demais (simplificação
+>    declarada); o_θ microfundada por **forum shopping** — valor privado do
+>    melhor fórum alternativo de H (bilaterais, OMPI, coalition of the
+>    willing); fracos têm o=0 por ausência de alternativas; π_H=0 no baseline;
+>    b_θ=0.
+> 7. **Escopo**: acordos distributivos de clube dentro da OI — o pacote da
+>    coalizão vencedora aloca benefícios entre seus membros e não vincula nem
+>    recruta não-coalizão. Decisões que vinculam todos os membros
+>    (assessments, quotas) estão fora do escopo.
+> 8. **Jogo distributivo puro**: sem externalidades, sem bens públicos, sem
+>    free-riding. Argumento que dependa de um ator se beneficiar de acordo do
+>    qual não é parte viola este fundamento.
+
 > ## ARQUITETURA CORRENTE — essential-input (2026-08-12)
 >
 > **O contrato normativo é

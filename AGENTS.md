@@ -45,6 +45,50 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
   proofread in `quality_reports/2026-08-25_proofread_introducao_v6.md`, not a
   retroactive extension of those reviews.
 
+> ## INVIOLABLE MODEL FUNDAMENTALS (2026-09-01, APPROVED)
+>
+> Record: `quality_reports/2026-09-01_decisao_exclusao_payoffs_e_fundamentos.md`.
+> **Operating rules**: (1) every protocol, convention, or accounting proposal
+> is checked against this list BEFORE escalation — a violation is not an
+> escalable option, it is a reportable violation; (2) reversing a fundamental
+> may only be proposed by naming itself as such ("this reverses fundamental
+> #k"), outside any batch, with individual author sign-off. Origin: the D1
+> decision of 2026-08-12 (x_H+o) reversed an explicit prohibition without
+> announcing itself as a reversal and was caught only at the end — unwritten
+> basics lose to written rationales.
+>
+> 1. **The frame inherited from BF/Kalandrakis is the PROTOCOL**: uniform
+>    recognition among weak states, proposals over the pie, ballots,
+>    discounted rounds; plus Kalandrakis 2006 as the symmetry benchmark. The
+>    disagreement structure is NOT inherited (in BF it is all zeros and
+>    adjudicates nothing) — it is a declared domain-specific specification.
+> 2. **The institutional comparison is exclusively unanimity vs. majority**,
+>    same economy, same ballot protocol.
+> 3. **Exactly one informed actor, H**; weak states symmetric, with no private
+>    information and no signaling channel of their own.
+> 4. **Agreement and disagreement payoffs are mutually exclusive at every
+>    history**: a party to a passed agreement receives its allocation; a
+>    non-party (H excluded under majority, or terminal disagreement) receives
+>    its outside option and nothing from the pie; an allocation to a non-party
+>    is unclaimable and reverts to the proposer's residual. NEVER sum an
+>    allocation and an outside option (the D1 x_H+o error, superseded
+>    2026-09-01).
+> 5. **No restriction on the proposal space** beyond nonnegativity and
+>    x_H+Σx_j ≤ 1. No caps (the `\bar x_H`/`y_bar` parameter was deleted).
+> 6. **Fixed unit pie** (club surplus of the members); **H's outside option is
+>    external to the pie** and invariant to agreements among others (a
+>    declared simplification); o_θ is microfounded by **forum shopping** — the
+>    privately known value of H's best alternative venue (bilaterals, WIPO,
+>    coalitions of the willing); weak states have o=0 for lack of
+>    alternatives; π_H=0 in the baseline; b_θ=0.
+> 7. **Scope**: distributive club agreements inside the IO — the winning
+>    coalition's package allocates benefits among its members and neither
+>    binds nor conscripts non-coalition members. Decisions binding the whole
+>    membership (assessments, quotas) are out of scope.
+> 8. **Pure distributive game**: no externalities, no public goods, no
+>    free-riding. Any argument that relies on an actor benefiting from an
+>    agreement it is not a party to violates this fundamental.
+
 > ## CURRENT ARCHITECTURE — essential-input (2026-08-12)
 >
 > **The governing contract is
