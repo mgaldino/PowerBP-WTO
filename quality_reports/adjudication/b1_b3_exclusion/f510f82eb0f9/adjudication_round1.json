@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "b1_b3_exclusion:f510f82eb0f9:round1",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md",
+    "sha256": "f510f82eb0f9f6e3e7cc8a59a6d26724cea3cff7ee53da2d1eabdbb3c3264665",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-09-01_b1_b3_formal_design_review.md",
+      "sha256": "f761ff617be28062198e6c2378c4d70a806b908a78cd46792a33ec7191b129f2"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-09-01_b1_b3_game_theory_audit.md",
+      "sha256": "b185d21aae71148be7ed444d2abe4256493890314ac1d59d129ecb6e8fcedd6a"
+    }
+  ],
+  "mechanical_checks": [
+    {
+      "check_id": "MC-001",
+      "description": "Recalculo SHA-256 do candidato e dos dois pareceres",
+      "result": "PASS",
+      "relevant_output": "f510f82e...64665; f761ff61...29f2; b185d21a...cedd6a"
+    },
+    {
+      "check_id": "MC-002",
+      "description": "Confirmacao dos quatro hashes normativos registrados no candidato",
+      "result": "PASS",
+      "relevant_output": "formal_model_v6.Rmd e tres registros normativos byte-identicos ao boundary de abertura"
+    },
+    {
+      "check_id": "MC-003",
+      "description": "Cobertura de secoes, perguntas obrigatorias e Appendix B pelos dois pareceres",
+      "result": "PASS",
+      "relevant_output": "R1 e R2 cobrem lema, B.1, tres ramos de B.3, sete perguntas, B.2-B.6, contagens e boundary"
+    },
+    {
+      "check_id": "MC-004",
+      "description": "Grade suplementar das identidades de payoff e desigualdades de quota",
+      "result": "PASS",
+      "relevant_output": "ALGEBRA_GRID_PASS max_error=2.5e-16 m=3..100"
+    }
+  ],
+  "scope_assessment": {
+    "r1_reviewed_full_intended_artifact": true,
+    "r2_reviewed_full_intended_artifact": true,
+    "pass_000_supported": true,
+    "reasoning": "Ambos os pareceres reconstroem o lema e os ramos B.1/B.3, respondem as sete perguntas, auditam B.2-B.6 e limitam o PASS ao hash do memorando. A adjudicacao voltou aos primitives e proposicoes correntes e nao encontrou contraprova."
+  },
+  "findings": [],
+  "summary": {
+    "total": 0,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "NO_CONFIRMED_DEFECTS",
+    "checked_at": "2026-09-01T23:48:59-03:00",
+    "reasons": [
+      "Os hashes do candidato e dos dois pareceres coincidem com o mandato.",
+      "R1 e R2 revisaram o artefato completo pretendido e sustentam seus PASS por reconstrucoes independentes, nao por mera concordancia.",
+      "O desvio de x_H para o proponente preserva factibilidade, votos fracos e passagem e e estritamente lucrativo em toda a classe nao pivotal.",
+      "Os limiares pivotais, candidatos, cutoffs, vetores e multiplicidades reportadas permanecem invariantes, enquanto a mudanca do assessment completo fica explicitamente fora da alegacao.",
+      "Nao ha findings confirmados, parciais ou materiais nao resolvidos no boundary adjudicado."
+    ]
+  }
+}
