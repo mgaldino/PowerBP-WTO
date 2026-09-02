@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "b1_b3_exclusion_final:2bb232030711:round1",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md",
+    "sha256": "2bb232030711cfb16dec5d439eaafac6411b03bc71ad4a2af927b5e9a124f256",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-09-02_b1_b3_formal_design_review_round2.md",
+      "sha256": "15940c12a7786d94249c819b417689970708d731cb12007db59ec7263250d65a"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-09-02_b1_b3_game_theory_audit_round2.md",
+      "sha256": "fcf9bee5188285d085a8b5baeb6fb6e69c163fc271d689493845936c0839dd0a"
+    }
+  ],
+  "findings": [],
+  "summary": {
+    "total": 0,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "NO_CONFIRMED_DEFECTS",
+    "checked_at": "2026-09-02T00:44:46-03:00",
+    "reasons": [
+      "The candidate and both independent reviews match their declared SHA-256 boundaries.",
+      "Independent reconstruction closes M1, preserves the adjudicated limits of M2 and M3, and confirms that M4 requires no additional repair.",
+      "The deviation, quota, three n_Y cases, timing, beliefs, cutoffs, tie-breaks, multiplicities, English candidate text, and B.2-B.6 blast radius contain no confirmed or unresolved defect.",
+      "Both reviews report PASS 0/0/0, and their conclusions are sustained by direct verification against the candidate, manuscript, and normative decisions."
+    ]
+  }
+}
