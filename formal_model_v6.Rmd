@@ -2919,19 +2919,31 @@ Appendix B.9 proves that the exact orbit law is a complete invariant and that
 every anonymous Borel outcome used here factors uniquely through the economic
 summary.
 
-For coordinate \(r\in\{\ell,h,\mathrm{ea}\}\), the contrast envelope satisfies
+For coordinate \(r\in\{\ell,h,\mathrm{ea}\}\), define the two scalar images
+on the fixed common fiber by
+\[
+M_r=\{V_M^r(R_M):R_M\in
+  \mathcal B_M(\mathbf d,\rho,\mu^{\mathrm{off}})\},
+\qquad
+U_r=\{V_U^r(R_U):R_U\in
+  \mathcal B_U(\mathbf d,\rho,\mu^{\mathrm{off}})\}.
+\]
+The contrast envelope satisfies
 \[
 \inf\mathcal C_r^A=\inf U_r-\sup M_r,\qquad
 \sup\mathcal C_r^A=\sup U_r-\inf M_r.
 \]
 The interval between these numbers is an interval hull, not necessarily an
-attained set. Likewise, the outcome object is the ordered pair of marginal
-laws
+attained set. For \(g\in\{M,U\}\) and \(o\in\{\ell,h\}\), write
+\[
+\bar\Gamma_g^{o,R_g}:=(q_g)_\#\Gamma_o^{g,R_g}.
+\]
+The outcome object is the ordered pair of marginal anonymous laws
 \[
 \mathcal O_A(\mathbf d,\rho,\mu^{\mathrm{off}})
 =\left\{
-  ((\bar\Gamma_M^\ell,\bar\Gamma_M^h),
-   (\bar\Gamma_U^\ell,\bar\Gamma_U^h)):
+  ((\bar\Gamma_M^{\ell,R_M},\bar\Gamma_M^{h,R_M}),
+   (\bar\Gamma_U^{\ell,R_U},\bar\Gamma_U^{h,R_U})):
   (R_M,R_U)\in
   \mathcal J_A^{\mathrm{bind}}(\mathbf d,\rho,\mu^{\mathrm{off}})
  \right\}.
