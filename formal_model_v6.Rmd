@@ -1617,15 +1617,13 @@ Every baseline branch gives \(0<c_\chi(\mu)\leq1/m\). Hence
 0<r_\chi(\mu)\leq\frac{\beta}{m},
 \qquad kr_\chi(\mu)<1.
 \]
-As-if-pivotal voting therefore implies that weak state \(j\) votes yes if
-and only if \(x_j\geq r_\chi(\mu)\). The equality case passes by the declared
-indifference rule. A proposal passes exactly when at least \(k\) weak states
-receive that amount. Conditional on \(\mu\), the best passing proposal pays
-\(r_\chi(\mu)\) to exactly \(k\) weak states and leaves
+Under as-if-pivotal voting, weak state \(j\) votes yes if and only if
+\(x_j\geq r_\chi(\mu)\); equality passes. The optimal passing proposal buys
+exactly \(k\) votes at this price. Hence \(H\)'s retained share is
 \[
-a_\chi^{\mathrm{pass}}(\mu)=1-kr_\chi(\mu)
+a_\chi^{\mathrm{pass}}(\mu)=1-kr_\chi(\mu).
 \]
-to \(H\). A proposal such as \((1,0,\ldots,0)\) is rejected and attains
+A proposal such as \((1,0,\ldots,0)\) is rejected and attains
 \(d_{\chi,o}(\mu)\). Thus both terms in
 \[
 \max\{a_\chi^{\mathrm{pass}}(\mu),d_{\chi,o}(\mu)\}
@@ -1785,11 +1783,12 @@ For an interior prior, let
 let \(\bar\sigma=(1-p)\sigma_\ell+p\sigma_h\), and let
 \(\mu:\mathcal X\to[0,1]\) be the public posterior map. Write
 \[
- r_U(o)=\frac{\beta(1-\beta o)}m,\qquad
-z_L=v_U^A(\ell)=1-\beta+\beta^2\ell,
-\quad z_H=v_U^A(h)=1-\beta+\beta^2h,
-\quad d=\beta^2h,
-\quad \Delta=z_L-d.
+\begin{aligned}
+r_U(o)&=\frac{\beta(1-\beta o)}m,
+&z_L&=v_U^A(\ell)=1-\beta+\beta^2\ell,\\
+z_H&=v_U^A(h)=1-\beta+\beta^2h,
+&d&=\beta^2h,\qquad \Delta=z_L-d.
+\end{aligned}
 \]
 The associated cutoff proposals are
 \[
@@ -1906,6 +1905,7 @@ most \(d<z_H\). Therefore every unanimity member satisfies
 \[
 V_U^A(o)\leq z_H=v_U^A(h).
 \]
+\newpage
 Together with the majority lower bound in Appendix B.7, this proves the two
 bounds used in Appendix E.5. The linked payoff image, informational-rent
 incidence, and total agenda-effect cells then follow by the fixed-vector
@@ -1913,11 +1913,16 @@ subtractions displayed in Appendices E.9 and E.13. \(\square\)
 
 ## B.9 Proof of the exact and economic representations {-}
 
-The argument is the same for majority and unanimity, so fix a rule \(g\).
-Let \(Z_g\) be the realized-record space defined in Appendices E.2 and E.3. It is a
-finite product and disjoint union of compact Polish proposal, posterior,
-ballot, continuation-label, and terminal-record spaces; hence it is itself
-compact Polish. A common permutation \(\tau\in G=S_m\) of weak-state names
+The argument is the same for majority and unanimity, so fix
+\(g\in\{M,U\}\) and a complete equilibrium record \(R_g\). Let \(Z_g\) be
+the rule-specific realized-record space whose coordinates are the named
+proposal, realized posterior, ballot and passage record, selected literal
+continuation record, and terminal record. It is a finite product and disjoint
+union of compact Polish spaces and hence is compact Polish; Appendices E.2 and
+E.3 give the concrete constructions. Let
+\(\Gamma_o^{g,R_g}\in\mathcal P(Z_g)\) be the resulting type-\(o\) joint law,
+and write \(\Gamma_o=\Gamma_o^{g,R_g}\) within this proof. A common
+permutation \(\tau\in G=S_m\) of weak-state names
 acts on \(Z_g\) by a homeomorphism \(T_\tau\). Relabeling a PBE by
 \(T_\tau\) preserves feasibility and payoffs, transports relative balls and
 supports, commutes with the local Bayes limit, and maps ballots, continuation
@@ -2257,9 +2262,9 @@ The type-specific joint realized law is therefore
 \Gamma_o^{M,R_M}(C)
 =\int_{\mathcal X}\int_{\Omega_T^M}
   1_C\!\left(x,\pi(x),b_M(x),\chi(\pi(x)),\omega_T\right)
-  L_o^{R_M}(d\omega_T\mid x)\,\sigma_o(dx)
-\in\mathcal P(Z_M).
+  L_o^{R_M}(d\omega_T\mid x)\,\sigma_o(dx).
 \]
+Thus \(\Gamma_o^{M,R_M}\in\mathcal P(Z_M)\).
 This single law binds the named proposal, posterior, passage, literal
 continuation selection, and terminal outcome; its marginals cannot be
 recombined across equilibrium members.
@@ -2441,14 +2446,16 @@ V_U^A=
 This display is only an image: it neither replaces the binder nor converts
 an interval of linked vectors into a Cartesian product.
 
-For the two-layer representation, let \(Z_U\) be the compact realized-record
+For the two-layer representation, let
+\(\mathfrak C_U=\{\mathsf L,\mathsf P\}\) be the discrete space of literal
+unanimity-continuation cells, and let \(Z_U\) be the compact realized-record
 space containing the named proposal and ballot coordinates, the realized
-posterior, pass/reject, the literal continuation-cell identity, and the
-terminal allocation and payoff record. Then
+posterior, pass/reject, the continuation-cell coordinate
+\(\xi_U\in\mathfrak C_U\), and the terminal allocation and payoff record. Then
 \[
 \Gamma_o^{U,R_U}
 =\operatorname{Law}_o
- (x,\mu(x),b_U(x),\text{pass/reject},\zeta_U,\omega_{\mathrm{term}})
+ (x,\mu(x),b_U(x),\text{pass/reject},\xi_U,\omega_{\mathrm{term}})
 \in\mathcal P(Z_U).
 \]
 Let \(q_U:Z_U\to Z_U/G\) send every record to the selected representative
