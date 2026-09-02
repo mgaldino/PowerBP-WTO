@@ -648,7 +648,12 @@ Roadmap detalhado em `quality_reports/2026-04-29_lean_v5_roadmap.md`. Resumo:
 
 - **Valor da pie dependente da presença do hegemon** (decisão do autor,
   2026-09-01): paper próprio modelando o que os fracos perdem quando H sai do
-  acordo — a pie aumenta/diminui com a membership de H. Motivação: o baseline
+  acordo — a pie aumenta/diminui com a membership de H. **Projeto criado**:
+  `/Users/manoelgaldino/Documents/DCP/Papers/PowerPieDependent/`, com
+  `toy_model.md` (Codex, 2026-09-01). Resultado do toy: complementaridade sem
+  outside option deixa H valioso mas sem ameaça crível — captura nada salvo
+  quando propõe. Hipótese de trabalho do autor: a combinação forum shopping +
+  contribuição à pie; decidir depois se são dois ou três papers. Motivação: o baseline
   mostra que outside option (forum shopping) é poder pequeno porque a saída de
   H não custa nada aos outros; o poder grande, nos termos de Steinberg, é
   tamanho de mercado, que opera pelo valor do acordo para os demais — canal
