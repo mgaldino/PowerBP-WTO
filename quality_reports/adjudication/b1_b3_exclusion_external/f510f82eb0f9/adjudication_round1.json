@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "b1_b3_exclusion_external:f510f82eb0f9:round1",
+  "source": {
+    "reviewed_artifact": "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md",
+    "sha256": "f510f82eb0f9f6e3e7cc8a59a6d26724cea3cff7ee53da2d1eabdbb3c3264665",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "CHATGPT-WEB-B1-B3-EXTERNAL",
+      "path": "quality_reports/external_reviews/2026-09-01_consulta_tecnica_chatgpt_web_b1_b3_exclusion.md",
+      "sha256": "cae750f8d5cc6e8fdab68d07d1d9fe7eb08050a8e43642396dc78c2e8cbeac3c"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "M1",
+      "source_review": "CHATGPT-WEB-B1-B3-EXTERNAL",
+      "quoted_finding": "Finding M1 — o lema omite uma premissa necessária para preservar os votos fracos. Evidência: manter x_j fixo não preserva, em geral, a ação de um jogador cuja estratégia pode depender do pacote inteiro. Aqui a conclusão é verdadeira somente porque a disciplina de voto e as continuações majoritárias implicam um limiar fraco independente de x_H: zero no terminal e w=beta/m em Round 1. Correção mínima: inserir essa independência antes do passo de preservação dos votos e alterar a frase final para reconhecer também essa propriedade.",
+      "type": "logic_or_proof",
+      "severity": "MINOR",
+      "scientific_dimension": "mechanism_and_proof",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md:67-89",
+        "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md:101-103",
+        "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md:64-65",
+        "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md:109-112",
+        "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md:184-185"
+      ],
+      "defect_evidence": [
+        "A prova, nas linhas 80-83, infere que os votos fracos não mudam apenas porque as alocações próprias x_j não mudam; essa inferência requer que a resposta fraca seja independente dos demais componentes da proposta, do voto de H e da posterior.",
+        "As linhas 101-103 afirmam que o lema usa apenas não negatividade, restrição agregada e especificidade de x_H. Isso é literalmente incompleto: o argumento também usa a forma belief-free dos limiares fracos nas duas aplicações.",
+        "A regra necessária é verdadeira no modelo: no terminal, o limiar é zero; em Round 1 sob maioria, é w=beta/m. A omissão é local e não invalida o desvio nem qualquer fórmula downstream."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "nl -ba quality_reports/2026-09-01_b1_b3_exclusion_derivation.md | sed -n '64,112p' confirmou a inferência não justificada localmente e a frase final excessivamente restrita.",
+        "nl -ba formal_model_v6.Rmd | sed -n '1378,1382p' confirmou que a regra geral as-if-pivotal depende da continuação, de modo que a independência belief-free precisa ser invocada nas aplicações majoritárias."
+      ],
+      "reasoning": "O memorando contém em outras seções as propriedades que tornam a conclusão verdadeira, mas o lema se apresenta como autossuficiente e sua frase de minimalidade exclui uma hipótese efetivamente utilizada. O defeito é expositivo-lógico, delimitado e sem efeito sobre a validade substantiva do desvio.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Reparar somente o memorando candidato: declarar, antes da preservação dos votos, que nas aplicações terminal-majoritária e Round-1-majoritária a resposta fraca depende apenas de sua própria alocação relativamente a 0 ou w=beta/m, e incluir essa propriedade na frase que enumera as hipóteses do lema. Não alterar fórmulas, resultados ou o manuscrito neste gate."
+    },
+    {
+      "finding_id": "M2",
+      "source_review": "CHATGPT-WEB-B1-B3-EXTERNAL",
+      "quoted_finding": "Finding M2 — a desigualdade k<=m não demonstra que a maioria pode excluir H. Evidência: há apenas m-1 respondedores fracos, pois o proponente é um dos m Estados fracos. A condição necessária é k<=m-1, verdadeira para m>=3. Correção mínima: substituir a justificativa vigente por uma contagem explícita de m-1 respondedores e k=floor((m+1)/2)<=m-1.",
+      "type": "logic_or_proof",
+      "severity": "MINOR",
+      "scientific_dimension": "implementation_fidelity",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "formal_model_v6.Rmd:1388-1394",
+        "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md:45-50",
+        "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md:109-112",
+        "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md:163-180",
+        "reports/chatgpt_pro_packets/2026-09-01_b1_b3_exclusion_external_review_packet.md:40-43"
+      ],
+      "defect_evidence": [
+        "No manuscrito vigente, formal_model_v6.Rmd:1390-1391 usa k<=m para concluir passagem sem H. Essa desigualdade não demonstra que os k votos adicionais podem ser obtidos entre os apenas m-1 respondedores fracos.",
+        "A contagem correta é k<=m-1 para m>=3 e deve aparecer quando B.1 for migrada, para que a prova de passagem sem H não conte implicitamente o próprio H."
+      ],
+      "refuting_evidence": [
+        "O artefato adjudicado é o memorando, não os bytes deliberadamente ainda inconsistentes do manuscrito; o pacote externo declara expressamente que o manuscrito não foi migrado e não deve ser tratado como corrigido.",
+        "O memorando define m>=3 e k=floor((m+1)/2), afirma corretamente que há respondedores suficientes e sua redação candidata elimina a desigualdade inadequada k<=m. Portanto M2 não identifica erro na derivação nem nos bytes do candidato, mas um requisito de implementação futura.",
+        "Por paridade: se m=2r com r>=2, k=r<=2r-1=m-1; se m=2r+1 com r>=1, k=r+1<=2r=m-1. A propriedade vale em todo o domínio."
+      ],
+      "mechanical_checks": [
+        "nl -ba formal_model_v6.Rmd | sed -n '1388,1394p' confirmou a ocorrência vigente de 'Because k<=m'.",
+        "rg -n -F 'Because \\(k\\leq m\\)' reports/chatgpt_pro_packets/2026-09-01_b1_b3_exclusion_external_review_packet.md localizou o trecho antigo reproduzido no pacote, não no memorando candidato.",
+        "O caso de fronteira m=3 produz k=2=m-1; a demonstração por paridade cobre todos os m>=3."
+      ],
+      "reasoning": "O diagnóstico matemático é correto para a B.1 vigente, mas a conclusão do parecer externo de que esse ponto retira PASS dos bytes do memorando mistura dois objetos. O manuscrito foi mantido intencionalmente sem migração. A parte confirmada de M2 é um reparo obrigatório e seguro apenas quando a migração de B.1 for autorizada.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Encaminhar à futura migração de B.1: substituir a contagem antiga por m-1 respondedores e k<=m-1 para m>=3. Não alterar o memorando por motivo de correção matemática e não editar o manuscrito antes da autorização de migração."
+    },
+    {
+      "finding_id": "M3",
+      "source_review": "CHATGPT-WEB-B1-B3-EXTERNAL",
+      "quoted_finding": "Finding M3 — o parágrafo de redução subsequente em B.3 não deve permanecer literalmente inalterado. Evidência: depois da correção, o limiar de aceitação de um H não pivotal é o, não beta o; a proposta ótima, porém, elimina x_H integralmente por dominância. Os limiares beta ell e beta h se aplicam apenas ao ramo pivotal n_Y=k-1. Correção mínima: separar na transição a dominância x_H=0 no ramo n_Y>=k da redução aos limiares no ramo pivotal.",
+      "type": "scope_or_consistency",
+      "severity": "MINOR",
+      "scientific_dimension": "implementation_fidelity",
+      "held_decision": false,
+      "status": "PARTIAL",
+      "source_locations": [
+        "formal_model_v6.Rmd:1430-1440",
+        "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md:243-248",
+        "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md:287-307",
+        "reports/chatgpt_pro_packets/2026-09-01_b1_b3_exclusion_external_review_packet.md:40-43"
+      ],
+      "defect_evidence": [
+        "Depois da futura substituição da abertura de B.3, manter formal_model_v6.Rmd:1437-1439 literalmente permitiria ler 'relevant type threshold' como aplicável também à classe não pivotal, quando nessa classe o argumento correto é a eliminação estrita x_H=0.",
+        "A transição do manuscrito deve distinguir dominância não pivotal de redução ao limiar pivotal para transportar fielmente a derivação."
+      ],
+      "refuting_evidence": [
+        "O memorando já faz a distinção correta em sua Seção 6.4: reduzir x_H ao 'limiar pivotal aplicável' e tratar a concessão não pivotal positiva como estritamente eliminada.",
+        "A Seção 6.5 não autoriza incondicionalmente conservar o restante: ela condiciona sua permanência à revisão independente. O pacote também informa que o manuscrito ainda contém texto antigo intencionalmente.",
+        "Logo o finding não revela falha na derivação candidata; revela uma instrução necessária para a etapa separada de migração."
+      ],
+      "mechanical_checks": [
+        "nl -ba formal_model_v6.Rmd | sed -n '1428,1441p' confirmou a transição vigente potencialmente ambígua.",
+        "nl -ba quality_reports/2026-09-01_b1_b3_exclusion_derivation.md | sed -n '243,307p' confirmou que o memorando já separa o limiar pivotal de beta o e a dominância não pivotal em x_H=0."
+      ],
+      "reasoning": "M3 está correto como requisito de fidelidade da futura migração, mas não como defeito matemático dos bytes adjudicados. O memorando fornece a lógica correta e deixou a conservação do texto corrente condicionada ao gate que agora identificou precisamente essa frase.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Na futura migração de B.3, substituir também a primeira frase da redução aos candidatos, separando x_H=0 por dominância quando n_Y>=k dos limiares beta ell e beta h quando n_Y=k-1. Não alterar fórmulas ou classes."
+    },
+    {
+      "finding_id": "M4",
+      "source_review": "CHATGPT-WEB-B1-B3-EXTERNAL",
+      "quoted_finding": "Finding M4 — a justificativa sobre crenças cobre apenas o ramo que passa. Evidência: em n_Y>=k não há continuação após o ballot; em n_Y<=k-2 a proposta fracassa, o voto de H pode alterar a posterior e a invariância decorre de a maioria terminal produzir os mesmos resultados e payoffs para toda posterior admissível. Correção mínima: completar a célula da tabela com os dois casos.",
+      "type": "exposition",
+      "severity": "MINOR",
+      "scientific_dimension": "beliefs_and_scope",
+      "held_decision": false,
+      "status": "REFUTED",
+      "source_locations": [
+        "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md:235-241",
+        "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md:315-323"
+      ],
+      "defect_evidence": [],
+      "refuting_evidence": [
+        "A Seção 6.3 declara expressamente que, quando n_Y<=k-2, a proposta falha, ambos os votos entregam a mesma continuação beta o e essa continuação é independente da crença.",
+        "A tabela da Seção 7 já contém uma linha separada para n_Y<=k-2, dizendo que a resposta é explicitada porque a continuação terminal-majoritária é igual após os dois votos.",
+        "Na linha sobre crenças, a frase 'não há continuação após uma proposta que já passou' é verdadeira e deliberadamente limitada ao ramo que passou; ela não afirma que propostas fracassadas não têm continuação."
+      ],
+      "mechanical_checks": [
+        "nl -ba quality_reports/2026-09-01_b1_b3_exclusion_derivation.md | sed -n '235,241p;309,324p' confirmou que os dois ramos e suas justificativas aparecem no memorando."
+      ],
+      "reasoning": "O parecer propõe uma síntese mais autocontida na célula da tabela, mas a suposta lacuna substantiva não existe. A justificação do ramo que fracassa já está explícita na derivação e em linha própria do quadro. Trata-se de melhoria expositiva opcional, não de defeito.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Não encaminhar M4 como correção obrigatória. A frase adicional pode ser adotada opcionalmente para tornar a tabela autossuficiente, sem alegar reparo matemático ou alteração da disciplina de crenças."
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "confirmed": 1,
+    "partial": 2,
+    "refuted": 1,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "READY_FOR_IMPLEMENTATION",
+    "checked_at": "2026-09-02T00:29:13-03:00",
+    "reasons": [
+      "M1 confirma um reparo local, seguro e sem efeito downstream no memorando candidato.",
+      "As partes confirmadas de M2 e M3 são requisitos delimitados da futura migração do manuscrito, não defeitos matemáticos do memorando.",
+      "M4 é refutado como defeito e permanece apenas como melhoria expositiva opcional.",
+      "Os hashes do artefato, parecer e pacote conferem, o manifesto do pacote passou integralmente e não há finding material não resolvido."
+    ]
+  }
+}
