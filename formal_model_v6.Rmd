@@ -29,7 +29,7 @@ bibliography: references.bib
 link-citations: true
 keywords: "International organizations, unanimity rule, legislative bargaining, private information, hegemonic power, informational rents"
 abstract: |
-  International organizations combine formally equal votes with large inequalities in bargaining power. This paper isolates one channel through which that combination can favor a hegemon. In a two-round benchmark, only weak states propose and a hegemon privately knows whether its disagreement payoff is low or high. Majority permits a proposer to replace the hegemon with uninformed weak-state votes, while unanimity makes its privately informed approval indispensable. Comparing each private game with its public-type counterpart separates the value of a necessary vote from type-specific informational rent. The institutional ranking is conditional and the maintained pure-strategy correspondence is empty in some belief regions. We then add an earlier, mandatory stage in which the informed hegemon proposes. Public agenda power can favor either rule: majority has an advantage when the outside option is low, while unanimity can gain when the outside option makes majoritarian delay attractive. Under private information, the structural causal contrast of agenda is a correspondence and decomposes as \(T=D+I\), where \(D\) is the complete-information agenda effect and \(I\) is its interaction with informational rent. Agenda weakly benefits both types under unanimity wherever both arms exist; no general sign is imposed under majority. The analysis preserves linked type vectors, empty cells, and equilibrium multiplicity. It shows how veto indispensability, agenda power, and private information jointly shape the distributive value of formally equal approval rules.
+  Why can unanimity benefit a powerful state when every member has the same veto? This paper studies a two-round bargaining game in which only weak states propose and a hegemon privately knows whether its disagreement payoff is low or high. Majority allows weak states to replace the hegemon's vote; unanimity makes its approval indispensable. Relative to a public-information benchmark, unanimity transfers informational rent to the low-outside-option type, while majority can eliminate that rent through exclusion. Some beliefs admit no equilibrium in the maintained pure-ballot class. An extension lets the hegemon propose first. Agenda power benefits it under unanimity, but majority can still be better when the outside option is low relative to the weak votes a winning coalition can exclude. The model offers a rationalist account of unequal bargaining power under formally equal rules.
 ---
 
 \newpage
@@ -117,15 +117,18 @@ state's, proposers assemble winning coalitions entirely from uninformed states
 and its informational rent is exactly zero. Under unanimity, the hegemon's
 approval is an essential input: proposals pool at the strong type's threshold,
 and the rent accrues to the hegemon whose strength is overstated.
+Weak states cannot distinguish the two types, so they offer enough to satisfy
+the high outside option. The low type accepts the same package and keeps the
+difference as informational rent. The baseline also has a region of beliefs
+with no equilibrium in the maintained class of pure ballot strategies; no
+institutional payoff comparison is made in that region.
 
-Secondly, reintroducing proposal power to the informed hegemon pays the
-familiar proposer rent---exactly \(1-\beta\) under unanimity---but casts an
-informational shadow: the agenda stage weakly erodes the informational rent,
-the strong type can fall below its complete-information benchmark, and when
-\(\beta h < e/m\) majority strictly dominates for both types. The case for
-consensus therefore runs through information: in identified regions, the
-informational rent is the only component pointing toward unanimity, and it can
-more than offset the majority's public advantage.
+The second contribution reintroduces proposal power for the informed hegemon.
+Moving first gives the hegemon the familiar agenda rent under unanimity, but
+also changes the value of its private information. Majority benefits both
+types when the hegemon's outside option is low relative to the share of weak
+states that a winning coalition can leave out. In those cases, only the
+informational rent can reverse the public-information advantage of majority.
 
 Section \ref{example} works a numerical case. Section \ref{model} defines the
 game and solution concept. Section
@@ -232,33 +235,18 @@ comparison.
 
 ## Private information and the price of approval
 
-Piazolo and Vanberg offer the closest dynamic comparison
-[@piazolo2025legislative]. A fixed, uninformed proposer bargains for two periods
-with responders who privately know their disagreement values. Rejection in the
-first period can signal that a responder is expensive. Under unanimity, that
-reputation improves the responder's continuation offer; under majority, it can
-lead to exclusion from the next coalition. Their result establishes the
-comparative root on which this paper builds: toughness is rewarded when a vote
-is indispensable and punished when the voter can be replaced. It also predicts
-visible bargaining friction, because rejection carries the signal.
+Two recent models identify neighboring mechanisms that the present analysis
+does not claim as new. Piazolo and Vanberg show how the voting rule changes the
+signaling value of rejection in a dynamic game [@piazolo2025legislative].
+Glynia, Thum, and Xefteris show how it changes an uninformed proposer's
+insurance problem when responders privately know their acceptance costs
+[@glynia2026unanimity]. In both settings, every winning coalition still
+contains an informed responder.
 
-Glynia, Thum, and Xefteris close the dynamic channel
-[@glynia2026unanimity]. Their proposer makes one offer without knowing the
-acceptance costs of symmetric responders. The relevant choice is between a
-costly package that insures against high types and a cheaper gamble that buys
-only enough low-cost votes. Unanimity can induce the safe package, while
-majority can induce the gamble. This mechanism can raise approval under
-unanimity or raise total transfers under majority, reversing familiar rankings
-without learning through delay.
-
-These papers establish mechanisms that the present analysis should not claim as
-new. Piazolo and Vanberg show how the voting rule changes the signaling value of
-rejection. Glynia, Thum, and Xefteris show how it changes the proposer's
-insurance problem. The present paper changes the organization of private
-information. One asymmetric actor, the hegemon, is informed; the weak states
-that can substitute for it are not. Majority can therefore bypass the only
-private information relevant to the proposed payment. Unanimity makes that
-information unavoidable.
+The present paper instead concentrates private information in one asymmetric
+actor. The weak states that can substitute for the hegemon are uninformed.
+Majority can therefore bypass the only private information relevant to the
+proposed payment, whereas unanimity makes that information unavoidable.
 
 The distinction produces two results absent from the neighboring models. First,
 the approval rule acts as an on-off switch for the informed participant rather
@@ -269,31 +257,38 @@ pooling region, that rent can arise through immediate agreement, without an
 on-path rejection. The paper therefore studies who receives the surplus when
 the only privately informed actor moves from replaceable to indispensable.
 
-Related models of incomplete-information bargaining examine majority-only
-screening, cheap talk, reputational toughness, and informational loss
-[@tsai2009evaluation; @tsaiYang2010majoritarian;
+Related models examine majority-only screening, cheap talk, reputational
+toughness, informational loss, and the aggregation of signals distributed
+across voters [@tsai2009evaluation; @tsaiYang2010majoritarian;
 @chenEraslan2013informational; @chenEraslan2014rhetoric;
-@ma2023efficiency]. Informational voting models ask how votes aggregate signals
-distributed across voters [@feddersenPesendorfer1998convicting]. Here weak
-states hold no private signals about the hegemon. The institutional comparison
-operates through coalition composition and the price of one actor's privately
-known participation constraint.
+@ma2023efficiency; @feddersenPesendorfer1998convicting]. Here weak states hold
+no private signals about the hegemon. The institutional comparison operates
+through coalition composition and the price of one privately informed
+actor's participation.
 
 # A working numerical illustration {#example}
 
-Consider one hegemon and four weak states. The unit pie is bargained over with
-discount factor \(0.9\). The two disagreement payoffs are \(0.10\) and
-\(0.35\). In the terminal unanimity round, a proposer chooses between an offer
-accepted only by the low outside option and an offer accepted under either
-outside option. The cutoff probability of the high outside option is
+Consider one hegemon and four weak states, with discount factor \(0.9\), low
+and high disagreement payoffs \(0.10\) and \(0.35\), and probability \(0.80\)
+of the high payoff. The terminal unanimity cutoff is
 \[
 p^*=\frac{0.35-0.10}{1-0.10}=0.2778.
 \]
-At a belief of \(0.20\), the proposer offers \(0.10\) and accepts the risk of
-failure when the outside option is high. At a belief of \(0.35\), it offers
-\(0.35\) and both outside-option values accept. This is a working numerical illustration, not an empirical
-calibration. The full two-round game adds the option to buy weak-state votes
-and the continuation created by a failed first ballot.
+The corresponding majority screening--exclusion cutoff is \(0.2935\). At the
+stated probability, private majority therefore excludes the hegemon, whereas
+private unanimity pools and gives both types \(0.315\).
+
+The public payoff vectors under majority and unanimity are, respectively,
+\((0.09,0.35)\) and \((0.09,0.315)\). The private vectors are
+\((0.10,0.35)\) and \((0.315,0.315)\). Private information is consequently
+worth \((0.01,0)\) under majority and \((0.225,0)\) under unanimity. Consensus
+raises the low type's informational rent by \(0.215\) because weak states must
+pay the high threshold when they cannot replace the hegemon's vote.
+
+For beliefs strictly between zero and \(0.2778\), the unanimity game has no
+equilibrium in the maintained pure-ballot class. The worked values illustrate
+one point at which both institutional correspondences exist; they are not an
+empirical calibration.
 
 # The model {#model}
 
@@ -1646,35 +1641,6 @@ intervals is not attainable.
 Where \(0<p\leq p^*\), the private unanimity correspondence is empty.
 Accordingly, \(V_U^B\), \(IR_U^B\), and \(\Delta IR^B\) are empty. No payoff,
 sign, institutional ranking, or interpolation is assigned to that cell.
-
-## C.3 Worked values {-}
-
-Return to \(m=4\), \(k=2\), \(\beta=0.9\), \(\ell=0.10\), and
-\(h=0.35\). Besides \(p^*=0.2778\), the majority screening--exclusion
-cutoff is
-\[
-p_{S=E}
-=\frac{0.9(0.25-0.10)}
-{0.9(0.25-0.10)+1-0.9(3/4)}
-=0.2935.
-\]
-At \(p=0.80\), majority excludes and unanimity pools. The public payoff
-vectors are
-\[
-v_M^B=(0.09,0.35),\qquad v_U^B=(0.09,0.315),
-\]
-while the private payoff vectors are
-\[
-V_M^B=(0.10,0.35),\qquad V_U^B=(0.315,0.315).
-\]
-Therefore
-\[
-IR_M^B=(0.01,0),\qquad IR_U^B=(0.225,0),\qquad
-\Delta IR^B=(0.215,0).
-\]
-These numbers illustrate one point where the low type is publicly included
-and the high type excluded; they do not average over
-parameter values or estimate a real institution.
 
 # Appendix D: Notation {-}
 
