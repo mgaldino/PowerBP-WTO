@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "b1_b3_manuscript_integration:7de0b2eddc20:round1",
+  "source": {
+    "reviewed_artifact": "formal_model_v6.Rmd",
+    "sha256": "7de0b2eddc20b98509f8fa37a299860f83164b7469097598532aa5cbfbd7a2a7",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "R1",
+      "path": "quality_reports/2026-09-02_b1_b3_manuscript_game_theory_review.md",
+      "sha256": "6a0e1ca9ad56f8c5dac608e109c92c24a03355bb0383657c122628a830a1a578"
+    },
+    {
+      "review_id": "R2",
+      "path": "quality_reports/2026-09-02_b1_b3_manuscript_visual_writing_review.md",
+      "sha256": "90b6a2cd709863196e149d156747e1931932adbd9985663c1bb8473cd1f83225"
+    }
+  ],
+  "findings": [],
+  "summary": {
+    "total": 0,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "NO_CONFIRMED_DEFECTS",
+    "checked_at": "2026-09-02T07:00:36-03:00",
+    "reasons": [
+      "The Rmd, PDF, approved derivation memorandum, and both independent reviews match their declared SHA-256 boundaries.",
+      "The schema 1.0 contract object remains required=false because the approved Markdown derivation is a textual normative comparator rather than an argument-contract JSON; its path, hash, and full substance were nevertheless verified in the Markdown record.",
+      "The exact diff from the annotated pre-migration tag contains only the authorized B.1 and B.3 proof changes, the rebuilt PDF, and the migration records.",
+      "Direct reconstruction confirms the quota, strict deviation, three n_Y cases, timing, beliefs, four candidates, cutoffs, tie-breaks, multiplicities, and unchanged B.2-B.6 dependencies.",
+      "Independent structural, textual, and visual checks confirm that the 67-page PDF is intact and corresponds to the adjudicated Rmd.",
+      "Both reviews report PASS 0/0/0, and no confirmed, partial, or material unresolved defect remains within the integration scope."
+    ]
+  }
+}
