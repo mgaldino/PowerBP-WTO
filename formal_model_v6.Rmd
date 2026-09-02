@@ -1387,11 +1387,19 @@ off-path proposals.
 
 In terminal majority, a weak responder's disagreement value is zero, so any
 nonnegative allocation induces yes under the indifference-to-yes convention.
-Because \(k\leq m\), the
-proposer can pass without \(H\), set every payment to zero, and keep one.
-\(H\) is nonpivotal and strictly votes no because no yields \(x_H+o\) rather
-than \(x_H\). Moving any positive \(x_H\) to the proposer leaves passage unchanged,
-so equilibrium exclusion has \(x_H=0\) and \(H\) receives \(o\).
+There are \(m-1\) weak responders, and
+\(k=\lfloor(m+1)/2\rfloor\leq m-1\) for \(m\geq3\); their votes can
+therefore pass the proposal without \(H\). At any such proposal, a
+nonpivotal \(H\) votes yes exactly when \(x_H\geq o\): yes yields \(x_H\),
+whereas no yields \(o\). Yet every \(x_H>0\) is strictly suboptimal for the
+proposer. If \(H\) votes no, \(x_H\) is paid to no one; if \(H\) votes yes,
+it is paid for a vote that is unnecessary for passage. In either case,
+setting \(x_H=0\) and assigning that amount to the proposer preserves every
+weak responder's allocation and ballot, preserves passage, and raises the
+proposer's payoff by \(x_H\). Positive payments to weak responders can
+likewise be reduced to zero without changing their ballots. Hence the unique
+equilibrium outcome has \(x_H=0\), zero payments to every weak responder, the
+proposer keeps the unit pie, and \(H\) votes no and receives \(o\).
 
 In terminal unanimity, every weak responder accepts zero and \(H\) accepts
 exactly when \(x_H\geq o\). The proposer therefore sets \(x_H=o\).
@@ -1428,15 +1436,28 @@ At equality the low offer gives \(H\) the lower expected payoff and is selected.
 ## B.3 Proof of Proposition \ref{prop:majority} {-}
 
 A responding weak state votes yes exactly when \(x_j\geq w=\beta/m\).
-Let \(n_Y\) be the number of such responders. If \(n_Y\geq k\), the weak votes
-pass the proposal without \(H\); both types of \(H\) vote no and receive
-\(x_H+o\). If \(n_Y=k-1\), \(H\) is pivotal and a type with outside option
-\(o\) votes yes exactly when \(x_H\geq\beta o\). If \(n_Y\leq k-2\), the proposal
-fails regardless of \(H\)'s vote.
+This threshold is independent of the posterior and of \(H\)'s vote because a
+weak state's terminal-majority continuation is always \(1/m\). Let \(n_Y\)
+be the number of such responders. If \(n_Y\geq k\), the weak-state votes pass
+the proposal without \(H\). A nonpivotal type with outside option \(o\) then
+votes yes exactly when \(x_H\geq o\): yes yields \(x_H\), whereas no yields
+\(o\). Nevertheless, every \(x_H>0\) in this class is strictly suboptimal for
+the proposer. Moving \(x_H\) to the proposer's own allocation preserves the
+weak-state votes and passage and raises the proposer's payoff by \(x_H\).
+Hence the optimal exclusion candidate sets \(x_H=0\); both types then vote no
+and receive their outside options. If \(n_Y=k-1\), \(H\) is pivotal and a type
+with outside option \(o\) votes yes exactly when \(x_H\geq\beta o\), because
+no leads to the terminal-majority continuation. If \(n_Y\leq k-2\), the
+proposal fails regardless of \(H\)'s vote; the two ballot actions deliver the
+same terminal-majority continuation, so the indifference-to-yes convention
+selects yes.
 
-Within each acceptance class, reducing weak payments to \(w\), reducing \(x_H\)
-to the relevant type threshold, and assigning the remaining pie to the
-proposer weakly increases its payoff. This leaves four candidates: exclusion
+The preceding dominance argument leaves only \(x_H=0\) in the class
+\(n_Y\geq k\). In the pivotal class \(n_Y=k-1\), weak payments can be reduced
+to \(w\) and \(x_H\) to \(\beta\ell\) or \(\beta h\), according to the
+desired acceptance set; proposals in the remaining class deliver delay.
+Assigning the remaining pie to the proposer weakly increases its payoff. This
+leaves four candidates: exclusion
 with payoff \(\Pi_E\), screening with payoff \(\Pi_S(p)\), pooling with payoff \(\Pi_P\),
 and deliberate delay with payoff \(w\). Exclusion is always feasible and
 \[
