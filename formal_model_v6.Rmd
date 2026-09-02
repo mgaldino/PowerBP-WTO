@@ -817,50 +817,9 @@ On the residual segment, the exact attainable set is
 \(\{\lambda(\beta h-\ell,-(1-\beta)h):\lambda\in[0,1]\}\) over the surviving proposal weights.
 \end{proposition}
 
-\begin{longtable}{p{0.11\linewidth}p{0.43\linewidth}p{0.36\linewidth}}
-\caption{Exact informational-rent correspondences and institutional contrast}
-\label{tab:rents}\\
-\toprule
-Object & Cell & Exact set \\
-\midrule
-\endfirsthead
-\toprule
-Object & Cell & Exact set \\
-\midrule
-\endhead
-\(IR_M^B\) & Both types included, screening & \(\{(0,0)\}\) \\
-\(IR_M^B\) & Both types included, pooling & \(\{(\beta(h-\ell),0)\}\) \\
-\(IR_M^B\) & Both types included, exclusion &
-\(\{((1-\beta)\ell,(1-\beta)h)\}\) \\
-\(IR_M^B\) & Both types included, exclusion--pooling segment &
-\(\{\lambda((1-\beta)\ell,(1-\beta)h)+(1-\lambda)(\beta(h-\ell),0)\}\) \\
-\(IR_M^B\) & Low included, high excluded, screening & \(\{(0,-(1-\beta)h)\}\) \\
-\(IR_M^B\) & Low included, high excluded, exclusion & \(\{((1-\beta)\ell,0)\}\) \\
-\(IR_M^B\) & Both types excluded, exclusion & \(\{(0,0)\}\) \\
-\midrule
-\(IR_U^B\) & \(p=0\) & \(\{(0,0)\}\) \\
-\(IR_U^B\) & \(0<p\leq p^*\) & \(\varnothing\) \\
-\(IR_U^B\) & \(p>p^*\) & \(\{(\beta(h-\ell),0)\}\) \\
-\midrule
-\(\Delta IR^B\) & \(p=0\), both types included & \(\{(0,0)\}\) \\
-\(\Delta IR^B\) & \(p=0\), low included, high excluded & \(\{(0,(1-\beta)h)\}\) \\
-\(\Delta IR^B\) & \(p=0\), both types excluded & \(\{(0,0)\}\) \\
-\(\Delta IR^B\) & \(0<p\leq p^*\), every public region & \(\varnothing\) \\
-\(\Delta IR^B\) & \(p>p^*\), both types included, screening & \(\{(\beta(h-\ell),0)\}\) \\
-\(\Delta IR^B\) & \(p>p^*\), both types included, pooling & \(\{(0,0)\}\) \\
-\(\Delta IR^B\) & \(p>p^*\), both types included, exclusion &
-\(\{(\beta h-\ell,-(1-\beta)h)\}\) \\
-\(\Delta IR^B\) & \(p>p^*\), both types included, exclusion--pooling segment &
-\(\{\lambda(\beta h-\ell,-(1-\beta)h):\lambda\in[0,1]\}\) \\
-\(\Delta IR^B\) & \(p>p^*\), low included, high excluded, screening &
-\(\{(\beta(h-\ell),(1-\beta)h)\}\) \\
-\(\Delta IR^B\) & \(p>p^*\), low included, high excluded, exclusion & \(\{(\beta h-\ell,0)\}\) \\
-\(\Delta IR^B\) & \(p>p^*\), both types excluded, exclusion & \(\{(\beta(h-\ell),0)\}\) \\
-\bottomrule
-\end{longtable}
-
-In every segment row, \(\lambda\in[0,1]\) is restricted to the proposal weights
-that survive the tie-break and binds all payoff and outcome components.
+In every residual-segment case, \(\lambda\in[0,1]\) is restricted to the
+proposal weights that survive the tie-break and binds all payoff and outcome
+components.
 
 The sign pattern is transparent once each component is kept separate. Above
 the unanimity cutoff, the low type gains \(\beta(h-\ell)>0\) when majority screens because
@@ -2450,7 +2409,7 @@ I_g
 =IR_g^A-\beta IR_g^B.
 \]
 For majority, the applicable no-agenda records are the three public regions
-written in words in Table \ref{tab:rents}; no general sign is inferred.
+used in Proposition \ref{prop:rents}; no general sign is inferred.
 
 Under unanimity:
 \[
@@ -2522,93 +2481,5 @@ selection-free claim requires the entire exact correspondence to lie on the
 relevant side of the threshold. We do not promote the six later advisory
 corollaries to frozen theorems. The exact result remains the source
 correspondence and its declared domain.
-
-# Appendix G: Rationalist crosswalk for the WTO application {-}
-
-\begin{longtable}{p{0.25\linewidth}p{0.25\linewidth}p{0.16\linewidth}p{0.25\linewidth}}
-\caption{WTO practices, strategic primitives, and scope}\label{tab:steinbergfull}\\
-\toprule
-Practice & Strategic translation & Primitive & Qualification and relation to
-the model \\
-\midrule
-\endfirsthead
-\toprule
-Practice & Strategic translation & Primitive & Qualification and relation to
-the model \\
-\midrule
-\endhead
-Green Room, Quad, Washington and Brussels meetings &
-Restricted agenda coalition & Recognition and proposal protocol &
-Familiar de facto agenda power; removed from the baseline and restored in the
-extension \\
-Drafting, brackets, secretariat texts, hard-to-amend packages &
-Control of proposal, amendment rule, or textual reversion &
-Proposal and amendment protocol &
-Mostly agenda power under a closed rule; a separate drafting mechanism would
-require alternative amendment procedures \\
-Market size &
-Better alternatives and possibly greater patience &
-\(o\in\{\ell,h\},\beta\) &
-Microfoundation for asymmetric disagreement; patience asymmetry remains
-outside the model \\
-Absolute reciprocity &
-Metric for exchanged concessions &
-Contract metric &
-Not an independent asymmetry without market-size or adjustment-cost
-differences \\
-Sanctions, alternative forums, preferential clubs, selective blocking &
-Credible changes in continuation values &
-Disagreement payoff and commitment &
-Microfoundation for outside-option power; a non-credible threat would require
-another commitment device \\
-Side payments, exceptions, transition periods &
-Targeted compensation at reservation values &
-Feasible contract space &
-Represented by the divisible unit pie; does not determine who keeps the
-residual \\
-Issue linkage and multidimensional packages &
-Cross-dimensional compensation &
-Contract space &
-Supports the transferable-surplus approximation without making every issue
-literally divisible \\
-Single undertaking &
-Linked package and closed acceptance choice &
-Contract space and closure rule &
-Distinct from destruction of GATT 1947 as a fallback \\
-U.S. and EC withdrawal from GATT 1947 &
-Lower value of rejecting the WTO package &
-Disagreement payoffs &
-Historically specific manipulation of the status quo; not a constitutive
-feature of the single undertaking \\
-Proposals, objections, working groups, and verification &
-Observable responses may reveal reservation values &
-Information structure &
-Steinberg generally has information flow from weak members to agenda setters;
-the model reverses that direction \\
-Acquiescence and estoppel &
-Finality or continuing objection as fixed by the procedure &
-Voting, amendment, and timing &
-Not an independent mechanism: any loss of a future right to object must be
-part of the rule \\
-Retribution, trust, and reputation &
-Present action changes future beliefs or punishment &
-Repeated interaction &
-Outside the two-round model; not inserted as an ad hoc one-shot cost \\
-Formal equality and legitimacy &
-Consent may change ratification, compliance, or participation &
-Implementation and domestic politics &
-Complementary mechanism outside the unitary-actor model \\
-Consensus &
-Every approval is indispensable; majority supplies substitutes &
-Approval threshold &
-The institutional primitive isolated in the baseline \\
-\bottomrule
-\end{longtable}
-
-This table is a rationalist reconstruction by the author, not a formal model
-attributed to Steinberg. It groups observed practices by the strategic object
-they change. It also preserves three distinctions: acquiescence is part of
-the voting and amendment protocol, reputation requires future interaction,
-and the single undertaking does not itself destroy the GATT 1947 fallback.
 
 # References {-}
