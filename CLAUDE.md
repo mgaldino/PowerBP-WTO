@@ -646,8 +646,32 @@ Roadmap detalhado em `quality_reports/2026-04-29_lean_v5_roadmap.md`. Resumo:
 
 ## Papers Futuros
 
-- **Erosão endógena**: Jogo repetido, fracos investem para aprender V(θ). Projeto separado.
-- **Heterogeneidade**: Outside options heterogêneas, potências médias. Movido para `/Users/manoelgaldino/Documents/DCP/Papers/heterogeneous-informational-power/`.
+- **Valor da pie dependente da presença do hegemon** (decisão do autor,
+  2026-09-01): paper próprio modelando o que os fracos perdem quando H sai do
+  acordo — a pie aumenta/diminui com a membership de H. Motivação: o baseline
+  mostra que outside option (forum shopping) é poder pequeno porque a saída de
+  H não custa nada aos outros; o poder grande, nos termos de Steinberg, é
+  tamanho de mercado, que opera pelo valor do acordo para os demais — canal
+  deliberadamente desligado neste paper (pie fixa, alternativa eliminada para
+  o baseline; NÃO reabrir aqui). O v6 deve ANUNCIAR essa extensão como future
+  work na Conclusion/Discussion. Distinto da extensão b_θ (benefício de
+  membership do próprio H, registro P2 de 2026-08-21): aqui o objeto é a perda
+  dos FRACOS. Nota: `notes/2026-09-01_escopo_exit_power_exemplos_do_autor.md`.
+- **Erosão endógena**: Jogo repetido; a renda informacional dá aos fracos
+  incentivo a investir para aprender o_θ (expertise, monitoramento), erodindo
+  por dentro o poder informacional do hegemon — a instituição de consenso
+  cultiva a própria decadência. Parágrafo cortado da Discussion do v5 em
+  2026-04-26; projeto separado. (Notação antiga "aprender V(θ)" atualizada
+  para o_θ em 2026-09-01.)
+- **Heterogeneidade**: Movido para `/Users/manoelgaldino/Documents/DCP/Papers/heterogeneous-informational-power/`.
+  ATENÇÃO (2026-09-01): o registro daquele projeto é de abril, sobre a
+  arquitetura antiga (α_i privado para todos, V(S) endógeno, discriminação
+  estatística) e SOBREPÕE o paper novo do valor da pie (V(S) endógeno inclui a
+  presença de H). Redefinição enxuta indicada pelo autor em 2026-09-01: só uma
+  potência média M com 0 < o_M, provavelmente o_M < ℓ, sobre o baseline
+  atual; decidir lá se o_M é público ou privado (privado = dois informados,
+  quebra deliberada do fundamento do ator único). Atualizar o CLAUDE.md
+  daquele projeto em sessão dedicada.
 
 ## Convenções
 
