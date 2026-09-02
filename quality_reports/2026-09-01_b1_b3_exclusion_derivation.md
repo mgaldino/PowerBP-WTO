@@ -1,12 +1,18 @@
 # Derivação candidata — B.1/B.3 sob a regra de exclusão mutuamente exclusiva
 
-**Status:** IMPLEMENTER CANDIDATE — UNREVIEWED — UNFROZEN
+**Status:** REPAIRED CANDIDATE — NEW BYTES PENDING INDEPENDENT REVIEW — UNFROZEN
 
 **Manuscrito:** NÃO ALTERADO por este memorando
 
 **Branch:** `codex/exclusion-proof-b1-b3`
 
 **HEAD de abertura:** `e10bf08e1f994705b64430e60328cbdd952f01d4`
+
+**Boundary anterior:** SHA-256
+`f510f82eb0f9f6e3e7cc8a59a6d26724cea3cff7ee53da2d1eabdbb3c3264665`,
+com dois pareceres internos `PASS 0/0/0`. A consulta externa posterior foi
+adjudicada em
+`quality_reports/adjudication/b1_b3_exclusion_external/f510f82eb0f9/`.
 
 ## 1. Mandato e limite
 
@@ -71,6 +77,12 @@ proponente e de pelo menos `k` respondedores fracos, de modo que o voto de `H`
 não seja necessário. Qualquer proposta dessa classe com `x_H>0` é
 estritamente subótima para o proponente.
 
+Nas duas aplicações do lema, o voto de cada respondedor fraco depende apenas
+de sua própria alocação. Na maioria terminal, seu limiar é zero. Na maioria de
+Round 1, seu limiar é `w=beta/m`, pois a continuação terminal-majoritária de um
+Estado fraco é `1/m` e independe da crença, de `x_H`, da alocação do proponente
+e do voto de `H`.
+
 **Prova.** Fixe uma proposta `x` dessa classe com `x_H>0`. Construa `x'` por
 
 \[
@@ -78,9 +90,10 @@ x'_H=0,\qquad x'_i=x_i+x_H,\qquad x'_j=x_j\quad(j\neq i,H),
 \]
 
 onde `i` é o proponente. A soma das alocações não muda, portanto `x'` é
-factível. As alocações e os votos dos respondedores fracos não mudam; seus
-votos continuam bastando para aprovar a proposta. Uma eventual mudança do
-voto de `H` também não muda a aprovação.
+factível. A alocação de cada respondedor fraco permanece fixa e, pelos
+limiares próprios e independentes descritos acima, seu voto também não muda.
+Seus votos continuam bastando para aprovar a proposta. Uma eventual mudança
+do voto de `H` também não muda a aprovação.
 
 Sob `x`, há duas possibilidades. Se `H` vota não, `x_H` não é pago e o
 proponente recebe `x_i`. Se `H` vota sim, `H` recebe `x_H`, embora seu voto seja
@@ -98,9 +111,11 @@ Uma formulação verbal clara do argumento é:
 > manter a proposta aprovada. Portanto, nessa classe de propostas, todo
 > `x_H>0` é estritamente subótimo para o proponente.
 
-O lema usa apenas não negatividade, a restrição agregada da pie e a
-especificidade de `x_H`. Não introduz cap sobre `x_H` nem requer que a pie seja
-exaurida fora do caminho.
+O lema usa não negatividade, a restrição agregada da pie, a especificidade de
+`x_H` e o fato de que, nas duas aplicações majoritárias, cada voto fraco segue
+um limiar próprio independente dos demais componentes da proposta e da
+crença. Não introduz cap sobre `x_H` nem requer que a pie seja exaurida fora do
+caminho.
 
 ## 5. B.1 — benchmark de tipo público
 
@@ -108,8 +123,9 @@ exaurida fora do caminho.
 
 O valor de desacordo de um respondedor fraco é zero. A regra de sim na
 indiferença implica voto sim para toda alocação não negativa, inclusive zero.
-Como há respondedores fracos suficientes para satisfazer a quota sem `H`, o
-proponente pode aprovar oferecendo zero a todos eles.
+Há `m-1` respondedores fracos e
+`k=floor((m+1)/2)<=m-1` para `m>=3`; portanto, seus votos bastam para aprovar
+sem `H`, e o proponente pode oferecer zero a todos eles.
 
 Quando os votos fracos já bastam, `H` é não pivotal e compara:
 
@@ -166,23 +182,28 @@ O texto abaixo é apenas candidato para migração futura, depois dos gates:
 
 > In terminal majority, a weak responder's disagreement value is zero, so any
 > nonnegative allocation induces yes under the indifference-to-yes convention.
-> The weak-state votes can therefore pass the proposal without \(H\). At any
-> such proposal, a nonpivotal \(H\) votes yes exactly when \(x_H\geq o\): yes
-> yields \(x_H\), whereas no yields \(o\). Yet every \(x_H>0\) is strictly
-> suboptimal for the proposer. If \(H\) votes no, \(x_H\) is paid to no one;
-> if \(H\) votes yes, it is paid for a vote that is unnecessary for passage.
-> In either case, setting \(x_H=0\) and assigning that amount to the proposer
-> preserves passage and raises the proposer's payoff by \(x_H\). Hence the
-> unique equilibrium outcome has \(x_H=0\), the proposer keeps the unit pie,
-> and \(H\) votes no and receives \(o\).
+> There are \(m-1\) weak responders, and
+> \(k=\lfloor(m+1)/2\rfloor\leq m-1\) for \(m\geq3\); their votes can
+> therefore pass the proposal without \(H\). At any such proposal, a
+> nonpivotal \(H\) votes yes exactly when \(x_H\geq o\): yes yields \(x_H\),
+> whereas no yields \(o\). Yet every \(x_H>0\) is strictly suboptimal for the
+> proposer. If \(H\) votes no, \(x_H\) is paid to no one; if \(H\) votes yes,
+> it is paid for a vote that is unnecessary for passage. In either case,
+> setting \(x_H=0\) and assigning that amount to the proposer preserves every
+> weak responder's allocation and ballot, preserves passage, and raises the
+> proposer's payoff by \(x_H\). Positive payments to weak responders can
+> likewise be reduced to zero without changing their ballots. Hence the unique
+> equilibrium outcome has \(x_H=0\), zero payments to every weak responder,
+> the proposer keeps the unit pie, and \(H\) votes no and receives \(o\).
 
 Os demais parágrafos atuais de B.1 podem permanecer, pois seus preços de voto,
 comparações e desempates são os rederivados acima.
 
 ## 6. B.3 — maioria privada em Round 1
 
-Um respondedor fraco vota sim exatamente quando `x_j >= w`. Fixada uma
-proposta, há três classes exaustivas.
+Um respondedor fraco vota sim exatamente quando `x_j >= w`. Esse limiar é
+independente da crença e do voto de `H`, porque sua continuação sob maioria
+terminal é sempre `1/m`. Fixada uma proposta, há três classes exaustivas.
 
 ### 6.1 Caso `n_Y >= k`: `H` não pivotal
 
@@ -242,10 +263,12 @@ do caminho, mas não cria uma nova classe de resultado.
 
 ### 6.4 Redução aos candidatos e comparação
 
-Dentro de cada classe relevante, reduzir pagamentos fracos a `w`, reduzir
-`x_H` ao limiar pivotal aplicável e atribuir o resíduo ao proponente aumenta
-fracamente — e, para uma concessão não pivotal positiva, estritamente — o
-payoff do proponente. Permanecem exatamente quatro candidatos:
+O argumento de dominância precedente deixa apenas `x_H=0` na classe
+`n_Y>=k`. Na classe pivotal `n_Y=k-1`, pagamentos fracos podem ser reduzidos a
+`w` e `x_H` a `beta ell` ou `beta h`, conforme o conjunto de tipos que se
+pretende fazer aceitar. Propostas na classe restante produzem delay. Atribuir
+ao proponente o resíduo aumenta fracamente seu payoff. Permanecem exatamente
+quatro candidatos:
 
 \[
 \Pi_E=1-kw,
@@ -287,7 +310,9 @@ inalterados.
 ### 6.5 Texto inglês candidato para a abertura de B.3
 
 > A responding weak state votes yes exactly when \(x_j\geq
-> w=\beta/m\). Let \(n_Y\) be the number of such responders. If
+> w=\beta/m\). This threshold is independent of the posterior and of \(H\)'s
+> vote because a weak state's terminal-majority continuation is always
+> \(1/m\). Let \(n_Y\) be the number of such responders. If
 > \(n_Y\geq k\), the weak-state votes pass the proposal without \(H\). A
 > nonpivotal type with outside option \(o\) then votes yes exactly when
 > \(x_H\geq o\): yes yields \(x_H\), whereas no yields \(o\). Nevertheless,
@@ -302,9 +327,16 @@ inalterados.
 > terminal-majority continuation, so the indifference-to-yes convention
 > selects yes.
 
-O restante da prova atual de B.3 pode permanecer somente se a revisão
-independente confirmar que suas fórmulas e afirmações de multiplicidade não
-dependem implicitamente da regra antiga.
+Na futura migração, o parágrafo seguinte deve começar com a transição:
+
+> The preceding dominance argument leaves only \(x_H=0\) in the class
+> \(n_Y\geq k\). In the pivotal class \(n_Y=k-1\), weak payments can be
+> reduced to \(w\) and \(x_H\) to \(\beta\ell\) or \(\beta h\), according to
+> the desired acceptance set; proposals in the remaining class deliver delay.
+
+Depois dessa transição, as quatro fórmulas candidatas, as comparações, os
+cutoffs e as afirmações de multiplicidade podem permanecer como no texto
+vigente.
 
 ## 7. O que muda e o que não muda
 
@@ -384,10 +416,23 @@ independente de B.1/B.3 e não recebe PASS deste memorando.
 7. Há multiplicidade adicional em propostas ótimas, crenças ou respostas que
    invalide a alegação de invariância?
 
-## 10. Gate atual
+## 10. Consulta externa e reparo adjudicado
 
-Este documento não emite PASS e não congela nenhuma prova. O próximo gate é
-obter dois pareceres independentes, um de design formal e outro game-teórico
-adversarial, sobre bytes fixados por SHA-256. Somente depois da adjudicação
-desses pareceres será preparado o pacote para consulta externa. Nenhuma tag,
-migração para o manuscrito, merge ou push é autorizada por este memorando.
+A consulta técnica externa no hash
+`cae750f8d5cc6e8fdab68d07d1d9fe7eb08050a8e43642396dc78c2e8cbeac3c`
+propôs quatro findings menores. A adjudicação independente decidiu:
+
+| Finding | Decisão | Implementação neste candidato |
+|---|---|---|
+| M1 | `CONFIRMED` | O lema agora declara a independência dos limiares de voto fracos e deixa de afirmar que usa apenas três propriedades. |
+| M2 | `PARTIAL` | O texto candidato de B.1 agora demonstra `k<=m-1` e elimina pagamentos positivos aos respondedores. |
+| M3 | `PARTIAL` | A transição candidata de B.3 agora separa dominância não pivotal de limiares pivotais. |
+| M4 | `REFUTED` | Nenhuma mudança: a Seção 6.3 e a tabela da Seção 7 já distinguem passagem terminal de falha com continuação belief-free. |
+
+## 11. Gate atual
+
+Este documento reparado não emite PASS e não congela nenhuma prova. Como seus
+bytes diferem do boundary anterior, o próximo gate é obter dois novos
+pareceres independentes, um de design formal e outro game-teórico adversarial,
+sobre seu novo SHA-256, seguidos de adjudicação. Nenhuma tag, migração para o
+manuscrito, merge ou push é autorizada por este memorando.
