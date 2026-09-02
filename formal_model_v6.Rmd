@@ -879,7 +879,10 @@ Suppose first that \(o\) is public before \(H\) proposes. Under
 unanimity, \(H\) buys every weak vote at its continuation price and agreement
 is immediate. Under majority, it buys a minimal coalition when passage is
 better than continuation, but a type with a sufficiently high outside option
-may deliberately induce rejection. The resulting payoffs at date \(A\) are
+may deliberately induce rejection.
+
+\begin{proposition}[Public agenda payoffs and institutional gap]\label{prop:agenda-public}
+The resulting payoffs at date \(A\) are
 \[
 v_U^A(o)=1-\beta+\beta^2o
 \]
@@ -925,6 +928,11 @@ negative; for \(o>1/m\), the sign of \(\Delta v^A(o)\) is the sign of
 unanimity. If \(\beta h<e/m\), majority gives both types a strictly larger
 payoff; equality yields a weak ranking. Above that boundary, the public
 component can itself point toward unanimity.
+\end{proposition}
+
+Appendices E.6--E.8 derive the public equilibrium classes and the sign
+characterization. The result shows that proposal power alone does not produce
+a uniform institutional ranking.
 
 \begin{figure}[H]
 \centering
@@ -959,7 +967,9 @@ Information & .0000 & .5480 & +.5480 \\
 \caption{Public power and an informational reversal. Panel A reports the exact
 sign boundary for \(\Delta v^A(o)\). Panel B uses one linked member with
 \(m=4\), \(\beta=.90\), \(\ell=.10\), \(h=.90\), and \(p=.95\);
-the unanimity value is the lower endpoint of its admissible pooling interval.
+the higher value \(h=.90\), rather than the running example's \(h=.35\), is
+used because an informational reversal requires \(\beta h>e/m\). The
+unanimity value is the lower endpoint of its admissible pooling interval.
 The numbers are a theoretical illustration, not an empirical calibration or a
 global ranking of the correspondence.}
 \label{fig:agendagap}
@@ -1009,7 +1019,10 @@ The affine average is applied only after preserving the linked type vector.
 If either source is empty in the common fiber, the comparison is empty.
 
 The exact correspondence may remain set-valued, but one selection-free region
-is available. For every nonempty common fiber, if
+is available.
+
+\begin{proposition}[Selection-free majority advantage]\label{prop:agenda-majority}
+Fix a nonempty common fiber. If
 \[
 \beta h<\frac{e}{m},
 \]
@@ -1018,10 +1031,14 @@ then, for both types and ex ante,
 V_U^A(o)-V_M^A(o)\leq
 -\beta\left(\frac{e}{m}-\beta h\right)<0.
 \]
-At equality the same ranking is weak. This condition is sufficient, not
-necessary. It follows from the lower bound \(V_M^A(o)\geq v_M^{\mathrm{safe}}\) and
+At equality the same ranking is weak.
+\end{proposition}
+
+This condition is sufficient, not necessary. It follows from the lower bound
+\(V_M^A(o)\geq v_M^{\mathrm{safe}}\) and
 the upper bound \(V_U^A(o)\leq v_U^A(h)\); outside it, the full
 correspondence determines the ranking.
+Appendix E.5 gives the setwise comparison and a counterexample to necessity.
 
 ## Public power, informational rents, and type incidence
 
@@ -1040,11 +1057,16 @@ majority, the decomposition is
 The same identity holds ex ante after applying the affine map to the same
 linked vector.
 
-The incidence under unanimity is exact. In every existing fiber,
+\begin{proposition}[Informational-rent incidence under unanimity]\label{prop:agenda-incidence}
+In every existing unanimity fiber,
 \(IR_U^A(\ell)\geq0\), \(IR_U^A(h)\leq0\), and at least one inequality is
-strict. Positive informational rent belongs to the low type, which can receive
-a concession designed for the high type. The high type receives no such
-premium and may lose relative to its public benchmark. When
+strict.
+\end{proposition}
+
+Positive informational rent belongs to the low type, which can receive a
+concession designed for the high type. The high type receives no such premium
+and may lose relative to its public benchmark. Appendix E.9 reports the exact
+cellwise translations. When
 \(\Delta v^A(\ell)<0\), public information favors majority for the low type.
 If a comparable private member nevertheless has \(\Delta V^A(\ell)>0\), then
 member by member
@@ -1098,10 +1120,17 @@ Formally,
 D_g(o)=v_g^A(o)-\beta v_g^B(o),\qquad
 T_g(o)=V_g^A(o)-\beta V_g^B(o),
 \]
-and for every complete record in which both arms exist,
+
+\begin{proposition}[Agenda-effect decomposition]\label{prop:agenda-decomposition}
+For every complete record in which both arms exist,
 \[
 \boxed{T_g(o)=D_g(o)+I_g(o)}.
 \]
+Under unanimity, \(T_U\) weakly benefits both types wherever both arms exist.
+\end{proposition}
+
+Appendix E.11 derives the identity by substituting the informational-rent
+definition in both arms. Appendix E.13 reports the exact unanimity cells.
 This is a structural causal contrast inside the model, not an empirically
 identified estimand. Under multiplicity it is a correspondence of admissible
 contrasts.
@@ -1125,8 +1154,7 @@ continuation as the control. The first branch applies at \(o=1/m\); the
 frozen continuation selection creates a downward jump in \(D_M\) immediately
 to its right. The threshold \(o_M^*\) can lie outside \(o\in(0,1)\).
 
-Under private unanimity, \(T_U\) weakly benefits each type wherever both arms
-exist, with exact cells reported in Appendix E. Under private majority,
+Under private majority,
 \[
 T_M=D_M+I_M
 \]
@@ -2019,7 +2047,9 @@ V_U^A(o)-V_M^A(o)\leq-\beta\left(\frac{e}{m}-\beta h\right)<0
 for both types and ex ante. Equality yields weak majority advantage.
 This proves sufficiency only.
 
-The condition is not necessary. With
+The condition is not necessary. The following separate parameter point is
+chosen to demonstrate that failure of necessity, rather than to replace the
+running illustration. With
 \[
 m=4,\ k=2,\ e=2,\ \beta=.9,
 \ell=.5,\ h=.6,\ p=0,
