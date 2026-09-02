@@ -341,8 +341,9 @@ otherwise identical across rules.
 If a proposal passes, its allocations are implemented among the parties to
 the agreement. If \(H\) votes yes, it is a party and receives \(x_H\). If
 \(H\) votes no but a majority passes the proposal without it, \(H\) is not a
-party: it receives its outside option \(o\), and the share \(x_H\), which no
-non-party can claim, accrues to the proposer's residual. Agreement and
+party: it receives its outside option \(o\), and the share \(x_H\) is paid to
+no one, because the concession is specific to \(H\) and cannot be transferred
+to another player. Agreement and
 disagreement payoffs are therefore mutually exclusive at every history. In
 every equilibrium exclusion derived below the proposer chooses \(x_H=0\), and
 the hegemon receives exactly \(o\).
@@ -363,8 +364,9 @@ payoff represents the cost of prolonging international negotiations.
 \toprule
 Event & Weak-state payoffs & \(H\) votes yes & \(H\) votes no \\
 \midrule
-Proposal passes & Proposed \(x_j\), including \(x_i\); after an \(H\) no, the
-proposer also receives the reverted \(x_H\) & \(x_H\) & \(o\) \\
+Proposal passes & Proposed \(x_j\), including \(x_i\) & \(x_H\) & the outside
+option \(o\) alone; \(x_H\) is paid to no one, so the total distributed falls
+below one when \(x_H>0\) \\
 Round-1 proposal fails & No current payoff; proceed to Round 2 &
 \(\beta C_H(\mathfrak h^Y)\) & \(\beta C_H(\mathfrak h^N)\) \\
 Round-2 proposal fails & Zero & \(o\) & \(o\) \\
@@ -1343,18 +1345,15 @@ For a proposal \(x=(x_H,x_1,\ldots,x_m)\), let \(a_H\in\{Y,N\}\) and let the wea
 responders' votes be \(a_{-i}\). The proposer votes yes. If the quota is met,
 the proposal is implemented among the parties. Each weak respondent receives
 \(x_j\), the proposer receives \(x_i\), and \(H\) receives \(x_H\) after yes;
-after no, \(H\) receives \(o\) and the unclaimed \(x_H\) accrues to the
-proposer's residual. If the quota is not met in Round 1, the public vote
+after no, \(H\) receives \(o\) and \(x_H\) is paid to no one. If the quota is
+not met in Round 1, the public vote
 vector leads to Round 2; every continuation payoff is then multiplied by
 \(\beta\). If the quota is not met in Round 2, weak states receive zero and
 \(H\) receives \(o\).
 
 Agreement and disagreement payoffs are mutually exclusive at every history:
 no history pays a player both an allocation from the pie and an outside
-option. The reversion branch is off-path bookkeeping, not an equilibrium
-description: proposals that differ only in an \(x_H\) that reverts are
-payoff-equivalent for every player, and we report the representative with
-\(x_H=0\). All equilibrium exclusions pay \(H\) exactly \(o\).
+option. All equilibrium exclusions pay \(H\) exactly \(o\).
 
 ## A.2 Beliefs and ballot restrictions {-}
 
@@ -1390,11 +1389,9 @@ In terminal majority, a weak responder's disagreement value is zero, so any
 nonnegative allocation induces yes under the indifference-to-yes convention.
 Because \(k\leq m\), the
 proposer can pass without \(H\), set every payment to zero, and keep one.
-\(H\) is nonpivotal: yes yields \(x_H\) and no yields \(o\), with the
-unclaimed \(x_H\) reverting to the proposer after a no. Any \(x_H<o\) induces
-no and is payoff-equivalent to \(x_H=0\) through the reversion, while any
-\(x_H\geq o\) induces yes and is strictly worse for the proposer. Equilibrium
-exclusion has \(x_H=0\) and \(H\) receives \(o\).
+\(H\) is nonpivotal and strictly votes no because no yields \(x_H+o\) rather
+than \(x_H\). Moving any positive \(x_H\) to the proposer leaves passage unchanged,
+so equilibrium exclusion has \(x_H=0\) and \(H\) receives \(o\).
 
 In terminal unanimity, every weak responder accepts zero and \(H\) accepts
 exactly when \(x_H\geq o\). The proposer therefore sets \(x_H=o\).
@@ -1432,9 +1429,8 @@ At equality the low offer gives \(H\) the lower expected payoff and is selected.
 
 A responding weak state votes yes exactly when \(x_j\geq w=\beta/m\).
 Let \(n_Y\) be the number of such responders. If \(n_Y\geq k\), the weak votes
-pass the proposal without \(H\); a type with outside option \(o\) votes yes
-only when \(x_H\geq o\), and after a no it receives \(o\) while the unclaimed
-\(x_H\) reverts to the proposer. If \(n_Y=k-1\), \(H\) is pivotal and a type with outside option
+pass the proposal without \(H\); both types of \(H\) vote no and receive
+\(x_H+o\). If \(n_Y=k-1\), \(H\) is pivotal and a type with outside option
 \(o\) votes yes exactly when \(x_H\geq\beta o\). If \(n_Y\leq k-2\), the proposal
 fails regardless of \(H\)'s vote.
 

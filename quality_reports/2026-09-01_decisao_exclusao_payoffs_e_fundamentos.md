@@ -56,3 +56,80 @@ Inseridos em CLAUDE.md e AGENTS.md com duas regras de operação: (1) toda propo
 | Contrato Gate 0 (y_bar, y+o) | `quality_reports/plans/2026-08-12_essential_input_gate0.md` (linhas 297, 301, 418, 502, 610–615) |
 | Vizinhos verificados em fonte primária | `references/modelo_similar_public_choice.pdf` (Seção 4 + fn. 12), `references/modelo_similar_geb.pdf` |
 | Análise de invariância e blast radius | conversa da sessão 2026-09-01 |
+
+---
+
+## EMENDA (2026-09-01, mais tarde no mesmo dia — decisão do autor)
+
+**O que muda.** O destino da fatia x_H quando H fica fora do acordo deixa de
+ser "reverte ao residual do proponente" e passa a ser: **a fatia não é paga a
+ninguém, porque a concessão é específica a H e não pode ser transferida a
+outro jogador**. Quando x_H > 0 nessa situação, a soma distribuída fica
+abaixo de 1.
+
+**Por que a reversão foi descartada.** (i) Sem microfundamentação: o
+proponente não tem título sobre uma concessão específica de terceiro — numa
+conferência internacional, o redator não embolsa o carve-out não utilizado de
+outro Estado. (ii) A reversão é, ela própria, uma cláusula contingente ao
+voto ("se H votar não, x_H passa a ser meu"), exatamente o que a decisão de
+2026-08-12 proibiu por princípio. (iii) A reversão criava famílias de
+propostas com payoffs idênticos (reservar 0.1 que reverte = reservar 0),
+exigindo uma frase auxiliar no Apêndice A dizendo qual representante as
+proposições descrevem — frase agora deletada por desnecessária.
+
+**Por que "não pagar a ninguém" não contradiz a pie fixa.** Pie fixa em 1
+significa a restrição de factibilidade (soma ≤ 1) mais a propriedade de
+equilíbrio de que a pie é exaurida no caminho — que é o que o manuscrito já
+diz ("exhausted on the equilibrium path"). Nada exige que toda proposta
+hipotética fora do caminho exaura a pie; a objeção de 2026-08-12 contra essa
+opção ("a pie encolheria") lia exaustão como identidade nó a nó, o que é
+leitura errada. A fatia não paga nunca ocorre em equilíbrio: reservar fatia
+positiva para quem não é necessário reduz o que o proponente pode ficar.
+
+**O que foi editado agora (somente definições do jogo, aprovadas item a item
+pelo autor):**
+1. Seção The model, parágrafo da proposta aprovada: "...the share x_H is paid
+   to no one, because the concession is specific to H and cannot be
+   transferred to another player."
+2. Tabela de protocolo, célula "H votes no": "o; x_H is paid to no one, so
+   the total distributed falls below one when x_H>0". Removida a nota de
+   reversão da coluna dos fracos.
+3. Apêndice A.1: "after no, H receives o and x_H is paid to no one"; deletada
+   a frase auxiliar sobre representante com x_H=0 (mantida a frase de
+   exclusão mútua e a frase pré-existente "All equilibrium exclusions pay H
+   exactly o").
+4. Fundamento nº 4 (CLAUDE.md/AGENTS.md): "alocação a não-parte não é paga a
+   ninguém — a concessão é específica ao ator e intransferível".
+
+**O que NÃO foi editado — provas seguem o protocolo editorial próprio.** O
+autor determinou que alterações em provas (Apêndice B) e qualquer afirmação
+nova sobre comportamento de equilíbrio ("o proponente prefere...") passam
+pelo processo editorial de provas: implementador distinto, revisão formal
+independente, mesmos passos das demais provas. Em consequência:
+
+- As edições que Fable fez em B.1 e B.3 na manhã de 2026-09-01 (que
+  introduziram a reversão nas provas) foram DESFEITAS: B.1 e B.3 voltaram ao
+  texto anterior à sessão, que usa a regra antiga x_H+o.
+- **AVISO DE INCONSISTÊNCIA TEMPORÁRIA**: até o processo editorial de provas
+  rodar, o manuscrito define o jogo com a regra nova (Seção The model, tabela
+  de protocolo, Apêndice A.1) enquanto as provas B.1 e B.3 mencionam a regra
+  antiga x_H+o em dois passos. NÃO circular nem submeter o manuscrito neste
+  estado. A tarefa está registrada no dashboard.
+
+**Texto candidato para o processo editorial de provas (entrada, não
+implementação; deve ser derivado e revisado independentemente):**
+
+- B.1, passo do H não-pivotal: "H is nonpivotal: yes yields x_H and no yields
+  o, and after a no the share x_H is paid to no one. Any x_H>0 therefore
+  strictly lowers the proposer's payoff, whether H accepts it or not.
+  Equilibrium exclusion has x_H=0 and H receives o."
+- B.3, caso n_Y ≥ k: "the weak votes pass the proposal without H; a type with
+  outside option o votes yes only when x_H ≥ o; after a no it receives o and
+  x_H is paid to no one."
+- Pontos que a derivação/revisão deve checar: (a) a regra de voto do H
+  não-pivotal muda de "sempre não" para "sim sse x_H ≥ o" (com sim na
+  indiferença exata, pela convenção de desempate) — verificar que nenhum
+  registro usa a regra antiga com x_H > 0; (b) sob a regra nova a dominância
+  de x_H=0 na exclusão é estrita, então as afirmações de unicidade de outcome
+  das proposições valem como escritas; (c) varrer o restante do Apêndice B por
+  menções remanescentes à regra antiga.

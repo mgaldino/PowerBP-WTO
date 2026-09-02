@@ -79,9 +79,9 @@ Unanimidade pode beneficiar H não apesar das restrições, mas por causa delas.
 > 4. **Payoffs de acordo e desacordo mutuamente exclusivos em todo
 >    histórico**: parte do acordo aprovado recebe sua alocação; quem está fora
 >    (H excluído por maioria, ou desacordo terminal) recebe sua outside option
->    e nada da pie; alocação a não-parte é inentregável e reverte ao residual
->    do proponente. NUNCA somar alocação e outside option (erro x_H+o do D1,
->    supersedido em 2026-09-01).
+>    e nada da pie; alocação a não-parte não é paga a ninguém — a concessão é
+>    específica ao ator e intransferível. NUNCA somar alocação e outside
+>    option (erro x_H+o do D1, supersedido em 2026-09-01).
 > 5. **Nenhuma restrição ao espaço de propostas** além de não-negatividade e
 >    x_H+Σx_j ≤ 1. Sem tetos (o parâmetro `\bar x_H`/`y_bar` foi deletado).
 > 6. **Pie fixa em 1** (surplus de clube dos membros); **outside option de H

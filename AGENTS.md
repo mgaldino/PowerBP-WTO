@@ -70,7 +70,8 @@ Formal theory paper on when consensus/unanimity can benefit a hegemon in interna
 >    history**: a party to a passed agreement receives its allocation; a
 >    non-party (H excluded under majority, or terminal disagreement) receives
 >    its outside option and nothing from the pie; an allocation to a non-party
->    is unclaimable and reverts to the proposer's residual. NEVER sum an
+>    is paid to no one — the concession is actor-specific and
+>    non-transferable. NEVER sum an
 >    allocation and an outside option (the D1 x_H+o error, superseded
 >    2026-09-01).
 > 5. **No restriction on the proposal space** beyond nonnegativity and
