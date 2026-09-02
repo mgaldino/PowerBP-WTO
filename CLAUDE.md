@@ -493,12 +493,22 @@ Sessões 2026-04-27b e 2026-04-29: RIO-1 a RIO-10 (Scope, Lit Review, provas B.1
 
 ## Puzzle central
 
-**Por que EUA aceitam consenso na OMC?** Três camadas:
-1. Por que não agenda control (H proposer exclusivo)? → Mata entrada (V_W = 0).
-2. Por que não maioria? → No benchmark histórico/No-Cheap-H, W exclui H, que
-   recebe só αV(θ), e não há screening; no clean reset, isso é alvo a
-   rederivar, não premissa.
-3. Por que unanimidade? → Screening. H abre mão de poder formal para amplificar poder informacional.
+**Por que EUA aceitam consenso na OMC?** Três camadas (atualizadas em
+2026-09-01 aos resultados congelados; a formulação anterior usava a
+parametrização histórica αV(θ) do modelo de pie variável e a margem de
+entrada do paper antigo — nenhuma das duas existe no v6):
+1. Por que não agenda control? → Na extensão M/S/B, agenda obrigatória para H
+   paga a renda de proponente (D_U = 1−β) mas lança sombra informacional
+   (I_U ≤ 0 em fibers de prior alto; IR_U^A(h) ≤ 0), e com βh < e/m maioria
+   domina estritamente para os dois tipos — agenda não é dominante. A resposta
+   antiga "mata entrada (V_W = 0)" pertence ao paper com custo de entrada.
+2. Por que não maioria? → Resultado congelado (prop:majority): quando
+   1/m < ℓ (região XX), maioria exclui H para todo prior; H recebe o_θ e a
+   informação privada vale exatamente zero (RI_M = (0,0)). A fórmula αV(θ) é
+   da parametrização histórica, não do baseline o_θ.
+3. Por que unanimidade? → Pooling sob pivotalidade: para p > p*, unanimidade
+   paga o threshold alto e o tipo baixo ganha d = β(h−ℓ) (RI_U = (d,0)).
+   Consenso preserva o canal informacional que nenhuma agenda compra.
 
 ## Compilação
 
