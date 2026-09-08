@@ -1,0 +1,77 @@
+{
+  "scope": "local readiness of conditional derivations, not author adoption or historical release",
+  "recorded_at": "2026-09-08T11:22:18.109711-03:00",
+  "nodes": [
+    {
+      "id": "implementation",
+      "depends_on": [],
+      "status": "pass",
+      "artifact_path": "interfaces/implementation.md",
+      "artifact_hash": "sha256:02d11cf68f3addc7733f49f649e99677a36123ca9acb41f82923d8ed8dcc8723",
+      "dependency_hashes": {}
+    },
+    {
+      "id": "R2_M",
+      "depends_on": [
+        "implementation"
+      ],
+      "status": "pass",
+      "artifact_path": "interfaces/R2_M.md",
+      "artifact_hash": "sha256:a7e757a39cfc161f0e5cc96b1fa1616176be90a586cdc40c66b49438f3a236b0",
+      "dependency_hashes": {
+        "implementation": "sha256:02d11cf68f3addc7733f49f649e99677a36123ca9acb41f82923d8ed8dcc8723"
+      }
+    },
+    {
+      "id": "R2_U",
+      "depends_on": [
+        "implementation"
+      ],
+      "status": "pass",
+      "artifact_path": "interfaces/R2_U.md",
+      "artifact_hash": "sha256:c31391611b0b63e53b54d62209b8719bd0a89d98793ab659bd437d38aeaa8768",
+      "dependency_hashes": {
+        "implementation": "sha256:02d11cf68f3addc7733f49f649e99677a36123ca9acb41f82923d8ed8dcc8723"
+      }
+    },
+    {
+      "id": "R1_M",
+      "depends_on": [
+        "R2_M"
+      ],
+      "status": "pass",
+      "artifact_path": "interfaces/R1_M.md",
+      "artifact_hash": "sha256:be318d2dfdda884c6a4b7576234fa91c3f53ad9a0e0c82a1f05bd118e1071908",
+      "dependency_hashes": {
+        "R2_M": "sha256:a7e757a39cfc161f0e5cc96b1fa1616176be90a586cdc40c66b49438f3a236b0"
+      }
+    },
+    {
+      "id": "R1_U",
+      "depends_on": [
+        "R2_U"
+      ],
+      "status": "pass",
+      "artifact_path": "interfaces/R1_U.md",
+      "artifact_hash": "sha256:ecc7878c20543c036681cf4cfb480908795872f81a06cbc46b8bb2a35a1e2ea4",
+      "dependency_hashes": {
+        "R2_U": "sha256:c31391611b0b63e53b54d62209b8719bd0a89d98793ab659bd437d38aeaa8768"
+      }
+    },
+    {
+      "id": "economic_transport",
+      "depends_on": [
+        "R1_M",
+        "R1_U"
+      ],
+      "status": "pass",
+      "artifact_path": "interfaces/economic_transport.md",
+      "artifact_hash": "sha256:163fcee078361af351579cf8df56abe406e6678fa9a0f4279ef87ca5daf14da5",
+      "dependency_hashes": {
+        "R1_M": "sha256:be318d2dfdda884c6a4b7576234fa91c3f53ad9a0e0c82a1f05bd118e1071908",
+        "R1_U": "sha256:ecc7878c20543c036681cf4cfb480908795872f81a06cbc46b8bb2a35a1e2ea4"
+      }
+    }
+  ],
+  "validation_boundary": "The manifest validates the logical dependency graph and exact serialized interfaces. It does not purport to reconstruct timestamps of informal proof discovery."
+}

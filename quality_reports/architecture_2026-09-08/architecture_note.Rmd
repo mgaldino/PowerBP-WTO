@@ -1,0 +1,637 @@
+---
+title: "H, aprovação e exercício da opção externa"
+subtitle: "Diagnóstico, arquitetura candidata e efeitos sobre os resultados"
+date: "8 de setembro de 2026"
+lang: pt-BR
+fontsize: 11pt
+geometry: margin=25mm
+output:
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    keep_tex: true
+    toc: true
+    number_sections: true
+header-includes:
+  - \usepackage{amsmath,amssymb,booktabs,longtable}
+  - \usepackage{float}
+  - \newcommand{\ind}{\mathbf{1}}
+  - \setlength{\emergencystretch}{3em}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+# Diagnóstico e contrato vigente
+
+## Resultado e alcance
+
+A racionalidade do proponente não completa, sozinha, os pagamentos de H após
+qualquer história factível. Ela exclui concessões desnecessárias de propostas
+ótimas, mas uma proposta ou um voto desviante ainda pode levar à aprovação
+com $x_H>0$ e voto não de H. Nesse ramo falta uma especificação econômica
+vigente que substitua o cancelamento histórico da parcela.
+
+Esta nota oferece uma arquitetura **condicional, ainda não adotada**, que
+separa o voto da execução: a concessão do clube e a alternativa externa
+exigem usos rivais de um recurso indivisível de H; um voto sim constitui
+compromisso de execução se a proposta passar; depois de um voto não seguido
+de aprovação, H pode escolher voluntariamente qual oportunidade executar.
+Nessa candidata, o valor desse último ramo é $\max\{x_H,o\}$, derivado da
+escolha de execução. Ele não é estipulado como cancelamento por voto não.
+
+Sob essas novas hipóteses e os desempates já aprovados, demonstramos a
+preservação dos votos prescritos, propostas ótimas e resultados econômicos
+do baseline em relação ao jogo histórico. A preservação não é identidade de
+jogos: a ação de execução é nova e alguns pagamentos após votos desviantes
+mudam. A validade das fórmulas históricas e a decisão de adotar a candidata
+são questões separadas do teorema de transporte aqui demonstrado.
+
+**Autorização desta tarefa:** diagnóstico e proposta fora do manuscrito,
+análise de repercussões e revisão independente. Nenhuma nova primitiva é
+incorporada ao artigo ou aos contratos congelados. A ausência de decisão
+autoral sobre a candidata não impede a avaliação de suas consequências
+condicionais. Também não se interpreta a aprovação desta análise como
+autorização para migrar o manuscrito.
+
+## Fontes e precedência
+
+O ponto de partida é o checkout \nolinkurl{codex/exposition-items20-28}, commit
+`c2ed929ff992` (checkpoint posterior à consulta inicial). O conteúdo do
+manuscrito conserva o SHA-256
+`6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411`.
+O registro integral de identidade está em \nolinkurl{sources/preflight.json}.
+
+Usamos as seguintes fontes do repositório, com precedência substantiva das
+decisões posteriores:
+
+- **S1:** `AGENTS.md`, fundamentos e protocolo vigentes.
+- **S2:** \nolinkurl{quality_reports/agents_maintenance_2026-09-05/architecture_clarification.md},
+  especialmente seções 1, 4 e 5; substitui o cancelamento primitivo.
+- **S3:** \nolinkurl{quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md},
+  decisões 1--3, Emenda 1a e errata de N2; junto de
+  \nolinkurl{quality_reports/2026-09-01_decisao_structural_consistency_baseline.md}.
+- **S4:** `formal_model_v6.Rmd`, seção 4 e apêndices A, B.1--B.4;
+  seus pagamentos históricos são objeto de diagnóstico, não regra atual
+  para o ramo que S2 deixou aberto.
+- **S5:** \nolinkurl{model_redesign/essential_input_n2_r2_unanimity_interface.json},
+  lido com a errata e sem o teto já eliminado; e os registros de N3/N4
+  em \nolinkurl{model_redesign/essential_input_solution_concept/}.
+- **S6:** \nolinkurl{quality_reports/plans/2026-08-29_emenda_extensao_agenda_markov_crencas.md}
+  e os resultados de maioria e unanimidade com agenda. Suas restrições
+  próprias não são importadas para o baseline.
+
+Os dois objetos comparados são distintos. $G_0$ denota o **jogo histórico
+com cancelamento**, usado exclusivamente como referência para transportar
+resultados. $G_*$ denota a **especificação vigente incompleta** no ramo
+contestado. $G_C$ denotará a candidata completa apresentada na seção 2.
+Não afirmamos que $G_*$ já seja igual a $G_0$ ou a $G_C$.
+
+## O que está fixado e o que falta
+
+Há $m\geq3$ Estados fracos e um hegemon H; somente H conhece seu tipo
+$o\in\{\ell,h\}$, com $0<\ell<h<1$. O prior inicial é $p\in[0,1]$.
+Cada rodada reconhece uniformemente um fraco, com reposição e sorteios
+independentes. A proposta $x$ tem componentes não negativas e soma no
+máximo um, sem teto adicional para $x_H$.
+
+O proponente conta como sim; os demais votam simultaneamente. A maioria
+exige $k=\lfloor(m+1)/2\rfloor$ votos além do proponente; unanimidade exige
+todos. O vetor se torna público depois da votação. Rejeição na primeira
+rodada leva à segunda; rejeição terminal paga zero aos fracos e $o$ a H.
+Uma continuação em unidades da segunda rodada é multiplicada por $\beta$
+uma única vez ao entrar na primeira, com $0<\beta<1$.
+
+Em qualquer aprovação, cada fraco recebe sua parcela, independentemente
+do voto. H recebe $x_H$ quando vota sim e a proposta passa. Sua opção
+externa está fora do excedente unitário e seu valor independe dos acordos
+dos outros. Não há externalidades, benefícios públicos, informação dos
+fracos, canal de sinalização dos fracos ou renda de reconhecimento de H.
+
+O conceito mantém votos puros; propostas podem ser sorteadas conforme as
+misturas admitidas pelo baseline. Fracos comparam valores esperados
+condicionais à pivotalidade; H compara seus próprios payoffs por tipo.
+$T^Y$ seleciona sim na indiferença em valor esperado pertinente. Entre
+propostas que empatam para o proponente, minimiza-se o payoff esperado de H.
+
+A proposta e os votos dos fracos não atualizam o tipo de H. Para cada
+votação e voto de H, Bayes é aplicado se o denominador for positivo; se
+for zero, o posterior é livre no suporte do prior inicial. Vetores que
+compartilham o voto de H compartilham esse posterior. Votações distintas
+podem usar valores livres distintos. Um posterior zero no interior não
+apaga um tipo do suporte inicial; num prior degenerado, não se ressuscita
+o tipo ausente. Esta nota verifica comparações por tipo, inclusive tipos
+com posterior corrente zero, sem atribuir-lhes peso positivo artificial.
+
+O campo aberto é o direito à concessão e o exercício da alternativa no
+ramo de aprovação com voto não de H. Nem a expressão “não participante”
+nem a otimalidade do proponente especificam esse campo.
+
+## Dois resultados que não precisam de uma nova arquitetura
+
+**Proposição D1 (limite da inferência por racionalidade).** Uma prova de
+que certas propostas não são ótimas não elimina as histórias que essas
+propostas gerariam, nem determina utilidades em seus nós terminais.
+
+*Demonstração.* Tome $m=4$, uma proposta com $x_H=1/5$, parcela $4/5$ ao
+proponente e zero aos demais, na segunda rodada. Todos os fracos votam
+sim pela comparação com zero e por $T^Y$, logo os fracos aprovam a
+proposta mesmo se H votar não. O proponente preferiria propor um para
+si, mas o vetor original pertence ao espaço de ações. Sua inferioridade
+não especifica o pagamento de H no terminal aprovado. Um desvio de voto
+dos fracos também pode tornar suficiente uma coalizão que não bastava
+sob os votos prescritos. Ambos os ramos continuam na árvore. $\square$
+
+**Proposição D2 (incompatibilidade condicional, não impossibilidade geral).**
+Se uma interpretação adicional exigir simultaneamente (i) transferência
+positiva de $x_H$ irrevogável após aprovação, mesmo com voto não; (ii)
+exercício independente da opção externa que paga $o>0$ sem usar recurso
+ou direito que impeça a transferência; e (iii) soma dos dois recebimentos,
+essa interpretação viola a ausência de acúmulo no ramo da Proposição D1.
+
+*Demonstração.* As condições adicionais pagam $x_H+o$ nesse ramo, com
+ambos os componentes positivos. Isso contradiz o requisito. A comparação
+com uma proposta melhor não altera os recebimentos dessa história. $\square$
+
+Essas três condições **não são todas fundamentos aprovados**. Portanto,
+D2 não prova que os oito fundamentos sejam conjuntamente impossíveis.
+Identifica o que uma interpretação de dinheiro incondicional e livre
+acesso externo não consegue entregar. A candidata seguinte demonstra
+uma possibilidade lógica mediante hipóteses econômicas adicionais;
+não demonstra que tais hipóteses já constavam do modelo.
+
+# Arquitetura candidata e demonstrações condicionais
+
+## Hipóteses adicionais, com conteúdo econômico
+
+A candidata tem três cláusulas indivisíveis como especificação matemática,
+mas sua aceitação autoral deve distinguir cada decisão:
+
+**A1. Concessão executável.** A parcela $x_H$ é o benefício que H pode
+realizar executando uma oportunidade específica do clube. Não é dinheiro
+já transferido e livremente retido antes da execução. Cada parcela
+permanece um compromisso específico ao destinatário, não negociável após
+a votação; os compromissos somam no máximo um. Os fracos recebem suas
+parcelas conforme a regra vigente. A execução por H não afeta seus
+pagamentos nem a aprovação do acordo dos outros.
+
+**A2. Recurso de execução rival e indivisível.** H dispõe de um único
+recurso de implementação. Executar a oportunidade do clube exige o
+recurso inteiro e produz $x_H$; executá-lo no melhor fórum alternativo
+exige o mesmo recurso inteiro e produz $o$. Não há empréstimo,
+duplicação, fracionamento ou execução das duas oportunidades em sequência
+dentro do terminal. O conjunto de usos é $\{C,O\}$.
+
+Um exemplo econômico abstrato é uma unidade indivisível de capacidade
+produtiva, própria de H, que pode operar um projeto financiado pelo clube
+ou um projeto em outro fórum. A unidade não é necessária aos benefícios
+dos fracos. Este é um exemplo da tecnologia proposta, sem alegação
+empírica sobre uma organização internacional específica. O valor externo
+continua independente dos acordos dos demais; a indisponibilidade resulta
+do uso do recurso pelo próprio H. A exclusividade é uma hipótese econômica
+nova e testável em aplicações, não uma consequência genérica de forum shopping.
+
+**A3. Compromisso e opção voluntária de execução.** Um sim de H compromete
+o recurso à oportunidade do clube, condicional à aprovação. Esse compromisso
+é executável e vinculante; se a votação fracassar, não vincula o recurso
+nem cria recebimento. Um não não compromete o recurso e não constitui
+saída antecipada. Se o pacote passar apesar do não, H observa o resultado
+e escolhe $C$ ou $O$; a oportunidade $x_H$ ainda está disponível. Se o
+pacote fracassar, segue-se o protocolo de continuação ou desacordo terminal.
+
+A escolha adicional não cria outra rodada de barganha, desconto, pagamento
+lateral ou comunicação antes da votação. Ela amplia o protocolo de
+implementação e o espaço de estratégias de H. A regra e a tecnologia são
+as mesmas sob maioria e unanimidade. No estágio de agenda já existente,
+H proponente conta como sim, logo a interpretação de compromisso deve
+também valer para esse sim automático se a candidata for adotada nessa extensão.
+
+O estoque de oportunidades é unitário e permanece fixo. Uma oportunidade
+não executada não retorna ao proponente e não vira benefício de outro
+jogador. Há capacidade contratada não utilizada depois de uma escolha de
+H. Isso precisa ser aceito como interpretação de **excedente disponível**:
+não se promete que o total realizado dentro do clube seja um em toda
+história. Nas propostas ótimas dos assessments considerados, a soma das
+alocações prometidas conserva o esgotamento histórico do orçamento. Não
+se afirma execução integral depois de desvios. A1 não pode ser usada para
+reinterpretar silenciosamente uma
+transferência monetária incondicional como benefício dependente de execução.
+
+\newpage
+
+## Histórias, informação e solução da execução
+
+| Nó | Quem age e o que observa | Ações e destino |
+|:---|:---|:---|
+| Proposta em rodada $t$ | Fraco reconhecido, história pública, crença corrente | Qualquer $x$ factível; votação |
+| Votação | Respondedores; mesma proposta e história; H também sabe $o$ | Votos simultâneos, proponente sim |
+| Aprovação, H sim | Compromisso de A3 executado | H realiza $x_H$; fracos recebem suas parcelas |
+| Aprovação, H não | H sabe seu tipo e vê o resultado | Escolhe $C$ ou $O$, depois terminal |
+| Fracasso em R1 | Sorteio futuro e agentes segundo o protocolo | R2; nenhum recebimento atual |
+| Fracasso em R2 | Não há nova decisão de barganha | Fracos zero; H $o$ |
+
+Table: (\#tab:histories) Histórias e decisões na arquitetura condicional. A escolha de execução só ocorre depois de aprovação com voto não de H.
+
+Nos terminais aprovados, defina os recebimentos efetivos do clube e do
+exterior por $r_C$ e $r_O$. Após sim, $(r_C,r_O)=(x_H,0)$. Após não:
+
+\[
+ (r_C,r_O)=
+ \begin{cases}(x_H,0),&a=C,\\(0,o),&a=O.\end{cases}
+ \tag{1}
+\]
+
+**Proposição C1 (ausência de acúmulo e escolha ótima).** Sob A1--A3,
+nenhuma história factível paga simultaneamente uma parcela positiva do
+clube e a opção externa. Depois de aprovação com voto não, a melhor
+resposta é $C$ quando $x_H>o$, $O$ quando $x_H<o$, e ambas quando
+$x_H=o$. Seu valor é $\max\{x_H,o\}$.
+
+*Demonstração.* Cada uso factível do recurso em (1) zera um dos
+recebimentos. Isso vale inclusive para uma escolha de execução subótima
+após quaisquer desvios anteriores. A comparação dos dois retornos dá a
+melhor resposta. Depois de fracasso, não há parcela do clube a somar;
+depois de sim, o recurso está comprometido ao clube. A prova usa a
+tecnologia indivisível e o compromisso, não a exclusão do voto não da
+árvore. $\square$
+
+Na igualdade da execução, mantemos a correspondência $\{C,O\}$; $T^Y$
+é desempate de **voto**, não desempate dessa nova decisão. Uma extensão
+canônica pode selecionar $C$ na igualdade para construir um representante,
+mas o teorema de transporte não depende dessa seleção.
+
+O efeito observável da nova arquitetura distingue-a do cancelamento:
+na proposta da Proposição D1, um H de tipo $o=1/10$ que tenha votado
+não escolhe $C$ e recebe $1/5$. No jogo histórico receberia $1/10$.
+Um H de tipo $o=7/20$ escolhe $O$ e recebe $7/20$. O primeiro voto não
+é um desvio em relação ao voto prescrito, e o pagamento depois desse
+desvio é justamente parte da especificação que precisava ser fechada.
+
+## Rodada terminal, antes de qualquer desconto
+
+Sob maioria, todos os fracos aceitam qualquer parcela não negativa.
+Existem $m-1\geq k$ respondedores fracos; os seus votos bastam. No nó
+de votação, H compara
+
+\[
+ U_C(Y)=x_H,\qquad U_C(N)=\max\{x_H,o\}.
+ \tag{2}
+\]
+
+Logo H vota sim exatamente quando $x_H\geq o$, por $T^Y$. Quando
+$x_H>o$, sim e não **empatam** na candidata, enquanto sim era
+estritamente melhor no jogo histórico. Quando $x_H<o$, não é
+estritamente melhor em ambos. A estratégia coincide; a comparação de
+utilidades não coincide em todos os casos.
+
+**Proposição C2 (R2 sob maioria).** A proposta ótima dá um ao proponente
+e zero aos demais. H vota não, escolhe o exterior e recebe $o$.
+Antes do reconhecimento, cada fraco recebe em expectativa $1/m$.
+Esses valores estão em unidades de R2, sem $\beta$.
+
+*Demonstração.* Essa proposta é factível e passa pelos votos dos fracos.
+Qualquer parcela positiva a H ou a outro fraco diminui o residual do
+proponente sem melhorar a aprovação, já garantida. Uma proposta com soma
+estritamente menor que um também admite aumento do residual. H escolhe
+o exterior pois $o>0=x_H$. O sorteio uniforme dá a cada fraco probabilidade
+$1/m$ de receber um. A conclusão independe da crença e vale em cada
+conjunto de informação de proposta. $\square$
+
+Sob unanimidade, o ramo aprovado com não de H é inviável pela quota,
+inclusive após desvios dos fracos. Assim, o jogo terminal é idêntico a
+$G_0$: cada fraco aceita zero e H aceita se $x_H\geq o$.
+Com crença corrente $\mu$, o proponente compara
+
+\[
+ (1-\mu)(1-\ell)\quad\hbox{e}\quad 1-h,
+ \qquad p^*=\frac{h-\ell}{1-\ell}.
+ \tag{3}
+\]
+
+O primeiro valor corresponde à oferta $\ell$, aceita apenas pelo tipo
+baixo; o segundo à oferta $h$. Uma oferta rejeitada por ambos dá zero e
+é inferior à oferta $h$. As demais ofertas podem ser reduzidas ao menor
+valor que preserva seu conjunto de aceitação. Seleciona-se $\ell$ para
+$\mu\leq p^*$, inclusive a igualdade pelo desempate do proponente; $h$
+para $\mu>p^*$. As continuações nativas são
+
+\[
+\begin{array}{c|c|c}
+& C_W^U(\mu)&(C_{H,\ell}^U(\mu),C_{H,h}^U(\mu))\\ \hline
+\mu\leq p^* &(1-\mu)(1-\ell)/m &(\ell,h)\\
+\mu>p^* &(1-h)/m &(h,h).
+\end{array}
+\tag{4}
+\]
+
+Esses vetores são por tipo; a coordenada de tipo com peso zero não
+recebe peso positivo na expectativa. Na informação pública, o tipo
+conhecido $o$ recebe exatamente $o$; cada fraco recebe $(1-o)/m$ antes
+do reconhecimento. Não se transporta $\beta$ para dentro de (2)--(4).
+
+## Primeira rodada sob maioria
+
+Consumimos agora a continuação fechada da Proposição C2. Cada fraco
+compara $x_j$ com $w=\beta/m$. A comparação é independente da crença,
+do voto de H e da identidade do proponente anterior. Portanto, em toda
+proposta, seu voto prescrito é sim se e somente se $x_j\geq w$.
+Seja $n_Y$ o número desses respondedores.
+
+| Contagem | Payoff de H ao votar sim | Payoff ao votar não | Voto prescrito |
+|:---|:---|:---|:---|
+| $n_Y\geq k$ | $x_H$ | $\max\{x_H,o\}$ | Sim sse $x_H\geq o$ |
+| $n_Y=k-1$ | $x_H$ | $\beta o$ | Sim sse $x_H\geq\beta o$ |
+| $n_Y\leq k-2$ | $\beta o$ | $\beta o$ | Sim por $T^Y$ |
+
+Table: (\#tab:majorityvotes) Valores de H em unidades de R1 e votos prescritos sob maioria. A contagem usa as estratégias puras dos fracos na proposta observada.
+
+Esta tabela resolve o voto de H contra as estratégias puras prescritas
+dos fracos; ela não supõe que H observe votos simultâneos antes de agir.
+O número é determinado pela proposta pública e pelas estratégias
+conhecidas. Se algum fraco efetivamente desviar, a escolha de execução
+usa o resultado público final conforme (1), cobrindo também esse terminal.
+
+**Proposição C3 (propostas ótimas e seleção de tipos).** Em qualquer
+conjunto de informação do proponente sob maioria, uma proposta ótima
+com $x_H>0$ não pode passar com H votando não quando os fracos seguem
+suas respostas prescritas. A conclusão vale por tipo, inclusive quando
+seu posterior corrente é zero.
+
+*Demonstração.* Se $n_Y\geq k$, substitua a proposta por
+$x'_H=0$, $x'_i=x_i+x_H$ e $x'_j=x_j$ para os demais. A soma permanece
+igual, as parcelas dos respondedores e seus votos permanecem iguais,
+e ambas passam qualquer que seja a resposta de H. O proponente ganha
+estritamente $x_H$ em cada tipo; não há continuação a compensar. Se
+$n_Y=k-1$, um não de H faz a proposta fracassar, portanto não satisfaz
+o evento contestado. Se $n_Y\leq k-2$, não há aprovação. Em R2 aplica-se
+C2. Sob unanimidade, a mesma implicação decorre da quota. $\square$
+
+A prova não elimina ofertas de seleção de tipos: por exemplo, no ramo
+pivotal uma oferta $\beta\ell$ é aceita pelo tipo baixo e rejeitada pelo
+alto, fazendo a proposta fracassar nesse tipo. Também não afirma ganho
+estrito ao alterar duas propostas que fracassariam com a mesma continuação.
+
+Reduzindo as parcelas aos limiares na classe pivotal e usando C3 na
+classe não pivotal, restam os seguintes valores do proponente:
+
+\[
+\begin{split}
+\Pi_E&=1-kw,\\
+\Pi_S(p)&=(1-p)\{1-(k-1)w-\beta\ell\}+pw,\\
+\Pi_P&=1-(k-1)w-\beta h,\qquad \Pi_D=w.
+\end{split}\tag{5}
+\]
+
+Uma candidata de inclusão só é considerada quando factível. Excluir é
+sempre factível. Ademais,
+
+\[
+\begin{split}
+\Pi_E-w&=1-\beta(k+1)/m>0,\\
+\Pi_P-\Pi_E&=\beta(1/m-h),\\
+\Pi_S-\Pi_E&=(1-p)\beta(1/m-\ell)
+               -p\{1-\beta(k+1)/m\}.
+\end{split}\tag{6}
+\]
+
+A primeira desigualdade usa $k+1\leq m$ e $\beta<1$. Uma oferta
+inviável de inclusão não pode superar a exclusão; a restrição de
+factibilidade é mantida antes de otimizar, não removida por notação.
+As diferenças em (6), com o desempate histórico, reproduzem os cutoffs
+de B.3. Quando $h=1/m$, a família residual de misturas entre exclusão
+e pooling é preservada com o mesmo peso ligando resultados e payoffs.
+Não se introduz uma média sobre pesos de propostas ou sobre parâmetros.
+
+## Unanimidade em R1 e transporte das correspondências
+
+Na primeira rodada sob unanimidade, aprovação com voto não de H também
+é inviável. A única cláusula que diferencia $G_C$ de $G_0$ nunca é
+acionada nessa instituição. Os mesmos nós, informações, votos e pagamentos
+de cada ação estão presentes, e (4) é a mesma continuação, multiplicada
+uma vez por $\beta$. Em particular, não substituímos a continuação
+unânime por $\beta o$ em todo posterior: no ramo de pooling o tipo
+baixo tem continuação $\beta h$.
+
+**Teorema C4 (transporte condicional do baseline).** Suponha A1--A3,
+o domínio da seção 1.3 e o conceito aprovado. Ao esquecer apenas a nova
+ação terminal de execução, as estratégias de proposta, os votos puros
+prescritos e as crenças admissíveis dos assessments de $G_C$ têm a mesma
+correspondência que em $G_0$. Os resultados e payoffs induzidos quando
+essas estratégias são seguidas são iguais, incluindo endpoints, famílias
+de mistura de propostas e células sem assessment. Isso não identifica
+pagamentos após todo perfil arbitrário de desvios, nem as estratégias
+completas dos dois jogos sem a projeção.
+
+*Demonstração.* Resolva primeiro a execução por (1). Em R2 sob maioria,
+os votos dos fracos são forçados e (2) dá o mesmo voto puro de H que
+no jogo histórico, inclusive em toda proposta desviante e em cada tipo.
+O payoff de H no voto prescrito é o mesmo: se vota sim recebe $x_H$;
+se vota não então $x_H<o$ e escolhe $O$, recebendo $o$. As utilidades
+dos fracos em cada vetor de votos são idênticas às antigas. Logo suas
+comparações pivotais e as comparações de todas as propostas factíveis
+coincidem. Obtém-se C2. Sob unanimidade há identidade literal do jogo
+terminal, como em (3)--(4).
+
+Em R1 sob maioria, a tabela da seção 2.4 mostra a mesma escolha pura
+de H em toda proposta. Na classe não pivotal, o payoff do voto prescrito
+também coincide; nas outras duas classes, os payoffs de ambas as ações
+já são idênticos. Uma alteração unilateral do voto de um fraco pode
+transformar uma votação fracassada em aprovada com H não: o pagamento
+desse fraco continua $x_j$ em ambos os jogos, e o novo terminal não gera
+continuação. Portanto a diferença no payoff terminal de H não altera
+a comparação pivotal do fraco. Histórias fracassadas têm os mesmos
+votos, posteriores admissíveis e continuações; não se usa a futura ação
+de execução para atualizar crenças antes da votação. Assim, cada
+proposta factível tem o mesmo valor esperado para seu proponente e para
+H sob as respostas prescritas, inclusive para o desempate entre propostas.
+A igualdade ponto a ponto preserva também integrais sobre propostas
+sorteadas e todas as seleções admissíveis, sem escolher um novo peso.
+
+Sob unanimidade, a identidade literal de toda a árvore de barganha
+estende a conclusão à primeira rodada. Em ambos os sentidos, restringir
+um assessment de $G_C$ aos nós anteriores à execução dá um assessment
+de $G_0$, e acrescentar a qualquer assessment de $G_0$ as melhores
+respostas de (1) dá um assessment de $G_C$. Na igualdade da execução
+podem existir extensões diferentes com o mesmo valor. A prova respeita
+a disciplina de crenças e o suporte inicial; a igualdade de avaliações
+por tipo não depende de dar peso positivo a tipos de peso zero.
+$\square$
+
+O teorema prova uma relação entre correspondências, e não reaudita toda
+a caracterização histórica de unanimidade. Em particular, se B.4
+caracteriza corretamente $G_0$, sua célula vazia em $0<p\leq p^*$
+e suas células de acordo se transportam a $G_C$. Nenhuma melhoria de
+existência é obtida acrescentando a execução, pois o ramo novo é
+inacessível sob unanimidade. O resultado não cobre votos mistos dos
+fracos nem qualquer desempate alternativo.
+
+## Dependências, informações suficientes e invalidação
+
+O estado da execução é $(x_H,o,a_H,A)$, onde $A$ registra aprovação;
+nenhuma outra informação altera seus retornos. Nas propostas e votos,
+conservamos a história pública inteira e a informação privada de H.
+Não comprimimos a liberdade de crenças do baseline a uma seleção
+markoviana da extensão. A independência de alguns valores em relação à
+história resulta das provas terminais; não restringe a classe de crenças.
+
+A ordem de solução é: implementação terminal; R2 de cada instituição;
+R1 com essas continuações; correspondências econômicas e seus consumidores.
+Os arquivos em \nolinkurl{interfaces/} registram a interface exata consumida em
+cada etapa, e `game_dag.json` registra dependências e hashes. Seus estados
+de fechamento se referem ao **jogo condicional**, não a aprovação autoral
+ou congelamento do baseline vigente. Os resultados de $G_*$ que dependem
+do ramo aberto permanecem sem certificação de arquitetura.
+
+Alterar A1, A2 ou A3 reabre a implementação e todos os descendentes.
+Alterar a disciplina de votos ou crenças reabre os nós de votação e seus
+descendentes. Alterar apenas a escolha ótima em $x_H=o$ na execução
+não altera os valores usados no transporte, mas modifica o representante
+completo de estratégias da candidata.
+
+# Repercussões, verificações e decisão autoral
+
+## Mapa de impacto
+
+Os rótulos desta tabela descrevem a evidência desta tarefa. “Transporte”
+preserva um resultado do jogo histórico **se ele está corretamente
+caracterizado**, sob A1--A3. Não é um novo parecer integral sobre todas
+as provas históricas.
+
+| Objeto do artigo | Resultado nesta nota | Consequência |
+|:---|:---|:---|
+| Regra de pagamentos, seção 4 e A.1 | Muda | Substituir cancelamento por tecnologia, compromisso e execução somente após decisão autoral |
+| Ausência de acúmulo em todas as histórias | Demonstrada em $G_C$ | Usa A1--A3; ainda não é teorema dos fundamentos incompletos de $G_*$ |
+| Exclusão ótima, R2 maioria | Rederivada, C2 | $x_H=0$, residual um, continuações $(1/m,o)$ preservadas |
+| R2 unanimidade e corte $p^*$ | Rederivados, (3)--(4) | Screening terminal e pooling preservados |
+| R1 maioria, B.1/B.3 | Votos e candidatos rederivados | Limiar não pivotal igual; comparação de utilidades e prova devem ser reescritas |
+| R1 unanimidade, B.4 | Transporte por identidade de jogo | Mesma existência e não existência, condicionadas à caracterização histórica |
+| Benchmark público | Transporte e comparação de custos | H recebe $\beta o$ se incluído e $o$ se excluído; inclusão majoritária sse $o\leq1/m$ |
+| Comparação privada e rendas informacionais | Transporte algébrico | Mesmos vetores e conjuntos vinculados; nenhuma imputação nas células vazias |
+| Histórias e estratégias completas | Mudam | Há ação terminal nova e utilidades de desvios diferentes; não há identidade literal |
+| Agenda: payoffs de continuação | Mesma interface econômica sob transporte | Reexaminar a implementação do consumidor; não alterar sua disciplina própria |
+| Agenda: membership e assinaturas exatas | Não recertificadas | Objetos contêm assessments completos; precisam de levantamento explícito para a nova árvore |
+
+Table: (\#tab:impact) Impacto da candidata sobre o artigo e seus consumidores. Toda preservação atribuída ao transporte é condicional a A1--A3 e à correção do resultado histórico transportado.
+
+Na informação pública, (5)--(6) reduzem os custos de inclusão e exclusão
+a $(k-1)\beta/m+\beta o$ e $k\beta/m$. A igualdade $o=1/m$ seleciona
+inclusão porque H recebe $\beta o<o$. Sob unanimidade, a oferta
+$\beta o$ e as continuações dos fracos implementam acordo e dão ao
+proponente um ganho $1-\beta$ sobre esperar. Isso confirma a interface
+pública que é subtraída dos vetores privados.
+
+Na extensão de agenda, H propõe antes de entrar no baseline e conta
+como sim. O novo nó de execução não é acionado quando essa proposta
+passa. Se ela fracassar, o estágio importa o baseline com um desconto
+adicional, já próprio da extensão. O teorema C4 preserva os valores
+econômicos dessa continuação, mas os contratos de agenda exigem membros
+literais e assinaturas de assessments completos. É necessário definir
+um levantamento que acrescente as estratégias de execução, respeite
+anonimidade, mensurabilidade e a seleção por estado, e verificar os
+consumidores. Esta nota **não certifica** esse levantamento, as assinaturas
+completas ou a totalidade dos resultados formais da extensão. O registro
+congelado anterior continua documentando o jogo que de fato avaliou.
+
+## Exemplos e testes que podem refutar a proposta
+
+Com $m=4$, $\beta=0{,}9$, $\ell=0{,}10$, $h=0{,}35$ e $p=0{,}80$,
+as interfaces econômicas condicionais dão:
+
+| Objeto | Tipo baixo | Tipo alto |
+|:---|---:|---:|
+| Maioria pública | 0,090 | 0,350 |
+| Unanimidade pública | 0,090 | 0,315 |
+| Maioria privada | 0,100 | 0,350 |
+| Unanimidade privada | 0,315 | 0,315 |
+| Renda informacional sob maioria | 0,010 | 0,000 |
+| Renda informacional sob unanimidade | 0,225 | 0,000 |
+| Diferença entre rendas | 0,215 | 0,000 |
+
+Table: (\#tab:workedexample) Exemplo matemático por tipo, em unidades de R1. A diferença entre rendas subtrai maioria de unanimidade; os valores não são uma calibração empírica.
+
+Os valores foram recalculados em script separado; são ilustração
+matemática, não dados observados. A preservação desse exemplo não prova
+a preservação global; essa função pertence ao teorema C4.
+
+Três verificações conceituais delimitam a candidata:
+
+1. **Mudar o compromisso e a ordem efetiva de escolha.** Se um sim
+   puder ser revogado na execução para escolher o exterior, sob unanimidade
+   terminal uma oferta zero dá a H $o$ após sim e $o$ após não. $T^Y$
+   passa a prescrever sim, e o proponente consegue aprovar guardando um.
+   O limiar $o$ de H desaparece. A3 é substantiva e não pode ser omitida.
+2. **Tornar o tipo público.** A ausência de acúmulo da Proposição C1 e os votos da
+   maioria permanecem verdadeiros por tipo. A comparação de custos acima
+   reproduz o benchmark público. Logo a propriedade de execução não vem
+   da informação privada; esta continua atuando nos preços e seleção de tipos.
+3. **Permitir recebimentos aditivos ou fracionar a tecnologia.** Com
+   dois recursos independentes, H pode executar ambas as oportunidades e
+   receber $x_H+o$. Com recurso divisível e retornos lineares, uma divisão
+   $z\in(0,1)$ rende $(zx_H,(1-z)o)$: há dois componentes positivos,
+   e na igualdade $x_H=o$ tal divisão também pode ser ótima. A indivisibilidade
+   é necessária à versão forte de “nunca dois recebimentos positivos”
+   nesta construção, inclusive depois de desvios. A tecnologia divisível
+   ainda impede receber as duas oportunidades **integralmente** ao mesmo
+   tempo; essas duas propriedades não devem ser confundidas.
+
+Também há dependência do desempate: quando $x_H>o$ e os fracos já
+aprovam, H era estritamente favorável ao sim em $G_0$, mas empata em
+$G_C$. Sem $T^Y$, o conjunto de votos prescritos pode crescer. A
+preservação da correspondência de votos aqui demonstrada não é robusta
+a remover uma convenção aprovada.
+
+## Verificação reprodutível e limites
+
+O script \nolinkurl{scripts/verify_architecture_20260908.R}, executado a partir da
+raiz do repositório, grava \nolinkurl{checks/finite_checks.csv}, `summary.csv`,
+`counterexamples.csv`, `worked_example.csv` e `sessionInfo.txt` no diretório
+desta nota. Ele compara implementações separadas dos pagamentos de
+$G_0$ e $G_C$; enumera classes de contagem de votos e padrões de parcelas
+em torno dos limiares; inclui igualdades, exemplos de utilidades alteradas,
+posteriores terminais de fronteira e continuações distintas sob unanimidade.
+
+Esses são testes finitos, não exploração exaustiva de propostas contínuas,
+sistemas de crenças ou assessments. A comparação numérica usa tolerância
+apenas para igualdade computacional; as provas enunciam desigualdades
+exatas. Não foram recalculadas nem recertificadas todas as provas de
+inexistência, mensurabilidade e cardinalidade da extensão. Não se rodaram
+verificadores históricos como se certificassem uma nova arquitetura.
+
+As verificações científicas e a decisão autoral têm registros distintos.
+O contrato de leitura, os dois pareceres completos e sua adjudicação
+ficam nos diretórios correspondentes deste pacote. Alterações na nota
+exigem novo hash e revalidação antes da revisão final. Uma aprovação
+formal desta análise condicional não implica adequação empírica de A1--A3
+nem autoriza sua instalação no artigo.
+
+## Decisões concretas e alternativas
+
+Para prosseguir com esta candidata, há três decisões substantivas:
+
+- **D-A:** aceitar A1, interpretando a concessão de H como oportunidade
+  cujo benefício requer execução própria, e o unitário como excedente
+  disponível. Incide na interpretação econômica dos fundamentos 4--6 e 8.
+- **D-B:** aceitar A2, acrescentando a tecnologia de recurso indivisível,
+  rival entre clube e alternativa externa. Complementa a arquitetura
+  exigida pelo fundamento 4; não é implicada pela independência da opção
+  externa no fundamento 6. Se não houver contrapartida substantiva
+  plausível, essa proposta deve ser rejeitada.
+- **D-C:** aceitar A3, acrescentando a escolha de execução após não e
+  aprovação, e tornando explícito o compromisso executável do sim.
+  Altera o protocolo de implementação e a distinção entre voto e
+  participação. Um não pode ser seguido de participação voluntária;
+  não se restaura a identificação histórica automática entre não e exclusão.
+
+Esta é uma construção de baixa dimensionalidade, com uma decisão binária
+adicional e nenhum novo parâmetro numérico; não se afirma minimalidade
+global entre todas as arquiteturas possíveis. Ela satisfaz a exigência
+forte condicionalmente às três cláusulas, preservando o mecanismo econômico
+reportado, mas acrescenta hipóteses com custo substantivo claro.
+
+Se A1--A3 forem rejeitadas, duas rotas permanecem: formular outra
+microfundamentação economicamente defensável, ou rever explicitamente
+o alcance do requisito forte. A segunda rota não resolve por si só o
+pagamento faltante de $G_*$; mesmo uma afirmação limitada a propostas
+ótimas exige completar as utilidades usadas para testar desvios. O
+cancelamento histórico e o pagamento aditivo não voltam a ser regras
+vigentes por falta de uma alternativa aceita.

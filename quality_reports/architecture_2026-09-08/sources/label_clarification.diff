@@ -1,0 +1,153 @@
+--- candidate_before_label_clarification.Rmd
++++ architecture_note.Rmd
+@@ -167,7 +167,7 @@
+ A candidata tem três cláusulas indivisíveis como especificação matemática,
+ mas sua aceitação autoral deve distinguir cada decisão:
+ 
+-**C1. Concessão executável.** A parcela $x_H$ é o benefício que H pode
++**A1. Concessão executável.** A parcela $x_H$ é o benefício que H pode
+ realizar executando uma oportunidade específica do clube. Não é dinheiro
+ já transferido e livremente retido antes da execução. Cada parcela
+ permanece um compromisso específico ao destinatário, não negociável após
+@@ -175,7 +175,7 @@
+ parcelas conforme a regra vigente. A execução por H não afeta seus
+ pagamentos nem a aprovação do acordo dos outros.
+ 
+-**C2. Recurso de execução rival e indivisível.** H dispõe de um único
++**A2. Recurso de execução rival e indivisível.** H dispõe de um único
+ recurso de implementação. Executar a oportunidade do clube exige o
+ recurso inteiro e produz $x_H$; executá-lo no melhor fórum alternativo
+ exige o mesmo recurso inteiro e produz $o$. Não há empréstimo,
+@@ -191,7 +191,7 @@
+ do uso do recurso pelo próprio H. A exclusividade é uma hipótese econômica
+ nova e testável em aplicações, não uma consequência genérica de forum shopping.
+ 
+-**C3. Compromisso e opção voluntária de execução.** Um sim de H compromete
++**A3. Compromisso e opção voluntária de execução.** Um sim de H compromete
+ o recurso à oportunidade do clube, condicional à aprovação. Esse compromisso
+ é executável e vinculante; se a votação fracassar, não vincula o recurso
+ nem cria recebimento. Um não não compromete o recurso e não constitui
+@@ -211,9 +211,13 @@
+ jogador. Há capacidade contratada não utilizada depois de uma escolha de
+ H. Isso precisa ser aceito como interpretação de **excedente disponível**:
+ não se promete que o total realizado dentro do clube seja um em toda
+-história. Em propostas ótimas o resultado de esgotamento histórico será
+-preservado. C1 não pode ser usada para reinterpretar silenciosamente uma
++história. Nas propostas ótimas dos assessments considerados, a soma das
++alocações prometidas conserva o esgotamento histórico do orçamento. Não
++se afirma execução integral depois de desvios. A1 não pode ser usada para
++reinterpretar silenciosamente uma
+ transferência monetária incondicional como benefício dependente de execução.
++
++\newpage
+ 
+ ## Histórias, informação e solução da execução
+ 
+@@ -221,7 +225,7 @@
+ |:---|:---|:---|
+ | Proposta em rodada $t$ | Fraco reconhecido, história pública, crença corrente | Qualquer $x$ factível; votação |
+ | Votação | Respondedores; mesma proposta e história; H também sabe $o$ | Votos simultâneos, proponente sim |
+-| Aprovação, H sim | Compromisso de C3 executado | H realiza $x_H$; fracos recebem suas parcelas |
++| Aprovação, H sim | Compromisso de A3 executado | H realiza $x_H$; fracos recebem suas parcelas |
+ | Aprovação, H não | H sabe seu tipo e vê o resultado | Escolhe $C$ ou $O$, depois terminal |
+ | Fracasso em R1 | Sorteio futuro e agentes segundo o protocolo | R2; nenhum recebimento atual |
+ | Fracasso em R2 | Não há nova decisão de barganha | Fracos zero; H $o$ |
+@@ -237,7 +241,7 @@
+  \tag{1}
+ \]
+ 
+-**Proposição C1 (ausência de acúmulo e escolha ótima).** Sob C1--C3,
++**Proposição C1 (ausência de acúmulo e escolha ótima).** Sob A1--A3,
+ nenhuma história factível paga simultaneamente uma parcela positiva do
+ clube e a opção externa. Depois de aprovação com voto não, a melhor
+ resposta é $C$ quando $x_H>o$, $O$ quando $x_H<o$, e ambas quando
+@@ -408,7 +412,7 @@
+ unânime por $\beta o$ em todo posterior: no ramo de pooling o tipo
+ baixo tem continuação $\beta h$.
+ 
+-**Teorema C4 (transporte condicional do baseline).** Suponha C1--C3,
++**Teorema C4 (transporte condicional do baseline).** Suponha A1--A3,
+ o domínio da seção 1.3 e o conceito aprovado. Ao esquecer apenas a nova
+ ação terminal de execução, as estratégias de proposta, os votos puros
+ prescritos e as crenças admissíveis dos assessments de $G_C$ têm a mesma
+@@ -478,7 +482,7 @@
+ ou congelamento do baseline vigente. Os resultados de $G_*$ que dependem
+ do ramo aberto permanecem sem certificação de arquitetura.
+ 
+-Alterar C1, C2 ou C3 reabre a implementação e todos os descendentes.
++Alterar A1, A2 ou A3 reabre a implementação e todos os descendentes.
+ Alterar a disciplina de votos ou crenças reabre os nós de votação e seus
+ descendentes. Alterar apenas a escolha ótima em $x_H=o$ na execução
+ não altera os valores usados no transporte, mas modifica o representante
+@@ -490,13 +494,13 @@
+ 
+ Os rótulos desta tabela descrevem a evidência desta tarefa. “Transporte”
+ preserva um resultado do jogo histórico **se ele está corretamente
+-caracterizado**, sob C1--C3. Não é um novo parecer integral sobre todas
++caracterizado**, sob A1--A3. Não é um novo parecer integral sobre todas
+ as provas históricas.
+ 
+ | Objeto do artigo | Resultado nesta nota | Consequência |
+ |:---|:---|:---|
+ | Regra de pagamentos, seção 4 e A.1 | Muda | Substituir cancelamento por tecnologia, compromisso e execução somente após decisão autoral |
+-| Ausência de acúmulo em todas as histórias | Demonstrada em $G_C$ | Usa C1--C3; ainda não é teorema dos fundamentos incompletos de $G_*$ |
++| Ausência de acúmulo em todas as histórias | Demonstrada em $G_C$ | Usa A1--A3; ainda não é teorema dos fundamentos incompletos de $G_*$ |
+ | Exclusão ótima, R2 maioria | Rederivada, C2 | $x_H=0$, residual um, continuações $(1/m,o)$ preservadas |
+ | R2 unanimidade e corte $p^*$ | Rederivados, (3)--(4) | Screening terminal e pooling preservados |
+ | R1 maioria, B.1/B.3 | Votos e candidatos rederivados | Limiar não pivotal igual; comparação de utilidades e prova devem ser reescritas |
+@@ -507,7 +511,7 @@
+ | Agenda: payoffs de continuação | Mesma interface econômica sob transporte | Reexaminar a implementação do consumidor; não alterar sua disciplina própria |
+ | Agenda: membership e assinaturas exatas | Não recertificadas | Objetos contêm assessments completos; precisam de levantamento explícito para a nova árvore |
+ 
+-Table: (\#tab:impact) Impacto da candidata sobre o artigo e seus consumidores. Toda preservação atribuída ao transporte é condicional a C1--C3 e à correção do resultado histórico transportado.
++Table: (\#tab:impact) Impacto da candidata sobre o artigo e seus consumidores. Toda preservação atribuída ao transporte é condicional a A1--A3 e à correção do resultado histórico transportado.
+ 
+ Na informação pública, (5)--(6) reduzem os custos de inclusão e exclusão
+ a $(k-1)\beta/m+\beta o$ e $k\beta/m$. A igualdade $o=1/m$ seleciona
+@@ -555,8 +559,8 @@
+    puder ser revogado na execução para escolher o exterior, sob unanimidade
+    terminal uma oferta zero dá a H $o$ após sim e $o$ após não. $T^Y$
+    passa a prescrever sim, e o proponente consegue aprovar guardando um.
+-   O limiar $o$ de H desaparece. C3 é substantiva e não pode ser omitida.
+-2. **Tornar o tipo público.** C1, a ausência de acúmulo e os votos da
++   O limiar $o$ de H desaparece. A3 é substantiva e não pode ser omitida.
++2. **Tornar o tipo público.** A ausência de acúmulo da Proposição C1 e os votos da
+    maioria permanecem verdadeiros por tipo. A comparação de custos acima
+    reproduz o benchmark público. Logo a propriedade de execução não vem
+    da informação privada; esta continua atuando nos preços e seleção de tipos.
+@@ -597,22 +601,22 @@
+ O contrato de leitura, os dois pareceres completos e sua adjudicação
+ ficam nos diretórios correspondentes deste pacote. Alterações na nota
+ exigem novo hash e revalidação antes da revisão final. Uma aprovação
+-formal desta análise condicional não implica adequação empírica de C1--C3
++formal desta análise condicional não implica adequação empírica de A1--A3
+ nem autoriza sua instalação no artigo.
+ 
+ ## Decisões concretas e alternativas
+ 
+ Para prosseguir com esta candidata, há três decisões substantivas:
+ 
+-- **D-A:** aceitar C1, interpretando a concessão de H como oportunidade
++- **D-A:** aceitar A1, interpretando a concessão de H como oportunidade
+   cujo benefício requer execução própria, e o unitário como excedente
+   disponível. Incide na interpretação econômica dos fundamentos 4--6 e 8.
+-- **D-B:** aceitar C2, acrescentando a tecnologia de recurso indivisível,
++- **D-B:** aceitar A2, acrescentando a tecnologia de recurso indivisível,
+   rival entre clube e alternativa externa. Complementa a arquitetura
+   exigida pelo fundamento 4; não é implicada pela independência da opção
+   externa no fundamento 6. Se não houver contrapartida substantiva
+   plausível, essa proposta deve ser rejeitada.
+-- **D-C:** aceitar C3, acrescentando a escolha de execução após não e
++- **D-C:** aceitar A3, acrescentando a escolha de execução após não e
+   aprovação, e tornando explícito o compromisso executável do sim.
+   Altera o protocolo de implementação e a distinção entre voto e
+   participação. Um não pode ser seguido de participação voluntária;
+@@ -624,7 +628,7 @@
+ forte condicionalmente às três cláusulas, preservando o mecanismo econômico
+ reportado, mas acrescenta hipóteses com custo substantivo claro.
+ 
+-Se C1--C3 forem rejeitadas, duas rotas permanecem: formular outra
++Se A1--A3 forem rejeitadas, duas rotas permanecem: formular outra
+ microfundamentação economicamente defensável, ou rever explicitamente
+ o alcance do requisito forte. A segunda rota não resolve por si só o
+ pagamento faltante de $G_*$; mesmo uma afirmação limitada a propostas

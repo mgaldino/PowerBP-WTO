@@ -1,0 +1,83 @@
+{
+  "status_boundary": "Analytical claims in the fixed note received independent formal and adversarial PASS 0/0/0, followed by NO_CONFIRMED_DEFECTS adjudication. Labels retain each stated conditional scope; they do not adopt A1-A3, recertify all historical proofs, or authorize migration.",
+  "review_disposition": {
+    "formal": "reviews/formal_round1.md",
+    "adversarial": "reviews/adversarial_round1.md",
+    "adjudication": "adjudication/adjudication_round1.json",
+    "adjudication_sha256": "a837367998805401c675fdcf6342884f5769c9be7d1d248936947ef0fb0d00b2",
+    "verdict": "NO_CONFIRMED_DEFECTS"
+  },
+  "note_sha256": "493f513a096bd78d9addf32d1c407c9a9e8be3945edf6580497d4c27630dd3b3",
+  "claims": [
+    {
+      "id": "D1",
+      "status": "proved",
+      "scope": "current incomplete specification",
+      "claim": "proposal dominance does not specify all terminal histories",
+      "locator": "architecture_note.Rmd:132"
+    },
+    {
+      "id": "D2",
+      "status": "proved",
+      "scope": "conditional incompatibility only",
+      "claim": "irrevocable transfer plus independently exercisable outside receipt plus addition conflicts with no accumulation",
+      "locator": "architecture_note.Rmd:145"
+    },
+    {
+      "id": "C1",
+      "status": "proved",
+      "scope": "candidate A1-A3 only",
+      "claim": "all feasible implementation histories prevent two positive receipts",
+      "locator": "architecture_note.Rmd:244"
+    },
+    {
+      "id": "C2",
+      "status": "proved",
+      "scope": "candidate A1-A3; weak prescribed ballots",
+      "claim": "R2 majority proposal and native continuation values",
+      "locator": "architecture_note.Rmd:287"
+    },
+    {
+      "id": "R2U",
+      "status": "proved",
+      "scope": "preserved unanimity tree",
+      "claim": "terminal low-versus-pooling cutoff and native values",
+      "locator": "architecture_note.Rmd:300"
+    },
+    {
+      "id": "C3",
+      "status": "proved",
+      "scope": "optimal proposals and prescribed weak ballots",
+      "claim": "positive H share plus approved H no excluded from optimal proposals; screening rejection remains feasible",
+      "locator": "architecture_note.Rmd:354"
+    },
+    {
+      "id": "C4",
+      "status": "proved",
+      "scope": "conditional relation to historical G0, pure ballots and T^Y",
+      "claim": "projected strategies, beliefs and induced economic outcomes coincide; arbitrary-deviation utility identity is not claimed",
+      "locator": "architecture_note.Rmd:415"
+    },
+    {
+      "id": "FIN",
+      "status": "checked numerically",
+      "scope": "finite grids only",
+      "claim": "29005 finite checks; no continuous-space completeness certificate",
+      "locator": "checks/summary.csv"
+    },
+    {
+      "id": "AGENDA",
+      "status": "pending",
+      "scope": "exact strategy objects",
+      "claim": "literal lift of assessments and signatures, measurability and downstream recertification not performed",
+      "locator": "architecture_note.Rmd:521"
+    },
+    {
+      "id": "ADOPT",
+      "status": "pending",
+      "scope": "author decisions D-A D-B D-C",
+      "claim": "no architecture adopted into current manuscript",
+      "locator": "architecture_note.Rmd:607"
+    }
+  ]
+}

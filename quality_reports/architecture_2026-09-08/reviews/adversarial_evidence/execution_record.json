@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-09-08T11:55:21.269429-03:00",
+  "reviewer_id": "/root/architecture_reader_2",
+  "candidate_sha256": "493f513a096bd78d9addf32d1c407c9a9e8be3945edf6580497d4c27630dd3b3",
+  "execution_command": "python3 /private/tmp/pbp_adversarial_20260908_493f/check_exact.py",
+  "setup_command": "mkdir -p /private/tmp/pbp_adversarial_20260908_493f",
+  "python_version": "3.13.3",
+  "arithmetic": "Python standard-library fractions.Fraction; exact rationals; no tolerance",
+  "exit_code_observed": 0,
+  "failure_count": 0,
+  "checks": {
+    "profiles": 96516,
+    "type_comparisons": 193032,
+    "optimality_cells": 42,
+    "terminal_cells": 15,
+    "terminal_offers": 28365
+  },
+  "execution_actions": 30,
+  "artifacts_sha256": {
+    "check_exact.py": "bb04f48830ab1997a380e7903c1d76fe1675c642177597fbe78026f7da76e3b6",
+    "results.json": "9eca2bb4ad972687ca685862392905c7b4985a203bbe1385f163fcadf9f94086"
+  },
+  "rerun_setup_command": "mkdir -p /private/tmp/pbp_adversarial_20260908_493f",
+  "rerun_command": "python3 /Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/architecture_2026-09-08/reviews/adversarial_evidence/check_exact.py",
+  "rerun_output": "/private/tmp/pbp_adversarial_20260908_493f/results.json",
+  "retention": "Exact byte copies of the independently executed temporary script and its output. The script was not modified or rerun during retention.",
+  "boundary": "These artifacts are reviewer evidence outside candidate_manifest.json; they do not modify any of the 18 fixed candidate files."
+}

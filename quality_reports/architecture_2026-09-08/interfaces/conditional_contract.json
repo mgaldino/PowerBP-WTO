@@ -1,0 +1,35 @@
+{
+  "namespace": "conditional_candidate_GC",
+  "author_adoption": "PENDING_OWNER_DECISIONS_DA_DB_DC",
+  "current_game_Gstar": "incomplete at approval plus H no",
+  "domain": {
+    "m": "integer >=3",
+    "beta": "0<beta<1",
+    "types": "0<ell<h<1",
+    "prior": "[0,1]"
+  },
+  "preserved_sources": [
+    "AGENTS.md",
+    "quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md",
+    "quality_reports/2026-09-01_decisao_structural_consistency_baseline.md"
+  ],
+  "new_clauses": {
+    "A1": "H concession is an executable opportunity; weak payments unchanged",
+    "A2": "one indivisible implementation resource with alternative uses C or O",
+    "A3": "yes commits conditional on passage; passing no leaves voluntary terminal implementation choice"
+  },
+  "beliefs": "baseline Bayes where denominator positive; otherwise free per ballot and H vote within initial prior support; no weak signaling",
+  "weak_ballots": "pure as-if-pivotal with expected-value T^Y",
+  "H_ballots": "pure own-type best reply with expected-value T^Y",
+  "proposer_tie": "minimize H expected payoff among own-payoff maximizers",
+  "public_state": "retain full public history before implementation; do not import agenda Markov restriction",
+  "implementation_information": "H observes own type, proposal, all completed votes and passage before new choice",
+  "new_information_flow": "implementation occurs only at an absorbing approved terminal and cannot affect earlier beliefs",
+  "payoff_dates": "R2 native; multiply continuation by beta exactly once to R1",
+  "not_claimed": [
+    "current-game completion without author decision",
+    "literal equality of full extensive forms",
+    "all-history payoff equivalence",
+    "independent recertification of historical full PBE characterizations"
+  ]
+}
