@@ -1,0 +1,237 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "pbp-architecture-clarification:122a3a53047f:round2-candidate",
+  "source": {
+    "reviewed_artifact": "/private/tmp/pbp-architecture-clarification-2026-09-05/candidate/AGENTS.md",
+    "sha256": "122a3a53047f9c8c3305a6d768c20687a5833287bf001420661f7fb7564f0098",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "contract_scope_reason": "Revisão delimitada de instruções e de uma nota curta com um argumento condicional nas duas rodadas, sem revisão integral do manuscrito ou certificação de arquitetura. O escopo foi explicitamente delimitado pelo coordenador.",
+  "review_sources": [
+    {
+      "review_id": "R4",
+      "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/candidate_reviews/formal_round2.md",
+      "sha256": "3e82fc694302067b35d09cf8321f21354a2b21a748119e7897ae2a5c8a517492"
+    },
+    {
+      "review_id": "R5",
+      "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/candidate_reviews/adversarial_round2.md",
+      "sha256": "5bd461451985c1393ff0cf84bd5462a9480aa6f15b6bd4c8d218d1babff56f70"
+    },
+    {
+      "review_id": "R3",
+      "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/README_review_from_coordinator.md",
+      "sha256": "f102a581dd3c179fc594916788fe93ea99ad6d02f6dbfe8c614d81a80c556e98"
+    }
+  ],
+  "candidate_manifest": {
+    "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/candidate_manifest.json",
+    "sha256": "8e38af91bf3642e43a054ae5caea4ca0d6ea5b72f5e5e6c4f8eb132565fc6b73"
+  },
+  "candidate_files": [
+    {
+      "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/candidate/AGENTS.md",
+      "relative_path": "AGENTS.md",
+      "sha256": "122a3a53047f9c8c3305a6d768c20687a5833287bf001420661f7fb7564f0098",
+      "bytes": 12642,
+      "utf8": true
+    },
+    {
+      "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/candidate/quality_reports/agents_maintenance_2026-09-05/AGENTS.approved.md",
+      "relative_path": "quality_reports/agents_maintenance_2026-09-05/AGENTS.approved.md",
+      "sha256": "122a3a53047f9c8c3305a6d768c20687a5833287bf001420661f7fb7564f0098",
+      "bytes": 12642,
+      "utf8": true
+    },
+    {
+      "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/candidate/quality_reports/agents_maintenance_2026-09-05/AGENTS.before_architecture_clarification.md",
+      "relative_path": "quality_reports/agents_maintenance_2026-09-05/AGENTS.before_architecture_clarification.md",
+      "sha256": "695069a7b432a3204f43619931c211c8327f8533b30d3cfa969e42bba3806522",
+      "bytes": 9731,
+      "utf8": true
+    },
+    {
+      "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/candidate/quality_reports/agents_maintenance_2026-09-05/README.md",
+      "relative_path": "quality_reports/agents_maintenance_2026-09-05/README.md",
+      "sha256": "ee1e14980ad882a85460a6028df84abc5f46057051a5b0dee6df4688d8562b49",
+      "bytes": 7304,
+      "utf8": true
+    },
+    {
+      "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/candidate/quality_reports/agents_maintenance_2026-09-05/approval.md",
+      "relative_path": "quality_reports/agents_maintenance_2026-09-05/approval.md",
+      "sha256": "c2b9c4d44918a39bd33007343dbf6de5c2c73676faceeaafc22c6bc55dd6306c",
+      "bytes": 4089,
+      "utf8": true
+    },
+    {
+      "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/candidate/quality_reports/agents_maintenance_2026-09-05/architecture_clarification.md",
+      "relative_path": "quality_reports/agents_maintenance_2026-09-05/architecture_clarification.md",
+      "sha256": "873715a6848e2747d9d9e31234001c5d37a1c83cd622b0cafa85d4fd96e14a9f",
+      "bytes": 10797,
+      "utf8": true
+    }
+  ],
+  "supporting_sources": [
+    {
+      "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/before/formal_model_v6.Rmd",
+      "sha256": "6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411"
+    },
+    {
+      "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/before/quality_reports/2026-09-01_b1_b3_exclusion_derivation.md",
+      "sha256": "2bb232030711cfb16dec5d439eaafac6411b03bc71ad4a2af927b5e9a124f256"
+    }
+  ],
+  "author_correction_source": {
+    "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/review_sources/author_correction.md",
+    "sha256": "69cb27404295c3f3466222a6d61edd13896978c6f70159db2a58aecf8e3128a9"
+  },
+  "findings": [
+    {
+      "finding_id": "R3-F001",
+      "source_review": "R3",
+      "quoted_finding": "> Primeira revisão do candidato localizou README.md candidato linha55 frase residual “H recebe x_H apenas quando vota sim e a proposta é aprovada”; remover “apenas” evita concluir a necessidade do voto sim no ramo contestado.",
+      "type": "scope_or_consistency",
+      "severity": "minor",
+      "scientific_dimension": "instruction_fidelity",
+      "held_decision": true,
+      "status": "REFUTED",
+      "source_locations": [
+        "candidate/quality_reports/agents_maintenance_2026-09-05/README.md:55,59-67"
+      ],
+      "defect_evidence": [],
+      "refuting_evidence": [
+        "README:55 afirma que H recebe x_H quando vota sim e a proposta é aprovada; o termo apenas foi retirado.",
+        "README:59-67 mantém abertos os payoffs e respostas após desvios nas propostas ou nos votos e não apresenta a propriedade delimitada como solução da arquitetura."
+      ],
+      "mechanical_checks": [
+        {
+          "command": "python3 /private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/build_candidate_final.py",
+          "result": "Hash do candidato e ausência de apenas quando no trecho atual verificados."
+        }
+      ],
+      "reasoning": "A afirmação de que o candidato atual conserva a necessidade residual é refutada pelos bytes atuais. O finding continua procedente no snapshot anterior, cuja adjudicação PARTIAL é preservada. REFUTED aqui significa ausência do defeito neste novo candidato; não revoga a conclusão histórica.",
+      "proposed_fix_assessment": "not_provided",
+      "disposition": "Nenhuma correção adicional. A retirada já foi incorporada e conferida pelos dois revisores finais.",
+      "carried_over_from": {
+        "record": "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/adjudication_readme_local.json",
+        "source_sha256": "8d1c9037e685ca1bfddfdf4eb7e79f0589a2e9a8416816c50360d082b9a0d6b8",
+        "previous_status": "PARTIAL",
+        "resolution": "RESOLVED"
+      }
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 1,
+    "unresolved": 0,
+    "held_decisions": 1
+  },
+  "adjudication": {
+    "verdict": "NO_CONFIRMED_DEFECTS",
+    "checked_at": "2026-09-05T16:52:31.458936-03:00",
+    "reasons": [
+      "Os seis arquivos coincidem com os hashes registrados por ambos os revisores finais; os textos pertinentes foram confrontados diretamente com a decisão autoral e as fontes.",
+      "A correção de instruções e a demonstração delimitada na nota são fiéis ao escopo declarado. Nenhum novo defeito do candidato foi confirmado.",
+      "R3-F001 está resolvido nos novos bytes. A pendência global R1-F004 não foi encerrada; o candidato a conserva expressamente."
+    ]
+  },
+  "direct_verification": [
+    {
+      "topic": "Fidelidade à decisão autoral",
+      "locations": [
+        "candidate/AGENTS.md:16-21,33,49-55",
+        "candidate/quality_reports/agents_maintenance_2026-09-05/architecture_clarification.md:7-18",
+        "review_sources/author_correction.md:5"
+      ],
+      "result": "A regra de cancelamento está identificada como contestada. A ausência de acúmulo aparece como exigência de arquitetura e incentivos. Não se impõe x_H=0 ao espaço de propostas nem se adota x_H+o como regra substituta."
+    },
+    {
+      "topic": "Protocolo e fronteiras de autorização",
+      "locations": [
+        "candidate/AGENTS.md:21-27,43-47,59-64",
+        "candidate/quality_reports/agents_maintenance_2026-09-05/approval.md:31-37"
+      ],
+      "result": "Preservados os pagamentos dos fracos, a alocação de H após sim e aprovação, o desacordo terminal, a continuação após fracasso em R1, os votos simultâneos, a disciplina aprovada de crenças e a revisão independente por hash. Não há escolha adicional de H após observar os votos."
+    },
+    {
+      "topic": "Resultado delimitado nas duas rodadas",
+      "locations": [
+        "candidate/quality_reports/agents_maintenance_2026-09-05/architecture_clarification.md:54-74",
+        "before/formal_model_v6.Rmd:301-337,350-354,413-421,1385-1393,1419-1423"
+      ],
+      "result": "A demonstração mantém explicitamente os payoffs dos fracos, a regra de votação e o reconhecimento. Em R2, a parcela 1 ao proponente passa e domina qualquer concessão positiva; a continuação dos fracos antes do sorteio independente é 1/m. Em R1, o limiar beta/m fixa os votos fracos; se eles bastam, a realocação ex ante de x_H ao proponente preserva aprovação e melhora seu payoff estritamente. A propriedade vale para propostas ótimas, respostas fracas prescritas e cada tipo, sem exigir a resposta ótima de H. Isso não completa o jogo nem prova existência de equilíbrio."
+    },
+    {
+      "topic": "Quantificadores e desvios",
+      "locations": [
+        "candidate/AGENTS.md:51-55",
+        "candidate/quality_reports/agents_maintenance_2026-09-05/architecture_clarification.md:35-50,72-82"
+      ],
+      "result": "O texto distingue aprovação com voto não de rejeição que faz a proposta fracassar; não elimina screening. Distingue propostas ótimas de propostas e votos desviantes. Tipos de posterior zero são explicitamente cobertos no resultado limitado. Payoffs e respostas após desvios permanecem abertos."
+    },
+    {
+      "topic": "Diagnóstico das fontes anteriores",
+      "locations": [
+        "candidate/quality_reports/agents_maintenance_2026-09-05/architecture_clarification.md:24-31",
+        "before/formal_model_v6.Rmd:340-348,366-368,1385-1397,1429-1443,1479-1494",
+        "before/quality_reports/2026-09-01_b1_b3_exclusion_derivation.md:24-30,75-118,343-360"
+      ],
+      "result": "O diagnóstico é fiel aos hashes anteriores: cancelamento foi input, enquanto a realocação entre propostas tem parte independente dele. Não se conclui que o lema antigo era falso no jogo em que foi escrito."
+    },
+    {
+      "topic": "Precedência documental e finding local",
+      "locations": [
+        "candidate/quality_reports/agents_maintenance_2026-09-05/approval.md:5,31-37",
+        "candidate/quality_reports/agents_maintenance_2026-09-05/README.md:9,33-35,55-67"
+      ],
+      "result": "As passagens antigas são marcadas como históricas e subordinadas à correção atual. README:55 passou a usar quando, retirando a necessidade residual. As declarações de estado estão preparadas para instalação; este parecer não verifica o estado instalado."
+    }
+  ],
+  "mechanical_checks": {
+    "command": "python3 /private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/build_candidate_final.py",
+    "six_hashes_match_manifest": true,
+    "both_final_reviews_record_all_six_hashes": true,
+    "utf8": true,
+    "agents_and_approved_identical": true,
+    "historical_agents_snapshot_identical_to_preflight": true,
+    "source_rmd_and_memo_hashes_verified": true,
+    "numeric_equilibrium_tests_run": false
+  },
+  "external_source_check": {
+    "title": "Muhamet Yildiz, Graduate Game Theory, sections 1.1 and 4.1",
+    "url": "https://ocw.mit.edu/courses/14.126-game-theory-spring-2024/mit14_126_s24_yildiz-lecture-notes.pdf",
+    "access_date": "2026-09-05",
+    "locators": [
+      "Section 1.1, printed pages 4-6",
+      "Section 4.1, printed pages 104-108"
+    ],
+    "result": "A fonte foi aberta e conferida. A forma extensiva distingue árvore, ações e payoffs terminais; a discussão de racionalidade em conjuntos de informação sustenta a distinção geral usada na nota. A prova particular é do projeto e o conceito específico de crenças não é importado dessa referência."
+  },
+  "global_architecture_boundary": {
+    "record": "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/adjudication_round1_global.json",
+    "sha256": "938a2f6d539b082ac6397d5aa87087ca1bd96e5f52ef51be72a27c9918e94f85",
+    "verdict": "BLOCKED",
+    "unresolved_finding_id": "R1-F004",
+    "still_open": "Completar economicamente os payoffs e respostas de H, inclusive após desvios nas propostas e nos votos, e demonstrar o requisito no alcance declarado.",
+    "new_bounded_result": "O resultado sobre propostas ótimas, sob respostas fracas prescritas, agora foi reconstituído e revisado nas duas rodadas. Ele não fecha os ramos após desvios nem certifica uma nova arquitetura.",
+    "why_candidate_can_pass": "O objeto desta etapa é verificar se as instruções e a nota expressam corretamente o mandato, o resultado limitado e a pendência. É possível confirmar essa fidelidade sem resolver a própria arquitetura. Não há item material não resolvido dentro desse escopo documental.",
+    "authorization_limit": "O veredicto não autoriza mudanças no manuscrito, contratos, payoffs ou estratégias. A instalação das instruções usa a autorização da conversa e deve verificar os mesmos bytes."
+  },
+  "not_performed": [
+    "Instalação ou alteração de candidato/repositório.",
+    "Auditoria integral do paper, compilação ou testes de equilíbrio.",
+    "Certificação de existência, estratégias completas ou arquitetura substituta."
+  ]
+}

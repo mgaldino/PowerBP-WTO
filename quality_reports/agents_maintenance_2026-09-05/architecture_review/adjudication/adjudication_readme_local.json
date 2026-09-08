@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "pbp-architecture-clarification:8d1c9037e685:readme-local-round1",
+  "source": {
+    "reviewed_artifact": "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/README.candidate_before_local_fix.md",
+    "sha256": "8d1c9037e685ca1bfddfdf4eb7e79f0589a2e9a8416816c50360d082b9a0d6b8",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "contract_scope_reason": "Diagnóstico estreito da regra de payoff e de sua obrigação de prova, conforme o mandato recebido. Não é uma revisão integral do argumento ou do manuscrito.",
+  "review_sources": [
+    {
+      "review_id": "R3",
+      "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/README_review_from_coordinator.md",
+      "sha256": "f102a581dd3c179fc594916788fe93ea99ad6d02f6dbfe8c614d81a80c556e98"
+    }
+  ],
+  "author_correction_source": {
+    "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/review_sources/author_correction.md",
+    "sha256": "69cb27404295c3f3466222a6d61edd13896978c6f70159db2a58aecf8e3128a9",
+    "quoted_author_correction": "> \"H vota não e a proposta é aprovada sem ele\". Aqui na verdade não é isso. É mais delicado. De fato nesse caso ele não pode receber x\\_h + opção\\_externa. Mas não faz sentido simplesmente vedar isso de acontecer. Precisa ser restrito de algum outro modo, por racionalidade e inclusive nos caminhos off-path. Digamos, supor que proponentes fracos jamais vão fazer uma proposta com x\\_H > 0 que eles sabem que H vota não, mesmo com crenças fora do caminho. E formulando de forma a evitar ambiguidade. Ou seja, essa proibicao de \"**H vota não e a proposta é aprovada sem ele:** recebe a opção externa, sem receber `x_H`\"deve ser uma consequência da arquitetura do modelo, e não simplesmente uma vedação. Se a arquitetura não gera esse resultado, ela deve ser revista, sem simplsmente vedar de partida."
+  },
+  "supporting_sources": [
+    {
+      "path": "AGENTS.md",
+      "expected_sha256": "695069a7b432a3204f43619931c211c8327f8533b30d3cfa969e42bba3806522",
+      "snapshot_sha256": "695069a7b432a3204f43619931c211c8327f8533b30d3cfa969e42bba3806522",
+      "live_sha256_at_adjudication": "695069a7b432a3204f43619931c211c8327f8533b30d3cfa969e42bba3806522",
+      "utf8_readable": true,
+      "matches_preflight": true
+    },
+    {
+      "path": "formal_model_v6.Rmd",
+      "expected_sha256": "6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411",
+      "snapshot_sha256": "6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411",
+      "live_sha256_at_adjudication": "6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411",
+      "utf8_readable": true,
+      "matches_preflight": true
+    },
+    {
+      "path": "quality_reports/2026-09-01_b1_b3_exclusion_derivation.md",
+      "expected_sha256": "2bb232030711cfb16dec5d439eaafac6411b03bc71ad4a2af927b5e9a124f256",
+      "snapshot_sha256": "2bb232030711cfb16dec5d439eaafac6411b03bc71ad4a2af927b5e9a124f256",
+      "live_sha256_at_adjudication": "2bb232030711cfb16dec5d439eaafac6411b03bc71ad4a2af927b5e9a124f256",
+      "utf8_readable": true,
+      "matches_preflight": true
+    },
+    {
+      "path": "quality_reports/agents_maintenance_2026-09-05/AGENTS.approved.md",
+      "expected_sha256": "695069a7b432a3204f43619931c211c8327f8533b30d3cfa969e42bba3806522",
+      "snapshot_sha256": "695069a7b432a3204f43619931c211c8327f8533b30d3cfa969e42bba3806522",
+      "live_sha256_at_adjudication": "695069a7b432a3204f43619931c211c8327f8533b30d3cfa969e42bba3806522",
+      "utf8_readable": true,
+      "matches_preflight": true
+    },
+    {
+      "path": "quality_reports/agents_maintenance_2026-09-05/approval.md",
+      "expected_sha256": "d8be740a9e9abac0068abf6a689cb430caa86054e5839f2f36df1f1685f0a5d7",
+      "snapshot_sha256": "d8be740a9e9abac0068abf6a689cb430caa86054e5839f2f36df1f1685f0a5d7",
+      "live_sha256_at_adjudication": "d8be740a9e9abac0068abf6a689cb430caa86054e5839f2f36df1f1685f0a5d7",
+      "utf8_readable": true,
+      "matches_preflight": true
+    },
+    {
+      "path": "quality_reports/agents_maintenance_2026-09-05/README.md",
+      "expected_sha256": "449baf3ce376019db1759ef9b9cc6708a3c1394104c30ccfb237e229526c042d",
+      "snapshot_sha256": "449baf3ce376019db1759ef9b9cc6708a3c1394104c30ccfb237e229526c042d",
+      "live_sha256_at_adjudication": "449baf3ce376019db1759ef9b9cc6708a3c1394104c30ccfb237e229526c042d",
+      "utf8_readable": true,
+      "matches_preflight": true
+    }
+  ],
+  "identity_notes": [
+    "Snapshot preservado antes da correção local, com hash 8d1c9037e685ca1bfddfdf4eb7e79f0589a2e9a8416816c50360d082b9a0d6b8. O candidato posterior já tem outros bytes e exige sua revisão própria."
+  ],
+  "mandate": {
+    "latest_author_correction": "A ausência de acúmulo deve decorrer da arquitetura econômica e da racionalidade, inclusive fora do caminho. Estipular H-no-pass recebe o e cancelar x_H não basta; se a arquitetura não gera o requisito, sua revisão deve ser apresentada sem vedação de partida.",
+    "provenance": "Transcrição literal preservada em review_sources/author_correction.md:5. O resumo neste campo é uma paráfrase; a transcrição e seu hash constam em author_correction_source.",
+    "allowed_component": "Atualização segura das instruções e de uma nota de estado; sem redefinir jogo ou editar provas.",
+    "held_decision": true
+  },
+  "findings": [
+    {
+      "finding_id": "R3-F001",
+      "source_review": "R3",
+      "quoted_finding": "> Primeira revisão do candidato localizou README.md candidato linha55 frase residual “H recebe x_H apenas quando vota sim e a proposta é aprovada”; remover “apenas” evita concluir a necessidade do voto sim no ramo contestado.",
+      "title": "Necessidade residual do voto sim no resumo do item 4",
+      "type": "scope_or_consistency",
+      "severity": "minor",
+      "scientific_dimension": "instruction_fidelity",
+      "held_decision": true,
+      "status": "PARTIAL",
+      "source_locations": [
+        "README.candidate_before_local_fix.md:55",
+        "README.candidate_before_local_fix.md:57-67",
+        "review_sources/author_correction.md:5"
+      ],
+      "defect_evidence": [
+        "A linha 55 afirma no presente que o item 4 explicita o recebimento de x_H apenas quando H vota sim. Isso sugere necessidade do voto sim também no ramo cujo payoff e mecanismo estão em discussão."
+      ],
+      "refuting_evidence": [
+        "A seção imediatamente posterior, linhas 57-67, identifica a correção de arquitetura como vigente e diz que a ausência de acúmulo ainda precisa ser estabelecida após propostas desviantes. O defeito não descreve a posição geral do candidato."
+      ],
+      "mechanical_checks": [
+        {
+          "command": "python3 /private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/build_readme_adjudication.py",
+          "result": "Hash do snapshot verificado; presença de apenas quando na linha 55 e de ainda precisa ser estabelecida na linha 59 confirmada."
+        }
+      ],
+      "reasoning": "O finding é procedente como resíduo local de redação. A evidência posterior impede ampliá-lo para a alegação de que o candidato inteiro continua a adotar a vedação contestada. Retirar apenas preserva a suficiência da condição sim e aprovação sem afirmar sua necessidade no ramo disputado.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Retirar apenas da frase da linha 55 ou identificá-la explicitamente como descrição histórica superada. Essa correção não escolhe payoffs nem resolve a arquitetura."
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "confirmed": 0,
+    "partial": 1,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 1
+  },
+  "adjudication": {
+    "verdict": "READY_FOR_IMPLEMENTATION",
+    "checked_at": "2026-09-05T16:46:42.398265-03:00",
+    "reasons": [
+      "R3-F001 confirma parcialmente uma inconsistência de redação delimitada.",
+      "A correção segura não depende da arquitetura ainda em aberto. O record global permanece preservado."
+    ]
+  },
+  "count_interpretation": "Uma inconsistência local de redação, classificada como PARTIAL; nenhuma afirmação de defeito global do candidato.",
+  "unsafe_fixes": [
+    "Converter o evento a provar em restrição adicional ao espaço de propostas.",
+    "Manter o cancelamento de x_H como axioma e apresentá-lo como consequência de racionalidade.",
+    "Adotar x_H+o como nova regra de payoff sem desenho e autorização.",
+    "Eliminar histórias factíveis após desvios por serem subótimas.",
+    "Inserir uma escolha de H depois da divulgação dos votos, um opt-out imediato após fracasso ou um novo desempate.",
+    "Transportar limiares, estratégias completas ou resultados históricos para uma arquitetura nova sem rederivação."
+  ],
+  "owner_decisions": [
+    "Qual revisão substantiva da arquitetura adotar, se necessária, e qual seu escopo de implementação. A exigência de sustentar a ausência de acúmulo é mantida; a solução econômica ainda não foi escolhida."
+  ],
+  "not_performed": [
+    "Nenhuma edição de repositório, candidato ou artefato congelado.",
+    "Nenhuma auditoria integral do paper ou da extensão de agenda.",
+    "Nenhuma busca de equilíbrio, nova solução de jogo ou certificação matemática global."
+  ],
+  "global_record": {
+    "path": "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/adjudication_round1_global.json",
+    "sha256": "938a2f6d539b082ac6397d5aa87087ca1bd96e5f52ef51be72a27c9918e94f85",
+    "verdict": "BLOCKED"
+  },
+  "component_boundary": {
+    "scope": "Apenas a frase da linha 55 no snapshot do README; não é revisão do candidato completo ou dos novos resultados adicionados depois.",
+    "independence_evidence": "A correção retira uma necessidade não demonstrada de um resumo e mantém a discussão do ramo contestado aberta. Não depende de escolher uma solução para R1-F004.",
+    "implementation_status": "O coordenador informou que já retirou apenas do candidato após este finding ter sido adjudicado por mensagem. A verificação final dos bytes posteriores pertence à revisão do candidato."
+  }
+}

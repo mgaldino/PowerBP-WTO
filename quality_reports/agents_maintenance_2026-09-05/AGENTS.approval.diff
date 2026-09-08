@@ -1,0 +1,38 @@
+--- AGENTS.proposed.md
++++ AGENTS.approved.md
+@@ -1,6 +1,6 @@
+ # Informational Power Through Pivotality
+ 
+-<!-- PROPOSTA PARA LEITURA. Substitui o AGENTS.md ativo somente após aprovação do autor. -->
++<!-- Aprovado pelo autor em 2026-09-05, com esclarecimento do item 4. -->
+ 
+ ## Objetivo e arquivos de trabalho
+ 
+@@ -13,15 +13,15 @@
+ 
+ ## Fundamentos aprovados em setembro
+ 
+-Estes fundamentos prevalecem sobre instruções históricas incompatíveis. H designa o hegemon; os demais jogadores são os Estados fracos. A decisão de 1º de setembro deve ser lida com a emenda posterior do mesmo dia.
++Estes fundamentos prevalecem sobre instruções históricas incompatíveis. H designa o hegemon; os demais jogadores são os Estados fracos. A decisão de 1º de setembro deve ser lida com a emenda posterior do mesmo dia e o esclarecimento autoral do item 4 em `quality_reports/agents_maintenance_2026-09-05/approval.md`.
+ 
+ 1. De Baron–Ferejohn/Kalandrakis, o baseline herda o protocolo: reconhecimento uniforme dos fracos, propostas de divisão, votação e rodadas com desconto; Kalandrakis 2006 fornece a referência de simetria. A estrutura de desacordo é especificada para este domínio.
+ 2. A comparação institucional é unanimidade versus maioria, mantendo a mesma economia e o mesmo protocolo de votação.
+ 3. H é o único ator com informação privada. Os fracos são simétricos, não possuem informação privada nem canal próprio de sinalização.
+-4. Acordo e desacordo geram payoffs mutuamente exclusivos em cada histórico. Uma parte recebe sua alocação; quem fica fora recebe sua opção externa e nada da divisão. Uma fatia reservada a quem ficou fora não é paga a ninguém, pois a concessão é específica ao ator e intransferível. Nunca somar alocação e opção externa nem devolver automaticamente a fatia ao proponente.
++4. Quando uma proposta é aprovada, cada Estado fraco recebe apenas a alocação que ela lhe atribui, independentemente de seu voto; não a substitui por sua opção externa. H recebe sua alocação `x_H` se votou sim. Se H votou não e a proposta foi aprovada sem ele, exerce a opção externa e recebe `o_theta`, sem receber `x_H`. Nesse caso, a fatia reservada a H não é paga a ninguém, pois a concessão é específica a ele e intransferível. H nunca recebe uma alocação positiva acrescida do payoff externo; a fatia não é devolvida automaticamente ao proponente.
+ 5. Propostas têm alocações não negativas cuja soma é no máximo 1. Não há teto adicional para a alocação de H; `bar_x_H` e `y_bar` foram eliminados.
+ 6. O excedente disponível é fixado em 1. A opção externa de H está fora desse excedente, independe de acordos entre os demais e representa o valor privado de seu melhor fórum alternativo. Os fracos têm opção externa zero. No baseline, `pi_H=0` e `b_theta=0`.
+-7. O objeto são acordos distributivos de clube dentro da organização. O pacote da coalizão distribui benefícios entre seus membros e não impõe obrigações aos que ficaram fora. Decisões que vinculam toda a organização estão fora deste escopo.
++7. O objeto são acordos distributivos de clube dentro da organização. O pacote da coalizão distribui benefícios entre seus membros e não impõe obrigações aos que ficaram fora. Para os fracos, votar não não os exclui da distribuição prevista na proposta aprovada, conforme o item 4. Decisões que vinculam toda a organização estão fora deste escopo.
+ 8. O jogo é distributivo puro: não contém externalidades, bens públicos ou benefícios do acordo para quem não participa dele.
+ 
+ Qualquer proposta que viole um fundamento deve ser reportada como violação. Sua reversão exige identificar o fundamento afetado e obter decisão individual do autor, fora de um lote de correções.
+@@ -30,7 +30,7 @@
+ 
+ | Tema | Fonte e regra de leitura |
+ | --- | --- |
+-| Fundamentos, exclusão e espaço de propostas | `quality_reports/2026-09-01_decisao_exclusao_payoffs_e_fundamentos.md`, incluindo a emenda posterior do mesmo dia. Prevalece sobre as cláusulas incompatíveis de agosto. Afirmações históricas de invariância precisam da revisão correspondente. |
++| Fundamentos, exclusão e espaço de propostas | `quality_reports/2026-09-01_decisao_exclusao_payoffs_e_fundamentos.md`, incluindo a emenda posterior do mesmo dia, com o esclarecimento sobre fracos e H em `quality_reports/agents_maintenance_2026-09-05/approval.md`. Prevalece sobre as cláusulas incompatíveis de agosto. Afirmações históricas de invariância precisam da revisão correspondente. |
+ | Crenças e votação no baseline | `quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md`, com Emenda 1a, e `quality_reports/2026-09-01_decisao_structural_consistency_baseline.md`. A codificação de setembro determina sua aplicação operacional. |
+ | Demais primitivas, dependências e gates do baseline | `quality_reports/plans/2026-08-12_essential_input_gate0.md`, somente nas cláusulas compatíveis com as decisões acima. O cabeçalho datado não substitui autorizações posteriores. |
+ | Extensão de agenda | `model_redesign/agenda_extension_STATUS.md` e `model_redesign/agenda_extension_status_current.json` apontam para os contratos e manifestos de cada nó. Verifique decisões posteriores e preserve a distinção entre o baseline e o jogo da extensão. |

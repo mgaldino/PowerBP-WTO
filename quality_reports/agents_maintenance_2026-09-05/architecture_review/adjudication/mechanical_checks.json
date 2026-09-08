@@ -1,0 +1,62 @@
+{
+  "command": "python3 /private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/build_adjudication.py",
+  "scope": "Identidade de arquivos, leitura UTF-8 e exemplos aritméticos exatos. Não certifica equilíbrios nem a arquitetura completa.",
+  "C1_reallocation": {
+    "m": 3,
+    "beta": "3/5",
+    "x_H": "1/5",
+    "x_i": "2/5",
+    "weak_allocations": [
+      "1/5",
+      "1/5"
+    ],
+    "w": "1/5",
+    "k": 2,
+    "sum_preserved": true,
+    "weak_yes_preserved": true,
+    "proposer_gain": "1/5"
+  },
+  "C2_probability_logic": {
+    "prior": [
+      "1/2",
+      "1/2"
+    ],
+    "H_rejects": [
+      false,
+      true
+    ],
+    "passage": [
+      true,
+      true
+    ],
+    "P_rejection": "1/2",
+    "P_pass_and_H_no": "1/2",
+    "interpretation": "Contraexemplo apenas à implicação lógica: não rejeição certa não implica ausência do evento conjunto. Não afirma equilíbrio desse vetor."
+  },
+  "C3_zero_posterior": {
+    "posterior": [
+      "1",
+      "0"
+    ],
+    "P_pass_and_H_no": "0",
+    "some_feasible_type_has_joint_event": true,
+    "interpretation": "Probabilidade local zero não verifica todos os tipos factíveis. Exemplo lógico, sem alegar alcançabilidade de uma crença específica."
+  },
+  "C4_terminal_quota": {
+    "m_checked": "3..100",
+    "all_pass": true,
+    "general_argument": "Para m>=3, (m+1)/2 <= m-1, logo floor((m+1)/2) <= m-1. O limite do ganho do proponente com x_H>0 é 1-x_H<1; a proposta que lhe atribui 1 passa pelos votos fracos."
+  },
+  "C5_payoff_sensitivity": {
+    "x_H": "2/5",
+    "o": "3/10",
+    "exclusive_Y_minus_N": "1/10",
+    "hypothetical_additive_N_minus_Y": "3/10",
+    "interpretation": "Ilustração condicional da dependência do voto de H. O ramo aditivo não é adotado."
+  },
+  "C6_certain_failure": {
+    "continuation_both_proposals": "2/5",
+    "payoff_difference": "0",
+    "interpretation": "Se ambas fracassam certamente e mantêm a mesma continuação, não há ganho estrito. Não afirma que esse par seja ótimo no baseline."
+  }
+}

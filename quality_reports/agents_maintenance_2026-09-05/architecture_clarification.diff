@@ -1,0 +1,166 @@
+--- before/AGENTS.md
++++ after/AGENTS.md
+@@ -1,6 +1,6 @@
+ # Informational Power Through Pivotality
+ 
+-<!-- Aprovado pelo autor em 2026-09-05, com esclarecimento do item 4. -->
++<!-- Instruções atualizadas conforme as correções autorais de 2026-09-05; a exigência de arquitetura do item 4 está por demonstrar. -->
+ 
+ ## Objetivo e arquivos de trabalho
+ 
+@@ -13,12 +13,12 @@
+ 
+ ## Fundamentos aprovados em setembro
+ 
+-Estes fundamentos prevalecem sobre instruções históricas incompatíveis. H designa o hegemon; os demais jogadores são os Estados fracos. A decisão de 1º de setembro deve ser lida com a emenda posterior do mesmo dia e o esclarecimento autoral do item 4 em `quality_reports/agents_maintenance_2026-09-05/approval.md`.
++Estes fundamentos prevalecem sobre instruções históricas incompatíveis. H designa o hegemon; os demais jogadores são os Estados fracos. A decisão de 1º de setembro deve ser lida com a emenda posterior do mesmo dia e os esclarecimentos autorais em `quality_reports/agents_maintenance_2026-09-05/approval.md`. Para o item 4, prevalece a correção mais recente em `quality_reports/agents_maintenance_2026-09-05/architecture_clarification.md`: a ausência de acúmulo deve ser sustentada pela arquitetura e pelos incentivos; sua demonstração permanece em aberto.
+ 
+ 1. De Baron–Ferejohn/Kalandrakis, o baseline herda o protocolo: reconhecimento uniforme dos fracos, propostas de divisão, votação e rodadas com desconto; Kalandrakis 2006 fornece a referência de simetria. A estrutura de desacordo é especificada para este domínio.
+ 2. A comparação institucional é unanimidade versus maioria, mantendo a mesma economia e o mesmo protocolo de votação.
+ 3. H é o único ator com informação privada. Os fracos são simétricos, não possuem informação privada nem canal próprio de sinalização.
+-4. Quando uma proposta é aprovada, cada Estado fraco recebe apenas a alocação que ela lhe atribui, independentemente de seu voto; não a substitui por sua opção externa. H recebe sua alocação `x_H` quando vota sim e a proposta é aprovada. Se H votou não e a proposta foi aprovada sem ele, exerce a opção externa e recebe `o_theta`, sem receber `x_H`. Nesse caso, a fatia reservada a H não é paga a ninguém, pois a concessão é específica a ele e intransferível. Se a proposta é rejeitada e o jogo termina, H recebe sua opção externa, independentemente de seu voto; se ainda há outra rodada, o jogo continua segundo o protocolo. H nunca recebe uma alocação positiva acrescida do payoff externo; a fatia não é devolvida automaticamente ao proponente.
++4. Quando uma proposta é aprovada, cada Estado fraco recebe apenas a alocação que ela lhe atribui, independentemente de seu voto; não a substitui por sua opção externa. H recebe `x_H` quando vota sim e a proposta é aprovada. Se a proposta é rejeitada e o jogo termina, H recebe sua opção externa, independentemente de seu voto; havendo outra rodada, o jogo continua segundo o protocolo. A ausência de recebimento simultâneo de alocação positiva e opção externa por H deve decorrer da arquitetura econômica e dos incentivos, inclusive fora do caminho de equilíbrio. O caso de aprovação com voto não de H exige derivação própria: não o resolva estipulando que `x_H` desaparece, deixa de ser pago ou retorna automaticamente ao proponente. A regra histórica de cancelamento não satisfaz essa exigência. Se a arquitetura não produzir o resultado, registre a incompatibilidade e formule a revisão substantiva necessária.
+ 5. Propostas têm alocações não negativas cuja soma é no máximo 1. Não há teto adicional para a alocação de H; `bar_x_H` e `y_bar` foram eliminados.
+ 6. O excedente disponível é fixado em 1. A opção externa de H está fora desse excedente, independe de acordos entre os demais e representa o valor privado de seu melhor fórum alternativo. Os fracos têm opção externa zero. No baseline, `pi_H=0` e `b_theta=0`.
+ 7. O objeto são acordos distributivos de clube dentro da organização. O pacote da coalizão distribui benefícios entre seus membros e não impõe obrigações aos que ficaram fora. Para os fracos, votar não não os exclui da distribuição prevista na proposta aprovada, conforme o item 4. Decisões que vinculam toda a organização estão fora deste escopo.
+@@ -30,7 +30,7 @@
+ 
+ | Tema | Fonte e regra de leitura |
+ | --- | --- |
+-| Fundamentos, exclusão e espaço de propostas | `quality_reports/2026-09-01_decisao_exclusao_payoffs_e_fundamentos.md`, incluindo a emenda posterior do mesmo dia, com o esclarecimento sobre fracos e H em `quality_reports/agents_maintenance_2026-09-05/approval.md`. Prevalece sobre as cláusulas incompatíveis de agosto. Afirmações históricas de invariância precisam da revisão correspondente. |
++| Fundamentos, exclusão e espaço de propostas | `quality_reports/2026-09-01_decisao_exclusao_payoffs_e_fundamentos.md`, incluindo a emenda posterior do mesmo dia, com os esclarecimentos em `quality_reports/agents_maintenance_2026-09-05/approval.md` e a correção mais recente em `quality_reports/agents_maintenance_2026-09-05/architecture_clarification.md`. O cancelamento primitivo de `x_H` no ramo contestado não é instrução vigente. Demais cláusulas de setembro prevalecem sobre agosto. Afirmações históricas de invariância precisam da revisão correspondente. |
+ | Crenças e votação no baseline | `quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md`, com Emenda 1a, e `quality_reports/2026-09-01_decisao_structural_consistency_baseline.md`. A codificação de setembro determina sua aplicação operacional. |
+ | Demais primitivas, dependências e gates do baseline | `quality_reports/plans/2026-08-12_essential_input_gate0.md`, somente nas cláusulas compatíveis com as decisões acima. O cabeçalho datado não substitui autorizações posteriores. |
+ | Extensão de agenda | `model_redesign/agenda_extension_STATUS.md` e `model_redesign/agenda_extension_status_current.json` apontam para os contratos e manifestos de cada nó. Verifique decisões posteriores e preserve a distinção entre o baseline e o jogo da extensão. |
+@@ -45,6 +45,14 @@
+ - No baseline, propostas e votos dos fracos não atualizam a crença sobre o tipo de H. Dentro de uma votação, vetores com o mesmo voto de H compartilham a crença posterior. Aplique Bayes quando seu denominador for positivo; caso contrário, use a liberdade local à votação e ao voto de H, dentro do suporte do prior. Votações distintas podem ter valores livres distintos.
+ - Preserve a regra de voto dos fracos por comparação de valor esperado condicional à pivotalidade e o desempate `T^Y`: votar sim na indiferença em valor esperado. Use as definições completas das decisões de agosto e setembro; não substitua esse conceito por equilíbrio sequencial ou por uma convenção da extensão de agenda.
+ - Derive a partir das primitivas. Não acrescente hipóteses, suprima trajetórias ou imponha crenças para recuperar um resultado desejado. Novos resultados devem ser derivados e revisados fora do manuscrito antes da migração autorizada.
++
++## Exclusão de H: obrigação de derivação
++
++- Derive as propostas ótimas em cada conjunto de informação do proponente, inclusive fora do caminho, sob as crenças e continuações admissíveis pelo conceito aprovado. Não imponha `x_H=0` como restrição adicional ao espaço de propostas.
++- Verifique se uma proposta ótima com `x_H>0` pode ser aprovada quando H vota não. A expressão “o proponente sabe que H rejeitará” se refere à sua informação e às crenças sobre os tipos de H. Examinar apenas rejeição certa é insuficiente: cubra também rejeição por alguns tipos e distinga tipos com probabilidade posterior positiva dos demais tipos factíveis. Preserve a possibilidade de uma oferta de seleção de tipos ser rejeitada por um tipo quando isso faz a proposta fracassar.
++- Uma prova por redução de `x_H` e aumento de `x_i` compara duas propostas formuladas antes da votação. Demonstre que a alternativa é factível e melhora o payoff do proponente, verificando votos, probabilidades de aprovação, continuações e empates relevantes. Não transforme essa comparação em devolução automática após a votação.
++- Otimalidade em todos os conjuntos de informação não elimina histórias geradas por desvios nas propostas ou nos votos. A arquitetura deve especificar payoffs e respostas também nessas histórias e verificar se podem produzir acúmulo. Distinga voto, participação, alocação e exercício da opção externa; chamar H de “não participante” não substitui a explicação do mecanismo. Se a racionalidade não bastar, apresente a revisão da arquitetura sem apagar o ramo ou restaurar silenciosamente `x_H + o_theta`.
++- O diagnóstico e um resultado delimitado para propostas ótimas nas duas rodadas estão em `quality_reports/agents_maintenance_2026-09-05/architecture_clarification.md`. Esse resultado preserva o protocolo e os pagamentos dos fracos e pressupõe suas respostas de voto prescritas; não fecha os payoffs e incentivos de H após desvios. As provas atuais de B.1/B.3 usam a regra histórica e não certificam o requisito completo. A revisão de instruções não modifica o manuscrito ou contratos congelados nem estende pareceres históricos à arquitetura por definir.
+ 
+ ## Autonomia, verificação e aprovação
+ 
+--- before/quality_reports/agents_maintenance_2026-09-05/AGENTS.approved.md
++++ after/quality_reports/agents_maintenance_2026-09-05/AGENTS.approved.md
+@@ -1,6 +1,6 @@
+ # Informational Power Through Pivotality
+ 
+-<!-- Aprovado pelo autor em 2026-09-05, com esclarecimento do item 4. -->
++<!-- Instruções atualizadas conforme as correções autorais de 2026-09-05; a exigência de arquitetura do item 4 está por demonstrar. -->
+ 
+ ## Objetivo e arquivos de trabalho
+ 
+@@ -13,12 +13,12 @@
+ 
+ ## Fundamentos aprovados em setembro
+ 
+-Estes fundamentos prevalecem sobre instruções históricas incompatíveis. H designa o hegemon; os demais jogadores são os Estados fracos. A decisão de 1º de setembro deve ser lida com a emenda posterior do mesmo dia e o esclarecimento autoral do item 4 em `quality_reports/agents_maintenance_2026-09-05/approval.md`.
++Estes fundamentos prevalecem sobre instruções históricas incompatíveis. H designa o hegemon; os demais jogadores são os Estados fracos. A decisão de 1º de setembro deve ser lida com a emenda posterior do mesmo dia e os esclarecimentos autorais em `quality_reports/agents_maintenance_2026-09-05/approval.md`. Para o item 4, prevalece a correção mais recente em `quality_reports/agents_maintenance_2026-09-05/architecture_clarification.md`: a ausência de acúmulo deve ser sustentada pela arquitetura e pelos incentivos; sua demonstração permanece em aberto.
+ 
+ 1. De Baron–Ferejohn/Kalandrakis, o baseline herda o protocolo: reconhecimento uniforme dos fracos, propostas de divisão, votação e rodadas com desconto; Kalandrakis 2006 fornece a referência de simetria. A estrutura de desacordo é especificada para este domínio.
+ 2. A comparação institucional é unanimidade versus maioria, mantendo a mesma economia e o mesmo protocolo de votação.
+ 3. H é o único ator com informação privada. Os fracos são simétricos, não possuem informação privada nem canal próprio de sinalização.
+-4. Quando uma proposta é aprovada, cada Estado fraco recebe apenas a alocação que ela lhe atribui, independentemente de seu voto; não a substitui por sua opção externa. H recebe sua alocação `x_H` quando vota sim e a proposta é aprovada. Se H votou não e a proposta foi aprovada sem ele, exerce a opção externa e recebe `o_theta`, sem receber `x_H`. Nesse caso, a fatia reservada a H não é paga a ninguém, pois a concessão é específica a ele e intransferível. Se a proposta é rejeitada e o jogo termina, H recebe sua opção externa, independentemente de seu voto; se ainda há outra rodada, o jogo continua segundo o protocolo. H nunca recebe uma alocação positiva acrescida do payoff externo; a fatia não é devolvida automaticamente ao proponente.
++4. Quando uma proposta é aprovada, cada Estado fraco recebe apenas a alocação que ela lhe atribui, independentemente de seu voto; não a substitui por sua opção externa. H recebe `x_H` quando vota sim e a proposta é aprovada. Se a proposta é rejeitada e o jogo termina, H recebe sua opção externa, independentemente de seu voto; havendo outra rodada, o jogo continua segundo o protocolo. A ausência de recebimento simultâneo de alocação positiva e opção externa por H deve decorrer da arquitetura econômica e dos incentivos, inclusive fora do caminho de equilíbrio. O caso de aprovação com voto não de H exige derivação própria: não o resolva estipulando que `x_H` desaparece, deixa de ser pago ou retorna automaticamente ao proponente. A regra histórica de cancelamento não satisfaz essa exigência. Se a arquitetura não produzir o resultado, registre a incompatibilidade e formule a revisão substantiva necessária.
+ 5. Propostas têm alocações não negativas cuja soma é no máximo 1. Não há teto adicional para a alocação de H; `bar_x_H` e `y_bar` foram eliminados.
+ 6. O excedente disponível é fixado em 1. A opção externa de H está fora desse excedente, independe de acordos entre os demais e representa o valor privado de seu melhor fórum alternativo. Os fracos têm opção externa zero. No baseline, `pi_H=0` e `b_theta=0`.
+ 7. O objeto são acordos distributivos de clube dentro da organização. O pacote da coalizão distribui benefícios entre seus membros e não impõe obrigações aos que ficaram fora. Para os fracos, votar não não os exclui da distribuição prevista na proposta aprovada, conforme o item 4. Decisões que vinculam toda a organização estão fora deste escopo.
+@@ -30,7 +30,7 @@
+ 
+ | Tema | Fonte e regra de leitura |
+ | --- | --- |
+-| Fundamentos, exclusão e espaço de propostas | `quality_reports/2026-09-01_decisao_exclusao_payoffs_e_fundamentos.md`, incluindo a emenda posterior do mesmo dia, com o esclarecimento sobre fracos e H em `quality_reports/agents_maintenance_2026-09-05/approval.md`. Prevalece sobre as cláusulas incompatíveis de agosto. Afirmações históricas de invariância precisam da revisão correspondente. |
++| Fundamentos, exclusão e espaço de propostas | `quality_reports/2026-09-01_decisao_exclusao_payoffs_e_fundamentos.md`, incluindo a emenda posterior do mesmo dia, com os esclarecimentos em `quality_reports/agents_maintenance_2026-09-05/approval.md` e a correção mais recente em `quality_reports/agents_maintenance_2026-09-05/architecture_clarification.md`. O cancelamento primitivo de `x_H` no ramo contestado não é instrução vigente. Demais cláusulas de setembro prevalecem sobre agosto. Afirmações históricas de invariância precisam da revisão correspondente. |
+ | Crenças e votação no baseline | `quality_reports/2026-08-21_decisao_conceito_solucao_essential_input.md`, com Emenda 1a, e `quality_reports/2026-09-01_decisao_structural_consistency_baseline.md`. A codificação de setembro determina sua aplicação operacional. |
+ | Demais primitivas, dependências e gates do baseline | `quality_reports/plans/2026-08-12_essential_input_gate0.md`, somente nas cláusulas compatíveis com as decisões acima. O cabeçalho datado não substitui autorizações posteriores. |
+ | Extensão de agenda | `model_redesign/agenda_extension_STATUS.md` e `model_redesign/agenda_extension_status_current.json` apontam para os contratos e manifestos de cada nó. Verifique decisões posteriores e preserve a distinção entre o baseline e o jogo da extensão. |
+@@ -45,6 +45,14 @@
+ - No baseline, propostas e votos dos fracos não atualizam a crença sobre o tipo de H. Dentro de uma votação, vetores com o mesmo voto de H compartilham a crença posterior. Aplique Bayes quando seu denominador for positivo; caso contrário, use a liberdade local à votação e ao voto de H, dentro do suporte do prior. Votações distintas podem ter valores livres distintos.
+ - Preserve a regra de voto dos fracos por comparação de valor esperado condicional à pivotalidade e o desempate `T^Y`: votar sim na indiferença em valor esperado. Use as definições completas das decisões de agosto e setembro; não substitua esse conceito por equilíbrio sequencial ou por uma convenção da extensão de agenda.
+ - Derive a partir das primitivas. Não acrescente hipóteses, suprima trajetórias ou imponha crenças para recuperar um resultado desejado. Novos resultados devem ser derivados e revisados fora do manuscrito antes da migração autorizada.
++
++## Exclusão de H: obrigação de derivação
++
++- Derive as propostas ótimas em cada conjunto de informação do proponente, inclusive fora do caminho, sob as crenças e continuações admissíveis pelo conceito aprovado. Não imponha `x_H=0` como restrição adicional ao espaço de propostas.
++- Verifique se uma proposta ótima com `x_H>0` pode ser aprovada quando H vota não. A expressão “o proponente sabe que H rejeitará” se refere à sua informação e às crenças sobre os tipos de H. Examinar apenas rejeição certa é insuficiente: cubra também rejeição por alguns tipos e distinga tipos com probabilidade posterior positiva dos demais tipos factíveis. Preserve a possibilidade de uma oferta de seleção de tipos ser rejeitada por um tipo quando isso faz a proposta fracassar.
++- Uma prova por redução de `x_H` e aumento de `x_i` compara duas propostas formuladas antes da votação. Demonstre que a alternativa é factível e melhora o payoff do proponente, verificando votos, probabilidades de aprovação, continuações e empates relevantes. Não transforme essa comparação em devolução automática após a votação.
++- Otimalidade em todos os conjuntos de informação não elimina histórias geradas por desvios nas propostas ou nos votos. A arquitetura deve especificar payoffs e respostas também nessas histórias e verificar se podem produzir acúmulo. Distinga voto, participação, alocação e exercício da opção externa; chamar H de “não participante” não substitui a explicação do mecanismo. Se a racionalidade não bastar, apresente a revisão da arquitetura sem apagar o ramo ou restaurar silenciosamente `x_H + o_theta`.
++- O diagnóstico e um resultado delimitado para propostas ótimas nas duas rodadas estão em `quality_reports/agents_maintenance_2026-09-05/architecture_clarification.md`. Esse resultado preserva o protocolo e os pagamentos dos fracos e pressupõe suas respostas de voto prescritas; não fecha os payoffs e incentivos de H após desvios. As provas atuais de B.1/B.3 usam a regra histórica e não certificam o requisito completo. A revisão de instruções não modifica o manuscrito ou contratos congelados nem estende pareceres históricos à arquitetura por definir.
+ 
+ ## Autonomia, verificação e aprovação
+ 
+--- before/quality_reports/agents_maintenance_2026-09-05/README.md
++++ after/quality_reports/agents_maintenance_2026-09-05/README.md
+@@ -6,7 +6,7 @@
+ 
+ O autor confirmou que os fundamentos aprovados em setembro prevalecem. Autorizou retirar comandos históricos das seções operacionais, delimitar o encaminhamento de ambiguidades às decisões substantivas e distinguir verificações do implementador de certificação independente. Pediu o resumo dos fundamentos, um índice curto e uma proposta integral de `AGENTS.md` para leitura e aprovação.
+ 
+-O autor aprovou a proposta integral com a correção do item 4 registrada em `approval.md`: os fracos recebem a alocação aprovada; H pode receber o payoff externo quando vota não e o acordo passa sem ele, sem acumular alocação positiva e opção externa. O `AGENTS.md` da raiz contém `AGENTS.approved.md`. `AGENTS.proposed.md` preserva a proposta anterior ao esclarecimento. As alterações abrangem instruções e seu registro documental. Nenhuma prova, definição em contrato congelado ou versão do manuscrito foi modificada.
++O autor aprovou a proposta integral e corrigiu o item 4 em mensagens sucessivas. A decisão mais recente exige que a ausência de acúmulo de alocação positiva e opção externa decorra da arquitetura e dos incentivos, inclusive fora do caminho. `architecture_clarification.md` registra essa decisão e seu alcance. O `AGENTS.md` da raiz contém `AGENTS.approved.md`, atualizado conforme essa orientação. As alterações abrangem instruções e seu registro documental. Nenhuma prova, definição em contrato congelado ou versão do manuscrito foi modificada.
+ 
+ ## Organização do material histórico
+ 
+@@ -30,7 +30,7 @@
+ 
+ ## Fundamentos e emendas
+ 
+-O resumo aprovado está em `AGENTS.approved.md`, em oito itens, com a distinção explícita entre os pagamentos dos fracos e de H nos itens 4 e 7. A fatia de H excluído não é paga a ninguém: a emenda posterior de 1º de setembro substituiu a proposta inicial de devolvê-la ao proponente. O arquivo de decisão contém etapas históricas dessa escolha e deve ser lido até a emenda.
++O resumo aprovado está em `AGENTS.approved.md`, em oito itens, com a distinção explícita entre os pagamentos dos fracos e de H nos itens 4 e 7. A emenda de 1º de setembro substituiu a devolução ao proponente pelo cancelamento da fatia. A correção autoral mais recente exige justificar o resultado pela arquitetura e pelos incentivos e afasta o cancelamento como solução primitiva desse problema. Leia a sequência em `approval.md` e o estado vigente em `architecture_clarification.md`.
+ 
+ O índice aprovado indica os fundamentos de setembro, as decisões de crenças e votação, as cláusulas compatíveis do Gate 0, os registros da extensão e os manifestos do manuscrito. O índice não altera contratos congelados, não estende pareceres a novos hashes e não afirma invariância da correspondência completa de estratégias fora do caminho.
+ 
+@@ -46,10 +46,22 @@
+ - `approval_independent_review.md`: revisão da redação corrigida.
+ - `AGENTS.proposed.md`: proposta histórica, anterior à correção autoral.
+ - `independent_review.md`: parecer da etapa inicial, anterior à correção autoral.
+-- `validation.json`: verificações da instalação intermediária; para a versão ativa final, consulte `approval_validation.json`.
++- `validation.json`: verificações da instalação intermediária, limitadas àquela etapa.
+ 
+ As verificações cobrem conteúdo, referências locais e preservação dos arquivos. Não foi rodada análise R, recompilado o artigo ou realizada nova certificação das provas; esta manutenção não altera essas evidências. Também não foi executado experimento comportamental com uma nova sessão do Codex.
+ 
+ ## Esclarecimento posterior sobre o término do jogo
+ 
+-O item 4 explicita que H recebe `x_H` apenas quando vota sim e a proposta é aprovada; na rejeição que encerra o jogo, recebe a opção externa independentemente do voto. O registro autoral está em `approval.md`. A conferência dessa alteração está em `terminal_clarification_validation.json`; os pareceres e validações anteriores continuam limitados aos hashes que registraram.
++O item 4 explicita que H recebe `x_H` quando vota sim e a proposta é aprovada; na rejeição que encerra o jogo, recebe a opção externa independentemente do voto. O registro autoral está em `approval.md`. A conferência dessa alteração está em `terminal_clarification_validation.json`; os pareceres e validações anteriores continuam limitados aos hashes que registraram.
++
++## Correção posterior sobre arquitetura e racionalidade
++
++O item 4 e a seção “Exclusão de H: obrigação de derivação” registram a exigência atual. A ausência de acúmulo ainda precisa ser estabelecida com payoffs e respostas definidos também após desvios nas propostas ou nos votos. O resultado para propostas ótimas nas duas rodadas registrado na nota tem alcance próprio e não encerra essa questão.
++
++- `architecture_clarification.md`: decisão vigente, diagnóstico e formulação técnica candidata.
++- `AGENTS.before_architecture_clarification.md`: versão do AGENTS anterior a essa correção, para proveniência.
++- `architecture_clarification.diff`: diferenças desta correção nos quatro arquivos existentes.
++- `architecture_review/`: pareceres e adjudicação delimitados às fontes e hashes registrados.
++- `architecture_clarification_validation.json`: verificação da instalação atual; validações e pareceres anteriores cobrem somente seus próprios hashes.
++
++A manutenção das instruções foi concluída. A definição e certificação de uma arquitetura que satisfaça integralmente o requisito permanecem abertas.
+--- before/quality_reports/agents_maintenance_2026-09-05/approval.md
++++ after/quality_reports/agents_maintenance_2026-09-05/approval.md
+@@ -2,7 +2,7 @@
+ 
+ Data: 2026-09-05.
+ 
+-O autor aprovou o restante do resumo dos fundamentos, do índice e da proposta integral de `AGENTS.md`, corrigindo a generalização da regra de exclusão aos Estados fracos. Esta é a decisão vigente para interpretar o item 4 e as referências a participação no acordo.
++O autor aprovou o restante do resumo dos fundamentos, do índice e da proposta integral de `AGENTS.md`, corrigindo a generalização da regra de exclusão aos Estados fracos. Este registro preserva a sequência de decisões. A interpretação vigente do ramo em que H vota não e a proposta passa está na correção posterior registrada abaixo e em `architecture_clarification.md`.
+ 
+ ## Esclarecimento autoral
+ 
+@@ -27,3 +27,11 @@
+ - `AGENTS.pre-approval.md` preserva o arquivo ativo intermediário, anterior à instalação integral.
+ - Contratos congelados, manuscrito, provas e resultados permanecem intactos. Este registro explicita a interpretação autoral nas instruções de trabalho.
+ - A aprovação abrange estas instruções; não altera o estado de revisão ou publicação do artigo.
++
++## Correção posterior: o resultado deve decorrer da arquitetura
++
++O autor esclareceu que a ausência de recebimento simultâneo de alocação positiva e opção externa por H precisa decorrer da arquitetura e da racionalidade, inclusive fora do caminho de equilíbrio. Rejeitou tratá-la como uma vedação primitiva que simplesmente cancela `x_H` quando H vota não. Sugeriu examinar se os proponentes fracos jamais ofereceriam uma alocação positiva a H sabendo que ele a rejeitaria, à luz de suas crenças, e determinou rever a arquitetura caso ela não sustente o resultado.
++
++Essa correção substitui, neste assunto, as passagens anteriores deste registro que apresentam “a fatia não é paga a ninguém” como solução vigente. Preserva os pagamentos dos fracos após aprovação, de H após aprovação com voto sim e de H no desacordo terminal. Não autoriza tratar o pagamento aditivo como nova regra já aprovada nem acrescenta uma etapa de decisão depois da votação.
++
++O `AGENTS.md` e sua cópia `AGENTS.approved.md` passam a registrar a obrigação de derivação. `architecture_clarification.md` distingue a decisão do autor, a formulação técnica candidata, um resultado delimitado para propostas ótimas nas duas rodadas e as questões de arquitetura ainda abertas. A atualização não apresenta uma nova arquitetura como aprovada nem o requisito completo como demonstrado.

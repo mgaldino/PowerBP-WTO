@@ -1,0 +1,44 @@
+[
+  {
+    "record": "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/adjudication_round1_global.json",
+    "artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/AGENTS.md",
+    "command": [
+      "/opt/homebrew/opt/python@3.13/bin/python3.13",
+      "/Users/manoelgaldino/.codex/skills/adjudicate-review/scripts/validate_adjudication.py",
+      "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/adjudication_round1_global.json",
+      "--artifact",
+      "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/AGENTS.md"
+    ],
+    "returncode": 0,
+    "stdout": "VALID: /private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/adjudication_round1_global.json\n",
+    "stderr": ""
+  },
+  {
+    "record": "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/adjudication_round1_agents_only.json",
+    "artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/AGENTS.md",
+    "command": [
+      "/opt/homebrew/opt/python@3.13/bin/python3.13",
+      "/Users/manoelgaldino/.codex/skills/adjudicate-review/scripts/validate_adjudication.py",
+      "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/adjudication_round1_agents_only.json",
+      "--artifact",
+      "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/AGENTS.md"
+    ],
+    "returncode": 0,
+    "stdout": "VALID: /private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/adjudication_round1_agents_only.json\n",
+    "stderr": ""
+  },
+  {
+    "record": "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/adjudication_readme_local.json",
+    "artifact": "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/README.candidate_before_local_fix.md",
+    "command": [
+      "/opt/homebrew/opt/python@3.13/bin/python3.13",
+      "/Users/manoelgaldino/.codex/skills/adjudicate-review/scripts/validate_adjudication.py",
+      "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/adjudication_readme_local.json",
+      "--artifact",
+      "/private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/README.candidate_before_local_fix.md"
+    ],
+    "returncode": 0,
+    "stdout": "VALID: /private/tmp/pbp-architecture-clarification-2026-09-05/adjudication/adjudication_readme_local.json\n",
+    "stderr": ""
+  }
+]
