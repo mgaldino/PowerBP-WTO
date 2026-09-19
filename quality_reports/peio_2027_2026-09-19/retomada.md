@@ -1,5 +1,7 @@
 # Retomada da preparação para PEIO 2027
 
+**Esclarecimento mais recente, que prevalece sobre as atualizações abaixo:** A1 foi rejeitada. A aprovação executa integralmente a divisão proposta; H recebe sua parcela sem uma ação adicional de execução. Consultar `author_clarification_automatic_implementation.md`. A aprovação anterior de A2/A3 não autoriza reintroduzir essa ação. Reexaminar a disponibilidade da opção externa preservando a implementação automática; não migrar o pacote condicional de 8/9 como se resolvesse o modelo do autor.
+
 **Atualização posterior à entrega do diagnóstico:** o autor aprovou A2 e A3 e manteve A1 em dúvida, com inclinação à rejeição. A pergunta atual é se as três cláusulas são necessárias. Consultar `author_decision_A2_A3.md` e o `status.json` atualizado. O registro abaixo descreve a entrega anterior e está superado quanto ao estado individual de A2 e A3; não solicitar sua aprovação novamente.
 
 Estado deste registro: aguardando decisões autorais individuais A1, A2 e A3. A pergunta foi apresentada durante a tarefa de 19/09/2026. Ausência de resposta não é aprovação. O pedido autoriza diagnóstico, correção dentro dos fundamentos, revisão independente, integração e materiais; não autoriza submissão, publicação, push ou comunicação externa.
