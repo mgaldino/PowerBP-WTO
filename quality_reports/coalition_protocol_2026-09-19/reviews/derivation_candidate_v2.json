@@ -1,0 +1,29 @@
+{
+  "candidate": "coalition-derivations-v2",
+  "created": "2026-09-19T18:21:24.224991+00:00",
+  "bundle": {
+    "path": "derivations/derivation_bundle_v2.md",
+    "sha256": "3b8043d49de9011a60c1e7e079b4fbf876f35239d100dad82a0072b53a19b4e2"
+  },
+  "previous_manifest": {
+    "path": "reviews/derivation_candidate_v1.json",
+    "sha256": "8dfefecda3b9e369159bbfeb4276f5f6d7c2402e3e897320774b39be12d1feca"
+  },
+  "files": {
+    "author_decision.md": "7abfa53814ff23c61a9af2049c975be81e44f8e66270c4fa3f99accd51923726",
+    "derivations/v2/game_contract.md": "ac78634ea0da03b422a6d92930680d1bb1f94deee0d3c33b68dc9d9791a7d058",
+    "derivations/v2/r2_interface.md": "c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7",
+    "derivations/v2/r1_interface.md": "a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0",
+    "derivations/v2/agenda_transport.md": "223d70575f64ca60b8807ab6e0bff5fec8819328a8a4d91fc10f22825f3f6c04",
+    "derivations/v2/unanimity_support_lemma.md": "1491acd877ae5d3ca4eda2c6c9cacd10bffe9221fe52964f11cd7d962d5068ef",
+    "derivations/agenda_checks.py": "9874ca255487e2245f8d44d3915e82cd6974331a7cd7a05278a7608e5de47445",
+    "derivations/agenda_checks.json": "7e0a20ac6790a1f949e760c9fbf00d7d70b7290d266f9342dc794efa70e2a75e",
+    "derivations/v2/repaired_algebra_checks.py": "ffb8a213b34258fe9a000f932240e392f3334339150938a886fd1a9698940ac1",
+    "derivations/v2/repaired_algebra_checks.json": "427c7b001a0a8483e914b681eaad004f31954b4b4d3755d125862ee371a1d688"
+  },
+  "adjudication": {
+    "path": "adjudication/complete_v1.json",
+    "sha256": "9c1719377777bc3eb36b74a78ec3daa0d86eacbae35a7b792364028842c13548"
+  },
+  "scope": "Complete v1 scope retained. Three repaired obligations F001 algebra, F002 arbitrary Borel support, F003 probability-one endpoint wording; no changed primitives, economic formulas or equilibrium claims."
+}

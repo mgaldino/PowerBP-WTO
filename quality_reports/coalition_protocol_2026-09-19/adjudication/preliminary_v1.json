@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "coalition-derivations-v1:b62a7c8e0235:preliminary-scoped",
+  "source": {
+    "reviewed_artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/derivation_bundle_v1.md",
+    "sha256": "b62a7c8e023568bf408c1b8929b5909b4e7af21c3271c95955970237801b799f",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": true,
+    "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/argument_contract.json",
+    "sha256": "a49fc5f5d1737b7d8661506b6e384b709314a98798cacd33e4d981ffb5b07c36",
+    "contract_id": "coalition-derivations-v1:b62a7c8e0235:round1",
+    "artifact_sha256": "b62a7c8e023568bf408c1b8929b5909b4e7af21c3271c95955970237801b799f",
+    "status": "PASS",
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "PRELIM-FORMAL",
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/preliminary_formal_findings_v1.md",
+      "sha256": "552ca2e0834a54e8181bb4ee12600a11d5a0465b2113f28d939b8cf4e8d3de70"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "source_review": "PRELIM-FORMAL",
+      "quoted_finding": "The factorization in A-C5 is false; the correctly simplified difference remains strictly positive.",
+      "type": "logic_or_proof",
+      "severity": "minor",
+      "scientific_dimension": "algebra",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "derivations/agenda_transport.md:210–215",
+        "derivations/derivation_bundle_v1.md:615–619"
+      ],
+      "defect_evidence": [
+        "The claimed product omits k beta^2 o (1-beta)/m. Exact rational example: LHS=1019/2000, claimed RHS=10109/20000, difference=81/20000."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "Python fractions.Fraction: exact example and corrected identity verified; corrected LHS exceeds 1-beta."
+      ],
+      "reasoning": "Expansion gives 1-k beta/m-beta^2 o (1-k/m). Since beta o<1 and k<m, it is greater than 1-beta>0. The best-response comparison and public payoff are preserved.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Correct only the displayed algebra in a new derivation version; add a targeted exact-fraction check."
+    },
+    {
+      "finding_id": "F-002",
+      "source_review": "PRELIM-FORMAL",
+      "quoted_finding": "B.8 treats x^h as an unsupported deviation without proving the same bound when it is a zero-mass support point.",
+      "type": "logic_or_proof",
+      "severity": "major",
+      "scientific_dimension": "equilibrium deviations",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "formal_model_v6.Rmd:1889–1893",
+        "formal_model_v6.Rmd:1938–1943",
+        "derivations/agenda_transport.md:360–368"
+      ],
+      "defect_evidence": [
+        "The proof asserts that the off-support proposal x^h guarantees z_H while the maintained Borel laws permit x^h to lie in topological support with zero mass."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "Read exact original B.8 and E.3 at SHA6708eaaf; checked the common-value and high-type rejection premises."
+      ],
+      "reasoning": "The stated shortcut does not cover every feasible assessment. A local-Bayes argument repairs it: for V<z_H, a small ball has x_H>V, cannot carry used zero-posterior mass by either payoff branch, and hence has posterior above p* almost surely. The local Bayes limit at a supported x^h is at least p* and admissibility forces it above p*. Then x^h pays z_H, a contradiction. Off support, the specified high posterior yields the same deviation. No primitive or equilibrium domain is changed.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Write and review an explicit lemma in the new notes, and prepare a pure B.8 repair patch. Preserve the original source and all v1 files."
+    }
+  ],
+  "summary": {
+    "total": 2,
+    "confirmed": 2,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "READY_FOR_IMPLEMENTATION",
+    "checked_at": "2026-09-19T14:51:45.171620-03:00",
+    "reasons": [
+      "Scoped to two independently reported and verified defects; the full review remains in progress.",
+      "Both repairs preserve primitives, existence cells and payoff claims; this does not authorize migration or certify the complete candidate."
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "coalition-derivations-v1:b62a7c8e0235:complete-round1",
+  "source": {
+    "reviewed_artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/derivation_bundle_v1.md",
+    "sha256": "b62a7c8e023568bf408c1b8929b5909b4e7af21c3271c95955970237801b799f",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": true,
+    "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/argument_contract.json",
+    "sha256": "a49fc5f5d1737b7d8661506b6e384b709314a98798cacd33e4d981ffb5b07c36",
+    "contract_id": "coalition-derivations-v1:b62a7c8e0235:round1",
+    "artifact_sha256": "b62a7c8e023568bf408c1b8929b5909b4e7af21c3271c95955970237801b799f",
+    "status": "PASS",
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "FORMAL",
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/formal_derivations_v1.md",
+      "sha256": "0372743e4bd512feb670fb76b26057736ee986903158760616676352dbd55b8c"
+    },
+    {
+      "review_id": "ADVERSARIAL",
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v1.md",
+      "sha256": "2d22af75467ef444632a5c6c731a7b9c82e653573474a9ba8cf32fc0dceae9a8"
+    },
+    {
+      "review_id": "FORMAL-JSON",
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/formal_derivations_v1.json",
+      "sha256": "d9af586c44054823239313885bf2ae26d98548bee5fa967b491c3cf2115bce02"
+    },
+    {
+      "review_id": "ADVERSARIAL-JSON",
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v1.json",
+      "sha256": "c5e68073782a317b2c6dc6c0bd5a7733ccf2820bc409fb9d366966ac5b8843d2"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "source_review": "FORMAL",
+      "quoted_finding": "The factorization in A-C5 is false; the correctly simplified difference remains strictly positive.",
+      "type": "logic_or_proof",
+      "severity": "minor",
+      "scientific_dimension": "algebra",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "derivations/agenda_transport.md:210–215",
+        "derivations/derivation_bundle_v1.md:615–619"
+      ],
+      "defect_evidence": [
+        "The claimed product omits k beta^2 o (1-beta)/m. Exact rational example: LHS=1019/2000, claimed RHS=10109/20000, difference=81/20000."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "Python fractions.Fraction: exact example and corrected identity verified; corrected LHS exceeds 1-beta."
+      ],
+      "reasoning": "Expansion gives 1-k beta/m-beta^2 o (1-k/m). Since beta o<1 and k<m, it is greater than 1-beta>0. The best-response comparison and public payoff are preserved.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Correct only the displayed algebra in a new derivation version; add a targeted exact-fraction check."
+    },
+    {
+      "finding_id": "F-002",
+      "source_review": "FORMAL",
+      "quoted_finding": "B.8 treats x^h as an unsupported deviation without proving the same bound when it is a zero-mass support point.",
+      "type": "logic_or_proof",
+      "severity": "major",
+      "scientific_dimension": "equilibrium deviations",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "formal_model_v6.Rmd:1889–1893",
+        "formal_model_v6.Rmd:1938–1943",
+        "derivations/agenda_transport.md:360–368"
+      ],
+      "defect_evidence": [
+        "The proof asserts that the off-support proposal x^h guarantees z_H while the maintained Borel laws permit x^h to lie in topological support with zero mass."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "Read exact original B.8 and E.3 at SHA6708eaaf; checked the common-value and high-type rejection premises."
+      ],
+      "reasoning": "The stated shortcut does not cover every feasible assessment. A local-Bayes argument repairs it: for V<z_H, a small ball has x_H>V, cannot carry used zero-posterior mass by either payoff branch, and hence has posterior above p* almost surely. The local Bayes limit at a supported x^h is at least p* and admissibility forces it above p*. Then x^h pays z_H, a contradiction. Off support, the specified high posterior yields the same deviation. No primitive or equilibrium domain is changed.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "Write and review an explicit lemma in the new notes, and prepare a pure B.8 repair patch. Preserve the original source and all v1 files."
+    },
+    {
+      "finding_id": "F-003",
+      "source_review": "FORMAL; QI-05 independently discussed by ADVERSARIAL",
+      "quoted_finding": "“suportada no argmax” deve significar probabilidade um; the strong topological interpretation is false.",
+      "type": "exposition",
+      "severity": "minor",
+      "scientific_dimension": "Borel strategy scope",
+      "held_decision": false,
+      "status": "CONFIRMED",
+      "source_locations": [
+        "derivations/agenda_transport.md:300",
+        "derivations/derivation_bundle_v1.md:705",
+        "formal_model_v6.Rmd:2480–2487"
+      ],
+      "defect_evidence": [
+        "The frozen endpoint wording says supported on even though A14 imposes equality only almost surely and inequality at all support points.",
+        "At m=4, beta=.9, ell=.1,h=.9,p=1, a sequence of rejected packages with a weak payment approaching .225 from below gives H=.81 at every atom; its zero-mass limit passes and gives .55. The best-response law therefore need not have topological support contained in its argmax."
+      ],
+      "refuting_evidence": [],
+      "mechanical_checks": [
+        "Read exact endpoint formulas and A14. Checked the payoff discontinuity and geometric probability weights analytically. Both independent reviewers give concrete witnesses."
+      ],
+      "reasoning": "The interpretative contract expressly fixes probability-one concentration as intended. The claim is valid under that reading; precise wording is needed to make the standalone source unambiguous. No refinement, strategy restriction or changed result is authorized.",
+      "proposed_fix_assessment": "safe",
+      "disposition": "In the v2 note and E.3 manuscript patch write assigning probability one to its argmax/the indicated set; preserve no-profitable-deviation inequalities at zero-mass support points."
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "confirmed": 3,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "READY_FOR_IMPLEMENTATION",
+    "checked_at": "2026-09-19T18:16:57.728369+00:00",
+    "reasons": [
+      "Both complete v1 reports are source-bound. Adversarial PASS does not refute the independently demonstrated formal proof defects.",
+      "F001/F002 are confirmed by exact source and mathematical checks; F003 is a precision repair consistent with the approved interpretative contract.",
+      "No primitive, existence cell, formula or substantive authorial choice needs changing. The repaired candidate still requires independent review."
+    ]
+  }
+}

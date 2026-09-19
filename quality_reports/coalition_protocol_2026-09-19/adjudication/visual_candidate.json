@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "coalition-visual:a65cea77402d:round1",
+  "source": {
+    "reviewed_artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/snapshots/inspected_candidate.pdf",
+    "sha256": "a65cea77402d1e73a402ae49bbb4a6839298816f14703a2693309534bc5a61e5",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": false,
+    "reason": "Pure artifact/layout inspection; no substantive claim review.",
+    "path": null,
+    "sha256": null,
+    "contract_id": null,
+    "artifact_sha256": null,
+    "status": null,
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "VISUAL",
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/visual_candidate.md",
+      "sha256": "e3547fb28607e5235a2c94560fa3c3cf4bdb2e908d2a8a04026ebe824b7769ca"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "VQA-OBS-01",
+      "source_review": "VISUAL",
+      "quoted_finding": "Candidate visual observation: Figure4 third horizontal label appears as IR^B without Delta in the local Poppler render.",
+      "type": "artifact",
+      "severity": "minor",
+      "scientific_dimension": "PDF label rendering",
+      "held_decision": false,
+      "status": "REFUTED",
+      "source_locations": [
+        "inspected_candidate.pdf:24",
+        "scripts/essential_input_manuscript_figure_functions.R:1844"
+      ],
+      "defect_evidence": [],
+      "refuting_evidence": [
+        "Quartz200dpi render shows Delta IR^B; root inspected checks/visual_evidence/quartz-24.png, SHA500cc5905ea118f3026fe953f753a275a59c72663e8dae4eddcc572b62b5c7eb.",
+        "PDF text extraction and R plotmath source contain Delta. The source label is correct."
+      ],
+      "mechanical_checks": [
+        "pdffonts confirms standard Symbol font unembedded; Poppler reports a local Fontconfig cache warning. Exact cause of its substitution is not identified.",
+        "The durable inspected PDF is byte-identical to the independently rendered source."
+      ],
+      "reasoning": "The missing visible glyph is observed only in the local Poppler image; an independent renderer displays the correct label from the same PDF. This refutes an incorrect label in the artifact. It does not claim all viewers produce identical glyphs.",
+      "proposed_fix_assessment": "not_provided",
+      "disposition": "Preserve PDF and figures. Retain alternate-renderer visual evidence and verify final page24 after canonical rebuild."
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 1,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "NO_CONFIRMED_DEFECTS",
+    "checked_at": "2026-09-19T18:40:03.279261+00:00",
+    "reasons": [
+      "Independent Quartz image and text/source evidence refute missing label in the PDF.",
+      "No other visual defect was reported in83-page inspection. Final compiled artifact requires equivalence verification."
+    ]
+  }
+}

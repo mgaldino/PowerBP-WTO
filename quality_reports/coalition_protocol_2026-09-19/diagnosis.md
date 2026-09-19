@@ -1,0 +1,15 @@
+# Diagnóstico e resolução arquitetural
+
+O candidato canônico recebido foi `formal_model_v6.Rmd`, no checkout `codex/exposition-items20-28`, HEAD `c6dfab61a5a3b44d09ba389911df47726f81b51e`, SHA-256 `6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411`. A evidência de checkout, worktrees e fontes anteriores está em `preflight/`; a árvore rastreada estava limpa. O checkpoint preserva o original, e os fontes Rmd/BibTeX também estão em `snapshots/original/`.
+
+A pendência era o ramo majoritário em que H rejeitava uma proposta com parcela positiva e os fracos ainda aprovavam. A regra histórica cancelava a parcela de H; a decisão autoral posterior exigia uma arquitetura que explicasse a não acumulação e preservasse o pagamento integral de um acordo aprovado. Um argumento sobre propostas ótimas não especificava esse ramo após desvios. As provas B.1/B.3 e suas dependências não bastavam para resolver essa lacuna.
+
+A decisão autoral de 19/9 adota propostas `(C,x)` com zero fora de C e consentimento simultâneo de todos os convidados. A maioria autoriza C sem H; a unanimidade exige C=N. Se um convidado recusa, o pacote inteiro fracassa. Se todos aceitam, todas as parcelas são pagas automaticamente. H fora de um acordo recebe sua opção externa, exterior à pie. Não há ação individual de execução, cancelamento posterior de parcela ou devolução automática ao proponente.
+
+Isso muda a factibilidade e o protocolo de aprovação, de modo explícito. Não é uma alegação de equivalência global com a votação majoritária anterior. Permanecem pie fixa, um único informado, simetria e reconhecimento uniforme dos fracos, duas rodadas, opção externa independente e conceito de votação declarado. Os novos ramos fecham os pagamentos de propostas e votos desviantes, além dos caminhos ótimos.
+
+As dependências foram reconstruídas em ordem R2 → R1 → agenda. As fórmulas econômicas do baseline, benchmarks públicos e cinco figuras externas permanecem iguais nos objetos delimitados. Na agenda majoritária, a coalizão também é observada e pode sinalizar: as estratégias e leis realizadas foram redefinidas no espaço de pares `(C,x)`. Sob unanimidade, C=N é constante e permite isomorfismo estrutural; as provas históricas transportadas foram revistas efetivamente.
+
+A revisão v1 encontrou F-001 (fatoração falsa na prova do benchmark), F-002 (lacuna para proposta de massa zero no suporte Borel) e F-003 (ambiguidade entre probabilidade um e suporte topológico). A adjudicação confirmou intervenções delimitadas, sem mudança das fórmulas ou das regiões de existência. A v2 incorpora álgebra corrigida, lema de Bayes local e linguagem precisa de probabilidade um. A conclusão sobre prontidão e os hashes finais pertencem ao relatório de entrega, não a este diagnóstico.
+
+O alcance permanece o conceito de solução declarado, incluindo estratégias puras de votação, regras de desempate, disciplina de crenças e seleção de continuações da agenda. A inexistência em certas crenças não é eliminada nem apresentada como teorema para todos os conceitos de equilíbrio. A interpretação distributiva de clube não constitui teste empírico da OMC.

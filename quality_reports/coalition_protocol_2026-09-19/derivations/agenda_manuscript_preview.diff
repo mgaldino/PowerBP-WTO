@@ -1,0 +1,673 @@
+--- formal_model_v6.Rmd (original)
++++ agenda_manuscript_preview.Rmd
+@@ -890,8 +890,12 @@
+ The baseline removes an exclusive formal proposal privilege from \(H\) to
+ identify informational power through pivotality. We now restore agenda power
+ in a separate extension. Before the two-round game, at date \(A\), the informed
+-hegemon must propose a feasible division of the unit pie. If that proposal
+-fails, the game enters Round 1 of the baseline. The continuation is therefore
++hegemon must propose a feasible coalition contract \(y=(C,x)\), with
++\(H\in C\), allocations restricted to its members, and consent required
++from every invited weak state. Write \(\mathcal Y_g=\mathcal Y_g^H\) for
++its signal space under rule \(g\). Both \(C\) and \(x\) are public before
++the simultaneous ballot. If any invited state refuses, the package fails
++and the game enters Round 1 of the baseline. The continuation is therefore
+ transported from Round 1 to date \(A\) by exactly one factor \(\beta\). The
+ proposal is mandatory: \(H\) cannot skip the agenda stage and obtain the
+ continuation at date \(A\).
+@@ -900,9 +904,11 @@
+ \[
+ e=m-k,\qquad v_M^{\mathrm{safe}}=1-\frac{k\beta}{m}.
+ \]
+-Under majority, \(k\) is the number of weak votes that \(H\) must buy and
+-\(e\) is the number of weak states that a minimal winning coalition can leave
+-outside. The private games also retain the same off-path specification,
++Under majority, a feasible coalition invites at least \(k\) weak states;
++\(e\) is the number left outside a minimal coalition. An approved proposal
++used in equilibrium invites exactly \(k\) weak states, as Appendix B.7
++shows. Rejected proposals may invite more, and the coalition itself can
++convey information about \(H\)'s type. The private games also retain the same off-path specification,
+ summarized by the likelihood-ratio coordinate \(\rho\) and its implied posterior
+ \(\mu^{\mathrm{off}}\), where
+ \[
+@@ -1011,12 +1017,15 @@
+ \end{tabular}
+ 
+ \begin{minipage}{0.92\linewidth}
+-\footnotesize\emph{Note:} The table uses one admissible equilibrium assessment
+-with \(m=4\), \(\beta=.90\), \(\ell=.10\), \(h=.90\), and \(p=.95\). The
+-higher value \(h=.90\), rather than the running illustration's \(h=.35\),
+-creates the region \(\beta h>e/m\) in which an informational reversal is
+-possible. The unanimity value is the lower endpoint of its admissible pooling
+-interval. The numbers are a theoretical illustration of the decomposition.
++\footnotesize\emph{Note:} The table uses a pair of complete assessments with
++\(m=4\), \(\beta=.90\), \(\ell=.10\), \(h=.90\), \(p=.95\), and
++\(\mu^{\mathrm{off}}=0\) under both rules. The higher value \(h=.90\),
++rather than the running illustration's \(h=.35\), creates the region
++\(\beta h>e/m\) in which an informational reversal is possible. Under
++majority the low type agrees and the high type delays; under unanimity both
++types pool at the lower endpoint of the admissible payoff interval.
++Appendix E.2 gives the corresponding proposals. The numbers are a
++theoretical illustration of the decomposition.
+ \end{minipage}
+ \end{table}
+ 
+@@ -1655,39 +1664,57 @@
+ \]
+ be the compact space of admissible majority-continuation states and fix an
+ anonymous Borel Markov selection
+-\(\chi:[0,1]\to\mathfrak C_M\). For posterior \(\mu\), let
+-\(c_\chi(\mu)\) be a weak state's continuation payoff and
+-\(h_{\chi,o}(\mu)\) the continuation payoff of type \(o\), both in the
+-native units of the baseline. Transporting the continuation to date \(A\)
+-gives
++\(\chi:[0,1]\to\mathfrak C_M\). Its literal baseline representative
++recognizes a weak proposer uniformly and chooses its weak partners
++uniformly: \(k\) partners in exclusion and \(k-1\) in screening or pooling.
++After every failed Round-1 proposal, Round 2 uses a minimal coalition of
++\(k+1\) weak states, with the proposer recognized uniformly and its
++\(k\) partners chosen uniformly. The complete assessment retains its
++off-path ballots and beliefs. An exclusion--pooling mixture uses the same
++weight for every recognized proposer, payoff coordinate, and outcome law.
++
++For posterior \(\mu\), let \(c_\chi(\mu)\) be a weak state's continuation
++payoff and \(h_{\chi,o}(\mu)\) the continuation payoff of type \(o\), both
++in native Round-1 units. Transporting the continuation to date \(A\) gives
+ \[
+ r_\chi(\mu)=\beta c_\chi(\mu),\qquad
+ d_{\chi,o}(\mu)=\beta h_{\chi,o}(\mu).
+ \]
+ Every baseline branch gives \(0<c_\chi(\mu)\leq1/m\). Hence
+ \[
+-0<r_\chi(\mu)\leq\frac{\beta}{m},
+-\qquad kr_\chi(\mu)<1.
+-\]
+-Under as-if-pivotal voting, weak state \(j\) votes yes if and only if
+-\(x_j\geq r_\chi(\mu)\); equality passes. The optimal passing proposal buys
+-exactly \(k\) votes at this price. Hence \(H\)'s retained share is
++0<r_\chi(\mu)\leq\frac{\beta}{m},\qquad kr_\chi(\mu)<1.
++\]
++At \(y=(C,x)\), each invited weak state votes yes exactly when
++\(x_j\geq r_\chi(\mu)\); equality passes. Noninvitees do not vote.
++The proposal passes if and only if every invited weak state accepts.
++Thus every passing proposal satisfies
++\[
++C=\{H\}\cup\{j\in W:x_j>0\}.
++\]
++This recovers the coalition from the allocation only on the passing branch;
++zero-payment invitees remain feasible in proposals that are rejected.
++At a fixed posterior, the best passing proposal invites exactly \(k\)
++weak states, pays each its threshold, and leaves
+ \[
+ a_\chi^{\mathrm{pass}}(\mu)=1-kr_\chi(\mu).
+ \]
+-A proposal such as \((1,0,\ldots,0)\) is rejected and attains
+-\(d_{\chi,o}(\mu)\). Thus both terms in
++Any smaller nonnegative share can be implemented by leaving part of the
++budget unallocated. A proposal assigning one to \(H\) and zero to all
++invited weak states is rejected in any admissible coalition and attains
++\(d_{\chi,o}(\mu)\). Both terms in
+ \[
+ \max\{a_\chi^{\mathrm{pass}}(\mu),d_{\chi,o}(\mu)\}
+ \]
+-are attainable at every fixed posterior.
+-
+-For a pure interior profile, the public support contains at most two
+-proposals. Its complement is dense in the proposal simplex. If the canonical
+-best passing proposal at \(\mu^{\mathrm{off}}\) is itself on the support,
+-reduce \(H\)'s share by \(\varepsilon>0\), keep the \(k\) threshold
+-payments fixed, and choose a sequence \(\varepsilon\downarrow0\) that avoids
+-the finitely many supported proposals. Rejected proposals are also available
++are therefore attainable at every fixed posterior. This comparison holds
++the posterior fixed; a change in the public pair \((C,x)\) may itself
++change beliefs in the private game.
++
++For a pure interior profile, the public support contains at most two pairs
++\((C,x)\). Its complement is dense in every coalition component. If a
++canonical best passing contract at \(\mu^{\mathrm{off}}\) is supported,
++keep its coalition and the \(k\) threshold payments fixed, reduce
++\(H\)'s share by \(\varepsilon>0\), and choose a sequence
++\(\varepsilon\downarrow0\) that avoids the finitely many supported pairs. Rejected proposals are also available
+ off support. Consequently, the supremum payoff from an unsupported proposal
+ is exactly
+ \[
+@@ -1710,7 +1737,7 @@
+ 
+ Under separation, Bayes' rule assigns posterior zero to the low-type proposal
+ and posterior one to the high-type proposal. If both pass, either type can
+-copy the other's proposal and receive the same share. Bilateral imitation
++copy the other's entire pair \((C,x)\) and receive the same share. Bilateral imitation
+ therefore forces a common \(z\). Feasibility and unsupported deviations give
+ \[
+ O_h(\rho)\leq z\leq
+@@ -1732,54 +1759,68 @@
+ imitation gives \(d_{\ell,0}\geq d_{\ell,1}\) and
+ \(d_{h,1}\geq d_{h,0}\); the remaining two inequalities in the last row
+ exclude unsupported deviations. The pooling/separating and pass/reject
+-enumeration is exhaustive. Canonical passing proposals and clearly rejected
+-proposals attain every listed payoff, proving sufficiency as well as
+-necessity.
+-
+-For completeness with arbitrary Borel proposal laws
+-\(\sigma_\ell,\sigma_h\in\mathcal P(\mathcal X)\), set
+-\[
+-\bar\sigma=(1-p)\sigma_\ell+p\sigma_h,
+-\qquad \mathsf S_M=\operatorname{supp}(\bar\sigma).
+-\]
+-Let \(\widehat\mu:\mathcal X\to[0,1]\) be the Borel posterior map and let
+-\(b_M:\mathcal X\to\{0,1\}\) be the scalar passage indicator generated by
+-the full cutoff ballot vector. Define the Borel payoff maps
+-\[
+-u_o(x)=b_M(x)x_H+\{1-b_M(x)\}d_{\chi,o}(\widehat\mu(x)),
+-\qquad
+-V_o=\int u_o(x)\,\sigma_o(dx).
+-\]
+-Let \(u_o^{\mathrm{off}}\) evaluate an unsupported proposal at
++enumeration is exhaustive. Minimal-coalition passing contracts and
++clearly rejected contracts attain every listed payoff. When distinct
++passing messages are required, they can use different minimal coalitions;
++\(k<m\) guarantees that more than one is available. The table therefore
++characterizes the existence and payoff of every pure form while retaining
++all contracts that implement it.
++
++For arbitrary Borel proposal laws
++\(\sigma_\ell,\sigma_h\in\mathcal P(\mathcal Y_M)\), set
++\[
++\bar\sigma=(1-p)\sigma_\ell+p\sigma_h,\qquad
++\mathsf S_M=\operatorname{supp}(\bar\sigma).
++\]
++Let \(\widehat\mu:\mathcal Y_M\to[0,1]\) be the Borel posterior map.
++The effective weak-ballot vector takes values in
++\(\{\mathsf Y,\mathsf N,\bot\}^m\), where \(\bot\) means not invited;
++it is not a no vote. Its passage indicator is
++\[
++b_M(y)=\prod_{j\in C\setminus\{H\}}
++  1\{x_j\geq r_\chi(\widehat\mu(y))\},\qquad y=(C,x).
++\]
++Define
++\[
++u_o(y)=b_M(y)x_H+\{1-b_M(y)\}d_{\chi,o}(\widehat\mu(y)),\qquad
++V_o=\int_{\mathcal Y_M}u_o(y)\,\sigma_o(dy).
++\]
++Let \(u_o^{\mathrm{off}}\) evaluate an unsupported pair \((C,x)\) at
+ \(\mu^{\mathrm{off}}\), and put
+ \[
+ \mathfrak O_o(\mathsf S_M)
+-=\sup_{x\notin\mathsf S_M}u_o^{\mathrm{off}}(x),
+-\]
+-with the supremum of the empty set equal to \(-\infty\). The proposal laws
+-generate a PBE if and only if, in addition to Bayes, the ballot rule, and the
+-continuation selection just specified,
++=\sup_{y\notin\mathsf S_M}u_o^{\mathrm{off}}(y),
++\]
++with the supremum of the empty set equal to \(-\infty\). In addition to
++Bayes, the ballot rule, and the complete continuation selection, the laws
++generate a PBE if and only if
+ \[
+ \begin{aligned}
+-u_o(x)&\leq V_o &&\text{for every }x\in\mathsf S_M,\\
+-u_o(x)&=V_o &&\text{for }\sigma_o\text{-almost every }x,\\
+-V_o&\geq\mathfrak O_o(\mathsf S_M),&& o\in\{\ell,h\}.
++u_o(y)&\leq V_o &&\text{for every }y\in\mathsf S_M,\\
++u_o(y)&=V_o &&\text{for }\sigma_o\text{-almost every }y,\\
++V_o&\geq\mathfrak O_o(\mathsf S_M),&&o\in\{\ell,h\}.
+ \end{aligned}
+ \]
+-Necessity follows because each type can copy every supported proposal and
+-choose any unsupported proposal, while a mixed strategy assigns probability
+-one to best responses. Conversely, prescribe the cutoff ballots and the
+-continuation \(\chi(\widehat\mu(x))\). The first line rules out profitable supported
+-deviations, the third rules out unsupported ones, and the second restricts
+-each type's law to best responses. This proves sequential rationality at
+-every proposal. The local Bayes ratio is a pointwise limit of Borel ratios on
+-the closed support and is constant off it; hence \(\widehat\mu\), the finite cutoff
+-ballot, and both payoff maps are Borel. The conditions are therefore also
+-sufficient for the mixed correspondence stated in Appendix E.2.
++Each type can copy the other type's entire coalition contract or choose any
++unsupported contract, including one that invites an additional state whose
++refusal causes delay. The first and third conditions exclude these
++deviations; the second places each type's law on best responses almost
++surely. The prescribed ballots and complete baseline assessments supply
++sequential rationality after every proposal and rejection.
++
++The local Bayes limit in Appendix E.1 is evaluated within each coalition
++component of \(\mathcal Y_M\). It is a pointwise limit of Borel ratios on
++the closed support and is constant off it. The acceptance sets are Borel
++preimages of \([0,\infty)\) under the maps
++\(y\mapsto x_j-r_\chi(\widehat\mu(y))\). Hence the effective ballot,
++passage, and payoff maps are Borel. These arguments establish the mixed
++membership criterion without identifying signals that share \(x\) but
++have different \(C\).
+ 
+ At \(p\in\{0,1\}\), prior support fixes every posterior at the endpoint.
+ Each type's complete Borel best-response correspondence is consequently the
+-set of probability measures supported on its argmax between passage and
++set of probability measures on \(\mathcal Y_M\) assigning probability one
++to its argmax between passage and
+ rejection, with value
+ \(\overline V_o=\max\{a_p^{\mathrm{pass}},d_{o,p}\}\).
+ 
+@@ -1816,8 +1857,8 @@
+ endpoints follow from the preceding argmax description. Thus a majority PBE
+ exists for every admissible primitive and prior for some \(\rho\).
+ 
+-Moreover, at any posterior \(H\) can pay \(\beta/m\) to any \(k\) weak
+-states and retain \(v_M^{\mathrm{safe}}\). Since every cutoff is at most
++Moreover, at any posterior \(H\) can invite any \(k\) weak states,
++pay each \(\beta/m\), and retain \(v_M^{\mathrm{safe}}\). Since every cutoff is at most
+ \(\beta/m\), this proposal passes regardless of the belief it induces. A
+ clearly rejected proposal gives type \(o\) at least \(\beta^2o\). Hence every
+ majority equilibrium satisfies
+@@ -1826,9 +1867,39 @@
+ \max\{v_M^{\mathrm{safe}},\beta^2o\},
+ \]
+ which establishes the lower bound used by Proposition
+-\ref{prop:agenda-majority}. \(\square\)
++\ref{prop:agenda-majority}.
++
++An approved coalition used in equilibrium cannot contain more than
++\(k\) weak invitees. To prove this without holding beliefs fixed, put
++\(w=\beta/m\) and \(t=\beta\ell\). Every selected continuation obeys
++\[
++\frac{1-w}{m}\leq c_\chi(\mu)\leq\frac1m.
++\]
++The lower bound is immediate in exclusion. In pooling, selection requires
++\(h\leq1/m\), so \(1-\beta h\geq1-w\). In screening, the baseline
++proposer's comparison with exclusion gives \(\Pi_S\geq\Pi_E\), and
++\[
++mc_S(\mu)-(1-w)
++=(\Pi_S-\Pi_E)+\mu(\beta-kw)\geq0.
++\]
++The residual mixture preserves the bound. Thus every invited weak state
++in an approved package must receive at least \(w(1-w)\). With at least
++\(k+1\) such invitees, feasibility implies
++\[
++x_H\leq1-(k+1)w(1-w)<1-kw=v_M^{\mathrm{safe}},
++\]
++because \((k+1)w<1\). The safe proposal is available at any induced belief,
++so this is a strict loss relative to a feasible deviation. The set of such
++approved contracts has probability zero under either type's equilibrium
++law. Rejected coalitions of any admissible size remain in the signal space
++and in the deviation conditions. \(\square\)
+ 
+ ## B.8 Proof of the private-unanimity agenda correspondence {-}
++
++Unanimity forces \(C=N\) in the agenda stage and both baseline rounds.
++The identification \((N,x)\leftrightarrow x\) preserves the entire
++extensive form, including deviations, ballots, transitions, and payoffs.
++We therefore state the unanimity correspondence in allocation notation.
+ 
+ For an interior prior, let
+ \(\sigma_\ell,\sigma_h\in\mathcal P(\mathcal X)\) be the two proposal laws,
+@@ -1968,17 +2039,24 @@
+ The argument is the same for majority and unanimity, so fix
+ \(g\in\{M,U\}\) and a complete equilibrium assessment \(R_g\). Let \(Z_g\) be
+ the rule-specific realized-outcome space whose coordinates are the named
+-proposal, realized posterior, passage indicator, continuation state, and
+-terminal outcome tuple. It is a finite product and disjoint
++coalition contract, realized posterior, passage indicator, continuation
++state, and terminal outcome tuple. Under unanimity the constant coalition
++\(C=N\) is suppressed through the identification \((N,x)\leftrightarrow x\). It is a finite product and disjoint
+ union of compact Polish spaces and hence is compact Polish; Appendices E.2 and
+ E.3 give the concrete constructions. Let
+ \(\Gamma_o^{g,R_g}\in\mathcal P(Z_g)\) be the resulting type-\(o\) joint law,
+ and write \(\Gamma_o=\Gamma_o^{g,R_g}\) within this proof. A common
+ permutation \(\tau\in G=S_m\) of weak-state names
+-acts on \(Z_g\) by a homeomorphism \(T_\tau\). Relabeling a PBE by
+-\(T_\tau\) preserves feasibility and payoffs, transports relative balls and
+-supports, commutes with the local Bayes limit, and maps ballots, continuation
+-kernels, and deviations bijectively to payoff-equivalent objects. The
++acts on \(Z_g\) by a homeomorphism \(T_\tau\). It sends each
++coalition to its relabeled coalition and permutes the corresponding
++allocations and effective votes, preserving \(\bot\) as nonparticipation
++in that ballot. The uniform continuation kernels are equivariant; the
++complete continuation assessments, including their off-path functions,
++are relabeled by the same permutation. Relabeling a PBE therefore
++preserves feasibility and payoffs, carries relative balls
++within one coalition component to relative balls within its image,
++commutes with the local Bayes limit, and maps every feasible coalition
++contract and deviation to its relabeled counterpart. The
+ relabeled object is therefore also a PBE.
+ 
+ Set \(X_g=\mathcal P(Z_g)^2\), with the weak topology, and let the finite group
+@@ -2015,7 +2093,7 @@
+ \int f\,d\Gamma_o
+ =\int\bar f\,d(q_g)_\#\Gamma_o.
+ \]
+-Payoffs, passage and delay, the posterior law, anonymous terminal outcomes,
++Payoffs, passage and delay, coalition size, the posterior law, anonymous terminal outcomes,
+ and the ordered multiset of weak-state payoffs are invariant Borel maps, so
+ they factor through the economic summary. The same is true of the payoff and
+ outcome comparisons after the complete majority and unanimity assessments have
+@@ -2107,8 +2185,15 @@
+ \(v_M^{\mathrm{safe}}\) & Safe majority-agenda payoff, \(1-k\beta/m\) \\
+ \(o_M^*\) & Majority-agenda delay cutoff, \(v_M^{\mathrm{safe}}/\beta\) \\
+ \(\rho\) & Off-path likelihood-ratio coordinate in the agenda extension \\
++\(\mathcal Y_g=\mathcal Y_g^H\) & Agenda signal space of public coalition
++contracts; under unanimity, \((N,x)\) is identified with \(x\) \\
++\(\mathbf b_M(y)\), \(b_M(y)\) & Effective weak-ballot vector and passage
++indicator; \(\bot\) marks a noninvited state, not a no vote \\
++\(\widehat\kappa_M\), \(\chi\) & Complete baseline continuation selector
++and its majority continuation-state label \\
+ \(\mathbf d\) & Vector collecting the primitive parameter specification \\
+-\(\widehat\mu(\cdot)\) & Borel posterior map in mixed majority assessments \\
++\(\widehat\mu(\cdot)\) & Borel posterior map on \(\mathcal Y_M\) in
++mixed majority assessments \\
+ \(R_g\) & Complete equilibrium assessment under rule \(g\), including
+ strategies, beliefs, continuation selections, and induced outcome laws \\
+ \(\mathcal B_g(\mathbf d,\rho,\mu^{\mathrm{off}})\) & Correspondence of
+@@ -2117,8 +2202,8 @@
+ vectors induced by those complete assessments \\
+ \(\mathcal J_A^{\mathrm{cmp}}\) & Restricted product pairing majority and
+ unanimity assessments at the same specification \\
+-\(\Gamma_o^{g,R_g}\) & Type-specific joint realized law induced by assessment
+-\(R_g\) \\
++\(\Gamma_o^{g,R_g}\) & Type-specific joint law of the coalition contract,
++posterior, passage, continuation state, and terminal outcome induced by \(R_g\) \\
+ \(\operatorname{Sig}^{ex}_g\), \(\operatorname{Sum}^{econ}_g\) & Exact
+ relabeling signature and anonymous economic summary \\
+ \(\mathrm{ea}\) & Ex ante coordinate, evaluated as the prior-weighted average of the two types \\
+@@ -2150,28 +2235,56 @@
+ \end{gathered}
+ \]
+ At date \(A\), after observing its type, \(H\) proposes
+-\[
+-x^A=(x_H,x_1,\ldots,x_m)\in\mathcal X,\qquad
+-\mathcal X=\{x^A:x_H\geq0,\ x_j\geq0,\
+-x_H+\textstyle\sum_jx_j\leq1\}.
+-\]
+-The proposal counts as \(H\)'s affirmative vote. Weak states vote
+-simultaneously and in pure strategies. Majority requires \(k\) affirmative
+-weak votes; unanimity requires all \(m\). Passage implements the package at
+-date \(A\). Rejection enters the corresponding specified Round-1 continuation,
+-whose native payoff is multiplied by \(\beta\) exactly once.
+-
+-A rejected public history includes the rule, proposal, proposer, full ballot,
+-outcome, and posterior. Its continuation selector is total, public, Borel,
+-common to types compatible with the history, and returns one complete Round-1
+-equilibrium assessment. That assessment jointly specifies strategies, beliefs,
+-recognition lotteries, ballots, payoffs, and outcomes; the continuation object
+-is therefore the full assessment rather than a scalar payoff.
+-
+-For an interior prior, the equilibrium proposal laws of the two types are
+-Borel measures \(\sigma_\ell,\sigma_h\). At every disciplined proposal, Bayes'
+-rule determines the posterior from their local likelihood ratio. At
+-undisciplined proposals, the common off-path belief restriction fixes the posterior to
++\(y=(C,x)\in\mathcal Y_g:=\mathcal Y_g^H\). In terms of the allocation
++simplex \(\mathcal X\),
++\[
++\mathcal X_C=\{x\in\mathcal X:x_j=0\text{ for }j\notin C\},\qquad
++\mathcal Y_g=
++\bigsqcup_{\substack{H\in C\subseteq N\\|C|\geq \nu_g}}
++  \bigl(\{C\}\times\mathcal X_C\bigr),
++\]
++where \(\nu_M=k+1\) and \(\nu_U=m+1\). The coalition and allocation are
++public. The proposal counts as \(H\)'s affirmative vote; each invited
++weak state then votes simultaneously in a pure strategy. Noninvitees do
++not vote. Every invited state must consent for passage, including in a
++coalition larger than the quota. Passage automatically implements the
++package at date \(A\). Any refusal rejects the entire package and enters
++the specified Round-1 continuation, whose native payoff is multiplied by
++\(\beta\) exactly once.
++
++Each \(\mathcal X_C\) has its relative Euclidean topology; different
++coalitions are distinct components. Thus \(\mathcal Y_g\) is a finite
++disjoint union of compact simplexes. Relative balls sufficiently near
++\(y=(C,x)\) remain in its coalition component. Under unanimity,
++\(C=N\) is forced, so \(\mathcal Y_U\) is identified with
++\(\mathcal X\) through \((N,x)\leftrightarrow x\). We use this
++identification in the unanimity formulas below.
++
++A rejected public history retains the rule, coalition contract, proposer,
++effective vote vector, outcome, and posterior. Its continuation selector
++is total on the histories of an admissible assessment, public, Borel, and
++common to types compatible with the history. The maintained Markov
++restriction makes its choice depend only on the institution, entry stage,
++and posterior. It returns a complete anonymous Round-1 assessment,
++including strategies, beliefs, recognition lotteries, coalitions, ballots,
++payoffs, and outcome laws. The continuation is a full assessment, not a
++scalar payoff. Its internal beliefs follow the baseline rule.
++
++For an interior prior, let the Borel proposal laws be
++\(\sigma_\ell,\sigma_h\in\mathcal P(\mathcal Y_g)\), put
++\(\bar\sigma=(1-p)\sigma_\ell+p\sigma_h\), and let
++\(\mathsf S_g=\operatorname{supp}(\bar\sigma)\). A proposal is
++disciplined when it belongs to this support. The posterior at every such
++point is the local Bayes limit
++\[
++\mu(y)=\lim_{\varepsilon\downarrow0}
++ \frac{p\,\sigma_h(B_{\mathcal Y_g}(y,\varepsilon))}
++      {\bar\sigma(B_{\mathcal Y_g}(y,\varepsilon))}.
++\]
++This limit must exist at every support point, including points of zero
++mass. The balls use the coalition components just specified; proposals
++with the same allocation and different coalitions are not identified.
++At undisciplined proposals, the common off-path restriction fixes
+ \[
+ \mu^{\mathrm{off}}=b_\rho(p)=\frac{p\rho}{1-p+p\rho},
+ \qquad \rho\in[0,\infty].
+@@ -2180,17 +2293,15 @@
+ \[
+ b_0(p)=0,\qquad b_\infty(p)=1
+ \]
+-for an interior prior. The endpoints preserve prior support:
+-\(\mu^{\mathrm{off}}=p\) everywhere, the comparison index is \((*,p)\), and \(\rho\) is
+-irrelevant. Voting follows the
+-same as-if-pivotal comparison and
+-indifference-to-yes convention as the baseline.
+-
+-The single coordinate \(\rho\) is common to every undisciplined proposal. This
+-is a stronger restriction than the ballot-by-ballot free values of Appendix
+-A.2, adopted here to index the correspondences. The two conventions apply at
+-different levels: a rejected agenda proposal enters a complete Round-1
+-assessment whose internal beliefs follow the baseline rule.
++for an interior prior. At prior endpoints, every posterior equals \(p\),
++the comparison index is \((*,p)\), and \(\rho\) is irrelevant. Invited
++weak voters use the baseline's as-if-pivotal comparison and
++indifference-to-yes convention.
++
++The single coordinate \(\rho\) is common to every undisciplined coalition
++contract. This restriction applies to signals at the agenda stage. It is
++stronger than the ballot-by-ballot free values of Appendix A.2 and does not
++replace that discipline inside the selected baseline assessment.
+ 
+ ## E.2 Complete private-majority correspondence {-}
+ 
+@@ -2249,98 +2360,133 @@
+ \bottomrule
+ \end{longtable}
+ 
+-These forms preserve proposals and messages even when their payoffs
+-coincide. Separating agreement at the same \(z\) is separation in messages at
++These forms preserve public coalition contracts \(y=(C,x)\) even when
++their payoffs coincide. Separating agreement at the same \(z\) is separation in messages at
+ indifference, not pooling. The off-path feasibility set for \(\rho\) can be
+ disconnected because the majority continuation changes branches. The table
+ therefore supplies the relevant branch-specific conditions.
+ 
+-For mixed strategies, a complete equilibrium assessment is
+-\[
+-R_M=(\rho,\mu^{\mathrm{off}},\sigma_\ell,\sigma_h,\bar\sigma,\widehat\mu,\chi,
+-b_M,u_\ell,u_h).
+-\]
+-Here
+-\(\sigma_\ell,\sigma_h,\bar\sigma\in\mathcal P(\mathcal X)\), with
++For the comparison in Table \ref{tab:agendareversal}, take
++\(\mu^{\mathrm{off}}=0\) under both rules. Under majority the low type
++proposes \(C=\{H,1,2\}\) with
++\(x=(.5905,.20475,.20475,0,0)\); the high type uses that coalition with
++\(x=(1,0,0,0,0)\), which is rejected. The two posteriors are zero and
++one, and the type payoffs are \((.5905,.81)\). Under unanimity both types
++propose \(C=N\) and
++\(x=(.729,.06775,.06775,.06775,.06775)\), yielding the pooling payoff
++\((.729,.729)\). The majority conditions in the table and the unanimity
++interval in Appendix E.3 verify this pair at the stated common off-path
++specification.
++
++For mixed strategies, a complete equilibrium assessment retains
++\[
++\begin{aligned}
++R_M=\bigl(&\rho,\mu^{\mathrm{off}},\sigma_\ell,\sigma_h,\bar\sigma,
++\widehat\mu,\widehat\kappa_M,\chi,\\
++&\mathbf b_M,b_M,u_\ell,u_h\bigr).
++\end{aligned}
++\]
++Here \(\sigma_\ell,\sigma_h,\bar\sigma\in\mathcal P(\mathcal Y_M)\),
+ \(\bar\sigma=(1-p)\sigma_\ell+p\sigma_h\), and
+-\(\widehat\mu:\mathcal X\to[0,1]\) is the Borel posterior map. The scalar map
+-\(b_M:\mathcal X\to\{0,1\}\) is the passage indicator generated by the full
+-cutoff ballot vector. The assessment also retains
+-the continuation selection \(\chi\) and the Borel payoff maps
+-\(u_\ell,u_h:\mathcal X\to\mathbb R\).
++\(\widehat\mu:\mathcal Y_M\to[0,1]\) is the Borel posterior map. The
++selector \(\widehat\kappa_M\) returns the complete literal baseline
++assessment; \(\chi\) records its continuation state. The effective ballot
++map \(\mathbf b_M:\mathcal Y_M\to\{\mathsf Y,\mathsf N,\bot\}^m\)
++records yes or no for invitees and \(\bot\) for noninvitees. The scalar
++passage indicator is
++\[
++b_M(y)=\prod_{j\in C\setminus\{H\}}
++  1\{x_j\geq r_\chi(\widehat\mu(y))\},\qquad y=(C,x).
++\]
++The same assessment generates its continuation kernels and realized laws.
+ Let
+ \[
+ \begin{gathered}
+ \mathsf S_M=\operatorname{supp}(\bar\sigma),\qquad
+-u_o(x)=b_M(x)x_H+\{1-b_M(x)\}d_{\chi,o}(\widehat\mu(x)),\\
+-V_o=\int u_o(x)\,\sigma_o(dx),\qquad
++u_o(y)=b_M(y)x_H+\{1-b_M(y)\}d_{\chi,o}(\widehat\mu(y)),\\
++V_o=\int_{\mathcal Y_M}u_o(y)\,\sigma_o(dy),\qquad
+ \mathfrak O_o(\mathsf S_M)
+-=\sup_{x\notin\mathsf S_M}u_o^{\mathrm{off}}(x),
++=\sup_{y\notin\mathsf S_M}u_o^{\mathrm{off}}(y),
+ \end{gathered}
+ \]
+-where \(u_o^{\mathrm{off}}\) evaluates an unsupported proposal at
++where \(u_o^{\mathrm{off}}\) evaluates an unsupported contract at
+ \(\mu^{\mathrm{off}}\), and the supremum of the empty set is
+ \(-\infty\). In addition to pointwise Bayes updating on the disciplined
+-support, the pivotal ballot rule at every proposal, and the continuation
+-selection \(\chi\), the necessary-and-sufficient proposal conditions are
++support, the invited voters' ballot rule at every contract, and the
++complete continuation selection, the necessary-and-sufficient proposal
++conditions are
+ \[
+ \begin{aligned}
+-u_o(x)&\leq V_o &&\text{for every }x\in\mathsf S_M,\\
+-u_o(x)&=V_o &&\text{for }\sigma_o\text{-almost every }x,\\
++u_o(y)&\leq V_o &&\text{for every }y\in\mathsf S_M,\\
++u_o(y)&=V_o &&\text{for }\sigma_o\text{-almost every }y,\\
+ V_o&\geq\mathfrak O_o(\mathsf S_M),&&o\in\{\ell,h\}.
+ \end{aligned}
+ \]
+-Thus arbitrary Borel mixtures and atomless supports are included.
++Thus arbitrary Borel mixtures and atomless supports in
++\(\mathcal Y_M\) are included. These conditions retain rejected
++coalitions of every admissible size and do not impose agreement or a
++particular signal on either type.
+ 
+ At \(p\in\{0,1\}\), the posterior is fixed at the endpoint. With
+ \[
+ \overline V_o=\max\{a_p^{\mathrm{pass}},d_{o,p}\},
+ \]
+-each type's Borel proposal law may be any probability measure supported on
+-its argmax. The linked type-payoff vector retains the probability-zero type.
++each type's Borel proposal law on \(\mathcal Y_M\) may be any
++probability measure assigning probability one to its argmax. The linked type-payoff vector retains the probability-zero type.
+ For every admissible primitive and prior, at least one majority PBE exists
+ for some \(\rho\); this does not assert existence at every fixed \(\rho\).
+ Appendix B.7 proves the pure enumeration, the mixed membership criterion, the
+ endpoint correspondences, existence, and the uniform lower bound used in the
+ body.
+ 
+-The realized-law layer is constructed as follows. For fixed primitives, let
+-\(\Omega_D^M\) be the finite discrete set of literal terminal continuation
+-tuples generated by the admissible uniform majority kernels: each tuple
+-retains the recognized proposer, coalition, proposal, votes, and terminal
+-outcome. Define the compact Polish spaces
++The realized-law layer retains each named coalition. For fixed primitives,
++let \(\Omega_D^M\) be the finite discrete set of terminal continuation
++records generated by the selected uniform majority kernels. Each record
++retains the recognized proposer, target coalition, allocation, effective
++votes, and outcome in every realized baseline round. In Round 2 the
++representative selects \(k\) weak partners uniformly for the recognized
++weak proposer, who keeps the pie. This is one literal continuation;
++other optimal nominal memberships remain possible in the baseline.
++Belief functions and unused continuation plans remain in
++\(\widehat\kappa_M\).
++
++Define the compact Polish spaces
+ \[
+ \Omega_T^M
+-=\bigl(\{\mathsf A\}\times\mathcal X\bigr)
++=\bigl(\{\mathsf A\}\times\mathcal Y_M\bigr)
+  \sqcup\bigl(\{\mathsf D\}\times\Omega_D^M\bigr),
+ \qquad
+-Z_M=\mathcal X\times[0,1]\times\{0,1\}
++Z_M=\mathcal Y_M\times[0,1]\times\{0,1\}
+        \times\mathfrak C_M\times\Omega_T^M.
+ \]
+ For \(\xi\in\mathfrak C_M\), let
+ \(K^D_{o,\xi}\in\mathcal P(\Omega_D^M)\) be the selected literal
+-continuation kernel and let \(\widetilde K^D_{o,\xi}\) be its pushforward to
+-\(\{\mathsf D\}\times\Omega_D^M\). Conditional on proposal \(x\), set
+-\[
+-L_o^{R_M}(d\omega_T\mid x)
+-=b_M(x)\delta_{(\mathsf A,x)}(d\omega_T)
+- +\{1-b_M(x)\}
+-  \widetilde K^D_{o,\chi(\widehat\mu(x))}(d\omega_T).
+-\]
+-The type-specific joint realized law is therefore
+-\[
+-\Gamma_o^{M,R_M}(C)
+-=\int_{\mathcal X}\int_{\Omega_T^M}
+-  1_C\!\left(x,\widehat\mu(x),b_M(x),\chi(\widehat\mu(x)),\omega_T\right)
+-  L_o^{R_M}(d\omega_T\mid x)\,\sigma_o(dx).
++continuation kernel and let \(\widetilde K^D_{o,\xi}\) be its pushforward
++to \(\{\mathsf D\}\times\Omega_D^M\). The finite uniform lotteries
++and the common exclusion--pooling mixture make this kernel Borel in its
++state. Conditional on \(y=(C,x)\), set
++\[
++L_o^{R_M}(d\omega_T\mid y)
++=b_M(y)\delta_{(\mathsf A,y)}(d\omega_T)
++ +\{1-b_M(y)\}
++  \widetilde K^D_{o,\chi(\widehat\mu(y))}(d\omega_T).
++\]
++For a Borel set \(B\subseteq Z_M\), the type-specific joint law is
++\[
++\Gamma_o^{M,R_M}(B)
++=\int_{\mathcal Y_M}\int_{\Omega_T^M}
++  1_B\!\left(y,\widehat\mu(y),b_M(y),\chi(\widehat\mu(y)),\omega_T\right)
++  L_o^{R_M}(d\omega_T\mid y)\,\sigma_o(dy).
+ \]
+ Thus \(\Gamma_o^{M,R_M}\in\mathcal P(Z_M)\).
+-This single law jointly determines the named proposal, posterior, passage,
+-literal continuation selection, and terminal outcome.
+-
+-Let \(G=S_m\) act on \(Z_M\) by applying the same permutation to all named
+-weak-state coordinates while fixing the posterior, passage indicator, and
+-continuation label. Let \(T_\tau^M\) denote this action and let
++This law jointly determines the named coalition contract, posterior,
++passage, literal continuation selection, and terminal outcome. Contracts
++that share \(x\) but differ in \(C\) remain distinct records.
++
++Let \(G=S_m\) act on \(Z_M\) by applying the same permutation to every
++weak-state name in the target coalitions, allocations, recognitions, and
++effective ballots, while fixing \(H\), the posterior, passage indicator,
++and continuation label. Let \(T_\tau^M\) denote this action and let
+ \(q_M:Z_M\to Z_M/G\) send each realized tuple to the selected representative of its
+ finite orbit. For
+ \(\gamma_M=(\Gamma_\ell^{M,R_M},\Gamma_h^{M,R_M})\), let
+@@ -2360,6 +2506,11 @@
+ names tuple by tuple.
+ 
+ ## E.3 Complete private-unanimity correspondence {-}
++
++Here \(\mathcal Y_U=\{N\}\times\mathcal X\) is identified with
++\(\mathcal X\). Every proposal and continuation record below carries the
++constant coalition \(C=N\); suppressing that label preserves beliefs,
++strategies, and realized laws.
+ 
+ Define
+ \[

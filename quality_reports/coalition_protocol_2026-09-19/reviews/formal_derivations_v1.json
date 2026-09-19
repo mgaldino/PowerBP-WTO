@@ -1,0 +1,786 @@
+{
+  "schema_version": "1.0",
+  "review_id": "formal-independent:coalition-derivations-v1:b62a7c8e0235",
+  "date": "2026-09-19",
+  "language": "pt-BR",
+  "candidate": "coalition-derivations-v1",
+  "verdict": "FAIL",
+  "verdict_scope": "Fechamento formal das provas dos bytes v1; não é contraexemplo aos resultados reconstruídos nem certificação do manuscrito completo.",
+  "verdict_reason": "F-001 é igualdade falsa e F-002 é lacuna de prova consumida pelo transporte U. Ambos têm reparos locais demonstrados na revisão. F-003 adjudica QI-05 como precisão expositiva sob a intenção do contrato.",
+  "reviewer": {
+    "agent": "/root/baseline_source_read",
+    "role": "independent formal reviewer",
+    "implemented_candidate": false,
+    "prior_roles": [
+      "section comprehension reader",
+      "original argument-contract synthesizer",
+      "derivations-v1 argument-contract synthesizer"
+    ],
+    "disclosure": "Os papéis anteriores são interpretativos e não constituíam certificação científica.",
+    "current_adversarial_review_consulted": false,
+    "v2_consulted": false,
+    "cold_r2_read": true,
+    "candidate_files_edited": false
+  },
+  "repository": {
+    "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion",
+    "branch": "codex/exposition-items20-28",
+    "head": "c6dfab61a5a3b44d09ba389911df47726f81b51e"
+  },
+  "source_identity": {
+    "candidate_manifest": "quality_reports/coalition_protocol_2026-09-19/reviews/derivation_candidate_v1.json",
+    "candidate_manifest_sha256": "8dfefecda3b9e369159bbfeb4276f5f6d7c2402e3e897320774b39be12d1feca",
+    "bundle": "quality_reports/coalition_protocol_2026-09-19/derivations/derivation_bundle_v1.md",
+    "bundle_sha256": "b62a7c8e023568bf408c1b8929b5909b4e7af21c3271c95955970237801b799f",
+    "argument_contract": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/argument_contract.json",
+    "argument_contract_sha256": "a49fc5f5d1737b7d8661506b6e384b709314a98798cacd33e4d981ffb5b07c36",
+    "original": "formal_model_v6.Rmd",
+    "original_sha256": "6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411",
+    "files": {
+      "quality_reports/coalition_protocol_2026-09-19/author_decision.md": {
+        "sha256": "7abfa53814ff23c61a9af2049c975be81e44f8e66270c4fa3f99accd51923726",
+        "expected": "7abfa53814ff23c61a9af2049c975be81e44f8e66270c4fa3f99accd51923726",
+        "match": true
+      },
+      "quality_reports/coalition_protocol_2026-09-19/derivations/game_contract.md": {
+        "sha256": "ac78634ea0da03b422a6d92930680d1bb1f94deee0d3c33b68dc9d9791a7d058",
+        "expected": "ac78634ea0da03b422a6d92930680d1bb1f94deee0d3c33b68dc9d9791a7d058",
+        "match": true
+      },
+      "quality_reports/coalition_protocol_2026-09-19/derivations/r2_interface.md": {
+        "sha256": "c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7",
+        "expected": "c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7",
+        "match": true
+      },
+      "quality_reports/coalition_protocol_2026-09-19/derivations/r1_interface.md": {
+        "sha256": "a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0",
+        "expected": "a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0",
+        "match": true
+      },
+      "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_transport.md": {
+        "sha256": "3b98454cb275f34a89c6f5a10037eaa34e30e4fbf81e4fb4f01a65e2f8ba9f6f",
+        "expected": "3b98454cb275f34a89c6f5a10037eaa34e30e4fbf81e4fb4f01a65e2f8ba9f6f",
+        "match": true
+      },
+      "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_checks.py": {
+        "sha256": "9874ca255487e2245f8d44d3915e82cd6974331a7cd7a05278a7608e5de47445",
+        "expected": "9874ca255487e2245f8d44d3915e82cd6974331a7cd7a05278a7608e5de47445",
+        "match": true
+      },
+      "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_checks.json": {
+        "sha256": "7e0a20ac6790a1f949e760c9fbf00d7d70b7290d266f9342dc794efa70e2a75e",
+        "expected": "7e0a20ac6790a1f949e760c9fbf00d7d70b7290d266f9342dc794efa70e2a75e",
+        "match": true
+      },
+      "formal_model_v6.Rmd": {
+        "sha256": "6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411",
+        "expected": "6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411",
+        "match": true
+      },
+      "quality_reports/coalition_protocol_2026-09-19/derivations/derivation_bundle_v1.md": {
+        "sha256": "b62a7c8e023568bf408c1b8929b5909b4e7af21c3271c95955970237801b799f",
+        "expected": "b62a7c8e023568bf408c1b8929b5909b4e7af21c3271c95955970237801b799f",
+        "match": true
+      },
+      "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/argument_contract.json": {
+        "sha256": "a49fc5f5d1737b7d8661506b6e384b709314a98798cacd33e4d981ffb5b07c36",
+        "expected": "a49fc5f5d1737b7d8661506b6e384b709314a98798cacd33e4d981ffb5b07c36",
+        "match": true
+      },
+      "quality_reports/coalition_protocol_2026-09-19/reviews/derivation_candidate_v1.json": {
+        "sha256": "8dfefecda3b9e369159bbfeb4276f5f6d7c2402e3e897320774b39be12d1feca"
+      },
+      "quality_reports/coalition_protocol_2026-09-19/derivations/game_dag.json": {
+        "sha256": "bea2bf9a484ea3dd807d45c0347b800cbe838e3594e2c556d495017ba58bf6e2"
+      },
+      "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/independent_section_read.md": {
+        "sha256": "991663cef8090ce773865c7b81123f0a19be3a850eddd096155b14a7507c3b29",
+        "expected": "991663cef8090ce773865c7b81123f0a19be3a850eddd096155b14a7507c3b29",
+        "match": true
+      },
+      "quality_reports/coalition_protocol_2026-09-19/reviews/cold_r2_from_primitives.md": {
+        "sha256": "57b83c8d83fad84f6f5ce41a6e34d75c60ede19b3e09c71d307bd7d70764896c",
+        "expected": "57b83c8d83fad84f6f5ce41a6e34d75c60ede19b3e09c71d307bd7d70764896c",
+        "match": true
+      }
+    }
+  },
+  "scope": {
+    "bundle_read_in_full": true,
+    "bundle_lines": 903,
+    "mathematical_notes_read_in_full": [
+      "game_contract.md",
+      "r2_interface.md",
+      "r1_interface.md",
+      "agenda_transport.md"
+    ],
+    "scripts_read_in_full": [
+      "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_checks.py"
+    ],
+    "support_read": [
+      "quality_reports/coalition_protocol_2026-09-19/author_decision.md",
+      "quality_reports/coalition_protocol_2026-09-19/derivations/game_dag.json",
+      "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/argument_contract.json",
+      "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/independent_section_read.md",
+      "quality_reports/coalition_protocol_2026-09-19/reviews/cold_r2_from_primitives.md"
+    ],
+    "historical_original_read_in_full_for_prior_comprehension": true,
+    "historical_fresh_proof_audit": [
+      {
+        "unit": "B.4",
+        "lines": [
+          1532,
+          1608
+        ]
+      },
+      {
+        "unit": "B.8",
+        "lines": [
+          1831,
+          1964
+        ]
+      },
+      {
+        "unit": "E.3",
+        "lines": [
+          2362,
+          2517
+        ]
+      },
+      {
+        "unit": "public agenda benchmarks",
+        "lines": [
+          2658,
+          2724
+        ]
+      },
+      {
+        "unit": "E.9",
+        "lines": [
+          2726,
+          2768
+        ]
+      },
+      {
+        "unit": "E.13",
+        "lines": [
+          2877,
+          2921
+        ]
+      },
+      {
+        "unit": "E.14 and F.1",
+        "lines": [
+          2923,
+          3038
+        ]
+      },
+      {
+        "unit": "F.2–F.4",
+        "lines": [
+          3040,
+          3117
+        ]
+      }
+    ],
+    "excluded": [
+      "current adversarial report and its checks",
+      "v2 and patch implementation",
+      "canonical manuscript migration",
+      "full manuscript scientific review",
+      "empirical or causal validation",
+      "literature audit",
+      "PDF/render/figure visual review",
+      "Lean proof certification",
+      "raw orchestrator execution-log audit"
+    ]
+  },
+  "claim_assessments": [
+    {
+      "claim_id": "C02",
+      "text": "Mantêm-se H único informado, m≥3 fracos simétricos, dois tipos 0<ℓ<h<1, p∈[0,1], β∈(0,1), pie fixa em 1 e opção externa privada fora da pie, independente de acordos dos fracos.",
+      "strength": "primitivas preservadas",
+      "source_locator": "B:14–43",
+      "evidence": "Contrato de jogadores, informação, reconhecimento e payoffs.",
+      "scope": "Não há produtividade de H ou atividade individual posterior para receber x_H.",
+      "change": "preserved",
+      "previous_claim_ids": [
+        "C02"
+      ],
+      "assessment": "VERIFIED_UNDER_DECLARED_CONTRACT",
+      "mathematical_basis": "Conferência direta do domínio, jogadores, informação, pie e outside option; não inferida de solução anterior.",
+      "finding_ids": []
+    },
+    {
+      "claim_id": "N01",
+      "text": "O proponente escolhe (C,x), pertence a C, a coalizão alcança q_M=k+1 ou q_U=m+1 e x_j=0 fora de C. Todos os convidados devem consentir; qualquer recusa faz o pacote inteiro fracassar. Na aprovação H membro recebe x_H; H excluído recebe o. A ausência de acúmulo vale em todas as histórias factíveis, incluindo desvios.",
+      "strength": "nova arquitetura e claim estrutural",
+      "source_locator": "B:14–43,73–84",
+      "evidence": "Tabela de transições e argumento por casos de participação/consentimento/factibilidade.",
+      "scope": "Não é cancelamento após aprovação, devolução ao proponente, resultado apenas de otimalidade ou equivalência ao ballot majoritário histórico.",
+      "change": "modified",
+      "previous_claim_ids": [
+        "C03"
+      ],
+      "assessment": "VERIFIED_UNDER_DECLARED_CONTRACT",
+      "mathematical_basis": "Casos exaustivos: H convidado exige Y para passagem; H excluído tem x_H=0; fracassos recebem continuação/desacordo nas datas declaradas.",
+      "finding_ids": []
+    },
+    {
+      "claim_id": "N02",
+      "text": "O baseline mantém PBE com votos puros, fracos as-if-pivotal, T^Y e desempate do proponente; as ações desinformadas (C,x) e votos fracos não atualizam crenças. Se H não é convidado não vota. Com H convidado, Bayes e valores livres locais dependem de seu voto e respeitam o suporte original.",
+      "strength": "conceito de solução e estado suficientes declarados",
+      "source_locator": "B:45–71,86–110,203–216,320–381",
+      "evidence": "Regras de crenças/ballots e manutenção do estado (belief,support) para payoffs e do histórico para assessment completo.",
+      "scope": "μ atual e suporte inicial não são confundidos. Os endpoints R1_U descritos são jogos com prior de entrada degenerado e a agenda seleciona esses assessments específicos.",
+      "change": "adapted",
+      "previous_claim_ids": [
+        "C04"
+      ],
+      "assessment": "VERIFIED_UNDER_DECLARED_CONTRACT",
+      "mathematical_basis": "Bayes por voto de H, ações fracas não informativas, suporte original retido e endpoint escolhido como continuação específica.",
+      "finding_ids": []
+    },
+    {
+      "claim_id": "C06",
+      "text": "R2 tem unidades nativas sem β: maioria admite toda coalizão vencedora só de fracos que contém i, com x=e_i, dando H=(ℓ,h) e cada fraco 1/m antes do reconhecimento. Em unanimidade C=N; oferta ℓ para μ≤p* e h para μ>p*, p*=(h−ℓ)/(1−ℓ); empate seleciona ℓ.",
+      "strength": "folhas terminais e correspondência de propostas declaradas",
+      "source_locator": "B:123–189",
+      "evidence": "Derivação local de ballots, redução do simplex e desempate; leitura fria R2 independente.",
+      "scope": "Valores econômicos preservados, mas R2_M conserva multiplicidade de C, inclusive superdimensionados, e crenças fora do caminho. β entra só no consumidor R1.",
+      "change": "preserved_payoff_claim_with_new_protocol_proof",
+      "previous_claim_ids": [
+        "C06"
+      ],
+      "assessment": "VERIFIED_UNDER_DECLARED_CONTRACT",
+      "mathematical_basis": "R2 reconstruída: limiar fraco zero, H compara x_H com o, maior residual E em M, comparação ℓ/h em U e desempate secundário.",
+      "finding_ids": []
+    },
+    {
+      "claim_id": "C07",
+      "text": "Em R1_M, fracos convidados aceitam iff x_j≥β/m; H convidado usa x_H≥βo quando todos os fracos aceitam, e Y se um veto fraco prescrito torna ambos os votos equivalentes. Propostas ótimas reduzem-se a E/S/P, com os mesmos valores, cutoffs e desempates econômicos do baseline original.",
+      "strength": "redução de propostas e seleção completa declaradas",
+      "source_locator": "B:203–281",
+      "evidence": "Dominância do fracasso certo, remoção pré-ballot de convidado excedente e redução a preços limiares; tabela E/S/P.",
+      "scope": "A redução cobre otimização antes da votação; não cancela parcela depois. Segue multiplicidade de identidades, kernels R2 e peso comum no residual.",
+      "change": "preserved_economic_claim_new_derivation",
+      "previous_claim_ids": [
+        "C07"
+      ],
+      "assessment": "VERIFIED_UNDER_DECLARED_CONTRACT",
+      "mathematical_basis": "Fracasso certo dominado; remoção pré-votação de fraco excedente; redução aos limiares; verificação analítica de todos os cruzamentos, endpoints e empate E/P.",
+      "finding_ids": []
+    },
+    {
+      "claim_id": "N03",
+      "text": "A agenda consome representantes anônimos específicos de R1/R2: reconhecimento e parceiros uniformes, estados E/S/P/EP e mesmo peso λ nas misturas, com coalizões, votos efetivos e histórias terminais retidos. Seus valores c_χ e h_χ não esgotam o assessment.",
+      "strength": "restrição de seleção e interface literal",
+      "source_locator": "B:283–318,468–500,811–815",
+      "evidence": "Construção explícita do representante e tabela c/h; Borelidade alegada dos kernels e respostas fora do caminho.",
+      "scope": "Não é classificação de todas as seleções dependentes da história do baseline. Alterar kernel mantendo c/h pode alterar leis/assinaturas.",
+      "change": "new_explicit_interface",
+      "previous_claim_ids": [
+        "C11",
+        "C13"
+      ],
+      "assessment": "VERIFIED_UNDER_DECLARED_CONTRACT",
+      "mathematical_basis": "Sorteios uniformes e reconhecimento independente constroem kernel literal; seleção por células Borel e λ afim comum; crenças livres iguais ao prior de entrada.",
+      "finding_ids": []
+    },
+    {
+      "claim_id": "C08",
+      "text": "Em R1_U, a correspondência mantém o endpoint baixo, vazio para 0<μ≤p*, e pooling acima de p*. Vetor nativo de H: (βℓ,βh) no endpoint baixo e (βh,βh) acima de p*. O texto fornece respostas completas e um argumento de inexistência por proposta desviada.",
+      "strength": "caracterização unânime declarada",
+      "source_locator": "B:320–381",
+      "evidence": "Isomorfismo C=N, regiões de ballots e s† que impede fechamento em votos puros.",
+      "scope": "Endpoints referem-se ao suporte de entrada declarado; a cláusula não classifica todos os históricos μ=0/1 com suporte original interior. Inexistência é da classe mantida.",
+      "change": "preserved",
+      "previous_claim_ids": [
+        "C08"
+      ],
+      "assessment": "VERIFIED_UNDER_DECLARED_CONTRACT",
+      "mathematical_basis": "B.4 relida: quatro perfis puros, regiões completas de resposta e s† factível sem resposta pura na célula baixa interior.",
+      "finding_ids": []
+    },
+    {
+      "claim_id": "C05",
+      "text": "O benchmark público R1 permanece v_M(o)=βo se o≤1/m e o se o>1/m; v_U(o)=βo. Os vetores privados S/P/E e as diferenças econômicas do baseline preservam suas fórmulas, células vazias e segmentos vinculados.",
+      "strength": "preservação de payoff explicitamente delimitada",
+      "source_locator": "B:383–399",
+      "evidence": "Comparação dos custos de inclusão/exclusão e tradução componente a componente dos vetores.",
+      "scope": "Não preserva identidade nominal de coalizões, vetores de ballot, todas as estratégias/desvios ou o jogo de sinalização da agenda.",
+      "change": "preserved_economic_claim",
+      "previous_claim_ids": [
+        "C05",
+        "C09",
+        "C10"
+      ],
+      "assessment": "VERIFIED_UNDER_DECLARED_CONTRACT",
+      "mathematical_basis": "Inclusão pública compara βo+(k−1)w com kw; subtração dos vetores S/P/E e U nos domínios existentes.",
+      "finding_ids": []
+    },
+    {
+      "claim_id": "N04",
+      "text": "Em A, H propõe obrigatoriamente sinais públicos y=(C,x) em Y_g, união disjunta finita dos simplexes X_C. Bayes pointwise usa o par observado em todo suporte; um único μ_off vale fora. A continuação completa é selecionada por regra/estágio/posterior, com a disciplina interna própria do baseline.",
+      "strength": "novo espaço de ações/sinais e hipótese de continuação",
+      "source_locator": "B:423–500",
+      "evidence": "Definição A1, topologia por componentes C, Bayes A2, tabela de transições e interface A3.",
+      "scope": "Não projeta x antes de atualizar crenças, não adiciona voto de H em A, não permite H fora de C ou pular A, nem impõe o Markov da agenda ao baseline inteiro.",
+      "change": "modified",
+      "previous_claim_ids": [
+        "C11"
+      ],
+      "assessment": "VERIFIED_UNDER_DECLARED_CONTRACT",
+      "mathematical_basis": "Y_g é união disjunta finita de simplexes; sinal completo (C,x), Bayes local por componente e continuação completa no mesmo posterior.",
+      "finding_ids": []
+    },
+    {
+      "claim_id": "N05",
+      "text": "Com o representante declarado, convidado fraco aceita iff x_j≥r_χ(μ). A posterior fixado, melhor passagem paga r a k convidados. O piso w(1−w)≤r≤w implica V_M^A≥max{1−kw,β²o}; toda passagem usada em equilíbrio tem exatamente k convidados fracos quase certamente.",
+      "strength": "novos argumentos locais e limites",
+      "source_locator": "B:502–597",
+      "evidence": "A-C1–A-C4: produto de consentimentos, custo por convidado, identidade do piso e garantia independente de crença.",
+      "scope": "C é recuperável de x só no ramo que passa. Coalizões maiores continuam factíveis, sobretudo rejeitadas; massa zero no suporte não é tratada como argmax obrigatório. Melhor proposta a μ fixado não resolve sozinha desvios de sinalização.",
+      "change": "new_derivation",
+      "previous_claim_ids": [
+        "C13"
+      ],
+      "assessment": "VERIFIED_UNDER_DECLARED_CONTRACT",
+      "mathematical_basis": "Prova de preços pivotais; piso w(1−w), proposta segura, dominância estrita de passagem superdimensionada quase certamente e garantia de recusa β²o.",
+      "finding_ids": []
+    },
+    {
+      "claim_id": "C12",
+      "text": "As fórmulas públicas da agenda, o cutoff o_M*, gap público e D_g mantêm-se sob a nova interface: v_U^A=1−β+β²o e v_M^A igual aos dois ramos históricos.",
+      "strength": "benchmark público preservado condicional à interface",
+      "source_locator": "B:598–624",
+      "evidence": "A-C5 compara a melhor passagem à continuação; a tabela de impactos aponta E.6–E.8/E.12.",
+      "scope": "Propostas majoritárias rejeitadas incluem C e não são literalmente as antigas, mesmo quando o payoff coincide.",
+      "change": "preserved",
+      "previous_claim_ids": [
+        "C12"
+      ],
+      "assessment": "RESULT_RECONSTRUCTED_SOURCE_REPAIR_REQUIRED",
+      "mathematical_basis": "Fórmulas de melhor passagem/recusa e gap rederivadas; igualdade intermediária falsa corrigível sem modificar o resultado.",
+      "finding_ids": [
+        "F-001"
+      ]
+    },
+    {
+      "claim_id": "N06",
+      "text": "A-C6 caracteriza condições de payoff/existência das formas puras M no novo espaço; A-C7 caracteriza binders Borel por ausência de desvio no suporte, igualdade de payoff σ_o-quase certamente e proteção contra todo y fora do suporte. Há existência M para algum ρ em cada economia da interface.",
+      "strength": "caracterização funcional declarada",
+      "source_locator": "B:626–705",
+      "evidence": "Tabela de seis formas, construções de existência, u_o(C,x), supremo fora do suporte e condições A14.",
+      "scope": "Não é catálogo finito de estratégias nem bijeção com medidas históricas em X. Não garante existência em todo ρ fixado. Suporte inclui pontos de massa zero, onde há desigualdade, não igualdade obrigatória.",
+      "change": "modified",
+      "previous_claim_ids": [
+        "C13"
+      ],
+      "assessment": "VERIFIED_WITH_QI05_PRECISION",
+      "mathematical_basis": "Imitação e desvios fora de suporte finito dão as seis formas; construção em três regiões T dá existência para algum ρ; A14 elimina todos os desvios Borel e exige igualdade quase certa.",
+      "finding_ids": [
+        "F-003"
+      ]
+    },
+    {
+      "claim_id": "N07",
+      "text": "Dois exemplos impedem equivalência literal majoritária: o mesmo x pode separar tipos apenas por C e induzir passagem/recusa diferentes; um pacote histórico com pequena parcela a fraco dispensável pode não passar em qualquer C nova factível. Uma testemunha distinta reproduz a tabela de reversão na mesma fibra ρ=0.",
+      "strength": "contraexemplos e testemunha construtiva declarados",
+      "source_locator": "B:707–763",
+      "evidence": "A-EX1, A-EX2 e par explícito M/U para (4,.9,.1,.9,.95).",
+      "scope": "Não diz que o vetor de payoffs do primeiro exemplo era impossível em toda estratégia antiga. A testemunha não seleciona toda a correspondência nem prova igualdade global das imagens de payoff.",
+      "change": "new",
+      "previous_claim_ids": [
+        "C16"
+      ],
+      "assessment": "VERIFIED_UNDER_DECLARED_CONTRACT",
+      "mathematical_basis": "Conferência de factibilidade, votação, crenças, imitação e desvios dos dois contraexemplos e da witness M/U em ρ=0.",
+      "finding_ids": []
+    },
+    {
+      "claim_id": "N08",
+      "text": "Adicionar/remover C=N é apresentado como isomorfismo do jogo unânime inteiro, baseline e A, preservando histórias, estratégias, payoffs, suporte e Bayes local. O transporte de resultados históricos U depende da correção daqueles resultados.",
+      "strength": "isomorfismo estrutural alegado, transporte condicional",
+      "source_locator": "B:320–326,765–773",
+      "evidence": "A-C8 compara todas as ações, ballots, transições e informações; C=N é constante.",
+      "scope": "Não é nova prova da correção histórica de B.4/B.8; não se estende à maioria; continua a inexistência restrita aos votos puros.",
+      "change": "new_transport_statement",
+      "previous_claim_ids": [
+        "C08",
+        "C14"
+      ],
+      "assessment": "RESULT_RECONSTRUCTED_SOURCE_REPAIR_REQUIRED",
+      "mathematical_basis": "Bijeção de árvores U por C=N; B.8/E.3 rederivadas usando Bayes, imitação, limites globais e lema adicional para x^h no suporte.",
+      "finding_ids": [
+        "F-002",
+        "F-003"
+      ]
+    },
+    {
+      "claim_id": "N09",
+      "text": "Kernels e leis realizadas novos retêm (C,x), não convite ⊥ e histórias da continuação. Sig_ex é órbita diagonal do par de leis por tipo e Sum_econ quocienta registros por nomes; a construção e fatoração são refeitas no novo espaço.",
+      "strength": "representação no espaço novo, condicional aos kernels",
+      "source_locator": "B:775–847",
+      "evidence": "A15–A18, ação finita S_m, lei de órbita e argumento de fatoração Borel.",
+      "scope": "Não identifica assinaturas antigas e novas, não codifica todo plano off-path, não recombina binders e não cria common random draw entre regras.",
+      "change": "modified",
+      "previous_claim_ids": [
+        "C18"
+      ],
+      "assessment": "VERIFIED_UNDER_DECLARED_CONTRACT",
+      "mathematical_basis": "Kernels finitos Borel e equivariantes; ação por permutação nas leis; invariante completo de órbitas finitas e transversal Borel para fatoração.",
+      "finding_ids": []
+    },
+    {
+      "claim_id": "C15",
+      "text": "A região suficiente βh<e/m de vantagem majoritária para ambos os tipos e ex ante permanece, usando o novo limite inferior M e o limite superior U transportado, quando ambas as correspondências existem.",
+      "strength": "preservação de bound, não equivalência global",
+      "source_locator": "B:591–595,849–869",
+      "evidence": "A-C4, A-C8 e linha de consequências: ΔV≤−β(e/m−βh).",
+      "scope": "Exige ambas as fontes; fora da região não dá ranking universal nem igualdade de conjuntos antigos/novos.",
+      "change": "preserved",
+      "previous_claim_ids": [
+        "C15"
+      ],
+      "assessment": "VERIFIED_UNDER_DECLARED_CONTRACT",
+      "mathematical_basis": "Subtração direta do limite global U e da garantia M, com propagação de fontes vazias.",
+      "finding_ids": []
+    },
+    {
+      "claim_id": "C17",
+      "text": "IR,D,I,T,Q mantêm suas definições e datas, com uma conversão β da R1 para A; T=D+I é identidade quando as fontes existem. As imagens majoritárias devem ser produzidas pela correspondência nova, e vazios continuam propagando-se.",
+      "strength": "identidades preservadas com novas fontes",
+      "source_locator": "B:849–869,871–901",
+      "evidence": "Tabela de impacto, limites de verificação e ledger de dependências.",
+      "scope": "Mesmas fórmulas não certificam transporte de outcomes. Os 409 checks reportados são finitos/condicionais; revisão científica independente permanece pendente.",
+      "change": "preserved_identity_new_sources",
+      "previous_claim_ids": [
+        "C17"
+      ],
+      "assessment": "RESULT_RECONSTRUCTED_SOURCE_REPAIR_REQUIRED",
+      "mathematical_basis": "Conferência de IR,D,I,T,Q nas datas corretas, com coordenadas vinculadas e fontes completas; U exata depende da correção de F-002.",
+      "finding_ids": [
+        "F-001",
+        "F-002",
+        "F-003"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "F-001",
+      "status": "CONFIRMED",
+      "type": "local_algebra_error",
+      "severity": "LOW",
+      "blocks_frozen_proof_closure": true,
+      "title": "Igualdade algébrica falsa no primeiro ramo público de A-C5",
+      "claim_ids": [
+        "C12",
+        "C17"
+      ],
+      "citations": [
+        {
+          "path": "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_transport.md",
+          "line_start": 213,
+          "line_end": 214,
+          "bundle_lines": [
+            618,
+            619
+          ],
+          "literal": "1-k\\beta(1-\\beta o)/m-\\beta^2o\n=(1-\\beta^2o)(1-k\\beta/m)>0."
+        }
+      ],
+      "mathematical_basis": "O lado esquerdo menos o produto alegado é kβ²o(1−β)/m>0. Com m=4,β=.9,o=.1 os lados são .5095 e .50545. O sinal positivo e as fórmulas são preservados.",
+      "proposed_solution": "Substituir pela identidade 1−kβ/m−β²o(1−k/m)>1−β>0, usando β²o<β. Não mudar primitivas nem valores.",
+      "impact": "A prova textual A-C5 deve ser corrigida; C12 foi reconstruído e o erro não altera benchmark ou gap.",
+      "verification": "Reexpansão algébrica no domínio inteiro; testemunha racional. O script candidato não cobre a igualdade.",
+      "resolution_required": "Novo candidato com igualdade corrigida e revisão do trecho/consumidores."
+    },
+    {
+      "id": "F-002",
+      "status": "CONFIRMED",
+      "type": "borel_support_proof_gap",
+      "severity": "MEDIUM",
+      "blocks_frozen_proof_closure": true,
+      "title": "B.8 não cobre x^h pertencente ao suporte com massa zero",
+      "claim_ids": [
+        "N08",
+        "C17"
+      ],
+      "citations": [
+        {
+          "path": "formal_model_v6.Rmd",
+          "line_start": 1938,
+          "line_end": 1939,
+          "literal": "If \\(\\mu^{\\mathrm{off}}>p^*\\), the off-support proposal \\(x^h\\) guarantees\n\\(z_H\\)."
+        },
+        {
+          "path": "formal_model_v6.Rmd",
+          "line_start": 1889,
+          "line_end": 1891,
+          "literal": "An off-support high\nposterior would permit the deviation \\(x^h\\), which yields\n\\(z_H>z_L\\); hence \\(\\mu^{\\mathrm{off}}=0\\)."
+        }
+      ],
+      "consumers": [
+        {
+          "path": "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_transport.md",
+          "lines": [
+            364,
+            368
+          ],
+          "bundle_lines": [
+            769,
+            773
+          ]
+        }
+      ],
+      "mathematical_basis": "µ_off>p* não implica x^h fora do suporte. No suporte vale o limite local de Bayes, inclusive em pontos sem átomo. A omissão afeta a exclusão de famílias adicionais na classificação completa.",
+      "proposed_solution": "Acrescentar lema: se V<z_H e x^h∈S, bolas pequenas têm x_H>V e massa pública positiva. Não contêm massa pública em µ=0, pois alto não usa esses sinais a.e.; baixo usado nesse posterior teria aprovação com payoff>V ou recusa com β²ℓ<d≤V. Logo µ>p* a.e. nas bolas. A identidade de Bayes e a existência/admissibilidade do limite impõem µ(x^h)>p*. Então x^h passa e dá z_H>V, contradição. Se x^h∉S o argumento original vale. Assim V=z_H e unicidade orçamentária implica ambas as leis δ_xh.",
+      "prerequisites_reconstructed": "Valor comum V por imitação bilateral quase certa, garantia d ao alto, exclusão de recusa usada pelo baixo em µ=0, garantia global z_L por x^ℓ, limite global z_H.",
+      "impact": "O resultado é recuperável sem nova hipótese. O isomorfismo estrutural U, R1_U e o bound global U permanecem válidos. O transporte da classificação completa e seus consumidores não deve ser certificado a partir da frase congelada sem o lema.",
+      "verification": "Prova para suportes Borel arbitrários, com distinção entre igualdade quase certa e desigualdade em todos os pontos de suporte.",
+      "resolution_required": "Novo candidato que incorpore o lema/casos e revalide o contrato por impacto."
+    },
+    {
+      "id": "F-003",
+      "status": "CONFIRMED",
+      "type": "expository_precision_with_topological_counterexample",
+      "severity": "LOW",
+      "blocks_frozen_proof_closure": false,
+      "title": "QI-05: probabilidade um no argmax, sem inclusão do suporte topológico",
+      "claim_ids": [
+        "N06",
+        "N08",
+        "C17"
+      ],
+      "citations": [
+        {
+          "path": "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_transport.md",
+          "line_start": 300,
+          "line_end": 300,
+          "bundle_lines": [
+            705,
+            705
+          ],
+          "literal": "cada σ_o pode ser qualquer medida suportada no argmax de u_o no novo Y_M"
+        },
+        {
+          "path": "formal_model_v6.Rmd",
+          "line_start": 2482,
+          "line_end": 2482,
+          "literal": "\\text{any Borel law supported on }\\mathcal R_L"
+        }
+      ],
+      "mathematical_basis": "Melhor resposta mista exige σ_o(argmax u_o)=1. Com payoff descontínuo, supp(σ_o) pode conter ponto de massa zero com payoff inferior. A14 já faz essa distinção corretamente.",
+      "counterexample": {
+        "parameters": {
+          "m": 4,
+          "k": 2,
+          "beta": "9/10",
+          "ell": "1/10",
+          "h": "9/10",
+          "p": 1
+        },
+        "coalition": [
+          "H",
+          1,
+          2
+        ],
+        "sequence": "ε_n=.1/(n+1), x_n=(.55,.225−ε_n,.225,0,0), n≥1",
+        "law": "σ_h=Σ_{n≥1}2^(−n)δ_(C,x_n)",
+        "explanation": "Todos x_n rejeitam e dão .81 ao alto, o máximo; o limite xbar=(.55,.225,.225,0,0) passa e dá .55, mas pertence ao suporte. Crença 1 global e baixo contrafactual escolhe δ_(C,xbar).",
+        "unanimity_analogue": "Em p=0, z_L=.181<d=.729 e r_L=.20475, uma sequência de recusas com uma parcela r_L−ε_n converge a x^ℓ; R_L tem probabilidade um sem conter o suporte."
+      },
+      "proposed_solution": "Usar 'assigning probability one to its argmax' e a mesma precisão para R_L em E.3. Preservar a desigualdade ponto a ponto e a igualdade quase certa de A14.",
+      "impact": "Sob a intenção explicitamente confirmada, é precisão expositiva, não nova primitiva ou restrição. A interpretação topológica forte é matematicamente falsa.",
+      "verification": "Contraexemplo explícito de distribuição contável com ponto-limite não maximizador.",
+      "resolution_required": "Precisar a redação na próxima versão, sem fortalecer A14."
+    }
+  ],
+  "interpretation_adjudications": [
+    {
+      "id": "QI-01",
+      "status": "RESOLVED_FOR_DECLARED_INTERFACE",
+      "reason": "Current belief and original support remain separate. Endpoint R1_U assessments are specified continuation selections, not exhaustive classification of all zero-posterior histories under an interior original prior.",
+      "new_primitive_added": false
+    },
+    {
+      "id": "QI-05",
+      "status": "EXPOSITORY_PRECISION_REQUIRED",
+      "finding_id": "F-003",
+      "reason": "Probability one on argmax is correct; topological support inclusion would exclude valid laws. A14 already states the correct condition.",
+      "new_primitive_added": false
+    }
+  ],
+  "checks": [
+    {
+      "id": "CHK-SOURCES",
+      "method": "SHA-256 against exact manifest/bundle/gate/original",
+      "result": "PASS",
+      "scientific_proof": false
+    },
+    {
+      "id": "CHK-DAG",
+      "command": "python3 /Users/manoelgaldino/.codex/skills/solve-dynamic-games/scripts/check_game_dag.py quality_reports/coalition_protocol_2026-09-19/derivations/game_dag.json --require-execution-order",
+      "result": "VALID",
+      "batches": [
+        [
+          "R2_M",
+          "R2_U"
+        ],
+        [
+          "R1_M",
+          "R1_U"
+        ],
+        [
+          "A_M",
+          "A_U"
+        ]
+      ],
+      "limit": "Recorded order and dependency hashes checked; raw orchestration logs not audited."
+    },
+    {
+      "id": "CHK-CANDIDATE-409",
+      "method": "Copy exact candidate agenda_checks.py into TemporaryDirectory, execute there, byte-compare generated JSON with frozen candidate JSON.",
+      "result": {
+        "pass": 409,
+        "fail": 0,
+        "byte_identical": true,
+        "output_sha256": "7e0a20ac6790a1f949e760c9fbf00d7d70b7290d266f9342dc794efa70e2a75e"
+      },
+      "limit": "Finite conditional checks; excludes all Borel laws and F-001 equality. No write to candidate JSON."
+    },
+    {
+      "id": "CHK-INDEPENDENT-R1M",
+      "command": "python3 quality_reports/coalition_protocol_2026-09-19/reviews/formal_checks_v1.py",
+      "script_sha256": "bc3bc6e73a550a98dd54e1204dd88e45612497b5429fe2ea212637627c8e2d93",
+      "output": "quality_reports/coalition_protocol_2026-09-19/reviews/formal_checks_v1.json",
+      "output_sha256": "77504c6fc206ff4ca08ce5cb8863e3c7453bca013d11c4ea48b326c760fc1208",
+      "result": {
+        "grid_denominator": 20,
+        "beta": "3/5",
+        "states": 50,
+        "assertions": 100,
+        "proposal_state_comparisons": 3054975,
+        "proposal_counts": {
+          "3": 15939,
+          "4": 106260
+        },
+        "failures": 0
+      },
+      "limit": "Finite exact enumeration for R1_M only, all named coalitions/grid allocations; not proof for continuum, R1_U or Borel strategies."
+    },
+    {
+      "id": "CHK-ANALYTIC",
+      "method": "Backward audit from primitives, proof reconstruction, all proposal/vote deviations, Bayes/ties/endpoints/Borel topology and complete-kernel composition.",
+      "result": "Seventeen claims assessed; F-001/F-002 require source repair; no counterexample to the interpreted main claims.",
+      "scientific_proof": "Human-readable mathematical arguments in report, not machine checked."
+    },
+    {
+      "id": "CHK-COLD-R2",
+      "method": "Read pre-interface independent cold reconstruction.",
+      "source_sha256": "57b83c8d83fad84f6f5ce41a6e34d75c60ede19b3e09c71d307bd7d70764896c",
+      "limit": "Its numerical checks were not rerun by this reviewer or counted among this reviewer's executions."
+    }
+  ],
+  "dependency_assessment": {
+    "graph": "R2_M→R1_M→A_M; R2_U→R1_U→A_U",
+    "discounts": "No beta within R2; one beta from R2 to R1; one beta from R1 to A. Realized-law extraction uses payoff dates once.",
+    "closure": "R2 and R1 proofs reconstructed. A_M public proof equality needs correction. A_U full classification needs support lemma in the consumed historical proof.",
+    "invalidation": [
+      {
+        "finding": "F-001",
+        "reopen": [
+          "A-C5 public proof and public consumers"
+        ],
+        "preserve": [
+          "baseline interfaces",
+          "public formulas after reconstructed correction"
+        ]
+      },
+      {
+        "finding": "F-002",
+        "reopen": [
+          "B.8 complete Borel classification",
+          "A_U full-correspondence transport",
+          "existence/image consumers"
+        ],
+        "preserve": [
+          "R2_U",
+          "R1_U/B.4",
+          "structural C=N isomorphism",
+          "global U upper bound",
+          "C15 bound argument"
+        ]
+      },
+      {
+        "finding": "F-003",
+        "reopen": [
+          "endpoint language A-C7/E.3"
+        ],
+        "preserve": [
+          "A14 mathematical criterion",
+          "declared probability-one interpretation"
+        ]
+      }
+    ],
+    "future_changes": "Changes to feasibility, C observability, consent, original support, selector, kernel or payoff date invalidate descendants. Equal c/h does not preserve laws or signatures."
+  },
+  "proof_sections": [
+    {
+      "heading": "1. Identidade, fontes e fronteira da revisão",
+      "markdown": "## 1. Identidade, fontes e fronteira da revisão\n\nObjeto científico: quatro notas matemáticas fora do manuscrito, concatenadas integralmente em `derivations/derivation_bundle_v1.md` (903 linhas). O contrato de fidelidade tem ID `coalition-derivations-v1:b62a7c8e0235:round1`; seu PASS autoriza a leitura compartilhada do argumento, sem decidir a validade das provas.\n\n| Fonte | SHA-256 |\n|---|---|\n| Bundle v1 | b62a7c8e023568bf408c1b8929b5909b4e7af21c3271c95955970237801b799f |\n| Manifesto `reviews/derivation_candidate_v1.json` | 8dfefecda3b9e369159bbfeb4276f5f6d7c2402e3e897320774b39be12d1feca |\n| `author_decision.md` | 7abfa53814ff23c61a9af2049c975be81e44f8e66270c4fa3f99accd51923726 |\n| `game_contract.md` | ac78634ea0da03b422a6d92930680d1bb1f94deee0d3c33b68dc9d9791a7d058 |\n| `r2_interface.md` | c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7 |\n| `r1_interface.md` | a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0 |\n| `agenda_transport.md` | 3b98454cb275f34a89c6f5a10037eaa34e30e4fbf81e4fb4f01a65e2f8ba9f6f |\n| `agenda_checks.py` | 9874ca255487e2245f8d44d3915e82cd6974331a7cd7a05278a7608e5de47445 |\n| `agenda_checks.json` | 7e0a20ac6790a1f949e760c9fbf00d7d70b7290d266f9342dc794efa70e2a75e |\n| Contrato interpretativo JSON | a49fc5f5d1737b7d8661506b6e384b709314a98798cacd33e4d981ffb5b07c36 |\n| Original `formal_model_v6.Rmd` | 6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411 |\n| Leitura independente de compreensão | 991663cef8090ce773865c7b81123f0a19be3a850eddd096155b14a7507c3b29 |\n| Folha fria de R2 | 57b83c8d83fad84f6f5ce41a6e34d75c60ede19b3e09c71d307bd7d70764896c |\n\nCheckout: branch `codex/exposition-items20-28`, HEAD `c6dfab61a5a3b44d09ba389911df47726f81b51e`. Mudanças preexistentes não foram revertidas.\n\nNas referências abaixo, **B** designa a linha do bundle; **M** designa a linha do original exato. As quatro notas foram lidas integralmente: contrato B8–110, R2 B117–189, R1 B196–399 e agenda B406–901. O script de checks foi lido por inteiro; seu JSON foi analisado e reproduzido byte a byte em diretório temporário.\n\nO manuscrito original havia sido lido integralmente para o contrato. Nesta auditoria houve releitura crítica de B.4 (M1532–1608), B.8 (M1831–1964), E.3 (M2362–2517), benchmarks públicos (M2658–2724), renda unânime (M2726–2768), efeito total de agenda (M2877–2921), contraste diagonal e representação (M2923–3038) e consumidores de interação/escopo (M3040–3117), além das primitivas e definições utilizadas na reconstrução. Essa cobertura não constitui parecer integral sobre a literatura, evidência empírica, qualidade de apresentação, PDF ou códigos das figuras.\n"
+    },
+    {
+      "heading": "2. Contrato reconstruído e cobertura de histórias",
+      "markdown": "## 2. Contrato reconstruído e cobertura de histórias\n\nO jogo é finito, de barganha com informação privada unilateral, seguido retrospectivamente pela análise de um estágio de sinalização. Não há compromisso com uma política de informação do tipo Bayesian persuasion. A ordem de dependência é R2 → R1 → A, separadamente por regra. Valores de R2 são nativos de R2; o consumidor R1 aplica um β. Valores nativos de R1 recebem outro β apenas quando entram em A.\n\n| Etapa/estado | Ação e informação relevante | Transição/payoff auditado |\n|---|---|---|\n| Reconhecimento baseline | Sorteio uniforme dos fracos, independente entre rodadas; só H conhece o tipo | Proponente fraco observa a crença pública, não o tipo |\n| Proposta baseline | Proponente escolhe (C,x), pertence a C; tamanho mínimo q; x≥0, soma≤1, zero fora de C | A escolha desinformada de C e x não sinaliza o tipo |\n| Votação | Votos simultâneos dos convidados respondedores; proponente Y; não convidado tem marcador ⊥ | Todos os convidados precisam consentir, inclusive em C superdimensionada |\n| Aprovação com H em C | O voto de H necessariamente foi Y | Cada membro recebe x; H recebe x_H |\n| Aprovação sem H | H não vota e x_H=0 por factibilidade | H recebe o fora da pie; fracos recebem o pacote aprovado |\n| Recusa em R1 | Qualquer veto inviabiliza o pacote inteiro | R2 na próxima data; não há saída imediata de H |\n| Recusa em R2 | Fim do jogo | H recebe o, fracos zero |\n| Agenda A | H propõe obrigatoriamente, pertence a C, e não vota novamente; sinal observado é (C,x) | Passagem implementa o pacote; recusa leva à seleção completa de R1 no mesmo posterior |\n\nA não acumulação vale por casos na nova forma extensiva. O ramo “H convidado vota N e o pacote passa” é inviável; se H está fora, não há parcela positiva a ele. Isso é a mudança substantiva aprovada em 19/9, não uma prova de que o protocolo majoritário histórico eliminava o ramo contestado. Propostas desviantes, vetos desviantes e desvios compostos têm payoffs definidos. Nenhum argumento depende de execução individual de H para receber a parcela.\n\nNo baseline, o estado de cálculo inclui etapa, regra, crença atual e suporte inicial. O assessment completo retém histórias e liberdades locais de crença. Ações dos fracos não atualizam; com H convidado, Bayes usa sua lei prescrita de voto. Denominadores zero preservam o suporte inicial e a liberdade local à votação e ao voto de H. Votações distintas não compartilham automaticamente os mesmos valores livres. Não se substituiu essa disciplina por equilíbrio sequencial.\n\nNa agenda, o seletor anônimo por regra/etapa/posterior é uma restrição declarada sobre as continuações consumidas. Não é uma classificação de todas as seleções possíveis do baseline. QI-01 foi mantida na interpretação estreita: os endpoints explícitos de R1_U são jogos de continuação com prior de entrada degenerado, importados como assessments determinados; um posterior zero dentro de um baseline iniciado com prior interior não apaga seu suporte inicial. Escolher as crenças livres do assessment endpoint dentro desse suporte maior é admissível; afirmar que todas as continuações nesse histórico colapsam ao endpoint seria extrapolação.\n"
+    },
+    {
+      "heading": "3. Ledger dos 17 claims",
+      "markdown": "## 3. Ledger dos 17 claims\n\n“Verificado” abaixo significa argumento matemático reconstruído sob o contrato declarado. “Reparo exigido” identifica uma deficiência dos bytes-fonte, ainda que o resultado tenha sido recuperado nesta revisão.\n\n| Claim | Localizador | Resultado da auditoria e fundamento |\n|---|---|---|\n| C02 | B14–43 | Verificado como conjunto de primitivas: um informado, pie fixa, outside option independente, fracos simétricos, domínio estrito de tipos e desconto |\n| N01 | B14–43,73–84 | Verificado em todas as histórias factíveis por consentimento integral e zero fora de C; nova factibilidade não equivale ao ballot histórico |\n| N02 | B45–110,203–216,320–381 | Verificado sob a distinção entre crença atual/suporte inicial e a seleção endpoint explicitamente declarada |\n| C06 | B123–189 | R2 reconstruída de primitives; limiares, empate, coalizões ótimas e coordenadas de tipo zero conferidos |\n| C07 | B203–281 | Redução R1_M E/S/P demonstrada com dominância estrita, redução pré-votação e todos os empates; enumeração finita independente compatível |\n| N03 | B283–318,468–500,811–815 | Representante completo anônimo e Borel construível; conserva peso λ comum e o novo sorteio R2 após recusa de S |\n| C08 | B320–381; M1532–1608 | B.4 efetivamente auditada; completude dos ballots e célula vazia sustentadas no conceito mantido |\n| C05 | B383–399 | Vetores econômicos e benchmark público baseline preservados; não se transportam automaticamente estratégias ou leis majoritárias |\n| N04 | B423–500 | Espaço disjunto Y_g, posterior do par observado e seleção completa verificados; C não pode ser projetado antes de Bayes |\n| N05 | B502–597 | Limiar de voto, piso, garantia segura e minimalidade quase certa da passagem demonstrados para toda a interface declarada |\n| C12 | B598–624 | Fórmulas públicas verificadas, mas a igualdade usada em sua prova é falsa: F-001 exige reparo |\n| N06 | B626–705 | Seis formas puras, existência para algum ρ e critério Borel A14 verificados; QI-05 adjudicada em F-003 |\n| N07 | B707–763 | Ambos os contraexemplos de equivalência e a testemunha de reversão conferidos, inclusive desvios e mesma fibra |\n| N08 | B320–326,765–773; M1831–1964,2362–2517 | Isomorfismo U verificado; transporte completo ainda consome lacuna de B.8, F-002. Resultado reconstruído com lema adicional |\n| N09 | B775–847 | Kernels, leis, órbitas finitas e fatoração Borel verificados sob os seletores completos declarados; não codificam planos off-path |\n| C15 | B591–595,849–869 | Limite suficiente βh<e/m verificado diretamente; só compara células em que ambas as fontes existem |\n| C17 | B849–901 | Identidades e datas verificadas; a imagem U completa depende do reparo F-002 e a precisão endpoint de F-003; a fonte M é a nova correspondência |\n"
+    },
+    {
+      "heading": "4. R2 e R1: reconstrução dos incentivos",
+      "markdown": "## 4. R2 e R1: reconstrução dos incentivos\n\n### 4.1 Rodada terminal\n\nEm R2, um fraco convidado recebe zero com recusa terminal. Logo aceita toda parcela não negativa por T^Y, inclusive zero. Se H foi convidado, seu limiar é x_H≥o. Sob maioria uma coalizão só de fracos é factível porque q_M≤m. A proposta x=e_i entrega ao proponente 1, o máximo factível; qualquer doação positiva ou pagamento a H reduz esse máximo. Todas as coalizões só de fracos contendo i e com tamanho permitido continuam possíveis, inclusive maiores que a quota. Antes do reconhecimento cada fraco recebe 1/m, e H recebe (ℓ,h).\n\nSob unanimidade C=N. Não há vantagem em pagar fracos ou reter slack. As duas propostas relevantes pagam ℓ ou h a H; o proponente compara (1−μ)(1−ℓ) com 1−h. O cruzamento é p*=(h−ℓ)/(1−ℓ). No empate, a oferta baixa reduz estritamente o payoff esperado de H, conforme o desempate secundário. A oferta baixa vale no endpoint zero e no cutoff; a alta vale acima. A coordenada contrafactual do alto continua h após recusa da oferta baixa. Nenhum β pertence a esse cálculo terminal.\n\n### 4.2 Maioria na primeira rodada\n\nEscreva w=β/m. Todo fraco convidado compara sua parcela com w, independentemente do posterior ou do voto de H. Se todos os fracos convidados têm voto prescrito Y, H aceita iff x_H≥βo. Se um fraco tem veto prescrito, as duas ações de H dão βo e T^Y seleciona Y. Essa condição usa a estratégia simultânea prescrita, não a observação antecipada de um voto ainda não revelado.\n\nO fracasso certo dá w ao proponente. A exclusão E dá 1−kw, maior por 1−β(k+1)/m>0. Uma proposta com probabilidade positiva de aprovação paga no mínimo w a cada convidado fraco. Se a coalizão excede a quota, remover um desses convidados, preservando H quando presente, e transferir sua parcela ao proponente preserva todas as aceitações e continuações e aumenta estritamente o retorno. É uma nova proposta antes da votação.\n\nNa coalizão mínima, reduzir as parcelas aos limiares e eliminar slack produz E, S ou P. A comparação é\n\n\\[\n\\Pi_E=1-kw,\\qquad\n\\Pi_S=(1-\\mu)[1-(k-1)w-\\beta\\ell]+\\mu w,\\qquad\n\\Pi_P=1-(k-1)w-\\beta h.\n\\]\n\nSe S ou P vence E, seu residual é positivo; não se seleciona uma proposta algebricamente vantajosa mas inviável. Os cruzamentos e casos ℓ=1/m ou h=1/m foram conferidos. S vence o desempate com E e P. No empate residual E/P, a comparação secundária usa (1−μ)ℓ+μh contra βh; quando também há igualdade, as coordenadas, histórias e valores devem usar o mesmo λ. Não se podem combinar marginais independentes.\n\nA construção anônima sorteia proponente e parceiros uniformemente. Após recusa do alto em S, novo reconhecimento independente produz o kernel R2. Isso dá exatamente os valores condicionais e interim de B302–310. As células de seleção são Borel e a mistura EP é afim em λ. Escolher a crença de entrada para cada posterior livre dá uma conclusão completa Borel em maioria, pois essas crenças não alteram seus valores de continuação.\n\n### 4.3 Unanimidade: auditoria de B.4\n\nDefina A=β(1−ℓ)/m e B=β(1−h)/m. A continuação pivotal de um fraco é W(η)=(1−η)A para η≤p* e B para η>p*, sempre em [B,A]. O mínimo de parcelas relevante é sobre os respondedores fracos, excluindo o proponente; essa definição está explícita em B332.\n\nNo endpoint baixo, a crença permanece zero e os limiares de H são βℓ e βh. Com veto fraco prescrito H vota Y por indiferença. Acima de p*, o perfil YY fixa η_Y=μ e o cutoff fraco B. Sem veto fraco, YY exige x_H≥βh. NN fixa η_N=μ e exige x_H<βh, todos os fracos Y e W(η_Y)≤u no ramo livre de Y. Com veto fraco, um N prescrito de H não sobrevive a T^Y. Os perfis separadores contradizem os incentivos: em YN o baixo precisaria receber ao menos βh para não imitar N, enquanto o alto só rejeita abaixo de βh; em NY o alto precisa βh e o baixo não pode preferir a continuação βℓ.\n\nPara 0<μ≤p*, a proposta desviada s† paga βℓ a H e A a cada fraco respondedor. É factível, com residual A+1−β. Todos os fracos votam Y sob qualquer crença admissível. YY permite desvio lucrativo do alto; NN viola T^Y do baixo; YN permite ao baixo imitar a recusa reveladora do alto; NY permite ao alto recusar. Logo não existe conclusão em votos puros após essa proposta factível, e a célula inteira da correspondência é vazia. Isso não afirma inexistência em estratégias mistas ou em outro conceito.\n\nNas células existentes, a proposta limiar deixa ao proponente sua continuação acrescida de 1−β, vencendo o atraso. Conferi os vetores por tipo, inclusive a coordenada fraca zero quando um alto contrafactual recusa as ofertas baixas de R1 e R2 no endpoint baixo. Essa coordenada não pode ser substituída pela média sob o prior degenerado.\n"
+    },
+    {
+      "heading": "5. Agenda: desvios, medidas e comparações",
+      "markdown": "## 5. Agenda: desvios, medidas e comparações\n\nY_g é uma união disjunta finita de simplexes compactos identificados por C. As bolas locais usadas por Bayes pertencem à mesma componente C. O espaço é compacto e standard Borel; estender as medidas por zero ao ambiente euclidiano de cada componente permite a identidade de Bayes por diferenciação de medidas. Para priors interiores,\n\n\\[\n\\int_E\\mu\\,d\\bar\\sigma=p\\,\\sigma_h(E)\n\\]\n\npara todo conjunto Borel E. A disciplina mais forte exige adicionalmente o limite local em cada ponto do suporte, inclusive pontos sem átomo. Não se presumiu que toda lei Borel satisfaz essa exigência: a correspondência filtra as leis admissíveis.\n\nSob a seleção completa declarada, o voto pivotal compara x_j com r_χ(μ)=βc_χ(μ). Como r>0, numa proposta aprovada C é recuperável das parcelas positivas dos fracos. Essa recuperação não vale para propostas rejeitadas. A posterior fixado, a passagem mais barata compra k convidados ao preço r; isso fornece uma fronteira de payoff, não resolve por si só o problema de sinalização.\n\nO piso w(1−w)≤r≤w segue de E/P e da identidade\n\n\\[\nmc_S-(1-w)=(\\Pi_S-\\Pi_E)+\\mu(\\beta-kw)\\ge0\n\\]\n\nna região em que S é selecionado. P só é selecionado com h≤1/m; EP preserva os limites. Uma proposta que paga w a k fracos passa sob qualquer posterior e garante 1−kw. Uma passagem com k+1 fracos deixa no máximo 1−(k+1)w(1−w), estritamente menor que a garantia: a diferença é w[1−(k+1)w]>0. Assim, passagens usadas têm coalizão mínima quase certamente. Não se eliminam coalizões maiores do espaço de desvios ou de recusas, nem se exige optimalidade em cada ponto de massa zero do suporte. Recusa também garante ao menos β²o. Esses argumentos fecham A-C1–A-C4.\n\nA-C5 tem as fórmulas corretas, mas contém a igualdade falsa F-001. Com seu reparo, os três ramos do gap público são −β(e/m)(1−βo), β(βo−e/m) e (1−β)(1−βo), com e=m−k, nos respectivos domínios. Nenhuma fórmula autoriza bijeção entre pacotes rejeitados antigos e novos.\n\nPara um perfil puro de A, há no máximo dois sinais. Fora desse conjunto finito, o payoff de passagem máximo pode ser aproximado reduzindo x_H por ε, mantendo os pagamentos e evitando os átomos; sinais rejeitados também continuam disponíveis. Portanto o supremo fora do suporte é O_o=max{A_off,d_o,off}, mesmo se seu maximizador estiver no suporte. Imitação bilateral e factibilidade produzem exatamente as seis linhas de A-C6. A forma “baixo rejeita, alto passa” é impossível porque d_h,0>d_ℓ,0. Há sinais distintos para separação com passagem porque k<m e há várias coalizões mínimas. A prova de existência por T=(1−kw)/β cobre h≤T, ℓ≤T≤h e T≤ℓ; mantém empates e demonstra existência para algum ρ, não para todo ρ.\n\nA-C7 é o critério correto de melhor resposta: desigualdade para todo ponto no suporte, igualdade σ_o-quase certamente e proteção contra o supremo fora dele. Os payoffs são Borel por composição de μ, χ, indicadores de componente e comparações de parcelas. As condições são necessárias e suficientes dadas a seleção completa admissível e as crenças. QI-05 não exige igualdade em pontos-limite com massa zero; F-003 demonstra por que tal fortalecimento seria falso.\n\nOs dois exemplos de não equivalência foram conferidos com os números exatos e com desvios. A-EX1 separa apenas por C: o mesmo x passa na coalizão mínima do baixo e falha numa coalizão do alto com convidado adicional de parcela zero. A-EX2 tem uma pequena parcela positiva a um fraco dispensável na votação histórica; a nova factibilidade o obriga a entrar em C, onde sua recusa bloqueia o pacote. O primeiro exemplo não prova que seu vetor de payoffs era impossível no jogo antigo; o segundo prova a falta de uma preimagem que preserve aquele pacote aprovado.\n\nA testemunha de reversão usa a mesma fibra ρ=0. Em (m,β,ℓ,h,p)=(4,.9,.1,.9,.95), os valores privados são (.5905,.81) em M e (.729,.729) em U. Para o baixo, Δv=−.4095, ΔV=.1385 e ΔIR=.548. Todos os desvios de imitação e fora do suporte foram comparados; esse par é testemunha, não seleção universal.\n"
+    },
+    {
+      "heading": "6. Dependência histórica U: resultado reconstruído e lacuna localizada",
+      "markdown": "## 6. Dependência histórica U: resultado reconstruído e lacuna localizada\n\nO isomorfismo de A-C8 é válido para a árvore inteira U: a quota força C=N, de modo que adicionar ou retirar esse rótulo preserva ações, informação, votação, fracasso, datas, payoffs e topologia de propostas. O antigo ramo de aprovação com N de H não existia sob U. Esse argumento não prova B.8; por isso a prova foi examinada separadamente.\n\nPonha z_L=1−β+β²ℓ, z_H=1−β+β²h, d=β²h e P_C={0}∪(p*,1]. A identidade de Bayes implica que σ_h atribui massa zero ao conjunto {μ=0}. O alto garante d com uma recusa. Quase toda proposta usada pelo alto tem posterior alto; o baixo pode imitá-la e obter o mesmo payoff, portanto V_ℓ≥V_h≥d. Uma proposta usada pelo baixo com posterior zero não pode ser rejeitada, porque pagaria β²ℓ<d; se passa, o alto pode imitá-la. Nas propostas de posterior alto os payoffs dos tipos coincidem. Logo V_h≥V_ℓ e existe valor comum V≥d. A proposta x^ℓ passa sob todos os posteriores admissíveis e garante z_L; assim V≥max{z_L,d}. O limite superior V≤z_H é global, pois toda passagem paga no mínimo r_U(h) a cada fraco, e toda recusa dá no máximo d<z_H.\n\nSe existe massa pública positiva em {μ=0}, o valor comum só pode ser z_L e o pacote usado nesse conjunto é o único maximizador x^ℓ. Exige-se z_L≥d e há átomo positivo do baixo em x^ℓ, sem átomo alto. A testemunha (x^ℓ,x^S) é factível e satisfaz imitação e desvios quando μ_off=0.\n\nSe não existe essa massa, Bayes plausibility exige p>p*. Com μ_off=0, cada V em [max{z_L,d},z_H] é atingido pelo pooling x(V)=(V,(1−V)/m,…). O critério ponto a ponto de E.3 fecha todas as demais leis Borel, não apenas as testemunhas puras.\n\nFalta no original justificar o caso μ_off>p* quando x^h pode pertencer ao suporte. O lema em F-002 fecha esse caso sem mudar o resultado: força V=z_H e, portanto, ambas as leis δ_xh. A mesma conclusão exclui μ_off alto na família de massa positiva em posterior zero. A classificação, seus endpoints e as traduções econômicas ficam matematicamente sustentados com esse complemento. A fonte congelada ainda não o contém.\n\nOs endpoints são correspondências de estratégias completas. Em p=0 o baixo escolhe x^ℓ; o alto contrafactual recebe max{z_L,d}, podendo usar leis de recusas quando d domina. Em p=1 ambos escolhem x^h. A precisão de probabilidade um em F-003 é necessária quando o conjunto de recusas é aberto.\n\nOs sinais de IR_U seguem de subtrair (z_L,z_H): baixo fracamente não negativo e alto fracamente não positivo, com as coordenadas endpoint indicadas na tabela original. T_U compara fontes existentes na mesma data: no interior de prior baixo a fonte baseline é vazia, mesmo quando A existe; no prior alto seus valores variam entre 0 e 1−β por tipo. Identidades I,T,D,Q não restauram células ausentes.\n"
+    },
+    {
+      "heading": "7. Findings",
+      "markdown": "## 7. Findings\n\n### F-001 — Igualdade algébrica falsa na prova do benchmark público\n\n- **Tipo/severidade:** erro algébrico local; **LOW**. **Estado:** CONFIRMED. **Claim:** C12; consumidor C17.\n- **Local:** `agenda_transport.md:210–217`; B615–622.\n- **Citação literal:**\n\n\\[\n1-k\\beta(1-\\beta o)/m-\\beta^2o\n=(1-\\beta^2o)(1-k\\beta/m)>0.\n\\]\n\nO lado esquerdo menos o produto alegado é kβ²o(1−β)/m>0, no domínio inteiro. Com m=4, β=.9, o=.1, os lados são .5095 e .50545. A igualdade é falsa, embora a desigualdade e a fórmula de v_M^A sejam verdadeiras.\n\n**Reparo proposto:** substituir pela identidade\n\n\\[\n1-k\\beta/m-\\beta^2o(1-k/m)>1-\\beta>0.\n\\]\n\nA primeira desigualdade usa β²o<β. Isso prova a dominância de passagem no primeiro ramo sem modificar nenhum resultado. O script candidato de 409 checks não testa a igualdade falsa. O candidato deve corrigir a prova antes de declarar seu fechamento.\n\n### F-002 — O argumento “off-support x^h” omite o caso de ponto no suporte sem massa\n\n- **Tipo/severidade:** lacuna de prova sobre medidas Borel; **MEDIUM**. **Estado:** CONFIRMED. **Claims:** N08 e a classificação completa U consumida por C17; não refuta o isomorfismo estrutural.\n- **Local:** M1889–1893 e M1938–1943; consumidos por B765–773.\n- **Citação literal principal:**\n\n> If \\(\\mu^{\\mathrm{off}}>p^*\\), the off-support proposal \\(x^h\\) guarantees\n> \\(z_H\\).\n\nA hipótese não estabelece x^h∉supp(σ̄). Se ele estiver no suporte, mesmo sem átomo, sua crença é o limite local de Bayes, e não μ_off. A passagem paralela em M1889–1891 tem a mesma lacuna. Ela afeta a exclusão de famílias adicionais, não apenas uma witness escolhida.\n\n**Reparo proposto e verificado matematicamente:** acrescente o seguinte lema, usando o valor comum e os limites já demonstrados na seção 6.\n\nSuponha μ_off>p* e V<z_H. Se x^h está fora do suporte, passa a preço alto e contradiz V. Se está no suporte, tome bolas relativas B_ε(x^h) pequenas o bastante para que x_H>V em toda a bola. Cada bola tem massa pública positiva. Dentro dela, o conjunto {μ=0} tem massa pública zero: o alto não usa posterior zero quase certamente; uma proposta usada pelo baixo nesse posterior, se aceita, daria x_H>V, e, se rejeitada, daria β²ℓ<d≤V. Ambos violam igualdade ao valor em sua lei. Portanto μ>p* quase certamente em cada bola.\n\nPor Bayes,\n\n\\[\n\\frac{p\\,\\sigma_h(B_\\epsilon(x^h))}\n     {\\bar\\sigma(B_\\epsilon(x^h))}\n=\n\\frac{\\int_{B_\\epsilon(x^h)}\\mu\\,d\\bar\\sigma}\n     {\\bar\\sigma(B_\\epsilon(x^h))}\n\\ge p^*.\n\\]\n\nO limite existe por disciplina e pertence a {0}∪(p*,1]. Como p*>0, não pode ser zero; como p* é excluído, μ(x^h)>p*. Logo x^h passa e rende z_H>V, novamente uma contradição. Conclui-se V=z_H. Como d<z_H e x^h é a única passagem que deixa z_H a H, ambas as leis são δ_xh. O mesmo lema impede μ_off alto quando a família de posterior zero tem V=z_L<z_H.\n\nO reparo não acrescenta refinamento nem restringe as leis admissíveis: usa a disciplina pointwise e a igualdade quase certa já exigidas. Nenhum contraexemplo ao resultado foi encontrado. A prova congelada deve incorporar o caso antes de seu transporte ser certificado.\n\n### F-003 — QI-05: “suportada no argmax” deve significar probabilidade um\n\n- **Tipo/severidade:** precisão de exposição com consequência matemática se lida topologicamente; **LOW**. **Estado:** CONFIRMED quanto à ambiguidade; a leitura topológica forte é refutada.\n- **Local:** `agenda_transport.md:300`, B705; dependência histórica M2480–2487.\n- **Citação literal:** “cada σ_o pode ser qualquer medida suportada no argmax de u_o no novo Y_M”.\n- **Citação histórica:** “any Borel law supported on”.\n\nO critério correto é σ_o(argmax u_o)=1. Não exige supp(σ_o)⊂argmax u_o quando o payoff é descontínuo.\n\n**Contraexemplo à leitura forte:** use m=4, k=2, β=.9, ℓ=.1, h=.9, p=1. A continuação M é E, r=.225, melhor passagem .55 e recusa do alto .81. Em C={H,1,2}, ponha ε_n=.1/(n+1) e\n\n\\[\nx_n=(.55,.225-\\epsilon_n,.225,0,0),\\qquad n\\ge1.\n\\]\n\nCada pacote é rejeitado e dá .81 ao alto. A lei \\(\\sigma_h=\\sum_{n\\ge1}2^{-n}\\delta_{(C,x_n)}\\) dá probabilidade um a melhores respostas. Seu suporte contém também o limite \\(\\bar x=(.55,.225,.225,0,0)\\), que passa e dá apenas .55. A crença endpoint é 1 em toda parte. O baixo contrafactual pode escolher δ_(C,xbar), sua melhor resposta. Portanto a lei é admissível, embora o ponto-limite de massa zero não seja maximizador do alto.\n\nEm E.3 ocorre o mesmo fenômeno: para esses parâmetros z_L=.181<d=.729 e r_U(ℓ)=.20475. Leis de recusas com x_H=.181 e uma parcela r_U(ℓ)−ε_n convergem a x^ℓ, que passa e não maximiza para o alto. O conjunto aberto R_L recebe probabilidade um, mas não contém o suporte inteiro.\n\n**Adjudicação de QI-05:** sob a intenção expressamente confirmada no contrato, trata-se de precisão expositiva, não de mudança de conceito ou teorema. A14 já impõe a condição correta e só requer desigualdade no suporte. Recomenda-se “assigning probability one to its argmax” e a mesma precisão para R_L em E.3. Não se deve fortalecer A14 para impor igualdade em pontos sem massa.\n"
+    },
+    {
+      "heading": "8. Leis realizadas, assinaturas e consumidores",
+      "markdown": "## 8. Leis realizadas, assinaturas e consumidores\n\nOs kernels majoritários novos retêm C, o marcador ⊥, reconhecimentos, vetores de votos e o caminho R2 quando presente. Suas misturas são finitas e Borel, com λ comum. Em U, o rótulo constante é transportado pelo isomorfismo. A construção Γ conserva o par (C,x), posterior, passagem, rótulo de seleção e lei terminal; o desconto entra na extração do payoff, não como uma segunda alteração da lei.\n\nO grupo finito de permutações dos fracos age por homeomorfismos no espaço compacto ambiente e induz uma ação Borel nas leis. A medida uniforme da órbita é invariante completo: órbitas diferentes são disjuntas e a igualdade dessas medidas força que cada ponto de uma pertença à outra. Uma seleção Borel de representante em órbitas finitas permite fatorar funções Borel invariantes. A ação sobre o par de leis por tipo é diagonal; nomes não podem ser permutados independentemente entre tipos. A construção econômica igualmente quocienta registros pelas mesmas permutações.\n\nA conclusão se limita às leis realizadas. Planos fora do caminho permanecem no binder; igualdade de c/h não implica igualdade de Γ ou de assinatura. Um par M/U mantém suas próprias fontes completas e a fibra comum especificada; não há licença para recombinar marginais ou criar sorteio comum entre regras.\n\nO limite de comparação usa somente V_M≥1−kβ/m e V_U≤1−β+β²h. Assim,\n\n\\[\nV_U-V_M\\le-\\beta(e/m-\\beta h),\n\\]\n\nestritamente negativo para βh<e/m, para ambos os tipos e ex ante, quando ambas as fontes existem. O bound não depende da parte incompleta da classificação B.8 nem de equivalência majoritária. As identidades T=D+I e suas diferenças decorrem de subtrações nas datas corretas; suas imagens devem ser geradas pela nova fonte majoritária.\n"
+    },
+    {
+      "heading": "9. Verificações executadas e limites",
+      "markdown": "## 9. Verificações executadas e limites\n\n| Check | Execução e resultado | Alcance real |\n|---|---|---|\n| Identidade de fontes | SHA-256 confrontados com manifesto, bundle, contrato e original | Vincula o parecer aos bytes indicados; não certifica versão futura |\n| DAG | `check_game_dag.py derivations/game_dag.json --require-execution-order`: VALID | Grafo R2→R1→A, hashes e ordem registrada coerentes |\n| Checks do candidato | Cópia temporária do script exato: 409 PASS, 0 FAIL; JSON byte-idêntico | Aritmética finita, dois exemplos, witness; não cobre todas as leis Borel ou a igualdade F-001 |\n| Enumeração independente | `reviews/formal_checks_v1.py`: 50 estados, 100 asserções, 3.054.975 comparações, 0 falhas | R1_M em grid racional D=20, β=3/5, m=3 e 4 |\n| Reconstrução analítica | Desvios, tie-breaks, endpoints, Bayes, suportes, composição e órbitas | Base principal do parecer; não é certificação por prover formal |\n| Folha fria R2 | Leitura integral da derivação independente anterior às interfaces | Evidência de reconstrução sem resposta candidata; seus checks próprios não foram apresentados como execução deste revisor |\n\nA enumeração independente percorre **todas** as coalizões nomeadas e alocações não negativas do grid com soma≤1 e zero fora de C, incluindo slack e coalizões maiores. São 15.939 propostas para m=3 e 106.260 para m=4. Em cada m, cinco pares de tipos cobrem h<1/m, ℓ<1/m<h, 1/m<ℓ, ℓ=1/m e h=1/m. Os priors incluem endpoints, 1/2, cruzamentos exatos, vizinhanças racionais dos cruzamentos e o empate secundário E/P quando interior. O script compara valor e conjunto inteiro de maximizadores, com o desempate esperado sobre H. Isso corrobora o argumento contínuo; não prova a redução em todos os parâmetros, não enumera medidas, e não testa R1_U.\n\nO script e o JSON dessa enumeração são artefatos de revisão separados do candidato. Seus hashes finais constam no JSON deste parecer. Nenhum cálculo foi colocado no manuscrito ou nas notas. Os eventos do DAG foram conferidos como registro persistente; não foram auditados contra o log bruto do orquestrador, portanto o check não prova por si só a execução histórica narrada.\n\nNão foram executados Lean, testes dos códigos das figuras, render do manuscrito, revisão visual, busca bibliográfica ou validação empírica. Álgebra, limiares e desigualdades finitas são candidatos naturais à formalização Lean; a parte de medidas e órbitas exigiria infraestrutura adicional. Não há alegação de formalização já realizada.\n"
+    },
+    {
+      "heading": "10. Disposição e invalidação",
+      "markdown": "## 10. Disposição e invalidação\n\nO candidato v1 permanece **FAIL quanto ao fechamento formal de suas provas** até corrigir F-001 e acrescentar a cobertura Borel de F-002. F-003 deve ser precisado no texto para refletir o contrato e evitar a restrição falsa de suporte. Não foi identificado motivo para alterar as primitivas aprovadas, os 17 enunciados sob sua interpretação delimitada, os valores das tabelas ou a testemunha de reversão.\n\nO reparo F-001 reabre o trecho de A-C5 e seus consumidores públicos. F-002 reabre o fechamento de A_U e da classificação histórica transportada, seus conjuntos de existência e imagens econômicas; não invalida a folha R2, R1_U, o isomorfismo estrutural ou o bound global U. F-003 requer conferir endpoints de A-C7/E.3 e a consistência da linguagem sobre suporte. Qualquer nova hash é um novo candidato; uma revisão dos reparos deve preservar a cobertura original e declarar seu próprio alcance.\n\nMudanças futuras em factibilidade, observação de C, consentimento, suporte original, seletor, kernel ou datas reabrem seus descendentes no DAG. Uma alteração de kernel com os mesmos valores pode reabrir leis e assinaturas mesmo quando os cálculos econômicos ficam iguais. Este parecer não autoriza migração canônica, publicação ou submissão e não se estende automaticamente a previews, patches ou notas v2.\n"
+    }
+  ],
+  "recommendation": "Prepare repaired candidate and source-bound revalidation; review repairs in the full original scope. Do not migrate or certify v2 from this v1 report.",
+  "validation": {
+    "status": "VALID",
+    "json_parsed": true,
+    "claim_ids_match_gate": true,
+    "claim_count": 17,
+    "findings_count": 3,
+    "literal_citations_checked": 5,
+    "all_recorded_source_hashes_match": true,
+    "source_files_checked": 14,
+    "independent_check_hashes_and_results_match": true,
+    "markdown_sections_embedded_from_final_file": 10,
+    "scope": "Mechanical structure, source binding and artifact consistency; does not replace the scientific verdict FAIL."
+  }
+}

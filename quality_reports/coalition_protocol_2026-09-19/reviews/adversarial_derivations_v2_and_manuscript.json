@@ -1,0 +1,487 @@
+{
+  "schema_version": "1.0",
+  "candidate": "coalition-derivations-v2",
+  "review_type": "independent_adversarial_with_manuscript_migration_consistency",
+  "reviewer": "/root/provenance_inventory",
+  "date": "2026-09-19",
+  "verdict": "PASS",
+  "verdicts": {
+    "derivations_v2": {
+      "verdict": "PASS",
+      "scope": "All 17 claims; identical v1 coverage retained explicitly, F001/F002/F003 and dependents revalidated analytically.",
+      "bundle": {
+        "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/derivation_bundle_v2.md",
+        "sha256": "3b8043d49de9011a60c1e7e079b4fbf876f35239d100dad82a0072b53a19b4e2"
+      },
+      "argument_contract": {
+        "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/argument_contract.json",
+        "sha256": "7db1a7a72dd12178e7f5b63ce45c94ae08576e0a6a22daa8dbbbd13aab25d4ca"
+      }
+    },
+    "manuscript_preview": {
+      "verdict": "PASS",
+      "scope": "Scientific consistency and fidelity of the complete manuscript migration by impact, all 20 claims, abstract/introduction/model/proofs/tables/figure consumers/reference scope; not fresh validation of every historical or novelty claim.",
+      "source": {
+        "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/combined_manuscript_preview.Rmd",
+        "sha256": "9356d86a2e893481968ee96a918c2109e726444c5d902ce88edd6f1a5d86345f"
+      },
+      "bibliography": {
+        "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/combined_references_preview.bib",
+        "sha256": "658af186c73c1291da02a9fd4e3482fc953549ed46036ae24303b45f61309447"
+      },
+      "argument_contract": {
+        "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/manuscript_candidate/argument_contract.json",
+        "sha256": "a1a39f8548cfdbe285a9bd5be7cee7f28d92156e8a411b91a74bd65099d3cebc"
+      }
+    }
+  },
+  "manifest": {
+    "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/derivation_candidate_v2.json",
+    "sha256": "8f6603ff00050b6870995d4d893eeeb2bdffe13e0a90304b19b3574de8b7e9f1"
+  },
+  "candidate_sources": {
+    "author_decision.md": "7abfa53814ff23c61a9af2049c975be81e44f8e66270c4fa3f99accd51923726",
+    "derivations/v2/game_contract.md": "ac78634ea0da03b422a6d92930680d1bb1f94deee0d3c33b68dc9d9791a7d058",
+    "derivations/v2/r2_interface.md": "c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7",
+    "derivations/v2/r1_interface.md": "a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0",
+    "derivations/v2/agenda_transport.md": "223d70575f64ca60b8807ab6e0bff5fec8819328a8a4d91fc10f22825f3f6c04",
+    "derivations/v2/unanimity_support_lemma.md": "1491acd877ae5d3ca4eda2c6c9cacd10bffe9221fe52964f11cd7d962d5068ef",
+    "derivations/agenda_checks.py": "9874ca255487e2245f8d44d3915e82cd6974331a7cd7a05278a7608e5de47445",
+    "derivations/agenda_checks.json": "7e0a20ac6790a1f949e760c9fbf00d7d70b7290d266f9342dc794efa70e2a75e",
+    "derivations/v2/repaired_algebra_checks.py": "ffb8a213b34258fe9a000f932240e392f3334339150938a886fd1a9698940ac1",
+    "derivations/v2/repaired_algebra_checks.json": "427c7b001a0a8483e914b681eaad004f31954b4b4d3755d125862ee371a1d688"
+  },
+  "composition_manifest": {
+    "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/composition_manifest.json",
+    "sha256": "106c04dc0a4070f4b71fa4dbf1fedd67191deec48a498a7d0ba9564ed7f981f8"
+  },
+  "composition_sources": {
+    "status": "CANDIDATE_ONLY_NOT_CANONICAL",
+    "inputs": {
+      "snapshots/original/formal_model_v6.Rmd": "6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411",
+      "snapshots/original/references.bib": "71f1413b45b44a4c55a9d0ffb4fb2e1218cfac7ced547829bd0e3eae6200f755",
+      "derivations/evdokimov_entry.bib": "d2fe0f91396a26c955af16414e01e25e0d5b4c59815ce472fadadcedfde80ab2",
+      "derivations/baseline_manuscript_patch.py": "1dcbed5fef54e4b49d05d5ac3821b0214c1b3a629425083bccfb85361c9c9e93",
+      "derivations/agenda_manuscript_patch.py": "bfe82e8931dd1314824445cf1bf6c01d3d21302a1b969c19d65db45d1ae3a6f1",
+      "derivations/framing_manuscript_patch.py": "0bc6e75d279aa698debe23d37cc5af23f2416d50bc84b97b7e3d475913d7f13e",
+      "derivations/proof_repairs_manuscript_patch.py": "613fd0d02a438718b1bb6ebd4b56a8be5a3b6871608007e00f10844d0a6776d3"
+    },
+    "outputs": {
+      "derivations/combined_manuscript_preview.Rmd": "9356d86a2e893481968ee96a918c2109e726444c5d902ce88edd6f1a5d86345f",
+      "derivations/combined_references_preview.bib": "658af186c73c1291da02a9fd4e3482fc953549ed46036ae24303b45f61309447"
+    },
+    "abstract_word_count_whitespace": 168,
+    "canonical_files_modified": false
+  },
+  "historical_source": {
+    "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/snapshots/original/formal_model_v6.Rmd",
+    "sha256": "6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411"
+  },
+  "independent_comprehension": [
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/independent_section_read.md",
+      "sha256": "422a034afd04b33e40442ce1ebec26fc489863d46bf4ec53a5356608fe27b8b1"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/manuscript_candidate/independent_section_read.md",
+      "sha256": "1ad0a2b224f4d6bd21c5c40a8479ffdc2b75bb73f2d7a305968feef5240b8563"
+    }
+  ],
+  "retained_v1": {
+    "review": {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v1.md",
+      "sha256": "2d22af75467ef444632a5c6c731a7b9c82e653573474a9ba8cf32fc0dceae9a8"
+    },
+    "json": {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v1.json",
+      "sha256": "c5e68073782a317b2c6dc6c0bd5a7733ccf2820bc409fb9d366966ac5b8843d2"
+    },
+    "checks_script": {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_checks_v1.py",
+      "sha256": "549f753908d1932a642a6accb502577132bf4399498bc256dde4c48392a2455a"
+    },
+    "checks_output": {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_checks_v1.json",
+      "sha256": "e1d09402d87ef33651f0e58e7b56736988cd3198c0bce1492b4bf2a12e9b53e8"
+    },
+    "rerun": false,
+    "passed": 3620,
+    "shared_candidate_arithmetic_replay_previously_passed": 409,
+    "same_byte_interfaces": [
+      "game_contract.md",
+      "r2_interface.md",
+      "r1_interface.md"
+    ],
+    "historical_dependency_validation": "B.4/B.8/E.3 read and actually checked in v1; first reductions/classification and US-1 consumers reread in v2. Isomorphism alone was not treated as validation.",
+    "correction_to_prior_review": "The v1 PASS failed to detect the false F001 factorization. The historical report is preserved, not silently extended or amended; v2 independently validates the corrected identity."
+  },
+  "repairs": [
+    {
+      "id": "F001",
+      "status": "PASS",
+      "locator": "derivations/v2/agenda_transport.md:212-223",
+      "analysis": "Correct expansion; margin beta*(1-k/m)*(1-beta*o)>0; old product differs by (k/m)*beta^2*o*(1-beta). Public benchmark and downstream gap/D consumers valid."
+    },
+    {
+      "id": "F002",
+      "status": "PASS",
+      "locator": "derivations/v2/unanimity_support_lemma.md:7-106; preview:1981-2021,2027-2036,2081-2087",
+      "analysis": "Finite Borel measure differentiation yields mean Bayes identity. Under V<zH, a neighborhood of xh excludes posterior-zero mass by Bayes and a.s. best response. Support-ball average>pstar gives limit>=pstar; admissibility then forces >pstar, giving profitable deviation even at a zero-mass support point. Value zH forces unique proposal by feasibility. Both lambda0 cases covered.",
+      "numerical_validation_claimed": false
+    },
+    {
+      "id": "F003",
+      "status": "PASS",
+      "locator": "derivations/v2/agenda_transport.md:304; preview:2504-2509,2698-2718",
+      "analysis": "Probability one on argmax, not topological support inclusion, is correct. Independent endpoint uniform-law witnesses for M and U show why wording matters; no substantive change beyond QI-05 precision."
+    }
+  ],
+  "claim_count": 17,
+  "claims": [
+    {
+      "claim_id": "C02",
+      "verdict": "PASS",
+      "mode": "same-byte retained coverage plus consumer consistency",
+      "text": "Mantêm-se H único informado, m≥3 fracos simétricos, dois tipos 0<ℓ<h<1, p∈[0,1], β∈(0,1), pie fixa em 1 e opção externa privada fora da pie, independente de acordos dos fracos."
+    },
+    {
+      "claim_id": "N01",
+      "verdict": "PASS",
+      "mode": "same-byte retained coverage plus consumer consistency",
+      "text": "O proponente escolhe (C,x), pertence a C, a coalizão alcança q_M=k+1 ou q_U=m+1 e x_j=0 fora de C. Todos os convidados devem consentir; qualquer recusa faz o pacote inteiro fracassar. Na aprovação H membro recebe x_H; H excluído recebe o. A ausência de acúmulo vale em todas as histórias factíveis, incluindo desvios."
+    },
+    {
+      "claim_id": "N02",
+      "verdict": "PASS",
+      "mode": "same-byte retained coverage plus consumer consistency",
+      "text": "O baseline mantém PBE com votos puros, fracos as-if-pivotal, T^Y e desempate do proponente; as ações desinformadas (C,x) e votos fracos não atualizam crenças. Se H não é convidado não vota. Com H convidado, Bayes e valores livres locais dependem de seu voto e respeitam o suporte original."
+    },
+    {
+      "claim_id": "C06",
+      "verdict": "PASS",
+      "mode": "same-byte retained coverage plus consumer consistency",
+      "text": "R2 tem unidades nativas sem β: maioria admite toda coalizão vencedora só de fracos que contém i, com x=e_i, dando H=(ℓ,h) e cada fraco 1/m antes do reconhecimento. Em unanimidade C=N; oferta ℓ para μ≤p* e h para μ>p*, p*=(h−ℓ)/(1−ℓ); empate seleciona ℓ."
+    },
+    {
+      "claim_id": "C07",
+      "verdict": "PASS",
+      "mode": "same-byte retained coverage plus consumer consistency",
+      "text": "Em R1_M, fracos convidados aceitam iff x_j≥β/m; H convidado usa x_H≥βo quando todos os fracos aceitam, e Y se um veto fraco prescrito torna ambos os votos equivalentes. Propostas ótimas reduzem-se a E/S/P, com os mesmos valores, cutoffs e desempates econômicos do baseline original."
+    },
+    {
+      "claim_id": "N03",
+      "verdict": "PASS",
+      "mode": "same-byte retained coverage plus consumer consistency",
+      "text": "A agenda consome representantes anônimos específicos de R1/R2: reconhecimento e parceiros uniformes, estados E/S/P/EP e mesmo peso λ nas misturas, com coalizões, votos efetivos e histórias terminais retidos. Seus valores c_χ e h_χ não esgotam o assessment."
+    },
+    {
+      "claim_id": "C08",
+      "verdict": "PASS",
+      "mode": "same-byte retained coverage plus consumer consistency",
+      "text": "Em R1_U, a correspondência mantém o endpoint baixo, vazio para 0<μ≤p*, e pooling acima de p*. Vetor nativo de H: (βℓ,βh) no endpoint baixo e (βh,βh) acima de p*. O texto fornece respostas completas e um argumento de inexistência por proposta desviada."
+    },
+    {
+      "claim_id": "C05",
+      "verdict": "PASS",
+      "mode": "same-byte retained coverage plus consumer consistency",
+      "text": "O benchmark público R1 permanece v_M(o)=βo se o≤1/m e o se o>1/m; v_U(o)=βo. Os vetores privados S/P/E e as diferenças econômicas do baseline preservam suas fórmulas, células vazias e segmentos vinculados."
+    },
+    {
+      "claim_id": "N04",
+      "verdict": "PASS",
+      "mode": "same-byte retained coverage plus consumer consistency",
+      "text": "Em A, H propõe obrigatoriamente sinais públicos y=(C,x) em Y_g, união disjunta finita dos simplexes X_C. Bayes pointwise usa o par observado em todo suporte; um único μ_off vale fora. A continuação completa é selecionada por regra/estágio/posterior, com a disciplina interna própria do baseline."
+    },
+    {
+      "claim_id": "N05",
+      "verdict": "PASS",
+      "mode": "same-byte retained coverage plus consumer consistency",
+      "text": "Com o representante declarado, convidado fraco aceita iff x_j≥r_χ(μ). A posterior fixado, melhor passagem paga r a k convidados. O piso w(1−w)≤r≤w implica V_M^A≥max{1−kw,β²o}; toda passagem usada em equilíbrio tem exatamente k convidados fracos quase certamente."
+    },
+    {
+      "claim_id": "C12",
+      "verdict": "PASS",
+      "mode": "repair/dependency revalidation",
+      "text": "As fórmulas públicas da agenda, o cutoff o_M*, gap público e D_g mantêm-se sob a nova interface: v_U^A=1−β+β²o e v_M^A igual aos dois ramos históricos."
+    },
+    {
+      "claim_id": "N06",
+      "verdict": "PASS",
+      "mode": "repair/dependency revalidation",
+      "text": "A-C6 caracteriza condições de payoff/existência das formas puras M no novo espaço; A-C7 caracteriza binders Borel por ausência de desvio no suporte, igualdade de payoff σ_o-quase certamente e proteção contra todo y fora do suporte. Há existência M para algum ρ em cada economia da interface."
+    },
+    {
+      "claim_id": "N07",
+      "verdict": "PASS",
+      "mode": "same-byte retained coverage plus consumer consistency",
+      "text": "Dois exemplos impedem equivalência literal majoritária: o mesmo x pode separar tipos apenas por C e induzir passagem/recusa diferentes; um pacote histórico com pequena parcela a fraco dispensável pode não passar em qualquer C nova factível. Uma testemunha distinta reproduz a tabela de reversão na mesma fibra ρ=0."
+    },
+    {
+      "claim_id": "N08",
+      "verdict": "PASS",
+      "mode": "repair/dependency revalidation",
+      "text": "Adicionar/remover C=N é isomorfismo estrutural de todo o jogo U. O transporte depende da correção histórica; v2 acrescenta US-1: sob prior interior e μ_off>p*, todo assessment admissível com as premissas declaradas tem V=z_H e ambas as leis δ_xh, inclusive quando x^h poderia ser ponto de suporte de massa zero. As duas aplicações de B.8 são explicitamente cobertas."
+    },
+    {
+      "claim_id": "N09",
+      "verdict": "PASS",
+      "mode": "same-byte retained coverage plus consumer consistency",
+      "text": "Kernels e leis realizadas novos retêm (C,x), não convite ⊥ e histórias da continuação. Sig_ex é órbita diagonal do par de leis por tipo e Sum_econ quocienta registros por nomes; a construção e fatoração são refeitas no novo espaço."
+    },
+    {
+      "claim_id": "C15",
+      "verdict": "PASS",
+      "mode": "repair/dependency revalidation",
+      "text": "A região suficiente βh<e/m de vantagem majoritária para ambos os tipos e ex ante permanece, usando o novo limite inferior M e o limite superior U transportado, quando ambas as correspondências existem."
+    },
+    {
+      "claim_id": "C17",
+      "verdict": "PASS",
+      "mode": "repair/dependency revalidation",
+      "text": "IR,D,I,T,Q mantêm suas definições e datas, com uma conversão β da R1 para A; T=D+I é identidade quando as fontes existem. As imagens majoritárias devem ser produzidas pela correspondência nova, e vazios continuam propagando-se."
+    }
+  ],
+  "manuscript_claim_count": 20,
+  "manuscript_claims": [
+    {
+      "claim_id": "C01",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "A margem extensiva é a inclusão do único ator informado: maioria permite acordo entre fracos desinformados sem H; unanimidade exige seu consentimento. Isso pode gerar renda informacional do tipo baixo mesmo sem H propor."
+    },
+    {
+      "claim_id": "C02",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "O candidato modela um jogo distributivo de duas rodadas, m≥3 fracos simétricos, H com o∈{ℓ,h}, 0<ℓ<h<1, prior p e desconto 0<β<1. A pie é fixa em 1; a opção externa de H é privada, externa à pie e disponível quando um acordo o exclui."
+    },
+    {
+      "claim_id": "C03",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "A proposta pública é y=(C,x): o proponente pertence a C, cuja cardinalidade alcança a quota; x≥0, soma≤1 e x_j=0 fora de C. Votam simultaneamente os convidados, proponente conta sim, e todos devem consentir. Qualquer recusa rejeita o pacote inteiro. Aprovação implementa automaticamente as parcelas; H membro recebe x_H, H excluído recebe o. Não há acúmulo em qualquer história factível nem cancelamento após aprovação."
+    },
+    {
+      "claim_id": "C04",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "A solução baseline é uma correspondência de PBE com votos puros, comparação pivotal dos convidados fracos, T^Y e desempate do proponente. Ações dos fracos, inclusive C, não informam; sem H convidado o ballot mantém a crença. Com H convidado, Bayes positivo e valores livres locais por ballot/voto de H respeitam o suporte inicial."
+    },
+    {
+      "claim_id": "C05",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "Com tipo público, R2 dá aos fracos a possibilidade de excluir H sob maioria e exige pagar o a H sob unanimidade. Em R1, unanimidade paga βo; maioria inclui H se o≤1/m e lhe paga βo, ou o exclui e H recebe o."
+    },
+    {
+      "claim_id": "C06",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "Na rodada terminal privada, maioria mantém o resultado terminal público; sob unanimidade o proponente oferece ℓ para p≤p*=(h−ℓ)/(1−ℓ), e h para p>p*. A igualdade seleciona a oferta baixa."
+    },
+    {
+      "claim_id": "C07",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "A correspondência privada de maioria em R1 compara screening S, pooling P e exclusão E, com preços βℓ, βh e β/m e cutoffs p_SP e p_SE. Os regimes dependem de ℓ e h em relação a 1/m; empates obedecem à seleção prescrita, com mistura E/P vinculada apenas no residual permitido."
+    },
+    {
+      "claim_id": "C08",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "No baseline privado unânime, p=0 dá acordo imediato baixo; 0<p≤p* dá correspondência vazia na classe mantida de votos puros; p>p* dá pooling imediato a βh. O vetor tipo a tipo é (βℓ,βh) em p=0 e (βh,βh) na célula alta."
+    },
+    {
+      "claim_id": "C09",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "O contraste privado do baseline é unanimidade menos maioria e mantém tipos e seleção vinculados. Acima de p*, unanimidade menos screening dá (β(h−ℓ),0); menos pooling dá (0,0); menos exclusão dá (βh−ℓ,−(1−β)h)."
+    },
+    {
+      "claim_id": "C10",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "Renda informacional é privado menos público dentro da mesma regra; ΔIR é unanimidade menos maioria dessas rendas. Unanimidade dá (β(h−ℓ),0) para p>p*, zero em p=0 e vazio no intervalo sem equilíbrio. Em maioria a renda depende conjuntamente da inclusão pública de cada tipo e da forma privada; exclusão pode alterar a data do recebimento de o e produzir renda positiva."
+    },
+    {
+      "claim_id": "C11",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "A extensão acrescenta A obrigatório: H propõe o sinal público completo (C,x) em Y_g, com H∈C, e todos os convidados fracos precisam consentir. Aprovação implementa em A; recusa entra numa seleção completa pública, Borel, anônima/Markov de R1 no mesmo posterior, com β uma vez. C permanece no espaço de sinais e em Bayes."
+    },
+    {
+      "claim_id": "C12",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "Na agenda pública, v_U^A(o)=1−β+β²o; v_M^A(o)=1−kβ(1−βo)/m para o≤1/m e max{1−kβ/m,βo} para o>1/m. Sob maioria, o cutoff o_M* governa acordo imediato ou atraso; o gap institucional depende do nível de o."
+    },
+    {
+      "claim_id": "C13",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "A agenda privada M é correspondência no espaço Y_M de contratos completos: formas puras e leis Borel gerais satisfazem incentivos por tipo, Bayes pointwise e seleção literal comum. V_M≥max{v_safe,β²o}; acordos usados convidam k fracos quase certamente, sem apagar recusas maiores. Há existência para algum ρ por economia/prior. Em endpoints, cada lei dá probabilidade um ao argmax."
+    },
+    {
+      "claim_id": "C14",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "A agenda privada U tem famílias baixa/alta, endpoints próprios e vazios, preservadas pelo mapa C=N. No interior existente, ambos os tipos têm o mesmo payoff. O novo lema cobre x^h dentro e fora do suporte e força V=z_H e leis δ_xh quando μ_off>p*. O teto global V_U≤z_H tem argumento separado. Endpoints especificam probabilidade um no conjunto de melhores respostas."
+    },
+    {
+      "claim_id": "C15",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "Se as duas correspondências de agenda são não vazias na mesma especificação e βh<e/m, maioria dá mais a ambos os tipos e ex ante: V_U^A(o)−V_M^A(o)≤−β(e/m−βh)<0; na igualdade o ranking é fraco."
+    },
+    {
+      "claim_id": "C16",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "Na agenda, IR_g^A=V_g^A−v_g^A e ΔV^A=Δv^A+ΔIR^A. Em todo assessment unânime existente, IR_U^A(ℓ)≥0, IR_U^A(h)≤0 e alguma desigualdade é estrita. Uma reversão privada quando o público favorece maioria exige que ΔIR compense o gap público."
+    },
+    {
+      "claim_id": "C17",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "A comparação temporal da agenda separa D=v^A−βv^B, I=IR^A−βIR^B e T=V^A−βV^B, com T=D+I. D_U=1−β; T_U é não negativo onde definido. Q=v^A−βV^B muda simultaneamente agenda e informação e é um contraste composto."
+    },
+    {
+      "claim_id": "C18",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "A representação exata registra a órbita diagonal conjunta das leis realizadas por tipo; M conserva (C,x), os votos efetivos e ⊥ como não convite. O resumo econômico elimina nomes por registro. Os pares de assessments completos são formados antes de projetar; planos off-path permanecem no binder e envelopes são limites marginais, sem sorteio comum entre regras."
+    },
+    {
+      "claim_id": "C19",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "A discussão da OMC é uma aplicação teórica ilustrativa: acesso a mercado, saída, agenda e pacotes motivam primitivas; o modelo isola o preço do consentimento indispensável. Não identifica causalmente a criação da OMC, o tipo histórico de EUA/CE nem a escolha endógena da regra."
+    },
+    {
+      "claim_id": "C20",
+      "verdict": "PASS",
+      "mode": "whole-preview consistency by impact within final contract",
+      "text": "Os resultados mantêm duas rodadas, dois tipos, m≥3 e β<1; formal igualdade de votos pode coexistir com desigualdade por opção externa, proposta e consentimento sem substituto. O paper preserva multiplicidade e ausência de comparação nas células vazias."
+    }
+  ],
+  "independent_primary_reference": {
+    "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerPieDependent/references/extracted/evdokimov_2023_equality_in_legislative_bargaining.txt",
+    "sha256": "7efe0953e16bab0f71c15ea46814a9a5aa4d606e4d73b25e6346d78680bb392c",
+    "read_scope": "Page 1 and section 2.1, page 6, plus nearby protocol discussion",
+    "result": "Metadata and target-coalition/consent attribution confirmed. Zero allocation outside C is explicitly an additional restriction of the candidate; no global equivalence attributed."
+  },
+  "executed_checks": {
+    "v2": {
+      "script": {
+        "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_v2_checks.py",
+        "sha256": "7508a8d3a7ecaad8ec321517634d32bb5ae92086cf83153adcb34a6e3a940883"
+      },
+      "output": {
+        "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_v2_checks.json",
+        "sha256": "a917b6614327f87161f242d19d482e8deede5e60d9fbf1a341e35b41d7847c21"
+      },
+      "passed": 221,
+      "failed": 0,
+      "independent_algebra_cases": 36,
+      "candidate_replay": {
+        "parameter_cases": 870,
+        "passed": 4353,
+        "failed": 0
+      },
+      "candidate_replay_byte_identical": true,
+      "candidate_writes": false
+    },
+    "manuscript": {
+      "script": {
+        "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_manuscript_checks.py",
+        "sha256": "c2dcbf373edfe083a40557ca0a07d8829e3826f94c19a081a4de2d1a4c58d556"
+      },
+      "output": {
+        "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_manuscript_checks.json",
+        "sha256": "61f4b588461f63642c82c4909551c3f5b6df0a8e6e3511bdd670cfc21da367c9"
+      },
+      "passed": 29,
+      "failed": 0,
+      "bibliography": {
+        "entries": 45,
+        "citation_occurrences": 34,
+        "distinct_cited_keys": 25,
+        "new_key_occurrences": 1
+      },
+      "cross_references": {
+        "labels": 31,
+        "occurrences": 26
+      },
+      "diff": {
+        "original_lines": 3119,
+        "preview_lines": 3349,
+        "unchanged_lines": 2784,
+        "changed_old_lines": 335,
+        "changed_new_lines": 565,
+        "change_blocks": 110
+      },
+      "abstract_word_count_whitespace": 168,
+      "figure_pdf_hashes": {
+        "figures/essential_input/figure_f2_prices_coalitions.pdf": "214910676bf3a5552c83e2e13053577654106cb9bcbb0040323fe35684f26f5f",
+        "figures/essential_input/figure_f1_private_comparison.pdf": "19c9a265d11cdbc4604dbc819a65cb70d1f407d76be10234054edcd9b0fc5c06",
+        "figures/essential_input/figure_f3_power_information.pdf": "736f389047a459ee2ac210115a8a1890a7fa2eebe45c3d4ae9a50e3101e4a79b",
+        "figures/agenda_extension/figure_agenda_public_gap.pdf": "0064c782c999ec85cc0efe2a3d34bb10f38536f43a1df730db0bd5e4d11ffac5",
+        "figures/agenda_extension/figure_agenda_unanimity_existence.pdf": "f2d091da9e587da71f56ea7f7fd3c9a3aaac61c684357ac8641ee6c657f3a976"
+      },
+      "retained_numerical_inputs": {
+        "figures/agenda_extension/figure_agenda_public_gap_data.csv": {
+          "rows": 863,
+          "sha256": "152fb68ed8778ce07071fc0d7809d00ddad0c2be561d762832b58cdc267c945b"
+        },
+        "figures/agenda_extension/figure_agenda_unanimity_existence_data.csv": {
+          "rows": 5,
+          "sha256": "dd51052dea67a00dee03134e56ed7f92c1b7697256d2b5a6473c873bcc8eb07d"
+        },
+        "figures/essential_input/figure_f2_prices_coalitions_data.csv": {
+          "rows": 1608,
+          "sha256": "257ea937c54c83554c30b8c270928bc9a7553526345606cb01d7ce78f4f39048"
+        },
+        "figures/essential_input/figure_f3_power_information_data.csv": {
+          "rows": 14,
+          "sha256": "af1c5625b1682b793ed1f489c876ab0c6c299964b0af439778834f53c55a0b7a"
+        }
+      },
+      "checker_correction": "Initial regex falsely included terminal punctuation in a citation key; fixed extractor and reran without candidate changes."
+    }
+  },
+  "finding_counts": {
+    "scientific_open": 0,
+    "scientific_blocking": 0,
+    "scientific_major": 0,
+    "scientific_minor": 0
+  },
+  "findings": [],
+  "documentary_observations": [
+    {
+      "id": "A-DOC-v2-001",
+      "status": "CONFIRMED_RESOLVED_EDITORIAL",
+      "source_hash_before": "15813af5fe6efbd53a840bebe7c072a5f6ec3b2738786743f2a4ee831ca92e2c",
+      "locator": "argument_contract/derivations_v2/argument_contract.json synthesis.scope_conditions[0]",
+      "finding": "Residual four-note/v1 bundle description in otherwise v2 gate.",
+      "resolution": "Reported to macro and root; macro preserved snapshot, corrected field and revalidated final 7db1a7a7 contract. No candidate change."
+    }
+  ],
+  "independence": {
+    "candidate_implementer": false,
+    "other_scientific_review_read": false,
+    "candidate_or_manuscript_edited": false,
+    "new_files_only": "Own check scripts/outputs and this MD/JSON review."
+  },
+  "not_certified": [
+    "PDF rendering or visual QA",
+    "Global equivalence between old and new majority games",
+    "Global support-reset consistency beyond the declared QI-01 continuation selection",
+    "All factual historical claims or novelty against the full literature",
+    "Every arbitrary Borel measure by a numerical test",
+    "Canonical migration, commit, tag, merge, push or submission"
+  ],
+  "report": {
+    "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v2_and_manuscript.md",
+    "sha256": "5ac0259990fbd413f60a07db6aa779c08f75ea2fc656afb922401b93efd4f003"
+  }
+}

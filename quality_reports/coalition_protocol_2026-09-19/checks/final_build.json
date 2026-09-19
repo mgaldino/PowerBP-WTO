@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "command": "Rscript -e 'rmarkdown::render(\"formal_model_v6.Rmd\")'",
+  "exit_code": 0,
+  "pages": 83,
+  "pdf_sha256": "507cefdebe47830fb2f1b3f0ee0ab517c223c9fcaaeb268646367272027c0328",
+  "rmd_sha256": "9356d86a2e893481968ee96a918c2109e726444c5d902ce88edd6f1a5d86345f",
+  "bib_sha256": "658af186c73c1291da02a9fd4e3482fc953549ed46036ae24303b45f61309447",
+  "log": {
+    "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/final_build.log",
+    "sha256": "9df890af4589a283a9170020aec977402a024a00c52795431ec02a3c04e09876"
+  },
+  "warnings": "Five R startup locale warnings fell back to C. No compilation error; rendered pages and extracted layout text match the inspected build exactly.",
+  "visual_validation": [
+    "checks/visual_candidate.md",
+    "checks/final_pdf_equivalence.json",
+    "checks/final_quartz_equivalence.json"
+  ]
+}

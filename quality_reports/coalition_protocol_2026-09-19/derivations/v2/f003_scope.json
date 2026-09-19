@@ -1,0 +1,44 @@
+{
+  "scope": "F-003 / QI-05 only in this follow-up; prior F-001/F-002 repairs retained",
+  "authority": "Root adjudication CONFIRMED; formal_derivations_v1.md F-003 and v1 argument contract QI-05 read",
+  "interpretation": "Probability one in the argmax or R_L; no requirement that the topological support be contained there. Zero-mass support points need only satisfy no profitable deviation; equality is sigma_o-almost sure.",
+  "files_changed": [
+    "derivations/v2/agenda_transport.md",
+    "derivations/proof_repairs_manuscript_patch.py"
+  ],
+  "patch_effect": "Existing F-002 changes in B.8 plus two compact sigma_h probability-one conditions and an explicit quantifier paragraph at E.3 endpoints; delta law retained in the first case; all other manuscript text preserved in the in-memory check",
+  "new_refinement": false,
+  "candidate_independent_review": "pending",
+  "builder_executed": false,
+  "previews_written": false,
+  "canonical_written": false,
+  "other_patches_edited_by_this_agent": false,
+  "mechanical_checks": [
+    "Python syntax",
+    "determinism",
+    "two compact endpoint conditions present",
+    "first delta case preserved",
+    "zero-mass condition explicit",
+    "changes confined to B.8/E.3",
+    "headings and citations preserved",
+    "math delimiters balanced",
+    "reapplication rejected",
+    "v1 source and checks unchanged",
+    "v2 game/R2/R1 byte-identical to v1"
+  ],
+  "previous_hashes": {
+    "derivations/v2/agenda_transport.md": "1a43f3e341cf7c2f64df69d96c5861166566dd1edf69ee9a018c9f719db4bf2b",
+    "derivations/proof_repairs_manuscript_patch.py": "4c6ef16702c806de064cb63ab1a4437ce8af7655ea8b8e3a1e66c3c2deb15025"
+  },
+  "current_hashes": {
+    "derivations/v2/agenda_transport.md": "223d70575f64ca60b8807ab6e0bff5fec8819328a8a4d91fc10f22825f3f6c04",
+    "derivations/proof_repairs_manuscript_patch.py": "24e2c2ed931e35078e8941f998a12f6336a6af483d0d161ef079a07f44099795",
+    "reviews/formal_derivations_v1.md": "0372743e4bd512feb670fb76b26057736ee986903158760616676352dbd55b8c",
+    "argument_contract/derivations_v1/argument_contract.json": "a49fc5f5d1737b7d8661506b6e384b709314a98798cacd33e4d981ffb5b07c36",
+    "derivations/v2/unanimity_support_lemma.md": "1491acd877ae5d3ca4eda2c6c9cacd10bffe9221fe52964f11cd7d962d5068ef",
+    "derivations/v2/repaired_algebra_checks.py": "ffb8a213b34258fe9a000f932240e392f3334339150938a886fd1a9698940ac1",
+    "derivations/v2/repaired_algebra_checks.json": "427c7b001a0a8483e914b681eaad004f31954b4b4d3755d125862ee371a1d688"
+  },
+  "source_sha256": "6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411",
+  "repaired_text_in_memory_sha256": "90151ae4625bc02eacde94634c0dc5339ca2abfc08fe9206956e4dfeec848d7f"
+}

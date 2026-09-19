@@ -1,0 +1,3622 @@
+{
+  "scope": "exact finite arithmetic checks conditional on the stated E/S/P baseline interface; not global proof or independent review",
+  "script_sha256": "9874ca255487e2245f8d44d3915e82cd6974331a7cd7a05278a7608e5de47445",
+  "pass": 409,
+  "fail": 0,
+  "checks": [
+    {
+      "name": "oversized-m3-b1/10",
+      "pass": true,
+      "details": {
+        "margin": "3/100"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/10-l1/30-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "299/900",
+        "floor": "29/90"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/10-l1/30-mu1/62",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "18269/55800",
+        "floor": "29/90"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/10-l1/30-mu1/31",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "10/31",
+        "floor": "29/90"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/10-l1/6-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "59/180",
+        "floor": "29/90"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/10-l1/6-mu1/110",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "6437/19800",
+        "floor": "29/90"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/10-l1/6-mu1/55",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "266/825",
+        "floor": "29/90"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/10-l33/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "967/3000",
+        "floor": "29/90"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/10-l33/100-mu1/5402",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "5222867/16206000",
+        "floor": "29/90"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/10-l33/100-mu1/2701",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2611/8103",
+        "floor": "29/90"
+      }
+    },
+    {
+      "name": "oversized-m3-b1/2",
+      "pass": true,
+      "details": {
+        "margin": "1/12"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/2-l1/30-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "59/180",
+        "floor": "5/18"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/2-l1/30-mu3/26",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1447/4680",
+        "floor": "5/18"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/2-l1/30-mu3/13",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "34/117",
+        "floor": "5/18"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/2-l1/6-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "11/36",
+        "floor": "5/18"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/2-l1/6-mu1/14",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "149/504",
+        "floor": "5/18"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/2-l1/6-mu1/7",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2/7",
+        "floor": "5/18"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/2-l33/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "167/600",
+        "floor": "5/18"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/2-l33/100-mu1/602",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "33489/120400",
+        "floor": "5/18"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b1/2-l33/100-mu1/301",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "251/903",
+        "floor": "5/18"
+      }
+    },
+    {
+      "name": "oversized-m3-b9/10",
+      "pass": true,
+      "details": {
+        "margin": "3/100"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b9/10-l1/30-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "97/300",
+        "floor": "7/30"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b9/10-l1/30-mu27/74",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "6989/22200",
+        "floor": "7/30"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b9/10-l1/30-mu27/37",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "34/111",
+        "floor": "7/30"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b9/10-l1/6-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "17/60",
+        "floor": "7/30"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b9/10-l1/6-mu3/10",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "173/600",
+        "floor": "7/30"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b9/10-l1/6-mu3/5",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "22/75",
+        "floor": "7/30"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b9/10-l33/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "703/3000",
+        "floor": "7/30"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b9/10-l33/100-mu3/206",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "145409/618000",
+        "floor": "7/30"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b9/10-l33/100-mu3/103",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "73/309",
+        "floor": "7/30"
+      }
+    },
+    {
+      "name": "oversized-m3-b99/100",
+      "pass": true,
+      "details": {
+        "margin": "33/10000"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b99/100-l1/30-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "967/3000",
+        "floor": "67/300"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b99/100-l1/30-mu297/614",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "600569/1842000",
+        "floor": "67/300"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b99/100-l1/30-mu297/307",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3037/9210",
+        "floor": "67/300"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b99/100-l1/6-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "167/600",
+        "floor": "67/300"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b99/100-l1/6-mu33/70",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "12713/42000",
+        "floor": "67/300"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b99/100-l1/6-mu33/35",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1717/5250",
+        "floor": "67/300"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b99/100-l33/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "6733/30000",
+        "floor": "67/300"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b99/100-l33/100-mu33/266",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1895489/7980000",
+        "floor": "67/300"
+      }
+    },
+    {
+      "name": "screen-floor-m3-b99/100-l33/100-mu33/133",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "100/399",
+        "floor": "67/300"
+      }
+    },
+    {
+      "name": "oversized-m4-b1/10",
+      "pass": true,
+      "details": {
+        "margin": "37/1600"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/10-l1/40-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "399/1600",
+        "floor": "39/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/10-l1/40-mu9/758",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "299211/1212800",
+        "floor": "39/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/10-l1/40-mu9/379",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "14799/60640",
+        "floor": "39/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/10-l1/8-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "79/320",
+        "floor": "39/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/10-l1/8-mu1/150",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "11779/48000",
+        "floor": "39/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/10-l1/8-mu1/75",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2927/12000",
+        "floor": "39/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/10-l99/400-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3901/16000",
+        "floor": "39/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/10-l99/400-mu1/7402",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "28871701/118432000",
+        "floor": "39/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/10-l99/400-mu1/3701",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "144341/592160",
+        "floor": "39/160"
+      }
+    },
+    {
+      "name": "oversized-m4-b1/2",
+      "pass": true,
+      "details": {
+        "margin": "5/64"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/2-l1/40-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "79/320",
+        "floor": "7/32"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/2-l1/40-mu9/118",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "8971/37760",
+        "floor": "7/32"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/2-l1/40-mu9/59",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "431/1888",
+        "floor": "7/32"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/2-l1/8-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "15/64",
+        "floor": "7/32"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/2-l1/8-mu1/22",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "323/1408",
+        "floor": "7/32"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/2-l1/8-mu1/11",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "79/352",
+        "floor": "7/32"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/2-l99/400-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "701/3200",
+        "floor": "7/32"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/2-l99/400-mu1/1002",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "702101/3206400",
+        "floor": "7/32"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b1/2-l99/400-mu1/501",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3509/16032",
+        "floor": "7/32"
+      }
+    },
+    {
+      "name": "oversized-m4-b9/10",
+      "pass": true,
+      "details": {
+        "margin": "117/1600"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b9/10-l1/40-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "391/1600",
+        "floor": "31/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b9/10-l1/40-mu81/422",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "162491/675200",
+        "floor": "31/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b9/10-l1/40-mu81/211",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "7999/33760",
+        "floor": "31/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b9/10-l1/8-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "71/320",
+        "floor": "31/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b9/10-l1/8-mu9/70",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "4979/22400",
+        "floor": "31/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b9/10-l1/8-mu9/35",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1247/5600",
+        "floor": "31/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b9/10-l99/400-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3109/16000",
+        "floor": "31/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b9/10-l99/400-mu9/2618",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "8143781/41888000",
+        "floor": "31/160"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b9/10-l99/400-mu9/1309",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "40741/209440",
+        "floor": "31/160"
+      }
+    },
+    {
+      "name": "oversized-m4-b99/100",
+      "pass": true,
+      "details": {
+        "margin": "10197/160000"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b99/100-l1/40-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3901/16000",
+        "floor": "301/1600"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b99/100-l1/40-mu891/3842",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "15040211/61472000",
+        "floor": "301/1600"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b99/100-l1/40-mu891/1921",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "754639/3073600",
+        "floor": "301/1600"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b99/100-l1/8-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "701/3200",
+        "floor": "301/1600"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b99/100-l1/8-mu99/610",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "436619/1952000",
+        "floor": "301/1600"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b99/100-l1/8-mu99/305",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "111407/488000",
+        "floor": "301/1600"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b99/100-l99/400-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "30199/160000",
+        "floor": "301/1600"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b99/100-l99/400-mu99/20798",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "629009501/3327680000",
+        "floor": "301/1600"
+      }
+    },
+    {
+      "name": "screen-floor-m4-b99/100-l99/400-mu99/10399",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3149701/16638400",
+        "floor": "301/1600"
+      }
+    },
+    {
+      "name": "oversized-m5-b1/10",
+      "pass": true,
+      "details": {
+        "margin": "23/1250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/10-l1/50-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "499/2500",
+        "floor": "49/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/10-l1/50-mu9/938",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "464021/2345000",
+        "floor": "49/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/10-l1/50-mu9/469",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "22999/117250",
+        "floor": "49/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/10-l1/10-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "99/500",
+        "floor": "49/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/10-l1/10-mu1/186",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "733/3720",
+        "floor": "49/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/10-l1/10-mu1/93",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "4559/23250",
+        "floor": "49/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/10-l99/500-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "4901/25000",
+        "floor": "49/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/10-l99/500-mu1/9202",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "45094601/230050000",
+        "floor": "49/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/10-l99/500-mu1/4601",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "225451/1150250",
+        "floor": "49/250"
+      }
+    },
+    {
+      "name": "oversized-m5-b1/2",
+      "pass": true,
+      "details": {
+        "margin": "3/50"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/2-l1/50-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "99/500",
+        "floor": "9/50"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/2-l1/50-mu3/46",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "4407/23000",
+        "floor": "9/50"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/2-l1/50-mu3/23",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "213/1150",
+        "floor": "9/50"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/2-l1/10-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "19/100",
+        "floor": "9/50"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/2-l1/10-mu1/26",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "97/520",
+        "floor": "9/50"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/2-l1/10-mu1/13",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "119/650",
+        "floor": "9/50"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/2-l99/500-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "901/5000",
+        "floor": "9/50"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/2-l99/500-mu1/1202",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1082601/6010000",
+        "floor": "9/50"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b1/2-l99/500-mu1/601",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "5411/30050",
+        "floor": "9/50"
+      }
+    },
+    {
+      "name": "oversized-m5-b9/10",
+      "pass": true,
+      "details": {
+        "margin": "63/1250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b9/10-l1/50-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "491/2500",
+        "floor": "41/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b9/10-l1/50-mu81/442",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "213701/1105000",
+        "floor": "41/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b9/10-l1/50-mu81/221",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "10519/55250",
+        "floor": "41/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b9/10-l1/10-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "91/500",
+        "floor": "41/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b9/10-l1/10-mu9/74",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "269/1480",
+        "floor": "41/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b9/10-l1/10-mu9/37",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1679/9250",
+        "floor": "41/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b9/10-l99/500-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "4109/25000",
+        "floor": "41/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b9/10-l99/500-mu9/2818",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "11582681/70450000",
+        "floor": "41/250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b9/10-l99/500-mu9/1409",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "57931/352250",
+        "floor": "41/250"
+      }
+    },
+    {
+      "name": "oversized-m5-b99/100",
+      "pass": true,
+      "details": {
+        "margin": "1287/31250"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b99/100-l1/50-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "4901/25000",
+        "floor": "401/2500"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b99/100-l1/50-mu891/3862",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "18971321/96550000",
+        "floor": "401/2500"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b99/100-l1/50-mu891/1931",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "950749/4827500",
+        "floor": "401/2500"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b99/100-l1/10-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "901/5000",
+        "floor": "401/2500"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b99/100-l1/10-mu99/614",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "22481/122800",
+        "floor": "401/2500"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b99/100-l1/10-mu99/307",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "142709/767500",
+        "floor": "401/2500"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b99/100-l99/500-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "40199/250000",
+        "floor": "401/2500"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b99/100-l99/500-mu99/20998",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "845019401/5249500000",
+        "floor": "401/2500"
+      }
+    },
+    {
+      "name": "screen-floor-m5-b99/100-l99/500-mu99/10499",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "4229701/26247500",
+        "floor": "401/2500"
+      }
+    },
+    {
+      "name": "oversized-m6-b1/10",
+      "pass": true,
+      "details": {
+        "margin": "7/450"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/10-l1/60-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "599/3600",
+        "floor": "59/360"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/10-l1/60-mu9/1138",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "676811/4096800",
+        "floor": "59/360"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/10-l1/60-mu9/569",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "16799/102420",
+        "floor": "59/360"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/10-l1/12-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "119/720",
+        "floor": "59/360"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/10-l1/12-mu1/226",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "8929/54240",
+        "floor": "59/360"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/10-l1/12-mu1/113",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "667/4068",
+        "floor": "59/360"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/10-l33/200-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1967/12000",
+        "floor": "59/360"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/10-l33/200-mu1/11202",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2448063/14936000",
+        "floor": "59/360"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/10-l33/200-mu1/5601",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "18359/112020",
+        "floor": "59/360"
+      }
+    },
+    {
+      "name": "oversized-m6-b1/2",
+      "pass": true,
+      "details": {
+        "margin": "1/18"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/2-l1/60-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "119/720",
+        "floor": "11/72"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/2-l1/60-mu9/178",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "20651/128160",
+        "floor": "11/72"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/2-l1/60-mu9/89",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "503/3204",
+        "floor": "11/72"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/2-l1/12-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "23/144",
+        "floor": "11/72"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/2-l1/12-mu1/34",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "257/1632",
+        "floor": "11/72"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/2-l1/12-mu1/17",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "95/612",
+        "floor": "11/72"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/2-l33/200-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "367/2400",
+        "floor": "11/72"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/2-l33/200-mu1/1602",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "587767/3844800",
+        "floor": "11/72"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b1/2-l33/200-mu1/801",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1469/9612",
+        "floor": "11/72"
+      }
+    },
+    {
+      "name": "oversized-m6-b9/10",
+      "pass": true,
+      "details": {
+        "margin": "3/50"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b9/10-l1/60-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "197/1200",
+        "floor": "17/120"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b9/10-l1/60-mu27/214",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "41699/256800",
+        "floor": "17/120"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b9/10-l1/60-mu27/107",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1031/6420",
+        "floor": "17/120"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b9/10-l1/12-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "37/240",
+        "floor": "17/120"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b9/10-l1/12-mu3/38",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1403/9120",
+        "floor": "17/120"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b9/10-l1/12-mu3/19",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "35/228",
+        "floor": "17/120"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b9/10-l33/200-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1703/12000",
+        "floor": "17/120"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b9/10-l33/200-mu3/1606",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2735309/19272000",
+        "floor": "17/120"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b9/10-l33/200-mu3/803",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "6839/48180",
+        "floor": "17/120"
+      }
+    },
+    {
+      "name": "oversized-m6-b99/100",
+      "pass": true,
+      "details": {
+        "margin": "561/10000"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b99/100-l1/60-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1967/12000",
+        "floor": "167/1200"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b99/100-l1/60-mu297/1954",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3847379/23448000",
+        "floor": "167/1200"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b99/100-l1/60-mu297/977",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "96281/586200",
+        "floor": "167/1200"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b99/100-l1/12-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "367/2400",
+        "floor": "167/1200"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b99/100-l1/12-mu33/338",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "125003/811200",
+        "floor": "167/1200"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b99/100-l1/12-mu33/169",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3149/20280",
+        "floor": "167/1200"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b99/100-l33/200-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "16733/120000",
+        "floor": "167/1200"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b99/100-l33/200-mu33/13666",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "228774389/1639920000",
+        "floor": "167/1200"
+      }
+    },
+    {
+      "name": "screen-floor-m6-b99/100-l33/200-mu33/6833",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "572189/4099800",
+        "floor": "167/1200"
+      }
+    },
+    {
+      "name": "oversized-m7-b1/10",
+      "pass": true,
+      "details": {
+        "margin": "13/980"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/10-l1/70-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "699/4900",
+        "floor": "69/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/10-l1/70-mu9/1318",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "130803/922600",
+        "floor": "69/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/10-l1/70-mu9/659",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "22749/161455",
+        "floor": "69/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/10-l1/14-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "139/980",
+        "floor": "69/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/10-l1/14-mu1/262",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "36293/256760",
+        "floor": "69/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/10-l1/14-mu1/131",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "4521/32095",
+        "floor": "69/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/10-l99/700-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "6901/49000",
+        "floor": "69/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/10-l99/700-mu1/13002",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "29906867/212366000",
+        "floor": "69/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/10-l99/700-mu1/6501",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "74762/530915",
+        "floor": "69/490"
+      }
+    },
+    {
+      "name": "oversized-m7-b1/2",
+      "pass": true,
+      "details": {
+        "margin": "9/196"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/2-l1/70-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "139/980",
+        "floor": "13/98"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/2-l1/70-mu1/22",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "61/440",
+        "floor": "13/98"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/2-l1/70-mu1/11",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "73/539",
+        "floor": "13/98"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/2-l1/14-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "27/196",
+        "floor": "13/98"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/2-l1/14-mu1/38",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1013/7448",
+        "floor": "13/98"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/2-l1/14-mu1/19",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "125/931",
+        "floor": "13/98"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/2-l99/700-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1301/9800",
+        "floor": "13/98"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/2-l99/700-mu1/1802",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2343801/17659600",
+        "floor": "13/98"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b1/2-l99/700-mu1/901",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "5858/44149",
+        "floor": "13/98"
+      }
+    },
+    {
+      "name": "oversized-m7-b9/10",
+      "pass": true,
+      "details": {
+        "margin": "9/196"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b9/10-l1/70-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "691/4900",
+        "floor": "61/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b9/10-l1/70-mu81/662",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "64643/463400",
+        "floor": "61/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b9/10-l1/70-mu81/331",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "11189/81095",
+        "floor": "61/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b9/10-l1/14-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "131/980",
+        "floor": "61/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b9/10-l1/14-mu9/118",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "15413/115640",
+        "floor": "61/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b9/10-l1/14-mu9/59",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1921/14455",
+        "floor": "61/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b9/10-l99/700-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "6109/49000",
+        "floor": "61/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b9/10-l99/700-mu9/5018",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "30656681/245882000",
+        "floor": "61/490"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b9/10-l99/700-mu9/2509",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "76646/614705",
+        "floor": "61/490"
+      }
+    },
+    {
+      "name": "oversized-m7-b99/100",
+      "pass": true,
+      "details": {
+        "margin": "4059/98000"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b99/100-l1/70-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "6901/49000",
+        "floor": "601/4900"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b99/100-l1/70-mu891/5882",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "828929/5882000",
+        "floor": "601/4900"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b99/100-l1/70-mu891/2941",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "508042/3602725",
+        "floor": "601/4900"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b99/100-l1/14-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1301/9800",
+        "floor": "601/4900"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b99/100-l1/14-mu99/1018",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1332833/9976400",
+        "floor": "601/4900"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b99/100-l1/14-mu99/509",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "83828/623525",
+        "floor": "601/4900"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b99/100-l99/700-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "60199/490000",
+        "floor": "601/4900"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b99/100-l99/700-mu99/41198",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2480979401/20187020000",
+        "floor": "601/4900"
+      }
+    },
+    {
+      "name": "screen-floor-m7-b99/100-l99/700-mu99/20599",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "6204701/50467550",
+        "floor": "601/4900"
+      }
+    },
+    {
+      "name": "oversized-m8-b1/10",
+      "pass": true,
+      "details": {
+        "margin": "3/256"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/10-l1/80-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "799/6400",
+        "floor": "79/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/10-l1/80-mu3/506",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "402137/3238400",
+        "floor": "79/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/10-l1/80-mu3/253",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "19999/161920",
+        "floor": "79/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/10-l1/16-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "159/1280",
+        "floor": "79/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/10-l1/16-mu1/302",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "9575/77312",
+        "floor": "79/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/10-l1/16-mu1/151",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "11933/96640",
+        "floor": "79/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/10-l99/800-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "7901/64000",
+        "floor": "79/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/10-l99/800-mu1/15002",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "118523701/960128000",
+        "floor": "79/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/10-l99/800-mu1/7501",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "592583/4800640",
+        "floor": "79/640"
+      }
+    },
+    {
+      "name": "oversized-m8-b1/2",
+      "pass": true,
+      "details": {
+        "margin": "11/256"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/2-l1/80-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "159/1280",
+        "floor": "15/128"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/2-l1/80-mu9/238",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "37131/304640",
+        "floor": "15/128"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/2-l1/80-mu9/119",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1821/15232",
+        "floor": "15/128"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/2-l1/16-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "31/256",
+        "floor": "15/128"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/2-l1/16-mu1/46",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1411/11776",
+        "floor": "15/128"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/2-l1/16-mu1/23",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "349/2944",
+        "floor": "15/128"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/2-l99/800-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1501/12800",
+        "floor": "15/128"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/2-l99/800-mu1/2202",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3304501/28185600",
+        "floor": "15/128"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b1/2-l99/800-mu1/1101",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "16519/140928",
+        "floor": "15/128"
+      }
+    },
+    {
+      "name": "oversized-m8-b9/10",
+      "pass": true,
+      "details": {
+        "margin": "63/1280"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b9/10-l1/80-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "791/6400",
+        "floor": "71/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b9/10-l1/80-mu81/862",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "676091/5516800",
+        "floor": "71/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b9/10-l1/80-mu81/431",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "33517/275840",
+        "floor": "71/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b9/10-l1/16-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "151/1280",
+        "floor": "71/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b9/10-l1/16-mu9/158",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "4759/40448",
+        "floor": "71/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b9/10-l1/16-mu9/79",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "5933/50560",
+        "floor": "71/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b9/10-l99/800-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "7109/64000",
+        "floor": "71/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b9/10-l99/800-mu9/7018",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "49891781/449152000",
+        "floor": "71/640"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b9/10-l99/800-mu9/3509",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "249463/2245760",
+        "floor": "71/640"
+      }
+    },
+    {
+      "name": "oversized-m8-b99/100",
+      "pass": true,
+      "details": {
+        "margin": "6039/128000"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b99/100-l1/80-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "7901/64000",
+        "floor": "701/6400"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b99/100-l1/80-mu891/7882",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "62292611/504448000",
+        "floor": "701/6400"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b99/100-l1/80-mu891/3941",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3115477/25222400",
+        "floor": "701/6400"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b99/100-l1/16-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1501/12800",
+        "floor": "701/6400"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b99/100-l1/16-mu99/1418",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "427327/3630080",
+        "floor": "701/6400"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b99/100-l1/16-mu99/709",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "536213/4537600",
+        "floor": "701/6400"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b99/100-l99/800-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "70199/640000",
+        "floor": "701/6400"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b99/100-l99/800-mu99/61198",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "4296929501/39166720000",
+        "floor": "701/6400"
+      }
+    },
+    {
+      "name": "screen-floor-m8-b99/100-l99/800-mu99/30599",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "21489103/195833600",
+        "floor": "701/6400"
+      }
+    },
+    {
+      "name": "oversized-m9-b1/10",
+      "pass": true,
+      "details": {
+        "margin": "7/675"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/10-l1/90-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "899/8100",
+        "floor": "89/810"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/10-l1/90-mu3/566",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "506407/4584600",
+        "floor": "89/810"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/10-l1/90-mu3/283",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "25199/229230",
+        "floor": "89/810"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/10-l1/18-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "179/1620",
+        "floor": "89/810"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/10-l1/18-mu1/338",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "60341/547560",
+        "floor": "89/810"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/10-l1/18-mu1/169",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1003/9126",
+        "floor": "89/810"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/10-l11/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "989/9000",
+        "floor": "89/810"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/10-l11/100-mu1/16802",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "5538763/50406000",
+        "floor": "89/810"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/10-l11/100-mu1/8401",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "83077/756090",
+        "floor": "89/810"
+      }
+    },
+    {
+      "name": "oversized-m9-b1/2",
+      "pass": true,
+      "details": {
+        "margin": "1/27"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/2-l1/90-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "179/1620",
+        "floor": "17/162"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/2-l1/90-mu3/86",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "15127/139320",
+        "floor": "17/162"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/2-l1/90-mu3/43",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "743/6966",
+        "floor": "17/162"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/2-l1/18-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "35/324",
+        "floor": "17/162"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/2-l1/18-mu1/50",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1733/16200",
+        "floor": "17/162"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/2-l1/18-mu1/25",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "143/1350",
+        "floor": "17/162"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/2-l11/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "21/200",
+        "floor": "17/162"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/2-l11/100-mu1/2402",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "453889/4323600",
+        "floor": "17/162"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b1/2-l11/100-mu1/1201",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2269/21618",
+        "floor": "17/162"
+      }
+    },
+    {
+      "name": "oversized-m9-b9/10",
+      "pass": true,
+      "details": {
+        "margin": "1/25"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b9/10-l1/90-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "11/100",
+        "floor": "1/10"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b9/10-l1/90-mu9/98",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1069/9800",
+        "floor": "1/10"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b9/10-l1/90-mu9/49",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "53/490",
+        "floor": "1/10"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b9/10-l1/18-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "19/180",
+        "floor": "1/10"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b9/10-l1/18-mu1/18",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "341/3240",
+        "floor": "1/10"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b9/10-l1/18-mu1/9",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "17/162",
+        "floor": "1/10"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b9/10-l11/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "901/9000",
+        "floor": "1/10"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b9/10-l11/100-mu1/802",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "80289/802000",
+        "floor": "1/10"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b9/10-l11/100-mu1/401",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3613/36090",
+        "floor": "1/10"
+      }
+    },
+    {
+      "name": "oversized-m9-b99/100",
+      "pass": true,
+      "details": {
+        "margin": "187/5000"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b99/100-l1/90-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "989/9000",
+        "floor": "89/900"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b99/100-l1/90-mu99/878",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "868441/7902000",
+        "floor": "89/900"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b99/100-l1/90-mu99/439",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "43427/395100",
+        "floor": "89/900"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b99/100-l1/18-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "21/200",
+        "floor": "89/900"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b99/100-l1/18-mu11/158",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3329/31600",
+        "floor": "89/900"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b99/100-l1/18-mu11/79",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "167/1580",
+        "floor": "89/900"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b99/100-l11/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "8911/90000",
+        "floor": "89/900"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b99/100-l11/100-mu11/6822",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "60801721/613980000",
+        "floor": "89/900"
+      }
+    },
+    {
+      "name": "screen-floor-m9-b99/100-l11/100-mu11/3411",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "304063/3069900",
+        "floor": "89/900"
+      }
+    },
+    {
+      "name": "oversized-m10-b1/10",
+      "pass": true,
+      "details": {
+        "margin": "47/5000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/10-l1/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "999/10000",
+        "floor": "99/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/10-l1/100-mu9/1898",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1888011/18980000",
+        "floor": "99/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/10-l1/100-mu9/949",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "23499/237250",
+        "floor": "99/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/10-l1/20-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "199/2000",
+        "floor": "99/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/10-l1/20-mu1/378",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "75043/756000",
+        "floor": "99/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/10-l1/20-mu1/189",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "4679/47250",
+        "floor": "99/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/10-l99/1000-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "9901/100000",
+        "floor": "99/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/10-l99/1000-mu1/18802",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "186149701/1880200000",
+        "floor": "99/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/10-l99/1000-mu1/9401",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "116338/1175125",
+        "floor": "99/1000"
+      }
+    },
+    {
+      "name": "oversized-m10-b1/2",
+      "pass": true,
+      "details": {
+        "margin": "7/200"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/2-l1/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "199/2000",
+        "floor": "19/200"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/2-l1/100-mu9/298",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "58411/596000",
+        "floor": "19/200"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/2-l1/100-mu9/149",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "719/7450",
+        "floor": "19/200"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/2-l1/20-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "39/400",
+        "floor": "19/200"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/2-l1/20-mu1/58",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2243/23200",
+        "floor": "19/200"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/2-l1/20-mu1/29",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "139/1450",
+        "floor": "19/200"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/2-l99/1000-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1901/20000",
+        "floor": "19/200"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/2-l99/1000-mu1/2802",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "5325701/56040000",
+        "floor": "19/200"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b1/2-l99/1000-mu1/1401",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3328/35025",
+        "floor": "19/200"
+      }
+    },
+    {
+      "name": "oversized-m10-b9/10",
+      "pass": true,
+      "details": {
+        "margin": "207/5000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b9/10-l1/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "991/10000",
+        "floor": "91/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b9/10-l1/100-mu81/1082",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1064891/10820000",
+        "floor": "91/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b9/10-l1/100-mu81/541",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "13219/135250",
+        "floor": "91/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b9/10-l1/20-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "191/2000",
+        "floor": "91/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b9/10-l1/20-mu9/202",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "38483/404000",
+        "floor": "91/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b9/10-l1/20-mu9/101",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2399/25250",
+        "floor": "91/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b9/10-l99/1000-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "9109/100000",
+        "floor": "91/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b9/10-l99/1000-mu9/9218",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "83965781/921800000",
+        "floor": "91/1000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b9/10-l99/1000-mu9/4609",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "52478/576125",
+        "floor": "91/1000"
+      }
+    },
+    {
+      "name": "oversized-m10-b99/100",
+      "pass": true,
+      "details": {
+        "margin": "20097/500000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b99/100-l1/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "9901/100000",
+        "floor": "901/10000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b99/100-l1/100-mu891/9902",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "98038811/990200000",
+        "floor": "901/10000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b99/100-l1/100-mu891/4951",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "612737/6188750",
+        "floor": "901/10000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b99/100-l1/20-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1901/20000",
+        "floor": "901/10000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b99/100-l1/20-mu99/1822",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3471443/36440000",
+        "floor": "901/10000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b99/100-l1/20-mu99/911",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "108727/1138750",
+        "floor": "901/10000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b99/100-l99/1000-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "90199/1000000",
+        "floor": "901/10000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b99/100-l99/1000-mu99/81398",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "7342889501/81398000000",
+        "floor": "901/10000"
+      }
+    },
+    {
+      "name": "screen-floor-m10-b99/100-l99/1000-mu99/40699",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "9179701/101747500",
+        "floor": "901/10000"
+      }
+    },
+    {
+      "name": "oversized-m11-b1/10",
+      "pass": true,
+      "details": {
+        "margin": "103/12100"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/10-l1/110-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1099/12100",
+        "floor": "109/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/10-l1/110-mu9/2078",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2274821/25143800",
+        "floor": "109/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/10-l1/110-mu9/1039",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "56648/628595",
+        "floor": "109/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/10-l1/22-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "219/2420",
+        "floor": "109/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/10-l1/22-mu1/414",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "90469/1001880",
+        "floor": "109/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/10-l1/22-mu1/207",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "11284/125235",
+        "floor": "109/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/10-l9/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "991/11000",
+        "floor": "109/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/10-l9/100-mu1/20602",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "20415691/226622000",
+        "floor": "109/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/10-l9/100-mu1/10301",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "51037/566555",
+        "floor": "109/1210"
+      }
+    },
+    {
+      "name": "oversized-m11-b1/2",
+      "pass": true,
+      "details": {
+        "margin": "15/484"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/2-l1/110-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "219/2420",
+        "floor": "21/242"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/2-l1/110-mu3/106",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "22887/256520",
+        "floor": "21/242"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/2-l1/110-mu3/53",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "564/6413",
+        "floor": "21/242"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/2-l1/22-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "43/484",
+        "floor": "21/242"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/2-l1/22-mu1/62",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2645/30008",
+        "floor": "21/242"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/2-l1/22-mu1/31",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "328/3751",
+        "floor": "21/242"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/2-l9/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "191/2200",
+        "floor": "21/242"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/2-l9/100-mu1/3002",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "573291/6604400",
+        "floor": "21/242"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b1/2-l9/100-mu1/1501",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1433/16511",
+        "floor": "21/242"
+      }
+    },
+    {
+      "name": "oversized-m11-b9/10",
+      "pass": true,
+      "details": {
+        "margin": "423/12100"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b9/10-l1/110-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1091/12100",
+        "floor": "101/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b9/10-l1/110-mu81/1102",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1194101/13334200",
+        "floor": "101/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b9/10-l1/110-mu81/551",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "29648/333355",
+        "floor": "101/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b9/10-l1/22-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "211/2420",
+        "floor": "101/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b9/10-l1/22-mu9/206",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "43349/498520",
+        "floor": "101/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b9/10-l1/22-mu9/103",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "5404/62315",
+        "floor": "101/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b9/10-l9/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "919/11000",
+        "floor": "101/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b9/10-l9/100-mu9/9418",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "8654971/103598000",
+        "floor": "101/1210"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b9/10-l9/100-mu9/4709",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1967/23545",
+        "floor": "101/1210"
+      }
+    },
+    {
+      "name": "oversized-m11-b99/100",
+      "pass": true,
+      "details": {
+        "margin": "333/10000"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b99/100-l1/110-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "991/11000",
+        "floor": "91/1100"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b99/100-l1/110-mu81/902",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "893801/9922000",
+        "floor": "91/1100"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b99/100-l1/110-mu81/451",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "22343/248050",
+        "floor": "91/1100"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b99/100-l1/22-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "191/2200",
+        "floor": "91/1100"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b99/100-l1/22-mu9/166",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "31769/365200",
+        "floor": "91/1100"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b99/100-l1/22-mu9/83",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3979/45650",
+        "floor": "91/1100"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b99/100-l9/100-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "9109/110000",
+        "floor": "91/1100"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b99/100-l9/100-mu9/7418",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "67577681/815980000",
+        "floor": "91/1100"
+      }
+    },
+    {
+      "name": "screen-floor-m11-b99/100-l9/100-mu9/3709",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "84481/1019975",
+        "floor": "91/1100"
+      }
+    },
+    {
+      "name": "oversized-m12-b1/10",
+      "pass": true,
+      "details": {
+        "margin": "113/14400"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/10-l1/120-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1199/14400",
+        "floor": "119/1440"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/10-l1/120-mu9/2278",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2721611/32803200",
+        "floor": "119/1440"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/10-l1/120-mu9/1139",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "27119/328032",
+        "floor": "119/1440"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/10-l1/24-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "239/2880",
+        "floor": "119/1440"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/10-l1/24-mu1/454",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "36097/435840",
+        "floor": "119/1440"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/10-l1/24-mu1/227",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "27019/326880",
+        "floor": "119/1440"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/10-l33/400-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3967/48000",
+        "floor": "119/1440"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/10-l33/400-mu1/22602",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "9962063/120544000",
+        "floor": "119/1440"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/10-l33/400-mu1/11301",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "29885/361632",
+        "floor": "119/1440"
+      }
+    },
+    {
+      "name": "oversized-m12-b1/2",
+      "pass": true,
+      "details": {
+        "margin": "17/576"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/2-l1/120-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "239/2880",
+        "floor": "23/288"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/2-l1/120-mu9/358",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "84491/1031040",
+        "floor": "23/288"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/2-l1/120-mu9/179",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "4171/51552",
+        "floor": "23/288"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/2-l1/24-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "47/576",
+        "floor": "23/288"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/2-l1/24-mu1/70",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "363/4480",
+        "floor": "23/288"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/2-l1/24-mu1/35",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "811/10080",
+        "floor": "23/288"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/2-l33/400-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "767/9600",
+        "floor": "23/288"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/2-l33/400-mu1/3402",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "2608967/32659200",
+        "floor": "23/288"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b1/2-l33/400-mu1/1701",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "13043/163296",
+        "floor": "23/288"
+      }
+    },
+    {
+      "name": "oversized-m12-b9/10",
+      "pass": true,
+      "details": {
+        "margin": "57/1600"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b9/10-l1/120-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "397/4800",
+        "floor": "37/480"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b9/10-l1/120-mu27/434",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "171299/2083200",
+        "floor": "37/480"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b9/10-l1/120-mu27/217",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1703/20832",
+        "floor": "37/480"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b9/10-l1/24-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "77/960",
+        "floor": "37/480"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b9/10-l1/24-mu3/82",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "6299/78720",
+        "floor": "37/480"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b9/10-l1/24-mu3/41",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1571/19680",
+        "floor": "37/480"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b9/10-l33/400-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3703/48000",
+        "floor": "37/480"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b9/10-l33/400-mu3/3806",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "14093309/182688000",
+        "floor": "37/480"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b9/10-l33/400-mu3/1903",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "14093/182688",
+        "floor": "37/480"
+      }
+    },
+    {
+      "name": "oversized-m12-b99/100",
+      "pass": true,
+      "details": {
+        "margin": "5577/160000"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b99/100-l1/120-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "3967/48000",
+        "floor": "367/4800"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b99/100-l1/120-mu297/3974",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "15762779/190752000",
+        "floor": "367/4800"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b99/100-l1/120-mu297/1987",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "157607/1907520",
+        "floor": "367/4800"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b99/100-l1/24-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "767/9600",
+        "floor": "367/4800"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b99/100-l1/24-mu33/742",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "569939/7123200",
+        "floor": "367/4800"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b99/100-l1/24-mu33/371",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "142691/1780800",
+        "floor": "367/4800"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b99/100-l33/400-mu0",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "36733/480000",
+        "floor": "367/4800"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b99/100-l33/400-mu33/33866",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1244094389/16255680000",
+        "floor": "367/4800"
+      }
+    },
+    {
+      "name": "screen-floor-m12-b99/100-l33/400-mu33/16933",
+      "pass": true,
+      "details": {
+        "identity": true,
+        "c_s": "1244189/16255680",
+        "floor": "367/4800"
+      }
+    },
+    {
+      "name": "coalition-only-signal-feasibility",
+      "pass": true,
+      "details": {
+        "x": [
+          "11/20",
+          "9/40",
+          "9/40",
+          "0",
+          "0"
+        ]
+      }
+    },
+    {
+      "name": "coalition-only-signal-outcomes",
+      "pass": true,
+      "details": {
+        "r0": "819/4000",
+        "r1": "9/40"
+      }
+    },
+    {
+      "name": "coalition-only-signal-IC",
+      "pass": true,
+      "details": {
+        "values": [
+          "11/20",
+          "81/100"
+        ],
+        "off": [
+          "11/20",
+          "81/100"
+        ]
+      }
+    },
+    {
+      "name": "old-gift-is-passing",
+      "pass": true,
+      "details": {
+        "x": [
+          "14/25",
+          "8181/40000",
+          "8181/40000",
+          "1/100",
+          "0"
+        ],
+        "r": "8181/40000"
+      }
+    },
+    {
+      "name": "old-gift-pooling-IC",
+      "pass": true,
+      "details": {
+        "value": "14/25",
+        "off_high": "11/20"
+      }
+    },
+    {
+      "name": "old-gift-no-new-passing-preimage",
+      "pass": true,
+      "details": {
+        "feasible_coalitions": 2
+      }
+    },
+    {
+      "name": "reversal-majority-IC",
+      "pass": true,
+      "details": {
+        "majority_values": [
+          "1181/2000",
+          "81/100"
+        ]
+      }
+    },
+    {
+      "name": "reversal-unanimity-IC",
+      "pass": true,
+      "details": {
+        "unanimity_value": "729/1000",
+        "p_star": "8/9"
+      }
+    },
+    {
+      "name": "reversal-table-values",
+      "pass": true,
+      "details": {
+        "majority_low": "1181/2000",
+        "unanimity_public_low": "181/1000",
+        "unanimity_private_low": "729/1000",
+        "delta_public": "-819/2000",
+        "delta_private": "277/2000",
+        "delta_ir": "137/250"
+      }
+    }
+  ]
+}

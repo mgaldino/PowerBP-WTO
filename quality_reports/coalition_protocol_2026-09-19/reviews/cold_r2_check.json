@@ -1,0 +1,27 @@
+{
+  "schema": "cold_r2_finite_check_v1",
+  "started_at_utc": "2026-09-19T17:22:09.915518+00:00",
+  "completed_at_utc": "2026-09-19T17:22:23.277388+00:00",
+  "command": [
+    "python3",
+    "quality_reports/coalition_protocol_2026-09-19/reviews/cold_r2_check.py"
+  ],
+  "exit_code": 0,
+  "source_sha256": {
+    "quality_reports/coalition_protocol_2026-09-19/reviews/cold_r2_check.py": "06034f8a6ca8ca3bbb7b7ac2d95c37e0e7029a8e8a82e1ad8141e29255e42354",
+    "quality_reports/coalition_protocol_2026-09-19/reviews/cold_r2_from_primitives.md": "57b83c8d83fad84f6f5ce41a6e34d75c60ede19b3e09c71d307bd7d70764896c",
+    "quality_reports/coalition_protocol_2026-09-19/author_decision.md": "7abfa53814ff23c61a9af2049c975be81e44f8e66270c4fa3f99accd51923726",
+    "quality_reports/coalition_protocol_2026-09-19/derivations/game_contract.md": "ac78634ea0da03b422a6d92930680d1bb1f94deee0d3c33b68dc9d9791a7d058"
+  },
+  "result": {
+    "grid_denominator": 20,
+    "states": 40,
+    "assertions": 120,
+    "proposal_state_comparisons": 1859550,
+    "failures": 0,
+    "m3_feasible_proposals": 15939,
+    "m4_feasible_proposals": 106260
+  },
+  "stderr": "",
+  "scope": "Exact rational finite enumeration on the same grid documented in the cold R2 report; not a proof of the continuous game or a comparison with candidate solution interfaces."
+}

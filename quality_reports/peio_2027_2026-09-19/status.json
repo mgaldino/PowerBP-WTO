@@ -1,67 +1,8 @@
 {
-  "recorded_at": "2026-09-19T12:50:57.059656-03:00",
-  "status": "A1_REJECTED_REASSESS_PAYOFF_ARCHITECTURE",
-  "submission_ready": false,
-  "canonical_manuscript_modified": false,
-  "canonical_pdf_recompiled_or_visually_reviewed_this_task": false,
-  "pending_individual_decisions": [],
-  "verified_existing_package": {
-    "path": "quality_reports/architecture_2026-09-08",
-    "source_sha256": "493f513a096bd78d9addf32d1c407c9a9e8be3945edf6580497d4c27630dd3b3",
-    "formal_review": "PASS on unchanged conditional note",
-    "adversarial_review": "PASS on unchanged conditional note",
-    "adjudication": "NO_CONFIRMED_DEFECTS on unchanged conditional note",
-    "scope": "Conditional baseline economic transport; not author adoption or certification of the full agenda extension.",
-    "current_applicability": "The conditional package requires rejected A1; it is not a repair authorized for the clarified paper setup."
-  },
-  "completed": [
-    "checkout and local worktree/ref provenance inventory",
-    "conditional review and artifact hash verification",
-    "independent baseline and agenda source reads",
-    "29,005 finite checks reproduced with zero failures",
-    "provisional title, 137-word abstract and WTO category",
-    "bookdown diagnostic rendering",
-    "independent documentary review and complete visual QA of the five-page diagnostic; two minor findings adjudicated CONFIRMED and closed"
-  ],
-  "remaining_after_decision": [
-    "specify and verify the terminal outside-option architecture consistently with automatic implementation and the author foundations",
-    "derive any necessary correction outside the manuscript",
-    "independent formal/adversarial and architecture-result-interpretation reviews on exact candidate hashes",
-    "adjudicate findings and review repairs",
-    "integrate the supported correction into the canonical manuscript",
-    "run affected checks, bookdown compilation and full visual PDF QA",
-    "finalize submission fields"
-  ],
-  "scope_exclusions": [
-    "submission",
-    "publication",
-    "push",
-    "third-party communication"
-  ],
-  "resume_instructions": "retomada.md",
-  "final_documentary_review": "preparation_review.md",
-  "boundary": "A1 rejected. Preserve the author setup. Historical conditional proof validity is not model fidelity or authorization to migrate. No new outside-option rule is adopted by this record.",
-  "final_documentary_review_result": "PASS_DOCUMENTAL_VISUAL_ONLY",
-  "author_decision_record": "author_clarification_automatic_implementation.md",
-  "author_decisions": [
-    {
-      "id": "A2",
-      "status": "APPROVED_AS_PRESENTED",
-      "scope": "Indivisible H resource rival between execution in the club and the external forum.",
-      "later_clarification": "Prior approval does not authorize adding an individual execution condition to receive an approved allocation."
-    },
-    {
-      "id": "A3",
-      "status": "APPROVED_AS_PRESENTED",
-      "scope": "Yes binds H to club execution upon passage; no and passage leaves voluntary club/external choice.",
-      "later_clarification": "Prior approval does not authorize adding an individual execution condition to receive an approved allocation."
-    },
-    {
-      "id": "A1",
-      "status": "REJECTED",
-      "scope": "Approved allocations are implemented automatically; H does not take an additional action to produce or receive its share."
-    }
-  ],
-  "current_question": "Reconcile outside-option exercise and availability with automatically implemented approved allocations; do not assume cumulative availability or add an individual execution condition.",
-  "approved_implementation_rule": "Passage implements the approved allocation vector in full. H receives its assigned share without an additional individual execution action."
+  "recorded_at": "2026-09-19T14:57:30.170397-03:00",
+  "status": "SUPERSEDED_BY_COALITION_PROTOCOL_TASK",
+  "successor_status": "../coalition_protocol_2026-09-19/status.json",
+  "author_decision_record": "../coalition_protocol_2026-09-19/author_decision.md",
+  "historical_status": "review_history/status_before_coalition_decision.json",
+  "boundary": "The author adopted explicit coalitions, allocations only to members, unanimous consent within the invited coalition, and automatic implementation. A1 remains rejected. Current derivations, reviews, manuscript hashes and submission readiness belong to the successor package. Historical PASS reports remain limited to their own artifacts."
 }

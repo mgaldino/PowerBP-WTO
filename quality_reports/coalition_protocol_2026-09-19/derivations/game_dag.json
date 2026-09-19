@@ -1,0 +1,123 @@
+{
+  "contract": {
+    "path": "game_contract.md",
+    "sha256": "sha256:ac78634ea0da03b422a6d92930680d1bb1f94deee0d3c33b68dc9d9791a7d058"
+  },
+  "status_meaning": "pass = closed stable derivation interface, not independent scientific approval",
+  "events": [
+    {
+      "order": 1,
+      "event": "adopted contract serialized",
+      "time": "2026-09-19T14:06:38.723026-03:00"
+    },
+    {
+      "order": 2,
+      "event": "R2 leaf derivations closed directly from primitives; no R1 dependency",
+      "time": "2026-09-19T14:06:38.723026-03:00"
+    },
+    {
+      "order": 3,
+      "event": "R1 derivation opened against closed R2 interface",
+      "time": "2026-09-19T14:06:38.723026-03:00"
+    },
+    {
+      "order": 4,
+      "event": "R1_M and R1_U complete interfaces closed; stable candidate, independent review pending",
+      "time": "2026-09-19T14:09:10.264473-03:00"
+    },
+    {
+      "order": 5,
+      "event": "Hashed R1 interfaces delivered to agenda implementer; agenda node closure authorized after parameterized structural work",
+      "time": "2026-09-19T14:12:29.921862-03:00"
+    },
+    {
+      "order": 6,
+      "event": "Agenda implementer closed full interfaces and proofs against R1 hashes; coordinator read all 496 lines; Borel wording corrected before freeze",
+      "time": "2026-09-19T14:17:22.356449-03:00"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "R2_M",
+      "depends_on": [],
+      "status": "pass",
+      "artifact_path": "r2_interface.md",
+      "artifact_hash": "sha256:c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7",
+      "started_order": 1,
+      "passed_order": 2,
+      "independent_review": "pending"
+    },
+    {
+      "id": "R2_U",
+      "depends_on": [],
+      "status": "pass",
+      "artifact_path": "r2_interface.md",
+      "artifact_hash": "sha256:c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7",
+      "started_order": 1,
+      "passed_order": 2,
+      "independent_review": "pending"
+    },
+    {
+      "id": "R1_M",
+      "depends_on": [
+        "R2_M"
+      ],
+      "status": "pass",
+      "started_order": 3,
+      "dependency_hashes": {
+        "R2_M": "sha256:c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7"
+      },
+      "independent_review": "pending",
+      "artifact_path": "r1_interface.md",
+      "artifact_hash": "sha256:a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0",
+      "passed_order": 4
+    },
+    {
+      "id": "R1_U",
+      "depends_on": [
+        "R2_U"
+      ],
+      "status": "pass",
+      "started_order": 3,
+      "dependency_hashes": {
+        "R2_U": "sha256:c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7"
+      },
+      "independent_review": "pending",
+      "artifact_path": "r1_interface.md",
+      "artifact_hash": "sha256:a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0",
+      "passed_order": 4
+    },
+    {
+      "id": "A_M",
+      "depends_on": [
+        "R1_M"
+      ],
+      "status": "pass",
+      "note": "Agent may perform structural action-space work parameterized by unresolved predecessor interface; closing agenda derivation waits for hashed R1 interface.",
+      "started_order": 5,
+      "dependency_hashes": {
+        "R1_M": "sha256:a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0"
+      },
+      "passed_order": 6,
+      "artifact_path": "agenda_transport.md",
+      "artifact_hash": "sha256:3b98454cb275f34a89c6f5a10037eaa34e30e4fbf81e4fb4f01a65e2f8ba9f6f",
+      "independent_review": "pending"
+    },
+    {
+      "id": "A_U",
+      "depends_on": [
+        "R1_U"
+      ],
+      "status": "pass",
+      "note": "Agent may perform structural action-space work parameterized by unresolved predecessor interface; closing agenda derivation waits for hashed R1 interface.",
+      "started_order": 5,
+      "dependency_hashes": {
+        "R1_U": "sha256:a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0"
+      },
+      "passed_order": 6,
+      "artifact_path": "agenda_transport.md",
+      "artifact_hash": "sha256:3b98454cb275f34a89c6f5a10037eaa34e30e4fbf81e4fb4f01a65e2f8ba9f6f",
+      "independent_review": "pending"
+    }
+  ]
+}

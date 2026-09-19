@@ -1,3 +1,11 @@
+# Registro superado pela decisão de coalizão de 19/09/2026
+
+O autor adotou a variante com coalizão explícita, alocações restritas aos membros, consentimento de todos os convidados e implementação automática. A1 permanece rejeitada. A execução autorizada continua em [coalition_protocol_2026-09-19](../coalition_protocol_2026-09-19/status.json), com [decisão autoral própria](../coalition_protocol_2026-09-19/author_decision.md), derivações e revisões nos novos hashes. Consulte esse pacote para o estado atual e a prontidão para submissão.
+
+Todo o texto abaixo é proveniência do diagnóstico anterior. Referências a esclarecimento "mais recente", espera por decisão ou pendência descrevem aquela etapa e não substituem a decisão e o estado do pacote sucessor. O manifesto e o PDF antigos continuam limitados ao diagnóstico que documentam.
+
+---
+
 # Retomada da preparação para PEIO 2027
 
 **Esclarecimento mais recente, que prevalece sobre as atualizações abaixo:** A1 foi rejeitada. A aprovação executa integralmente a divisão proposta; H recebe sua parcela sem uma ação adicional de execução. Consultar `author_clarification_automatic_implementation.md`. A aprovação anterior de A2/A3 não autoriza reintroduzir essa ação. Reexaminar a disponibilidade da opção externa preservando a implementação automática; não migrar o pacote condicional de 8/9 como se resolvesse o modelo do autor.

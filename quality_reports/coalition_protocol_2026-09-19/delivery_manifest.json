@@ -1,0 +1,891 @@
+{
+  "schema_version": "1.0",
+  "status": "READY_FOR_AUTHOR_REVIEW_AND_SUBMISSION",
+  "created_at": "2026-09-19T19:08:04.157310+00:00",
+  "repository": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion",
+  "branch": "codex/exposition-items20-28",
+  "git_checkpoint": "c6dfab61a5a3b44d09ba389911df47726f81b51e",
+  "source_identity": {
+    "canonical_rmd": "9356d86a2e893481968ee96a918c2109e726444c5d902ce88edd6f1a5d86345f",
+    "canonical_pdf": "507cefdebe47830fb2f1b3f0ee0ab517c223c9fcaaeb268646367272027c0328",
+    "canonical_bibliography": "658af186c73c1291da02a9fd4e3482fc953549ed46036ae24303b45f61309447",
+    "notes_v2": "3b8043d49de9011a60c1e7e079b4fbf876f35239d100dad82a0072b53a19b4e2"
+  },
+  "review_identity": {
+    "formal": "2fbd16ed0224fd9516818cf597576733932938f163bd1be1af258680c13ce646",
+    "adversarial": "5ac0259990fbd413f60a07db6aa779c08f75ea2fc656afb922401b93efd4f003",
+    "notes_contract": "7db1a7a72dd12178e7f5b63ce45c94ae08576e0a6a22daa8dbbbd13aab25d4ca",
+    "manuscript_contract": "a1a39f8548cfdbe285a9bd5be7cee7f28d92156e8a411b91a74bd65099d3cebc"
+  },
+  "validation_summary": {
+    "formal_and_adversarial": "PASS at the two specified boundaries",
+    "final_adjudications": "NO_CONFIRMED_DEFECTS",
+    "source_integrity": "PASS",
+    "bookdown_exit_code": 0,
+    "visually_inspected_pages": 83,
+    "all_final_pages_identical_to_inspected": true,
+    "quartz_page24_identical": true,
+    "abstract_words": 168,
+    "category": "WTO",
+    "protected_tracked_paths": "UNCHANGED"
+  },
+  "inventory_scope": "Current task evidence, historical candidates within this task, current and preserved instructions, canonical submission files, four new verification scripts, included figure PDFs and prior-task supersession records. Other historical sources are identified in their frozen manifests and the Git checkpoint.",
+  "inventory_exclusions": [
+    "This manifest itself",
+    "checks/delivery_manifest_validation.json (hashes this manifest)",
+    "__pycache__",
+    "Temporary raster images except archived visual evidence"
+  ],
+  "entry_count": 141,
+  "files": [
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/formal_model_v6.Rmd",
+      "relative_to_repository": "formal_model_v6.Rmd",
+      "bytes": 154209,
+      "sha256": "9356d86a2e893481968ee96a918c2109e726444c5d902ce88edd6f1a5d86345f"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/formal_model_v6.pdf",
+      "relative_to_repository": "formal_model_v6.pdf",
+      "bytes": 426573,
+      "sha256": "507cefdebe47830fb2f1b3f0ee0ab517c223c9fcaaeb268646367272027c0328"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/references.bib",
+      "relative_to_repository": "references.bib",
+      "bytes": 12080,
+      "sha256": "658af186c73c1291da02a9fd4e3482fc953549ed46036ae24303b45f61309447"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/AGENTS.md",
+      "relative_to_repository": "AGENTS.md",
+      "bytes": 12425,
+      "sha256": "318c5405ef4e8aad76b287ba8f1dd4414c3d6f838923c0ef190d15ec5949adac"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/CLAUDE.md",
+      "relative_to_repository": "CLAUDE.md",
+      "bytes": 50988,
+      "sha256": "a151810ef990c34dacf8f5c8533da422a74b2d008a11d825051f812071444bb1"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/scripts/verify_coalition_figures_20260919.R",
+      "relative_to_repository": "scripts/verify_coalition_figures_20260919.R",
+      "bytes": 6355,
+      "sha256": "64bd1860187990a03a3d8a65527db67125c7581210b808ed0589b2c8762180b9"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/scripts/verify_coalition_manuscript_20260919.py",
+      "relative_to_repository": "scripts/verify_coalition_manuscript_20260919.py",
+      "bytes": 4114,
+      "sha256": "31af3663742f8e488d58ee397576e49a378c2cf0a9430665d9b6e8a5ce2b8338"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/scripts/verify_coalition_pdf_20260919.py",
+      "relative_to_repository": "scripts/verify_coalition_pdf_20260919.py",
+      "bytes": 3167,
+      "sha256": "72364d92d702ab0e511ce2824b83c16c4a9707a05b2cae004917f1b798ce0c57"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/scripts/verify_coalition_protocol_20260919.R",
+      "relative_to_repository": "scripts/verify_coalition_protocol_20260919.R",
+      "bytes": 8020,
+      "sha256": "cbc57f34e79d22c4378cfde9e002a6110c7b5fd091cf7bfb102f17df45fa1b5b"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/figures/essential_input/figure_f2_prices_coalitions.pdf",
+      "relative_to_repository": "figures/essential_input/figure_f2_prices_coalitions.pdf",
+      "bytes": 13740,
+      "sha256": "214910676bf3a5552c83e2e13053577654106cb9bcbb0040323fe35684f26f5f"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/figures/essential_input/figure_f1_private_comparison.pdf",
+      "relative_to_repository": "figures/essential_input/figure_f1_private_comparison.pdf",
+      "bytes": 56091,
+      "sha256": "19c9a265d11cdbc4604dbc819a65cb70d1f407d76be10234054edcd9b0fc5c06"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/figures/essential_input/figure_f3_power_information.pdf",
+      "relative_to_repository": "figures/essential_input/figure_f3_power_information.pdf",
+      "bytes": 6695,
+      "sha256": "736f389047a459ee2ac210115a8a1890a7fa2eebe45c3d4ae9a50e3101e4a79b"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/figures/agenda_extension/figure_agenda_public_gap.pdf",
+      "relative_to_repository": "figures/agenda_extension/figure_agenda_public_gap.pdf",
+      "bytes": 10168,
+      "sha256": "0064c782c999ec85cc0efe2a3d34bb10f38536f43a1df730db0bd5e4d11ffac5"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/figures/agenda_extension/figure_agenda_unanimity_existence.pdf",
+      "relative_to_repository": "figures/agenda_extension/figure_agenda_unanimity_existence.pdf",
+      "bytes": 5116,
+      "sha256": "f2d091da9e587da71f56ea7f7fd3c9a3aaac61c684357ac8641ee6c657f3a976"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/peio_2027_2026-09-19/retomada.md",
+      "relative_to_repository": "quality_reports/peio_2027_2026-09-19/retomada.md",
+      "bytes": 7490,
+      "sha256": "d24dce8e4fdaffd28079ffcac8cdefb7ef028413805a4b21340126d74a0d6ae3"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/peio_2027_2026-09-19/status.json",
+      "relative_to_repository": "quality_reports/peio_2027_2026-09-19/status.json",
+      "bytes": 695,
+      "sha256": "86a9a51930852404de13363c6f0ca87cf6bed0901f2f474f7e9c1b5e0a2dd3cf"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/peio_2027_2026-09-19/review_history/retomada_before_coalition_decision.md",
+      "relative_to_repository": "quality_reports/peio_2027_2026-09-19/review_history/retomada_before_coalition_decision.md",
+      "bytes": 6619,
+      "sha256": "1de34d0e3704846e0e196dd275bfa0ebf475783b4a9fbdecfb5634a03642959d"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/peio_2027_2026-09-19/review_history/status_before_coalition_decision.json",
+      "relative_to_repository": "quality_reports/peio_2027_2026-09-19/review_history/status_before_coalition_decision.json",
+      "bytes": 3796,
+      "sha256": "6d293aa36f7f2b4ed8f6a66170da78b9a75cca79f56a31dcb3e2153be2fbd147"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/README.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/README.md",
+      "bytes": 3711,
+      "sha256": "9d3b9b7376896e3496eb6bff61cc7e95f434a018e5e69b4ad6f4cab0f05c5a50"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/adjudication/complete_v1.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/adjudication/complete_v1.json",
+      "bytes": 7602,
+      "sha256": "9c1719377777bc3eb36b74a78ec3daa0d86eacbae35a7b792364028842c13548"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/adjudication/complete_v1.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/adjudication/complete_v1.md",
+      "bytes": 1839,
+      "sha256": "3d620958890ff59e863b48165ce239edddbf1dc5a8146133b9ddc8691e5b8c3c"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/adjudication/final_derivations_v2.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/adjudication/final_derivations_v2.json",
+      "bytes": 5145,
+      "sha256": "e05a3e5a62b2e4643fed5ab0019e9389ed772590d3c361019d4e5d315e298357"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/adjudication/final_derivations_v2.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/adjudication/final_derivations_v2.md",
+      "bytes": 2686,
+      "sha256": "0bbc15921dc4e2d8067e550b465f28e0ee51a96a450d438009e522c3dbfceb5b"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/adjudication/final_manuscript.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/adjudication/final_manuscript.json",
+      "bytes": 5191,
+      "sha256": "aa2928211166f914acc147d2c9f465d7f4008ac15eaa0fe9d0e3e413cbb849a4"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/adjudication/final_manuscript.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/adjudication/final_manuscript.md",
+      "bytes": 2696,
+      "sha256": "e74dc76f69fb153f5371a422569de59f56647eddaa24a423d9a6ed169dddc537"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/adjudication/preliminary_v1.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/adjudication/preliminary_v1.json",
+      "bytes": 4698,
+      "sha256": "4cc8ad8693e497e865eb6259653b20073d77e5f19649f79095b7212a0a3ed01f"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/adjudication/preliminary_v1.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/adjudication/preliminary_v1.md",
+      "bytes": 822,
+      "sha256": "3e986d5455f89a533ae2f88c690cc0ac9df2dd2f325965f7cbb185838041da3f"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/adjudication/visual_candidate.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/adjudication/visual_candidate.json",
+      "bytes": 3088,
+      "sha256": "82577c37c1a894ea9af40be999b8f5899c77cb366a7c3fc444ac4e16e815a820"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/adjudication/visual_candidate.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/adjudication/visual_candidate.md",
+      "bytes": 904,
+      "sha256": "68b59d8f607e532aed18d79982408a733dbccccf1b138419e3ac4bc4b67eee6d"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/argument_contract.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/argument_contract.json",
+      "bytes": 58265,
+      "sha256": "a49fc5f5d1737b7d8661506b6e384b709314a98798cacd33e4d981ffb5b07c36"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/argument_contract.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/argument_contract.md",
+      "bytes": 28532,
+      "sha256": "d7c115f22090c658835b49be4402097c021fd7c3bf4096764d6e38e404e7b806"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/independent_section_read.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/independent_section_read.md",
+      "bytes": 24090,
+      "sha256": "991663cef8090ce773865c7b81123f0a19be3a850eddd096155b14a7507c3b29"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/revalidation.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/revalidation.md",
+      "bytes": 7315,
+      "sha256": "a403e22793873b1080450c082fd45b66d8bf7697609e254132739350fd6d110c"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/section_map.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/section_map.md",
+      "bytes": 7863,
+      "sha256": "5458010e7ceb80d5f8eb62969c21c044f994e4b9acc8199dabac800470c47f7a"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/argument_contract.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/argument_contract.json",
+      "bytes": 66547,
+      "sha256": "7db1a7a72dd12178e7f5b63ce45c94ae08576e0a6a22daa8dbbbd13aab25d4ca"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/argument_contract.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/argument_contract.md",
+      "bytes": 29060,
+      "sha256": "5878300a1ae37e2ade8799854df36ddad6db16ff4d41f3f7d231d311f3cb4dad"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/independent_section_read.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/independent_section_read.md",
+      "bytes": 13584,
+      "sha256": "422a034afd04b33e40442ce1ebec26fc489863d46bf4ec53a5356608fe27b8b1"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/revalidation.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/revalidation.md",
+      "bytes": 4066,
+      "sha256": "ddedc18c6c894d014f91f27a1c6208b1cd9cd1e0c8ee90c1bab0b3200acf9b22"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/section_map.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/section_map.md",
+      "bytes": 3740,
+      "sha256": "2c30b1564ae824ba667c0eda6f1cdd0bc6ae5351601b65e4f1f6130049a54913"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/snapshots/15813af5/argument_contract.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/snapshots/15813af5/argument_contract.json",
+      "bytes": 65584,
+      "sha256": "15813af5fe6efbd53a840bebe7c072a5f6ec3b2738786743f2a4ee831ca92e2c"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/snapshots/15813af5/argument_contract.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/snapshots/15813af5/argument_contract.md",
+      "bytes": 28751,
+      "sha256": "c59fb5e4fbf2f5916f35094e380897b60fbac9a29edb75ea375499fd4750c384"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/snapshots/15813af5/revalidation.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/snapshots/15813af5/revalidation.md",
+      "bytes": 3467,
+      "sha256": "adc1bea272122feaeb84ba2880b119f368520f96fffa761a72040bb44fbdaa5e"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/snapshots/15813af5/section_map.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/snapshots/15813af5/section_map.md",
+      "bytes": 3740,
+      "sha256": "2c30b1564ae824ba667c0eda6f1cdd0bc6ae5351601b65e4f1f6130049a54913"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/manuscript_candidate/argument_contract.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/manuscript_candidate/argument_contract.json",
+      "bytes": 135772,
+      "sha256": "a1a39f8548cfdbe285a9bd5be7cee7f28d92156e8a411b91a74bd65099d3cebc"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/manuscript_candidate/argument_contract.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/manuscript_candidate/argument_contract.md",
+      "bytes": 45912,
+      "sha256": "1534a7145dffc004895eae91a91a30b7bbae79286f1ad173d74b89dfefcd74c8"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/manuscript_candidate/independent_section_read.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/manuscript_candidate/independent_section_read.md",
+      "bytes": 20041,
+      "sha256": "1ad0a2b224f4d6bd21c5c40a8479ffdc2b75bb73f2d7a305968feef5240b8563"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/manuscript_candidate/revalidation.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/manuscript_candidate/revalidation.md",
+      "bytes": 5010,
+      "sha256": "8a9a42e13b38a3aba45070eebdc7aff29dc06106a1561de841f91a0d90fef436"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/manuscript_candidate/section_map.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/manuscript_candidate/section_map.md",
+      "bytes": 15625,
+      "sha256": "e1d32dfc098bdcb3cb9d260dbfbd50b56b1d35a590180b94211f18af0d211983"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/original/argument_contract.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/original/argument_contract.json",
+      "bytes": 107093,
+      "sha256": "ae46ab5718d1ccff6f3289ab44fc6ba37c4ccb5904656808caa16d8a5a2899fe"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/original/argument_contract.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/original/argument_contract.md",
+      "bytes": 54328,
+      "sha256": "7bcd434c412e6acdd006c059a404b2ce5d09094548ec658dc28b05546291dae5"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/original/section_map.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/argument_contract/original/section_map.md",
+      "bytes": 26602,
+      "sha256": "57bf30f56dc762992cfd346fe32bb71da12320ec8761265265e322da0fcd20c3"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/author_decision.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/author_decision.md",
+      "bytes": 4576,
+      "sha256": "7abfa53814ff23c61a9af2049c975be81e44f8e66270c4fa3f99accd51923726"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/agenda_same_allocation_distinct_coalitions.csv",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/agenda_same_allocation_distinct_coalitions.csv",
+      "bytes": 90,
+      "sha256": "ff4b430314110375ba8c08b95d25cd8da821ce02e5d846060435493a6fbe87e1"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/bibliography_preflight.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/bibliography_preflight.md",
+      "bytes": 9113,
+      "sha256": "39c092a8f3f692defd8e192a34396653b32da380f2b69b16e37504f78cbf8dd0"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/figure_checks.csv",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/figure_checks.csv",
+      "bytes": 649,
+      "sha256": "488619bf4dd7313ca74c2148a300a3b2baf3d61294005aa879106d60d4b507dc"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/figure_checks.txt",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/figure_checks.txt",
+      "bytes": 221,
+      "sha256": "04ee91bbb6214945e8710e22d268c38c4a6ab04c9f55c438437f0295a0623137"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/final_build.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/final_build.json",
+      "bytes": 937,
+      "sha256": "fee03278708239663fe162e4b15ff3c694e29013a0a778f8e8f5bd9f25db7dc8"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/final_build.log",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/final_build.log",
+      "bytes": 1204,
+      "sha256": "9df890af4589a283a9170020aec977402a024a00c52795431ec02a3c04e09876"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/final_pdf_equivalence.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/final_pdf_equivalence.json",
+      "bytes": 21434,
+      "sha256": "bbc3372f01366b14a2675648a61804c793442fe05bd9314fbd255468deb3f1bd"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/final_quartz_equivalence.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/final_quartz_equivalence.json",
+      "bytes": 855,
+      "sha256": "517fa3d9ee2fffacfda71a8073e9d6d7f800bf0903b541ecea5ad8b11c55813c"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/final_source_integrity.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/final_source_integrity.json",
+      "bytes": 1698,
+      "sha256": "049d280408ec6245c06615b5395768a601b04eb4ff3f09f860d5128fe8434494"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/integration_manifest.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/integration_manifest.json",
+      "bytes": 2631,
+      "sha256": "becbd3d6ad46e7d1874d922d5f1a69a7342b4a7d1b53d14ec84dc1d84ed535b3"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/isolated_build.log",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/isolated_build.log",
+      "bytes": 1204,
+      "sha256": "53d64c5e9f37be0e95ebb3fdcdc451093106124254692ee65eb8ee9504a02905"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/numerical_checks.csv",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/numerical_checks.csv",
+      "bytes": 657,
+      "sha256": "9c7ab0d0ab39241642ffbdc9258ad9862ba35cf60aa20c30dafc882d3e0025e1"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/numerical_checks.txt",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/numerical_checks.txt",
+      "bytes": 155,
+      "sha256": "06312265e1ae260bbf566e728084bcb337f5c9deba55a0b5c474db906e2a0486"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/preview_integrity.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/preview_integrity.json",
+      "bytes": 1843,
+      "sha256": "982fd3342b3eaedd844578cf4aa4cb711015a72e0a472dc80a3410b77e8ba435"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/protected_files.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/protected_files.json",
+      "bytes": 1560,
+      "sha256": "73bd30defd7802066cbd59f3897ff5b3f1f87d3ac560024312ea8e52221687b9"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/r1_direct_proposal_grid.csv",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/r1_direct_proposal_grid.csv",
+      "bytes": 11178,
+      "sha256": "6d6bb7f416ab15e58ad7efef35ec3831ae96c62d933cdf81fa42dd5a0cde9a33"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/reviewed_dependency_closure.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/reviewed_dependency_closure.json",
+      "bytes": 3957,
+      "sha256": "6ec8365d1aaa1fcf19d2ff4c465fe832f78ccdecf038474290bac330c0f105c8"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/visual_candidate.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/visual_candidate.json",
+      "bytes": 40585,
+      "sha256": "90ada6357fc21bf0c1b66dd2c7d7f47b1bf9845439c57958650819a95bf71856"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/visual_candidate.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/visual_candidate.md",
+      "bytes": 12960,
+      "sha256": "e3547fb28607e5235a2c94560fa3c3cf4bdb2e908d2a8a04026ebe824b7769ca"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/visual_evidence/poppler-24-third-label.png",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/visual_evidence/poppler-24-third-label.png",
+      "bytes": 15677,
+      "sha256": "bd878f3ae3323b68a6bc6c216c5c6f638a4fa292cd6e906edf5d260b64bc83c8"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/visual_evidence/poppler-24.png",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/visual_evidence/poppler-24.png",
+      "bytes": 273188,
+      "sha256": "7523eba082f40b93469d70088ab0d0426c57446056d3b2c95a9ad1b0bbb90426"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/visual_evidence/quartz-24.png",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/visual_evidence/quartz-24.png",
+      "bytes": 334243,
+      "sha256": "500cc5905ea118f3026fe953f753a275a59c72663e8dae4eddcc572b62b5c7eb"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/checks/visual_evidence/render_quartz_page.swift",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/checks/visual_evidence/render_quartz_page.swift",
+      "bytes": 1707,
+      "sha256": "a2e0efdc6e516d2e5b436f3ac6b505f215d2cc39e0f9f146b2e307613a191f58"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/delivery_report.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/delivery_report.md",
+      "bytes": 13556,
+      "sha256": "4384d8633cf0b867e762a9183c2f3c3ac9f7f95cb47be005a7d95483763984e3"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/agenda_checks.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_checks.json",
+      "bytes": 77450,
+      "sha256": "7e0a20ac6790a1f949e760c9fbf00d7d70b7290d266f9342dc794efa70e2a75e"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/agenda_checks.py",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_checks.py",
+      "bytes": 5436,
+      "sha256": "9874ca255487e2245f8d44d3915e82cd6974331a7cd7a05278a7608e5de47445"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/agenda_composition_scope.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_composition_scope.md",
+      "bytes": 3521,
+      "sha256": "ecc5aac68da6d651c5df0b60ac2f9691814a84270d9ac9bbcdbdf308a5777556"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/agenda_manuscript_patch.py",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_manuscript_patch.py",
+      "bytes": 28237,
+      "sha256": "bfe82e8931dd1314824445cf1bf6c01d3d21302a1b969c19d65db45d1ae3a6f1"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/agenda_manuscript_preview.Rmd",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_manuscript_preview.Rmd",
+      "bytes": 148778,
+      "sha256": "671f139d96ca333e9ecfb45e188205f76d2497c6f5ce6ab552ac49c5d56f84f8"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/agenda_manuscript_preview.diff",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_manuscript_preview.diff",
+      "bytes": 33987,
+      "sha256": "bf479791c783027dedaff5a77574723d71c7e68b43810d848dbd6f8b8546d79c"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/agenda_transport.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_transport.md",
+      "bytes": 40931,
+      "sha256": "3b98454cb275f34a89c6f5a10037eaa34e30e4fbf81e4fb4f01a65e2f8ba9f6f"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/baseline_manuscript_patch.py",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/baseline_manuscript_patch.py",
+      "bytes": 17508,
+      "sha256": "1dcbed5fef54e4b49d05d5ac3821b0214c1b3a629425083bccfb85361c9c9e93"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/build_manuscript_candidate.py",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/build_manuscript_candidate.py",
+      "bytes": 2877,
+      "sha256": "2c5d06d72a87d4716e6c72c0bf4b593ad14551ef8dad94ca6e766f2aa138dfc9"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/combined_manuscript_preview.Rmd",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/combined_manuscript_preview.Rmd",
+      "bytes": 154209,
+      "sha256": "9356d86a2e893481968ee96a918c2109e726444c5d902ce88edd6f1a5d86345f"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/combined_manuscript_preview.diff",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/combined_manuscript_preview.diff",
+      "bytes": 73238,
+      "sha256": "1af978d20e7b91eb9516c2c5aef03389cfcbf540ed48bbf8156472a1ce4d39a1"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/combined_references_preview.bib",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/combined_references_preview.bib",
+      "bytes": 12080,
+      "sha256": "658af186c73c1291da02a9fd4e3482fc953549ed46036ae24303b45f61309447"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/composition_manifest.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/composition_manifest.json",
+      "bytes": 1196,
+      "sha256": "106c04dc0a4070f4b71fa4dbf1fedd67191deec48a498a7d0ba9564ed7f981f8"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/derivation_bundle_v1.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/derivation_bundle_v1.md",
+      "bytes": 65372,
+      "sha256": "b62a7c8e023568bf408c1b8929b5909b4e7af21c3271c95955970237801b799f"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/derivation_bundle_v2.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/derivation_bundle_v2.md",
+      "bytes": 74507,
+      "sha256": "3b8043d49de9011a60c1e7e079b4fbf876f35239d100dad82a0072b53a19b4e2"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/evdokimov_entry.bib",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/evdokimov_entry.bib",
+      "bytes": 287,
+      "sha256": "d2fe0f91396a26c955af16414e01e25e0d5b4c59815ce472fadadcedfde80ab2"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/framing_manuscript_patch.py",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/framing_manuscript_patch.py",
+      "bytes": 3483,
+      "sha256": "0bc6e75d279aa698debe23d37cc5af23f2416d50bc84b97b7e3d475913d7f13e"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/game_contract.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/game_contract.md",
+      "bytes": 6546,
+      "sha256": "ac78634ea0da03b422a6d92930680d1bb1f94deee0d3c33b68dc9d9791a7d058"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/game_dag.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/game_dag.json",
+      "bytes": 4176,
+      "sha256": "bea2bf9a484ea3dd807d45c0347b800cbe838e3594e2c556d495017ba58bf6e2"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/proof_repairs_manuscript_patch.py",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/proof_repairs_manuscript_patch.py",
+      "bytes": 6160,
+      "sha256": "613fd0d02a438718b1bb6ebd4b56a8be5a3b6871608007e00f10844d0a6776d3"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/r1_interface.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/r1_interface.md",
+      "bytes": 12628,
+      "sha256": "a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/r2_interface.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/r2_interface.md",
+      "bytes": 4272,
+      "sha256": "c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/agenda_transport.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/v2/agenda_transport.md",
+      "bytes": 42994,
+      "sha256": "223d70575f64ca60b8807ab6e0bff5fec8819328a8a4d91fc10f22825f3f6c04"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/f003_scope.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/v2/f003_scope.json",
+      "bytes": 2713,
+      "sha256": "b5512fba648ec92e835251f7ac23cce57407b251533856e8979ad463d0b6a1db"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/game_contract.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/v2/game_contract.md",
+      "bytes": 6546,
+      "sha256": "ac78634ea0da03b422a6d92930680d1bb1f94deee0d3c33b68dc9d9791a7d058"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/game_dag.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/v2/game_dag.json",
+      "bytes": 5491,
+      "sha256": "37f4e92e094468bc33ef83de80fe145a98b3de7c437cdd3791c5ddfe935ad3a6"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/r1_interface.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/v2/r1_interface.md",
+      "bytes": 12628,
+      "sha256": "a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/r2_interface.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/v2/r2_interface.md",
+      "bytes": 4272,
+      "sha256": "c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/repaired_algebra_checks.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/v2/repaired_algebra_checks.json",
+      "bytes": 491792,
+      "sha256": "427c7b001a0a8483e914b681eaad004f31954b4b4d3755d125862ee371a1d688"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/repaired_algebra_checks.py",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/v2/repaired_algebra_checks.py",
+      "bytes": 3174,
+      "sha256": "ffb8a213b34258fe9a000f932240e392f3334339150938a886fd1a9698940ac1"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/unanimity_support_lemma.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/derivations/v2/unanimity_support_lemma.md",
+      "bytes": 6741,
+      "sha256": "1491acd877ae5d3ca4eda2c6c9cacd10bffe9221fe52964f11cd7d962d5068ef"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/diagnosis.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/diagnosis.md",
+      "bytes": 3244,
+      "sha256": "2376b7cc86be7a7fe63cb90cef1732ccd37fab571f7850d18a423c920f1f97e4"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/peio_fields.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/peio_fields.md",
+      "bytes": 1842,
+      "sha256": "8362a9ff8c21a44b9ebbd9fea9ceeb9e62c4157497edccd32c24f023f871b663"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/preflight/AGENTS.original.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/preflight/AGENTS.original.md",
+      "bytes": 12642,
+      "sha256": "122a3a53047f9c8c3305a6d768c20687a5833287bf001420661f7fb7564f0098"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/preflight/CLAUDE.original.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/preflight/CLAUDE.original.md",
+      "bytes": 48958,
+      "sha256": "75a6c15a527e99440209993b24ddf0dbcaaeaf9965004b7d0a7c43926a32406a"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/preflight/manifest.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/preflight/manifest.json",
+      "bytes": 1519,
+      "sha256": "9612917dda8d71b738e2088f4ec444ff47b230c1af62eaf2c07f1cd96411bbb6"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/preflight/worktrees.txt",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/preflight/worktrees.txt",
+      "bytes": 5474,
+      "sha256": "275f5c038d64f9c1fbdeffcac9c5fad9dee96031a5985535582b4d48e5ca766a"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_checks_v1.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_checks_v1.json",
+      "bytes": 665941,
+      "sha256": "e1d09402d87ef33651f0e58e7b56736988cd3198c0bce1492b4bf2a12e9b53e8"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_checks_v1.py",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_checks_v1.py",
+      "bytes": 12658,
+      "sha256": "549f753908d1932a642a6accb502577132bf4399498bc256dde4c48392a2455a"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v1.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v1.json",
+      "bytes": 18098,
+      "sha256": "c5e68073782a317b2c6dc6c0bd5a7733ccf2820bc409fb9d366966ac5b8843d2"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v1.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v1.md",
+      "bytes": 28129,
+      "sha256": "2d22af75467ef444632a5c6c731a7b9c82e653573474a9ba8cf32fc0dceae9a8"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v2_and_manuscript.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v2_and_manuscript.json",
+      "bytes": 30954,
+      "sha256": "763077c5d45288a2293ea0347749ba28b325b2170264ddfeda65091879287d67"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v2_and_manuscript.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v2_and_manuscript.md",
+      "bytes": 23614,
+      "sha256": "5ac0259990fbd413f60a07db6aa779c08f75ea2fc656afb922401b93efd4f003"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_manuscript_checks.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_manuscript_checks.json",
+      "bytes": 6716,
+      "sha256": "61f4b588461f63642c82c4909551c3f5b6df0a8e6e3511bdd670cfc21da367c9"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_manuscript_checks.py",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_manuscript_checks.py",
+      "bytes": 6017,
+      "sha256": "c2dcbf373edfe083a40557ca0a07d8829e3826f94c19a081a4de2d1a4c58d556"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_v2_checks.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_v2_checks.json",
+      "bytes": 40409,
+      "sha256": "a917b6614327f87161f242d19d482e8deede5e60d9fbf1a341e35b41d7847c21"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_v2_checks.py",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_v2_checks.py",
+      "bytes": 6998,
+      "sha256": "7508a8d3a7ecaad8ec321517634d32bb5ae92086cf83153adcb34a6e3a940883"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/cold_r2_check.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/cold_r2_check.json",
+      "bytes": 1327,
+      "sha256": "430e37999b6eac60d30c6eeb19eb6a3ca4368f7075bfe96a2fe362007df9b818"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/cold_r2_check.py",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/cold_r2_check.py",
+      "bytes": 3603,
+      "sha256": "06034f8a6ca8ca3bbb7b7ac2d95c37e0e7029a8e8a82e1ad8141e29255e42354"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/cold_r2_from_primitives.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/cold_r2_from_primitives.md",
+      "bytes": 21620,
+      "sha256": "57b83c8d83fad84f6f5ce41a6e34d75c60ede19b3e09c71d307bd7d70764896c"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/derivation_candidate_v1.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/derivation_candidate_v1.json",
+      "bytes": 1039,
+      "sha256": "8dfefecda3b9e369159bbfeb4276f5f6d7c2402e3e897320774b39be12d1feca"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/derivation_candidate_v2.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/derivation_candidate_v2.json",
+      "bytes": 1879,
+      "sha256": "8f6603ff00050b6870995d4d893eeeb2bdffe13e0a90304b19b3574de8b7e9f1"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/formal_checks_v1.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/formal_checks_v1.json",
+      "bytes": 9255,
+      "sha256": "77504c6fc206ff4ca08ce5cb8863e3c7453bca013d11c4ea48b326c760fc1208"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/formal_checks_v1.py",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/formal_checks_v1.py",
+      "bytes": 6883,
+      "sha256": "bc3bc6e73a550a98dd54e1204dd88e45612497b5429fe2ea212637627c8e2d93"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/formal_derivations_v1.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/formal_derivations_v1.json",
+      "bytes": 71973,
+      "sha256": "d9af586c44054823239313885bf2ae26d98548bee5fa967b491c3cf2115bce02"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/formal_derivations_v1.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/formal_derivations_v1.md",
+      "bytes": 33154,
+      "sha256": "0372743e4bd512feb670fb76b26057736ee986903158760616676352dbd55b8c"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/formal_derivations_v2.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/formal_derivations_v2.json",
+      "bytes": 59875,
+      "sha256": "0e44c9a4e5fd9c5fb0293b089e080aa55c7f289182d83222b2cf29959342806d"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/formal_derivations_v2.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/formal_derivations_v2.md",
+      "bytes": 24157,
+      "sha256": "2fbd16ed0224fd9516818cf597576733932938f163bd1be1af258680c13ce646"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/preliminary_formal_findings_v1.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/reviews/preliminary_formal_findings_v1.md",
+      "bytes": 1449,
+      "sha256": "552ca2e0834a54e8181bb4ee12600a11d5a0465b2113f28d939b8cf4e8d3de70"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/snapshots/inspected_candidate.pdf",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/snapshots/inspected_candidate.pdf",
+      "bytes": 426568,
+      "sha256": "a65cea77402d1e73a402ae49bbb4a6839298816f14703a2693309534bc5a61e5"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/snapshots/original/formal_model_v6.Rmd",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/snapshots/original/formal_model_v6.Rmd",
+      "bytes": 140768,
+      "sha256": "6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/snapshots/original/references.bib",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/snapshots/original/references.bib",
+      "bytes": 11792,
+      "sha256": "71f1413b45b44a4c55a9d0ffb4fb2e1218cfac7ced547829bd0e3eae6200f755"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/source_reads/framing_original.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/source_reads/framing_original.md",
+      "bytes": 35381,
+      "sha256": "9873cb825396a17a3d1073b209a4a3feeba881f5abdaf804b0fc295b4d8656a3"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/source_reads/migration_inventory.md",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/source_reads/migration_inventory.md",
+      "bytes": 29458,
+      "sha256": "5eb7d7d5872e4eeaad576ba8dd14de5f4917b1b8b4c47dc0bb4c20ec53cb6e7b"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/status.json",
+      "relative_to_repository": "quality_reports/coalition_protocol_2026-09-19/status.json",
+      "bytes": 2618,
+      "sha256": "f4ed2bf6e1782ad2101b226dc8026d254737f5959162ed5e3948eb130d2988f5"
+    }
+  ],
+  "external_actions_authorized": false,
+  "external_actions_performed": [],
+  "no_commit_tag_push_or_submission": true
+}

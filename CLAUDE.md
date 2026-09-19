@@ -1,3 +1,38 @@
+# Instruções correntes: decisão autoral de 19 de setembro de 2026
+
+A autoridade corrente é `AGENTS.md`, lido com
+`quality_reports/coalition_protocol_2026-09-19/author_decision.md`.
+O autor adotou o protocolo de coalizão explícita `(C,x)`: proponente em C,
+quota institucional sobre o tamanho de C, alocações não negativas de soma no
+máximo um e zero fora de C, consentimento simultâneo de todos os convidados,
+e implementação automática do pacote aprovado. Não existe execução individual
+posterior por H. H excluído recebe a opção externa quando o acordo dos demais
+passa; H convidado que recusa faz o pacote inteiro fracassar. Uma recusa em R1
+leva à continuação e uma recusa em R2 ao desacordo terminal.
+
+Permanecem pie fixa, opção externa fora da pie, um único informado, fracos
+simétricos, reconhecimento uniforme dos fracos no baseline, duas rodadas e as
+regras aprovadas de crenças e desempates. A agenda tem H como proponente e deve
+observar C como parte do sinal. Unanimidade força C=N; maioria permite H fora.
+Os registros correntes da derivação, do candidato e das revisões estão em
+`quality_reports/coalition_protocol_2026-09-19/`. Seu estado deve ser verificado
+pelos hashes e pareceres próprios; nenhum PASS abaixo certifica o novo jogo.
+
+O pedido de preparação para PEIO já autoriza derivação, implementação,
+revisão independente, integração e preparação dos materiais. Submissão,
+publicação, push, tag e comunicação externa não foram autorizados.
+
+## Registro histórico preservado
+
+Todo o conteúdo a seguir documenta decisões e estados anteriores. Títulos
+como “arquitetura corrente”, regras históricas de cancelamento, votação
+universal e afirmações de pendência/autorização são lidos em suas respectivas
+datas e não substituem a decisão acima. Comandos e orientações operacionais
+compatíveis continuam úteis. Os bytes anteriores deste arquivo estão no
+checkpoint do preflight e em `preflight/CLAUDE.original.md` do pacote de 19/9.
+
+---
+
 # Informational Power Through Pivotality
 
 ## Projeto

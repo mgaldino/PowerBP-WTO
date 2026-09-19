@@ -1,0 +1,346 @@
+{
+  "schema_version": "1.0",
+  "candidate": "coalition-derivations-v1",
+  "review_type": "independent_adversarial_full",
+  "reviewer": "/root/provenance_inventory",
+  "date": "2026-09-19",
+  "verdict": "PASS",
+  "interpretation": "PASS applies to the exact candidate together with the reconciled argument contract, including QI-01 and QI-05.",
+  "head": "c6dfab61a5a3b44d09ba389911df47726f81b51e",
+  "manifest": {
+    "path": "quality_reports/coalition_protocol_2026-09-19/reviews/derivation_candidate_v1.json",
+    "sha256": "8dfefecda3b9e369159bbfeb4276f5f6d7c2402e3e897320774b39be12d1feca",
+    "all_seven_files_match": true
+  },
+  "bundle": {
+    "path": "quality_reports/coalition_protocol_2026-09-19/derivations/derivation_bundle_v1.md",
+    "sha256": "b62a7c8e023568bf408c1b8929b5909b4e7af21c3271c95955970237801b799f"
+  },
+  "argument_contract": {
+    "path": "quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v1/argument_contract.json",
+    "sha256": "a49fc5f5d1737b7d8661506b6e384b709314a98798cacd33e4d981ffb5b07c36",
+    "contract_id": "coalition-derivations-v1:b62a7c8e0235:round1",
+    "gate": "PASS"
+  },
+  "candidate_sources": [
+    {
+      "path": "quality_reports/coalition_protocol_2026-09-19/author_decision.md",
+      "sha256": "7abfa53814ff23c61a9af2049c975be81e44f8e66270c4fa3f99accd51923726",
+      "manifest_match": true
+    },
+    {
+      "path": "quality_reports/coalition_protocol_2026-09-19/derivations/game_contract.md",
+      "sha256": "ac78634ea0da03b422a6d92930680d1bb1f94deee0d3c33b68dc9d9791a7d058",
+      "manifest_match": true
+    },
+    {
+      "path": "quality_reports/coalition_protocol_2026-09-19/derivations/r2_interface.md",
+      "sha256": "c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7",
+      "manifest_match": true
+    },
+    {
+      "path": "quality_reports/coalition_protocol_2026-09-19/derivations/r1_interface.md",
+      "sha256": "a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0",
+      "manifest_match": true
+    },
+    {
+      "path": "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_transport.md",
+      "sha256": "3b98454cb275f34a89c6f5a10037eaa34e30e4fbf81e4fb4f01a65e2f8ba9f6f",
+      "manifest_match": true
+    },
+    {
+      "path": "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_checks.py",
+      "sha256": "9874ca255487e2245f8d44d3915e82cd6974331a7cd7a05278a7608e5de47445",
+      "manifest_match": true
+    },
+    {
+      "path": "quality_reports/coalition_protocol_2026-09-19/derivations/agenda_checks.json",
+      "sha256": "7e0a20ac6790a1f949e760c9fbf00d7d70b7290d266f9342dc794efa70e2a75e",
+      "manifest_match": true
+    }
+  ],
+  "historical_source": {
+    "path": "formal_model_v6.Rmd",
+    "sha256": "6708eaafca2f7e8707c224b2da51684ff28e5fea5a43ac1490cbce6a0aa08411",
+    "read_and_validated": [
+      {
+        "section": "B.4",
+        "lines": [
+          1532,
+          1608
+        ]
+      },
+      {
+        "section": "B.8",
+        "lines": [
+          1831,
+          1964
+        ]
+      },
+      {
+        "section": "E.3",
+        "lines": [
+          2362,
+          2567
+        ]
+      },
+      {
+        "section": "E.9-E.14",
+        "lines": [
+          2726,
+          2955
+        ]
+      },
+      {
+        "section": "F.2-F.3",
+        "lines": [
+          3040,
+          3104
+        ]
+      }
+    ]
+  },
+  "consumer_sources": [
+    {
+      "path": "scripts/essential_input_formulas.R",
+      "sha256": "91014a9691b7d6ce52a776d8ff7b323cf68f284be24cb354295393da173594ad",
+      "scope": "Relevant formula/data-generation blocks and provenance pins inspected; no generator execution or visual QA."
+    },
+    {
+      "path": "scripts/essential_input_manuscript_figure_functions.R",
+      "sha256": "54849bd55cd04d256458724920b6bd7ba72b2ac437939e05050a863e9a54774d",
+      "scope": "Relevant formula/data-generation blocks and provenance pins inspected; no generator execution or visual QA."
+    },
+    {
+      "path": "scripts/generate_essential_input_manuscript_figures.R",
+      "sha256": "5fbfdb82f5588d74f1a0bb647ea8fea367475acb5f22612e49a273ddc6e9efed",
+      "scope": "Relevant formula/data-generation blocks and provenance pins inspected; no generator execution or visual QA."
+    },
+    {
+      "path": "scripts/generate_agenda_extension_figures.R",
+      "sha256": "97f18ecf1f786aee5481011620d200d0495f7f8243a0f222eca8ae53ed8a5a09",
+      "scope": "Relevant formula/data-generation blocks and provenance pins inspected; no generator execution or visual QA."
+    }
+  ],
+  "claim_count": 17,
+  "claims": [
+    {
+      "claim_id": "C02",
+      "claim": "Mantêm-se H único informado, m≥3 fracos simétricos, dois tipos 0<ℓ<h<1, p∈[0,1], β∈(0,1), pie fixa em 1 e opção externa privada fora da pie, independente de acordos dos fracos.",
+      "locator": "B:14–43",
+      "status": "PASS",
+      "review_basis": "Primitives checked against the author decision; no additional productivity, information or outside-option assumption."
+    },
+    {
+      "claim_id": "N01",
+      "claim": "O proponente escolhe (C,x), pertence a C, a coalizão alcança q_M=k+1 ou q_U=m+1 e x_j=0 fora de C. Todos os convidados devem consentir; qualquer recusa faz o pacote inteiro fracassar. Na aprovação H membro recebe x_H; H excluído recebe o. A ausência de acúmulo vale em todas as histórias factíveis, incluindo desvios.",
+      "locator": "B:14–43,73–84",
+      "status": "PASS",
+      "review_basis": "Exhaustive feasible-history split closes nonaccumulation for proposal and vote deviations."
+    },
+    {
+      "claim_id": "N02",
+      "claim": "O baseline mantém PBE com votos puros, fracos as-if-pivotal, T^Y e desempate do proponente; as ações desinformadas (C,x) e votos fracos não atualizam crenças. Se H não é convidado não vota. Com H convidado, Bayes e valores livres locais dependem de seu voto e respeitam o suporte original.",
+      "locator": "B:45–71,86–110,203–216,320–381",
+      "status": "PASS",
+      "review_basis": "Baseline belief/support discipline, pure ballots, pivotal comparison and tie breaks checked throughout."
+    },
+    {
+      "claim_id": "C06",
+      "claim": "R2 tem unidades nativas sem β: maioria admite toda coalizão vencedora só de fracos que contém i, com x=e_i, dando H=(ℓ,h) e cada fraco 1/m antes do reconhecimento. Em unanimidade C=N; oferta ℓ para μ≤p* e h para μ>p*, p*=(h−ℓ)/(1−ℓ); empate seleciona ℓ.",
+      "locator": "B:123–189",
+      "status": "PASS",
+      "review_basis": "Reconstructed from primitives before reading the candidate; multiplicity and endpoints verified."
+    },
+    {
+      "claim_id": "C07",
+      "claim": "Em R1_M, fracos convidados aceitam iff x_j≥β/m; H convidado usa x_H≥βo quando todos os fracos aceitam, e Y se um veto fraco prescrito torna ambos os votos equivalentes. Propostas ótimas reduzem-se a E/S/P, com os mesmos valores, cutoffs e desempates econômicos do baseline original.",
+      "locator": "B:203–281",
+      "status": "PASS",
+      "review_basis": "All-coalition analytical dominance reduction and exact finite asymmetric-offer checks; all cutoffs and residual ties."
+    },
+    {
+      "claim_id": "N03",
+      "claim": "A agenda consome representantes anônimos específicos de R1/R2: reconhecimento e parceiros uniformes, estados E/S/P/EP e mesmo peso λ nas misturas, com coalizões, votos efetivos e histórias terminais retidos. Seus valores c_χ e h_χ não esgotam o assessment.",
+      "locator": "B:283–318,468–500,811–815",
+      "status": "PASS",
+      "review_basis": "Complete uniform representatives, common lambda, Bayesian completion, Borel maps and equivariance checked."
+    },
+    {
+      "claim_id": "C08",
+      "claim": "Em R1_U, a correspondência mantém o endpoint baixo, vazio para 0<μ≤p*, e pooling acima de p*. Vetor nativo de H: (βℓ,βh) no endpoint baixo e (βh,βh) acima de p*. O texto fornece respostas completas e um argumento de inexistência por proposta desviada.",
+      "locator": "B:320–381",
+      "status": "PASS",
+      "review_basis": "All four H ballot profiles and the empty-cell witness checked; B.4 actually read and validated."
+    },
+    {
+      "claim_id": "C05",
+      "claim": "O benchmark público R1 permanece v_M(o)=βo se o≤1/m e o se o>1/m; v_U(o)=βo. Os vetores privados S/P/E e as diferenças econômicas do baseline preservam suas fórmulas, células vazias e segmentos vinculados.",
+      "locator": "B:383–399",
+      "status": "PASS",
+      "review_basis": "Public benchmark and linked private economic vectors rederived; no literal M equivalence inferred."
+    },
+    {
+      "claim_id": "N04",
+      "claim": "Em A, H propõe obrigatoriamente sinais públicos y=(C,x) em Y_g, união disjunta finita dos simplexes X_C. Bayes pointwise usa o par observado em todo suporte; um único μ_off vale fora. A continuação completa é selecionada por regra/estágio/posterior, com a disciplina interna própria do baseline.",
+      "locator": "B:423–500",
+      "status": "PASS",
+      "review_basis": "Full coalition-labelled signal space, local Bayes, endpoints and complete Markov continuation checked."
+    },
+    {
+      "claim_id": "N05",
+      "claim": "Com o representante declarado, convidado fraco aceita iff x_j≥r_χ(μ). A posterior fixado, melhor passagem paga r a k convidados. O piso w(1−w)≤r≤w implica V_M^A≥max{1−kw,β²o}; toda passagem usada em equilíbrio tem exatamente k convidados fracos quase certamente.",
+      "locator": "B:502–597",
+      "status": "PASS",
+      "review_basis": "Consent prices, safe bound, uniform floor and almost-sure minimal passage proved, with larger coalitions retained."
+    },
+    {
+      "claim_id": "C12",
+      "claim": "As fórmulas públicas da agenda, o cutoff o_M*, gap público e D_g mantêm-se sob a nova interface: v_U^A=1−β+β²o e v_M^A igual aos dois ramos históricos.",
+      "locator": "B:598–624",
+      "status": "PASS",
+      "review_basis": "Public agenda comparisons, inclusion/delay equality conventions and distinct public-gap/D formulas checked."
+    },
+    {
+      "claim_id": "N06",
+      "claim": "A-C6 caracteriza condições de payoff/existência das formas puras M no novo espaço; A-C7 caracteriza binders Borel por ausência de desvio no suporte, igualdade de payoff σ_o-quase certamente e proteção contra todo y fora do suporte. Há existência M para algum ρ em cada economia da interface.",
+      "locator": "B:626–705",
+      "status": "PASS",
+      "review_basis": "Pure table necessity/sufficiency and Borel no-deviation theorem checked; independent atomless witness validates quantifiers."
+    },
+    {
+      "claim_id": "N07",
+      "claim": "Dois exemplos impedem equivalência literal majoritária: o mesmo x pode separar tipos apenas por C e induzir passagem/recusa diferentes; um pacote histórico com pequena parcela a fraco dispensável pode não passar em qualquer C nova factível. Uma testemunha distinta reproduz a tabela de reversão na mesma fibra ρ=0.",
+      "locator": "B:707–763",
+      "status": "PASS",
+      "review_basis": "Both non-equivalence examples and same-rho reversal witness checked for all proposal deviations through exact bounds."
+    },
+    {
+      "claim_id": "N08",
+      "claim": "Adicionar/remover C=N é apresentado como isomorfismo do jogo unânime inteiro, baseline e A, preservando histórias, estratégias, payoffs, suporte e Bayes local. O transporte de resultados históricos U depende da correção daqueles resultados.",
+      "locator": "B:320–326,765–773",
+      "status": "PASS",
+      "review_basis": "Whole-tree U isomorphism verified and historical B.4/B.8/E.3 proofs independently validated."
+    },
+    {
+      "claim_id": "N09",
+      "claim": "Kernels e leis realizadas novos retêm (C,x), não convite ⊥ e histórias da continuação. Sig_ex é órbita diagonal do par de leis por tipo e Sum_econ quocienta registros por nomes; a construção e fatoração são refeitas no novo espaço.",
+      "locator": "B:775–847",
+      "status": "PASS",
+      "review_basis": "Borel kernels and measures, finite diagonal orbit invariant, transversal/factorization and off-path scope checked."
+    },
+    {
+      "claim_id": "C15",
+      "claim": "A região suficiente βh<e/m de vantagem majoritária para ambos os tipos e ex ante permanece, usando o novo limite inferior M e o limite superior U transportado, quando ambas as correspondências existem.",
+      "locator": "B:591–595,849–869",
+      "status": "PASS",
+      "review_basis": "New M safe bound and validated U upper bound imply stated sufficient region, conditional on source existence."
+    },
+    {
+      "claim_id": "C17",
+      "claim": "IR,D,I,T,Q mantêm suas definições e datas, com uma conversão β da R1 para A; T=D+I é identidade quando as fontes existem. As imagens majoritárias devem ser produzidas pela correspondência nova, e vazios continuam propagando-se.",
+      "locator": "B:849–869,871–901",
+      "status": "PASS",
+      "review_basis": "Accounting identities, dates, linked vectors, empty-source propagation and identified economic figure payloads checked."
+    }
+  ],
+  "finding_counts": {
+    "blocking": 0,
+    "major": 0,
+    "minor": 0,
+    "unresolved": 0
+  },
+  "findings": [],
+  "clarifications": [
+    {
+      "id": "QI-05",
+      "status": "Meaning in the reconciled contract is scientifically valid; expository precision is sufficient.",
+      "locator": "derivations/agenda_transport.md:300; bundle:705; historical E.3:2478-2482",
+      "actual_claim": "sigma_o(argmax u_o)=1",
+      "not_claimed": "topological_support(sigma_o) is contained in argmax u_o",
+      "counterexample_to_stronger_reading": "At p=0, m=4, beta=.9, ell=.1, h=.9, r0=.20475 and a0=.5905, a counterfactual high-type atomless law on (a0+eps,r0-eps,r0,0,0), 0<eps<r0/2, obtains rejection payoff .729 everywhere it draws. Its support contains the accepted boundary with payoff .5905.",
+      "sufficient_text": "Nos endpoints, cada sigma_o pode ser qualquer lei que atribua probabilidade um ao argmax de u_o em Y_M.",
+      "requires_new_primitive_or_payoff": false,
+      "finding_against_actual_claim": false
+    }
+  ],
+  "additional_analytic_checks": [
+    {
+      "id": "ATOMLESS-01",
+      "purpose": "Validate all-support inequality versus almost-sure equality without restricting to atomic signalling.",
+      "parameters": {
+        "m": 4,
+        "beta": "9/10",
+        "ell": "1/10",
+        "h": "1/5",
+        "posterior_cutoff": "9/46",
+        "length": "1/100",
+        "prior": "923/4600"
+      },
+      "construction": "C={H,1,2}; x(s)=(3/5,19/100+s,19/100,0,0); mixture law uniform for s in [0,1/100]; high density (9/46+s)/p and low density (1-9/46-s)/(1-p); mu_off=0.",
+      "conclusion": "All positive s pass at posterior above the S/P cutoff. The zero-mass support endpoint rejects and pays less than 3/5. Every deviation is bounded by 3/5, with off-support bound .5905."
+    },
+    {
+      "id": "U-SUPPORT-01",
+      "purpose": "Check X_H deviation even when it belongs to support.",
+      "conclusion": "After removing the unique possible zero-posterior atom X_L, local posterior limits are at least pstar and admissibility excludes equality. X_H therefore faces a high posterior on support too; mu_off>pstar makes it pass off support as well."
+    }
+  ],
+  "executed_checks": {
+    "script": "quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_checks_v1.py",
+    "script_sha256": "549f753908d1932a642a6accb502577132bf4399498bc256dde4c48392a2455a",
+    "output": "quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_checks_v1.json",
+    "output_sha256": "e1d09402d87ef33651f0e58e7b56736988cd3198c0bce1492b4bf2a12e9b53e8",
+    "command": "python3 quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_checks_v1.py",
+    "pass": 3620,
+    "fail": 0,
+    "majority_states": 147,
+    "majority_generated_proposals_total_across_parameter_cases": 19372,
+    "majority_proposal_state_comparisons": 148771,
+    "unanimity_ballot_states": 819,
+    "candidate_arithmetic_replay": {
+      "pass": 409,
+      "fail": 0,
+      "byte_identical": true,
+      "script_sha256": "9874ca255487e2245f8d44d3915e82cd6974331a7cd7a05278a7608e5de47445"
+    },
+    "figure_payload_inputs": {
+      "figures/agenda_extension/figure_agenda_public_gap_data.csv": {
+        "rows": 863,
+        "sha256": "152fb68ed8778ce07071fc0d7809d00ddad0c2be561d762832b58cdc267c945b"
+      },
+      "figures/agenda_extension/figure_agenda_unanimity_existence_data.csv": {
+        "rows": 5,
+        "sha256": "dd51052dea67a00dee03134e56ed7f92c1b7697256d2b5a6473c873bcc8eb07d"
+      },
+      "figures/essential_input/figure_f2_prices_coalitions_data.csv": {
+        "rows": 1608,
+        "sha256": "257ea937c54c83554c30b8c270928bc9a7553526345606cb01d7ce78f4f39048"
+      },
+      "figures/essential_input/figure_f3_power_information_data.csv": {
+        "rows": 14,
+        "sha256": "af1c5625b1682b793ed1f489c876ab0c6c299964b0af439778834f53c55a0b7a"
+      }
+    },
+    "proof_limit": "Finite controls supplement, and do not establish, the analytical continuous-action and Borel results."
+  },
+  "independence": {
+    "candidate_edited": false,
+    "other_scientific_review_read": false,
+    "cold_R2_preceded_candidate_read": true
+  },
+  "not_certified": [
+    "Integrated manuscript or submission readiness",
+    "Rendered figures or PDF visual quality",
+    "Lean/mechanically checked global proof",
+    "All possible history-dependent baseline selections",
+    "Sequential equilibrium or mixed ballot equilibria",
+    "Global majority equivalence to the historical game",
+    "Endpoint interpretation beyond QI-01",
+    "Publication, merge, tag or submission authorization"
+  ],
+  "report": {
+    "path": "quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v1.md",
+    "sha256": "2d22af75467ef444632a5c6c731a7b9c82e653573474a9ba8cf32fc0dceae9a8"
+  }
+}

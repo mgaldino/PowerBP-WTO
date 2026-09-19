@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "coalition-derivations-v2:3b8043d49de9:round2:final-adjudication",
+  "source": {
+    "reviewed_artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/derivation_bundle_v2.md",
+    "sha256": "3b8043d49de9011a60c1e7e079b4fbf876f35239d100dad82a0072b53a19b4e2",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": true,
+    "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/argument_contract/derivations_v2/argument_contract.json",
+    "sha256": "7db1a7a72dd12178e7f5b63ce45c94ae08576e0a6a22daa8dbbbd13aab25d4ca",
+    "contract_id": "coalition-derivations-v2:3b8043d49de9:round2",
+    "artifact_sha256": "3b8043d49de9011a60c1e7e079b4fbf876f35239d100dad82a0072b53a19b4e2",
+    "status": "PASS",
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "FORMAL",
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/formal_derivations_v2.md",
+      "sha256": "2fbd16ed0224fd9516818cf597576733932938f163bd1be1af258680c13ce646"
+    },
+    {
+      "review_id": "FORMAL-JSON",
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/formal_derivations_v2.json",
+      "sha256": "0e44c9a4e5fd9c5fb0293b089e080aa55c7f289182d83222b2cf29959342806d"
+    },
+    {
+      "review_id": "ADVERSARIAL",
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v2_and_manuscript.md",
+      "sha256": "5ac0259990fbd413f60a07db6aa779c08f75ea2fc656afb922401b93efd4f003"
+    },
+    {
+      "review_id": "ADVERSARIAL-JSON",
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v2_and_manuscript.json",
+      "sha256": "763077c5d45288a2293ea0347749ba28b325b2170264ddfeda65091879287d67"
+    }
+  ],
+  "findings": [],
+  "summary": {
+    "total": 0,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "NO_CONFIRMED_DEFECTS",
+    "checked_at": "2026-09-19T19:01:15.074390+00:00",
+    "reasons": [
+      "Both complete independent scientific reviews are PASS for the same source and the same final fidelity contract; 17 claims covered.",
+      "Root read both complete scientific reports and checked source hashes, repair evidence, scopes and limits. No new or open scientific finding remains.",
+      "Historical confirmed findings remain confirmed against v1; the repaired candidate closes them. The v1 FAIL and all frozen historical artifacts are preserved.",
+      "Review is bounded to mathematics and manuscript consistency; finite computations and visual validation have their own records. This adjudication does not certify external factual claims or authorize submission."
+    ]
+  },
+  "historical_repairs": [
+    {
+      "finding_id": "F-001",
+      "historical_classification": "CONFIRMED",
+      "current_disposition": "RESOLVED",
+      "repair": "Corrected the new agenda-note factorization, preserving its strict inequality and economic result. Both independent reviewers verified exact algebra and the 4,353 rational checks in 870 cases."
+    },
+    {
+      "finding_id": "F-002",
+      "historical_classification": "CONFIRMED",
+      "current_disposition": "RESOLVED",
+      "repair": "Added the local-Bayes unanimity support lemma, including zero-mass support points, and transported it to both uses in B.8. No added primitive, posterior restriction, or existence cell."
+    },
+    {
+      "finding_id": "F-003",
+      "historical_classification": "CONFIRMED",
+      "current_disposition": "RESOLVED",
+      "repair": "Stated probability-one concentration on the best-response set; retained pointwise no-profitable-deviation inequalities at zero-mass support points. No topological support restriction introduced."
+    }
+  ],
+  "documentary_closure": {
+    "observation": "The v2 contract retained a v1/four-note phrase in a scope field.",
+    "classification": "CONFIRMED",
+    "disposition": "RESOLVED",
+    "evidence": "The prior gate was archived under argument_contract/derivations_v2/snapshots/15813af5; the corrected gate covers all five v2 notes and was revalidated. Both final reviewers bind the corrected gate 7db1a7a7. No candidate content changed."
+  },
+  "scope": {
+    "claim_count": 17,
+    "integration_requirement": "Canonical Rmd and bibliography must be byte-identical to the reviewed preview, with an explicit migration record.",
+    "limitations": [
+      "Pure ballot strategies and the declared belief/continuation selection remain the maintained equilibrium class.",
+      "No mathematical proof was formalized or checked in Lean in this task.",
+      "External historical and novelty claims are not wholly revalidated by these reviews."
+    ]
+  }
+}

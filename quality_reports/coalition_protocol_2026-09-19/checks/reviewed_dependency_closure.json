@@ -1,0 +1,74 @@
+{
+  "status": "ALL_NODES_REVIEWED_PASS",
+  "reviewed_at": "2026-09-19T19:04:21.361361+00:00",
+  "derivation_dag": {
+    "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/game_dag.json",
+    "sha256": "37f4e92e094468bc33ef83de80fe145a98b3de7c437cdd3791c5ddfe935ad3a6"
+  },
+  "note": "This closure overlays, without rewriting, the frozen pre-review DAG. Its pending markers describe the historical freeze, not the current review status.",
+  "review_sources": [
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/formal_derivations_v2.md",
+      "sha256": "2fbd16ed0224fd9516818cf597576733932938f163bd1be1af258680c13ce646"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/reviews/adversarial_derivations_v2_and_manuscript.md",
+      "sha256": "5ac0259990fbd413f60a07db6aa779c08f75ea2fc656afb922401b93efd4f003"
+    },
+    {
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/adjudication/final_derivations_v2.json",
+      "sha256": "e05a3e5a62b2e4643fed5ab0019e9389ed772590d3c361019d4e5d315e298357"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "R2_M",
+      "artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/r2_interface.md",
+      "artifact_sha256": "c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7",
+      "independent_formal": "PASS",
+      "independent_adversarial": "PASS"
+    },
+    {
+      "id": "R2_U",
+      "artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/r2_interface.md",
+      "artifact_sha256": "c83cf10483bf42e750e131a0792eedde60ae0eed244822c84ea2a1be285dd8a7",
+      "independent_formal": "PASS",
+      "independent_adversarial": "PASS"
+    },
+    {
+      "id": "R1_M",
+      "artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/r1_interface.md",
+      "artifact_sha256": "a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0",
+      "independent_formal": "PASS",
+      "independent_adversarial": "PASS"
+    },
+    {
+      "id": "R1_U",
+      "artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/r1_interface.md",
+      "artifact_sha256": "a07a14a115de877411319568a2982e6b5e6e6a8d03c550ead82a6e7078b487e0",
+      "independent_formal": "PASS",
+      "independent_adversarial": "PASS"
+    },
+    {
+      "id": "U_support_lemma",
+      "artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/unanimity_support_lemma.md",
+      "artifact_sha256": "1491acd877ae5d3ca4eda2c6c9cacd10bffe9221fe52964f11cd7d962d5068ef",
+      "independent_formal": "PASS",
+      "independent_adversarial": "PASS"
+    },
+    {
+      "id": "A_M",
+      "artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/agenda_transport.md",
+      "artifact_sha256": "223d70575f64ca60b8807ab6e0bff5fec8819328a8a4d91fc10f22825f3f6c04",
+      "independent_formal": "PASS",
+      "independent_adversarial": "PASS"
+    },
+    {
+      "id": "A_U",
+      "artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/coalition_protocol_2026-09-19/derivations/v2/agenda_transport.md",
+      "artifact_sha256": "223d70575f64ca60b8807ab6e0bff5fec8819328a8a4d91fc10f22825f3f6c04",
+      "independent_formal": "PASS",
+      "independent_adversarial": "PASS"
+    }
+  ]
+}
