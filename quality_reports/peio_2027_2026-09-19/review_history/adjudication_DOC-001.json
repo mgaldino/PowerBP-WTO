@@ -1,0 +1,14 @@
+{
+  "finding_id": "DOC-001",
+  "status": "CONFIRMED",
+  "type": "exposition",
+  "severity": "minor",
+  "source": "independent provenance_inventory reviewer message",
+  "source_sha256": "480a4d8d566bb47e98db21c884d6672b244b86446692e74c945cf95d0fb6f7bf",
+  "source_snapshot": "quality_reports/peio_2027_2026-09-19/review_history/diagnostico_before_wording_fix.Rmd",
+  "quoted_finding": "com H não são pode ser lido como negação das duas possibilidades",
+  "evidence": "architecture_2026-09-08/architecture_note.Rmd:235-261 defines the receipt pairs (x_H,0) or (0,o). Diagnostic intends the same but adjacent nao/sao is syntactically ambiguous.",
+  "proposed_fix_assessment": "safe",
+  "disposition": "Replace with apos aprovacao em que H votou nao, os recebimentos sao, preserving the same conditional claim.",
+  "scope": "Local documentary wording only; not a new mathematical review."
+}

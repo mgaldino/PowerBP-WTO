@@ -1,0 +1,98 @@
+{
+  "checked_at": "2026-09-19T12:11:00.074669-03:00",
+  "checks": {
+    "initial_sources_unchanged": true,
+    "conditional_candidate_hashes_match": true,
+    "review_hashes_match_adjudication": true,
+    "validators_pass": true,
+    "reproduction_exits_successfully": true,
+    "all_reproduced_checks_pass": true,
+    "numerical_outputs_identical": true
+  },
+  "initial_mismatches": [],
+  "candidate_mismatches": [],
+  "candidate_artifact_count": 18,
+  "validators": [
+    {
+      "command": [
+        "python3",
+        "/Users/manoelgaldino/.codex/skills/argument-fidelity-gate/scripts/validate_contract.py",
+        "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/architecture_2026-09-08/argument_contract/argument_contract.json",
+        "--artifact",
+        "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/architecture_2026-09-08/architecture_note.Rmd"
+      ],
+      "cwd": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion",
+      "exit_code": 0,
+      "stdout": "VALID: /Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/architecture_2026-09-08/argument_contract/argument_contract.json\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/manoelgaldino/.codex/skills/adjudicate-review/scripts/validate_adjudication.py",
+        "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/architecture_2026-09-08/adjudication/adjudication_round1.json",
+        "--artifact",
+        "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/architecture_2026-09-08/architecture_note.Rmd",
+        "--contract-file",
+        "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/architecture_2026-09-08/argument_contract/argument_contract.json"
+      ],
+      "cwd": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion",
+      "exit_code": 0,
+      "stdout": "VALID: /Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/architecture_2026-09-08/adjudication/adjudication_round1.json\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/manoelgaldino/.codex/skills/solve-dynamic-games/scripts/check_game_dag.py",
+        "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/architecture_2026-09-08/game_dag.json"
+      ],
+      "cwd": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion",
+      "exit_code": 0,
+      "stdout": "VALID\nDependency batches: [implementation] -> [R2_M, R2_U] -> [R1_M, R1_U] -> [economic_transport]\nReady: none\n",
+      "stderr": ""
+    }
+  ],
+  "reproduction": {
+    "command": [
+      "Rscript",
+      "--vanilla",
+      "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/scripts/verify_architecture_20260908.R"
+    ],
+    "cwd": "/var/folders/_7/m0js68194rsd8xswh57rn_kh0000gn/T/pbp-peio-preflight-k8yw9z4u",
+    "exit_code": 0,
+    "stdout": "           category passed total failed\n    counterexamples      4     4      0\n     implementation     84    84      0\n    majority_ballot  20160 20160      0\n proposal_dominance   6840  6840      0\n terminal_unanimity    315   315      0\n unanimity_identity   1600  1600      0\n     worked_example      2     2      0\nTOTAL: 29005 PASS | 0 FAIL\n",
+    "stderr": "During startup - Warning messages:\n1: Setting LC_CTYPE failed, using \"C\" \n2: Setting LC_COLLATE failed, using \"C\" \n3: Setting LC_TIME failed, using \"C\" \n4: Setting LC_MESSAGES failed, using \"C\" \n5: Setting LC_MONETARY failed, using \"C\" \n"
+  },
+  "outputs": {
+    "counterexamples.csv": {
+      "original_sha256": "2831289f893f43938b26a2ca1f1530439a3d063b56be4cba1870238accf5c2b9",
+      "reproduced_sha256": "2831289f893f43938b26a2ca1f1530439a3d063b56be4cba1870238accf5c2b9",
+      "identical": true
+    },
+    "finite_checks.csv": {
+      "original_sha256": "888a09728798243da80b146e468f10d370229b107350de02ce440023a6b96070",
+      "reproduced_sha256": "888a09728798243da80b146e468f10d370229b107350de02ce440023a6b96070",
+      "identical": true
+    },
+    "sessionInfo.txt": {
+      "original_sha256": "c0d2eea1d4bbe22eea22116507c2abffaef60b23ac7be5a3477527b3a6cb98ec",
+      "reproduced_sha256": "c0d2eea1d4bbe22eea22116507c2abffaef60b23ac7be5a3477527b3a6cb98ec",
+      "identical": true
+    },
+    "summary.csv": {
+      "original_sha256": "ffec29b1aa773ba932bd41f131bc6525ecd0f45028f9d7a73b2ecc93114b963a",
+      "reproduced_sha256": "ffec29b1aa773ba932bd41f131bc6525ecd0f45028f9d7a73b2ecc93114b963a",
+      "identical": true
+    },
+    "worked_example.csv": {
+      "original_sha256": "7a1b7ddd0665d6d78b621734523bed829cad7837b5a6a2be6e47557ae0c66358",
+      "reproduced_sha256": "7a1b7ddd0665d6d78b621734523bed829cad7837b5a6a2be6e47557ae0c66358",
+      "identical": true
+    }
+  },
+  "reproduced_check_count": 29005,
+  "reproduced_failure_count": 0,
+  "status": "PASS_MECHANICAL_ONLY",
+  "boundary": "No proof certification, new architecture adoption, manuscript integration, or submission readiness follows from these checks."
+}

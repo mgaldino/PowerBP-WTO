@@ -1,0 +1,239 @@
+---
+title: "Preparação para a PEIO 2027"
+subtitle: "Diagnóstico formal e decisão de arquitetura"
+author: "Informational Power Through Pivotality"
+date: "19 de setembro de 2026"
+lang: pt-BR
+fontsize: 11pt
+geometry: margin=25mm
+output:
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    number_sections: true
+    keep_tex: true
+header-includes:
+  - \usepackage{amsmath,amssymb,booktabs,longtable}
+  - \usepackage{float}
+  - \setlength{\emergencystretch}{3em}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+# Resultado do diagnóstico
+
+**O manuscrito ainda não está pronto para submissão.** A pendência é uma
+decisão de arquitetura, seguida de integração e revisão do candidato que
+dela resultar. Já existe uma solução condicional demonstrada e revisada,
+de 8 de setembro; ela não foi adotada pelo autor. Não é necessário refazer
+esse trabalho como se estivesse ausente.
+
+O checkout autorizado está na branch `codex/exposition-items20-28`, commit
+`26b1a40cb989`, e estava limpo no início. O manuscrito corrente é
+`formal_model_v6.Rmd`, com PDF de 78 páginas. Sua última alteração ocorreu
+em 2 de setembro, commit `68ed3d872400`. Os hashes atuais coincidem com o
+manifesto de exposição daquele candidato: fonte `6708eaafca2f` e PDF
+`55c4a70af928` (prefixos; hashes completos em `preflight.json`).
+
+Seu título efetivo é **Power and Its Shadow: When Unanimity Serves the
+Hegemon**. Preservá-lo evita confundir o nome de trabalho do projeto com
+o título já escolhido no manuscrito.
+
+A busca independente cobriu 29 registros de worktree, dos quais 15
+diretórios existem, e 73 refs locais. Não encontrou candidato posterior
+que adote a solução. Quatorze worktrees temporários estão ausentes; não
+houve consulta ao remoto. Alterações preexistentes nas outras worktrees
+foram preservadas. O inventário integral acompanha este relatório.
+
+# A pendência exata
+
+O ramo contestado é: uma proposta reserva $x_H>0$ a H, H vota não e os
+Estados fracos aprovam a proposta por maioria. O manuscrito ainda paga a H
+apenas $o$ e cancela $x_H$ nesse ramo (seção 4, linhas 340--348 e
+366--368; Apêndice A.1, linhas 1385--1397). A decisão autoral de 5 de
+setembro exige que a ausência de acúmulo decorra de uma arquitetura
+econômica e de seus incentivos, inclusive após desvios.
+
+**B.1 e B.3 já não usam o antigo pagamento aditivo $x_H+o$.** Foram
+revisadas para a regra histórica de cancelamento. A nova pendência é
+substituir essa regra conforme a exigência posterior, e não repetir a
+correção anterior.
+
+É demonstrado que uma proposta ótima não desperdiça uma parcela positiva
+com H quando os votos fracos já bastam. Retirar $x_H$ e aumentar a parcela
+do proponente preserva as parcelas e votos dos outros fracos, a
+factibilidade e a aprovação. Esse resultado cobre propostas ótimas sob
+as respostas prescritas. Não determina o pagamento depois de uma
+proposta subótima ou de votos desviantes.
+
+Por exemplo, com quatro Estados fracos na rodada terminal, a proposta
+$x_H=0{,}2$, $x_i=0{,}8$ e zero aos demais é factível. Os fracos aceitam
+zero e aprovam mesmo com H não. O proponente preferiria guardar um, mas
+essa preferência não apaga o terminal da árvore.
+
+# Solução condicional já revisada
+
+A nota de 8 de setembro, fonte `493f513a096b` e PDF `e5b7b258d64a`,
+introduz três hipóteses econômicas explícitas. Elas ainda precisam de
+decisões autorais individuais.
+
+1. **A1: concessão executável.** $x_H$ é o benefício de uma oportunidade
+   que H precisa executar. O orçamento unitário limita as oportunidades
+   prometidas; os pagamentos dos fracos permanecem os mesmos.
+2. **A2: recurso indivisível e rival.** H dispõe de um recurso que só
+   pode executar uma oportunidade: a do clube ou a do fórum externo.
+   Não há duplicação, divisão ou execução sucessiva das duas no terminal.
+3. **A3: compromisso e escolha.** Um sim vincula H à execução do clube
+   se a proposta passar. Após um não seguido de aprovação, H escolhe
+   voluntariamente clube ou exterior. Rejeição mantém a continuação
+   ou o desacordo terminal já definidos.
+
+Com A1--A3, os recebimentos realizados após aprovação com H não são
+$(x_H,0)$ ou $(0,o)$. Nunca são ambos positivos, inclusive se a escolha
+for subótima. A escolha ótima dá $\max\{x_H,o\}$. A parcela continua
+disponível depois do não: com $x_H=0{,}2$ e $o=0{,}1$, H pode executar o
+clube e receber $0{,}2$, ao contrário do cancelamento histórico.
+
+A nota resolve a execução, depois R2 sem desconto interno, e então R1
+com $\beta C_2$. O desempate de voto em favor do sim conserva os votos
+prescritos mesmo quando uma preferência antes estrita vira indiferença.
+O transporte bidirecional preserva as correspondências projetadas e os
+resultados econômicos do baseline, condicionado às hipóteses e à
+correção da caracterização histórica transportada. Não identifica
+literalmente as árvores nem todos os pagamentos após desvios.
+
+Os dois pareceres independentes de 8 de setembro são PASS 0/0/0 para
+esses mesmos bytes. A adjudicação é `NO_CONFIRMED_DEFECTS`. Esses
+pareceres não certificam adequação empírica à OMC, adoção autoral ou toda
+a extensão de agenda.
+
+# Impacto e trabalho dependente da decisão
+
+\begin{table}[H]
+\centering
+\small
+\caption{Dependências da arquitetura no manuscrito corrente}
+\begin{tabular}{p{0.25\linewidth}p{0.66\linewidth}}
+\toprule
+Objeto & Tratamento necessário se A1--A3 forem adotadas \\
+\midrule
+Seção 4 e A.1 & Explicitar oportunidades, recurso, compromisso, execução e todos os ramos; atualizar tabela e figura de sequência. \\
+B.1 e B.3 & Reescrever as comparações não pivotais usando o valor de execução; preservar a prova de dominância entre propostas. \\
+B.2, B.4, C & Conferir continuações, endpoints, crenças e alcance do transporte; o ramo novo é inviável sob unanimidade. \\
+Seção 5, B.5--B.6 & Conferir benchmarks, vetores vinculados, rendas e diferenças; valores são condicionalmente preservados. \\
+Figuras 2--4 & Reconciliar preços, comparação privada e rendas com as interfaces finais; não confundir igualdade numérica com revisão visual. \\
+Agenda: seção 6, B.7--B.9, E--F & Acrescentar estratégias de execução às continuações completas; verificar seleção mensurável, simetria, leis de resultados e assinaturas. \\
+Abstract e interpretação & Declarar o escopo econômico necessário e preservar limites de existência e de aplicação teórica à OMC. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Na agenda, preservar o payoff de continuação não basta para preservar
+um registro que contém estratégias, crenças e distribuições completas.
+A nota de 8 de setembro deixa esse levantamento expressamente aberto.
+A alternativa concreta examinada posteriormente é uma **coalizão-alvo**:
+o proponente escolhe $(C,x)$, apenas os convidados votam, todos eles
+devem consentir e as alocações ficam restritas a $C$. Se H for convidado,
+seu não faz o pacote fracassar; se não for, não há alocação sua a executar.
+Essa rota substitui a votação universal por quota por consentimento dos
+convidados e amplia a ação do proponente para incluir $C$. A verificação
+focal sustenta equivalência econômica projetada do baseline, mas não
+equivalência de estratégias ou certificação da agenda. Quando H propõe,
+a própria coalizão pode tornar-se um sinal, exigindo análise adicional.
+Portanto é uma alternativa substantiva à execução rival, não um reparo
+rotineiro autorizado pelas regras atuais.
+
+Se A1--A3 forem rejeitadas, será necessário formular outra arquitetura
+econômica ou rever explicitamente o alcance da exigência autoral.
+Restringir a afirmação a propostas ótimas, isoladamente, ainda deixa
+faltando os payoffs necessários para avaliar desvios. Cancelamento e
+pagamento aditivo não são restaurados por falta de decisão.
+
+# Verificações desta tarefa e fronteira
+
+Foram conferidos os hashes dos 18 artefatos da candidata e dos pareceres
+citados na adjudicação; os validadores do contrato, da adjudicação e das
+dependências retornaram sucesso. O script original foi executado em
+diretório temporário: **29.005 verificações finitas aprovadas, zero
+falhas**, com os outputs numéricos idênticos aos preservados. Os registros
+estão em `verification.json` e `checks/architecture_reproduction/`.
+Esses testes complementam as demonstrações; não cobrem por enumeração
+todo o domínio contínuo.
+
+Foram produzidas leituras independentes do baseline e da agenda para
+mapear dependências, sem editar o manuscrito. Elas são registros de
+compreensão, não novos pareceres científicos de aprovação. Os PASS de
+2 de setembro permanecem limitados ao jogo e ao escopo então avaliados;
+os de 8 de setembro permanecem condicionais a A1--A3.
+
+Nesta etapa não houve mudança de hipótese, resultado ou fonte canônica,
+nem integração da candidata. O PDF do paper foi identificado por hash;
+não foi recompilado nem recebeu nova inspeção visual. O presente
+diagnóstico é o documento renderizado para revisão. A compilação bookdown
+e a inspeção visual do futuro candidato de submissão continuam pendentes.
+
+# Campos provisórios da PEIO
+
+O prazo de **20 de setembro de 2026** foi confirmado na
+[chamada oficial da PEIO](https://wp.peio.me/wp-content/uploads/PEIO19/PEIO2027.pdf),
+consultada em 19 de setembro. Os campos abaixo reproduzem o manuscrito
+atual e aguardam fechamento da arquitetura, integração e revisão final.
+A categoria WTO foi preservada; ela não implica aplicação empiricamente
+testada à OMC.
+
+**Title:** Power and Its Shadow: When Unanimity Serves the Hegemon
+
+**Abstract: 137 palavras**, contadas por separação em espaços.
+
+Why can unanimity benefit a powerful state when every member has the same veto?
+This paper studies a two-round bargaining game in which only weak states propose
+and a hegemon privately knows whether its disagreement payoff is low or high.
+Majority allows weak states to replace the hegemon's vote; unanimity makes its
+approval indispensable. Relative to a public-information benchmark, unanimity
+transfers informational rent to the low-disagreement-payoff type, while majority
+can eliminate that rent through exclusion. Some beliefs admit no equilibrium
+in the maintained class of pure ballot strategies. An extension lets the hegemon
+propose first. Agenda power benefits it under unanimity, but majority can still
+be better when the disagreement payoff is low relative to the weak votes a
+winning coalition can exclude. The model offers a rationalist account of
+unequal bargaining power under formally equal rules.
+
+**Category:** WTO.
+
+Os textos para copiar estão também em `peio_fields_provisional.md` e
+`peio_fields_provisional.json`. Nenhum formulário foi preenchido ou enviado.
+
+# Fontes e reprodução
+
+Diretório deste relatório:
+\nolinkurl{quality_reports/peio_2027_2026-09-19/}.
+
+As decisões governantes são o registro de 1º de setembro com sua emenda,
+`approval.md` e `architecture_clarification.md` de 5 de setembro, a
+codificação de crenças de 1º de setembro e o `AGENTS.md` vigente. O
+inventário fornece seus caminhos e hashes. Os manifestos de transporte
+do item 13 e de exposição dos itens 20--28 delimitam os pareceres
+anteriores. O pacote condicional fica em
+\nolinkurl{quality_reports/architecture_2026-09-08/}.
+
+Reproduzir as verificações sem sobrescrever outputs históricos:
+
+```sh
+python3 scripts/verify_peio_preflight_20260919.py
+```
+
+Renderizar este relatório respeitando seu YAML bookdown:
+
+```r
+rmarkdown::render(
+  "quality_reports/peio_2027_2026-09-19/diagnostico.Rmd"
+)
+```
+
+As decisões A1, A2 e A3 foram solicitadas separadamente ao autor. A
+pergunta permanece pendente nesta versão. A integração e a revisão do
+candidato final dependem da resposta, conforme o pedido da tarefa e o
+`AGENTS.md`: “Consulte o autor quando a escolha ainda não resolvida
+alterar primitivas, informação, payoffs, conceito de solução, afirmações
+formais ou interpretação substantiva.”

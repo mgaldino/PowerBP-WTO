@@ -1,0 +1,20 @@
+{
+  "finding_id": "DOC-002",
+  "status": "CONFIRMED",
+  "type": "artifact",
+  "severity": "minor",
+  "source": "independent provenance_inventory visual review",
+  "source_sha256": "3e8b99d7fcbb164cf596f0c9231e5c5caacae89968fb1bfa947b2c905c0973d6",
+  "source_snapshot": "quality_reports/peio_2027_2026-09-19/review_history/diagnostico_before_layout_fix.Rmd",
+  "pdf_sha256": "5c72b5d834fd7c3fe3f52a63d0b4cfbdead1c3782bcef32c99bfddb6d3429b11",
+  "source_locations": [
+    "diagnostico.Rmd:204-205",
+    "diagnostico.pdf p.4"
+  ],
+  "quoted_finding": "Nome peio_fields_provisional.json avanca 37.69 pt alem da margem direita, sem corte fisico.",
+  "defect_evidence": [
+    "Visual review and bbox xMax 578.826 versus right text margin 541.134."
+  ],
+  "proposed_fix_assessment": "safe",
+  "disposition": "Separate the two file references into short paragraphs and use breakable path formatting. No substantive text or manuscript change."
+}
