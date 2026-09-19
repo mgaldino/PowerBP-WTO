@@ -19,8 +19,21 @@ Os registros correntes da derivação, do candidato e das revisões estão em
 pelos hashes e pareceres próprios; nenhum PASS abaixo certifica o novo jogo.
 
 O pedido de preparação para PEIO já autoriza derivação, implementação,
-revisão independente, integração e preparação dos materiais. Submissão,
-publicação, push, tag e comunicação externa não foram autorizados.
+revisão independente, integração e preparação dos materiais. A instrução
+posterior do autor, “use git tag”, autorizou o versionamento abaixo.
+Submissão, publicação, push e comunicação externa não foram autorizados.
+
+## Versão preservada em Git — 2026-09-19
+
+- Tag anotada local: `v6-peio-coalition-reviewed-2026-09-19`.
+- Commit preservado: `3df36bf2228f96b32be7f312b1ec5ec928af2ea5`.
+- Arquivos ativos: `formal_model_v6.Rmd`, `formal_model_v6.pdf` e `references.bib`.
+- A tag contém o candidato revisado, os pareceres, verificações e os dois logs
+  de compilação. Seus 141 arquivos inventariados coincidem com o manifesto
+  de entrega. O manifesto e os pareceres permanecem vinculados aos bytes
+  preservados na tag; esta nota de versionamento é posterior à entrega.
+- Recuperar o fonte: `git show v6-peio-coalition-reviewed-2026-09-19:formal_model_v6.Rmd`.
+- Comparar alterações posteriores: `git diff v6-peio-coalition-reviewed-2026-09-19 -- formal_model_v6.Rmd`.
 
 ## Registro histórico preservado
 
