@@ -1,0 +1,15 @@
+During startup - Warning messages:
+1: Setting LC_CTYPE failed, using "C" 
+2: Setting LC_COLLATE failed, using "C" 
+3: Setting LC_TIME failed, using "C" 
+4: Setting LC_MESSAGES failed, using "C" 
+5: Setting LC_MONETARY failed, using "C" 
+
+
+processing file: formal_model_v6.Rmd
+1/1
+output file: formal_model_v6.knit.md
+
+/opt/homebrew/bin/pandoc +RTS -K512m -RTS formal_model_v6.knit.md --to latex --from markdown+autolink_bare_uris+tex_math_single_backslash --output formal_model_v6.tex --lua-filter /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --number-sections --highlight-style tango --pdf-engine xelatex --variable graphics --wrap preserve --include-in-header /var/folders/_7/m0js68194rsd8xswh57rn_kh0000gn/T//RtmpGc50is/rmarkdown-str1344666e12e3a.html --variable tables=yes --standalone -Mhas-frontmatter=false --citeproc 
+
+Output created: formal_model_v6.pdf
