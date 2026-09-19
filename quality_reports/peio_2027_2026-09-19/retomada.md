@@ -1,5 +1,7 @@
 # Retomada da preparação para PEIO 2027
 
+**Atualização posterior à entrega do diagnóstico:** o autor aprovou A2 e A3 e manteve A1 em dúvida, com inclinação à rejeição. A pergunta atual é se as três cláusulas são necessárias. Consultar `author_decision_A2_A3.md` e o `status.json` atualizado. O registro abaixo descreve a entrega anterior e está superado quanto ao estado individual de A2 e A3; não solicitar sua aprovação novamente.
+
 Estado deste registro: aguardando decisões autorais individuais A1, A2 e A3. A pergunta foi apresentada durante a tarefa de 19/09/2026. Ausência de resposta não é aprovação. O pedido autoriza diagnóstico, correção dentro dos fundamentos, revisão independente, integração e materiais; não autoriza submissão, publicação, push ou comunicação externa.
 
 ## Base verificada
