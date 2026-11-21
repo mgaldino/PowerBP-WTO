@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "adjudication_id": "seminario-informacao:9356d86a2e89:round1",
+  "source": {
+    "reviewed_artifact": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/2026-09-24_auditoria_seminario/inputs/formal_model_v6.Rmd",
+    "sha256": "9356d86a2e893481968ee96a918c2109e726444c5d902ce88edd6f1a5d86345f",
+    "artifact_intact": true
+  },
+  "contract": {
+    "required": true,
+    "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/2026-09-24_auditoria_seminario/argument_contract/argument_contract.json",
+    "sha256": "a1a39f8548cfdbe285a9bd5be7cee7f28d92156e8a411b91a74bd65099d3cebc",
+    "contract_id": "informational-power-coalition-manuscript:9356d86a2e89:round2",
+    "artifact_sha256": "9356d86a2e893481968ee96a918c2109e726444c5d902ce88edd6f1a5d86345f",
+    "status": "PASS",
+    "stale": false
+  },
+  "review_sources": [
+    {
+      "review_id": "formal",
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/2026-09-24_auditoria_seminario/reviews/formal.md",
+      "sha256": "57773abb26dfe7ad9d2f6e4ff647d8bd3bcd105a7b0fb3c9f55a527d1ce07c67"
+    },
+    {
+      "review_id": "adversarial",
+      "path": "/Users/manoelgaldino/Documents/DCP/Papers/PowerBayesianPersuasion/quality_reports/2026-09-24_auditoria_seminario/reviews/adversarial.md",
+      "sha256": "a32597be1234d82037d44a02b596c278ebf3aa9ab73c403558f6c3973388df59"
+    }
+  ],
+  "findings": [],
+  "summary": {
+    "total": 0,
+    "confirmed": 0,
+    "partial": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "held_decisions": 0
+  },
+  "adjudication": {
+    "verdict": "NO_CONFIRMED_DEFECTS",
+    "checked_at": "2026-09-25T01:34:06.404854+00:00",
+    "reasons": [
+      "Dois pareceres completos independentes sobre a mesma fonte; ambos sem findings.",
+      "Root leu os dois pareceres, conferiu mapas de cobertura, outputs e a estrutura dos scripts.",
+      "Root confrontou diretamente as passagens P1981–2021, P1235–1268 e P3167–3268 com as avaliações.",
+      "Nenhuma hipótese de erro descartada foi promovida a defeito, nem uma possível extensão a teorema auditado.",
+      "Conclusão limitada ao conceito mantido, sem certificação Lean, empírica, bibliográfica ou de PDF."
+    ]
+  }
+}

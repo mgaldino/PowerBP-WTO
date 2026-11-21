@@ -1,0 +1,43 @@
+{
+  "source_sha256": "9356d86a2e893481968ee96a918c2109e726444c5d902ce88edd6f1a5d86345f",
+  "reviewer": "audit_information_adversarial",
+  "date": "2026-09-24",
+  "status": "no_confirmed_findings_within_declared_scope",
+  "confirmed_findings": 0,
+  "coverage_rows": 37,
+  "exact_finite_checks": 67796,
+  "files": [
+    {
+      "path": "reviews/adversarial.md",
+      "sha256": "a32597be1234d82037d44a02b596c278ebf3aa9ab73c403558f6c3973388df59",
+      "bytes": 37795
+    },
+    {
+      "path": "reviews/findings_adversarial.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    {
+      "path": "reviews/claim_coverage_adversarial.csv",
+      "sha256": "a37b62491d61756cc8c3a9d4b8059ae7a041d67f20e9aca55718ecedafc4a12a",
+      "bytes": 14531
+    },
+    {
+      "path": "checks/adversarial/check_exact.py",
+      "sha256": "59286130e349ba3d4932bb7074704df191df0bb6a3e8db3a0bdcb113c4cb705e",
+      "bytes": 8680
+    },
+    {
+      "path": "checks/adversarial/check_results.json",
+      "sha256": "ef139f281aacef39bddb15ecc6cf6457b25e04dd30828e9065d2af50f3fc8093",
+      "bytes": 1439
+    }
+  ],
+  "outside_scope": [
+    "Historical factual claims",
+    "Bibliographic novelty",
+    "PDF rendering and figure QA",
+    "Lean compilation",
+    "Mixed-ballot equilibria outside the maintained class"
+  ]
+}

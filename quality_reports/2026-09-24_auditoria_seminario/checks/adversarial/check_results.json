@@ -1,0 +1,48 @@
+{
+  "source_sha256": "9356d86a2e893481968ee96a918c2109e726444c5d902ce88edd6f1a5d86345f",
+  "method": "Python stdlib Fraction; no author code imported",
+  "counts": {
+    "majority_classification_and_ties": 4352,
+    "majority_continuation_price_bounds": 4388,
+    "oversized_agenda_strict_loss": 504,
+    "agenda_uniform_bound_identity": 504,
+    "agenda_unanimity_interval_nonempty": 504,
+    "agenda_U_incidence": 1512,
+    "agenda_U_total_nonnegative": 1512,
+    "agenda_U_interaction_nonpositive": 1512,
+    "unanimity_nonexistence_at_cutoff": 504,
+    "unanimity_offpath_completion": 41916,
+    "public_agenda_gap": 3528,
+    "public_agenda_direct": 3528,
+    "public_U_direct": 3528,
+    "worked_baseline_screening_exclusion_cutoff": 1,
+    "worked_baseline_form": 1,
+    "worked_agenda_reversal": 1,
+    "auxiliary_TM_zero_positive": 1
+  },
+  "total_checks": 67796,
+  "errors": [],
+  "examples": {
+    "baseline_pstar": "5/18",
+    "baseline_pSE": "27/92",
+    "agenda_reversal": [
+      "1181/2000",
+      "181/1000",
+      "729/1000",
+      "137/250",
+      "-819/2000",
+      "277/2000"
+    ],
+    "auxiliary_TM_zero_positive": [
+      "1181/2000",
+      "5913/10000",
+      "4733/8000",
+      "13/40000"
+    ]
+  },
+  "limitations": [
+    "Finite parameter grid, not a continuous proof.",
+    "No empirical, bibliographic, rendering or Lean validation.",
+    "Measure-theoretic results checked analytically in the report."
+  ]
+}
